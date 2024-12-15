@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.user.country.pagemode;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,26 +37,21 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
 
 /**
  * The Class WorldIndicatorsPageModContentFactoryImpl.
  */
 @Component
 public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCountryPageModContentFactoryImpl {
-
-<span class="fc" id="L53">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;indicatorName&quot;,</span>
-			   &quot;sourceValue&quot;,
-			   &quot;topics&quot;,
-			   &quot;sourceNote&quot;,
-			   &quot;sourceOrganization&quot;);
-
-	/** The Constant WORLD_INDICATORS. */
-	private static final String WORLD_INDICATORS = &quot;World Indicators&quot;;
 
 	/** The chart data manager. */
 	@Autowired
@@ -67,71 +61,129 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 	 * Instantiates a new world indicators page mod content factory impl.
 	 */
 	public WorldIndicatorsPageModContentFactoryImpl() {
-<span class="fc" id="L70">		super();</span>
-<span class="fc" id="L71">	}</span>
+<span class="fc" id="L64">		super();</span>
+<span class="fc" id="L65">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L77">		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);</span>
+<span class="fc" id="L70">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L71">		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);</span>
+<span class="fc" id="L72">		createPageHeader(panel, panelContent, &quot;Country Indicator&quot;, &quot;Country Indicator&quot;,</span>
+				&quot;Compare key performance indicators across multiple countries.&quot;);
+<span class="fc" id="L74">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L79">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L76">		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length() + &quot;/&quot;.length());</span>
 
-<span class="fc" id="L81">		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length()+&quot;/&quot;.length());</span>
+<span class="fc" id="L78">		createDataIndicatorSummaryChartPanel(panelContent, indicator, panel);</span>
 
-<span class="fc" id="L83">		createDataIndicatorSummaryChartPanel(panelContent,indicator);</span>
+<span class="fc" id="L80">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
 
-<span class="fc" id="L85">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);</span>
-<span class="fc" id="L86">		panel.setCaption(NAME + &quot;::&quot; + WORLD_INDICATORS);</span>
-
-<span class="fc" id="L88">		return panelContent;</span>
-
+<span class="fc" id="L83">		return panelContent;</span>
 	}
 
 	/**
 	 * Creates the data indicator summary chart panel.
 	 *
-	 * @param verticalLayout
-	 *            the vertical layout
-	 * @param indicator
-	 *            the indicator
+	 * @param verticalLayout the vertical layout
+	 * @param indicator      the indicator
+	 * @param panel          the panel
 	 */
-	private void createDataIndicatorSummaryChartPanel(final VerticalLayout verticalLayout,final String indicator) {
+	private void createDataIndicatorSummaryChartPanel(final VerticalLayout verticalLayout, final String indicator,
+			final Panel panel) {
+<span class="fc" id="L95">		final DataContainer&lt;ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId&gt; indicatorDataSummaryContainer = getApplicationManager()</span>
+<span class="fc" id="L96">				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);</span>
 
-<span class="fc" id="L102">		final DataContainer&lt;ViewWorldbankIndicatorDataCountrySummary, WorldbankIndicatorDataCountrySummaryEmbeddedId&gt; indicatorDataCountrSummaryDailyDataContainer = getApplicationManager()</span>
-<span class="fc" id="L103">				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);</span>
+<span class="fc" id="L98">		final Optional&lt;ViewWorldbankIndicatorDataCountrySummary&gt; indicatorSummary = indicatorDataSummaryContainer</span>
+<span class="fc" id="L99">				.getAll().parallelStream()</span>
+<span class="pc bpc" id="L100" title="1 of 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getEmbeddedId().getIndicatorId().equals(indicator)).findFirst();</span>
 
+<span class="fc" id="L102">		ViewWorldbankIndicatorDataCountrySummary indicatorSummaryValue = null;</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">		if (indicatorSummary.isPresent()) {</span>
+<span class="fc" id="L104">			indicatorSummaryValue = indicatorSummary.get();</span>
 
-<span class="fc" id="L106">		final Optional&lt;ViewWorldbankIndicatorDataCountrySummary&gt; indicatorSummary = indicatorDataCountrSummaryDailyDataContainer</span>
-<span class="fc" id="L107">				.getAll()</span>
-<span class="fc" id="L108">				.parallelStream()</span>
-<span class="pc bpc" id="L109" title="1 of 4 branches missed.">				.filter(t -&gt; t != null &amp;&amp; t.getEmbeddedId().getIndicatorId().equals(indicator)).findFirst();</span>
+			// Instead of formFactory, we create a card for the indicator summary
+<span class="fc" id="L107">			final Label sectionHeader = new Label(&quot;Indicator Summary&quot;);</span>
+<span class="fc" id="L108">			sectionHeader.addStyleName(&quot;section-header&quot;);</span>
+<span class="fc" id="L109">			verticalLayout.addComponent(sectionHeader);</span>
 
+<span class="fc" id="L111">			final VerticalLayout card = new VerticalLayout();</span>
+<span class="fc" id="L112">			card.setMargin(true);</span>
+<span class="fc" id="L113">			card.setSpacing(true);</span>
+<span class="fc" id="L114">			card.addStyleName(&quot;indicator-summary-card&quot;);</span>
+<span class="fc" id="L115">			Responsive.makeResponsive(card);</span>
 
-<span class="fc" id="L112">		ViewWorldbankIndicatorDataCountrySummary indicatorSummaryValue = null;</span>
-<span class="pc bpc" id="L113" title="1 of 2 branches missed.">		if (indicatorSummary.isPresent()) {</span>
-<span class="fc" id="L114">			indicatorSummaryValue = indicatorSummary.get();</span>
+			// For each field in AS_LIST, we create a row
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">			if (indicatorSummaryValue.getIndicatorName() != null) {</span>
+<span class="fc" id="L119">				card.addComponent(createInfoRow(&quot;Indicator Name:&quot;, indicatorSummaryValue.getIndicatorName(),</span>
+						VaadinIcons.INFO_CIRCLE, &quot;Name of the indicator&quot;));
+			}
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">			if (indicatorSummaryValue.getSourceValue() != null) {</span>
+<span class="fc" id="L123">				card.addComponent(createInfoRow(&quot;Source Value:&quot;, indicatorSummaryValue.getSourceValue(),</span>
+						VaadinIcons.GLOBE, &quot;Source of this indicator data&quot;));
+			}
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">			if (indicatorSummaryValue.getSourceOrganization() != null) {</span>
+<span class="fc" id="L127">				card.addComponent(createInfoRow(&quot;Source Organization:&quot;, indicatorSummaryValue.getSourceOrganization(),</span>
+						VaadinIcons.INSTITUTION, &quot;Organization providing this data&quot;));
+			}
 
-<span class="fc" id="L116">			getFormFactory().addFormPanelTextFields(verticalLayout,</span>
-					indicatorSummaryValue,
-							ViewWorldbankIndicatorDataCountrySummary.class,
-							AS_LIST);
+<span class="fc" id="L131">			verticalLayout.addComponent(card);</span>
 		}
 
-<span class="fc" id="L122">		final DataContainer&lt;WorldBankData, Serializable&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L123">		.getDataContainer(WorldBankData.class);</span>
+<span class="fc" id="L134">		final DataContainer&lt;WorldBankData, Serializable&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L135">				.getDataContainer(WorldBankData.class);</span>
 
+<span class="fc" id="L137">		final List&lt;WorldBankData&gt; dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class,</span>
+				WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);
 
-<span class="fc" id="L126">		final List&lt;WorldBankData&gt; dataList = dataContainer.findListByEmbeddedProperty(WorldBankData.class, WorldBankData_.indicator, Indicator.class, Indicator_.id, indicator);</span>
+<span class="fc" id="L140">		chartDataManager.createIndicatorChart(verticalLayout, dataList, indicatorSummaryValue);</span>
+<span class="fc" id="L141">	}</span>
 
-<span class="fc" id="L128">		chartDataManager.createIndicatorChart(verticalLayout,dataList,indicatorSummaryValue);</span>
+	/**
+	 * Creates a row displaying a caption and value, with optional icon and tooltip.
+	 *
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon for better visual cue
+	 * @param tooltip optional tooltip to provide more info
+	 * @return a HorizontalLayout representing the info row
+	 */
+	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
+			final String tooltip) {
+<span class="fc" id="L154">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L155">		layout.setSpacing(true);</span>
+<span class="fc" id="L156">		layout.addStyleName(&quot;metric-label&quot;);</span>
+<span class="fc" id="L157">		layout.setWidthUndefined();</span>
 
-<span class="fc" id="L130">	}</span>
+<span class="pc bpc" id="L159" title="1 of 2 branches missed.">		if (icon != null) {</span>
+<span class="fc" id="L160">			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L161">			iconLabel.addStyleName(&quot;card-info-icon&quot;);</span>
+<span class="pc bpc" id="L162" title="2 of 4 branches missed.">			if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L163">				iconLabel.setDescription(tooltip);</span>
+			}
+<span class="fc" id="L165">			layout.addComponent(iconLabel);</span>
+		}
+
+<span class="fc" id="L168">		final Label captionLabel = new Label(caption);</span>
+<span class="fc" id="L169">		captionLabel.addStyleName(&quot;card-info-caption&quot;);</span>
+<span class="pc bpc" id="L170" title="2 of 4 branches missed.">		if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L171">			captionLabel.setDescription(tooltip);</span>
+		}
+<span class="fc" id="L173">		layout.addComponent(captionLabel);</span>
+
+<span class="pc bpc" id="L175" title="2 of 4 branches missed.">		if (value != null &amp;&amp; !value.isEmpty()) {</span>
+<span class="fc" id="L176">			final Label valueLabel = new Label(value);</span>
+<span class="fc" id="L177">			valueLabel.addStyleName(&quot;card-info-value&quot;);</span>
+<span class="fc" id="L178">			layout.addComponent(valueLabel);</span>
+		}
+
+<span class="fc" id="L181">		return layout;</span>
+	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L134" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PageMode.INDICATORS.toString());</span>
+<span class="pc bpc" id="L186" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PageMode.INDICATORS.toString());</span>
 	}
 
 }

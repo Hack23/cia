@@ -43,7 +43,8 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
-<span class="fc" id="L46">	private static final String[] COLUMN_ORDER = { &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;, &quot;bornYear&quot;, &quot;totalDaysServed&quot;,</span>
+	/** The Constant COLUMN_ORDER. */
+<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = { &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;, &quot;bornYear&quot;, &quot;totalDaysServed&quot;,</span>
 			&quot;currentAssignments&quot;, &quot;totalAssignments&quot;, &quot;firstAssignmentDate&quot;, &quot;lastAssignmentDate&quot;,
 			&quot;totalDaysServedParliament&quot;, &quot;totalDaysServedCommittee&quot;, &quot;totalDaysServedGovernment&quot;,
 			&quot;totalDaysServedEu&quot;,
@@ -58,16 +59,16 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 			&quot;currentPartyAssignments&quot;, &quot;currentMinistryAssignments&quot;, &quot;currentCommitteeAssignments&quot;,
 			&quot;currentSpeakerAssignments&quot;, &quot;gender&quot; };
 
-	/** The Constant DATAGRID. */
-	private static final String DATAGRID = &quot;Datagrid&quot;;
+	/** The Constant HIDE_COLUMNS. */
+<span class="fc" id="L63">	private static final String[] HIDE_COLUMNS = { &quot;personId&quot;, &quot;active&quot;, &quot;activeEu&quot;, &quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;, &quot;activeParty&quot;, &quot;activeSpeaker&quot;,&quot;bornYear&quot; };</span>
 
-<span class="fc" id="L64">	private static final String[] HIDE_COLUMNS = { &quot;personId&quot;, &quot;active&quot;, &quot;activeEu&quot;, &quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;, &quot;activeParty&quot;, &quot;activeSpeaker&quot;,&quot;bornYear&quot; };</span>
-
+	/** The Constant LISTENER. */
 <span class="fc" id="L66">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
+	/** The Constant POLITICIANS. */
 	private static final String POLITICIANS = &quot;Politicians&quot;;
 
 	/**
@@ -75,38 +76,38 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 	 * impl.
 	 */
 	public PoliticianRankingDataGridPageModContentFactoryImpl() {
-<span class="fc" id="L78">		super();</span>
-<span class="fc" id="L79">	}</span>
+<span class="fc" id="L79">		super();</span>
+<span class="fc" id="L80">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L84">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L85">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L86">		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);</span>
+<span class="fc" id="L87">		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);</span>
+<span class="fc" id="L88">		createPageHeader(panel, panelContent, &quot;Politician Performance Overview&quot;, &quot;Politician Rankings&quot;, &quot;Review rankings of politicians based on tenure, contributions, and performance metrics.&quot;);</span>
 
-<span class="fc" id="L88">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L90">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L90">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
-<span class="fc" id="L91">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
+<span class="fc" id="L92">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
+<span class="fc" id="L93">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
 
-<span class="fc" id="L93">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class, politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments),</span>
+<span class="fc" id="L95">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class, politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments),</span>
 				POLITICIANS,
 				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L97">		panel.setCaption(NAME + &quot;::&quot; + DATAGRID);</span>
 
-<span class="fc" id="L99">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L100">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
 
-<span class="fc" id="L102">		return panelContent;</span>
+<span class="fc" id="L103">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L108" title="All 2 branches covered.">		return NAME.equals(page)</span>
-<span class="fc bfc" id="L109" title="All 2 branches covered.">				&amp;&amp; StringUtils.contains(parameters, PageMode.DATAGRID.toString());</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">		return NAME.equals(page)</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">				&amp;&amp; StringUtils.contains(parameters, PageMode.DATAGRID.toString());</span>
 	}
 
 }

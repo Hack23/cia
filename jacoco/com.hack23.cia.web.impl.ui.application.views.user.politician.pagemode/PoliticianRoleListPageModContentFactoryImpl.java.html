@@ -28,8 +28,10 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData;
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -42,36 +44,38 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
 	private static final String ASSIGNMENTS = &quot;Assignments&quot;;
-<span class="fc" id="L45">	private static final String[] COLUMN_ORDER = { &quot;roleCode&quot;, &quot;assignmentType&quot;, &quot;status&quot;, &quot;detail&quot;,</span>
+<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = { &quot;roleCode&quot;, &quot;assignmentType&quot;, &quot;status&quot;, &quot;detail&quot;,</span>
 			&quot;orgCode&quot;, &quot;fromDate&quot;, &quot;toDate&quot; };
-<span class="fc" id="L47">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;intressentId&quot;, &quot;orderNumber&quot;, &quot;orgCode&quot; };</span>
+<span class="fc" id="L49">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;intressentId&quot;, &quot;orderNumber&quot;, &quot;orgCode&quot; };</span>
 
 	/**
 	 * Instantiates a new politician role list page mod content factory impl.
 	 */
 	public PoliticianRoleListPageModContentFactoryImpl() {
-<span class="fc" id="L53">		super();</span>
-<span class="fc" id="L54">	}</span>
+<span class="fc" id="L55">		super();</span>
+<span class="fc" id="L56">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L59">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L61">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L62">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
-<span class="fc" id="L63">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
-<span class="fc" id="L64">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.ROLELIST.toString());</span>
+<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L64">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="fc" id="L65">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L66">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
-<span class="fc" id="L67">				.load(viewRiksdagenPolitician.getPersonId());</span>
+<span class="fc" id="L67">		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + &quot; Role List&quot;, &quot;Roles Overview&quot;, &quot;Explore the list of roles held by the politician across their career.&quot;);</span>
 
-<span class="fc" id="L69">		final List&lt;AssignmentData&gt; assignmentList = personData.getPersonAssignmentData().getAssignmentList();</span>
+<span class="fc" id="L69">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
+<span class="fc" id="L70">				.load(viewRiksdagenPolitician.getPersonId());</span>
 
-<span class="fc" id="L71">		createRoleList(panelContent, assignmentList);</span>
+<span class="fc" id="L72">		final List&lt;AssignmentData&gt; assignmentList = personData.getPersonAssignmentData().getAssignmentList();</span>
 
-<span class="fc" id="L73">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L74">		return panelContent;</span>
+<span class="fc" id="L74">		createRoleList(panelContent, assignmentList);</span>
+
+<span class="fc" id="L76">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,</span>
+		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
+<span class="fc" id="L78">		return panelContent;</span>
 
 	}
 
@@ -84,18 +88,18 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 	private void createRoleList(final VerticalLayout roleSummaryLayoutTabsheet,
 			final List&lt;AssignmentData&gt; assignmentList) {
 
-<span class="fc" id="L87">		final Comparator&lt;AssignmentData&gt; compare = (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
+<span class="fc" id="L91">		final Comparator&lt;AssignmentData&gt; compare = (o1, o2) -&gt; o1.getFromDate().compareTo(o2.getFromDate());</span>
 
-<span class="fc" id="L89">		Collections.sort(assignmentList, compare);</span>
+<span class="fc" id="L93">		Collections.sort(assignmentList, compare);</span>
 
-<span class="fc" id="L91">		getGridFactory().createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,</span>
+<span class="fc" id="L95">		getGridFactory().createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,</span>
 				ASSIGNMENTS, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
-<span class="fc" id="L94">	}</span>
+<span class="fc" id="L98">	}</span>
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L98" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.ROLELIST.toString());</span>
+<span class="fc bfc" id="L102" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.ROLELIST.toString());</span>
 	}
 
 }

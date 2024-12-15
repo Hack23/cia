@@ -48,8 +48,13 @@ abstract class AbstractMinistryPageModContentFactoryImpl extends AbstractItemPag
 <span class="fc" id="L48">		return getApplicationManager().getDataContainer(ViewRiksdagenMinistry.class).load(getPageId(parameters));</span>
 	}
 
+	/**
+	 * Gets the ministry menu item factory.
+	 *
+	 * @return the ministry menu item factory
+	 */
 	protected final MinistryMenuItemFactory getMinistryMenuItemFactory() {
-<span class="fc" id="L52">		return ministryMenuItemFactory;</span>
+<span class="fc" id="L57">		return ministryMenuItemFactory;</span>
 	}
 
 }

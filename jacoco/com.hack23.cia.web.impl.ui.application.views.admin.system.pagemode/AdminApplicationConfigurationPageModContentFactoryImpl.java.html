@@ -31,7 +31,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -53,22 +52,19 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminApplicationConfigurationPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_APPLICATION_CONFIGURATION. */
-	private static final String ADMIN_APPLICATION_CONFIGURATION = &quot;Admin Application Configuration&quot;;
-
 	private static final String APPLICATION_CONFIGURATION = &quot;ApplicationConfiguration&quot;;
 
-<span class="fc" id="L61">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;configurationGroup&quot;, &quot;component&quot;,&quot;configTitle&quot; ,&quot;configDescription&quot;,</span>
+<span class="fc" id="L57">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;configurationGroup&quot;, &quot;component&quot;,&quot;configTitle&quot; ,&quot;configDescription&quot;,</span>
 			&quot;propertyValue&quot;, &quot;createdDate&quot;,
 			&quot;updatedDate&quot; );
 
-<span class="fc" id="L65">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList( &quot;configTitle&quot;,</span>
+<span class="fc" id="L61">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList( &quot;configTitle&quot;,</span>
 			&quot;configDescription&quot;, &quot;componentTitle&quot;, &quot;componentDescription&quot;, &quot;propertyValue&quot; );
 
-<span class="fc" id="L68">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;configurationGroup&quot;, &quot;component&quot;, &quot;componentTitle&quot;, &quot;configTitle&quot;, &quot;configDescription&quot;,</span>
+<span class="fc" id="L64">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;configurationGroup&quot;, &quot;component&quot;, &quot;componentTitle&quot;, &quot;configTitle&quot;, &quot;configDescription&quot;,</span>
 			 &quot;componentDescription&quot;, &quot;propertyId&quot;, &quot;propertyValue&quot; };
 
-<span class="fc" id="L71">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;updatedDate&quot;,&quot;propertyId&quot; ,&quot;componentDescription&quot;, &quot;componentTitle&quot;};</span>
+<span class="fc" id="L67">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;, &quot;updatedDate&quot;,&quot;propertyId&quot; ,&quot;componentDescription&quot;, &quot;componentTitle&quot;};</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME;
@@ -80,89 +76,89 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 	 * factory impl.
 	 */
 	public AdminApplicationConfigurationPageModContentFactoryImpl() {
-<span class="fc" id="L83">		super(NAME);</span>
-<span class="fc" id="L84">	}</span>
+<span class="fc" id="L79">		super(NAME);</span>
+<span class="fc" id="L80">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L89">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L85">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L91">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L92">		final int pageNr= getPageNr(parameters);</span>
+<span class="fc" id="L87">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L88">		final int pageNr= getPageNr(parameters);</span>
 
 
-<span class="fc" id="L95">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L91">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L97">		LabelFactory.createHeader2Label(content,ADMIN_APPLICATION_CONFIGURATION);</span>
+<span class="fc" id="L93">		createPageHeader(panel, content, &quot;Admin Application Configuration&quot;, &quot;Application Configuration&quot;, &quot;View and edit application settings and configurations for optimal performance.&quot;);</span>
 
-<span class="fc" id="L99">		final DataContainer&lt;ApplicationConfiguration, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L100">				.getDataContainer(ApplicationConfiguration.class);</span>
+<span class="fc" id="L95">		final DataContainer&lt;ApplicationConfiguration, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L96">				.getDataContainer(ApplicationConfiguration.class);</span>
 
-<span class="fc" id="L102">		final List&lt;ApplicationConfiguration&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationConfiguration_.configurationGroup);</span>
+<span class="fc" id="L98">		final List&lt;ApplicationConfiguration&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, ApplicationConfiguration_.configurationGroup);</span>
 
-<span class="fc" id="L104">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="fc" id="L100">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
-<span class="fc" id="L106">		getGridFactory().createBasicBeanItemGrid(content,ApplicationConfiguration.class,</span>
+<span class="fc" id="L102">		getGridFactory().createBasicBeanItemGrid(content,ApplicationConfiguration.class,</span>
 				pageOrderBy,
 				APPLICATION_CONFIGURATION,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, &quot;hjid&quot;), null, null);
 
-<span class="pc bpc" id="L112" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="pc bpc" id="L108" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
-<span class="fc" id="L114">			final ApplicationConfiguration applicationConfiguration = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="fc" id="L110">			final ApplicationConfiguration applicationConfiguration = dataContainer.load(Long.valueOf(pageId));</span>
 
-<span class="pc bpc" id="L116" title="1 of 2 branches missed.">			if (applicationConfiguration != null) {</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">			if (applicationConfiguration != null) {</span>
 
-<span class="fc" id="L118">				final VerticalLayout leftLayout = new VerticalLayout();</span>
-<span class="fc" id="L119">				leftLayout.setSizeFull();</span>
-<span class="fc" id="L120">				final VerticalLayout rightLayout = new VerticalLayout();</span>
-<span class="fc" id="L121">				rightLayout.setSizeFull();</span>
-<span class="fc" id="L122">				final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
-<span class="fc" id="L123">				horizontalLayout.setWidth(ContentSize.FULL_SIZE);</span>
-<span class="fc" id="L124">				content.addComponent(horizontalLayout);</span>
-<span class="fc" id="L125">				horizontalLayout.addComponent(leftLayout);</span>
-<span class="fc" id="L126">				horizontalLayout.addComponent(rightLayout);</span>
+<span class="fc" id="L114">				final VerticalLayout leftLayout = new VerticalLayout();</span>
+<span class="fc" id="L115">				leftLayout.setSizeFull();</span>
+<span class="fc" id="L116">				final VerticalLayout rightLayout = new VerticalLayout();</span>
+<span class="fc" id="L117">				rightLayout.setSizeFull();</span>
+<span class="fc" id="L118">				final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L119">				horizontalLayout.setWidth(ContentSize.FULL_SIZE);</span>
+<span class="fc" id="L120">				content.addComponent(horizontalLayout);</span>
+<span class="fc" id="L121">				horizontalLayout.addComponent(leftLayout);</span>
+<span class="fc" id="L122">				horizontalLayout.addComponent(rightLayout);</span>
 
 
-<span class="fc" id="L129">				getFormFactory().addFormPanelTextFields(leftLayout, applicationConfiguration,</span>
+<span class="fc" id="L125">				getFormFactory().addFormPanelTextFields(leftLayout, applicationConfiguration,</span>
 						ApplicationConfiguration.class,
 						AS_LIST);
 
-<span class="fc" id="L133">				final UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();</span>
-<span class="fc" id="L134">				request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="fc" id="L135">				request.setApplicationConfigurationId(applicationConfiguration.getHjid());</span>
+<span class="fc" id="L129">				final UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();</span>
+<span class="fc" id="L130">				request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L131">				request.setApplicationConfigurationId(applicationConfiguration.getHjid());</span>
 
-<span class="fc" id="L137">				request.setConfigTitle(applicationConfiguration.getConfigTitle());</span>
-<span class="fc" id="L138">				request.setConfigDescription(applicationConfiguration.getConfigDescription());</span>
+<span class="fc" id="L133">				request.setConfigTitle(applicationConfiguration.getConfigTitle());</span>
+<span class="fc" id="L134">				request.setConfigDescription(applicationConfiguration.getConfigDescription());</span>
 
-<span class="fc" id="L140">				request.setComponentTitle(applicationConfiguration.getConfigTitle());</span>
-<span class="fc" id="L141">				request.setComponentDescription(applicationConfiguration.getComponentDescription());</span>
+<span class="fc" id="L136">				request.setComponentTitle(applicationConfiguration.getConfigTitle());</span>
+<span class="fc" id="L137">				request.setComponentDescription(applicationConfiguration.getComponentDescription());</span>
 
-<span class="fc" id="L143">				request.setPropertyValue(applicationConfiguration.getPropertyValue());</span>
+<span class="fc" id="L139">				request.setPropertyValue(applicationConfiguration.getPropertyValue());</span>
 
-<span class="fc" id="L145">				final ClickListener buttonListener = new UpdateApplicationConfigurationClickListener(request);</span>
+<span class="fc" id="L141">				final ClickListener buttonListener = new UpdateApplicationConfigurationClickListener(request);</span>
 
-<span class="fc" id="L147">				final Panel updateFormPanel = new Panel();</span>
-<span class="fc" id="L148">				updateFormPanel.setSizeFull();</span>
+<span class="fc" id="L143">				final Panel updateFormPanel = new Panel();</span>
+<span class="fc" id="L144">				updateFormPanel.setSizeFull();</span>
 
-<span class="fc" id="L150">				rightLayout.addComponent(updateFormPanel);</span>
+<span class="fc" id="L146">				rightLayout.addComponent(updateFormPanel);</span>
 
-<span class="fc" id="L152">				final FormLayout updateFormContent = new FormLayout();</span>
-<span class="fc" id="L153">				updateFormPanel.setContent(updateFormContent);</span>
+<span class="fc" id="L148">				final FormLayout updateFormContent = new FormLayout();</span>
+<span class="fc" id="L149">				updateFormPanel.setContent(updateFormContent);</span>
 
-<span class="fc" id="L155">				getFormFactory().addRequestInputFormFields(updateFormContent, request,</span>
+<span class="fc" id="L151">				getFormFactory().addRequestInputFormFields(updateFormContent, request,</span>
 						UpdateApplicationConfigurationRequest.class, AS_LIST2,
 						UPDATE_CONFIGURATION, buttonListener);
 
 			}
 		}
 
-<span class="fc" id="L162">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW,</span>
+<span class="fc" id="L158">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW,</span>
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
-<span class="fc" id="L165">		return content;</span>
+<span class="fc" id="L161">		return content;</span>
 	}
 
 }

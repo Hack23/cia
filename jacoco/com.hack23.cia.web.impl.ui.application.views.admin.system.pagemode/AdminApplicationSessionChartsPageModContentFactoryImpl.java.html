@@ -23,7 +23,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -38,9 +37,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
-	private static final String ADMIN_APPLICATION_ACTION_EVENT = &quot;Admin Daily Active Users Chart&quot;;
-
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME;
 
@@ -48,32 +44,32 @@ public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 	 * Instantiates a new admin application session charts page mod content factory impl.
 	 */
 	public AdminApplicationSessionChartsPageModContentFactoryImpl() {
-<span class="fc" id="L51">		super(NAME);</span>
-<span class="fc" id="L52">	}</span>
+<span class="fc" id="L47">		super(NAME);</span>
+<span class="fc" id="L48">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L57">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L53">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L59">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L55">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L61">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L57">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L63">		LabelFactory.createHeader2Label(content, ADMIN_APPLICATION_ACTION_EVENT);</span>
+<span class="fc" id="L59">		createPageHeader(panel, content, &quot;Admin Application Session Charts&quot;, &quot;Session Analysis&quot;, &quot;Analyze user sessions using graphical insights to track usage patterns.&quot;);</span>
 
-<span class="fc" id="L65">		getAdminChartDataManager().createApplicationSessionPageDailySummaryChart(content);</span>
+<span class="fc" id="L61">		getAdminChartDataManager().createApplicationSessionPageDailySummaryChart(content);</span>
 
-<span class="fc" id="L67">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW,</span>
+<span class="fc" id="L63">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW,</span>
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
-<span class="fc" id="L70">		return content;</span>
+<span class="fc" id="L66">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L76" title="1 of 6 branches missed.">		return parameters != null &amp;&amp; NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
+<span class="pc bpc" id="L72" title="1 of 6 branches missed.">		return parameters != null &amp;&amp; NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
 	}
 
 }

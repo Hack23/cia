@@ -40,43 +40,62 @@
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> * The Class BallotMenuItemFactoryImpl.</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  @Service
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="BallotMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/BallotMenuItemFactoryImpl.html#BallotMenuItemFactoryImpl">BallotMenuItemFactoryImpl</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/AbstractMenuItemFactoryImpl.html#AbstractMenuItemFactoryImpl">AbstractMenuItemFactoryImpl</a> <strong class="jxr_keyword">implements</strong> <a name="BallotMenuItemFactory" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/api/BallotMenuItemFactory.html#BallotMenuItemFactory">BallotMenuItemFactory</a> {
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  	<em class="jxr_javadoccomment">/** The Constant CHARTS_TEXT. */</em>
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CHARTS_TEXT = <span class="jxr_string">"Charts"</span>;
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  	<em class="jxr_javadoccomment">/** The Constant OVERVIEW_TEXT. */</em>
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String OVERVIEW_TEXT = <span class="jxr_string">"Overview"</span>;
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">	 * Instantiates a new ballot menu item factory impl.</em>
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  	<strong class="jxr_keyword">public</strong> <a name="BallotMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/BallotMenuItemFactoryImpl.html#BallotMenuItemFactoryImpl">BallotMenuItemFactoryImpl</a>() {
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		<strong class="jxr_keyword">super</strong>();
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	}
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> * This class is responsible for creating and managing the ballot menu items</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment"> * and overview pages in the Citizen Intelligence Agency web application.</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment"> * It provides methods to initialize the ballot menu bar and generate</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> * overview pages with relevant descriptions and icons.</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  @Service
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="BallotMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/BallotMenuItemFactoryImpl.html#BallotMenuItemFactoryImpl">BallotMenuItemFactoryImpl</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/AbstractMenuItemFactoryImpl.html#AbstractMenuItemFactoryImpl">AbstractMenuItemFactoryImpl</a> <strong class="jxr_keyword">implements</strong> <a name="BallotMenuItemFactory" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/api/BallotMenuItemFactory.html#BallotMenuItemFactory">BallotMenuItemFactory</a> {
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  	<em class="jxr_javadoccomment">/** The Constant CHARTS_TEXT. */</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CHARTS_TEXT = <span class="jxr_string">"Charts"</span>;
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  	<em class="jxr_javadoccomment">/** The Constant OVERVIEW_TEXT. */</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String OVERVIEW_TEXT = <span class="jxr_string">"Overview"</span>;
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<em class="jxr_javadoccomment">/** The Constant BALLOT_RESULTS_DESCRIPTION. */</em>
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String BALLOT_RESULTS_DESCRIPTION = <span class="jxr_string">"Ballot results: vote breakdown by party."</span>;
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	@Override
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createBallotMenuBar(<strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> String pageId) {
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  		initApplicationMenuBar(menuBar);
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  		menuBar.addItem(OVERVIEW_TEXT, VaadinIcons.PIE_CHART,
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  				<strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.BALLOT_VIEW_NAME, PageMode.OVERVIEW, pageId));
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  		menuBar.addItem(CHARTS_TEXT, VaadinIcons.PIE_CHART,
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  				<strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId));
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	}
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  	@Override
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createOverviewPage(<strong class="jxr_keyword">final</strong> VerticalLayout panelContent, <strong class="jxr_keyword">final</strong> String pageId) {
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		<strong class="jxr_keyword">final</strong> ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		createButtonLink(grid,CHARTS_TEXT, VaadinIcons.PIE_CHART,
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  				<strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), <span class="jxr_string">"Breakdown by total votes and by party."</span>);
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	}
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  }
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">	 * Instantiates a new ballot menu item factory impl.</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<strong class="jxr_keyword">public</strong> <a name="BallotMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/BallotMenuItemFactoryImpl.html#BallotMenuItemFactoryImpl">BallotMenuItemFactoryImpl</a>() {
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  		<strong class="jxr_keyword">super</strong>();
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	}
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">	 * Creates the ballot menu bar.</em>
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">	 * @param menuBar the menu bar</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">	 * @param pageId the page id</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	@Override
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createBallotMenuBar(<strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> String pageId) {
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  		initApplicationMenuBar(menuBar);
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  		menuBar.addItem(OVERVIEW_TEXT, VaadinIcons.PIE_CHART,
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  				<strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.BALLOT_VIEW_NAME, PageMode.OVERVIEW, pageId));
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  		menuBar.addItem(CHARTS_TEXT, VaadinIcons.PIE_CHART,
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  				<strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId));
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  	}
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">	 * Creates the overview page.</em>
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">	 * @param panelContent the panel content</em>
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">	 * @param pageId the page id</em>
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	@Override
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createOverviewPage(<strong class="jxr_keyword">final</strong> VerticalLayout panelContent, <strong class="jxr_keyword">final</strong> String pageId) {
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  		<strong class="jxr_keyword">final</strong> ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  		createButtonLink(grid,CHARTS_TEXT, VaadinIcons.PIE_CHART,
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  				<strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), BALLOT_RESULTS_DESCRIPTION);
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  	}
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  }
 </pre>
 <hr/>
 <div id="footer">© 2008–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>

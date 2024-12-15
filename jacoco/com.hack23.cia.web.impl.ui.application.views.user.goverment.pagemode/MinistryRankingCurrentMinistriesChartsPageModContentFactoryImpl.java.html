@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.HorizontalLayout;
@@ -41,9 +42,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = &quot;Charts: Current Ministies, by headcount&quot;;
-
 	/** The chart data manager. */
 	@Autowired
 	private ChartDataManager chartDataManager;
@@ -57,15 +55,17 @@ public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryIm
 	 * content factory impl.
 	 */
 	public MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl() {
-<span class="fc" id="L60">		super();</span>
-<span class="fc" id="L61">	}</span>
+<span class="fc" id="L58">		super();</span>
+<span class="fc" id="L59">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L66">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L68">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+<span class="fc" id="L66">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+
+<span class="fc" id="L68">		createPageHeader(panel, panelContent, &quot;Ministry Rankings&quot;, &quot;Current Ministries&quot;, &quot;Visual representation of current ministries and their total headcount.&quot;);</span>
 
 <span class="fc" id="L70">		final String pageId = getPageId(parameters);</span>
 
@@ -76,8 +76,8 @@ public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryIm
 <span class="fc" id="L76">		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createMinistryChartTimeSeriesCurrent(),</span>
 				&quot;Current Ministies, by headcount&quot;);
 <span class="fc" id="L78">		panelContent.addComponent(chartLayout);</span>
+<span class="fc" id="L79">		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);</span>
 
-<span class="fc" id="L80">		panel.setCaption(NAME + &quot;::&quot; + CHARTS + parameters);</span>
 
 <span class="fc" id="L82">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);

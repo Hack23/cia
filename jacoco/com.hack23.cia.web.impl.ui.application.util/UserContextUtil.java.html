@@ -34,7 +34,14 @@ import com.vaadin.server.Page;
 /**
  * The Class UserContextUtil.
  */
-<span class="nc" id="L37">public final class UserContextUtil {</span>
+public final class UserContextUtil {
+
+	/**
+	 * Default constructor for UserContextUtil.
+	 */
+<span class="nc" id="L42">	public UserContextUtil() {</span>
+		// Default constructor
+<span class="nc" id="L44">	}</span>
 
 	/**
 	 * Allow role in security context.
@@ -44,18 +51,18 @@ import com.vaadin.server.Page;
 	 * @return true, if successful
 	 */
 	public static boolean allowRoleInSecurityContext(final String role) {
-<span class="fc" id="L47">		boolean result = false;</span>
-<span class="fc" id="L48">		final SecurityContext context = SecurityContextHolder.getContext();</span>
-<span class="pc bpc" id="L49" title="1 of 4 branches missed.">		if (context != null &amp;&amp; context.getAuthentication() != null) {</span>
-<span class="fc" id="L50">			final Collection&lt;? extends GrantedAuthority&gt; authorities = context.getAuthentication().getAuthorities();</span>
+<span class="fc" id="L54">		boolean result = false;</span>
+<span class="fc" id="L55">		final SecurityContext context = SecurityContextHolder.getContext();</span>
+<span class="pc bpc" id="L56" title="1 of 4 branches missed.">		if (context != null &amp;&amp; context.getAuthentication() != null) {</span>
+<span class="fc" id="L57">			final Collection&lt;? extends GrantedAuthority&gt; authorities = context.getAuthentication().getAuthorities();</span>
 
-<span class="fc bfc" id="L52" title="All 2 branches covered.">			for (final GrantedAuthority grantedAuthority : authorities) {</span>
-<span class="fc bfc" id="L53" title="All 2 branches covered.">				if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {</span>
-<span class="fc" id="L54">					result = true;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">			for (final GrantedAuthority grantedAuthority : authorities) {</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">				if (role.equalsIgnoreCase(grantedAuthority.getAuthority())) {</span>
+<span class="fc" id="L61">					result = true;</span>
 				}
-<span class="fc" id="L56">			}</span>
+<span class="fc" id="L63">			}</span>
 		}
-<span class="fc" id="L58">		return result;</span>
+<span class="fc" id="L65">		return result;</span>
 	}
 
 	/**
@@ -66,12 +73,12 @@ import com.vaadin.server.Page;
 	 * @return the request url
 	 */
 	public static String getRequestUrl(final Page current) {
-<span class="fc bfc" id="L69" title="All 2 branches covered.">		if (current != null) {</span>
-<span class="fc" id="L70">			return current.getLocation().toString();</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">		if (current != null) {</span>
+<span class="fc" id="L77">			return current.getLocation().toString();</span>
 
 		} else {
-<span class="fc" id="L73">			final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();</span>
-<span class="fc" id="L74">			return httpRequest.getRequestURL().toString();</span>
+<span class="fc" id="L80">			final HttpServletRequest httpRequest=((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();</span>
+<span class="fc" id="L81">			return httpRequest.getRequestURL().toString();</span>
 		}
 	}
 
@@ -81,14 +88,14 @@ import com.vaadin.server.Page;
 	 * @return the user id from security context
 	 */
 	public static String getUserIdFromSecurityContext() {
-<span class="fc" id="L84">		final SecurityContext context = SecurityContextHolder.getContext();</span>
-<span class="pc bpc" id="L85" title="1 of 2 branches missed.">		if (context != null) {</span>
-<span class="fc" id="L86">			final Authentication authentication = context.getAuthentication();</span>
-<span class="fc bfc" id="L87" title="All 2 branches covered.">			if (authentication != null) {</span>
-<span class="fc" id="L88">				return authentication.getPrincipal().toString();</span>
+<span class="fc" id="L91">		final SecurityContext context = SecurityContextHolder.getContext();</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">		if (context != null) {</span>
+<span class="fc" id="L93">			final Authentication authentication = context.getAuthentication();</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">			if (authentication != null) {</span>
+<span class="fc" id="L95">				return authentication.getPrincipal().toString();</span>
 			}
 		}
-<span class="fc" id="L91">		return null;</span>
+<span class="fc" id="L98">		return null;</span>
 	}
 
 }

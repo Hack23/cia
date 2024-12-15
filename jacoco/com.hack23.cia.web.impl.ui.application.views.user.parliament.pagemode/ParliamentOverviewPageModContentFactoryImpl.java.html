@@ -25,7 +25,6 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -37,36 +36,31 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentOverviewPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = &quot;overview&quot;;
-
 	/**
 	 * Instantiates a new parliament overview page mod content factory impl.
 	 */
 	public ParliamentOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L47">		super();</span>
-<span class="fc" id="L48">	}</span>
+<span class="fc" id="L43">		super();</span>
+<span class="fc" id="L44">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L53">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L54">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L49">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L50">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L51">		createPageHeader(panel, panelContent, &quot;Parliament Overview&quot;, &quot;Parliament Details&quot;, &quot;Insights into parliamentary structure, members, and activities.&quot;);</span>
 
-<span class="fc" id="L56">		panelContent.addComponent(new Label(OVERVIEW));</span>
+<span class="fc" id="L53">		getParliamentMenuItemFactory().createOverviewPage(panelContent);</span>
 
-<span class="fc" id="L58">		getParliamentMenuItemFactory().createOverviewPage(panelContent);</span>
+<span class="fc" id="L55">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME, parameters, getPageId(parameters));</span>
 
-<span class="fc" id="L60">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME, parameters, getPageId(parameters));</span>
-<span class="fc" id="L61">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
-
-<span class="fc" id="L63">		return panelContent;</span>
+<span class="fc" id="L57">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L69" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="pc bpc" id="L63" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }

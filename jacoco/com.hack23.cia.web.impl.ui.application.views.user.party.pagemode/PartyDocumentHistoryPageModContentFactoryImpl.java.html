@@ -8,7 +8,7 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * distributed on an &quot;AS IS&quot; BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -24,8 +24,9 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
 import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -40,45 +41,44 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyDocumentHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-<span class="fc" id="L43">	private static final String[] COLUMN_ORDER = { &quot;rm&quot;, &quot;madePublicDate&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;id&quot;,</span>
+<span class="fc" id="L44">	private static final String[] COLUMN_ORDER = { &quot;rm&quot;, &quot;madePublicDate&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;id&quot;,</span>
 			&quot;docId&quot;, &quot;referenceName&quot;, &quot;partyShortCode&quot;, &quot;personReferenceId&quot;, &quot;roleDescription&quot;, &quot;documentType&quot;,
 			&quot;subType&quot;, &quot;org&quot;, &quot;label&quot;, &quot;numberValue&quot;, &quot;status&quot;, &quot;tempLabel&quot;, &quot;orderNumber&quot; };
-	/** The Constant DOCUMENT_HISTORY. */
-	private static final String DOCUMENT_HISTORY = &quot;Document History&quot;;
-<span class="fc" id="L48">	private static final String[] HIDE_COLUMNS = { &quot;id&quot;, &quot;partyShortCode&quot;, &quot;personReferenceId&quot;,</span>
+<span class="fc" id="L47">	private static final String[] HIDE_COLUMNS = { &quot;id&quot;, &quot;partyShortCode&quot;, &quot;personReferenceId&quot;,</span>
 			&quot;numberValue&quot;, &quot;orderNumber&quot;, &quot;tempLabel&quot;, &quot;label&quot;, &quot;docId&quot;, &quot;roleDescription&quot; };
-<span class="fc" id="L50">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
-			UserViews.DOCUMENT_VIEW_NAME, &quot;docId&quot;);
+<span class="fc" id="L49">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			UserViews.DOCUMENT_VIEW_NAME, &quot;docId&quot;, true);
 	private static final String MEMBER_DOCUMENT_HISTORY = &quot;Member Document history&quot;;
 
 	/**
 	 * Instantiates a new party document history page mod content factory impl.
 	 */
 	public PartyDocumentHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L58">		super();</span>
-<span class="fc" id="L59">	}</span>
+<span class="fc" id="L57">		super();</span>
+<span class="fc" id="L58">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L63">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L67">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L68">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L65">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L66">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L67">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L70">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_HISTORY);</span>
+<span class="fc" id="L69">		createPageHeader(panel, panelContent, &quot;Document History &quot; + viewRiksdagenParty.getPartyName(), &quot;Historical Documents&quot;, &quot;Explore the historical documents associated with the party.&quot;);</span>
 
-<span class="fc" id="L72">		final DataContainer&lt;ViewRiksdagenPoliticianDocument, String&gt; politicianDocumentDataContainer = getApplicationManager()</span>
-<span class="fc" id="L73">				.getDataContainer(ViewRiksdagenPoliticianDocument.class);</span>
+<span class="fc" id="L71">		final DataContainer&lt;ViewRiksdagenPoliticianDocument, String&gt; politicianDocumentDataContainer = getApplicationManager()</span>
+<span class="fc" id="L72">				.getDataContainer(ViewRiksdagenPoliticianDocument.class);</span>
 
-<span class="fc" id="L75">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,</span>
-<span class="fc" id="L76">				politicianDocumentDataContainer.findOrderedListByProperty(</span>
+<span class="fc" id="L74">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,</span>
+<span class="fc" id="L75">				politicianDocumentDataContainer.findOrderedListByProperty(</span>
 						ViewRiksdagenPoliticianDocument_.partyShortCode, pageId,
 						ViewRiksdagenPoliticianDocument_.madePublicDate),
 				MEMBER_DOCUMENT_HISTORY, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L81">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="fc" id="L80">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
+		pageId);
 <span class="fc" id="L82">		return panelContent;</span>
 
 	}

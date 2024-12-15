@@ -23,7 +23,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -38,9 +37,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 		extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_APPLICATION_ACTION_EVENT. */
-	private static final String ADMIN_APPLICATION_ACTION_EVENT = &quot;Admin Application Action Event chart&quot;;
-
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME;
 
@@ -49,32 +45,32 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 	 * factory impl.
 	 */
 	public AdminApplicationEventsChartsPageModContentFactoryImpl() {
-<span class="fc" id="L52">		super(NAME);</span>
-<span class="fc" id="L53">	}</span>
+<span class="fc" id="L48">		super(NAME);</span>
+<span class="fc" id="L49">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L58">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L54">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L56">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L62">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L58">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L64">		LabelFactory.createHeader2Label(content, ADMIN_APPLICATION_ACTION_EVENT);</span>
+<span class="fc" id="L60">		createPageHeader(panel, content, &quot;Admin Application Event Charts&quot;, &quot;Event Analysis&quot;, &quot;Visualize and analyze application events using interactive charts and graphs.&quot;);</span>
 
-<span class="fc" id="L66">		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);</span>
+<span class="fc" id="L62">		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);</span>
 
-<span class="fc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW,</span>
+<span class="fc" id="L64">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW,</span>
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
-<span class="fc" id="L71">		return content;</span>
+<span class="fc" id="L67">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L77" title="1 of 6 branches missed.">		return parameters != null &amp;&amp; NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
+<span class="pc bpc" id="L73" title="1 of 6 branches missed.">		return parameters != null &amp;&amp; NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
 	}
 
 }

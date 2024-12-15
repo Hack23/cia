@@ -25,11 +25,15 @@ import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.ui.VerticalLayout;
@@ -80,8 +84,8 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * Instantiates a new abstract page mod content factory impl.
 	 */
 	protected AbstractPageModContentFactoryImpl() {
-<span class="fc" id="L83">		super();</span>
-<span class="fc" id="L84">	}</span>
+<span class="fc" id="L87">		super();</span>
+<span class="fc" id="L88">	}</span>
 
 	/**
 	 * Creates the page visit history.
@@ -96,32 +100,32 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	protected final void createPageVisitHistory(final String pageName, final String pageId,
 			final VerticalLayout panelContent) {
 
-<span class="fc" id="L99">		final TabSheet tabsheet = new TabSheet();</span>
-<span class="fc" id="L100">		tabsheet.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L101">		tabsheet.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L103">		final TabSheet tabsheet = new TabSheet();</span>
+<span class="fc" id="L104">		tabsheet.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L105">		tabsheet.setHeight(100, Unit.PERCENTAGE);</span>
 
-<span class="fc" id="L103">		panelContent.addComponent(tabsheet);</span>
-<span class="fc" id="L104">		panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);</span>
+<span class="fc" id="L107">		panelContent.addComponent(tabsheet);</span>
+<span class="fc" id="L108">		panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);</span>
 
-<span class="fc" id="L106">		final HorizontalLayout tabContentPageItemRankHistory = new HorizontalLayout();</span>
-<span class="fc" id="L107">		tabContentPageItemRankHistory.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L108">		tabContentPageItemRankHistory.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L109">		final Tab tabPageItemRankHistory = tabsheet.addTab(tabContentPageItemRankHistory);</span>
+<span class="fc" id="L110">		final HorizontalLayout tabContentPageItemRankHistory = new HorizontalLayout();</span>
+<span class="fc" id="L111">		tabContentPageItemRankHistory.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L112">		tabContentPageItemRankHistory.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L113">		final Tab tabPageItemRankHistory = tabsheet.addTab(tabContentPageItemRankHistory);</span>
 
-<span class="fc" id="L111">		tabPageItemRankHistory.setCaption(CURRENT_PAGE_VISIT_HISTORY);</span>
-<span class="fc" id="L112">		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(tabContentPageItemRankHistory,</span>
+<span class="fc" id="L115">		tabPageItemRankHistory.setCaption(CURRENT_PAGE_VISIT_HISTORY);</span>
+<span class="fc" id="L116">		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(tabContentPageItemRankHistory,</span>
 				pageName, pageId);
 
-<span class="fc" id="L115">		final HorizontalLayout tabContentPageModeSummary = new HorizontalLayout();</span>
-<span class="fc" id="L116">		tabContentPageModeSummary.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L117">		tabContentPageModeSummary.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L118">		final Tab tabPageModeSummary = tabsheet.addTab(tabContentPageModeSummary);</span>
-<span class="fc" id="L119">		tabPageModeSummary.setCaption(GENERAL_PAGE_MODE_PAGE_VISIT);</span>
+<span class="fc" id="L119">		final HorizontalLayout tabContentPageModeSummary = new HorizontalLayout();</span>
+<span class="fc" id="L120">		tabContentPageModeSummary.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L121">		tabContentPageModeSummary.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L122">		final Tab tabPageModeSummary = tabsheet.addTab(tabContentPageModeSummary);</span>
+<span class="fc" id="L123">		tabPageModeSummary.setCaption(GENERAL_PAGE_MODE_PAGE_VISIT);</span>
 
-<span class="fc" id="L121">		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,</span>
+<span class="fc" id="L125">		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,</span>
 				pageName);
 
-<span class="fc" id="L124">	}</span>
+<span class="fc" id="L128">	}</span>
 
 	/**
 	 * Creates the panel content.
@@ -129,16 +133,21 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the vertical layout
 	 */
 	protected static final VerticalLayout createPanelContent() {
-<span class="fc" id="L132">		final VerticalLayout panelContent = new VerticalLayout();</span>
-<span class="fc" id="L133">		panelContent.setMargin(true);</span>
-<span class="fc" id="L134">		panelContent.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L135">		panelContent.setHeight(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L136">		panelContent.setStyleName(&quot;Header&quot;);</span>
-<span class="fc" id="L137">		return panelContent;</span>
+<span class="fc" id="L136">		final VerticalLayout panelContent = new VerticalLayout();</span>
+<span class="fc" id="L137">		panelContent.setMargin(true);</span>
+<span class="fc" id="L138">		panelContent.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L139">		panelContent.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L140">		panelContent.setStyleName(&quot;Header&quot;);</span>
+<span class="fc" id="L141">		return panelContent;</span>
 	}
 
+	/**
+	 * Gets the admin chart data manager.
+	 *
+	 * @return the admin chart data manager
+	 */
 	protected final AdminChartDataManager getAdminChartDataManager() {
-<span class="fc" id="L141">		return adminChartDataManager;</span>
+<span class="fc" id="L150">		return adminChartDataManager;</span>
 	}
 
 	/**
@@ -147,7 +156,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the application manager
 	 */
 	protected final ApplicationManager getApplicationManager() {
-<span class="fc" id="L150">		return applicationManager;</span>
+<span class="fc" id="L159">		return applicationManager;</span>
 	}
 
 	/**
@@ -156,7 +165,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the form factory
 	 */
 	protected final FormFactory getFormFactory() {
-<span class="fc" id="L159">		return formFactory;</span>
+<span class="fc" id="L168">		return formFactory;</span>
 	}
 
 	/**
@@ -165,7 +174,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the grid factory
 	 */
 	protected final GridFactory getGridFactory() {
-<span class="fc" id="L168">		return gridFactory;</span>
+<span class="fc" id="L177">		return gridFactory;</span>
 	}
 
 	/**
@@ -174,7 +183,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the menu item factory
 	 */
 	protected final ApplicationMenuItemFactory getMenuItemFactory() {
-<span class="fc" id="L177">		return menuItemFactory;</span>
+<span class="fc" id="L186">		return menuItemFactory;</span>
 	}
 
 	/**
@@ -183,7 +192,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page action event helper
 	 */
 	protected final PageActionEventHelper getPageActionEventHelper() {
-<span class="fc" id="L186">		return pageActionEventHelper;</span>
+<span class="fc" id="L195">		return pageActionEventHelper;</span>
 	}
 
 	/**
@@ -194,17 +203,38 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page id
 	 */
 	protected static final String getPageId(final String parameters) {
-<span class="pc bpc" id="L197" title="1 of 2 branches missed.">		if (parameters != null) {</span>
-<span class="fc" id="L198">			String cleanedString = parameters;</span>
-<span class="fc bfc" id="L199" title="All 2 branches covered.">			if (parameters.contains(&quot;[&quot;)) {</span>
-<span class="fc" id="L200">				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), &quot;&quot;);</span>
+<span class="pc bpc" id="L206" title="1 of 2 branches missed.">		if (parameters != null) {</span>
+<span class="fc" id="L207">			String cleanedString = parameters;</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">			if (parameters.contains(&quot;[&quot;)) {</span>
+<span class="fc" id="L209">				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), &quot;&quot;);</span>
 			}
 
-<span class="fc" id="L203">			return cleanedString.substring(cleanedString.lastIndexOf('/') + &quot;/&quot;.length());</span>
+<span class="fc" id="L212">			return cleanedString.substring(cleanedString.lastIndexOf('/') + &quot;/&quot;.length());</span>
 		} else {
-<span class="nc" id="L205">			return &quot;&quot;;</span>
+<span class="nc" id="L214">			return &quot;&quot;;</span>
 		}
 	}
+
+	/**
+	 * Creates the page header.
+	 *
+	 * @param panel the panel
+	 * @param panelContent the panel content
+	 * @param header the header
+	 * @param pageHeader the page header
+	 * @param pageDescription the page description
+	 */
+	protected static final void createPageHeader(final Panel panel, final VerticalLayout panelContent, final String header, final String pageHeader, final String pageDescription) {
+<span class="fc" id="L228">		panel.setCaption(header);</span>
+<span class="fc" id="L229">		LabelFactory.createHeader2Label(panelContent, pageHeader);</span>
+<span class="fc" id="L230">		final Label descriptionLabel = new Label(pageDescription);</span>
+<span class="fc" id="L231">		descriptionLabel.addStyleName(&quot;itembox&quot;);</span>
+<span class="fc" id="L232">		Responsive.makeResponsive(descriptionLabel);</span>
+<span class="fc" id="L233">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L234">		panelContent.addComponent(descriptionLabel);</span>
+<span class="fc" id="L235">		panelContent.setExpandRatio(descriptionLabel,ContentRatio.SMALL);</span>
+<span class="fc" id="L236">	}</span>
+
 
 	/**
 	 * Gets the page link factory.
@@ -212,7 +242,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page link factory
 	 */
 	protected final PageLinkFactory getPageLinkFactory() {
-<span class="fc" id="L215">		return pageLinkFactory;</span>
+<span class="fc" id="L245">		return pageLinkFactory;</span>
 	}
 
 	/**
@@ -222,20 +252,20 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page nr
 	 */
 	protected static final int getPageNr(final String parameters) {
-<span class="fc" id="L225">		final String cleanedString = parameters;</span>
+<span class="fc" id="L255">		final String cleanedString = parameters;</span>
 		String pageNrValue;
-<span class="pc bpc" id="L227" title="2 of 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
-<span class="fc" id="L228">			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));</span>
+<span class="pc bpc" id="L257" title="2 of 6 branches missed.">		if (cleanedString != null &amp;&amp; cleanedString.contains(&quot;[&quot;) &amp;&amp; cleanedString.contains(&quot;]&quot;)) {</span>
+<span class="fc" id="L258">			pageNrValue = cleanedString.substring(cleanedString.indexOf('[') + 1, cleanedString.lastIndexOf(']'));</span>
 		} else {
-<span class="fc" id="L230">			pageNrValue = &quot;&quot;;</span>
+<span class="fc" id="L260">			pageNrValue = &quot;&quot;;</span>
 		}
 
-<span class="fc" id="L233">		int pageNr = 1;</span>
+<span class="fc" id="L263">		int pageNr = 1;</span>
 
-<span class="pc bpc" id="L235" title="1 of 4 branches missed.">		if (pageNrValue.length() &gt; 0 &amp;&amp; !pageNrValue.contains(&quot;/&quot;)) {</span>
-<span class="fc" id="L236">			pageNr = Integer.parseInt(pageNrValue);</span>
+<span class="pc bpc" id="L265" title="1 of 4 branches missed.">		if (pageNrValue.length() &gt; 0 &amp;&amp; !pageNrValue.contains(&quot;/&quot;)) {</span>
+<span class="fc" id="L266">			pageNr = Integer.parseInt(pageNrValue);</span>
 		}
-<span class="fc" id="L238">		return pageNr;</span>
+<span class="fc" id="L268">		return pageNr;</span>
 	}
 
 }

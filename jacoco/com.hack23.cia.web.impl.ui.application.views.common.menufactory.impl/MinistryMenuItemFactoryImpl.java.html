@@ -80,6 +80,33 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	/** The Constant ROLES_TEXT. */
 	private static final String ROLES_TEXT = &quot;Roles&quot;;
 
+	/** The Constant CURRENT_MEMBERS_DESCRIPTION. */
+	private static final String CURRENT_MEMBERS_DESCRIPTION = &quot;Members currently holding positions&quot;;
+
+	/** The Constant MEMBER_HISTORY_DESCRIPTION. */
+	private static final String MEMBER_HISTORY_DESCRIPTION = &quot;Current and past members&quot;;
+
+	/** The Constant ROLE_GHANT_DESCRIPTION. */
+	private static final String ROLE_GHANT_DESCRIPTION = &quot;Gantt chart for all the roles&quot;;
+
+	/** The Constant GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION. */
+	private static final String GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION = &quot;All government bodies that are governed by ministry&quot;;
+
+	/** The Constant GOVERNMENT_BODIES_INCOME_DESCRIPTION. */
+	private static final String GOVERNMENT_BODIES_INCOME_DESCRIPTION = &quot;All government bodies income&quot;;
+
+	/** The Constant GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION. */
+	private static final String GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION = &quot;All government bodies expenditure&quot;;
+
+	/** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
+	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = &quot;Chart over document activity&quot;;
+
+	/** The Constant DOCUMENT_HISTORY_DESCRIPTION. */
+	private static final String DOCUMENT_HISTORY_DESCRIPTION = &quot;List of all document sorted by most recent&quot;;
+
+	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
+	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = &quot;View history of page visit for this page.&quot;;
+
 	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
@@ -92,88 +119,88 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	 * Instantiates a new ministry menu item factory impl.
 	 */
 	public MinistryMenuItemFactoryImpl() {
-<span class="fc" id="L95">		super();</span>
-<span class="fc" id="L96">	}</span>
+<span class="fc" id="L122">		super();</span>
+<span class="fc" id="L123">	}</span>
 
 	@Override
 	public void createMinistryMenuBar(final MenuBar menuBar, final String pageId) {
-<span class="fc" id="L100">		initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L127">		initApplicationMenuBar(menuBar);</span>
 
-<span class="fc" id="L102">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="fc" id="L129">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
 
-<span class="fc" id="L104">		ministryRankingMenuItemFactory.createMinistryRankingTopics(menuBar.addItem(MINISTRY_RANKING, VaadinIcons.GROUP,null));</span>
+<span class="fc" id="L131">		ministryRankingMenuItemFactory.createMinistryRankingTopics(menuBar.addItem(MINISTRY_RANKING, VaadinIcons.GROUP,null));</span>
 
-<span class="fc" id="L106">		final MenuItem ministryItem = menuBar.addItem(&quot;Ministry &quot;+ pageId, VaadinIcons.GROUP,null);</span>
+<span class="fc" id="L133">		final MenuItem ministryItem = menuBar.addItem(&quot;Ministry &quot;+ pageId, VaadinIcons.GROUP,null);</span>
 
 
-<span class="fc" id="L109">		ministryItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L136">		ministryItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,</span>
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId));
-<span class="fc" id="L111">		final MenuItem rolesItem = ministryItem.addItem(ROLES_TEXT, VaadinIcons.GROUP, null);</span>
+<span class="fc" id="L138">		final MenuItem rolesItem = ministryItem.addItem(ROLES_TEXT, VaadinIcons.GROUP, null);</span>
 
-<span class="fc" id="L113">		rolesItem.addItem(CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
-<span class="fc" id="L114">				MinistryPageMode.CURRENTMEMBERS.toString(), pageId));</span>
+<span class="fc" id="L140">		rolesItem.addItem(CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
+<span class="fc" id="L141">				MinistryPageMode.CURRENTMEMBERS.toString(), pageId));</span>
 
-<span class="fc" id="L116">		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
-<span class="fc" id="L117">				MinistryPageMode.MEMBERHISTORY.toString(), pageId));</span>
+<span class="fc" id="L143">		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
+<span class="fc" id="L144">				MinistryPageMode.MEMBERHISTORY.toString(), pageId));</span>
 
-<span class="fc" id="L119">		rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.GROUP,</span>
-<span class="fc" id="L120">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId));</span>
+<span class="fc" id="L146">		rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L147">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId));</span>
 
-<span class="fc" id="L122">		rolesItem.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.GROUP,</span>
-<span class="fc" id="L123">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId));</span>
+<span class="fc" id="L149">		rolesItem.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L150">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId));</span>
 
-<span class="fc" id="L125">		rolesItem.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.GROUP,</span>
-<span class="fc" id="L126">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId));</span>
+<span class="fc" id="L152">		rolesItem.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.GROUP,</span>
+<span class="fc" id="L153">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId));</span>
 
-<span class="fc" id="L128">		rolesItem.addItem(GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,</span>
-<span class="fc" id="L129">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId));</span>
+<span class="fc" id="L155">		rolesItem.addItem(GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,</span>
+<span class="fc" id="L156">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId));</span>
 
-<span class="fc" id="L131">		final MenuItem documentItem = ministryItem.addItem(DOCUMENTS_TEXT, VaadinIcons.GROUP, null);</span>
+<span class="fc" id="L158">		final MenuItem documentItem = ministryItem.addItem(DOCUMENTS_TEXT, VaadinIcons.GROUP, null);</span>
 
-<span class="fc" id="L133">		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
-<span class="fc" id="L134">				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId));</span>
+<span class="fc" id="L160">		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
+<span class="fc" id="L161">				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId));</span>
 
-<span class="fc" id="L136">		documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
-<span class="fc" id="L137">				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));</span>
+<span class="fc" id="L163">		documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
+<span class="fc" id="L164">				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));</span>
 
-<span class="fc" id="L139">		ministryItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L166">		ministryItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
-<span class="fc" id="L142">	}</span>
+<span class="fc" id="L169">	}</span>
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-<span class="fc" id="L146">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L173">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="fc" id="L148">		createButtonLink(grid,CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
-<span class="fc" id="L149">				MinistryPageMode.CURRENTMEMBERS.toString(), pageId), &quot;Members currently holding positions&quot;);</span>
+<span class="fc" id="L175">		createButtonLink(grid,CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
+<span class="fc" id="L176">				MinistryPageMode.CURRENTMEMBERS.toString(), pageId), CURRENT_MEMBERS_DESCRIPTION);</span>
 
-<span class="fc" id="L151">		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
-<span class="fc" id="L152">				MinistryPageMode.MEMBERHISTORY.toString(), pageId), &quot;Current and past members&quot;);</span>
+<span class="fc" id="L178">		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
+<span class="fc" id="L179">				MinistryPageMode.MEMBERHISTORY.toString(), pageId), MEMBER_HISTORY_DESCRIPTION);</span>
 
-<span class="fc" id="L154">		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.GROUP,</span>
-<span class="fc" id="L155">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId), &quot;Gantt chart for all the roles&quot;);</span>
+<span class="fc" id="L181">		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L182">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId), ROLE_GHANT_DESCRIPTION);</span>
 
-<span class="fc" id="L157">		createButtonLink(grid,GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.GROUP,</span>
-<span class="fc" id="L158">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId), &quot;All government bodies that are governed by ministry&quot;);</span>
+<span class="fc" id="L184">		createButtonLink(grid,GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.GROUP,</span>
+<span class="fc" id="L185">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId), GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION);</span>
 
-<span class="fc" id="L160">		createButtonLink(grid,GOVERNMENT_BODIES_INCOME, VaadinIcons.GROUP,</span>
-<span class="fc" id="L161">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId), &quot;All government bodies income&quot;);</span>
+<span class="fc" id="L187">		createButtonLink(grid,GOVERNMENT_BODIES_INCOME, VaadinIcons.GROUP,</span>
+<span class="fc" id="L188">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId), GOVERNMENT_BODIES_INCOME_DESCRIPTION);</span>
 
-<span class="fc" id="L163">		createButtonLink(grid,GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,</span>
-<span class="fc" id="L164">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId), &quot;All government bodies expenditure&quot;);</span>
+<span class="fc" id="L190">		createButtonLink(grid,GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,</span>
+<span class="fc" id="L191">				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId), GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION);</span>
 
-<span class="fc" id="L166">		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
-<span class="fc" id="L167">				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId), &quot;Chart over document activity&quot;);</span>
+<span class="fc" id="L193">		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
+<span class="fc" id="L194">				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITY_DESCRIPTION);</span>
 
-<span class="fc" id="L169">		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
-<span class="fc" id="L170">				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId), &quot;List of all document sorted by most recent&quot;);</span>
+<span class="fc" id="L196">		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
+<span class="fc" id="L197">				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId), DOCUMENT_HISTORY_DESCRIPTION);</span>
 
-<span class="fc" id="L172">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), &quot;View history of page visit for this page.&quot;);
+<span class="fc" id="L199">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,</span>
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), PAGE_VISIT_HISTORY_DESCRIPTION);
 
 
-<span class="fc" id="L176">	}</span>
+<span class="fc" id="L203">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

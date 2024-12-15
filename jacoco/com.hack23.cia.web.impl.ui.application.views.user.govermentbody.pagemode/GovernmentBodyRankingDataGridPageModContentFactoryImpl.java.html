@@ -47,11 +47,15 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 
 <span class="fc" id="L48">	private static final String[] COLUMN_ORDER = { &quot;name&quot;, &quot;ministry&quot;, &quot;orgNumber&quot;,</span>
 			&quot;headCount&quot;, &quot;annualWorkHeadCount&quot; };
-	/** The Constant DATAGRID. */
-	private static final String DATAGRID = &quot;Datagrid&quot;;
+
+	/** The Constant GOVERNMENT_BODIES. */
 	private static final String GOVERNMENT_BODIES = &quot;Government bodies&quot;;
-<span class="fc" id="L53">	private static final String[] HIDE_COLUMNS = { &quot;vat&quot;, &quot;consecutiveNumber&quot;, &quot;comment&quot;, &quot;mCode&quot;,&quot;govermentBodyId&quot; };</span>
-<span class="fc" id="L54">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+
+	/** The Constant HIDE_COLUMNS. */
+<span class="fc" id="L55">	private static final String[] HIDE_COLUMNS = { &quot;vat&quot;, &quot;consecutiveNumber&quot;, &quot;comment&quot;, &quot;mCode&quot;,&quot;govermentBodyId&quot; };</span>
+
+	/** The Constant LISTENER. */
+<span class="fc" id="L58">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.GOVERNMENT_BODY_VIEW_NAME, &quot;orgNumber&quot;);
 
 	/** The esv api. */
@@ -63,37 +67,36 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 	 * impl.
 	 */
 	public GovernmentBodyRankingDataGridPageModContentFactoryImpl() {
-<span class="fc" id="L66">		super();</span>
-<span class="fc" id="L67">	}</span>
+<span class="fc" id="L70">		super();</span>
+<span class="fc" id="L71">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L72">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L74">		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);</span>
+<span class="fc" id="L78">		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);</span>
+<span class="fc" id="L79">		createPageHeader(panel, panelContent, &quot;Government Body Ranking Overview&quot;, &quot;Government Body Rankings&quot;, &quot;Examine rankings of government bodies based on roles, efficiency, and achievements.&quot;);</span>
 
-<span class="fc" id="L76">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L81">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L78">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; dataMap = esvApi.getData();</span>
+<span class="fc" id="L83">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; dataMap = esvApi.getData();</span>
 
-<span class="fc" id="L80">		final List&lt;GovernmentBodyAnnualSummary&gt; list = dataMap.get(2022);</span>
+<span class="fc" id="L85">		final List&lt;GovernmentBodyAnnualSummary&gt; list = dataMap.get(2024);</span>
 
-<span class="fc" id="L82">		getGridFactory().createBasicBeanItemGrid(panelContent, GovernmentBodyAnnualSummary.class, list,</span>
+<span class="fc" id="L87">		getGridFactory().createBasicBeanItemGrid(panelContent, GovernmentBodyAnnualSummary.class, list,</span>
 				GOVERNMENT_BODIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L85">		panel.setCaption(NAME + &quot;::&quot; + DATAGRID);</span>
-
-<span class="fc" id="L87">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW,</span>
+<span class="fc" id="L90">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW,</span>
 				ApplicationEventGroup.USER, NAME, parameters, pageId);
 
-<span class="fc" id="L90">		return panelContent;</span>
+<span class="fc" id="L93">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L96" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.DATAGRID.toString());</span>
+<span class="fc bfc" id="L99" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.DATAGRID.toString());</span>
 	}
 
 }

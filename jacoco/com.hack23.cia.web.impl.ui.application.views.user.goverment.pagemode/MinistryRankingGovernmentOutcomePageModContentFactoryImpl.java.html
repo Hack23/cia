@@ -38,9 +38,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String GOVERNMENT_OUTCOME = &quot;Government outcome&quot;;
-
 	@Autowired
 	private GovernmentOutcomeChartDataManager governmentOutcomeChartDataManager;
 
@@ -49,19 +46,22 @@ public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl ext
 	 * factory impl.
 	 */
 	public MinistryRankingGovernmentOutcomePageModContentFactoryImpl() {
-<span class="fc" id="L52">		super();</span>
-<span class="fc" id="L53">	}</span>
+<span class="fc" id="L49">		super();</span>
+<span class="fc" id="L50">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L55">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L60">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+<span class="fc" id="L57">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+<span class="fc" id="L58">		createPageHeader(panel, panelContent,</span>
+			    &quot;Ministry Ranking - Government Outcomes&quot;,
+			    &quot;Evaluating Results&quot;,
+			    &quot;Evaluating ministry influence on governance results.&quot;);
 
-<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L64">		panel.setCaption(NAME + &quot;::&quot; + GOVERNMENT_OUTCOME);</span>
+<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
 
 <span class="fc" id="L66">		governmentOutcomeChartDataManager.createGovernmentOutcomeChart(panelContent);</span>
 

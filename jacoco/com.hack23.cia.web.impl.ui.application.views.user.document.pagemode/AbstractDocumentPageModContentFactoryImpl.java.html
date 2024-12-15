@@ -43,13 +43,18 @@ abstract class AbstractDocumentPageModContentFactoryImpl extends AbstractItemPag
 <span class="fc" id="L43">		super();</span>
 <span class="fc" id="L44">	}</span>
 
+	/**
+	 * Gets the document menu item factory.
+	 *
+	 * @return the document menu item factory
+	 */
 	protected final DocumentMenuItemFactory getDocumentMenuItemFactory() {
-<span class="fc" id="L47">		return documentMenuItemFactory;</span>
+<span class="fc" id="L52">		return documentMenuItemFactory;</span>
 	}
 
 	@Override
 	protected DocumentElement getItem(final String parameters) {
-<span class="fc" id="L52">		return getApplicationManager().getDataContainer(DocumentElement.class).load(getPageId(parameters));</span>
+<span class="fc" id="L57">		return getApplicationManager().getDataContainer(DocumentElement.class).load(getPageId(parameters));</span>
 	}
 
 }

@@ -41,29 +41,29 @@ public final class PoliticianRankingPageVisitHistoryPageModContentFactoryImpl
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 
-	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = &quot;Page Visit History&quot;;
-
 	/**
 	 * Instantiates a new politician ranking page visit history page mod content
 	 * factory impl.
 	 */
 	public PoliticianRankingPageVisitHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L52">		super();</span>
-<span class="fc" id="L53">	}</span>
+<span class="fc" id="L49">		super();</span>
+<span class="fc" id="L50">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L55">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L60">		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);</span>
+<span class="fc" id="L57">		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);</span>
+<span class="fc" id="L58">		createPageHeader(panel, panelContent,</span>
+			    &quot;Politician Ranking - Page Visit History&quot;,
+			    &quot;Engagement Trends&quot;,
+			    &quot;Viewing interest trends to understand shifting political focus.&quot;);
 
-<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L64">		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);</span>
+<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L66">		panel.setCaption(NAME + &quot;::&quot; + PAGE_VISIT_HISTORY);</span>
+<span class="fc" id="L66">		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);</span>
 
 <span class="fc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);

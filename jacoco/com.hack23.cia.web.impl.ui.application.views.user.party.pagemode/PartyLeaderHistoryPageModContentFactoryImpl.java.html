@@ -24,8 +24,9 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -40,42 +41,41 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-<span class="fc" id="L43">	private static final String[] COLUMN_ORDER = { &quot;roleId&quot;, &quot;roleCode&quot;, &quot;personId&quot;, &quot;firstName&quot;,</span>
+<span class="fc" id="L44">	private static final String[] COLUMN_ORDER = { &quot;roleId&quot;, &quot;roleCode&quot;, &quot;personId&quot;, &quot;firstName&quot;,</span>
 			&quot;lastName&quot;, &quot;party&quot;, &quot;totalDaysServed&quot;, &quot;active&quot;, &quot;detail&quot;, &quot;fromDate&quot;, &quot;toDate&quot; };
-<span class="fc" id="L45">	private static final String[] HIDE_COLUMNS = { &quot;roleId&quot;, &quot;personId&quot;, &quot;party&quot;, &quot;detail&quot; };</span>
-	/** The Constant LEADER_HISTORY. */
-	private static final String LEADER_HISTORY = &quot;LeaderHistory&quot;;
+<span class="fc" id="L46">	private static final String[] HIDE_COLUMNS = { &quot;roleId&quot;, &quot;personId&quot;, &quot;party&quot;, &quot;detail&quot; };</span>
 	private static final String LEADER_HISTORY2 = &quot;Leader History&quot;;
-<span class="fc" id="L49">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L48">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);
 
 	/**
 	 * Instantiates a new party leader history page mod content factory impl.
 	 */
 	public PartyLeaderHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L56">		super();</span>
-<span class="fc" id="L57">	}</span>
+<span class="fc" id="L55">		super();</span>
+<span class="fc" id="L56">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L65">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L66">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L64">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L65">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L68">		LabelFactory.createHeader2Label(panelContent, LEADER_HISTORY);</span>
+<span class="fc" id="L67">		createPageHeader(panel, panelContent, &quot;Leader History &quot; + viewRiksdagenParty.getPartyName(), &quot;Party Leaders&quot;, &quot;Explore the history of party leaders and their roles.&quot;);</span>
 
-<span class="fc" id="L70">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L71">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
+<span class="fc" id="L69">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L70">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
 
-<span class="fc" id="L73">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartyRoleMember.class,</span>
-<span class="fc" id="L74">				partyRoleMemberDataContainer.getAllBy(ViewRiksdagenPartyRoleMember_.party,</span>
-<span class="fc" id="L75">						viewRiksdagenParty.getPartyId()),</span>
+<span class="fc" id="L72">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartyRoleMember.class,</span>
+<span class="fc" id="L73">				partyRoleMemberDataContainer.getAllBy(ViewRiksdagenPartyRoleMember_.party,</span>
+<span class="fc" id="L74">						viewRiksdagenParty.getPartyId()),</span>
 				LEADER_HISTORY2, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L78">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="fc" id="L77">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
+		pageId);
 <span class="fc" id="L79">		return panelContent;</span>
 
 	}

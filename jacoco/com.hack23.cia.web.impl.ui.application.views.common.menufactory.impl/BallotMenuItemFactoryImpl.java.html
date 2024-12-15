@@ -32,6 +32,11 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class BallotMenuItemFactoryImpl.
+ *
+ * This class is responsible for creating and managing the ballot menu items
+ * and overview pages in the Citizen Intelligence Agency web application.
+ * It provides methods to initialize the ballot menu bar and generate
+ * overview pages with relevant descriptions and icons.
  */
 @Service
 public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements BallotMenuItemFactory {
@@ -42,31 +47,45 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = &quot;Overview&quot;;
 
+	/** The Constant BALLOT_RESULTS_DESCRIPTION. */
+	private static final String BALLOT_RESULTS_DESCRIPTION = &quot;Ballot results: vote breakdown by party.&quot;;
 
 	/**
 	 * Instantiates a new ballot menu item factory impl.
 	 */
 	public BallotMenuItemFactoryImpl() {
-<span class="fc" id="L50">		super();</span>
-<span class="fc" id="L51">	}</span>
+<span class="fc" id="L57">		super();</span>
+<span class="fc" id="L58">	}</span>
 
+	/**
+	 * Creates the ballot menu bar.
+	 *
+	 * @param menuBar the menu bar
+	 * @param pageId the page id
+	 */
 	@Override
 	public void createBallotMenuBar(final MenuBar menuBar, final String pageId) {
-<span class="fc" id="L55">		initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L68">		initApplicationMenuBar(menuBar);</span>
 
-<span class="fc" id="L57">		menuBar.addItem(OVERVIEW_TEXT, VaadinIcons.PIE_CHART,</span>
+<span class="fc" id="L70">		menuBar.addItem(OVERVIEW_TEXT, VaadinIcons.PIE_CHART,</span>
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.OVERVIEW, pageId));
-<span class="fc" id="L59">		menuBar.addItem(CHARTS_TEXT, VaadinIcons.PIE_CHART,</span>
+<span class="fc" id="L72">		menuBar.addItem(CHARTS_TEXT, VaadinIcons.PIE_CHART,</span>
 				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId));
-<span class="fc" id="L61">	}</span>
+<span class="fc" id="L74">	}</span>
 
+	/**
+	 * Creates the overview page.
+	 *
+	 * @param panelContent the panel content
+	 * @param pageId the page id
+	 */
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-<span class="fc" id="L65">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L84">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="fc" id="L67">		createButtonLink(grid,CHARTS_TEXT, VaadinIcons.PIE_CHART,</span>
-				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), &quot;Breakdown by total votes and by party.&quot;);
-<span class="fc" id="L69">	}</span>
+<span class="fc" id="L86">		createButtonLink(grid,CHARTS_TEXT, VaadinIcons.PIE_CHART,</span>
+				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), BALLOT_RESULTS_DESCRIPTION);
+<span class="fc" id="L88">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

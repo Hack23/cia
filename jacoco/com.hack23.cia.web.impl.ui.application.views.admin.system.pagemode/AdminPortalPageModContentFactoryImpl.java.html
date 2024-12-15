@@ -29,7 +29,6 @@ import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.model.internal.application.system.impl.Portal_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -45,16 +44,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_PORTAL. */
-	private static final String ADMIN_PORTAL = &quot;Admin Portal&quot;;
-
-<span class="fc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;,</span>
+<span class="fc" id="L47">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;,</span>
 			&quot;googleMapApiKey&quot;);
 
-<span class="fc" id="L54">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;, &quot;googleMapApiKey&quot;,</span>
+<span class="fc" id="L50">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;, &quot;googleMapApiKey&quot;,</span>
 			&quot;modelObjectVersion&quot; };
 
-<span class="fc" id="L57">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;googleMapApiKey&quot;, &quot;modelObjectVersion&quot; };</span>
+<span class="fc" id="L53">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;googleMapApiKey&quot;, &quot;modelObjectVersion&quot; };</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_PORTAL_VIEW_NAME;
@@ -65,50 +61,50 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 	 * Instantiates a new admin agency page mod content factory impl.
 	 */
 	public AdminPortalPageModContentFactoryImpl() {
-<span class="fc" id="L68">		super(NAME);</span>
-<span class="fc" id="L69">	}</span>
+<span class="fc" id="L64">		super(NAME);</span>
+<span class="fc" id="L65">	}</span>
 
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L75">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L71">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L77">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L78">		final int pageNr= getPageNr(parameters);</span>
+<span class="fc" id="L73">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L74">		final int pageNr= getPageNr(parameters);</span>
 
-<span class="fc" id="L80">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L76">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L82">		LabelFactory.createHeader2Label(content,ADMIN_PORTAL);</span>
+<span class="fc" id="L78">		createPageHeader(panel, content, &quot;Admin Portal Management&quot;, &quot;Portal Overview&quot;, &quot;Centralized management interface for accessing and controlling administrative tools.&quot;);</span>
 
-<span class="fc" id="L84">		final DataContainer&lt;Portal, Long&gt; dataContainer = getApplicationManager().getDataContainer(Portal.class);</span>
+<span class="fc" id="L80">		final DataContainer&lt;Portal, Long&gt; dataContainer = getApplicationManager().getDataContainer(Portal.class);</span>
 
-<span class="fc" id="L86">		final List&lt;Portal&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Portal_.portalName);</span>
+<span class="fc" id="L82">		final List&lt;Portal&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Portal_.portalName);</span>
 
-<span class="fc" id="L88">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="fc" id="L84">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
 
 
-<span class="fc" id="L91">		getGridFactory().createBasicBeanItemGrid(content, Portal.class,</span>
+<span class="fc" id="L87">		getGridFactory().createBasicBeanItemGrid(content, Portal.class,</span>
 				pageOrderBy,
 				PORTAL2,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;hjid&quot;), null, null);
 
-<span class="pc bpc" id="L97" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="pc bpc" id="L93" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
 
-<span class="fc" id="L99">			final Portal portal = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="fc" id="L95">			final Portal portal = dataContainer.load(Long.valueOf(pageId));</span>
 
-<span class="pc bpc" id="L101" title="1 of 2 branches missed.">			if (portal != null) {</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">			if (portal != null) {</span>
 
-<span class="fc" id="L103">				getFormFactory().addFormPanelTextFields(content, portal, Portal.class,</span>
+<span class="fc" id="L99">				getFormFactory().addFormPanelTextFields(content, portal, Portal.class,</span>
 						AS_LIST);
 			}
 		}
 
-<span class="fc" id="L108">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_PORTAL_VIEW, ApplicationEventGroup.ADMIN,</span>
+<span class="fc" id="L104">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_PORTAL_VIEW, ApplicationEventGroup.ADMIN,</span>
 				NAME, null, pageId);
 
-<span class="fc" id="L111">		return content;</span>
+<span class="fc" id="L107">		return content;</span>
 
 	}
 

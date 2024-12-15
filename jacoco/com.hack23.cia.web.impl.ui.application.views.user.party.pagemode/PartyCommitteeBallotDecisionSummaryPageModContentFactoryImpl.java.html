@@ -28,8 +28,9 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -47,7 +48,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 	private static final String BALLOT_ID = &quot;ballotId&quot;;
 
-<span class="fc" id="L50">	private static final String[] COLUMN_ORDER = { &quot;voteDate&quot;, &quot;rm&quot;, &quot;org&quot;, &quot;embeddedId.id&quot;,</span>
+<span class="fc" id="L51">	private static final String[] COLUMN_ORDER = { &quot;voteDate&quot;, &quot;rm&quot;, &quot;org&quot;, &quot;embeddedId.id&quot;,</span>
 			&quot;embeddedId.party&quot;, &quot;committeeReport&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;winner&quot;, &quot;partyApproved&quot;,
 			&quot;againstProposalParties&quot;, &quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;, &quot;endNumber&quot;, &quot;createdDate&quot;,
 			&quot;publicDate&quot;, BALLOT_ID, &quot;decisionType&quot;, &quot;againstProposalNumber&quot;, &quot;ballotType&quot;, &quot;label&quot;, &quot;avgBornYear&quot;,
@@ -60,19 +61,16 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 	/** The Constant COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY. */
 	private static final String COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY = &quot;Committee Ballot Decision Party Summary&quot;;
 
-	/** The Constant COMMITTEE_BALLOT_DECISION_SUMMARY. */
-	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = &quot;CommitteeBallotDecisionSummary&quot;;
-
-<span class="fc" id="L66">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, BALLOT_ID, &quot;decisionType&quot;, &quot;ballotType&quot;,</span>
+<span class="fc" id="L64">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, BALLOT_ID, &quot;decisionType&quot;, &quot;ballotType&quot;,</span>
 			&quot;againstProposalNumber&quot;, &quot;embeddedId.id&quot;, &quot;embeddedId.party&quot;, &quot;createdDate&quot;, &quot;publicDate&quot;, &quot;label&quot;,
 			&quot;endNumber&quot;, &quot;org&quot;, &quot;partyPercentageYes&quot;, &quot;partyPercentageNo&quot;, &quot;partyPercentageAbsent&quot;,
 			&quot;partyPercentageAbstain&quot;, &quot;partyPercentageMale&quot;, &quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;percentageYes&quot;,
 			&quot;percentageNo&quot;, &quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;, &quot;percentageMale&quot;, &quot;approved&quot;, &quot;noWinner&quot; };
 
-<span class="fc" id="L72">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L70">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
 
-<span class="fc" id="L75">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.id&quot;, &quot;embeddedId.concern&quot;,</span>
+<span class="fc" id="L73">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.id&quot;, &quot;embeddedId.concern&quot;,</span>
 			&quot;embeddedId.issue&quot;, &quot;embeddedId.party&quot; };
 
 	/**
@@ -80,46 +78,47 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 	 * content factory impl.
 	 */
 	public PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl() {
-<span class="fc" id="L83">		super();</span>
-<span class="fc" id="L84">	}</span>
+<span class="fc" id="L81">		super();</span>
+<span class="fc" id="L82">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L89">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L87">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L91">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L89">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L93">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L91">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
 
-<span class="fc" id="L95">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L93">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L97">		LabelFactory.createHeader2Label(panelContent, COMMITTEE_BALLOT_DECISION_SUMMARY);</span>
+<span class="fc" id="L95">		createPageHeader(panel, panelContent, &quot;Committee Ballot Decision Summary &quot; + viewRiksdagenParty.getPartyName(), &quot;Ballot Decisions&quot;, &quot;Review the summary of committee ballot decisions for the selected party.&quot;);</span>
 
-<span class="fc" id="L99">		final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
-<span class="fc" id="L100">				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);</span>
+<span class="fc" id="L97">		final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId&gt; committeeBallotDecisionPartyDataContainer = getApplicationManager()</span>
+<span class="fc" id="L98">				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);</span>
 
-<span class="fc" id="L102">		final List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; decisionPartySummaryList = committeeBallotDecisionPartyDataContainer</span>
-<span class="fc" id="L103">				.findOrderedByPropertyListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,</span>
+<span class="fc" id="L100">		final List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; decisionPartySummaryList = committeeBallotDecisionPartyDataContainer</span>
+<span class="fc" id="L101">				.findOrderedByPropertyListByEmbeddedProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,</span>
 						ViewRiksdagenCommitteeBallotDecisionPartySummary_.embeddedId,
 						ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId.class,
 						ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId_.party, pageId,
 						ViewRiksdagenCommitteeBallotDecisionPartySummary_.voteDate);
 
-<span class="fc" id="L109">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
+<span class="fc" id="L107">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
 				ViewRiksdagenCommitteeBallotDecisionPartySummary.class, decisionPartySummaryList,
 				COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER,
 				BALLOT_ID, null);
 
-<span class="fc" id="L114">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="fc" id="L112">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
+		pageId);
 
-<span class="fc" id="L116">		return panelContent;</span>
+<span class="fc" id="L115">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L122" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString());</span>
+<span class="fc bfc" id="L121" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString());</span>
 	}
 
 }

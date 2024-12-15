@@ -22,12 +22,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Component;
 
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
@@ -40,9 +37,6 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_VIEW_NAME;
 
-	/** The Constant POLITICIAN. */
-	private static final String POLITICIAN = &quot;Politician:&quot;;
-
 	/** The politician ranking menu item factory. */
 	@Autowired
 	private PoliticianMenuItemFactory politicianMenuItemFactory;
@@ -52,8 +46,8 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 	 * Instantiates a new abstract politician page mod content factory impl.
 	 */
 	AbstractPoliticianPageModContentFactoryImpl() {
-<span class="fc" id="L55">		super();</span>
-<span class="fc" id="L56">	}</span>
+<span class="fc" id="L49">		super();</span>
+<span class="fc" id="L50">	}</span>
 
 	/**
 	 * Convert to years string.
@@ -63,20 +57,20 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 	 * @return the string
 	 */
 	protected static final String convertToYearsString(final long totalDays) {
-<span class="fc" id="L66">		final long years = totalDays / DAYS_PER_STANDARD_YEAR;</span>
-<span class="fc" id="L67">		final long days = totalDays - years * DAYS_PER_STANDARD_YEAR;</span>
+<span class="fc" id="L60">		final long years = totalDays / DAYS_PER_STANDARD_YEAR;</span>
+<span class="fc" id="L61">		final long days = totalDays - years * DAYS_PER_STANDARD_YEAR;</span>
 
-<span class="fc" id="L69">		return years + &quot; Years &quot; + days + &quot; days&quot;;</span>
+<span class="fc" id="L63">		return years + &quot; Years &quot; + days + &quot; days&quot;;</span>
 	}
 
 	@Override
 	protected ViewRiksdagenPolitician getItem(final String parameters) {
-<span class="fc" id="L74">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L75">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(pageId);</span>
-<span class="pc bpc" id="L76" title="1 of 2 branches missed.">		if (personData != null) {</span>
-<span class="fc" id="L77">			return getApplicationManager().getDataContainer(ViewRiksdagenPolitician.class).load(personData.getId());</span>
+<span class="fc" id="L68">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L69">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(pageId);</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">		if (personData != null) {</span>
+<span class="fc" id="L71">			return getApplicationManager().getDataContainer(ViewRiksdagenPolitician.class).load(personData.getId());</span>
 		} else {
-<span class="nc" id="L79">			return null;</span>
+<span class="nc" id="L73">			return null;</span>
 		}
 	}
 
@@ -86,29 +80,8 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 	 * @return the politician ranking menu item factory
 	 */
 	protected final PoliticianMenuItemFactory getPoliticianMenuItemFactory() {
-<span class="fc" id="L89">		return politicianMenuItemFactory;</span>
+<span class="fc" id="L83">		return politicianMenuItemFactory;</span>
 	}
-
-	/**
-	 * Page completed.
-	 *
-	 * @param parameters
-	 *            the parameters
-	 * @param panel
-	 *            the panel
-	 * @param pageId
-	 *            the page id
-	 * @param viewRiksdagenPolitician
-	 *            the view riksdagen politician
-	 */
-	protected final void pageCompleted(final String parameters, final Component panel, final String pageId,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
-<span class="fc" id="L106">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,</span>
-				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
-
-<span class="fc" id="L109">		panel.setCaption(NAME + &quot;::&quot; + POLITICIAN + viewRiksdagenPolitician.getFirstName() + ' '</span>
-<span class="fc" id="L110">				+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')');</span>
-<span class="fc" id="L111">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

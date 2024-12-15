@@ -23,8 +23,9 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -37,9 +38,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	/** The Constant PARTY_WON_DAILY_SUMMARY_CHART. */
-	private static final String PARTY_WON_DAILY_SUMMARY_CHART = &quot;PartyWonDailySummaryChart&quot;;
-
 	/** The chart data manager. */
 	@Autowired
 	private PartyChartDataManager chartDataManager;
@@ -49,31 +47,32 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 	 * impl.
 	 */
 	public PartyWonDailySummaryChartPageModContentFactoryImpl() {
-<span class="fc" id="L52">		super();</span>
-<span class="fc" id="L53">	}</span>
+<span class="fc" id="L50">		super();</span>
+<span class="fc" id="L51">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L56">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L58">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L62">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L63">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L60">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L61">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L65">		LabelFactory.createHeader2Label(panelContent, PARTY_WON_DAILY_SUMMARY_CHART);</span>
+<span class="fc" id="L63">		createPageHeader(panel, panelContent, &quot;Party Won Daily Summary Chart &quot; + viewRiksdagenParty.getPartyName(), &quot;Daily Summary&quot;, &quot;Analyze the daily summary of party wins over time.&quot;);</span>
 
-<span class="fc" id="L67">		chartDataManager.createPartyLineChart(panelContent, pageId);</span>
+<span class="fc" id="L65">		chartDataManager.createPartyLineChart(panelContent, pageId);</span>
 
-<span class="fc" id="L69">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L70">		return panelContent;</span>
+<span class="fc" id="L67">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
+		pageId);
+<span class="fc" id="L69">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L76" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString());</span>
+<span class="pc bpc" id="L75" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString());</span>
 	}
 
 }

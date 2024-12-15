@@ -38,9 +38,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class GovernmentBodyRankingHeadCountPageModContentFactoryImpl extends AbstractGovernmentBodyRankingPageModContentFactoryImpl {
 
-	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODIES = &quot;Government body headcount&quot;;
-
 	/** The government body chart data manager. */
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
@@ -50,32 +47,32 @@ public final class GovernmentBodyRankingHeadCountPageModContentFactoryImpl exten
 	 * factory impl.
 	 */
 	public GovernmentBodyRankingHeadCountPageModContentFactoryImpl() {
-<span class="fc" id="L53">		super();</span>
-<span class="fc" id="L54">	}</span>
+<span class="fc" id="L50">		super();</span>
+<span class="fc" id="L51">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L59">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L56">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L61">		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);</span>
+<span class="fc" id="L58">		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);</span>
 
-<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L65">		panel.setCaption(NAME + &quot;::&quot; + GOVERNMENT_BODIES + parameters);</span>
+<span class="fc" id="L62">		createPageHeader(panel, panelContent, &quot;Government Body Headcount&quot;, &quot;Headcount Details&quot;, &quot;Explore detailed headcount information for government bodies.&quot;);</span>
 
-<span class="fc" id="L67">		governmentBodyChartDataManager.createGovernmentBodyHeadcountSummaryChart(panelContent);</span>
+<span class="fc" id="L64">		governmentBodyChartDataManager.createGovernmentBodyHeadcountSummaryChart(panelContent);</span>
 
-<span class="fc" id="L69">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L66">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L72">		return panelContent;</span>
+<span class="fc" id="L69">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L78" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, GovernmentBodyPageMode.HEADCOUNT.toString());</span>
+<span class="fc bfc" id="L75" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, GovernmentBodyPageMode.HEADCOUNT.toString());</span>
 	}
 
 }

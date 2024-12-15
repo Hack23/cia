@@ -82,6 +82,7 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	@Autowired
 	private MainView mainView;
 
+	/** The spring navigator. */
 	@Autowired
 	private SpringNavigator springNavigator;
 
@@ -89,44 +90,44 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	 * Instantiates a new citizen intelligence agency ui.
 	 */
 	public CitizenIntelligenceAgencyUI() {
-<span class="fc" id="L92">		super();</span>
-<span class="fc" id="L93">	}</span>
+<span class="fc" id="L93">		super();</span>
+<span class="fc" id="L94">	}</span>
 
 
 	@Override
 	protected void init(final VaadinRequest request) {
-<span class="fc" id="L98">		VaadinSession.getCurrent().setErrorHandler(new UiInstanceErrorHandler(this));</span>
-<span class="fc" id="L99">		setSizeFull();</span>
-<span class="fc" id="L100">		springNavigator.addView(CRLF_REPLACEMENT, mainView);</span>
-<span class="fc" id="L101">		setNavigator(springNavigator);</span>
+<span class="fc" id="L99">		VaadinSession.getCurrent().setErrorHandler(new UiInstanceErrorHandler(this));</span>
+<span class="fc" id="L100">		setSizeFull();</span>
+<span class="fc" id="L101">		springNavigator.addView(CRLF_REPLACEMENT, mainView);</span>
+<span class="fc" id="L102">		setNavigator(springNavigator);</span>
 
 
-<span class="fc" id="L104">		final Page currentPage = Page.getCurrent();</span>
-<span class="fc" id="L105">		final String requestUrl = currentPage.getLocation().toString();</span>
-<span class="fc" id="L106">		final String language = request.getLocale().getLanguage();</span>
-<span class="fc" id="L107">		final UserConfiguration userConfiguration = configurationManager.getUserConfiguration(requestUrl, language);</span>
+<span class="fc" id="L105">		final Page currentPage = Page.getCurrent();</span>
+<span class="fc" id="L106">		final String requestUrl = currentPage.getLocation().toString();</span>
+<span class="fc" id="L107">		final String language = request.getLocale().getLanguage();</span>
+<span class="fc" id="L108">		final UserConfiguration userConfiguration = configurationManager.getUserConfiguration(requestUrl, language);</span>
 
-<span class="fc" id="L109">		currentPage.setTitle(userConfiguration.getAgency().getAgencyName() + &quot;:&quot; + userConfiguration.getPortal().getPortalName() + &quot;:&quot; + userConfiguration.getLanguage().getLanguageName());</span>
+<span class="fc" id="L110">		currentPage.setTitle(userConfiguration.getAgency().getAgencyName() + &quot;:&quot; + userConfiguration.getPortal().getPortalName() + &quot;:&quot; + userConfiguration.getLanguage().getLanguageName());</span>
 
-<span class="fc bfc" id="L111" title="All 2 branches covered.">		if (getSession().getUIs().isEmpty()) {</span>
-<span class="fc" id="L112">			final WebBrowser webBrowser = currentPage.getWebBrowser();</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">		if (getSession().getUIs().isEmpty()) {</span>
+<span class="fc" id="L113">			final WebBrowser webBrowser = currentPage.getWebBrowser();</span>
 
-<span class="fc" id="L114">			final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();</span>
-<span class="fc" id="L115">			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L115">			final CreateApplicationSessionRequest serviceRequest = new CreateApplicationSessionRequest();</span>
+<span class="fc" id="L116">			serviceRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
 
-<span class="fc" id="L117">			final String ipInformation = WebBrowserUtil.getIpInformation(webBrowser);</span>
-<span class="fc" id="L118">			serviceRequest.setIpInformation(ipInformation);</span>
-<span class="fc" id="L119">			serviceRequest.setTimeZone(webBrowser.getTimeZoneId());</span>
-<span class="fc" id="L120">			serviceRequest.setScreenSize(webBrowser.getScreenWidth() + &quot;x&quot; + webBrowser.getScreenHeight());</span>
-<span class="fc" id="L121">			serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());</span>
-<span class="fc" id="L122">			serviceRequest.setLocale(webBrowser.getLocale().toString());</span>
-<span class="fc" id="L123">			serviceRequest.setOperatingSystem(WebBrowserUtil.getOperatingSystem(webBrowser));</span>
-<span class="fc" id="L124">			serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);</span>
+<span class="fc" id="L118">			final String ipInformation = WebBrowserUtil.getIpInformation(webBrowser);</span>
+<span class="fc" id="L119">			serviceRequest.setIpInformation(ipInformation);</span>
+<span class="fc" id="L120">			serviceRequest.setTimeZone(webBrowser.getTimeZoneId());</span>
+<span class="fc" id="L121">			serviceRequest.setScreenSize(webBrowser.getScreenWidth() + &quot;x&quot; + webBrowser.getScreenHeight());</span>
+<span class="fc" id="L122">			serviceRequest.setUserAgentInformation(webBrowser.getBrowserApplication());</span>
+<span class="fc" id="L123">			serviceRequest.setLocale(webBrowser.getLocale().toString());</span>
+<span class="fc" id="L124">			serviceRequest.setOperatingSystem(WebBrowserUtil.getOperatingSystem(webBrowser));</span>
+<span class="fc" id="L125">			serviceRequest.setSessionType(ApplicationSessionType.ANONYMOUS);</span>
 
-<span class="fc" id="L126">			final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);</span>
-<span class="fc" id="L127">			LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl.replaceAll(CRLF,CRLF_REPLACEMENT),language.replaceAll(CRLF,CRLF_REPLACEMENT),ipInformation.replaceAll(CRLF,CRLF_REPLACEMENT),webBrowser.getBrowserApplication().replaceAll(CRLF,CRLF_REPLACEMENT),serviceRequest.getSessionId().replaceAll(CRLF,CRLF_REPLACEMENT),serviceResponse.getResult().toString().replaceAll(CRLF,CRLF_REPLACEMENT));</span>
+<span class="fc" id="L127">			final ServiceResponse serviceResponse = applicationManager.service(serviceRequest);</span>
+<span class="fc" id="L128">			LOGGER.info(LOG_INFO_BROWSER_ADDRESS_APPLICATION_SESSION_ID_RESULT,requestUrl.replaceAll(CRLF,CRLF_REPLACEMENT),language.replaceAll(CRLF,CRLF_REPLACEMENT),ipInformation.replaceAll(CRLF,CRLF_REPLACEMENT),webBrowser.getBrowserApplication().replaceAll(CRLF,CRLF_REPLACEMENT),serviceRequest.getSessionId().replaceAll(CRLF,CRLF_REPLACEMENT),serviceResponse.getResult().toString().replaceAll(CRLF,CRLF_REPLACEMENT));</span>
 		}
-<span class="fc" id="L129">	}</span>
+<span class="fc" id="L130">	}</span>
 
 
 }

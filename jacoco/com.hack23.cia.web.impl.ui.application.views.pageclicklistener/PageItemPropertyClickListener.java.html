@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
@@ -37,8 +38,8 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 	private static final String LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION = &quot;Problem getting property {} from object {} exception {}&quot;;
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L40">	private static final Logger LOGGER = LoggerFactory</span>
-<span class="fc" id="L41">			.getLogger(PageItemPropertyClickListener.class);</span>
+<span class="fc" id="L41">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="fc" id="L42">			.getLogger(PageItemPropertyClickListener.class);</span>
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -46,6 +47,9 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 
 	/** The property. */
 	private final String property;
+
+	/** The lower case. */
+<span class="fc" id="L52">	private boolean lowerCase = false;</span>
 
 	/**
 	 * Instantiates a new page item property click listener.
@@ -56,18 +60,35 @@ public final class PageItemPropertyClickListener extends AbstractPageItemRendere
 	 *            the property
 	 */
 	public PageItemPropertyClickListener(final String page, final String property) {
-<span class="fc" id="L59">		super(page);</span>
-<span class="fc" id="L60">		this.property = property;</span>
-<span class="fc" id="L61">	}</span>
+<span class="fc" id="L63">		super(page);</span>
+<span class="fc" id="L64">		this.property = property;</span>
+<span class="fc" id="L65">	}</span>
+
+	/**
+	 * Instantiates a new page item property click listener.
+	 *
+	 * @param page the page
+	 * @param property the property
+	 * @param lowerCase the lower case
+	 */
+	public PageItemPropertyClickListener(final String page, final String property, final boolean lowerCase) {
+<span class="fc" id="L75">		super(page);</span>
+<span class="fc" id="L76">		this.property = property;</span>
+<span class="fc" id="L77">		this.lowerCase = lowerCase;</span>
+<span class="fc" id="L78">	}</span>
 
 	@Override
 	protected String getPageId(final Serializable t) {
 		try {
-<span class="fc" id="L66">			return BeanUtils.getProperty(t, property);</span>
-<span class="fc" id="L67">		} catch (IllegalAccessException | InvocationTargetException |</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">			if (lowerCase) {</span>
+<span class="nc" id="L84">				return BeanUtils.getProperty(t, property).toLowerCase(Locale.ENGLISH);</span>
+			} else {
+<span class="fc" id="L86">				return BeanUtils.getProperty(t, property);</span>
+			}
+<span class="fc" id="L88">		} catch (IllegalAccessException | InvocationTargetException |</span>
 	            NoSuchMethodException e) {
-<span class="fc" id="L69">			LOGGER.warn(LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION,property,t,e);</span>
-<span class="fc" id="L70">			return ERROR_GETTING_PAGE_ID;</span>
+<span class="fc" id="L90">			LOGGER.warn(LOG_MSG_PROBLEM_GETTING_PROPERTY_FROM_OBJECT_EXCEPTION,property,t,e);</span>
+<span class="fc" id="L91">			return ERROR_GETTING_PAGE_ID;</span>
 		}
 	}
 

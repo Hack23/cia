@@ -21,26 +21,17 @@ package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractItemPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.Component;
 
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
 abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageModContentFactoryImpl&lt;ViewRiksdagenParty&gt; {
 
-	/** The Constant CAPTION_SEPARATOR. */
-	private static final String CAPTION_SEPARATOR = &quot;::&quot;;
-
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARTY_VIEW_NAME;
-
-	/** The Constant PARTY. */
-	private static final String PARTY = &quot;Party:&quot;;
 
 	/** The party menu item factory. */
 	@Autowired
@@ -50,12 +41,12 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageMo
 	 * Instantiates a new abstract party page mod content factory impl.
 	 */
 	AbstractPartyPageModContentFactoryImpl() {
-<span class="fc" id="L53">		super();</span>
-<span class="fc" id="L54">	}</span>
+<span class="fc" id="L44">		super();</span>
+<span class="fc" id="L45">	}</span>
 
 	@Override
 	protected ViewRiksdagenParty getItem(final String parameters) {
-<span class="fc" id="L58">		return getApplicationManager().getDataContainer(ViewRiksdagenParty.class).load(getPageId(parameters));</span>
+<span class="fc" id="L49">		return getApplicationManager().getDataContainer(ViewRiksdagenParty.class).load(getPageId(parameters));</span>
 	}
 
 	/**
@@ -64,28 +55,8 @@ abstract class AbstractPartyPageModContentFactoryImpl extends AbstractItemPageMo
 	 * @return the party menu item factory
 	 */
 	protected final PartyMenuItemFactory getPartyMenuItemFactory() {
-<span class="fc" id="L67">		return partyMenuItemFactory;</span>
+<span class="fc" id="L58">		return partyMenuItemFactory;</span>
 	}
-
-	/**
-	 * Page completed.
-	 *
-	 * @param parameters
-	 *            the parameters
-	 * @param panel
-	 *            the panel
-	 * @param pageId
-	 *            the page id
-	 * @param viewRiksdagenParty
-	 *            the view riksdagen party
-	 */
-	protected final void pageCompleted(final String parameters, final Component panel, final String pageId,
-			final ViewRiksdagenParty viewRiksdagenParty) {
-<span class="fc" id="L84">		panel.setCaption(new StringBuilder().append(NAME).append(CAPTION_SEPARATOR).append(PARTY).append(viewRiksdagenParty.getPartyName()).toString());</span>
-
-<span class="fc" id="L86">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
-				pageId);
-<span class="fc" id="L88">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

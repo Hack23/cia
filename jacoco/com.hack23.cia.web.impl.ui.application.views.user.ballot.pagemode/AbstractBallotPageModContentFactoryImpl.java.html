@@ -49,18 +49,23 @@ abstract class AbstractBallotPageModContentFactoryImpl extends AbstractItemPageM
 <span class="fc" id="L49">		super();</span>
 <span class="fc" id="L50">	}</span>
 
+	/**
+	 * Gets the ballot menu item factory.
+	 *
+	 * @return the ballot menu item factory
+	 */
 	protected final BallotMenuItemFactory getBallotMenuItemFactory() {
-<span class="fc" id="L53">		return ballotMenuItemFactory;</span>
+<span class="fc" id="L58">		return ballotMenuItemFactory;</span>
 	}
 
 	@Override
 	protected List&lt;ViewRiksdagenVoteDataBallotSummary&gt; getItem(final String parameters) {
-<span class="fc" id="L58">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L60">		final DataContainer&lt;ViewRiksdagenVoteDataBallotSummary, RiksdagenVoteDataBallotEmbeddedId&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L61">				.getDataContainer(ViewRiksdagenVoteDataBallotSummary.class);</span>
+<span class="fc" id="L65">		final DataContainer&lt;ViewRiksdagenVoteDataBallotSummary, RiksdagenVoteDataBallotEmbeddedId&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L66">				.getDataContainer(ViewRiksdagenVoteDataBallotSummary.class);</span>
 
-<span class="fc" id="L63">		return dataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotSummary.class, ViewRiksdagenVoteDataBallotSummary_.embeddedId, RiksdagenVoteDataBallotEmbeddedId.class, RiksdagenVoteDataBallotEmbeddedId_.ballotId, pageId);</span>
+<span class="fc" id="L68">		return dataContainer.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotSummary.class, ViewRiksdagenVoteDataBallotSummary_.embeddedId, RiksdagenVoteDataBallotEmbeddedId.class, RiksdagenVoteDataBallotEmbeddedId_.ballotId, pageId);</span>
 	}
 
 }

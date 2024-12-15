@@ -33,7 +33,6 @@ import com.hack23.cia.service.api.action.user.DeleteAccountRequest;
 import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -60,7 +59,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	private static final String DELETE_ACCOUNT = &quot;Delete Account&quot;;
 
 	/** The Constant AS_LIST. */
-<span class="fc" id="L63">	private static final List&lt;String&gt; AS_LIST = Collections.singletonList(&quot;userpassword&quot;);</span>
+<span class="fc" id="L62">	private static final List&lt;String&gt; AS_LIST = Collections.singletonList(&quot;userpassword&quot;);</span>
 
 	/** The Constant DISABLE_GOOGLE_AUTHENTICATOR. */
 	private static final String DISABLE_GOOGLE_AUTHENTICATOR = &quot;Disable Google Authenticator&quot;;
@@ -71,9 +70,6 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	/** The Constant SECURITY_SETTINGS. */
 	private static final String SECURITY_SETTINGS = &quot;Security Settings&quot;;
 
-	/** The Constant USERHOME. */
-	private static final String USERHOME = &quot;Userhome:&quot;;
-
 	/** The user home menu item factory. */
 	@Autowired
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
@@ -82,8 +78,8 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	 * Instantiates a new user home security settings page mod content factory impl.
 	 */
 	public UserHomeSecuritySettingsPageModContentFactoryImpl() {
-<span class="fc" id="L85">		super();</span>
-<span class="fc" id="L86">	}</span>
+<span class="fc" id="L81">		super();</span>
+<span class="fc" id="L82">	}</span>
 
 	/**
 	 * Creates the change password button.
@@ -92,59 +88,57 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	 */
 	private VerticalLayout createChangePasswordButton() {
 
-<span class="fc" id="L95">		final VerticalLayout formLayout = new VerticalLayout();</span>
-<span class="fc" id="L96">		formLayout.setSizeFull();</span>
+<span class="fc" id="L91">		final VerticalLayout formLayout = new VerticalLayout();</span>
+<span class="fc" id="L92">		formLayout.setSizeFull();</span>
 
-<span class="fc" id="L98">		final Panel formPanel = new Panel();</span>
-<span class="fc" id="L99">		formPanel.setSizeFull();</span>
+<span class="fc" id="L94">		final Panel formPanel = new Panel();</span>
+<span class="fc" id="L95">		formPanel.setSizeFull();</span>
 
-<span class="fc" id="L101">		formLayout.addComponent(formPanel);</span>
+<span class="fc" id="L97">		formLayout.addComponent(formPanel);</span>
 
-<span class="fc" id="L103">		final FormLayout formContent = new FormLayout();</span>
-<span class="fc" id="L104">		formPanel.setContent(formContent);</span>
+<span class="fc" id="L99">		final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L100">		formPanel.setContent(formContent);</span>
 
-<span class="fc" id="L106">		final ChangePasswordRequest request = new ChangePasswordRequest();</span>
-<span class="fc" id="L107">		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="fc" id="L108">		request.setCurrentPassword(&quot;&quot;);</span>
-<span class="fc" id="L109">		request.setNewPassword(&quot;&quot;);</span>
-<span class="fc" id="L110">		request.setRepeatNewPassword(&quot;&quot;);</span>
+<span class="fc" id="L102">		final ChangePasswordRequest request = new ChangePasswordRequest();</span>
+<span class="fc" id="L103">		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L104">		request.setCurrentPassword(&quot;&quot;);</span>
+<span class="fc" id="L105">		request.setNewPassword(&quot;&quot;);</span>
+<span class="fc" id="L106">		request.setRepeatNewPassword(&quot;&quot;);</span>
 
-<span class="fc" id="L112">		final ClickListener listener = new ChangePasswordClickListener(request);</span>
-<span class="fc" id="L113">		getFormFactory().addRequestInputFormFields(formContent, request,</span>
-<span class="fc" id="L114">				ChangePasswordRequest.class, Arrays.asList(&quot;currentPassword&quot;,&quot;newPassword&quot;,&quot;repeatNewPassword&quot;), &quot;Change password&quot;, listener);</span>
+<span class="fc" id="L108">		final ClickListener listener = new ChangePasswordClickListener(request);</span>
+<span class="fc" id="L109">		getFormFactory().addRequestInputFormFields(formContent, request,</span>
+<span class="fc" id="L110">				ChangePasswordRequest.class, Arrays.asList(&quot;currentPassword&quot;,&quot;newPassword&quot;,&quot;repeatNewPassword&quot;), &quot;Change password&quot;, listener);</span>
 
-<span class="fc" id="L116">		return formLayout;</span>
+<span class="fc" id="L112">		return formLayout;</span>
 	}
 
 	@Secured({ &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L122">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L118">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L124">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L120">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L126">		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L122">		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L123">		createPageHeader(panel, panelContent,&quot;CitizenIntelligence Agency::UserHome::Security Settings&quot;,SECURITY_SETTINGS,&quot;Manage user security settings&quot;);</span>
 
-<span class="fc" id="L128">		LabelFactory.createHeader2Label(panelContent, SECURITY_SETTINGS);</span>
 
-<span class="fc" id="L130">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L131">		overviewLayout.setSizeFull();</span>
-<span class="fc" id="L132">		panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L133">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
+<span class="fc" id="L126">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L127">		overviewLayout.setSizeFull();</span>
+<span class="fc" id="L128">		panelContent.addComponent(overviewLayout);</span>
+<span class="fc" id="L129">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
 
-<span class="fc" id="L135">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+<span class="fc" id="L131">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
 
-<span class="fc" id="L137">		RowUtil.createRowComponent(grid, createChangePasswordButton(), &quot;Change password&quot;);</span>
-<span class="fc" id="L138">		RowUtil.createRowComponent(grid, createEnableGoogleAuthButton(), &quot;Enable MFA using google authenticator&quot;);</span>
-<span class="fc" id="L139">		RowUtil.createRowComponent(grid, createDisableGoogleAuthButton(), &quot;Disable MFA using google authenticator&quot;);</span>
-<span class="fc" id="L140">		RowUtil.createRowComponent(grid, createDeleteAccountButton(), &quot;Delete Account&quot;);</span>
+<span class="fc" id="L133">		RowUtil.createRowComponent(grid, createChangePasswordButton(), &quot;Change password&quot;);</span>
+<span class="fc" id="L134">		RowUtil.createRowComponent(grid, createEnableGoogleAuthButton(), &quot;Enable MFA using google authenticator&quot;);</span>
+<span class="fc" id="L135">		RowUtil.createRowComponent(grid, createDisableGoogleAuthButton(), &quot;Disable MFA using google authenticator&quot;);</span>
+<span class="fc" id="L136">		RowUtil.createRowComponent(grid, createDeleteAccountButton(), &quot;Delete Account&quot;);</span>
 
-<span class="fc" id="L142">		panel.setCaption(NAME + &quot;::&quot; + USERHOME + SECURITY_SETTINGS);</span>
-
-<span class="fc" id="L144">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L138">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L147">		return panelContent;</span>
+<span class="fc" id="L141">		return panelContent;</span>
 
 	}
 
@@ -155,25 +149,25 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	 */
 	private VerticalLayout createDisableGoogleAuthButton() {
 
-<span class="fc" id="L158">		final VerticalLayout formLayout = new VerticalLayout();</span>
-<span class="fc" id="L159">		formLayout.setSizeFull();</span>
+<span class="fc" id="L152">		final VerticalLayout formLayout = new VerticalLayout();</span>
+<span class="fc" id="L153">		formLayout.setSizeFull();</span>
 
-<span class="fc" id="L161">		final Panel formPanel = new Panel();</span>
-<span class="fc" id="L162">		formPanel.setSizeFull();</span>
+<span class="fc" id="L155">		final Panel formPanel = new Panel();</span>
+<span class="fc" id="L156">		formPanel.setSizeFull();</span>
 
-<span class="fc" id="L164">		formLayout.addComponent(formPanel);</span>
+<span class="fc" id="L158">		formLayout.addComponent(formPanel);</span>
 
-<span class="fc" id="L166">		final FormLayout formContent = new FormLayout();</span>
-<span class="fc" id="L167">		formPanel.setContent(formContent);</span>
+<span class="fc" id="L160">		final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L161">		formPanel.setContent(formContent);</span>
 
-<span class="fc" id="L169">		final DisableGoogleAuthenticatorCredentialRequest request = new DisableGoogleAuthenticatorCredentialRequest();</span>
-<span class="fc" id="L170">		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="fc" id="L171">		request.setUserpassword(&quot;&quot;);</span>
-<span class="fc" id="L172">		final ClickListener listener = new DisableGoogleAuthenticatorCredentialClickListener(request);</span>
-<span class="fc" id="L173">		getFormFactory().addRequestInputFormFields(formContent, request,</span>
+<span class="fc" id="L163">		final DisableGoogleAuthenticatorCredentialRequest request = new DisableGoogleAuthenticatorCredentialRequest();</span>
+<span class="fc" id="L164">		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L165">		request.setUserpassword(&quot;&quot;);</span>
+<span class="fc" id="L166">		final ClickListener listener = new DisableGoogleAuthenticatorCredentialClickListener(request);</span>
+<span class="fc" id="L167">		getFormFactory().addRequestInputFormFields(formContent, request,</span>
 				DisableGoogleAuthenticatorCredentialRequest.class, AS_LIST, DISABLE_GOOGLE_AUTHENTICATOR, listener);
 
-<span class="fc" id="L176">		return formLayout;</span>
+<span class="fc" id="L170">		return formLayout;</span>
 	}
 
 	/**
@@ -182,54 +176,54 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 	 * @return the vertical layout
 	 */
 	private VerticalLayout createEnableGoogleAuthButton() {
-<span class="fc" id="L185">		final VerticalLayout formLayout = new VerticalLayout();</span>
-<span class="fc" id="L186">		formLayout.setSizeFull();</span>
+<span class="fc" id="L179">		final VerticalLayout formLayout = new VerticalLayout();</span>
+<span class="fc" id="L180">		formLayout.setSizeFull();</span>
 
-<span class="fc" id="L188">		final Panel formPanel = new Panel();</span>
-<span class="fc" id="L189">		formPanel.setSizeFull();</span>
+<span class="fc" id="L182">		final Panel formPanel = new Panel();</span>
+<span class="fc" id="L183">		formPanel.setSizeFull();</span>
 
-<span class="fc" id="L191">		formLayout.addComponent(formPanel);</span>
+<span class="fc" id="L185">		formLayout.addComponent(formPanel);</span>
 
-<span class="fc" id="L193">		final FormLayout formContent = new FormLayout();</span>
-<span class="fc" id="L194">		formPanel.setContent(formContent);</span>
+<span class="fc" id="L187">		final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L188">		formPanel.setContent(formContent);</span>
 
-<span class="fc" id="L196">		final SetGoogleAuthenticatorCredentialRequest request = new SetGoogleAuthenticatorCredentialRequest();</span>
-<span class="fc" id="L197">		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="fc" id="L198">		request.setUserpassword(&quot;&quot;);</span>
-<span class="fc" id="L199">		final ClickListener listener = new SetGoogleAuthenticatorCredentialClickListener(request);</span>
-<span class="fc" id="L200">		getFormFactory().addRequestInputFormFields(formContent, request, SetGoogleAuthenticatorCredentialRequest.class,</span>
+<span class="fc" id="L190">		final SetGoogleAuthenticatorCredentialRequest request = new SetGoogleAuthenticatorCredentialRequest();</span>
+<span class="fc" id="L191">		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L192">		request.setUserpassword(&quot;&quot;);</span>
+<span class="fc" id="L193">		final ClickListener listener = new SetGoogleAuthenticatorCredentialClickListener(request);</span>
+<span class="fc" id="L194">		getFormFactory().addRequestInputFormFields(formContent, request, SetGoogleAuthenticatorCredentialRequest.class,</span>
 				AS_LIST, ENABLE_GOOGLE_AUTHENTICATOR, listener);
 
-<span class="fc" id="L203">		return formLayout;</span>
+<span class="fc" id="L197">		return formLayout;</span>
 	}
 
 	private VerticalLayout createDeleteAccountButton() {
 
-<span class="fc" id="L208">		final VerticalLayout formLayout = new VerticalLayout();</span>
-<span class="fc" id="L209">		formLayout.setSizeFull();</span>
+<span class="fc" id="L202">		final VerticalLayout formLayout = new VerticalLayout();</span>
+<span class="fc" id="L203">		formLayout.setSizeFull();</span>
 
-<span class="fc" id="L211">		final Panel formPanel = new Panel();</span>
-<span class="fc" id="L212">		formPanel.setSizeFull();</span>
+<span class="fc" id="L205">		final Panel formPanel = new Panel();</span>
+<span class="fc" id="L206">		formPanel.setSizeFull();</span>
 
-<span class="fc" id="L214">		formLayout.addComponent(formPanel);</span>
+<span class="fc" id="L208">		formLayout.addComponent(formPanel);</span>
 
-<span class="fc" id="L216">		final FormLayout formContent = new FormLayout();</span>
-<span class="fc" id="L217">		formPanel.setContent(formContent);</span>
+<span class="fc" id="L210">		final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L211">		formPanel.setContent(formContent);</span>
 
-<span class="fc" id="L219">		final DeleteAccountRequest request = new DeleteAccountRequest();</span>
-<span class="fc" id="L220">		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="fc" id="L221">		request.setUserpassword(&quot;&quot;);</span>
-<span class="fc" id="L222">		final ClickListener listener = new DeleteAccountClickListener(request);</span>
-<span class="fc" id="L223">		getFormFactory().addRequestInputFormFields(formContent, request,</span>
+<span class="fc" id="L213">		final DeleteAccountRequest request = new DeleteAccountRequest();</span>
+<span class="fc" id="L214">		request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L215">		request.setUserpassword(&quot;&quot;);</span>
+<span class="fc" id="L216">		final ClickListener listener = new DeleteAccountClickListener(request);</span>
+<span class="fc" id="L217">		getFormFactory().addRequestInputFormFields(formContent, request,</span>
 				DeleteAccountRequest.class, AS_LIST, DELETE_ACCOUNT, listener);
 
-<span class="fc" id="L226">		return formLayout;</span>
+<span class="fc" id="L220">		return formLayout;</span>
 	}
 
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L232" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(UserHomePageMode.SECURITY_SETTINGS.toString());</span>
+<span class="pc bpc" id="L226" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; parameters.contains(UserHomePageMode.SECURITY_SETTINGS.toString());</span>
 	}
 
 }

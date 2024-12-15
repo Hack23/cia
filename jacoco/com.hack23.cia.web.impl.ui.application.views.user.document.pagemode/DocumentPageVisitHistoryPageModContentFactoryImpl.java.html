@@ -51,20 +51,25 @@ public final class DocumentPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 <span class="fc" id="L52">		final String pageId = getPageId(parameters);</span>
 <span class="fc" id="L53">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L54">		createPageHeader(panel, panelContent,</span>
+			    &quot;Documents - Page Visit History&quot;,
+			    &quot;Engagement Insights&quot;,
+			    &quot;Tracking how interest in policy materials evolves.&quot;);
 
-<span class="fc" id="L55">		createPageVisitHistory(NAME, pageId, panelContent);</span>
 
-<span class="fc" id="L57">		panel.setContent(panelContent);</span>
-<span class="fc" id="L58">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L60">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+
+<span class="fc" id="L62">		panel.setContent(panelContent);</span>
+<span class="fc" id="L63">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L61">		return panelContent;</span>
+<span class="fc" id="L66">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L67" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
+<span class="fc bfc" id="L72" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 
 }

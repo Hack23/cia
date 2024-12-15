@@ -61,85 +61,92 @@
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String TITLE = <span class="jxr_string">"title"</span>;
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">	 * Creates the grid layout.</em>
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">	 * @param panelContent the panel content</em>
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">	 * @return the responsive row</em>
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ResponsiveRow createGridLayout(<strong class="jxr_keyword">final</strong> AbstractOrderedLayout panelContent) {
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">final</strong> ResponsiveLayout layout = <strong class="jxr_keyword">new</strong> ResponsiveLayout();
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  		Responsive.makeResponsive(layout);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		layout.addStyleName(<span class="jxr_string">"v-layout-content-overview-panel-level1"</span>);
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		layout.setWidth(100, Unit.PERCENTAGE);
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		layout.setHeight(100, Unit.PERCENTAGE);
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		panelContent.addComponent(layout);
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  		panelContent.setExpandRatio(layout, ContentRatio.LARGE);
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  		<strong class="jxr_keyword">final</strong> ResponsiveRow row = layout.addRow();
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  		row.setVerticalSpacing(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  		row.setHorizontalSpacing(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  		<strong class="jxr_keyword">return</strong> row;
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	}
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">	 * Creates the row component.</em>
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">	 * @param row         the row</em>
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">	 * @param component   the component</em>
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">	 * @param description the description</em>
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> createRowComponent(<strong class="jxr_keyword">final</strong> ResponsiveRow row, <strong class="jxr_keyword">final</strong> Component component,
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  			<strong class="jxr_keyword">final</strong> String description) {
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  		<strong class="jxr_keyword">final</strong> CssLayout layout = <strong class="jxr_keyword">new</strong> CssLayout();
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  		layout.addStyleName(<span class="jxr_string">".v-layout-content-pagemode-panel-level2"</span>);
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  		Responsive.makeResponsive(layout);
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  		layout.setSizeUndefined();
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  		<strong class="jxr_keyword">final</strong> Label descriptionLabel = <strong class="jxr_keyword">new</strong> Label(description);
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  		descriptionLabel.addStyleName(ITEMBOX);
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  		Responsive.makeResponsive(descriptionLabel);
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  		layout.addComponent(descriptionLabel);
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  		component.addStyleName(ITEMBOX);
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  		component.addStyleName(TITLE);
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		Responsive.makeResponsive(component);
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  		component.setWidth(100, Unit.PERCENTAGE);
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  		layout.addComponent(component);
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> 
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 	}
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> 
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_javadoccomment">	 * Creates the row item.</em>
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">	 * @param row         the row</em>
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">	 * @param button      the button</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">	 * @param description the description</em>
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> createRowItem(<strong class="jxr_keyword">final</strong> ResponsiveRow row, <strong class="jxr_keyword">final</strong> Button button, <strong class="jxr_keyword">final</strong> String description) {
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> 		<strong class="jxr_keyword">final</strong> CssLayout layout = <strong class="jxr_keyword">new</strong> CssLayout();
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> 		layout.addStyleName(<span class="jxr_string">"v-layout-content-overview-panel-level2"</span>);
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 		Responsive.makeResponsive(layout);
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 		layout.setSizeUndefined();
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> 
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> 		button.addStyleName(ITEMBOX);
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> 		button.addStyleName(TITLE);
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> 		Responsive.makeResponsive(button);
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> 		button.setWidth(100, Unit.PERCENTAGE);
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> 		layout.addComponent(button);
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> 
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> 		<strong class="jxr_keyword">final</strong> Label descriptionLabel = <strong class="jxr_keyword">new</strong> Label(description);
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		descriptionLabel.addStyleName(ITEMBOX);
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		Responsive.makeResponsive(descriptionLabel);
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> 		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> 		layout.addComponent(descriptionLabel);
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> 
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
-<a class="jxr_linenumber" name="L132" href="#L132">132</a> 	}
-<a class="jxr_linenumber" name="L133" href="#L133">133</a> 
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> }
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">	 * Default constructor for RowUtil.</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	<strong class="jxr_keyword">public</strong> <a name="RowUtil" href="../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/rows/RowUtil.html#RowUtil">RowUtil</a>() {
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  		<em class="jxr_comment">// Default constructor</em>
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	}
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">	 * Creates the grid layout.</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">	 * @param panelContent the panel content</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">	 * @return the responsive row</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ResponsiveRow createGridLayout(<strong class="jxr_keyword">final</strong> AbstractOrderedLayout panelContent) {
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  		<strong class="jxr_keyword">final</strong> ResponsiveLayout layout = <strong class="jxr_keyword">new</strong> ResponsiveLayout();
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  		Responsive.makeResponsive(layout);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  		layout.addStyleName(<span class="jxr_string">"v-layout-content-overview-panel-level1"</span>);
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  		layout.setWidth(100, Unit.PERCENTAGE);
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		layout.setHeight(100, Unit.PERCENTAGE);
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  		panelContent.addComponent(layout);
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  		panelContent.setExpandRatio(layout, ContentRatio.LARGE);
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">final</strong> ResponsiveRow row = layout.addRow();
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  		row.setVerticalSpacing(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		row.setHorizontalSpacing(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		<strong class="jxr_keyword">return</strong> row;
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  	}
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment">	 * Creates the row component.</em>
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">	 * @param row         the row</em>
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">	 * @param component   the component</em>
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">	 * @param description the description</em>
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> createRowComponent(<strong class="jxr_keyword">final</strong> ResponsiveRow row, <strong class="jxr_keyword">final</strong> Component component,
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  			<strong class="jxr_keyword">final</strong> String description) {
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  		<strong class="jxr_keyword">final</strong> CssLayout layout = <strong class="jxr_keyword">new</strong> CssLayout();
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		layout.addStyleName(<span class="jxr_string">".v-layout-content-pagemode-panel-level2"</span>);
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  		Responsive.makeResponsive(layout);
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		layout.setSizeUndefined();
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  		<strong class="jxr_keyword">final</strong> Label descriptionLabel = <strong class="jxr_keyword">new</strong> Label(description);
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		descriptionLabel.addStyleName(ITEMBOX);
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  		Responsive.makeResponsive(descriptionLabel);
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> 		layout.addComponent(descriptionLabel);
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 		component.addStyleName(ITEMBOX);
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> 		component.addStyleName(TITLE);
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> 		Responsive.makeResponsive(component);
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> 		component.setWidth(100, Unit.PERCENTAGE);
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 		layout.addComponent(component);
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 	}
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">	 * Creates the row item.</em>
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment">	 * @param row         the row</em>
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">	 * @param button      the button</em>
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">	 * @param description the description</em>
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> createRowItem(<strong class="jxr_keyword">final</strong> ResponsiveRow row, <strong class="jxr_keyword">final</strong> Button button, <strong class="jxr_keyword">final</strong> String description) {
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> 		<strong class="jxr_keyword">final</strong> CssLayout layout = <strong class="jxr_keyword">new</strong> CssLayout();
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> 		layout.addStyleName(<span class="jxr_string">"v-layout-content-overview-panel-level2"</span>);
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> 		Responsive.makeResponsive(layout);
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> 		layout.setSizeUndefined();
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> 
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		button.addStyleName(ITEMBOX);
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		button.addStyleName(TITLE);
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> 		Responsive.makeResponsive(button);
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> 		button.setWidth(100, Unit.PERCENTAGE);
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> 		layout.addComponent(button);
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> 
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 		<strong class="jxr_keyword">final</strong> Label descriptionLabel = <strong class="jxr_keyword">new</strong> Label(description);
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> 		descriptionLabel.addStyleName(ITEMBOX);
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> 		Responsive.makeResponsive(descriptionLabel);
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> 		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
+<a class="jxr_linenumber" name="L135" href="#L135">135</a> 		layout.addComponent(descriptionLabel);
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> 
+<a class="jxr_linenumber" name="L137" href="#L137">137</a> 		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> 				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+<a class="jxr_linenumber" name="L139" href="#L139">139</a> 	}
+<a class="jxr_linenumber" name="L140" href="#L140">140</a> 
+<a class="jxr_linenumber" name="L141" href="#L141">141</a> }
 </pre>
 <hr/>
 <div id="footer">© 2008–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>

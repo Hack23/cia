@@ -45,10 +45,14 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 
 <span class="fc" id="L46">	private static final String[] COLUMN_ORDER = { &quot;nameId&quot;, &quot;totalDaysServed&quot;, &quot;currentMemberSize&quot;, &quot;totalAssignments&quot;,</span>
 			&quot;firstAssignmentDate&quot;, &quot;lastAssignmentDate&quot;, &quot;active&quot; };
+
 	/** The Constant DATAGRID. */
-	private static final String DATAGRID = &quot;Datagrid&quot;;
 <span class="fc" id="L50">	private static final String[] HIDE_COLUMNS = {&quot;active&quot;};</span>
-<span class="fc" id="L51">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, &quot;nameId&quot;);</span>
+
+	/** The Constant LISTENER. */
+<span class="fc" id="L53">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.MINISTRY_VIEW_NAME, &quot;nameId&quot;);</span>
+
+	/** The Constant MINISTRIES. */
 	private static final String MINISTRIES = &quot;Ministries&quot;;
 
 	/**
@@ -56,38 +60,38 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 	 * impl.
 	 */
 	public MinistryRankingDataGridPageModContentFactoryImpl() {
-<span class="fc" id="L59">		super();</span>
-<span class="fc" id="L60">	}</span>
+<span class="fc" id="L63">		super();</span>
+<span class="fc" id="L64">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L65">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L69">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L67">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+<span class="fc" id="L71">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+<span class="fc" id="L72">		createPageHeader(panel, panelContent, &quot;Ministry Ranking Dashboard&quot;, &quot;Ministry Rankings&quot;, &quot;Compare ministry rankings to assess their assignments, performance, and overall impact.&quot;);</span>
 
-<span class="fc" id="L69">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L74">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L71">		final DataContainer&lt;ViewRiksdagenMinistry, String&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L72">				.getDataContainer(ViewRiksdagenMinistry.class);</span>
+<span class="fc" id="L76">		final DataContainer&lt;ViewRiksdagenMinistry, String&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L77">				.getDataContainer(ViewRiksdagenMinistry.class);</span>
 
-<span class="fc" id="L74">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenMinistry.class, dataContainer.getAllOrderBy(ViewRiksdagenMinistry_.currentMemberSize),</span>
+<span class="fc" id="L79">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenMinistry.class, dataContainer.getAllOrderBy(ViewRiksdagenMinistry_.currentMemberSize),</span>
 				MINISTRIES,
 				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L78">		panel.setCaption(NAME + &quot;::&quot; + DATAGRID);</span>
 
-<span class="fc" id="L80">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L84">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
 
-<span class="fc" id="L83">		return panelContent;</span>
+<span class="fc" id="L87">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L89" title="All 2 branches covered.">		return NAME.equals(page)</span>
-<span class="fc bfc" id="L90" title="All 2 branches covered.">				&amp;&amp; StringUtils.contains(parameters, PageMode.DATAGRID.toString());</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">		return NAME.equals(page)</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">				&amp;&amp; StringUtils.contains(parameters, PageMode.DATAGRID.toString());</span>
 	}
 
 }

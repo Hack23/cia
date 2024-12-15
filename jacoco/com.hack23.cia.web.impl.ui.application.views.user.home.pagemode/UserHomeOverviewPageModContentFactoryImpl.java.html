@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -32,13 +30,16 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
 import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -50,17 +51,11 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
-<span class="fc" id="L53">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;username&quot;, &quot;createdDate&quot;, &quot;email&quot;, &quot;country&quot;, &quot;userType&quot;,</span>
-			&quot;userRole&quot;, &quot;userEmailStatus&quot;, &quot;numberOfVisits&quot;);
-
 	/** The Constant LOGOUT. */
 	private static final String LOGOUT = &quot;Logout&quot;;
 
 	/** The Constant OVERVIEW. */
 	private static final String OVERVIEW = &quot;Overview&quot;;
-
-	/** The Constant USERHOME. */
-	private static final String USERHOME = &quot;Userhome:&quot;;
 
 	/** The user home menu item factory. */
 	@Autowired
@@ -70,56 +65,181 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 	 * Instantiates a new user home overview page mod content factory impl.
 	 */
 	public UserHomeOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L73">		super();</span>
-<span class="fc" id="L74">	}</span>
+<span class="fc" id="L68">		super();</span>
+<span class="fc" id="L69">	}</span>
 
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
 	@Secured({ &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L79">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L80">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L81">		final Optional&lt;UserAccount&gt; userAccount = getActiveUserAccount();</span>
+<span class="fc" id="L82">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L83">		panel.setContent(panelContent);</span>
 
-<span class="pc bpc" id="L83" title="1 of 2 branches missed.">		if (userAccount.isPresent()) {</span>
+<span class="fc" id="L85">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L86">		final Optional&lt;UserAccount&gt; userAccount = getActiveUserAccount();</span>
 
-<span class="fc" id="L85">			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
+<span class="pc bpc" id="L88" title="1 of 2 branches missed.">		if (userAccount.isPresent()) {</span>
 
-<span class="fc" id="L87">			LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
+<span class="fc" id="L90">			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L89">			final Button logoutButton = new Button(LOGOUT, VaadinIcons.SIGN_OUT);</span>
+<span class="fc" id="L92">			createPageHeader(panel, panelContent,&quot;CitizenIntelligence Agency::UserHome::Overview&quot;,OVERVIEW,&quot;Manage user and security settings&quot;);</span>
 
-<span class="fc" id="L91">			final LogoutRequest logoutRequest = new LogoutRequest();</span>
-<span class="fc" id="L92">			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="fc" id="L93">			logoutButton.addClickListener(new LogoutClickListener(logoutRequest));</span>
+			// Logout button
+<span class="fc" id="L95">			final Button logoutButton = new Button(LOGOUT, VaadinIcons.SIGN_OUT);</span>
+<span class="fc" id="L96">			final LogoutRequest logoutRequest = new LogoutRequest();</span>
+<span class="fc" id="L97">			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L98">			logoutButton.addClickListener(new LogoutClickListener(logoutRequest));</span>
+<span class="fc" id="L99">			panelContent.addComponent(logoutButton);</span>
 
-<span class="fc" id="L95">			panelContent.addComponent(logoutButton);</span>
+			// Create a card-style panel for user details
+<span class="fc" id="L102">			final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L103">			cardPanel.addStyleName(&quot;politician-overview-card&quot;);</span>
+<span class="fc" id="L104">			cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L105">			cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L106">			Responsive.makeResponsive(cardPanel);</span>
 
-<span class="fc" id="L97">			getFormFactory().addFormPanelTextFields(panelContent, userAccount.get(), UserAccount.class, AS_LIST);</span>
+<span class="fc" id="L108">			final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L109">			cardContent.setMargin(true);</span>
+<span class="fc" id="L110">			cardContent.setSpacing(true);</span>
+<span class="fc" id="L111">			cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L112">			cardPanel.setContent(cardContent);</span>
 
-<span class="fc" id="L99">			panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);</span>
+<span class="fc" id="L114">			panelContent.addComponent(cardPanel);</span>
+<span class="fc" id="L115">			panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);</span>
 
-<span class="fc" id="L101">			final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L102">			overviewLayout.setSizeFull();</span>
+			// Header layout for the card
+<span class="fc" id="L118">			final HorizontalLayout headerLayout = new HorizontalLayout();</span>
+<span class="fc" id="L119">			headerLayout.setSpacing(true);</span>
+<span class="fc" id="L120">			headerLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L121">			headerLayout.addStyleName(&quot;card-header-section&quot;);</span>
 
-<span class="fc" id="L104">			panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L105">			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+<span class="fc" id="L123">			final Label titleLabel = new Label(&quot;User Account Information&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L124">			titleLabel.addStyleName(&quot;card-title&quot;);</span>
+<span class="fc" id="L125">			titleLabel.setWidthUndefined();</span>
+<span class="fc" id="L126">			headerLayout.addComponent(titleLabel);</span>
+<span class="fc" id="L127">			cardContent.addComponent(headerLayout);</span>
 
-<span class="fc" id="L107">			userHomeMenuItemFactory.createOverviewPage(overviewLayout);</span>
+			// Divider line
+<span class="fc" id="L130">			final Label divider = new Label(&quot;&lt;hr/&gt;&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L131">			divider.addStyleName(&quot;card-divider&quot;);</span>
+<span class="fc" id="L132">			divider.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L133">			cardContent.addComponent(divider);</span>
 
-<span class="fc" id="L109">			panel.setCaption(NAME + &quot;::&quot; + USERHOME);</span>
+			// Two-column layout for user attributes
+<span class="fc" id="L136">			final HorizontalLayout attributesLayout = new HorizontalLayout();</span>
+<span class="fc" id="L137">			attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L138">			attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L139">			cardContent.addComponent(attributesLayout);</span>
+
+			// Left column: Basic Profile
+<span class="fc" id="L142">			final VerticalLayout profileLayout = new VerticalLayout();</span>
+<span class="fc" id="L143">			profileLayout.setSpacing(true);</span>
+<span class="fc" id="L144">			profileLayout.addStyleName(&quot;card-details-column&quot;);</span>
+<span class="fc" id="L145">			profileLayout.setWidthUndefined();</span>
+
+<span class="fc" id="L147">			final Label profileHeader = new Label(&quot;Profile Details&quot;);</span>
+<span class="fc" id="L148">			profileHeader.addStyleName(&quot;card-section-title&quot;);</span>
+<span class="fc" id="L149">			profileLayout.addComponent(profileHeader);</span>
+
+			// Display key fields from user account in Profile Details
+<span class="fc" id="L152">			final UserAccount account = userAccount.get();</span>
+<span class="fc" id="L153">			profileLayout.addComponent(createInfoRow(&quot;Username:&quot;, account.getUsername(), VaadinIcons.USER, &quot;Your unique username&quot;));</span>
+<span class="fc" id="L154">			profileLayout.addComponent(createInfoRow(&quot;Email:&quot;, account.getEmail(), VaadinIcons.ENVELOPE_O, &quot;Your registered email address&quot;));</span>
+<span class="fc" id="L155">			profileLayout.addComponent(createInfoRow(&quot;Country:&quot;, account.getCountry(), VaadinIcons.GLOBE, &quot;Country of residence&quot;));</span>
+<span class="fc" id="L156">			profileLayout.addComponent(createInfoRow(&quot;Created Date:&quot;, String.valueOf(account.getCreatedDate()), VaadinIcons.CALENDAR, &quot;Date when the account was created&quot;));</span>
+
+			// Right column: Status &amp; Statistics
+<span class="fc" id="L159">			final VerticalLayout statusLayout = new VerticalLayout();</span>
+<span class="fc" id="L160">			statusLayout.setSpacing(true);</span>
+<span class="fc" id="L161">			statusLayout.addStyleName(&quot;card-details-column&quot;);</span>
+<span class="fc" id="L162">			statusLayout.setWidthUndefined();</span>
+
+<span class="fc" id="L164">			final Label statusHeader = new Label(&quot;Status &amp; Statistics&quot;);</span>
+<span class="fc" id="L165">			statusHeader.addStyleName(&quot;card-section-title&quot;);</span>
+<span class="fc" id="L166">			statusLayout.addComponent(statusHeader);</span>
+
+<span class="fc" id="L168">			statusLayout.addComponent(createInfoRow(&quot;User Type:&quot;, account.getUserType().toString(), VaadinIcons.INFO_CIRCLE, &quot;Type of user account&quot;));</span>
+<span class="fc" id="L169">			statusLayout.addComponent(createInfoRow(&quot;User Role:&quot;, account.getUserRole().toString(), VaadinIcons.USER_CHECK, &quot;Your assigned role in the system&quot;));</span>
+<span class="fc" id="L170">			statusLayout.addComponent(createInfoRow(&quot;Email Status:&quot;, account.getUserEmailStatus().toString(), VaadinIcons.ENVELOPE, &quot;Status of email verification&quot;));</span>
+<span class="fc" id="L171">			statusLayout.addComponent(createInfoRow(&quot;Number of Visits:&quot;, String.valueOf(account.getNumberOfVisits()), VaadinIcons.CHART, &quot;How many times you have visited&quot;));</span>
+
+<span class="fc" id="L173">			attributesLayout.addComponents(profileLayout, statusLayout);</span>
+
+<span class="fc" id="L175">			panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);</span>
+
+			// Overview layout after card
+<span class="fc" id="L178">			final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L179">			overviewLayout.setSizeFull();</span>
+
+<span class="fc" id="L181">			panelContent.addComponent(overviewLayout);</span>
+<span class="fc" id="L182">			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+
+<span class="fc" id="L184">			userHomeMenuItemFactory.createOverviewPage(overviewLayout);</span>
 		}
 
-<span class="fc" id="L112">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L187">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
 
-<span class="fc" id="L115">		return panelContent;</span>
+<span class="fc" id="L190">		return panelContent;</span>
 
 	}
 
+	/**
+	 * Creates a row displaying a caption and value, with optional icon and tooltip.
+	 *
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon for better visual cue
+	 * @param tooltip optional tooltip to provide more info
+	 * @return a HorizontalLayout representing the info row
+	 */
+	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
+			final String tooltip) {
+<span class="fc" id="L205">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L206">		layout.setSpacing(true);</span>
+<span class="fc" id="L207">		layout.addStyleName(&quot;metric-label&quot;);</span>
+<span class="fc" id="L208">		layout.setWidthUndefined();</span>
+
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">		if (icon != null) {</span>
+<span class="fc" id="L211">			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L212">			iconLabel.addStyleName(&quot;card-info-icon&quot;);</span>
+<span class="pc bpc" id="L213" title="2 of 4 branches missed.">			if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L214">				iconLabel.setDescription(tooltip);</span>
+			}
+<span class="fc" id="L216">			layout.addComponent(iconLabel);</span>
+		}
+
+<span class="fc" id="L219">		final Label captionLabel = new Label(caption);</span>
+<span class="fc" id="L220">		captionLabel.addStyleName(&quot;card-info-caption&quot;);</span>
+<span class="pc bpc" id="L221" title="2 of 4 branches missed.">		if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L222">			captionLabel.setDescription(tooltip);</span>
+		}
+
+<span class="pc bpc" id="L225" title="1 of 2 branches missed.">		final Label valueLabel = new Label(value != null ? value : &quot;&quot;);</span>
+<span class="fc" id="L226">		valueLabel.addStyleName(&quot;card-info-value&quot;);</span>
+
+<span class="fc" id="L228">		layout.addComponents(captionLabel, valueLabel);</span>
+<span class="fc" id="L229">		return layout;</span>
+	}
+
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L121" title="All 2 branches covered.">		return NAME.equals(page)</span>
-<span class="pc bpc" id="L122" title="1 of 4 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="fc bfc" id="L241" title="All 2 branches covered.">		return NAME.equals(page)</span>
+<span class="pc bpc" id="L242" title="1 of 4 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }

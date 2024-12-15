@@ -27,7 +27,6 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -40,11 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryGovernmentBodiesHeadcountModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final String GOVERNMENT_BODIES = &quot;Government bodies headcount&quot;;
-
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = &quot;Ministry:&quot;;
-
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 
@@ -53,35 +47,34 @@ public final class MinistryGovernmentBodiesHeadcountModContentFactoryImpl extend
 	 * impl.
 	 */
 	public MinistryGovernmentBodiesHeadcountModContentFactoryImpl() {
-<span class="fc" id="L56">		super();</span>
-<span class="fc" id="L57">	}</span>
+<span class="fc" id="L50">		super();</span>
+<span class="fc" id="L51">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L56">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L58">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L66">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
-<span class="fc" id="L67">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L60">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
+<span class="fc" id="L61">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L69">		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_BODIES);</span>
+<span class="fc" id="L63">		createPageHeader(panel, panelContent, &quot;Ministry Government Bodies Headcount &quot; + viewRiksdagenMinistry.getNameId(), &quot;Government Bodies Headcount&quot;, &quot;Provides detailed headcount data for government bodies under ministries.&quot;);</span>
 
-<span class="fc" id="L71">		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent,</span>
-<span class="fc" id="L72">				viewRiksdagenMinistry.getNameId());</span>
+<span class="fc" id="L65">		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent,</span>
+<span class="fc" id="L66">				viewRiksdagenMinistry.getNameId());</span>
 
-<span class="fc" id="L74">		panel.setCaption(NAME + &quot;::&quot; + MINISTRY + viewRiksdagenMinistry.getNameId());</span>
-<span class="fc" id="L75">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L78">		return panelContent;</span>
+<span class="fc" id="L71">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L84" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());</span>
+<span class="fc bfc" id="L77" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());</span>
 	}
 
 }

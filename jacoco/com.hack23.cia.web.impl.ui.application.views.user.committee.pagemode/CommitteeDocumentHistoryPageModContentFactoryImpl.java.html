@@ -28,7 +28,6 @@ import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -44,66 +43,59 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = { &quot;rm&quot;, &quot;madePublicDate&quot;, &quot;id&quot;, &quot;docId&quot;,</span>
+<span class="fc" id="L46">	private static final String[] COLUMN_ORDER = { &quot;rm&quot;, &quot;madePublicDate&quot;, &quot;id&quot;, &quot;docId&quot;,</span>
 			&quot;personReferenceId&quot;, &quot;roleDescription&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;documentType&quot;, &quot;subType&quot;, &quot;org&quot;, &quot;label&quot;,
 			&quot;numberValue&quot;, &quot;status&quot;, &quot;tempLabel&quot;, &quot;orderNumber&quot;, &quot;referenceName&quot;, &quot;partyShortCode&quot; };
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = &quot;Committee:&quot;;
-
-	/** The Constant DOCUMENT_HISTORY. */
-	private static final String DOCUMENT_HISTORY = &quot;Document History&quot;;
-
 	private static final String DOCUMENTS = &quot;Documents&quot;;
 
-<span class="fc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;id&quot;, &quot;numberValue&quot;, &quot;orderNumber&quot;, &quot;tempLabel&quot;,</span>
+<span class="fc" id="L52">	private static final String[] HIDE_COLUMNS = { &quot;id&quot;, &quot;numberValue&quot;, &quot;orderNumber&quot;, &quot;tempLabel&quot;,</span>
 			&quot;personReferenceId&quot;, &quot;org&quot;, &quot;docId&quot;, &quot;label&quot;, &quot;roleDescription&quot; };
 
-<span class="fc" id="L62">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
-			UserViews.DOCUMENT_VIEW_NAME, &quot;docId&quot;);
+<span class="fc" id="L55">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			UserViews.DOCUMENT_VIEW_NAME, &quot;docId&quot;, true);
 
 	/**
 	 * Instantiates a new committee document history page mod content factory
 	 * impl.
 	 */
 	public CommitteeDocumentHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L70">		super();</span>
-<span class="fc" id="L71">	}</span>
+<span class="fc" id="L63">		super();</span>
+<span class="fc" id="L64">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L69">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L78">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L71">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L80">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="fc" id="L73">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
 
-<span class="fc" id="L82">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L75">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L84">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_HISTORY);</span>
+<span class="fc" id="L77">		createPageHeader(panel, panelContent, &quot;Document History &quot; + viewRiksdagenCommittee.getEmbeddedId().getDetail(), &quot;Committee Document History&quot;, &quot;Displays the historical progression of documents managed by committees.&quot;);</span>
 
-<span class="fc" id="L86">		final DataContainer&lt;ViewRiksdagenPoliticianDocument, String&gt; politicianDocumentDataContainer = getApplicationManager()</span>
-<span class="fc" id="L87">				.getDataContainer(ViewRiksdagenPoliticianDocument.class);</span>
+<span class="fc" id="L79">		final DataContainer&lt;ViewRiksdagenPoliticianDocument, String&gt; politicianDocumentDataContainer = getApplicationManager()</span>
+<span class="fc" id="L80">				.getDataContainer(ViewRiksdagenPoliticianDocument.class);</span>
 
-<span class="fc" id="L89">		getGridFactory()</span>
-<span class="fc" id="L90">				.createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,</span>
-<span class="fc" id="L91">						politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,</span>
-<span class="fc" id="L92">								viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(&quot; &quot;, &quot;&quot;).replace(&quot;_&quot;, &quot;&quot;)</span>
-<span class="fc" id="L93">										.trim(),</span>
+<span class="fc" id="L82">		getGridFactory()</span>
+<span class="fc" id="L83">				.createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,</span>
+<span class="fc" id="L84">						politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,</span>
+<span class="fc" id="L85">								viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(&quot; &quot;, &quot;&quot;).replace(&quot;_&quot;, &quot;&quot;)</span>
+<span class="fc" id="L86">										.trim(),</span>
 								ViewRiksdagenPoliticianDocument_.madePublicDate),
 						DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L97">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
-<span class="fc" id="L98">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L90">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L100">		return panelContent;</span>
+<span class="fc" id="L92">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L106" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, CommitteePageMode.DOCUMENT_HISTORY.toString());</span>
+<span class="fc bfc" id="L98" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, CommitteePageMode.DOCUMENT_HISTORY.toString());</span>
 	}
 
 }

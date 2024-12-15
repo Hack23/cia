@@ -18,10 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -34,9 +30,13 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -48,72 +48,206 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-<span class="fc" id="L51">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;id&quot;, &quot;org&quot;, &quot;documentType&quot;, &quot;subType&quot;, &quot;rm&quot;, &quot;status&quot;,</span>
-			&quot;title&quot;, &quot;subTitle&quot;, &quot;madePublicDate&quot;, &quot;createdDate&quot;, &quot;systemDate&quot;, &quot;relatedId&quot;, &quot;label&quot;, &quot;tempLabel&quot;,
-			&quot;numberValue&quot;, &quot;kallId&quot;, &quot;documentFormat&quot;);
-<span class="fc" id="L54">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList(&quot;id&quot;, &quot;org&quot;, &quot;documentType&quot;, &quot;subType&quot;, &quot;rm&quot;, &quot;status&quot;,</span>
-			&quot;title&quot;, &quot;subTitle&quot;, &quot;madePublicDate&quot;, &quot;label&quot;, &quot;tempLabel&quot;, &quot;numberValue&quot;, &quot;hangarId&quot;);
-<span class="fc" id="L56">	private static final List&lt;String&gt; AS_LIST3 = Collections.singletonList(&quot;documentCategory&quot;);</span>
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = &quot;overview&quot;;
-
 	/**
 	 * Instantiates a new document overview page mod content factory impl.
 	 */
 	public DocumentOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L64">		super();</span>
-<span class="fc" id="L65">	}</span>
+<span class="fc" id="L55">		super();</span>
+<span class="fc" id="L56">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L70">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L72">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L74">		final DocumentElement documentElement = getItem(parameters);</span>
-<span class="fc" id="L75">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L65">		final DocumentElement documentElement = getItem(parameters);</span>
+<span class="fc" id="L66">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L77">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
-<span class="fc" id="L78">				.getDataContainer(DocumentStatusContainer.class);</span>
+<span class="fc" id="L68">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
+<span class="fc" id="L69">				.getDataContainer(DocumentStatusContainer.class);</span>
 
-<span class="fc" id="L80">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
-<span class="fc" id="L81">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+<span class="fc" id="L71">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
+<span class="fc" id="L72">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
 						DocumentData.class, DocumentData_.id, pageId);
 
-<span class="fc" id="L84">		LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
+<span class="fc" id="L75">		createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L76">				&quot;Document Overview &quot; + documentElement.getTitle() + &quot; &quot; + documentElement.getSubTitle(),</span>
+				&quot;Document Details&quot;, &quot;Access and explore official documents and reports.&quot;);
 
-<span class="fc" id="L86">		getFormFactory().addFormPanelTextFields(panelContent, documentElement, DocumentElement.class, AS_LIST);</span>
+		// Create a card panel for document info
+<span class="fc" id="L80">		final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L81">		cardPanel.addStyleName(&quot;politician-overview-card&quot;);</span>
+<span class="fc" id="L82">		cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L83">		cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L84">		Responsive.makeResponsive(cardPanel);</span>
 
-<span class="pc bpc" id="L88" title="1 of 2 branches missed.">		if (documentStatusContainer != null) {</span>
-<span class="fc" id="L89">			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer,</span>
-					DocumentStatusContainer.class, AS_LIST3);
+<span class="fc" id="L86">		final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L87">		cardContent.setMargin(true);</span>
+<span class="fc" id="L88">		cardContent.setSpacing(true);</span>
+<span class="fc" id="L89">		cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L90">		cardPanel.setContent(cardContent);</span>
 
-<span class="fc" id="L92">			getFormFactory().addFormPanelTextFields(panelContent, documentStatusContainer.getDocument(),</span>
-					DocumentData.class, AS_LIST2);
+<span class="fc" id="L92">		panelContent.addComponent(cardPanel);</span>
+<span class="fc" id="L93">		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);</span>
+
+		// Header layout for the card
+<span class="fc" id="L96">		final HorizontalLayout headerLayout = new HorizontalLayout();</span>
+<span class="fc" id="L97">		headerLayout.setSpacing(true);</span>
+<span class="fc" id="L98">		headerLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L99">		headerLayout.addStyleName(&quot;card-header-section&quot;);</span>
+
+<span class="fc" id="L101">		final Label titleLabel = new Label(&quot;Document Information&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L102">		titleLabel.addStyleName(&quot;card-title&quot;);</span>
+<span class="fc" id="L103">		titleLabel.setWidthUndefined();</span>
+<span class="fc" id="L104">		headerLayout.addComponent(titleLabel);</span>
+<span class="fc" id="L105">		cardContent.addComponent(headerLayout);</span>
+
+		// Divider line
+<span class="fc" id="L108">		final Label divider = new Label(&quot;&lt;hr/&gt;&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L109">		divider.addStyleName(&quot;card-divider&quot;);</span>
+<span class="fc" id="L110">		divider.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L111">		cardContent.addComponent(divider);</span>
+
+		// Two-column layout
+<span class="fc" id="L114">		final HorizontalLayout attributesLayout = new HorizontalLayout();</span>
+<span class="fc" id="L115">		attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L116">		attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L117">		cardContent.addComponent(attributesLayout);</span>
+
+		// Left column: Document Profile (from DocumentElement)
+<span class="fc" id="L120">		final VerticalLayout profileLayout = new VerticalLayout();</span>
+<span class="fc" id="L121">		profileLayout.setSpacing(true);</span>
+<span class="fc" id="L122">		profileLayout.addStyleName(&quot;card-details-column&quot;);</span>
+<span class="fc" id="L123">		profileLayout.setWidthUndefined();</span>
+
+<span class="fc" id="L125">		final Label profileHeader = new Label(&quot;Document Profile&quot;);</span>
+<span class="fc" id="L126">		profileHeader.addStyleName(&quot;card-section-title&quot;);</span>
+<span class="fc" id="L127">		profileLayout.addComponent(profileHeader);</span>
+
+		// Display a selection of DocumentElement fields
+		// Choose key fields: title, subTitle, org, documentType, status, rm,
+		// madePublicDate, createdDate
+<span class="fc" id="L132">		profileLayout.addComponent(createInfoRow(&quot;Title:&quot;, documentElement.getTitle(), VaadinIcons.FILE_TEXT_O,</span>
+				&quot;Main title of the document&quot;));
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">		if (!StringUtils.isEmpty(documentElement.getSubTitle())) {</span>
+<span class="fc" id="L135">			profileLayout.addComponent(createInfoRow(&quot;SubTitle:&quot;, documentElement.getSubTitle(), VaadinIcons.FILE_TEXT,</span>
+					&quot;Subtitle or complementary title&quot;));
+		}
+<span class="fc" id="L138">		profileLayout.addComponent(createInfoRow(&quot;Organization (Org):&quot;, documentElement.getOrg(),</span>
+				VaadinIcons.INSTITUTION, &quot;Originating organization or entity&quot;));
+<span class="fc" id="L140">		profileLayout.addComponent(createInfoRow(&quot;Document Type:&quot;, documentElement.getDocumentType(),</span>
+				VaadinIcons.FILE_CODE, &quot;Type of the document&quot;));
+<span class="fc" id="L142">		profileLayout.addComponent(createInfoRow(&quot;Status:&quot;, documentElement.getStatus(), VaadinIcons.QUESTION_CIRCLE,</span>
+				&quot;Current status of the document&quot;));
+<span class="fc" id="L144">		profileLayout</span>
+<span class="fc" id="L145">				.addComponent(createInfoRow(&quot;Made Public Date:&quot;, String.valueOf(documentElement.getMadePublicDate()),</span>
+						VaadinIcons.CALENDAR_USER, &quot;Date when the document was made public&quot;));
+
+		// Right column: Metadata &amp; Status (from DocumentStatusContainer and
+		// DocumentData)
+<span class="fc" id="L150">		final VerticalLayout metadataLayout = new VerticalLayout();</span>
+<span class="fc" id="L151">		metadataLayout.setSpacing(true);</span>
+<span class="fc" id="L152">		metadataLayout.addStyleName(&quot;card-details-column&quot;);</span>
+<span class="fc" id="L153">		metadataLayout.setWidthUndefined();</span>
+
+<span class="fc" id="L155">		final Label metadataHeader = new Label(&quot;Metadata &amp; Status&quot;);</span>
+<span class="fc" id="L156">		metadataHeader.addStyleName(&quot;card-section-title&quot;);</span>
+<span class="fc" id="L157">		metadataLayout.addComponent(metadataHeader);</span>
+
+<span class="pc bpc" id="L159" title="1 of 2 branches missed.">		if (documentStatusContainer != null) {</span>
+			// DocumentCategory (from DocumentStatusContainer)
+<span class="pc bpc" id="L161" title="1 of 2 branches missed.">			if (!StringUtils.isEmpty(documentStatusContainer.getDocumentCategory())) {</span>
+<span class="nc" id="L162">				metadataLayout.addComponent(createInfoRow(&quot;Document Category:&quot;,</span>
+<span class="nc" id="L163">						documentStatusContainer.getDocumentCategory(), VaadinIcons.BOOK, &quot;Category of this document&quot;));</span>
+			}
+
+			// DocumentData fields (AS_LIST2)
+<span class="fc" id="L167">			final DocumentData documentData = documentStatusContainer.getDocument();</span>
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">			if (documentData != null) {</span>
+				// Choose a few key fields from DocumentData
+<span class="pc bpc" id="L170" title="1 of 2 branches missed.">				if (!StringUtils.isEmpty(documentData.getLabel())) {</span>
+<span class="fc" id="L171">					metadataLayout.addComponent(createInfoRow(&quot;Label:&quot;, documentData.getLabel(), VaadinIcons.TAG,</span>
+							&quot;Short identifying label&quot;));
+				}
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">				if (!StringUtils.isEmpty(documentData.getTempLabel())) {</span>
+<span class="fc" id="L175">					metadataLayout.addComponent(createInfoRow(&quot;Temp Label:&quot;, documentData.getTempLabel(),</span>
+							VaadinIcons.EDIT, &quot;Temporary label or note&quot;));
+				}
+<span class="pc bpc" id="L178" title="1 of 2 branches missed.">				if (!StringUtils.isEmpty(documentData.getHangarId())) {</span>
+<span class="fc" id="L179">					metadataLayout.addComponent(createInfoRow(&quot;Hangar ID:&quot;, documentData.getHangarId(),</span>
+							VaadinIcons.CLIPBOARD, &quot;Storage or reference ID&quot;));
+				}
+<span class="pc bpc" id="L182" title="1 of 2 branches missed.">				if (documentData.getNumberValue() != null) {</span>
+<span class="fc" id="L183">					metadataLayout</span>
+<span class="fc" id="L184">							.addComponent(createInfoRow(&quot;Number Value:&quot;, String.valueOf(documentData.getNumberValue()),</span>
+									VaadinIcons.BAR_CHART, &quot;Numeric value associated with the document&quot;));
+				}
+			}
 		}
 
-<span class="fc" id="L96">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L97">		overviewLayout.setSizeFull();</span>
+<span class="fc" id="L190">		attributesLayout.addComponents(profileLayout, metadataLayout);</span>
 
-<span class="fc" id="L99">		panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L100">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+		// After the card, add the overview layout
+<span class="fc" id="L193">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L194">		overviewLayout.setSizeFull();</span>
+<span class="fc" id="L195">		panelContent.addComponent(overviewLayout);</span>
+<span class="fc" id="L196">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
 
-<span class="fc" id="L102">		getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+<span class="fc" id="L198">		getDocumentMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
 
-<span class="fc" id="L104">		panel.setContent(panelContent);</span>
-<span class="fc" id="L105">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L200">		panel.setContent(panelContent);</span>
+<span class="fc" id="L201">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L108">		return panelContent;</span>
+<span class="fc" id="L204">		return panelContent;</span>
 
+	}
+
+	/**
+	 * Creates a row displaying a caption and value, with optional icon and tooltip.
+	 *
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon for better visual cue
+	 * @param tooltip optional tooltip to provide more info
+	 * @return a HorizontalLayout representing the info row
+	 */
+	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
+			final String tooltip) {
+<span class="fc" id="L219">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L220">		layout.setSpacing(true);</span>
+<span class="fc" id="L221">		layout.addStyleName(&quot;metric-label&quot;);</span>
+<span class="fc" id="L222">		layout.setWidthUndefined();</span>
+
+<span class="pc bpc" id="L224" title="1 of 2 branches missed.">		if (icon != null) {</span>
+<span class="fc" id="L225">			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L226">			iconLabel.addStyleName(&quot;card-info-icon&quot;);</span>
+<span class="pc bpc" id="L227" title="2 of 4 branches missed.">			if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L228">				iconLabel.setDescription(tooltip);</span>
+			}
+<span class="fc" id="L230">			layout.addComponent(iconLabel);</span>
+		}
+
+<span class="fc" id="L233">		final Label captionLabel = new Label(caption);</span>
+<span class="fc" id="L234">		captionLabel.addStyleName(&quot;card-info-caption&quot;);</span>
+<span class="pc bpc" id="L235" title="2 of 4 branches missed.">		if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L236">			captionLabel.setDescription(tooltip);</span>
+		}
+
+<span class="pc bpc" id="L239" title="1 of 2 branches missed.">		final Label valueLabel = new Label(value != null ? value : &quot;&quot;);</span>
+<span class="fc" id="L240">		valueLabel.addStyleName(&quot;card-info-value&quot;);</span>
+
+<span class="fc" id="L242">		layout.addComponents(captionLabel, valueLabel);</span>
+<span class="fc" id="L243">		return layout;</span>
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L114">		final String pageId = getPageId(parameters);</span>
-<span class="pc bpc" id="L115" title="2 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
-<span class="fc bfc" id="L116" title="All 2 branches covered.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="fc" id="L248">		final String pageId = getPageId(parameters);</span>
+<span class="pc bpc" id="L249" title="2 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
+<span class="fc bfc" id="L250" title="All 2 branches covered.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }

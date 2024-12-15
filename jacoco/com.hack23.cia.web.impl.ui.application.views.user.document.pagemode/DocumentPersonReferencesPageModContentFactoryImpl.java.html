@@ -30,7 +30,6 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -45,61 +44,58 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentPersonReferencesPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
-<span class="fc" id="L48">	private static final String[] COLUMN_ORDER = { &quot;personReferenceId&quot;, &quot;referenceName&quot;, &quot;partyShortCode&quot;,</span>
+<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = { &quot;personReferenceId&quot;, &quot;referenceName&quot;, &quot;partyShortCode&quot;,</span>
 			&quot;orderNumber&quot;, &quot;roleDescription&quot; };
 	private static final String DOCUMENT_PERSON_REFERENCES = &quot;Document person references&quot;;
-<span class="fc" id="L51">	private static final String[] HIDE_COLUMNS = { &quot;personReferenceId&quot;, &quot;hjid&quot; };</span>
-<span class="fc" id="L52">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L50">	private static final String[] HIDE_COLUMNS = { &quot;personReferenceId&quot;, &quot;hjid&quot; };</span>
+<span class="fc" id="L51">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.POLITICIAN_VIEW_NAME, &quot;personReferenceId&quot;);
-	/** The Constant PERSON_REFERENCES. */
-	private static final String PERSON_REFERENCES = &quot;Person References&quot;;
-
 	/**
 	 * Instantiates a new document person references page mod content factory
 	 * impl.
 	 */
 	public DocumentPersonReferencesPageModContentFactoryImpl() {
-<span class="fc" id="L62">		super();</span>
-<span class="fc" id="L63">	}</span>
+<span class="fc" id="L58">		super();</span>
+<span class="fc" id="L59">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L68">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L70">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L71">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L67">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L73">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
-<span class="fc" id="L74">				.getDataContainer(DocumentStatusContainer.class);</span>
+<span class="fc" id="L69">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
+<span class="fc" id="L70">				.getDataContainer(DocumentStatusContainer.class);</span>
 
-<span class="fc" id="L76">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
-<span class="fc" id="L77">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+<span class="fc" id="L72">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
+<span class="fc" id="L73">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
 						DocumentData.class, DocumentData_.id, pageId);
 
-<span class="fc" id="L80">		LabelFactory.createHeader2Label(panelContent, PERSON_REFERENCES);</span>
+<span class="fc" id="L76">		createPageHeader(panel, panelContent, &quot;Document Person References&quot;, &quot;Person References&quot;, &quot;Identify and explore references to individuals within the document.&quot;);</span>
 
-<span class="pc bpc" id="L82" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer() != null</span>
-<span class="fc" id="L83">				&amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer()</span>
-<span class="pc bpc" id="L84" title="1 of 2 branches missed.">						.getDocumentPersonReferenceList() != null) {</span>
+<span class="pc bpc" id="L78" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer() != null</span>
+<span class="fc" id="L79">				&amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer()</span>
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">						.getDocumentPersonReferenceList() != null) {</span>
 
-<span class="fc" id="L86">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentPersonReferenceData.class,</span>
-<span class="fc" id="L87">					documentStatusContainer.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList(),</span>
+<span class="fc" id="L82">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentPersonReferenceData.class,</span>
+<span class="fc" id="L83">					documentStatusContainer.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList(),</span>
 					DOCUMENT_PERSON_REFERENCES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 		}
 
-<span class="fc" id="L92">		panel.setContent(panelContent);</span>
-<span class="fc" id="L93">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L88">		panel.setContent(panelContent);</span>
+<span class="fc" id="L89">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L96">		return panelContent;</span>
+<span class="fc" id="L92">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L102" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.PERSONREFERENCES.toString());</span>
+<span class="fc bfc" id="L98" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, DocumentPageMode.PERSONREFERENCES.toString());</span>
 	}
 
 }

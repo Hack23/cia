@@ -52,9 +52,6 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 
 <span class="fc" id="L53">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;email&quot;, &quot;otpCode&quot;, &quot;userpassword&quot; );</span>
 
-	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = &quot;Citizen Intelligence Agency&quot;;
-
 	private static final String LOGIN = &quot;Login&quot;;
 
 	private static final String LOGIN_USER = &quot;Login user&quot;;
@@ -66,64 +63,62 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 	 * Instantiates a new main view login page mod content factory impl.
 	 */
 	public MainViewLoginPageModContentFactoryImpl() {
-<span class="fc" id="L69">		super();</span>
-<span class="fc" id="L70">	}</span>
+<span class="fc" id="L66">		super();</span>
+<span class="fc" id="L67">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L75">		final VerticalLayout content = createPanelContent();</span>
-<span class="fc" id="L76">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L72">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L73">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L78">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
+<span class="fc" id="L75">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L76">		createPageHeader(panel, content,&quot;Login&quot;,&quot;Login User&quot;,&quot;Secure login for agency users.&quot;);</span>
 
-<span class="fc" id="L80">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L78">		final VerticalLayout loginLayout = new VerticalLayout();</span>
+<span class="fc" id="L79">		loginLayout.setSizeFull();</span>
 
-<span class="fc" id="L82">		final VerticalLayout loginLayout = new VerticalLayout();</span>
-<span class="fc" id="L83">		loginLayout.setSizeFull();</span>
+<span class="fc" id="L81">		final Panel formPanel = new Panel();</span>
+<span class="fc" id="L82">		formPanel.setSizeFull();</span>
 
-<span class="fc" id="L85">		final Panel formPanel = new Panel();</span>
-<span class="fc" id="L86">		formPanel.setSizeFull();</span>
+<span class="fc" id="L84">		loginLayout.addComponent(formPanel);</span>
 
-<span class="fc" id="L88">		loginLayout.addComponent(formPanel);</span>
+<span class="fc" id="L86">		final FormLayout formContent = new FormLayout();</span>
+<span class="fc" id="L87">		formContent.setIcon(VaadinIcons.SIGN_IN);</span>
+<span class="fc" id="L88">		formPanel.setContent(formContent);</span>
 
-<span class="fc" id="L90">		final FormLayout formContent = new FormLayout();</span>
-<span class="fc" id="L91">		formContent.setIcon(VaadinIcons.SIGN_IN);</span>
-<span class="fc" id="L92">		formPanel.setContent(formContent);</span>
+<span class="fc" id="L90">		final LoginRequest loginRequest = new LoginRequest();</span>
+<span class="fc" id="L91">		loginRequest.setOtpCode(&quot;&quot;);</span>
+<span class="fc" id="L92">		loginRequest.setEmail(&quot;&quot;);</span>
+<span class="fc" id="L93">		loginRequest.setUserpassword(&quot;&quot;);</span>
 
-<span class="fc" id="L94">		final LoginRequest loginRequest = new LoginRequest();</span>
-<span class="fc" id="L95">		loginRequest.setOtpCode(&quot;&quot;);</span>
-<span class="fc" id="L96">		loginRequest.setEmail(&quot;&quot;);</span>
-<span class="fc" id="L97">		loginRequest.setUserpassword(&quot;&quot;);</span>
-
-<span class="fc" id="L99">		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="fc" id="L100">		final ClickListener loginListener = new ApplicationLoginListener(loginRequest);</span>
-<span class="fc" id="L101">		getFormFactory().addRequestInputFormFields(formContent, loginRequest,</span>
+<span class="fc" id="L95">		loginRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L96">		final ClickListener loginListener = new ApplicationLoginListener(loginRequest);</span>
+<span class="fc" id="L97">		getFormFactory().addRequestInputFormFields(formContent, loginRequest,</span>
 				LoginRequest.class,
 				AS_LIST, LOGIN,
 				loginListener);
 
-<span class="fc" id="L106">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L107">		overviewLayout.setSizeFull();</span>
-<span class="fc" id="L108">		content.addComponent(overviewLayout);</span>
-<span class="fc" id="L109">		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
+<span class="fc" id="L102">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L103">		overviewLayout.setSizeFull();</span>
+<span class="fc" id="L104">		content.addComponent(overviewLayout);</span>
+<span class="fc" id="L105">		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
 
-<span class="fc" id="L111">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
-<span class="fc" id="L112">		RowUtil.createRowComponent(grid,loginLayout,LOGIN_USER);</span>
+<span class="fc" id="L107">		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+<span class="fc" id="L108">		RowUtil.createRowComponent(grid,loginLayout,LOGIN_USER);</span>
 
-<span class="fc" id="L114">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
-<span class="fc" id="L115">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L110">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,</span>
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 
 
-<span class="fc" id="L119">		return content;</span>
+<span class="fc" id="L114">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L125" title="All 2 branches covered.">		return NAME.equals(page)</span>
-<span class="fc bfc" id="L126" title="All 2 branches covered.">				&amp;&amp; StringUtils.contains(parameters, ApplicationPageMode.LOGIN.toString());</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">		return NAME.equals(page)</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">				&amp;&amp; StringUtils.contains(parameters, ApplicationPageMode.LOGIN.toString());</span>
 	}
 
 }

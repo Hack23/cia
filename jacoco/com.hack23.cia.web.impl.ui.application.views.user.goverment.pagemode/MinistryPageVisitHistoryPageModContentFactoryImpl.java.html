@@ -37,40 +37,38 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryPageVisitHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = &quot;Ministry:&quot;;
-
 	/**
 	 * Instantiates a new ministry page visit history page mod content factory
 	 * impl.
 	 */
 	public MinistryPageVisitHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L48">		super();</span>
-<span class="fc" id="L49">	}</span>
+<span class="fc" id="L45">		super();</span>
+<span class="fc" id="L46">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L54">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L51">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L56">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L53">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L58">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
-<span class="fc" id="L59">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L55">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
+<span class="fc" id="L56">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L61">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+<span class="fc" id="L58">		createPageHeader(panel, panelContent, &quot;Ministry Page Visit History &quot; + viewRiksdagenMinistry.getNameId(), &quot;Page Visit History&quot;, &quot;Tracks and visualizes the history of page visits for ministries.&quot;);</span>
 
-<span class="fc" id="L63">		panel.setCaption(NAME + &quot;::&quot; + MINISTRY + viewRiksdagenMinistry.getNameId());</span>
-<span class="fc" id="L64">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L60">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+
+<span class="fc" id="L62">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L67">		return panelContent;</span>
+<span class="fc" id="L65">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L73" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
+<span class="fc bfc" id="L71" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 
 }

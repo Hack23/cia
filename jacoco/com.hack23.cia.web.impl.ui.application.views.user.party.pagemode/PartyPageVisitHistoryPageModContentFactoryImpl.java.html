@@ -23,6 +23,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -40,29 +42,32 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 	 * impl.
 	 */
 	public PartyPageVisitHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L43">		super();</span>
-<span class="fc" id="L44">	}</span>
+<span class="fc" id="L45">		super();</span>
+<span class="fc" id="L46">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L49">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L51">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L51">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L53">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L53">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L54">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L55">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L56">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L56">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+<span class="fc" id="L58">		createPageHeader(panel, panelContent, &quot;Page Visit History &quot; + viewRiksdagenParty.getPartyName(), &quot;Visit History&quot;, &quot;Review the history of page visits for the selected party.&quot;);</span>
 
-<span class="fc" id="L58">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L59">		return panelContent;</span>
+<span class="fc" id="L60">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+
+<span class="fc" id="L62">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
+		pageId);
+<span class="fc" id="L64">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L65" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
+<span class="fc bfc" id="L70" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 
 }

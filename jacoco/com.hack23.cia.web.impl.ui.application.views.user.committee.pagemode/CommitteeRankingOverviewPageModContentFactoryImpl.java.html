@@ -29,7 +29,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -39,73 +38,42 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeRankingOverviewPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
 	/** The Constant COMMITTEE_RANKING_BY_TOPIC. */
-	private static final String COMMITTEE_RANKING_BY_TOPIC = &quot;Committee Ranking by topic&quot;;
-
-	/** The Constant COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION. */
-	private static final String COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION = &quot;Time served in Committee:ALL:CURRENT:&quot; + &quot;\nPoliticans served in Committee:ALL:CURRENT:&quot;
-			+ &quot;\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType&quot;
-			+ &quot;\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType&quot;
-
-			+ &quot;\nTop decisions NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart&quot;
-			+ &quot;\nTop Votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart&quot;
-
-			+ &quot;\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart&quot;
-			+ &quot;\nSearch by name&quot;;
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = &quot;overview&quot;;
-
 
 	/**
 	 * Instantiates a new committee ranking overview page mod content factory
 	 * impl.
 	 */
 	public CommitteeRankingOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L67">		super();</span>
-<span class="fc" id="L68">	}</span>
+<span class="fc" id="L50">		super();</span>
+<span class="fc" id="L51">	}</span>
 
-	/**
-	 * Creates the description.
-	 *
-	 * @return the text area
-	 */
-	private static TextArea createDescription() {
-<span class="fc" id="L76">		final TextArea totalCommitteeRankinglistLabel = new TextArea(COMMITTEE_RANKING_BY_TOPIC,</span>
-				COMMITTEE_RANKING_BY_TOPIC_DESCRIPTION);
-<span class="fc" id="L78">		totalCommitteeRankinglistLabel.setSizeFull();</span>
-<span class="fc" id="L79">		totalCommitteeRankinglistLabel.setStyleName(&quot;Level2Header&quot;);</span>
-<span class="fc" id="L80">		return totalCommitteeRankinglistLabel;</span>
-	}
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L86">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L57">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L88">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
+<span class="fc" id="L59">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
+<span class="fc" id="L60">		createPageHeader(panel, panelContent, &quot;Committee Rankings&quot;, &quot;Ranking Details&quot;, &quot;Analyze and compare rankings of parliamentary committees based on performance.&quot;);</span>
 
-<span class="fc" id="L90">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L92">		panelContent.addComponent(createDescription());</span>
+<span class="fc" id="L64">		getCommitteeRankingMenuItemFactory().createOverviewPage(panelContent);</span>
 
-<span class="fc" id="L94">		getCommitteeRankingMenuItemFactory().createOverviewPage(panelContent);</span>
-
-<span class="fc" id="L96">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
-
-<span class="fc" id="L98">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L66">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L101">		return panelContent;</span>
+<span class="fc" id="L69">		return panelContent;</span>
 
 	}
 
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L108" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="pc bpc" id="L76" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 

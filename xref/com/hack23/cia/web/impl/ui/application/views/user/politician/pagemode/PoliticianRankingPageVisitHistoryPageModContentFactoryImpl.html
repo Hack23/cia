@@ -49,29 +49,29 @@
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  	<em class="jxr_javadoccomment">/** The Constant NAME. */</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  	<em class="jxr_javadoccomment">/** The Constant PAGE_VISIT_HISTORY. */</em>
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PAGE_VISIT_HISTORY = <span class="jxr_string">"Page Visit History"</span>;
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">	 * Instantiates a new politician ranking page visit history page mod content</em>
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment">	 * factory impl.</em>
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	<strong class="jxr_keyword">public</strong> <a name="PoliticianRankingPageVisitHistoryPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/politician/pagemode/PoliticianRankingPageVisitHistoryPageModContentFactoryImpl.html#PoliticianRankingPageVisitHistoryPageModContentFactoryImpl">PoliticianRankingPageVisitHistoryPageModContentFactoryImpl</a>() {
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  		<strong class="jxr_keyword">super</strong>();
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	}
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	@Override
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">	 * Instantiates a new politician ranking page visit history page mod content</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">	 * factory impl.</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<strong class="jxr_keyword">public</strong> <a name="PoliticianRankingPageVisitHistoryPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/politician/pagemode/PoliticianRankingPageVisitHistoryPageModContentFactoryImpl.html#PoliticianRankingPageVisitHistoryPageModContentFactoryImpl">PoliticianRankingPageVisitHistoryPageModContentFactoryImpl</a>() {
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		<strong class="jxr_keyword">super</strong>();
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	}
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	@Override
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  		createPageHeader(panel, panelContent,
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  			    <span class="jxr_string">"Politician Ranking - Page Visit History"</span>,
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  			    <span class="jxr_string">"Engagement Trends"</span>,
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  			    <span class="jxr_string">"Viewing interest trends to understand shifting political focus."</span>);
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		panel.setCaption(NAME + <span class="jxr_string">"::"</span> + PAGE_VISIT_HISTORY);
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  				NAME, parameters, pageId);

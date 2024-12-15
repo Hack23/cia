@@ -41,76 +41,43 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements ParliamentMenuItemFactory {
 
-	/** The Constant AVERAGE_AGE. */
-	private static final String AVERAGE_AGE = &quot;Average age&quot;;
-
-	/** The Constant AVERAGE_PERCENTAGE_MALE. */
-	private static final String AVERAGE_PERCENTAGE_MALE = &quot;Average percentage male&quot;;
-
-	/**
-	 * The Constant
-	 * CHART_DAILY_BALLOT_SUMMARY_PERCENTAGE_BALLOTS_THAT_DAY_THE_VOTED_IN_WINNING_SIDE.
-	 */
-	private static final String CHART_DAILY_BALLOT_SUMMARY_PERCENTAGE_BALLOTS_THAT_DAY_THE_VOTED_IN_WINNING_SIDE = &quot;Chart daily ballot summary, percentage ballots that day the voted in winning side&quot;;
-
-	/** The Constant CHART_DECISIONS_BY_DECISION_TYPE. */
-	private static final String CHART_DECISIONS_BY_DECISION_TYPE = &quot;Chart decisions by decision type&quot;;
-
-	/** The Constant CHART_DOCUMENT_ACTIVITY_BY_TYPE. */
-	private static final String CHART_DOCUMENT_ACTIVITY_BY_TYPE = &quot;Chart document activity by type&quot;;
-
-	/** The Constant CHART_PARTY_AGE_ALL_BALLOTS. */
-	private static final String CHART_PARTY_AGE_ALL_BALLOTS = &quot;Chart party age  all ballots&quot;;
-
-	/** The Constant CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS. */
-	private static final String CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS = &quot;Chart Party average gender all ballots&quot;;
-
 	/** The Constant COMMAND_CHARTS_DECISION_FLOW. */
-<span class="fc" id="L69">	private static final PageModeMenuCommand COMMAND_CHARTS_DECISION_FLOW = new PageModeMenuCommand(</span>
-<span class="fc" id="L70">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISION_FLOW_CHART.toString());</span>
+<span class="fc" id="L45">	private static final PageModeMenuCommand COMMAND_CHARTS_DECISION_FLOW = new PageModeMenuCommand(</span>
+<span class="fc" id="L46">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISION_FLOW_CHART.toString());</span>
 
 	/** The Constant COMMAND_CHARTS_PARTY_AGE. */
-<span class="fc" id="L73">	private static final PageModeMenuCommand COMMAND_CHARTS_PARTY_AGE = new PageModeMenuCommand(</span>
-<span class="fc" id="L74">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYAGE.toString());</span>
+<span class="fc" id="L49">	private static final PageModeMenuCommand COMMAND_CHARTS_PARTY_AGE = new PageModeMenuCommand(</span>
+<span class="fc" id="L50">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYAGE.toString());</span>
 
 	/** The Constant COMMAND_CHARTS_PARTY_GENDER. */
-<span class="fc" id="L77">	private static final PageModeMenuCommand COMMAND_CHARTS_PARTY_GENDER = new PageModeMenuCommand(</span>
-<span class="fc" id="L78">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYGENDER.toString());</span>
+<span class="fc" id="L53">	private static final PageModeMenuCommand COMMAND_CHARTS_PARTY_GENDER = new PageModeMenuCommand(</span>
+<span class="fc" id="L54">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYGENDER.toString());</span>
 
 	/** The Constant COMMAND_CHARTS_PARTY_WINNER. */
-<span class="fc" id="L81">	private static final PageModeMenuCommand COMMAND_CHARTS_PARTY_WINNER = new PageModeMenuCommand(</span>
-<span class="fc" id="L82">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYWINNER.toString());</span>
+<span class="fc" id="L57">	private static final PageModeMenuCommand COMMAND_CHARTS_PARTY_WINNER = new PageModeMenuCommand(</span>
+<span class="fc" id="L58">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.PARTYWINNER.toString());</span>
 
 	/** The Constant COMMAND_DECISION_ACTIVITY. */
-<span class="fc" id="L85">	private static final PageModeMenuCommand COMMAND_DECISION_ACTIVITY = new PageModeMenuCommand(</span>
-<span class="fc" id="L86">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISIONACTIVITYBYTYPE.toString());</span>
+<span class="fc" id="L61">	private static final PageModeMenuCommand COMMAND_DECISION_ACTIVITY = new PageModeMenuCommand(</span>
+<span class="fc" id="L62">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISIONACTIVITYBYTYPE.toString());</span>
 
 	/** The Constant COMMAND_DOCUMENT_ACTIVITY. */
-<span class="fc" id="L89">	private static final PageModeMenuCommand COMMAND_DOCUMENT_ACTIVITY = new PageModeMenuCommand(</span>
-<span class="fc" id="L90">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString());</span>
+<span class="fc" id="L65">	private static final PageModeMenuCommand COMMAND_DOCUMENT_ACTIVITY = new PageModeMenuCommand(</span>
+<span class="fc" id="L66">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString());</span>
 
 	/** The Constant COMMAND_OVERVIEW. */
-<span class="fc" id="L93">	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.OVERVIEW);</span>
+<span class="fc" id="L69">	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.OVERVIEW);</span>
 
 	/** The Constant COMMAND_PAGEVISITHISTORY. */
-<span class="fc" id="L96">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);</span>
+<span class="fc" id="L72">	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);</span>
 
 	/** The Constant COMMAND_RISK_SUMMARY. */
-<span class="fc" id="L99">	private static final PageModeMenuCommand COMMAND_RISK_SUMMARY = new PageModeMenuCommand(</span>
-<span class="fc" id="L100">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES, RiskIndicators.RISK_SUMMARY.toString());</span>
+<span class="fc" id="L75">	private static final PageModeMenuCommand COMMAND_RISK_SUMMARY = new PageModeMenuCommand(</span>
+<span class="fc" id="L76">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES, RiskIndicators.RISK_SUMMARY.toString());</span>
 
 	/** The Constant COMMAND_RULE_VIOLATION. */
-<span class="fc" id="L103">	private static final PageModeMenuCommand COMMAND_RULE_VIOLATION = new PageModeMenuCommand(</span>
-<span class="fc" id="L104">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES, RiskIndicators.RULE_VIOLATIONS.toString());</span>
-
-	/** The Constant DAILY_AVERAGE_WON_BALLOTS. */
-	private static final String DAILY_AVERAGE_WON_BALLOTS = &quot;daily average % won ballots&quot;;
-
-	/** The Constant DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE. */
-	private static final String DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE = &quot;daily total of number of decsions made&quot;;
-
-	/** The Constant DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS. */
-	private static final String DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS = &quot;daily total of number published documents&quot;;
+<span class="fc" id="L79">	private static final PageModeMenuCommand COMMAND_RULE_VIOLATION = new PageModeMenuCommand(</span>
+<span class="fc" id="L80">			UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES, RiskIndicators.RULE_VIOLATIONS.toString());</span>
 
 	/** The Constant DECISION_ACTIVITY_BY_TYPE. */
 	private static final String DECISION_ACTIVITY_BY_TYPE = &quot;Decision activity by type&quot;;
@@ -151,8 +118,29 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	/** The Constant SWEDISH_PARLIAMENT_INDICATORS. */
 	private static final String SWEDISH_PARLIAMENT_INDICATORS = &quot;Swedish parliament Indicators&quot;;
 
-	/** The Constant VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE. */
-	private static final String VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE = &quot;View history of page visit for this page.&quot;;
+	/** The Constant PARTY_WINNER_DESCRIPTION. */
+	private static final String PARTY_WINNER_DESCRIPTION = &quot;Daily average % won ballots&quot;;
+
+	/** The Constant PARTY_GENDER_DESCRIPTION. */
+	private static final String PARTY_GENDER_DESCRIPTION = &quot;Average percentage male&quot;;
+
+	/** The Constant PARTY_AGE_DESCRIPTION. */
+	private static final String PARTY_AGE_DESCRIPTION = &quot;Average age&quot;;
+
+	/** The Constant RISK_SUMMARY_DESCRIPTION. */
+	private static final String RISK_SUMMARY_DESCRIPTION = &quot;Risk summary&quot;;
+
+	/** The Constant RULE_VIOLATIONS_DESCRIPTION. */
+	private static final String RULE_VIOLATIONS_DESCRIPTION = &quot;Rule violations&quot;;
+
+	/** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
+	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = &quot;Daily total of number published documents&quot;;
+
+	/** The Constant DECISION_ACTIVITY_DESCRIPTION. */
+	private static final String DECISION_ACTIVITY_DESCRIPTION = &quot;Daily total of number of decisions made&quot;;
+
+	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
+	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = &quot;View history of page visit for this page.&quot;;
 
 	/** The application menu item factory. */
 	@Autowired
@@ -162,79 +150,79 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	 * Instantiates a new parliament menu item factory impl.
 	 */
 	public ParliamentMenuItemFactoryImpl() {
-<span class="fc" id="L165">		super();</span>
-<span class="fc" id="L166">	}</span>
+<span class="fc" id="L153">		super();</span>
+<span class="fc" id="L154">	}</span>
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-<span class="fc" id="L170">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L158">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="fc" id="L172">		createButtonLink(grid,PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, CHART_DAILY_BALLOT_SUMMARY_PERCENTAGE_BALLOTS_THAT_DAY_THE_VOTED_IN_WINNING_SIDE);</span>
+<span class="fc" id="L160">		createButtonLink(grid,PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, PARTY_WINNER_DESCRIPTION);</span>
 
-<span class="fc" id="L174">		createButtonLink(grid,PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, CHART_PARTY_AVERAGE_GENDER_ALL_BALLOTS);</span>
+<span class="fc" id="L162">		createButtonLink(grid,PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, PARTY_GENDER_DESCRIPTION);</span>
 
-<span class="fc" id="L176">		createButtonLink(grid,PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, CHART_PARTY_AGE_ALL_BALLOTS);</span>
+<span class="fc" id="L164">		createButtonLink(grid,PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, PARTY_AGE_DESCRIPTION);</span>
 
-<span class="fc" id="L178">		createButtonLink(grid,RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY,RISK_SUMMARY);</span>
+<span class="fc" id="L166">		createButtonLink(grid,RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY,RISK_SUMMARY_DESCRIPTION);</span>
 
-<span class="fc" id="L180">		createButtonLink(grid,RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION,RULE_VIOLATIONS);</span>
+<span class="fc" id="L168">		createButtonLink(grid,RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION,RULE_VIOLATIONS_DESCRIPTION);</span>
 
-<span class="fc" id="L182">		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, CHART_DOCUMENT_ACTIVITY_BY_TYPE);</span>
-<span class="fc" id="L183">		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY, CHART_DECISIONS_BY_DECISION_TYPE);</span>
+<span class="fc" id="L170">		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, DOCUMENT_ACTIVITY_DESCRIPTION);</span>
+<span class="fc" id="L171">		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY, DECISION_ACTIVITY_DESCRIPTION);</span>
 
-<span class="fc" id="L185">		createButtonLink(grid,DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW,DECISION_FLOW_DESCRIPTION);</span>
+<span class="fc" id="L173">		createButtonLink(grid,DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW,DECISION_FLOW_DESCRIPTION);</span>
 
 
-<span class="fc" id="L188">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,</span>
-				COMMAND_PAGEVISITHISTORY, VIEW_HISTORY_OF_PAGE_VISIT_FOR_THIS_PAGE);
+<span class="fc" id="L176">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,</span>
+				COMMAND_PAGEVISITHISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
 
-<span class="fc" id="L191">	}</span>
+<span class="fc" id="L179">	}</span>
 
 	@Override
 	public void createParliamentTopicMenu(final MenuBar menuBar) {
-<span class="fc" id="L195">		initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L183">		initApplicationMenuBar(menuBar);</span>
 
-<span class="fc" id="L197">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="fc" id="L185">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
 
-<span class="fc" id="L199">		createParliamentTopicMenu(menuBar.addItem(PARLIAMENT_RANKING_TEXT, VaadinIcons.INSTITUTION, null));</span>
+<span class="fc" id="L187">		createParliamentTopicMenu(menuBar.addItem(PARLIAMENT_RANKING_TEXT, VaadinIcons.INSTITUTION, null));</span>
 
-<span class="fc" id="L201">	}</span>
+<span class="fc" id="L189">	}</span>
 
 	@Override
 	public void createParliamentTopicMenu(final MenuItem charts) {
-<span class="fc" id="L205">		charts.addItem(OVERVIEW_TEXT, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L193">		charts.addItem(OVERVIEW_TEXT, VaadinIcons.INSTITUTION,</span>
 				COMMAND_OVERVIEW);
 
-<span class="fc" id="L208">		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, VaadinIcons.INSTITUTION, null);</span>
+<span class="fc" id="L196">		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, VaadinIcons.INSTITUTION, null);</span>
 
-<span class="fc" id="L210">		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER);</span>
-<span class="fc" id="L211">		addItem.setDescription(DAILY_AVERAGE_WON_BALLOTS);</span>
+<span class="fc" id="L198">		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER);</span>
+<span class="fc" id="L199">		addItem.setDescription(PARTY_WINNER_DESCRIPTION);</span>
 
-<span class="fc" id="L213">		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER);</span>
-<span class="fc" id="L214">		addItem2.setDescription(AVERAGE_PERCENTAGE_MALE);</span>
+<span class="fc" id="L201">		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER);</span>
+<span class="fc" id="L202">		addItem2.setDescription(PARTY_GENDER_DESCRIPTION);</span>
 
-<span class="fc" id="L216">		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE);</span>
-<span class="fc" id="L217">		addItem3.setDescription(AVERAGE_AGE);</span>
+<span class="fc" id="L204">		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE);</span>
+<span class="fc" id="L205">		addItem3.setDescription(PARTY_AGE_DESCRIPTION);</span>
 
-<span class="fc" id="L219">		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY);</span>
-<span class="fc" id="L220">		addItem7.setDescription(RISK_SUMMARY);</span>
+<span class="fc" id="L207">		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY);</span>
+<span class="fc" id="L208">		addItem7.setDescription(RISK_SUMMARY_DESCRIPTION);</span>
 
-<span class="fc" id="L222">		final MenuItem addItem8 = chartIndicators.addItem(RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION);</span>
-<span class="fc" id="L223">		addItem8.setDescription(RULE_VIOLATIONS);</span>
+<span class="fc" id="L210">		final MenuItem addItem8 = chartIndicators.addItem(RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION);</span>
+<span class="fc" id="L211">		addItem8.setDescription(RULE_VIOLATIONS_DESCRIPTION);</span>
 
 
-<span class="fc" id="L226">		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY);</span>
-<span class="fc" id="L227">		addItem4.setDescription(DAILY_TOTAL_OF_NUMBER_PUBLISHED_DOCUMENTS);</span>
+<span class="fc" id="L214">		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY);</span>
+<span class="fc" id="L215">		addItem4.setDescription(DOCUMENT_ACTIVITY_DESCRIPTION);</span>
 
-<span class="fc" id="L229">		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY);</span>
-<span class="fc" id="L230">		addItem5.setDescription(DAILY_TOTAL_OF_NUMBER_OF_DECSIONS_MADE);</span>
+<span class="fc" id="L217">		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY);</span>
+<span class="fc" id="L218">		addItem5.setDescription(DECISION_ACTIVITY_DESCRIPTION);</span>
 
-<span class="fc" id="L232">		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW);</span>
-<span class="fc" id="L233">		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);</span>
+<span class="fc" id="L220">		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW);</span>
+<span class="fc" id="L221">		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);</span>
 
-<span class="fc" id="L235">		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L223">		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,</span>
 				COMMAND_PAGEVISITHISTORY);
-<span class="fc" id="L237">	}</span>
+<span class="fc" id="L225">	}</span>
 
 
 }

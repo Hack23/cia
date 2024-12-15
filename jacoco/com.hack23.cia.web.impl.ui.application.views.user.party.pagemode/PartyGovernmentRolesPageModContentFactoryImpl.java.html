@@ -24,8 +24,9 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -41,49 +42,50 @@ import com.vaadin.ui.VerticalLayout;
 public final class PartyGovernmentRolesPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
 	private static final String PERSON_ID = &quot;personId&quot;;
-<span class="fc" id="L44">	private static final String[] COLUMN_ORDER = { &quot;roleId&quot;, PERSON_ID, &quot;firstName&quot;, &quot;lastName&quot;, &quot;active&quot;,</span>
+<span class="fc" id="L45">	private static final String[] COLUMN_ORDER = { &quot;roleId&quot;, PERSON_ID, &quot;firstName&quot;, &quot;lastName&quot;, &quot;active&quot;,</span>
 			&quot;detail&quot;, &quot;roleCode&quot;, &quot;fromDate&quot;, &quot;toDate&quot;, &quot;totalDaysServed&quot; };
 	/** The Constant GOVERNMENT_ROLES. */
 	private static final String GOVERNMENT_ROLES = &quot;Government Roles&quot;;
-<span class="fc" id="L48">	private static final String[] HIDE_COLUMNS = { &quot;roleId&quot;, PERSON_ID, &quot;party&quot; };</span>
+<span class="fc" id="L49">	private static final String[] HIDE_COLUMNS = { &quot;roleId&quot;, PERSON_ID, &quot;party&quot; };</span>
 
 	/**
 	 * Instantiates a new party government roles page mod content factory impl.
 	 */
 	public PartyGovernmentRolesPageModContentFactoryImpl() {
-<span class="fc" id="L54">		super();</span>
-<span class="fc" id="L55">	}</span>
+<span class="fc" id="L55">		super();</span>
+<span class="fc" id="L56">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L60">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L64">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L65">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L65">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L66">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L67">		LabelFactory.createHeader2Label(panelContent, GOVERNMENT_ROLES);</span>
+<span class="fc" id="L68">		createPageHeader(panel, panelContent, &quot;Government Roles &quot; + viewRiksdagenParty.getPartyName(), &quot;Government Members&quot;, &quot;Explore the roles and members of the government within the party.&quot;);</span>
 
-<span class="fc" id="L69">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L70">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
+<span class="fc" id="L70">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L71">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
 
-<span class="fc" id="L72">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenGovermentRoleMember.class,</span>
-<span class="fc" id="L73">				govermentRoleMemberDataContainer.findListByProperty(</span>
-<span class="fc" id="L74">						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },</span>
+<span class="fc" id="L73">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenGovermentRoleMember.class,</span>
+<span class="fc" id="L74">				govermentRoleMemberDataContainer.findListByProperty(</span>
+<span class="fc" id="L75">						new Object[] { viewRiksdagenParty.getPartyId(), Boolean.TRUE },</span>
 						ViewRiksdagenGovermentRoleMember_.party, ViewRiksdagenGovermentRoleMember_.active),
 				GOVERNMENT_ROLES, COLUMN_ORDER, HIDE_COLUMNS,
 				new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, PERSON_ID), null, null);
 
-<span class="fc" id="L79">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L80">		return panelContent;</span>
+<span class="fc" id="L80">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
+		pageId);
+<span class="fc" id="L82">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L86" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.GOVERNMENTROLES.toString());</span>
+<span class="fc bfc" id="L88" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.GOVERNMENTROLES.toString());</span>
 	}
 
 }

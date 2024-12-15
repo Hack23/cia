@@ -36,40 +36,38 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class GovernmentBodyRankingOverviewPageModContentFactoryImpl extends AbstractGovernmentBodyRankingPageModContentFactoryImpl {
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = &quot;overview&quot;;
 
 	/**
 	 * Instantiates a new government body ranking overview page mod content factory
 	 * impl.
 	 */
 	public GovernmentBodyRankingOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L47">		super();</span>
-<span class="fc" id="L48">	}</span>
+<span class="fc" id="L45">		super();</span>
+<span class="fc" id="L46">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L53">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L51">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L55">		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);</span>
+<span class="fc" id="L53">		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);</span>
+<span class="fc" id="L54">		createPageHeader(panel, panelContent, &quot;Government Body Rankings&quot;, &quot;Ranking Overview&quot;, &quot;Analyze and rank government bodies based on predefined metrics.&quot;);</span>
+
 
 <span class="fc" id="L57">		final String pageId = getPageId(parameters);</span>
 
 <span class="fc" id="L59">		getGovernmentBodyRankingMenuItemFactory().createOverviewPage(panelContent);</span>
 
-<span class="fc" id="L61">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
-
-<span class="fc" id="L63">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L61">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L66">		return panelContent;</span>
+<span class="fc" id="L64">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L72" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="pc bpc" id="L70" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 

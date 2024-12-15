@@ -28,7 +28,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -37,72 +36,39 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryRankingOverviewPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant MINISTRY_RANKING_BY_TOPIC. */
-	private static final String MINISTRY_RANKING_BY_TOPIC = &quot;Ministry Ranking by topic&quot;;
-
-	/** The Constant MINISTRY_RANKING_BY_TOPIC_DESCRIPTION. */
-	private static final String MINISTRY_RANKING_BY_TOPIC_DESCRIPTION = &quot;Time served in Ministry:ALL:CURRENT:&quot;
-			+ &quot;\nPoliticans served in Committee:ALL:CURRENT:&quot;
-			+ &quot;\nTop document author NR:ALL:YEAR:CURRENT:*FILTER:DocumnetType&quot;
-			+ &quot;\nTop document author SIZE:YEAR:ALL:CURRENT:*FILTER:DocumnetType&quot;
-
-			+ &quot;\nTop decisions NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart&quot;
-			+ &quot;\nTop Votes NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart&quot;
-
-			+ &quot;\nTop vote winner NR/PERCENTAGE :ALL:YEAR:CURRENT::#Views:List,Timeline,BarChart,PieChart&quot;
-			+ &quot;\nSearch by name&quot;;
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = &quot;overview&quot;;
-
-
 	/**
 	 * Instantiates a new ministry ranking overview page mod content factory
 	 * impl.
 	 */
 	public MinistryRankingOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L64">		super();</span>
-<span class="fc" id="L65">	}</span>
+<span class="fc" id="L44">		super();</span>
+<span class="fc" id="L45">	}</span>
 
-	/**
-	 * Creates the description.
-	 *
-	 * @return the text area
-	 */
-	private static TextArea createDescription() {
-<span class="fc" id="L73">		final TextArea totalCommitteeRankinglistLabel = new TextArea(MINISTRY_RANKING_BY_TOPIC,</span>
-				MINISTRY_RANKING_BY_TOPIC_DESCRIPTION);
-<span class="fc" id="L75">		totalCommitteeRankinglistLabel.setSizeFull();</span>
-<span class="fc" id="L76">		totalCommitteeRankinglistLabel.setStyleName(&quot;Level2Header&quot;);</span>
-<span class="fc" id="L77">		return totalCommitteeRankinglistLabel;</span>
-	}
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L83">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L51">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L85">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+<span class="fc" id="L53">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+<span class="fc" id="L54">		createPageHeader(panel, panelContent, &quot;Ministry Rankings&quot;, &quot;Ranking Overview&quot;, &quot;Evaluate and compare the performance of various ministries.&quot;);</span>
 
-<span class="fc" id="L87">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L89">		panelContent.addComponent(createDescription());</span>
+<span class="fc" id="L57">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L91">		getMinistryRankingMenuItemFactory().createOverviewPage(panelContent);</span>
+<span class="fc" id="L59">		getMinistryRankingMenuItemFactory().createOverviewPage(panelContent);</span>
 
-<span class="fc" id="L93">		panel.setCaption(NAME + &quot;::&quot; + OVERVIEW);</span>
-
-<span class="fc" id="L95">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L61">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L98">		return panelContent;</span>
+<span class="fc" id="L64">		return panelContent;</span>
 
 	}
 
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L105" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="pc bpc" id="L71" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 

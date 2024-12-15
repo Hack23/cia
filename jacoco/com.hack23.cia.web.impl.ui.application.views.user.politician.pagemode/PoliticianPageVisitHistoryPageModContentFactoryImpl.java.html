@@ -23,7 +23,10 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -41,29 +44,33 @@ public final class PoliticianPageVisitHistoryPageModContentFactoryImpl
 	 * impl.
 	 */
 	public PoliticianPageVisitHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L44">		super();</span>
-<span class="fc" id="L45">	}</span>
+<span class="fc" id="L47">		super();</span>
+<span class="fc" id="L48">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L50">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L53">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L52">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L55">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L54">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
-<span class="fc" id="L55">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L57">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="fc" id="L58">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L57">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+<span class="fc" id="L60">		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + &quot; Page Visit History&quot;, &quot;Visit Trends&quot;, &quot;Analyze patterns and trends in the politician's page visit history.&quot;);</span>
 
-<span class="fc" id="L59">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L60">		return panelContent;</span>
+
+<span class="fc" id="L63">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+
+<span class="fc" id="L65">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,</span>
+		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
+<span class="fc" id="L67">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L66" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
+<span class="fc bfc" id="L73" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

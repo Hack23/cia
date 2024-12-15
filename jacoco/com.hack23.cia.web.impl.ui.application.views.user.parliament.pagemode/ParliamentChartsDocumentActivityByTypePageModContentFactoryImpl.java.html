@@ -39,9 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-	/** The Constant PARTY_WINNER_DAILY_AVERAGE_FOR_ALL_BALLOTS. */
-	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = &quot;Document activity by type&quot;;
-
 	/** The document chart data manager. */
 	@Autowired
 	private DocumentChartDataManager documentChartDataManager;
@@ -52,23 +49,26 @@ public final class ParliamentChartsDocumentActivityByTypePageModContentFactoryIm
 	 * factory impl.
 	 */
 	public ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl() {
-<span class="fc" id="L55">		super();</span>
-<span class="fc" id="L56">	}</span>
+<span class="fc" id="L52">		super();</span>
+<span class="fc" id="L53">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L62">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L59">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L60">		createPageHeader(panel, panelContent,</span>
+			    &quot;Parliament - Document Activity by Type&quot;,
+			    &quot;Information Dynamics&quot;,
+			    &quot;Uncovering how information shapes legislative agendas.&quot;);
 
 
-<span class="fc" id="L65">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L67">		documentChartDataManager.createDocumentTypeChart(panelContent);</span>
+<span class="fc" id="L68">		documentChartDataManager.createDocumentTypeChart(panelContent);</span>
 
-<span class="fc" id="L69">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L70">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L71">		panel.setCaption(NAME + &quot;::&quot; + DOCUMENT_ACTIVITY_DESCRIPTION);</span>
 
 <span class="fc" id="L73">		return panelContent;</span>
 

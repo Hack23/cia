@@ -37,9 +37,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MainViewPageVisitHistoryPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
-	/** The Constant CITIZEN_INTELLIGENCE_AGENCY_MAIN. */
-	private static final String CITIZEN_INTELLIGENCE_AGENCY_MAIN = &quot;Citizen Intelligence Agency::Main&quot;;
-
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 
@@ -48,34 +45,32 @@ public final class MainViewPageVisitHistoryPageModContentFactoryImpl extends Abs
 	 * impl.
 	 */
 	public MainViewPageVisitHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L51">		super();</span>
-<span class="fc" id="L52">	}</span>
+<span class="fc" id="L48">		super();</span>
+<span class="fc" id="L49">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L57">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L54">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L59">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L56">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L61">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
+<span class="fc" id="L58">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L59">		createPageHeader(panel, content,&quot;Page Visits&quot;,&quot;Page Visits&quot;,&quot;History of page visits to understand user engagement.&quot;);</span>
 
-<span class="fc" id="L63">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L61">		createPageVisitHistory(NAME,pageId,content);</span>
 
-<span class="fc" id="L65">		createPageVisitHistory(NAME,pageId,content);</span>
-
-<span class="fc" id="L67">		panel.setCaption(NAME + &quot;::&quot; + CITIZEN_INTELLIGENCE_AGENCY_MAIN);</span>
-<span class="fc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L63">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,</span>
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
 
 
-<span class="fc" id="L72">		return content;</span>
+<span class="fc" id="L67">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L78" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
+<span class="fc bfc" id="L73" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 
 }

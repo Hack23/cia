@@ -38,16 +38,23 @@ import org.eclipse.jetty.servlet.DefaultServlet;
                 @WebInitParam(name = &quot;cacheControl&quot;, value = &quot;public, max-age=31536000&quot;),
                 @WebInitParam(name = &quot;precompressed&quot;, value = &quot;true&quot;)
         }, asyncSupported = true)
-<span class="fc" id="L41">public class ResourceServlet extends DefaultServlet {</span>
+public class ResourceServlet extends DefaultServlet {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Default constructor for ResourceServlet.
+	 */
+<span class="fc" id="L49">	public ResourceServlet() {</span>
+		// Default constructor
+<span class="fc" id="L51">	}</span>
+
 	 @Override
 	  protected void service(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
-<span class="fc" id="L48">		 response.setHeader(&quot;Pragma&quot;, &quot;cache&quot;);</span>
-<span class="fc" id="L49">	     super.service(request, response);</span>
-<span class="fc" id="L50">	  }</span>
+<span class="fc" id="L55">		 response.setHeader(&quot;Pragma&quot;, &quot;cache&quot;);</span>
+<span class="fc" id="L56">	     super.service(request, response);</span>
+<span class="fc" id="L57">	  }</span>
 
 
 }

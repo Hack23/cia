@@ -27,7 +27,6 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.OrgDocumentChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -40,12 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryDocumentActivityPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/** The Constant DOCUMENT_ACTIVITY. */
-	private static final String DOCUMENT_ACTIVITY = &quot;Document Activity&quot;;
-
-	/** The Constant MINISTRY. */
-	private static final String MINISTRY = &quot;Ministry:&quot;;
-
 	/** The chart data manager. */
 	@Autowired
 	private OrgDocumentChartDataManager chartDataManager;
@@ -55,34 +48,33 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 	 * impl.
 	 */
 	public MinistryDocumentActivityPageModContentFactoryImpl() {
-<span class="fc" id="L58">		super();</span>
-<span class="fc" id="L59">	}</span>
+<span class="fc" id="L51">		super();</span>
+<span class="fc" id="L52">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L57">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L59">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L68">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
-<span class="fc" id="L69">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L61">		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);</span>
+<span class="fc" id="L62">		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L71">		LabelFactory.createHeader2Label(panelContent, DOCUMENT_ACTIVITY);</span>
+<span class="fc" id="L64">		createPageHeader(panel, panelContent, &quot;Ministry Documents &quot; + viewRiksdagenMinistry.getNameId(), &quot;Document Activity Overview&quot;, &quot;Tracks and visualizes the activity associated with ministry documents.&quot;);</span>
 
-<span class="fc" id="L73">		chartDataManager.createDocumentHistoryChartByOrg(panelContent, viewRiksdagenMinistry.getNameId());</span>
+<span class="fc" id="L66">		chartDataManager.createDocumentHistoryChartByOrg(panelContent, viewRiksdagenMinistry.getNameId());</span>
 
-<span class="fc" id="L75">		panel.setCaption(NAME + &quot;::&quot; + MINISTRY + viewRiksdagenMinistry.getNameId());</span>
-<span class="fc" id="L76">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L79">		return panelContent;</span>
+<span class="fc" id="L71">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L85" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, MinistryPageMode.DOCUMENTACTIVITY.toString());</span>
+<span class="fc bfc" id="L77" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, MinistryPageMode.DOCUMENTACTIVITY.toString());</span>
 	}
 
 }

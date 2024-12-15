@@ -1,29 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode</a> &gt; <span class="el_source">MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</span></div><h1>MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2024 James Pether Sörling
- *
- * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- *	$Id$
- *  $HeadURL$
-*/
-package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode</a> &gt; <span class="el_source">MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</span></div><h1>MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
@@ -39,208 +22,373 @@ import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Responsive;
-import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.ui.CssLayout;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
+import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-/**
- * The Class
- * MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.
- */
 @Service
 public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = &quot;Ministries leader scoreboard&quot;;
-
-	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
-
-	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
 	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
-
-	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
 	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
-
-	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
 	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
 
-	/** The Constant EXPENDITURE_GROUP_NAME. */
 	private static final String EXPENDITURE_GROUP_NAME = &quot;Utgiftsområdesnamn&quot;;
-
-	/** The Constant INKOMSTTITELGRUPPSNAMN. */
 	private static final String INKOMSTTITELGRUPPSNAMN = &quot;Inkomsttitelgruppsnamn&quot;;
+	private static final int CURRENT_YEAR = 2024;
 
-	/** The esv api. */
-	@Autowired
-	private EsvApi esvApi;
+	private final EsvApi esvApi;
 
-	/**
-	 * Instantiates a new ministry ranking current parties leader scoreboard charts
-	 * page mod content factory impl.
-	 */
-	public MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl() {
-<span class="fc" id="L94">		super();</span>
-<span class="fc" id="L95">	}</span>
+	public MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl(final EsvApi esvApi) {
+<span class="fc" id="L58">		super();</span>
+<span class="fc" id="L59">		this.esvApi = esvApi;</span>
+<span class="fc" id="L60">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L100">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L65">		panel.setSizeFull();</span>
 
-<span class="fc" id="L102">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+<span class="fc" id="L67">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L68">		panelContent.setSizeFull();</span>
+<span class="fc" id="L69">		panel.setContent(panelContent);</span>
 
-<span class="fc" id="L104">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L71">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
 
-<span class="fc" id="L106">		LabelFactory.createHeader2Label(panelContent, &quot;Dashboard Government members&quot;);</span>
+<span class="fc" id="L73">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L108">		final Label descriptionLabel = new Label(</span>
-				&quot;Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level&quot;);
-<span class="fc" id="L110">		descriptionLabel.addStyleName(&quot;itembox&quot;);</span>
-<span class="fc" id="L111">		Responsive.makeResponsive(descriptionLabel);</span>
-<span class="fc" id="L112">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L113">		panelContent.addComponent(descriptionLabel);</span>
+<span class="fc" id="L75">		createPageHeader(panel, panelContent, &quot;Ministry Rankings&quot;, &quot;Leader Scoreboard&quot;,</span>
+				&quot;Visual representation of ministry leaders and their performance.&quot;);
 
-<span class="fc" id="L115">		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L78">		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L79">		row.setSizeFull();</span>
 
-<span class="fc" id="L117">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L118">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
+<span class="fc" id="L81">		final List&lt;ViewRiksdagenGovermentRoleMember&gt; activeGovMembers = loadActiveGovernmentRoleMembers();</span>
+<span class="fc" id="L82">		final Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; activePoliticianMap = loadActivePoliticiansByPersonId();</span>
 
-<span class="fc" id="L120">		final List&lt;ViewRiksdagenGovermentRoleMember&gt; listMinistryMembers = govermentRoleMemberDataContainer</span>
-<span class="fc" id="L121">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenGovermentRoleMember_.active);</span>
+<span class="fc" id="L84">		final Map&lt;String, Boolean&gt; partyLeaderMap = computePartyLeaders(activePoliticianMap.keySet());</span>
 
-<span class="fc" id="L123">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
-<span class="fc" id="L124">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
+		// Sort roles
+<span class="fc" id="L87">		activeGovMembers.sort((a, b) -&gt; {</span>
+<span class="fc" id="L88">			final boolean aLeader = partyLeaderMap.getOrDefault(a.getPersonId(), false);</span>
+<span class="fc" id="L89">			final boolean bLeader = partyLeaderMap.getOrDefault(b.getPersonId(), false);</span>
+<span class="fc" id="L90">			final int aPriority = getRolePriority(a.getRoleCode(), aLeader);</span>
+<span class="fc" id="L91">			final int bPriority = getRolePriority(b.getRoleCode(), bLeader);</span>
+<span class="fc" id="L92">			return Integer.compare(aPriority, bPriority);</span>
+		});
 
-<span class="fc" id="L126">		final List&lt;ViewRiksdagenPolitician&gt; parliamentDataList = politicianDataContainer</span>
-<span class="fc" id="L127">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.activeGovernment);</span>
-<span class="fc" id="L128">		final Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; parliamentMap = parliamentDataList.stream()</span>
-<span class="fc" id="L129">				.collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));</span>
+<span class="fc" id="L95">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; dataMap = esvApi.getData();</span>
+<span class="fc" id="L96">		final List&lt;GovernmentBodyAnnualSummary&gt; currentYearGovernmentBodies = dataMap.get(CURRENT_YEAR);</span>
+<span class="fc" id="L97">		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyByMinistry = currentYearGovernmentBodies</span>
+<span class="fc" id="L98">				.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));</span>
 
-<span class="fc" id="L131">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; dataMap = esvApi.getData();</span>
-<span class="fc" id="L132">		final List&lt;GovernmentBodyAnnualSummary&gt; headCountGovermentBodies = dataMap.get(2024);</span>
-<span class="fc" id="L133">		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap = headCountGovermentBodies</span>
-<span class="fc" id="L134">				.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));</span>
+<span class="fc" id="L100">		final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry = esvApi</span>
+<span class="fc" id="L101">				.getGovernmentBodyReportByMinistry();</span>
 
-<span class="fc bfc" id="L136" title="All 2 branches covered.">		for (final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember : listMinistryMembers) {</span>
-<span class="fc" id="L137">			createDashboardGovernmentMember(row, governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember,</span>
-<span class="fc" id="L138">					parliamentMap.get(viewRiksdagenGovermentRoleMember.getPersonId()).get(0));</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">		for (final ViewRiksdagenGovermentRoleMember govMember : activeGovMembers) {</span>
+<span class="fc" id="L104">			final ViewRiksdagenPolitician politician = activePoliticianMap.get(govMember.getPersonId()).get(0);</span>
+<span class="fc" id="L105">			final Panel cardPanel = createBaseballStyleCard(govMember, politician, governmentBodyByMinistry,</span>
+					reportByMinistry);
 
-<span class="fc" id="L140">		}</span>
+			// Responsive column rules
+<span class="fc" id="L109">			row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="fc" id="L110">					DISPLAY_SIZE_LG_DEVICE).withComponent(cardPanel);</span>
+<span class="fc" id="L111">		}</span>
 
-<span class="fc" id="L142">		panel.setCaption(NAME + &quot;::&quot; + CHARTS + parameters);</span>
-
-<span class="fc" id="L144">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L113">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
 
-<span class="fc" id="L147">		return panelContent;</span>
-
+<span class="fc" id="L116">		return panelContent;</span>
 	}
 
-	private void createDashboardGovernmentMember(final ResponsiveRow row,
-			final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,
-			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician) {
+	private List&lt;ViewRiksdagenGovermentRoleMember&gt; loadActiveGovernmentRoleMembers() {
+<span class="fc" id="L120">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L121">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
+<span class="fc" id="L122">		return govermentRoleMemberDataContainer.findListByProperty(new Object[] { Boolean.TRUE },</span>
+				ViewRiksdagenGovermentRoleMember_.active);
+	}
 
-<span class="fc" id="L156">		final CssLayout layout = new CssLayout();</span>
-<span class="fc" id="L157">		layout.addStyleName(&quot;v-layout-content-overview-dashboard-panel-level2&quot;);</span>
-<span class="fc" id="L158">		Responsive.makeResponsive(layout);</span>
-<span class="fc" id="L159">		layout.setSizeUndefined();</span>
+	private Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; loadActivePoliticiansByPersonId() {
+<span class="fc" id="L127">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
+<span class="fc" id="L128">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
+<span class="fc" id="L129">		final List&lt;ViewRiksdagenPolitician&gt; activePoliticians = politicianDataContainer</span>
+<span class="fc" id="L130">				.findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.activeGovernment);</span>
+<span class="fc" id="L131">		return activePoliticians.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));</span>
+	}
 
+	private Map&lt;String, Boolean&gt; computePartyLeaders(Iterable&lt;String&gt; personIds) {
+<span class="fc" id="L135">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L136">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
 
-<span class="fc" id="L162">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L163">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
+<span class="fc" id="L138">		final Map&lt;String, Boolean&gt; result = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">		for (final String personId : personIds) {</span>
+<span class="fc" id="L140">			final List&lt;ViewRiksdagenPartyRoleMember&gt; roles = partyRoleMemberDataContainer.findListByProperty(</span>
+					new Object[] { personId, Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.personId,
+					ViewRiksdagenPartyRoleMember_.active);
 
+<span class="fc" id="L144">			final boolean isLeader = roles.stream().anyMatch(</span>
+<span class="pc bpc" id="L145" title="2 of 4 branches missed.">					role -&gt; role.getRoleCode() != null &amp;&amp; &quot;Partiledare&quot;.equalsIgnoreCase(role.getRoleCode().trim()));</span>
 
-<span class="fc" id="L166">		final Label titleLabel = new Label(viewRiksdagenGovermentRoleMember.getRoleCode() + &quot; &quot;</span>
-<span class="fc" id="L167">				+ viewRiksdagenGovermentRoleMember.getFirstName() + &quot; &quot; + viewRiksdagenGovermentRoleMember.getLastName()</span>
-<span class="fc" id="L168">				+ &quot; (&quot; + viewRiksdagenGovermentRoleMember.getParty() +&quot;)&quot;);</span>
-<span class="fc" id="L169">		layout.addComponent(getPageLinkFactory().createPoliticianPageLink(viewRiksdagenPolitician));</span>
-<span class="fc" id="L170">		Responsive.makeResponsive(titleLabel);</span>
-<span class="fc" id="L171">		titleLabel.addStyleName(&quot;title&quot;);</span>
-<span class="fc" id="L172">		titleLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L173">		layout.addComponent(titleLabel);</span>
+<span class="fc" id="L147">			result.put(personId, isLeader);</span>
+<span class="fc" id="L148">		}</span>
+<span class="fc" id="L149">		return result;</span>
+	}
 
+	private int getRolePriority(String role, boolean isPartyLeader) {
+<span class="fc" id="L153">		final String roleNormalized = role.toLowerCase(Locale.ROOT).trim();</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">		if (&quot;statsminister&quot;.equals(roleNormalized)) {</span>
+<span class="fc" id="L155">			return 1;</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">		} else if (isPartyLeader) {</span>
+<span class="fc" id="L157">			return 2;</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">		} else if (roleNormalized.endsWith(&quot;minister&quot;)) {</span>
+<span class="fc" id="L159">			return 3;</span>
+<span class="pc bpc" id="L160" title="1 of 2 branches missed.">		} else if (&quot;statsråd&quot;.equalsIgnoreCase(roleNormalized)) {</span>
+<span class="fc" id="L161">			return 4;</span>
+		} else {
+<span class="nc" id="L163">			return 5;</span>
+		}
+	}
 
-<span class="fc" id="L176">		final List&lt;ViewRiksdagenPartyRoleMember&gt; partyRole = partyRoleMemberDataContainer.findListByProperty(new Object[] { viewRiksdagenPolitician.getPersonId(), Boolean.TRUE },ViewRiksdagenPartyRoleMember_.personId, ViewRiksdagenPartyRoleMember_.active);</span>
+	private Panel createBaseballStyleCard(ViewRiksdagenGovermentRoleMember govMember,
+			ViewRiksdagenPolitician politician, Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyByMinistry,
+			Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry) {
 
-<span class="fc bfc" id="L178" title="All 2 branches covered.">		if (partyRole.size()&gt; 0) {</span>
-<span class="fc" id="L179">			final Label partyRoleLabel = new Label(partyRole.get(0).getRoleCode() + &quot; (&quot; + viewRiksdagenGovermentRoleMember.getParty() +&quot;)  since &quot; +partyRole.get(0).getFromDate() );</span>
-<span class="fc" id="L180">			Responsive.makeResponsive(partyRoleLabel);</span>
-<span class="fc" id="L181">			partyRoleLabel.addStyleName(&quot;title&quot;);</span>
-<span class="fc" id="L182">			partyRoleLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L183">			layout.addComponent(partyRoleLabel);</span>
+<span class="fc" id="L171">		final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L172">		cardPanel.addStyleName(&quot;leader-baseball-card&quot;);</span>
+<span class="fc" id="L173">		cardPanel.setSizeFull();</span>
+<span class="fc" id="L174">		Responsive.makeResponsive(cardPanel);</span>
 
+<span class="fc" id="L176">		final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L177">		cardContent.setMargin(true);</span>
+<span class="fc" id="L178">		cardContent.setSpacing(true);</span>
+<span class="fc" id="L179">		cardContent.setSizeFull();</span>
+<span class="fc" id="L180">		cardPanel.setContent(cardContent);</span>
+
+		// Header Section
+<span class="fc" id="L183">		final HorizontalLayout headerLayout = new HorizontalLayout();</span>
+<span class="fc" id="L184">		headerLayout.setSpacing(true);</span>
+<span class="fc" id="L185">		headerLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L186">		headerLayout.addStyleName(&quot;card-header-section&quot;);</span>
+
+<span class="fc" id="L188">		final String titleText = govMember.getRoleCode() + &quot; &quot; + govMember.getFirstName() + &quot; &quot; + govMember.getLastName()</span>
+<span class="fc" id="L189">				+ &quot; (&quot; + govMember.getParty() + &quot;)&quot;;</span>
+<span class="fc" id="L190">		final Label titleLabel = new Label(titleText);</span>
+<span class="fc" id="L191">		titleLabel.addStyleName(&quot;card-title&quot;);</span>
+<span class="fc" id="L192">		titleLabel.setWidthUndefined();</span>
+<span class="fc" id="L193">		headerLayout.addComponent(titleLabel);</span>
+
+<span class="fc" id="L195">		cardContent.addComponent(headerLayout);</span>
+<span class="fc" id="L196">		cardContent.addComponent(getPageLinkFactory().createPoliticianPageLink(politician));</span>
+
+<span class="fc" id="L198">		final Link pageLink = new Link(&quot;Party &quot; + politician.getParty(),</span>
+<span class="fc" id="L199">				new ExternalResource(&quot;#!&quot; + UserViews.PARTY_VIEW_NAME + &quot;/&quot; + politician.getParty()));</span>
+<span class="fc" id="L200">		pageLink.setId(ViewAction.VISIT_PARTY_VIEW.name() + &quot;/&quot; + politician.getParty());</span>
+<span class="fc" id="L201">		pageLink.setIcon(VaadinIcons.GROUP);</span>
+
+<span class="fc" id="L203">		cardContent.addComponent(pageLink);</span>
+
+<span class="fc" id="L205">		final boolean isPartyLeader = isPartyLeader(politician.getPersonId());</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">		if (isPartyLeader) {</span>
+<span class="fc" id="L207">			final ViewRiksdagenPartyRoleMember leaderRole = getPartyLeaderRole(politician.getPersonId());</span>
+<span class="pc bpc" id="L208" title="1 of 2 branches missed.">			if (leaderRole != null) {</span>
+<span class="fc" id="L209">				final Label subHeader = new Label(</span>
+<span class="fc" id="L210">						&quot;Partiledare (&quot; + govMember.getParty() + &quot;) since &quot; + leaderRole.getFromDate());</span>
+<span class="fc" id="L211">				subHeader.addStyleName(&quot;card-subtitle&quot;);</span>
+<span class="fc" id="L212">				cardContent.addComponent(subHeader);</span>
+			}
 		}
 
+		// After creating the divider following the header/subtitle
+		// We create a vertical layout to hold Tenure and Experience on separate rows
+<span class="fc" id="L218">		final VerticalLayout statsContainer = new VerticalLayout();</span>
+<span class="fc" id="L219">		statsContainer.setSpacing(false); // Less space between rows</span>
+<span class="fc" id="L220">		statsContainer.addStyleName(&quot;card-stats-container&quot;);</span>
+<span class="fc" id="L221">		statsContainer.setWidth(&quot;100%&quot;);</span>
 
-<span class="fc" id="L188">		final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry = esvApi.getGovernmentBodyReportByMinistry();</span>
+		// Tenure Row
+<span class="fc" id="L224">		final HorizontalLayout tenureLayout = new HorizontalLayout();</span>
+<span class="fc" id="L225">		tenureLayout.setSpacing(true);</span>
+<span class="fc" id="L226">		tenureLayout.addStyleName(&quot;card-tenure&quot;);</span>
+<span class="fc" id="L227">		final Label tenureIcon = new Label(VaadinIcons.CLOCK.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L228">		tenureIcon.setDescription(&quot;Tenure in days&quot;);</span>
 
-<span class="fc" id="L190">		createPoliticaExperienceSummary(governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember, viewRiksdagenPolitician, layout);</span>
-<span class="fc" id="L191">		createMinistryRoleSummary(reportByMinistry, governmentBodyMinistryMap, viewRiksdagenGovermentRoleMember, viewRiksdagenPolitician, layout);</span>
+<span class="fc" id="L230">		final Label tenureLabel = new Label(&quot;Tenure:&quot;);</span>
+<span class="fc" id="L231">		tenureLabel.addStyleName(&quot;card-tenure-text&quot;);</span>
 
+<span class="fc" id="L233">		final Label tenureValue = new Label(govMember.getTotalDaysServed() + &quot; days&quot;);</span>
+<span class="fc" id="L234">		tenureValue.addStyleName(&quot;card-tenure-value&quot;);</span>
 
-<span class="fc" id="L194">		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
-<span class="fc" id="L195">				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);</span>
-<span class="fc" id="L196">	}</span>
+<span class="fc" id="L236">		tenureLayout.addComponents(tenureIcon, tenureLabel, tenureValue);</span>
+<span class="fc" id="L237">		statsContainer.addComponent(tenureLayout);</span>
 
-	private void createMinistryRoleSummary(final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry, final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,
-			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
+		// Experience Row
+<span class="fc" id="L240">		final HorizontalLayout experienceLayout = new HorizontalLayout();</span>
+<span class="fc" id="L241">		experienceLayout.setSpacing(true);</span>
+<span class="fc" id="L242">		experienceLayout.addStyleName(&quot;card-experience-section&quot;);</span>
+<span class="fc" id="L243">		final Label expIcon = new Label(VaadinIcons.USER_CHECK.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L244">		expIcon.setDescription(&quot;Political Experience&quot;);</span>
 
+<span class="fc" id="L246">		final Label expLabel = new Label(&quot;Experience:&quot;);</span>
+<span class="fc" id="L247">		expLabel.addStyleName(&quot;card-experience-text&quot;);</span>
 
-<span class="fc" id="L203">		layout.addComponent(getPageLinkFactory().addMinistryPageLink(viewRiksdagenGovermentRoleMember.getDetail()));</span>
+<span class="fc" id="L249">		final int govYears = (int) (politician.getTotalDaysServedGovernment() / 365);</span>
+<span class="fc" id="L250">		final int partyYears = (int) (politician.getTotalDaysServedParty() / 365);</span>
+<span class="fc" id="L251">		final int parliamentYears = (int) (politician.getTotalDaysServedParliament() / 365);</span>
+<span class="fc" id="L252">		final Label expValue = new Label(</span>
+				&quot;Goverment: &quot; + govYears + &quot;y, Party: &quot; + partyYears + &quot;y, Parliament: &quot; + parliamentYears + &quot;y&quot;);
+<span class="fc" id="L254">		expValue.addStyleName(&quot;card-experience-value&quot;);</span>
 
-<span class="fc" id="L205">		final List&lt;GovernmentBodyAnnualSummary&gt; governentBodies = governmentBodyMinistryMap</span>
-<span class="fc" id="L206">				.get(viewRiksdagenGovermentRoleMember.getDetail());</span>
+<span class="fc" id="L256">		experienceLayout.addComponents(expIcon, expLabel, expValue);</span>
+<span class="fc" id="L257">		statsContainer.addComponent(experienceLayout);</span>
 
-<span class="fc" id="L208">		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.size()));</span>
-<span class="fc" id="L209">		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesHeadcountPageLink(viewRiksdagenGovermentRoleMember.getDetail(),governentBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount).sum()));</span>
+		// Add the statsContainer to the cardContent
+<span class="fc" id="L260">		cardContent.addComponent(statsContainer);</span>
 
-<span class="fc" id="L211">		final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; listOutCome = reportByMinistry.get(viewRiksdagenGovermentRoleMember.getDetail());</span>
-<span class="fc bfc" id="L212" title="All 2 branches covered.">		final Map&lt;Integer, Double&gt; annualIncomeSummaryMap = listOutCome.stream().filter(t -&gt; t.getDescriptionFields().get(INKOMSTTITELGRUPPSNAMN) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));</span>
-<span class="fc bfc" id="L213" title="All 2 branches covered.">		final Map&lt;Integer, Double&gt; annualSpendingSummaryMap = listOutCome.stream().filter(t -&gt; t.getDescriptionFields().get(EXPENDITURE_GROUP_NAME) != null).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));</span>
+//        // Another divider before ministry stats
+//        Label divider2 = new Label();
+//        divider2.addStyleName(&quot;card-divider&quot;);
+//        divider2.setWidth(&quot;100%&quot;);
+//        cardContent.addComponent(divider2);
 
-<span class="fc" id="L215">		layout.addComponent(getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualIncomeSummaryMap.get(2024) /1000));</span>
-<span class="fc" id="L216">		layout.addComponent(getPageLinkFactory().addMinistrGovermentBodiesSpendingPageLink(viewRiksdagenGovermentRoleMember.getDetail(),annualSpendingSummaryMap.get(2024)/1000));</span>
+<span class="fc" id="L268">		addMinistryRoleSummary(cardContent, govMember, governmentBodyByMinistry, reportByMinistry);</span>
 
+<span class="fc" id="L270">		return cardPanel;</span>
+	}
 
-<span class="fc" id="L219">	}</span>
+	private boolean isPartyLeader(String personId) {
+<span class="fc" id="L274">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L275">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
 
+<span class="fc" id="L277">		final List&lt;ViewRiksdagenPartyRoleMember&gt; partyRoles = partyRoleMemberDataContainer.findListByProperty(</span>
+				new Object[] { personId, Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.personId,
+				ViewRiksdagenPartyRoleMember_.active);
 
-	private void createPoliticaExperienceSummary(final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyMinistryMap,
-			final ViewRiksdagenGovermentRoleMember viewRiksdagenGovermentRoleMember,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician, final CssLayout layout) {
+<span class="fc" id="L281">		return partyRoles.stream().anyMatch(r -&gt; &quot;Partiledare&quot;.equalsIgnoreCase(r.getRoleCode()));</span>
+	}
 
-<span class="fc" id="L226">		final Label ministryDaysServedLabel = new Label(&quot;Hold position for &quot; + viewRiksdagenGovermentRoleMember.getTotalDaysServed() + &quot; (days) in &quot; + viewRiksdagenGovermentRoleMember.getDetail());</span>
-<span class="fc" id="L227">		Responsive.makeResponsive(ministryDaysServedLabel);</span>
-<span class="fc" id="L228">		ministryDaysServedLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L229">		layout.addComponent(ministryDaysServedLabel);</span>
+	private ViewRiksdagenPartyRoleMember getPartyLeaderRole(String personId) {
+<span class="fc" id="L285">		final DataContainer&lt;ViewRiksdagenPartyRoleMember, String&gt; partyRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L286">				.getDataContainer(ViewRiksdagenPartyRoleMember.class);</span>
 
-		{
-<span class="fc" id="L232">		final Label experienceLabel = new Label(&quot;Political Experience:&quot; + (viewRiksdagenPolitician.getTotalDaysServedGovernment() / 365) + &quot; year Government, &quot; + (viewRiksdagenPolitician.getTotalDaysServedParty() / 365) + &quot; year Party ,&quot; + (viewRiksdagenPolitician.getTotalDaysServedParliament() / 365) +&quot; year parliament&quot;);</span>
-<span class="fc" id="L233">		Responsive.makeResponsive(experienceLabel);</span>
-<span class="fc" id="L234">		experienceLabel.setWidth(100, Unit.PERCENTAGE);</span>
-<span class="fc" id="L235">		layout.addComponent(experienceLabel);</span>
+<span class="fc" id="L288">		final List&lt;ViewRiksdagenPartyRoleMember&gt; partyRoles = partyRoleMemberDataContainer.findListByProperty(</span>
+				new Object[] { personId, Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.personId,
+				ViewRiksdagenPartyRoleMember_.active);
+
+<span class="fc" id="L292">		return partyRoles.stream().filter(r -&gt; &quot;Partiledare&quot;.equalsIgnoreCase(r.getRoleCode())).findFirst()</span>
+<span class="fc" id="L293">				.orElse(null);</span>
+	}
+
+	private void addMinistryRoleSummary(final VerticalLayout cardLayout,
+			final ViewRiksdagenGovermentRoleMember govMember,
+			final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyByMinistry,
+			final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry) {
+
+<span class="fc" id="L301">		cardLayout.addComponent(getPageLinkFactory().addMinistryPageLink(govMember.getDetail()));</span>
+
+<span class="fc" id="L303">		final List&lt;GovernmentBodyAnnualSummary&gt; ministryBodies = governmentBodyByMinistry.get(govMember.getDetail());</span>
+<span class="fc" id="L304">		final int totalHeadCount = ministryBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount)</span>
+<span class="fc" id="L305">				.sum();</span>
+
+		// Bodies count
+<span class="fc" id="L308">		final int bodyCount = ministryBodies.size();</span>
+<span class="fc" id="L309">		cardLayout.addComponent(createMetricRow(VaadinIcons.GROUP,</span>
+<span class="fc" id="L310">				getPageLinkFactory().addMinistryGovermentBodiesPageLink(govMember.getDetail()),</span>
+<span class="fc" id="L311">				&quot;Number of government bodies&quot;, String.valueOf(bodyCount) // display the count separately</span>
+		));
+
+		// Headcount
+<span class="fc" id="L315">		cardLayout.addComponent(createMetricRow(VaadinIcons.USER,</span>
+<span class="fc" id="L316">				getPageLinkFactory().addMinistryGovermentBodiesHeadcountPageLink(govMember.getDetail()),</span>
+<span class="fc" id="L317">				&quot;Total headcount of government bodies&quot;, String.valueOf(totalHeadCount) // display the headcount</span>
+																						// separately
+		));
+
+<span class="fc" id="L321">		final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; outcomeSummaries = reportByMinistry.get(govMember.getDetail());</span>
+<span class="fc" id="L322">		double currentYearIncome = 0;</span>
+<span class="fc" id="L323">		double currentYearSpending = 0;</span>
+<span class="pc bpc" id="L324" title="1 of 2 branches missed.">		if (outcomeSummaries != null) {</span>
+<span class="fc" id="L325">			final Map&lt;Integer, Double&gt; annualIncome = outcomeSummaries.stream()</span>
+<span class="fc bfc" id="L326" title="All 2 branches covered.">					.filter(t -&gt; t.getDescriptionFields().get(INKOMSTTITELGRUPPSNAMN) != null)</span>
+<span class="fc" id="L327">					.collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,</span>
+<span class="fc" id="L328">							Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));</span>
+
+<span class="fc" id="L330">			final Map&lt;Integer, Double&gt; annualSpending = outcomeSummaries.stream()</span>
+<span class="fc bfc" id="L331" title="All 2 branches covered.">					.filter(t -&gt; t.getDescriptionFields().get(EXPENDITURE_GROUP_NAME) != null)</span>
+<span class="fc" id="L332">					.collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,</span>
+<span class="fc" id="L333">							Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));</span>
+
+<span class="pc bpc" id="L335" title="1 of 2 branches missed.">			if (annualIncome.get(CURRENT_YEAR) != null) {</span>
+<span class="fc" id="L336">				currentYearIncome = annualIncome.get(CURRENT_YEAR) / 1000;</span>
+			}
+
+<span class="pc bpc" id="L339" title="1 of 2 branches missed.">			if (annualSpending.get(CURRENT_YEAR) != null) {</span>
+<span class="fc" id="L340">				currentYearSpending = annualSpending.get(CURRENT_YEAR) / 1000;</span>
+			}
 		}
-<span class="fc" id="L237">	}</span>
 
+		// Income
+<span class="fc" id="L345">		final String incomeStr = String.format(Locale.ROOT,&quot;%.2f B SEK&quot;, currentYearIncome);</span>
+<span class="fc" id="L346">		cardLayout.addComponent(createMetricRow(VaadinIcons.ARROW_UP,</span>
+<span class="fc" id="L347">				getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(govMember.getDetail()),</span>
+				&quot;Yearly Income (B SEK)&quot;, incomeStr // display income outside link
+		));
+
+		// Spending
+<span class="fc" id="L352">		final String spendingStr = String.format(Locale.ROOT,&quot;%.2f B SEK&quot;, currentYearSpending);</span>
+<span class="fc" id="L353">		cardLayout.addComponent(</span>
+<span class="fc" id="L354">				createMetricRow(VaadinIcons.ARROW_DOWN, getPageLinkFactory().addMinistrGovermentBodiesSpendingPageLink(</span>
+<span class="fc" id="L355">						govMember.getDetail()), &quot;Yearly Spending (B SEK)&quot;, spendingStr // display</span>
+																											// spending
+																											// outside
+																											// link
+				));
+<span class="fc" id="L360">	}</span>
+
+	private HorizontalLayout createMetricRow(VaadinIcons icon, com.vaadin.ui.Component linkComponent,
+			String description, String valueText) {
+<span class="fc" id="L364">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L365">		layout.setSpacing(true);</span>
+<span class="fc" id="L366">		layout.addStyleName(&quot;metric-label&quot;);</span>
+<span class="fc" id="L367">		layout.setWidthUndefined();</span>
+
+<span class="fc" id="L369">		final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L370">		iconLabel.setDescription(description);</span>
+
+		// Value displayed outside of the link
+<span class="fc" id="L373">		Label valueLabel = null;</span>
+<span class="pc bpc" id="L374" title="2 of 4 branches missed.">		if (valueText != null &amp;&amp; !valueText.isEmpty()) {</span>
+<span class="fc" id="L375">			valueLabel = new Label(valueText);</span>
+<span class="fc" id="L376">			valueLabel.addStyleName(&quot;metric-value&quot;);</span>
+		}
+
+<span class="fc" id="L379">		layout.addComponent(iconLabel);</span>
+<span class="fc" id="L380">		layout.addComponent(linkComponent);</span>
+<span class="pc bpc" id="L381" title="1 of 2 branches missed.">		if (valueLabel != null) {</span>
+<span class="fc" id="L382">			layout.addComponent(valueLabel);</span>
+		}
+
+<span class="fc" id="L385">		return layout;</span>
+	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L242" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
-<span class="pc bpc" id="L243" title="1 of 2 branches missed.">				&amp;&amp; parameters.contains(ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());</span>
+<span class="fc bfc" id="L390" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
+<span class="pc bpc" id="L391" title="1 of 2 branches missed.">				&amp;&amp; parameters.contains(ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());</span>
 	}
 
 }

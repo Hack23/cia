@@ -41,40 +41,37 @@ public final class GovernmentBodyPageVisitHistoryPageModContentFactoryImpl
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.GOVERNMENT_BODY_VIEW_NAME;
 
-	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = &quot;Page Visit History&quot;;
-
 	/**
 	 * Instantiates a new government body page visit history page mod content
 	 * factory impl.
 	 */
 	public GovernmentBodyPageVisitHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L52">		super();</span>
-<span class="fc" id="L53">	}</span>
+<span class="fc" id="L49">		super();</span>
+<span class="fc" id="L50">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L55">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L57">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L62">		getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,pageId);</span>
+<span class="fc" id="L59">		getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,pageId);</span>
 
-<span class="fc" id="L64">		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);</span>
+<span class="fc" id="L61">		createPageHeader(panel, panelContent, &quot;Government Body Page Visit History&quot;, &quot;Page Visit History&quot;, &quot;Track the visit history of government body pages.&quot;);</span>
 
-<span class="fc" id="L66">		panel.setCaption(NAME + &quot;::&quot; + PAGE_VISIT_HISTORY);</span>
+<span class="fc" id="L63">		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);</span>
 
-<span class="fc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L65">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
 
-<span class="fc" id="L71">		return panelContent;</span>
+<span class="fc" id="L68">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L77" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
+<span class="fc bfc" id="L74" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 
 }

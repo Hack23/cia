@@ -42,22 +42,24 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CommitteeRankingDataGridPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
-<span class="fc" id="L45">	private static final String[] COLUMN_ORDER = { &quot;embeddedId.detail&quot;, &quot;embeddedId&quot;, &quot;totalDaysServed&quot;, &quot;currentMemberSize&quot;,</span>
+	/** The Constant COLUMN_ORDER. */
+<span class="fc" id="L46">	private static final String[] COLUMN_ORDER = { &quot;embeddedId.detail&quot;, &quot;embeddedId&quot;, &quot;totalDaysServed&quot;, &quot;currentMemberSize&quot;,</span>
 			&quot;totalAssignments&quot;, &quot;firstAssignmentDate&quot;, &quot;active&quot;, &quot;lastAssignmentDate&quot; };
 
+	/** The Constant COMMITTEES. */
 	private static final String COMMITTEES = &quot;Committees&quot;;
 
-	/** The Constant DATAGRID. */
-	private static final String DATAGRID = &quot;Datagrid&quot;;
-
+	/** The Constant HIDE_COLUMNS. */
 <span class="fc" id="L53">	private static final String[] HIDE_COLUMNS = { &quot;active&quot;,&quot;embeddedId&quot; };</span>
 
-<span class="fc" id="L55">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, &quot;embeddedId.orgCode&quot;);</span>
+	/** The Constant LISTENER. */
+<span class="fc" id="L56">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, &quot;embeddedId.orgCode&quot;);</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
-<span class="fc" id="L60">	private static final String[] NESTED_PROPERTIES = {&quot;embeddedId.detail&quot;};</span>
+	/** The Constant NESTED_PROPERTIES. */
+<span class="fc" id="L62">	private static final String[] NESTED_PROPERTIES = {&quot;embeddedId.detail&quot;};</span>
 
 
 	/**
@@ -65,39 +67,38 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 	 * impl.
 	 */
 	public CommitteeRankingDataGridPageModContentFactoryImpl() {
-<span class="fc" id="L68">		super();</span>
-<span class="fc" id="L69">	}</span>
+<span class="fc" id="L70">		super();</span>
+<span class="fc" id="L71">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L74">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L76">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L76">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
+<span class="fc" id="L78">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
+<span class="fc" id="L79">        createPageHeader(panel, panelContent, &quot;Committee Ranking Overview&quot;, &quot;Committee Rankings&quot;, &quot;Analyze committee rankings with a focus on membership, performance, and activity metrics.&quot;);</span>
 
-<span class="fc" id="L78">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L81">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L80">		final DataContainer&lt;ViewRiksdagenCommittee, String&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L81">				.getDataContainer(ViewRiksdagenCommittee.class);</span>
+<span class="fc" id="L83">		final DataContainer&lt;ViewRiksdagenCommittee, String&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L84">				.getDataContainer(ViewRiksdagenCommittee.class);</span>
 
 
-<span class="fc" id="L84">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommittee.class, dataContainer.getAllOrderBy(ViewRiksdagenCommittee_.currentMemberSize),</span>
+<span class="fc" id="L87">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommittee.class, dataContainer.getAllOrderBy(ViewRiksdagenCommittee_.currentMemberSize),</span>
 				COMMITTEES, NESTED_PROPERTIES,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				LISTENER, null, null);
 
-<span class="fc" id="L89">		panel.setCaption(NAME + &quot;::&quot; + DATAGRID);</span>
-
-<span class="fc" id="L91">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L92">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L94">		return panelContent;</span>
+<span class="fc" id="L95">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L100" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.DATAGRID.toString());</span>
+<span class="fc bfc" id="L101" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.DATAGRID.toString());</span>
 	}
 
 }

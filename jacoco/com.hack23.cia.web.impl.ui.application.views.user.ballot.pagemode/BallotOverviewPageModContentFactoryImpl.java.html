@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -36,17 +35,19 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
-
 
 /**
  * The Class BallotOverviewPageModContentFactoryImpl.
@@ -54,128 +55,271 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallotPageModContentFactoryImpl {
 
-<span class="fc" id="L57">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;embeddedId.id&quot;, &quot;ballotId&quot;, &quot;rm&quot;, &quot;voteDate&quot;, &quot;org&quot;,</span>
-			&quot;committeeReport&quot;, &quot;embeddedId.issue&quot;, &quot;title&quot;, &quot;subTitle&quot;, &quot;decisionType&quot;,
-			&quot;embeddedId.concern&quot;, &quot;ballotType&quot;, &quot;winner&quot;, &quot;totalVotes&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;,
-			&quot;abstainVotes&quot;, &quot;absentVotes&quot;, &quot;approved&quot;, &quot;endNumber&quot;, &quot;againstProposalParties&quot;,
-			&quot;againstProposalNumber&quot; );
-
-<span class="fc" id="L63">	private static final List&lt;String&gt; AS_LIST2 = Arrays.asList( &quot;embeddedId.ballotId&quot;, &quot;rm&quot;, &quot;voteDate&quot;, &quot;embeddedId.issue&quot;,</span>
-			&quot;embeddedId.concern&quot;, &quot;ballotType&quot;, &quot;label&quot;, &quot;totalVotes&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;,
-			&quot;abstainVotes&quot;, &quot;absentVotes&quot;, &quot;approved&quot; );
-
+	/** The Constant EMBEDDED_ID_PARTY. */
 	private static final String EMBEDDED_ID_PARTY = &quot;embeddedId.party&quot;;
 
-	/** The Constant COMMITTEE. */
-	private static final String BALLOT = &quot;Ballot:&quot;;
+	/** The Constant COLUMN_ORDER. */
+<span class="fc" id="L62">	private static final String[] COLUMN_ORDER = { EMBEDDED_ID_PARTY, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;, &quot;embeddedId.concern&quot;,</span>
+			&quot;embeddedId.issue&quot;, &quot;approved&quot;, &quot;partyApproved&quot;, &quot;totalVotes&quot;, &quot;partyTotalVotes&quot;, &quot;yesVotes&quot;,
+			&quot;partyYesVotes&quot;, &quot;noVotes&quot;, &quot;partyNoVotes&quot;, &quot;partyAbstainVotes&quot;, &quot;abstainVotes&quot;, &quot;partyAbsentVotes&quot;,
+			&quot;absentVotes&quot;, &quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;partyPercentageMale&quot;, &quot;percentageMale&quot;, &quot;ballotType&quot;,
+			&quot;embeddedId.ballotId&quot; };
 
-<span class="fc" id="L72">	private static final String[] COLUMN_ORDER = { EMBEDDED_ID_PARTY, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;, &quot;embeddedId.concern&quot;,</span>
-			&quot;embeddedId.issue&quot;, &quot;approved&quot;, &quot;partyApproved&quot;, &quot;totalVotes&quot;, &quot;partyTotalVotes&quot;,
-			&quot;yesVotes&quot;, &quot;partyYesVotes&quot;, &quot;noVotes&quot;, &quot;partyNoVotes&quot;, &quot;partyAbstainVotes&quot;, &quot;abstainVotes&quot;,
-			&quot;partyAbsentVotes&quot;, &quot;absentVotes&quot;, &quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;partyPercentageMale&quot;,
-			&quot;percentageMale&quot;, &quot;ballotType&quot;, &quot;embeddedId.ballotId&quot; };
-
-
-
+	/** The Constant FIRST_OBJECT. */
 	private static final int FIRST_OBJECT = 0;
 
-<span class="fc" id="L82">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;, &quot;partyPercentageNo&quot;,</span>
-			&quot;partyPercentageAbsent&quot;, &quot;partyPercentageAbstain&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;,
-			&quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;, &quot;embeddedId.concern&quot;,
-			&quot;totalVotes&quot;, &quot;approved&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;, &quot;ballotType&quot;,
-			&quot;abstainVotes&quot;, &quot;absentVotes&quot;, &quot;embeddedId.ballotId&quot;, &quot;noWinner&quot; };
+	/** The Constant HIDE_COLUMNS. */
+<span class="fc" id="L72">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;,</span>
+			&quot;partyPercentageNo&quot;, &quot;partyPercentageAbsent&quot;, &quot;partyPercentageAbstain&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;,
+			&quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;, &quot;embeddedId.concern&quot;, &quot;totalVotes&quot;,
+			&quot;approved&quot;, &quot;yesVotes&quot;, &quot;noVotes&quot;, &quot;ballotType&quot;, &quot;abstainVotes&quot;, &quot;absentVotes&quot;, &quot;embeddedId.ballotId&quot;,
+			&quot;noWinner&quot; };
 
-<span class="fc" id="L88">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, EMBEDDED_ID_PARTY);</span>
+	/** The Constant LISTENER. */
+<span class="fc" id="L79">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			UserViews.PARTY_VIEW_NAME, EMBEDDED_ID_PARTY);
 
-<span class="fc" id="L90">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.ballotId&quot;, &quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;,</span>
+	/** The Constant NESTED_PROPERTIES. */
+<span class="fc" id="L83">	private static final String[] NESTED_PROPERTIES = { &quot;embeddedId.ballotId&quot;, &quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;,</span>
 			EMBEDDED_ID_PARTY };
 
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = &quot;overview&quot;;
-
+	/** The Constant PARTY_BALLOT_SUMMARY. */
 	private static final String PARTY_BALLOT_SUMMARY = &quot;Party Ballot Summary&quot;;
 
 	/**
 	 * Instantiates a new ballot overview page mod content factory impl.
 	 */
 	public BallotOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L102">		super();</span>
-<span class="fc" id="L103">	}</span>
+<span class="fc" id="L93">		super();</span>
+<span class="fc" id="L94">	}</span>
 
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L108">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L107">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L108">		panel.setContent(panelContent);</span>
 
 <span class="fc" id="L110">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L111">		final List&lt;ViewRiksdagenVoteDataBallotSummary&gt; ballots = getItem(parameters);</span>
 
-<span class="fc" id="L112">		final List&lt;ViewRiksdagenVoteDataBallotSummary&gt; ballots = getItem(parameters);</span>
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">		if (!ballots.isEmpty()) {</span>
+<span class="fc" id="L114">			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);</span>
 
-<span class="pc bpc" id="L114" title="1 of 2 branches missed.">		if (!ballots.isEmpty()) {</span>
-<span class="fc" id="L115">			getBallotMenuItemFactory().createBallotMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L116">			final DataContainer&lt;ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId&gt; dataPartyContainer = getApplicationManager()</span>
+<span class="fc" id="L117">					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);</span>
 
-<span class="fc" id="L117">			LabelFactory.createHeader2Label(panelContent,OVERVIEW);</span>
+<span class="fc" id="L119">			final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId&gt; dataDecisionContainer = getApplicationManager()</span>
+<span class="fc" id="L120">					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);</span>
 
-<span class="fc" id="L119">			final DataContainer&lt;ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId&gt; dataPartyContainer = getApplicationManager()</span>
-<span class="fc" id="L120">					.getDataContainer(ViewRiksdagenVoteDataBallotPartySummary.class);</span>
+<span class="fc" id="L122">			final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyBallotList = dataPartyContainer</span>
+<span class="fc" id="L123">					.findListByEmbeddedProperty(ViewRiksdagenVoteDataBallotPartySummary.class,</span>
+							ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,
+							RiksdagenVoteDataBallotPartyEmbeddedId.class,
+							RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
 
-<span class="fc" id="L122">			final DataContainer&lt;ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionEmbeddedId&gt; dataDecisionContainer = getApplicationManager()</span>
-<span class="fc" id="L123">					.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);</span>
+<span class="fc" id="L128">			final List&lt;ViewRiksdagenCommitteeBallotDecisionSummary&gt; decisionSummaries = dataDecisionContainer</span>
+<span class="fc" id="L129">					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);</span>
 
-<span class="fc" id="L125">			final List&lt;ViewRiksdagenVoteDataBallotPartySummary&gt; partyBallotList = dataPartyContainer.findListByEmbeddedProperty(</span>
-					ViewRiksdagenVoteDataBallotPartySummary.class, ViewRiksdagenVoteDataBallotPartySummary_.embeddedId,
-					RiksdagenVoteDataBallotPartyEmbeddedId.class, RiksdagenVoteDataBallotPartyEmbeddedId_.ballotId, pageId);
+<span class="fc bfc" id="L131" title="All 2 branches covered.">			final boolean useDecisionSummaries = !decisionSummaries.isEmpty();</span>
 
-<span class="fc" id="L129">			final List&lt;ViewRiksdagenCommitteeBallotDecisionSummary&gt; decisionSummaries = dataDecisionContainer</span>
-<span class="fc" id="L130">					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);</span>
+			String mainTitle;
+			String subTitle;
+<span class="fc bfc" id="L135" title="All 2 branches covered.">			if (useDecisionSummaries) {</span>
+<span class="fc" id="L136">				mainTitle = &quot;Ballot Overview &quot; + decisionSummaries.get(0).getTitle() + &quot; - &quot;</span>
+<span class="fc" id="L137">						+ decisionSummaries.get(0).getSubTitle();</span>
+			} else {
+<span class="fc" id="L139">				final ViewRiksdagenVoteDataBallotSummary firstBallot = ballots.get(FIRST_OBJECT);</span>
+<span class="fc" id="L140">				mainTitle = &quot;Ballot Overview &quot; + firstBallot.getEmbeddedId().getConcern();</span>
+			}
+<span class="fc" id="L142">			subTitle = &quot;Ballot Details&quot;;</span>
 
+<span class="fc" id="L144">			createPageHeader(panel, panelContent, mainTitle, subTitle,</span>
+					&quot;Explore and analyze ballot results and voting statistics.&quot;);
 
-<span class="fc bfc" id="L133" title="All 2 branches covered.">			for (final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary : ballots) {</span>
+			// Card panel
+<span class="fc" id="L148">			final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L149">			cardPanel.addStyleName(&quot;politician-overview-card&quot;);</span>
+<span class="fc" id="L150">			cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L151">			cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L152">			Responsive.makeResponsive(cardPanel);</span>
 
-<span class="fc bfc" id="L135" title="All 2 branches covered.">				if (!decisionSummaries.isEmpty()) {</span>
+<span class="fc" id="L154">			final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L155">			cardContent.setMargin(true);</span>
+<span class="fc" id="L156">			cardContent.setSpacing(true);</span>
+<span class="fc" id="L157">			cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L158">			cardPanel.setContent(cardContent);</span>
 
-<span class="fc" id="L137">					getFormFactory().addFormPanelTextFields(panelContent, decisionSummaries.get(FIRST_OBJECT),</span>
-							ViewRiksdagenCommitteeBallotDecisionSummary.class,
-							AS_LIST);
+<span class="fc" id="L160">			panelContent.addComponent(cardPanel);</span>
+<span class="fc" id="L161">			panelContent.setExpandRatio(cardPanel, ContentRatio.GRID);</span>
 
-				} else {
+			// Header layout for the card
+<span class="fc" id="L164">			final HorizontalLayout headerLayout = new HorizontalLayout();</span>
+<span class="fc" id="L165">			headerLayout.setSpacing(true);</span>
+<span class="fc" id="L166">			headerLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L167">			headerLayout.addStyleName(&quot;card-header-section&quot;);</span>
 
-<span class="fc" id="L143">					getFormFactory().addFormPanelTextFields(panelContent, viewRiksdagenVoteDataBallotSummary,</span>
-							ViewRiksdagenVoteDataBallotSummary.class,
-							AS_LIST2);
-				}
+<span class="fc" id="L169">			final Label titleLabel = new Label(&quot;Ballot Information&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L170">			titleLabel.addStyleName(&quot;card-title&quot;);</span>
+<span class="fc" id="L171">			titleLabel.setWidthUndefined();</span>
+<span class="fc" id="L172">			headerLayout.addComponent(titleLabel);</span>
+<span class="fc" id="L173">			cardContent.addComponent(headerLayout);</span>
 
-<span class="fc" id="L148">			}</span>
+			// Divider line
+<span class="fc" id="L176">			final Label divider = new Label(&quot;&lt;hr/&gt;&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L177">			divider.addStyleName(&quot;card-divider&quot;);</span>
+<span class="fc" id="L178">			divider.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L179">			cardContent.addComponent(divider);</span>
 
+			// Two-column layout
+<span class="fc" id="L182">			final HorizontalLayout attributesLayout = new HorizontalLayout();</span>
+<span class="fc" id="L183">			attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L184">			attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L185">			cardContent.addComponent(attributesLayout);</span>
 
-<span class="fc" id="L151">			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenVoteDataBallotPartySummary.class,</span>
-					partyBallotList, PARTY_BALLOT_SUMMARY,
-					NESTED_PROPERTIES,
-					COLUMN_ORDER,
-					HIDE_COLUMNS,
-					LISTENER, EMBEDDED_ID_PARTY, null);
+			// Left column: Ballot Profile (Textual and identifying attributes)
+<span class="fc" id="L188">			final VerticalLayout profileDetailsLayout = new VerticalLayout();</span>
+<span class="fc" id="L189">			profileDetailsLayout.setSpacing(true);</span>
+<span class="fc" id="L190">			profileDetailsLayout.addStyleName(&quot;card-details-column&quot;);</span>
+<span class="fc" id="L191">			profileDetailsLayout.setWidthUndefined();</span>
 
-<span class="fc" id="L158">			final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L159">			overviewLayout.setSizeFull();</span>
+<span class="fc" id="L193">			final Label profileDetailsHeader = new Label(&quot;Ballot Profile&quot;);</span>
+<span class="fc" id="L194">			profileDetailsHeader.addStyleName(&quot;card-section-title&quot;);</span>
+<span class="fc" id="L195">			profileDetailsLayout.addComponent(profileDetailsHeader);</span>
 
-<span class="fc" id="L161">			panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L162">			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
-<span class="fc" id="L163">			getBallotMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+			// Right column: Voting Statistics (Numeric and outcome attributes)
+<span class="fc" id="L198">			final VerticalLayout serviceStatsLayout = new VerticalLayout();</span>
+<span class="fc" id="L199">			serviceStatsLayout.setSpacing(true);</span>
+<span class="fc" id="L200">			serviceStatsLayout.addStyleName(&quot;card-details-column&quot;);</span>
+<span class="fc" id="L201">			serviceStatsLayout.setWidthUndefined();</span>
 
+<span class="fc" id="L203">			final Label serviceStatsHeader = new Label(&quot;Voting Statistics&quot;);</span>
+<span class="fc" id="L204">			serviceStatsHeader.addStyleName(&quot;card-section-title&quot;);</span>
+<span class="fc" id="L205">			serviceStatsLayout.addComponent(serviceStatsHeader);</span>
 
-<span class="fc" id="L166">			panel.setCaption(NAME + &quot;::&quot; + BALLOT + pageId);</span>
-<span class="fc" id="L167">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L207">			attributesLayout.addComponents(profileDetailsLayout, serviceStatsLayout);</span>
+
+			// Populate fields depending on data
+<span class="fc bfc" id="L210" title="All 2 branches covered.">			if (useDecisionSummaries) {</span>
+<span class="fc" id="L211">				final ViewRiksdagenCommitteeBallotDecisionSummary ds = decisionSummaries.get(FIRST_OBJECT);</span>
+				// Show essential profile fields
+<span class="fc" id="L213">				profileDetailsLayout.addComponent(createInfoRow(&quot;Vote Date:&quot;, String.valueOf(ds.getVoteDate()), VaadinIcons.CALENDAR, &quot;Date of the vote&quot;));</span>
+<span class="fc" id="L214">				profileDetailsLayout.addComponent(createInfoRow(&quot;Title:&quot;, ds.getTitle(), VaadinIcons.FILE_TEXT_O, &quot;Title of the ballot&quot;));</span>
+<span class="fc" id="L215">				profileDetailsLayout.addComponent(createInfoRow(&quot;SubTitle:&quot;, ds.getSubTitle(), VaadinIcons.FILE_TEXT, &quot;Subtitle of the ballot&quot;));</span>
+<span class="fc" id="L216">				profileDetailsLayout.addComponent(createInfoRow(&quot;Decision Type:&quot;, ds.getDecisionType(), VaadinIcons.QUESTION_CIRCLE, &quot;Type of decision&quot;));</span>
+
+				// Stats fields
+<span class="fc" id="L219">				serviceStatsLayout.addComponent(createInfoRow(&quot;Concern:&quot;, ds.getEmbeddedId().getConcern(), VaadinIcons.CLIPBOARD, &quot;Concern or topic of the ballot&quot;));</span>
+<span class="fc" id="L220">				serviceStatsLayout.addComponent(createInfoRow(&quot;Ballot Type:&quot;, ds.getBallotType(), VaadinIcons.BULLETS, &quot;Type of ballot&quot;));</span>
+<span class="fc" id="L221">				serviceStatsLayout.addComponent(createInfoRow(&quot;Winner:&quot;, ds.getWinner(), VaadinIcons.TROPHY, &quot;Winner or outcome&quot;));</span>
+<span class="fc" id="L222">				serviceStatsLayout.addComponent(createInfoRow(&quot;Approved:&quot;, String.valueOf(ds.isApproved()), VaadinIcons.CHECK, &quot;Whether the proposal was approved&quot;));</span>
+
+				// Optional: If still too crowded, remove againstProposal fields
+				// serviceStatsLayout.addComponent(createInfoRow(&quot;Against Proposal Parties:&quot;, ds.getAgainstProposalParties(), VaadinIcons.WARNING, &quot;Parties against the proposal&quot;));
+				// serviceStatsLayout.addComponent(createInfoRow(&quot;Against Proposal Number:&quot;, String.valueOf(ds.getAgainstProposalNumber()), VaadinIcons.WARNING, &quot;Number of parties against the proposal&quot;));
+<span class="fc" id="L227">			} else {</span>
+				// Non-decision scenario
+<span class="fc" id="L229">				final ViewRiksdagenVoteDataBallotSummary bs = ballots.get(FIRST_OBJECT);</span>
+				// Profile fields
+<span class="fc" id="L231">				profileDetailsLayout.addComponent(createInfoRow(&quot;Ballot ID:&quot;, bs.getEmbeddedId().getBallotId(), VaadinIcons.CLIPBOARD_USER, &quot;Ballot identification&quot;));</span>
+<span class="fc" id="L232">				profileDetailsLayout.addComponent(createInfoRow(&quot;RM:&quot;, bs.getRm(), VaadinIcons.CALENDAR, &quot;Session (RM) identifier&quot;));</span>
+<span class="fc" id="L233">				profileDetailsLayout.addComponent(createInfoRow(&quot;Vote Date:&quot;, String.valueOf(bs.getVoteDate()), VaadinIcons.CALENDAR, &quot;Date of the vote&quot;));</span>
+<span class="fc" id="L234">				profileDetailsLayout.addComponent(createInfoRow(&quot;Issue:&quot;, bs.getEmbeddedId().getIssue(), VaadinIcons.CLIPBOARD_TEXT, &quot;The specific issue voted upon&quot;));</span>
+<span class="fc" id="L235">				profileDetailsLayout.addComponent(createInfoRow(&quot;Concern:&quot;, bs.getEmbeddedId().getConcern(), VaadinIcons.CLIPBOARD, &quot;Concern or topic of the ballot&quot;));</span>
+<span class="fc" id="L236">				profileDetailsLayout.addComponent(createInfoRow(&quot;Ballot Type:&quot;, bs.getBallotType(), VaadinIcons.BULLETS, &quot;Type of ballot&quot;));</span>
+<span class="fc" id="L237">				profileDetailsLayout.addComponent(createInfoRow(&quot;Label:&quot;, bs.getLabel(), VaadinIcons.FILE_TEXT, &quot;Short label or description&quot;));</span>
+
+				// Stats fields
+<span class="fc" id="L240">				serviceStatsLayout.addComponent(createInfoRow(&quot;Total Votes:&quot;, String.valueOf(bs.getTotalVotes()), VaadinIcons.GROUP, &quot;Total number of votes cast&quot;));</span>
+<span class="fc" id="L241">				serviceStatsLayout.addComponent(createInfoRow(&quot;Yes Votes:&quot;, String.valueOf(bs.getYesVotes()), VaadinIcons.THUMBS_UP, &quot;Number of 'yes' votes&quot;));</span>
+<span class="fc" id="L242">				serviceStatsLayout.addComponent(createInfoRow(&quot;No Votes:&quot;, String.valueOf(bs.getNoVotes()), VaadinIcons.THUMBS_DOWN, &quot;Number of 'no' votes&quot;));</span>
+<span class="fc" id="L243">				serviceStatsLayout.addComponent(createInfoRow(&quot;Abstain Votes:&quot;, String.valueOf(bs.getAbstainVotes()), VaadinIcons.SPLIT, &quot;Number of abstentions&quot;));</span>
+<span class="fc" id="L244">				serviceStatsLayout.addComponent(createInfoRow(&quot;Absent Votes:&quot;, String.valueOf(bs.getAbsentVotes()), VaadinIcons.EXIT_O, &quot;Number of absent voters&quot;));</span>
+<span class="fc" id="L245">				serviceStatsLayout.addComponent(createInfoRow(&quot;Approved:&quot;, String.valueOf(bs.isApproved()), VaadinIcons.CHECK, &quot;Whether the proposal was approved&quot;));</span>
+			}
+
+			// Spacer before Party Ballot Summary
+<span class="fc" id="L249">			final Label tableDivider = new Label(&quot;&lt;hr/&gt;&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L250">			tableDivider.addStyleName(&quot;card-divider&quot;);</span>
+<span class="fc" id="L251">			tableDivider.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L252">			panelContent.addComponent(tableDivider);</span>
+
+			// Party Ballot Summary table
+<span class="fc" id="L255">			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
+					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList, PARTY_BALLOT_SUMMARY,
+					NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_PARTY, null);
+
+			// Overview layout after table
+<span class="fc" id="L260">			final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L261">			overviewLayout.setSizeFull();</span>
+<span class="fc" id="L262">			panelContent.addComponent(overviewLayout);</span>
+<span class="fc" id="L263">			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+<span class="fc" id="L264">			getBallotMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+
+<span class="fc" id="L266">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_BALLOT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 					parameters, pageId);
 		}
-<span class="fc" id="L170">		return panelContent;</span>
 
+<span class="fc" id="L270">		return panelContent;</span>
 	}
 
+	/**
+	 * Creates the info row.
+	 *
+	 * @param caption the caption
+	 * @param value the value
+	 * @param icon the icon
+	 * @param tooltip the tooltip
+	 * @return the horizontal layout
+	 */
+	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
+			final String tooltip) {
+<span class="fc" id="L284">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L285">		layout.setSpacing(true);</span>
+<span class="fc" id="L286">		layout.addStyleName(&quot;metric-label&quot;);</span>
+<span class="fc" id="L287">		layout.setWidthUndefined();</span>
+
+<span class="pc bpc" id="L289" title="1 of 2 branches missed.">		if (icon != null) {</span>
+<span class="fc" id="L290">			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L291">			iconLabel.addStyleName(&quot;card-info-icon&quot;);</span>
+<span class="pc bpc" id="L292" title="2 of 4 branches missed.">			if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L293">				iconLabel.setDescription(tooltip);</span>
+			}
+<span class="fc" id="L295">			layout.addComponent(iconLabel);</span>
+		}
+
+<span class="fc" id="L298">		final Label captionLabel = new Label(caption);</span>
+<span class="fc" id="L299">		captionLabel.addStyleName(&quot;card-info-caption&quot;);</span>
+<span class="pc bpc" id="L300" title="2 of 4 branches missed.">		if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L301">			captionLabel.setDescription(tooltip);</span>
+		}
+
+<span class="pc bpc" id="L304" title="1 of 2 branches missed.">		final Label valueLabel = new Label(value != null ? value : &quot;&quot;);</span>
+<span class="fc" id="L305">		valueLabel.addStyleName(&quot;card-info-value&quot;);</span>
+
+<span class="fc" id="L307">		layout.addComponents(captionLabel, valueLabel);</span>
+<span class="fc" id="L308">		return layout;</span>
+	}
+
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L176">		final String pageId = getPageId(parameters);</span>
-<span class="pc bpc" id="L177" title="2 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
-<span class="pc bnc" id="L178" title="All 2 branches missed.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="fc" id="L320">		final String pageId = getPageId(parameters);</span>
+<span class="fc bfc" id="L321" title="All 2 branches covered.">		return NAME.equals(page)</span>
+<span class="pc bpc" id="L322" title="4 of 6 branches missed.">				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId) || parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
 
 }

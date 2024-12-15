@@ -24,8 +24,9 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GenericChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -44,25 +45,22 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 
 	private static final String EMBEDDED_ID_BALLOT_ID = &quot;embeddedId.ballotId&quot;;
 
-<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = { &quot;embeddedId.party&quot;, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;,</span>
+<span class="fc" id="L48">	private static final String[] COLUMN_ORDER = { &quot;embeddedId.party&quot;, &quot;voteDate&quot;, &quot;rm&quot;, &quot;label&quot;,</span>
 			&quot;embeddedId.concern&quot;, &quot;embeddedId.issue&quot;, &quot;approved&quot;, &quot;partyApproved&quot;, &quot;totalVotes&quot;, &quot;partyTotalVotes&quot;,
 			&quot;yesVotes&quot;, &quot;partyYesVotes&quot;, &quot;noVotes&quot;, &quot;partyNoVotes&quot;, &quot;partyAbstainVotes&quot;, &quot;abstainVotes&quot;,
 			&quot;partyAbsentVotes&quot;, &quot;absentVotes&quot;, &quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;partyPercentageMale&quot;,
 			&quot;percentageMale&quot;, &quot;ballotType&quot;, EMBEDDED_ID_BALLOT_ID };
 
-<span class="fc" id="L53">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;,</span>
+<span class="fc" id="L54">	private static final String[] HIDE_COLUMNS = { &quot;embeddedId&quot;, &quot;partyNoWinner&quot;, &quot;partyPercentageYes&quot;,</span>
 			&quot;partyPercentageNo&quot;, &quot;partyPercentageAbsent&quot;, &quot;partyPercentageAbstain&quot;, &quot;percentageYes&quot;, &quot;percentageNo&quot;,
 			&quot;percentageAbsent&quot;, &quot;percentageAbstain&quot;, &quot;ballotType&quot;, &quot;embeddedId.party&quot;, EMBEDDED_ID_BALLOT_ID,
 			&quot;partyAvgBornYear&quot;, &quot;avgBornYear&quot;, &quot;partyPercentageMale&quot;, &quot;percentageMale&quot;, &quot;noWinner&quot; };
 
-<span class="fc" id="L58">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L59">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
 
-<span class="fc" id="L61">	private static final String[] NESTED_PROPERTIES = { EMBEDDED_ID_BALLOT_ID, &quot;embeddedId.concern&quot;,</span>
+<span class="fc" id="L62">	private static final String[] NESTED_PROPERTIES = { EMBEDDED_ID_BALLOT_ID, &quot;embeddedId.concern&quot;,</span>
 			&quot;embeddedId.issue&quot;, &quot;embeddedId.party&quot; };
-
-	/** The Constant VOTE_HISTORY. */
-	private static final String VOTE_HISTORY = &quot;VoteHistory&quot;;
 
 	/** The view riksdagen vote data ballot party summary chart data manager. */
 	@Autowired
@@ -72,34 +70,35 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 	 * Instantiates a new party vote history page mod content factory impl.
 	 */
 	public PartyVoteHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L75">		super();</span>
-<span class="fc" id="L76">	}</span>
+<span class="fc" id="L73">		super();</span>
+<span class="fc" id="L74">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L81">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L79">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L83">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L81">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L85">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L86">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L83">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L84">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L88">		LabelFactory.createHeader2Label(panelContent, VOTE_HISTORY);</span>
+<span class="fc" id="L86">		createPageHeader(panel, panelContent, &quot;Vote History &quot; + viewRiksdagenParty.getPartyName(), &quot;Ballots&quot;, &quot;Review the voting history for the selected party.&quot;);</span>
 
-<span class="fc" id="L90">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
+<span class="fc" id="L88">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,</span>
 				ViewRiksdagenVoteDataBallotPartySummary.class,
-<span class="fc" id="L92">				viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId), BALLOTS, NESTED_PROPERTIES,</span>
+<span class="fc" id="L90">				viewRiksdagenVoteDataBallotPartySummaryChartDataManager.findByValue(pageId), BALLOTS, NESTED_PROPERTIES,</span>
 				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_BALLOT_ID, null);
 
-<span class="fc" id="L95">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
-<span class="fc" id="L96">		return panelContent;</span>
+<span class="fc" id="L93">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
+		pageId);
+<span class="fc" id="L95">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L102" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.VOTEHISTORY.toString());</span>
+<span class="fc bfc" id="L101" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PartyPageMode.VOTEHISTORY.toString());</span>
 	}
 
 }

@@ -37,40 +37,38 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingPageVisitHistoryPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant PAGE_VISIT_HISTORY. */
-	private static final String PAGE_VISIT_HISTORY = &quot;Page Visit History&quot;;
-
 	/**
 	 * Instantiates a new ministry ranking page visit history page mod content
 	 * factory impl.
 	 */
 	public MinistryRankingPageVisitHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L48">		super();</span>
-<span class="fc" id="L49">	}</span>
+<span class="fc" id="L45">		super();</span>
+<span class="fc" id="L46">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L54">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L51">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L56">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+<span class="fc" id="L53">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
 
-<span class="fc" id="L58">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L55">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L60">		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);</span>
+<span class="fc" id="L57">		createPageHeader(panel, panelContent, &quot;Ministry Rankings&quot;, &quot;Page Visit History&quot;, &quot;Tracks and visualizes the history of page visits for ministry rankings.&quot;);</span>
 
-<span class="fc" id="L62">		panel.setCaption(NAME + &quot;::&quot; + PAGE_VISIT_HISTORY);</span>
+<span class="fc" id="L59">		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);</span>
 
-<span class="fc" id="L64">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+
+<span class="fc" id="L62">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
 
-<span class="fc" id="L67">		return panelContent;</span>
+<span class="fc" id="L65">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L73" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
+<span class="pc bpc" id="L71" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());</span>
 	}
 
 }

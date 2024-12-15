@@ -24,8 +24,9 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -40,7 +41,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-<span class="fc" id="L43">	private static final String[] COLUMN_ORDER = { &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;,</span>
+<span class="fc" id="L44">	private static final String[] COLUMN_ORDER = { &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;,</span>
 			&quot;bornYear&quot;, &quot;totalDaysServed&quot;, &quot;currentAssignments&quot;, &quot;totalAssignments&quot;, &quot;firstAssignmentDate&quot;,
 			&quot;lastAssignmentDate&quot;, &quot;totalDaysServedParliament&quot;, &quot;totalDaysServedCommittee&quot;, &quot;totalDaysServedGovernment&quot;,
 			&quot;totalDaysServedEu&quot;,
@@ -53,41 +54,40 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 
 			&quot;currentPartyAssignments&quot;, &quot;currentMinistryAssignments&quot;, &quot;currentCommitteeAssignments&quot;,
 			&quot;currentSpeakerAssignments&quot;, &quot;gender&quot; };
-<span class="fc" id="L56">	private static final String[] HIDE_COLUMNS = { &quot;personId&quot;, &quot;active&quot;, &quot;party&quot;, &quot;activeEu&quot;,</span>
+<span class="fc" id="L57">	private static final String[] HIDE_COLUMNS = { &quot;personId&quot;, &quot;active&quot;, &quot;party&quot;, &quot;activeEu&quot;,</span>
 			&quot;activeGovernment&quot;, &quot;activeCommittee&quot;, &quot;activeParliament&quot;, &quot;activeParty&quot;, &quot;activeSpeaker&quot;, &quot;bornYear&quot; };
-<span class="fc" id="L58">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L59">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);
-	/** The Constant MEMBER_HISTORY. */
-	private static final String MEMBER_HISTORY = &quot;MemberHistory&quot;;
 	private static final String POLITICIANS = &quot;Politicians&quot;;
 
 	/**
 	 * Instantiates a new party member history page mod content factory impl.
 	 */
 	public PartyMemberHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L68">		super();</span>
-<span class="fc" id="L69">	}</span>
+<span class="fc" id="L67">		super();</span>
+<span class="fc" id="L68">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L74">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L73">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L76">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L75">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L78">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
-<span class="fc" id="L79">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L77">		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);</span>
+<span class="fc" id="L78">		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L81">		LabelFactory.createHeader2Label(panelContent, MEMBER_HISTORY);</span>
+<span class="fc" id="L80">		createPageHeader(panel, panelContent, &quot;Member History &quot; + viewRiksdagenParty.getPartyName(), &quot;Party Members&quot;, &quot;Explore the history of party members and their roles.&quot;);</span>
 
-<span class="fc" id="L83">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
-<span class="fc" id="L84">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
+<span class="fc" id="L82">		final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = getApplicationManager()</span>
+<span class="fc" id="L83">				.getDataContainer(ViewRiksdagenPolitician.class);</span>
 
-<span class="fc" id="L86">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class,</span>
-<span class="fc" id="L87">				politicianDataContainer.getAllBy(ViewRiksdagenPolitician_.party, viewRiksdagenParty.getPartyId()),</span>
+<span class="fc" id="L85">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class,</span>
+<span class="fc" id="L86">				politicianDataContainer.getAllBy(ViewRiksdagenPolitician_.party, viewRiksdagenParty.getPartyId()),</span>
 				POLITICIANS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L90">		pageCompleted(parameters, panel, pageId, viewRiksdagenParty);</span>
+<span class="fc" id="L89">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
+		pageId);
 <span class="fc" id="L91">		return panelContent;</span>
 
 	}

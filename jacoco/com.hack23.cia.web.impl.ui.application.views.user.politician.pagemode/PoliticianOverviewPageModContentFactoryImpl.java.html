@@ -13,13 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id$
+ *  $Id$
  *  $HeadURL$
-*/
+ */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
-
-import java.util.Arrays;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -27,12 +24,19 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.server.Responsive;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
@@ -40,96 +44,226 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class OverviewPageModContentFactoryImpl.
+ * The Class PoliticianOverviewPageModContentFactoryImpl.
  */
 @Component
 public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
-
-<span class="fc" id="L48">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;firstName&quot;, &quot;lastName&quot;, &quot;gender&quot;, &quot;bornYear&quot;, &quot;party&quot;,</span>
-			&quot;active&quot;, &quot;firstAssignmentDate&quot;, &quot;lastAssignmentDate&quot;, &quot;currentAssignments&quot;, &quot;currentMinistryAssignments&quot;,
-			&quot;currentSpeakerAssignments&quot;, &quot;currentCommitteeAssignments&quot;, &quot;currentPartyAssignments&quot;,
-			&quot;totalMinistryAssignments&quot;, &quot;totalCommitteeAssignments&quot;, &quot;totalSpeakerAssignments&quot;, &quot;totalPartyAssignments&quot;,
-			&quot;totalAssignments&quot;, &quot;totalDaysServed&quot;, &quot;activeEu&quot;, &quot;totalDaysServedEu&quot;, &quot;activeGovernment&quot;,
-			&quot;totalDaysServedGovernment&quot;, &quot;activeSpeaker&quot;, &quot;totalDaysServedSpeaker&quot;, &quot;activeCommittee&quot;,
-			&quot;totalDaysServedCommittee&quot;, &quot;activeParliament&quot;, &quot;totalDaysServedParliament&quot;, &quot;activeParty&quot;,
-			&quot;totalDaysServedParty&quot;);
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = &quot;overview&quot;;
 
 	/**
 	 * Instantiates a new politician overview page mod content factory impl.
 	 */
 	public PoliticianOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L63">		super();</span>
-<span class="fc" id="L64">	}</span>
+<span class="fc" id="L56">		super();</span>
+<span class="fc" id="L57">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L69">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L63">		panel.setContent(panelContent);</span>
 
-<span class="fc" id="L71">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L65">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L66">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
 
-<span class="fc" id="L73">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
-<span class="fc" id="L74">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L68">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L76">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
-<span class="fc" id="L77">				.load(viewRiksdagenPolitician.getPersonId());</span>
+<span class="fc" id="L70">		createPageHeader(</span>
+				panel,
+				panelContent,
+<span class="fc" id="L73">				&quot;Politician Overview &quot; + viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName()</span>
+<span class="fc" id="L74">						+ &quot; (&quot; + viewRiksdagenPolitician.getParty() + ')',</span>
+				&quot;Politician Details&quot;,
+				&quot;Detailed profiles and activities of politicians.&quot;
+		);
 
-<span class="fc" id="L79">		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, pageId);</span>
+<span class="fc" id="L79">		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)</span>
+<span class="fc" id="L80">				.load(viewRiksdagenPolitician.getPersonId());</span>
 
-<span class="fc" id="L81">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L82">		return panelContent;</span>
+<span class="fc" id="L82">		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, pageId);</span>
 
+<span class="fc" id="L84">		getPageActionEventHelper().createPageEvent(</span>
+				ViewAction.VISIT_POLITICIAN_VIEW,
+				ApplicationEventGroup.USER,
+				UserViews.POLITICIAN_VIEW_NAME,
+				parameters,
+				pageId
+		);
+
+<span class="fc" id="L92">		return panelContent;</span>
 	}
 
 	/**
-	 * Creates the overview content.
+	 * Creates the overview content in a card style similar to the scoreboard snippet.
 	 *
-	 * @param panelContent the panel content
-	 * @param personData the person data
+	 * @param panelContent            the panel content
+	 * @param personData              the person data
 	 * @param viewRiksdagenPolitician the view riksdagen politician
-	 * @param pageId the page id
+	 * @param pageId                  the page id
 	 */
 	private void createOverviewContent(final VerticalLayout panelContent, final PersonData personData,
 			final ViewRiksdagenPolitician viewRiksdagenPolitician, final String pageId) {
-<span class="fc" id="L96">		LabelFactory.createHeader2Label(panelContent, OVERVIEW);</span>
 
-<span class="fc" id="L98">		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);</span>
-<span class="fc" id="L99">		panelContent.addComponent(createPoliticianPageLink);</span>
+		// Link to politician detail page
+<span class="fc" id="L107">		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);</span>
+<span class="fc" id="L108">		createPoliticianPageLink.addStyleName(&quot;card-subtitle&quot;);</span>
+<span class="fc" id="L109">		panelContent.addComponent(createPoliticianPageLink);</span>
+<span class="fc" id="L110">		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);</span>
 
-<span class="fc" id="L101">		final Image image = new Image(&quot;&quot;,</span>
-<span class="fc" id="L102">				new ExternalResource(personData.getImageUrl192().replace(&quot;http://&quot;, &quot;https://&quot;)));</span>
+		// Create a panel (card) for the politician
+<span class="fc" id="L113">		final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L114">		cardPanel.addStyleName(&quot;politician-overview-card&quot;);</span>
+<span class="fc" id="L115">		cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L116">		cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L117">		Responsive.makeResponsive(cardPanel);</span>
 
-<span class="fc" id="L104">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
-<span class="fc" id="L105">		horizontalLayout.setSizeFull();</span>
+<span class="fc" id="L119">		final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L120">		cardContent.setMargin(true);</span>
+<span class="fc" id="L121">		cardContent.setSpacing(true);</span>
+<span class="fc" id="L122">		cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L123">		cardPanel.setContent(cardContent);</span>
 
-<span class="fc" id="L107">		panelContent.addComponent(horizontalLayout);</span>
+<span class="fc" id="L125">		panelContent.addComponent(cardPanel);</span>
+<span class="fc" id="L126">		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);</span>
 
-<span class="fc" id="L109">		horizontalLayout.addComponent(image);</span>
+		// Header layout similar to scoreboard snippet
+<span class="fc" id="L129">		final HorizontalLayout headerLayout = new HorizontalLayout();</span>
+<span class="fc" id="L130">		headerLayout.setSpacing(true);</span>
+<span class="fc" id="L131">		headerLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L132">		headerLayout.addStyleName(&quot;card-header-section&quot;);</span>
 
-<span class="fc" id="L111">		getFormFactory().addFormPanelTextFields(horizontalLayout, viewRiksdagenPolitician,</span>
-				ViewRiksdagenPolitician.class, AS_LIST);
+<span class="fc" id="L134">		final String titleText = viewRiksdagenPolitician.getFirstName() + &quot; &quot; + viewRiksdagenPolitician.getLastName()</span>
+<span class="fc" id="L135">				+ &quot; (&quot; + viewRiksdagenPolitician.getParty() + &quot;)&quot;;</span>
+<span class="fc" id="L136">		final Label titleLabel = new Label(titleText, ContentMode.HTML);</span>
+<span class="fc" id="L137">		titleLabel.addStyleName(&quot;card-title&quot;);</span>
+<span class="fc" id="L138">		titleLabel.setWidthUndefined();</span>
+<span class="fc" id="L139">		headerLayout.addComponent(titleLabel);</span>
 
-<span class="fc" id="L114">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L115">		overviewLayout.setSizeFull();</span>
+		// Party link
+<span class="fc" id="L142">		final Link partyLink = new Link(&quot;Party &quot; + viewRiksdagenPolitician.getParty(),</span>
+<span class="fc" id="L143">				new ExternalResource(&quot;#!&quot; + UserViews.PARTY_VIEW_NAME + &quot;/&quot; + viewRiksdagenPolitician.getParty()));</span>
+<span class="fc" id="L144">		partyLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L145">		partyLink.addStyleName(&quot;card-title&quot;);</span>
+<span class="fc" id="L146">		headerLayout.addComponent(partyLink);</span>
 
-<span class="fc" id="L117">		panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L118">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+<span class="fc" id="L148">		cardContent.addComponent(headerLayout);</span>
 
-<span class="fc" id="L120">		getPoliticianMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+		// Divider line for better separation
+<span class="fc" id="L151">		final Label divider = new Label(&quot;&lt;hr/&gt;&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L152">		divider.addStyleName(&quot;card-divider&quot;);</span>
+<span class="fc" id="L153">		divider.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L154">		cardContent.addComponent(divider);</span>
 
-<span class="fc" id="L122">		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);</span>
-<span class="fc" id="L123">		panelContent.setExpandRatio(horizontalLayout, ContentRatio.GRID);</span>
+		// Image and details layout
+<span class="fc" id="L157">		final HorizontalLayout imageAndDetailsLayout = new HorizontalLayout();</span>
+<span class="fc" id="L158">		imageAndDetailsLayout.setSpacing(true);</span>
+<span class="fc" id="L159">		imageAndDetailsLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L160">		cardContent.addComponent(imageAndDetailsLayout);</span>
 
-<span class="fc" id="L125">	}</span>
+		// Politician image (smaller)
+<span class="fc" id="L163">		final String imageUrl = personData.getImageUrl192().replace(&quot;http://&quot;, &quot;https://&quot;);</span>
+<span class="fc" id="L164">		final Image image = new Image(&quot;&quot;, new ExternalResource(imageUrl));</span>
+<span class="fc" id="L165">		image.setDescription(&quot;Picture of &quot; + viewRiksdagenPolitician.getFirstName() + &quot; &quot;</span>
+<span class="fc" id="L166">				+ viewRiksdagenPolitician.getLastName());</span>
+<span class="fc" id="L167">		image.setWidth(100, Unit.PIXELS);</span>
+<span class="fc" id="L168">		image.addStyleName(&quot;politician-image&quot;);</span>
+
+<span class="fc" id="L170">		imageAndDetailsLayout.addComponent(image);</span>
+
+		// Two-column layout for attributes
+<span class="fc" id="L173">		final HorizontalLayout attributesLayout = new HorizontalLayout();</span>
+<span class="fc" id="L174">		attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L175">		attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L176">		imageAndDetailsLayout.addComponent(attributesLayout);</span>
+<span class="fc" id="L177">		imageAndDetailsLayout.setExpandRatio(attributesLayout, 1.0f);</span>
+
+		// First column: Profile Details
+<span class="fc" id="L180">		final VerticalLayout profileDetailsLayout = new VerticalLayout();</span>
+<span class="fc" id="L181">		profileDetailsLayout.setSpacing(true);</span>
+<span class="fc" id="L182">		profileDetailsLayout.addStyleName(&quot;card-details-column&quot;);</span>
+<span class="fc" id="L183">		profileDetailsLayout.setWidthUndefined();</span>
+
+<span class="fc" id="L185">		final Label profileDetailsHeader = new Label(&quot;Profile Details&quot;);</span>
+<span class="fc" id="L186">		profileDetailsHeader.addStyleName(&quot;card-section-title&quot;);</span>
+<span class="fc" id="L187">		profileDetailsLayout.addComponent(profileDetailsHeader);</span>
+
+<span class="fc" id="L189">		profileDetailsLayout.addComponent(createInfoRow(&quot;Gender:&quot;, viewRiksdagenPolitician.getGender(), VaadinIcons.USER, &quot;Politician's gender&quot;));</span>
+<span class="fc" id="L190">		profileDetailsLayout.addComponent(createInfoRow(&quot;Born Year:&quot;, String.valueOf(viewRiksdagenPolitician.getBornYear()), VaadinIcons.CALENDAR, &quot;Year the politician was born&quot;));</span>
+<span class="fc" id="L191">		profileDetailsLayout.addComponent(createInfoRow(&quot;Total Days Served:&quot;, String.valueOf(viewRiksdagenPolitician.getTotalDaysServed()), VaadinIcons.CLOCK, &quot;Total number of days in public service&quot;));</span>
+<span class="fc" id="L192">		profileDetailsLayout.addComponent(createInfoRow(&quot;Ministry Days Served:&quot;, String.valueOf(viewRiksdagenPolitician.getTotalDaysServedGovernment()), VaadinIcons.CLOCK, &quot;Total number of days as Minister&quot;));</span>
+<span class="fc" id="L193">		profileDetailsLayout.addComponent(createInfoRow(&quot;Parliament Days Served:&quot;, String.valueOf(viewRiksdagenPolitician.getTotalDaysServedParliament()), VaadinIcons.CLOCK, &quot;Total number of days in Parliament&quot;));</span>
+
+<span class="fc" id="L195">		attributesLayout.addComponent(profileDetailsLayout);</span>
+
+		// Second column: Service Statistics
+<span class="fc" id="L198">		final VerticalLayout serviceStatsLayout = new VerticalLayout();</span>
+<span class="fc" id="L199">		serviceStatsLayout.setSpacing(true);</span>
+<span class="fc" id="L200">		serviceStatsLayout.addStyleName(&quot;card-details-column&quot;);</span>
+<span class="fc" id="L201">		serviceStatsLayout.setWidthUndefined();</span>
+
+<span class="fc" id="L203">		final Label serviceStatsHeader = new Label(&quot;Service Statistics&quot;);</span>
+<span class="fc" id="L204">		serviceStatsHeader.addStyleName(&quot;card-section-title&quot;);</span>
+<span class="fc" id="L205">		serviceStatsLayout.addComponent(serviceStatsHeader);</span>
+
+		// Additional stats (Assuming these methods exist)
+<span class="fc" id="L208">		serviceStatsLayout.addComponent(createInfoRow(&quot;Total Assignments:&quot;, String.valueOf(viewRiksdagenPolitician.getTotalAssignments()), VaadinIcons.BAR_CHART, &quot;Total number of assignments held&quot;));</span>
+<span class="fc" id="L209">		serviceStatsLayout.addComponent(createInfoRow(&quot;First Assignment Date:&quot;, String.valueOf(viewRiksdagenPolitician.getFirstAssignmentDate().toString()), VaadinIcons.FLASH, &quot;First assignment in public service&quot;));</span>
+<span class="fc" id="L210">		serviceStatsLayout.addComponent(createInfoRow(&quot;Last Assignment Date:&quot;, String.valueOf(viewRiksdagenPolitician.getLastAssignmentDate().toString()), VaadinIcons.FLASH, &quot;Last assignment in public service&quot;));</span>
+<span class="fc" id="L211">		serviceStatsLayout.addComponent(createInfoRow(&quot;Ministry Assignments:&quot;, String.valueOf(viewRiksdagenPolitician.getTotalMinistryAssignments()), VaadinIcons.INSTITUTION, &quot;Number of ministry level assignments&quot;));</span>
+<span class="fc" id="L212">		serviceStatsLayout.addComponent(createInfoRow(&quot;Speaker Assignments:&quot;, String.valueOf(viewRiksdagenPolitician.getTotalSpeakerAssignments()), VaadinIcons.MICROPHONE, &quot;Number of speaker assignments&quot;));</span>
+
+
+<span class="fc" id="L215">		attributesLayout.addComponent(serviceStatsLayout);</span>
+
+		// After the card, add the overview layout for extended details
+<span class="fc" id="L218">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L219">		overviewLayout.setSizeFull();</span>
+<span class="fc" id="L220">		panelContent.addComponent(overviewLayout);</span>
+<span class="fc" id="L221">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+
+<span class="fc" id="L223">		getPoliticianMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+<span class="fc" id="L224">	}</span>
+
+	/**
+	 * Creates a row displaying a caption and value, with optional icon and tooltip.
+	 *
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon for better visual cue
+	 * @param tooltip optional tooltip to provide more info
+	 * @return a HorizontalLayout representing the info row
+	 */
+	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon, final String tooltip) {
+<span class="fc" id="L236">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L237">		layout.setSpacing(true);</span>
+<span class="fc" id="L238">		layout.addStyleName(&quot;metric-label&quot;);</span>
+<span class="fc" id="L239">		layout.setWidthUndefined();</span>
+
+<span class="fc" id="L241">		Label iconLabel = null;</span>
+<span class="pc bpc" id="L242" title="1 of 2 branches missed.">		if (icon != null) {</span>
+<span class="fc" id="L243">			iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L244">			iconLabel.setDescription(tooltip);</span>
+<span class="fc" id="L245">			iconLabel.addStyleName(&quot;card-info-icon&quot;);</span>
+<span class="fc" id="L246">			layout.addComponent(iconLabel);</span>
+		}
+
+<span class="fc" id="L249">		final Label captionLabel = new Label(caption);</span>
+<span class="fc" id="L250">		captionLabel.addStyleName(&quot;card-info-caption&quot;);</span>
+<span class="pc bpc" id="L251" title="2 of 4 branches missed.">		if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L252">			captionLabel.setDescription(tooltip);</span>
+		}
+
+<span class="pc bpc" id="L255" title="1 of 2 branches missed.">		final Label valueLabel = new Label(value != null ? value : &quot;&quot;);</span>
+<span class="fc" id="L256">		valueLabel.addStyleName(&quot;card-info-value&quot;);</span>
+
+<span class="fc" id="L258">		layout.addComponents(captionLabel, valueLabel);</span>
+<span class="fc" id="L259">		return layout;</span>
+	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L129">		final String pageId = getPageId(parameters);</span>
-<span class="pc bpc" id="L130" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
-<span class="fc bfc" id="L131" title="All 2 branches covered.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
+<span class="fc" id="L264">		final String pageId = getPageId(parameters);</span>
+<span class="pc bpc" id="L265" title="1 of 6 branches missed.">		return NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)</span>
+<span class="fc bfc" id="L266" title="All 2 branches covered.">				|| parameters.contains(PageMode.OVERVIEW.toString()));</span>
 	}
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

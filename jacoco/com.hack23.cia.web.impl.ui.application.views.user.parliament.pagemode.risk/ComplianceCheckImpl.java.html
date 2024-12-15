@@ -12,10 +12,19 @@ import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
  */
 public class ComplianceCheckImpl implements ComplianceCheck {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The rule violations. */
 	private final List&lt;RuleViolation&gt; ruleViolations;
+
+	/** The resource type. */
 	private final ResourceType resourceType;
+
+	/** The id. */
 	private final String id;
+
+	/** The name. */
 	private final String name;
 
 	/**
@@ -23,21 +32,21 @@ public class ComplianceCheckImpl implements ComplianceCheck {
 	 *
 	 * @param ruleViolations the rule violations
 	 */
-<span class="fc" id="L26">	public ComplianceCheckImpl(final List&lt;RuleViolation&gt; ruleViolations) {</span>
-<span class="fc" id="L27">		this.ruleViolations = new ArrayList&lt;&gt;(ruleViolations);</span>
-<span class="fc" id="L28">		this.resourceType = ruleViolations.get(0).getResourceType();</span>
-<span class="fc" id="L29">		this.id = ruleViolations.get(0).getReferenceId();</span>
-<span class="fc" id="L30">		this.name = ruleViolations.get(0).getName();</span>
-<span class="fc" id="L31">	}</span>
+<span class="fc" id="L35">	public ComplianceCheckImpl(final List&lt;RuleViolation&gt; ruleViolations) {</span>
+<span class="fc" id="L36">		this.ruleViolations = new ArrayList&lt;&gt;(ruleViolations);</span>
+<span class="fc" id="L37">		this.resourceType = ruleViolations.get(0).getResourceType();</span>
+<span class="fc" id="L38">		this.id = ruleViolations.get(0).getReferenceId();</span>
+<span class="fc" id="L39">		this.name = ruleViolations.get(0).getName();</span>
+<span class="fc" id="L40">	}</span>
 
 	@Override
 	public ResourceType getResourceType() {
-<span class="fc" id="L35">		return resourceType;</span>
+<span class="fc" id="L44">		return resourceType;</span>
 	}
 
 	@Override
 	public List&lt;RuleViolation&gt; getRuleViolations() {
-<span class="fc" id="L40">		return new ArrayList&lt;&gt;(ruleViolations);</span>
+<span class="fc" id="L49">		return new ArrayList&lt;&gt;(ruleViolations);</span>
 	}
 
 
@@ -47,7 +56,7 @@ public class ComplianceCheckImpl implements ComplianceCheck {
 	 * @return the number rule violations
 	 */
 	public int getNumberRuleViolations() {
-<span class="fc" id="L50">		return ruleViolations.size();</span>
+<span class="fc" id="L59">		return ruleViolations.size();</span>
 	}
 
 	/**
@@ -56,21 +65,21 @@ public class ComplianceCheckImpl implements ComplianceCheck {
 	 * @return the rule summary
 	 */
 	public String getRuleSummary() {
-<span class="fc" id="L59">		final StringBuilder builder = new StringBuilder();</span>
-<span class="fc bfc" id="L60" title="All 2 branches covered.">		for (final RuleViolation ruleViolation : ruleViolations) {</span>
-<span class="fc" id="L61">			builder.append('[').append(ruleViolation.getRuleName()).append('/').append(ruleViolation.getStatus()) .append(']');</span>
-<span class="fc" id="L62">		}</span>
-<span class="fc" id="L63">		return builder.toString();</span>
+<span class="fc" id="L68">		final StringBuilder builder = new StringBuilder();</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">		for (final RuleViolation ruleViolation : ruleViolations) {</span>
+<span class="fc" id="L70">			builder.append('[').append(ruleViolation.getRuleName()).append('/').append(ruleViolation.getStatus()) .append(']');</span>
+<span class="fc" id="L71">		}</span>
+<span class="fc" id="L72">		return builder.toString();</span>
 	}
 
 	@Override
 	public String getId() {
-<span class="fc" id="L68">		return id;</span>
+<span class="fc" id="L77">		return id;</span>
 	}
 
 	@Override
 	public String getName() {
-<span class="fc" id="L73">		return name;</span>
+<span class="fc" id="L82">		return name;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

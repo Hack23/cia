@@ -32,7 +32,6 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.MinistryGhantChartManager;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -45,9 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The Constant CHARTS. */
-	private static final String CHARTS = &quot;Charts: Current parties by headcount&quot;;
-
 	@Autowired
 	private MinistryGhantChartManager ministryGhantChartManager;
 
@@ -56,41 +52,39 @@ public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl
 	 * factory impl.
 	 */
 	public MinistryRankingAllRolesChartsPageModContentFactoryImpl() {
-<span class="fc" id="L59">		super();</span>
-<span class="fc" id="L60">	}</span>
+<span class="fc" id="L55">		super();</span>
+<span class="fc" id="L56">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L65">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L67">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+<span class="fc" id="L63">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
 
-<span class="fc" id="L69">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L65">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L71">		final HorizontalLayout chartLayout = new HorizontalLayout();</span>
-<span class="fc" id="L72">		chartLayout.setSizeFull();</span>
+<span class="fc" id="L67">		createPageHeader(panel, panelContent, &quot;Ministry Rankings&quot;, &quot;All Roles&quot;, &quot;Visual representation of all government roles.&quot;);</span>
 
-<span class="fc" id="L74">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L75">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
+<span class="fc" id="L69">		final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L70">				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
 
-<span class="fc" id="L77">		final List&lt;ViewRiksdagenGovermentRoleMember&gt; allMembers = govermentRoleMemberDataContainer.getAll();</span>
+<span class="fc" id="L72">		final List&lt;ViewRiksdagenGovermentRoleMember&gt; allMembers = govermentRoleMemberDataContainer.getAll();</span>
 
-<span class="fc" id="L79">		ministryGhantChartManager.createRoleGhant(panelContent, allMembers);</span>
+<span class="fc" id="L74">		ministryGhantChartManager.createRoleGhant(panelContent, allMembers);</span>
 
-<span class="fc" id="L81">		panel.setCaption(NAME + &quot;::&quot; + CHARTS + parameters);</span>
 
-<span class="fc" id="L83">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L77">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
 
-<span class="fc" id="L86">		return panelContent;</span>
+<span class="fc" id="L80">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L92" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.ALL_GOVERNMENT_ROLE_CHART.toString());</span>
+<span class="fc bfc" id="L86" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, PageMode.CHARTS.toString())</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">				&amp;&amp; parameters.contains(ChartIndicators.ALL_GOVERNMENT_ROLE_CHART.toString());</span>
 	}
 
 }

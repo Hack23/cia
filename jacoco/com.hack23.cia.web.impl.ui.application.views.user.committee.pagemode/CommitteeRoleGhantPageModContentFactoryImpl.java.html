@@ -32,7 +32,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.CommitteeGhantChartManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -45,12 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = &quot;Committee:&quot;;
-
-	/** The Constant ROLE_GHANT. */
-	private static final String ROLE_GHANT = &quot;Role chart&quot;;
-
 	@Autowired
 	private CommitteeGhantChartManager committeeGhantChartManager;
 
@@ -58,38 +51,37 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 	 * Instantiates a new committee role ghant page mod content factory impl.
 	 */
 	public CommitteeRoleGhantPageModContentFactoryImpl() {
-<span class="fc" id="L61">		super();</span>
-<span class="fc" id="L62">	}</span>
+<span class="fc" id="L54">		super();</span>
+<span class="fc" id="L55">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L67">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L60">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L69">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L70">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="fc" id="L71">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L63">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="fc" id="L64">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L73">		LabelFactory.createHeader2Label(panelContent, ROLE_GHANT);</span>
+<span class="fc" id="L66">		createPageHeader(panel, panelContent, &quot;Committee Role Gantt Chart &quot; +  viewRiksdagenCommittee.getEmbeddedId().getDetail(), &quot;Role Timeline&quot;, &quot;Visualize the timeline and duration of roles within the committee, highlighting key assignments and transitions.&quot;);</span>
 
-<span class="fc" id="L75">		final DataContainer&lt;ViewRiksdagenCommitteeRoleMember, String&gt; committeeRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L76">				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);</span>
+<span class="fc" id="L68">		final DataContainer&lt;ViewRiksdagenCommitteeRoleMember, String&gt; committeeRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L69">				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);</span>
 
-<span class="fc" id="L78">		final List&lt;ViewRiksdagenCommitteeRoleMember&gt; allMembers = committeeRoleMemberDataContainer</span>
-<span class="fc" id="L79">				.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail, viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
+<span class="fc" id="L71">		final List&lt;ViewRiksdagenCommitteeRoleMember&gt; allMembers = committeeRoleMemberDataContainer</span>
+<span class="fc" id="L72">				.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail, viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
 
-<span class="fc" id="L81">		committeeGhantChartManager.createRoleGhant(panelContent, allMembers);</span>
+<span class="fc" id="L74">		committeeGhantChartManager.createRoleGhant(panelContent, allMembers);</span>
 
-<span class="fc" id="L83">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
-<span class="fc" id="L84">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L76">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L86">		return panelContent;</span>
+<span class="fc" id="L78">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L92" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, CommitteePageMode.ROLEGHANT.toString());</span>
+<span class="pc bpc" id="L84" title="1 of 4 branches missed.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, CommitteePageMode.ROLEGHANT.toString());</span>
 	}
 
 }

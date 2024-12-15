@@ -29,7 +29,6 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -42,12 +41,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class GovernmentBodyIncomePageModContentFactoryImpl extends AbstractGovernmentBodyPageModContentFactoryImpl {
 
-	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODIES = &quot;Income:&quot;;
-
-	/** The Constant GOVERNMENT_BODY. */
-	private static final String GOVERNMENT_BODY = &quot;GovernmentBody:&quot;;
-
 	/** The government body chart data manager. */
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
@@ -56,40 +49,39 @@ public final class GovernmentBodyIncomePageModContentFactoryImpl extends Abstrac
 	 * Instantiates a new government body income page mod content factory impl.
 	 */
 	public GovernmentBodyIncomePageModContentFactoryImpl() {
-<span class="fc" id="L59">		super();</span>
-<span class="fc" id="L60">	}</span>
+<span class="fc" id="L52">		super();</span>
+<span class="fc" id="L53">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L65">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L67">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L69">		final List&lt;GovernmentBodyAnnualSummary&gt; list = getItem(parameters);</span>
+<span class="fc" id="L62">		final List&lt;GovernmentBodyAnnualSummary&gt; list = getItem(parameters);</span>
 
-<span class="pc bpc" id="L71" title="2 of 4 branches missed.">		if (list != null &amp;&amp; !list.isEmpty()) {</span>
-<span class="fc" id="L72">			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = list.get(0);</span>
+<span class="pc bpc" id="L64" title="2 of 4 branches missed.">		if (list != null &amp;&amp; !list.isEmpty()) {</span>
+<span class="fc" id="L65">			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = list.get(0);</span>
 
-<span class="pc bpc" id="L74" title="1 of 2 branches missed.">			if (governmentBodyAnnualSummary != null) {</span>
-<span class="fc" id="L75">				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());</span>
-<span class="fc" id="L76">				LabelFactory.createHeader2Label(panelContent,GOVERNMENT_BODIES + governmentBodyAnnualSummary.getName());</span>
-<span class="fc" id="L77">				governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent, governmentBodyAnnualSummary.getName());</span>
-<span class="fc" id="L78">				panel.setCaption(GOVERNMENT_BODY + &quot;:&quot;+ governmentBodyAnnualSummary.getName());</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">			if (governmentBodyAnnualSummary != null) {</span>
+<span class="fc" id="L68">				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());</span>
+<span class="fc" id="L69">				createPageHeader(panel, panelContent, &quot;Government Body Income &quot; + governmentBodyAnnualSummary.getName(), &quot;Income Details&quot;, &quot;Explore detailed income information for government bodies.&quot;);</span>
+<span class="fc" id="L70">				governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent, governmentBodyAnnualSummary.getName());</span>
 			}
 
-<span class="fc" id="L81">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L73">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,</span>
 					parameters, pageId);
 
 		}
 
-<span class="fc" id="L86">		return panelContent;</span>
+<span class="fc" id="L78">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L92" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, GovernmentBodyPageMode.INCOME.toString());</span>
+<span class="fc bfc" id="L84" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, GovernmentBodyPageMode.INCOME.toString());</span>
 	}
 
 }

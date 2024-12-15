@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- *	$Id$
+ *  $Id$
  *  $HeadURL$
-*/
+ */
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,151 +37,174 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class PoliticianMenuItemFactoryImpl.
+ *
+ * &lt;p&gt;This class builds menus and overview pages for politician-related views,
+ * enabling users to navigate through indicators, roles, document activities,
+ * vote histories, and more. It integrates with {@link ApplicationMenuItemFactory}
+ * and {@link PoliticianRankingMenuItemFactory} to ensure consistent menu
+ * structures within the application.&lt;/p&gt;
  */
 @Service
-public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PoliticianMenuItemFactory {
+public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
+        implements PoliticianMenuItemFactory {
 
-	/** The Constant BALLOT_DECISION_SUMMARY_TEXT. */
-	private static final String BALLOT_DECISION_SUMMARY_TEXT = &quot;Ballot Decision Summary&quot;;
+    /** Menu labels. */
+    private static final String BALLOT_DECISION_SUMMARY_TEXT = &quot;Ballot Decision Summary&quot;;
+    private static final String BALLOTS_TEXT = &quot;Ballots&quot;;
+    private static final String DOCUMENT_ACTIVITY_TEXT = &quot;Document Activity&quot;;
+    private static final String DOCUMENT_HISTORY_TEXT = &quot;Document History&quot;;
+    private static final String DOCUMENTS_TEXT = &quot;Documents&quot;;
+    private static final String INDICATORS_TEXT = &quot;Indicators&quot;;
+    private static final String OVERVIEW_TEXT = &quot;Overview&quot;;
+    private static final String PAGE_VISIT_HISTORY_TEXT = &quot;Page Visit History&quot;;
+    private static final String POLITICIAN_RANKING = &quot;Politician Ranking&quot;;
+    private static final String ROLE_GHANT_TEXT = &quot;Role Gantt&quot;;
+    private static final String ROLE_LIST = &quot;Role List&quot;;
+    private static final String ROLES_TEXT = &quot;Roles&quot;;
+    private static final String TOTAL_EXPERIENCE = &quot;Total Experience&quot;;
+    private static final String VOTE_HISTORY = &quot;Vote History&quot;;
 
-	/** The Constant BALLOTS_TEXT. */
-	private static final String BALLOTS_TEXT = &quot;Ballots&quot;;
+    /** Descriptions (~50 characters). */
+    private static final String INDICATORS_DESCRIPTION = &quot;Key performance indicators.&quot;;
+    private static final String TOTAL_EXPERIENCE_DESCRIPTION = &quot;Summary of political experience.&quot;;
+    private static final String ROLE_LIST_DESCRIPTION = &quot;Detailed list of roles.&quot;;
+    private static final String ROLE_GHANT_DESCRIPTION = &quot;Gantt chart of roles.&quot;;
+    private static final String DOCUMENT_ACTIVITY_DESCRIPTION = &quot;Activity by document type.&quot;;
+    private static final String DOCUMENT_HISTORY_DESCRIPTION = &quot;History of document access.&quot;;
+    private static final String VOTE_HISTORY_DESCRIPTION = &quot;Summary of voting records.&quot;;
+    private static final String BALLOT_DECISION_SUMMARY_DESCRIPTION = &quot;Overview of ballot decisions.&quot;;
+    private static final String PAGE_VISIT_HISTORY_DESCRIPTION = &quot;History of page visits.&quot;;
 
-	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
-	private static final String DOCUMENT_ACTIVITY_TEXT = &quot;Document Activity&quot;;
+    /** The application menu item factory. */
+    @Autowired
+    private ApplicationMenuItemFactory applicationMenuItemFactory;
 
-	/** The Constant DOCUMENT_HISTORY_TEXT. */
-	private static final String DOCUMENT_HISTORY_TEXT = &quot;Document history&quot;;
+    /** The politician ranking menu item factory. */
+    @Autowired
+    private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
 
-	/** The Constant DOCUMENTS_TEXT. */
-	private static final String DOCUMENTS_TEXT = &quot;Documents&quot;;
+    /**
+     * Instantiates a new politician menu item factory impl.
+     */
+    public PoliticianMenuItemFactoryImpl() {
+<span class="fc" id="L90">        super();</span>
+<span class="fc" id="L91">    }</span>
 
-	/** The Constant INDICATORS_TEXT. */
-	private static final String INDICATORS_TEXT = &quot;Indicators&quot;;
+    /**
+     * Creates the overview page with quick-access links to various politician-related
+     * views such as indicators, roles, document activities, and vote histories.
+     *
+     * @param panelContent the {@link VerticalLayout} container that holds the overview
+     *                     content. New UI components (buttons/links) will be added here.
+     * @param pageId the identifier for the current page context.
+     */
+    @Override
+    public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
+<span class="fc" id="L103">        final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = &quot;Overview&quot;;
+<span class="fc" id="L105">        createButtonLink(grid, INDICATORS_TEXT, VaadinIcons.CHART,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId),
+                INDICATORS_DESCRIPTION);
 
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = &quot;Page Visit History&quot;;
+<span class="fc" id="L109">        createButtonLink(grid, TOTAL_EXPERIENCE, VaadinIcons.USER_CLOCK,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L111">                        PoliticianPageMode.ROLESUMMARY.toString(), pageId),</span>
+                TOTAL_EXPERIENCE_DESCRIPTION);
 
-	/** The Constant POLITICIAN_RANKING. */
-	private static final String POLITICIAN_RANKING = &quot;Politician Ranking&quot;;
+<span class="fc" id="L114">        createButtonLink(grid, ROLE_LIST, VaadinIcons.LIST,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L116">                        PoliticianPageMode.ROLELIST.toString(), pageId),</span>
+                ROLE_LIST_DESCRIPTION);
 
-	/** The Constant ROLE_GHANT_TEXT. */
-	private static final String ROLE_GHANT_TEXT = &quot;RoleGhant&quot;;
+<span class="fc" id="L119">        createButtonLink(grid, ROLE_GHANT_TEXT, VaadinIcons.USER_CLOCK,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L121">                        PoliticianPageMode.ROLEGHANT.toString(), pageId),</span>
+                ROLE_GHANT_DESCRIPTION);
 
-	/** The Constant ROLE_LIST. */
-	private static final String ROLE_LIST = &quot;RoleList&quot;;
+<span class="fc" id="L124">        createButtonLink(grid, DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_TEXT,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L126">                        PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId),</span>
+                DOCUMENT_ACTIVITY_DESCRIPTION);
 
-	/** The Constant ROLES_TEXT. */
-	private static final String ROLES_TEXT = &quot;Roles&quot;;
+<span class="fc" id="L129">        createButtonLink(grid, DOCUMENT_HISTORY_TEXT, VaadinIcons.CHART,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L131">                        PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId),</span>
+                DOCUMENT_HISTORY_DESCRIPTION);
 
-	/** The Constant TOTAL_EXPERIENCE. */
-	private static final String TOTAL_EXPERIENCE = &quot;Total experience&quot;;
+<span class="fc" id="L134">        createButtonLink(grid, VOTE_HISTORY, VaadinIcons.CHECK_CIRCLE,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L136">                        PoliticianPageMode.VOTEHISTORY.toString(), pageId),</span>
+                VOTE_HISTORY_DESCRIPTION);
 
-	/** The Constant VOTE_HISTORY. */
-	private static final String VOTE_HISTORY = &quot;Vote history&quot;;
+<span class="fc" id="L139">        createButtonLink(grid, BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.CHECK,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L141">                        PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId),</span>
+                BALLOT_DECISION_SUMMARY_DESCRIPTION);
 
-	/** The application menu item factory. */
-	@Autowired
-	private ApplicationMenuItemFactory applicationMenuItemFactory;
+<span class="fc" id="L144">        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId),
+                PAGE_VISIT_HISTORY_DESCRIPTION);
+<span class="fc" id="L147">    }</span>
 
-	/** The politician ranking menu item factory. */
-	@Autowired
-	private PoliticianRankingMenuItemFactory politicianRankingMenuItemFactory;
+    /**
+     * Creates the politician menu bar and integrates it into the main application menu.
+     * Adds politician ranking topics and specific politician-related menu items.
+     *
+     * @param menuBar the main application {@link MenuBar} to which the politician
+     *                menu will be added.
+     * @param pageId the identifier for the current page context.
+     */
+    @Override
+    public void createPoliticianMenuBar(final MenuBar menuBar, final String pageId) {
+<span class="fc" id="L159">        initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L160">        applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="fc" id="L161">        politicianRankingMenuItemFactory.createPoliticianRankingTopics(</span>
+<span class="fc" id="L162">                menuBar.addItem(POLITICIAN_RANKING, VaadinIcons.USER, null));</span>
 
+<span class="fc" id="L164">        final MenuItem politicianItem = menuBar.addItem(&quot;Politician &quot; + pageId, VaadinIcons.USER, null);</span>
 
-	/**
-	 * Instantiates a new politician menu item factory impl.
-	 */
-	public PoliticianMenuItemFactoryImpl() {
-<span class="fc" id="L99">		super();</span>
-<span class="fc" id="L100">	}</span>
+<span class="fc" id="L166">        politicianItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
-	@Override
-	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
-<span class="fc" id="L104">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L169">        politicianItem.addItem(INDICATORS_TEXT, VaadinIcons.CHART,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));
 
-<span class="fc" id="L106">		createButtonLink(grid,INDICATORS_TEXT, VaadinIcons.BUG,</span>
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId), &quot;Daily summary of ballots breakdown by won,party rebel,absent and number of ballots&quot;);
+<span class="fc" id="L172">        final MenuItem rolesItem = politicianItem.addItem(ROLES_TEXT, VaadinIcons.TAGS, null);</span>
 
+<span class="fc" id="L174">        rolesItem.addItem(TOTAL_EXPERIENCE, VaadinIcons.USER_CLOCK,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L176">                        PoliticianPageMode.ROLESUMMARY.toString(), pageId));</span>
 
-<span class="fc" id="L110">		createButtonLink(grid,TOTAL_EXPERIENCE, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L111">				PoliticianPageMode.ROLESUMMARY.toString(), pageId), &quot;Experience summary in EU,government,parliament,committess and party roles&quot;);</span>
+<span class="fc" id="L178">        rolesItem.addItem(ROLE_LIST, VaadinIcons.LIST,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L180">                        PoliticianPageMode.ROLELIST.toString(), pageId));</span>
 
-<span class="fc" id="L113">		createButtonLink(grid,ROLE_LIST, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L114">				PoliticianPageMode.ROLELIST.toString(), pageId), &quot;List all roles&quot;);</span>
+<span class="fc" id="L182">        rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.USER_CLOCK,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L184">                        PoliticianPageMode.ROLEGHANT.toString(), pageId));</span>
 
-<span class="fc" id="L116">		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L117">				PoliticianPageMode.ROLEGHANT.toString(), pageId), &quot;Gantt chart of all roles&quot;);</span>
+<span class="fc" id="L186">        final MenuItem documentItem = politicianItem.addItem(DOCUMENTS_TEXT, VaadinIcons.FILE_TEXT, null);</span>
 
+<span class="fc" id="L188">        documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_TEXT,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L190">                        PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId));</span>
 
-<span class="fc" id="L120">		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L121">				PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId), &quot;Document activity by document type&quot;);</span>
+<span class="fc" id="L192">        documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.CHART,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L194">                        PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId));</span>
 
-<span class="fc" id="L123">		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L124">				PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId), &quot;Document history list&quot;);</span>
+<span class="fc" id="L196">        final MenuItem ballotItem = politicianItem.addItem(BALLOTS_TEXT, VaadinIcons.CHECK, null);</span>
 
+<span class="fc" id="L198">        ballotItem.addItem(VOTE_HISTORY, VaadinIcons.CHECK_CIRCLE,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L200">                        PoliticianPageMode.VOTEHISTORY.toString(), pageId));</span>
 
-<span class="fc" id="L127">		createButtonLink(grid,VOTE_HISTORY, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L128">				PoliticianPageMode.VOTEHISTORY.toString(), pageId), &quot;Summary of all votes&quot;);</span>
+<span class="fc" id="L202">        ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.CHECK,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
+<span class="fc" id="L204">                        PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId));</span>
 
-<span class="fc" id="L130">		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L131">				PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId), &quot;Summary of all ballot decisions&quot;);</span>
-
-<span class="fc" id="L133">		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG,</span>
-				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId), &quot;View history of page visit for this page.&quot;);
-
-<span class="fc" id="L136">	}</span>
-
-	@Override
-	public void createPoliticianMenuBar(final MenuBar menuBar, final String pageId) {
-<span class="fc" id="L140">			initApplicationMenuBar(menuBar);</span>
-
-<span class="fc" id="L142">			applicationMenuItemFactory.addRankingMenu(menuBar);</span>
-
-<span class="fc" id="L144">			politicianRankingMenuItemFactory.createPoliticianRankingTopics(menuBar.addItem(POLITICIAN_RANKING, VaadinIcons.BUG, null));</span>
-
-<span class="fc" id="L146">			final MenuItem politicanItem = menuBar.addItem(&quot;Politician &quot;+ pageId, VaadinIcons.BUG,null);</span>
-
-
-<span class="fc" id="L149">			politicanItem.addItem(OVERVIEW_TEXT, VaadinIcons.BUG,</span>
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, pageId));
-<span class="fc" id="L151">			politicanItem.addItem(INDICATORS_TEXT, VaadinIcons.BUG,</span>
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS, pageId));
-
-<span class="fc" id="L154">			final MenuItem rolesItem = politicanItem.addItem(ROLES_TEXT, VaadinIcons.BUG, null);</span>
-
-<span class="fc" id="L156">			rolesItem.addItem(TOTAL_EXPERIENCE, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L157">					PoliticianPageMode.ROLESUMMARY.toString(), pageId));</span>
-
-<span class="fc" id="L159">			rolesItem.addItem(ROLE_LIST, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L160">					PoliticianPageMode.ROLELIST.toString(), pageId));</span>
-
-<span class="fc" id="L162">			rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L163">					PoliticianPageMode.ROLEGHANT.toString(), pageId));</span>
-
-<span class="fc" id="L165">			final MenuItem documentItem = politicanItem.addItem(DOCUMENTS_TEXT, VaadinIcons.BUG, null);</span>
-
-<span class="fc" id="L167">			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L168">					PoliticianPageMode.DOCUMENTACTIVITY.toString(), pageId));</span>
-
-<span class="fc" id="L170">			documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L171">					PoliticianPageMode.DOCUMENTHISTORY.toString(), pageId));</span>
-
-<span class="fc" id="L173">			final MenuItem ballotItem = politicanItem.addItem(BALLOTS_TEXT, VaadinIcons.BUG, null);</span>
-
-<span class="fc" id="L175">			ballotItem.addItem(VOTE_HISTORY, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L176">					PoliticianPageMode.VOTEHISTORY.toString(), pageId));</span>
-
-<span class="fc" id="L178">			ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.BUG, new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,</span>
-<span class="fc" id="L179">					PoliticianPageMode.BALLOTDECISIONSUMMARY.toString(), pageId));</span>
-
-<span class="fc" id="L181">			politicanItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.BUG,</span>
-					new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
-
-<span class="fc" id="L184">	}</span>
-
+<span class="fc" id="L206">        politicianItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,</span>
+                new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+<span class="fc" id="L208">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

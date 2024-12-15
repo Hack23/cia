@@ -37,23 +37,28 @@ import com.vaadin.data.ValueProvider;
  */
 public final class ListPropertyConverter implements Converter&lt;String, List&lt;?&gt;&gt;,ValueProvider&lt;Object, String&gt; {
 
+	/** The Constant CONTENT_SEPARATOR. */
 	private static final char CONTENT_SEPARATOR = ' ';
 
+	/** The Constant END_TAG. */
 	private static final char END_TAG = ']';
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L45">	private static final Logger LOGGER = LoggerFactory.getLogger(ListPropertyConverter.class);</span>
+<span class="fc" id="L47">	private static final Logger LOGGER = LoggerFactory.getLogger(ListPropertyConverter.class);</span>
 
-<span class="fc" id="L47">	private static final PropertyUtilsBean PROPERTY_UTILS_BEAN= new PropertyUtilsBean();</span>
+	/** The Constant PROPERTY_UTILS_BEAN. */
+<span class="fc" id="L50">	private static final PropertyUtilsBean PROPERTY_UTILS_BEAN= new PropertyUtilsBean();</span>
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The Constant START_TAG. */
 	private static final char START_TAG = '[';
 
 	/** The column. */
 	private final String column;
 
+	/** The fallback column. */
 	private final String fallbackColumn;
 
 	/** The property. */
@@ -67,11 +72,11 @@ public final class ListPropertyConverter implements Converter&lt;String, List&lt
 	 *            the column
 	 */
 	public ListPropertyConverter(final String property, final String column) {
-<span class="fc" id="L70">		super();</span>
-<span class="fc" id="L71">		this.property = property;</span>
-<span class="fc" id="L72">		this.column = column;</span>
-<span class="fc" id="L73">		this.fallbackColumn = null;</span>
-<span class="fc" id="L74">	}</span>
+<span class="fc" id="L75">		super();</span>
+<span class="fc" id="L76">		this.property = property;</span>
+<span class="fc" id="L77">		this.column = column;</span>
+<span class="fc" id="L78">		this.fallbackColumn = null;</span>
+<span class="fc" id="L79">	}</span>
 
 	/**
 	 * Instantiates a new list property converter.
@@ -83,11 +88,11 @@ public final class ListPropertyConverter implements Converter&lt;String, List&lt
 	 *            the fallback column
 	 */
 	public ListPropertyConverter(final String property, final String column, final String fallbackColumn) {
-<span class="fc" id="L86">		super();</span>
-<span class="fc" id="L87">		this.property = property;</span>
-<span class="fc" id="L88">		this.column = column;</span>
-<span class="fc" id="L89">		this.fallbackColumn = fallbackColumn;</span>
-<span class="fc" id="L90">	}</span>
+<span class="fc" id="L91">		super();</span>
+<span class="fc" id="L92">		this.property = property;</span>
+<span class="fc" id="L93">		this.column = column;</span>
+<span class="fc" id="L94">		this.fallbackColumn = fallbackColumn;</span>
+<span class="fc" id="L95">	}</span>
 
 
 	/**
@@ -101,13 +106,13 @@ public final class ListPropertyConverter implements Converter&lt;String, List&lt
 	 */
 	private void addFallbackValue(final StringBuilder stringBuilder, final Object object)
 			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-<span class="fc bfc" id="L104" title="All 2 branches covered.">		if (fallbackColumn != null) {</span>
-<span class="fc" id="L105">			final String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);</span>
-<span class="fc bfc" id="L106" title="All 2 branches covered.">			if (beanPropertyFallBack != null) {</span>
-<span class="fc" id="L107">				stringBuilder.append(beanPropertyFallBack);</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">		if (fallbackColumn != null) {</span>
+<span class="fc" id="L110">			final String beanPropertyFallBack = BeanUtils.getProperty(object, fallbackColumn);</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">			if (beanPropertyFallBack != null) {</span>
+<span class="fc" id="L112">				stringBuilder.append(beanPropertyFallBack);</span>
 			}
 		}
-<span class="fc" id="L110">	}</span>
+<span class="fc" id="L115">	}</span>
 
 	/**
 	 * Append object presentation.
@@ -119,51 +124,51 @@ public final class ListPropertyConverter implements Converter&lt;String, List&lt
 	 */
 	private void appendObjectPresentation(final StringBuilder stringBuilder, final Object object) {
 		try {
-<span class="fc" id="L122">			final String beanProperty = BeanUtils.getProperty(object, property);</span>
+<span class="fc" id="L127">			final String beanProperty = BeanUtils.getProperty(object, property);</span>
 
-<span class="fc bfc" id="L124" title="All 2 branches covered.">			if (beanProperty != null) {</span>
-<span class="fc" id="L125">				stringBuilder.append(beanProperty);</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">			if (beanProperty != null) {</span>
+<span class="fc" id="L130">				stringBuilder.append(beanProperty);</span>
 			} else {
-<span class="fc" id="L127">				addFallbackValue(stringBuilder, object);</span>
+<span class="fc" id="L132">				addFallbackValue(stringBuilder, object);</span>
 			}
 
-<span class="fc" id="L130">		} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
-<span class="fc" id="L131">			LOGGER.warn(&quot;Problem getting property {}, object {} , exception {}&quot;, property, object, e);</span>
-<span class="fc" id="L132">		}</span>
-<span class="fc" id="L133">		stringBuilder.append(CONTENT_SEPARATOR);</span>
-<span class="fc" id="L134">	}</span>
+<span class="fc" id="L135">		} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
+<span class="fc" id="L136">			LOGGER.warn(&quot;Problem getting property {}, object {} , exception {}&quot;, property, object, e);</span>
+<span class="fc" id="L137">		}</span>
+<span class="fc" id="L138">		stringBuilder.append(CONTENT_SEPARATOR);</span>
+<span class="fc" id="L139">	}</span>
 
 	@Override
 	public String apply(final Object source) {
 		List&lt;?&gt; list;
 		try {
-<span class="fc" id="L140">			list = (List&lt;?&gt;) PROPERTY_UTILS_BEAN.getProperty(source, column);</span>
-<span class="fc" id="L141">			return convertToPresentation(list,null);</span>
-<span class="fc" id="L142">		} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
-<span class="fc" id="L143">			LOGGER.warn(&quot;Problem getting list {}, object {} , exception {}&quot;, property, column, e);</span>
+<span class="fc" id="L145">			list = (List&lt;?&gt;) PROPERTY_UTILS_BEAN.getProperty(source, column);</span>
+<span class="fc" id="L146">			return convertToPresentation(list,null);</span>
+<span class="fc" id="L147">		} catch (final IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
+<span class="fc" id="L148">			LOGGER.warn(&quot;Problem getting list {}, object {} , exception {}&quot;, property, column, e);</span>
 		}
-<span class="fc" id="L145">		return &quot;&quot;;</span>
+<span class="fc" id="L150">		return &quot;&quot;;</span>
 	}
 
 	@Override
 	public Result&lt;List&lt;?&gt;&gt; convertToModel(final String value, final ValueContext context) {
-<span class="fc" id="L150">		return Result.ok(new ArrayList&lt;&gt;());</span>
+<span class="fc" id="L155">		return Result.ok(new ArrayList&lt;&gt;());</span>
 	}
 
 	@Override
 	public String convertToPresentation(final List value, final ValueContext context) {
-<span class="fc" id="L155">		final StringBuilder stringBuilder = new StringBuilder();</span>
+<span class="fc" id="L160">		final StringBuilder stringBuilder = new StringBuilder();</span>
 
-<span class="fc bfc" id="L157" title="All 2 branches covered.">		if (value != null) {</span>
-<span class="fc" id="L158">			stringBuilder.append(START_TAG);</span>
-<span class="fc bfc" id="L159" title="All 2 branches covered.">			for (final Object object : value) {</span>
-<span class="fc" id="L160">				appendObjectPresentation(stringBuilder, object);</span>
-<span class="fc" id="L161">			}</span>
-<span class="fc" id="L162">			stringBuilder.append(END_TAG);</span>
+<span class="fc bfc" id="L162" title="All 2 branches covered.">		if (value != null) {</span>
+<span class="fc" id="L163">			stringBuilder.append(START_TAG);</span>
+<span class="fc bfc" id="L164" title="All 2 branches covered.">			for (final Object object : value) {</span>
+<span class="fc" id="L165">				appendObjectPresentation(stringBuilder, object);</span>
+<span class="fc" id="L166">			}</span>
+<span class="fc" id="L167">			stringBuilder.append(END_TAG);</span>
 		}
 
 
-<span class="fc" id="L166">		return stringBuilder.toString();</span>
+<span class="fc" id="L171">		return stringBuilder.toString();</span>
 	}
 
 	/**
@@ -172,7 +177,7 @@ public final class ListPropertyConverter implements Converter&lt;String, List&lt
 	 * @return the column
 	 */
 	public String getColumn() {
-<span class="fc" id="L175">		return column;</span>
+<span class="fc" id="L180">		return column;</span>
 	}
 
 }

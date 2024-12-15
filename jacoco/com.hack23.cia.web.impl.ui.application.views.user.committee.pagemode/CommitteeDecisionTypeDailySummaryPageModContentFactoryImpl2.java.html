@@ -27,7 +27,6 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -41,12 +40,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-	/** The Constant COMMITTEE. */
-	private static final String COMMITTEE = &quot;Committee:&quot;;
-
-	/** The Constant DECISION_TYPE_DAILY_SUMMARY. */
-	private static final String DECISION_TYPE_DAILY_SUMMARY = &quot;Decision Type Daily Summary&quot;;
-
 	/** The chart data manager. */
 	@Autowired
 	private DecisionChartDataManager chartDataManager;
@@ -56,33 +49,32 @@ public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 	 * factory impl2.
 	 */
 	public CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2() {
-<span class="fc" id="L59">		super();</span>
-<span class="fc" id="L60">	}</span>
+<span class="fc" id="L52">		super();</span>
+<span class="fc" id="L53">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L65">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L67">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L69">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="fc" id="L70">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L62">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="fc" id="L63">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L72">		LabelFactory.createHeader2Label(panelContent, DECISION_TYPE_DAILY_SUMMARY);</span>
+<span class="fc" id="L65">		createPageHeader(panel, panelContent, &quot;Daily Committee Decisions &quot; + viewRiksdagenCommittee.getEmbeddedId().getDetail() , &quot;Summary of Decision Types&quot;, &quot;Displays a summary of daily committee decision-making activity.&quot;);</span>
 
-<span class="fc" id="L74">		chartDataManager.createDecisionTypeChart(panelContent, viewRiksdagenCommittee.getEmbeddedId().getOrgCode());</span>
+<span class="fc" id="L67">		chartDataManager.createDecisionTypeChart(panelContent, viewRiksdagenCommittee.getEmbeddedId().getOrgCode());</span>
 
-<span class="fc" id="L76">		panel.setCaption(NAME + &quot;::&quot; + COMMITTEE + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
-<span class="fc" id="L77">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L69">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L79">		return panelContent;</span>
+<span class="fc" id="L71">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L85" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString());</span>
+<span class="fc bfc" id="L77" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; StringUtils.contains(parameters, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString());</span>
 	}
 
 }

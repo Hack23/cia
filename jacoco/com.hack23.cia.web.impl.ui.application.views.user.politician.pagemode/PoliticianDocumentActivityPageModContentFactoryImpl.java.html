@@ -23,9 +23,11 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PersonDocumentChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -47,30 +49,30 @@ public final class PoliticianDocumentActivityPageModContentFactoryImpl
 	 * impl.
 	 */
 	public PoliticianDocumentActivityPageModContentFactoryImpl() {
-<span class="fc" id="L50">		super();</span>
-<span class="fc" id="L51">	}</span>
+<span class="fc" id="L52">		super();</span>
+<span class="fc" id="L53">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L56">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L58">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L58">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L59">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
-<span class="fc" id="L60">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L61">		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);</span>
+<span class="fc" id="L62">		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L63">		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + &quot; Document Activity&quot;, &quot;Activity Overview&quot;, &quot;Detailed insights into the politician's document-related legislative activities.&quot;);</span>
 
-<span class="fc" id="L62">		LabelFactory.createHeader2Label(panelContent, PoliticianPageMode.DOCUMENTACTIVITY.toString());</span>
+<span class="fc" id="L65">		documentChartDataManager.createPersonDocumentHistoryChart(panelContent, viewRiksdagenPolitician.getPersonId());</span>
 
-<span class="fc" id="L64">		documentChartDataManager.createPersonDocumentHistoryChart(panelContent, viewRiksdagenPolitician.getPersonId());</span>
-
-<span class="fc" id="L66">		pageCompleted(parameters, panel, pageId, viewRiksdagenPolitician);</span>
-<span class="fc" id="L67">		return panelContent;</span>
+<span class="fc" id="L67">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,</span>
+		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
+<span class="fc" id="L69">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc bfc" id="L73" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString());</span>
+<span class="fc bfc" id="L75" title="All 4 branches covered.">		return NAME.equals(page) &amp;&amp; parameters.contains(PoliticianPageMode.DOCUMENTACTIVITY.toString());</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * The Class CitizenIntelligenceAgencyHealthCheckServlet.
  */
 @WebServlet(value = &quot;/healthcheck/*&quot;, loadOnStartup = 1, asyncSupported = true)
-<span class="fc" id="L33">public final class CitizenIntelligenceAgencyHealthCheckServlet extends HttpServlet {</span>
+public final class CitizenIntelligenceAgencyHealthCheckServlet extends HttpServlet {
 
 	/** The Constant OK. */
 	private static final String OK = &quot;OK&quot;;
@@ -41,10 +41,17 @@ import javax.servlet.http.HttpServletResponse;
 	/** The Constant TEXT_HTML. */
 	private static final String TEXT_HTML = &quot;text/html&quot;;
 
+	/**
+	 * Default constructor for CitizenIntelligenceAgencyHealthCheckServlet.
+	 */
+<span class="fc" id="L47">	public CitizenIntelligenceAgencyHealthCheckServlet() {</span>
+		// Default constructor
+<span class="fc" id="L49">	}</span>
+
 	@Override
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
-<span class="fc" id="L46">		response.setContentType(TEXT_HTML);</span>
-<span class="fc" id="L47">		response.getWriter().println(OK);</span>
-<span class="fc" id="L48">	}</span>
+<span class="fc" id="L53">		response.setContentType(TEXT_HTML);</span>
+<span class="fc" id="L54">		response.getWriter().println(OK);</span>
+<span class="fc" id="L55">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

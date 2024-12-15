@@ -136,7 +136,7 @@
 <a class="jxr_linenumber" name="L128" href="#L128">128</a> 
 <a class="jxr_linenumber" name="L129" href="#L129">129</a> 		userPageVisit
 <a class="jxr_linenumber" name="L130" href="#L130">130</a> 				.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, <span class="jxr_string">""</span>));
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Application Configuration"</span>));
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Admin Application Configuration"</span>));
 <a class="jxr_linenumber" name="L132" href="#L132">132</a> 
 <a class="jxr_linenumber" name="L133" href="#L133">133</a> 		clickFirstRowInGrid(userPageVisit);
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> 
@@ -164,7 +164,7 @@
 <a class="jxr_linenumber" name="L156" href="#L156">156</a> 		loginAsAdmin(userPageVisit);
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> 
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Application Action Event chart"</span>));
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Charts"</span>));
 <a class="jxr_linenumber" name="L160" href="#L160">160</a> 
 <a class="jxr_linenumber" name="L161" href="#L161">161</a> 		userPageVisit.validatePage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS));
 <a class="jxr_linenumber" name="L162" href="#L162">162</a> 
@@ -185,7 +185,7 @@
 <a class="jxr_linenumber" name="L177" href="#L177">177</a> 		loginAsAdmin(userPageVisit);
 <a class="jxr_linenumber" name="L178" href="#L178">178</a> 
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, <span class="jxr_string">""</span>));
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Application Action Event"</span>));
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Admin Application Events"</span>));
 <a class="jxr_linenumber" name="L181" href="#L181">181</a> 
 <a class="jxr_linenumber" name="L182" href="#L182">182</a> 		clickFirstRowInGrid(userPageVisit);
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 
@@ -208,7 +208,7 @@
 <a class="jxr_linenumber" name="L200" href="#L200">200</a> 		loginAsAdmin(userPageVisit);
 <a class="jxr_linenumber" name="L201" href="#L201">201</a> 
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS));
-<a class="jxr_linenumber" name="L203" href="#L203">203</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Admin Daily Active Users Chart"</span>));
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Admin Application Session Charts"</span>));
 <a class="jxr_linenumber" name="L204" href="#L204">204</a> 
 <a class="jxr_linenumber" name="L205" href="#L205">205</a> 		userPageVisit.validatePage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS));
 <a class="jxr_linenumber" name="L206" href="#L206">206</a> 
@@ -450,7 +450,7 @@
 <a class="jxr_linenumber" name="L442" href="#L442">442</a> 		loginAsAdmin(userPageVisit);
 <a class="jxr_linenumber" name="L443" href="#L443">443</a> 
 <a class="jxr_linenumber" name="L444" href="#L444">444</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, <span class="jxr_string">""</span>));
-<a class="jxr_linenumber" name="L445" href="#L445">445</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Useraccount"</span>));
+<a class="jxr_linenumber" name="L445" href="#L445">445</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Admin User Account Management"</span>));
 <a class="jxr_linenumber" name="L446" href="#L446">446</a> 
 <a class="jxr_linenumber" name="L447" href="#L447">447</a> 		clickFirstRowInGrid(userPageVisit);
 <a class="jxr_linenumber" name="L448" href="#L448">448</a> 
@@ -479,7 +479,7 @@
 <a class="jxr_linenumber" name="L471" href="#L471">471</a> 		loginAsAdmin(userPageVisit);
 <a class="jxr_linenumber" name="L472" href="#L472">472</a> 
 <a class="jxr_linenumber" name="L473" href="#L473">473</a> 		userPageVisit.visitDirectPage(<strong class="jxr_keyword">new</strong> PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, <span class="jxr_string">""</span>));
-<a class="jxr_linenumber" name="L474" href="#L474">474</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"Useraccount"</span>));
+<a class="jxr_linenumber" name="L474" href="#L474">474</a> 		assertTrue(<span class="jxr_string">"Expect content"</span>,userPageVisit.checkHtmlBodyContainsText(<span class="jxr_string">"User"</span>));
 <a class="jxr_linenumber" name="L475" href="#L475">475</a> 
 <a class="jxr_linenumber" name="L476" href="#L476">476</a> 		clickFirstRowInGrid(userPageVisit);
 <a class="jxr_linenumber" name="L477" href="#L477">477</a> 

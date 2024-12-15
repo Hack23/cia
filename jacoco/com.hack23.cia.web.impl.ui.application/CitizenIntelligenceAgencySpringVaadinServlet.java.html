@@ -39,35 +39,42 @@ import com.vaadin.spring.server.SpringVaadinServlet;
  */
 @WebServlet(value = &quot;/*&quot;, loadOnStartup = 2, asyncSupported = true)
 @VaadinServletConfiguration(productionMode = true, ui = CitizenIntelligenceAgencyUI.class, widgetset = &quot;com.hack23.cia.web.widgets.WebWidgetSet&quot;)
-<span class="fc" id="L42">public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVaadinServlet {</span>
+public final class CitizenIntelligenceAgencySpringVaadinServlet extends SpringVaadinServlet {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	protected void service(final HttpServletRequest request, final HttpServletResponse response)
-			throws ServletException, IOException {
-<span class="fc" id="L50">		response.setHeader(&quot;Strict-Transport-Security&quot;, &quot;max-age=31536000; includeSubDomains&quot;);</span>
-<span class="fc" id="L51">		super.service(request, response);</span>
+	/**
+	 * Default constructor for CitizenIntelligenceAgencySpringVaadinServlet.
+	 */
+<span class="fc" id="L50">	public CitizenIntelligenceAgencySpringVaadinServlet() {</span>
+		// Default constructor
 <span class="fc" id="L52">	}</span>
 
 	@Override
+	protected void service(final HttpServletRequest request, final HttpServletResponse response)
+			throws ServletException, IOException {
+<span class="fc" id="L57">		response.setHeader(&quot;Strict-Transport-Security&quot;, &quot;max-age=31536000; includeSubDomains&quot;);</span>
+<span class="fc" id="L58">		super.service(request, response);</span>
+<span class="fc" id="L59">	}</span>
+
+	@Override
 	protected void servletInitialized() throws ServletException {
-<span class="fc" id="L56">		final VaadinServletService service = getService();</span>
-<span class="fc" id="L57">		service.addSessionInitListener(event -&gt; {</span>
-<span class="fc" id="L58">			final VaadinSession session = event.getSession();</span>
-<span class="fc bfc" id="L59" title="All 2 branches covered.">			for (final UIProvider provider : session.getUIProviders()) {</span>
-<span class="pc bpc" id="L60" title="1 of 2 branches missed.">				if (DefaultUIProvider.class.getCanonicalName().equals(provider.getClass().getCanonicalName())) {</span>
-<span class="fc" id="L61">					session.removeUIProvider(provider);</span>
+<span class="fc" id="L63">		final VaadinServletService service = getService();</span>
+<span class="fc" id="L64">		service.addSessionInitListener(event -&gt; {</span>
+<span class="fc" id="L65">			final VaadinSession session = event.getSession();</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">			for (final UIProvider provider : session.getUIProviders()) {</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">				if (DefaultUIProvider.class.getCanonicalName().equals(provider.getClass().getCanonicalName())) {</span>
+<span class="fc" id="L68">					session.removeUIProvider(provider);</span>
 				}
-<span class="fc" id="L63">			}</span>
-<span class="fc" id="L64">			session.addUIProvider(new CustomSpringUIProvider(session));</span>
-<span class="fc" id="L65">		});</span>
-<span class="fc" id="L66">		service.addSessionDestroyListener(event -&gt; {</span>
-<span class="fc" id="L67">			final VaadinSession session = event.getSession();</span>
-<span class="fc" id="L68">			UIScopeImpl.cleanupSession(session);</span>
-<span class="fc" id="L69">			VaadinSessionScope.cleanupSession(session);</span>
-<span class="fc" id="L70">		});</span>
-<span class="fc" id="L71">	}</span>
+<span class="fc" id="L70">			}</span>
+<span class="fc" id="L71">			session.addUIProvider(new CustomSpringUIProvider(session));</span>
+<span class="fc" id="L72">		});</span>
+<span class="fc" id="L73">		service.addSessionDestroyListener(event -&gt; {</span>
+<span class="fc" id="L74">			final VaadinSession session = event.getSession();</span>
+<span class="fc" id="L75">			UIScopeImpl.cleanupSession(session);</span>
+<span class="fc" id="L76">			VaadinSessionScope.cleanupSession(session);</span>
+<span class="fc" id="L77">		});</span>
+<span class="fc" id="L78">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

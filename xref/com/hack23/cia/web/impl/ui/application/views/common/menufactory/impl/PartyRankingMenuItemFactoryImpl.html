@@ -21,9 +21,9 @@
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_comment"> * See the License for the specific language governing permissions and</em>
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_comment"> * limitations under the License.</em>
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> *</em>
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_comment"> *	$Id$</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_comment"> *  $Id$</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_comment"> *  $HeadURL$</em>
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_comment">*/</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">package</strong> com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.springframework.beans.factory.annotation.Autowired;
@@ -44,156 +44,146 @@
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment"> * The Class PartyRankingMenuItemFactoryImpl.</em>
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  @Service
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="PartyRankingMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/PartyRankingMenuItemFactoryImpl.html#PartyRankingMenuItemFactoryImpl">PartyRankingMenuItemFactoryImpl</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/AbstractMenuItemFactoryImpl.html#AbstractMenuItemFactoryImpl">AbstractMenuItemFactoryImpl</a> <strong class="jxr_keyword">implements</strong> <a name="PartyRankingMenuItemFactory" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/api/PartyRankingMenuItemFactory.html#PartyRankingMenuItemFactory">PartyRankingMenuItemFactory</a> {
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  	<em class="jxr_javadoccomment">/** The Constant PART_LEADERS_SCOREBOARD. */</em>
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PART_LEADERS_SCOREBOARD = <span class="jxr_string">"Part leaders scoreboard"</span>;
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  	<em class="jxr_javadoccomment">/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT. */</em>
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = <span class="jxr_string">"All parties, total days served in parliament"</span>;
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  	<em class="jxr_javadoccomment">/** The Constant CHART_BY_TOPIC_TEXT. */</em>
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CHART_BY_TOPIC_TEXT = <span class="jxr_string">"Chart by topic"</span>;
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_CHARTS_ALL_PARTIES. */</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_CHARTS_ALL_PARTIES = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.ALLPARTIES.toString());
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_CHARTS_CURRENT_COMMITTEES. */</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_CHARTS_CURRENT_COMMITTEES = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEES.toString());
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES. */</em>
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTGOVERMENTPARTIES.toString());
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_CHARTS_CURRENT_PARTIES. */</em>
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_CHARTS_CURRENT_PARTIES = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTIES.toString());
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD. */</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_DATAGRID. */</em>
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_DATAGRID = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_OVERVIEW. */</em>
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_OVERVIEW = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	<em class="jxr_javadoccomment">/** The Constant COMMAND_PAGEVISITHISTORY. */</em>
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_PAGEVISITHISTORY = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	<em class="jxr_javadoccomment">/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT. */</em>
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT = <span class="jxr_string">"Current parties active in committees, head count"</span>;
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  	<em class="jxr_javadoccomment">/** The Constant CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT. */</em>
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT = <span class="jxr_string">"Current parties active in ministries, head count"</span>;
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	<em class="jxr_javadoccomment">/** The Constant CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT. */</em>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT = <span class="jxr_string">"Current parties active in parliament, head count"</span>;
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  	<em class="jxr_javadoccomment">/** The Constant OVERVIEW_TEXT. */</em>
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String OVERVIEW_TEXT = <span class="jxr_string">"Overview"</span>;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> * Responsible for creating and organizing party ranking menu items, charts, and</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment"> * overview pages. Enhances user navigation to analyze party influence, roles,</em>
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * and performance within EU, government, committees, and parliament. Leverages</em>
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> * VaadinIcons to visually communicate context and concise descriptions focusing</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> * on political significance.</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment"> * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  @Service
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="PartyRankingMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/PartyRankingMenuItemFactoryImpl.html#PartyRankingMenuItemFactoryImpl">PartyRankingMenuItemFactoryImpl</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/AbstractMenuItemFactoryImpl.html#AbstractMenuItemFactoryImpl">AbstractMenuItemFactoryImpl</a> <strong class="jxr_keyword">implements</strong> <a name="PartyRankingMenuItemFactory" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/api/PartyRankingMenuItemFactory.html#PartyRankingMenuItemFactory">PartyRankingMenuItemFactory</a> {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <em class="jxr_comment">// Label constants</em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PART_LEADERS_SCOREBOARD = <span class="jxr_string">"Party leaders scoreboard"</span>;
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = <span class="jxr_string">"All parties total days served in parliament"</span>;
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CHART_BY_TOPIC_TEXT = <span class="jxr_string">"Chart by topic"</span>;
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT = <span class="jxr_string">"Current parties in committees"</span>;
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT = <span class="jxr_string">"Current parties in government"</span>;
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT = <span class="jxr_string">"Current parties in parliament"</span>;
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String OVERVIEW_TEXT = <span class="jxr_string">"Overview"</span>;
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PAGE_VISIT_HISTORY_TEXT = <span class="jxr_string">"Page Visit History"</span>;
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT =
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>              <span class="jxr_string">"Party by total members across EU/gov/committees/parliament"</span>;
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PARTY_RANKING = <span class="jxr_string">"Party Ranking"</span>;
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String TOTAL_MEMBERS = <span class="jxr_string">"Total members"</span>;
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>      <em class="jxr_comment">// Political analyst perspective descriptions (~50 chars)</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DESC_ALL_PARTIES_ROLES = <span class="jxr_string">"All parties: influence across key institutions."</span>;
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DESC_GOVERNMENT_HEADCOUNT = <span class="jxr_string">"Governing parties: evaluating institutional strength."</span>;
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DESC_COMMITTEES_HEADCOUNT = <span class="jxr_string">"Committees: parties' agenda-setting influence."</span>;
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DESC_PARLIAMENT_HEADCOUNT = <span class="jxr_string">"Parliament: mapping party legislative leverage."</span>;
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DESC_LEADERS_SCOREBOARD = <span class="jxr_string">"Leaders: comparing party leadership impact."</span>;
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DESC_DAYS_SERVED_PARLIAMENT = <span class="jxr_string">"All parties: experience shaping policy timelines."</span>;
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DESC_PAGE_VISIT_HISTORY = <span class="jxr_string">"Visit history: tracking public engagement patterns."</span>;
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>      <em class="jxr_comment">// Page mode commands</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_CHARTS_ALL_PARTIES = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_CHARTS_CURRENT_COMMITTEES = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTCOMMITTEES.toString());
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTGOVERMENTPARTIES.toString());
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_CHARTS_CURRENT_PARTIES = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_DATAGRID = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_OVERVIEW = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a> COMMAND_PAGEVISITHISTORY = <strong class="jxr_keyword">new</strong> <a name="PageModeMenuCommand" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/pagelinks/api/PageModeMenuCommand.html#PageModeMenuCommand">PageModeMenuCommand</a>(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>      <em class="jxr_javadoccomment">/** Application menu item factory for integrating ranking menus. */</em>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>      @Autowired
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>      <strong class="jxr_keyword">private</strong> <a name="ApplicationMenuItemFactory" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/api/ApplicationMenuItemFactory.html#ApplicationMenuItemFactory">ApplicationMenuItemFactory</a> applicationMenuItemFactory;
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  	<em class="jxr_javadoccomment">/** The Constant PAGE_VISIT_HISTORY_TEXT. */</em>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PAGE_VISIT_HISTORY_TEXT = <span class="jxr_string">"Page Visit History"</span>;
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">	 * The Constant</em>
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">	 * PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT.</em>
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT = <span class="jxr_string">"Party by total members, based on roles in departments, committees and parliament"</span>;
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  	<em class="jxr_javadoccomment">/** The Constant PARTY_RANKING. */</em>
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String PARTY_RANKING = <span class="jxr_string">"Party Ranking"</span>;
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> 	<em class="jxr_javadoccomment">/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */</em>
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String RANKING_LIST_BY_TOPIC_TEXT = <span class="jxr_string">"Ranking list by topic"</span>;
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> 
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 	<em class="jxr_javadoccomment">/** The Constant TOTAL_MEMBERS. */</em>
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String TOTAL_MEMBERS = <span class="jxr_string">"Total members"</span>;
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     * Instantiates a new party ranking menu item factory implementation.</em>
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>      <strong class="jxr_keyword">public</strong> <a name="PartyRankingMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/PartyRankingMenuItemFactoryImpl.html#PartyRankingMenuItemFactoryImpl">PartyRankingMenuItemFactoryImpl</a>() {
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          <strong class="jxr_keyword">super</strong>();
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>      }
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">     * Creates the overview page with concise, politically focused descriptions.</em>
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">     * Each button link is accompanied by ~50 character descriptions highlighting</em>
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">     * political context rather than technical details.</em>
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">     * @param panelContent the vertical layout to hold the overview content</em>
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>     @Override
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createOverviewPage(<strong class="jxr_keyword">final</strong> VerticalLayout panelContent) {
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>         <strong class="jxr_keyword">final</strong> ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> 	<em class="jxr_javadoccomment">/** The application menu item factory. */</em>
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> 	@Autowired
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> 	<strong class="jxr_keyword">private</strong> <a name="ApplicationMenuItemFactory" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/api/ApplicationMenuItemFactory.html#ApplicationMenuItemFactory">ApplicationMenuItemFactory</a> applicationMenuItemFactory;
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> 
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> 
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">	 * Instantiates a new party ranking menu item factory impl.</em>
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> 	<strong class="jxr_keyword">public</strong> <a name="PartyRankingMenuItemFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/menufactory/impl/PartyRankingMenuItemFactoryImpl.html#PartyRankingMenuItemFactoryImpl">PartyRankingMenuItemFactoryImpl</a>() {
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 		<strong class="jxr_keyword">super</strong>();
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 	}
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         createButtonLink(grid, PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>                 COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, DESC_LEADERS_SCOREBOARD);
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>         createButtonLink(grid, TOTAL_MEMBERS, VaadinIcons.USERS,
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>                 COMMAND_DATAGRID, DESC_ALL_PARTIES_ROLES);
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>         createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.INSTITUTION,
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>                 COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, DESC_GOVERNMENT_HEADCOUNT);
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> 
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>         createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT, VaadinIcons.GROUP,
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>                 COMMAND_CHARTS_CURRENT_COMMITTEES, DESC_COMMITTEES_HEADCOUNT);
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> 
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> 	@Override
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createOverviewPage(<strong class="jxr_keyword">final</strong> VerticalLayout panelContent) {
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> 		<strong class="jxr_keyword">final</strong> ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> 
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> 		createButtonLink(grid,TOTAL_MEMBERS,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> 				COMMAND_DATAGRID, <span class="jxr_string">"Scoreboard all parties current assignments and roles in eu,government,committes and parliament"</span>);
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> 				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, <span class="jxr_string">"Chart over the headcount by party in current goverment"</span>);
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> 
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> 				COMMAND_CHARTS_CURRENT_COMMITTEES, <span class="jxr_string">"Chart over the headcount by party in current committees"</span>);
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> 		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> 				COMMAND_CHARTS_CURRENT_PARTIES, <span class="jxr_string">"Chart over the headcount by party in current parliament"</span>);
-<a class="jxr_linenumber" name="L132" href="#L132">132</a> 
-<a class="jxr_linenumber" name="L133" href="#L133">133</a> 		createButtonLink(grid,PART_LEADERS_SCOREBOARD,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> 				COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, <span class="jxr_string">"Party leaders scoreboard"</span>);
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> 
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> 
-<a class="jxr_linenumber" name="L137" href="#L137">137</a> 		createButtonLink(grid,ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L138" href="#L138">138</a> 				COMMAND_CHARTS_ALL_PARTIES, <span class="jxr_string">"Chart all parties total politician days serverd in parliament"</span>);
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> 
-<a class="jxr_linenumber" name="L140" href="#L140">140</a> 		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L141" href="#L141">141</a> 				COMMAND_PAGEVISITHISTORY, <span class="jxr_string">"View history of page visit for this page."</span>);
-<a class="jxr_linenumber" name="L142" href="#L142">142</a> 
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> 	}
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>         createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT, VaadinIcons.INSTITUTION,
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>                 COMMAND_CHARTS_CURRENT_PARTIES, DESC_PARLIAMENT_HEADCOUNT);
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> 
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> 
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>         createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT, VaadinIcons.CLOCK,
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>                 COMMAND_CHARTS_ALL_PARTIES, DESC_DAYS_SERVED_PARLIAMENT);
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> 
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>         createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>                 COMMAND_PAGEVISITHISTORY, DESC_PAGE_VISIT_HISTORY);
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>     }
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> 
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">     * Creates the party ranking menu bar and integrates it into the main application</em>
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment">     * menu. Ensures consistent icon usage and logical grouping of party ranking</em>
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment">     * topics.</em>
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">     * @param menuBar the main menu bar to which the party ranking items will be added</em>
+<a class="jxr_linenumber" name="L135" href="#L135">135</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>     @Override
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createPartyRankingMenuBar(<strong class="jxr_keyword">final</strong> MenuBar menuBar) {
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>         initApplicationMenuBar(menuBar);
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>         applicationMenuItemFactory.addRankingMenu(menuBar);
+<a class="jxr_linenumber" name="L140" href="#L140">140</a> 
+<a class="jxr_linenumber" name="L141" href="#L141">141</a>         <em class="jxr_comment">// Suitable icon (e.g., LINE_CHART) for ranking visualization</em>
+<a class="jxr_linenumber" name="L142" href="#L142">142</a>         createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, VaadinIcons.LINE_CHART, <strong class="jxr_keyword">null</strong>));
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>     }
 <a class="jxr_linenumber" name="L144" href="#L144">144</a> 
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> 
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> 	@Override
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createPartyRankingMenuBar(<strong class="jxr_keyword">final</strong> MenuBar menuBar) {
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> 		initApplicationMenuBar(menuBar);
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> 		applicationMenuItemFactory.addRankingMenu(menuBar);
-<a class="jxr_linenumber" name="L151" href="#L151">151</a> 
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> 		createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, VaadinIcons.GROUP,<strong class="jxr_keyword">null</strong>));
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> 
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> 	}
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">     * Adds party ranking topics to the specified menu item. Uses icons that reflect</em>
+<a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">     * the content context, such as charts for data visualization, groups or</em>
+<a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">     * institutions for organizational structures, and history for past activity.</em>
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">     * @param partynMenuItem the parent menu item to which party ranking topics are added</em>
+<a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>     @Override
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createPartyRankingTopics(<strong class="jxr_keyword">final</strong> MenuItem partynMenuItem) {
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>         partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_OVERVIEW);
 <a class="jxr_linenumber" name="L155" href="#L155">155</a> 
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> 
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> 	@Override
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> createPartyRankingTopics(<strong class="jxr_keyword">final</strong> MenuItem partynMenuItem) {
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> 
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> 		partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> 				COMMAND_OVERVIEW);
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> 
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> 		<strong class="jxr_keyword">final</strong> MenuItem listByTopic = partynMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.GROUP, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L164" href="#L164">164</a> 
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> 		<strong class="jxr_keyword">final</strong> MenuItem listItem = listByTopic.addItem(TOTAL_MEMBERS,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> 				COMMAND_DATAGRID);
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> 		listItem.setDescription(PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT);
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> 
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> 		<strong class="jxr_keyword">final</strong> MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> 
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> 
-<a class="jxr_linenumber" name="L172" href="#L172">172</a> 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> 				COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
-<a class="jxr_linenumber" name="L174" href="#L174">174</a> 
-<a class="jxr_linenumber" name="L175" href="#L175">175</a> 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> 				COMMAND_CHARTS_CURRENT_COMMITTEES);
-<a class="jxr_linenumber" name="L177" href="#L177">177</a> 
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L179" href="#L179">179</a> 				COMMAND_CHARTS_CURRENT_PARTIES);
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT,VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> 				COMMAND_CHARTS_ALL_PARTIES);
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 
-<a class="jxr_linenumber" name="L183" href="#L183">183</a> 		partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
-<a class="jxr_linenumber" name="L184" href="#L184">184</a> 				COMMAND_PAGEVISITHISTORY);
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> 	}
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> 
-<a class="jxr_linenumber" name="L187" href="#L187">187</a> 
-<a class="jxr_linenumber" name="L188" href="#L188">188</a> }
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>         partynMenuItem.addItem(PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD);
+<a class="jxr_linenumber" name="L157" href="#L157">157</a> 
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>         <em class="jxr_comment">// Total members using USERS icon for multiple people</em>
+<a class="jxr_linenumber" name="L159" href="#L159">159</a>         <strong class="jxr_keyword">final</strong> MenuItem listItem = partynMenuItem.addItem(TOTAL_MEMBERS, VaadinIcons.USERS, COMMAND_DATAGRID);
+<a class="jxr_linenumber" name="L160" href="#L160">160</a>         listItem.setDescription(PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT);
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> 
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>         <strong class="jxr_keyword">final</strong> MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.CHART, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> 
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>         chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.INSTITUTION,
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>                 COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> 
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>         chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT, VaadinIcons.GROUP,
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>                 COMMAND_CHARTS_CURRENT_COMMITTEES);
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> 
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>         chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT, VaadinIcons.INSTITUTION,
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>                 COMMAND_CHARTS_CURRENT_PARTIES);
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> 
+<a class="jxr_linenumber" name="L173" href="#L173">173</a>         chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT, VaadinIcons.CLOCK,
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>                 COMMAND_CHARTS_ALL_PARTIES);
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> 
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>         partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY);
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>     }
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> }
 </pre>
 <hr/>
 <div id="footer">© 2008–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>
