@@ -60,7 +60,6 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
     private static final String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT =
             "Party by total members across EU/gov/committees/parliament";
     private static final String PARTY_RANKING = "Party Ranking";
-    private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
     private static final String TOTAL_MEMBERS = "Total members";
 
     // Political analyst perspective descriptions (~50 chars)
@@ -104,6 +103,9 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
     public void createOverviewPage(final VerticalLayout panelContent) {
         final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
+        createButtonLink(grid, PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,
+                COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, DESC_LEADERS_SCOREBOARD);
+
         createButtonLink(grid, TOTAL_MEMBERS, VaadinIcons.USERS,
                 COMMAND_DATAGRID, DESC_ALL_PARTIES_ROLES);
 
@@ -116,8 +118,6 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
         createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT, VaadinIcons.INSTITUTION,
                 COMMAND_CHARTS_CURRENT_PARTIES, DESC_PARLIAMENT_HEADCOUNT);
 
-        createButtonLink(grid, PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,
-                COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, DESC_LEADERS_SCOREBOARD);
 
         createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT, VaadinIcons.CLOCK,
                 COMMAND_CHARTS_ALL_PARTIES, DESC_DAYS_SERVED_PARLIAMENT);
@@ -153,10 +153,10 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
     public void createPartyRankingTopics(final MenuItem partynMenuItem) {
         partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_OVERVIEW);
 
-        final MenuItem listByTopic = partynMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.LIST, null);
+        partynMenuItem.addItem(PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD);
 
         // Total members using USERS icon for multiple people
-        final MenuItem listItem = listByTopic.addItem(TOTAL_MEMBERS, VaadinIcons.USERS, COMMAND_DATAGRID);
+        final MenuItem listItem = partynMenuItem.addItem(TOTAL_MEMBERS, VaadinIcons.USERS, COMMAND_DATAGRID);
         listItem.setDescription(PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT);
 
         final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.CHART, null);

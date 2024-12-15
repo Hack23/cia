@@ -57,7 +57,6 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
     private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
     private static final String POLITICAL_EXPERIENCE_SUMMARY = "Political Experience Summary";
     private static final String POLITICIAN_RANKING = "Politician Ranking";
-    private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
 
     // Description for total experience detail (tooltip)
     private static final String CURRENT_AND_PAST_ASSIGNMENTS_DESCRIPTION =
@@ -146,11 +145,8 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
         // Overview: DASHBOARD for a general overview panel
         politicianMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_OVERVIEW);
 
-        // Ranking list by topic: LIST icon for enumerations
-        final MenuItem listByTopic = politicianMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.LIST, null);
-
         // Political experience summary: USER_CLOCK indicating experience over time
-        final MenuItem listItem = listByTopic.addItem(POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.USER_CLOCK, COMMAND_DATAGRID);
+        final MenuItem listItem = politicianMenuItem.addItem(POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.USER_CLOCK, COMMAND_DATAGRID);
         listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_DESCRIPTION);
 
         // Chart by topic: CHART icon for visual data representation

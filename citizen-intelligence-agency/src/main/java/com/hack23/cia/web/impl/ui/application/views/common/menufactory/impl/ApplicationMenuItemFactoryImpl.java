@@ -100,9 +100,18 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 	private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			PageMode.CHARTS, ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());
 
+    /** The Constant COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD. */
+    private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());
+
 
     /** The Constant COMMITTEE_RANKING_TEXT. */
     private static final String COMMITTEE_RANKING_TEXT = "Committee Ranking";
+
+    /** The Constant DESC_LEADERS_SCOREBOARD. */
+    private static final String DESC_LEADERS_SCOREBOARD = "Leaders: comparing party leadership impact.";
+
+    /** The Constant PART_LEADERS_SCOREBOARD. */
+    private static final String PART_LEADERS_SCOREBOARD = "Party leaders scoreboard";
 
     /** The Constant COMMITTEE_RANKING_LINK_TEXT. */
     private static final String COMMITTEE_RANKING_LINK_TEXT = COMMITTEE_RANKING_TEXT;
@@ -254,6 +263,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
         countryMenuItemFactory.createCountryTopicMenu(swedenMenuItem);
 
         rankingsMenuItem.addItem(MINISTRIES_LEADER_SCOREBOARD, VaadinIcons.TROPHY,COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD);
+        rankingsMenuItem.addItem(PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD);
 
         final MenuItem countryMenuItem = rankingsMenuItem.addItem(COUNTRY_RANKING_LINK_TEXT, VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW);
         countryMenuItemFactory.createCountryTopicMenu(countryMenuItem);
@@ -307,6 +317,9 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
         createButtonLink(grid, "Sweden Dashboard", VaadinIcons.FLAG, COMMAND_DASHBOARDVIEW_OVERVIEW, "Visualize political activity in Sweden, present key performance indicators and metadata");
 		createButtonLink(grid, MINISTRIES_LEADER_SCOREBOARD, VaadinIcons.TROPHY, COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD,
 				MINISTRIES_LEADER_SCOREBOARD_DESCRIPTION);
+
+		createButtonLink(grid, PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,
+	                COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, DESC_LEADERS_SCOREBOARD);
 
         createButtonLink(grid, COUNTRY_RANKING_LINK_TEXT, VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW, COUNTRY_RANKING_DESCRIPTION);
         createButtonLink(grid, MINISTRY_RANKING_LINK_TEXT, VaadinIcons.OFFICE, COMMAND_MINISTRY_RANKING_OVERVIEW, MINISTRY_RANKING_DESCRIPTION);

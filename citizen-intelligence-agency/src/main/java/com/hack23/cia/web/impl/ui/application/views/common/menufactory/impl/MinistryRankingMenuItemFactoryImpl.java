@@ -145,9 +145,6 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	/** The Constant POLITICAL_WORK_SUMMARY_TEXT. */
 	private static final String POLITICAL_WORK_SUMMARY_TEXT = "Political Work Summary";
 
-	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
-	private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
-
 	/** The Constant CURRENT_MINISTRIES_CURRENT_MEMBERS_DESCRIPTION. */
 	private static final String CURRENT_MINISTRIES_CURRENT_MEMBERS_DESCRIPTION = "Chart over current ministries by headcount";
 
@@ -207,9 +204,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAN_OVERVIEW);
 
-		final MenuItem listByTopic = ministryMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.LIST, null);
-
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.BAR_CHART, COMMAND_DATAGRID);
+		final MenuItem listItem = ministryMenuItem.addItem(POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.BAR_CHART, COMMAND_DATAGRID);
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_TOTAL_POLTICIAL_DAYS_MEMBERSHIP_DESCRIPTION);
 
 		final MenuItem chartByTopic = ministryMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.PIE_CHART, null);

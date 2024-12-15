@@ -105,9 +105,6 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	/** The Constant POLITICAL_WORK_SUMMARY_TEXT. */
 	private static final String POLITICAL_WORK_SUMMARY_TEXT = "Political Work Summary";
 
-	/** The Constant RANKING_LIST_BY_TOPIC_TEXT. */
-	private static final String RANKING_LIST_BY_TOPIC_TEXT = "Ranking list by topic";
-
 	/** The Constant POLITICAL_WORK_SUMMARY_DESCRIPTION. */
 	private static final String POLITICAL_WORK_SUMMARY_DESCRIPTION = "Scoreboard over current member size, political days served and total assignments";
 
@@ -162,9 +159,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	public void createCommitteeRankingTopics(final MenuItem committeeMenuItem) {
 		committeeMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAND_OVERVIEW);
 
-		final MenuItem listByTopic = committeeMenuItem.addItem(RANKING_LIST_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
-
-		final MenuItem listItem = listByTopic.addItem(POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID);
+		final MenuItem listItem = committeeMenuItem.addItem(POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID);
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS);
 
 		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
