@@ -35,6 +35,7 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.HorizontalLayout;
 
 
 
@@ -70,6 +71,8 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
+		content.setSizeFull();
+		content.addStyleName("admin-country-content");
 
 		final String pageId = getPageId(parameters);
 		final int pageNr= getPageNr(parameters);

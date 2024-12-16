@@ -22,6 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractAdminSystemPageModContentFactoryImpl.
@@ -38,7 +40,7 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	 *
 	 * @param viewName the view name
 	 */
-	AbstractAdminSystemPageModContentFactoryImpl(final String viewName) {
+	public AbstractAdminSystemPageModContentFactoryImpl(final String viewName) {
 		super();
 		this.viewName = viewName;
 	}
@@ -57,4 +59,29 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 		return viewName.equals(page);
 	}
 
+	/**
+	 * Creates a consistent HorizontalLayout for panel content.
+	 *
+	 * @return the horizontal layout
+	 */
+	protected HorizontalLayout createHorizontalLayout() {
+		final HorizontalLayout layout = new HorizontalLayout();
+		layout.setSizeFull();
+		layout.setMargin(true);
+		layout.setSpacing(true);
+		return layout;
+	}
+
+	/**
+	 * Creates a consistent VerticalLayout for panel content.
+	 *
+	 * @return the vertical layout
+	 */
+	protected VerticalLayout createVerticalLayout() {
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setSizeFull();
+		layout.setMargin(true);
+		layout.setSpacing(true);
+		return layout;
+	}
 }

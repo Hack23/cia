@@ -59,6 +59,8 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 
 		createPageHeader(panel, content, "Admin Application Event Charts", "Event Analysis", "Visualize and analyze application events using interactive charts and graphs.");
 
+		content.addStyleName("v-layout-content-overview-panel-level1");
+
 		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW,

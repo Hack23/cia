@@ -34,6 +34,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.StartAgent
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -75,10 +76,16 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 
 		createPageHeader(panel, content, "Admin Agent Operation Overview", "Admin Agent Operation", "Overview of administrative agent operations and tasks.");
 
+		final HorizontalLayout horizontalLayout = new HorizontalLayout();
+		horizontalLayout.setSizeFull();
+
+		content.addComponent(horizontalLayout);
+		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
+
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
-		content.addComponent(overviewLayout);
-		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
+		horizontalLayout.addComponent(overviewLayout);
+		horizontalLayout.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
 		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 

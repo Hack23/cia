@@ -31,11 +31,12 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
+import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory.ContentRatio;
 
 
 /**
@@ -67,41 +68,44 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout content = createPanelContent();
-
-		final String pageId = getPageId(parameters);
-		final int pageNr= getPageNr(parameters);
-
+		final VerticalLayout content = new VerticalLayout();
+		content.setSizeFull();
+		content.setMargin(true);
+		content.setSpacing(true);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 		createPageHeader(panel, content, "Admin Language Management", "Language Overview", "Administer and update language settings and configurations for the platform.");
 
+		final HorizontalLayout horizontalLayout = createHorizontalLayout();
+		content.addComponent(horizontalLayout);
+		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
+
 		final DataContainer<LanguageData, Long> dataContainer = getApplicationManager()
 				.getDataContainer(LanguageData.class);
 
-		final List<LanguageData> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,LanguageData_.languageName);
+		final List<LanguageData> pageOrderBy = dataContainer.getPageOrderBy(getPageNr(parameters),DEFAULT_RESULTS_PER_PAGE,LanguageData_.languageName);
 
-		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		getPagingUtil().createPagingControls(content,NAME,getPageId(parameters), dataContainer.getSize(), getPageNr(parameters), DEFAULT_RESULTS_PER_PAGE);
 
-		getGridFactory().createBasicBeanItemGrid(content,
+		getGridFactory().createBasicBeanItemGrid(horizontalLayout,
 				LanguageData.class, pageOrderBy, LANGUAGE_DATA,
 				COLUMN_ORDER, HIDE_COLUMNS,
 				LISTENER, null, null);
 
-		if (pageId != null && !pageId.isEmpty()) {
+		if (getPageId(parameters) != null && !getPageId(parameters).isEmpty()) {
 
-			final LanguageData languageData = dataContainer.load(Long.valueOf(pageId));
+			final LanguageData languageData = dataContainer.load(Long.valueOf(getPageId(parameters)));
 
 			if (languageData != null) {
 
-				getFormFactory().addFormPanelTextFields(content, languageData, LanguageData.class,
+				getFormFactory().addFormPanelTextFields(horizontalLayout, languageData, LanguageData.class,
 						AS_LIST);
 			}
 		}
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_LANGUAGE_VIEW, ApplicationEventGroup.ADMIN,
-				NAME, null, pageId);
+				NAME, null, getPageId(parameters));
 
 		return content;
 

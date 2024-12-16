@@ -121,6 +121,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
 				final VerticalLayout overviewLayout = new VerticalLayout();
 				overviewLayout.setSizeFull();
+				overviewLayout.addStyleName("v-layout-content-overview-panel-level2");
 				content.addComponent(overviewLayout);
 				content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
