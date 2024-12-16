@@ -111,6 +111,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 				final VerticalLayout rightLayout = new VerticalLayout();
 				rightLayout.setSizeFull();
+				rightLayout.addStyleName("v-layout-content-overview-panel-level2");
 				final HorizontalLayout horizontalLayout = new HorizontalLayout();
 				horizontalLayout.setWidth(ContentSize.FULL_SIZE);
 				content.addComponent(horizontalLayout);

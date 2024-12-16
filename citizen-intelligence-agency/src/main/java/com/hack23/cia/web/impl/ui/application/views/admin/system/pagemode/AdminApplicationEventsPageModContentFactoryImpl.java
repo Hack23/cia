@@ -106,6 +106,8 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW, ApplicationEventGroup.ADMIN,
 				NAME, null, pageId);
 
+		content.addStyleName("v-layout-content-overview-panel-level1");
+
 		return content;
 
 	}

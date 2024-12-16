@@ -31,6 +31,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -69,6 +70,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
+		content.setStyleName("admin-portal-content");
 
 		final String pageId = getPageId(parameters);
 		final int pageNr= getPageNr(parameters);

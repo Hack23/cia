@@ -99,18 +99,21 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSizeFull();
+		horizontalLayout.addStyleName("v-layout-content-overview-panel-level1");
 
 		content.addComponent(horizontalLayout);
 		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
 
 		final DataContainer<ViewAuditDataSummary, Long> dataContainer = getApplicationManager()
-				.getDataContainer(ViewAuditDataSummary.class);
+					.getDataContainer(ViewAuditDataSummary.class);
 
 		getGridFactory().createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditDataSummary.class,
 				dataContainer.getAll(), ADMIN_DATA_SUMMARY, null, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
 		overviewLayout.setSizeFull();
+		overviewLayout.addStyleName("v-layout-content-overview-panel-level2");
+
 		content.addComponent(overviewLayout);
 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 

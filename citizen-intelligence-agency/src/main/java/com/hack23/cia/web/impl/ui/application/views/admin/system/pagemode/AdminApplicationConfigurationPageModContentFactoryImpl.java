@@ -113,8 +113,10 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
 				final VerticalLayout leftLayout = new VerticalLayout();
 				leftLayout.setSizeFull();
+				leftLayout.addStyleName("v-layout-content-overview-panel-level1");
 				final VerticalLayout rightLayout = new VerticalLayout();
 				rightLayout.setSizeFull();
+				rightLayout.addStyleName("v-layout-content-overview-panel-level2");
 				final HorizontalLayout horizontalLayout = new HorizontalLayout();
 				horizontalLayout.setWidth(ContentSize.FULL_SIZE);
 				content.addComponent(horizontalLayout);

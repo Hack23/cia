@@ -18,12 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode;
 
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
 
 /**
  * The Class AbstractAgentOperationsPageModContentFactoryImpl.
  */
-abstract class AbstractAgentOperationsPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
+abstract class AbstractAgentOperationsPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
 	/**
 	 * Instantiates a new abstract agent operations page mod content factory

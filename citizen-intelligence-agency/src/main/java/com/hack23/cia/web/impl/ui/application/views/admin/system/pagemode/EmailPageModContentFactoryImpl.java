@@ -72,8 +72,7 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 
 		createPageHeader(panel, content, "Admin Email Management", "Email Overview", "Page for managing email configurations and communications within the agency.");
 
-		final VerticalLayout emailLayout = new VerticalLayout();
-		emailLayout.setSizeFull();
+		final VerticalLayout emailLayout = createPanelContent();
 
 		final Panel formPanel = new Panel();
 		formPanel.setSizeFull();

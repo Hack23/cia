@@ -18,12 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
 
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
 
 /**
- * The Class AbstractPoliticianPageModContentFactoryImpl.
+ * The Class AbstractDataSummaryPageModContentFactoryImpl.
  */
-abstract class AbstractDataSummaryPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
+abstract class AbstractDataSummaryPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
 	/**
 	 * Instantiates a new abstract data summary page mod content factory impl.
