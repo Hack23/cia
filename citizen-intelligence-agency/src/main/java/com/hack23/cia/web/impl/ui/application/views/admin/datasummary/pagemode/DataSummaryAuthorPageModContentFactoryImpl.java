@@ -52,7 +52,7 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 	 * Instantiates a new data summary author page mod content factory impl.
 	 */
 	public DataSummaryAuthorPageModContentFactoryImpl() {
-		super();
+		super("DataSummaryAuthor");
 	}
 
 	@Secured({ "ROLE_ADMIN" })

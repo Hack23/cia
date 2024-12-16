@@ -85,7 +85,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 	 * Instantiates a new data summary overview page mod content factory impl.
 	 */
 	public DataSummaryOverviewPageModContentFactoryImpl() {
-		super();
+		super("DataSummaryOverview");
 	}
 
 	@Secured({ "ROLE_ADMIN" })

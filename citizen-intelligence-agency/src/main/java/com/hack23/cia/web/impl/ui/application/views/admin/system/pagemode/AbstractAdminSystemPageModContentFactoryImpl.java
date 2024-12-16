@@ -40,7 +40,7 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	 *
 	 * @param viewName the view name
 	 */
-	AbstractAdminSystemPageModContentFactoryImpl(final String viewName) {
+	public AbstractAdminSystemPageModContentFactoryImpl(final String viewName) {
 		super();
 		this.viewName = viewName;
 	}
@@ -66,6 +66,19 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	 */
 	protected HorizontalLayout createHorizontalLayout() {
 		final HorizontalLayout layout = new HorizontalLayout();
+		layout.setSizeFull();
+		layout.setMargin(true);
+		layout.setSpacing(true);
+		return layout;
+	}
+
+	/**
+	 * Creates a consistent VerticalLayout for panel content.
+	 *
+	 * @return the vertical layout
+	 */
+	protected VerticalLayout createVerticalLayout() {
+		final VerticalLayout layout = new VerticalLayout();
 		layout.setSizeFull();
 		layout.setMargin(true);
 		layout.setSpacing(true);
