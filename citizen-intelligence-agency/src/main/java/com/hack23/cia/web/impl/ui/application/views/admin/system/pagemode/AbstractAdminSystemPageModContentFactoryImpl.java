@@ -60,19 +60,6 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	}
 
 	/**
-	 * Creates a consistent VerticalLayout for panel content.
-	 *
-	 * @return the vertical layout
-	 */
-	protected VerticalLayout createPanelContent() {
-		final VerticalLayout content = new VerticalLayout();
-		content.setSizeFull();
-		content.setMargin(true);
-		content.setSpacing(true);
-		return content;
-	}
-
-	/**
 	 * Creates a consistent HorizontalLayout for panel content.
 	 *
 	 * @return the horizontal layout

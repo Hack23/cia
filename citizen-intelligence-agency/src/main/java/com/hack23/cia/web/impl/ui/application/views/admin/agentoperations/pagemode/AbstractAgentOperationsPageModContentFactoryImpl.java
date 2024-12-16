@@ -30,6 +30,6 @@ abstract class AbstractAgentOperationsPageModContentFactoryImpl extends Abstract
 	 * impl.
 	 */
 	AbstractAgentOperationsPageModContentFactoryImpl() {
-		super();
+		super("AgentOperations");
 	}
 }

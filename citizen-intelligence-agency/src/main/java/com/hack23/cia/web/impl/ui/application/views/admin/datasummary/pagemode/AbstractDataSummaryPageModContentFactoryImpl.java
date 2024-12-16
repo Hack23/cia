@@ -27,9 +27,11 @@ abstract class AbstractDataSummaryPageModContentFactoryImpl extends AbstractAdmi
 
 	/**
 	 * Instantiates a new abstract data summary page mod content factory impl.
+	 *
+	 * @param parameter the parameter
 	 */
-	AbstractDataSummaryPageModContentFactoryImpl() {
-		super();
+	AbstractDataSummaryPageModContentFactoryImpl(final String parameter) {
+		super(parameter);
 	}
 
 }
