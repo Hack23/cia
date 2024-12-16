@@ -57,14 +57,14 @@ open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 	exports com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
 	exports com.hack23.cia.web.impl.ui.application.views.common;
-		
+
 	requires vaadin.compatibility.shared;
 	requires vaadin.compatibility.server;
 	requires vaadin.shared;
 	requires vaadin.server;
 	requires responsive.layout;
-	
-	
+
+
 	requires java.annotation;
 	requires org.slf4j;
 	requires spring.context;
@@ -101,7 +101,7 @@ open module com.hack23.cia.web {
 	requires spring.web;
 	requires java.logging;
 	requires java.management;
-	
+
 	requires transitive com.hack23.cia.web.widgets;
 	requires transitive com.hack23.cia.service.api;
 	requires transitive com.hack23.cia.service.impl;

@@ -29,6 +29,7 @@ import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 import com.hack23.cia.model.internal.application.system.impl.LanguageData_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.HorizontalLayout;
@@ -36,7 +37,6 @@ import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory.ContentRatio;
 
 
 /**
