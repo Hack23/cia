@@ -88,7 +88,7 @@
     <cia.project.versions.commons.codec>1.17.1</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.79</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.16</cia.project.versions.slf4j>
-    <cia.project.versions.logback>1.5.12</cia.project.versions.logback>
+    <cia.project.versions.logback>1.5.13</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>10.0.0</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.2.2.Final</cia.project.versions.hibernate.search>
