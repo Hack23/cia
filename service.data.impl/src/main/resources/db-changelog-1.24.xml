@@ -92,4 +92,78 @@
 		<sql>CREATE EXTENSION vector</sql>
 	</changeSet>
 
+	<changeSet author="your_name" id="new_changeset_id_1">
+		<dropView viewName="view_application_action_event_page_annual_summary" />
+		<createView viewName="view_application_action_event_page_annual_summary">
+			SELECT page AS embedded_id_page,
+				date_trunc('year'::text, created_date) AS embedded_id_created_date,
+				count(*) AS hits,
+				percent_rank() OVER (PARTITION BY (date_trunc('year'::text, created_date)) ORDER BY (date_trunc('year'::text, created_date)), (count(*)) DESC) AS rank_percentage,
+				rank() OVER (PARTITION BY (date_trunc('year'::text, created_date)) ORDER BY (date_trunc('year'::text, created_date)), (count(*)) DESC) AS rank
+			FROM application_action_event
+			WHERE (page IS NOT NULL)
+			GROUP BY page, (date_trunc('year'::text, created_date))
+			ORDER BY (date_trunc('year'::text, created_date)), (count(*)) DESC;
+		</createView>
+	</changeSet>
+
+	<changeSet author="your_name" id="new_changeset_id_2">
+		<dropView viewName="view_application_action_event_page_daily_summary" />
+		<createView viewName="view_application_action_event_page_daily_summary">
+			SELECT page AS embedded_id_page,
+				date_trunc('day'::text, created_date) AS embedded_id_created_date,
+				count(*) AS hits,
+				percent_rank() OVER (PARTITION BY (date_trunc('day'::text, created_date)) ORDER BY (date_trunc('day'::text, created_date)), (count(*)) DESC) AS rank_percentage,
+				rank() OVER (PARTITION BY (date_trunc('day'::text, created_date)) ORDER BY (date_trunc('day'::text, created_date)), (count(*)) DESC) AS rank
+			FROM application_action_event
+			WHERE (page IS NOT NULL)
+			GROUP BY page, (date_trunc('day'::text, created_date))
+			ORDER BY (date_trunc('day'::text, created_date)), (count(*)) DESC;
+		</createView>
+	</changeSet>
+
+	<changeSet author="your_name" id="new_changeset_id_3">
+		<dropView viewName="view_application_action_event_page_element_annual_summary" />
+		<createView viewName="view_application_action_event_page_element_annual_summary">
+			SELECT page AS embedded_id_page,
+				element_id AS embedded_id_element_id,
+				date_trunc('year'::text, created_date) AS embedded_id_created_date,
+				count(*) AS hits,
+				percent_rank() OVER (PARTITION BY page, (date_trunc('year'::text, created_date)) ORDER BY (date_trunc('year'::text, created_date)), (count(*)) DESC) AS rank_percentage,
+				rank() OVER (PARTITION BY page, (date_trunc('year'::text, created_date)) ORDER BY (date_trunc('year'::text, created_date)), (count(*)) DESC) AS rank
+			FROM application_action_event
+			WHERE ((page IS NOT NULL) AND (element_id IS NOT NULL) AND ((element_id)::text <> ''::text))
+			GROUP BY page, element_id, (date_trunc('year'::text, created_date))
+			ORDER BY (date_trunc('year'::text, created_date)), (count(*)) DESC;
+		</createView>
+	</changeSet>
+
+	<changeSet author="your_name" id="new_changeset_id_4">
+		<dropView viewName="view_application_action_event_page_element_daily_summary" />
+		<createView viewName="view_application_action_event_page_element_daily_summary">
+			SELECT page AS embedded_id_page,
+				element_id AS embedded_id_element_id,
+				date_trunc('day'::text, created_date) AS embedded_id_created_date,
+				count(*) AS hits,
+				percent_rank() OVER (PARTITION BY page, (date_trunc('day'::text, created_date)) ORDER BY (date_trunc('day'::text, created_date)), (count(*)) DESC) AS rank_percentage,
+				rank() OVER (PARTITION BY page, (date_trunc('day'::text, created_date)) ORDER BY (date_trunc('day'::text, created_date)), (count(*)) DESC) AS rank
+			FROM application_action_event
+			WHERE ((page IS NOT NULL) AND (element_id IS NOT NULL) AND ((element_id)::text <> ''::text))
+			GROUP BY page, element_id, (date_trunc('day'::text, created_date))
+			ORDER BY (date_trunc('day'::text, created_date)), (count(*)) DESC;
+		</createView>
+	</changeSet>
+
+	<changeSet author="your_name" id="new_changeset_id_5">
+		<createIndex indexName="application_action_event_page_idx" tableName="application_action_event">
+			<column name="page"/>
+		</createIndex>
+		<createIndex indexName="application_action_event_created_date_idx" tableName="application_action_event">
+			<column name="created_date"/>
+		</createIndex>
+		<createIndex indexName="application_action_event_element_id_idx" tableName="application_action_event">
+			<column name="element_id"/>
+		</createIndex>
+	</changeSet>
+
 </databaseChangeLog>
