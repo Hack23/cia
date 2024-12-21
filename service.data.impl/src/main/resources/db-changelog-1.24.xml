@@ -632,4 +632,147 @@
 </changeSet>
 
 
+<changeSet author="pether" id="new_changeset_id_1" failOnError="true">
+  <dropView viewName="view_application_action_event_page_annual_summary" />
+
+    <createView viewName="view_application_action_event_page_annual_summary">
+        <![CDATA[
+        SELECT
+            page AS embedded_id_page,
+            date_trunc('year', created_date) AS embedded_id_created_date,
+            count(*) AS hits,
+            percent_rank() OVER (
+                PARTITION BY date_trunc('year', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank_percentage,
+            rank() OVER (
+                PARTITION BY date_trunc('year', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank
+        FROM application_action_event
+        WHERE page IS NOT NULL
+        GROUP BY
+            page,
+            date_trunc('year', created_date)
+        -- Optionally remove ORDER BY or keep it if you want a default ordering:
+        ORDER BY date_trunc('year', created_date), count(*) DESC
+        ]]>
+    </createView>
+	</changeSet>
+
+<changeSet author="pether" id="new_changeset_id_2" failOnError="true">
+ <dropView viewName="view_application_action_event_page_daily_summary" />
+    <createView viewName="view_application_action_event_page_daily_summary">
+        <![CDATA[
+        SELECT
+            page AS embedded_id_page,
+            date_trunc('day', created_date) AS embedded_id_created_date,
+            count(*) AS hits,
+            percent_rank() OVER (
+                PARTITION BY date_trunc('day', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank_percentage,
+            rank() OVER (
+                PARTITION BY date_trunc('day', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank
+        FROM application_action_event
+        WHERE page IS NOT NULL
+        GROUP BY
+            page,
+            date_trunc('day', created_date)
+        ORDER BY
+            date_trunc('day', created_date), count(*) DESC
+        ]]>
+    </createView>
+</changeSet>
+
+<changeSet author="pether" id="new_changeset_id_3" failOnError="true">
+    <dropView viewName="view_application_action_event_page_element_annual_summary" />
+
+    <createView viewName="view_application_action_event_page_element_annual_summary">
+        <![CDATA[
+        SELECT
+            page AS embedded_id_page,
+            element_id AS embedded_id_element_id,
+            date_trunc('year', created_date) AS embedded_id_created_date,
+            count(*) AS hits,
+            percent_rank() OVER (
+                PARTITION BY page, date_trunc('year', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank_percentage,
+            rank() OVER (
+                PARTITION BY page, date_trunc('year', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank
+        FROM application_action_event
+        WHERE page IS NOT NULL
+          AND element_id IS NOT NULL
+          AND element_id <> ''
+        GROUP BY
+            page,
+            element_id,
+            date_trunc('year', created_date)
+        ORDER BY
+            date_trunc('year', created_date),
+            count(*) DESC
+        ]]>
+    </createView>
+</changeSet>
+
+	
+<changeSet author="pether" id="new_changeset_id_4" failOnError="true">
+    <dropView viewName="view_application_action_event_page_element_daily_summary" />
+    <createView viewName="view_application_action_event_page_element_daily_summary">
+        <![CDATA[
+        SELECT
+            page AS embedded_id_page,
+            element_id AS embedded_id_element_id,
+            date_trunc('day', created_date) AS embedded_id_created_date,
+            count(*) AS hits,
+            percent_rank() OVER (
+                PARTITION BY page, date_trunc('day', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank_percentage,
+            rank() OVER (
+                PARTITION BY page, date_trunc('day', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank
+        FROM application_action_event
+        WHERE page IS NOT NULL
+          AND element_id IS NOT NULL
+          AND element_id <> ''
+        GROUP BY
+            page,
+            element_id,
+            date_trunc('day', created_date)
+        ORDER BY
+            date_trunc('day', created_date),
+            count(*) DESC
+        ]]>
+    </createView>
+</changeSet>
+
+	<changeSet author="pether" id="new_changeset_id_5" failOnError="true">
+		<createIndex indexName="application_action_event_page_idx" tableName="application_action_event">
+			<column name="page"/>
+		</createIndex>
+		<createIndex indexName="application_action_event_created_date_idx" tableName="application_action_event">
+			<column name="created_date"/>
+		</createIndex>
+		<createIndex indexName="application_action_event_element_id_idx" tableName="application_action_event">
+			<column name="element_id"/>
+		</createIndex>
+
+	 <createIndex indexName="application_action_event_page_created_date_idx" tableName="application_action_event">
+        <column name="page"/>
+        <column name="created_date"/>
+    </createIndex>
+
+    <createIndex indexName="application_action_event_page_element_id_idx" tableName="application_action_event">
+        <column name="page"/>
+        <column name="element_id"/>
+    </createIndex>
+</changeSet>
+
 </databaseChangeLog>
