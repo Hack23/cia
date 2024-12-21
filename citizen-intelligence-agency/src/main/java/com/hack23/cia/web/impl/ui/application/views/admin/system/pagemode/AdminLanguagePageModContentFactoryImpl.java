@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -32,12 +31,15 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
 
 /**
  * The Class AdminLanguagePageModContentFactoryImpl.
@@ -45,70 +47,189 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList( "languageName", "createdDate","lastModifiedDate" ,"languageEnabled" );
+    private static final String[] COLUMN_ORDER = {
+        "hjid",
+        "languageName",
+        "modelObjectVersion"
+    };
 
-	private static final String[] COLUMN_ORDER = { "hjid", "languageName", "modelObjectVersion" };
+    private static final String[] HIDE_COLUMNS = {
+        "hjid",
+        "modelObjectId",
+        "modelObjectVersion",
+        "createdDate",
+        "lastModifiedDate"
+    };
 
-	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId","modelObjectVersion", "createdDate","lastModifiedDate" };
+    private static final String LANGUAGE_DATA = "LanguageData";
 
-	private static final String LANGUAGE_DATA = "LanguageData";
+    private static final PageItemPropertyClickListener LISTENER =
+            new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid");
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, "hjid");
+    /** The Constant NAME. */
+    public static final String NAME = AdminViews.ADMIN_LANGUAGE_VIEW_NAME;
 
-	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_LANGUAGE_VIEW_NAME;
+    /**
+     * Instantiates a new admin language page mod content factory impl.
+     */
+    public AdminLanguagePageModContentFactoryImpl() {
+        super(NAME);
+    }
 
-	/**
-	 * Instantiates a new admin language page mod content factory impl.
-	 */
-	public AdminLanguagePageModContentFactoryImpl() {
-		super(NAME);
-	}
+    @Secured({ "ROLE_ADMIN" })
+    @Override
+    public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+        final VerticalLayout content = new VerticalLayout();
+        content.setSizeFull();
+        content.setMargin(true);
+        content.setSpacing(true);
 
-	@Secured({ "ROLE_ADMIN" })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout content = new VerticalLayout();
-		content.setSizeFull();
-		content.setMargin(true);
-		content.setSpacing(true);
+        getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		getMenuItemFactory().createMainPageMenuBar(menuBar);
+        createPageHeader(panel, content,
+            "Admin Language Management",
+            "Language Overview",
+            "Administer and update language settings and configurations for the platform.");
 
-		createPageHeader(panel, content, "Admin Language Management", "Language Overview", "Administer and update language settings and configurations for the platform.");
+        final HorizontalLayout horizontalLayout = createHorizontalLayout();
+        content.addComponent(horizontalLayout);
+        content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
 
-		final HorizontalLayout horizontalLayout = createHorizontalLayout();
-		content.addComponent(horizontalLayout);
-		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
+        final DataContainer<LanguageData, Long> dataContainer =
+                getApplicationManager().getDataContainer(LanguageData.class);
 
-		final DataContainer<LanguageData, Long> dataContainer = getApplicationManager()
-				.getDataContainer(LanguageData.class);
+        final List<LanguageData> pageOrderBy = dataContainer.getPageOrderBy(
+                getPageNr(parameters),
+                DEFAULT_RESULTS_PER_PAGE,
+                LanguageData_.languageName
+        );
 
-		final List<LanguageData> pageOrderBy = dataContainer.getPageOrderBy(getPageNr(parameters),DEFAULT_RESULTS_PER_PAGE,LanguageData_.languageName);
+        getPagingUtil().createPagingControls(
+                content,
+                NAME,
+                getPageId(parameters),
+                dataContainer.getSize(),
+                getPageNr(parameters),
+                DEFAULT_RESULTS_PER_PAGE
+        );
 
-		getPagingUtil().createPagingControls(content,NAME,getPageId(parameters), dataContainer.getSize(), getPageNr(parameters), DEFAULT_RESULTS_PER_PAGE);
+        getGridFactory().createBasicBeanItemGrid(
+                horizontalLayout,
+                LanguageData.class,
+                pageOrderBy,
+                LANGUAGE_DATA,
+                COLUMN_ORDER,
+                HIDE_COLUMNS,
+                LISTENER,
+                null,
+                null
+        );
 
-		getGridFactory().createBasicBeanItemGrid(horizontalLayout,
-				LanguageData.class, pageOrderBy, LANGUAGE_DATA,
-				COLUMN_ORDER, HIDE_COLUMNS,
-				LISTENER, null, null);
+        if (getPageId(parameters) != null && !getPageId(parameters).isEmpty()) {
+            final LanguageData languageData = dataContainer.load(Long.valueOf(getPageId(parameters)));
+            if (languageData != null) {
+                // Create a card-style panel to display LanguageData details
+                final Panel cardPanel = new Panel();
+                cardPanel.addStyleName("politician-overview-card"); // Reuse existing style
+                cardPanel.setWidth("100%");
+                cardPanel.setHeightUndefined();
+                Responsive.makeResponsive(cardPanel);
 
-		if (getPageId(parameters) != null && !getPageId(parameters).isEmpty()) {
+                final VerticalLayout cardContent = new VerticalLayout();
+                cardContent.setMargin(true);
+                cardContent.setSpacing(true);
+                cardContent.setWidth("100%");
+                cardPanel.setContent(cardContent);
 
-			final LanguageData languageData = dataContainer.load(Long.valueOf(getPageId(parameters)));
+                horizontalLayout.addComponent(cardPanel);
 
-			if (languageData != null) {
+                // Card Header
+                final HorizontalLayout headerLayout = new HorizontalLayout();
+                headerLayout.setSpacing(true);
+                headerLayout.setWidth("100%");
+                headerLayout.addStyleName("card-header-section");
 
-				getFormFactory().addFormPanelTextFields(horizontalLayout, languageData, LanguageData.class,
-						AS_LIST);
-			}
-		}
+                final String titleText = "Language Details";
+                final Label titleLabel = new Label(titleText, ContentMode.HTML);
+                titleLabel.addStyleName("card-title");
+                titleLabel.setWidthUndefined();
+                headerLayout.addComponent(titleLabel);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_LANGUAGE_VIEW, ApplicationEventGroup.ADMIN,
-				NAME, null, getPageId(parameters));
+                cardContent.addComponent(headerLayout);
 
-		return content;
+                // Divider
+                final Label divider = new Label("<hr/>", ContentMode.HTML);
+                divider.addStyleName("card-divider");
+                divider.setWidth("100%");
+                cardContent.addComponent(divider);
 
-	}
+                // Attributes layout
+                final VerticalLayout attributesLayout = new VerticalLayout();
+                attributesLayout.setSpacing(true);
+                attributesLayout.setWidth("100%");
+                cardContent.addComponent(attributesLayout);
 
+                // Display each field if not null or empty
+                addInfoRowIfNotNull(attributesLayout, "Language Name:", languageData.getLanguageName(), VaadinIcons.GLOBE);
+                addInfoRowIfNotNull(attributesLayout, "Created Date:", String.valueOf(languageData.getCreatedDate()), VaadinIcons.CALENDAR);
+                addInfoRowIfNotNull(attributesLayout, "Last Modified Date:", String.valueOf(languageData.getLastModifiedDate()), VaadinIcons.CALENDAR_CLOCK);
+                addInfoRowIfNotNull(attributesLayout, "Language Enabled:", String.valueOf(languageData.isLanguageEnabled()), VaadinIcons.CHECK);
+            }
+        }
+
+        getPageActionEventHelper().createPageEvent(
+                ViewAction.VISIT_ADMIN_LANGUAGE_VIEW,
+                ApplicationEventGroup.ADMIN,
+                NAME,
+                null,
+                getPageId(parameters)
+        );
+
+        return content;
+    }
+
+
+    /**
+     * Adds an info row to the parent layout if value is not null or empty.
+     *
+     * @param parent the parent layout
+     * @param caption the field caption
+     * @param value the field value
+     * @param icon a VaadinIcons icon
+     */
+    private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value, final VaadinIcons icon) {
+        if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
+            parent.addComponent(createInfoRow(caption, value, icon));
+        }
+    }
+
+    /**
+     * Creates a simple info row (caption and value) with an optional icon.
+     *
+     * @param caption the field caption
+     * @param value   the field value
+     * @param icon    a VaadinIcons icon
+     * @return a HorizontalLayout representing the info row
+     */
+    private HorizontalLayout createInfoRow(final String caption, final String value, final VaadinIcons icon) {
+        final HorizontalLayout layout = new HorizontalLayout();
+        layout.setSpacing(true);
+        layout.addStyleName("metric-label");
+        layout.setWidthUndefined();
+
+        if (icon != null) {
+            final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+            iconLabel.addStyleName("card-info-icon");
+            layout.addComponent(iconLabel);
+        }
+
+        final Label captionLabel = new Label(caption);
+        captionLabel.addStyleName("card-info-caption");
+
+        final Label valueLabel = new Label(value != null ? value : "");
+        valueLabel.addStyleName("card-info-value");
+
+        layout.addComponents(captionLabel, valueLabel);
+        return layout;
+    }
 }

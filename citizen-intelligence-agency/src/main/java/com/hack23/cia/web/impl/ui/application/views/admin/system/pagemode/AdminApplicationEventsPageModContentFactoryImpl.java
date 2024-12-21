@@ -134,27 +134,27 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 				attributesLayout.setWidth("100%");
 				cardContent.addComponent(attributesLayout);
 
-				addInfoRowIfNotNull(attributesLayout, "Created Date:", 
+				addInfoRowIfNotNull(attributesLayout, "Created Date:",
 						String.valueOf(applicationActionEvent.getCreatedDate()), VaadinIcons.CALENDAR);
-				addInfoRowIfNotNull(attributesLayout, "Event Group:", 
+				addInfoRowIfNotNull(attributesLayout, "Event Group:",
 						String.valueOf(applicationActionEvent.getEventGroup()), VaadinIcons.INFO);
-				addInfoRowIfNotNull(attributesLayout, "Application Operation:", 
+				addInfoRowIfNotNull(attributesLayout, "Application Operation:",
 						String.valueOf(applicationActionEvent.getApplicationOperation()), VaadinIcons.TOOLS);
-				addInfoRowIfNotNull(attributesLayout, "Page:", 
+				addInfoRowIfNotNull(attributesLayout, "Page:",
 						String.valueOf(applicationActionEvent.getPage()), VaadinIcons.FILE_TEXT);
-				addInfoRowIfNotNull(attributesLayout, "Page Mode:", 
+				addInfoRowIfNotNull(attributesLayout, "Page Mode:",
 						String.valueOf(applicationActionEvent.getPageMode()), VaadinIcons.LIST);
-				addInfoRowIfNotNull(attributesLayout, "Element Id:", 
+				addInfoRowIfNotNull(attributesLayout, "Element Id:",
 						String.valueOf(applicationActionEvent.getElementId()), VaadinIcons.POINTER);
-				addInfoRowIfNotNull(attributesLayout, "Action Name:", 
+				addInfoRowIfNotNull(attributesLayout, "Action Name:",
 						String.valueOf(applicationActionEvent.getActionName()), VaadinIcons.PLAY_CIRCLE);
-				addInfoRowIfNotNull(attributesLayout, "User Id:", 
+				addInfoRowIfNotNull(attributesLayout, "User Id:",
 						String.valueOf(applicationActionEvent.getUserId()), VaadinIcons.USER);
-				addInfoRowIfNotNull(attributesLayout, "Session Id:", 
+				addInfoRowIfNotNull(attributesLayout, "Session Id:",
 						String.valueOf(applicationActionEvent.getSessionId()), VaadinIcons.KEY);
-				addInfoRowIfNotNull(attributesLayout, "Error Message:", 
+				addInfoRowIfNotNull(attributesLayout, "Error Message:",
 						String.valueOf(applicationActionEvent.getErrorMessage()), VaadinIcons.WARNING);
-				addInfoRowIfNotNull(attributesLayout, "Application Message:", 
+				addInfoRowIfNotNull(attributesLayout, "Application Message:",
 						String.valueOf(applicationActionEvent.getApplicationMessage()), VaadinIcons.INFO_CIRCLE);
 			}
 		}
