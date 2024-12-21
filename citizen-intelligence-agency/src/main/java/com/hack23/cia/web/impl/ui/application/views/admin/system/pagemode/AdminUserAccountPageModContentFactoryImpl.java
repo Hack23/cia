@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.text.MessageFormat;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -40,113 +39,201 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ManageUser
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-
-
-/**
- * The Class AdminUserAccountPageModContentFactoryImpl.
- */
 @Component
 public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	private static final List<String> AS_LIST = Arrays.asList("username", "createdDate", "email", "country",
-			"numberOfVisits" );
 
-	/** The Constant BUTTON_ID_PATTERN. */
-	private static final String BUTTON_ID_PATTERN = "{0}.{1}";
+    /** The Constant BUTTON_ID_PATTERN. */
+    private static final String BUTTON_ID_PATTERN = "{0}.{1}";
 
-	/** The Constant BUTTON_PATTERN. */
-	private static final String BUTTON_PATTERN = "Perform {0}";
+    /** The Constant BUTTON_PATTERN. */
+    private static final String BUTTON_PATTERN = "Perform {0}";
 
-	private static final String[] COLUMN_ORDER = { "hjid", "modelObjectId", "modelObjectVersion", "createdDate", "userId", "username",
-			"userType", "userRole", "userpassword", "email", "country", "numberOfVisits" };
+    private static final String[] COLUMN_ORDER = { "hjid", "modelObjectId", "modelObjectVersion", "createdDate",
+            "userId", "username", "userType", "userRole", "userpassword", "email", "country", "numberOfVisits" };
 
-	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion","userId","userpassword", "address" };
+    private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion", "userId",
+            "userpassword", "address" };
 
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid");
+    private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+            AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid");
 
-	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_USERACCOUNT_VIEW_NAME;
+    /** The Constant NAME. */
+    public static final String NAME = AdminViews.ADMIN_USERACCOUNT_VIEW_NAME;
 
-	private static final String USER_ACCOUNT = "UserAccount";
+    private static final String USER_ACCOUNT = "UserAccount";
 
-	/**
-	 * Instantiates a new admin user account page mod content factory impl.
-	 */
-	public AdminUserAccountPageModContentFactoryImpl() {
-		super(NAME);
-	}
+    /**
+     * Instantiates a new admin user account page mod content factory impl.
+     */
+    public AdminUserAccountPageModContentFactoryImpl() {
+        super(NAME);
+    }
 
+    @Secured({ "ROLE_ADMIN" })
+    @Override
+    public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+        final VerticalLayout content = createPanelContent();
 
-	@Secured({ "ROLE_ADMIN" })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout content = createPanelContent();
+        final String pageId = getPageId(parameters);
+        final int pageNr = getPageNr(parameters);
 
-		final String pageId = getPageId(parameters);
-		final int pageNr= getPageNr(parameters);
+        getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		getMenuItemFactory().createMainPageMenuBar(menuBar);
+        createPageHeader(panel, content, "Admin User Account Management", "User Account Overview",
+                "Manage user accounts, including roles, permissions, and activity logs.");
 
-		createPageHeader(panel, content, "Admin User Account Management", "User Account Overview", "Manage user accounts, including roles, permissions, and activity logs.");
+        final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
+                .getDataContainer(UserAccount.class);
 
-		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
-				.getDataContainer(UserAccount.class);
+        final List<UserAccount> pageOrderBy = dataContainer.getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE,
+                UserAccount_.createdDate);
 
-		final List<UserAccount> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,UserAccount_.createdDate);
+        getPagingUtil().createPagingControls(content, NAME, pageId, dataContainer.getSize(), pageNr,
+                DEFAULT_RESULTS_PER_PAGE);
 
-		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+        getGridFactory().createBasicBeanItemGrid(content, UserAccount.class, pageOrderBy, USER_ACCOUNT,
+                COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-		getGridFactory().createBasicBeanItemGrid(content, UserAccount.class,
-				pageOrderBy,
-				USER_ACCOUNT,
-				COLUMN_ORDER, HIDE_COLUMNS,
-				LISTENER, null, null);
+        if (pageId != null && !pageId.isEmpty()) {
+            final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));
+            if (userAccount != null) {
+                // Instead of form fields, use a card layout similar to other views.
+                final Panel cardPanel = new Panel();
+                cardPanel.addStyleName("politician-overview-card"); // Reuse existing card style
+                cardPanel.setWidth("100%");
+                cardPanel.setHeightUndefined();
+                Responsive.makeResponsive(cardPanel);
 
+                final VerticalLayout cardContent = new VerticalLayout();
+                cardContent.setMargin(true);
+                cardContent.setSpacing(true);
+                cardContent.setWidth("100%");
+                cardPanel.setContent(cardContent);
 
-		if (pageId != null && !pageId.isEmpty()) {
+                content.addComponent(cardPanel);
 
-			final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));
+                // Card Header
+                final HorizontalLayout headerLayout = new HorizontalLayout();
+                headerLayout.setSpacing(true);
+                headerLayout.setWidth("100%");
+                headerLayout.addStyleName("card-header-section");
 
-			if (userAccount != null) {
+                final String titleText = "User Account Details";
+                final Label titleLabel = new Label(titleText, ContentMode.HTML);
+                titleLabel.addStyleName("card-title");
+                titleLabel.setWidthUndefined();
+                headerLayout.addComponent(titleLabel);
 
-				getFormFactory()
-						.addFormPanelTextFields(content, userAccount, UserAccount.class,
-								AS_LIST);
+                cardContent.addComponent(headerLayout);
 
-				final VerticalLayout overviewLayout = new VerticalLayout();
-				overviewLayout.setSizeFull();
-				overviewLayout.addStyleName("v-layout-content-overview-panel-level2");
-				content.addComponent(overviewLayout);
-				content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
+                // Divider line
+                final Label divider = new Label("<hr/>", ContentMode.HTML);
+                divider.addStyleName("card-divider");
+                divider.setWidth("100%");
+                cardContent.addComponent(divider);
 
-				final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
+                // Attributes layout
+                final VerticalLayout attributesLayout = new VerticalLayout();
+                attributesLayout.setSpacing(true);
+                attributesLayout.setWidth("100%");
+                cardContent.addComponent(attributesLayout);
 
-				for (final AccountOperation accountOperation : ManageUserAccountRequest.AccountOperation.values()) {
-					final ManageUserAccountRequest request = new ManageUserAccountRequest();
-					request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-					request.setAccountOperation(accountOperation);
-					request.setUserAcountId(userAccount.getUserId());
-					final Button accountOperationButton = new Button(MessageFormat.format(BUTTON_PATTERN, accountOperation) , VaadinIcons.BULLSEYE);
-					accountOperationButton.addClickListener(new ManageUserAccountClickListener(request));
-					accountOperationButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, accountOperation));
-					RowUtil.createRowItem(grid, accountOperationButton, "Will perform useraccount action");
-				}
+                // Display fields using a card layout approach with null-check
+                addInfoRowIfNotNull(attributesLayout, "Username:", userAccount.getUsername(), VaadinIcons.USER);
+                addInfoRowIfNotNull(attributesLayout, "Created Date:", String.valueOf(userAccount.getCreatedDate()),
+                        VaadinIcons.CALENDAR);
+                addInfoRowIfNotNull(attributesLayout, "Email:", userAccount.getEmail(), VaadinIcons.ENVELOPE);
+                addInfoRowIfNotNull(attributesLayout, "Country:", userAccount.getCountry(), VaadinIcons.GLOBE);
+                addInfoRowIfNotNull(attributesLayout, "Number Of Visits:", String.valueOf(userAccount.getNumberOfVisits()),
+                        VaadinIcons.EYE);
 
+                final VerticalLayout overviewLayout = new VerticalLayout();
+                overviewLayout.setSizeFull();
+                overviewLayout.addStyleName("v-layout-content-overview-panel-level2");
+                content.addComponent(overviewLayout);
+                content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
-			}
-		}
+                final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_USERACCOUNT_VIEW, ApplicationEventGroup.ADMIN,
-				NAME, null, pageId);
+                for (final AccountOperation accountOperation : ManageUserAccountRequest.AccountOperation.values()) {
+                    final ManageUserAccountRequest request = new ManageUserAccountRequest();
+                    request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+                    request.setAccountOperation(accountOperation);
+                    request.setUserAcountId(userAccount.getUserId());
+                    final Button accountOperationButton = new Button(
+                            MessageFormat.format(BUTTON_PATTERN, accountOperation), VaadinIcons.BULLSEYE);
+                    accountOperationButton.addClickListener(new ManageUserAccountClickListener(request));
+                    accountOperationButton.setId(
+                            MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, accountOperation));
+                    RowUtil.createRowItem(grid, accountOperationButton, "Will perform useraccount action");
+                }
+            }
+        }
 
-		return content;
+        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_USERACCOUNT_VIEW, ApplicationEventGroup.ADMIN,
+                NAME, null, pageId);
 
-	}
+        return content;
+    }
 
+    @Override
+    public boolean matches(final String page, final String parameters) {
+        return NAME.equals(page) && (parameters == null || !parameters.contains("CHARTS"));
+    }
+
+    /**
+     * Adds an info row to the parent layout if value is not null or empty.
+     *
+     * @param parent the parent layout
+     * @param caption the caption
+     * @param value the value
+     * @param icon the icon
+     */
+    private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value,
+            final VaadinIcons icon) {
+        if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
+            parent.addComponent(createInfoRow(caption, value, icon));
+        }
+    }
+
+    /**
+     * Creates a simple info row (caption and value) with optional icon.
+     *
+     * @param caption the field caption
+     * @param value   the field value
+     * @param icon    a VaadinIcons icon
+     * @return a HorizontalLayout representing the info row
+     */
+    private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon) {
+        final HorizontalLayout layout = new HorizontalLayout();
+        layout.setSpacing(true);
+        layout.addStyleName("metric-label");
+        layout.setWidthUndefined();
+
+        if (icon != null) {
+            final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+            iconLabel.addStyleName("card-info-icon");
+            layout.addComponent(iconLabel);
+        }
+
+        final Label captionLabel = new Label(caption);
+        captionLabel.addStyleName("card-info-caption");
+
+        final Label valueLabel = new Label(value != null ? value : "");
+        valueLabel.addStyleName("card-info-value");
+
+        layout.addComponents(captionLabel, valueLabel);
+        return layout;
+    }
 }

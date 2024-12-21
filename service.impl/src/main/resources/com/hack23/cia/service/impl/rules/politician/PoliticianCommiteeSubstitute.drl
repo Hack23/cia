@@ -1,0 +1,42 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with more than 200 days served as committee substitute"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.active &&
+            politician.totalDaysServedCommitteeSubstitute > 200
+        )
+    then
+        $p.addViolation(Status.MINOR, "PoliticianExperience", "Experience",
+            kcontext.getRule().getName(), "Committee Substitute Experience");
+end
+
+rule "Politician with more than 400 days served as committee substitute"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.active &&
+            politician.totalDaysServedCommitteeSubstitute > 400
+        )
+    then
+        $p.addViolation(Status.MAJOR, "PoliticianExperience", "Experience",
+            kcontext.getRule().getName(), "Highly Experienced Committee Substitute");
+end
+
+rule "Politician with more than 600 days served as committee substitute"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.active &&
+            politician.totalDaysServedCommitteeSubstitute > 600
+        )
+    then
+        $p.addViolation(Status.CRITICAL, "PoliticianExperience", "Experience",
+            kcontext.getRule().getName(), "Extremely Experienced Committee Substitute");
+end

@@ -132,4 +132,30 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
 		return getYear() - politician.getBornYear();
 	}
 
+	 /**
+     * Ratio of committee leadership days to total committee days.
+     *
+     * @return a double ratio (0.0 if total committee days is 0).
+     */
+    public double getCommitteeLeadershipRatio() {
+        long totalCommittee = politician.getTotalDaysServedCommittee();
+        if (totalCommittee == 0) {
+            return 0.0;
+        }
+        return (double) politician.getTotalDaysServedCommitteeLeadership() / (double) totalCommittee;
+    }
+
+    /**
+     * Ratio of committee substitute days to total committee days.
+     *
+     * @return a double ratio (0.0 if total committee days is 0).
+     */
+    public double getCommitteeSubstituteRatio() {
+        long totalCommittee = politician.getTotalDaysServedCommittee();
+        if (totalCommittee == 0) {
+            return 0.0;
+        }
+        return (double) politician.getTotalDaysServedCommitteeSubstitute() / (double) totalCommittee;
+    }
+
 }

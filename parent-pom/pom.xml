@@ -88,7 +88,7 @@
     <cia.project.versions.commons.codec>1.17.1</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.79</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.16</cia.project.versions.slf4j>
-    <cia.project.versions.logback>1.5.12</cia.project.versions.logback>
+    <cia.project.versions.logback>1.5.14</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>10.0.0</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.2.2.Final</cia.project.versions.hibernate.search>
@@ -134,7 +134,7 @@
     <cia.project.versions.httpclient>4.5.14</cia.project.versions.httpclient>
     <cia.project.versions.guava>33.4.0-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.18.2</cia.project.versions.jackson>
-    <cia.project.versions.netty>4.1.115.Final</cia.project.versions.netty>
+    <cia.project.versions.netty>4.1.116.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.2</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.27.1</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>

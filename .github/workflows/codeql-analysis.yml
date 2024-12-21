@@ -81,7 +81,7 @@ jobs:
         fetch-depth: 2
     - name: Run Checkov action
       id: checkov
-      uses: bridgecrewio/checkov-action@d9688e5b7bef1943a56e5f2db120b1cb30037c1c # master
+      uses: bridgecrewio/checkov-action@66419f9444e2736cf7e36b4789a2a39fe93c8b92 # master
       with:
         file: cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
         skip_check: CKV_AWS_111,CKV_AWS_109,CKV_AWS_149,CKV_AWS_364,CKV_AWS_161,CKV_AWS_118,CKV_AWS_111
@@ -116,7 +116,7 @@ jobs:
     #   make release
 
     - name: Set up JDK 21
-      uses: actions/setup-java@8df1039502a15bceb9433410b1a100fbe190c53b # v4.5.0
+      uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b # v4.6.0
       with:
         distribution: 'temurin'
         java-version: '21'
