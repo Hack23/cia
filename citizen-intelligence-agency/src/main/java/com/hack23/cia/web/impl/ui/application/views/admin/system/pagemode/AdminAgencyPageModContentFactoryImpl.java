@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -35,7 +34,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -47,107 +50,192 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant AGENCY. */
-	private static final String AGENCY = "Agency";
+    /** The Constant AGENCY. */
+    private static final String AGENCY = "Agency";
 
-	/** The Constant AGENCY_FORM_FIELDS. */
-	private static final List<String> AGENCY_FORM_FIELDS = Arrays.asList( "agencyName", "description");
+    /** The Constant AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS. */
+    private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = {
+            new ListPropertyConverter("portalName", "portals") };
 
-	/** The Constant AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS. */
-	private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = { new ListPropertyConverter("portalName", "portals")};
+    /** The Constant AGENCY_GRID_COLUMN_ORDER. */
+    private static final String[] AGENCY_GRID_COLUMN_ORDER = { "hjid", "agencyName", "description", "portals",
+            "modelObjectVersion" };
 
-	/** The Constant AGENCY_GRID_COLUMN_ORDER. */
-	private static final String[] AGENCY_GRID_COLUMN_ORDER = { "hjid", "agencyName", "description", "portals", "modelObjectVersion" };
+    /** The Constant AGENCY_GRID_HIDE_COLUMNS. */
+    private static final String[] AGENCY_GRID_HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion" };
 
-	/** The Constant AGENCY_GRID_HIDE_COLUMNS. */
-	private static final String[] AGENCY_GRID_HIDE_COLUMNS = { "hjid","modelObjectId", "modelObjectVersion" };
+    /** The Constant AGENCY_GRID_LISTENER. */
+    private static final PageItemPropertyClickListener AGENCY_GRID_LISTENER = new PageItemPropertyClickListener(
+            AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid");
 
-	/** The Constant AGENCY_GRID_LISTENER. */
-	private static final PageItemPropertyClickListener AGENCY_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_AGENCY_VIEW_NAME, "hjid");
+    /** The Constant NAME. */
+    public static final String NAME = AdminViews.ADMIN_AGENCY_VIEW_NAME;
 
-	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_AGENCY_VIEW_NAME;
+    /** The Constant PORTAL. */
+    private static final String PORTAL = "Portal";
 
-	/** The Constant PORTAL. */
-	private static final String PORTAL = "Portal";
+    /** The Constant PORTAL_GRID_COLUMN_ORDER. */
+    private static final String[] PORTAL_GRID_COLUMN_ORDER = { "hjid", "portalName", "description", "portalType",
+            "googleMapApiKey", "modelObjectVersion" };
 
-	/** The Constant PORTAL_GRID_COLUMN_ORDER. */
-	private static final String[] PORTAL_GRID_COLUMN_ORDER = { "hjid", "portalName", "description", "portalType", "googleMapApiKey", "modelObjectVersion" };
+    /** The Constant PORTAL_GRID_HIDE_COLUMNS. */
+    private static final String[] PORTAL_GRID_HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion",
+            "googleMapApiKey" };
 
-	/** The Constant PORTAL_GRID_HIDE_COLUMNS. */
-	private static final String[] PORTAL_GRID_HIDE_COLUMNS = { "hjid","modelObjectId", "modelObjectVersion", "googleMapApiKey" };
+    /** The Constant PORTAL_GRID_LISTENER. */
+    private static final PageItemPropertyClickListener PORTAL_GRID_LISTENER = new PageItemPropertyClickListener(
+            AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid");
 
-	/** The Constant PORTAL_GRID_LISTENER. */
-	private static final PageItemPropertyClickListener PORTAL_GRID_LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, "hjid");
+    /**
+     * Instantiates a new admin agency page mod content factory impl.
+     */
+    public AdminAgencyPageModContentFactoryImpl() {
+        super(NAME);
+    }
 
-	/**
-	 * Instantiates a new admin agency page mod content factory impl.
-	 */
-	public AdminAgencyPageModContentFactoryImpl() {
-		super(NAME);
-	}
+    @Secured({ "ROLE_ADMIN" })
+    @Override
+    public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+        final VerticalLayout content = createPanelContent();
 
-	@Secured({ "ROLE_ADMIN" })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout content = createPanelContent();
+        final String pageId = getPageId(parameters);
+        final int pageNr = getPageNr(parameters);
 
-		final String pageId = getPageId(parameters);
-		final int pageNr= getPageNr(parameters);
+        getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		getMenuItemFactory().createMainPageMenuBar(menuBar);
+        createPageHeader(panel, content, "Admin Agency Management", "Agency Overview",
+                "Manage and review details of agencies, including organizational data and performance metrics.");
 
+        final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
+        final List<Agency> pageOrderBy = dataContainer.getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE,
+                Agency_.agencyName);
 
-		createPageHeader(panel, content, "Admin Agency Management", "Agency Overview", "Manage and review details of agencies, including organizational data and performance metrics.");
+        getPagingUtil().createPagingControls(content, NAME, pageId, dataContainer.getSize(), pageNr,
+                DEFAULT_RESULTS_PER_PAGE);
 
-		final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
+        getGridFactory().createBasicBeanItemGrid(content, Agency.class, pageOrderBy, AGENCY,
+                AGENCY_GRID_COLUMN_ORDER, AGENCY_GRID_HIDE_COLUMNS, AGENCY_GRID_LISTENER, null,
+                AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS);
 
-		final List<Agency> pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Agency_.agencyName);
+        if (pageId != null && !pageId.isEmpty()) {
+            final HorizontalLayout horizontalLayout = new HorizontalLayout();
+            horizontalLayout.setWidth(ContentSize.FULL_SIZE);
+            content.addComponent(horizontalLayout);
+            content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);
 
-		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+            final VerticalLayout leftLayout = new VerticalLayout();
+            leftLayout.setSizeFull();
+            leftLayout.addStyleName("v-layout-content-overview-panel-level1");
 
-		getGridFactory().createBasicBeanItemGrid(content,
-				Agency.class,pageOrderBy, AGENCY,
-				AGENCY_GRID_COLUMN_ORDER, AGENCY_GRID_HIDE_COLUMNS,
-				AGENCY_GRID_LISTENER, null, AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS);
+            final VerticalLayout rightLayout = new VerticalLayout();
+            rightLayout.setSizeFull();
+            rightLayout.addStyleName("v-layout-content-overview-panel-level2");
 
-		if (pageId != null && !pageId.isEmpty()) {
+            horizontalLayout.addComponents(leftLayout, rightLayout);
 
-			final VerticalLayout leftLayout = new VerticalLayout();
-			leftLayout.setSizeFull();
-			leftLayout.addStyleName("v-layout-content-overview-panel-level1");
-			final VerticalLayout rightLayout = new VerticalLayout();
-			rightLayout.setSizeFull();
-			rightLayout.addStyleName("v-layout-content-overview-panel-level2");
-			final HorizontalLayout horizontalLayout = new HorizontalLayout();
-			horizontalLayout.setWidth(ContentSize.FULL_SIZE);
-			content.addComponent(horizontalLayout);
+            final Agency agency = dataContainer.load(Long.valueOf(pageId));
+            if (agency != null) {
+                // Card panel for Agency details
+                final Panel cardPanel = new Panel();
+                cardPanel.addStyleName("politician-overview-card"); // Reuse existing card style
+                cardPanel.setWidth("100%");
+                cardPanel.setHeightUndefined();
+                Responsive.makeResponsive(cardPanel);
 
-			content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);
+                final VerticalLayout cardContent = new VerticalLayout();
+                cardContent.setMargin(true);
+                cardContent.setSpacing(true);
+                cardContent.setWidth("100%");
+                cardPanel.setContent(cardContent);
 
+                leftLayout.addComponent(cardPanel);
 
-			horizontalLayout.addComponent(leftLayout);
-			horizontalLayout.addComponent(rightLayout);
+                // Card Header
+                final HorizontalLayout headerLayout = new HorizontalLayout();
+                headerLayout.setSpacing(true);
+                headerLayout.setWidth("100%");
+                headerLayout.addStyleName("card-header-section");
 
-			final Agency agency = dataContainer.load(Long.valueOf(pageId));
-			if (agency != null) {
+                final String titleText = "Agency Details";
+                final Label titleLabel = new Label(titleText, ContentMode.HTML);
+                titleLabel.addStyleName("card-title");
+                titleLabel.setWidthUndefined();
+                headerLayout.addComponent(titleLabel);
 
-				getFormFactory().addFormPanelTextFields(leftLayout, agency, Agency.class,
-						AGENCY_FORM_FIELDS);
+                cardContent.addComponent(headerLayout);
 
-				getGridFactory().createBasicBeanItemGrid(rightLayout,Portal.class, agency.getPortals(),
-						PORTAL,
-						PORTAL_GRID_COLUMN_ORDER, PORTAL_GRID_HIDE_COLUMNS,
-						PORTAL_GRID_LISTENER, null, null);
-			}
+                // Divider line
+                final Label divider = new Label("<hr/>", ContentMode.HTML);
+                divider.addStyleName("card-divider");
+                divider.setWidth("100%");
+                cardContent.addComponent(divider);
 
-		}
+                // Attributes layout
+                final VerticalLayout attributesLayout = new VerticalLayout();
+                attributesLayout.setSpacing(true);
+                attributesLayout.setWidth("100%");
+                cardContent.addComponent(attributesLayout);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENCY_VIEW, ApplicationEventGroup.ADMIN,
-				NAME, null, pageId);
+                // Display fields in a card layout (skipping null or empty ones)
+                addInfoRowIfNotNull(attributesLayout, "Agency Name:", agency.getAgencyName(), VaadinIcons.FLAG);
+                addInfoRowIfNotNull(attributesLayout, "Description:", agency.getDescription(), VaadinIcons.FILE_TEXT);
 
-		return content;
+                // Right layout: portals grid
+                getGridFactory().createBasicBeanItemGrid(rightLayout, Portal.class, agency.getPortals(),
+                        PORTAL, PORTAL_GRID_COLUMN_ORDER, PORTAL_GRID_HIDE_COLUMNS,
+                        PORTAL_GRID_LISTENER, null, null);
+            }
+        }
 
-	}
+        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENCY_VIEW, ApplicationEventGroup.ADMIN,
+                NAME, null, pageId);
+
+        return content;
+    }
+
+    /**
+     * Adds an info row to the parent layout if value is not null or empty.
+     *
+     * @param parent the parent layout
+     * @param caption the caption
+     * @param value the value
+     * @param icon the icon
+     */
+    private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value,
+            final VaadinIcons icon) {
+        if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
+            parent.addComponent(createInfoRow(caption, value, icon));
+        }
+    }
+
+    /**
+     * Creates a simple info row (caption and value) with optional icon.
+     *
+     * @param caption the field caption
+     * @param value   the field value
+     * @param icon    a VaadinIcons icon
+     * @return a HorizontalLayout representing the info row
+     */
+    private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon) {
+        final HorizontalLayout layout = new HorizontalLayout();
+        layout.setSpacing(true);
+        layout.addStyleName("metric-label");
+        layout.setWidthUndefined();
+
+        if (icon != null) {
+            final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+            iconLabel.addStyleName("card-info-icon");
+            layout.addComponent(iconLabel);
+        }
+
+        final Label captionLabel = new Label(caption);
+        captionLabel.addStyleName("card-info-caption");
+
+        final Label valueLabel = new Label(value);
+        valueLabel.addStyleName("card-info-value");
+
+        layout.addComponents(captionLabel, valueLabel);
+        return layout;
+    }
 
 }
