@@ -9,7 +9,7 @@ import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 rule "Politician currently active as a speaker"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.activeSpeaker)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.activeSpeaker)
     then
         $p.addViolation(Status.MINOR, "PoliticianSpeaker", "Role", kcontext.getRule().getName(), "Active Speaker");
 end
@@ -17,7 +17,7 @@ end
 rule "Politician served as a speaker for more than 1000 days"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedSpeaker > 1000)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDaysServedSpeaker > 1000)
     then
         $p.addViolation(Status.MINOR, "PoliticianSpeaker", "Experience", kcontext.getRule().getName(), "Experienced Speaker");
 end
@@ -25,7 +25,7 @@ end
 rule "Politician served as a speaker for more than 2000 days"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedSpeaker > 2000)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDaysServedSpeaker > 2000)
     then
         $p.addViolation(Status.MAJOR, "PoliticianSpeaker", "Experience", kcontext.getRule().getName(), "Highly Experienced Speaker");
 end
@@ -33,7 +33,7 @@ end
 rule "Politician served as a speaker for more than 3000 days"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedSpeaker > 3000)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDaysServedSpeaker > 3000)
     then
         $p.addViolation(Status.CRITICAL, "PoliticianSpeaker", "Experience", kcontext.getRule().getName(), "Extremely Experienced Speaker");
 end

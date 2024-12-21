@@ -9,7 +9,7 @@ import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 rule "Politician with more than 1000 days served in government"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedGovernment > 1000)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDaysServedGovernment > 1000)
     then
         $p.addViolation(Status.MINOR, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Experienced in Government");
 end
@@ -17,7 +17,7 @@ end
 rule "Politician with more than 500 days served in committees"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedCommittee > 500)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDaysServedCommittee > 500)
     then
         $p.addViolation(Status.MINOR, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Experienced in Committees");
 end
@@ -25,7 +25,7 @@ end
 rule "Politician with more than 2000 days served in government"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedGovernment > 2000)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDaysServedGovernment > 2000)
     then
         $p.addViolation(Status.MAJOR, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Highly Experienced in Government");
 end
@@ -33,7 +33,7 @@ end
 rule "Politician with more than 1000 days served in committees"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedCommittee > 1000)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDaysServedCommittee > 1000)
     then
         $p.addViolation(Status.MAJOR, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Highly Experienced in Committees");
 end
@@ -41,7 +41,7 @@ end
 rule "Politician with more than 3000 days served in government"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedGovernment > 3000)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDaysServedGovernment > 3000)
     then
         $p.addViolation(Status.CRITICAL, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Extremely Experienced in Government");
 end
@@ -49,7 +49,7 @@ end
 rule "Politician with more than 1500 days served in committees"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.totalDaysServedCommittee > 1500)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDaysServedCommittee > 1500)
     then
         $p.addViolation(Status.CRITICAL, "PoliticianExperience", "Experience", kcontext.getRule().getName(), "Extremely Experienced in Committees");
 end

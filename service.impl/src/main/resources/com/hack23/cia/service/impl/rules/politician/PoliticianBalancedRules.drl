@@ -9,7 +9,7 @@ import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 rule "Politician with multiple current assignments"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.currentAssignments > 3)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.currentAssignments > 3)
     then
         $p.addViolation(Status.MINOR, "PoliticianBalancedRules", "Assignments", kcontext.getRule().getName(), "Multiple Current Assignments");
 end
@@ -25,7 +25,7 @@ end
 rule "Politician with more than 5 current assignments"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.currentAssignments > 5)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.currentAssignments > 5)
     then
         $p.addViolation(Status.MAJOR, "PoliticianBalancedRules", "Assignments", kcontext.getRule().getName(), "More than 5 Current Assignments");
 end
@@ -33,7 +33,7 @@ end
 rule "Politician with more than 6 current assignments"
     dialect "java"
     when
-        $p : PoliticianComplianceCheckImpl(politician.currentAssignments > 6)
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.currentAssignments > 6)
     then
         $p.addViolation(Status.CRITICAL, "PoliticianBalancedRules", "Assignments", kcontext.getRule().getName(), "More than 6 Current Assignments");
 end

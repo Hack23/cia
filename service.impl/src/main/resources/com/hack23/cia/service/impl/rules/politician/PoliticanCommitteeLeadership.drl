@@ -1,0 +1,54 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with more than 300 days served in committee leadership"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.active &&
+            politician.totalDaysServedCommitteeLeadership > 300
+        )
+    then
+        $p.addViolation(Status.MINOR, "PoliticianExperience", "Experience",
+            kcontext.getRule().getName(), "Experienced Committee Leader");
+end
+
+rule "Politician with more than 600 days served in committee leadership"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.active &&
+            politician.totalDaysServedCommitteeLeadership > 600
+        )
+    then
+        $p.addViolation(Status.MAJOR, "PoliticianExperience", "Experience",
+            kcontext.getRule().getName(), "Highly Experienced Committee Leader");
+end
+
+rule "Politician with more than 900 days served in committee leadership"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.active &&
+            politician.totalDaysServedCommitteeLeadership > 900
+        )
+    then
+        $p.addViolation(Status.CRITICAL, "PoliticianExperience", "Experience",
+            kcontext.getRule().getName(), "Extremely Experienced Committee Leader");
+end
+
+rule "Politician currently active in committee leadership"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.active &&
+            politician.currentCommitteeLeadershipAssignments > 0
+        )
+    then
+        $p.addViolation(Status.MINOR, "PoliticianLeadershipRole", "Role",
+            kcontext.getRule().getName(), "Active Committee Leader");
+end
