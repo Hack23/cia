@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
 import java.text.MessageFormat;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
