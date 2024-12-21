@@ -41,251 +41,266 @@ import com.vaadin.ui.TextArea;
 @Service
 public final class DecisionFlowChartManagerImpl implements DecisionFlowChartManager {
 
-	/** The decision data factory. */
-	@Autowired
-	private DecisionDataFactory decisionDataFactory;
+    @Autowired
+    private DecisionDataFactory decisionDataFactory;
 
-	/**
-	 * Instantiates a new decision flow chart manager impl.
-	 */
-	public DecisionFlowChartManagerImpl() {
-		super();
-	}
+    /**
+     * Instantiates a new decision flow chart manager impl.
+     */
+    public DecisionFlowChartManagerImpl() {
+        super();
+    }
 
-	/**
-	 * Adds the commitee summary.
-	 *
-	 * @param stringBuilder         the string builder
-	 * @param entry                 the entry
-	 * @param vewRiksdagenCommittee the vew riksdagen committee
-	 */
-	private static void addCommiteeSummary(final StringBuilder stringBuilder,
-			final Entry<String, List<ProposalCommitteeeSummary>> entry,
-			final Optional<ViewRiksdagenCommittee> vewRiksdagenCommittee) {
-		if (vewRiksdagenCommittee.isPresent()) {
+    @Override
+    public SankeyChart createAllDecisionFlow(final Map<String, List<ViewRiksdagenCommittee>> committeeMap,
+                                             final String rm) {
+        // Retrieve all proposals for the given 'rm'
+        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(rm);
 
-			final Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream()
-					.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
+        // Prepare the sankey chart
+        final SankeyChart chart = new SankeyChart();
 
-			stringBuilder.append('\n').append(vewRiksdagenCommittee.get().getEmbeddedId().getDetail());
-			for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
-				if (docEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
-					addEntry(stringBuilder, docEntry);
-				}
-			}
-		}
-	}
+        // Group by organization
+        final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap =
+            committeeSummaries.stream()
+                              .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 
-	/**
-	 * Adds the decision data rows.
-	 *
-	 * @param chart
-	 *            the chart
-	 * @param entry
-	 *            the entry
-	 * @param vewRiksdagenCommittee
-	 *            the vew riksdagen committee
-	 */
-	private static void addDecisionDataRows(final SankeyChart chart,
-			final Entry<String, List<ProposalCommitteeeSummary>> entry,
-			final ViewRiksdagenCommittee vewRiksdagenCommittee) {
-		final Map<String, List<ProposalCommitteeeSummary>> decisionMap = entry.getValue().stream()
-				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+        // For each org, if we have a matching committee in 'committeeMap', add data rows
+        for (final Entry<String, List<ProposalCommitteeeSummary>> orgEntry : orgProposalMap.entrySet()) {
+            final String orgKey = orgEntry.getKey();
+            final List<ProposalCommitteeeSummary> orgSummaries = orgEntry.getValue();
+            if (committeeMap.containsKey(orgKey)) {
+                final Optional<ViewRiksdagenCommittee> committeeOpt =
+                    committeeMap.get(orgKey).stream().findFirst();
+                if (committeeOpt.isPresent()) {
+                    final ViewRiksdagenCommittee committee = committeeOpt.get();
+                    addDocTypeDataRows(chart, orgSummaries, committee);
+                    addDecisionDataRows(chart, orgSummaries, committee);
+                }
+            }
+        }
 
-		for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
-			if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
-				chart.addDataRow(vewRiksdagenCommittee.getEmbeddedId().getDetail(), decisionEntry.getKey(),
-						decisionEntry.getValue().size());
-			}
-		}
-	}
+        chart.drawChart();
+        return chart;
+    }
 
-	/**
-	 * Adds the doc type data rows.
-	 *
-	 * @param chart
-	 *            the chart
-	 * @param entry
-	 *            the entry
-	 * @param vewRiksdagenCommittee
-	 *            the vew riksdagen committee
-	 */
-	private static void addDocTypeDataRows(final SankeyChart chart,
-			final Entry<String, List<ProposalCommitteeeSummary>> entry,
-			final ViewRiksdagenCommittee vewRiksdagenCommittee) {
-		final Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream()
-				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
+    @Override
+    public SankeyChart createCommitteeDecisionFlow(final ViewRiksdagenCommittee viewRiksdagenCommittee,
+                                                   final Map<String, List<ViewRiksdagenCommittee>> committeeMap,
+                                                   final String rm) {
+        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(rm);
 
-		for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
-			if (docEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
-				chart.addDataRow(docEntry.getKey(), vewRiksdagenCommittee.getEmbeddedId().getDetail(),
-						docEntry.getValue().size());
+        final SankeyChart chart = new SankeyChart();
+        // Group by organization
+        final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap =
+            committeeSummaries.stream()
+                              .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 
-			}
-		}
-	}
+        final String targetOrg = viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH);
+        for (final Entry<String, List<ProposalCommitteeeSummary>> orgEntry : orgProposalMap.entrySet()) {
+            final String orgKeyUpper = orgEntry.getKey().toUpperCase(Locale.ENGLISH);
+            if (committeeMap.containsKey(orgKeyUpper) && targetOrg.equals(orgKeyUpper)) {
+                addDocTypeDecisionDataRows(chart, orgEntry.getValue());
+            }
+        }
 
-	/**
-	 * Adds the doc type decision data rows.
-	 *
-	 * @param chart
-	 *            the chart
-	 * @param entry
-	 *            the entry
-	 */
-	private static void addDocTypeDecisionDataRows(final SankeyChart chart,
-			final Entry<String, List<ProposalCommitteeeSummary>> entry) {
-		final Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.getValue().stream()
-				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
+        chart.drawChart();
+        return chart;
+    }
 
-		for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
+    @Override
+    public TextArea createCommitteeeDecisionSummary(final Map<String, List<ViewRiksdagenCommittee>> committeeMap,
+                                                    final String rm) {
+        final TextArea area = new TextArea("Summary");
+        final StringBuilder builder = new StringBuilder();
 
-			final Map<String, List<ProposalCommitteeeSummary>> decisionMap = docEntry.getValue().stream()
-					.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(rm);
 
-			for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
-				if (decisionEntry.getKey().length() > 0 && entry.getKey().length() > 0) {
-					chart.addDataRow(docEntry.getKey(), decisionEntry.getKey(), decisionEntry.getValue().size());
-				}
-			}
-		}
-	}
+        // Group by organization
+        final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap =
+            committeeSummaries.stream()
+                              .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 
-	/**
-	 * Adds the entry.
-	 *
-	 * @param stringBuilder the string builder
-	 * @param entry         the entry
-	 * @param docEntry      the doc entry
-	 */
-	private static void addEntry(final StringBuilder stringBuilder,
-			final Entry<String, List<ProposalCommitteeeSummary>> docEntry) {
-		stringBuilder.append("\n ( ").append(docEntry.getValue().size()).append(' ').append(docEntry.getKey()).append(" -> ");
+        for (final Entry<String, List<ProposalCommitteeeSummary>> orgEntry : orgProposalMap.entrySet()) {
+            final String orgKeyUpper = orgEntry.getKey().toUpperCase(Locale.ENGLISH);
+            if (committeeMap.containsKey(orgKeyUpper)) {
+                // Grab the first committee from the list
+                final ViewRiksdagenCommittee committee =
+                    committeeMap.get(orgKeyUpper).stream().findFirst().orElse(null);
+                addCommiteeSummary(builder, orgEntry.getValue(), committee);
+            }
+        }
+        area.setValue(builder.toString());
+        return area;
+    }
 
-		final Map<String, List<ProposalCommitteeeSummary>> decisionMap = docEntry.getValue().stream()
-				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+    @Override
+    public TextArea createCommitteeeDecisionSummary(final ViewRiksdagenCommittee viewRiksdagenCommittee,
+                                                    final String rm) {
+        final TextArea area = new TextArea("Summary");
+        final StringBuilder builder = new StringBuilder();
 
-		for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
-			if (decisionEntry.getKey().length() > 0) {
-				stringBuilder.append("\n   ").append(decisionEntry.getValue().size()).append(' ').append(decisionEntry.getKey()).append(' ');
+        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(rm);
 
-				final List<ProposalCommitteeeSummary> decisionSummaryList = decisionEntry.getValue();
+        // Group by organization
+        final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap =
+            committeeSummaries.stream()
+                              .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 
-				for (final ProposalCommitteeeSummary proposalCommitteeeSummary : decisionSummaryList) {
-					stringBuilder.append("\n    ").append(proposalCommitteeeSummary.getDecision()).append(':').append(proposalCommitteeeSummary.getWording()).append(' ').append(proposalCommitteeeSummary.getWording2()).append(' ');
+        final String targetOrg = viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH);
 
-				}
+        // Retrieve the relevant summaries for the single committee
+        final List<ProposalCommitteeeSummary> list = orgProposalMap.get(targetOrg);
+        addCommiteeSummary(builder, list, viewRiksdagenCommittee);
 
-			}
-		}
-		stringBuilder.append(')');
-	}
+        area.setValue(builder.toString());
+        return area;
+    }
 
-	@Override
-	public SankeyChart createAllDecisionFlow(final Map<String, List<ViewRiksdagenCommittee>> committeeMap,final String rm) {
-		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);
+    /**
+     * Helper to add doc type data rows to sankey.
+     *
+     * @param chart    the chart
+     * @param proposals the summary list for the org
+     * @param committee the committee
+     */
+    private static void addDocTypeDataRows(final SankeyChart chart,
+                                           final List<ProposalCommitteeeSummary> proposals,
+                                           final ViewRiksdagenCommittee committee) {
+        // Group by doc type
+        final Map<String, List<ProposalCommitteeeSummary>> docTypeMap =
+            proposals.stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
 
+        final String committeeName = committee.getEmbeddedId().getDetail();
+        for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
+            final String docType = docEntry.getKey();
+            if (!docType.isEmpty()) {
+                chart.addDataRow(docType, committeeName, docEntry.getValue().size());
+            }
+        }
+    }
 
-		final SankeyChart chart = new SankeyChart();
+    /**
+     * Helper to add decision data rows to sankey.
+     *
+     * @param chart    the chart
+     * @param proposals the summary list for the org
+     * @param committee the committee
+     */
+    private static void addDecisionDataRows(final SankeyChart chart,
+                                            final List<ProposalCommitteeeSummary> proposals,
+                                            final ViewRiksdagenCommittee committee) {
+        // Group by decision
+        final Map<String, List<ProposalCommitteeeSummary>> decisionMap =
+            proposals.stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
 
-		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream()
-				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
+        final String committeeName = committee.getEmbeddedId().getDetail();
+        for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
+            final String decision = decisionEntry.getKey();
+            if (!decision.isEmpty()) {
+                chart.addDataRow(committeeName, decision, decisionEntry.getValue().size());
+            }
+        }
+    }
 
+    /**
+     * Helper to add doc type -> decision data rows to sankey.
+     *
+     * @param chart   the chart
+     * @param proposals the summary list for the org
+     */
+    private static void addDocTypeDecisionDataRows(final SankeyChart chart,
+                                                   final List<ProposalCommitteeeSummary> proposals) {
+        // Group by doc type
+        final Map<String, List<ProposalCommitteeeSummary>> docTypeMap =
+            proposals.stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
 
-		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
+        for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
+            final String docType = docEntry.getKey();
+            if (!docType.isEmpty()) {
+                // Now group by decision
+                final Map<String, List<ProposalCommitteeeSummary>> decisionMap =
+                    docEntry.getValue().stream()
+                            .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
+                for (final Entry<String, List<ProposalCommitteeeSummary>> decEntry : decisionMap.entrySet()) {
+                    final String decision = decEntry.getKey();
+                    if (!decision.isEmpty()) {
+                        chart.addDataRow(docType, decision, decEntry.getValue().size());
+                    }
+                }
+            }
+        }
+    }
 
-			if (committeeMap.containsKey(entry.getKey())) {
+    /**
+     * Helper to create a textual committee summary in a StringBuilder.
+     *
+     * @param builder     the StringBuilder
+     * @param proposals   the proposal summaries for this committee
+     * @param committee   the committee
+     */
+    private static void addCommiteeSummary(final StringBuilder builder,
+                                           final List<ProposalCommitteeeSummary> proposals,
+                                           final ViewRiksdagenCommittee committee) {
+        // If no committee or proposals, bail out
+        if (committee == null || proposals == null || proposals.isEmpty()) {
+            return;
+        }
 
-				final Optional<ViewRiksdagenCommittee> vewRiksdagenCommittee = committeeMap.get(entry.getKey()).stream().findFirst();
-				if (vewRiksdagenCommittee.isPresent()) {
-					addDocTypeDataRows(chart, entry, vewRiksdagenCommittee.get());
-					addDecisionDataRows(chart, entry, vewRiksdagenCommittee.get());
-				}
-			}
-		}
+        final String detail = committee.getEmbeddedId().getDetail();
+        builder.append('\n').append(detail);
 
-		chart.drawChart();
-		return chart;
-	}
+        // Group by doc type
+        final Map<String, List<ProposalCommitteeeSummary>> docTypeMap =
+            proposals.stream().collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
 
-	@Override
-	public SankeyChart createCommitteeDecisionFlow(final ViewRiksdagenCommittee viewRiksdagenCommittee,
-			final Map<String, List<ViewRiksdagenCommittee>> committeeMap, final String rm) {
-		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);
+        for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
+            addEntry(builder, docEntry);
+        }
+    }
 
-		final SankeyChart chart = new SankeyChart();
+    /**
+     * Build a textual representation of doc type -> decision -> proposals.
+     *
+     * @param builder the builder
+     * @param docEntry the doc entry
+     */
+    private static void addEntry(final StringBuilder builder,
+                                 final Entry<String, List<ProposalCommitteeeSummary>> docEntry) {
+        final String docType = docEntry.getKey();
+        final List<ProposalCommitteeeSummary> docTypeList = docEntry.getValue();
 
-		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream()
-				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
+        builder.append("\n ( ")
+               .append(docTypeList.size())
+               .append(' ')
+               .append(docType)
+               .append(" -> ");
 
-		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
-			if (committeeMap.containsKey(entry.getKey().toUpperCase(Locale.ENGLISH))
-					&& viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH).equals(entry.getKey().toUpperCase(Locale.ENGLISH))) {
-				addDocTypeDecisionDataRows(chart, entry);
-			}
-		}
+        // Group by decision
+        final Map<String, List<ProposalCommitteeeSummary>> decisionMap =
+            docTypeList.stream()
+                       .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision));
 
-		chart.drawChart();
-		return chart;
-	}
+        for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
+            final String decision = decisionEntry.getKey();
+            if (!decision.isEmpty()) {
+                builder.append("\n   ")
+                       .append(decisionEntry.getValue().size())
+                       .append(' ')
+                       .append(decision)
+                       .append(' ');
 
-	@Override
-	public TextArea createCommitteeeDecisionSummary(final Map<String, List<ViewRiksdagenCommittee>> committeeMap,final String rm) {
-		final TextArea area = new TextArea("Summary");
-		final StringBuilder stringBuilder = new StringBuilder();
-		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);
-
-		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream()
-				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
-
-		for (final Entry<String, List<ProposalCommitteeeSummary>> entry : orgProposalMap.entrySet()) {
-			if (committeeMap.containsKey(entry.getKey().toUpperCase(Locale.ENGLISH))) {
-				addCommiteeSummary(stringBuilder, entry, committeeMap.get(entry.getKey()).stream().findFirst());
-			}
-		}
-		area.setValue(stringBuilder.toString());
-		return area;
-	}
-
-	@Override
-	public TextArea createCommitteeeDecisionSummary(final ViewRiksdagenCommittee viewRiksdagenCommittee, final String rm) {
-		final TextArea area = new TextArea("Summary");
-		final StringBuilder stringBuilder = new StringBuilder();
-		final List<ProposalCommitteeeSummary> createCommitteeSummary = decisionDataFactory.createCommitteeSummary(rm);
-
-		final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = createCommitteeSummary.stream()
-				.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
-
-		final List<ProposalCommitteeeSummary> list = orgProposalMap.get(viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH));
-
-		addCommiteeSummary(stringBuilder, list,viewRiksdagenCommittee );
-
-		area.setValue(stringBuilder.toString());
-		return area;
-	}
-
-
-	/**
-	 * Adds the commitee summary.
-	 *
-	 * @param stringBuilder the string builder
-	 * @param entry the entry
-	 * @param vewRiksdagenCommittee the vew riksdagen committee
-	 */
-	private static void addCommiteeSummary(final StringBuilder stringBuilder,
-			final List<ProposalCommitteeeSummary> entry,
-			final ViewRiksdagenCommittee vewRiksdagenCommittee) {
-		if (vewRiksdagenCommittee != null) {
-
-			final Map<String, List<ProposalCommitteeeSummary>> docTypeMap = entry.stream()
-					.collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType));
-
-			stringBuilder.append('\n').append(vewRiksdagenCommittee.getEmbeddedId().getDetail());
-			for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
-					addEntry(stringBuilder, docEntry);
-			}
-		}
-	}
-
-
+                for (final ProposalCommitteeeSummary summary : decisionEntry.getValue()) {
+                    builder.append("\n    ")
+                           .append(summary.getDecision())
+                           .append(':')
+                           .append(summary.getWording())
+                           .append(' ')
+                           .append(summary.getWording2())
+                           .append(' ');
+                }
+            }
+        }
+        builder.append(')');
+    }
 }

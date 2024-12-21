@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.im
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,102 +42,166 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
 @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
+    /** Common text constants for doc type. */
+    private static final String PROP = "Proposition";
 
-	/**
-	 * Instantiates a new decision data factory impl.
-	 */
-	public DecisionDataFactoryImpl() {
-		super();
-	}
+    /** The Constant MOTION. */
+    private static final String MOTION = "Motion";
 
-	/**
-	 * Adds the proposal committeee summary.
-	 *
-	 * @param processedIn the processed in
-	 * @param summary     the summary
-	 * @param document    the document
-	 */
-	private static void addProposalCommitteeeSummary(final String processedIn,
-			final List<ProposalCommitteeeSummary> summary, final DocumentStatusContainer document) {
-		if (document.getDocumentProposal() != null && document.getDocumentProposal().getProposal() != null) {
+    /** Known min and max length constraints from original code. */
+    private static final int CHAMBER_MIN_LENGTH = "avslag".length(); // 6
 
-			final DocumentProposalData proposal = document.getDocumentProposal().getProposal();
+    /** The Constant CHAMBER_MAX_LENGTH. */
+    private static final int CHAMBER_MAX_LENGTH = "återförvisning till utskottet".length(); // 29
 
-			if (proposal.getProcessedIn() != null && !proposal.getProcessedIn().isEmpty()
-					&& proposal.getCommittee() != null && !proposal.getCommittee().isEmpty()
-					&& proposal.getProcessedIn().contains(processedIn)
-					&& proposal.getChamber().length() <= "återförvisning till utskottet".length()
-					&& proposal.getChamber().length() >= "avslag".length()) {
+    /**
+     * Pattern for cleaning up the 'chamber' string. Aggregates multiple .replace() calls
+     * into a single regex. This pattern will remove or replace these tokens:
+     *  (UTSKOTTET), ( or ), UTBSKOTTET, UBTSKOTTET, UTKOTTET
+     *
+     * We'll do it case-insensitively, but remember we do an uppercase pass anyway.
+     */
+    private static final Pattern CLEANUP_PATTERN = Pattern.compile(
+        "(\\(UTSKOTTET\\))|(\\()|(\\))|(UTBSKOTTET)|(UBTSKOTTET)|(UTKOTTET)",
+        Pattern.CASE_INSENSITIVE
+    );
 
-				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document),
-						cleanupDecision(proposal.getChamber()), document.getDocument().getHangarId(),
-						proposal.getWording(), proposal.getWording2(), proposal.getDecisionType()));
-			}
-		}
-	}
+    /** The application manager. */
+    @Autowired
+    private ApplicationManager applicationManager;
 
-	/**
-	 * Cleanup decision.
-	 *
-	 * @param chamber the chamber
-	 * @return the string
-	 */
-	private static String cleanupDecision(final String chamber) {
-		return chamber.toUpperCase(Locale.ENGLISH).replace("(UTSKOTTET)", "").replace("UTKOTTET", "UTSKOTTET")
-				.replace("UTBSKOTTET", "UTSKOTTET").replace("UBTSKOTTET", "UTSKOTTET").replace("(", "")
-				.replace(")", "");
-	}
+    /**
+     * Instantiates a new decision data factory impl.
+     */
+    public DecisionDataFactoryImpl() {
+        super();
+    }
 
-	/**
-	 * Gets the committtee short name.
-	 *
-	 * @param proposal the proposal
-	 * @return the committtee short name
-	 */
-	private static String getCommittteeShortName(final DocumentProposalData proposal) {
-		final String upperCase = proposal.getProcessedIn().replaceAll("\\d", "").replace("/:", "")
-				.toUpperCase(Locale.ENGLISH);
+    /**
+     * Creates the committee summary.
+     *
+     * @param processedIn the processed in
+     * @return the list
+     */
+    @Override
+    public List<ProposalCommitteeeSummary> createCommitteeSummary(final String processedIn) {
+        final List<ProposalCommitteeeSummary> summary = new ArrayList<>();
 
-		if (upperCase.contains(",")) {
-			return upperCase.substring(0, upperCase.indexOf(','));
-		} else {
-			return upperCase;
-		}
-	}
+        // NOTE: Still loads ALL DocumentStatusContainer rows
+        final DataContainer<DocumentStatusContainer, Long> dataContainer =
+                applicationManager.getDataContainer(DocumentStatusContainer.class);
 
-	/**
-	 * Gets the document name.
-	 *
-	 * @param document the document
-	 * @return the document name
-	 */
-	private static String getDocumentName(final DocumentStatusContainer document) {
-		if ("prop".equalsIgnoreCase(document.getDocument().getDocumentType())) {
-			return "Proposition";
-		} else if (document.getDocument().getSubType() != null
-				&& document.getDocument().getSubType().length() > "motion".length()) {
-			return document.getDocument().getSubType();
-		} else {
-			return "Motion";
-		}
+        // For each doc, potentially add a summary
+        for (final DocumentStatusContainer document : dataContainer.getAll()) {
+            addProposalCommitteeeSummary(processedIn, summary, document);
+        }
+        return summary;
+    }
 
-	}
+    /**
+     * Check and build a summary if the document qualifies based on 'processedIn' and
+     * the proposal/chamber constraints.
+     *
+     * @param processedIn the processed in
+     * @param summary the summary
+     * @param document the document
+     */
+    private static void addProposalCommitteeeSummary(final String processedIn,
+            final List<ProposalCommitteeeSummary> summary, final DocumentStatusContainer document) {
 
-	@Override
-	public List<ProposalCommitteeeSummary> createCommitteeSummary(final String processedIn) {
-		final List<ProposalCommitteeeSummary> summary = new ArrayList<>();
+        // Null checks on 'documentProposal' and 'proposal'
+        if (document.getDocumentProposal() == null ||
+            document.getDocumentProposal().getProposal() == null) {
+            return;
+        }
 
-		final DataContainer<DocumentStatusContainer, Long> dataContainer = applicationManager
-				.getDataContainer(DocumentStatusContainer.class);
+        final DocumentProposalData proposal = document.getDocumentProposal().getProposal();
+        final String chamber = proposal.getChamber();
+        // Are we processed in the correct place?
+        if ((chamber == null) || proposal.getProcessedIn() == null || proposal.getProcessedIn().isEmpty()) {
+            return;
+        }
+        // Do we have a non-empty 'committee'?
+        if (proposal.getCommittee() == null || proposal.getCommittee().isEmpty()) {
+            return;
+        }
+        // Does 'processedIn' match?
+        if (!proposal.getProcessedIn().contains(processedIn)) {
+            return;
+        }
+        // Is the chamber length within the specified min/max?
+        final int length = chamber.length();
+        if (length < CHAMBER_MIN_LENGTH || length > CHAMBER_MAX_LENGTH) {
+            return;
+        }
 
-		for (final DocumentStatusContainer document : dataContainer.getAll()) {
+        // If all checks pass, add the summary
+        summary.add(new ProposalCommitteeeSummary(
+            getCommitteeShortName(proposal),
+            getDocumentName(document),
+            cleanupDecision(chamber),
+            document.getDocument().getHangarId(),
+            proposal.getWording(),
+            proposal.getWording2(),
+            proposal.getDecisionType()
+        ));
+    }
 
-			addProposalCommitteeeSummary(processedIn, summary, document);
-		}
-		return summary;
-	}
+    /**
+     * Cleanup the 'chamber' string by uppercasing, removing tokens via regex,
+     * and normalizing "UTKOTTET" to "UTSKOTTET" if it appears alone.
+     *
+     * @param chamber the chamber
+     * @return the string
+     */
+    private static String cleanupDecision(final String chamber) {
+        // Convert to uppercase English
+        String upper = chamber.toUpperCase(Locale.ENGLISH);
 
+        // Remove or replace known substrings with the pattern
+        upper = CLEANUP_PATTERN.matcher(upper).replaceAll("");
+
+        // If we find "UTKOTTET" alone, replace it with "UTSKOTTET"
+        // (We already removed parentheses above).
+        if (upper.contains("UTKOTTET")) {
+            upper = upper.replace("UTKOTTET", "UTSKOTTET");
+        }
+        return upper.trim();
+    }
+
+    /**
+     * Extract the committee short name from 'processedIn' by removing digits
+     * and certain punctuation, converting to uppercase, and truncating if comma found.
+     *
+     * @param proposal the proposal
+     * @return the committee short name
+     */
+    private static String getCommitteeShortName(final DocumentProposalData proposal) {
+        // e.g. "UU12" => "UU" then uppercase => "UU"
+        final String upperCase = proposal.getProcessedIn()
+                                   .replaceAll("\\d", "")
+                                   .replace("/:", "")
+                                   .toUpperCase(Locale.ENGLISH);
+        // If there's a comma, only take up to that comma
+        final int commaIndex = upperCase.indexOf(',');
+        return (commaIndex >= 0) ? upperCase.substring(0, commaIndex) : upperCase;
+    }
+
+    /**
+     * Return a human-readable doc name: "Proposition" if docType="prop",
+     * or doc.getSubType() if subType is long enough, else "Motion".
+     *
+     * @param document the document
+     * @return the document name
+     */
+    private static String getDocumentName(final DocumentStatusContainer document) {
+        if ("prop".equalsIgnoreCase(document.getDocument().getDocumentType())) {
+            return PROP;
+        } else if (document.getDocument().getSubType() != null
+                   && document.getDocument().getSubType().length() > MOTION.length()) {
+            return document.getDocument().getSubType();
+        } else {
+            return MOTION;
+        }
+    }
 }
