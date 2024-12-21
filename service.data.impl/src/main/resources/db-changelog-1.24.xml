@@ -757,9 +757,6 @@
 		<createIndex indexName="application_action_event_page_idx" tableName="application_action_event">
 			<column name="page"/>
 		</createIndex>
-		<createIndex indexName="application_action_event_created_date_idx" tableName="application_action_event">
-			<column name="created_date"/>
-		</createIndex>
 		<createIndex indexName="application_action_event_element_id_idx" tableName="application_action_event">
 			<column name="element_id"/>
 		</createIndex>
