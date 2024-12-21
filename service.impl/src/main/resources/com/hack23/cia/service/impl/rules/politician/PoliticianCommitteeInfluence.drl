@@ -5,33 +5,21 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.model.internal.application.data.rules.impl.Status
 import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 
-function double committeeLeadershipRatio(ViewRiksdagenPolitician politician) {
-    if (politician.totalDaysServedCommittee == 0) {
-        return 0.0;
-    }
-    return (double) politician.totalDaysServedCommitteeLeadership / (double) politician.totalDaysServedCommittee;
-}
-
-function double committeeSubstituteRatio(ViewRiksdagenPolitician politician) {
-    if (politician.totalDaysServedCommittee == 0) {
-        return 0.0;
-    }
-    return (double) politician.totalDaysServedCommitteeSubstitute / (double) politician.totalDaysServedCommittee;
-}
-
 rule "Politician with high committee leadership ratio"
     dialect "java"
     when
         $p : PoliticianComplianceCheckImpl(
             politician.active,
-            eval( committeeLeadershipRatio(politician) > 0.7 )
+            eval( $p.getCommitteeLeadershipRatio() > 0.7 )
         )
     then
-        $p.addViolation(Status.MAJOR,
-                        "PoliticianInfluence",
-                        "CommitteeExperience",
-                        kcontext.getRule().getName(),
-                        "High Committee Leadership Influence");
+        $p.addViolation(
+            Status.MAJOR,
+            "PoliticianInfluence",
+            "CommitteeExperience",
+            kcontext.getRule().getName(),
+            "High Committee Leadership Influence"
+        );
 end
 
 rule "Politician with medium committee leadership ratio"
@@ -39,17 +27,17 @@ rule "Politician with medium committee leadership ratio"
     when
         $p : PoliticianComplianceCheckImpl(
             politician.active,
-            eval(
-                committeeLeadershipRatio(politician) >= 0.4 &&
-                committeeLeadershipRatio(politician) <= 0.7
-            )
+            eval( $p.getCommitteeLeadershipRatio() >= 0.4 &&
+                  $p.getCommitteeLeadershipRatio() <= 0.7 )
         )
     then
-        $p.addViolation(Status.MINOR,
-                        "PoliticianInfluence",
-                        "CommitteeExperience",
-                        kcontext.getRule().getName(),
-                        "Medium Committee Leadership Influence");
+        $p.addViolation(
+            Status.MINOR,
+            "PoliticianInfluence",
+            "CommitteeExperience",
+            kcontext.getRule().getName(),
+            "Medium Committee Leadership Influence"
+        );
 end
 
 rule "Politician with high committee substitute ratio"
@@ -57,12 +45,14 @@ rule "Politician with high committee substitute ratio"
     when
         $p : PoliticianComplianceCheckImpl(
             politician.active,
-            eval( committeeSubstituteRatio(politician) > 0.5 )
+            eval( $p.getCommitteeSubstituteRatio() > 0.5 )
         )
     then
-        $p.addViolation(Status.MINOR,
-                        "PoliticianInfluence",
-                        "CommitteeExperience",
-                        kcontext.getRule().getName(),
-                        "Primarily Serving as Committee Substitute");
+        $p.addViolation(
+            Status.MINOR,
+            "PoliticianInfluence",
+            "CommitteeExperience",
+            kcontext.getRule().getName(),
+            "Primarily Serving as Committee Substitute"
+        );
 end
