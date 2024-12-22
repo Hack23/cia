@@ -1,0 +1,153 @@
+package com.hack23.cia.service.impl.rules.attendance
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+
+rule "Party with single-day/month abstain spike"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && dailySummary != null && dailySummary.partyPercentageAbstain > 30)
+    then
+        $p.addViolation(Status.CRITICAL, "PartyAttendance", "Attendance", kcontext.getRule().getName(), "High Abstain Rate");
+end
+
+rule "Newly Registered Party with High Absence Rate"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.registeredDate != null && (System.currentTimeMillis() - party.registeredDate.getTime()) < 31536000000 && dailySummary != null && dailySummary.partyPercentageAbsent > 30)
+    then
+        $p.addViolation(Status.MAJOR, "PartyAttendance", "Attendance", kcontext.getRule().getName(), "High Absence Rate for New Party");
+end
+
+rule "Party with single-year abstain spike"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              annualSummary.partyPercentageAbstain > 35
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "Attendance",
+            "AbstainSpike",
+            kcontext.getRule().getName(),
+            "Party had an abstention rate above 35% this year"
+        );
+end
+
+rule "Party with no official documents this year"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              eval( $p.getAnnualSummary().getDocumentCount() == 0 )
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "DocumentActivity",
+            "NoDocuments",
+            kcontext.getRule().getName(),
+            "Party published 0 documents this year"
+        );
+end
+
+rule "Party with single-day/month abstain spike"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              annualSummary.partyPercentageAbstain > 35
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "Attendance",
+            "AbstainSpike",
+            kcontext.getRule().getName(),
+            "Party had an abstention rate above 35% this year"
+        );
+end
+
+rule "Newly Registered Party with High Absence Rate"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              // Example: if party is <1 year old and has absent >30%
+              eval( 
+                 $p.getParty().getRegisteredDate() != null &&
+                 daysBetween($p.getParty().getRegisteredDate(), new java.util.Date()) < 365
+              ),
+              annualSummary.partyPercentageAbsent >= 30
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "Attendance",
+            "NewPartyHighAbsence",
+            kcontext.getRule().getName(),
+            "Newly registered party with high absenteeism"
+        );
+end
+
+rule "Party with single-year abstain spike"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              annualSummary.partyPercentageAbstain > 35
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "Attendance",
+            "AbstainSpike",
+            kcontext.getRule().getName(),
+            "Party had an abstention rate above 35% this year"
+        );
+end
+
+rule "Party with no official documents this year"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              eval( $p.getAnnualSummary().getDocumentCount() == 0 )
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "DocumentActivity",
+            "NoDocuments",
+            kcontext.getRule().getName(),
+            "Party published 0 documents this year"
+        );
+end
+
+rule "Party reliant on very small headcount"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              eval( $p.getParty().getParty() != null ), 
+              // Suppose we interpret 'headCount' for that party
+              eval( $p.getParty().getHeadCount() < 5 )
+        )
+    then
+        $p.addViolation(
+            Status.MINOR,
+            "Compliance",
+            "SmallHeadcount",
+            kcontext.getRule().getName(),
+            "Party's membership is extremely small"
+        );
+end
+
+// Helper function example, if needed:
+function long daysBetween(java.util.Date start, java.util.Date end) {
+    long diff = end.getTime() - start.getTime();
+    return diff / (1000L * 60L * 60L * 24L);
+}

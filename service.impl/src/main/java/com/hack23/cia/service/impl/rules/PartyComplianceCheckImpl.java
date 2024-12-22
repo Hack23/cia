@@ -111,4 +111,50 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 		return annualSummary;
 	}
 
+	/**
+	 * Gets the document count.
+	 *
+	 * @return the document count
+	 */
+	public int getDocumentCount() {
+		return party.getDocumentCount();
+	}
+
+	/**
+	 * Gets the press release count.
+	 *
+	 * @return the press release count
+	 */
+	public int getPressReleaseCount() {
+		return party.getPressReleaseCount();
+	}
+
+	/**
+	 * Gets the days since registration.
+	 *
+	 * @return the days since registration
+	 */
+	public long getDaysSinceRegistration() {
+		long currentTime = System.currentTimeMillis();
+		long registeredTime = party.getRegisteredDate().getTime();
+		return (currentTime - registeredTime) / (1000 * 60 * 60 * 24);
+	}
+
+	/**
+	 * Gets the multiple roles count.
+	 *
+	 * @return the multiple roles count
+	 */
+	public int getMultipleRolesCount() {
+		return party.getCurrentMinistryAssignments() + party.getCurrentPartyAssignments() + party.getCurrentSpeakerAssignments();
+	}
+
+	/**
+	 * Gets the frequent party switching count.
+	 *
+	 * @return the frequent party switching count
+	 */
+	public int getFrequentPartySwitchingCount() {
+		return party.getPartySwitchingCount();
+	}
 }

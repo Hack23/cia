@@ -1,0 +1,112 @@
+package com.hack23.cia.service.impl.rules.compliance
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with low headcount but claims nationwide reach"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.headCount < 10)
+    then
+        $p.addViolation(Status.MINOR, "PoliticianComplianceGeneral", "Representation", kcontext.getRule().getName(), "Low Headcount");
+end
+
+rule "Politician with no official documents"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.documentCount == 0)
+    then
+        $p.addViolation(Status.MAJOR, "PoliticianComplianceGeneral", "Activity", kcontext.getRule().getName(), "No Official Documents");
+end
+
+rule "Politician with no press releases"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.pressReleaseCount == 0)
+    then
+        $p.addViolation(Status.MINOR, "PoliticianComplianceGeneral", "Activity", kcontext.getRule().getName(), "No Press Releases");
+end
+
+rule "Politician near or past retirement age holding multiple roles"
+    when
+        $p : PoliticianComplianceCheckImpl(
+              annualSummary != null,
+              eval( $p.getAge() > 65 ),
+              eval( ($p.getPolitician().isActiveGovernment() 
+                  ? 1 : 0) 
+                  + ($p.getPolitician().isActiveCommittee() 
+                  ? 1 : 0) 
+                  + ($p.getPolitician().isActiveSpeaker() 
+                  ? 1 : 0) > 1 )
+        )
+    then
+        $p.addViolation(
+            Status.MINOR,
+            "Retirement",
+            "ElderMultiRole",
+            kcontext.getRule().getName(),
+            "Politician over 65 holding multiple active roles"
+        );
+end
+
+rule "Politician overshadowed in committee leadership"
+    when
+        $p : PoliticianComplianceCheckImpl(
+              annualSummary != null,
+              eval( $p.getPolitician().getCurrentCommitteeAssignments() > 0
+                     && $p.getAnnualSummary().getPoliticianPercentageActive() < 5 )
+        )
+    then
+        $p.addViolation(
+            Status.MINOR,
+            "Experience",
+            "CommitteeOvershadowed",
+            kcontext.getRule().getName(),
+            "Politician rarely participates in assigned committee"
+        );
+end
+
+rule "Rule #12: Politician near or past retirement age holding multiple roles"
+    when
+        $p : PoliticianComplianceCheckImpl(
+              annualSummary != null,
+              eval( $p.getAge() > 65 ),
+              // also check if multiple roles are active
+              eval( ($p.getPolitician().isActiveGovernment() 
+                  ? 1 : 0) 
+                  + ($p.getPolitician().isActiveCommittee() 
+                  ? 1 : 0) 
+                  + ($p.getPolitician().isActiveSpeaker() 
+                  ? 1 : 0) > 1 )
+        )
+    then
+        $p.addViolation(
+            Status.MINOR,
+            "Retirement",
+            "ElderMultiRole",
+            kcontext.getRule().getName(),
+            "Politician over 65 holding multiple active roles"
+        );
+end
+
+rule "Rule #14: Politician overshadowed in committee leadership"
+    when
+        $p : PoliticianComplianceCheckImpl(
+              annualSummary != null,
+              // Suppose we interpret overshadowed if they're a committee member 
+              // but have <5% speaking or doc share:
+              eval( $p.getPolitician().getCurrentCommitteeAssignments() > 0
+                     && $p.getAnnualSummary().getPoliticianPercentageActive() < 5 )
+        )
+    then
+        $p.addViolation(
+            Status.MINOR,
+            "Experience",
+            "CommitteeOvershadowed",
+            kcontext.getRule().getName(),
+            "Politician rarely participates in assigned committee"
+        );
+end

@@ -158,4 +158,34 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
         return (double) politician.getTotalDaysServedCommitteeSubstitute() / (double) totalCommittee;
     }
 
+    /**
+     * Gets the document count.
+     *
+     * @return the document count
+     */
+    public int getDocumentCount() {
+        return politician.getDocumentCount();
+    }
+
+    /**
+     * Gets the committee leadership ratio.
+     *
+     * @return the committee leadership ratio
+     */
+    public double getCommitteeLeadershipRatio() {
+        long totalCommitteeDays = politician.getTotalDaysServedCommittee();
+        if (totalCommitteeDays == 0) {
+            return 0.0;
+        }
+        return (double) politician.getTotalDaysServedCommitteeLeadership() / totalCommitteeDays;
+    }
+
+    /**
+     * Gets the age.
+     *
+     * @return the age
+     */
+    public int getAge() {
+        return getYear() - politician.getBornYear();
+    }
 }
