@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractComplianceCheckImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.rules</a> &gt; <span class="el_source">AbstractComplianceCheckImpl.java</span></div><h1>AbstractComplianceCheckImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
- * 
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractComplianceCheckImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.rules</a> &gt; <span class="el_source">AbstractComplianceCheckImpl.java</span></div><h1>AbstractComplianceCheckImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
+ *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,7 +19,6 @@
 package com.hack23.cia.service.impl.rules;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +28,10 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
+import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
+import com.hack23.cia.model.internal.application.data.rules.impl.Status;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
-import com.hack23.cia.service.api.action.kpi.ResourceType;
-import com.hack23.cia.service.api.action.kpi.RuleViolation;
-import com.hack23.cia.service.api.action.kpi.Status;
 
 /**
  * The Class AbstractComplianceCheckImpl.
@@ -44,10 +43,10 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 
 	/** The resource type. */
 	private final ResourceType resourceType;
-			
+
 	/** The rule violation map. */
-<span class="fc" id="L49">	private final Map&lt;String,RuleViolation&gt; ruleViolationMap = new HashMap&lt;&gt;();</span>
-	
+<span class="fc" id="L48">	private final Map&lt;String,RuleViolation&gt; ruleViolationMap = new HashMap&lt;&gt;();</span>
+
 	/**
 	 * Instantiates a new abstract compliance check impl.
 	 *
@@ -55,9 +54,9 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 *            the resource type
 	 */
 	public AbstractComplianceCheckImpl(final ResourceType resourceType) {
-<span class="fc" id="L58">		super();</span>
-<span class="fc" id="L59">		this.resourceType = resourceType;</span>
-<span class="fc" id="L60">	}</span>
+<span class="fc" id="L57">		super();</span>
+<span class="fc" id="L58">		this.resourceType = resourceType;</span>
+<span class="fc" id="L59">	}</span>
 
 
 	/**
@@ -67,9 +66,9 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 */
 	@Override
 	public ResourceType getResourceType() {
-<span class="fc" id="L70">		return resourceType;</span>
+<span class="nc" id="L69">		return resourceType;</span>
 	}
-	
+
 	/**
 	 * Gets the rule violations.
 	 *
@@ -77,34 +76,9 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 */
 	@Override
 	public final List&lt;RuleViolation&gt; getRuleViolations() {
-<span class="fc" id="L80">		return new ArrayList&lt;&gt;(ruleViolationMap.values());</span>
+<span class="nc" id="L79">		return new ArrayList&lt;&gt;(ruleViolationMap.values());</span>
 	}
 
-	/**
-	 * Gets the number rule violations.
-	 *
-	 * @return the number rule violations
-	 */
-	@Override
-	public int getNumberRuleViolations() {
-<span class="fc" id="L90">		return ruleViolationMap.size();</span>
-	}
-	
-	/**
-	 * Gets the rule summary.
-	 *
-	 * @return the rule summary
-	 */
-	@Override
-	public final String getRuleSummary() {
-<span class="fc" id="L100">		final Collection&lt;RuleViolation&gt; values = ruleViolationMap.values();</span>
-<span class="fc" id="L101">		final StringBuilder builder = new StringBuilder();</span>
-<span class="fc bfc" id="L102" title="All 2 branches covered.">		for (final RuleViolation ruleViolation : values) {</span>
-<span class="fc" id="L103">			builder.append('[').append(ruleViolation.getRuleName()).append('/').append(ruleViolation.getStatus()) .append(']');</span>
-<span class="fc" id="L104">		}		</span>
-<span class="fc" id="L105">		return builder.toString();</span>
-	}
-	
 	/**
 	 * Adds the violation.
 	 *
@@ -119,27 +93,27 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 * @param positive
 	 *            the positive
 	 */
-	public final void addViolation(final Status status,final String ruleName,final String ruleGroup,final String ruleDescription,final String positive) {	
-<span class="fc" id="L123">		final RuleViolation currentRuleViolation = ruleViolationMap.get(ruleName);</span>
-<span class="fc bfc" id="L124" title="All 4 branches covered.">		if (currentRuleViolation == null || status.ordinal() &gt; currentRuleViolation.getStatus().ordinal()) {		</span>
-<span class="fc" id="L125">			ruleViolationMap.put(ruleName, new RuleViolation(getId(),getName(),resourceType,ruleName,ruleDescription,ruleGroup,status,positive));</span>
+	public final void addViolation(final Status status,final String ruleName,final String ruleGroup,final String ruleDescription,final String positive) {
+<span class="fc" id="L97">		final RuleViolation currentRuleViolation = ruleViolationMap.get(ruleName);</span>
+<span class="fc bfc" id="L98" title="All 4 branches covered.">		if (currentRuleViolation == null || status.ordinal() &gt; currentRuleViolation.getStatus().ordinal()) {</span>
+<span class="fc" id="L99">			ruleViolationMap.put(ruleName, new RuleViolation(getId(),getName(),resourceType,ruleName,ruleDescription,ruleGroup,status,positive));</span>
 		}
-<span class="fc" id="L127">	}</span>
+<span class="fc" id="L101">	}</span>
 
 	@Override
 	public final boolean equals(final Object obj) {
-<span class="fc" id="L131">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+<span class="nc" id="L105">		return EqualsBuilder.reflectionEquals(this, obj);</span>
 	}
 
 	@Override
 	public final String toString() {
-<span class="fc" id="L136">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+<span class="fc" id="L110">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
 	}
 
 	@Override
 	public final int hashCode() {
-<span class="fc" id="L141">		return HashCodeBuilder.reflectionHashCode(this);</span>
+<span class="fc" id="L115">		return HashCodeBuilder.reflectionHashCode(this);</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

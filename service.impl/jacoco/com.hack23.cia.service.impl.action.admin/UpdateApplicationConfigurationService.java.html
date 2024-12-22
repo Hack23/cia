@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UpdateApplicationConfigurationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.admin</a> &gt; <span class="el_source">UpdateApplicationConfigurationService.java</span></div><h1>UpdateApplicationConfigurationService.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UpdateApplicationConfigurationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.admin</a> &gt; <span class="el_source">UpdateApplicationConfigurationService.java</span></div><h1>UpdateApplicationConfigurationService.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,6 @@ import com.hack23.cia.service.api.action.application.CreateApplicationEventReque
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationConfigurationDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class UpdateApplicationConfigurationService.
@@ -41,8 +40,7 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public final class UpdateApplicationConfigurationService extends
-		AbstractBusinessServiceImpl&lt;UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse&gt;
-		implements BusinessService&lt;UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse&gt; {
+		AbstractBusinessServiceImpl&lt;UpdateApplicationConfigurationRequest, UpdateApplicationConfigurationResponse&gt; {
 
 	/** The application configuration dao. */
 	@Autowired
@@ -52,62 +50,62 @@ public final class UpdateApplicationConfigurationService extends
 	 * Instantiates a new update application configuration service.
 	 */
 	public UpdateApplicationConfigurationService() {
-<span class="fc" id="L55">		super(UpdateApplicationConfigurationRequest.class);</span>
-<span class="fc" id="L56">	}</span>
+<span class="fc" id="L53">		super(UpdateApplicationConfigurationRequest.class);</span>
+<span class="fc" id="L54">	}</span>
 
 	@Override
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	public UpdateApplicationConfigurationResponse processService(final UpdateApplicationConfigurationRequest serviceRequest) {
 
-<span class="fc" id="L62">		final UpdateApplicationConfigurationResponse inputValidation = inputValidation(serviceRequest);</span>
-<span class="fc bfc" id="L63" title="All 2 branches covered.">		if (inputValidation != null) {</span>
-<span class="fc" id="L64">			return inputValidation;</span>
+<span class="fc" id="L60">		final UpdateApplicationConfigurationResponse inputValidation = inputValidation(serviceRequest);</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">		if (inputValidation != null) {</span>
+<span class="fc" id="L62">			return inputValidation;</span>
 		}
 
-<span class="fc" id="L67">		final ApplicationConfiguration applicationConfiguration = applicationConfigurationDAO</span>
-<span class="fc" id="L68">				.load(serviceRequest.getApplicationConfigurationId());</span>
+<span class="fc" id="L65">		final ApplicationConfiguration applicationConfiguration = applicationConfigurationDAO</span>
+<span class="fc" id="L66">				.load(serviceRequest.getApplicationConfigurationId());</span>
 
 		UpdateApplicationConfigurationResponse response;
-		
-<span class="fc bfc" id="L72" title="All 2 branches covered.">		if (applicationConfiguration != null) {</span>
 
-<span class="fc" id="L74">			applicationConfiguration.setConfigTitle(serviceRequest.getConfigTitle());</span>
-<span class="fc" id="L75">			applicationConfiguration.setConfigDescription(serviceRequest.getConfigDescription());</span>
-<span class="fc" id="L76">			applicationConfiguration.setComponentTitle(serviceRequest.getComponentTitle());</span>
-<span class="fc" id="L77">			applicationConfiguration.setComponentDescription(serviceRequest.getComponentDescription());</span>
-<span class="fc" id="L78">			applicationConfiguration.setPropertyValue(serviceRequest.getPropertyValue());</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		if (applicationConfiguration != null) {</span>
 
-<span class="fc" id="L80">			applicationConfigurationDAO.persist(applicationConfiguration);</span>
+<span class="fc" id="L72">			applicationConfiguration.setConfigTitle(serviceRequest.getConfigTitle());</span>
+<span class="fc" id="L73">			applicationConfiguration.setConfigDescription(serviceRequest.getConfigDescription());</span>
+<span class="fc" id="L74">			applicationConfiguration.setComponentTitle(serviceRequest.getComponentTitle());</span>
+<span class="fc" id="L75">			applicationConfiguration.setComponentDescription(serviceRequest.getComponentDescription());</span>
+<span class="fc" id="L76">			applicationConfiguration.setPropertyValue(serviceRequest.getPropertyValue());</span>
 
-<span class="fc" id="L82">			response = new UpdateApplicationConfigurationResponse(ServiceResult.SUCCESS);</span>
+<span class="fc" id="L78">			applicationConfigurationDAO.persist(applicationConfiguration);</span>
+
+<span class="fc" id="L80">			response = new UpdateApplicationConfigurationResponse(ServiceResult.SUCCESS);</span>
 		} else {
-<span class="fc" id="L84">			response = new UpdateApplicationConfigurationResponse(ServiceResult.FAILURE);</span>
+<span class="fc" id="L82">			response = new UpdateApplicationConfigurationResponse(ServiceResult.FAILURE);</span>
 		}
 
-<span class="fc" id="L87">		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);</span>
-<span class="fc" id="L88">		eventRequest.setElementId(serviceRequest.getApplicationConfigurationId().toString());</span>
-<span class="fc" id="L89">		eventRequest.setApplicationMessage(response.getResult().toString());</span>
-<span class="fc" id="L90">		createApplicationEventService.processService(eventRequest);</span>
+<span class="fc" id="L85">		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);</span>
+<span class="fc" id="L86">		eventRequest.setElementId(serviceRequest.getApplicationConfigurationId().toString());</span>
+<span class="fc" id="L87">		eventRequest.setApplicationMessage(response.getResult().toString());</span>
+<span class="fc" id="L88">		createApplicationEventService.processService(eventRequest);</span>
 
-<span class="fc" id="L92">		return response;</span>
+<span class="fc" id="L90">		return response;</span>
 
 	}
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(
 			final UpdateApplicationConfigurationRequest serviceRequest) {
-<span class="fc" id="L99">		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();</span>
-<span class="fc" id="L100">		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);</span>
-<span class="fc" id="L101">		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);</span>
-<span class="fc" id="L102">		eventRequest.setActionName(UpdateApplicationConfigurationRequest.class.getSimpleName());</span>
-<span class="fc" id="L103">		eventRequest.setSessionId(serviceRequest.getSessionId());</span>
-<span class="fc" id="L104">		return eventRequest;</span>
+<span class="fc" id="L97">		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();</span>
+<span class="fc" id="L98">		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);</span>
+<span class="fc" id="L99">		eventRequest.setApplicationOperation(ApplicationOperationType.UPDATE);</span>
+<span class="fc" id="L100">		eventRequest.setActionName(UpdateApplicationConfigurationRequest.class.getSimpleName());</span>
+<span class="fc" id="L101">		eventRequest.setSessionId(serviceRequest.getSessionId());</span>
+<span class="fc" id="L102">		return eventRequest;</span>
 	}
 
 	@Override
 	protected UpdateApplicationConfigurationResponse createErrorResponse() {
-<span class="fc" id="L109">		return new UpdateApplicationConfigurationResponse(ServiceResult.FAILURE);</span>
+<span class="fc" id="L107">		return new UpdateApplicationConfigurationResponse(ServiceResult.FAILURE);</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

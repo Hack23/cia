@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>ApplicationSessionDAOITest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../testapidocs/com/hack23/cia/service/data/impl/ApplicationSessionDAOITest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2024 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -72,7 +72,7 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  	@Test
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> persistTest() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession loaddedApplicationSession = applicationSessionDAO.load(applicationSession.getHjid());
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  		assertNotNull(loaddedApplicationSession);
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  		assertEquals(applicationSession,loaddedApplicationSession);
@@ -87,11 +87,11 @@
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  	@Test
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mergeTest() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  				
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession mergedApplicationSession = applicationSessionDAO.merge(applicationSession);
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  		mergedApplicationSession.setOperatingSystem(<span class="jxr_string">"Merged"</span>);		
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  		mergedApplicationSession.setOperatingSystem(<span class="jxr_string">"Merged"</span>);
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  		applicationSessionDAO.merge(mergedApplicationSession);
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  		
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession loaddedApplicationSession = applicationSessionDAO.load(applicationSession.getHjid());
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  		assertNotNull(loaddedApplicationSession);
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  		assertEquals(applicationSession,loaddedApplicationSession);
@@ -160,7 +160,7 @@
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> 	@Test
 <a class="jxr_linenumber" name="L153" href="#L153">153</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> findListByPropertyInListTest() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> 		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> 		
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> 
 <a class="jxr_linenumber" name="L156" href="#L156">156</a> 		<strong class="jxr_keyword">final</strong> List&lt;ApplicationSession&gt; list = applicationSessionDAO.findListByPropertyInList(ApplicationSession_.sessionId,
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> 				<strong class="jxr_keyword">new</strong> Object[] {applicationSession.getSessionId()});
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> 		assertNotNull(list);
@@ -219,6 +219,6 @@
 <a class="jxr_linenumber" name="L211" href="#L211">211</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoginBlockedAccessImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.application.access</a> &gt; <span class="el_source">LoginBlockedAccessImpl.java</span></div><h1>LoginBlockedAccessImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoginBlockedAccessImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.application.access</a> &gt; <span class="el_source">LoginBlockedAccessImpl.java</span></div><h1>LoginBlockedAccessImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,6 @@ package com.hack23.cia.service.impl.action.application.access;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -118,7 +116,7 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	private static final String BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_USER = &quot;Blocked by more than 5 recent login attempts by this user&quot;;
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L121">	private static final Logger LOGGER = LoggerFactory.getLogger(LoginBlockedAccessImpl.class);</span>
+<span class="fc" id="L119">	private static final Logger LOGGER = LoggerFactory.getLogger(LoginBlockedAccessImpl.class);</span>
 
 	/** The user DAO. */
 	@Autowired
@@ -135,34 +133,34 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
-	
+
 	/**
 	 * Instantiates a new login blocked access impl.
 	 */
 	public LoginBlockedAccessImpl() {
-<span class="fc" id="L143">		super();</span>
-<span class="fc" id="L144">	}</span>
+<span class="fc" id="L141">		super();</span>
+<span class="fc" id="L142">	}</span>
 
 	/**
 	 * Inits the settings.
 	 */
 	@PostConstruct
 	public void initSettings() {
-<span class="fc" id="L151">		final Authentication authentication = new UsernamePasswordAuthenticationToken(&quot;system.init&quot;, &quot;n/a&quot;, AuthorityUtils.createAuthorityList(&quot;ROLE_ADMIN&quot;));</span>
-<span class="fc" id="L152">		SecurityContextHolder.getContext().setAuthentication(authentication);</span>
-<span class="fc" id="L153">		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_USER, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_USER, DEFAULT_MAX_LOGIN_ATTEMPTS));</span>
-<span class="fc" id="L154">		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_SESSION, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_SESSION,DEFAULT_MAX_LOGIN_ATTEMPTS));</span>
-<span class="fc" id="L155">		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS));</span>
-<span class="fc" id="L156">		SecurityContextHolder.getContext().setAuthentication(null);</span>
-<span class="fc" id="L157">	}</span>
+<span class="fc" id="L149">		final Authentication authentication = new UsernamePasswordAuthenticationToken(&quot;system.init&quot;, &quot;n/a&quot;, AuthorityUtils.createAuthorityList(&quot;ROLE_ADMIN&quot;));</span>
+<span class="fc" id="L150">		SecurityContextHolder.getContext().setAuthentication(authentication);</span>
+<span class="fc" id="L151">		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_USER, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_USER, DEFAULT_MAX_LOGIN_ATTEMPTS));</span>
+<span class="fc" id="L152">		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_SESSION, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_SESSION,DEFAULT_MAX_LOGIN_ATTEMPTS));</span>
+<span class="fc" id="L153">		LOGGER.info(LOGIN_BLOCK_SETTINGS,applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS));</span>
+<span class="fc" id="L154">		SecurityContextHolder.getContext().setAuthentication(null);</span>
+<span class="fc" id="L155">	}</span>
 
 
 	@Override
 	public LoginBlockResult isBlocked(final String sessionId, final String email) {
-<span class="fc" id="L162">		final LoginBlockResultImpl loginBlockResultImpl = new LoginBlockResultImpl();</span>
-<span class="fc" id="L163">		blockByUserFailedLoginAttempts(email, loginBlockResultImpl);</span>
-<span class="fc" id="L164">		blockBySessionOrIpFailedLoginAttempts(sessionId, loginBlockResultImpl);</span>
-<span class="fc" id="L165">		return loginBlockResultImpl;</span>
+<span class="fc" id="L160">		final LoginBlockResultImpl loginBlockResultImpl = new LoginBlockResultImpl();</span>
+<span class="fc" id="L161">		blockByUserFailedLoginAttempts(email, loginBlockResultImpl);</span>
+<span class="fc" id="L162">		blockBySessionOrIpFailedLoginAttempts(sessionId, loginBlockResultImpl);</span>
+<span class="fc" id="L163">		return loginBlockResultImpl;</span>
 	}
 
 	/**
@@ -174,27 +172,24 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	 *            the login block result impl
 	 */
 	private void blockByUserFailedLoginAttempts(final String email, final LoginBlockResultImpl loginBlockResultImpl) {
-<span class="fc" id="L177">		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, email);</span>
+<span class="fc" id="L175">		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, email);</span>
 
-<span class="fc bfc" id="L179" title="All 2 branches covered.">		if (userExist != null) {</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">		if (userExist != null) {</span>
 
-<span class="fc" id="L181">			final ApplicationConfiguration maxLoginAttemptsByUser = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_USER, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_USER, DEFAULT_MAX_LOGIN_ATTEMPTS);</span>
+<span class="fc" id="L179">			final ApplicationConfiguration maxLoginAttemptsByUser = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_USER, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_USER, DEFAULT_MAX_LOGIN_ATTEMPTS);</span>
 
-<span class="fc" id="L183">			final List&lt;ApplicationActionEvent&gt; failedLoginsByThisUser = applicationActionEventDAO.findListByProperty(</span>
-<span class="fc" id="L184">					new Object[] { email, ApplicationOperationType.AUTHENTICATION, ServiceResult.FAILURE.toString() },</span>
+<span class="fc" id="L181">			final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);</span>
+<span class="fc" id="L182">			final List&lt;ApplicationActionEvent&gt; failedLoginsByThisUser = applicationActionEventDAO.findListByPropertyBeforeDate(oneHourAgo,ApplicationActionEvent_.createdDate,</span>
+<span class="fc" id="L183">					new Object[] { email, ApplicationOperationType.AUTHENTICATION, ServiceResult.FAILURE.toString() },</span>
 					ApplicationActionEvent_.elementId, ApplicationActionEvent_.applicationOperation,
 					ApplicationActionEvent_.applicationMessage);
 
-<span class="fc" id="L188">			final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);</span>
-<span class="fc" id="L189">			final Map&lt;Boolean, List&lt;ApplicationActionEvent&gt;&gt; recentOldLoginAttemptsMap = failedLoginsByThisUser.stream()</span>
-<span class="fc" id="L190">					.collect(Collectors.groupingBy((final ApplicationActionEvent x ) -&gt; x.getCreatedDate().after(oneHourAgo)));</span>
-<span class="fc" id="L191">			final List&lt;ApplicationActionEvent&gt; recentFailedLogins = recentOldLoginAttemptsMap.get(Boolean.TRUE);</span>
-<span class="fc bfc" id="L192" title="All 4 branches covered.">			if (recentFailedLogins != null &amp;&amp; recentFailedLogins.size() &gt; NumberUtils.toInt(maxLoginAttemptsByUser.getPropertyValue(),DEFAULT_MAX_LOGINS)) {</span>
-<span class="fc" id="L193">				loginBlockResultImpl.setBlocked(true);</span>
-<span class="fc" id="L194">				loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_USER);</span>
+<span class="pc bpc" id="L187" title="1 of 4 branches missed.">			if (failedLoginsByThisUser != null &amp;&amp; failedLoginsByThisUser.size() &gt; NumberUtils.toInt(maxLoginAttemptsByUser.getPropertyValue(),DEFAULT_MAX_LOGINS)) {</span>
+<span class="fc" id="L188">				loginBlockResultImpl.setBlocked(true);</span>
+<span class="fc" id="L189">				loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_USER);</span>
 			}
 		}
-<span class="fc" id="L197">	}</span>
+<span class="fc" id="L192">	}</span>
 
 	/**
 	 * Block by session or ip failed login attempts.
@@ -205,51 +200,44 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	 *            the login block result impl
 	 */
 	private void blockBySessionOrIpFailedLoginAttempts(final String sessionId, final LoginBlockResultImpl loginBlockResultImpl) {
-<span class="fc" id="L208">		final ApplicationSession applicationSession = applicationSessionDAO</span>
-<span class="fc" id="L209">				.findFirstByProperty(ApplicationSession_.sessionId, sessionId);</span>
+<span class="fc" id="L203">		final ApplicationSession applicationSession = applicationSessionDAO</span>
+<span class="fc" id="L204">				.findFirstByProperty(ApplicationSession_.sessionId, sessionId);</span>
 
-<span class="pc bpc" id="L211" title="1 of 2 branches missed.">		if (applicationSession != null) {</span>
+<span class="pc bpc" id="L206" title="1 of 2 branches missed.">		if (applicationSession != null) {</span>
 
-<span class="fc" id="L213">			final ApplicationConfiguration maxLoginAttemptsBySession = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_SESSION, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_SESSION,DEFAULT_MAX_LOGIN_ATTEMPTS);</span>
-<span class="fc" id="L214">			final List&lt;ApplicationActionEvent&gt; failedLoginsByThisSession = applicationActionEventDAO.findListByProperty(</span>
+<span class="fc" id="L208">			final ApplicationConfiguration maxLoginAttemptsBySession = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_SESSION, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_SESSION,DEFAULT_MAX_LOGIN_ATTEMPTS);</span>
+<span class="fc" id="L209">			final List&lt;ApplicationActionEvent&gt; failedLoginsByThisSession = applicationActionEventDAO.findListByProperty(</span>
 					new Object[] { sessionId, ApplicationOperationType.AUTHENTICATION,
-<span class="fc" id="L216">							ServiceResult.FAILURE.toString() },</span>
+<span class="fc" id="L211">							ServiceResult.FAILURE.toString() },</span>
 					ApplicationActionEvent_.sessionId, ApplicationActionEvent_.applicationOperation,
 					ApplicationActionEvent_.applicationMessage);
-<span class="fc bfc" id="L219" title="All 2 branches covered.">			if (failedLoginsByThisSession.size() &gt; NumberUtils.toInt(maxLoginAttemptsBySession.getPropertyValue(),DEFAULT_MAX_LOGINS)) {</span>
-<span class="fc" id="L220">				loginBlockResultImpl.setBlocked(true);</span>
-<span class="fc" id="L221">				loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_LOGIN_ATTEMPTS_BY_THIS_SESSION);</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">			if (failedLoginsByThisSession.size() &gt; NumberUtils.toInt(maxLoginAttemptsBySession.getPropertyValue(),DEFAULT_MAX_LOGINS)) {</span>
+<span class="fc" id="L215">				loginBlockResultImpl.setBlocked(true);</span>
+<span class="fc" id="L216">				loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_LOGIN_ATTEMPTS_BY_THIS_SESSION);</span>
 			}
 
-<span class="pc bpc" id="L224" title="1 of 4 branches missed.">			if (!(&quot;0:0:0:0:0:0:0:1&quot;.equals(applicationSession.getIpInformation()) || &quot;127.0.0.1&quot;.equals(applicationSession.getIpInformation()))) {</span>
+<span class="fc" id="L219">			final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);</span>
+<span class="fc" id="L220">			final List&lt;ApplicationSession&gt; applicationSessionsByIp = applicationSessionDAO</span>
+<span class="fc" id="L221">					.findListByPropertyBeforeDate(oneHourAgo, ApplicationSession_.createdDate,new Object[] {applicationSession.getIpInformation()},ApplicationSession_.ipInformation);</span>
 
-<span class="fc" id="L226">				final List&lt;ApplicationSession&gt; applicationSessionsByIp = applicationSessionDAO</span>
-<span class="fc" id="L227">						.findListByProperty(ApplicationSession_.ipInformation, applicationSession.getIpInformation());</span>
+<span class="fc" id="L223">			final List&lt;String&gt; sessionIdsWithIp = applicationSessionsByIp.stream().map(ApplicationSession::getSessionId).toList();</span>
 
-<span class="fc" id="L229">				final List&lt;String&gt; sessionIdsWithIp = applicationSessionsByIp.stream().map(ApplicationSession::getSessionId)</span>
-<span class="fc" id="L230">						.collect(Collectors.toList());</span>
+<span class="fc" id="L225">			final List&lt;ApplicationActionEvent&gt; applicationEventsWithIp = applicationActionEventDAO</span>
+<span class="fc" id="L226">					.findListByPropertyInList(ApplicationActionEvent_.sessionId,</span>
+<span class="fc" id="L227">							sessionIdsWithIp.toArray(new Object[0]));</span>
 
-<span class="fc" id="L232">				final List&lt;ApplicationActionEvent&gt; applicationEventsWithIp = applicationActionEventDAO</span>
-<span class="fc" id="L233">						.findListByPropertyInList(ApplicationActionEvent_.sessionId,</span>
-<span class="fc" id="L234">								sessionIdsWithIp.toArray(new Object[sessionIdsWithIp.size()]));</span>
+<span class="fc" id="L229">			final List&lt;ApplicationActionEvent&gt; recentFailedLogins = applicationEventsWithIp</span>
+<span class="fc" id="L230">					.stream()</span>
+<span class="fc bfc" id="L231" title="All 2 branches covered.">					.filter((final ApplicationActionEvent x) -&gt; x.getApplicationOperation() == ApplicationOperationType.AUTHENTICATION</span>
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">							&amp;&amp; x.getApplicationMessage().equals(ServiceResult.FAILURE.toString())).toList();</span>
 
-<span class="fc" id="L236">				final Date oneHourAgo = new Date(System.currentTimeMillis() - ONE_HOUR);</span>
-<span class="fc" id="L237">				final Map&lt;Boolean, List&lt;ApplicationActionEvent&gt;&gt; recentOldLoginAttemptsMap = applicationEventsWithIp</span>
-<span class="fc" id="L238">						.stream()</span>
-<span class="fc bfc" id="L239" title="All 2 branches covered.">						.filter((final ApplicationActionEvent x) -&gt; x.getApplicationOperation() == ApplicationOperationType.AUTHENTICATION</span>
-<span class="pc bpc" id="L240" title="1 of 2 branches missed.">								&amp;&amp; x.getApplicationMessage().equals(ServiceResult.FAILURE.toString()))</span>
-<span class="fc" id="L241">						.collect(Collectors.groupingBy((final ApplicationActionEvent x) -&gt; x.getCreatedDate().after(oneHourAgo)));</span>
-<span class="fc" id="L242">				final List&lt;ApplicationActionEvent&gt; recentFailedLogins = recentOldLoginAttemptsMap</span>
-<span class="fc" id="L243">						.get(Boolean.TRUE);</span>
-
-<span class="fc" id="L245">				final ApplicationConfiguration maxLoginAttemptsByIp = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS);</span>
-<span class="fc bfc" id="L246" title="All 4 branches covered.">				if (recentFailedLogins != null &amp;&amp; recentFailedLogins.size() &gt; NumberUtils.toInt(maxLoginAttemptsByIp.getPropertyValue(),DEFAULT_MAX_LOGINS_BY_IP)) {</span>
-<span class="fc" id="L247">					loginBlockResultImpl.setBlocked(true);</span>
-<span class="fc" id="L248">					loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_IP);</span>
-				}
+<span class="fc" id="L234">			final ApplicationConfiguration maxLoginAttemptsByIp = applicationConfigurationService.checkValueOrLoadDefault(MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP, BLOCKS_ANY_LOGIN_ATTEMPTS_AFTER_THIS_NUMBER_IS_REACHED, ConfigurationGroup.AUTHENTICATION, LoginBlockedAccessImpl.class.getSimpleName(), LOGIN_BLOCKER, BLOCKS_LOGIN_ATTEMPTS, APPLICATION_AUTHENTICATION_ALLOW_MAX_RECENT_FAILED_LOGINS_BY_IP, DEFAULT_MAX_LOGIN_ATTEMPTS);</span>
+<span class="pc bpc" id="L235" title="1 of 4 branches missed.">			if (recentFailedLogins != null &amp;&amp; recentFailedLogins.size() &gt; NumberUtils.toInt(maxLoginAttemptsByIp.getPropertyValue(),DEFAULT_MAX_LOGINS_BY_IP)) {</span>
+<span class="fc" id="L236">				loginBlockResultImpl.setBlocked(true);</span>
+<span class="fc" id="L237">				loginBlockResultImpl.addMessages(BLOCKED_BY_MORE_THAN_5_RECENT_LOGIN_ATTEMPTS_BY_THIS_IP);</span>
 			}
 		}
-<span class="fc" id="L252">	}</span>
+<span class="fc" id="L240">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

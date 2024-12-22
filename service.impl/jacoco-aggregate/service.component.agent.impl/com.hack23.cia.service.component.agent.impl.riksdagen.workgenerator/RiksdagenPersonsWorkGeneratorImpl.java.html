@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenPersonsWorkGeneratorImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator</a> &gt; <span class="el_source">RiksdagenPersonsWorkGeneratorImpl.java</span></div><h1>RiksdagenPersonsWorkGeneratorImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenPersonsWorkGeneratorImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator</a> &gt; <span class="el_source">RiksdagenPersonsWorkGeneratorImpl.java</span></div><h1>RiksdagenPersonsWorkGeneratorImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ import com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi;
 final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
-<span class="nc" id="L46">	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenPersonsWorkGeneratorImpl.class);</span>
+<span class="fc" id="L46">	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenPersonsWorkGeneratorImpl.class);</span>
 
 	/** The person element workdestination. */
 	@Autowired
@@ -58,26 +58,26 @@ final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourc
 	 * Instantiates a new riksdagen persons work generator impl.
 	 */
 	public RiksdagenPersonsWorkGeneratorImpl() {
-<span class="nc" id="L61">		super(RiksdagenDataSources.PERSONS);</span>
-<span class="nc" id="L62">	}</span>
+<span class="fc" id="L61">		super(RiksdagenDataSources.PERSONS);</span>
+<span class="fc" id="L62">	}</span>
 
 	@Override
 	public void generateWorkOrders() {
 		try {
-<span class="nc" id="L67">			final List&lt;PersonElement&gt; personList = riksdagenApi.getPersonList().getPerson();</span>
+<span class="fc" id="L67">			final List&lt;PersonElement&gt; personList = riksdagenApi.getPersonList().getPerson();</span>
 
-<span class="nc bnc" id="L69" title="All 2 branches missed.">			for (final PersonElement personElement : personList) {</span>
-<span class="nc" id="L70">				LOGGER.info(&quot;Send Load Order:{}&quot;, personElement.getPersonUrlXml());</span>
-<span class="nc" id="L71">				getJmsSender().send(personElementWorkdestination, personElement);</span>
-<span class="nc" id="L72">			}</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">			for (final String personId : readMissingPersonList()) {</span>
-<span class="nc" id="L74">				LOGGER.info(&quot;Send Load Order:{}{}&quot;, &quot;https://data.riksdagen.se/person/&quot;, personId);</span>
-<span class="nc" id="L75">				getJmsSender().send(personElementWorkdestination, new PersonElement().withId(personId));</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">			for (final PersonElement personElement : personList) {</span>
+<span class="fc" id="L70">				LOGGER.info(&quot;Send Load Order:{}&quot;, personElement.getPersonUrlXml());</span>
+<span class="fc" id="L71">				getJmsSender().send(personElementWorkdestination, personElement);</span>
+<span class="fc" id="L72">			}</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">			for (final String personId : readMissingPersonList()) {</span>
+<span class="fc" id="L74">				LOGGER.info(&quot;Send Load Order:{}{}&quot;, &quot;https://data.riksdagen.se/person/&quot;, personId);</span>
+<span class="fc" id="L75">				getJmsSender().send(personElementWorkdestination, new PersonElement().withId(personId));</span>
 			}
 <span class="nc" id="L77">		} catch (final DataFailureException exception) {</span>
 <span class="nc" id="L78">			LOGGER.warn(&quot;Problem during generate work orders&quot;, exception);</span>
-<span class="nc" id="L79">		}</span>
-<span class="nc" id="L80">	}</span>
+<span class="fc" id="L79">		}</span>
+<span class="fc" id="L80">	}</span>
 
 	/**
 	 * Read missing person list.
@@ -86,14 +86,14 @@ final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourc
 	 */
 	private static String[] readMissingPersonList() {
 
-<span class="nc" id="L89">		final Scanner sc = new Scanner(RiksdagenPersonsWorkGeneratorImpl.class.getResourceAsStream(&quot;/personlist.txt&quot;),StandardCharsets.UTF_8.name());</span>
-<span class="nc" id="L90">		final List&lt;String&gt; lines = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L91" title="All 2 branches missed.">		while (sc.hasNextLine()) {</span>
-<span class="nc" id="L92">			lines.add(sc.nextLine());</span>
+<span class="fc" id="L89">		final Scanner sc = new Scanner(RiksdagenPersonsWorkGeneratorImpl.class.getResourceAsStream(&quot;/personlist.txt&quot;),StandardCharsets.UTF_8.name());</span>
+<span class="fc" id="L90">		final List&lt;String&gt; lines = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L91" title="All 2 branches covered.">		while (sc.hasNextLine()) {</span>
+<span class="fc" id="L92">			lines.add(sc.nextLine());</span>
 		}
-<span class="nc" id="L94">		sc.close();</span>
-<span class="nc" id="L95">		return lines.toArray(new String[0]);</span>
+<span class="fc" id="L94">		sc.close();</span>
+<span class="fc" id="L95">		return lines.toArray(new String[0]);</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

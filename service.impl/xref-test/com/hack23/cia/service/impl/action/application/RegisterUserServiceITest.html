@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>RegisterUserServiceITest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../testapidocs/com/hack23/cia/service/impl/action/application/RegisterUserServiceITest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2024 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -159,14 +159,14 @@
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> 		serviceRequest.setEmail(serviceRequest.getUsername() + <span class="jxr_string">"NoValidEmail"</span>);
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> 		serviceRequest.setUserType(UserType.PRIVATE);
 <a class="jxr_linenumber" name="L153" href="#L153">153</a> 		serviceRequest.setSessionId(createApplicationSesstion.getSessionId());
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> 		
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> 
 <a class="jxr_linenumber" name="L155" href="#L155">155</a> 		<strong class="jxr_keyword">final</strong> RegisterUserResponse errorResponse = (RegisterUserResponse) applicationManager.service(serviceRequest);
 <a class="jxr_linenumber" name="L156" href="#L156">156</a> 		assertNotNull(EXPECT_A_RESULT, errorResponse);
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> 		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, errorResponse.getResult());
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> 		assertEquals(<span class="jxr_string">"email must be a well-formed email address, userpassword must not be null"</span>, errorResponse.getErrorMessage());
 <a class="jxr_linenumber" name="L159" href="#L159">159</a> 	}
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> 	
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> 	
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> 
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> 
 <a class="jxr_linenumber" name="L162" href="#L162">162</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> <em class="jxr_javadoccomment">	 * Service request validation failure test.</em>
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> <em class="jxr_javadoccomment">	 *</em>
@@ -183,7 +183,7 @@
 <a class="jxr_linenumber" name="L175" href="#L175">175</a> 		serviceRequest.setEmail(serviceRequest.getUsername()+<span class="jxr_string">"@hack23.com"</span>);
 <a class="jxr_linenumber" name="L176" href="#L176">176</a> 		serviceRequest.setUserType(UserType.PRIVATE);
 <a class="jxr_linenumber" name="L177" href="#L177">177</a> 		serviceRequest.setUserpassword(<span class="jxr_string">"Userpassword1!"</span>);
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 		
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> 
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 		<strong class="jxr_keyword">final</strong> RegisterUserResponse errorResponse = (RegisterUserResponse) applicationManager.service(serviceRequest);
 <a class="jxr_linenumber" name="L180" href="#L180">180</a> 		assertNotNull(EXPECT_A_RESULT, errorResponse);
 <a class="jxr_linenumber" name="L181" href="#L181">181</a> 		assertEquals(EXPECT_SUCCESS,ServiceResult.FAILURE, errorResponse.getResult());
@@ -194,6 +194,6 @@
 <a class="jxr_linenumber" name="L186" href="#L186">186</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

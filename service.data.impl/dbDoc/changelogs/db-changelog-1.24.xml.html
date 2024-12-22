@@ -23,6 +23,756 @@
 
 	&lt;/changeSet&gt;
 
+	&lt;changeSet author="pether" id="2414872417007-326"&gt;
+
+		&lt;createTable tableName="rule_violation"&gt;
+			&lt;column name="id" type="INT8"&gt;
+				&lt;constraints nullable="false" /&gt;
+			&lt;/column&gt;
+			&lt;column name="detected_date" type="TIMESTAMP WITHOUT TIME ZONE" /&gt;			
+			&lt;column name="reference_id" type="VARCHAR(255)" /&gt;
+			&lt;column name="name" type="VARCHAR(255)" /&gt;
+			&lt;column name="resource_type" type="VARCHAR(255)" /&gt;
+			&lt;column name="rule_description" type="VARCHAR(255)" /&gt;
+			&lt;column name="rule_group" type="VARCHAR(255)" /&gt;
+			&lt;column name="status" type="VARCHAR(255)" /&gt;
+			&lt;column name="positive" type="VARCHAR(255)" /&gt;									
+		&lt;/createTable&gt;
+	&lt;/changeSet&gt;
+
+	&lt;changeSet author="pether" id="2414872417007-327"&gt;
+		&lt;addColumn tableName="rule_violation"&gt;
+			&lt;column name="rule_name" type="varchar(255)" /&gt;
+		&lt;/addColumn&gt;
+	&lt;/changeSet&gt;
+	
+	&lt;changeSet author="pether (generated)" id="2414872417007-328"&gt;
+		&lt;addPrimaryKey columnNames="hjid"
+			constraintName="application_configuration_pkey" tableName="application_configuration" /&gt;
+	&lt;/changeSet&gt;
+	
+	&lt;changeSet author="pether (generated)" id="1414872417007-329"&gt;
+	
+		&lt;sql&gt;DROP MATERIALIZED VIEW view_worldbank_indicator_data_country_summary&lt;/sql&gt;
+	
+		&lt;modifyDataType columnName="indicator_name" newDataType="VARCHAR(2048)"
+			tableName="indicator_element" /&gt;
+		&lt;modifyDataType columnName="source_id" newDataType="VARCHAR(2048)"
+			tableName="indicator_element" /&gt;
+		&lt;modifyDataType columnName="source_value" newDataType="VARCHAR(2048)"
+			tableName="indicator_element" /&gt;
+		&lt;sql&gt;create materialized view view_worldbank_indicator_data_country_summary as select indicator_id as embedded_id_indicator_id,country_id as embedded_id_country_id,max(indicator_name) as indicator_name,max(source_id) as source_id,max(source_value) as source_value,max(source_note) as source_note,max(source_organization) as source_organization,min(year_date) as start_year, max(year_date) as end_year,count(*) as data_point,max(topics::text) as topics from world_bank_data  left join (select * from indicator_element   inner join (select topic_topics_hjid,string_agg(distinct value_,';') as topics,count(*) as number_of_topics from topic group by topic_topics_hjid) AS derivedTable  on indicator_element.topics_indicator_element_hjid=derivedTable.topic_topics_hjid) as indicators on indicator_id = indicators.id where data_value!='' and data_value!='0' and year_date is not null and source_organization is not null and source_organization !='' group by indicator_id,country_id&lt;/sql&gt;
+
+	&lt;/changeSet&gt;
+	
+
+	&lt;changeSet author="pether (generated)" id="1414872417007-330"&gt;
+		
+		&lt;createIndex indexName="application_action_event_created_date_idx" tableName="application_action_event"&gt;
+            &lt;column name="created_date"/&gt;
+        &lt;/createIndex&gt;
+	
+		&lt;createIndex indexName="application_action_event_sessionid_idx" tableName="application_action_event"&gt;
+            &lt;column name="session_id"/&gt;
+        &lt;/createIndex&gt;
+
+		&lt;createIndex indexName="application_action_event_element_idx" tableName="application_action_event"&gt;
+            &lt;column name="element_id"/&gt;
+        &lt;/createIndex&gt;
+
+		&lt;createIndex indexName="application_session_ip_idx" tableName="application_session"&gt;
+            &lt;column name="ip_information"/&gt;
+        &lt;/createIndex&gt;
+
+		&lt;createIndex indexName="application_session_created_date_idx" tableName="application_session"&gt;
+            &lt;column name="created_date"/&gt;
+        &lt;/createIndex&gt;
+	&lt;/changeSet&gt;
+
+	&lt;changeSet author="pether (generated)" id="1414872417007-331" failOnError="false"&gt;
+		&lt;sql&gt;CREATE EXTENSION vector&lt;/sql&gt;
+	&lt;/changeSet&gt;
+	
+	
+
+
+    &lt;changeSet author="pether " id="extend-view-riksdagen-politician-20231002" failOnError="true"&gt;
+
+
+       &lt;dropView viewName="view_riksdagen_party" /&gt;
+	   &lt;dropView viewName="view_riksdagen_party_summary" /&gt;
+	   &lt;dropView viewName="view_riksdagen_politician" /&gt;
+	   &lt;dropView viewName="view_riksdagen_party_member" /&gt;
+
+    &lt;createView viewName="view_riksdagen_party_member"&gt;
+        &lt;![CDATA[
+        SELECT *
+        FROM sweden_political_party sp
+        JOIN person_data p
+            ON p.party = sp.short_code
+        ]]&gt;
+    &lt;/createView&gt;
+
+   &lt;createView viewName="view_riksdagen_party"&gt;
+        &lt;![CDATA[
+        SELECT
+            party_id                AS party_number,
+            party_name,
+            short_code              AS party_id,
+            website,
+            registered_date,
+            COUNT(DISTINCT id)      AS head_count
+        FROM view_riksdagen_party_member
+        GROUP BY
+            party_id,
+            party_name,
+            short_code,
+            website,
+            registered_date
+        ORDER BY short_code
+        ]]&gt;
+    &lt;/createView&gt;
+        
+     &lt;createView viewName="view_riksdagen_politician"&gt;
+        &lt;![CDATA[
+        SELECT
+            view_riksdagen_party_member.id AS person_id,
+            max(first_name) AS first_name,
+            max(last_name) AS last_name,
+            max(party) AS party,
+            max(born_year) AS born_year,
+            max(gender) AS gender,
+            COALESCE(min(assignment_data.from_date), CURRENT_DATE) AS first_assignment_date,
+            COALESCE(max(assignment_data.to_date), CURRENT_DATE) AS last_assignment_date,
+            sum(CASE
+                    WHEN assignment_data.status LIKE 'Ledig%'
+                         THEN 0
+                    ELSE
+                        (
+                            CASE
+                                WHEN COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE COALESCE(to_date, CURRENT_DATE)
+                            END
+                            -
+                            CASE
+                                WHEN from_date &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE from_date
+                            END
+                        )
+                END
+            ) AS total_days_served,
+            sum(
+                CASE
+                    WHEN (assignment_type='kammaruppdrag'
+                          AND assignment_data.status NOT LIKE 'Ledig%')
+                    THEN
+                        (
+                            CASE
+                                WHEN COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE COALESCE(to_date, CURRENT_DATE)
+                            END
+                            -
+                            CASE
+                                WHEN from_date &gt; CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE from_date
+                            END
+                        )
+                    ELSE 0
+                END
+            ) AS total_days_served_parliament,
+            sum(
+                CASE
+                    WHEN (org_code IS NOT NULL
+                          AND assignment_type='uppdrag')
+                    THEN
+                        (
+                            CASE
+                                WHEN COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE COALESCE(to_date, CURRENT_DATE)
+                            END
+                            -
+                            CASE
+                                WHEN from_date &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE from_date
+                            END
+                        )
+                    ELSE 0
+                END
+            ) AS total_days_served_committee,
+            sum(
+                CASE
+                    WHEN (role_code LIKE '%MINISTER'
+                          OR detail LIKE '%departementet'
+                          OR detail = 'Statsrådsberedningen')
+                    THEN
+                        (
+                            CASE
+                                WHEN COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE COALESCE(to_date, CURRENT_DATE)
+                            END
+                            -
+                            CASE
+                                WHEN from_date &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE from_date
+                            END
+                        )
+                    ELSE 0
+                END
+            ) AS total_days_served_government,
+            sum(
+                CASE
+                    WHEN (detail = 'Europaparlamentet')
+                    THEN
+                        (
+                            CASE
+                                WHEN COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE COALESCE(to_date, CURRENT_DATE)
+                            END
+                            -
+                            CASE
+                                WHEN from_date &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE from_date
+                            END
+                        )
+                    ELSE 0
+                END
+            ) AS total_days_served_eu,
+            (CASE
+                 WHEN max(to_date) &gt;= CURRENT_DATE THEN true
+                 ELSE false
+             END) AS active,
+            count(*) AS total_assignments,
+            sum(
+                CASE
+                    WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                          AND assignment_data.from_date &lt;= CURRENT_DATE)
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS current_assignments,
+            sum(
+                CASE
+                    WHEN assignment_type='talmansuppdrag'
+                    THEN
+                        (
+                            CASE
+                                WHEN COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE COALESCE(to_date, CURRENT_DATE)
+                            END
+                            -
+                            CASE
+                                WHEN from_date &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE from_date
+                            END
+                        )
+                    ELSE 0
+                END
+            ) AS total_days_served_speaker,
+            CASE
+                WHEN (
+                    sum(
+                        CASE
+                            WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                  AND from_date &lt;= CURRENT_DATE
+                                  AND assignment_type='talmansuppdrag')
+                            THEN 1
+                            ELSE 0
+                        END
+                    ) &gt; 0
+                ) THEN true
+                ELSE false
+            END AS active_speaker,
+            sum(
+                CASE
+                    WHEN assignment_type='partiuppdrag'
+                    THEN
+                        (
+                            CASE
+                                WHEN COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE COALESCE(to_date, CURRENT_DATE)
+                            END
+                            -
+                            CASE
+                                WHEN from_date &gt;= CURRENT_DATE
+                                    THEN CURRENT_DATE
+                                ELSE from_date
+                            END
+                        )
+                    ELSE 0
+                END
+            ) AS total_days_served_party,
+            CASE
+                WHEN (
+                    sum(
+                        CASE
+                            WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                  AND from_date &lt;= CURRENT_DATE
+                                  AND assignment_type='partiuppdrag')
+                            THEN 1
+                            ELSE 0
+                        END
+                    ) &gt; 0
+                ) THEN true
+                ELSE false
+            END AS active_party,
+            sum(
+                CASE
+                    WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                          AND from_date &lt;= CURRENT_DATE
+                          AND org_code IS NOT NULL
+                          AND assignment_type='uppdrag')
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS current_committee_assignments,
+            sum(
+                CASE
+                    WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                          AND from_date &lt;= CURRENT_DATE
+                          AND (role_code LIKE '%MINISTER'
+                               OR detail LIKE '%departementet'
+                               OR detail='Statsrådsberedningen'))
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS current_ministry_assignments,
+            sum(
+                CASE
+                    WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                          AND from_date &lt;= CURRENT_DATE
+                          AND assignment_type='partiuppdrag')
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS current_party_assignments,
+            sum(
+                CASE
+                    WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                          AND from_date &lt;= CURRENT_DATE
+                          AND assignment_type='talmansuppdrag')
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS current_speaker_assignments,
+            sum(
+                CASE
+                    WHEN (org_code IS NOT NULL AND assignment_type='uppdrag')
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS total_committee_assignments,
+            sum(
+                CASE
+                    WHEN assignment_type='partiuppdrag'
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS total_party_assignments,
+            sum(
+                CASE
+                    WHEN assignment_type='talmansuppdrag'
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS total_speaker_assignments,
+            sum(
+                CASE
+                    WHEN (role_code LIKE '%MINISTER'
+                          OR detail LIKE '%departementet'
+                          OR detail='Statsrådsberedningen')
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS total_ministry_assignments,
+            CASE
+                WHEN (
+                    sum(
+                        CASE
+                            WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                  AND from_date &lt;= CURRENT_DATE
+                                  AND detail='Europaparlamentet')
+                            THEN 1
+                            ELSE 0
+                        END
+                    ) &gt; 0
+                ) THEN true
+                ELSE false
+            END AS active_eu,
+            CASE
+                WHEN (
+                    sum(
+                        CASE
+                            WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                  AND from_date &lt;= CURRENT_DATE
+                                  AND (role_code LIKE '%MINISTER'
+                                       OR detail LIKE '%departementet'
+                                       OR detail='Statsrådsberedningen'))
+                            THEN 1
+                            ELSE 0
+                        END
+                    ) &gt; 0
+                ) THEN true
+                ELSE false
+            END AS active_government,
+            CASE
+                WHEN (
+                    sum(
+                        CASE
+                            WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                  AND from_date &lt;= CURRENT_DATE
+                                  AND org_code IS NOT NULL
+                                  AND assignment_type='uppdrag')
+                            THEN 1
+                            ELSE 0
+                        END
+                    ) &gt; 0
+                ) THEN true
+                ELSE false
+            END AS active_committee,
+            CASE
+                WHEN (
+                    sum(
+                        CASE
+                            WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                  AND from_date &lt;= CURRENT_DATE
+                                  AND assignment_type='kammaruppdrag'
+                                  AND assignment_data.status NOT LIKE 'Ledig%')
+                            THEN 1
+                            ELSE
+                                CASE
+                                    WHEN (
+                                        COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                        AND from_date &lt;= CURRENT_DATE
+                                        AND assignment_type='kammaruppdrag'
+                                        AND assignment_data.status LIKE 'Ledig%'
+                                    )
+                                    THEN 0
+                                    ELSE 0
+                                END
+                        END
+                    ) &gt; 0
+                ) THEN true
+                ELSE false
+            END AS active_parliament,
+
+            -- NEW: totalCommitteeSubstituteAssignments
+            sum(
+                CASE
+                    WHEN (org_code IS NOT NULL
+                          AND assignment_type='uppdrag'
+                          AND (role_code ILIKE '%suppleant%'
+                               OR role_code ILIKE '%ersättare%'))
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS total_committee_substitute_assignments,
+
+            -- NEW: currentCommitteeSubstituteAssignments
+            sum(
+                CASE
+                    WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                          AND from_date &lt;= CURRENT_DATE
+                          AND org_code IS NOT NULL
+                          AND assignment_type='uppdrag'
+                          AND (role_code ILIKE '%suppleant%'
+                               OR role_code ILIKE '%ersättare%'))
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS current_committee_substitute_assignments,
+
+            -- NEW: totalDaysServedCommitteeSubstitute
+            sum(
+                CASE
+                    WHEN (org_code IS NOT NULL
+                          AND assignment_type='uppdrag'
+                          AND (role_code ILIKE '%suppleant%'
+                               OR role_code ILIKE '%ersättare%'))
+                    THEN (
+                        (CASE
+                            WHEN COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                THEN CURRENT_DATE
+                            ELSE COALESCE(to_date, CURRENT_DATE)
+                         END)
+                         -
+                        (CASE
+                            WHEN from_date &gt;= CURRENT_DATE
+                                THEN CURRENT_DATE
+                            ELSE from_date
+                         END)
+                    )
+                    ELSE 0
+                END
+            ) AS total_days_served_committee_substitute,
+
+            -- NEW: totalCommitteeLeadershipAssignments
+            sum(
+                CASE
+                    WHEN (org_code IS NOT NULL
+                          AND assignment_type='uppdrag'
+                          AND (role_code ILIKE '%ordförande%'
+                               OR role_code ILIKE '%vice ordförande%'))
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS total_committee_leadership_assignments,
+
+            -- NEW: currentCommitteeLeadershipAssignments
+            sum(
+                CASE
+                    WHEN (COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                          AND from_date &lt;= CURRENT_DATE
+                          AND org_code IS NOT NULL
+                          AND assignment_type='uppdrag'
+                          AND (role_code ILIKE '%ordförande%'
+                               OR role_code ILIKE '%vice ordförande%'))
+                    THEN 1
+                    ELSE 0
+                END
+            ) AS current_committee_leadership_assignments,
+
+            -- NEW: totalDaysServedCommitteeLeadership
+            sum(
+                CASE
+                    WHEN (org_code IS NOT NULL
+                          AND assignment_type='uppdrag'
+                          AND (role_code ILIKE '%ordförande%'
+                               OR role_code ILIKE '%vice ordförande%'))
+                    THEN (
+                        (CASE
+                            WHEN COALESCE(to_date, CURRENT_DATE) &gt;= CURRENT_DATE
+                                THEN CURRENT_DATE
+                            ELSE COALESCE(to_date, CURRENT_DATE)
+                         END)
+                         -
+                        (CASE
+                            WHEN from_date &gt;= CURRENT_DATE
+                                THEN CURRENT_DATE
+                            ELSE from_date
+                         END)
+                    )
+                    ELSE 0
+                END
+            ) AS total_days_served_committee_leadership
+
+        FROM assignment_data
+        LEFT JOIN view_riksdagen_party_member
+               ON assignment_data.intressent_id = view_riksdagen_party_member.id
+        GROUP BY view_riksdagen_party_member.id
+        ]]&gt;
+    &lt;/createView&gt;
+    
+    &lt;createView viewName="view_riksdagen_party_summary"&gt;
+        &lt;![CDATA[
+        SELECT
+            party,
+            min(first_assignment_date) AS first_assignment_date,
+            max(last_assignment_date) AS last_assignment_date,
+            sum(total_days_served::int8)::int8 AS total_days_served,
+            sum(total_days_served_parliament::int8)::int8 AS total_days_served_parliament,
+            sum(total_days_served_committee::int8)::int8 AS total_days_served_committee,
+            sum(total_days_served_government::int8)::int8 AS total_days_served_government,
+            sum(total_days_served_eu::int8)::int8 AS total_days_served_eu,
+            sum(total_days_served_speaker::int8)::int8 AS total_days_served_speaker,
+            sum(total_days_served_party::int8)::int8 AS total_days_served_party,
+
+            bool_or(active) AS active,
+            bool_or(active_eu) AS active_eu,
+            bool_or(active_government) AS active_government,
+            bool_or(active_committee) AS active_committee,
+            bool_or(active_parliament) AS active_parliament,
+            bool_or(active_speaker) AS active_speaker,
+            bool_or(active_party) AS active_party,
+
+            sum(CASE WHEN active THEN 1 ELSE 0 END) AS total_active,
+            sum(CASE WHEN active_eu THEN 1 ELSE 0 END) AS total_active_eu,
+            sum(CASE WHEN active_government THEN 1 ELSE 0 END) AS total_active_government,
+            sum(CASE WHEN active_committee THEN 1 ELSE 0 END) AS total_active_committee,
+            sum(CASE WHEN active_parliament THEN 1 ELSE 0 END) AS total_active_parliament,
+
+            sum(total_assignments::int8)::int8 AS total_assignments,
+            sum(total_party_assignments::int8)::int8 AS total_party_assignments,
+            sum(total_committee_assignments::int8)::int8 AS total_committee_assignments,
+            sum(total_ministry_assignments::int8)::int8 AS total_ministry_assignments,
+            sum(total_speaker_assignments::int8)::int8 AS total_speaker_assignments,
+            sum(current_assignments::int8)::int8 AS current_assignments,
+            sum(current_party_assignments::int8)::int8 AS current_party_assignments,
+            sum(current_committee_assignments::int8)::int8 AS current_committee_assignments,
+            sum(current_ministry_assignments::int8)::int8 AS current_ministry_assignments,
+            sum(current_speaker_assignments::int8)::int8 AS current_speaker_assignments,
+
+            -- NEW FIELDS FOR COMMITTEE SUBSTITUTE
+            sum(total_committee_substitute_assignments::int8)::int8 AS total_committee_substitute_assignments,
+            sum(current_committee_substitute_assignments::int8)::int8 AS current_committee_substitute_assignments,
+            sum(total_days_served_committee_substitute::int8)::int8 AS total_days_served_committee_substitute,
+
+            -- NEW FIELDS FOR COMMITTEE LEADERSHIP
+            sum(total_committee_leadership_assignments::int8)::int8 AS total_committee_leadership_assignments,
+            sum(current_committee_leadership_assignments::int8)::int8 AS current_committee_leadership_assignments,
+            sum(total_days_served_committee_leadership::int8)::int8 AS total_days_served_committee_leadership
+
+        FROM view_riksdagen_politician
+        GROUP BY party
+        ]]&gt;
+    &lt;/createView&gt;
+    
+    
+&lt;/changeSet&gt;
+
+
+&lt;changeSet author="pether" id="new_changeset_id_1" failOnError="true"&gt;
+  &lt;dropView viewName="view_application_action_event_page_annual_summary" /&gt;
+
+    &lt;createView viewName="view_application_action_event_page_annual_summary"&gt;
+        &lt;![CDATA[
+        SELECT
+            page AS embedded_id_page,
+            date_trunc('year', created_date) AS embedded_id_created_date,
+            count(*) AS hits,
+            percent_rank() OVER (
+                PARTITION BY date_trunc('year', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank_percentage,
+            rank() OVER (
+                PARTITION BY date_trunc('year', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank
+        FROM application_action_event
+        WHERE page IS NOT NULL
+        GROUP BY
+            page,
+            date_trunc('year', created_date)
+        -- Optionally remove ORDER BY or keep it if you want a default ordering:
+        ORDER BY date_trunc('year', created_date), count(*) DESC
+        ]]&gt;
+    &lt;/createView&gt;
+	&lt;/changeSet&gt;
+
+&lt;changeSet author="pether" id="new_changeset_id_2" failOnError="true"&gt;
+ &lt;dropView viewName="view_application_action_event_page_daily_summary" /&gt;
+    &lt;createView viewName="view_application_action_event_page_daily_summary"&gt;
+        &lt;![CDATA[
+        SELECT
+            page AS embedded_id_page,
+            date_trunc('day', created_date) AS embedded_id_created_date,
+            count(*) AS hits,
+            percent_rank() OVER (
+                PARTITION BY date_trunc('day', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank_percentage,
+            rank() OVER (
+                PARTITION BY date_trunc('day', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank
+        FROM application_action_event
+        WHERE page IS NOT NULL
+        GROUP BY
+            page,
+            date_trunc('day', created_date)
+        ORDER BY
+            date_trunc('day', created_date), count(*) DESC
+        ]]&gt;
+    &lt;/createView&gt;
+&lt;/changeSet&gt;
+
+&lt;changeSet author="pether" id="new_changeset_id_3" failOnError="true"&gt;
+    &lt;dropView viewName="view_application_action_event_page_element_annual_summary" /&gt;
+
+    &lt;createView viewName="view_application_action_event_page_element_annual_summary"&gt;
+        &lt;![CDATA[
+        SELECT
+            page AS embedded_id_page,
+            element_id AS embedded_id_element_id,
+            date_trunc('year', created_date) AS embedded_id_created_date,
+            count(*) AS hits,
+            percent_rank() OVER (
+                PARTITION BY page, date_trunc('year', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank_percentage,
+            rank() OVER (
+                PARTITION BY page, date_trunc('year', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank
+        FROM application_action_event
+        WHERE page IS NOT NULL
+          AND element_id IS NOT NULL
+          AND element_id &lt;&gt; ''
+        GROUP BY
+            page,
+            element_id,
+            date_trunc('year', created_date)
+        ORDER BY
+            date_trunc('year', created_date),
+            count(*) DESC
+        ]]&gt;
+    &lt;/createView&gt;
+&lt;/changeSet&gt;
+
+	
+&lt;changeSet author="pether" id="new_changeset_id_4" failOnError="true"&gt;
+    &lt;dropView viewName="view_application_action_event_page_element_daily_summary" /&gt;
+    &lt;createView viewName="view_application_action_event_page_element_daily_summary"&gt;
+        &lt;![CDATA[
+        SELECT
+            page AS embedded_id_page,
+            element_id AS embedded_id_element_id,
+            date_trunc('day', created_date) AS embedded_id_created_date,
+            count(*) AS hits,
+            percent_rank() OVER (
+                PARTITION BY page, date_trunc('day', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank_percentage,
+            rank() OVER (
+                PARTITION BY page, date_trunc('day', created_date)
+                ORDER BY count(*) DESC
+            ) AS rank
+        FROM application_action_event
+        WHERE page IS NOT NULL
+          AND element_id IS NOT NULL
+          AND element_id &lt;&gt; ''
+        GROUP BY
+            page,
+            element_id,
+            date_trunc('day', created_date)
+        ORDER BY
+            date_trunc('day', created_date),
+            count(*) DESC
+        ]]&gt;
+    &lt;/createView&gt;
+&lt;/changeSet&gt;
+
+	&lt;changeSet author="pether" id="new_changeset_id_5" failOnError="true"&gt;
+		&lt;createIndex indexName="application_action_event_page_idx" tableName="application_action_event"&gt;
+			&lt;column name="page"/&gt;
+		&lt;/createIndex&gt;
+		&lt;createIndex indexName="application_action_event_element_id_idx" tableName="application_action_event"&gt;
+			&lt;column name="element_id"/&gt;
+		&lt;/createIndex&gt;
+
+	 &lt;createIndex indexName="application_action_event_page_created_date_idx" tableName="application_action_event"&gt;
+        &lt;column name="page"/&gt;
+        &lt;column name="created_date"/&gt;
+    &lt;/createIndex&gt;
+
+    &lt;createIndex indexName="application_action_event_page_element_id_idx" tableName="application_action_event"&gt;
+        &lt;column name="page"/&gt;
+        &lt;column name="element_id"/&gt;
+    &lt;/createIndex&gt;
+&lt;/changeSet&gt;
 
 &lt;/databaseChangeLog&gt;
+
 </pre></body></html>

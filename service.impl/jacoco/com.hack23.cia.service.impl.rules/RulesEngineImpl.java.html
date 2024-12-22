@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RulesEngineImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.rules</a> &gt; <span class="el_source">RulesEngineImpl.java</span></div><h1>RulesEngineImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RulesEngineImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.rules</a> &gt; <span class="el_source">RulesEngineImpl.java</span></div><h1>RulesEngineImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -30,15 +30,10 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary_;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary;
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly;
@@ -54,7 +49,7 @@ import com.hack23.cia.service.data.api.DataViewer;
  * The Class RulesEngineImpl.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED, timeout = 1200)
+@Transactional(propagation = Propagation.REQUIRED, readOnly = true, timeout = 300)
 public final class RulesEngineImpl implements RulesEngine {
 
 	/** The data viewer. */
@@ -69,22 +64,22 @@ public final class RulesEngineImpl implements RulesEngine {
 	 * Instantiates a new rules engine impl.
 	 */
 	public RulesEngineImpl() {
-<span class="fc" id="L72">		super();</span>
-<span class="fc" id="L73">	}</span>
+<span class="fc" id="L67">		super();</span>
+<span class="fc" id="L68">	}</span>
 
 	@Override
-	@Cacheable(&quot;checkRulesCompliance&quot;)
 	public List&lt;ComplianceCheck&gt; checkRulesCompliance() {
-<span class="fc" id="L78">		final KieSession ksession = rulesContainer.newKieSession();</span>
-<span class="fc" id="L79">		final Map&lt;String, ComplianceCheck&gt; complianceChecks = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L80">		ksession.addEventListener(new ComplianceCheckAgendaEventListener(complianceChecks));</span>
+<span class="fc" id="L72">		final KieSession ksession = rulesContainer.newKieSession();</span>
+<span class="fc" id="L73">		final Map&lt;String, ComplianceCheck&gt; complianceChecks = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L74">		ksession.addEventListener(new ComplianceCheckAgendaEventListener(complianceChecks));</span>
 
-<span class="fc" id="L82">		insertPoliticians(ksession, dataViewer.getAll(ViewRiksdagenPolitician.class));</span>
-<span class="fc" id="L83">		insertParties(ksession, dataViewer.getAll(ViewRiksdagenPartySummary.class));</span>
+<span class="fc" id="L76">		insertPoliticians(ksession, dataViewer.getAll(ViewRiksdagenPolitician.class));</span>
+<span class="fc" id="L77">		insertParties(ksession, dataViewer.getAll(ViewRiksdagenPartySummary.class));</span>
 
-<span class="fc" id="L85">		ksession.fireAllRules();</span>
-<span class="fc" id="L86">		ksession.dispose();</span>
-<span class="fc" id="L87">		return new ArrayList&lt;&gt;(complianceChecks.values());</span>
+<span class="fc" id="L79">		ksession.fireAllRules();</span>
+<span class="fc" id="L80">		ksession.dispose();</span>
+
+<span class="fc" id="L82">		return new ArrayList&lt;&gt;(complianceChecks.values());</span>
 	}
 
 	/**
@@ -95,48 +90,28 @@ public final class RulesEngineImpl implements RulesEngine {
 	 */
 	private void insertPoliticians(final KieSession ksession, final List&lt;ViewRiksdagenPolitician&gt; list) {
 
-<span class="fc" id="L98">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual&gt;&gt; politicanBallotSummaryAnnualMap = dataViewer</span>
-<span class="fc" id="L99">				.getAll(ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual.class).stream()</span>
-<span class="fc" id="L100">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getIntressentId()));</span>
-<span class="fc" id="L101">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly&gt;&gt; politicanBallotSummaryMontlyMap = dataViewer</span>
-<span class="fc" id="L102">				.getAll(ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly.class).stream()</span>
-<span class="fc" id="L103">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getIntressentId()));</span>
+<span class="fc" id="L93">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual&gt;&gt; politicanBallotSummaryAnnualMap = dataViewer</span>
+<span class="fc" id="L94">				.getAll(ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual.class).stream()</span>
+<span class="fc" id="L95">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getIntressentId()));</span>
+<span class="fc" id="L96">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly&gt;&gt; politicanBallotSummaryMontlyMap = dataViewer</span>
+<span class="fc" id="L97">				.getAll(ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly.class).stream()</span>
+<span class="fc" id="L98">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getIntressentId()));</span>
 
-<span class="fc" id="L105">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt;&gt; politicanBallotSummaryDailyMap = dataViewer</span>
-<span class="fc" id="L106">				.getAll(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class).stream()</span>
-<span class="fc" id="L107">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getIntressentId()));</span>
+<span class="fc" id="L100">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt;&gt; politicanBallotSummaryDailyMap = dataViewer</span>
+<span class="fc" id="L101">				.getAll(ViewRiksdagenVoteDataBallotPoliticianSummaryDaily.class).stream()</span>
+<span class="fc" id="L102">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getIntressentId()));</span>
 
-<span class="fc" id="L109">		final List&lt;ViewRiksdagenCommitteeBallotDecisionPoliticianSummary&gt; importantDecisions = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L111">		final String[][] decisions = new String[][] { new String[] { &quot;2007/08&quot;, &quot;FöU15&quot; },</span>
-				new String[] { &quot;2017/18&quot;, &quot;KU16&quot; } };
+<span class="fc bfc" id="L105" title="All 2 branches covered.">		for (final ViewRiksdagenPolitician politicianData : list) {</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">			if (politicianData != null) {</span>
 
-<span class="fc bfc" id="L114" title="All 2 branches covered.">		for (final String[] decision : decisions) {</span>
-<span class="fc" id="L115">			importantDecisions</span>
-<span class="fc" id="L116">					.addAll(dataViewer.findListByProperty(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class,</span>
-							decision, ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.rm,
-							ViewRiksdagenCommitteeBallotDecisionPoliticianSummary_.committeeReport));
-		}
-
-<span class="fc" id="L121">		final Map&lt;String, List&lt;ViewRiksdagenCommitteeBallotDecisionPoliticianSummary&gt;&gt; decisionMap = importantDecisions</span>
-<span class="fc" id="L122">				.stream().collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getIntressentId()));</span>
-
-<span class="fc bfc" id="L124" title="All 2 branches covered.">		for (final ViewRiksdagenPolitician politicianData : list) {</span>
-<span class="fc bfc" id="L125" title="All 2 branches covered.">			if (politicianData != null) {</span>
-
-<span class="fc" id="L127">				List&lt;ViewRiksdagenCommitteeBallotDecisionPoliticianSummary&gt; ballots = decisionMap</span>
-<span class="fc" id="L128">						.get(politicianData.getPersonId());</span>
-<span class="fc bfc" id="L129" title="All 2 branches covered.">				if (ballots == null) {</span>
-<span class="fc" id="L130">					ballots = new ArrayList&lt;&gt;();</span>
-				}
-
-<span class="fc" id="L133">				insertPolitician(ksession, politicianData,</span>
-<span class="fc" id="L134">						politicanBallotSummaryDailyMap.get(politicianData.getPersonId()),</span>
-<span class="fc" id="L135">						politicanBallotSummaryMontlyMap.get(politicianData.getPersonId()),</span>
-<span class="fc" id="L136">						politicanBallotSummaryAnnualMap.get(politicianData.getPersonId()), ballots);</span>
+<span class="fc" id="L108">				insertPolitician(ksession, politicianData,</span>
+<span class="fc" id="L109">						politicanBallotSummaryDailyMap.get(politicianData.getPersonId()),</span>
+<span class="fc" id="L110">						politicanBallotSummaryMontlyMap.get(politicianData.getPersonId()),</span>
+<span class="fc" id="L111">						politicanBallotSummaryAnnualMap.get(politicianData.getPersonId()));</span>
 			}
-<span class="fc" id="L138">		}</span>
-<span class="fc" id="L139">	}</span>
+<span class="fc" id="L113">		}</span>
+<span class="fc" id="L114">	}</span>
 
 	/**
 	 * Insert politician.
@@ -146,40 +121,37 @@ public final class RulesEngineImpl implements RulesEngine {
 	 * @param dailyList      the daily list
 	 * @param monthlyList    the monthly list
 	 * @param annualList     the annual list
-	 * @param decisionList   the decision list
 	 */
 	private static void insertPolitician(final KieSession ksession, final ViewRiksdagenPolitician politicianData,
 			final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; dailyList,
 			final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly&gt; monthlyList,
-			final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual&gt; annualList,
-			final List&lt;ViewRiksdagenCommitteeBallotDecisionPoliticianSummary&gt; decisionList) {
-<span class="pc bpc" id="L156" title="2 of 8 branches missed.">		if (politicianData.isActiveParliament() &amp;&amp; dailyList != null &amp;&amp; monthlyList != null &amp;&amp; annualList != null) {</span>
-<span class="fc" id="L157">			Collections.sort(dailyList,</span>
-<span class="fc" id="L158">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
-<span class="fc" id="L159">			final Optional&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; dailyListFirst = dailyList.stream()</span>
-<span class="fc" id="L160">					.findFirst();</span>
+			final List&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual&gt; annualList) {
+<span class="pc bpc" id="L129" title="3 of 8 branches missed.">		if (politicianData.isActiveParliament() &amp;&amp; dailyList != null &amp;&amp; monthlyList != null &amp;&amp; annualList != null) {</span>
+<span class="fc" id="L130">			Collections.sort(dailyList,</span>
+<span class="fc" id="L131">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
+<span class="fc" id="L132">			final Optional&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryDaily&gt; dailyListFirst = dailyList.stream()</span>
+<span class="fc" id="L133">					.findFirst();</span>
 
-<span class="fc" id="L162">			Collections.sort(monthlyList,</span>
-<span class="fc" id="L163">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
-<span class="fc" id="L164">			final Optional&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly&gt; monthlyListFirst = monthlyList.stream()</span>
-<span class="fc" id="L165">					.findFirst();</span>
-<span class="fc" id="L166">			Collections.sort(annualList,</span>
-<span class="fc" id="L167">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
-<span class="fc" id="L168">			final Optional&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual&gt; annualListFirst = annualList.stream()</span>
-<span class="fc" id="L169">					.findFirst();</span>
+<span class="fc" id="L135">			Collections.sort(monthlyList,</span>
+<span class="fc" id="L136">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
+<span class="fc" id="L137">			final Optional&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly&gt; monthlyListFirst = monthlyList.stream()</span>
+<span class="fc" id="L138">					.findFirst();</span>
+<span class="fc" id="L139">			Collections.sort(annualList,</span>
+<span class="fc" id="L140">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
+<span class="fc" id="L141">			final Optional&lt;ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual&gt; annualListFirst = annualList.stream()</span>
+<span class="fc" id="L142">					.findFirst();</span>
 
-<span class="pc bpc" id="L171" title="3 of 6 branches missed.">			if (annualListFirst.isPresent() &amp;&amp; monthlyListFirst.isPresent() &amp;&amp; dailyListFirst.isPresent()) {</span>
-<span class="fc" id="L172">				final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(</span>
-<span class="fc" id="L173">						politicianData, dailyListFirst.get(), monthlyListFirst.get(), annualListFirst.get(),</span>
-						decisionList);
-<span class="fc" id="L175">				ksession.insert(politicianComplianceCheckImpl);</span>
+<span class="pc bpc" id="L144" title="3 of 6 branches missed.">			if (annualListFirst.isPresent() &amp;&amp; monthlyListFirst.isPresent() &amp;&amp; dailyListFirst.isPresent()) {</span>
+<span class="fc" id="L145">				final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(</span>
+<span class="fc" id="L146">						politicianData, dailyListFirst.get(), monthlyListFirst.get(), annualListFirst.get());</span>
+<span class="fc" id="L147">				ksession.insert(politicianComplianceCheckImpl);</span>
 			}
-<span class="fc" id="L177">		} else {</span>
-<span class="fc" id="L178">			final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(</span>
-					politicianData, null, null, null, new ArrayList&lt;&gt;());
-<span class="fc" id="L180">			ksession.insert(politicianComplianceCheckImpl);</span>
+<span class="fc" id="L149">		} else {</span>
+<span class="fc" id="L150">			final PoliticianComplianceCheckImpl politicianComplianceCheckImpl = new PoliticianComplianceCheckImpl(</span>
+					politicianData, null, null, null);
+<span class="fc" id="L152">			ksession.insert(politicianComplianceCheckImpl);</span>
 		}
-<span class="fc" id="L182">	}</span>
+<span class="fc" id="L154">	}</span>
 
 	/**
 	 * Insert parties.
@@ -188,47 +160,25 @@ public final class RulesEngineImpl implements RulesEngine {
 	 * @param list     the list
 	 */
 	private void insertParties(final KieSession ksession, final List&lt;ViewRiksdagenPartySummary&gt; list) {
-<span class="fc" id="L191">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummaryDaily&gt;&gt; politicanBallotSummaryAnnualMap = dataViewer</span>
-<span class="fc" id="L192">				.getAll(ViewRiksdagenVoteDataBallotPartySummaryDaily.class).stream()</span>
-<span class="fc" id="L193">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getParty()));</span>
-<span class="fc" id="L194">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummaryMonthly&gt;&gt; politicanBallotSummaryMontlyMap = dataViewer</span>
-<span class="fc" id="L195">				.getAll(ViewRiksdagenVoteDataBallotPartySummaryMonthly.class).stream()</span>
-<span class="fc" id="L196">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getParty()));</span>
-<span class="fc" id="L197">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummaryAnnual&gt;&gt; politicanBallotSummaryDailyMap = dataViewer</span>
-<span class="fc" id="L198">				.getAll(ViewRiksdagenVoteDataBallotPartySummaryAnnual.class).stream()</span>
-<span class="fc" id="L199">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getParty()));</span>
+<span class="fc" id="L163">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummaryDaily&gt;&gt; politicanBallotSummaryAnnualMap = dataViewer</span>
+<span class="fc" id="L164">				.getAll(ViewRiksdagenVoteDataBallotPartySummaryDaily.class).stream()</span>
+<span class="fc" id="L165">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getParty()));</span>
+<span class="fc" id="L166">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummaryMonthly&gt;&gt; politicanBallotSummaryMontlyMap = dataViewer</span>
+<span class="fc" id="L167">				.getAll(ViewRiksdagenVoteDataBallotPartySummaryMonthly.class).stream()</span>
+<span class="fc" id="L168">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getParty()));</span>
+<span class="fc" id="L169">		final Map&lt;String, List&lt;ViewRiksdagenVoteDataBallotPartySummaryAnnual&gt;&gt; politicanBallotSummaryDailyMap = dataViewer</span>
+<span class="fc" id="L170">				.getAll(ViewRiksdagenVoteDataBallotPartySummaryAnnual.class).stream()</span>
+<span class="fc" id="L171">				.collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getParty()));</span>
 
-<span class="fc" id="L201">		final List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; importantDecisions = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">		for (final ViewRiksdagenPartySummary partyData : list) {</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">			if (partyData != null) {</span>
 
-<span class="fc" id="L203">		final String[][] decisions = new String[][] { new String[] { &quot;2007/08&quot;, &quot;FöU15&quot; },</span>
-				new String[] { &quot;2017/18&quot;, &quot;KU16&quot; } };
-
-<span class="fc bfc" id="L206" title="All 2 branches covered.">		for (final String[] decision : decisions) {</span>
-<span class="fc" id="L207">			importantDecisions</span>
-<span class="fc" id="L208">					.addAll(dataViewer.findListByProperty(ViewRiksdagenCommitteeBallotDecisionPartySummary.class,</span>
-							decision, ViewRiksdagenCommitteeBallotDecisionPartySummary_.rm,
-							ViewRiksdagenCommitteeBallotDecisionPartySummary_.committeeReport));
-
-		}
-
-<span class="fc" id="L214">		final Map&lt;String, List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt;&gt; decisionMap = importantDecisions</span>
-<span class="fc" id="L215">				.stream().collect(Collectors.groupingBy(p -&gt; p.getEmbeddedId().getParty()));</span>
-
-<span class="fc bfc" id="L217" title="All 2 branches covered.">		for (final ViewRiksdagenPartySummary partyData : list) {</span>
-<span class="fc bfc" id="L218" title="All 2 branches covered.">			if (partyData != null) {</span>
-
-<span class="fc" id="L220">				List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; ballotDecisions = decisionMap</span>
-<span class="fc" id="L221">						.get(partyData.getParty());</span>
-<span class="fc bfc" id="L222" title="All 2 branches covered.">				if (ballotDecisions == null) {</span>
-<span class="fc" id="L223">					ballotDecisions = new ArrayList&lt;&gt;();</span>
-				}
-
-<span class="fc" id="L226">				insertParty(ksession, partyData, politicanBallotSummaryDailyMap.get(partyData.getParty()),</span>
-<span class="fc" id="L227">						politicanBallotSummaryMontlyMap.get(partyData.getParty()),</span>
-<span class="fc" id="L228">						politicanBallotSummaryAnnualMap.get(partyData.getParty()), ballotDecisions);</span>
+<span class="fc" id="L176">				insertParty(ksession, partyData, politicanBallotSummaryDailyMap.get(partyData.getParty()),</span>
+<span class="fc" id="L177">						politicanBallotSummaryMontlyMap.get(partyData.getParty()),</span>
+<span class="fc" id="L178">						politicanBallotSummaryAnnualMap.get(partyData.getParty()));</span>
 			}
-<span class="fc" id="L230">		}</span>
-<span class="fc" id="L231">	}</span>
+<span class="fc" id="L180">		}</span>
+<span class="fc" id="L181">	}</span>
 
 	/**
 	 * Insert party.
@@ -238,37 +188,35 @@ public final class RulesEngineImpl implements RulesEngine {
 	 * @param dailyList       the daily list
 	 * @param monthlyList     the monthly list
 	 * @param annualList      the annual list
-	 * @param ballotDecisions the ballot decisions
 	 */
 	private static void insertParty(final KieSession ksession, final ViewRiksdagenPartySummary partyData,
 			final List&lt;ViewRiksdagenVoteDataBallotPartySummaryAnnual&gt; dailyList,
 			final List&lt;ViewRiksdagenVoteDataBallotPartySummaryMonthly&gt; monthlyList,
-			final List&lt;ViewRiksdagenVoteDataBallotPartySummaryDaily&gt; annualList,
-			final List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; ballotDecisions) {
-<span class="pc bpc" id="L248" title="3 of 8 branches missed.">		if (partyData.isActiveParliament() &amp;&amp; dailyList != null &amp;&amp; monthlyList != null &amp;&amp; annualList != null) {</span>
-<span class="fc" id="L249">			Collections.sort(dailyList,</span>
-<span class="fc" id="L250">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
-<span class="fc" id="L251">			final Optional&lt;ViewRiksdagenVoteDataBallotPartySummaryAnnual&gt; dailyListFirst = dailyList.stream()</span>
-<span class="fc" id="L252">					.findFirst();</span>
-<span class="fc" id="L253">			Collections.sort(monthlyList,</span>
-<span class="fc" id="L254">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
-<span class="fc" id="L255">			final Optional&lt;ViewRiksdagenVoteDataBallotPartySummaryMonthly&gt; monthlyListFirst = monthlyList.stream()</span>
-<span class="fc" id="L256">					.findFirst();</span>
-<span class="fc" id="L257">			Collections.sort(annualList,</span>
-<span class="fc" id="L258">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
-<span class="fc" id="L259">			final Optional&lt;ViewRiksdagenVoteDataBallotPartySummaryDaily&gt; annualListFirst = annualList.stream()</span>
-<span class="fc" id="L260">					.findFirst();</span>
+			final List&lt;ViewRiksdagenVoteDataBallotPartySummaryDaily&gt; annualList) {
+<span class="pc bpc" id="L196" title="3 of 8 branches missed.">		if (partyData.isActiveParliament() &amp;&amp; dailyList != null &amp;&amp; monthlyList != null &amp;&amp; annualList != null) {</span>
+<span class="fc" id="L197">			Collections.sort(dailyList,</span>
+<span class="fc" id="L198">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
+<span class="fc" id="L199">			final Optional&lt;ViewRiksdagenVoteDataBallotPartySummaryAnnual&gt; dailyListFirst = dailyList.stream()</span>
+<span class="fc" id="L200">					.findFirst();</span>
+<span class="fc" id="L201">			Collections.sort(monthlyList,</span>
+<span class="fc" id="L202">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
+<span class="fc" id="L203">			final Optional&lt;ViewRiksdagenVoteDataBallotPartySummaryMonthly&gt; monthlyListFirst = monthlyList.stream()</span>
+<span class="fc" id="L204">					.findFirst();</span>
+<span class="fc" id="L205">			Collections.sort(annualList,</span>
+<span class="fc" id="L206">					(e1, e2) -&gt; e1.getEmbeddedId().getVoteDate().compareTo(e2.getEmbeddedId().getVoteDate()));</span>
+<span class="fc" id="L207">			final Optional&lt;ViewRiksdagenVoteDataBallotPartySummaryDaily&gt; annualListFirst = annualList.stream()</span>
+<span class="fc" id="L208">					.findFirst();</span>
 
-<span class="pc bpc" id="L262" title="3 of 6 branches missed.">			if (annualListFirst.isPresent() &amp;&amp; monthlyListFirst.isPresent() &amp;&amp; dailyListFirst.isPresent()) {</span>
-<span class="fc" id="L263">				final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(partyData,</span>
-<span class="fc" id="L264">						dailyListFirst.get(), monthlyListFirst.get(), annualListFirst.get(), ballotDecisions);</span>
-<span class="fc" id="L265">				ksession.insert(politicianComplianceCheckImpl);</span>
+<span class="pc bpc" id="L210" title="3 of 6 branches missed.">			if (annualListFirst.isPresent() &amp;&amp; monthlyListFirst.isPresent() &amp;&amp; dailyListFirst.isPresent()) {</span>
+<span class="fc" id="L211">				final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(partyData,</span>
+<span class="fc" id="L212">						dailyListFirst.get(), monthlyListFirst.get(), annualListFirst.get());</span>
+<span class="fc" id="L213">				ksession.insert(politicianComplianceCheckImpl);</span>
 			}
-<span class="fc" id="L267">		} else {</span>
-<span class="fc" id="L268">			final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(partyData, null,</span>
-					null, null, new ArrayList&lt;&gt;());
-<span class="fc" id="L270">			ksession.insert(politicianComplianceCheckImpl);</span>
+<span class="fc" id="L215">		} else {</span>
+<span class="fc" id="L216">			final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(partyData, null,</span>
+					null, null);
+<span class="fc" id="L218">			ksession.insert(politicianComplianceCheckImpl);</span>
 		}
-<span class="fc" id="L272">	}</span>
+<span class="fc" id="L220">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

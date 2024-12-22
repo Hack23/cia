@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SendEmailService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.admin</a> &gt; <span class="el_source">SendEmailService.java</span></div><h1>SendEmailService.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SendEmailService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.admin</a> &gt; <span class="el_source">SendEmailService.java</span></div><h1>SendEmailService.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,6 @@ import com.hack23.cia.service.api.action.admin.SendEmailResponse;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 import com.hack23.cia.service.impl.email.EmailService;
 
 /**
@@ -39,8 +38,7 @@ import com.hack23.cia.service.impl.email.EmailService;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED, timeout = 600)
-public final class SendEmailService extends AbstractBusinessServiceImpl&lt;SendEmailRequest, SendEmailResponse&gt;
-		implements BusinessService&lt;SendEmailRequest, SendEmailResponse&gt; {
+public final class SendEmailService extends AbstractBusinessServiceImpl&lt;SendEmailRequest, SendEmailResponse&gt; {
 
 	/** The email service. */
 	@Autowired
@@ -50,41 +48,41 @@ public final class SendEmailService extends AbstractBusinessServiceImpl&lt;SendE
 	 * Instantiates a new send email service.
 	 */
 	public SendEmailService() {
-<span class="fc" id="L53">		super(SendEmailRequest.class);</span>
-<span class="fc" id="L54">	}</span>
+<span class="fc" id="L51">		super(SendEmailRequest.class);</span>
+<span class="fc" id="L52">	}</span>
 
 	@Override
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	public SendEmailResponse processService(final SendEmailRequest serviceRequest) {
-<span class="fc" id="L59">		final SendEmailResponse inputValidation = inputValidation(serviceRequest);</span>
-<span class="fc bfc" id="L60" title="All 2 branches covered.">		if (inputValidation != null) {</span>
-<span class="fc" id="L61">			return inputValidation;</span>
+<span class="fc" id="L57">		final SendEmailResponse inputValidation = inputValidation(serviceRequest);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">		if (inputValidation != null) {</span>
+<span class="fc" id="L59">			return inputValidation;</span>
 		}
 
-<span class="fc" id="L64">		emailService.sendEmail(serviceRequest.getEmail(), serviceRequest.getSubject(), serviceRequest.getContent());</span>
-<span class="fc" id="L65">		final SendEmailResponse response = new SendEmailResponse(ServiceResult.SUCCESS);</span>
+<span class="fc" id="L62">		emailService.sendEmail(serviceRequest.getEmail(), serviceRequest.getSubject(), serviceRequest.getContent());</span>
+<span class="fc" id="L63">		final SendEmailResponse response = new SendEmailResponse(ServiceResult.SUCCESS);</span>
 
-<span class="fc" id="L67">		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);</span>
-<span class="fc" id="L68">		eventRequest.setApplicationMessage(response.getResult().toString());</span>
-<span class="fc" id="L69">		createApplicationEventService.processService(eventRequest);</span>
+<span class="fc" id="L65">		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);</span>
+<span class="fc" id="L66">		eventRequest.setApplicationMessage(response.getResult().toString());</span>
+<span class="fc" id="L67">		createApplicationEventService.processService(eventRequest);</span>
 
-<span class="fc" id="L71">		return response;</span>
+<span class="fc" id="L69">		return response;</span>
 	}
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(final SendEmailRequest serviceRequest) {
-<span class="fc" id="L76">		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();</span>
-<span class="fc" id="L77">		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);</span>
-<span class="fc" id="L78">		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);</span>
-<span class="fc" id="L79">		eventRequest.setActionName(SendEmailRequest.class.getSimpleName());</span>
-<span class="fc" id="L80">		eventRequest.setSessionId(serviceRequest.getSessionId());</span>
-<span class="fc" id="L81">		return eventRequest;</span>
+<span class="fc" id="L74">		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();</span>
+<span class="fc" id="L75">		eventRequest.setEventGroup(ApplicationEventGroup.ADMIN);</span>
+<span class="fc" id="L76">		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);</span>
+<span class="fc" id="L77">		eventRequest.setActionName(SendEmailRequest.class.getSimpleName());</span>
+<span class="fc" id="L78">		eventRequest.setSessionId(serviceRequest.getSessionId());</span>
+<span class="fc" id="L79">		return eventRequest;</span>
 	}
 
 	@Override
 	protected SendEmailResponse createErrorResponse() {
-<span class="fc" id="L86">		return new SendEmailResponse(ServiceResult.FAILURE);</span>
+<span class="fc" id="L84">		return new SendEmailResponse(ServiceResult.FAILURE);</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

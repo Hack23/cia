@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobContextHolderImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.task</a> &gt; <span class="el_source">JobContextHolderImpl.java</span></div><h1>JobContextHolderImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobContextHolderImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.task</a> &gt; <span class="el_source">JobContextHolderImpl.java</span></div><h1>JobContextHolderImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hack23.cia.service.component.agent.api.DataAgentApi;
 import com.hack23.cia.service.data.api.SearchIndexer;
 import com.hack23.cia.service.data.api.ViewDataManager;
+import com.hack23.cia.service.impl.rules.RulesManager;
 
 /**
  * The Class JobContextHolder.
@@ -42,39 +43,47 @@ public final class JobContextHolderImpl implements JobContextHolder {
 	/** The view data manager. */
 	private final ViewDataManager viewDataManager;
 
+	private final RulesManager rulesManager;
+
+
 	/**
 	 * Instantiates a new job context holder impl.
 	 *
-	 * @param dataAgentApi
-	 *            the data agent api
-	 * @param searchIndexer
-	 *            the search indexer
-	 * @param viewDataManager
-	 *            the view data manager
+	 * @param dataAgentApi            the data agent api
+	 * @param searchIndexer            the search indexer
+	 * @param viewDataManager            the view data manager
+	 * @param rulesManager the rules manager
 	 */
 	@Autowired
-	public JobContextHolderImpl(final DataAgentApi dataAgentApi,final SearchIndexer searchIndexer, final ViewDataManager viewDataManager) {
-<span class="fc" id="L57">		super();</span>
-<span class="fc" id="L58">		this.dataAgentApi = dataAgentApi;</span>
-<span class="fc" id="L59">		this.searchIndexer = searchIndexer;</span>
-<span class="fc" id="L60">		this.viewDataManager = viewDataManager;</span>
-<span class="fc" id="L61">	}</span>
+	public JobContextHolderImpl(final DataAgentApi dataAgentApi,final SearchIndexer searchIndexer, final ViewDataManager viewDataManager,final RulesManager rulesManager) {
+<span class="fc" id="L59">		super();</span>
+<span class="fc" id="L60">		this.dataAgentApi = dataAgentApi;</span>
+<span class="fc" id="L61">		this.searchIndexer = searchIndexer;</span>
+<span class="fc" id="L62">		this.viewDataManager = viewDataManager;</span>
+<span class="fc" id="L63">		this.rulesManager = rulesManager;</span>
+<span class="fc" id="L64">	}</span>
 
 
 	@Override
 	public DataAgentApi getDataAgentApi() {
-<span class="fc" id="L66">		return this.dataAgentApi;</span>
+<span class="fc" id="L69">		return this.dataAgentApi;</span>
 	}
 
 	@Override
 	public void updateSearchIndex() throws InterruptedException {
-<span class="fc" id="L71">		this.searchIndexer.updateSearchIndex();</span>
-<span class="fc" id="L72">	}</span>
+<span class="fc" id="L74">		this.searchIndexer.updateSearchIndex();</span>
+<span class="fc" id="L75">	}</span>
 
 	@Override
 	public void refreshViews() {
-<span class="fc" id="L76">		this.viewDataManager.refreshViews();</span>
-<span class="fc" id="L77">	}</span>
+<span class="fc" id="L79">		this.viewDataManager.refreshViews();</span>
+<span class="fc" id="L80">	}</span>
+
+
+	@Override
+	public void updateRuleViolations() {
+<span class="fc" id="L85">		this.rulesManager.processService();</span>
+<span class="fc" id="L86">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

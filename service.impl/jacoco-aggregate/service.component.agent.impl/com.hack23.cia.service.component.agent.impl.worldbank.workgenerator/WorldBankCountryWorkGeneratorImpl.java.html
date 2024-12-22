@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>WorldBankCountryWorkGeneratorImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.worldbank.workgenerator</a> &gt; <span class="el_source">WorldBankCountryWorkGeneratorImpl.java</span></div><h1>WorldBankCountryWorkGeneratorImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>WorldBankCountryWorkGeneratorImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.worldbank.workgenerator</a> &gt; <span class="el_source">WorldBankCountryWorkGeneratorImpl.java</span></div><h1>WorldBankCountryWorkGeneratorImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@ import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
 final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourcesWorkGenerator {
 
 	/** The Constant LOGGER. */
-<span class="nc" id="L44">	private static final Logger LOGGER = LoggerFactory</span>
-<span class="nc" id="L45">			.getLogger(WorldBankCountryWorkGeneratorImpl.class);</span>
+<span class="fc" id="L44">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="fc" id="L45">			.getLogger(WorldBankCountryWorkGeneratorImpl.class);</span>
 
 	/** The country element workdestination. */
 	@Autowired
@@ -59,26 +59,26 @@ final class WorldBankCountryWorkGeneratorImpl extends AbstractWorldBankDataSourc
 	 */
 	@Autowired
 	public WorldBankCountryWorkGeneratorImpl(final WorldBankCountryApi worldbankCountryApi) {
-<span class="nc" id="L62">		super(WorldBankDataSources.COUNTRIES);</span>
-<span class="nc" id="L63">		this.worldbankCountryApi = worldbankCountryApi;</span>
-<span class="nc" id="L64">	}</span>
+<span class="fc" id="L62">		super(WorldBankDataSources.COUNTRIES);</span>
+<span class="fc" id="L63">		this.worldbankCountryApi = worldbankCountryApi;</span>
+<span class="fc" id="L64">	}</span>
 
 	@Override
 	public void generateWorkOrders() {
 		try {
-<span class="nc" id="L69">			final List&lt;CountryElement&gt; countryList = worldbankCountryApi.getCountries();</span>
-<span class="nc" id="L70">			final Map&lt;String, String&gt; currentSaved = getImportService().getWorldBankCountryMap();</span>
+<span class="fc" id="L69">			final List&lt;CountryElement&gt; countryList = worldbankCountryApi.getCountries();</span>
+<span class="fc" id="L70">			final Map&lt;String, String&gt; currentSaved = getImportService().getWorldBankCountryMap();</span>
 
-<span class="nc bnc" id="L72" title="All 2 branches missed.">			for (final CountryElement countryElement : countryList) {</span>
-<span class="nc bnc" id="L73" title="All 6 branches missed.">				if (countryElement.getCapitalCity() != null &amp;&amp; countryElement.getCapitalCity().length() &gt; 0 &amp;&amp; !currentSaved.containsKey(countryElement.getIso2Code())) {</span>
-<span class="nc" id="L74">					getJmsSender().send(countryElementWorkdestination,</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">			for (final CountryElement countryElement : countryList) {</span>
+<span class="pc bpc" id="L73" title="1 of 6 branches missed.">				if (countryElement.getCapitalCity() != null &amp;&amp; countryElement.getCapitalCity().length() &gt; 0 &amp;&amp; !currentSaved.containsKey(countryElement.getIso2Code())) {</span>
+<span class="fc" id="L74">					getJmsSender().send(countryElementWorkdestination,</span>
 							countryElement);
 				}
-<span class="nc" id="L77">			}</span>
-<span class="nc" id="L78">		} catch (final DataFailureException exception) {</span>
-<span class="nc" id="L79">			LOGGER.warn(&quot;jms&quot;, exception);</span>
-<span class="nc" id="L80">		}</span>
-<span class="nc" id="L81">	}</span>
+<span class="fc" id="L77">			}</span>
+<span class="fc" id="L78">		} catch (final DataFailureException exception) {</span>
+<span class="fc" id="L79">			LOGGER.warn(&quot;jms&quot;, exception);</span>
+<span class="fc" id="L80">		}</span>
+<span class="fc" id="L81">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

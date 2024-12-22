@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>UpdateSearchIndexJobTest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
@@ -7,8 +7,8 @@
 <body>
 <div id="overview"><a href="../../../../../../../testapidocs/com/hack23/cia/service/impl/task/UpdateSearchIndexJobTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2024 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
@@ -50,11 +50,11 @@
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> executeInternalSuccessTest() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  		<strong class="jxr_keyword">final</strong> JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  		<strong class="jxr_keyword">final</strong> ApplicationContext applicationContext = prepareContextMock(jobContextMock);
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  		<strong class="jxr_keyword">final</strong> SearchIndexer searchIndex = Mockito.mock(SearchIndexer.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  		<strong class="jxr_keyword">final</strong> JobContextHolder jobContextHolder = <strong class="jxr_keyword">new</strong> JobContextHolderImpl(<strong class="jxr_keyword">null</strong>, searchIndex, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  		Mockito.when(applicationContext.getBean(JobContextHolder.<strong class="jxr_keyword">class</strong>)).thenReturn(jobContextHolder);		
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  		<strong class="jxr_keyword">final</strong> JobContextHolder jobContextHolder = <strong class="jxr_keyword">new</strong> JobContextHolderImpl(<strong class="jxr_keyword">null</strong>, searchIndex, <strong class="jxr_keyword">null</strong>,<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  		Mockito.when(applicationContext.getBean(JobContextHolder.<strong class="jxr_keyword">class</strong>)).thenReturn(jobContextHolder);
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  		<strong class="jxr_keyword">new</strong> UpdateSearchIndexJob().executeInternal(jobContextMock);
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  		Mockito.verify(searchIndex).updateSearchIndex();
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  	}
@@ -68,28 +68,28 @@
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> executeInternalFailureTest() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  		<strong class="jxr_keyword">final</strong> JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">final</strong> ApplicationContext applicationContext = prepareContextMock(jobContextMock);
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  		
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  		<strong class="jxr_keyword">final</strong> SearchIndexer searchIndex = Mockito.mock(SearchIndexer.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		<strong class="jxr_keyword">final</strong> JobContextHolder jobContextHolder = <strong class="jxr_keyword">new</strong> JobContextHolderImpl(<strong class="jxr_keyword">null</strong>, searchIndex, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		Mockito.when(applicationContext.getBean(JobContextHolder.<strong class="jxr_keyword">class</strong>)).thenReturn(jobContextHolder);		
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		<strong class="jxr_keyword">final</strong> JobContextHolder jobContextHolder = <strong class="jxr_keyword">new</strong> JobContextHolderImpl(<strong class="jxr_keyword">null</strong>, searchIndex, <strong class="jxr_keyword">null</strong>,<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		Mockito.when(applicationContext.getBean(JobContextHolder.<strong class="jxr_keyword">class</strong>)).thenReturn(jobContextHolder);
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  		Mockito.doThrow(<strong class="jxr_keyword">new</strong> InterruptedException()).when(searchIndex).updateSearchIndex();
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  		
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  		<strong class="jxr_keyword">new</strong> UpdateSearchIndexJob().executeInternal(jobContextMock);
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  	}
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  	@Test(expected = NullPointerException.<strong class="jxr_keyword">class</strong>)
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> executeInternalFailureNoJobContextTest() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  		<strong class="jxr_keyword">final</strong> JobExecutionContext jobContextMock = Mockito.mock(JobExecutionContext.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">final</strong> Scheduler scheduler = Mockito.mock(Scheduler.<strong class="jxr_keyword">class</strong>);		
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">final</strong> Scheduler scheduler = Mockito.mock(Scheduler.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  		Mockito.when(jobContextMock.getScheduler()).thenReturn(scheduler);
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		Mockito.when(scheduler.getContext()).thenThrow(<strong class="jxr_keyword">new</strong> SchedulerException());	
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		Mockito.when(scheduler.getContext()).thenThrow(<strong class="jxr_keyword">new</strong> SchedulerException());
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  		<strong class="jxr_keyword">new</strong> UpdateSearchIndexJob().executeInternal(jobContextMock);
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  	}
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>RemoveDataManagerTest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../testapidocs/com/hack23/cia/service/data/impl/RemoveDataManagerTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2024 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -47,36 +47,36 @@
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  @RunWith(MockitoJUnitRunner.<strong class="jxr_keyword">class</strong>)
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="RemoveDataManagerTest" href="../../../../../../com/hack23/cia/service/data/impl/RemoveDataManagerTest.html#RemoveDataManagerTest">RemoveDataManagerTest</a> <strong class="jxr_keyword">extends</strong> AbstractUnitTest {
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  	
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  	@Mock
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  	<strong class="jxr_keyword">private</strong> DataSource dataSource;
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  	@Mock
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  	<strong class="jxr_keyword">private</strong> Connection connection;
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  	
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  	@Mock
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">private</strong> Statement statement;
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  	@Mock
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  	<strong class="jxr_keyword">private</strong> PreparedStatement preparedStatement;
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  	
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">	 * Removes the person data test.</em>
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">	 * @throws SQLException </em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">	 * @throws SQLException</em>
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  	@Test
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> removePersonDataTest() <strong class="jxr_keyword">throws</strong> SQLException {		
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> removePersonDataTest() <strong class="jxr_keyword">throws</strong> SQLException {
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  		Mockito.when(dataSource.getConnection()).thenReturn(connection);
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		Mockito.when(connection.createStatement()).thenReturn(statement);		
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		Mockito.when(connection.createStatement()).thenReturn(statement);
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  		<strong class="jxr_keyword">new</strong> RemoveDataManagerImpl(dataSource).removePersonData();
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  		<strong class="jxr_keyword">final</strong> ArgumentCaptor&lt;String&gt; argCaptor = ArgumentCaptor.forClass(String.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  		Mockito.verify(statement,Mockito.times(5)).execute(argCaptor.capture());
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  	}
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">	 * Removes the committee proposals test.</em>
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">	 * @throws SQLException </em>
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">	 * @throws SQLException</em>
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  	@Test
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> removeCommitteeProposalsTest() <strong class="jxr_keyword">throws</strong> SQLException {
@@ -89,7 +89,7 @@
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment">	 * Removes the document status test.</em>
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_javadoccomment">	 * @throws SQLException </em>
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_javadoccomment">	 * @throws SQLException</em>
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  	@Test
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> removeDocumentStatusTest() <strong class="jxr_keyword">throws</strong> SQLException {
@@ -102,7 +102,7 @@
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">	 * Removes the documents test.</em>
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">	 * @throws SQLException </em>
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">	 * @throws SQLException</em>
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  	@Test
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> removeDocumentsTest() <strong class="jxr_keyword">throws</strong> SQLException {
@@ -115,7 +115,7 @@
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> 
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">	 * Removes the application history test.</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">	 * @throws SQLException </em>
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">	 * @throws SQLException</em>
 <a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 	@Test
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> removeApplicationHistoryTest() <strong class="jxr_keyword">throws</strong> SQLException {
@@ -136,7 +136,7 @@
 <a class="jxr_linenumber" name="L128" href="#L128">128</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> removeUserAccountApplicationHistoryTest() <strong class="jxr_keyword">throws</strong> SQLException {
 <a class="jxr_linenumber" name="L129" href="#L129">129</a> 		Mockito.when(dataSource.getConnection()).thenReturn(connection);
 <a class="jxr_linenumber" name="L130" href="#L130">130</a> 		<strong class="jxr_keyword">final</strong> ArgumentCaptor&lt;String&gt; sqlCaptor = ArgumentCaptor.forClass(String.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> 		Mockito.when(connection.prepareStatement(sqlCaptor.capture())).thenReturn(preparedStatement);		
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 		Mockito.when(connection.prepareStatement(sqlCaptor.capture())).thenReturn(preparedStatement);
 <a class="jxr_linenumber" name="L132" href="#L132">132</a> 		<strong class="jxr_keyword">new</strong> RemoveDataManagerImpl(dataSource).removeUserAccountApplicationHistory(<span class="jxr_string">"userid"</span>);
 <a class="jxr_linenumber" name="L133" href="#L133">133</a> 		Mockito.verify(preparedStatement,Mockito.never()).execute(ArgumentCaptor.forClass(String.<strong class="jxr_keyword">class</strong>).capture());
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> 	}
@@ -144,6 +144,6 @@
 <a class="jxr_linenumber" name="L136" href="#L136">136</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

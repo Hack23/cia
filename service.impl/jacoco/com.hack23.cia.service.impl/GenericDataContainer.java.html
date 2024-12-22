@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GenericDataContainer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl</a> &gt; <span class="el_source">GenericDataContainer.java</span></div><h1>GenericDataContainer.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GenericDataContainer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl</a> &gt; <span class="el_source">GenericDataContainer.java</span></div><h1>GenericDataContainer.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ DataContainer&lt;T, I&gt; {
 			final SingularAttribute&lt;T, ? extends Object&gt; property,
 			final Class&lt;V&gt; clazz2,
 			final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value) {
-<span class="fc" id="L66">		return dataProxy.findByQueryProperty(clazz, property, clazz2, property2, value);</span>
+<span class="nc" id="L66">		return dataProxy.findByQueryProperty(clazz, property, clazz2, property2, value);</span>
 	}
 
 	@Override
@@ -71,7 +71,7 @@ DataContainer&lt;T, I&gt; {
 			final SingularAttribute&lt;T, V&gt; property,
 			final Class&lt;V&gt; clazz2,
 			final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value) {
-<span class="fc" id="L74">		return dataProxy.findListByEmbeddedProperty(clazz, property, clazz2, property2, value);</span>
+<span class="nc" id="L74">		return dataProxy.findListByEmbeddedProperty(clazz, property, clazz2, property2, value);</span>
 	}
 
 
@@ -79,21 +79,21 @@ DataContainer&lt;T, I&gt; {
 	@Override
 	public final List&lt;T&gt; findListByProperty(final Object[] values,
 			final SingularAttribute&lt;T, ? extends Object&gt;... properties) {
-<span class="fc" id="L82">		return dataProxy.findListByProperty(clazz, values, properties);</span>
+<span class="nc" id="L82">		return dataProxy.findListByProperty(clazz, values, properties);</span>
 	}
 
 	@Override
 	public final &lt;T, V&gt; List&lt;T&gt; findOrderedByPropertyListByEmbeddedProperty(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, V&gt; property,
 			final Class&lt;V&gt; clazz2, final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value,
 			final SingularAttribute&lt;T, ? extends Object&gt; orderByProperty) {
-<span class="fc" id="L89">		return dataProxy.findOrderedByPropertyListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);</span>
+<span class="nc" id="L89">		return dataProxy.findOrderedByPropertyListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);</span>
 	}
 
 	@Override
 	public final &lt;T, V&gt; List&lt;T&gt; findOrderedListByEmbeddedProperty(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, V&gt; property,
 			final Class&lt;V&gt; clazz2, final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value,
 			final SingularAttribute&lt;V, ? extends Object&gt; orderByProperty) {
-<span class="fc" id="L96">		return dataProxy.findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);</span>
+<span class="nc" id="L96">		return dataProxy.findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);</span>
 	}
 
 	@Override
@@ -110,7 +110,7 @@ DataContainer&lt;T, I&gt; {
 
 	@Override
 	public final List&lt;T&gt; getAll() {
-<span class="fc" id="L113">		return dataProxy.getAll(clazz);</span>
+<span class="nc" id="L113">		return dataProxy.getAll(clazz);</span>
 	}
 
 	@Override
@@ -122,12 +122,12 @@ DataContainer&lt;T, I&gt; {
 
 	@Override
 	public final List&lt;T&gt; getAllOrderBy(final SingularAttribute&lt;T, ? extends Object&gt; property) {
-<span class="fc" id="L125">		return dataProxy.getAllOrderBy(clazz,property);</span>
+<span class="nc" id="L125">		return dataProxy.getAllOrderBy(clazz,property);</span>
 	}
 
 	@Override
 	public T load(final I id) {
-<span class="fc" id="L130">		return dataProxy.load(clazz, id);</span>
+<span class="nc" id="L130">		return dataProxy.load(clazz, id);</span>
 
 	}
 
@@ -138,13 +138,13 @@ DataContainer&lt;T, I&gt; {
 
 	@Override
 	public final List&lt;T&gt; getPageOrderBy(final int pageNr, final int resultPerPage, final SingularAttribute&lt;T, ? extends Object&gt; orderBy) {
-<span class="fc" id="L141">		return dataProxy.getPageOrderBy(clazz,pageNr, resultPerPage, orderBy);</span>
+<span class="nc" id="L141">		return dataProxy.getPageOrderBy(clazz,pageNr, resultPerPage, orderBy);</span>
 	}
 
 	@Override
 	public final Long getSize() {
-<span class="fc" id="L146">		return dataProxy.getSize(clazz);</span>
+<span class="nc" id="L146">		return dataProxy.getSize(clazz);</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

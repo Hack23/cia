@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RemoveDataManagerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">RemoveDataManagerImpl.java</span></div><h1>RemoveDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
- * 
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RemoveDataManagerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">RemoveDataManagerImpl.java</span></div><h1>RemoveDataManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
+ *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -45,71 +45,71 @@ final class RemoveDataManagerImpl implements RemoveDataManager {
 	 */
 	@Autowired
 	public RemoveDataManagerImpl(final DataSource dataSource) {
-<span class="nc" id="L48">		super();</span>
-<span class="nc" id="L49">		this.dataSource = dataSource;</span>
-<span class="nc" id="L50">	}</span>
-	
+<span class="fc" id="L48">		super();</span>
+<span class="fc" id="L49">		this.dataSource = dataSource;</span>
+<span class="fc" id="L50">	}</span>
+
 	@Override
 	public void removePersonData() {
-<span class="nc" id="L54">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
-<span class="nc" id="L55">		jdbcTemplate.execute(&quot;delete from PERSON_DATA&quot;);</span>
-<span class="nc" id="L56">		jdbcTemplate.execute(&quot;delete from DETAIL_DATA&quot;);</span>
-<span class="nc" id="L57">		jdbcTemplate.execute(&quot;delete from PERSON_DETAIL_DATA&quot;);</span>
-<span class="nc" id="L58">		jdbcTemplate.execute(&quot;delete from ASSIGNMENT_DATA&quot;);</span>
-<span class="nc" id="L59">		jdbcTemplate.execute(&quot;delete from PERSON_ASSIGNMENT_DATA&quot;);</span>
-<span class="nc" id="L60">	}</span>
+<span class="fc" id="L54">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
+<span class="fc" id="L55">		jdbcTemplate.execute(&quot;delete from PERSON_DATA&quot;);</span>
+<span class="fc" id="L56">		jdbcTemplate.execute(&quot;delete from DETAIL_DATA&quot;);</span>
+<span class="fc" id="L57">		jdbcTemplate.execute(&quot;delete from PERSON_DETAIL_DATA&quot;);</span>
+<span class="fc" id="L58">		jdbcTemplate.execute(&quot;delete from ASSIGNMENT_DATA&quot;);</span>
+<span class="fc" id="L59">		jdbcTemplate.execute(&quot;delete from PERSON_ASSIGNMENT_DATA&quot;);</span>
+<span class="fc" id="L60">	}</span>
 
 	@Override
 	public void removeDocuments() {
-<span class="nc" id="L64">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
-<span class="nc" id="L65">		jdbcTemplate.execute(&quot;delete from document_element&quot;);</span>
-<span class="nc" id="L66">		jdbcTemplate.execute(&quot;delete from document_content_data&quot;);</span>
-<span class="nc" id="L67">	}</span>
-	
+<span class="fc" id="L64">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
+<span class="fc" id="L65">		jdbcTemplate.execute(&quot;delete from document_element&quot;);</span>
+<span class="fc" id="L66">		jdbcTemplate.execute(&quot;delete from document_content_data&quot;);</span>
+<span class="fc" id="L67">	}</span>
+
 	@Override
 	public void removeDocumentStatus() {
-<span class="nc" id="L71">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
-<span class="nc" id="L72">		jdbcTemplate.execute(&quot;delete from document_activity_data&quot;);</span>
-<span class="nc" id="L73">		jdbcTemplate.execute(&quot;delete from document_activity_container&quot;);</span>
-<span class="nc" id="L74">		jdbcTemplate.execute(&quot;delete from document_person_reference_da_0&quot;);</span>
-<span class="nc" id="L75">		jdbcTemplate.execute(&quot;delete from document_person_reference_co_0&quot;);</span>
-<span class="nc" id="L76">		jdbcTemplate.execute(&quot;delete from document_attachment&quot;);</span>
-<span class="nc" id="L77">		jdbcTemplate.execute(&quot;delete from document_attachment_container&quot;);</span>
-<span class="nc" id="L78">		jdbcTemplate.execute(&quot;delete from document_reference_data&quot;);</span>
-<span class="nc" id="L79">		jdbcTemplate.execute(&quot;delete from document_reference_container&quot;);</span>
-<span class="nc" id="L80">		jdbcTemplate.execute(&quot;delete from document_proposal_container&quot;);</span>
-<span class="nc" id="L81">		jdbcTemplate.execute(&quot;delete from document_proposal_data&quot;);</span>
-<span class="nc" id="L82">		jdbcTemplate.execute(&quot;delete from document_detail_data&quot;);</span>
-<span class="nc" id="L83">		jdbcTemplate.execute(&quot;delete from document_detail_container&quot;);</span>
-<span class="nc" id="L84">		jdbcTemplate.execute(&quot;delete from document_data&quot;);</span>
-<span class="nc" id="L85">		jdbcTemplate.execute(&quot;delete from document_container_element&quot;);</span>
-<span class="nc" id="L86">		jdbcTemplate.execute(&quot;delete from document_status_container&quot;);	</span>
-<span class="nc" id="L87">	}</span>
+<span class="fc" id="L71">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
+<span class="fc" id="L72">		jdbcTemplate.execute(&quot;delete from document_activity_data&quot;);</span>
+<span class="fc" id="L73">		jdbcTemplate.execute(&quot;delete from document_activity_container&quot;);</span>
+<span class="fc" id="L74">		jdbcTemplate.execute(&quot;delete from document_person_reference_da_0&quot;);</span>
+<span class="fc" id="L75">		jdbcTemplate.execute(&quot;delete from document_person_reference_co_0&quot;);</span>
+<span class="fc" id="L76">		jdbcTemplate.execute(&quot;delete from document_attachment&quot;);</span>
+<span class="fc" id="L77">		jdbcTemplate.execute(&quot;delete from document_attachment_container&quot;);</span>
+<span class="fc" id="L78">		jdbcTemplate.execute(&quot;delete from document_reference_data&quot;);</span>
+<span class="fc" id="L79">		jdbcTemplate.execute(&quot;delete from document_reference_container&quot;);</span>
+<span class="fc" id="L80">		jdbcTemplate.execute(&quot;delete from document_proposal_container&quot;);</span>
+<span class="fc" id="L81">		jdbcTemplate.execute(&quot;delete from document_proposal_data&quot;);</span>
+<span class="fc" id="L82">		jdbcTemplate.execute(&quot;delete from document_detail_data&quot;);</span>
+<span class="fc" id="L83">		jdbcTemplate.execute(&quot;delete from document_detail_container&quot;);</span>
+<span class="fc" id="L84">		jdbcTemplate.execute(&quot;delete from document_data&quot;);</span>
+<span class="fc" id="L85">		jdbcTemplate.execute(&quot;delete from document_container_element&quot;);</span>
+<span class="fc" id="L86">		jdbcTemplate.execute(&quot;delete from document_status_container&quot;);</span>
+<span class="fc" id="L87">	}</span>
 
 	@Override
 	public void removeCommitteeProposals() {
-<span class="nc" id="L91">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
-<span class="nc" id="L92">		jdbcTemplate.execute(&quot;delete from committee_proposal_component_0&quot;);</span>
-<span class="nc" id="L93">		jdbcTemplate.execute(&quot;delete from committee_proposal_container&quot;);</span>
-<span class="nc" id="L94">		jdbcTemplate.execute(&quot;delete from committee_document_data&quot;);</span>
-<span class="nc" id="L95">		jdbcTemplate.execute(&quot;delete from against_proposal_container&quot;);</span>
-<span class="nc" id="L96">		jdbcTemplate.execute(&quot;delete from committee_proposal_data&quot;);</span>
-<span class="nc" id="L97">		jdbcTemplate.execute(&quot;delete from against_proposal_data&quot;);</span>
-<span class="nc" id="L98">	}	</span>
-	
+<span class="fc" id="L91">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
+<span class="fc" id="L92">		jdbcTemplate.execute(&quot;delete from committee_proposal_component_0&quot;);</span>
+<span class="fc" id="L93">		jdbcTemplate.execute(&quot;delete from committee_proposal_container&quot;);</span>
+<span class="fc" id="L94">		jdbcTemplate.execute(&quot;delete from committee_document_data&quot;);</span>
+<span class="fc" id="L95">		jdbcTemplate.execute(&quot;delete from against_proposal_container&quot;);</span>
+<span class="fc" id="L96">		jdbcTemplate.execute(&quot;delete from committee_proposal_data&quot;);</span>
+<span class="fc" id="L97">		jdbcTemplate.execute(&quot;delete from against_proposal_data&quot;);</span>
+<span class="fc" id="L98">	}</span>
+
 	@Override
 	public void removeApplicationHistory() {
-<span class="nc" id="L102">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
-<span class="nc" id="L103">		jdbcTemplate.execute(&quot;delete from application_action_event&quot;);</span>
-<span class="nc" id="L104">		jdbcTemplate.execute(&quot;delete from application_session&quot;);</span>
-<span class="nc" id="L105">	}</span>
+<span class="fc" id="L102">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
+<span class="fc" id="L103">		jdbcTemplate.execute(&quot;delete from application_action_event&quot;);</span>
+<span class="fc" id="L104">		jdbcTemplate.execute(&quot;delete from application_session&quot;);</span>
+<span class="fc" id="L105">	}</span>
 
 	@Override
 	public void removeUserAccountApplicationHistory(final String userId) {
-<span class="nc" id="L109">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);		</span>
-<span class="nc" id="L110">		jdbcTemplate.update(&quot;delete from application_action_event WHERE EVENTS_APPLICATION_SESSION_H_0 IN (SELECT hjid FROM application_session WHERE user_id = ?)&quot;, userId);</span>
-<span class="nc" id="L111">		jdbcTemplate.update(&quot;delete from application_session WHERE user_id = ?&quot;, userId);</span>
-<span class="nc" id="L112">	}	</span>
-		
+<span class="fc" id="L109">		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);</span>
+<span class="fc" id="L110">		jdbcTemplate.update(&quot;delete from application_action_event WHERE EVENTS_APPLICATION_SESSION_H_0 IN (SELECT hjid FROM application_session WHERE user_id = ?)&quot;, userId);</span>
+<span class="fc" id="L111">		jdbcTemplate.update(&quot;delete from application_session WHERE user_id = ?&quot;, userId);</span>
+<span class="fc" id="L112">	}</span>
+
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

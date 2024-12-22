@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>WorldbankCountryElementWorkConsumerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.worldbank.workers</a> &gt; <span class="el_source">WorldbankCountryElementWorkConsumerImpl.java</span></div><h1>WorldbankCountryElementWorkConsumerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>WorldbankCountryElementWorkConsumerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.worldbank.workers</a> &gt; <span class="el_source">WorldbankCountryElementWorkConsumerImpl.java</span></div><h1>WorldbankCountryElementWorkConsumerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -40,8 +40,8 @@ final class WorldbankCountryElementWorkConsumerImpl extends AbstractMessageListe
 MessageListener {
 
 	/** The Constant LOGGER. */
-<span class="nc" id="L43">	private static final Logger LOGGER = LoggerFactory</span>
-<span class="nc" id="L44">			.getLogger(WorldbankCountryElementWorkConsumerImpl.class);</span>
+<span class="fc" id="L43">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="fc" id="L44">			.getLogger(WorldbankCountryElementWorkConsumerImpl.class);</span>
 
 	/** The update service. */
 	private final WorldbankUpdateService updateService;
@@ -54,20 +54,20 @@ MessageListener {
 	 */
 	@Autowired
 	public WorldbankCountryElementWorkConsumerImpl(final WorldbankUpdateService updateService) {
-<span class="nc" id="L57">		super();</span>
-<span class="nc" id="L58">		this.updateService = updateService;</span>
-<span class="nc" id="L59">	}</span>
+<span class="fc" id="L57">		super();</span>
+<span class="fc" id="L58">		this.updateService = updateService;</span>
+<span class="fc" id="L59">	}</span>
 
 	@Override
 	public void onMessage(final Message message) {
 		try {
-<span class="nc" id="L64">			configureAuthentication();</span>
-<span class="nc" id="L65">			updateService.updateCountryElement((CountryElement)((ObjectMessage) message).getObject());</span>
-<span class="nc" id="L66">		} catch (final JMSException e) {</span>
-<span class="nc" id="L67">			LOGGER.warn(&quot;Error loading worldbank country:&quot; , e);</span>
+<span class="fc" id="L64">			configureAuthentication();</span>
+<span class="fc" id="L65">			updateService.updateCountryElement((CountryElement)((ObjectMessage) message).getObject());</span>
+<span class="fc" id="L66">		} catch (final JMSException e) {</span>
+<span class="fc" id="L67">			LOGGER.warn(&quot;Error loading worldbank country:&quot; , e);</span>
 		} finally {
-<span class="nc" id="L69">			clearAuthentication();			</span>
+<span class="fc" id="L69">			clearAuthentication();</span>
 		}
-<span class="nc" id="L71">	}</span>
+<span class="fc" id="L71">	}</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

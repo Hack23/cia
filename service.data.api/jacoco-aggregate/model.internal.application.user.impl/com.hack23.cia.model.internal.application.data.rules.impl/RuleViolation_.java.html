@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RuleViolation_.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.data.api</a> &gt; <a href="../index.html" class="el_bundle">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.rules.impl</a> &gt; <span class="el_source">RuleViolation_.java</span></div><h1>RuleViolation_.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.rules.impl;
+
+import java.util.Date;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@StaticMetamodel(RuleViolation.class)
+<span class="nc" id="L8">public abstract class RuleViolation_ {</span>
+
+	public static volatile SingularAttribute&lt;RuleViolation, Date&gt; detectedDate;
+	public static volatile SingularAttribute&lt;RuleViolation, String&gt; name;
+	public static volatile SingularAttribute&lt;RuleViolation, String&gt; ruleGroup;
+	public static volatile SingularAttribute&lt;RuleViolation, String&gt; ruleName;
+	public static volatile SingularAttribute&lt;RuleViolation, Long&gt; id;
+	public static volatile SingularAttribute&lt;RuleViolation, String&gt; positive;
+	public static volatile SingularAttribute&lt;RuleViolation, String&gt; referenceId;
+	public static volatile SingularAttribute&lt;RuleViolation, String&gt; ruleDescription;
+	public static volatile SingularAttribute&lt;RuleViolation, ResourceType&gt; resourceType;
+	public static volatile SingularAttribute&lt;RuleViolation, Status&gt; status;
+
+	public static final String DETECTED_DATE = &quot;detectedDate&quot;;
+	public static final String NAME = &quot;name&quot;;
+	public static final String RULE_GROUP = &quot;ruleGroup&quot;;
+	public static final String RULE_NAME = &quot;ruleName&quot;;
+	public static final String ID = &quot;id&quot;;
+	public static final String POSITIVE = &quot;positive&quot;;
+	public static final String REFERENCE_ID = &quot;referenceId&quot;;
+	public static final String RULE_DESCRIPTION = &quot;ruleDescription&quot;;
+	public static final String RESOURCE_TYPE = &quot;resourceType&quot;;
+	public static final String STATUS = &quot;status&quot;;
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

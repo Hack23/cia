@@ -4,9 +4,7 @@ com.hack23.cia.service.impl.action.application
 com.hack23.cia.service.impl.action.application.access
 com.hack23.cia.service.impl.action.application.encryption
 com.hack23.cia.service.impl.action.common
-com.hack23.cia.service.impl.action.kpi
 com.hack23.cia.service.impl.action.user
-com.hack23.cia.service.impl.action.user.wordcount
 com.hack23.cia.service.impl.email
 com.hack23.cia.service.impl.rules
 com.hack23.cia.service.impl.task

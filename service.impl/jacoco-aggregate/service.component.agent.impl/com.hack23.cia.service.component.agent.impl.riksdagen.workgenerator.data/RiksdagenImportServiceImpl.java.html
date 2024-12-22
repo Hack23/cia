@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenImportServiceImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data</a> &gt; <span class="el_source">RiksdagenImportServiceImpl.java</span></div><h1>RiksdagenImportServiceImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenImportServiceImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data</a> &gt; <span class="el_source">RiksdagenImportServiceImpl.java</span></div><h1>RiksdagenImportServiceImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ import com.hack23.cia.service.data.api.VoteDataDAO;
 final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 
 	/** The Constant LOGGER. */
-<span class="nc" id="L65">	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenImportServiceImpl.class);</span>
+<span class="fc" id="L65">	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenImportServiceImpl.class);</span>
 
 	/** The Constant RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT. */
 	private static final String RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT = &quot;yyyy-MM-dd&quot;;
@@ -98,8 +98,8 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	 * Instantiates a new riksdagen import service impl.
 	 */
 	public RiksdagenImportServiceImpl() {
-<span class="nc" id="L101">		super();</span>
-<span class="nc" id="L102">	}</span>
+<span class="fc" id="L101">		super();</span>
+<span class="fc" id="L102">	}</span>
 
 	/**
 	 * Creates the map from list.
@@ -109,12 +109,12 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	 * @return the map
 	 */
 	private static Map&lt;String, String&gt; createMapFromList(final List&lt;String&gt; all) {
-<span class="nc" id="L112">		final Map&lt;String, String&gt; map = new ConcurrentHashMap&lt;&gt;();</span>
+<span class="fc" id="L112">		final Map&lt;String, String&gt; map = new ConcurrentHashMap&lt;&gt;();</span>
 
-<span class="nc bnc" id="L114" title="All 2 branches missed.">		for (final String documentElement : all) {</span>
-<span class="nc" id="L115">			map.put(documentElement, documentElement);</span>
-<span class="nc" id="L116">		}</span>
-<span class="nc" id="L117">		return map;</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">		for (final String documentElement : all) {</span>
+<span class="fc" id="L115">			map.put(documentElement, documentElement);</span>
+<span class="fc" id="L116">		}</span>
+<span class="fc" id="L117">		return map;</span>
 	}
 
 	/**
@@ -125,65 +125,65 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	 * @return the map
 	 */
 	private static Map&lt;String, String&gt; createMapFromListVote(final List&lt;VoteDataEmbeddedId&gt; list) {
-<span class="nc" id="L128">		final Map&lt;String, String&gt; map = new ConcurrentHashMap&lt;&gt;();</span>
+<span class="fc" id="L128">		final Map&lt;String, String&gt; map = new ConcurrentHashMap&lt;&gt;();</span>
 
-<span class="nc bnc" id="L130" title="All 2 branches missed.">		for (final VoteDataEmbeddedId documentElement : list) {</span>
-<span class="nc" id="L131">			map.put(documentElement.getBallotId(), documentElement.getBallotId());</span>
-<span class="nc" id="L132">		}</span>
-<span class="nc" id="L133">		return map;</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">		for (final VoteDataEmbeddedId documentElement : list) {</span>
+<span class="fc" id="L131">			map.put(documentElement.getBallotId(), documentElement.getBallotId());</span>
+<span class="fc" id="L132">		}</span>
+<span class="fc" id="L133">		return map;</span>
 	}
 
 	@Override
 	public List&lt;String&gt; getAvaibleCommitteeProposal() {
-<span class="nc" id="L138">		return documentStatusContainerDAO.getAvaibleCommitteeProposal();</span>
+<span class="fc" id="L138">		return documentStatusContainerDAO.getAvaibleCommitteeProposal();</span>
 	}
 
 	@Override
 	public List&lt;DocumentStatusContainer&gt; getNoneCompletedDocumentStatusCommitteeReports() {
-<span class="nc" id="L143">		return documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,DocumentData.class,DocumentData_.documentType,&quot;bet&quot;);</span>
+<span class="fc" id="L143">		return documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document,DocumentData.class,DocumentData_.documentType,&quot;bet&quot;);</span>
 	}
 
 
 	@Override
 	public List&lt;String&gt; getAvaibleDocumentContent() {
-<span class="nc" id="L149">		return documentElementDAO.getAvaibleDocumentContent();</span>
+<span class="fc" id="L149">		return documentElementDAO.getAvaibleDocumentContent();</span>
 	}
 
 	@Override
 	public Map&lt;String, String&gt; getCommitteeProposalComponentDataMap() {
-<span class="nc" id="L154">		return createMapFromList(committeeProposalComponentDataDAO.getIdList());</span>
+<span class="fc" id="L154">		return createMapFromList(committeeProposalComponentDataDAO.getIdList());</span>
 	}
-	
+
 	@Override
 	public List&lt;CommitteeProposalComponentData&gt; getNoneCompletedCommitteeProposal() {
-<span class="nc" id="L159">		return committeeProposalComponentDataDAO.findListByEmbeddedProperty(CommitteeProposalComponentData_.document,CommitteeDocumentData.class,CommitteeDocumentData_.status,&quot;planerat&quot;);</span>
+<span class="fc" id="L159">		return committeeProposalComponentDataDAO.findListByEmbeddedProperty(CommitteeProposalComponentData_.document,CommitteeDocumentData.class,CommitteeDocumentData_.status,&quot;planerat&quot;);</span>
 	}
 
 
 	@Override
 	public Map&lt;String, String&gt; getDocumentContentMap() {
-<span class="nc" id="L165">		return createMapFromList(documentContentDataDAO.getIdList());</span>
+<span class="fc" id="L165">		return createMapFromList(documentContentDataDAO.getIdList());</span>
 	}
 
 	@Override
 	public Map&lt;String, String&gt; getDocumentElementMap(final Date after, final List&lt;DocumentType&gt; downloadType,
 			final boolean onlyWithDocStatus) {
-<span class="nc" id="L171">		final List&lt;DocumentElement&gt; all = documentElementDAO.getAll();</span>
+<span class="fc" id="L171">		final List&lt;DocumentElement&gt; all = documentElementDAO.getAll();</span>
 
-<span class="nc" id="L173">		final List&lt;String&gt; documentTypeValues = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L173">		final List&lt;String&gt; documentTypeValues = new ArrayList&lt;&gt;();</span>
 
-<span class="nc bnc" id="L175" title="All 2 branches missed.">		for (final DocumentType docType : downloadType) {</span>
-<span class="nc" id="L176">			documentTypeValues.add(docType.value());</span>
-<span class="nc" id="L177">		}</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">		for (final DocumentType docType : downloadType) {</span>
+<span class="fc" id="L176">			documentTypeValues.add(docType.value());</span>
+<span class="fc" id="L177">		}</span>
 
-<span class="nc" id="L179">		final Map&lt;String, String&gt; map = new ConcurrentHashMap&lt;&gt;();</span>
+<span class="fc" id="L179">		final Map&lt;String, String&gt; map = new ConcurrentHashMap&lt;&gt;();</span>
 
-<span class="nc bnc" id="L181" title="All 2 branches missed.">		for (final DocumentElement documentElement : all) {</span>
-<span class="nc bnc" id="L182" title="All 4 branches missed.">			if (checkIncludeDate(after, documentTypeValues, documentElement) &amp;&amp; checkIncludeStatus(onlyWithDocStatus, documentElement)) {</span>
-<span class="nc" id="L183">				map.put(documentElement.getId(), documentElement.getDocumentType());</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">		for (final DocumentElement documentElement : all) {</span>
+<span class="pc bpc" id="L182" title="1 of 4 branches missed.">			if (checkIncludeDate(after, documentTypeValues, documentElement) &amp;&amp; checkIncludeStatus(onlyWithDocStatus, documentElement)) {</span>
+<span class="fc" id="L183">				map.put(documentElement.getId(), documentElement.getDocumentType());</span>
 			}
-<span class="nc" id="L185">		}</span>
-<span class="nc" id="L186">		return map;</span>
+<span class="fc" id="L185">		}</span>
+<span class="fc" id="L186">		return map;</span>
 	}
 
 	/**
@@ -196,7 +196,7 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	 * @return true, if successful
 	 */
 	private static boolean checkIncludeStatus(final boolean onlyWithDocStatus, final DocumentElement documentElement) {
-<span class="nc bnc" id="L199" title="All 4 branches missed.">		return !onlyWithDocStatus || documentElement.getDocumentStatusUrlXml() != null;</span>
+<span class="pc bpc" id="L199" title="3 of 4 branches missed.">		return !onlyWithDocStatus || documentElement.getDocumentStatusUrlXml() != null;</span>
 	}
 
 	/**
@@ -213,13 +213,13 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	private static boolean checkIncludeDate(final Date after, final List&lt;String&gt; documentTypeValues,
 			final DocumentElement documentElement) {
 		try {
-<span class="nc bnc" id="L216" title="All 4 branches missed.">			if (documentElement.getMadePublicDate() != null &amp;&amp; documentElement.getMadePublicDate().length() &gt; 0) {</span>
-<span class="nc bnc" id="L217" title="All 2 branches missed.">				return getDate(documentElement.getMadePublicDate()).after(after)</span>
-<span class="nc bnc" id="L218" title="All 2 branches missed.">						&amp;&amp; documentTypeValues.contains(documentElement.getDocumentType());</span>
+<span class="pc bpc" id="L216" title="1 of 4 branches missed.">			if (documentElement.getMadePublicDate() != null &amp;&amp; documentElement.getMadePublicDate().length() &gt; 0) {</span>
+<span class="fc bfc" id="L217" title="All 2 branches covered.">				return getDate(documentElement.getMadePublicDate()).after(after)</span>
+<span class="fc bfc" id="L218" title="All 2 branches covered.">						&amp;&amp; documentTypeValues.contains(documentElement.getDocumentType());</span>
 			} else {
-<span class="nc bnc" id="L220" title="All 2 branches missed.">				return getDate(documentElement.getCreatedDate()).after(after)</span>
-<span class="nc bnc" id="L221" title="All 2 branches missed.">						&amp;&amp; documentTypeValues.contains(documentElement.getDocumentType());				</span>
-			}			
+<span class="fc bfc" id="L220" title="All 2 branches covered.">				return getDate(documentElement.getCreatedDate()).after(after)</span>
+<span class="pc bpc" id="L221" title="1 of 2 branches missed.">						&amp;&amp; documentTypeValues.contains(documentElement.getDocumentType());</span>
+			}
 <span class="nc" id="L223">		} catch (final ParseException e) {</span>
 <span class="nc" id="L224">			LOGGER.warn(&quot;Problem getting date from{} : exception:{}&quot;, documentElement, e);</span>
 <span class="nc" id="L225">			return false;</span>
@@ -236,34 +236,34 @@ final class RiksdagenImportServiceImpl implements RiksdagenImportService {
 	 *             the parse exception
 	 */
 	private static Date getDate(final String date) throws ParseException {
-<span class="nc bnc" id="L239" title="All 2 branches missed.">		if (RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT.length() &gt; date.length()) {</span>
+<span class="pc bpc" id="L239" title="1 of 2 branches missed.">		if (RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT.length() &gt; date.length()) {</span>
 <span class="nc" id="L240">			return new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_TIME_FORMAT, Locale.ENGLISH).parse(date);</span>
 		} else {
-<span class="nc" id="L242">			return new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT, Locale.ENGLISH).parse(date);</span>
+<span class="fc" id="L242">			return new SimpleDateFormat(RIKSDAGEN_JAVA_SIMPLE_DATE_FORMAT, Locale.ENGLISH).parse(date);</span>
 		}
 	}
 
 	@Override
 	public Map&lt;String, String&gt; getDocumentStatusContainerMap() {
-<span class="nc" id="L248">		return createMapFromList(documentStatusContainerDAO.getIdList());</span>
+<span class="fc" id="L248">		return createMapFromList(documentStatusContainerDAO.getIdList());</span>
 	}
 
 	@Override
 	public Map&lt;String, String&gt; getLoadedBallotIdMap() {
-<span class="nc" id="L253">		return createMapFromListVote(voteDataDAO.getBallotIdList());</span>
+<span class="fc" id="L253">		return createMapFromListVote(voteDataDAO.getBallotIdList());</span>
 	}
 
 	@Override
 	public int getStartYearForDocumentElement() {
-<span class="nc" id="L258">		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService</span>
-<span class="nc" id="L259">				.checkValueOrLoadDefault(&quot;Load Riksdagen documents from year&quot;, &quot;Load Riksdagen documents from year&quot;,</span>
-<span class="nc" id="L260">						ConfigurationGroup.AGENT, RiksdagenImportService.class.getSimpleName(),</span>
+<span class="fc" id="L258">		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService</span>
+<span class="fc" id="L259">				.checkValueOrLoadDefault(&quot;Load Riksdagen documents from year&quot;, &quot;Load Riksdagen documents from year&quot;,</span>
+<span class="fc" id="L260">						ConfigurationGroup.AGENT, RiksdagenImportService.class.getSimpleName(),</span>
 						&quot;Riksdagen Import Service&quot;, &quot;Responsible import Riksdagen data&quot;,
 						&quot;agent.riksdagen.documents.loadfromyear&quot;, &quot;2000&quot;);
 
-<span class="nc" id="L264">		return documentElementDAO</span>
-<span class="nc" id="L265">				.getMissingDocumentStartFromYear(Integer.parseInt(registeredUsersGetAdminConfig.getPropertyValue()));</span>
+<span class="fc" id="L264">		return documentElementDAO</span>
+<span class="fc" id="L265">				.getMissingDocumentStartFromYear(Integer.parseInt(registeredUsersGetAdminConfig.getPropertyValue()));</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

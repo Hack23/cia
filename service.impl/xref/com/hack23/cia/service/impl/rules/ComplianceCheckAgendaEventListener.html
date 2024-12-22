@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>ComplianceCheckAgendaEventListener xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
@@ -7,8 +7,8 @@
 <body>
 <div id="overview"><a href="../../../../../../../apidocs/com/hack23/cia/service/impl/rules/ComplianceCheckAgendaEventListener.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2024 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
@@ -54,13 +54,13 @@
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  	@Override
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> afterMatchFired(<strong class="jxr_keyword">final</strong> AfterMatchFiredEvent event) {
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  		<strong class="jxr_keyword">super</strong>.afterMatchFired(event);
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		<strong class="jxr_keyword">final</strong> <a name="AbstractComplianceCheckImpl"<a name="AbstractComplianceCheckImpl" href="../../../../../../com/hack23/cia/service/impl/rules/AbstractComplianceCheckImpl.html#AbstractComplianceCheckImpl">AbstractComplianceCheckImpl</a>m/hack23/cia/service/impl/rules/AbstractComplianceCheckImpl.html#AbstractComplianceCheckImpl">AbstractComplianceCheckImpl</a> check = (<a name="AbstractComplianceCheckImpl" href="../../../../../../com/hack23/cia/service/impl/rules/AbstractComplianceCheckImpl.html#AbstractComplianceCheckImpl">AbstractComplianceCheckImpl</a>) ((DefaultFactHandle) event.getMatch()
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		<strong class="jxr_keyword">final</strong> <a name="AbstractComplianceCheckImpl" href="../../../../../../com/hack23/cia/service/impl/rules/AbstractComplianceCheckImpl.html#AbstractComplianceCheckImpl">AbstractComplianceCheckImpl</a> check = (<a name="AbstractComplianceCheckImpl" href="../../../../../../com/hack23/cia/service/impl/rules/AbstractComplianceCheckImpl.html#AbstractComplianceCheckImpl">AbstractComplianceCheckImpl</a>) ((DefaultFactHandle) event.getMatch()
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  				.getFactHandles().stream().findFirst().orElse(<strong class="jxr_keyword">null</strong>)).getObject();
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  		complianceChecks.put(check.getId(), check);
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  	}
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

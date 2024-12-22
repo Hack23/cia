@@ -2,9 +2,9 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 service.data.impl,com.hack23.cia.service.data.impl.util,SecretPGXADataSource,0,27,0,0,0,5,0,3,0,3
 service.data.impl,com.hack23.cia.service.data.impl.util,SecretPGXADataSourceFactory,0,18,0,0,0,3,0,3,0,3
 service.data.impl,com.hack23.cia.service.data.impl.util,LoadHelper,2,20,1,3,1,7,1,3,0,2
-service.data.impl,com.hack23.cia.service.data.impl.util,SecretData,0,60,0,0,0,23,0,16,0,16
-service.data.impl,com.hack23.cia.service.data.impl.util,SecretCredentialsManagerImpl,8,89,0,4,1,18,1,7,1,5
+service.data.impl,com.hack23.cia.service.data.impl.util,SecretData,50,17,0,0,18,8,13,5,13,5
 service.data.impl,com.hack23.cia.service.data.impl.util,SecretPGXADataSource.SecretReference,0,12,0,0,0,4,0,2,0,2
+service.data.impl,com.hack23.cia.service.data.impl.util,SecretCredentialsManagerImpl,4,89,0,4,1,18,1,7,1,5
 service.data.impl,com.hack23.cia.service.data.impl,DataDAOImpl,0,91,1,3,0,17,1,3,0,2
 service.data.impl,com.hack23.cia.service.data.impl,SearchIndexerImpl,0,11,0,0,0,4,0,2,0,2
 service.data.impl,com.hack23.cia.service.data.impl,ApplicationConfigurationDAOImpl,0,4,0,0,0,2,0,1,0,1
@@ -14,28 +14,29 @@ service.data.impl,com.hack23.cia.service.data.impl,UserDAOImpl,0,4,0,0,0,2,0,1,0
 service.data.impl,com.hack23.cia.service.data.impl,RemoveDataManagerImpl,0,158,0,0,0,47,0,7,0,7
 service.data.impl,com.hack23.cia.service.data.impl,AgencyDAOImpl,0,4,0,0,0,2,0,1,0,1
 service.data.impl,com.hack23.cia.service.data.impl,EncryptedValueDAOImpl,0,4,0,0,0,2,0,1,0,1
+service.data.impl,com.hack23.cia.service.data.impl,RuleViolationDAOImpl,0,4,0,0,0,2,0,1,0,1
 service.data.impl,com.hack23.cia.service.data.impl,IndicatorElementDAOImpl,0,4,0,0,0,2,0,1,0,1
 service.data.impl,com.hack23.cia.service.data.impl,CountryElementDAOImpl,0,4,0,0,0,2,0,1,0,1
-service.data.impl,com.hack23.cia.service.data.impl,AbstractGenericDAOImpl,17,532,3,15,2,106,4,33,1,27
-service.data.impl,com.hack23.cia.service.data.impl,AuditableAspectConfiguration.new CommitPropertiesProvider() {...},0,17,0,0,0,4,0,2,0,2
-service.data.impl,com.hack23.cia.service.data.impl,DocumentElementDAOImpl,2,152,2,4,1,31,2,7,0,6
-service.data.impl,com.hack23.cia.service.data.impl,DataViewerImpl,0,556,4,24,0,121,4,29,0,19
+service.data.impl,com.hack23.cia.service.data.impl,AbstractGenericDAOImpl,208,434,11,11,41,87,15,26,8,22
 service.data.impl,com.hack23.cia.service.data.impl,ApplicationActionEventDAOImpl,0,4,0,0,0,2,0,1,0,1
-service.data.impl,com.hack23.cia.service.data.impl,CommitteeProposalComponentDataDAOImpl,0,73,0,2,0,18,0,4,0,3
+service.data.impl,com.hack23.cia.service.data.impl,AuditableAspectConfiguration.new CommitPropertiesProvider() {...},11,3,0,0,3,1,1,1,1,1
+service.data.impl,com.hack23.cia.service.data.impl,DocumentElementDAOImpl,2,152,2,4,1,31,2,7,0,6
+service.data.impl,com.hack23.cia.service.data.impl,DataViewerImpl,39,521,9,19,6,115,9,24,1,18
+service.data.impl,com.hack23.cia.service.data.impl,CommitteeProposalComponentDataDAOImpl,2,70,1,1,0,18,1,3,0,3
+service.data.impl,com.hack23.cia.service.data.impl,LanguageContentDataDAOImpl,0,86,0,2,0,20,0,3,0,2
 service.data.impl,com.hack23.cia.service.data.impl,AuditableAspectConfiguration.new ConnectionProvider() {...},0,16,0,0,0,3,0,2,0,2
-service.data.impl,com.hack23.cia.service.data.impl,LanguageContentDataDAOImpl,0,87,0,2,0,20,0,3,0,2
 service.data.impl,com.hack23.cia.service.data.impl,SwedenPoliticalPartyDAOImpl,0,8,0,0,0,3,0,2,0,2
-service.data.impl,com.hack23.cia.service.data.impl,QueryHelper,0,27,0,2,0,6,0,2,0,1
+service.data.impl,com.hack23.cia.service.data.impl,QueryHelper,0,29,0,2,0,6,0,2,0,1
 service.data.impl,com.hack23.cia.service.data.impl,VoteDataDAOImpl,0,48,0,0,0,10,0,3,0,3
-service.data.impl,com.hack23.cia.service.data.impl,AuditableAspectConfiguration,0,54,1,3,0,15,1,7,0,6
+service.data.impl,com.hack23.cia.service.data.impl,AuditableAspectConfiguration,5,49,2,2,1,14,2,6,0,6
 service.data.impl,com.hack23.cia.service.data.impl,ApplicationSessionDAOImpl,0,4,0,0,0,2,0,1,0,1
 service.data.impl,com.hack23.cia.service.data.impl,LanguageDataDAOImpl,0,4,0,0,0,2,0,1,0,1
-service.data.impl,com.hack23.cia.service.data.impl,ApplicationConfigurationServiceImpl,0,87,0,2,0,18,0,3,0,2
+service.data.impl,com.hack23.cia.service.data.impl,ApplicationConfigurationServiceImpl,44,43,1,1,13,5,1,2,0,2
 service.data.impl,com.hack23.cia.service.data.impl,ViewRiksdagenMinistryDAOImpl,0,8,0,0,0,3,0,2,0,2
-service.data.impl,com.hack23.cia.service.data.impl,ViewDataManagerImpl,0,124,0,0,0,42,0,2,0,2
 service.data.impl,com.hack23.cia.service.data.impl,LanguageContentServiceImpl,0,40,0,2,0,8,0,3,0,2
-service.data.impl,com.hack23.cia.service.data.impl,DocumentStatusContainerDAOImpl,0,93,0,0,0,21,0,4,0,4
+service.data.impl,com.hack23.cia.service.data.impl,ViewDataManagerImpl,0,124,0,0,0,42,0,2,0,2
+service.data.impl,com.hack23.cia.service.data.impl,DocumentStatusContainerDAOImpl,0,92,0,0,0,21,0,4,0,4
 service.data.impl,com.hack23.cia.service.data.impl,ViewRiksdagenCommitteeDAOImpl,0,25,0,0,0,8,0,2,0,2
 service.data.impl,com.hack23.cia.service.data.impl,DataSearchMapping,0,9,0,0,0,3,0,2,0,2
-service.data.impl,com.hack23.cia.service.data.impl,DocumentContentDataDAOImpl,0,52,0,2,0,14,0,4,0,3
-service.data.impl,com.hack23.cia.service.data.impl,DataSearchAnalysisConfigurer,0,39,0,0,0,9,0,2,0,2
+service.data.impl,com.hack23.cia.service.data.impl,DocumentContentDataDAOImpl,2,49,1,1,0,14,1,3,0,3
+service.data.impl,com.hack23.cia.service.data.impl,DataSearchAnalysisConfigurer,0,43,0,0,0,11,0,2,0,2

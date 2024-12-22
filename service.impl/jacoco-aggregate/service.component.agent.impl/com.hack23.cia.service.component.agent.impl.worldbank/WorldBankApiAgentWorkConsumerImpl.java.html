@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>WorldBankApiAgentWorkConsumerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.worldbank</a> &gt; <span class="el_source">WorldBankApiAgentWorkConsumerImpl.java</span></div><h1>WorldBankApiAgentWorkConsumerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>WorldBankApiAgentWorkConsumerImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.component.agent.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.component.agent.impl.worldbank</a> &gt; <span class="el_source">WorldBankApiAgentWorkConsumerImpl.java</span></div><h1>WorldBankApiAgentWorkConsumerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ import com.hack23.cia.service.component.agent.impl.worldbank.workgenerator.World
 final class WorldBankApiAgentWorkConsumerImpl extends AbstractMessageListener implements MessageListener {
 
 	/** The Constant LOGGER. */
-<span class="nc" id="L45">	private static final Logger LOGGER = LoggerFactory.getLogger(WorldBankApiAgentWorkConsumerImpl.class);</span>
+<span class="fc" id="L45">	private static final Logger LOGGER = LoggerFactory.getLogger(WorldBankApiAgentWorkConsumerImpl.class);</span>
 
 	/** The beans of type. */
 	private final Map&lt;String, WorldBankDataSourcesWorkGenerator&gt; beansOfType;
@@ -54,30 +54,30 @@ final class WorldBankApiAgentWorkConsumerImpl extends AbstractMessageListener im
 	 *            the context
 	 */
 	public WorldBankApiAgentWorkConsumerImpl(final ApplicationContext context) {
-<span class="nc" id="L57">		super();</span>
-<span class="nc" id="L58">		beansOfType = context.getBeansOfType(WorldBankDataSourcesWorkGenerator.class);</span>
-<span class="nc" id="L59">	}</span>
+<span class="fc" id="L57">		super();</span>
+<span class="fc" id="L58">		beansOfType = context.getBeansOfType(WorldBankDataSourcesWorkGenerator.class);</span>
+<span class="fc" id="L59">	}</span>
 
 	@Override
 	public void onMessage(final Message message) {
 		try {
-<span class="nc" id="L64">			configureAuthentication();</span>
-<span class="nc" id="L65">			final ObjectMessage msg = (ObjectMessage) message;</span>
-<span class="nc" id="L66">			LOGGER.info(&quot;Consumed message:{}&quot;, msg.getObject());</span>
-<span class="nc" id="L67">			final WorldBankDataSources dataSource = (WorldBankDataSources) msg.getObject();</span>
-<span class="nc" id="L68">			final Collection&lt;WorldBankDataSourcesWorkGenerator&gt; values = beansOfType.values();</span>
+<span class="fc" id="L64">			configureAuthentication();</span>
+<span class="fc" id="L65">			final ObjectMessage msg = (ObjectMessage) message;</span>
+<span class="fc" id="L66">			LOGGER.info(&quot;Consumed message:{}&quot;, msg.getObject());</span>
+<span class="fc" id="L67">			final WorldBankDataSources dataSource = (WorldBankDataSources) msg.getObject();</span>
+<span class="fc" id="L68">			final Collection&lt;WorldBankDataSourcesWorkGenerator&gt; values = beansOfType.values();</span>
 
-<span class="nc bnc" id="L70" title="All 2 branches missed.">			for (final WorldBankDataSourcesWorkGenerator worldBankDataSourcesWorkGenerator : values) {</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">				if (worldBankDataSourcesWorkGenerator.matches(dataSource)) {</span>
-<span class="nc" id="L72">					worldBankDataSourcesWorkGenerator.generateWorkOrders();</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">			for (final WorldBankDataSourcesWorkGenerator worldBankDataSourcesWorkGenerator : values) {</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">				if (worldBankDataSourcesWorkGenerator.matches(dataSource)) {</span>
+<span class="fc" id="L72">					worldBankDataSourcesWorkGenerator.generateWorkOrders();</span>
 				}
-<span class="nc" id="L74">			}</span>
-<span class="nc" id="L75">		} catch (final JMSException exception) {</span>
-<span class="nc" id="L76">			LOGGER.warn(&quot;jms&quot;, exception);</span>
+<span class="fc" id="L74">			}</span>
+<span class="fc" id="L75">		} catch (final JMSException exception) {</span>
+<span class="fc" id="L76">			LOGGER.warn(&quot;jms&quot;, exception);</span>
 		} finally {
-<span class="nc" id="L78">			clearAuthentication();</span>
+<span class="fc" id="L78">			clearAuthentication();</span>
 		}
-<span class="nc" id="L80">	}</span>
+<span class="fc" id="L80">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

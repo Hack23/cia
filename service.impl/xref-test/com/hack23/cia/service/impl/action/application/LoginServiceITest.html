@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>LoginServiceITest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../testapidocs/com/hack23/cia/service/impl/action/application/LoginServiceITest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2024 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -60,7 +60,7 @@
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  	@Autowired
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<strong class="jxr_keyword">private</strong> VaultManager vaultManager;
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">	 * Service login request success test.</em>
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">	 *</em>
@@ -130,7 +130,7 @@
 <a class="jxr_linenumber" name="L122" href="#L122">122</a> 		<strong class="jxr_keyword">final</strong> ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> 
 <a class="jxr_linenumber" name="L124" href="#L124">124</a> 		assertNotNull(EXPECT_A_RESULT, setGoogleAuthenticatorCredentialResponse);
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());		
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());
 <a class="jxr_linenumber" name="L126" href="#L126">126</a> 
 <a class="jxr_linenumber" name="L127" href="#L127">127</a> 		<strong class="jxr_keyword">final</strong> LoginRequest loginRequest = <strong class="jxr_keyword">new</strong> LoginRequest();
 <a class="jxr_linenumber" name="L128" href="#L128">128</a> 		loginRequest.setEmail(serviceRequest.getEmail());
@@ -171,23 +171,23 @@
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 		<strong class="jxr_keyword">final</strong> ServiceResponse setGoogleAuthenticatorCredentialResponse = applicationManager.service(setGoogleAuthenticatorCredentialRequest);
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> 
 <a class="jxr_linenumber" name="L165" href="#L165">165</a> 		assertNotNull(EXPECT_A_RESULT, setGoogleAuthenticatorCredentialResponse);
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());		
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, setGoogleAuthenticatorCredentialResponse.getResult());
 <a class="jxr_linenumber" name="L167" href="#L167">167</a> 
 <a class="jxr_linenumber" name="L168" href="#L168">168</a> 		<strong class="jxr_keyword">final</strong> GoogleAuthenticator gAuth = <strong class="jxr_keyword">new</strong> GoogleAuthenticator();
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> 				
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> 
 <a class="jxr_linenumber" name="L170" href="#L170">170</a> 		<strong class="jxr_keyword">final</strong> LoginRequest loginRequest = <strong class="jxr_keyword">new</strong> LoginRequest();
 <a class="jxr_linenumber" name="L171" href="#L171">171</a> 		loginRequest.setEmail(serviceRequest.getEmail());
 <a class="jxr_linenumber" name="L172" href="#L172">172</a> 		loginRequest.setSessionId(serviceRequest.getSessionId());
 <a class="jxr_linenumber" name="L173" href="#L173">173</a> 		loginRequest.setUserpassword(serviceRequest.getUserpassword());
 <a class="jxr_linenumber" name="L174" href="#L174">174</a> 		loginRequest.setOtpCode(<span class="jxr_string">""</span>+ gAuth.getTotpPassword(vaultManager.getEncryptedValue(serviceRequest.getUserpassword(), allBy.get(0))));
-<a class="jxr_linenumber" name="L175" href="#L175">175</a> 		
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> 
 <a class="jxr_linenumber" name="L176" href="#L176">176</a> 		<strong class="jxr_keyword">final</strong> LoginResponse loginResponse = (LoginResponse) applicationManager.service(loginRequest);
 <a class="jxr_linenumber" name="L177" href="#L177">177</a> 
 <a class="jxr_linenumber" name="L178" href="#L178">178</a> 		assertNotNull(<span class="jxr_string">"Expect a result"</span>, loginResponse);
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 		assertEquals(EXPECT_SUCCESS,ServiceResult.SUCCESS, loginResponse.getResult());
 <a class="jxr_linenumber" name="L180" href="#L180">180</a> 	}
 <a class="jxr_linenumber" name="L181" href="#L181">181</a> 
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 	
+<a class="jxr_linenumber" name="L182" href="#L182">182</a> 
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> <em class="jxr_javadoccomment">	 * Service login request user password do not match failure test.</em>
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> <em class="jxr_javadoccomment">	 *</em>
@@ -366,6 +366,6 @@
 <a class="jxr_linenumber" name="L358" href="#L358">358</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

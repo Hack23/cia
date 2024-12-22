@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataViewerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">DataViewerImpl.java</span></div><h1>DataViewerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataViewerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">DataViewerImpl.java</span></div><h1>DataViewerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -85,9 +85,9 @@ final class DataViewerImpl implements DataViewer {
 <span class="fc" id="L85">		final Root&lt;V&gt; root = criteriaQuery.from(clazz2);</span>
 <span class="fc" id="L86">		criteriaQuery.select(root);</span>
 
-<span class="fc bfc" id="L88" title="All 2 branches covered.">		if (value instanceof String) {</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">		if (value instanceof String strValue) {</span>
 <span class="fc" id="L89">			final Expression&lt;String&gt; propertyObject = (Expression&lt;String&gt;) root.get(property2);</span>
-<span class="fc" id="L90">			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));</span>
+<span class="fc" id="L90">			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), strValue.toUpperCase(Locale.ENGLISH));</span>
 <span class="fc" id="L91">			criteriaQuery.where(condition);</span>
 <span class="fc" id="L92">		} else {</span>
 <span class="fc" id="L93">			final Predicate condition = criteriaBuilder.equal(root.get(property2), value);</span>
@@ -102,10 +102,10 @@ final class DataViewerImpl implements DataViewer {
 
 <span class="fc" id="L103">		final List&lt;V&gt; resultList = typedQuery.getResultList();</span>
 
-<span class="fc bfc" id="L105" title="All 2 branches covered.">		if (!resultList.isEmpty()) {</span>
-<span class="fc" id="L106">			final List&lt;T&gt; findListByProperty = findListByProperty(clazz,property,resultList.get(0));</span>
-<span class="pc bpc" id="L107" title="1 of 2 branches missed.">			if (!findListByProperty.isEmpty()) {</span>
-<span class="fc" id="L108">				return LoadHelper.recursiveInitialize(findListByProperty.get(0));</span>
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">		if (!resultList.isEmpty()) {</span>
+<span class="nc" id="L106">			final List&lt;T&gt; findListByProperty = findListByProperty(clazz,property,resultList.get(0));</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">			if (!findListByProperty.isEmpty()) {</span>
+<span class="nc" id="L108">				return LoadHelper.recursiveInitialize(findListByProperty.get(0));</span>
 			}
 		}
 
@@ -118,8 +118,8 @@ final class DataViewerImpl implements DataViewer {
 			final SingularAttribute&lt;T, ? extends Object&gt; property, final Object value) {
 <span class="fc" id="L119">		final List&lt;T&gt; resultList = findListByProperty(clazz,property,value);</span>
 
-<span class="fc bfc" id="L121" title="All 2 branches covered.">		if (resultList.isEmpty()) {</span>
-<span class="fc" id="L122">			return null;</span>
+<span class="pc bpc" id="L121" title="1 of 2 branches missed.">		if (resultList.isEmpty()) {</span>
+<span class="nc" id="L122">			return null;</span>
 		} else {
 <span class="fc" id="L124">			return LoadHelper.recursiveInitialize(resultList.get(0));</span>
 		}
@@ -138,7 +138,7 @@ final class DataViewerImpl implements DataViewer {
 	public &lt;T&gt; List&lt;T&gt; findListByProperty(final Class&lt;T&gt; clazz, final Object[] values,
 			final SingularAttribute&lt;T, ? extends Object&gt;... properties) {
 
-<span class="fc" id="L141">		return findOrderedListByProperty(clazz,null,values,properties);</span>
+<span class="nc" id="L141">		return findOrderedListByProperty(clazz,null,values,properties);</span>
 	}
 
 
@@ -220,13 +220,13 @@ final class DataViewerImpl implements DataViewer {
 <span class="fc" id="L220">		final Root&lt;T&gt; root = criteriaQuery.from(clazz);</span>
 <span class="fc" id="L221">		criteriaQuery.select(root);</span>
 
-<span class="fc bfc" id="L223" title="All 2 branches covered.">		if (orderByProperty != null) {</span>
-<span class="fc" id="L224">			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));</span>
+<span class="pc bpc" id="L223" title="1 of 2 branches missed.">		if (orderByProperty != null) {</span>
+<span class="nc" id="L224">			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));</span>
 		}
 
-<span class="fc bfc" id="L227" title="All 2 branches covered.">		if (value instanceof String) {</span>
+<span class="fc bfc" id="L227" title="All 2 branches covered.">		if (value instanceof String strValue) {</span>
 <span class="fc" id="L228">			final Expression&lt;String&gt; propertyObject = (Expression&lt;String&gt;) root.get(property);</span>
-<span class="fc" id="L229">			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject), ((String) value).toUpperCase(Locale.ENGLISH));</span>
+<span class="fc" id="L229">			final Predicate condition = criteriaBuilder.equal(criteriaBuilder.upper(propertyObject),strValue.toUpperCase(Locale.ENGLISH));</span>
 <span class="fc" id="L230">			criteriaQuery.where(condition);</span>
 
 <span class="fc" id="L232">		} else {</span>
@@ -250,7 +250,7 @@ final class DataViewerImpl implements DataViewer {
 <span class="fc" id="L250">		final Root&lt;T&gt; root = criteriaQuery.from(clazz);</span>
 <span class="fc" id="L251">		criteriaQuery.select(root);</span>
 
-<span class="fc bfc" id="L253" title="All 2 branches covered.">		if (orderByProperty != null) {</span>
+<span class="pc bpc" id="L253" title="1 of 2 branches missed.">		if (orderByProperty != null) {</span>
 <span class="fc" id="L254">			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));</span>
 		}
 
@@ -349,4 +349,4 @@ final class DataViewerImpl implements DataViewer {
 
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

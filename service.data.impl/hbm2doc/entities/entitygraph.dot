@@ -85,10 +85,16 @@ digraph EntityGraph {
      
      
   /* Node com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician */
-  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_politician_dot_impl_dot_ViewRiksdagenPolitician [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.politician\.impl\.ViewRiksdagenPolitician| active\l activeCommittee\l activeEu\l activeGovernment\l activeParliament\l activeParty\l activeSpeaker\l bornYear\l currentAssignments\l currentCommitteeAssignments\l currentMinistryAssignments\l currentPartyAssignments\l currentSpeakerAssignments\l firstAssignmentDate\l firstName\l gender\l lastAssignmentDate\l lastName\l party\l totalAssignments\l totalCommitteeAssignments\l totalDaysServed\l totalDaysServedCommittee\l totalDaysServedEu\l totalDaysServedGovernment\l totalDaysServedParliament\l totalDaysServedParty\l totalDaysServedSpeaker\l totalMinistryAssignments\l totalPartyAssignments\l totalSpeakerAssignments\l }", URL="com/hack23/cia/model/internal/application/data/politician/impl/ViewRiksdagenPolitician.html" ]
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_politician_dot_impl_dot_ViewRiksdagenPolitician [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.politician\.impl\.ViewRiksdagenPolitician| active\l activeCommittee\l activeEu\l activeGovernment\l activeParliament\l activeParty\l activeSpeaker\l bornYear\l currentAssignments\l currentCommitteeAssignments\l currentCommitteeLeadershipAssignments\l currentCommitteeSubstituteAssignments\l currentMinistryAssignments\l currentPartyAssignments\l currentSpeakerAssignments\l firstAssignmentDate\l firstName\l gender\l lastAssignmentDate\l lastName\l party\l totalAssignments\l totalCommitteeAssignments\l totalCommitteeLeadershipAssignments\l totalCommitteeSubstituteAssignments\l totalDaysServed\l totalDaysServedCommittee\l totalDaysServedCommitteeLeadership\l totalDaysServedCommitteeSubstitute\l totalDaysServedEu\l totalDaysServedGovernment\l totalDaysServedParliament\l totalDaysServedParty\l totalDaysServedSpeaker\l totalMinistryAssignments\l totalPartyAssignments\l totalSpeakerAssignments\l }", URL="com/hack23/cia/model/internal/application/data/politician/impl/ViewRiksdagenPolitician.html" ]
   /* Subclass edges for com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician */
   
   /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_politician_dot_impl_dot_ViewRiksdagenPolitician */
+     
+     
+     
+     
+     
+     
      
      
      
@@ -429,10 +435,16 @@ digraph EntityGraph {
      
      
   /* Node com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary */
-  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.party\.impl\.ViewRiksdagenPartySummary| active\l activeCommittee\l activeEu\l activeGovernment\l activeParliament\l activeParty\l activeSpeaker\l currentAssignments\l currentCommitteeAssignments\l currentMinistryAssignments\l currentPartyAssignments\l currentSpeakerAssignments\l firstAssignmentDate\l lastAssignmentDate\l totalActiveCommittee\l totalActiveEu\l totalActiveGovernment\l totalActiveParliament\l totalAssignments\l totalCommitteeAssignments\l totalDaysServed\l totalDaysServedCommittee\l totalDaysServedEu\l totalDaysServedGovernment\l totalDaysServedParliament\l totalDaysServedParty\l totalDaysServedSpeaker\l totalMinistryAssignments\l totalPartyAssignments\l totalSpeakerAssignments\l }", URL="com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartySummary.html" ]
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartySummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.party\.impl\.ViewRiksdagenPartySummary| active\l activeCommittee\l activeEu\l activeGovernment\l activeParliament\l activeParty\l activeSpeaker\l currentAssignments\l currentCommitteeAssignments\l currentCommitteeLeadershipAssignments\l currentCommitteeSubstituteAssignments\l currentMinistryAssignments\l currentPartyAssignments\l currentSpeakerAssignments\l firstAssignmentDate\l lastAssignmentDate\l totalActiveCommittee\l totalActiveEu\l totalActiveGovernment\l totalActiveParliament\l totalAssignments\l totalCommitteeAssignments\l totalCommitteeLeadershipAssignments\l totalCommitteeSubstituteAssignments\l totalDaysServed\l totalDaysServedCommittee\l totalDaysServedCommitteeLeadership\l totalDaysServedCommitteeSubstitute\l totalDaysServedEu\l totalDaysServedGovernment\l totalDaysServedParliament\l totalDaysServedParty\l totalDaysServedSpeaker\l totalMinistryAssignments\l totalPartyAssignments\l totalSpeakerAssignments\l }", URL="com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartySummary.html" ]
   /* Subclass edges for com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary */
   
   /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartySummary */
+     
+     
+     
+     
+     
+     
      
      
      
@@ -844,6 +856,20 @@ digraph EntityGraph {
      com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_person_dot_impl_dot_PersonContainerData -> com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_person_dot_impl_dot_PersonData [ 
         label="person" 
         ]
+     
+  /* Node com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_rules_dot_impl_dot_RuleViolation [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.rules\.impl\.RuleViolation| detectedDate\l name\l positive\l referenceId\l resourceType\l ruleDescription\l ruleGroup\l ruleName\l status\l }", URL="com/hack23/cia/model/internal/application/data/rules/impl/RuleViolation.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_rules_dot_impl_dot_RuleViolation */
+     
+     
+     
+     
+     
+     
+     
+     
      
   /* Node com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalContainer */
   com_dot_hack23_dot_cia_dot_model_dot_external_dot_riksdagen_dot_utskottsforslag_dot_impl_dot_AgainstProposalContainer [ label = "{ com\.hack23\.cia\.model\.external\.riksdagen\.utskottsforslag\.impl\.AgainstProposalContainer| }", URL="com/hack23/cia/model/external/riksdagen/utskottsforslag/impl/AgainstProposalContainer.html" ]

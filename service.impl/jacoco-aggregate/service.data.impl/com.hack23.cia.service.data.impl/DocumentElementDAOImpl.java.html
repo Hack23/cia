@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DocumentElementDAOImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">DocumentElementDAOImpl.java</span></div><h1>DocumentElementDAOImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DocumentElementDAOImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">DocumentElementDAOImpl.java</span></div><h1>DocumentElementDAOImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -41,63 +41,63 @@ AbstractGenericDAOImpl&lt;DocumentElement, String&gt; implements
 DocumentElementDAO {
 
 	/** The Constant LOGGER. */
-<span class="nc" id="L44">	private static final Logger LOGGER = LoggerFactory</span>
-<span class="nc" id="L45">			.getLogger(DocumentElementDAOImpl.class);</span>
+<span class="fc" id="L44">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="fc" id="L45">			.getLogger(DocumentElementDAOImpl.class);</span>
 
 
 	/**
 	 * Instantiates a new document element dao impl.
 	 */
 	public DocumentElementDAOImpl() {
-<span class="nc" id="L52">		super(DocumentElement.class);</span>
-<span class="nc" id="L53">	}</span>
+<span class="fc" id="L52">		super(DocumentElement.class);</span>
+<span class="fc" id="L53">	}</span>
 
 	@Override
 	public List&lt;String&gt; getAvaibleDocumentContent() {
-<span class="nc" id="L57">		final CriteriaQuery&lt;String&gt; criteria = getCriteriaBuilder()</span>
-<span class="nc" id="L58">				.createQuery(String.class);</span>
-<span class="nc" id="L59">		final Root&lt;DocumentElement&gt; root = criteria.from(DocumentElement.class);</span>
-<span class="nc" id="L60">		criteria.select(root.get(DocumentElement_.id));</span>
-<span class="nc" id="L61">		criteria.where(getCriteriaBuilder().isNotNull(</span>
-<span class="nc" id="L62">				root.get(DocumentElement_.documentUrlText)));</span>
-<span class="nc" id="L63">		return getEntityManager().createQuery(criteria).getResultList();</span>
+<span class="fc" id="L57">		final CriteriaQuery&lt;String&gt; criteria = getCriteriaBuilder()</span>
+<span class="fc" id="L58">				.createQuery(String.class);</span>
+<span class="fc" id="L59">		final Root&lt;DocumentElement&gt; root = criteria.from(DocumentElement.class);</span>
+<span class="fc" id="L60">		criteria.select(root.get(DocumentElement_.id));</span>
+<span class="fc" id="L61">		criteria.where(getCriteriaBuilder().isNotNull(</span>
+<span class="fc" id="L62">				root.get(DocumentElement_.documentUrlText)));</span>
+<span class="fc" id="L63">		return getEntityManager().createQuery(criteria).getResultList();</span>
 	}
 
 	@Override
 	public List&lt;String&gt; getAvaibleDocumentStatus() {
-<span class="nc" id="L68">		final CriteriaQuery&lt;String&gt; criteria = getCriteriaBuilder()</span>
-<span class="nc" id="L69">				.createQuery(String.class);</span>
-<span class="nc" id="L70">		final Root&lt;DocumentElement&gt; root = criteria.from(DocumentElement.class);</span>
-<span class="nc" id="L71">		criteria.select(root.get(DocumentElement_.id));</span>
-<span class="nc" id="L72">		criteria.where(getCriteriaBuilder().isNotNull(</span>
-<span class="nc" id="L73">				root.get(DocumentElement_.documentStatusUrlXml)));</span>
-<span class="nc" id="L74">		return getEntityManager().createQuery(criteria).getResultList();</span>
+<span class="fc" id="L68">		final CriteriaQuery&lt;String&gt; criteria = getCriteriaBuilder()</span>
+<span class="fc" id="L69">				.createQuery(String.class);</span>
+<span class="fc" id="L70">		final Root&lt;DocumentElement&gt; root = criteria.from(DocumentElement.class);</span>
+<span class="fc" id="L71">		criteria.select(root.get(DocumentElement_.id));</span>
+<span class="fc" id="L72">		criteria.where(getCriteriaBuilder().isNotNull(</span>
+<span class="fc" id="L73">				root.get(DocumentElement_.documentStatusUrlXml)));</span>
+<span class="fc" id="L74">		return getEntityManager().createQuery(criteria).getResultList();</span>
 	}
 
 	@Override
 	public List&lt;String&gt; getIdList() {
-<span class="nc" id="L79">		return getStringIdList(DocumentElement_.id);</span>
+<span class="fc" id="L79">		return getStringIdList(DocumentElement_.id);</span>
 	}
 
 	@Override
 	public int getMissingDocumentStartFromYear(final int startCheckYear) {
 
-<span class="nc" id="L85">		final CriteriaQuery&lt;String&gt; criteria = getCriteriaBuilder()</span>
-<span class="nc" id="L86">				.createQuery(String.class);</span>
-<span class="nc" id="L87">		final Root&lt;DocumentElement&gt; root = criteria.from(DocumentElement.class);</span>
-<span class="nc" id="L88">		final Expression&lt;String&gt; createdYear = getCriteriaBuilder().substring(root.get(DocumentElement_.createdDate), 0,5);</span>
-<span class="nc" id="L89">		criteria.select(createdYear).groupBy(createdYear).orderBy(getCriteriaBuilder().asc(createdYear));</span>
-<span class="nc" id="L90">		final List&lt;String&gt; resultList = getEntityManager().createQuery(criteria).getResultList();</span>
+<span class="fc" id="L85">		final CriteriaQuery&lt;String&gt; criteria = getCriteriaBuilder()</span>
+<span class="fc" id="L86">				.createQuery(String.class);</span>
+<span class="fc" id="L87">		final Root&lt;DocumentElement&gt; root = criteria.from(DocumentElement.class);</span>
+<span class="fc" id="L88">		final Expression&lt;String&gt; createdYear = getCriteriaBuilder().substring(root.get(DocumentElement_.createdDate), 0,5);</span>
+<span class="fc" id="L89">		criteria.select(createdYear).groupBy(createdYear).orderBy(getCriteriaBuilder().asc(createdYear));</span>
+<span class="fc" id="L90">		final List&lt;String&gt; resultList = getEntityManager().createQuery(criteria).getResultList();</span>
 
-<span class="nc" id="L92">		LOGGER.info(&quot;getMissingDocumentStartFromYear current years contain documents:{}&quot;,resultList);</span>
+<span class="fc" id="L92">		LOGGER.info(&quot;getMissingDocumentStartFromYear current years contain documents:{}&quot;,resultList);</span>
 
-<span class="nc bnc" id="L94" title="All 4 branches missed.">		if (resultList.isEmpty() || Integer.parseInt(resultList.get(0)) &lt; startCheckYear) {</span>
-<span class="nc" id="L95">			return startCheckYear;</span>
+<span class="pc bpc" id="L94" title="1 of 4 branches missed.">		if (resultList.isEmpty() || Integer.parseInt(resultList.get(0)) &lt; startCheckYear) {</span>
+<span class="fc" id="L95">			return startCheckYear;</span>
 		} else {
-<span class="nc" id="L97">			final int lastYear = Integer.parseInt(resultList.get(resultList.size()-1));</span>
-			
-<span class="nc bnc" id="L99" title="All 2 branches missed.">			if(lastYear - startCheckYear ==  (resultList.size()-1)) {</span>
-<span class="nc" id="L100">				return lastYear;</span>
+<span class="fc" id="L97">			final int lastYear = Integer.parseInt(resultList.get(resultList.size()-1));</span>
+
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">			if(lastYear - startCheckYear ==  (resultList.size()-1)) {</span>
+<span class="fc" id="L100">				return lastYear;</span>
 			} else {
 <span class="nc" id="L102">				return startCheckYear;</span>
 			}
@@ -105,4 +105,4 @@ DocumentElementDAO {
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

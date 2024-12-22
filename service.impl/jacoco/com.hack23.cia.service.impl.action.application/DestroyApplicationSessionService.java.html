@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DestroyApplicationSessionService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.application</a> &gt; <span class="el_source">DestroyApplicationSessionService.java</span></div><h1>DestroyApplicationSessionService.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DestroyApplicationSessionService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.application</a> &gt; <span class="el_source">DestroyApplicationSessionService.java</span></div><h1>DestroyApplicationSessionService.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,6 @@ import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRe
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
-import com.hack23.cia.service.impl.action.common.BusinessService;
 
 /**
  * The Class DestroyApplicationSessionService.
@@ -44,11 +43,10 @@ import com.hack23.cia.service.impl.action.common.BusinessService;
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public final class DestroyApplicationSessionService
-		extends AbstractBusinessServiceImpl&lt;DestroyApplicationSessionRequest, DestroyApplicationSessionResponse&gt;
-		implements BusinessService&lt;DestroyApplicationSessionRequest, DestroyApplicationSessionResponse&gt; {
+		extends AbstractBusinessServiceImpl&lt;DestroyApplicationSessionRequest, DestroyApplicationSessionResponse&gt; {
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L51">	private static final Logger LOGGER = LoggerFactory.getLogger(DestroyApplicationSessionService.class);</span>
+<span class="fc" id="L49">	private static final Logger LOGGER = LoggerFactory.getLogger(DestroyApplicationSessionService.class);</span>
 
 	/** The application session dao. */
 	@Autowired
@@ -58,43 +56,43 @@ public final class DestroyApplicationSessionService
 	 * Instantiates a new destroy application session service.
 	 */
 	public DestroyApplicationSessionService() {
-<span class="fc" id="L61">		super(DestroyApplicationSessionRequest.class);</span>
-<span class="fc" id="L62">	}</span>
+<span class="fc" id="L59">		super(DestroyApplicationSessionRequest.class);</span>
+<span class="fc" id="L60">	}</span>
 
 	@Override
 	@Secured({ &quot;ROLE_ANONYMOUS&quot; })
 	public DestroyApplicationSessionResponse processService(final DestroyApplicationSessionRequest serviceRequest) {
-<span class="fc" id="L67">		final DestroyApplicationSessionResponse inputValidation = inputValidation(serviceRequest);</span>
-<span class="fc bfc" id="L68" title="All 2 branches covered.">		if (inputValidation != null) {</span>
-<span class="fc" id="L69">			return inputValidation;</span>
+<span class="fc" id="L65">		final DestroyApplicationSessionResponse inputValidation = inputValidation(serviceRequest);</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">		if (inputValidation != null) {</span>
+<span class="fc" id="L67">			return inputValidation;</span>
 		}
 
-		
-<span class="fc" id="L73">		final ApplicationSession applicationSession = applicationSessionDAO</span>
-<span class="fc" id="L74">				.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());</span>
 
-<span class="fc bfc" id="L76" title="All 2 branches covered.">		if (applicationSession != null) {</span>
-<span class="fc" id="L77">			LOGGER.info(&quot;Destroy Application session: {}&quot;, applicationSession.getSessionId());</span>
-<span class="fc" id="L78">			applicationSession.setDestroyedDate(new Date());</span>
-<span class="fc" id="L79">			applicationSessionDAO.persist(applicationSession);</span>
-<span class="fc" id="L80">			return new DestroyApplicationSessionResponse(ServiceResult.SUCCESS);</span>
+<span class="fc" id="L71">		final ApplicationSession applicationSession = applicationSessionDAO</span>
+<span class="fc" id="L72">				.findFirstByProperty(ApplicationSession_.sessionId, serviceRequest.getSessionId());</span>
+
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (applicationSession != null) {</span>
+<span class="fc" id="L75">			LOGGER.info(&quot;Destroy Application session: {}&quot;, applicationSession.getSessionId());</span>
+<span class="fc" id="L76">			applicationSession.setDestroyedDate(new Date());</span>
+<span class="fc" id="L77">			applicationSessionDAO.persist(applicationSession);</span>
+<span class="fc" id="L78">			return new DestroyApplicationSessionResponse(ServiceResult.SUCCESS);</span>
 		} else {
-<span class="fc" id="L82">			LOGGER.warn(&quot;Failed to destroy Application session, no session found for id: {}&quot;,</span>
-<span class="fc" id="L83">					serviceRequest.getSessionId());</span>
-<span class="fc" id="L84">			return new DestroyApplicationSessionResponse(ServiceResult.FAILURE);</span>
+<span class="fc" id="L80">			LOGGER.warn(&quot;Failed to destroy Application session, no session found for id: {}&quot;,</span>
+<span class="fc" id="L81">					serviceRequest.getSessionId());</span>
+<span class="fc" id="L82">			return new DestroyApplicationSessionResponse(ServiceResult.FAILURE);</span>
 		}
 	}
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(
 			final DestroyApplicationSessionRequest serviceRequest) {
-<span class="fc" id="L91">		return new CreateApplicationEventRequest();</span>
+<span class="fc" id="L89">		return new CreateApplicationEventRequest();</span>
 	}
 
 	@Override
 	protected DestroyApplicationSessionResponse createErrorResponse() {
-<span class="fc" id="L96">		return new DestroyApplicationSessionResponse(ServiceResult.FAILURE);</span>
+<span class="fc" id="L94">		return new DestroyApplicationSessionResponse(ServiceResult.FAILURE);</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

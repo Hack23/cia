@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VaultManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.application.encryption</a> &gt; <span class="el_source">VaultManagerImpl.java</span></div><h1>VaultManagerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
- * 
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VaultManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.application.encryption</a> &gt; <span class="el_source">VaultManagerImpl.java</span></div><h1>VaultManagerImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
+ *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -60,17 +60,18 @@ public final class VaultManagerImpl implements VaultManager {
 
 	/** The Constant KEY_SIZE_IN_BYTES. */
 	private static final int KEY_SIZE_IN_BYTES = 32;
-	
+
 	/** The Constant ENCRYPT_VALUE. */
 	private static final String ENCRYPT_VALUE = &quot;encryptValue&quot;;
 
 	/** The Constant DECRYPT_VALUE. */
 	private static final String DECRYPT_VALUE = &quot;decryptValue&quot;;
 
+	/** The Constant SECURE_RANDOM. */
+<span class="fc" id="L71">	private static final SecureRandom SECURE_RANDOM= new SecureRandom();</span>
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L72">	private static final Logger LOGGER = LoggerFactory</span>
-<span class="fc" id="L73">			.getLogger(VaultManagerImpl.class);</span>
+<span class="fc" id="L74">	private static final Logger LOGGER = LoggerFactory.getLogger(VaultManagerImpl.class);</span>
 
 	/** The Constant AES_GCM_NO_PADDING. */
 	private static final String AES_GCM_NO_PADDING = &quot;AES/GCM/NoPadding&quot;;
@@ -89,41 +90,40 @@ public final class VaultManagerImpl implements VaultManager {
 	 */
 	@Autowired
 	public VaultManagerImpl(final EncryptedValueDAO encryptedValueDAO) {
-<span class="fc" id="L92">		super();</span>
-<span class="fc" id="L93">		this.encryptedValueDAO = encryptedValueDAO;</span>
-<span class="fc" id="L94">	}</span>
+<span class="fc" id="L93">		super();</span>
+<span class="fc" id="L94">		this.encryptedValueDAO = encryptedValueDAO;</span>
+<span class="fc" id="L95">	}</span>
 
 	static {
-<span class="fc" id="L97">		Security.setProperty(&quot;crypto.policy&quot;, &quot;unlimited&quot;);</span>
-<span class="fc" id="L98">		Security.addProvider(new BouncyCastleProvider());</span>
-<span class="fc" id="L99">	}</span>
+<span class="fc" id="L98">		Security.setProperty(&quot;crypto.policy&quot;, &quot;unlimited&quot;);</span>
+<span class="fc" id="L99">		Security.addProvider(new BouncyCastleProvider());</span>
+<span class="fc" id="L100">	}</span>
 
 	@Override
 	public String getEncryptedValue(final String password, final UserAccount userExist) {
-<span class="fc bfc" id="L103" title="All 2 branches covered.">		if (userExist != null) {</span>
-<span class="fc" id="L104">			final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId,</span>
-<span class="fc" id="L105">					userExist.getUserId());</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">		if (userExist != null) {</span>
+<span class="fc" id="L105">			final EncryptedValue encryptedValue = encryptedValueDAO.findFirstByProperty(EncryptedValue_.userId,</span>
+<span class="fc" id="L106">					userExist.getUserId());</span>
 
-<span class="fc bfc" id="L107" title="All 2 branches covered.">			if (encryptedValue != null) {</span>
-<span class="fc" id="L108">				return decryptValue(password, userExist.getUserId(), encryptedValue.getStorage());</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">			if (encryptedValue != null) {</span>
+<span class="fc" id="L109">				return decryptValue(password, userExist.getUserId(), encryptedValue.getStorage());</span>
 			}
 		}
-<span class="fc" id="L111">		return null;</span>
+<span class="fc" id="L112">		return null;</span>
 	}
 
 	@Override
 	public String encryptValue(final String password, final String userId, final String value) {
-<span class="fc bfc" id="L116" title="All 6 branches covered.">		if (password != null &amp;&amp; userId != null &amp;&amp; value!=null) {</span>
-		
+<span class="fc bfc" id="L117" title="All 6 branches covered.">		if (password != null &amp;&amp; userId != null &amp;&amp; value!=null) {</span>
+
 			try {
-<span class="fc" id="L119">				final Key buildKey = buildKey(userId, password);			</span>
-<span class="fc" id="L120">				final SecureRandom secureRandom = new SecureRandom();</span>
-<span class="fc" id="L121">				final byte[] iv = new byte[IV_BYTE_SIZE]; </span>
-<span class="fc" id="L122">				secureRandom.nextBytes(iv);			</span>
+<span class="fc" id="L120">				final Key buildKey = buildKey(userId, password);</span>
+<span class="fc" id="L121">				final byte[] iv = new byte[IV_BYTE_SIZE];</span>
+<span class="fc" id="L122">				SECURE_RANDOM.nextBytes(iv);</span>
 <span class="fc" id="L123">				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);</span>
-<span class="fc" id="L124">				final GCMParameterSpec parameterSpec = new GCMParameterSpec(TAG_BIT_LENGTH, iv); </span>
+<span class="fc" id="L124">				final GCMParameterSpec parameterSpec = new GCMParameterSpec(TAG_BIT_LENGTH, iv);</span>
 <span class="fc" id="L125">				cipher.init(Cipher.ENCRYPT_MODE, buildKey, parameterSpec);</span>
-	
+
 <span class="fc" id="L127">				final byte[] cipherText = cipher.doFinal(value.getBytes(StandardCharsets.UTF_8));</span>
 <span class="fc" id="L128">				final ByteBuffer byteBuffer = ByteBuffer.allocate(4 + iv.length + cipherText.length);</span>
 <span class="fc" id="L129">				byteBuffer.putInt(iv.length);</span>
@@ -137,13 +137,13 @@ public final class VaultManagerImpl implements VaultManager {
 		} else {
 <span class="fc" id="L138">			return null;</span>
 		}
-			
+
 	}
 
 	@Override
 	public String decryptValue(final String password, final String userId, final String value) {
 <span class="fc bfc" id="L145" title="All 6 branches covered.">		if (password != null &amp;&amp; userId != null &amp;&amp; value!=null) {</span>
-			try {			
+			try {
 <span class="fc" id="L147">				final Key buildKey = buildKey(userId, password);</span>
 <span class="fc" id="L148">				final ByteBuffer byteBuffer = ByteBuffer.wrap(Hex.decode(value.getBytes(StandardCharsets.UTF_8)));</span>
 <span class="fc" id="L149">				final int ivLength = byteBuffer.getInt();</span>
@@ -151,14 +151,14 @@ public final class VaultManagerImpl implements VaultManager {
 <span class="fc" id="L151">				byteBuffer.get(iv);</span>
 <span class="fc" id="L152">				final byte[] cipherText = new byte[byteBuffer.remaining()];</span>
 <span class="fc" id="L153">				byteBuffer.get(cipherText);</span>
-				
+
 <span class="fc" id="L155">				final Cipher cipher = Cipher.getInstance(AES_GCM_NO_PADDING);</span>
 <span class="fc" id="L156">				cipher.init(Cipher.DECRYPT_MODE, buildKey, new GCMParameterSpec(TAG_BIT_LENGTH, iv));</span>
 <span class="fc" id="L157">				return new String(cipher.doFinal(cipherText),StandardCharsets.UTF_8);</span>
 <span class="fc" id="L158">			} catch (final GeneralSecurityException e) {</span>
 <span class="fc" id="L159">				LOGGER.error(DECRYPT_VALUE,e);</span>
 <span class="fc" id="L160">				return null;</span>
-			}		
+			}
 		} else {
 <span class="fc" id="L163">			return null;</span>
 		}
@@ -180,4 +180,4 @@ public final class VaultManagerImpl implements VaultManager {
 				ALGORITHM);
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

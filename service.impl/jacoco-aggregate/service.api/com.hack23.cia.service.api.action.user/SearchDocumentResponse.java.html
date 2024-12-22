@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SearchDocumentResponse.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.api</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.api.action.user</a> &gt; <span class="el_source">SearchDocumentResponse.java</span></div><h1>SearchDocumentResponse.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SearchDocumentResponse.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.api</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.api.action.user</a> &gt; <span class="el_source">SearchDocumentResponse.java</span></div><h1>SearchDocumentResponse.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ package com.hack23.cia.service.api.action.user;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData;
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
@@ -37,7 +36,7 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	private static final long serialVersionUID = 1L;
 
 	/** The result element. */
-<span class="nc" id="L40">	private List&lt;DocumentElement&gt; resultElement = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L39">	private List&lt;DocumentElement&gt; resultElement = new ArrayList&lt;&gt;();</span>
 
 	/** The status map. */
 	private Map&lt;String, DocumentStatusContainer&gt; statusMap;
@@ -52,8 +51,8 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	 *            the result
 	 */
 	public SearchDocumentResponse(final ServiceResult result) {
-<span class="nc" id="L55">		super(result);</span>
-<span class="nc" id="L56">	}</span>
+<span class="fc" id="L54">		super(result);</span>
+<span class="fc" id="L55">	}</span>
 
 	/**
 	 * Gets the result element.
@@ -61,7 +60,7 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	 * @return the result element
 	 */
 	public List&lt;DocumentElement&gt; getResultElement() {
-<span class="nc" id="L64">		return resultElement.stream().collect(Collectors.toList());</span>
+<span class="fc" id="L63">		return resultElement.stream().toList();</span>
 	}
 
 	/**
@@ -71,10 +70,10 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	 *            the new result element
 	 */
 	public void setResultElement(final List&lt;DocumentElement&gt; resultElement) {
-<span class="nc bnc" id="L74" title="All 2 branches missed.">		if (resultElement != null) {</span>
-<span class="nc" id="L75">			this.resultElement = resultElement.stream().collect(Collectors.toList());</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">		if (resultElement != null) {</span>
+<span class="fc" id="L74">			this.resultElement = resultElement.stream().toList();</span>
 		}
-<span class="nc" id="L77">	}</span>
+<span class="fc" id="L76">	}</span>
 
 	/**
 	 * Gets the status map.
@@ -82,7 +81,7 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	 * @return the status map
 	 */
 	public Map&lt;String, DocumentStatusContainer&gt; getStatusMap() {
-<span class="nc" id="L85">		return statusMap;</span>
+<span class="fc" id="L84">		return statusMap;</span>
 	}
 
 	/**
@@ -92,8 +91,8 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	 *            the new status map
 	 */
 	public void setStatusMap(final Map&lt;String, DocumentStatusContainer&gt; statusMap) {
-<span class="nc" id="L95">		this.statusMap = statusMap;</span>
-<span class="nc" id="L96">	}</span>
+<span class="fc" id="L94">		this.statusMap = statusMap;</span>
+<span class="fc" id="L95">	}</span>
 
 	/**
 	 * Gets the data map.
@@ -101,7 +100,7 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	 * @return the data map
 	 */
 	public Map&lt;String, DocumentContentData&gt; getDataMap() {
-<span class="nc" id="L104">		return dataMap;</span>
+<span class="fc" id="L103">		return dataMap;</span>
 	}
 
 	/**
@@ -111,8 +110,8 @@ public final class SearchDocumentResponse extends AbstractResponse {
 	 *            the new data map
 	 */
 	public void setDataMap(final Map&lt;String, DocumentContentData&gt; dataMap) {
-<span class="nc" id="L114">		this.dataMap = dataMap;</span>
-<span class="nc" id="L115">	}</span>
+<span class="fc" id="L113">		this.dataMap = dataMap;</span>
+<span class="fc" id="L114">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

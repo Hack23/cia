@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>DataSearchAnalysisConfigurer xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
@@ -8,7 +8,7 @@
 <div id="overview"><a href="../../../../../../../apidocs/com/hack23/cia/service/data/impl/DataSearchAnalysisConfigurer.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010 James Pether Sörling</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
@@ -40,20 +40,25 @@
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="DataSearchAnalysisConfigurer" href="../../../../../../com/hack23/cia/service/data/impl/DataSearchAnalysisConfigurer.html#DataSearchAnalysisConfigurer">DataSearchAnalysisConfigurer</a> <strong class="jxr_keyword">implements</strong> LuceneAnalysisConfigurer {
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  	@Override
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> configure(LuceneAnalysisConfigurationContext context) {
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  		context.analyzer(<span class="jxr_string">"ngram"</span>).custom().tokenizer(StandardTokenizerFactory.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  		.tokenFilter(LowerCaseFilterFactory.<strong class="jxr_keyword">class</strong>).tokenFilter(NGramFilterFactory.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  		.param(<span class="jxr_string">"minGramSize"</span>, <span class="jxr_string">"3"</span>).param(<span class="jxr_string">"maxGramSize"</span>, <span class="jxr_string">"3"</span>).analyzer(<span class="jxr_string">"se"</span>).custom()
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  		.tokenizer(StandardTokenizerFactory.<strong class="jxr_keyword">class</strong>).tokenFilter(LowerCaseFilterFactory.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  		.tokenFilter(SwedishLightStemFilterFactory.<strong class="jxr_keyword">class</strong>).analyzer(<span class="jxr_string">"en"</span>).custom()
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  		.tokenizer(StandardTokenizerFactory.<strong class="jxr_keyword">class</strong>).tokenFilter(LowerCaseFilterFactory.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  		.tokenFilter(PorterStemFilterFactory.<strong class="jxr_keyword">class</strong>);		
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  	}
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> configure(<strong class="jxr_keyword">final</strong> LuceneAnalysisConfigurationContext context) {
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  		context.analyzer(<span class="jxr_string">"ngram"</span>).custom().tokenizer(StandardTokenizerFactory.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  		.tokenFilter(LowerCaseFilterFactory.<strong class="jxr_keyword">class</strong>).tokenFilter(NGramFilterFactory.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  		.param(<span class="jxr_string">"minGramSize"</span>, <span class="jxr_string">"3"</span>).param(<span class="jxr_string">"maxGramSize"</span>, <span class="jxr_string">"3"</span>);
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  		context.analyzer(<span class="jxr_string">"se"</span>).custom()
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  		.tokenizer(StandardTokenizerFactory.<strong class="jxr_keyword">class</strong>).tokenFilter(LowerCaseFilterFactory.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  		.tokenFilter(SwedishLightStemFilterFactory.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  }
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		context.analyzer(<span class="jxr_string">"en"</span>).custom()
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  		.tokenizer(StandardTokenizerFactory.<strong class="jxr_keyword">class</strong>).tokenFilter(LowerCaseFilterFactory.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  		.tokenFilter(PorterStemFilterFactory.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  	}
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

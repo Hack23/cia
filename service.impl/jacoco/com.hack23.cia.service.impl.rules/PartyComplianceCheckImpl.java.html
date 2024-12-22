@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyComplianceCheckImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.rules</a> &gt; <span class="el_source">PartyComplianceCheckImpl.java</span></div><h1>PartyComplianceCheckImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
- * 
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyComplianceCheckImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.rules</a> &gt; <span class="el_source">PartyComplianceCheckImpl.java</span></div><h1>PartyComplianceCheckImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
+ *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,15 +18,11 @@
 */
 package com.hack23.cia.service.impl.rules;
 
-import java.util.Collections;
-import java.util.List;
-
-import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
-import com.hack23.cia.service.api.action.kpi.ResourceType;
+import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
 
 /**
  * The Class PartyComplianceCheckImpl.
@@ -35,22 +31,19 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The party. */
 	private final ViewRiksdagenPartySummary party;
-	
+
 	/** The name. */
 	private final String name;
-	
-	/** The ballot decisions. */
-	private final List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; ballotDecisions;
-	
+
 	/** The daily summary. */
 	private final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary;
-	
+
 	/** The monthly summary. */
 	private final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary;
-	
+
 	/** The annual summary. */
 	private final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary;
 
@@ -61,17 +54,15 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @param annualSummary   the annual summary
 	 * @param monthlySummary  the monthly summary
 	 * @param dailySummary    the daily summary
-	 * @param ballotDecisions the ballot decisions
 	 */
-	public PartyComplianceCheckImpl(final ViewRiksdagenPartySummary party,final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary,final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary,final List&lt;ViewRiksdagenCommitteeBallotDecisionPartySummary&gt; ballotDecisions) {
-<span class="fc" id="L67">		super(ResourceType.PARTY);</span>
-<span class="fc" id="L68">		this.party = party;</span>
-<span class="fc" id="L69">		this.annualSummary = annualSummary;</span>
-<span class="fc" id="L70">		this.monthlySummary = monthlySummary;</span>
-<span class="fc" id="L71">		this.dailySummary = dailySummary;</span>
-<span class="fc" id="L72">		this.name = party.getParty();</span>
-<span class="fc" id="L73">		this.ballotDecisions = Collections.unmodifiableList(ballotDecisions);</span>
-<span class="fc" id="L74">	}</span>
+	public PartyComplianceCheckImpl(final ViewRiksdagenPartySummary party,final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary,final ViewRiksdagenVoteDataBallotPartySummaryMonthly monthlySummary,final ViewRiksdagenVoteDataBallotPartySummaryDaily dailySummary) {
+<span class="fc" id="L59">		super(ResourceType.PARTY);</span>
+<span class="fc" id="L60">		this.party = party;</span>
+<span class="fc" id="L61">		this.annualSummary = annualSummary;</span>
+<span class="fc" id="L62">		this.monthlySummary = monthlySummary;</span>
+<span class="fc" id="L63">		this.dailySummary = dailySummary;</span>
+<span class="fc" id="L64">		this.name = party.getParty();</span>
+<span class="fc" id="L65">	}</span>
 
 	/**
 	 * Gets the party.
@@ -79,51 +70,17 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the party
 	 */
 	public ViewRiksdagenPartySummary getParty() {
-<span class="fc" id="L82">		return party;</span>
+<span class="fc" id="L73">		return party;</span>
 	}
 
 	@Override
 	public String getName() {
-<span class="fc" id="L87">		return name;</span>
+<span class="fc" id="L78">		return name;</span>
 	}
 
 	@Override
 	public String getId() {
-<span class="fc" id="L92">		return party.getParty();</span>
-	}
-
-	/**
-	 * Supports.
-	 *
-	 * @param committeeReport the committee report
-	 * @param rm              the rm
-	 * @param issue the issue
-	 * @return true, if successful
-	 */
-	public boolean supports(final String committeeReport,final String rm, final String issue) {
-<span class="fc bfc" id="L104" title="All 2 branches covered.">		for (final ViewRiksdagenCommitteeBallotDecisionPartySummary summary : ballotDecisions) {</span>
-<span class="pc bpc" id="L105" title="1 of 6 branches missed.">			if (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport) &amp;&amp; summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {</span>
-<span class="fc" id="L106">				return summary.isPartyApproved();</span>
-			}			
-<span class="fc" id="L108">		}</span>
-<span class="fc" id="L109">		return false;</span>
-	}
-
-	/**
-	 * Against.
-	 *
-	 * @param committeeReport the committee report
-	 * @param rm              the rm
-	 * @param issue the issue
-	 * @return true, if successful
-	 */
-	public boolean against(final String committeeReport,final String rm, final String issue) {
-<span class="fc bfc" id="L121" title="All 2 branches covered.">		for (final ViewRiksdagenCommitteeBallotDecisionPartySummary summary : ballotDecisions) {</span>
-<span class="pc bpc" id="L122" title="1 of 6 branches missed.">			if (summary.getRm().equalsIgnoreCase(rm) &amp;&amp; summary.getCommitteeReport().equalsIgnoreCase(committeeReport) &amp;&amp; summary.getEmbeddedId().getIssue().equalsIgnoreCase(issue)) {</span>
-<span class="fc bfc" id="L123" title="All 2 branches covered.">				return !summary.isPartyApproved();</span>
-			}			
-<span class="fc" id="L125">		}</span>
-<span class="fc" id="L126">		return false;</span>
+<span class="fc" id="L83">		return party.getParty();</span>
 	}
 
 	/**
@@ -132,7 +89,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the daily summary
 	 */
 	public ViewRiksdagenVoteDataBallotPartySummaryDaily getDailySummary() {
-<span class="fc" id="L135">		return dailySummary;</span>
+<span class="fc" id="L92">		return dailySummary;</span>
 	}
 
 	/**
@@ -141,7 +98,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the monthly summary
 	 */
 	public ViewRiksdagenVoteDataBallotPartySummaryMonthly getMonthlySummary() {
-<span class="fc" id="L144">		return monthlySummary;</span>
+<span class="fc" id="L101">		return monthlySummary;</span>
 	}
 
 
@@ -151,8 +108,8 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the annual summary
 	 */
 	public ViewRiksdagenVoteDataBallotPartySummaryAnnual getAnnualSummary() {
-<span class="fc" id="L154">		return annualSummary;</span>
+<span class="fc" id="L111">		return annualSummary;</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
