@@ -31,6 +31,9 @@
       <url>scm:git:ssh://git@github.com/Hack23/cia.git/service.data.impl</url>
     </site>
   </distributionManagement>
+  <properties>
+    <liquibase.changeLogDirectory>${project.basedir}/target/classes/</liquibase.changeLogDirectory>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>jakarta.activation</groupId>

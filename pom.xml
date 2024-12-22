@@ -20,9 +20,4 @@
     <tag>HEAD</tag>
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
-  <properties>
-    <sonar.dependencyCheck.htmlReportPath>${project.basedir}/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>
-    <sonar.dependencyCheck.xmlReportPath>${project.basedir}/dependency-check-report.xml</sonar.dependencyCheck.xmlReportPath>
-    <root.dir>file:///${basedir}/</root.dir>
-  </properties>
 </project>
