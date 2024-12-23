@@ -42,9 +42,9 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDocumentDailySummary;
-import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDocument;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyDocumentDailySummary;
+import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
+import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument;
+import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary;
 import com.hack23.cia.model.internal.application.data.rules.impl.ResourceType;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.data.api.DataViewer;
