@@ -37,6 +37,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * <p>Java class for ViewRiksdagenPoliticianDocument complex type.
  *
@@ -97,513 +98,249 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 @Entity(name = "ViewRiksdagenPoliticianDocument")
 @Table(name = "VIEW_RIKSDAGEN_POLITICIAN_DOCUMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ViewRiksdagenPoliticianDocument
-    implements ModelObject
-{
+public class ViewRiksdagenPoliticianDocument implements ModelObject {
 
-    /**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
-	protected long id;
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @Column(name = "ID")
+    protected long id;
+
     @XmlElement(required = true)
+    @Column(name = "DOC_ID")
     protected String docId;
+
     @XmlElement(required = true)
+    @Column(name = "DOCUMENT_TYPE")
     protected String documentType;
+
     @XmlElement(required = true)
+    @Column(name = "LABEL")
     protected String label;
+
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
     @XmlSchemaType(name = "date")
+    @Column(name = "MADE_PUBLIC_DATE")
+    @Temporal(TemporalType.DATE)
     protected Date madePublicDate;
+
     @XmlElement(required = true)
+    @Column(name = "ORG")
     protected String org;
+
     @XmlElement(required = true, nillable = true)
+    @Column(name = "NUMBER_VALUE", precision = 20)
     protected BigInteger numberValue;
+
     @XmlElement(required = true)
+    @Column(name = "RM")
     protected String rm;
+
     @XmlElement(required = true)
+    @Column(name = "STATUS")
     protected String status;
+
     @XmlElement(required = true)
+    @Column(name = "SUB_TITLE")
     protected String subTitle;
+
     @XmlElement(required = true)
+    @Column(name = "SUB_TYPE")
     protected String subType;
+
     @XmlElement(required = true)
+    @Column(name = "TEMP_LABEL")
     protected String tempLabel;
+
     @XmlElement(required = true)
+    @Column(name = "TITLE")
     protected String title;
+
     @XmlElement(required = true)
+    @Column(name = "ROLE_DESCRIPTION")
     protected String roleDescription;
+
     @XmlElement(required = true)
+    @Column(name = "PERSON_REFERENCE_ID")
     protected String personReferenceId;
+
     @XmlElement(required = true)
+    @Column(name = "REFERENCE_NAME")
     protected String referenceName;
+
     @XmlElement(required = true)
+    @Column(name = "PARTY_SHORT_CODE")
     protected String partyShortCode;
+
     @XmlElement(required = true, type = Integer.class, nillable = true)
+    @Column(name = "ORDER_NUMBER", precision = 10, scale = 0)
     protected Integer orderNumber;
 
-    /**
-     * Gets the value of the id property.
-     *
-     */
-    @Id
-    @Column(name = "ID")
+    // Getters and Setters
+    @Basic
     public long getId() {
         return id;
     }
 
-    /**
-     * Sets the value of the id property.
-     *
-     */
     public void setId(final long value) {
         this.id = value;
     }
 
-    /**
-     * Gets the value of the docId property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "DOC_ID")
     public String getDocId() {
         return docId;
     }
 
-    /**
-     * Sets the value of the docId property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setDocId(final String value) {
         this.docId = value;
     }
 
-    /**
-     * Gets the value of the documentType property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "DOCUMENT_TYPE")
     public String getDocumentType() {
         return documentType;
     }
 
-    /**
-     * Sets the value of the documentType property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setDocumentType(final String value) {
         this.documentType = value;
     }
 
-    /**
-     * Gets the value of the label property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "LABEL")
     public String getLabel() {
         return label;
     }
 
-    /**
-     * Sets the value of the label property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setLabel(final String value) {
         this.label = value;
     }
 
-    /**
-     * Gets the value of the madePublicDate property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "MADE_PUBLIC_DATE")
-    @Temporal(TemporalType.DATE)
     public Date getMadePublicDate() {
         return madePublicDate;
     }
 
-    /**
-     * Sets the value of the madePublicDate property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setMadePublicDate(final Date value) {
         this.madePublicDate = value;
     }
 
-    /**
-     * Gets the value of the org property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "ORG")
     public String getOrg() {
         return org;
     }
 
-    /**
-     * Sets the value of the org property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setOrg(final String value) {
         this.org = value;
     }
 
-    /**
-     * Gets the value of the numberValue property.
-     *
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *
-     */
     @Basic
-    @Column(name = "NUMBER_VALUE", precision = 20)
     public BigInteger getNumberValue() {
         return numberValue;
     }
 
-    /**
-     * Sets the value of the numberValue property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *
-     */
     public void setNumberValue(final BigInteger value) {
         this.numberValue = value;
     }
 
-    /**
-     * Gets the value of the rm property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "RM")
     public String getRm() {
         return rm;
     }
 
-    /**
-     * Sets the value of the rm property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setRm(final String value) {
         this.rm = value;
     }
 
-    /**
-     * Gets the value of the status property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "STATUS")
     public String getStatus() {
         return status;
     }
 
-    /**
-     * Sets the value of the status property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setStatus(final String value) {
         this.status = value;
     }
 
-    /**
-     * Gets the value of the subTitle property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "SUB_TITLE")
     public String getSubTitle() {
         return subTitle;
     }
 
-    /**
-     * Sets the value of the subTitle property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setSubTitle(final String value) {
         this.subTitle = value;
     }
 
-    /**
-     * Gets the value of the subType property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "SUB_TYPE")
     public String getSubType() {
         return subType;
     }
 
-    /**
-     * Sets the value of the subType property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setSubType(final String value) {
         this.subType = value;
     }
 
-    /**
-     * Gets the value of the tempLabel property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "TEMP_LABEL")
     public String getTempLabel() {
         return tempLabel;
     }
 
-    /**
-     * Sets the value of the tempLabel property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setTempLabel(final String value) {
         this.tempLabel = value;
     }
 
-    /**
-     * Gets the value of the title property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "TITLE")
     public String getTitle() {
         return title;
     }
 
-    /**
-     * Sets the value of the title property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setTitle(final String value) {
         this.title = value;
     }
 
-    /**
-     * Gets the value of the roleDescription property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "ROLE_DESCRIPTION")
     public String getRoleDescription() {
         return roleDescription;
     }
 
-    /**
-     * Sets the value of the roleDescription property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setRoleDescription(final String value) {
         this.roleDescription = value;
     }
 
-    /**
-     * Gets the value of the personReferenceId property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "PERSON_REFERENCE_ID")
     public String getPersonReferenceId() {
         return personReferenceId;
     }
 
-    /**
-     * Sets the value of the personReferenceId property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setPersonReferenceId(final String value) {
         this.personReferenceId = value;
     }
 
-    /**
-     * Gets the value of the referenceName property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "REFERENCE_NAME")
     public String getReferenceName() {
         return referenceName;
     }
 
-    /**
-     * Sets the value of the referenceName property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setReferenceName(final String value) {
         this.referenceName = value;
     }
 
-    /**
-     * Gets the value of the partyShortCode property.
-     *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
-     */
     @Basic
-    @Column(name = "PARTY_SHORT_CODE")
     public String getPartyShortCode() {
         return partyShortCode;
     }
 
-    /**
-     * Sets the value of the partyShortCode property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
-     */
     public void setPartyShortCode(final String value) {
         this.partyShortCode = value;
     }
 
-    /**
-     * Gets the value of the orderNumber property.
-     *
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *
-     */
     @Basic
-    @Column(name = "ORDER_NUMBER", precision = 10, scale = 0)
     public Integer getOrderNumber() {
         return orderNumber;
     }
 
-    /**
-     * Sets the value of the orderNumber property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *
-     */
     public void setOrderNumber(final Integer value) {
         this.orderNumber = value;
     }
 
+    // Builder Pattern Methods
     public ViewRiksdagenPoliticianDocument withId(final long value) {
         setId(value);
         return this;
@@ -694,19 +431,18 @@ public class ViewRiksdagenPoliticianDocument
         return this;
     }
 
-	@Override
-	public final String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-	}
+    @Override
+    public final String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 
-	@Override
-	public final boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj);
-	}
+    @Override
+    public final boolean equals(final Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
+    }
 
-	@Override
-	public final int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
-	}
-
+    @Override
+    public final int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
 }

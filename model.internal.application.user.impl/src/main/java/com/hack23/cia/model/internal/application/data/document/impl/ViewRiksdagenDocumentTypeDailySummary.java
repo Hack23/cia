@@ -32,6 +32,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.hack23.cia.model.common.api.ModelObject;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * <p>Java class for ViewRiksdagenDocumentTypeDailySummary complex type.
  *
@@ -54,9 +55,14 @@ import com.hack23.cia.model.common.api.ModelObject;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ViewRiksdagenDocumentTypeDailySummary", propOrder = {
-    "embeddedId",
-    "total"
-})
+	    "embeddedId",
+	    "total",
+	    "collaborativeTotal",
+	    "partyTotal",
+	    "committeeTotal",
+	    "individualTotal",
+	    "followUpTotal"
+	})
 @Entity(name = "ViewRiksdagenDocumentTypeDailySummary")
 @Table(name = "View_Riksdagen_Document_Type_Daily_Summary")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -64,13 +70,48 @@ public class ViewRiksdagenDocumentTypeDailySummary
     implements ModelObject
 {
 
-    /**
-	 *
-	 */
+    /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The embedded id. */
 	@XmlElement(required = true)
     protected RiksdagenDocumentTypeSummaryEmbeddedId embeddedId;
+
+    /** The total. */
     protected long total;
+
+    /** The party motions total. */
+    protected long partyMotionsTotal;
+
+    /** The individual motions total. */
+    protected long individualMotionsTotal;
+
+    /** The committee motions total. */
+    protected long committeeMotionsTotal;
+
+    /** The collaborative motions total. */
+    protected long collaborativeMotionsTotal;
+
+    /** The follow up motions total. */
+    protected long followUpMotionsTotal;
+
+    /** The standard motions total. */
+    protected long standardMotionsTotal;
+
+    /** The high activity total. */
+    protected long highActivityTotal;
+
+    /** The medium activity total. */
+    protected long mediumActivityTotal;
+
+    /** The low activity total. */
+    protected long lowActivityTotal;
+
+    /** The multi party author total. */
+    protected long multiPartyAuthorTotal;
+
+    /** The single party author total. */
+    protected long singlePartyAuthorTotal;
 
     /**
      * Gets the value of the embeddedId property.
@@ -104,6 +145,7 @@ public class ViewRiksdagenDocumentTypeDailySummary
     /**
      * Gets the value of the total property.
      *
+     * @return the total
      */
     @Basic
     @Column(name = "TOTAL", precision = 20)
@@ -114,31 +156,403 @@ public class ViewRiksdagenDocumentTypeDailySummary
     /**
      * Sets the value of the total property.
      *
+     * @param value the new total
      */
     public void setTotal(final long value) {
         this.total = value;
     }
 
+
+    /**
+     * Gets the party motions total.
+     *
+     * @return the party motions total
+     */
+    @Basic
+    @Column(name = "PARTY_MOTIONS_TOTAL", precision = 20)
+    public long getPartyMotionsTotal() {
+        return partyMotionsTotal;
+    }
+
+    /**
+     * Sets the party motions total.
+     *
+     * @param value the new party motions total
+     */
+    public void setPartyMotionsTotal(final long value) {
+        this.partyMotionsTotal = value;
+    }
+
+    /**
+     * Gets the individual motions total.
+     *
+     * @return the individual motions total
+     */
+    @Basic
+    @Column(name = "INDIVIDUAL_MOTIONS_TOTAL", precision = 20)
+    public long getIndividualMotionsTotal() {
+        return individualMotionsTotal;
+    }
+
+    /**
+     * Sets the individual motions total.
+     *
+     * @param value the new individual motions total
+     */
+    public void setIndividualMotionsTotal(final long value) {
+        this.individualMotionsTotal = value;
+    }
+
+    /**
+     * Gets the committee motions total.
+     *
+     * @return the committee motions total
+     */
+    @Basic
+    @Column(name = "COMMITTEE_MOTIONS_TOTAL", precision = 20)
+    public long getCommitteeMotionsTotal() {
+        return committeeMotionsTotal;
+    }
+
+    /**
+     * Sets the committee motions total.
+     *
+     * @param value the new committee motions total
+     */
+    public void setCommitteeMotionsTotal(final long value) {
+        this.committeeMotionsTotal = value;
+    }
+
+    /**
+     * Gets the collaborative motions total.
+     *
+     * @return the collaborative motions total
+     */
+    @Basic
+    @Column(name = "COLLABORATIVE_MOTIONS_TOTAL", precision = 20)
+    public long getCollaborativeMotionsTotal() {
+        return collaborativeMotionsTotal;
+    }
+
+    /**
+     * Sets the collaborative motions total.
+     *
+     * @param value the new collaborative motions total
+     */
+    public void setCollaborativeMotionsTotal(final long value) {
+        this.collaborativeMotionsTotal = value;
+    }
+
+    /**
+     * Gets the follow up motions total.
+     *
+     * @return the follow up motions total
+     */
+    @Basic
+    @Column(name = "FOLLOW_UP_MOTIONS_TOTAL", precision = 20)
+    public long getFollowUpMotionsTotal() {
+        return followUpMotionsTotal;
+    }
+
+    /**
+     * Sets the follow up motions total.
+     *
+     * @param value the new follow up motions total
+     */
+    public void setFollowUpMotionsTotal(final long value) {
+        this.followUpMotionsTotal = value;
+    }
+
+    /**
+     * Gets the standard motions total.
+     *
+     * @return the standard motions total
+     */
+    @Basic
+    @Column(name = "STANDARD_MOTIONS_TOTAL", precision = 20)
+    public long getStandardMotionsTotal() {
+        return standardMotionsTotal;
+    }
+
+    /**
+     * Sets the standard motions total.
+     *
+     * @param value the new standard motions total
+     */
+    public void setStandardMotionsTotal(final long value) {
+        this.standardMotionsTotal = value;
+    }
+
+    /**
+     * Gets the high activity total.
+     *
+     * @return the high activity total
+     */
+    @Basic
+    @Column(name = "HIGH_ACTIVITY_TOTAL", precision = 20)
+    public long getHighActivityTotal() {
+        return highActivityTotal;
+    }
+
+    /**
+     * Sets the high activity total.
+     *
+     * @param value the new high activity total
+     */
+    public void setHighActivityTotal(final long value) {
+        this.highActivityTotal = value;
+    }
+
+    /**
+     * Gets the medium activity total.
+     *
+     * @return the medium activity total
+     */
+    @Basic
+    @Column(name = "MEDIUM_ACTIVITY_TOTAL", precision = 20)
+    public long getMediumActivityTotal() {
+        return mediumActivityTotal;
+    }
+
+    /**
+     * Sets the medium activity total.
+     *
+     * @param value the new medium activity total
+     */
+    public void setMediumActivityTotal(final long value) {
+        this.mediumActivityTotal = value;
+    }
+
+    /**
+     * Gets the low activity total.
+     *
+     * @return the low activity total
+     */
+    @Basic
+    @Column(name = "LOW_ACTIVITY_TOTAL", precision = 20)
+    public long getLowActivityTotal() {
+        return lowActivityTotal;
+    }
+
+    /**
+     * Sets the low activity total.
+     *
+     * @param value the new low activity total
+     */
+    public void setLowActivityTotal(final long value) {
+        this.lowActivityTotal = value;
+    }
+
+    /**
+     * Gets the multi party author total.
+     *
+     * @return the multi party author total
+     */
+    @Basic
+    @Column(name = "MULTI_PARTY_AUTHOR_TOTAL", precision = 20)
+    public long getMultiPartyAuthorTotal() {
+        return multiPartyAuthorTotal;
+    }
+
+    /**
+     * Sets the multi party author total.
+     *
+     * @param value the new multi party author total
+     */
+    public void setMultiPartyAuthorTotal(final long value) {
+        this.multiPartyAuthorTotal = value;
+    }
+
+    /**
+     * Gets the single party author total.
+     *
+     * @return the single party author total
+     */
+    @Basic
+    @Column(name = "SINGLE_PARTY_AUTHOR_TOTAL", precision = 20)
+    public long getSinglePartyAuthorTotal() {
+        return singlePartyAuthorTotal;
+    }
+
+    /**
+     * Sets the single party author total.
+     *
+     * @param value the new single party author total
+     */
+    public void setSinglePartyAuthorTotal(final long value) {
+        this.singlePartyAuthorTotal = value;
+    }
+
+    /**
+     * With party motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    // Builder pattern methods
+    public ViewRiksdagenDocumentTypeDailySummary withPartyMotionsTotal(final long value) {
+        setPartyMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With individual motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    public ViewRiksdagenDocumentTypeDailySummary withIndividualMotionsTotal(final long value) {
+        setIndividualMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With committee motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    public ViewRiksdagenDocumentTypeDailySummary withCommitteeMotionsTotal(final long value) {
+        setCommitteeMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With collaborative motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    public ViewRiksdagenDocumentTypeDailySummary withCollaborativeMotionsTotal(final long value) {
+        setCollaborativeMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With follow up motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    public ViewRiksdagenDocumentTypeDailySummary withFollowUpMotionsTotal(final long value) {
+        setFollowUpMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With standard motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    public ViewRiksdagenDocumentTypeDailySummary withStandardMotionsTotal(final long value) {
+        setStandardMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With high activity total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    public ViewRiksdagenDocumentTypeDailySummary withHighActivityTotal(final long value) {
+        setHighActivityTotal(value);
+        return this;
+    }
+
+    /**
+     * With medium activity total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    public ViewRiksdagenDocumentTypeDailySummary withMediumActivityTotal(final long value) {
+        setMediumActivityTotal(value);
+        return this;
+    }
+
+    /**
+     * With low activity total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    public ViewRiksdagenDocumentTypeDailySummary withLowActivityTotal(final long value) {
+        setLowActivityTotal(value);
+        return this;
+    }
+
+    /**
+     * With multi party author total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    public ViewRiksdagenDocumentTypeDailySummary withMultiPartyAuthorTotal(final long value) {
+        setMultiPartyAuthorTotal(value);
+        return this;
+    }
+
+    /**
+     * With single party author total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
+    public ViewRiksdagenDocumentTypeDailySummary withSinglePartyAuthorTotal(final long value) {
+        setSinglePartyAuthorTotal(value);
+        return this;
+    }
+
+    /**
+     * With embedded id.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
     public ViewRiksdagenDocumentTypeDailySummary withEmbeddedId(final RiksdagenDocumentTypeSummaryEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
+    /**
+     * With total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
     public ViewRiksdagenDocumentTypeDailySummary withTotal(final long value) {
         setTotal(value);
         return this;
     }
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public final String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public final boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

@@ -36,6 +36,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * <p>Java class for ViewRiksdagenPartyMember complex type.
  *
@@ -109,7 +110,19 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
     "party",
     "personUrlXml",
     "place",
-    "status"
+    "status",
+    "totalDocuments",
+    "partyMotions",
+    "individualMotions",
+    "committeeMotions",
+    "collaborativeMotions",
+    "followUpMotions",
+    "activityLevel",
+    "lastDocumentDate",
+    "firstDocumentDate",
+    "averageDocumentsPerYear",
+    "documentQualityRating",
+    "crossPartyDocumentPercentage"
 })
 @Entity(name = "ViewRiksdagenPartyMember")
 @Table(name = "VIEW_RIKSDAGEN_PARTY_MEMBER")
@@ -118,64 +131,158 @@ public class ViewRiksdagenPartyMember
     implements ModelObject
 {
 
-    /**
-	 *
-	 */
+    /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The id. */
 	@XmlElement(required = true)
     protected String id;
+
+    /** The hjid. */
     protected long hjid;
+
+    /** The address. */
     @XmlElement(required = true)
     protected String address;
+
+    /** The city. */
     @XmlElement(required = true)
     protected String city;
+
+    /** The co address. */
     @XmlElement(required = true)
     protected String coAddress;
+
+    /** The email. */
     @XmlElement(required = true)
     protected String email;
+
+    /** The fax number. */
     @XmlElement(required = true)
     protected String faxNumber;
+
+    /** The party id. */
     @XmlElement(required = true)
     protected String partyId;
+
+    /** The party name. */
     @XmlElement(required = true)
     protected String partyName;
+
+    /** The phone number. */
     @XmlElement(required = true)
     protected String phoneNumber;
+
+    /** The post code. */
     @XmlElement(required = true)
     protected String postCode;
+
+    /** The registered date. */
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
     @XmlSchemaType(name = "date")
     protected Date registeredDate;
+
+    /** The short code. */
     @XmlElement(required = true)
     protected String shortCode;
+
+    /** The website. */
     @XmlElement(required = true)
     protected String website;
+
+    /** The born year. */
     protected int bornYear;
+
+    /** The election region. */
     @XmlElement(required = true)
     protected String electionRegion;
+
+    /** The first name. */
     @XmlElement(required = true)
     protected String firstName;
+
+    /** The gender. */
     @XmlElement(required = true)
     protected String gender;
+
+    /** The hangar guid. */
     @XmlElement(required = true)
     protected String hangarGuid;
+
+    /** The image url 192. */
     @XmlElement(name = "image_url_192", required = true)
     protected String imageUrl192;
+
+    /** The image url 80. */
     @XmlElement(name = "image_url_80", required = true)
     protected String imageUrl80;
+
+    /** The image url max. */
     @XmlElement(name = "image_url_max", required = true)
     protected String imageUrlMax;
+
+    /** The last name. */
     @XmlElement(name = "last_name", required = true)
     protected String lastName;
+
+    /** The party. */
     @XmlElement(required = true)
     protected String party;
+
+    /** The person url xml. */
     @XmlElement(name = "person_url_xml", required = true)
     protected String personUrlXml;
+
+    /** The place. */
     @XmlElement(required = true)
     protected String place;
+
+    /** The status. */
     @XmlElement(required = true)
     protected String status;
+
+    /** The total documents. */
+    protected long totalDocuments;
+
+    /** The party motions. */
+    protected long partyMotions;
+
+    /** The individual motions. */
+    protected long individualMotions;
+
+    /** The committee motions. */
+    protected long committeeMotions;
+
+    /** The collaborative motions. */
+    protected long collaborativeMotions;
+
+    /** The follow up motions. */
+    protected long followUpMotions;
+
+    /** The activity level. */
+    protected String activityLevel;
+
+    /** The last document date. */
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
+    @XmlSchemaType(name = "date")
+    protected Date lastDocumentDate;
+
+    /** The first document date. */
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
+    @XmlSchemaType(name = "date")
+    protected Date firstDocumentDate;
+
+    /** The average documents per year. */
+    protected double averageDocumentsPerYear;
+
+    /** The document quality rating. */
+    protected double documentQualityRating;
+
+    /** The cross party document percentage. */
+    protected double crossPartyDocumentPercentage;
 
     /**
      * Gets the value of the id property.
@@ -206,6 +313,7 @@ public class ViewRiksdagenPartyMember
     /**
      * Gets the value of the hjid property.
      *
+     * @return the hjid
      */
     @Basic
     @Column(name = "HJID", precision = 20)
@@ -216,6 +324,7 @@ public class ViewRiksdagenPartyMember
     /**
      * Sets the value of the hjid property.
      *
+     * @param value the new hjid
      */
     public void setHjid(final long value) {
         this.hjid = value;
@@ -537,6 +646,7 @@ public class ViewRiksdagenPartyMember
     /**
      * Gets the value of the bornYear property.
      *
+     * @return the born year
      */
     @Basic
     @Column(name = "BORN_YEAR", precision = 10, scale = 0)
@@ -547,6 +657,7 @@ public class ViewRiksdagenPartyMember
     /**
      * Sets the value of the bornYear property.
      *
+     * @param value the new born year
      */
     public void setBornYear(final int value) {
         this.bornYear = value;
@@ -853,6 +964,381 @@ public class ViewRiksdagenPartyMember
     }
 
     /**
+     * Gets the total documents.
+     *
+     * @return the total documents
+     */
+    @Basic
+    @Column(name = "TOTAL_DOCUMENTS", precision = 20)
+    public long getTotalDocuments() {
+        return totalDocuments;
+    }
+
+    /**
+     * Sets the total documents.
+     *
+     * @param value the new total documents
+     */
+    public void setTotalDocuments(final long value) {
+        this.totalDocuments = value;
+    }
+
+    /**
+     * Gets the party motions.
+     *
+     * @return the party motions
+     */
+    @Basic
+    @Column(name = "PARTY_MOTIONS", precision = 20)
+    public long getPartyMotions() {
+        return partyMotions;
+    }
+
+    /**
+     * Sets the party motions.
+     *
+     * @param value the new party motions
+     */
+    public void setPartyMotions(final long value) {
+        this.partyMotions = value;
+    }
+
+    /**
+     * Gets the individual motions.
+     *
+     * @return the individual motions
+     */
+    @Basic
+    @Column(name = "INDIVIDUAL_MOTIONS", precision = 20)
+    public long getIndividualMotions() {
+        return individualMotions;
+    }
+
+    /**
+     * Sets the individual motions.
+     *
+     * @param value the new individual motions
+     */
+    public void setIndividualMotions(final long value) {
+        this.individualMotions = value;
+    }
+
+    /**
+     * Gets the committee motions.
+     *
+     * @return the committee motions
+     */
+    @Basic
+    @Column(name = "COMMITTEE_MOTIONS", precision = 20)
+    public long getCommitteeMotions() {
+        return committeeMotions;
+    }
+
+    /**
+     * Sets the committee motions.
+     *
+     * @param value the new committee motions
+     */
+    public void setCommitteeMotions(final long value) {
+        this.committeeMotions = value;
+    }
+
+    /**
+     * Gets the collaborative motions.
+     *
+     * @return the collaborative motions
+     */
+    @Basic
+    @Column(name = "COLLABORATIVE_MOTIONS", precision = 20)
+    public long getCollaborativeMotions() {
+        return collaborativeMotions;
+    }
+
+    /**
+     * Sets the collaborative motions.
+     *
+     * @param value the new collaborative motions
+     */
+    public void setCollaborativeMotions(final long value) {
+        this.collaborativeMotions = value;
+    }
+
+    /**
+     * Gets the follow up motions.
+     *
+     * @return the follow up motions
+     */
+    @Basic
+    @Column(name = "FOLLOW_UP_MOTIONS", precision = 20)
+    public long getFollowUpMotions() {
+        return followUpMotions;
+    }
+
+    /**
+     * Sets the follow up motions.
+     *
+     * @param value the new follow up motions
+     */
+    public void setFollowUpMotions(final long value) {
+        this.followUpMotions = value;
+    }
+
+    /**
+     * Gets the activity level.
+     *
+     * @return the activity level
+     */
+    @Basic
+    @Column(name = "ACTIVITY_LEVEL")
+    public String getActivityLevel() {
+        return activityLevel;
+    }
+
+    /**
+     * Sets the activity level.
+     *
+     * @param value the new activity level
+     */
+    public void setActivityLevel(final String value) {
+        this.activityLevel = value;
+    }
+
+    /**
+     * Gets the last document date.
+     *
+     * @return the last document date
+     */
+    @Basic
+    @Column(name = "LAST_DOCUMENT_DATE")
+    @Temporal(TemporalType.DATE)
+    public Date getLastDocumentDate() {
+        return lastDocumentDate;
+    }
+
+    /**
+     * Sets the last document date.
+     *
+     * @param value the new last document date
+     */
+    public void setLastDocumentDate(final Date value) {
+        this.lastDocumentDate = value;
+    }
+
+    /**
+     * Gets the first document date.
+     *
+     * @return the first document date
+     */
+    @Basic
+    @Column(name = "FIRST_DOCUMENT_DATE")
+    @Temporal(TemporalType.DATE)
+    public Date getFirstDocumentDate() {
+        return firstDocumentDate;
+    }
+
+    /**
+     * Sets the first document date.
+     *
+     * @param value the new first document date
+     */
+    public void setFirstDocumentDate(final Date value) {
+        this.firstDocumentDate = value;
+    }
+
+    /**
+     * Gets the average documents per year.
+     *
+     * @return the average documents per year
+     */
+    @Basic
+    @Column(name = "AVERAGE_DOCUMENTS_PER_YEAR", precision = 10, scale = 2)
+    public double getAverageDocumentsPerYear() {
+        return averageDocumentsPerYear;
+    }
+
+    /**
+     * Sets the average documents per year.
+     *
+     * @param value the new average documents per year
+     */
+    public void setAverageDocumentsPerYear(final double value) {
+        this.averageDocumentsPerYear = value;
+    }
+
+    /**
+     * Gets the document quality rating.
+     *
+     * @return the document quality rating
+     */
+    @Basic
+    @Column(name = "DOCUMENT_QUALITY_RATING", precision = 10, scale = 2)
+    public double getDocumentQualityRating() {
+        return documentQualityRating;
+    }
+
+    /**
+     * Sets the document quality rating.
+     *
+     * @param value the new document quality rating
+     */
+    public void setDocumentQualityRating(final double value) {
+        this.documentQualityRating = value;
+    }
+
+    /**
+     * Gets the cross party document percentage.
+     *
+     * @return the cross party document percentage
+     */
+    @Basic
+    @Column(name = "CROSS_PARTY_DOCUMENT_PERCENTAGE", precision = 10, scale = 2)
+    public double getCrossPartyDocumentPercentage() {
+        return crossPartyDocumentPercentage;
+    }
+
+    /**
+     * Sets the cross party document percentage.
+     *
+     * @param value the new cross party document percentage
+     */
+    public void setCrossPartyDocumentPercentage(final double value) {
+        this.crossPartyDocumentPercentage = value;
+    }
+
+    /**
+     * With total documents.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    // Builder pattern methods for new fields
+    public ViewRiksdagenPartyMember withTotalDocuments(final long value) {
+        setTotalDocuments(value);
+        return this;
+    }
+
+    /**
+     * With party motions.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withPartyMotions(final long value) {
+        setPartyMotions(value);
+        return this;
+    }
+
+    /**
+     * With individual motions.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withIndividualMotions(final long value) {
+        setIndividualMotions(value);
+        return this;
+    }
+
+    /**
+     * With committee motions.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withCommitteeMotions(final long value) {
+        setCommitteeMotions(value);
+        return this;
+    }
+
+    /**
+     * With collaborative motions.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withCollaborativeMotions(final long value) {
+        setCollaborativeMotions(value);
+        return this;
+    }
+
+    /**
+     * With follow up motions.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withFollowUpMotions(final long value) {
+        setFollowUpMotions(value);
+        return this;
+    }
+
+    /**
+     * With activity level.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withActivityLevel(final String value) {
+        setActivityLevel(value);
+        return this;
+    }
+
+    /**
+     * With last document date.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withLastDocumentDate(final Date value) {
+        setLastDocumentDate(value);
+        return this;
+    }
+
+    /**
+     * With first document date.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withFirstDocumentDate(final Date value) {
+        setFirstDocumentDate(value);
+        return this;
+    }
+
+    /**
+     * With average documents per year.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withAverageDocumentsPerYear(final double value) {
+        setAverageDocumentsPerYear(value);
+        return this;
+    }
+
+    /**
+     * With document quality rating.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withDocumentQualityRating(final double value) {
+        setDocumentQualityRating(value);
+        return this;
+    }
+
+    /**
+     * With cross party document percentage.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
+    public ViewRiksdagenPartyMember withCrossPartyDocumentPercentage(final double value) {
+        setCrossPartyDocumentPercentage(value);
+        return this;
+    }
+
+    /**
      * Sets the value of the status property.
      *
      * @param value
@@ -864,152 +1350,330 @@ public class ViewRiksdagenPartyMember
         this.status = value;
     }
 
+    /**
+     * With id.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withId(final String value) {
         setId(value);
         return this;
     }
 
+    /**
+     * With hjid.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withHjid(final long value) {
         setHjid(value);
         return this;
     }
 
+    /**
+     * With address.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withAddress(final String value) {
         setAddress(value);
         return this;
     }
 
+    /**
+     * With city.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withCity(final String value) {
         setCity(value);
         return this;
     }
 
+    /**
+     * With co address.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withCoAddress(final String value) {
         setCoAddress(value);
         return this;
     }
 
+    /**
+     * With email.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withEmail(final String value) {
         setEmail(value);
         return this;
     }
 
+    /**
+     * With fax number.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withFaxNumber(final String value) {
         setFaxNumber(value);
         return this;
     }
 
+    /**
+     * With party id.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withPartyId(final String value) {
         setPartyId(value);
         return this;
     }
 
+    /**
+     * With party name.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withPartyName(final String value) {
         setPartyName(value);
         return this;
     }
 
+    /**
+     * With phone number.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withPhoneNumber(final String value) {
         setPhoneNumber(value);
         return this;
     }
 
+    /**
+     * With post code.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withPostCode(final String value) {
         setPostCode(value);
         return this;
     }
 
+    /**
+     * With registered date.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withRegisteredDate(final Date value) {
         setRegisteredDate(value);
         return this;
     }
 
+    /**
+     * With short code.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withShortCode(final String value) {
         setShortCode(value);
         return this;
     }
 
+    /**
+     * With website.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withWebsite(final String value) {
         setWebsite(value);
         return this;
     }
 
+    /**
+     * With born year.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withBornYear(final int value) {
         setBornYear(value);
         return this;
     }
 
+    /**
+     * With election region.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withElectionRegion(final String value) {
         setElectionRegion(value);
         return this;
     }
 
+    /**
+     * With first name.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withFirstName(final String value) {
         setFirstName(value);
         return this;
     }
 
+    /**
+     * With gender.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withGender(final String value) {
         setGender(value);
         return this;
     }
 
+    /**
+     * With hangar guid.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withHangarGuid(final String value) {
         setHangarGuid(value);
         return this;
     }
 
+    /**
+     * With image url 192.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withImageUrl192(final String value) {
         setImageUrl192(value);
         return this;
     }
 
+    /**
+     * With image url 80.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withImageUrl80(final String value) {
         setImageUrl80(value);
         return this;
     }
 
+    /**
+     * With image url max.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withImageUrlMax(final String value) {
         setImageUrlMax(value);
         return this;
     }
 
+    /**
+     * With last name.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withLastName(final String value) {
         setLastName(value);
         return this;
     }
 
+    /**
+     * With party.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withParty(final String value) {
         setParty(value);
         return this;
     }
 
+    /**
+     * With person url xml.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withPersonUrlXml(final String value) {
         setPersonUrlXml(value);
         return this;
     }
 
+    /**
+     * With place.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withPlace(final String value) {
         setPlace(value);
         return this;
     }
 
+    /**
+     * With status.
+     *
+     * @param value the value
+     * @return the view riksdagen party member
+     */
     public ViewRiksdagenPartyMember withStatus(final String value) {
         setStatus(value);
         return this;
     }
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public final String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public final boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

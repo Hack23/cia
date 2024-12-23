@@ -60,7 +60,7 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 			"currentSpeakerAssignments", "gender" };
 
 	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" };
+	private static final String[] HIDE_COLUMNS = { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" ,"documentTypes", "firstDocumentDate","lastDocumentDate"};
 
 	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
