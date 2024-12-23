@@ -122,11 +122,8 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
             return;
         }
         // Do we have a non-empty 'committee'?
-        if (proposal.getCommittee() == null || proposal.getCommittee().isEmpty()) {
-            return;
-        }
         // Does 'processedIn' match?
-        if (!proposal.getProcessedIn().contains(processedIn)) {
+        if (proposal.getCommittee() == null || proposal.getCommittee().isEmpty() || !proposal.getProcessedIn().contains(processedIn)) {
             return;
         }
         // Is the chamber length within the specified min/max?
