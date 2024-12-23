@@ -177,7 +177,9 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		if (documentList != null) {
 			for (ViewRiksdagenPoliticianDocument document : documentList) {
-				ksession.insert(document);
+				if (document.getEmbeddedId() != null) {
+					ksession.insert(document);
+				}
 			}
 		}
 	}
@@ -256,7 +258,9 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		if (documentDailyList != null) {
 			for (ViewRiksdagenPartyDocumentDailySummary documentDailySummary : documentDailyList) {
-				ksession.insert(documentDailySummary);
+				if (documentDailySummary.getEmbeddedId() != null) {
+					ksession.insert(documentDailySummary);
+				}
 			}
 		}
 	}

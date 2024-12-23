@@ -117,7 +117,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the document count
 	 */
 	public int getDocumentCount() {
-		return party.getTotalAssignments();
+		return (int)Math.min(party.getTotalAssignments(), Integer.MAX_VALUE);
 	}
 
 	/**
@@ -126,7 +126,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the press release count
 	 */
 	public int getPressReleaseCount() {
-		return party.getCurrentAssignments();
+		return (int)Math.min(party.getCurrentAssignments(), Integer.MAX_VALUE);
 	}
 
 	/**
@@ -155,6 +155,6 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the frequent party switching count
 	 */
 	public int getFrequentPartySwitchingCount() {
-		return party.getTotalPartyAssignments();
+		return (int)Math.min(party.getTotalPartyAssignments(), Integer.MAX_VALUE);
 	}
 }
