@@ -158,12 +158,4 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
         return (double) politician.getTotalDaysServedCommitteeSubstitute() / (double) totalCommittee;
     }
 
-    /**
-     * Gets the document count.
-     *
-     * @return the document count
-     */
-    public int getDocumentCount() {
-        return (int)Math.min(politician.getTotalAssignments(), Integer.MAX_VALUE);
-    }
 }
