@@ -56,11 +56,6 @@ import com.hack23.cia.model.common.api.ModelObject;
 @XmlType(name = "ViewRiksdagenPoliticianDocumentDailySummary", propOrder = {
     "embeddedId",
     "total",
-    "partyMotionsTotal",
-    "individualMotionsTotal",
-    "committeeMotionsTotal",
-    "collaborativeMotionsTotal",
-    "followUpMotionsTotal"
 })
 @Entity(name = "ViewRiksdagenPoliticianDocumentDailySummary")
 @Inheritance(strategy = InheritanceType.JOINED)
