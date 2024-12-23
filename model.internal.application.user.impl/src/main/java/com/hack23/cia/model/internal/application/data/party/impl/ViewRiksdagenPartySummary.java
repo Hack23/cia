@@ -33,7 +33,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.hack23.cia.model.common.api.ModelObject;
 import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
-// TODO: Auto-generated Javadoc
 /**
  * <p>
  * Java class for ViewRiksdagenPartySummary complex type.
