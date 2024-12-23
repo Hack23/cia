@@ -107,11 +107,11 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> politicianDocumentDailySummaryMap = dataViewer
 				.getAll(ViewRiksdagenPoliticianDocumentDailySummary.class).stream()
-				.collect(Collectors.groupingBy(p -> p.getPersonId()));
+				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getPersonId()));
 
 		final Map<String, List<ViewRiksdagenPoliticianDocument>> politicianDocumentMap = dataViewer
 				.getAll(ViewRiksdagenPoliticianDocument.class).stream()
-				.collect(Collectors.groupingBy(p -> p.getPersonReferenceId()));
+				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getPersonReferenceId()));
 
 		for (final ViewRiksdagenPolitician politicianData : list) {
 			if (politicianData != null) {
@@ -201,7 +201,7 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> partyDocumentDailySummaryMap = dataViewer
 				.getAll(ViewRiksdagenPartyDocumentDailySummary.class).stream()
-				.collect(Collectors.groupingBy(p -> p.getPartyShortCode()));
+				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getPartyShortCode()));
 
 		for (final ViewRiksdagenPartySummary partyData : list) {
 			if (partyData != null) {

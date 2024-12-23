@@ -117,7 +117,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the document count
 	 */
 	public int getDocumentCount() {
-		return party.getDocumentCount();
+		return party.getTotalAssignments();
 	}
 
 	/**
@@ -126,7 +126,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the press release count
 	 */
 	public int getPressReleaseCount() {
-		return party.getPressReleaseCount();
+		return party.getCurrentAssignments();
 	}
 
 	/**
@@ -136,7 +136,7 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 */
 	public long getDaysSinceRegistration() {
 		long currentTime = System.currentTimeMillis();
-		long registeredTime = party.getRegisteredDate().getTime();
+		long registeredTime = party.getFirstAssignmentDate().getTime();
 		return (currentTime - registeredTime) / (1000 * 60 * 60 * 24);
 	}
 
@@ -155,6 +155,6 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	 * @return the frequent party switching count
 	 */
 	public int getFrequentPartySwitchingCount() {
-		return party.getPartySwitchingCount();
+		return party.getTotalPartyAssignments();
 	}
 }

@@ -164,6 +164,6 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
      * @return the document count
      */
     public int getDocumentCount() {
-        return politician.getDocumentCount();
+        return politician.getTotalAssignments();
     }
 }
