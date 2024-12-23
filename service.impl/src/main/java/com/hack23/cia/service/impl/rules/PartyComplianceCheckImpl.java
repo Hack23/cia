@@ -15,7 +15,7 @@
  *
  *	$Id$
  *  $HeadURL$
- */
+*/
 package com.hack23.cia.service.impl.rules;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
@@ -111,33 +111,4 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 		return annualSummary;
 	}
 
-	/**
-	 * Validate document activity.
-	 *
-	 * @param party the party
-	 */
-	public void validateDocumentActivity(ViewRiksdagenPartySummary party) {
-		final int documentCount = (int)Math.min(party.getTotalAssignments(), Integer.MAX_VALUE);
-		// ... rest of validation
-	}
-
-	/**
-	 * Validate press activity.
-	 *
-	 * @param party the party
-	 */
-	public void validatePressActivity(ViewRiksdagenPartySummary party) {
-		final int activityCount = (int)Math.min(party.getCurrentAssignments(), Integer.MAX_VALUE);
-		// ... rest of validation
-	}
-
-	/**
-	 * Validate party stability.
-	 *
-	 * @param party the party
-	 */
-	public void validatePartyStability(ViewRiksdagenPartySummary party) {
-		final int stabilityMetric = (int)Math.min(party.getTotalPartyAssignments(), Integer.MAX_VALUE);
-		// ... rest of validation
-	}
 }
