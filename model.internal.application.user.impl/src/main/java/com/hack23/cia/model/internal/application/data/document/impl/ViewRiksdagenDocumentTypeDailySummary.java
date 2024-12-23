@@ -32,6 +32,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.hack23.cia.model.common.api.ModelObject;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * <p>Java class for ViewRiksdagenDocumentTypeDailySummary complex type.
  *
@@ -54,9 +55,9 @@ import com.hack23.cia.model.common.api.ModelObject;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ViewRiksdagenDocumentTypeDailySummary", propOrder = {
-    "embeddedId",
-    "total"
-})
+	    "embeddedId",
+	    "total"
+	})
 @Entity(name = "ViewRiksdagenDocumentTypeDailySummary")
 @Table(name = "View_Riksdagen_Document_Type_Daily_Summary")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -64,13 +65,16 @@ public class ViewRiksdagenDocumentTypeDailySummary
     implements ModelObject
 {
 
-    /**
-	 *
-	 */
+    /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The embedded id. */
 	@XmlElement(required = true)
     protected RiksdagenDocumentTypeSummaryEmbeddedId embeddedId;
+
+    /** The total. */
     protected long total;
+
 
     /**
      * Gets the value of the embeddedId property.
@@ -104,6 +108,7 @@ public class ViewRiksdagenDocumentTypeDailySummary
     /**
      * Gets the value of the total property.
      *
+     * @return the total
      */
     @Basic
     @Column(name = "TOTAL", precision = 20)
@@ -114,31 +119,61 @@ public class ViewRiksdagenDocumentTypeDailySummary
     /**
      * Sets the value of the total property.
      *
+     * @param value the new total
      */
     public void setTotal(final long value) {
         this.total = value;
     }
 
+
+    /**
+     * With embedded id.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
     public ViewRiksdagenDocumentTypeDailySummary withEmbeddedId(final RiksdagenDocumentTypeSummaryEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
+    /**
+     * With total.
+     *
+     * @param value the value
+     * @return the view riksdagen document type daily summary
+     */
     public ViewRiksdagenDocumentTypeDailySummary withTotal(final long value) {
         setTotal(value);
         return this;
     }
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public final String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public final boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

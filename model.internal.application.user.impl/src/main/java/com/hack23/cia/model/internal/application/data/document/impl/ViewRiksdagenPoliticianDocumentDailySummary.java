@@ -18,7 +18,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -32,6 +31,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.hack23.cia.model.common.api.ModelObject;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * <p>Java class for ViewRiksdagenPoliticianDocumentDailySummary complex type.
  *
@@ -55,22 +55,38 @@ import com.hack23.cia.model.common.api.ModelObject;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ViewRiksdagenPoliticianDocumentDailySummary", propOrder = {
     "embeddedId",
-    "total"
+    "total",
 })
 @Entity(name = "ViewRiksdagenPoliticianDocumentDailySummary")
-@Table(name = "View_Riksdagen_Politician_Document_Daily_Summary")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class ViewRiksdagenPoliticianDocumentDailySummary
     implements ModelObject
 {
 
-    /**
-	 *
-	 */
+    /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The embedded id. */
 	@XmlElement(required = true)
     protected RiksdagenDocumentPersonSummaryEmbeddedId embeddedId;
+
+    /** The total. */
     protected long total;
+
+    /** The party motions total. */
+    protected long partyMotionsTotal;
+
+    /** The individual motions total. */
+    protected long individualMotionsTotal;
+
+    /** The committee motions total. */
+    protected long committeeMotionsTotal;
+
+    /** The collaborative motions total. */
+    protected long collaborativeMotionsTotal;
+
+    /** The follow up motions total. */
+    protected long followUpMotionsTotal;
 
     /**
      * Gets the value of the embeddedId property.
@@ -105,6 +121,7 @@ public class ViewRiksdagenPoliticianDocumentDailySummary
     /**
      * Gets the value of the total property.
      *
+     * @return the total
      */
     @Basic
     @Column(name = "TOTAL", precision = 20)
@@ -115,32 +132,217 @@ public class ViewRiksdagenPoliticianDocumentDailySummary
     /**
      * Sets the value of the total property.
      *
+     * @param value the new total
      */
     public void setTotal(final long value) {
         this.total = value;
     }
 
+    /**
+     * Gets the party motions total.
+     *
+     * @return the party motions total
+     */
+    @Basic
+    @Column(name = "PARTY_MOTIONS_TOTAL", precision = 20)
+    public long getPartyMotionsTotal() {
+        return partyMotionsTotal;
+    }
+
+    /**
+     * Sets the party motions total.
+     *
+     * @param value the new party motions total
+     */
+    public void setPartyMotionsTotal(final long value) {
+        this.partyMotionsTotal = value;
+    }
+
+    /**
+     * Gets the individual motions total.
+     *
+     * @return the individual motions total
+     */
+    @Basic
+    @Column(name = "INDIVIDUAL_MOTIONS_TOTAL", precision = 20)
+    public long getIndividualMotionsTotal() {
+        return individualMotionsTotal;
+    }
+
+    /**
+     * Sets the individual motions total.
+     *
+     * @param value the new individual motions total
+     */
+    public void setIndividualMotionsTotal(final long value) {
+        this.individualMotionsTotal = value;
+    }
+
+    /**
+     * Gets the committee motions total.
+     *
+     * @return the committee motions total
+     */
+    @Basic
+    @Column(name = "COMMITTEE_MOTIONS_TOTAL", precision = 20)
+    public long getCommitteeMotionsTotal() {
+        return committeeMotionsTotal;
+    }
+
+    /**
+     * Sets the committee motions total.
+     *
+     * @param value the new committee motions total
+     */
+    public void setCommitteeMotionsTotal(final long value) {
+        this.committeeMotionsTotal = value;
+    }
+
+    /**
+     * Gets the collaborative motions total.
+     *
+     * @return the collaborative motions total
+     */
+    @Basic
+    @Column(name = "COLLABORATIVE_MOTIONS_TOTAL", precision = 20)
+    public long getCollaborativeMotionsTotal() {
+        return collaborativeMotionsTotal;
+    }
+
+    /**
+     * Sets the collaborative motions total.
+     *
+     * @param value the new collaborative motions total
+     */
+    public void setCollaborativeMotionsTotal(final long value) {
+        this.collaborativeMotionsTotal = value;
+    }
+
+    /**
+     * Gets the follow up motions total.
+     *
+     * @return the follow up motions total
+     */
+    @Basic
+    @Column(name = "FOLLOW_UP_MOTIONS_TOTAL", precision = 20)
+    public long getFollowUpMotionsTotal() {
+        return followUpMotionsTotal;
+    }
+
+    /**
+     * Sets the follow up motions total.
+     *
+     * @param value the new follow up motions total
+     */
+    public void setFollowUpMotionsTotal(final long value) {
+        this.followUpMotionsTotal = value;
+    }
+
+    /**
+     * With party motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen politician document daily summary
+     */
+    // Add builder pattern methods
+    public ViewRiksdagenPoliticianDocumentDailySummary withPartyMotionsTotal(final long value) {
+        setPartyMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With individual motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen politician document daily summary
+     */
+    public ViewRiksdagenPoliticianDocumentDailySummary withIndividualMotionsTotal(final long value) {
+        setIndividualMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With committee motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen politician document daily summary
+     */
+    public ViewRiksdagenPoliticianDocumentDailySummary withCommitteeMotionsTotal(final long value) {
+        setCommitteeMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With collaborative motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen politician document daily summary
+     */
+    public ViewRiksdagenPoliticianDocumentDailySummary withCollaborativeMotionsTotal(final long value) {
+        setCollaborativeMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With follow up motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen politician document daily summary
+     */
+    public ViewRiksdagenPoliticianDocumentDailySummary withFollowUpMotionsTotal(final long value) {
+        setFollowUpMotionsTotal(value);
+        return this;
+    }
+
+    /**
+     * With embedded id.
+     *
+     * @param value the value
+     * @return the view riksdagen politician document daily summary
+     */
     public ViewRiksdagenPoliticianDocumentDailySummary withEmbeddedId(final RiksdagenDocumentPersonSummaryEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
+    /**
+     * With total.
+     *
+     * @param value the value
+     * @return the view riksdagen politician document daily summary
+     */
     public ViewRiksdagenPoliticianDocumentDailySummary withTotal(final long value) {
         setTotal(value);
         return this;
     }
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public final String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public final boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
