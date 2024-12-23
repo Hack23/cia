@@ -43,15 +43,61 @@ import com.vaadin.ui.VerticalLayout;
 public final class PartyRankingDataGridPageModContentFactoryImpl extends AbstractPartyRankingPageModContentFactoryImpl {
 
 	/** The Constant COLUMN_ORDER. */
-	private static final String[] COLUMN_ORDER = { "party", "currentAssignments", "totalActiveGovernment", "totalActiveCommittee", "totalActiveParliament", "totalActiveEu", "active", "firstAssignmentDate", "lastAssignmentDate",
-			"activeEu",
-			"activeGovernment", "activeCommittee",
-			"totalAssignments","totalDaysServed", "totalDaysServedGovernment", "totalDaysServedCommittee", "activeParliament",
-			"totalDaysServedParliament", "totalDaysServedEu" };
+	/** The Constant COLUMN_ORDER. */
+	private static final String[] COLUMN_ORDER = {
+	    "party",                          // Party name
+	    "currentlyActiveMembers",         // Current active members
+	    "totalDocumentsLastYear",         // Recent activity
+	    "avgDocumentsLastYear",           // Recent productivity per member
+	    "totalDocuments",                 // Historical volume
+	    "avgDocumentsPerMember",         // Overall productivity
+	    "veryHighActivityMembers",       // Member activity distribution
+	    "highActivityMembers",
+	    "mediumActivityMembers",
+	    "lowActivityMembers",
+	    "totalPartyMotions",             // Motion types distribution
+	    "totalCommitteeMotions",
+	    "totalIndividualMotions",
+	    "totalCollaborativeMotions",
+	    "partyFocusedMembers",          // Member focus distribution
+	    "committeeFocusedMembers",
+	    "individualFocusedMembers",
+	    "currentAssignments",            // Current positions
+	    "currentMinistryAssignments",
+	    "currentCommitteeAssignments",
+	    "currentCommitteeLeadershipAssignments"
+	};
 
 	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = {"active","activeParliament","activeGovernment","activeCommittee", "activeEu", "activeParty", "activeSpeaker"};
-
+	private static final String[] HIDE_COLUMNS = {
+	    "active",
+	    "activeParliament",
+	    "activeGovernment",
+	    "activeCommittee",
+	    "activeEu",
+	    "activeParty",
+	    "activeSpeaker",
+	    "totalDaysServedParliament",
+	    "totalDaysServedCommittee",
+	    "totalDaysServedGovernment",
+	    "totalDaysServedEu",
+	    "totalDaysServedParty",
+	    "totalDaysServedSpeaker",
+	    "totalDaysServedCommitteeLeadership",
+	    "totalDaysServedCommitteeSubstitute",
+	    "totalActiveEu",
+	    "currentCommitteeSubstituteAssignments",
+	    "totalCommitteeSubstituteAssignments",
+	    "currentSpeakerAssignments",
+	    "totalSpeakerAssignments",
+	    "totalFollowUpMotions",          // Can be accessed in detailed view
+	    "firstAssignmentDate",           // Less relevant for activity focus
+	    "lastAssignmentDate",
+	    "totalPartyAssignments",
+	    "totalMinistryAssignments",
+	    "totalCommitteeAssignments",
+	    "totalCommitteeLeadershipAssignments"
+	};
 	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, "party");
 

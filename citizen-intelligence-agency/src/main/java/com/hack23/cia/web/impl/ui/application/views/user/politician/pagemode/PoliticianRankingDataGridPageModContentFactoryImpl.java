@@ -44,23 +44,84 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
 	/** The Constant COLUMN_ORDER. */
-	private static final String[] COLUMN_ORDER = { "personId", "firstName", "lastName", "party", "bornYear", "totalDaysServed",
-			"currentAssignments", "totalAssignments", "firstAssignmentDate", "lastAssignmentDate",
-			"totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
-			"totalDaysServedEu",
+	private static final String[] COLUMN_ORDER = {
+		    // Basic Information
+		    "personId",
+		    "firstName",
+		    "lastName",
+		    "party",
+		    "gender",
 
-			"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
+		    // Current Activity & Performance
+		    "documentsLastYear",          // Recent activity
+		    "averageDocsPerYear",        // Productivity metric
+		    "docActivityLevel",          // Activity classification
+		    "docActivityProfile",        // Work style
+		    "collaborationPercentage",   // Team player metric
 
-			"activeParty", "activeSpeaker", "totalDaysServedSpeaker", "totalDaysServedParty",
+		    // Document Breakdown
+		    "totalDocuments",            // Total contribution
+		    "individualMotions",         // Individual initiatives
+		    "partyMotions",             // Party work
+		    "committeeMotions",          // Committee work
+		    "multiPartyMotions",        // Collaboration metric
 
-			"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments",
-			"totalSpeakerAssignments",
+		    // Current Roles
+		    "currentAssignments",
+		    "currentMinistryAssignments",
+		    "currentCommitteeAssignments",
+		    "currentCommitteeLeadershipAssignments",
 
-			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
-			"currentSpeakerAssignments", "gender" };
+		    // Historical Performance
+		    "documentYearsActive",       // Experience metric
+		    "totalDaysServed",
+		    "totalCommitteeAssignments",
+		    "totalMinistryAssignments",
+
+		    // Dates for Context
+		    "firstAssignmentDate",
+		    "lastAssignmentDate",
+		    "firstDocumentDate",
+		    "lastDocumentDate"
+		};
 
 	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = { "personId", "active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker","bornYear" ,"documentTypes", "firstDocumentDate","lastDocumentDate"};
+	/** The Constant HIDE_COLUMNS. */
+	private static final String[] HIDE_COLUMNS = {
+	    // Hidden IDs and Boolean Flags
+	    "personId",
+	    "active",
+	    "activeEu",
+	    "activeGovernment",
+	    "activeCommittee",
+	    "activeParliament",
+	    "activeParty",
+	    "activeSpeaker",
+	    "bornYear",
+
+	    // Hidden Detail Metrics
+	    "followUpMotions",
+	    "totalDaysServedParliament",
+	    "totalDaysServedCommittee",
+	    "totalDaysServedGovernment",
+	    "totalDaysServedEu",
+	    "totalDaysServedSpeaker",
+	    "totalDaysServedParty",
+	    "totalDaysServedCommitteeSubstitute",
+	    "totalDaysServedCommitteeLeadership",
+
+	    // Hidden Assignment Details
+	    "totalPartyAssignments",
+	    "totalSpeakerAssignments",
+	    "currentPartyAssignments",
+	    "currentSpeakerAssignments",
+	    "totalCommitteeSubstituteAssignments",
+	    "currentCommitteeSubstituteAssignments",
+
+	    // Hidden Technical Fields
+	    "documentTypes",
+	    "documentTypesString"
+	};
 
 	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
