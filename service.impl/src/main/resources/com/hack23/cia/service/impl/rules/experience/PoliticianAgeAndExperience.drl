@@ -1,0 +1,64 @@
+package com.hack23.cia.service.impl.rules.experience
+
+import org.kie.api.runtime.KieRuntime
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with extensive EU experience but zero government experience"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.active,
+            politician.activeEu,
+            politician.totalDaysServedEu > 0,
+            politician.totalDaysServedGovernment == 0
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "PoliticianExperience",
+            "EUExperience",
+            kcontext.getRule().getName(),
+            "Extensive EU experience but zero government experience"
+        );
+end
+
+rule "Politician overshadowed in committee leadership"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.active,
+            politician.currentCommitteeAssignments > 0,
+            eval( $p.getCommitteeLeadershipRatio() < 0.1 ),
+            eval( $p.getCommitteeSubstituteRatio() > 0.5 )
+        )
+    then
+        $p.addViolation(
+            Status.MINOR,
+            "PoliticianExperience",
+            "CommitteeLeadership",
+            kcontext.getRule().getName(),
+            "Overshadowed in committee leadership"
+        );
+end
+
+rule "Politician overshadowed in committee leadership"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+              annualSummary != null,
+              // Suppose we interpret overshadowed if they're a committee member 
+              // but have <5% speaking or doc share:
+              eval( $p.getPolitician().getCurrentCommitteeAssignments() > 0
+                     && $p.getAnnualSummary().getPoliticianPercentageActive() < 5 )
+        )
+    then
+        $p.addViolation(
+            Status.MINOR,
+            "Experience",
+            "CommitteeOvershadowed",
+            kcontext.getRule().getName(),
+            "Politician rarely participates in assigned committee"
+        );
+end

@@ -1,0 +1,31 @@
+package com.hack23.cia.service.impl.rules.attendance
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with extremely low daily attendance"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && dailySummary != null && dailySummary.politicianPercentageAbsent > 50)
+    then
+        $p.addViolation(Status.CRITICAL, "PoliticianAttendance", "Attendance", kcontext.getRule().getName(), "Low Participation");
+end
+
+rule "Politician from Region X with extremely low attendance"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            dailySummary != null && 
+            dailySummary.politicianPercentageAbsent > 50 &&
+            politician.region == "X"
+        )
+    then
+        $p.addViolation(Status.CRITICAL, "PoliticianAttendance", "Attendance", kcontext.getRule().getName(), "Low Participation in Region X");
+end

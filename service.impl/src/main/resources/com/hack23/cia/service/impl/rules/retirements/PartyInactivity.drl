@@ -1,0 +1,68 @@
+package com.hack23.cia.service.impl.rules.retirements
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck
+
+rule "Party with no official documents in the past year"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && annualSummary != null && annualSummary.partyPercentageAbsent >= 30)
+    then
+        $p.addViolation(Status.CRITICAL, "PartyInactivity", "Behavior", kcontext.getRule().getName(), "No official documents in the past year");
+end
+
+rule "Party with no official documents in the past month"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && monthlySummary != null && monthlySummary.partyPercentageAbsent >= 30)
+    then
+        $p.addViolation(Status.MAJOR, "PartyInactivity", "Behavior", kcontext.getRule().getName(), "No official documents in the past month");
+end
+
+rule "Party with no official documents in the past day"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && dailySummary != null && dailySummary.partyPercentageAbsent >= 30)
+    then
+        $p.addViolation(Status.MINOR, "PartyInactivity", "Behavior", kcontext.getRule().getName(), "No official documents in the past day");
+end
+
+rule "Party with no official documents"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament,
+            eval( $p.getDocumentCount() == 0 )
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "DocumentActivity",
+            "NoDocuments",
+            kcontext.getRule().getName(),
+            "Party published 0 documents this year"
+        );
+end
+
+rule "Rule #13: Party with no official documents this year"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              eval( $p.getAnnualSummary().getDocumentCount() == 0 )
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "DocumentActivity",
+            "NoDocuments",
+            kcontext.getRule().getName(),
+            "Party published 0 documents this year"
+        );
+end

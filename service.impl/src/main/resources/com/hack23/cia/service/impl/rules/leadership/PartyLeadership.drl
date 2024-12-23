@@ -1,0 +1,59 @@
+package com.hack23.cia.service.impl.rules.leadership
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+
+rule "Party with single person controlling multiple leadership roles"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament,
+            eval( $p.getMultipleRolesCount() > 1 )
+        )
+    then
+        $p.addViolation(
+            Status.CRITICAL,
+            "PartyLeadership",
+            "LeadershipRoles",
+            kcontext.getRule().getName(),
+            "Single Person Controlling Multiple Leadership Roles"
+        );
+end
+
+rule "Party forming coalition with previously opposed party"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              eval( $p.getFrequentPartySwitchingCount() > 0 )
+        )
+    then
+        $p.addViolation(
+            Status.MINOR,
+            "Alliances",
+            "SuddenAlignmentShift",
+            kcontext.getRule().getName(),
+            "New coalition formed with previously opposed party"
+        );
+end
+
+rule "Party reliant on very small headcount"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              eval( $p.getParty().getParty() != null ), 
+              eval( $p.getParty().getHeadCount() < 5 )
+        )
+    then
+        $p.addViolation(
+            Status.MINOR,
+            "Compliance",
+            "SmallHeadcount",
+            kcontext.getRule().getName(),
+            "Party's membership is extremely small"
+        );
+end

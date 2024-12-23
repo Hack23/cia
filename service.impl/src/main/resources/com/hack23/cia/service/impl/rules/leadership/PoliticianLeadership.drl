@@ -1,0 +1,40 @@
+package com.hack23.cia.service.impl.rules.leadership
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with extremely high committee leadership ratio"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament,
+            eval( $p.getCommitteeLeadershipRatio() > 0.7 )
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "PoliticianLeadership",
+            "CommitteeInfluence",
+            kcontext.getRule().getName(),
+            "High Committee Leadership Ratio"
+        );
+end
+
+rule "Politician leading multiple committees simultaneously"
+    dialect "java"
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && politician.currentCommitteeLeadershipAssignments > 1
+        )
+    then
+        $p.addViolation(
+            Status.MAJOR,
+            "PoliticianLeadership",
+            "MultipleLeadershipRoles",
+            kcontext.getRule().getName(),
+            "Leading Multiple Committees"
+        );
+end
