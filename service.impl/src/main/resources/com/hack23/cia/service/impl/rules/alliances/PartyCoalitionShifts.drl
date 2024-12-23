@@ -1,0 +1,46 @@
+package com.hack23.cia.service.impl.rules.alliances
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck
+
+rule "Party forming a coalition with previously opposed party"
+    dialect "java"
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            eval( $p.isNewCoalitionWithOldOpponent() )
+        )
+    then
+        $p.addViolation(
+            Status.CRITICAL, 
+            "PartyCoalitionShifts", 
+            "Behavior", 
+            kcontext.getRule().getName(), 
+            "Sudden alignment shift"
+        );
+end
+
+rule "Rule #9: Party forming coalition with previously opposed party"
+    when
+        $p : PartyComplianceCheckImpl(
+              annualSummary != null,
+              // e.g. some attribute or method that checks new coalition vs. old opposition
+              eval( $p.isNewCoalitionWithOldOpponent() )
+        )
+    then
+        $p.addViolation(
+            Status.MINOR,
+            "Alliances",
+            "SuddenAlignmentShift",
+            kcontext.getRule().getName(),
+            "New coalition formed with previously opposed party"
+        );
+end
