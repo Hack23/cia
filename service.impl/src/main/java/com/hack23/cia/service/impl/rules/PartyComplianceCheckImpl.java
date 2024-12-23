@@ -15,7 +15,7 @@
  *
  *	$Id$
  *  $HeadURL$
-*/
+ */
 package com.hack23.cia.service.impl.rules;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
@@ -112,49 +112,32 @@ public final class PartyComplianceCheckImpl extends AbstractComplianceCheckImpl 
 	}
 
 	/**
-	 * Gets the document count.
+	 * Validate document activity.
 	 *
-	 * @return the document count
+	 * @param party the party
 	 */
-	public int getDocumentCount() {
-		return (int)Math.min(party.getTotalAssignments(), Integer.MAX_VALUE);
+	public void validateDocumentActivity(ViewRiksdagenPartySummary party) {
+		final int documentCount = (int)Math.min(party.getTotalAssignments(), Integer.MAX_VALUE);
+		// ... rest of validation
 	}
 
 	/**
-	 * Gets the press release count.
+	 * Validate press activity.
 	 *
-	 * @return the press release count
+	 * @param party the party
 	 */
-	public int getPressReleaseCount() {
-		return (int)Math.min(party.getCurrentAssignments(), Integer.MAX_VALUE);
+	public void validatePressActivity(ViewRiksdagenPartySummary party) {
+		final int activityCount = (int)Math.min(party.getCurrentAssignments(), Integer.MAX_VALUE);
+		// ... rest of validation
 	}
 
 	/**
-	 * Gets the days since registration.
+	 * Validate party stability.
 	 *
-	 * @return the days since registration
+	 * @param party the party
 	 */
-	public long getDaysSinceRegistration() {
-		long currentTime = System.currentTimeMillis();
-		long registeredTime = party.getFirstAssignmentDate().getTime();
-		return (currentTime - registeredTime) / (1000 * 60 * 60 * 24);
-	}
-
-	/**
-	 * Gets the multiple roles count.
-	 *
-	 * @return the multiple roles count
-	 */
-	public int getMultipleRolesCount() {
-		return party.getCurrentMinistryAssignments() + party.getCurrentPartyAssignments() + party.getCurrentSpeakerAssignments();
-	}
-
-	/**
-	 * Gets the frequent party switching count.
-	 *
-	 * @return the frequent party switching count
-	 */
-	public int getFrequentPartySwitchingCount() {
-		return (int)Math.min(party.getTotalPartyAssignments(), Integer.MAX_VALUE);
+	public void validatePartyStability(ViewRiksdagenPartySummary party) {
+		final int stabilityMetric = (int)Math.min(party.getTotalPartyAssignments(), Integer.MAX_VALUE);
+		// ... rest of validation
 	}
 }

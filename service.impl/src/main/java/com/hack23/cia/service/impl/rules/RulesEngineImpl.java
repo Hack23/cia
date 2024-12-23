@@ -111,7 +111,7 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		final Map<String, List<ViewRiksdagenPoliticianDocument>> politicianDocumentMap = dataViewer
 				.getAll(ViewRiksdagenPoliticianDocument.class).stream()
-				.collect(Collectors.groupingBy(p -> p.getEmbeddedId().getPersonReferenceId()));
+				.collect(Collectors.groupingBy(p -> p.getPersonReferenceId()));
 
 		for (final ViewRiksdagenPolitician politicianData : list) {
 			if (politicianData != null) {
@@ -177,7 +177,7 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		if (documentList != null) {
 			for (ViewRiksdagenPoliticianDocument document : documentList) {
-				if (document.getEmbeddedId() != null) {
+				if (document.getPersonReferenceId() != null) {
 					ksession.insert(document);
 				}
 			}
