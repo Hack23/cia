@@ -153,7 +153,8 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPolitician.class);
 
-		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class, politicianDataContainer.getAllOrderBy(ViewRiksdagenPolitician_.currentAssignments),
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class, politicianDataContainer.findListByProperty(
+				new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.active),
 				POLITICIANS,
 				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 

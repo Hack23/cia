@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary_;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -128,7 +129,8 @@ public final class PartyRankingDataGridPageModContentFactoryImpl extends Abstrac
 		final DataContainer<ViewRiksdagenPartySummary, String> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartySummary.class);
 
-		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartySummary.class, dataContainer.getAllOrderBy(ViewRiksdagenPartySummary_.currentAssignments),
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartySummary.class, dataContainer.findListByProperty(
+				new Object[] { Boolean.TRUE }, ViewRiksdagenPartySummary_.active),
 				PARTIES,
 				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
