@@ -97,7 +97,13 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 		"currentCommitteeAssignments", "currentSpeakerAssignments", "totalCommitteeSubstituteAssignments",
 		"currentCommitteeSubstituteAssignments", "totalDaysServedCommitteeSubstitute",
 		"totalCommitteeLeadershipAssignments", "currentCommitteeLeadershipAssignments",
-		"totalDaysServedCommitteeLeadership" })
+		"totalDaysServedCommitteeLeadership","totalDocuments", "avgDocumentsPerMember", "totalPartyMotions", "totalIndividualMotions",
+	    "totalCommitteeMotions", "totalCollaborativeMotions", "totalFollowUpMotions",
+	    "veryHighActivityMembers", "highActivityMembers", "mediumActivityMembers", "lowActivityMembers",
+	    "partyFocusedMembers", "committeeFocusedMembers", "individualFocusedMembers",
+	    "currentlyActiveMembers", "totalDocumentsLastYear", "avgDocumentsLastYear",
+	    "firstPartyDocument", "lastPartyDocument", "avgCollaborationPercentage",
+	    "highlyCollaborativeMembers" })
 @Entity(name = "ViewRiksdagenPartySummary")
 @Table(name = "VIEW_RIKSDAGEN_PARTY_SUMMARY")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -223,6 +229,75 @@ public class ViewRiksdagenPartySummary implements ModelObject {
 
 	/** The total days served committee leadership. */
 	protected long totalDaysServedCommitteeLeadership;
+
+	/** The total documents. */
+	protected long totalDocuments;
+
+	/** The average documents per member. */
+	protected double avgDocumentsPerMember;
+
+	/** The total party motions. */
+	protected long totalPartyMotions;
+
+	/** The total individual motions. */
+	protected long totalIndividualMotions;
+
+	/** The total committee motions. */
+	protected long totalCommitteeMotions;
+
+	/** The total collaborative motions. */
+	protected long totalCollaborativeMotions;
+
+	/** The total follow up motions. */
+	protected long totalFollowUpMotions;
+
+	/** The very high activity members. */
+	protected long veryHighActivityMembers;
+
+	/** The high activity members. */
+	protected long highActivityMembers;
+
+	/** The medium activity members. */
+	protected long mediumActivityMembers;
+
+	/** The low activity members. */
+	protected long lowActivityMembers;
+
+	/** The party focused members. */
+	protected long partyFocusedMembers;
+
+	/** The committee focused members. */
+	protected long committeeFocusedMembers;
+
+	/** The individual focused members. */
+	protected long individualFocusedMembers;
+
+	/** The currently active members. */
+	protected long currentlyActiveMembers;
+
+	/** The total documents last year. */
+	protected long totalDocumentsLastYear;
+
+	/** The average documents last year. */
+	protected double avgDocumentsLastYear;
+
+	/** The first party document. */
+	@XmlElement(type = String.class)
+	@XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
+	@XmlSchemaType(name = "date")
+	protected Date firstPartyDocument;
+
+	/** The last party document. */
+	@XmlElement(type = String.class)
+	@XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
+	@XmlSchemaType(name = "date")
+	protected Date lastPartyDocument;
+
+	/** The average collaboration percentage. */
+	protected double avgCollaborationPercentage;
+
+	/** The highly collaborative members. */
+	protected long highlyCollaborativeMembers;
 
 	/**
 	 * Gets the value of the party property.
@@ -970,6 +1045,659 @@ public class ViewRiksdagenPartySummary implements ModelObject {
 	 */
 	public void setCurrentSpeakerAssignments(final long value) {
 		this.currentSpeakerAssignments = value;
+	}
+
+	/**
+	 * Gets the total documents.
+	 *
+	 * @return the total documents
+	 */
+	@Basic
+	@Column(name = "TOTAL_DOCUMENTS", precision = 20)
+	public long getTotalDocuments() {
+	    return totalDocuments;
+	}
+
+	/**
+	 * Sets the total documents.
+	 *
+	 * @param value the new total documents
+	 */
+	public void setTotalDocuments(final long value) {
+	    this.totalDocuments = value;
+	}
+
+	/**
+	 * Gets the average documents per member.
+	 *
+	 * @return the average documents per member
+	 */
+	@Basic
+	@Column(name = "AVG_DOCUMENTS_PER_MEMBER", precision = 10, scale = 2)
+	public double getAvgDocumentsPerMember() {
+	    return avgDocumentsPerMember;
+	}
+
+	/**
+	 * Sets the average documents per member.
+	 *
+	 * @param value the new average documents per member
+	 */
+	public void setAvgDocumentsPerMember(final double value) {
+	    this.avgDocumentsPerMember = value;
+	}
+
+	/**
+	 * Gets the total party motions.
+	 *
+	 * @return the total party motions
+	 */
+	@Basic
+	@Column(name = "TOTAL_PARTY_MOTIONS", precision = 20)
+	public long getTotalPartyMotions() {
+	    return totalPartyMotions;
+	}
+
+	/**
+	 * Sets the total party motions.
+	 *
+	 * @param value the new total party motions
+	 */
+	public void setTotalPartyMotions(final long value) {
+	    this.totalPartyMotions = value;
+	}
+
+	/**
+	 * Gets the total individual motions.
+	 *
+	 * @return the total individual motions
+	 */
+	@Basic
+	@Column(name = "TOTAL_INDIVIDUAL_MOTIONS", precision = 20)
+	public long getTotalIndividualMotions() {
+	    return totalIndividualMotions;
+	}
+
+	/**
+	 * Sets the total individual motions.
+	 *
+	 * @param value the new total individual motions
+	 */
+	public void setTotalIndividualMotions(final long value) {
+	    this.totalIndividualMotions = value;
+	}
+
+	/**
+	 * Gets the total committee motions.
+	 *
+	 * @return the total committee motions
+	 */
+	@Basic
+	@Column(name = "TOTAL_COMMITTEE_MOTIONS", precision = 20)
+	public long getTotalCommitteeMotions() {
+	    return totalCommitteeMotions;
+	}
+
+	/**
+	 * Sets the total committee motions.
+	 *
+	 * @param value the new total committee motions
+	 */
+	public void setTotalCommitteeMotions(final long value) {
+	    this.totalCommitteeMotions = value;
+	}
+
+	/**
+	 * Gets the total collaborative motions.
+	 *
+	 * @return the total collaborative motions
+	 */
+	@Basic
+	@Column(name = "TOTAL_COLLABORATIVE_MOTIONS", precision = 20)
+	public long getTotalCollaborativeMotions() {
+	    return totalCollaborativeMotions;
+	}
+
+	/**
+	 * Sets the total collaborative motions.
+	 *
+	 * @param value the new total collaborative motions
+	 */
+	public void setTotalCollaborativeMotions(final long value) {
+	    this.totalCollaborativeMotions = value;
+	}
+
+	/**
+	 * Gets the total follow up motions.
+	 *
+	 * @return the total follow up motions
+	 */
+	@Basic
+	@Column(name = "TOTAL_FOLLOW_UP_MOTIONS", precision = 20)
+	public long getTotalFollowUpMotions() {
+	    return totalFollowUpMotions;
+	}
+
+	/**
+	 * Sets the total follow up motions.
+	 *
+	 * @param value the new total follow up motions
+	 */
+	public void setTotalFollowUpMotions(final long value) {
+	    this.totalFollowUpMotions = value;
+	}
+
+	/**
+	 * Gets the very high activity members.
+	 *
+	 * @return the very high activity members
+	 */
+	@Basic
+	@Column(name = "VERY_HIGH_ACTIVITY_MEMBERS", precision = 20)
+	public long getVeryHighActivityMembers() {
+	    return veryHighActivityMembers;
+	}
+
+	/**
+	 * Sets the very high activity members.
+	 *
+	 * @param value the new very high activity members
+	 */
+	public void setVeryHighActivityMembers(final long value) {
+	    this.veryHighActivityMembers = value;
+	}
+
+	/**
+	 * Gets the high activity members.
+	 *
+	 * @return the high activity members
+	 */
+	@Basic
+	@Column(name = "HIGH_ACTIVITY_MEMBERS", precision = 20)
+	public long getHighActivityMembers() {
+	    return highActivityMembers;
+	}
+
+	/**
+	 * Sets the high activity members.
+	 *
+	 * @param value the new high activity members
+	 */
+	public void setHighActivityMembers(final long value) {
+	    this.highActivityMembers = value;
+	}
+
+	/**
+	 * Gets the medium activity members.
+	 *
+	 * @return the medium activity members
+	 */
+	@Basic
+	@Column(name = "MEDIUM_ACTIVITY_MEMBERS", precision = 20)
+	public long getMediumActivityMembers() {
+	    return mediumActivityMembers;
+	}
+
+	/**
+	 * Sets the medium activity members.
+	 *
+	 * @param value the new medium activity members
+	 */
+	public void setMediumActivityMembers(final long value) {
+	    this.mediumActivityMembers = value;
+	}
+
+	/**
+	 * Gets the low activity members.
+	 *
+	 * @return the low activity members
+	 */
+	@Basic
+	@Column(name = "LOW_ACTIVITY_MEMBERS", precision = 20)
+	public long getLowActivityMembers() {
+	    return lowActivityMembers;
+	}
+
+	/**
+	 * Sets the low activity members.
+	 *
+	 * @param value the new low activity members
+	 */
+	public void setLowActivityMembers(final long value) {
+	    this.lowActivityMembers = value;
+	}
+
+	/**
+	 * Gets the party focused members.
+	 *
+	 * @return the party focused members
+	 */
+	@Basic
+	@Column(name = "PARTY_FOCUSED_MEMBERS", precision = 20)
+	public long getPartyFocusedMembers() {
+	    return partyFocusedMembers;
+	}
+
+	/**
+	 * Sets the party focused members.
+	 *
+	 * @param value the new party focused members
+	 */
+	public void setPartyFocusedMembers(final long value) {
+	    this.partyFocusedMembers = value;
+	}
+
+	/**
+	 * Gets the committee focused members.
+	 *
+	 * @return the committee focused members
+	 */
+	@Basic
+	@Column(name = "COMMITTEE_FOCUSED_MEMBERS", precision = 20)
+	public long getCommitteeFocusedMembers() {
+	    return committeeFocusedMembers;
+	}
+
+	/**
+	 * Sets the committee focused members.
+	 *
+	 * @param value the new committee focused members
+	 */
+	public void setCommitteeFocusedMembers(final long value) {
+	    this.committeeFocusedMembers = value;
+	}
+
+	/**
+	 * Gets the individual focused members.
+	 *
+	 * @return the individual focused members
+	 */
+	@Basic
+	@Column(name = "INDIVIDUAL_FOCUSED_MEMBERS", precision = 20)
+	public long getIndividualFocusedMembers() {
+	    return individualFocusedMembers;
+	}
+
+	/**
+	 * Sets the individual focused members.
+	 *
+	 * @param value the new individual focused members
+	 */
+	public void setIndividualFocusedMembers(final long value) {
+	    this.individualFocusedMembers = value;
+	}
+
+	/**
+	 * Gets the currently active members.
+	 *
+	 * @return the currently active members
+	 */
+	@Basic
+	@Column(name = "CURRENTLY_ACTIVE_MEMBERS", precision = 20)
+	public long getCurrentlyActiveMembers() {
+	    return currentlyActiveMembers;
+	}
+
+	/**
+	 * Sets the currently active members.
+	 *
+	 * @param value the new currently active members
+	 */
+	public void setCurrentlyActiveMembers(final long value) {
+	    this.currentlyActiveMembers = value;
+	}
+
+	/**
+	 * Gets the total documents last year.
+	 *
+	 * @return the total documents last year
+	 */
+	@Basic
+	@Column(name = "TOTAL_DOCUMENTS_LAST_YEAR", precision = 20)
+	public long getTotalDocumentsLastYear() {
+	    return totalDocumentsLastYear;
+	}
+
+	/**
+	 * Sets the total documents last year.
+	 *
+	 * @param value the new total documents last year
+	 */
+	public void setTotalDocumentsLastYear(final long value) {
+	    this.totalDocumentsLastYear = value;
+	}
+
+	/**
+	 * Gets the average documents last year.
+	 *
+	 * @return the average documents last year
+	 */
+	@Basic
+	@Column(name = "AVG_DOCUMENTS_LAST_YEAR", precision = 10, scale = 2)
+	public double getAvgDocumentsLastYear() {
+	    return avgDocumentsLastYear;
+	}
+
+	/**
+	 * Sets the average documents last year.
+	 *
+	 * @param value the new average documents last year
+	 */
+	public void setAvgDocumentsLastYear(final double value) {
+	    this.avgDocumentsLastYear = value;
+	}
+
+	/**
+	 * Gets the first party document date.
+	 *
+	 * @return the first party document date
+	 */
+	@Basic
+	@Column(name = "FIRST_PARTY_DOCUMENT")
+	@Temporal(TemporalType.DATE)
+	public Date getFirstPartyDocument() {
+	    return firstPartyDocument;
+	}
+
+	/**
+	 * Sets the first party document date.
+	 *
+	 * @param value the new first party document date
+	 */
+	public void setFirstPartyDocument(final Date value) {
+	    this.firstPartyDocument = value;
+	}
+
+	/**
+	 * Gets the last party document date.
+	 *
+	 * @return the last party document date
+	 */
+	@Basic
+	@Column(name = "LAST_PARTY_DOCUMENT")
+	@Temporal(TemporalType.DATE)
+	public Date getLastPartyDocument() {
+	    return lastPartyDocument;
+	}
+
+	/**
+	 * Sets the last party document date.
+	 *
+	 * @param value the new last party document date
+	 */
+	public void setLastPartyDocument(final Date value) {
+	    this.lastPartyDocument = value;
+	}
+
+	/**
+	 * Gets the average collaboration percentage.
+	 *
+	 * @return the average collaboration percentage
+	 */
+	@Basic
+	@Column(name = "AVG_COLLABORATION_PERCENTAGE", precision = 10, scale = 2)
+	public double getAvgCollaborationPercentage() {
+	    return avgCollaborationPercentage;
+	}
+
+	/**
+	 * Sets the average collaboration percentage.
+	 *
+	 * @param value the new average collaboration percentage
+	 */
+	public void setAvgCollaborationPercentage(final double value) {
+	    this.avgCollaborationPercentage = value;
+	}
+
+	/**
+	 * Gets the highly collaborative members.
+	 *
+	 * @return the highly collaborative members
+	 */
+	@Basic
+	@Column(name = "HIGHLY_COLLABORATIVE_MEMBERS", precision = 20)
+	public long getHighlyCollaborativeMembers() {
+	    return highlyCollaborativeMembers;
+	}
+
+	/**
+	 * Sets the highly collaborative members.
+	 *
+	 * @param value the new highly collaborative members
+	 */
+	public void setHighlyCollaborativeMembers(final long value) {
+	    this.highlyCollaborativeMembers = value;
+	}
+
+	/**
+	 * With total documents.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withTotalDocuments(final long value) {
+	    setTotalDocuments(value);
+	    return this;
+	}
+
+	/**
+	 * With average documents per member.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withAvgDocumentsPerMember(final double value) {
+	    setAvgDocumentsPerMember(value);
+	    return this;
+	}
+
+	/**
+	 * With total party motions.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withTotalPartyMotions(final long value) {
+	    setTotalPartyMotions(value);
+	    return this;
+	}
+
+	/**
+	 * With total individual motions.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withTotalIndividualMotions(final long value) {
+	    setTotalIndividualMotions(value);
+	    return this;
+	}
+
+	/**
+	 * With total committee motions.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withTotalCommitteeMotions(final long value) {
+	    setTotalCommitteeMotions(value);
+	    return this;
+	}
+
+	/**
+	 * With total collaborative motions.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withTotalCollaborativeMotions(final long value) {
+	    setTotalCollaborativeMotions(value);
+	    return this;
+	}
+
+	/**
+	 * With total follow up motions.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withTotalFollowUpMotions(final long value) {
+	    setTotalFollowUpMotions(value);
+	    return this;
+	}
+
+	/**
+	 * With very high activity members.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withVeryHighActivityMembers(final long value) {
+	    setVeryHighActivityMembers(value);
+	    return this;
+	}
+
+	/**
+	 * With high activity members.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withHighActivityMembers(final long value) {
+	    setHighActivityMembers(value);
+	    return this;
+	}
+
+	/**
+	 * With medium activity members.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withMediumActivityMembers(final long value) {
+	    setMediumActivityMembers(value);
+	    return this;
+	}
+
+	/**
+	 * With low activity members.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withLowActivityMembers(final long value) {
+	    setLowActivityMembers(value);
+	    return this;
+	}
+
+	/**
+	 * With party focused members.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withPartyFocusedMembers(final long value) {
+	    setPartyFocusedMembers(value);
+	    return this;
+	}
+
+	/**
+	 * With committee focused members.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withCommitteeFocusedMembers(final long value) {
+	    setCommitteeFocusedMembers(value);
+	    return this;
+	}
+
+	/**
+	 * With individual focused members.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withIndividualFocusedMembers(final long value) {
+	    setIndividualFocusedMembers(value);
+	    return this;
+	}
+
+	/**
+	 * With currently active members.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withCurrentlyActiveMembers(final long value) {
+	    setCurrentlyActiveMembers(value);
+	    return this;
+	}
+
+	/**
+	 * With total documents last year.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withTotalDocumentsLastYear(final long value) {
+	    setTotalDocumentsLastYear(value);
+	    return this;
+	}
+
+	/**
+	 * With average documents last year.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withAvgDocumentsLastYear(final double value) {
+	    setAvgDocumentsLastYear(value);
+	    return this;
+	}
+
+	/**
+	 * With first party document.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withFirstPartyDocument(final Date value) {
+	    setFirstPartyDocument(value);
+	    return this;
+	}
+
+	/**
+	 * With last party document.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withLastPartyDocument(final Date value) {
+	    setLastPartyDocument(value);
+	    return this;
+	}
+
+	/**
+	 * With average collaboration percentage.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withAvgCollaborationPercentage(final double value) {
+	    setAvgCollaborationPercentage(value);
+	    return this;
+	}
+
+	/**
+	 * With highly collaborative members.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen party summary
+	 */
+	public ViewRiksdagenPartySummary withHighlyCollaborativeMembers(final long value) {
+	    setHighlyCollaborativeMembers(value);
+	    return this;
 	}
 
 	/**

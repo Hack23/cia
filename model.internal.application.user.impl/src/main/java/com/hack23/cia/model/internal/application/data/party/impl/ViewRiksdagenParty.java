@@ -36,6 +36,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * <p>Java class for ViewRiksdagenParty complex type.
  *
@@ -62,13 +63,29 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ViewRiksdagenParty", propOrder = {
-    "partyId",
-    "partyNumber",
-    "partyName",
-    "headCount",
-    "website",
-    "registeredDate"
-})
+	    "partyId",
+	    "partyNumber",
+	    "partyName",
+	    "headCount",
+	    "website",
+	    "registeredDate",
+	    "totalDocuments",
+	    "partyMotionsTotal",
+	    "individualMotionsTotal",
+	    "committeeMotionsTotal",
+	    "collaborativeMotionsTotal",
+	    "followUpMotionsTotal",
+	    "activeMembers",
+	    "veryHighActivityMembers",
+	    "highActivityMembers",
+	    "mediumActivityMembers",
+	    "lowActivityMembers",
+	    "inactiveMembers",
+	    "avgDocumentsPerMember",
+	    "lastDocumentDate",
+	    "firstDocumentDate",
+	    "averageDocumentQuality"
+	})
 @Entity(name = "ViewRiksdagenParty")
 @Table(name = "VIEW_RIKSDAGEN_PARTY")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -76,23 +93,87 @@ public class ViewRiksdagenParty
     implements ModelObject
 {
 
-    /**
-	 *
-	 */
+    /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The party id. */
 	@XmlElement(required = true)
     protected String partyId;
+
+    /** The party number. */
     @XmlElement(required = true)
     protected String partyNumber;
+
+    /** The party name. */
     @XmlElement(required = true)
     protected String partyName;
+
+    /** The head count. */
     protected long headCount;
+
+    /** The website. */
     @XmlElement(required = true)
     protected String website;
+
+    /** The registered date. */
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
     @XmlSchemaType(name = "date")
     protected Date registeredDate;
+
+    /** The total documents. */
+    protected long totalDocuments;
+
+    /** The party motions total. */
+    protected long partyMotionsTotal;
+
+    /** The individual motions total. */
+    protected long individualMotionsTotal;
+
+    /** The committee motions total. */
+    protected long committeeMotionsTotal;
+
+    /** The collaborative motions total. */
+    protected long collaborativeMotionsTotal;
+
+    /** The follow up motions total. */
+    protected long followUpMotionsTotal;
+
+    /** The active members. */
+    protected long activeMembers;
+
+    /** The very high activity members. */
+    protected long veryHighActivityMembers;
+
+    /** The high activity members. */
+    protected long highActivityMembers;
+
+    /** The medium activity members. */
+    protected long mediumActivityMembers;
+
+    /** The low activity members. */
+    protected long lowActivityMembers;
+
+    /** The inactive members. */
+    protected long inactiveMembers;
+
+    /** The avg documents per member. */
+    protected double avgDocumentsPerMember;
+
+    /** The last document date. */
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
+    @XmlSchemaType(name = "date")
+    protected Date lastDocumentDate;
+
+    /** The first document date. */
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
+    @XmlSchemaType(name = "date")
+    protected Date firstDocumentDate;
+
+    /** The average document quality. */
+    protected double averageDocumentQuality;
 
     /**
      * Gets the value of the partyId property.
@@ -175,6 +256,7 @@ public class ViewRiksdagenParty
     /**
      * Gets the value of the headCount property.
      *
+     * @return the head count
      */
     @Basic
     @Column(name = "HEAD_COUNT", precision = 20)
@@ -185,6 +267,7 @@ public class ViewRiksdagenParty
     /**
      * Sets the value of the headCount property.
      *
+     * @param value the new head count
      */
     public void setHeadCount(final long value) {
         this.headCount = value;
@@ -232,6 +315,153 @@ public class ViewRiksdagenParty
     }
 
     /**
+     * Gets the total documents.
+     *
+     * @return the total documents
+     */
+    @Basic
+    @Column(name = "TOTAL_DOCUMENTS", precision = 20)
+    public long getTotalDocuments() {
+        return totalDocuments;
+    }
+
+    /**
+     * Sets the total documents.
+     *
+     * @param value the new total documents
+     */
+    public void setTotalDocuments(final long value) {
+        this.totalDocuments = value;
+    }
+
+    /**
+     * Gets the party motions total.
+     *
+     * @return the party motions total
+     */
+    @Basic
+    @Column(name = "PARTY_MOTIONS_TOTAL", precision = 20)
+    public long getPartyMotionsTotal() {
+        return partyMotionsTotal;
+    }
+
+    /**
+     * Sets the party motions total.
+     *
+     * @param value the new party motions total
+     */
+    public void setPartyMotionsTotal(final long value) {
+        this.partyMotionsTotal = value;
+    }
+
+    // Add similar getters/setters for all new fields...
+
+    /**
+     * Gets the avg documents per member.
+     *
+     * @return the avg documents per member
+     */
+    @Basic
+    @Column(name = "AVG_DOCUMENTS_PER_MEMBER", precision = 10, scale = 2)
+    public double getAvgDocumentsPerMember() {
+        return avgDocumentsPerMember;
+    }
+
+    /**
+     * Sets the avg documents per member.
+     *
+     * @param value the new avg documents per member
+     */
+    public void setAvgDocumentsPerMember(final double value) {
+        this.avgDocumentsPerMember = value;
+    }
+
+    /**
+     * Gets the last document date.
+     *
+     * @return the last document date
+     */
+    @Basic
+    @Column(name = "LAST_DOCUMENT_DATE")
+    @Temporal(TemporalType.DATE)
+    public Date getLastDocumentDate() {
+        return lastDocumentDate;
+    }
+
+    /**
+     * Sets the last document date.
+     *
+     * @param value the new last document date
+     */
+    public void setLastDocumentDate(final Date value) {
+        this.lastDocumentDate = value;
+    }
+
+    /**
+     * Gets the first document date.
+     *
+     * @return the first document date
+     */
+    @Basic
+    @Column(name = "FIRST_DOCUMENT_DATE")
+    @Temporal(TemporalType.DATE)
+    public Date getFirstDocumentDate() {
+        return firstDocumentDate;
+    }
+
+    /**
+     * Sets the first document date.
+     *
+     * @param value the new first document date
+     */
+    public void setFirstDocumentDate(final Date value) {
+        this.firstDocumentDate = value;
+    }
+
+    /**
+     * Gets the average document quality.
+     *
+     * @return the average document quality
+     */
+    @Basic
+    @Column(name = "AVERAGE_DOCUMENT_QUALITY", precision = 10, scale = 2)
+    public double getAverageDocumentQuality() {
+        return averageDocumentQuality;
+    }
+
+    /**
+     * Sets the average document quality.
+     *
+     * @param value the new average document quality
+     */
+    public void setAverageDocumentQuality(final double value) {
+        this.averageDocumentQuality = value;
+    }
+
+    /**
+     * With total documents.
+     *
+     * @param value the value
+     * @return the view riksdagen party
+     */
+    // Add builder pattern methods for new fields
+    public ViewRiksdagenParty withTotalDocuments(final long value) {
+        setTotalDocuments(value);
+        return this;
+    }
+
+    /**
+     * With party motions total.
+     *
+     * @param value the value
+     * @return the view riksdagen party
+     */
+    public ViewRiksdagenParty withPartyMotionsTotal(final long value) {
+        setPartyMotionsTotal(value);
+        return this;
+    }
+
+    /**
      * Sets the value of the registeredDate property.
      *
      * @param value
@@ -243,47 +473,99 @@ public class ViewRiksdagenParty
         this.registeredDate = value;
     }
 
+    /**
+     * With party id.
+     *
+     * @param value the value
+     * @return the view riksdagen party
+     */
     public ViewRiksdagenParty withPartyId(final String value) {
         setPartyId(value);
         return this;
     }
 
+    /**
+     * With party number.
+     *
+     * @param value the value
+     * @return the view riksdagen party
+     */
     public ViewRiksdagenParty withPartyNumber(final String value) {
         setPartyNumber(value);
         return this;
     }
 
+    /**
+     * With party name.
+     *
+     * @param value the value
+     * @return the view riksdagen party
+     */
     public ViewRiksdagenParty withPartyName(final String value) {
         setPartyName(value);
         return this;
     }
 
+    /**
+     * With head count.
+     *
+     * @param value the value
+     * @return the view riksdagen party
+     */
     public ViewRiksdagenParty withHeadCount(final long value) {
         setHeadCount(value);
         return this;
     }
 
+    /**
+     * With website.
+     *
+     * @param value the value
+     * @return the view riksdagen party
+     */
     public ViewRiksdagenParty withWebsite(final String value) {
         setWebsite(value);
         return this;
     }
 
+    /**
+     * With registered date.
+     *
+     * @param value the value
+     * @return the view riksdagen party
+     */
     public ViewRiksdagenParty withRegisteredDate(final Date value) {
         setRegisteredDate(value);
         return this;
     }
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public final String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public final boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

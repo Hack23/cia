@@ -18,6 +18,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -97,7 +98,10 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 		"currentMinistryAssignments", "currentCommitteeAssignments", "currentSpeakerAssignments",
 		"totalCommitteeSubstituteAssignments", "currentCommitteeSubstituteAssignments",
 		"totalDaysServedCommitteeSubstitute", "totalCommitteeLeadershipAssignments",
-		"currentCommitteeLeadershipAssignments", "totalDaysServedCommitteeLeadership" })
+		"currentCommitteeLeadershipAssignments", "totalDaysServedCommitteeLeadership", "totalDocuments", "partyMotions",
+		"individualMotions", "committeeMotions", "multiPartyMotions", "followUpMotions", "documentsLastYear",
+		"documentYearsActive", "averageDocsPerYear", "docActivityLevel", "docActivityProfile",
+		"collaborationPercentage", "documentTypes", "firstDocumentDate", "lastDocumentDate" })
 @Entity(name = "ViewRiksdagenPolitician")
 @Table(name = "VIEW_RIKSDAGEN_POLITICIAN")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -230,6 +234,63 @@ public class ViewRiksdagenPolitician implements ModelObject {
 
 	/** The total days served committee leadership. */
 	protected long totalDaysServedCommitteeLeadership;
+
+	   /** The total documents. */
+    protected long totalDocuments;
+
+    /** The party motions. */
+    protected long partyMotions;
+
+    /** The individual motions. */
+    protected long individualMotions;
+
+    /** The committee motions. */
+    protected long committeeMotions;
+
+    /** The multi party motions. */
+    protected long multiPartyMotions;
+
+    /** The follow up motions. */
+    protected long followUpMotions;
+
+    /** The documents last year. */
+    protected long documentsLastYear;
+
+    /** The document years active. */
+    protected long documentYearsActive;
+
+    /** The average docs per year. */
+    protected double averageDocsPerYear;
+
+    /** The doc activity level. */
+    @XmlElement(required = true)
+    protected String docActivityLevel;
+
+    /** The doc activity profile. */
+    @XmlElement(required = true)
+    protected String docActivityProfile;
+
+    /** The collaboration percentage. */
+    protected double collaborationPercentage;
+
+    @XmlElement(required = true)
+    @Column(name = "DOCUMENT_TYPES", columnDefinition = "text")
+    private String documentTypesString;
+
+    @Transient
+    private String[] documentTypes;
+
+    /** The first document date. */
+    @XmlElement(required = true, type = String.class, nillable = true)
+    @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
+    @XmlSchemaType(name = "date")
+    protected Date firstDocumentDate;
+
+    /** The last document date. */
+    @XmlElement(required = true, type = String.class, nillable = true)
+    @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
+    @XmlSchemaType(name = "date")
+    protected Date lastDocumentDate;
 
 	/**
 	 * Gets the value of the personId property.
@@ -1006,6 +1067,487 @@ public class ViewRiksdagenPolitician implements ModelObject {
 	public void setCurrentSpeakerAssignments(final long value) {
 		this.currentSpeakerAssignments = value;
 	}
+
+	   /**
+   	 * Gets the total documents.
+   	 *
+   	 * @return the total documents
+   	 */
+   	// Getters and Setters for new fields
+    @Basic
+    @Column(name = "TOTAL_DOCUMENTS", precision = 20)
+    public long getTotalDocuments() {
+        return totalDocuments;
+    }
+
+    /**
+     * Sets the total documents.
+     *
+     * @param value the new total documents
+     */
+    public void setTotalDocuments(final long value) {
+        this.totalDocuments = value;
+    }
+
+    /**
+     * Gets the party motions.
+     *
+     * @return the party motions
+     */
+    @Basic
+    @Column(name = "PARTY_MOTIONS", precision = 20)
+    public long getPartyMotions() {
+        return partyMotions;
+    }
+
+    /**
+     * Sets the party motions.
+     *
+     * @param value the new party motions
+     */
+    public void setPartyMotions(final long value) {
+        this.partyMotions = value;
+    }
+
+    /**
+     * Gets the individual motions.
+     *
+     * @return the individual motions
+     */
+    @Basic
+    @Column(name = "INDIVIDUAL_MOTIONS", precision = 20)
+    public long getIndividualMotions() {
+        return individualMotions;
+    }
+
+    /**
+     * Sets the individual motions.
+     *
+     * @param value the new individual motions
+     */
+    public void setIndividualMotions(final long value) {
+        this.individualMotions = value;
+    }
+
+    /**
+     * Gets the committee motions.
+     *
+     * @return the committee motions
+     */
+    @Basic
+    @Column(name = "COMMITTEE_MOTIONS", precision = 20)
+    public long getCommitteeMotions() {
+        return committeeMotions;
+    }
+
+    /**
+     * Sets the committee motions.
+     *
+     * @param value the new committee motions
+     */
+    public void setCommitteeMotions(final long value) {
+        this.committeeMotions = value;
+    }
+
+    /**
+     * Gets the multi party motions.
+     *
+     * @return the multi party motions
+     */
+    @Basic
+    @Column(name = "MULTI_PARTY_MOTIONS", precision = 20)
+    public long getMultiPartyMotions() {
+        return multiPartyMotions;
+    }
+
+    /**
+     * Sets the multi party motions.
+     *
+     * @param value the new multi party motions
+     */
+    public void setMultiPartyMotions(final long value) {
+        this.multiPartyMotions = value;
+    }
+
+    /**
+     * Gets the follow up motions.
+     *
+     * @return the follow up motions
+     */
+    @Basic
+    @Column(name = "FOLLOW_UP_MOTIONS", precision = 20)
+    public long getFollowUpMotions() {
+        return followUpMotions;
+    }
+
+    /**
+     * Sets the follow up motions.
+     *
+     * @param value the new follow up motions
+     */
+    public void setFollowUpMotions(final long value) {
+        this.followUpMotions = value;
+    }
+
+    /**
+     * Gets the documents last year.
+     *
+     * @return the documents last year
+     */
+    @Basic
+    @Column(name = "DOCUMENTS_LAST_YEAR", precision = 20)
+    public long getDocumentsLastYear() {
+        return documentsLastYear;
+    }
+
+    /**
+     * Sets the documents last year.
+     *
+     * @param value the new documents last year
+     */
+    public void setDocumentsLastYear(final long value) {
+        this.documentsLastYear = value;
+    }
+
+    /**
+     * Gets the document years active.
+     *
+     * @return the document years active
+     */
+    @Basic
+    @Column(name = "DOCUMENT_YEARS_ACTIVE", precision = 20)
+    public long getDocumentYearsActive() {
+        return documentYearsActive;
+    }
+
+    /**
+     * Sets the document years active.
+     *
+     * @param value the new document years active
+     */
+    public void setDocumentYearsActive(final long value) {
+        this.documentYearsActive = value;
+    }
+
+    /**
+     * Gets the average docs per year.
+     *
+     * @return the average docs per year
+     */
+    @Basic
+    @Column(name = "AVERAGE_DOCS_PER_YEAR", precision = 10, scale = 2)
+    public double getAverageDocsPerYear() {
+        return averageDocsPerYear;
+    }
+
+    /**
+     * Sets the average docs per year.
+     *
+     * @param value the new average docs per year
+     */
+    public void setAverageDocsPerYear(final double value) {
+        this.averageDocsPerYear = value;
+    }
+
+    /**
+     * Gets the doc activity level.
+     *
+     * @return the doc activity level
+     */
+    @Basic
+    @Column(name = "DOC_ACTIVITY_LEVEL")
+    public String getDocActivityLevel() {
+        return docActivityLevel;
+    }
+
+    /**
+     * Sets the doc activity level.
+     *
+     * @param value the new doc activity level
+     */
+    public void setDocActivityLevel(final String value) {
+        this.docActivityLevel = value;
+    }
+
+    /**
+     * Gets the doc activity profile.
+     *
+     * @return the doc activity profile
+     */
+    @Basic
+    @Column(name = "DOC_ACTIVITY_PROFILE")
+    public String getDocActivityProfile() {
+        return docActivityProfile;
+    }
+
+    /**
+     * Sets the doc activity profile.
+     *
+     * @param value the new doc activity profile
+     */
+    public void setDocActivityProfile(final String value) {
+        this.docActivityProfile = value;
+    }
+
+    /**
+     * Gets the collaboration percentage.
+     *
+     * @return the collaboration percentage
+     */
+    @Basic
+    @Column(name = "COLLABORATION_PERCENTAGE", precision = 10, scale = 2)
+    public double getCollaborationPercentage() {
+        return collaborationPercentage;
+    }
+
+    /**
+     * Sets the collaboration percentage.
+     *
+     * @param value the new collaboration percentage
+     */
+    public void setCollaborationPercentage(final double value) {
+        this.collaborationPercentage = value;
+    }
+
+    @Basic
+    @Column(name = "DOCUMENT_TYPES")
+    public String getDocumentTypesString() {
+        if (documentTypes != null) {
+            return String.join(",", documentTypes);
+        }
+        return documentTypesString;
+    }
+
+    public void setDocumentTypesString(String value) {
+        this.documentTypesString = value;
+        if (value != null) {
+            this.documentTypes = value.split(",");
+        }
+    }
+
+    @Transient
+    public String[] getDocumentTypes() {
+        if (documentTypes == null && documentTypesString != null) {
+            documentTypes = documentTypesString.split(",");
+        }
+        return documentTypes;
+    }
+
+    public void setDocumentTypes(String[] value) {
+        this.documentTypes = value;
+        if (value != null) {
+            this.documentTypesString = String.join(",", value);
+        }
+    }
+
+    /**
+     * Gets the first document date.
+     *
+     * @return the first document date
+     */
+    @Basic
+    @Column(name = "FIRST_DOCUMENT_DATE")
+    @Temporal(TemporalType.DATE)
+    public Date getFirstDocumentDate() {
+        return firstDocumentDate;
+    }
+
+    /**
+     * Sets the first document date.
+     *
+     * @param value the new first document date
+     */
+    public void setFirstDocumentDate(final Date value) {
+        this.firstDocumentDate = value;
+    }
+
+    /**
+     * Gets the last document date.
+     *
+     * @return the last document date
+     */
+    @Basic
+    @Column(name = "LAST_DOCUMENT_DATE")
+    @Temporal(TemporalType.DATE)
+    public Date getLastDocumentDate() {
+        return lastDocumentDate;
+    }
+
+    /**
+     * Sets the last document date.
+     *
+     * @param value the new last document date
+     */
+    public void setLastDocumentDate(final Date value) {
+        this.lastDocumentDate = value;
+    }
+
+    /**
+     * With total documents.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    // Builder pattern methods for new fields
+    public ViewRiksdagenPolitician withTotalDocuments(final long value) {
+        setTotalDocuments(value);
+        return this;
+    }
+
+    /**
+     * With party motions.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withPartyMotions(final long value) {
+        setPartyMotions(value);
+        return this;
+    }
+
+    /**
+     * With individual motions.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withIndividualMotions(final long value) {
+        setIndividualMotions(value);
+        return this;
+    }
+
+    /**
+     * With committee motions.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withCommitteeMotions(final long value) {
+        setCommitteeMotions(value);
+        return this;
+    }
+
+    /**
+     * With multi party motions.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withMultiPartyMotions(final long value) {
+        setMultiPartyMotions(value);
+        return this;
+    }
+
+    /**
+     * With follow up motions.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withFollowUpMotions(final long value) {
+        setFollowUpMotions(value);
+        return this;
+    }
+
+    /**
+     * With documents last year.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withDocumentsLastYear(final long value) {
+        setDocumentsLastYear(value);
+        return this;
+    }
+
+    /**
+     * With document years active.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withDocumentYearsActive(final long value) {
+        setDocumentYearsActive(value);
+        return this;
+    }
+
+    /**
+     * With average docs per year.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withAverageDocsPerYear(final double value) {
+        setAverageDocsPerYear(value);
+        return this;
+    }
+
+    /**
+     * With doc activity level.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withDocActivityLevel(final String value) {
+        setDocActivityLevel(value);
+        return this;
+    }
+
+    /**
+     * With doc activity profile.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withDocActivityProfile(final String value) {
+        setDocActivityProfile(value);
+        return this;
+    }
+
+    /**
+     * With collaboration percentage.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withCollaborationPercentage(final double value) {
+        setCollaborationPercentage(value);
+        return this;
+    }
+
+    /**
+     * With document types.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withDocumentTypes(final String[] value) {
+        setDocumentTypes(value);
+        return this;
+    }
+
+    /**
+     * With first document date.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withFirstDocumentDate(final Date value) {
+        setFirstDocumentDate(value);
+        return this;
+    }
+
+    /**
+     * With last document date.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withLastDocumentDate(final Date value) {
+        setLastDocumentDate(value);
+        return this;
+    }
+
 
 	/**
 	 * With person id.
