@@ -67,18 +67,26 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ViewRiksdagenCommitteeRoleMember", propOrder = {
-    "roleId",
-    "detail",
-    "roleCode",
-    "firstName",
-    "lastName",
-    "fromDate",
-    "toDate",
-    "personId",
-    "party",
-    "totalDaysServed",
-    "active"
-})
+	    "roleId",
+	    "detail",
+	    "roleCode",
+	    "firstName",
+	    "lastName",
+	    "fromDate",
+	    "toDate",
+	    "personId",
+	    "party",
+	    "totalDaysServed",
+	    "active",
+	    "totalDocuments",
+	    "documentsLastYear",
+	    "totalCommitteeReports",
+	    "totalStatements",
+	    "totalInitiatives",
+	    "activityLevel",
+	    "roleType",
+	    "committeeType"
+	})
 @Entity(name = "ViewRiksdagenCommitteeRoleMember")
 @Table(name = "VIEW_RIKSDAGEN_COMMITTEE_ROLE_MEMBER")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -114,6 +122,18 @@ public class ViewRiksdagenCommitteeRoleMember
     @XmlElement(name = "total_days_served")
     protected int totalDaysServed;
     protected boolean active;
+
+    protected long totalDocuments;
+    protected long documentsLastYear;
+    protected long totalCommitteeReports;
+    protected long totalStatements;
+    protected long totalInitiatives;
+    @XmlElement(required = true)
+    protected String activityLevel;
+    @XmlElement(required = true)
+    protected String roleType;
+    @XmlElement(required = true)
+    protected String committeeType;
 
     /**
      * Gets the value of the roleId property.
@@ -434,19 +454,139 @@ public class ViewRiksdagenCommitteeRoleMember
         return this;
     }
 
-	@Override
-	public final String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-	}
+    @Basic
+    @Column(name = "TOTAL_DOCUMENTS", precision = 20)
+    public long getTotalDocuments() {
+        return totalDocuments;
+    }
 
-	@Override
-	public final boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj);
-	}
+    public void setTotalDocuments(final long value) {
+        this.totalDocuments = value;
+    }
 
-	@Override
-	public final int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
-	}
+    @Basic
+    @Column(name = "DOCUMENTS_LAST_YEAR", precision = 20)
+    public long getDocumentsLastYear() {
+        return documentsLastYear;
+    }
 
+    public void setDocumentsLastYear(final long value) {
+        this.documentsLastYear = value;
+    }
+
+    @Basic
+    @Column(name = "TOTAL_COMMITTEE_REPORTS", precision = 20)
+    public long getTotalCommitteeReports() {
+        return totalCommitteeReports;
+    }
+
+    public void setTotalCommitteeReports(final long value) {
+        this.totalCommitteeReports = value;
+    }
+
+    @Basic
+    @Column(name = "TOTAL_STATEMENTS", precision = 20)
+    public long getTotalStatements() {
+        return totalStatements;
+    }
+
+    public void setTotalStatements(final long value) {
+        this.totalStatements = value;
+    }
+
+    @Basic
+    @Column(name = "TOTAL_INITIATIVES", precision = 20)
+    public long getTotalInitiatives() {
+        return totalInitiatives;
+    }
+
+    public void setTotalInitiatives(final long value) {
+        this.totalInitiatives = value;
+    }
+
+    @Basic
+    @Column(name = "ACTIVITY_LEVEL")
+    public String getActivityLevel() {
+        return activityLevel;
+    }
+
+    public void setActivityLevel(final String value) {
+        this.activityLevel = value;
+    }
+
+    @Basic
+    @Column(name = "ROLE_TYPE")
+    public String getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(final String value) {
+        this.roleType = value;
+    }
+
+    @Basic
+    @Column(name = "COMMITTEE_TYPE")
+    public String getCommitteeType() {
+        return committeeType;
+    }
+
+    public void setCommitteeType(final String value) {
+        this.committeeType = value;
+    }
+
+    // Additional builder pattern methods for new fields
+    public ViewRiksdagenCommitteeRoleMember withTotalDocuments(final long value) {
+        setTotalDocuments(value);
+        return this;
+    }
+
+    public ViewRiksdagenCommitteeRoleMember withDocumentsLastYear(final long value) {
+        setDocumentsLastYear(value);
+        return this;
+    }
+
+    public ViewRiksdagenCommitteeRoleMember withTotalCommitteeReports(final long value) {
+        setTotalCommitteeReports(value);
+        return this;
+    }
+
+    public ViewRiksdagenCommitteeRoleMember withTotalStatements(final long value) {
+        setTotalStatements(value);
+        return this;
+    }
+
+    public ViewRiksdagenCommitteeRoleMember withTotalInitiatives(final long value) {
+        setTotalInitiatives(value);
+        return this;
+    }
+
+    public ViewRiksdagenCommitteeRoleMember withActivityLevel(final String value) {
+        setActivityLevel(value);
+        return this;
+    }
+
+    public ViewRiksdagenCommitteeRoleMember withRoleType(final String value) {
+        setRoleType(value);
+        return this;
+    }
+
+    public ViewRiksdagenCommitteeRoleMember withCommitteeType(final String value) {
+        setCommitteeType(value);
+        return this;
+    }
+
+    @Override
+    public final String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
+
+    @Override
+    public final boolean equals(final Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
+    }
+
+    @Override
+    public final int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
 }

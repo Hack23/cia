@@ -283,7 +283,7 @@ public final class DataViewerITest extends
 	@Test
 	public void findByQueryPropertyTest() {
 		final DocumentStatusContainer findByQueryProperty = dataViewer.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
-				DocumentData.class, DocumentData_.id, "H501NU6");
+				DocumentData.class, DocumentData_.id, "h8023956");
 		assertNotNull(findByQueryProperty);
 	}
 

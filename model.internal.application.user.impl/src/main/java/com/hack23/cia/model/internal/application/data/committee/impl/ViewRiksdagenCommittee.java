@@ -38,6 +38,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * <p>Java class for ViewRiksdagenCommittee complex type.
  *
@@ -71,7 +72,18 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
     "lastAssignmentDate",
     "totalDaysServed",
     "currentMemberSize",
-    "active"
+    "active",
+    "totalLeadershipPositions",
+    "currentLeadershipPositions",
+    "totalSubstitutePositions",
+    "currentSubstitutePositions",
+    "currentRegularMembers",
+    "totalDocuments",
+    "documentsLastYear",
+    "avgDocumentsPerMember",
+    "totalCommitteeMotions",
+    "totalFollowUpMotions",
+    "activityLevel"
 })
 @Entity(name = "ViewRiksdagenCommittee")
 @Table(name = "VIEW_RIKSDAGEN_COMMITTEE")
@@ -80,24 +92,70 @@ public class ViewRiksdagenCommittee
     implements ModelObject
 {
 
-    /**
-	 *
-	 */
+    /** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The embedded id. */
 	@XmlElement(required = true)
     protected RiksdagenCommitteeEmbeddedId embeddedId;
+
+    /** The total assignments. */
     protected long totalAssignments;
+
+    /** The first assignment date. */
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
     @XmlSchemaType(name = "date")
     protected Date firstAssignmentDate;
+
+    /** The last assignment date. */
     @XmlElement(required = true, type = String.class)
     @XmlJavaTypeAdapter(XmlDateTypeAdapter.class)
     @XmlSchemaType(name = "date")
     protected Date lastAssignmentDate;
+
+    /** The total days served. */
     protected long totalDaysServed;
+
+    /** The current member size. */
     protected long currentMemberSize;
+
+    /** The active. */
     protected boolean active;
+
+    /** The total leadership positions. */
+    protected long totalLeadershipPositions;
+
+    /** The current leadership positions. */
+    protected long currentLeadershipPositions;
+
+    /** The total substitute positions. */
+    protected long totalSubstitutePositions;
+
+    /** The current substitute positions. */
+    protected long currentSubstitutePositions;
+
+    /** The current regular members. */
+    protected long currentRegularMembers;
+
+    /** The total documents. */
+    protected long totalDocuments;
+
+    /** The documents last year. */
+    protected long documentsLastYear;
+
+    /** The avg documents per member. */
+    protected double avgDocumentsPerMember;
+
+    /** The total committee motions. */
+    protected long totalCommitteeMotions;
+
+    /** The total follow up motions. */
+    protected long totalFollowUpMotions;
+
+    /** The activity level. */
+    @XmlElement(required = true)
+    protected String activityLevel;
 
     /**
      * Gets the value of the embeddedId property.
@@ -131,6 +189,7 @@ public class ViewRiksdagenCommittee
     /**
      * Gets the value of the totalAssignments property.
      *
+     * @return the total assignments
      */
     @Basic
     @Column(name = "TOTAL_ASSIGNMENTS", precision = 20)
@@ -141,6 +200,7 @@ public class ViewRiksdagenCommittee
     /**
      * Sets the value of the totalAssignments property.
      *
+     * @param value the new total assignments
      */
     public void setTotalAssignments(final long value) {
         this.totalAssignments = value;
@@ -203,6 +263,7 @@ public class ViewRiksdagenCommittee
     /**
      * Gets the value of the totalDaysServed property.
      *
+     * @return the total days served
      */
     @Basic
     @Column(name = "TOTAL_DAYS_SERVED", precision = 20)
@@ -213,6 +274,7 @@ public class ViewRiksdagenCommittee
     /**
      * Sets the value of the totalDaysServed property.
      *
+     * @param value the new total days served
      */
     public void setTotalDaysServed(final long value) {
         this.totalDaysServed = value;
@@ -221,6 +283,7 @@ public class ViewRiksdagenCommittee
     /**
      * Gets the value of the currentMemberSize property.
      *
+     * @return the current member size
      */
     @Basic
     @Column(name = "CURRENT_MEMBER_SIZE", precision = 20)
@@ -231,6 +294,7 @@ public class ViewRiksdagenCommittee
     /**
      * Sets the value of the currentMemberSize property.
      *
+     * @param value the new current member size
      */
     public void setCurrentMemberSize(final long value) {
         this.currentMemberSize = value;
@@ -239,6 +303,7 @@ public class ViewRiksdagenCommittee
     /**
      * Gets the value of the active property.
      *
+     * @return true, if is active
      */
     @Basic
     @Column(name = "ACTIVE")
@@ -249,46 +314,436 @@ public class ViewRiksdagenCommittee
     /**
      * Sets the value of the active property.
      *
+     * @param value the new active
      */
     public void setActive(final boolean value) {
         this.active = value;
     }
 
+    /**
+     * Gets the total leadership positions.
+     *
+     * @return the total leadership positions
+     */
+    @Basic
+    @Column(name = "TOTAL_LEADERSHIP_POSITIONS", precision = 20)
+    public long getTotalLeadershipPositions() {
+        return totalLeadershipPositions;
+    }
+
+    /**
+     * Sets the total leadership positions.
+     *
+     * @param value the new total leadership positions
+     */
+    public void setTotalLeadershipPositions(final long value) {
+        this.totalLeadershipPositions = value;
+    }
+
+    /**
+     * Gets the current leadership positions.
+     *
+     * @return the current leadership positions
+     */
+    @Basic
+    @Column(name = "CURRENT_LEADERSHIP_POSITIONS", precision = 20)
+    public long getCurrentLeadershipPositions() {
+        return currentLeadershipPositions;
+    }
+
+    /**
+     * Sets the current leadership positions.
+     *
+     * @param value the new current leadership positions
+     */
+    public void setCurrentLeadershipPositions(final long value) {
+        this.currentLeadershipPositions = value;
+    }
+
+    /**
+     * Gets the total substitute positions.
+     *
+     * @return the total substitute positions
+     */
+    @Basic
+    @Column(name = "TOTAL_SUBSTITUTE_POSITIONS", precision = 20)
+    public long getTotalSubstitutePositions() {
+        return totalSubstitutePositions;
+    }
+
+    /**
+     * Sets the total substitute positions.
+     *
+     * @param value the new total substitute positions
+     */
+    public void setTotalSubstitutePositions(final long value) {
+        this.totalSubstitutePositions = value;
+    }
+
+    /**
+     * Gets the current substitute positions.
+     *
+     * @return the current substitute positions
+     */
+    @Basic
+    @Column(name = "CURRENT_SUBSTITUTE_POSITIONS", precision = 20)
+    public long getCurrentSubstitutePositions() {
+        return currentSubstitutePositions;
+    }
+
+    /**
+     * Sets the current substitute positions.
+     *
+     * @param value the new current substitute positions
+     */
+    public void setCurrentSubstitutePositions(final long value) {
+        this.currentSubstitutePositions = value;
+    }
+
+    /**
+     * Gets the current regular members.
+     *
+     * @return the current regular members
+     */
+    @Basic
+    @Column(name = "CURRENT_REGULAR_MEMBERS", precision = 20)
+    public long getCurrentRegularMembers() {
+        return currentRegularMembers;
+    }
+
+    /**
+     * Sets the current regular members.
+     *
+     * @param value the new current regular members
+     */
+    public void setCurrentRegularMembers(final long value) {
+        this.currentRegularMembers = value;
+    }
+
+    /**
+     * Gets the total documents.
+     *
+     * @return the total documents
+     */
+    @Basic
+    @Column(name = "TOTAL_DOCUMENTS", precision = 20)
+    public long getTotalDocuments() {
+        return totalDocuments;
+    }
+
+    /**
+     * Sets the total documents.
+     *
+     * @param value the new total documents
+     */
+    public void setTotalDocuments(final long value) {
+        this.totalDocuments = value;
+    }
+
+    /**
+     * Gets the documents last year.
+     *
+     * @return the documents last year
+     */
+    @Basic
+    @Column(name = "DOCUMENTS_LAST_YEAR", precision = 20)
+    public long getDocumentsLastYear() {
+        return documentsLastYear;
+    }
+
+    /**
+     * Sets the documents last year.
+     *
+     * @param value the new documents last year
+     */
+    public void setDocumentsLastYear(final long value) {
+        this.documentsLastYear = value;
+    }
+
+    /**
+     * Gets the avg documents per member.
+     *
+     * @return the avg documents per member
+     */
+    @Basic
+    @Column(name = "AVG_DOCUMENTS_PER_MEMBER", precision = 10, scale = 1)
+    public double getAvgDocumentsPerMember() {
+        return avgDocumentsPerMember;
+    }
+
+    /**
+     * Sets the avg documents per member.
+     *
+     * @param value the new avg documents per member
+     */
+    public void setAvgDocumentsPerMember(final double value) {
+        this.avgDocumentsPerMember = value;
+    }
+
+    /**
+     * Gets the total committee motions.
+     *
+     * @return the total committee motions
+     */
+    @Basic
+    @Column(name = "TOTAL_COMMITTEE_MOTIONS", precision = 20)
+    public long getTotalCommitteeMotions() {
+        return totalCommitteeMotions;
+    }
+
+    /**
+     * Sets the total committee motions.
+     *
+     * @param value the new total committee motions
+     */
+    public void setTotalCommitteeMotions(final long value) {
+        this.totalCommitteeMotions = value;
+    }
+
+    /**
+     * Gets the total follow up motions.
+     *
+     * @return the total follow up motions
+     */
+    @Basic
+    @Column(name = "TOTAL_FOLLOW_UP_MOTIONS", precision = 20)
+    public long getTotalFollowUpMotions() {
+        return totalFollowUpMotions;
+    }
+
+    /**
+     * Sets the total follow up motions.
+     *
+     * @param value the new total follow up motions
+     */
+    public void setTotalFollowUpMotions(final long value) {
+        this.totalFollowUpMotions = value;
+    }
+
+    /**
+     * Gets the activity level.
+     *
+     * @return the activity level
+     */
+    @Basic
+    @Column(name = "ACTIVITY_LEVEL")
+    public String getActivityLevel() {
+        return activityLevel;
+    }
+
+    /**
+     * Sets the activity level.
+     *
+     * @param value the new activity level
+     */
+    public void setActivityLevel(final String value) {
+        this.activityLevel = value;
+    }
+
+    /**
+     * With total leadership positions.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    // Add new builder pattern methods
+    public ViewRiksdagenCommittee withTotalLeadershipPositions(final long value) {
+        setTotalLeadershipPositions(value);
+        return this;
+    }
+
+    /**
+     * With current leadership positions.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    public ViewRiksdagenCommittee withCurrentLeadershipPositions(final long value) {
+        setCurrentLeadershipPositions(value);
+        return this;
+    }
+
+    /**
+     * With total substitute positions.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    public ViewRiksdagenCommittee withTotalSubstitutePositions(final long value) {
+        setTotalSubstitutePositions(value);
+        return this;
+    }
+
+    /**
+     * With current substitute positions.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    public ViewRiksdagenCommittee withCurrentSubstitutePositions(final long value) {
+        setCurrentSubstitutePositions(value);
+        return this;
+    }
+
+    /**
+     * With current regular members.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    public ViewRiksdagenCommittee withCurrentRegularMembers(final long value) {
+        setCurrentRegularMembers(value);
+        return this;
+    }
+
+    /**
+     * With total documents.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    public ViewRiksdagenCommittee withTotalDocuments(final long value) {
+        setTotalDocuments(value);
+        return this;
+    }
+
+    /**
+     * With documents last year.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    public ViewRiksdagenCommittee withDocumentsLastYear(final long value) {
+        setDocumentsLastYear(value);
+        return this;
+    }
+
+    /**
+     * With avg documents per member.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    public ViewRiksdagenCommittee withAvgDocumentsPerMember(final double value) {
+        setAvgDocumentsPerMember(value);
+        return this;
+    }
+
+    /**
+     * With total committee motions.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    public ViewRiksdagenCommittee withTotalCommitteeMotions(final long value) {
+        setTotalCommitteeMotions(value);
+        return this;
+    }
+
+    /**
+     * With total follow up motions.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    public ViewRiksdagenCommittee withTotalFollowUpMotions(final long value) {
+        setTotalFollowUpMotions(value);
+        return this;
+    }
+
+    /**
+     * With activity level.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
+    public ViewRiksdagenCommittee withActivityLevel(final String value) {
+        setActivityLevel(value);
+        return this;
+    }
+
+    /**
+     * With embedded id.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
     public ViewRiksdagenCommittee withEmbeddedId(final RiksdagenCommitteeEmbeddedId value) {
         setEmbeddedId(value);
         return this;
     }
 
+    /**
+     * With total assignments.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
     public ViewRiksdagenCommittee withTotalAssignments(final long value) {
         setTotalAssignments(value);
         return this;
     }
 
+    /**
+     * With first assignment date.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
     public ViewRiksdagenCommittee withFirstAssignmentDate(final Date value) {
         setFirstAssignmentDate(value);
         return this;
     }
 
+    /**
+     * With last assignment date.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
     public ViewRiksdagenCommittee withLastAssignmentDate(final Date value) {
         setLastAssignmentDate(value);
         return this;
     }
 
+    /**
+     * With total days served.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
     public ViewRiksdagenCommittee withTotalDaysServed(final long value) {
         setTotalDaysServed(value);
         return this;
     }
 
+    /**
+     * With current member size.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
     public ViewRiksdagenCommittee withCurrentMemberSize(final long value) {
         setCurrentMemberSize(value);
         return this;
     }
 
+    /**
+     * With active.
+     *
+     * @param value the value
+     * @return the view riksdagen committee
+     */
     public ViewRiksdagenCommittee withActive(final boolean value) {
         setActive(value);
         return this;
     }
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public final String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
@@ -296,12 +751,23 @@ public class ViewRiksdagenCommittee
 
 
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public final boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public final int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);

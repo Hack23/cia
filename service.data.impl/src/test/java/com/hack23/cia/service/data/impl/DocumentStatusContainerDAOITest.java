@@ -40,7 +40,7 @@ public final class DocumentStatusContainerDAOITest extends AbstractServiceDataFu
 	 */
 	@Test
 	public void checkExistByDocumentIdTest() {
-		assertEquals(1,documentStatusContainerDAO.checkExistByDocumentId("H501UbU4"));
+		assertEquals(1,documentStatusContainerDAO.checkExistByDocumentId("GU02A337"));
 	}
 
 	/**
