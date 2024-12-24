@@ -102,10 +102,10 @@ final class DataViewerImpl implements DataViewer {
 
 <span class="fc" id="L103">		final List&lt;V&gt; resultList = typedQuery.getResultList();</span>
 
-<span class="pc bpc" id="L105" title="1 of 2 branches missed.">		if (!resultList.isEmpty()) {</span>
-<span class="nc" id="L106">			final List&lt;T&gt; findListByProperty = findListByProperty(clazz,property,resultList.get(0));</span>
-<span class="nc bnc" id="L107" title="All 2 branches missed.">			if (!findListByProperty.isEmpty()) {</span>
-<span class="nc" id="L108">				return LoadHelper.recursiveInitialize(findListByProperty.get(0));</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">		if (!resultList.isEmpty()) {</span>
+<span class="fc" id="L106">			final List&lt;T&gt; findListByProperty = findListByProperty(clazz,property,resultList.get(0));</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">			if (!findListByProperty.isEmpty()) {</span>
+<span class="fc" id="L108">				return LoadHelper.recursiveInitialize(findListByProperty.get(0));</span>
 			}
 		}
 

@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.hack23.cia.service.data.impl"},{"l":"com.hack23.cia.service.data.impl.util"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.hack23.cia.service.data.impl","l":"com.hack23.cia.service.data.impl"},{"m":"com.hack23.cia.service.data.impl","l":"com.hack23.cia.service.data.impl.util"}];updateSearchResults();
