@@ -55,6 +55,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.build.outputTimestamp>2024-12-24T17:58:00Z</project.build.outputTimestamp>
     <scm-publish.scmBranch>gh-pages</scm-publish.scmBranch>
     <scm-publish.pubScmUrl>scm:git:ssh://git@github.com/Hack23/cia.git</scm-publish.pubScmUrl>
     <scm-publish.siteDocOuputDirectory>${project.build.directory}/staging</scm-publish.siteDocOuputDirectory>
@@ -1255,6 +1256,9 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
         <inherited>true</inherited>
+        <configuration>
+          <outputTimestamp>${project.build.outputTimestamp}</outputTimestamp>
+        </configuration>
         <executions>
           <execution>
             <id>bundle-sources</id>
@@ -1288,6 +1292,9 @@
           </jdkToolchain>
           <source>${jdk.src.version}</source>
           <target>${jdk.target.version}</target>
+          <parameters>true</parameters>
+          <debuglevel>lines,vars,source</debuglevel>
+          <optimize>true</optimize>
         </configuration>
         <executions>
           <execution>
@@ -1326,11 +1333,19 @@
         <artifactId>maven-jar-plugin</artifactId>
         <inherited>true</inherited>
         <configuration>
+          <outputTimestamp>${project.build.outputTimestamp}</outputTimestamp>
           <archive>
             <index>true</index>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
             <manifestEntries>
               <Sealed>true</Sealed>
               <Automatic-Module-Name>com.hack23.cia.${project.artifactId}</Automatic-Module-Name>
+              <Built-By>${user.name}</Built-By>
+              <Created-By>Apache Maven ${maven.version}</Created-By>
+              <Build-Timestamp>${project.build.outputTimestamp}</Build-Timestamp>
             </manifestEntries>
           </archive>
         </configuration>
@@ -1353,6 +1368,13 @@
         <inherited>true</inherited>
         <configuration>
           <encoding>UTF-8</encoding>
+          <propertiesEncoding>ISO-8859-1</propertiesEncoding>
+          <nonFilteredFileExtensions>
+            <nonFilteredFileExtension>pdf</nonFilteredFileExtension>
+            <nonFilteredFileExtension>jar</nonFilteredFileExtension>
+            <nonFilteredFileExtension>zip</nonFilteredFileExtension>
+            <nonFilteredFileExtension>gz</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
         </configuration>
       </plugin>
       <plugin>
