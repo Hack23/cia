@@ -141,7 +141,7 @@
     <cia.project.versions.jetty>10.0.24</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
     <cia.project.versions.javamelody>1.99.2</cia.project.versions.javamelody>
-    <cia.project.versions.vaadin>8.14.4</cia.project.versions.vaadin>
+    <cia.project.versions.vaadin>8.27.4</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.9.0</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.gwt.user.run>2.10.0</cia.project.versions.vaadin.gwt.user.run>
     <cia.project.versions.vaadin.cssparser>0.9.30</cia.project.versions.vaadin.cssparser>
