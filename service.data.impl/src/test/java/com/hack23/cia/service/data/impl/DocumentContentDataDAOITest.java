@@ -37,7 +37,7 @@ public final class DocumentContentDataDAOITest extends AbstractServiceDataFuncti
 	 */
 	@Test
 	public void checkDocumentContentDataExistTest() {
-		assertTrue(documentContentDataDAO.checkDocumentContentData("H501MJU4"));
+		assertTrue(documentContentDataDAO.checkDocumentContentData("h8023956"));
 	}
 
 	/**

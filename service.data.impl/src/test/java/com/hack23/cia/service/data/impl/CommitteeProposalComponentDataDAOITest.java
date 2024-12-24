@@ -37,7 +37,7 @@ public final class CommitteeProposalComponentDataDAOITest extends AbstractServic
 	 */
 	@Test
 	public void checkCommitteeDocumentDataExistTest() {
-		assertTrue(dao.checkCommitteeDocumentData("H101FiU36"));
+		assertTrue(dao.checkCommitteeDocumentData("GW01UbU11"));
 	}
 
 	/**
