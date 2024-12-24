@@ -1,3 +1,33 @@
+/**
+ * CIA (Citizen Intelligence Agency) Data Service Implementation Module.
+ * 
+ * <p>This module provides the core data persistence and management implementation
+ * for the CIA application. It handles database operations, caching, search functionality,
+ * and audit tracking through various technology integrations.</p>
+ * 
+ * <p>Key features include:</p>
+ * <ul>
+ *   <li>Database persistence using Hibernate ORM and JPA</li>
+ *   <li>Full-text search capabilities via Hibernate Search and Lucene</li>
+ *   <li>Data auditing and versioning through Javers</li>
+ *   <li>AWS Secrets Manager integration for secure credential management</li>
+ *   <li>Caching support with EhCache</li>
+ *   <li>Transaction management with Spring</li>
+ * </ul>
+ * 
+ * <p>The module exports two packages:</p>
+ * <ul>
+ *   <li>{@code com.hack23.cia.service.data.impl} - Main implementation classes</li>
+ *   <li>{@code com.hack23.cia.service.data.impl.util} - Utility classes for data operations</li>
+ * </ul>
+ * 
+ * <p>This module is part of the CIA (Citizen Intelligence Agency) project, which focuses on
+ * monitoring political figures and institutions while providing insights into financial
+ * performance, risk metrics, and political trends.</p>
+ * 
+ * @provides com.hack23.cia.service.data.api Implementation of CIA data service API
+ * @see com.hack23.cia.service.data.api
+ */
 open module com.hack23.cia.service.data.impl {
 	exports com.hack23.cia.service.data.impl;
 	exports com.hack23.cia.service.data.impl.util;

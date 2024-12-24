@@ -1,3 +1,56 @@
+/**
+ * CIA (Citizen Intelligence Agency) Agent Implementation Module.
+ *
+ * <p>This module implements the data collection and processing agents for the CIA application.
+ * It provides implementations for retrieving and processing data from multiple sources including
+ * the Swedish Parliament (Riksdagen), Election Authority (Val), and World Bank.</p>
+ *
+ * <p>The module exports the following key packages:</p>
+ * <ul>
+ *   <li>{@code com.hack23.cia.service.component.agent.impl.command} - Command processing implementations</li>
+ *   <li>{@code com.hack23.cia.service.component.agent.impl.riksdagen} - Swedish Parliament data agents</li>
+ *   <li>{@code com.hack23.cia.service.component.agent.impl.val} - Election data agents</li>
+ *   <li>{@code com.hack23.cia.service.component.agent.impl.worldbank} - World Bank data agents</li>
+ * </ul>
+ *
+ * <p>Key Features:</p>
+ * <ul>
+ *   <li>Automated data collection from multiple sources</li>
+ *   <li>JMS-based message processing</li>
+ *   <li>Spring-managed transaction handling</li>
+ *   <li>Secure data processing with Spring Security integration</li>
+ *   <li>Comprehensive data model support for various external sources</li>
+ * </ul>
+ *
+ * <p>Data Sources Integration:</p>
+ * <ul>
+ *   <li>Swedish Parliament (Riksdagen)
+ *     <ul>
+ *       <li>Political documents and status</li>
+ *       <li>Voting records</li>
+ *       <li>Member information</li>
+ *       <li>Committee proposals</li>
+ *     </ul>
+ *   </li>
+ *   <li>Election Authority (Val)
+ *     <ul>
+ *       <li>Electoral district data</li>
+ *       <li>Political party information</li>
+ *       <li>Regional election data</li>
+ *     </ul>
+ *   </li>
+ *   <li>World Bank
+ *     <ul>
+ *       <li>Economic indicators</li>
+ *       <li>Country data</li>
+ *       <li>Topic classifications</li>
+ *     </ul>
+ *   </li>
+ * </ul>
+ *
+ * @see com.hack23.cia.service.component.agent.api
+ * @see com.hack23.cia.service.external.common
+ */
 open module com.hack23.cia.service.component.agent.impl {
 
 

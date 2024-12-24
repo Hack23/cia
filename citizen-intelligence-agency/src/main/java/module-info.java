@@ -1,5 +1,43 @@
 /**
- * This module contains the main application code for the Citizen Intelligence Agency web application.
+ * CIA (Citizen Intelligence Agency) Web Module.
+ * 
+ * <p>This module implements the web interface for the CIA application using Vaadin framework.
+ * It provides a comprehensive user interface for monitoring political figures, institutions,
+ * and analyzing political/financial trends.</p>
+ *
+ * <p>The module contains views and components for:</p>
+ * <ul>
+ *   <li>Administrative operations and system management</li>
+ *   <li>Parliament data visualization and analysis</li>
+ *   <li>Political party information and statistics</li>
+ *   <li>Government body and committee tracking</li>
+ *   <li>Document management and ballot tracking</li>
+ *   <li>Politician profiles and activities</li>
+ * </ul>
+ *
+ * <p>Key Features:</p>
+ * <ul>
+ *   <li>Responsive web interface using Vaadin framework</li>
+ *   <li>Security integration with Spring Security</li>
+ *   <li>Data visualization with charts and grids</li>
+ *   <li>PDF viewing capabilities</li>
+ *   <li>QR code generation</li>
+ *   <li>User agent parsing and analytics</li>
+ * </ul>
+ *
+ * <p>The module is organized into the following main packages:</p>
+ * <ul>
+ *   <li>application - Core application infrastructure</li>
+ *   <li>views.admin.* - Administrative interface components</li>
+ *   <li>views.user.* - User-facing interface components</li>
+ *   <li>views.common.* - Shared UI components and utilities</li>
+ * </ul>
+ *
+ * <p>This module requires and integrates with various CIA service modules and external
+ * data sources including Riksdagen (Swedish Parliament), Val (Elections), and World Bank data.</p>
+ *
+ * @see com.hack23.cia.service.api
+ * @see com.hack23.cia.web.widgets
  */
 open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application;

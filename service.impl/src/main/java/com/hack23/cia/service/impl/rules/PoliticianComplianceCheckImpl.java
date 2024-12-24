@@ -138,7 +138,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
      * @return a double ratio (0.0 if total committee days is 0).
      */
     public double getCommitteeLeadershipRatio() {
-        long totalCommittee = politician.getTotalDaysServedCommittee();
+        final long totalCommittee = politician.getTotalDaysServedCommittee();
         if (totalCommittee == 0) {
             return 0.0;
         }
@@ -151,7 +151,7 @@ public final class PoliticianComplianceCheckImpl extends AbstractComplianceCheck
      * @return a double ratio (0.0 if total committee days is 0).
      */
     public double getCommitteeSubstituteRatio() {
-        long totalCommittee = politician.getTotalDaysServedCommittee();
+        final long totalCommittee = politician.getTotalDaysServedCommittee();
         if (totalCommittee == 0) {
             return 0.0;
         }

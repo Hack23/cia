@@ -1,9 +1,30 @@
+/**
+ * CIA (Citizen Intelligence Agency) Service Implementation Module.
+ *
+ * This module provides the core service implementation for the CIA application.
+ * It integrates various external services and data models, including:
+ * <ul>
+ *   <li>Data processing and business logic implementation</li>
+ *   <li>Integration with Riksdagen (Swedish Parliament) data</li>
+ *   <li>Integration with Val (Election) data</li>
+ *   <li>Integration with World Bank data</li>
+ *   <li>Security and authentication services</li>
+ * </ul>
+ *
+ * The module exports service implementation packages while consuming various
+ * external dependencies including Spring Framework, security components,
+ * and data access modules.
+ *
+ * @provides com.hack23.cia.service.api Service implementations for CIA
+ * @uses com.hack23.cia.service.component.agent.api Agent API services
+ * @uses com.hack23.cia.service.data.api Data access services
+ */
 open module com.hack23.cia.service.impl {
 
 
 	exports com.hack23.cia.service.impl;
 	exports com.hack23.cia.service.impl.rules;
-		
+
 	requires java.validation;
 	requires java.xml.bind;
 	requires java.annotation;
@@ -37,7 +58,7 @@ open module com.hack23.cia.service.impl {
 	requires org.bouncycastle.provider;
 
 	requires com.hack23.cia.service.api;
-	
+
 	requires com.hack23.cia.service.component.agent.api;
 	requires com.hack23.cia.service.component.agent.impl;
 

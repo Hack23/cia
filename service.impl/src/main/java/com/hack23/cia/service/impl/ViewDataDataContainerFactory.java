@@ -31,13 +31,10 @@ public interface ViewDataDataContainerFactory {
 	/**
 	 * Creates a new ViewDataDataContainer object.
 	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param <I>
-	 *            the generic type
-	 * @param clazz
-	 *            the clazz
-	 * @return the data container< t, i d>
+	 * @param <T>   the generic type
+	 * @param <I>   the generic type
+	 * @param clazz the clazz
+	 * @return the DataContainer&lt;T, I&gt;
 	 */
-	<T extends Serializable,I extends Serializable> DataContainer<T,I> createDataContainer(Class<T> clazz);
+	<T extends Serializable, I extends Serializable> DataContainer<T, I> createDataContainer(Class<T> clazz);
 }
