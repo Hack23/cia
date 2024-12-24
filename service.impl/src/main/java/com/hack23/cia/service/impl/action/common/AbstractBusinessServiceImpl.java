@@ -48,6 +48,7 @@ public abstract class AbstractBusinessServiceImpl<T extends ServiceRequest, V ex
 	@Autowired
 	protected BusinessService<CreateApplicationEventRequest, CreateApplicationEventResponse> createApplicationEventService;
 
+	/** The validator. */
 	@Autowired
 	protected Validator validator;
 

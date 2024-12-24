@@ -1581,6 +1581,13 @@
               <detectJavaApiLink>false</detectJavaApiLink>
               <detectOfflineLinks>false</detectOfflineLinks>
               <linksource>false</linksource>
+              <additionalDependencies>
+                <additionalDependency>
+                  <groupId>jakarta.xml.bind</groupId>
+                  <artifactId>jakarta.xml.bind-api</artifactId>
+                  <version>4.0.1</version>
+                </additionalDependency>
+              </additionalDependencies>
               <includeDependencySources>true</includeDependencySources>
               <dependencySourceIncludes>
                 <dependencySourceInclude>com.hack23.cia:*</dependencySourceInclude>

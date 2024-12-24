@@ -1,3 +1,52 @@
+/**
+ * CIA (Citizen Intelligence Agency) Service API Module.
+ *
+ * <p>This module defines the core service API for the CIA application, providing
+ * interfaces for all business operations and actions. It acts as the primary
+ * interface layer between the presentation tier and the business logic.</p>
+ *
+ * <p>The module exports the following packages:</p>
+ * <ul>
+ *   <li>{@code com.hack23.cia.service.api} - Core service interfaces</li>
+ *   <li>{@code com.hack23.cia.service.api.action.admin} - Administrative operations</li>
+ *   <li>{@code com.hack23.cia.service.api.action.application} - Application-wide functionality</li>
+ *   <li>{@code com.hack23.cia.service.api.action.common} - Shared action definitions</li>
+ *   <li>{@code com.hack23.cia.service.api.action.user} - User-specific operations</li>
+ *   <li>{@code com.hack23.cia.service.api.action.kpi} - Key Performance Indicators</li>
+ * </ul>
+ *
+ * <p>Functional Areas:</p>
+ * <ul>
+ *   <li>Administrative Operations
+ *     <ul>
+ *       <li>System configuration and management</li>
+ *       <li>User administration</li>
+ *       <li>Security controls</li>
+ *     </ul>
+ *   </li>
+ *   <li>Data Analysis
+ *     <ul>
+ *       <li>Political performance tracking</li>
+ *       <li>Financial metrics analysis</li>
+ *       <li>Institutional monitoring</li>
+ *     </ul>
+ *   </li>
+ *   <li>Key Performance Indicators
+ *     <ul>
+ *       <li>Political efficiency metrics</li>
+ *       <li>Financial performance indicators</li>
+ *       <li>Trend analysis</li>
+ *     </ul>
+ *   </li>
+ * </ul>
+ *
+ * <p>The API utilizes validation constraints and supports operations across various
+ * data models including Swedish Parliament (Riksdagen), Election Authority (Val),
+ * and internal application data.</p>
+ *
+ * @see com.hack23.cia.service.data.api
+ * @see com.hack23.cia.model.internal.application.user.impl
+ */
 open module com.hack23.cia.service.api {
 
 	exports com.hack23.cia.service.api;
