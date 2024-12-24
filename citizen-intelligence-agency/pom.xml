@@ -1657,6 +1657,19 @@
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
           <archiveClasses>true</archiveClasses>
+          <recompressZippedFiles>false</recompressZippedFiles>
+          <outputTimestamp>${project.build.outputTimestamp}</outputTimestamp>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+            <manifestEntries>
+              <Built-By>${user.name}</Built-By>
+              <Created-By>Apache Maven ${maven.version}</Created-By>
+              <Build-Timestamp>${project.build.outputTimestamp}</Build-Timestamp>
+            </manifestEntries>
+          </archive>
         </configuration>
       </plugin>
       <plugin>
