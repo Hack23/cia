@@ -13,5 +13,7 @@
  * - Depends on com.hack23.cia.model.internal.application.data.politician.impl for ViewRiksdagenPolitician.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for various view names and page modes.
  * - Depends on com.vaadin.ui for UI components.
+ *
+ * The package is responsible for creating and managing page links, handling page mode menu actions, and interacting with other components of the application to ensure proper functionality. The key classes and interfaces within this package provide the necessary structure and implementation for these actions. The package also has dependencies on other packages for specific functionalities, such as person data, committee data, ministry data, party data, politician data, view names, and UI components.
  */
 package com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api;
