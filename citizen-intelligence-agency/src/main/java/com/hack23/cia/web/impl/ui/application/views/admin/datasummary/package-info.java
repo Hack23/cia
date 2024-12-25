@@ -1,6 +1,6 @@
 /**
  * This package provides classes and interfaces for summarizing data within the Citizen Intelligence Agency web application.
- *
+ * 
  * Key classes and interfaces:
  * - AdminDataSummaryView: Main view class for data summary.
  *
