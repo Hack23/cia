@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="pethers" id="20241224-202845-extend-party-summary-view">
+        <comment>Extend party summary view with ballot and committee statistics</comment>
+        
+        <dropView viewName="view_riksdagen_party_summary"/>
+        
+        <createView viewName="view_riksdagen_party_summary">
+            <![CDATA[
+        SELECT
+    p.party,
+    MIN(first_assignment_date) AS first_assignment_date,
+    MAX(last_assignment_date) AS last_assignment_date,
+    SUM(total_days_served::int8)::int8 AS total_days_served,
+    SUM(total_days_served_parliament::int8)::int8 AS total_days_served_parliament,
+    SUM(total_days_served_committee::int8)::int8 AS total_days_served_committee,
+    SUM(total_days_served_government::int8)::int8 AS total_days_served_government,
+    SUM(total_days_served_eu::int8)::int8 AS total_days_served_eu,
+    SUM(total_days_served_speaker::int8)::int8 AS total_days_served_speaker,
+    SUM(total_days_served_party::int8)::int8 AS total_days_served_party,
+
+    -- Active status aggregations
+    bool_or(active) AS active,
+    bool_or(active_eu) AS active_eu,
+    bool_or(active_government) AS active_government,
+    bool_or(active_committee) AS active_committee,
+    bool_or(active_parliament) AS active_parliament,
+    bool_or(active_speaker) AS active_speaker,
+    bool_or(active_party) AS active_party,
+
+    -- Active member counts
+    SUM(CASE WHEN active THEN 1 ELSE 0 END) AS total_active,
+    SUM(CASE WHEN active_eu THEN 1 ELSE 0 END) AS total_active_eu,
+    SUM(CASE WHEN active_government THEN 1 ELSE 0 END) AS total_active_government,
+    SUM(CASE WHEN active_committee THEN 1 ELSE 0 END) AS total_active_committee,
+    SUM(CASE WHEN active_parliament THEN 1 ELSE 0 END) AS total_active_parliament,
+
+    -- Assignment totals
+    SUM(total_assignments::int8)::int8 AS total_assignments,
+    SUM(total_party_assignments::int8)::int8 AS total_party_assignments,
+    SUM(total_committee_assignments::int8)::int8 AS total_committee_assignments,
+    SUM(total_ministry_assignments::int8)::int8 AS total_ministry_assignments,
+    SUM(total_speaker_assignments::int8)::int8 AS total_speaker_assignments,
+    
+    -- Current assignment counts
+    SUM(current_assignments::int8)::int8 AS current_assignments,
+    SUM(current_party_assignments::int8)::int8 AS current_party_assignments,
+    SUM(current_committee_assignments::int8)::int8 AS current_committee_assignments,
+    SUM(current_ministry_assignments::int8)::int8 AS current_ministry_assignments,
+    SUM(current_speaker_assignments::int8)::int8 AS current_speaker_assignments,
+
+    -- Committee substitute metrics
+    SUM(total_committee_substitute_assignments::int8)::int8 AS total_committee_substitute_assignments,
+    SUM(current_committee_substitute_assignments::int8)::int8 AS current_committee_substitute_assignments,
+    SUM(total_days_served_committee_substitute::int8)::int8 AS total_days_served_committee_substitute,
+
+    -- Committee leadership metrics
+    SUM(total_committee_leadership_assignments::int8)::int8 AS total_committee_leadership_assignments,
+    SUM(current_committee_leadership_assignments::int8)::int8 AS current_committee_leadership_assignments,
+    SUM(total_days_served_committee_leadership::int8)::int8 AS total_days_served_committee_leadership,
+
+    -- Document metrics
+    SUM(COALESCE(ds.total_documents, 0)) AS total_documents,
+    ROUND(AVG(COALESCE(ds.total_documents, 0)), 1) AS avg_documents_per_member,
+    SUM(COALESCE(ds.party_motions, 0)) AS total_party_motions,
+    SUM(COALESCE(ds.individual_motions, 0)) AS total_individual_motions,
+    SUM(COALESCE(ds.committee_motions, 0)) AS total_committee_motions,
+    SUM(COALESCE(ds.multi_party_motions, 0)) AS total_collaborative_motions,
+    SUM(COALESCE(ds.follow_up_motions, 0)) AS total_follow_up_motions,
+    
+    -- Activity level counts
+    COUNT(CASE WHEN ds.activity_level = 'Very High' THEN 1 END) AS very_high_activity_members,
+    COUNT(CASE WHEN ds.activity_level = 'High' THEN 1 END) AS high_activity_members,
+    COUNT(CASE WHEN ds.activity_level = 'Medium' THEN 1 END) AS medium_activity_members,
+    COUNT(CASE WHEN ds.activity_level = 'Low' THEN 1 END) AS low_activity_members,
+    
+    -- Activity profile counts
+    COUNT(CASE WHEN ds.activity_profile = 'Party-focused' THEN 1 END) AS party_focused_members,
+    COUNT(CASE WHEN ds.activity_profile = 'Committee-focused' THEN 1 END) AS committee_focused_members,
+    COUNT(CASE WHEN ds.activity_profile = 'Individual-focused' THEN 1 END) AS individual_focused_members,
+    
+    -- Recent activity metrics
+    COUNT(CASE WHEN ds.documents_last_year > 0 THEN 1 END) AS currently_active_members,
+    SUM(COALESCE(ds.documents_last_year, 0)) AS total_documents_last_year,
+    ROUND(AVG(COALESCE(ds.documents_last_year, 0)), 1) AS avg_documents_last_year,
+    
+    -- Timeline information
+    MIN(ds.first_document_date) AS first_party_document,
+    MAX(ds.last_document_date) AS last_party_document,
+    
+    -- Collaboration metrics
+    ROUND(AVG(COALESCE(ds.collaboration_percentage, 0)), 1) AS avg_collaboration_percentage,
+    SUM(CASE WHEN ds.collaboration_percentage > 50 THEN 1 ELSE 0 END) AS highly_collaborative_members,
+
+    -- Ballot statistics
+    SUM(COALESCE(bps.total_votes, 0)) AS total_ballot_participations,
+    ROUND(AVG(COALESCE(bps.percentage_yes, 0)), 2) AS avg_yes_vote_rate,
+    ROUND(AVG(COALESCE(bps.percentage_absent, 0)), 2) AS avg_absence_rate,
+    
+    -- Party success metrics
+    SUM(COALESCE(bps.party_won_total, 0)) AS total_winning_votes,
+    ROUND(AVG(COALESCE(bps.party_won_percentage, 0)), 2) AS party_success_rate,
+    
+    -- Party unity metrics
+    SUM(COALESCE(pps.rebel_total, 0)) AS total_rebel_votes,
+    ROUND(AVG(COALESCE(pps.rebel_percentage, 0)), 2) AS party_unity_rate,
+    
+    -- Committee influence
+    SUM(CASE WHEN cd.winner = p.party THEN 1 ELSE 0 END) AS committee_proposal_wins,
+    COUNT(DISTINCT cd.org) AS active_committee_count,
+    
+    -- Vote impact statistics
+    ROUND(AVG(CASE WHEN bps.percentage_yes BETWEEN 45 AND 55 THEN 1 ELSE 0 END), 2) AS close_vote_participation_rate,
+        
+    -- Temporal voting patterns
+    MAX(bps.embedded_id_vote_date) AS last_vote_date,
+    MIN(bps.embedded_id_vote_date) AS first_vote_date,
+    
+    -- Committee decision statistics
+    COUNT(DISTINCT CASE WHEN cd.decision_type = 'röstning' THEN cd.embedded_id_id END) AS total_committee_votes,
+    
+    -- Recent activity metrics
+    SUM(
+        CASE
+            WHEN bps.embedded_id_vote_date >= CURRENT_DATE - INTERVAL '365 days'
+            THEN COALESCE(bps.total_votes, 0)
+            ELSE 0
+        END
+    ) AS votes_last_year,
+    
+    -- Opposition metrics
+    COUNT(DISTINCT CASE 
+        WHEN cd.against_proposal_parties LIKE '%' || p.party || '%'
+        THEN cd.embedded_id_id 
+    END) AS total_oppositions
+
+FROM view_riksdagen_politician p
+LEFT JOIN view_riksdagen_politician_document_summary ds 
+       ON p.person_id = ds.person_reference_id
+LEFT JOIN view_riksdagen_vote_data_ballot_party_summary_annual bps
+       ON p.party = bps.embedded_id_party
+LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_annual pps
+       ON p.party = pps.party
+LEFT JOIN view_riksdagen_committee_decisions cd
+       ON cd.against_proposal_parties LIKE '%' || p.party || '%'
+GROUP BY p.party
+ORDER BY p.party
+            ]]>
+        </createView>
+        
+    </changeSet>
+
+</databaseChangeLog>
