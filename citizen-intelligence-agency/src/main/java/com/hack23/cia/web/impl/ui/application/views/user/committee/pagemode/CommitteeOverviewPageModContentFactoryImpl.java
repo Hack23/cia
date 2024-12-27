@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
+import java.util.Locale;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -179,7 +181,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		        VaadinIcons.FILE_TEXT, "Total number of documents produced"));
 		documentStatsLayout.addComponent(createInfoRow("Documents Last Year:", String.valueOf(viewRiksdagenCommittee.getDocumentsLastYear()),
 		        VaadinIcons.FILE_O, "Documents produced in the last year"));
-		documentStatsLayout.addComponent(createInfoRow("Avg Documents/Member:", String.format("%.1f", viewRiksdagenCommittee.getAvgDocumentsPerMember()),
+		documentStatsLayout.addComponent(createInfoRow("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenCommittee.getAvgDocumentsPerMember()),
 		        VaadinIcons.CHART_LINE, "Average documents per committee member"));
 		documentStatsLayout.addComponent(createInfoRow("Committee Motions:", String.valueOf(viewRiksdagenCommittee.getTotalCommitteeMotions()),
 		        VaadinIcons.FILE_PRESENTATION, "Total number of committee motions"));

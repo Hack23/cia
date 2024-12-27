@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
+import java.util.Locale;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -174,7 +176,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
             VaadinIcons.FILE_TEXT, "Total number of ministry documents"));
         documentStatsLayout.addComponent(createInfoRow("Documents Last Year:", String.valueOf(viewRiksdagenMinistry.getDocumentsLastYear()),
             VaadinIcons.FILE_O, "Documents produced in the last year"));
-        documentStatsLayout.addComponent(createInfoRow("Avg Documents/Member:", String.format("%.1f", viewRiksdagenMinistry.getAvgDocumentsPerMember()),
+        documentStatsLayout.addComponent(createInfoRow("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenMinistry.getAvgDocumentsPerMember()),
             VaadinIcons.CHART_LINE, "Average documents per ministry member"));
         documentStatsLayout.addComponent(createInfoRow("Total Propositions:", String.valueOf(viewRiksdagenMinistry.getTotalPropositions()),
             VaadinIcons.FILE_PRESENTATION, "Total number of propositions"));

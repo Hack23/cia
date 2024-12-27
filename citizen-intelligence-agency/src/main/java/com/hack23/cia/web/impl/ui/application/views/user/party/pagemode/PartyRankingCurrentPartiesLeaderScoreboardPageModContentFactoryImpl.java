@@ -338,7 +338,7 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 		final int govYears = (int) (leader.getTotalDaysServedGovernment() / 365);
 		final int partyYears = (int) (leader.getTotalDaysServedParty() / 365);
 		final int parliamentYears = (int) (leader.getTotalDaysServedParliament() / 365);
-		final String expText = String.format(Locale.ROOT, "Government: %dy, Party: %dy, Parliament: %dy",
+		final String expText = String.format(Locale.ENGLISH, "Government: %dy, Party: %dy, Parliament: %dy",
 				govYears, partyYears, parliamentYears);
 		final Label expValue = new Label(expText);
 		expValue.addStyleName("card-experience-value");
@@ -428,12 +428,12 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 			}
 		}
 
-		final String incomeStr = String.format(Locale.ROOT, "%.2f B SEK", currentYearIncome);
+		final String incomeStr = String.format(Locale.ENGLISH, "%.2f B SEK", currentYearIncome);
 		cardLayout.addComponent(createMetricRow(VaadinIcons.ARROW_UP,
 				getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(govMember.getDetail()),
 				"Yearly Income (B SEK)", incomeStr));
 
-		final String spendingStr = String.format(Locale.ROOT, "%.2f B SEK", currentYearSpending);
+		final String spendingStr = String.format(Locale.ENGLISH, "%.2f B SEK", currentYearSpending);
 		cardLayout.addComponent(createMetricRow(VaadinIcons.ARROW_DOWN,
 				getPageLinkFactory().addMinistrGovermentBodiesSpendingPageLink(govMember.getDetail()),
 				"Yearly Spending (B SEK)", spendingStr));

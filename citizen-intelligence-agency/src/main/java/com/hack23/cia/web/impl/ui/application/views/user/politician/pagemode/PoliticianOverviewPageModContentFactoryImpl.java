@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
 import java.util.Date;
+import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
@@ -274,7 +275,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 				calculateServiceYears(politician.getFirstAssignmentDate(), politician.getLastAssignmentDate()),
 				VaadinIcons.TIMER, "Years in parliament"));
 		layout.addComponent(
-				createInfoRow("Influence Score:", String.format("%.1f", ballotSummary.getVotingConsistencyScore()),
+				createInfoRow("Influence Score:", String.format(Locale.ENGLISH,"%.1f", ballotSummary.getVotingConsistencyScore()),
 						VaadinIcons.CHART_GRID, "Overall parliamentary influence"));
 	}
 
@@ -289,9 +290,9 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
 		layout.addComponent(
-				createInfoRow("Attendance Rate:", String.format("%.1f%%", 100 - ballotSummary.getAbsenceRate()),
+				createInfoRow("Attendance Rate:", String.format(Locale.ENGLISH,"%.1f%%", 100 - ballotSummary.getAbsenceRate()),
 						VaadinIcons.USER_CHECK, "Session attendance rate"));
-		layout.addComponent(createInfoRow("Voting Success:", String.format("%.1f%%", ballotSummary.getSuccessRate()),
+		layout.addComponent(createInfoRow("Voting Success:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary.getSuccessRate()),
 				VaadinIcons.TROPHY, "Votes on winning side"));
 		layout.addComponent(createInfoRow("Activity Level:", politician.getDocActivityLevel(), VaadinIcons.CHART_LINE,
 				"Overall engagement level"));
@@ -307,7 +308,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 */
 	private void addLegislativeMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician) {
 
-		layout.addComponent(createInfoRow("Documents/Year:", String.format("%.1f", politician.getAverageDocsPerYear()),
+		layout.addComponent(createInfoRow("Documents/Year:", String.format(Locale.ENGLISH,"%.1f", politician.getAverageDocsPerYear()),
 				VaadinIcons.FILE_TEXT, "Average documents per year"));
 		layout.addComponent(createInfoRow("Individual Motions:", String.valueOf(politician.getIndividualMotions()),
 				VaadinIcons.USER, "Personal motions submitted"));
@@ -327,12 +328,12 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	private void addPartyAlignmentMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
 			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
-		layout.addComponent(createInfoRow("Party Loyalty:", String.format("%.1f%%", ballotSummary.getLoyaltyRate()),
+		layout.addComponent(createInfoRow("Party Loyalty:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary.getLoyaltyRate()),
 				VaadinIcons.GROUP, "Party line adherence"));
-		layout.addComponent(createInfoRow("Independence Rate:", String.format("%.1f%%", ballotSummary.getRebelRate()),
+		layout.addComponent(createInfoRow("Independence Rate:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary.getRebelRate()),
 				VaadinIcons.RANDOM, "Votes against party line"));
 		layout.addComponent(createInfoRow("Cross-Party Collaboration:",
-				String.format("%.1f%%", politician.getCollaborationPercentage()), VaadinIcons.CONNECT,
+				String.format(Locale.ENGLISH,"%.1f%%", politician.getCollaborationPercentage()), VaadinIcons.CONNECT,
 				"Inter-party cooperation"));
 		layout.addComponent(createInfoRow("Multi-Party Motions:", String.valueOf(politician.getMultiPartyMotions()),
 				VaadinIcons.USERS, "Cross-party legislative initiatives"));
