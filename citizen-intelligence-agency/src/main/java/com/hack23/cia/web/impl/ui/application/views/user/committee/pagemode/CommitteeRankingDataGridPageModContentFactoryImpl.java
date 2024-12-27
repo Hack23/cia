@@ -43,9 +43,9 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeRankingDataGridPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
 	/** The Constant COLUMN_ORDER. */
-	private static final String[] COLUMN_ORDER = { 
-		    "embeddedId.detail", 
-		    "embeddedId", 
+	private static final String[] COLUMN_ORDER = {
+		    "embeddedId.detail",
+		    "embeddedId",
 		    "currentMemberSize",
 		    "currentLeadershipPositions",
 		    "currentSubstitutePositions",
@@ -55,21 +55,21 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 		    "avgDocumentsPerMember",
 		    "documentsLastYear",
 		    "totalDocuments",
-		    "totalAssignments", 
-		    "firstAssignmentDate", 
+		    "totalAssignments",
+		    "firstAssignmentDate",
 		    "lastAssignmentDate",
-		    "totalDaysServed", 
+		    "totalDaysServed",
 		    "totalLeadershipPositions",
 		    "totalSubstitutePositions"
 		};
 
 	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = { 
-		    "active", 
+	private static final String[] HIDE_COLUMNS = {
+		    "active",
 		    "embeddedId",
 		    "totalFollowUpMotions"
 		};
-	
+
 	/** The Constant COMMITTEES. */
 	private static final String COMMITTEES = "Committees";
 
