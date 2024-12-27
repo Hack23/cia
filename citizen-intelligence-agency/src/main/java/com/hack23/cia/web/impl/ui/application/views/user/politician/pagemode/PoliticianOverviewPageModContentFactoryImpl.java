@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -64,6 +65,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
+		final ViewRiksdagenPoliticianBallotSummary  viewRiksdagenPoliticianBallotSummary = getViewRiksdagenPoliticianBallotSummary(parameters);
 
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
@@ -79,7 +81,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
 				.load(viewRiksdagenPolitician.getPersonId());
 
-		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, pageId);
+		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary, pageId);
 
 		getPageActionEventHelper().createPageEvent(
 				ViewAction.VISIT_POLITICIAN_VIEW,
@@ -92,16 +94,29 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		return panelContent;
 	}
 
+
+	protected ViewRiksdagenPoliticianBallotSummary getViewRiksdagenPoliticianBallotSummary(final String parameters) {
+		final String pageId = getPageId(parameters);
+		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(pageId);
+		if (personData != null) {
+			return getApplicationManager().getDataContainer(ViewRiksdagenPoliticianBallotSummary.class).load(personData.getId());
+		} else {
+			return null;
+		}
+	}
+
+
 	/**
 	 * Creates the overview content in a card style similar to the scoreboard snippet.
 	 *
 	 * @param panelContent            the panel content
 	 * @param personData              the person data
 	 * @param viewRiksdagenPolitician the view riksdagen politician
+	 * @param viewRiksdagenPoliticianBallotSummary the view riksdagen politician ballot summary
 	 * @param pageId                  the page id
 	 */
 	private void createOverviewContent(final VerticalLayout panelContent, final PersonData personData,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician, final String pageId) {
+			final ViewRiksdagenPolitician viewRiksdagenPolitician, final ViewRiksdagenPoliticianBallotSummary  viewRiksdagenPoliticianBallotSummary, final String pageId) {
 
 		// Link to politician detail page
 		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);
@@ -206,13 +221,88 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		// Additional stats (Assuming these methods exist)
 		serviceStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenPolitician.getTotalAssignments()), VaadinIcons.BAR_CHART, "Total number of assignments held"));
-		serviceStatsLayout.addComponent(createInfoRow("First Assignment Date:", String.valueOf(viewRiksdagenPolitician.getFirstAssignmentDate().toString()), VaadinIcons.FLASH, "First assignment in public service"));
 		serviceStatsLayout.addComponent(createInfoRow("Last Assignment Date:", String.valueOf(viewRiksdagenPolitician.getLastAssignmentDate().toString()), VaadinIcons.FLASH, "Last assignment in public service"));
-		serviceStatsLayout.addComponent(createInfoRow("Ministry Assignments:", String.valueOf(viewRiksdagenPolitician.getTotalMinistryAssignments()), VaadinIcons.INSTITUTION, "Number of ministry level assignments"));
-		serviceStatsLayout.addComponent(createInfoRow("Speaker Assignments:", String.valueOf(viewRiksdagenPolitician.getTotalSpeakerAssignments()), VaadinIcons.MICROPHONE, "Number of speaker assignments"));
+		// New: Documentation & Collaboration
+		serviceStatsLayout.addComponent(createInfoRow("Document Activity Level:",
+		        viewRiksdagenPolitician.getDocActivityLevel(),
+		        VaadinIcons.FILE_TEXT_O,
+		        "Indicates the politician's level of engagement in document creation"));
 
+		serviceStatsLayout.addComponent(createInfoRow("Document Activity Profile:",
+		        viewRiksdagenPolitician.getDocActivityProfile(),
+		        VaadinIcons.CLIPBOARD_TEXT,
+		        "Detailed classification of document activity"));
+
+		serviceStatsLayout.addComponent(createInfoRow("Collaboration Percentage:",
+		        String.valueOf(viewRiksdagenPolitician.getCollaborationPercentage()),
+		        VaadinIcons.GROUP,
+		        "Measure of cross-party collaboration in motions"));
 
 		attributesLayout.addComponent(serviceStatsLayout);
+
+
+		if (viewRiksdagenPoliticianBallotSummary != null) {
+
+
+		    // A layout to hold the ballot statistics rows
+		    final VerticalLayout ballotStatsLayout = new VerticalLayout();
+		    ballotStatsLayout.setSpacing(true);
+		    ballotStatsLayout.setWidth("100%");
+		    ballotStatsLayout.addStyleName("card-details-column");
+		    attributesLayout.addComponent(ballotStatsLayout);
+
+			final Label ballotStatsHeader = new Label("Ballot Statistics");
+			ballotStatsHeader.addStyleName("card-section-title");
+			ballotStatsLayout.addComponent(ballotStatsHeader);
+
+
+		    // Example rows for Ballot Summary fields
+		    ballotStatsLayout.addComponent(createInfoRow(
+		        "Total Votes:",
+		        String.valueOf(viewRiksdagenPoliticianBallotSummary.getTotalVotes()),
+		        VaadinIcons.SCALE,
+		        "Number of total votes cast by this politician"
+		    ));
+
+		    ballotStatsLayout.addComponent(createInfoRow(
+		        "Absence Rate (%):",
+		        String.valueOf(viewRiksdagenPoliticianBallotSummary.getAbsenceRate()),
+		        VaadinIcons.USER_CLOCK,
+		        "Percentage of votes missed (absence rate)"
+		    ));
+
+		    ballotStatsLayout.addComponent(createInfoRow(
+		        "Rebel Rate (%):",
+		        String.valueOf(viewRiksdagenPoliticianBallotSummary.getRebelRate()),
+		        VaadinIcons.WARNING,
+		        "Percentage of times the politician voted against party line"
+		    ));
+
+		    ballotStatsLayout.addComponent(createInfoRow(
+		        "Last Vote Date:",
+		        viewRiksdagenPoliticianBallotSummary.getLastVoteDate() != null
+		            ? viewRiksdagenPoliticianBallotSummary.getLastVoteDate().toString()
+		            : "N/A",
+		        VaadinIcons.CALENDAR_USER,
+		        "Date of the politician's last recorded vote"
+		    ));
+
+
+		    ballotStatsLayout.addComponent(createInfoRow(
+		        "Voting Consistency Score:",
+		        String.valueOf(viewRiksdagenPoliticianBallotSummary.getVotingConsistencyScore()),
+		        VaadinIcons.BAR_CHART,
+		        "Combined measure of success rate and party-line loyalty"
+		    ));
+
+		    ballotStatsLayout.addComponent(createInfoRow(
+		        "Analysis Comment:",
+		        viewRiksdagenPoliticianBallotSummary.getAnalysisComment(),
+		        VaadinIcons.CLIPBOARD_TEXT,
+		        "Brief textual analysis regarding the politician's voting behavior"
+		    ));
+
+		}
 
 		// After the card, add the overview layout for extended details
 		final VerticalLayout overviewLayout = new VerticalLayout();
