@@ -32,6 +32,7 @@
   <include file="db-changelog-1.24.xml"/>
   <include file="db-changelog-1.25.xml"/>
   <include file="db-changelog-1.26.xml"/>
+  <include file="db-changelog-1.27.xml"/>
   
   
 </databaseChangeLog>
