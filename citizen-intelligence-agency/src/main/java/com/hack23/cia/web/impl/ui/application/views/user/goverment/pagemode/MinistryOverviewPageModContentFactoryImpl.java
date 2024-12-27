@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
+import java.util.Locale;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -44,128 +46,159 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	/**
-	 * Instantiates a new ministry overview page mod content factory impl.
-	 */
-	public MinistryOverviewPageModContentFactoryImpl() {
-		super();
-	}
+    /**
+     * Instantiates a new ministry overview page mod content factory impl.
+     */
+    // Existing constructor remains the same
+    public MinistryOverviewPageModContentFactoryImpl() {
+        super();
+    }
 
-	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout panelContent = createPanelContent();
-		panel.setContent(panelContent);
+    /**
+     * Creates the content.
+     *
+     * @param parameters the parameters
+     * @param menuBar the menu bar
+     * @param panel the panel
+     * @return the layout
+     */
+    @Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
+    @Override
+    public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+        final VerticalLayout panelContent = createPanelContent();
+        panel.setContent(panelContent);
 
-		final String pageId = getPageId(parameters);
-		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
+        final String pageId = getPageId(parameters);
+        final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 
-		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
+        getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		createPageHeader(panel,
-				panelContent,
-				"Ministry Overview " + viewRiksdagenMinistry.getNameId(),
-				"Ministry Details",
-				"Detailed view of ministries, their roles, and responsibilities.");
+        createPageHeader(panel,
+                panelContent,
+                "Ministry Overview " + viewRiksdagenMinistry.getNameId(),
+                "Ministry Details",
+                "Detailed view of ministries, their roles, and responsibilities.");
 
-		final Link addMinistryPageLink = getPageLinkFactory().addMinistryPageLink(viewRiksdagenMinistry);
-		panelContent.addComponent(addMinistryPageLink);
-		panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
+        final Link addMinistryPageLink = getPageLinkFactory().addMinistryPageLink(viewRiksdagenMinistry);
+        panelContent.addComponent(addMinistryPageLink);
+        panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
 
-		// Create a card panel similar to the politician and party overviews
-		final Panel cardPanel = new Panel();
-		cardPanel.addStyleName("politician-overview-card");
-		cardPanel.setWidth("100%");
-		cardPanel.setHeightUndefined();
-		Responsive.makeResponsive(cardPanel);
+        // Create a card panel
+        final Panel cardPanel = new Panel();
+        cardPanel.addStyleName("ministry-overview-card");
+        cardPanel.setWidth("100%");
+        cardPanel.setHeightUndefined();
+        Responsive.makeResponsive(cardPanel);
 
-		final VerticalLayout cardContent = new VerticalLayout();
-		cardContent.setMargin(true);
-		cardContent.setSpacing(true);
-		cardContent.setWidth("100%");
-		cardPanel.setContent(cardContent);
+        final VerticalLayout cardContent = new VerticalLayout();
+        cardContent.setMargin(true);
+        cardContent.setSpacing(true);
+        cardContent.setWidth("100%");
+        cardPanel.setContent(cardContent);
 
-		panelContent.addComponent(cardPanel);
-		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
+        panelContent.addComponent(cardPanel);
+        panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
-		// Header layout
-		final HorizontalLayout headerLayout = new HorizontalLayout();
-		headerLayout.setSpacing(true);
-		headerLayout.setWidth("100%");
-		headerLayout.addStyleName("card-header-section");
+        // Header layout
+        final HorizontalLayout headerLayout = new HorizontalLayout();
+        headerLayout.setSpacing(true);
+        headerLayout.setWidth("100%");
+        headerLayout.addStyleName("card-header-section");
 
-		final Label titleLabel = new Label("Ministry: " + viewRiksdagenMinistry.getNameId(), ContentMode.HTML);
-		titleLabel.addStyleName("card-title");
-		titleLabel.setWidthUndefined();
-		headerLayout.addComponent(titleLabel);
+        final Label titleLabel = new Label(viewRiksdagenMinistry.getNameId(), ContentMode.HTML);
+        titleLabel.addStyleName("card-title");
+        titleLabel.setWidthUndefined();
+        headerLayout.addComponent(titleLabel);
 
-		cardContent.addComponent(headerLayout);
+        cardContent.addComponent(headerLayout);
 
-		// Divider line for better separation
-		final Label divider = new Label("<hr/>", ContentMode.HTML);
-		divider.addStyleName("card-divider");
-		divider.setWidth("100%");
-		cardContent.addComponent(divider);
+        // Divider
+        final Label divider = new Label("<hr/>", ContentMode.HTML);
+        divider.addStyleName("card-divider");
+        divider.setWidth("100%");
+        cardContent.addComponent(divider);
 
-		// Two-column layout for attributes
-		final HorizontalLayout attributesLayout = new HorizontalLayout();
-		attributesLayout.setSpacing(true);
-		attributesLayout.setWidth("100%");
-		cardContent.addComponent(attributesLayout);
+        // Multi-column layout for attributes
+        final HorizontalLayout attributesLayout = new HorizontalLayout();
+        attributesLayout.setSpacing(true);
+        attributesLayout.setWidth("100%");
+        cardContent.addComponent(attributesLayout);
 
-		// Column 1: Basic Ministry Details
-		final VerticalLayout profileDetailsLayout = new VerticalLayout();
-		profileDetailsLayout.setSpacing(true);
-		profileDetailsLayout.addStyleName("card-details-column");
-		profileDetailsLayout.setWidthUndefined();
+        // Column 1: Basic Ministry Details
+        final VerticalLayout profileDetailsLayout = new VerticalLayout();
+        profileDetailsLayout.setSpacing(true);
+        profileDetailsLayout.addStyleName("card-details-column");
+        profileDetailsLayout.setWidthUndefined();
 
-		final Label profileDetailsHeader = new Label("Ministry Profile");
-		profileDetailsHeader.addStyleName("card-section-title");
-		profileDetailsLayout.addComponent(profileDetailsHeader);
+        final Label profileDetailsHeader = new Label("Ministry Profile");
+        profileDetailsHeader.addStyleName("card-section-title");
+        profileDetailsLayout.addComponent(profileDetailsHeader);
 
-		// Fields from AS_LIST (adjust icons and tooltips as needed)
-		profileDetailsLayout.addComponent(createInfoRow("Name ID:", viewRiksdagenMinistry.getNameId(),
-				VaadinIcons.INFO_CIRCLE, "Internal identifier for the ministry"));
-		profileDetailsLayout.addComponent(createInfoRow("Active:", String.valueOf(viewRiksdagenMinistry.isActive()),
-				VaadinIcons.FLASH, "Is the ministry currently active?"));
-		profileDetailsLayout.addComponent(createInfoRow("First Assignment Date:", String.valueOf(viewRiksdagenMinistry.getFirstAssignmentDate()),
-				VaadinIcons.CALENDAR, "Date the ministry's first assignment started"));
-		profileDetailsLayout.addComponent(createInfoRow("Last Assignment Date:", String.valueOf(viewRiksdagenMinistry.getLastAssignmentDate()),
-				VaadinIcons.CALENDAR_CLOCK, "Date the ministry's last known assignment ended"));
+        profileDetailsLayout.addComponent(createInfoRow("Ministry ID:", viewRiksdagenMinistry.getNameId(),
+            VaadinIcons.INFO_CIRCLE, "Ministry identifier"));
+        profileDetailsLayout.addComponent(createInfoRow("Status:", viewRiksdagenMinistry.isActive() ? "Active" : "Inactive",
+            VaadinIcons.FLAG, "Current ministry status"));
+        profileDetailsLayout.addComponent(createInfoRow("Current Members:", String.valueOf(viewRiksdagenMinistry.getCurrentMemberSize()),
+            VaadinIcons.GROUP, "Number of current ministry members"));
+        profileDetailsLayout.addComponent(createInfoRow("Activity Level:", viewRiksdagenMinistry.getActivityLevel(),
+            VaadinIcons.CHART, "Ministry's current activity level"));
 
-		attributesLayout.addComponent(profileDetailsLayout);
+        // Column 2: Service Statistics
+        final VerticalLayout serviceStatsLayout = new VerticalLayout();
+        serviceStatsLayout.setSpacing(true);
+        serviceStatsLayout.addStyleName("card-details-column");
+        serviceStatsLayout.setWidthUndefined();
 
-		// Column 2: Service Statistics
-		final VerticalLayout serviceStatsLayout = new VerticalLayout();
-		serviceStatsLayout.setSpacing(true);
-		serviceStatsLayout.addStyleName("card-details-column");
-		serviceStatsLayout.setWidthUndefined();
+        final Label serviceStatsHeader = new Label("Service Statistics");
+        serviceStatsHeader.addStyleName("card-section-title");
+        serviceStatsLayout.addComponent(serviceStatsHeader);
 
-		final Label serviceStatsHeader = new Label("Service Statistics");
-		serviceStatsHeader.addStyleName("card-section-title");
-		serviceStatsLayout.addComponent(serviceStatsHeader);
+        serviceStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenMinistry.getTotalAssignments()),
+            VaadinIcons.TASKS, "Total number of assignments"));
+        serviceStatsLayout.addComponent(createInfoRow("First Assignment:", String.valueOf(viewRiksdagenMinistry.getFirstAssignmentDate()),
+            VaadinIcons.CALENDAR, "Date of first ministry assignment"));
+        serviceStatsLayout.addComponent(createInfoRow("Last Assignment:", String.valueOf(viewRiksdagenMinistry.getLastAssignmentDate()),
+            VaadinIcons.CALENDAR_CLOCK, "Date of most recent assignment"));
+        serviceStatsLayout.addComponent(createInfoRow("Total Days Served:", String.valueOf(viewRiksdagenMinistry.getTotalDaysServed()),
+            VaadinIcons.CLOCK, "Total days of ministry service"));
 
-		serviceStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenMinistry.getTotalAssignments()),
-				VaadinIcons.BAR_CHART, "Total number of assignments handled by the ministry"));
-		serviceStatsLayout.addComponent(createInfoRow("Total Days Served:", String.valueOf(viewRiksdagenMinistry.getTotalDaysServed()),
-				VaadinIcons.CLOCK, "Total days this ministry has been active"));
-		serviceStatsLayout.addComponent(createInfoRow("Current Member Size:", String.valueOf(viewRiksdagenMinistry.getCurrentMemberSize()),
-				VaadinIcons.GROUP, "Number of members currently serving in the ministry"));
+        // Column 3: Document Statistics
+        final VerticalLayout documentStatsLayout = new VerticalLayout();
+        documentStatsLayout.setSpacing(true);
+        documentStatsLayout.addStyleName("card-details-column");
+        documentStatsLayout.setWidthUndefined();
 
-		attributesLayout.addComponent(serviceStatsLayout);
+        final Label documentStatsHeader = new Label("Document Statistics");
+        documentStatsHeader.addStyleName("card-section-title");
+        documentStatsLayout.addComponent(documentStatsHeader);
 
-		// After the card, add the overview layout
-		final VerticalLayout overviewLayout = new VerticalLayout();
-		overviewLayout.setSizeFull();
-		panelContent.addComponent(overviewLayout);
-		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-		getMinistryMenuItemFactory().createOverviewPage(overviewLayout, pageId);
+        documentStatsLayout.addComponent(createInfoRow("Total Documents:", String.valueOf(viewRiksdagenMinistry.getTotalDocuments()),
+            VaadinIcons.FILE_TEXT, "Total number of ministry documents"));
+        documentStatsLayout.addComponent(createInfoRow("Documents Last Year:", String.valueOf(viewRiksdagenMinistry.getDocumentsLastYear()),
+            VaadinIcons.FILE_O, "Documents produced in the last year"));
+        documentStatsLayout.addComponent(createInfoRow("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenMinistry.getAvgDocumentsPerMember()),
+            VaadinIcons.CHART_LINE, "Average documents per ministry member"));
+        documentStatsLayout.addComponent(createInfoRow("Total Propositions:", String.valueOf(viewRiksdagenMinistry.getTotalPropositions()),
+            VaadinIcons.FILE_PRESENTATION, "Total number of propositions"));
+        documentStatsLayout.addComponent(createInfoRow("Government Bills:", String.valueOf(viewRiksdagenMinistry.getTotalGovernmentBills()),
+            VaadinIcons.FILE_TEXT_O, "Total number of government bills"));
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, pageId);
+        // Add all columns to the attributes layout
+        attributesLayout.addComponents(profileDetailsLayout, serviceStatsLayout, documentStatsLayout);
 
-		return panelContent;
-	}
+        // Add the overview layout
+        final VerticalLayout overviewLayout = new VerticalLayout();
+        overviewLayout.setSizeFull();
+        panelContent.addComponent(overviewLayout);
+        panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+
+        getMinistryMenuItemFactory().createOverviewPage(overviewLayout, pageId);
+
+        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
+                parameters, pageId);
+
+        return panelContent;
+    }
 
 	/**
 	 * Creates a row displaying a caption and value, with optional icon and tooltip.
@@ -204,10 +237,18 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 		return layout;
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-				|| parameters.contains(PageMode.OVERVIEW.toString()));
-	}
+
+    /**
+     * Matches.
+     *
+     * @param page the page
+     * @param parameters the parameters
+     * @return true, if successful
+     */
+    @Override
+    public boolean matches(final String page, final String parameters) {
+        final String pageId = getPageId(parameters);
+        return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+                || parameters.contains(PageMode.OVERVIEW.toString()));
+    }
 }

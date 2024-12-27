@@ -119,54 +119,35 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 		divider.setWidth("100%");
 		cardContent.addComponent(divider);
 
-		// Two-column layout for attributes (similar to politician)
-		final HorizontalLayout attributesLayout = new HorizontalLayout();
-		attributesLayout.setSpacing(true);
-		attributesLayout.setWidth("100%");
-		cardContent.addComponent(attributesLayout);
+		// Create single row for four sections
+		final HorizontalLayout sectionsLayout = new HorizontalLayout();
+		sectionsLayout.setSpacing(true);
+		sectionsLayout.setWidth("100%");
+		cardContent.addComponent(sectionsLayout);
 
-		// Column 1: Party Profile (From original AS_LIST)
-		final VerticalLayout profileDetailsLayout = new VerticalLayout();
-		profileDetailsLayout.setSpacing(true);
-		profileDetailsLayout.addStyleName("card-details-column");
-		profileDetailsLayout.setWidthUndefined();
+		// 1. Political Influence & Position
+		final VerticalLayout politicalInfluenceLayout = createSectionLayout("Political Influence & Position");
+		addPoliticalInfluenceMetrics(politicalInfluenceLayout, viewRiksdagenParty, viewRiksdagenPartySummary);
+		sectionsLayout.addComponent(politicalInfluenceLayout);
+		sectionsLayout.setExpandRatio(politicalInfluenceLayout, 1.0f);
 
-		final Label profileDetailsHeader = new Label("Party Profile");
-		profileDetailsHeader.addStyleName("card-section-title");
-		profileDetailsLayout.addComponent(profileDetailsHeader);
+		// 2. Parliamentary Engagement
+		final VerticalLayout parliamentaryEngagementLayout = createSectionLayout("Parliamentary Engagement");
+		addParliamentaryEngagementMetrics(parliamentaryEngagementLayout, viewRiksdagenParty, viewRiksdagenPartySummary);
+		sectionsLayout.addComponent(parliamentaryEngagementLayout);
+		sectionsLayout.setExpandRatio(parliamentaryEngagementLayout, 1.0f);
 
-		profileDetailsLayout.addComponent(createInfoRow("Party Name:", viewRiksdagenParty.getPartyName(), VaadinIcons.FLAG, "Name of the party"));
-		profileDetailsLayout.addComponent(createInfoRow("Party ID:", viewRiksdagenParty.getPartyId(), VaadinIcons.CLIPBOARD_USER, "Internal party identifier"));
-		profileDetailsLayout.addComponent(createInfoRow("Head Count:", String.valueOf(viewRiksdagenParty.getHeadCount()), VaadinIcons.GROUP, "Number of members currently associated with the party"));
-		profileDetailsLayout.addComponent(createInfoRow("Registered Date:", String.valueOf(viewRiksdagenParty.getRegisteredDate()), VaadinIcons.CALENDAR, "Date when the party was registered"));
-		profileDetailsLayout.addComponent(createInfoRow("First Assignment Date:", String.valueOf(viewRiksdagenPartySummary.getFirstAssignmentDate()), VaadinIcons.CALENDAR, "Date of the party's first assignment"));
-		profileDetailsLayout.addComponent(createInfoRow("Last Assignment Date:", String.valueOf(viewRiksdagenPartySummary.getLastAssignmentDate()), VaadinIcons.CALENDAR_CLOCK, "Date of the party's last known assignment"));
+		// 3. Legislative Impact
+		final VerticalLayout legislativeImpactLayout = createSectionLayout("Legislative Impact");
+		addLegislativeImpactMetrics(legislativeImpactLayout, viewRiksdagenParty, viewRiksdagenPartySummary);
+		sectionsLayout.addComponent(legislativeImpactLayout);
+		sectionsLayout.setExpandRatio(legislativeImpactLayout, 1.0f);
 
-		attributesLayout.addComponent(profileDetailsLayout);
-
-		// Column 2: Service Statistics (From original AS_LIST2, using viewRiksdagenPartySummary)
-		final VerticalLayout serviceStatsLayout = new VerticalLayout();
-		serviceStatsLayout.setSpacing(true);
-		serviceStatsLayout.addStyleName("card-details-column");
-		serviceStatsLayout.setWidthUndefined();
-
-		final Label serviceStatsHeader = new Label("Service Statistics");
-		serviceStatsHeader.addStyleName("card-section-title");
-		serviceStatsLayout.addComponent(serviceStatsHeader);
-
-		if (viewRiksdagenPartySummary != null) {
-			serviceStatsLayout.addComponent(createInfoRow("Current Ministers:", String.valueOf(viewRiksdagenPartySummary.getCurrentMinistryAssignments()), VaadinIcons.BULLSEYE, "Number of current assignments in government held by the party"));
-			serviceStatsLayout.addComponent(createInfoRow("Current Speakers:", String.valueOf(viewRiksdagenPartySummary.getCurrentSpeakerAssignments()), VaadinIcons.BULLSEYE, "Number of current assignments held by the party"));
-			serviceStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenPartySummary.getTotalAssignments()), VaadinIcons.BAR_CHART, "Total number of assignments over time"));
-			serviceStatsLayout.addComponent(createInfoRow("Total Days Served Government:", String.valueOf(viewRiksdagenPartySummary.getTotalDaysServedGovernment()), VaadinIcons.OFFICE, "Days served in government roles"));
-			serviceStatsLayout.addComponent(createInfoRow("Total Days Served Committee:", String.valueOf(viewRiksdagenPartySummary.getTotalDaysServedCommittee()), VaadinIcons.USER_CHECK, "Days served in committee roles"));
-			serviceStatsLayout.addComponent(createInfoRow("Total Days Served Parliament:", String.valueOf(viewRiksdagenPartySummary.getTotalDaysServedParliament()), VaadinIcons.CALENDAR_BRIEFCASE, "Days served in parliament roles"));
-		} else {
-			// If no summary is available, display a message or omit these fields
-			serviceStatsLayout.addComponent(new Label("No extended statistics available."));
-		}
-
-		attributesLayout.addComponent(serviceStatsLayout);
+		// 4. Member Performance
+		final VerticalLayout memberPerformanceLayout = createSectionLayout("Member Performance");
+		addMemberPerformanceMetrics(memberPerformanceLayout, viewRiksdagenParty, viewRiksdagenPartySummary);
+		sectionsLayout.addComponent(memberPerformanceLayout);
+		sectionsLayout.setExpandRatio(memberPerformanceLayout, 1.0f);
 
 		// After the card, add the overview layout
 		final VerticalLayout overviewLayout = new VerticalLayout();
@@ -180,6 +161,229 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 				pageId);
 		return panelContent;
 	}
+
+
+	/**
+	 * Creates a section layout with a title and consistent styling.
+	 *
+	 * @param title the section title
+	 * @return the vertical layout configured for the section
+	 */
+	private VerticalLayout createSectionLayout(String title) {
+	    final VerticalLayout layout = new VerticalLayout();
+	    layout.setSpacing(true);
+	    layout.setMargin(true);
+	    layout.addStyleName("card-details-column");
+	    layout.setWidth("100%");
+
+	    final Label header = new Label(title);
+	    header.addStyleName("card-section-title");
+	    layout.addComponent(header);
+
+	    // Add some vertical padding after the header
+	    final Label padding = new Label();
+	    padding.setHeight("10px");
+	    layout.addComponent(padding);
+
+	    return layout;
+	}
+
+	/**
+	 * Adds the political influence metrics.
+	 *
+	 * @param layout the layout
+	 * @param party the party
+	 * @param summary the summary
+	 */
+	// 1. Political Influence & Position
+	private void addPoliticalInfluenceMetrics(VerticalLayout layout,
+	        ViewRiksdagenParty party,
+	        ViewRiksdagenPartySummary summary) {
+
+	    if (summary != null) {
+	        // Government Influence
+	        layout.addComponent(createInfoRow("Government Position:",
+	            summary.isActiveGovernment() ? "In Government" : "Opposition",
+	            VaadinIcons.INSTITUTION,
+	            "Current position in government"));
+
+	        layout.addComponent(createInfoRow("Ministers:",
+	            String.valueOf(summary.getCurrentMinistryAssignments()),
+	            VaadinIcons.GROUP,
+	            "Current ministerial positions"));
+
+	        // Parliamentary Strength
+	        layout.addComponent(createInfoRow("Parliament Members:",
+	            String.valueOf(party.getHeadCount()),
+	            VaadinIcons.USERS,
+	            "Total number of parliament members"));
+
+	        layout.addComponent(createInfoRow("Committee Positions:",
+	            String.valueOf(summary.getCurrentCommitteeAssignments()),
+	            VaadinIcons.CLIPBOARD_USER,
+	            "Current committee assignments"));
+
+	        // Leadership Roles
+	        layout.addComponent(createInfoRow("Leadership Positions:",
+	            String.valueOf(summary.getCurrentCommitteeLeadershipAssignments()),
+	            VaadinIcons.STAR,
+	            "Current committee leadership roles"));
+	    }
+	}
+
+	/**
+	 * Adds the parliamentary engagement metrics.
+	 *
+	 * @param layout the layout
+	 * @param party the party
+	 * @param summary the summary
+	 */
+	// 2. Parliamentary Engagement
+	private void addParliamentaryEngagementMetrics(VerticalLayout layout,
+	        ViewRiksdagenParty party,
+	        ViewRiksdagenPartySummary summary) {
+
+	    if (summary != null) {
+	        // Active Participation
+	        layout.addComponent(createInfoRow("Parliament Activity:",
+	            String.format("%.1f%%", calculateActivityRate(summary.getTotalActiveParliament(), party.getHeadCount())),
+	            VaadinIcons.CHART_LINE,
+	            "Percentage of active members in parliament"));
+
+	        // Committee Engagement
+	        layout.addComponent(createInfoRow("Committee Involvement:",
+	            String.valueOf(summary.getTotalActiveCommittee()),
+	            VaadinIcons.USERS,
+	            "Members active in committees"));
+
+	        // Historical Presence
+	        layout.addComponent(createInfoRow("Days in Government:",
+	            String.format("%,d", summary.getTotalDaysServedGovernment()),
+	            VaadinIcons.CLOCK,
+	            "Total days served in government"));
+
+	        layout.addComponent(createInfoRow("Parliamentary Experience:",
+	            String.format("%,d", summary.getTotalDaysServedParliament()),
+	            VaadinIcons.CALENDAR_CLOCK,
+	            "Total days served in parliament"));
+	    }
+	}
+
+	/**
+	 * Adds the legislative impact metrics.
+	 *
+	 * @param layout the layout
+	 * @param party the party
+	 * @param summary the summary
+	 */
+	// 3. Legislative Impact
+	private void addLegislativeImpactMetrics(VerticalLayout layout,
+	        ViewRiksdagenParty party,
+	        ViewRiksdagenPartySummary summary) {
+
+	    if (summary != null) {
+	        // Legislative Production
+	        layout.addComponent(createInfoRow("Total Motions:",
+	            String.valueOf(summary.getTotalPartyMotions()),
+	            VaadinIcons.FILE_TEXT,
+	            "Total party-initiated motions"));
+
+	        layout.addComponent(createInfoRow("Recent Activity:",
+	            String.valueOf(summary.getTotalDocumentsLastYear()),
+	            VaadinIcons.CHART_TIMELINE,
+	            "Documents produced in the last year"));
+
+	        // Cross-party Cooperation
+	        layout.addComponent(createInfoRow("Collaboration Rate:",
+	            String.format("%.1f%%", summary.getAvgCollaborationPercentage()),
+	            VaadinIcons.CONNECT,
+	            "Cross-party collaboration percentage"));
+
+	        layout.addComponent(createInfoRow("Joint Initiatives:",
+	            String.valueOf(summary.getTotalCollaborativeMotions()),
+	            VaadinIcons.USERS,
+	            "Multi-party collaborative motions"));
+
+	        // Legislative Efficiency
+	        layout.addComponent(createInfoRow("Productivity:",
+	            String.format("%.1f", summary.getAvgDocumentsPerMember()),
+	            VaadinIcons.CHART_GRID,
+	            "Average documents per member"));
+	    }
+	}
+
+	/**
+	 * Adds the member performance metrics.
+	 *
+	 * @param layout the layout
+	 * @param party the party
+	 * @param summary the summary
+	 */
+	// 4. Member Performance
+	private void addMemberPerformanceMetrics(VerticalLayout layout,
+	        ViewRiksdagenParty party,
+	        ViewRiksdagenPartySummary summary) {
+
+	    if (summary != null) {
+	        // Activity Distribution
+	        layout.addComponent(createInfoRow("High Performers:",
+	            String.format("%d (%d%%)",
+	                summary.getVeryHighActivityMembers(),
+	                calculatePercentage(summary.getVeryHighActivityMembers(), party.getHeadCount())),
+	            VaadinIcons.STAR,
+	            "Members with very high activity levels"));
+
+	        // Member Focus Areas
+	        layout.addComponent(createInfoRow("Party Policy Focus:",
+	            String.format("%d (%d%%)",
+	                summary.getPartyFocusedMembers(),
+	                calculatePercentage(summary.getPartyFocusedMembers(), party.getHeadCount())),
+	            VaadinIcons.FLAG,
+	            "Members focused on party policy work"));
+
+	        layout.addComponent(createInfoRow("Committee Focus:",
+	            String.format("%d (%d%%)",
+	                summary.getCommitteeFocusedMembers(),
+	                calculatePercentage(summary.getCommitteeFocusedMembers(), party.getHeadCount())),
+	            VaadinIcons.CLIPBOARD_USER,
+	            "Members focused on committee work"));
+
+	        // Collaboration Metrics
+	        layout.addComponent(createInfoRow("Collaborative Members:",
+	            String.format("%d (%d%%)",
+	                summary.getHighlyCollaborativeMembers(),
+	                calculatePercentage(summary.getHighlyCollaborativeMembers(), party.getHeadCount())),
+	            VaadinIcons.CONNECT,
+	            "Members with high cross-party collaboration"));
+	    }
+	}
+
+	/**
+	 * Calculate percentage.
+	 *
+	 * @param value the value
+	 * @param total the total
+	 * @return the int
+	 */
+	// Helper method for calculating percentages
+	private int calculatePercentage(long value, long total) {
+	    return total > 0 ? Math.round((float) value * 100 / total) : 0;
+	}
+
+	/**
+	 * Calculate activity rate.
+	 *
+	 * @param activeMembers the active members
+	 * @param totalMembers the total members
+	 * @return the double
+	 */
+	// Helper method for calculating activity rates
+	private double calculateActivityRate(long activeMembers, long totalMembers) {
+	    return totalMembers > 0 ? (double) activeMembers * 100 / totalMembers : 0;
+	}
+
+
+
 
 	/**
 	 * Creates a row displaying a caption and value, with optional icon and tooltip.

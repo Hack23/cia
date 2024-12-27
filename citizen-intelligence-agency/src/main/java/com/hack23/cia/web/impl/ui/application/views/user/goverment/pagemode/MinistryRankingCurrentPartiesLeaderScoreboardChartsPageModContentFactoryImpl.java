@@ -342,14 +342,14 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		}
 
 		// Income
-		final String incomeStr = String.format(Locale.ROOT,"%.2f B SEK", currentYearIncome);
+		final String incomeStr = String.format(Locale.ENGLISH,"%.2f B SEK", currentYearIncome);
 		cardLayout.addComponent(createMetricRow(VaadinIcons.ARROW_UP,
 				getPageLinkFactory().addMinistryGovermentBodiesIncomePageLink(govMember.getDetail()),
 				"Yearly Income (B SEK)", incomeStr // display income outside link
 		));
 
 		// Spending
-		final String spendingStr = String.format(Locale.ROOT,"%.2f B SEK", currentYearSpending);
+		final String spendingStr = String.format(Locale.ENGLISH,"%.2f B SEK", currentYearSpending);
 		cardLayout.addComponent(
 				createMetricRow(VaadinIcons.ARROW_DOWN, getPageLinkFactory().addMinistrGovermentBodiesSpendingPageLink(
 						govMember.getDetail()), "Yearly Spending (B SEK)", spendingStr // display
