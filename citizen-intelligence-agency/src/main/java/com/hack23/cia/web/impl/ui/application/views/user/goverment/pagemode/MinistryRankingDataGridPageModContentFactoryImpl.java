@@ -43,9 +43,20 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingDataGridPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = { "nameId", "totalDaysServed", "currentMemberSize", "totalAssignments",
-			"firstAssignmentDate", "lastAssignmentDate", "active" };
-
+	private static final String[] COLUMN_ORDER = { 
+		    "nameId", 
+		    "currentMemberSize", 
+		    "activityLevel",
+		    "avgDocumentsPerMember",
+		    "totalPropositions",
+		    "totalGovernmentBills",
+		    "totalDocuments",
+		    "documentsLastYear",
+		    "totalDaysServed", 
+		    "totalAssignments",
+		    "firstAssignmentDate", 
+		    "lastAssignmentDate"
+		};
 	/** The Constant DATAGRID. */
 	private static final String[] HIDE_COLUMNS = {"active"};
 
