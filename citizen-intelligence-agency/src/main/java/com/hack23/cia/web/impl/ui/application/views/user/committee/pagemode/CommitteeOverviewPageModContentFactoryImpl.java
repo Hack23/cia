@@ -51,6 +51,14 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		super();
 	}
 
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -113,7 +121,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		attributesLayout.setWidth("100%");
 		cardContent.addComponent(attributesLayout);
 
-		// First column: Committee Profile
+		// First column: Committee Profile (keep existing, but add activity level)
 		final VerticalLayout profileDetailsLayout = new VerticalLayout();
 		profileDetailsLayout.setSpacing(true);
 		profileDetailsLayout.addStyleName("card-details-column");
@@ -123,36 +131,71 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		profileDetailsHeader.addStyleName("card-section-title");
 		profileDetailsLayout.addComponent(profileDetailsHeader);
 
-		// Using AS_LIST fields:
 		profileDetailsLayout.addComponent(createInfoRow("Detail:", viewRiksdagenCommittee.getEmbeddedId().getDetail(),
-				VaadinIcons.INFO_CIRCLE, "Internal identifier detail for the committee"));
-		profileDetailsLayout.addComponent(createInfoRow("Active:", String.valueOf(viewRiksdagenCommittee.isActive()),
-				VaadinIcons.FLASH, "Is the committee currently active?"));
-		profileDetailsLayout.addComponent(createInfoRow("First Assignment Date:", String.valueOf(viewRiksdagenCommittee.getFirstAssignmentDate()),
-				VaadinIcons.CALENDAR, "Date the committee's first assignment started"));
-		profileDetailsLayout.addComponent(createInfoRow("Last Assignment Date:", String.valueOf(viewRiksdagenCommittee.getLastAssignmentDate()),
-				VaadinIcons.CALENDAR_CLOCK, "Date of the committee's most recent assignment"));
+		        VaadinIcons.INFO_CIRCLE, "Internal identifier detail for the committee"));
+		profileDetailsLayout.addComponent(createInfoRow("Status:", viewRiksdagenCommittee.isActive() ? "Active" : "Inactive",
+		        VaadinIcons.FLAG, "Current committee status"));
+		profileDetailsLayout.addComponent(createInfoRow("Activity Level:", viewRiksdagenCommittee.getActivityLevel(),
+		        VaadinIcons.CHART, "Committee's current activity level"));
+		profileDetailsLayout.addComponent(createInfoRow("First Assignment:", String.valueOf(viewRiksdagenCommittee.getFirstAssignmentDate()),
+		        VaadinIcons.CALENDAR, "Date the committee's first assignment started"));
+		profileDetailsLayout.addComponent(createInfoRow("Last Assignment:", String.valueOf(viewRiksdagenCommittee.getLastAssignmentDate()),
+		        VaadinIcons.CALENDAR_CLOCK, "Date of the committee's most recent assignment"));
 
-		attributesLayout.addComponent(profileDetailsLayout);
+		// Second column: Membership Statistics
+		final VerticalLayout membershipStatsLayout = new VerticalLayout();
+		membershipStatsLayout.setSpacing(true);
+		membershipStatsLayout.addStyleName("card-details-column");
+		membershipStatsLayout.setWidthUndefined();
 
-		// Second column: Service Statistics
-		final VerticalLayout serviceStatsLayout = new VerticalLayout();
-		serviceStatsLayout.setSpacing(true);
-		serviceStatsLayout.addStyleName("card-details-column");
-		serviceStatsLayout.setWidthUndefined();
+		final Label membershipStatsHeader = new Label("Membership Statistics");
+		membershipStatsHeader.addStyleName("card-section-title");
+		membershipStatsLayout.addComponent(membershipStatsHeader);
 
-		final Label serviceStatsHeader = new Label("Service Statistics");
-		serviceStatsHeader.addStyleName("card-section-title");
-		serviceStatsLayout.addComponent(serviceStatsHeader);
+		membershipStatsLayout.addComponent(createInfoRow("Current Members:", String.valueOf(viewRiksdagenCommittee.getCurrentMemberSize()),
+		        VaadinIcons.GROUP, "Total current committee members"));
+		membershipStatsLayout.addComponent(createInfoRow("Regular Members:", String.valueOf(viewRiksdagenCommittee.getCurrentRegularMembers()),
+		        VaadinIcons.USER, "Number of current regular members"));
+		membershipStatsLayout.addComponent(createInfoRow("Leadership Positions:", String.valueOf(viewRiksdagenCommittee.getCurrentLeadershipPositions()),
+		        VaadinIcons.STAR, "Current number of leadership positions"));
+		membershipStatsLayout.addComponent(createInfoRow("Substitute Positions:", String.valueOf(viewRiksdagenCommittee.getCurrentSubstitutePositions()),
+		        VaadinIcons.USER_CLOCK, "Current number of substitute positions"));
+		membershipStatsLayout.addComponent(createInfoRow("Total Leadership Roles:", String.valueOf(viewRiksdagenCommittee.getTotalLeadershipPositions()),
+		        VaadinIcons.USERS, "Historical total of leadership positions"));
+		membershipStatsLayout.addComponent(createInfoRow("Total Substitute Roles:", String.valueOf(viewRiksdagenCommittee.getTotalSubstitutePositions()),
+		        VaadinIcons.USERS, "Historical total of substitute positions"));
 
-		serviceStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenCommittee.getTotalAssignments()),
-				VaadinIcons.BAR_CHART, "Total number of assignments handled by the committee"));
-		serviceStatsLayout.addComponent(createInfoRow("Total Days Served:", String.valueOf(viewRiksdagenCommittee.getTotalDaysServed()),
-				VaadinIcons.CLOCK, "Total days this committee has been active"));
-		serviceStatsLayout.addComponent(createInfoRow("Current Member Size:", String.valueOf(viewRiksdagenCommittee.getCurrentMemberSize()),
-				VaadinIcons.GROUP, "Number of members currently serving in the committee"));
+		// Third column: Document Statistics
+		final VerticalLayout documentStatsLayout = new VerticalLayout();
+		documentStatsLayout.setSpacing(true);
+		documentStatsLayout.addStyleName("card-details-column");
+		documentStatsLayout.setWidthUndefined();
 
-		attributesLayout.addComponent(serviceStatsLayout);
+		final Label documentStatsHeader = new Label("Document Statistics");
+		documentStatsHeader.addStyleName("card-section-title");
+		documentStatsLayout.addComponent(documentStatsHeader);
+
+		documentStatsLayout.addComponent(createInfoRow("Total Documents:", String.valueOf(viewRiksdagenCommittee.getTotalDocuments()),
+		        VaadinIcons.FILE_TEXT, "Total number of documents produced"));
+		documentStatsLayout.addComponent(createInfoRow("Documents Last Year:", String.valueOf(viewRiksdagenCommittee.getDocumentsLastYear()),
+		        VaadinIcons.FILE_O, "Documents produced in the last year"));
+		documentStatsLayout.addComponent(createInfoRow("Avg Documents/Member:", String.format("%.1f", viewRiksdagenCommittee.getAvgDocumentsPerMember()),
+		        VaadinIcons.CHART_LINE, "Average documents per committee member"));
+		documentStatsLayout.addComponent(createInfoRow("Committee Motions:", String.valueOf(viewRiksdagenCommittee.getTotalCommitteeMotions()),
+		        VaadinIcons.FILE_PRESENTATION, "Total number of committee motions"));
+		documentStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenCommittee.getTotalAssignments()),
+		        VaadinIcons.TASKS, "Total number of assignments"));
+		documentStatsLayout.addComponent(createInfoRow("Days Served:", String.valueOf(viewRiksdagenCommittee.getTotalDaysServed()),
+		        VaadinIcons.CLOCK, "Total days of committee service"));
+
+		// Clear existing components and add all three columns
+		attributesLayout.removeAllComponents();
+		attributesLayout.addComponents(profileDetailsLayout, membershipStatsLayout, documentStatsLayout);
+
+		// Optional: Add some styling to make the columns more responsive
+		attributesLayout.setWidth("100%");
+		attributesLayout.setSpacing(true);
+
 
 		// After the card, add the overview layout
 		final VerticalLayout overviewLayout = new VerticalLayout();
@@ -205,6 +248,13 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		return layout;
 	}
 
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		final String pageId = getPageId(parameters);

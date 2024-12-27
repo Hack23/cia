@@ -18,6 +18,8 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -57,6 +59,14 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		super();
 	}
 
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -65,58 +75,59 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-		final ViewRiksdagenPoliticianBallotSummary  viewRiksdagenPoliticianBallotSummary = getViewRiksdagenPoliticianBallotSummary(parameters);
+		final ViewRiksdagenPoliticianBallotSummary viewRiksdagenPoliticianBallotSummary = getViewRiksdagenPoliticianBallotSummary(
+				parameters);
 
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		createPageHeader(
-				panel,
-				panelContent,
-				"Politician Overview " + viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName()
-						+ " (" + viewRiksdagenPolitician.getParty() + ')',
-				"Politician Details",
-				"Detailed profiles and activities of politicians."
-		);
+		createPageHeader(panel, panelContent,
+				"Politician Overview " + viewRiksdagenPolitician.getFirstName() + ' '
+						+ viewRiksdagenPolitician.getLastName() + " (" + viewRiksdagenPolitician.getParty() + ')',
+				"Politician Details", "Detailed profiles and activities of politicians.");
 
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
 				.load(viewRiksdagenPolitician.getPersonId());
 
-		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary, pageId);
+		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary,
+				pageId);
 
-		getPageActionEventHelper().createPageEvent(
-				ViewAction.VISIT_POLITICIAN_VIEW,
-				ApplicationEventGroup.USER,
-				UserViews.POLITICIAN_VIEW_NAME,
-				parameters,
-				pageId
-		);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
+				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 
 		return panelContent;
 	}
 
-
+	/**
+	 * Gets the view riksdagen politician ballot summary.
+	 *
+	 * @param parameters the parameters
+	 * @return the view riksdagen politician ballot summary
+	 */
 	protected ViewRiksdagenPoliticianBallotSummary getViewRiksdagenPoliticianBallotSummary(final String parameters) {
 		final String pageId = getPageId(parameters);
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class).load(pageId);
 		if (personData != null) {
-			return getApplicationManager().getDataContainer(ViewRiksdagenPoliticianBallotSummary.class).load(personData.getId());
+			return getApplicationManager().getDataContainer(ViewRiksdagenPoliticianBallotSummary.class)
+					.load(personData.getId());
 		} else {
 			return null;
 		}
 	}
 
-
 	/**
-	 * Creates the overview content in a card style similar to the scoreboard snippet.
+	 * Creates the overview content in a card style similar to the scoreboard
+	 * snippet.
 	 *
-	 * @param panelContent            the panel content
-	 * @param personData              the person data
-	 * @param viewRiksdagenPolitician the view riksdagen politician
-	 * @param viewRiksdagenPoliticianBallotSummary the view riksdagen politician ballot summary
-	 * @param pageId                  the page id
+	 * @param panelContent                         the panel content
+	 * @param personData                           the person data
+	 * @param viewRiksdagenPolitician              the view riksdagen politician
+	 * @param viewRiksdagenPoliticianBallotSummary the view riksdagen politician
+	 *                                             ballot summary
+	 * @param pageId                               the page id
 	 */
 	private void createOverviewContent(final VerticalLayout panelContent, final PersonData personData,
-			final ViewRiksdagenPolitician viewRiksdagenPolitician, final ViewRiksdagenPoliticianBallotSummary  viewRiksdagenPoliticianBallotSummary, final String pageId) {
+			final ViewRiksdagenPolitician viewRiksdagenPolitician,
+			final ViewRiksdagenPoliticianBallotSummary viewRiksdagenPoliticianBallotSummary, final String pageId) {
 
 		// Link to politician detail page
 		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);
@@ -177,132 +188,46 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		// Politician image (smaller)
 		final String imageUrl = personData.getImageUrl192().replace("http://", "https://");
 		final Image image = new Image("", new ExternalResource(imageUrl));
-		image.setDescription("Picture of " + viewRiksdagenPolitician.getFirstName() + " "
-				+ viewRiksdagenPolitician.getLastName());
+		image.setDescription(
+				"Picture of " + viewRiksdagenPolitician.getFirstName() + " " + viewRiksdagenPolitician.getLastName());
 		image.setWidth(100, Unit.PIXELS);
 		image.addStyleName("politician-image");
 
 		imageAndDetailsLayout.addComponent(image);
 
-		// Two-column layout for attributes
-		final HorizontalLayout attributesLayout = new HorizontalLayout();
-		attributesLayout.setSpacing(true);
-		attributesLayout.setWidth("100%");
-		imageAndDetailsLayout.addComponent(attributesLayout);
-		imageAndDetailsLayout.setExpandRatio(attributesLayout, 1.0f);
+		final HorizontalLayout sectionsGrid = new HorizontalLayout();
+		sectionsGrid.setSpacing(true);
+		sectionsGrid.setWidth("100%");
+		imageAndDetailsLayout.addComponent(sectionsGrid);
+		imageAndDetailsLayout.setExpandRatio(sectionsGrid, 1.0f);
 
-		// First column: Profile Details
-		final VerticalLayout profileDetailsLayout = new VerticalLayout();
-		profileDetailsLayout.setSpacing(true);
-		profileDetailsLayout.addStyleName("card-details-column");
-		profileDetailsLayout.setWidthUndefined();
+		// 1. Political Role & Influence
+		final VerticalLayout politicalRoleLayout = createSectionLayout("Political Role & Influence");
+		addPoliticalRoleMetrics(politicalRoleLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary);
+		sectionsGrid.addComponent(politicalRoleLayout);
+		sectionsGrid.setExpandRatio(politicalRoleLayout, 1.0f);
 
-		final Label profileDetailsHeader = new Label("Profile Details");
-		profileDetailsHeader.addStyleName("card-section-title");
-		profileDetailsLayout.addComponent(profileDetailsHeader);
+		// 2. Parliamentary Performance
+		final VerticalLayout performanceLayout = createSectionLayout("Parliamentary Performance");
+		addParliamentaryPerformanceMetrics(performanceLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary);
+		sectionsGrid.addComponent(performanceLayout);
+		sectionsGrid.setExpandRatio(performanceLayout, 1.0f);
 
-		profileDetailsLayout.addComponent(createInfoRow("Gender:", viewRiksdagenPolitician.getGender(), VaadinIcons.USER, "Politician's gender"));
-		profileDetailsLayout.addComponent(createInfoRow("Born Year:", String.valueOf(viewRiksdagenPolitician.getBornYear()), VaadinIcons.CALENDAR, "Year the politician was born"));
-		profileDetailsLayout.addComponent(createInfoRow("Total Days Served:", String.valueOf(viewRiksdagenPolitician.getTotalDaysServed()), VaadinIcons.CLOCK, "Total number of days in public service"));
-		profileDetailsLayout.addComponent(createInfoRow("Ministry Days Served:", String.valueOf(viewRiksdagenPolitician.getTotalDaysServedGovernment()), VaadinIcons.CLOCK, "Total number of days as Minister"));
-		profileDetailsLayout.addComponent(createInfoRow("Parliament Days Served:", String.valueOf(viewRiksdagenPolitician.getTotalDaysServedParliament()), VaadinIcons.CLOCK, "Total number of days in Parliament"));
+		// 3. Legislative Activity
+		final VerticalLayout legislativeLayout = createSectionLayout("Legislative Impact");
+		addLegislativeMetrics(legislativeLayout, viewRiksdagenPolitician);
+		sectionsGrid.addComponent(legislativeLayout);
+		sectionsGrid.setExpandRatio(legislativeLayout, 1.0f);
 
-		attributesLayout.addComponent(profileDetailsLayout);
-
-		// Second column: Service Statistics
-		final VerticalLayout serviceStatsLayout = new VerticalLayout();
-		serviceStatsLayout.setSpacing(true);
-		serviceStatsLayout.addStyleName("card-details-column");
-		serviceStatsLayout.setWidthUndefined();
-
-		final Label serviceStatsHeader = new Label("Service Statistics");
-		serviceStatsHeader.addStyleName("card-section-title");
-		serviceStatsLayout.addComponent(serviceStatsHeader);
-
-		// Additional stats (Assuming these methods exist)
-		serviceStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenPolitician.getTotalAssignments()), VaadinIcons.BAR_CHART, "Total number of assignments held"));
-		serviceStatsLayout.addComponent(createInfoRow("Last Assignment Date:", String.valueOf(viewRiksdagenPolitician.getLastAssignmentDate().toString()), VaadinIcons.FLASH, "Last assignment in public service"));
-		// New: Documentation & Collaboration
-		serviceStatsLayout.addComponent(createInfoRow("Document Activity Level:",
-		        viewRiksdagenPolitician.getDocActivityLevel(),
-		        VaadinIcons.FILE_TEXT_O,
-		        "Indicates the politician's level of engagement in document creation"));
-
-		serviceStatsLayout.addComponent(createInfoRow("Document Activity Profile:",
-		        viewRiksdagenPolitician.getDocActivityProfile(),
-		        VaadinIcons.CLIPBOARD_TEXT,
-		        "Detailed classification of document activity"));
-
-		serviceStatsLayout.addComponent(createInfoRow("Collaboration Percentage:",
-		        String.valueOf(viewRiksdagenPolitician.getCollaborationPercentage()),
-		        VaadinIcons.GROUP,
-		        "Measure of cross-party collaboration in motions"));
-
-		attributesLayout.addComponent(serviceStatsLayout);
+		// 4. Party Alignment & Cooperation
+		final VerticalLayout partyAlignmentLayout = createSectionLayout("Party Alignment & Cooperation");
+		addPartyAlignmentMetrics(partyAlignmentLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary);
+		sectionsGrid.addComponent(partyAlignmentLayout);
+		sectionsGrid.setExpandRatio(partyAlignmentLayout, 1.0f);
 
 
-		if (viewRiksdagenPoliticianBallotSummary != null) {
-
-
-		    // A layout to hold the ballot statistics rows
-		    final VerticalLayout ballotStatsLayout = new VerticalLayout();
-		    ballotStatsLayout.setSpacing(true);
-		    ballotStatsLayout.setWidth("100%");
-		    ballotStatsLayout.addStyleName("card-details-column");
-		    attributesLayout.addComponent(ballotStatsLayout);
-
-			final Label ballotStatsHeader = new Label("Ballot Statistics");
-			ballotStatsHeader.addStyleName("card-section-title");
-			ballotStatsLayout.addComponent(ballotStatsHeader);
-
-
-		    // Example rows for Ballot Summary fields
-		    ballotStatsLayout.addComponent(createInfoRow(
-		        "Total Votes:",
-		        String.valueOf(viewRiksdagenPoliticianBallotSummary.getTotalVotes()),
-		        VaadinIcons.SCALE,
-		        "Number of total votes cast by this politician"
-		    ));
-
-		    ballotStatsLayout.addComponent(createInfoRow(
-		        "Absence Rate (%):",
-		        String.valueOf(viewRiksdagenPoliticianBallotSummary.getAbsenceRate()),
-		        VaadinIcons.USER_CLOCK,
-		        "Percentage of votes missed (absence rate)"
-		    ));
-
-		    ballotStatsLayout.addComponent(createInfoRow(
-		        "Rebel Rate (%):",
-		        String.valueOf(viewRiksdagenPoliticianBallotSummary.getRebelRate()),
-		        VaadinIcons.WARNING,
-		        "Percentage of times the politician voted against party line"
-		    ));
-
-		    ballotStatsLayout.addComponent(createInfoRow(
-		        "Last Vote Date:",
-		        viewRiksdagenPoliticianBallotSummary.getLastVoteDate() != null
-		            ? viewRiksdagenPoliticianBallotSummary.getLastVoteDate().toString()
-		            : "N/A",
-		        VaadinIcons.CALENDAR_USER,
-		        "Date of the politician's last recorded vote"
-		    ));
-
-
-		    ballotStatsLayout.addComponent(createInfoRow(
-		        "Voting Consistency Score:",
-		        String.valueOf(viewRiksdagenPoliticianBallotSummary.getVotingConsistencyScore()),
-		        VaadinIcons.BAR_CHART,
-		        "Combined measure of success rate and party-line loyalty"
-		    ));
-
-		    ballotStatsLayout.addComponent(createInfoRow(
-		        "Analysis Comment:",
-		        viewRiksdagenPoliticianBallotSummary.getAnalysisComment(),
-		        VaadinIcons.CLIPBOARD_TEXT,
-		        "Brief textual analysis regarding the politician's voting behavior"
-		    ));
-
-		}
+		imageAndDetailsLayout.addComponent(sectionsGrid);
+		imageAndDetailsLayout.setExpandRatio(sectionsGrid, ContentRatio.SMALL_GRID);
 
 		// After the card, add the overview layout for extended details
 		final VerticalLayout overviewLayout = new VerticalLayout();
@@ -314,6 +239,129 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	}
 
 	/**
+	 * Creates the section layout.
+	 *
+	 * @param title the title
+	 * @return the vertical layout
+	 */
+	private VerticalLayout createSectionLayout(String title) {
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setSpacing(true);
+		layout.addStyleName("card-details-column");
+		layout.setWidth("100%");
+
+		final Label header = new Label(title);
+		header.addStyleName("card-section-title");
+		layout.addComponent(header);
+		return layout;
+	}
+
+	/**
+	 * Adds the political role metrics.
+	 *
+	 * @param layout the layout
+	 * @param politician the politician
+	 * @param ballotSummary the ballot summary
+	 */
+	private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
+			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+
+		layout.addComponent(createInfoRow("Current Role:", ballotSummary.getStatus(), VaadinIcons.INSTITUTION,
+				"Current position in parliament"));
+		layout.addComponent(createInfoRow("Region:", ballotSummary.getElectionRegion(), VaadinIcons.MAP_MARKER,
+				"Electoral district"));
+		layout.addComponent(createInfoRow("Career Length:",
+				calculateServiceYears(politician.getFirstAssignmentDate(), politician.getLastAssignmentDate()),
+				VaadinIcons.TIMER, "Years in parliament"));
+		layout.addComponent(
+				createInfoRow("Influence Score:", String.format("%.1f", ballotSummary.getVotingConsistencyScore()),
+						VaadinIcons.CHART_GRID, "Overall parliamentary influence"));
+	}
+
+	/**
+	 * Adds the parliamentary performance metrics.
+	 *
+	 * @param layout the layout
+	 * @param politician the politician
+	 * @param ballotSummary the ballot summary
+	 */
+	private void addParliamentaryPerformanceMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
+			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+
+		layout.addComponent(
+				createInfoRow("Attendance Rate:", String.format("%.1f%%", 100 - ballotSummary.getAbsenceRate()),
+						VaadinIcons.USER_CHECK, "Session attendance rate"));
+		layout.addComponent(createInfoRow("Voting Success:", String.format("%.1f%%", ballotSummary.getSuccessRate()),
+				VaadinIcons.TROPHY, "Votes on winning side"));
+		layout.addComponent(createInfoRow("Activity Level:", politician.getDocActivityLevel(), VaadinIcons.CHART_LINE,
+				"Overall engagement level"));
+		layout.addComponent(createInfoRow("Total Votes:", String.valueOf(ballotSummary.getTotalVotes()),
+				VaadinIcons.USER_CARD, "Total votes cast"));
+	}
+
+	/**
+	 * Adds the legislative metrics.
+	 *
+	 * @param layout the layout
+	 * @param politician the politician
+	 */
+	private void addLegislativeMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician) {
+
+		layout.addComponent(createInfoRow("Documents/Year:", String.format("%.1f", politician.getAverageDocsPerYear()),
+				VaadinIcons.FILE_TEXT, "Average documents per year"));
+		layout.addComponent(createInfoRow("Individual Motions:", String.valueOf(politician.getIndividualMotions()),
+				VaadinIcons.USER, "Personal motions submitted"));
+		layout.addComponent(createInfoRow("Committee Motions:", String.valueOf(politician.getCommitteeMotions()),
+				VaadinIcons.GROUP, "Committee-based motions"));
+		layout.addComponent(createInfoRow("Document Impact:", politician.getDocActivityProfile(), VaadinIcons.CHART_3D,
+				"Legislative influence assessment"));
+	}
+
+	/**
+	 * Adds the party alignment metrics.
+	 *
+	 * @param layout the layout
+	 * @param politician the politician
+	 * @param ballotSummary the ballot summary
+	 */
+	private void addPartyAlignmentMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
+			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+
+		layout.addComponent(createInfoRow("Party Loyalty:", String.format("%.1f%%", ballotSummary.getLoyaltyRate()),
+				VaadinIcons.GROUP, "Party line adherence"));
+		layout.addComponent(createInfoRow("Independence Rate:", String.format("%.1f%%", ballotSummary.getRebelRate()),
+				VaadinIcons.RANDOM, "Votes against party line"));
+		layout.addComponent(createInfoRow("Cross-Party Collaboration:",
+				String.format("%.1f%%", politician.getCollaborationPercentage()), VaadinIcons.CONNECT,
+				"Inter-party cooperation"));
+		layout.addComponent(createInfoRow("Multi-Party Motions:", String.valueOf(politician.getMultiPartyMotions()),
+				VaadinIcons.USERS, "Cross-party legislative initiatives"));
+	}
+
+	/**
+	 * Calculate service years.
+	 *
+	 * @param start the start
+	 * @param end the end
+	 * @return the string
+	 */
+	private String calculateServiceYears(Date start, Date end) {
+		try {
+			if (start == null || end == null) {
+				return "N/A";
+			}
+
+			// Convert java.util.Date to milliseconds and calculate years
+			final long diffInMillies = Math.abs(end.getTime() - start.getTime());
+			final long years = diffInMillies / (1000L * 60 * 60 * 24 * 365);
+
+			return years + " years";
+		} catch (final Exception e) {
+			return "N/A";
+		}
+	}
+
+	/**
 	 * Creates a row displaying a caption and value, with optional icon and tooltip.
 	 *
 	 * @param caption the field caption
@@ -322,7 +370,8 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 * @param tooltip optional tooltip to provide more info
 	 * @return a HorizontalLayout representing the info row
 	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon, final String tooltip) {
+	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
+			final String tooltip) {
 		final HorizontalLayout layout = new HorizontalLayout();
 		layout.setSpacing(true);
 		layout.addStyleName("metric-label");
@@ -349,6 +398,13 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		return layout;
 	}
 
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		final String pageId = getPageId(parameters);
