@@ -1282,6 +1282,993 @@ ANALYZE view_riksdagen_vote_data_ballot_politician_summary_weekly;
         </sql>
         
     </changeSet>
+    
+    <changeSet author="pethers" id="2024122623-extend-party-view" failOnError="true">
+    <comment>Extend party view with additional political analysis metrics using existing data</comment>
+    
+	<dropView viewName="view_riksdagen_party" />
+	<dropView viewName="view_riksdagen_party_summary" />
+	<dropView viewName="view_riksdagen_party_document_summary" />
+	
+	<dropView viewName="view_riksdagen_politician" />
+	<dropView viewName="view_riksdagen_party_member" />
+    
+    <createView viewName="view_riksdagen_party_member">
+        <![CDATA[
+WITH committee_member_stats AS (
+            SELECT 
+                a.intressent_id,
+                COUNT(DISTINCT c.embedded_id_org_code) as active_committees,
+                STRING_AGG(DISTINCT c.embedded_id_detail, ', ') as committee_names,
+                array_agg(DISTINCT c.embedded_id_org_code ORDER BY c.embedded_id_org_code) as committee_codes,
+                SUM(c.total_documents) as total_committee_documents,
+                SUM(c.documents_last_year) as committee_docs_last_year,
+                ROUND(AVG(NULLIF(c.avg_documents_per_member, 0)), 1) as avg_committee_productivity,
+                COUNT(DISTINCT CASE 
+                    WHEN a.role_code ILIKE '%ordförande%' 
+                    OR a.role_code ILIKE '%vice%' 
+                    THEN c.embedded_id_org_code 
+                END) as leadership_committees,
+                SUM(CASE 
+                    WHEN c.activity_level = 'Very High' THEN 4
+                    WHEN c.activity_level = 'High' THEN 3
+                    WHEN c.activity_level = 'Medium' THEN 2
+                    WHEN c.activity_level = 'Low' THEN 1
+                    ELSE 0
+                END) as committee_activity_score,
+                COUNT(DISTINCT CASE 
+                    WHEN CURRENT_DATE BETWEEN a.from_date AND COALESCE(a.to_date, CURRENT_DATE)
+                    THEN c.embedded_id_org_code 
+                END) as current_active_committees,
+                COUNT(DISTINCT CASE 
+                    WHEN c.activity_level IN ('High', 'Very High')
+                    THEN c.embedded_id_org_code 
+                END) as high_activity_committees,
+                SUM(c.total_committee_motions) as total_committee_proposals,
+                SUM(c.total_follow_up_motions) as total_follow_ups,
+                AVG(c.current_member_size) as avg_committee_size,
+                SUM(
+                    CASE 
+                        WHEN a.from_date <= CURRENT_DATE 
+                        THEN EXTRACT(DAYS FROM 
+                            age(
+                                LEAST(COALESCE(a.to_date, CURRENT_DATE), CURRENT_DATE),
+                                GREATEST(a.from_date, c.first_assignment_date)
+                            )
+                        )
+                        ELSE 0
+                    END
+                ) as total_days_in_committees
+            FROM assignment_data a
+            JOIN view_riksdagen_committee c 
+                ON a.org_code = c.embedded_id_org_code
+            WHERE a.assignment_type = 'uppdrag'
+            GROUP BY a.intressent_id
+        ),
+        document_quality AS (
+            SELECT 
+                person_reference_id,
+                ROUND(
+                    CASE 
+                        WHEN total_documents = 0 THEN 0
+                        ELSE (
+                            (COALESCE(party_motions, 0) * 1.2 + 
+                             COALESCE(committee_motions, 0) * 1.5 + 
+                             COALESCE(multi_party_motions, 0) * 1.3) / 
+                            NULLIF(total_documents, 0) * 100
+                        )
+                    END, 
+                    2
+                ) as document_quality_rating
+            FROM view_riksdagen_politician_document_summary
+        )
+        SELECT 
+            p.id,
+            COALESCE(ad.hjid, 0) as hjid,
+            sp.address,
+            sp.city,
+            sp.co_address as coAddress,
+            sp.email,
+            sp.fax_number as faxNumber,
+            sp.party_id as partyId,
+            sp.party_name as partyName,
+            sp.phone_number as phoneNumber,
+            sp.post_code as postCode,
+            sp.registered_date as registeredDate,
+            sp.short_code as shortCode,
+            sp.website,
+            p.born_year as bornYear,
+            p.election_region as electionRegion,
+            p.first_name as firstName,
+            p.gender,
+            p.hangar_guid as hangarGuid,
+            p.image_url_192 as imageUrl192,
+            p.image_url_80 as imageUrl80,
+            p.image_url_max as imageUrlMax,
+            p.last_name as lastName,
+            p.party,
+            p.person_url_xml as personUrlXml,
+            p.place,
+            p.status,
+            COALESCE(ds.total_documents, 0) as totalDocuments,
+            COALESCE(ds.party_motions, 0) as partyMotions,
+            COALESCE(ds.individual_motions, 0) as individualMotions,
+            COALESCE(ds.committee_motions, 0) as committeeMotions,
+            COALESCE(ds.multi_party_motions, 0) as collaborativeMotions,
+            COALESCE(ds.follow_up_motions, 0) as followUpMotions,
+            COALESCE(ds.activity_level, 'Inactive') as activityLevel,
+            ds.first_document_date as firstDocumentDate,
+            ds.last_document_date as lastDocumentDate,
+            ROUND(COALESCE(ds.docs_per_year, 0), 2) as averageDocumentsPerYear,
+            COALESCE(dq.document_quality_rating, 0) as documentQualityRating,
+            ROUND(COALESCE(ds.collaboration_percentage, 0), 2) as crossPartyDocumentPercentage,
+            cms.active_committees as uniqueCommitteesServed,
+            cms.current_active_committees as currentCommittees,
+            cms.leadership_committees as leadershipPositions,
+            cms.committee_names as committeeNames,
+            cms.total_committee_documents as totalCommitteeDocuments,
+            cms.committee_docs_last_year as committeeDocsLastYear,
+            cms.avg_committee_productivity as avgCommitteeProductivity,
+            cms.high_activity_committees as highActivityCommittees,
+            cms.total_committee_proposals as totalCommitteeProposals,
+            cms.total_follow_ups as totalFollowUps,
+            ROUND(cms.avg_committee_size, 1) as avgCommitteeSize,
+            cms.total_days_in_committees as totalDaysInCommittees,
+            ROUND(
+                (
+                    (COALESCE(cms.committee_activity_score, 0) * 25.0 / NULLIF(cms.active_committees * 4, 0)) +
+                    (COALESCE(cms.leadership_committees, 0) * 25.0 / NULLIF(cms.active_committees, 0)) +
+                    (COALESCE(cms.high_activity_committees, 0) * 25.0 / NULLIF(cms.active_committees, 0)) +
+                    (COALESCE(cms.total_committee_proposals, 0) * 25.0 / 
+                        NULLIF(GREATEST(
+                            cms.total_committee_documents, 
+                            (SELECT AVG(total_documents) FROM view_riksdagen_committee WHERE total_documents > 0)
+                        ), 0))
+                )::numeric, 
+                2
+            ) as committeeEffectivenessScore,
+            CASE 
+                WHEN p.status ILIKE '%avliden%' THEN 'Deceased'
+                WHEN cms.current_active_committees = 0 THEN 'Inactive'
+                WHEN EXISTS (
+                    SELECT 1 FROM assignment_data a2 
+                    WHERE a2.intressent_id = p.id 
+                    AND a2.role_code LIKE '%MINISTER%'
+                    AND CURRENT_DATE BETWEEN a2.from_date AND COALESCE(a2.to_date, CURRENT_DATE)
+                ) THEN 'Government'
+                WHEN cms.leadership_committees > 0 THEN CASE
+                    WHEN cms.high_activity_committees > 0 THEN 'Senior Committee Leader'
+                    ELSE 'Committee Leader'
+                END
+                WHEN cms.current_active_committees > 0 THEN CASE
+                    WHEN cms.high_activity_committees > 0 THEN 'Active Committee Member'
+                    ELSE 'Committee Member'
+                END
+                ELSE 'Other'
+            END as currentRoleCategory,
+            cms.committee_codes as committeeExpertiseAreas
+        FROM sweden_political_party sp
+        JOIN person_data p ON p.party = sp.short_code
+        LEFT JOIN assignment_data ad ON p.id = ad.intressent_id
+        LEFT JOIN view_riksdagen_politician_document_summary ds 
+            ON p.id = ds.person_reference_id
+        LEFT JOIN document_quality dq 
+            ON p.id = dq.person_reference_id
+        LEFT JOIN committee_member_stats cms 
+            ON p.id = cms.intressent_id
+        WHERE p.id IS NOT NULL
+        GROUP BY 
+            p.id,
+            ad.hjid,
+            sp.address,
+            sp.city,
+            sp.co_address,
+            sp.email,
+            sp.fax_number,
+            sp.party_id,
+            sp.party_name,
+            sp.phone_number,
+            sp.post_code,
+            sp.registered_date,
+            sp.short_code,
+            sp.website,
+            p.born_year,
+            p.election_region,
+            p.first_name,
+            p.gender,
+            p.hangar_guid,
+            p.image_url_192,
+            p.image_url_80,
+            p.image_url_max,
+            p.last_name,
+            p.party,
+            p.person_url_xml,
+            p.place,
+            p.status,
+            ds.total_documents,
+            ds.party_motions,
+            ds.individual_motions,
+            ds.committee_motions,
+            ds.multi_party_motions,
+            ds.follow_up_motions,
+            ds.activity_level,
+            ds.first_document_date,
+            ds.last_document_date,
+            ds.docs_per_year,
+            ds.collaboration_percentage,
+            dq.document_quality_rating,
+            cms.active_committees,
+            cms.current_active_committees,
+            cms.leadership_committees,
+            cms.committee_names,
+            cms.total_committee_documents,
+            cms.committee_docs_last_year,
+            cms.avg_committee_productivity,
+            cms.high_activity_committees,
+            cms.total_committee_proposals,
+            cms.total_follow_ups,
+            cms.avg_committee_size,
+            cms.total_days_in_committees,
+            cms.committee_activity_score,
+            cms.committee_codes
+        ORDER BY 
+            cms.current_active_committees DESC NULLS LAST,
+            committeeEffectivenessScore DESC NULLS LAST,
+            p.last_name,
+            p.first_name
+        ]]>
+    </createView>
+    
+</changeSet>                      
+    
+<changeSet author="pethers" id="20241226-improve-politician-view" failOnError="true">
+    <comment>Enhance politician view with comprehensive metrics and committee effectiveness</comment>
+
+    <createView viewName="view_riksdagen_politician">
+        <![CDATA[
+        WITH politician_voting_stats AS (
+            SELECT 
+                embedded_id_intressent_id,
+                SUM(total_votes) as total_votes,
+                ROUND(AVG(NULLIF(percentage_yes, 0)), 2) as yes_percentage,
+                ROUND(AVG(NULLIF(percentage_no, 0)), 2) as no_percentage,
+                ROUND(AVG(NULLIF(percentage_absent, 0)), 2) as absence_rate,
+                ROUND(AVG(NULLIF(rebel_percentage, 0)), 2) as rebel_rate,
+                ROUND(AVG(NULLIF(won_percentage, 0)), 2) as success_rate,
+                COUNT(DISTINCT embedded_id_vote_date) as voting_days,
+                MIN(embedded_id_vote_date) as first_vote_date,
+                MAX(embedded_id_vote_date) as last_vote_date
+            FROM view_riksdagen_vote_data_ballot_politician_summary_annual
+            GROUP BY embedded_id_intressent_id
+        )
+        SELECT
+            -- Basic Information
+            pm.id AS person_id,
+            pm.firstName AS first_name,
+            pm.lastName AS last_name,
+            pm.party,
+            pm.bornYear AS born_year,
+            pm.gender,
+            pm.status,
+            pm.electionRegion as election_region,
+
+            -- Assignment Timeline
+            LEAST(
+                COALESCE(pm.firstDocumentDate, CURRENT_DATE),
+                COALESCE(MIN(a.from_date), CURRENT_DATE),
+                COALESCE(vs.first_vote_date, CURRENT_DATE)
+            ) AS career_start_date,
+            
+            GREATEST(
+                COALESCE(pm.lastDocumentDate, CURRENT_DATE),
+                COALESCE(MAX(a.to_date), CURRENT_DATE),
+                COALESCE(vs.last_vote_date, CURRENT_DATE)
+            ) AS career_end_date,
+
+            -- Service Metrics
+            SUM(CASE
+                WHEN a.status LIKE 'Ledig%' THEN 0
+                ELSE
+                    EXTRACT(DAYS FROM age(
+                        LEAST(COALESCE(a.to_date, CURRENT_DATE), CURRENT_DATE),
+                        GREATEST(a.from_date, COALESCE(pm.firstDocumentDate, a.from_date))
+                    ))
+            END) AS total_days_served,
+
+            -- Document Activity
+            pm.totalDocuments as total_documents,
+            pm.partyMotions as party_motions,
+            pm.individualMotions as individual_motions,
+            pm.committeeMotions as committee_motions,
+            pm.collaborativeMotions as collaborative_motions,
+            pm.followUpMotions as follow_up_motions,
+            pm.averageDocumentsPerYear as avg_docs_per_year,
+            pm.activityLevel as activity_level,
+            pm.documentQualityRating as document_quality_rating,
+            pm.crossPartyDocumentPercentage as cross_party_percentage,
+
+            -- Committee Activity
+            pm.uniqueCommitteesServed as committees_served,
+            pm.currentCommittees as active_committees,
+            pm.leadershipPositions as leadership_positions,
+            pm.committeeNames as committee_names,
+            pm.totalCommitteeDocuments as committee_documents,
+            pm.committeeDocsLastYear as recent_committee_docs,
+            pm.avgCommitteeProductivity as committee_productivity,
+            pm.committeeEffectivenessScore as committee_effectiveness,
+            
+            -- Voting Behavior
+            COALESCE(vs.total_votes, 0) as total_votes_cast,
+            COALESCE(vs.yes_percentage, 0) as yes_vote_percentage,
+            COALESCE(vs.no_percentage, 0) as no_vote_percentage,
+            COALESCE(vs.absence_rate, 0) as absence_rate,
+            COALESCE(vs.rebel_rate, 0) as party_rebel_rate,
+            COALESCE(vs.success_rate, 0) as voting_success_rate,
+            COALESCE(vs.voting_days, 0) as total_voting_days,
+
+            -- Political Position and Role
+            pm.currentRoleCategory as current_role,
+            
+            CASE 
+                WHEN pm.status ILIKE '%avliden%' THEN 'Deceased'
+                WHEN pm.currentRoleCategory = 'Inactive' THEN 'Inactive'
+                WHEN EXISTS (
+                    SELECT 1 FROM assignment_data a2 
+                    WHERE a2.intressent_id = pm.id 
+                    AND a2.role_code LIKE '%MINISTER%'
+                    AND CURRENT_DATE BETWEEN a2.from_date AND COALESCE(a2.to_date, CURRENT_DATE)
+                ) THEN 'Government'
+                WHEN pm.party IN (
+                    SELECT party FROM view_riksdagen_party_member 
+                    WHERE currentRoleCategory = 'Government' 
+                    GROUP BY party
+                ) THEN 'Government Party'
+                ELSE 'Opposition'
+            END as political_position,
+
+            -- Expertise and Focus Areas
+            pm.committeeExpertiseAreas as expertise_areas,
+            
+            -- Recent Activity Metrics
+            pm.totalDaysInCommittees as total_committee_days,
+            COALESCE(
+                GREATEST(
+                    pm.committeeDocsLastYear,
+                    COUNT(CASE 
+                        WHEN a.to_date >= CURRENT_DATE - INTERVAL '365 days'
+                        THEN 1 
+                    END)
+                ), 0
+            ) as active_assignments_last_year,
+
+            -- Comprehensive Performance Scores
+            ROUND(
+                (
+                    COALESCE(vs.success_rate, 0) * 0.2 +
+                    COALESCE(pm.committeeEffectivenessScore, 0) * 0.3 +
+                    COALESCE(pm.documentQualityRating, 0) * 0.2 +
+                    (CASE 
+                        WHEN pm.currentRoleCategory IN ('Government', 'Senior Committee Leader') THEN 100
+                        WHEN pm.currentRoleCategory = 'Committee Leader' THEN 75
+                        WHEN pm.currentRoleCategory = 'Active Committee Member' THEN 50
+                        WHEN pm.currentRoleCategory = 'Committee Member' THEN 25
+                        ELSE 0
+                    END) * 0.3
+                )::numeric, 
+                2
+            ) as overall_effectiveness_score,
+
+            -- Experience Level
+            CASE 
+                WHEN EXTRACT(YEAR FROM age(CURRENT_DATE, LEAST(
+                    COALESCE(pm.firstDocumentDate, CURRENT_DATE),
+                    COALESCE(MIN(a.from_date), CURRENT_DATE),
+                    COALESCE(vs.first_vote_date, CURRENT_DATE)
+                ))) < 2 THEN 'Newcomer'
+                WHEN EXTRACT(YEAR FROM age(CURRENT_DATE, LEAST(
+                    COALESCE(pm.firstDocumentDate, CURRENT_DATE),
+                    COALESCE(MIN(a.from_date), CURRENT_DATE),
+                    COALESCE(vs.first_vote_date, CURRENT_DATE)
+                ))) < 5 THEN 'Experienced'
+                ELSE 'Veteran'
+            END as experience_level
+
+        FROM view_riksdagen_party_member pm
+        LEFT JOIN assignment_data a ON pm.id = a.intressent_id
+        LEFT JOIN politician_voting_stats vs ON pm.id = vs.embedded_id_intressent_id
+        GROUP BY 
+            pm.id,
+            pm.firstName,
+            pm.lastName,
+            pm.party,
+            pm.bornYear,
+            pm.gender,
+            pm.status,
+            pm.electionRegion,
+            pm.firstDocumentDate,
+            pm.lastDocumentDate,
+            pm.totalDocuments,
+            pm.partyMotions,
+            pm.individualMotions,
+            pm.committeeMotions,
+            pm.collaborativeMotions,
+            pm.followUpMotions,
+            pm.averageDocumentsPerYear,
+            pm.activityLevel,
+            pm.documentQualityRating,
+            pm.crossPartyDocumentPercentage,
+            pm.uniqueCommitteesServed,
+            pm.currentCommittees,
+            pm.leadershipPositions,
+            pm.committeeNames,
+            pm.totalCommitteeDocuments,
+            pm.committeeDocsLastYear,
+            pm.avgCommitteeProductivity,
+            pm.committeeEffectivenessScore,
+            pm.currentRoleCategory,
+            pm.committeeExpertiseAreas,
+            pm.totalDaysInCommittees,
+            vs.total_votes,
+            vs.yes_percentage,
+            vs.no_percentage,
+            vs.absence_rate,
+            vs.rebel_rate,
+            vs.success_rate,
+            vs.voting_days,
+            vs.first_vote_date,
+            vs.last_vote_date
+        ORDER BY 
+            overall_effectiveness_score DESC NULLS LAST,
+            total_days_served DESC
+        ]]>
+    </createView>
+</changeSet>
+
+<changeSet author="pethers" id="20241227-enhance-party-document-summary" failOnError="true">
+    <comment>Enhance party document summary with comprehensive metrics while preserving existing functionality</comment>
+
+    <createView viewName="view_riksdagen_party_document_summary">
+        <![CDATA[
+        WITH party_voting_stats AS (
+            SELECT 
+                pm.party,
+                COUNT(DISTINCT pm.id) as total_voters,
+                ROUND(AVG(NULLIF(vs.percentage_yes, 0)), 2) as avg_yes_percentage,
+                ROUND(AVG(NULLIF(vs.percentage_no, 0)), 2) as avg_no_percentage,
+                ROUND(AVG(NULLIF(vs.percentage_absent, 0)), 2) as avg_absence_rate,
+                ROUND(AVG(NULLIF(vs.rebel_percentage, 0)), 2) as avg_rebel_rate,
+                ROUND(AVG(NULLIF(vs.won_percentage, 0)), 2) as avg_success_rate,
+                SUM(vs.total_votes) as total_party_votes
+            FROM view_riksdagen_party_member pm
+            LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_annual vs 
+                ON pm.id = vs.embedded_id_intressent_id
+            GROUP BY pm.party
+        ),
+        committee_codes AS (
+            SELECT DISTINCT 
+                pm.party,
+                c.committee_code
+            FROM view_riksdagen_party_member pm
+            CROSS JOIN LATERAL unnest(pm.committeeExpertiseAreas) AS c(committee_code)
+            WHERE pm.committeeExpertiseAreas IS NOT NULL
+        ),
+        party_committee_stats AS (
+            SELECT 
+                pm.party,
+                COUNT(DISTINCT pm.id) as total_committee_members,
+                COUNT(DISTINCT cc.committee_code) as total_committees_represented,
+                SUM(pm.leadershipPositions) as total_leadership_positions,
+                ROUND(AVG(NULLIF(pm.committeeEffectivenessScore, 0)), 2) as avg_committee_effectiveness,
+                COUNT(DISTINCT CASE 
+                    WHEN pm.currentRoleCategory IN ('Senior Committee Leader', 'Committee Leader') 
+                    THEN pm.id 
+                END) as total_committee_leaders,
+                array_agg(DISTINCT cc.committee_code ORDER BY cc.committee_code) as all_committee_codes
+            FROM view_riksdagen_party_member pm
+            LEFT JOIN committee_codes cc ON pm.party = cc.party
+            GROUP BY pm.party
+        ),
+        daily_summary AS (
+            SELECT 
+                embedded_id_party_short_code as party,
+                SUM(total) as total_daily_documents,
+                COUNT(DISTINCT embedded_id_public_date) as active_days,
+                array_agg(DISTINCT embedded_id_document_type) as document_types
+            FROM view_riksdagen_party_document_daily_summary
+            GROUP BY embedded_id_party_short_code
+        )
+        SELECT 
+            -- Party Identification
+            pm.party,
+            sp.party_name,
+            
+            -- EXISTING: Base Document Metrics
+            COUNT(DISTINCT pm.id) as total_contributing_members,
+            SUM(pm.totalDocuments) as total_party_documents,
+            ROUND(AVG(NULLIF(pm.totalDocuments, 0)), 1) as avg_documents_per_member,
+            
+            -- EXISTING: Motion Type Totals
+            SUM(pm.partyMotions) as total_party_motions,
+            SUM(pm.individualMotions) as total_individual_motions,
+            SUM(pm.committeeMotions) as total_committee_motions,
+            SUM(pm.collaborativeMotions) as total_collaborative_motions,
+            
+            -- EXISTING: Activity Level Distribution
+            COUNT(CASE WHEN pm.activityLevel = 'Very High' THEN 1 END) as very_high_activity_members,
+            COUNT(CASE WHEN pm.activityLevel = 'High' THEN 1 END) as high_activity_members,
+            COUNT(CASE WHEN pm.activityLevel = 'Medium' THEN 1 END) as medium_activity_members,
+            COUNT(CASE WHEN pm.activityLevel = 'Low' THEN 1 END) as low_activity_members,
+            
+            -- EXISTING: Activity Profile Distribution
+            COUNT(CASE WHEN upper(pm.currentRoleCategory) LIKE '%PARTY%' THEN 1 END) as party_focused_members,
+            COUNT(CASE WHEN upper(pm.currentRoleCategory) LIKE '%COMMITTEE%' THEN 1 END) as committee_focused_members,
+            COUNT(CASE WHEN pm.individualMotions > 0 THEN 1 END) as individual_focused_members,
+            
+            -- EXISTING: Timeline
+            MIN(pm.firstDocumentDate) as first_party_document,
+            MAX(pm.lastDocumentDate) as last_party_document,
+            
+            -- EXISTING: Recent Activity
+            SUM(pm.committeeDocsLastYear) as total_documents_last_year,
+            COUNT(CASE WHEN pm.committeeDocsLastYear > 0 THEN 1 END) as active_members_last_year,
+            
+            -- EXISTING: Average Metrics
+            ROUND(AVG(NULLIF(pm.averageDocumentsPerYear, 0)), 1) as avg_docs_per_year,
+            ROUND(AVG(NULLIF(pm.crossPartyDocumentPercentage, 0)), 1) as avg_collaboration_pct,
+            
+            -- NEW: Daily Statistics
+            COALESCE(ds.total_daily_documents, 0) as total_daily_documents,
+            COALESCE(ds.active_days, 0) as active_days,
+            ds.document_types,
+            
+            -- NEW: Committee Engagement
+            pcs.total_committee_members,
+            pcs.total_committees_represented,
+            pcs.total_leadership_positions,
+            pcs.avg_committee_effectiveness,
+            pcs.total_committee_leaders,
+            pcs.all_committee_codes as committee_representation,
+            
+            -- NEW: Voting Behavior
+            pvs.total_voters,
+            pvs.total_party_votes,
+            pvs.avg_yes_percentage,
+            pvs.avg_no_percentage,
+            pvs.avg_absence_rate,
+            pvs.avg_rebel_rate,
+            pvs.avg_success_rate,
+            
+            -- NEW: Member Demographics
+            COUNT(CASE WHEN pm.gender = 'KVINNA' THEN 1 END) as female_members,
+            COUNT(CASE WHEN pm.gender = 'MAN' THEN 1 END) as male_members,
+            ROUND(
+                (COUNT(CASE WHEN pm.gender = 'KVINNA' THEN 1 END)::numeric / 
+                NULLIF(COUNT(DISTINCT pm.id), 0) * 100),
+                1
+            ) as female_percentage,
+            
+            -- NEW: Age Demographics
+            ROUND(AVG(EXTRACT(YEAR FROM CURRENT_DATE) - pm.bornYear::numeric), 1) as avg_member_age,
+            MIN(pm.bornYear) as oldest_member_birth_year,
+            MAX(pm.bornYear) as youngest_member_birth_year,
+            
+            -- NEW: Experience Distribution
+            COUNT(CASE 
+                WHEN EXTRACT(YEAR FROM age(CURRENT_DATE, pm.firstDocumentDate)) < 2 THEN 1 
+            END) as newcomer_count,
+            COUNT(CASE 
+                WHEN EXTRACT(YEAR FROM age(CURRENT_DATE, pm.firstDocumentDate)) BETWEEN 2 AND 5 THEN 1 
+            END) as experienced_count,
+            COUNT(CASE 
+                WHEN EXTRACT(YEAR FROM age(CURRENT_DATE, pm.firstDocumentDate)) > 5 THEN 1 
+            END) as veteran_count,
+            
+            -- NEW: Overall Party Performance Score
+            ROUND(
+                (COALESCE(pvs.avg_success_rate, 0) * 0.3 +
+                 COALESCE(pcs.avg_committee_effectiveness, 0) * 0.4 +
+                 COALESCE(AVG(NULLIF(pm.documentQualityRating, 0)), 0) * 0.3
+                )::numeric,
+                2
+            ) as party_effectiveness_score
+
+        FROM view_riksdagen_party_member pm
+        JOIN sweden_political_party sp ON pm.party = sp.short_code
+        LEFT JOIN party_voting_stats pvs ON pm.party = pvs.party
+        LEFT JOIN party_committee_stats pcs ON pm.party = pcs.party
+        LEFT JOIN daily_summary ds ON pm.party = ds.party
+        GROUP BY 
+            pm.party,
+            sp.party_name,
+            pvs.total_voters,
+            pvs.total_party_votes,
+            pvs.avg_yes_percentage,
+            pvs.avg_no_percentage,
+            pvs.avg_absence_rate,
+            pvs.avg_rebel_rate,
+            pvs.avg_success_rate,
+            pcs.total_committee_members,
+            pcs.total_committees_represented,
+            pcs.total_leadership_positions,
+            pcs.avg_committee_effectiveness,
+            pcs.total_committee_leaders,
+            pcs.all_committee_codes,
+            ds.total_daily_documents,
+            ds.active_days,
+            ds.document_types
+        ORDER BY party_effectiveness_score DESC NULLS LAST
+        ]]>
+    </createView>
+
+</changeSet>
+
+
+<changeSet author="pethers" id="20241227-enhance-party-summary-performance" failOnError="true">
+    <comment>Add indexes to improve party summary view performance</comment>
+
+    <!-- Add indexes to support the view's performance -->
+    <createIndex indexName="idx_assignment_data_type_dates" tableName="assignment_data">
+        <column name="assignment_type"/>
+        <column name="from_date"/>
+        <column name="to_date"/>
+        <column name="intressent_id"/>
+    </createIndex>
+
+        <sql>
+            CREATE MATERIALIZED VIEW mv_party_committee_codes AS 
+        SELECT DISTINCT
+            pm.party,
+            unnest(pm.committeeExpertiseAreas) as code
+        FROM view_riksdagen_party_member pm
+        WHERE pm.committeeExpertiseAreas IS NOT NULL;
+    </sql>
+
+</changeSet>    
+    
+
+<changeSet author="pethers" id="2024122723-enhance-party-summary-performance" failOnError="true">
+    <comment>Add indexes to improve party summary view performance</comment>
+
+    
+<sql>
+    <![CDATA[
+    CREATE MATERIALIZED VIEW view_riksdagen_party_summary as WITH RECURSIVE party_base AS (
+        SELECT DISTINCT party 
+        FROM view_riksdagen_party_member
+    ),
+    member_assignments AS (
+        SELECT 
+            pm.party,
+            MIN(a.from_date) as first_assignment_date,
+            MAX(a.to_date) as last_assignment_date,
+            SUM(CASE 
+                WHEN a.assignment_type = 'kammaruppdrag' 
+                THEN EXTRACT(DAYS FROM age(
+                    LEAST(COALESCE(a.to_date, CURRENT_DATE), CURRENT_DATE),
+                    a.from_date
+                ))
+                ELSE 0 
+            END) as days_served_parliament,
+            SUM(CASE 
+                WHEN a.assignment_type = 'EU' 
+                THEN EXTRACT(DAYS FROM age(
+                    LEAST(COALESCE(a.to_date, CURRENT_DATE), CURRENT_DATE),
+                    a.from_date
+                ))
+                ELSE 0 
+            END) as days_served_eu,
+            bool_or(CURRENT_DATE BETWEEN a.from_date AND COALESCE(a.to_date, CURRENT_DATE) 
+                AND a.assignment_type = 'EU') as active_eu,
+            bool_or(CURRENT_DATE BETWEEN a.from_date AND COALESCE(a.to_date, CURRENT_DATE) 
+                AND a.role_code LIKE '%SPEAKER%') as active_speaker,
+            COUNT(DISTINCT CASE 
+                WHEN CURRENT_DATE BETWEEN a.from_date AND COALESCE(a.to_date, CURRENT_DATE)
+                AND a.assignment_type = 'EU' THEN pm.id 
+            END) as total_active_eu,
+            COUNT(DISTINCT CASE 
+                WHEN a.assignment_type = 'partiuppdrag' THEN a.intressent_id 
+            END) as total_party_assignments,
+            COUNT(DISTINCT CASE 
+                WHEN a.assignment_type = 'uppdrag' THEN a.intressent_id 
+            END) as total_committee_assignments,
+            COUNT(DISTINCT CASE 
+                WHEN CURRENT_DATE BETWEEN a.from_date AND COALESCE(a.to_date, CURRENT_DATE)
+                AND a.assignment_type = 'partiuppdrag' THEN a.intressent_id 
+            END) as current_party_assignments,
+            COUNT(DISTINCT CASE 
+                WHEN CURRENT_DATE BETWEEN a.from_date AND COALESCE(a.to_date, CURRENT_DATE)
+                AND a.assignment_type = 'uppdrag' THEN a.intressent_id 
+            END) as current_committee_assignments
+        FROM party_base pb
+        JOIN view_riksdagen_party_member pm ON pb.party = pm.party
+        LEFT JOIN assignment_data a ON pm.id = a.intressent_id
+        GROUP BY pm.party
+    ),
+    party_committee_effectiveness AS (
+        SELECT 
+            pb.party,
+            ROUND(AVG(NULLIF(pm.committeeEffectivenessScore, 0)), 2) as avg_committee_effectiveness_score,
+            SUM(CASE 
+                WHEN pm.uniqueCommitteesServed > 0 
+                THEN COALESCE(pm.uniqueCommitteesServed, 0) * 
+                     CASE 
+                         WHEN pm.activityLevel = 'Very High' THEN 4
+                         WHEN pm.activityLevel = 'High' THEN 3
+                         WHEN pm.activityLevel = 'Medium' THEN 2
+                         WHEN pm.activityLevel = 'Low' THEN 1
+                         ELSE 0
+                     END
+                ELSE 0 
+            END) as total_committee_activity_score,
+            ROUND(AVG(NULLIF(pm.avgCommitteeProductivity, 0)), 1) as avg_committee_productivity,
+            SUM(COALESCE(pm.highActivityCommittees, 0)) as total_high_activity_committees,
+            SUM(COALESCE(pm.totalCommitteeProposals, 0)) as total_committee_proposals,
+            SUM(COALESCE(pm.totalFollowUps, 0)) as total_follow_ups,
+            ROUND(AVG(NULLIF(pm.avgCommitteeSize, 0)), 1) as avg_committee_size,
+            array_agg(DISTINCT cc.code ORDER BY cc.code) FILTER (WHERE cc.code IS NOT NULL) as party_committee_areas
+        FROM party_base pb
+        JOIN view_riksdagen_party_member pm ON pb.party = pm.party
+        LEFT JOIN mv_party_committee_codes cc ON pb.party = cc.party
+        GROUP BY pb.party
+    ),
+    party_experience_metrics AS (
+        SELECT 
+            pb.party,
+            COUNT(CASE WHEN p.experience_level = 'Newcomer' THEN 1 END) as newcomer_count,
+            COUNT(CASE WHEN p.experience_level = 'Experienced' THEN 1 END) as experienced_count,
+            COUNT(CASE WHEN p.experience_level = 'Veteran' THEN 1 END) as veteran_count,
+            ROUND(AVG(p.overall_effectiveness_score), 2) as avg_member_effectiveness,
+            COUNT(CASE WHEN p.political_position = 'Government' THEN 1 END) as government_members,
+            COUNT(CASE WHEN p.political_position = 'Opposition' THEN 1 END) as opposition_members
+        FROM party_base pb
+        JOIN view_riksdagen_politician p ON pb.party = p.party
+        GROUP BY pb.party
+    ),
+    party_voting_metrics AS (
+        SELECT 
+            pb.party,
+            ROUND(AVG(NULLIF(p.total_votes_cast, 0)), 0) as avg_votes_per_member,
+            ROUND(AVG(NULLIF(p.yes_vote_percentage, 0)), 2) as party_avg_yes_votes,
+            ROUND(AVG(NULLIF(p.no_vote_percentage, 0)), 2) as party_avg_no_votes,
+            ROUND(AVG(NULLIF(p.absence_rate, 0)), 2) as party_avg_absence,
+            ROUND(AVG(NULLIF(p.party_rebel_rate, 0)), 2) as party_avg_rebel_rate,
+            ROUND(AVG(NULLIF(p.voting_success_rate, 0)), 2) as party_avg_success_rate,
+            ROUND(AVG(NULLIF(p.total_voting_days, 0)), 0) as avg_voting_days
+        FROM party_base pb
+        JOIN view_riksdagen_politician p ON pb.party = p.party
+        GROUP BY pb.party
+    )
+    SELECT 
+        pb.party,
+        
+        -- Assignment dates and service metrics
+        ma.first_assignment_date,
+        ma.last_assignment_date,
+        SUM(pm.totalDaysInCommittees) as total_days_served,
+        ma.days_served_parliament as total_days_served_parliament,
+        SUM(CASE 
+            WHEN pm.currentRoleCategory LIKE '%Committee%' 
+            THEN pm.totalDaysInCommittees 
+            ELSE 0 
+        END) as total_days_served_committee,
+        SUM(CASE 
+            WHEN pm.currentRoleCategory = 'Government' 
+            THEN pm.totalDaysInCommittees 
+            ELSE 0 
+        END) as total_days_served_government,
+        ma.days_served_eu as total_days_served_eu,
+        
+        -- Active status flags
+        bool_or(pm.currentRoleCategory != 'Inactive') as active,
+        ma.active_eu,
+        bool_or(pm.currentRoleCategory = 'Government') as active_government,
+        bool_or(pm.currentRoleCategory LIKE '%Committee%') as active_committee,
+        bool_or(pm.currentRoleCategory != 'Inactive') as active_parliament,
+        ma.active_speaker as active_speaker,
+        bool_or(pm.currentRoleCategory LIKE '%Party%') as active_party,
+        
+        -- Member counts and assignments
+        COUNT(DISTINCT CASE 
+            WHEN pm.currentRoleCategory != 'Inactive' THEN pm.id 
+        END) as total_active,
+        ma.total_active_eu,
+        COUNT(DISTINCT CASE 
+            WHEN pm.currentRoleCategory = 'Government' THEN pm.id 
+        END) as total_active_government,
+        COUNT(DISTINCT CASE 
+            WHEN pm.currentRoleCategory LIKE '%Committee%' THEN pm.id 
+        END) as total_active_committee,
+        COUNT(DISTINCT pm.id) as total_assignments,
+        ma.total_party_assignments,
+        ma.total_committee_assignments,
+        ma.current_party_assignments,
+        ma.current_committee_assignments,
+        
+        -- Committee Effectiveness Metrics
+        pce.avg_committee_effectiveness_score,
+        pce.total_committee_activity_score,
+        pce.avg_committee_productivity,
+        pce.total_high_activity_committees,
+        pce.total_committee_proposals,
+        pce.total_follow_ups,
+        pce.avg_committee_size,
+        pce.party_committee_areas,
+
+        -- Experience Distribution
+        pem.newcomer_count,
+        pem.experienced_count,
+        pem.veteran_count,
+        pem.avg_member_effectiveness,
+        pem.government_members,
+        pem.opposition_members,
+
+        -- Voting Behavior
+        pvm.avg_votes_per_member,
+        pvm.party_avg_yes_votes,
+        pvm.party_avg_no_votes,
+        pvm.party_avg_absence,
+        pvm.party_avg_rebel_rate,
+        pvm.party_avg_success_rate,
+        pvm.avg_voting_days,
+
+        -- Document metrics
+        SUM(pm.totalDocuments) as total_documents,
+        ROUND(AVG(NULLIF(pm.totalDocuments, 0)), 1) as avg_documents_per_member,
+        SUM(pm.partyMotions) as total_party_motions,
+        SUM(pm.individualMotions) as total_individual_motions,
+        SUM(pm.committeeMotions) as total_committee_motions,
+        SUM(pm.collaborativeMotions) as total_collaborative_motions,
+        SUM(pm.followUpMotions) as total_follow_up_motions,
+        
+        -- Recent activity metrics
+        COUNT(CASE WHEN pm.committeeDocsLastYear > 0 THEN 1 END) as currently_active_members,
+        SUM(pm.committeeDocsLastYear) as total_documents_last_year,
+        ROUND(AVG(NULLIF(pm.committeeDocsLastYear, 0)), 1) as avg_documents_last_year,
+        
+        -- Timeline and collaboration
+        MIN(pm.firstDocumentDate) as first_party_document,
+        MAX(pm.lastDocumentDate) as last_party_document,
+        ROUND(AVG(NULLIF(pm.crossPartyDocumentPercentage, 0)), 1) as avg_collaboration_percentage,
+        COUNT(CASE WHEN pm.crossPartyDocumentPercentage > 50 THEN 1 END) as highly_collaborative_members,
+
+        -- Composite Scores
+        ROUND(
+            (
+                COALESCE(pce.avg_committee_effectiveness_score, 0) * 0.3 +
+                COALESCE(pem.avg_member_effectiveness, 0) * 0.4 +
+                COALESCE(pvm.party_avg_success_rate, 0) * 0.3
+            )::numeric,
+            2
+        ) as party_overall_performance_score,
+
+        -- Experience Mix Score
+        ROUND(
+            (
+                (COALESCE(pem.veteran_count, 0) * 3 +
+                 COALESCE(pem.experienced_count, 0) * 2 +
+                 COALESCE(pem.newcomer_count, 0))::numeric /
+                NULLIF(COALESCE(pem.veteran_count, 0) +
+                      COALESCE(pem.experienced_count, 0) +
+                      COALESCE(pem.newcomer_count, 0), 0)
+            ),
+            2
+        ) as experience_balance_score,
+
+        -- Committee Influence Score
+        ROUND(
+            (
+                COALESCE(pce.total_high_activity_committees, 0)::numeric /
+                NULLIF(COALESCE(pce.total_committee_proposals, 0), 0) * 100
+            ),
+            2
+        ) as committee_influence_score
+
+    FROM party_base pb
+    JOIN view_riksdagen_party_member pm ON pb.party = pm.party
+    LEFT JOIN member_assignments ma ON pb.party = ma.party
+    LEFT JOIN party_committee_effectiveness pce ON pb.party = pce.party
+    LEFT JOIN party_experience_metrics pem ON pb.party = pem.party
+    LEFT JOIN party_voting_metrics pvm ON pb.party = pvm.party
+    GROUP BY 
+        pb.party,
+        ma.first_assignment_date,
+        ma.last_assignment_date,
+        ma.days_served_parliament,
+        ma.days_served_eu,
+        ma.active_eu,
+        ma.active_speaker,
+        ma.total_active_eu,
+        ma.total_party_assignments,
+        ma.total_committee_assignments,
+        ma.current_party_assignments,
+        ma.current_committee_assignments,
+        pce.avg_committee_effectiveness_score,
+        pce.total_committee_activity_score,
+        pce.avg_committee_productivity,
+        pce.total_high_activity_committees,
+        pce.total_committee_proposals,
+        pce.total_follow_ups,
+        pce.avg_committee_size,
+        pce.party_committee_areas,
+        pem.newcomer_count,
+        pem.experienced_count,
+        pem.veteran_count,
+        pem.avg_member_effectiveness,
+        pem.government_members,
+        pem.opposition_members,
+        pvm.avg_votes_per_member,
+        pvm.party_avg_yes_votes,
+        pvm.party_avg_no_votes,
+        pvm.party_avg_absence,
+        pvm.party_avg_rebel_rate,
+        pvm.party_avg_success_rate,
+        pvm.avg_voting_days
+    ORDER BY party_overall_performance_score DESC NULLS LAST
+    ]]>
+</sql>
+
+</changeSet>
+
+<changeSet author="pethers" id="8774122723-enhance-party" failOnError="true">
+    <comment>Add indexes to improve party view</comment>
+
+
+<createView viewName="view_riksdagen_party">
+    <![CDATA[
+    WITH member_activity AS (
+        SELECT 
+            party,
+            id,
+            CASE 
+                WHEN COALESCE(partyMotions, 0) > GREATEST(COALESCE(committeeMotions, 0), COALESCE(individualMotions, 0)) THEN 'Party-focused'
+                WHEN COALESCE(committeeMotions, 0) > GREATEST(COALESCE(partyMotions, 0), COALESCE(individualMotions, 0)) THEN 'Committee-focused'
+                ELSE 'Individual-focused'
+            END as activity_focus,
+            CASE
+                WHEN activityLevel = 'Very High' THEN 'Very High'
+                WHEN activityLevel = 'High' THEN 'High'
+                WHEN activityLevel = 'Medium' THEN 'Medium'
+                WHEN activityLevel = 'Low' THEN 'Low'
+                ELSE 'Low'
+            END as activity_level
+    FROM view_riksdagen_party_member
+    )
+    SELECT
+        rpm.party AS party_id,
+        rpm.partyid AS party_number,
+        rpm.partyname AS party_name,
+        COUNT(DISTINCT rpm.id) AS head_count,
+        rpm.website AS website,
+        rpm.registereddate AS registered_date,
+        -- Document statistics
+        SUM(COALESCE(rpm.totalDocuments, 0)) as total_documents,
+        ROUND(AVG(COALESCE(rpm.totalDocuments, 0)), 1) as avg_documents_per_member,
+        SUM(COALESCE(rpm.committeeDocsLastYear, 0)) as documents_last_year,
+        -- Activity Level Counts
+        COUNT(CASE WHEN ma.activity_level = 'Very High' THEN 1 END) as very_high_activity_members,
+        COUNT(CASE WHEN ma.activity_level = 'High' THEN 1 END) as high_activity_members,
+        COUNT(CASE WHEN ma.activity_level = 'Medium' THEN 1 END) as medium_activity_members,
+        COUNT(CASE WHEN ma.activity_level = 'Low' THEN 1 END) as low_activity_members,
+        -- Focus Area Counts
+        COUNT(CASE WHEN ma.activity_focus = 'Party-focused' THEN 1 END) as party_focused_members,
+        COUNT(CASE WHEN ma.activity_focus = 'Committee-focused' THEN 1 END) as committee_focused_members,
+        COUNT(CASE WHEN ma.activity_focus = 'Individual-focused' THEN 1 END) as individual_focused_members,
+        -- Collaboration
+        ROUND(AVG(COALESCE(rpm.crossPartyDocumentPercentage, 0)), 1) as avg_collaboration_percentage
+    FROM view_riksdagen_party_member rpm
+    LEFT JOIN member_activity ma ON rpm.id = ma.id
+    GROUP BY 
+        rpm.party,
+        rpm.partyid,
+        rpm.partyname,
+        rpm.website,
+        rpm.registereddate
+    ORDER BY rpm.party
+    ]]>
+</createView>
+
+</changeSet>
+
 
 
 </databaseChangeLog>
