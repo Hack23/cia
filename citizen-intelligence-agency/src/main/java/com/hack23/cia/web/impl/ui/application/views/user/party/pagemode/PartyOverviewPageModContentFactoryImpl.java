@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
+import java.util.Locale;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -246,7 +248,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	    if (summary != null) {
 	        // Active Participation
 	        layout.addComponent(createInfoRow("Parliament Activity:",
-	            String.format("%.1f%%", calculateActivityRate(summary.getTotalActiveParliament(), party.getHeadCount())),
+	            String.format(Locale.ENGLISH,"%.1f%%", calculateActivityRate(summary.getTotalActiveParliament(), party.getHeadCount())),
 	            VaadinIcons.CHART_LINE,
 	            "Percentage of active members in parliament"));
 
@@ -258,12 +260,12 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 	        // Historical Presence
 	        layout.addComponent(createInfoRow("Days in Government:",
-	            String.format("%,d", summary.getTotalDaysServedGovernment()),
+	            String.format(Locale.ENGLISH,"%,d", summary.getTotalDaysServedGovernment()),
 	            VaadinIcons.CLOCK,
 	            "Total days served in government"));
 
 	        layout.addComponent(createInfoRow("Parliamentary Experience:",
-	            String.format("%,d", summary.getTotalDaysServedParliament()),
+	            String.format(Locale.ENGLISH,"%,d", summary.getTotalDaysServedParliament()),
 	            VaadinIcons.CALENDAR_CLOCK,
 	            "Total days served in parliament"));
 	    }
@@ -295,7 +297,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 	        // Cross-party Cooperation
 	        layout.addComponent(createInfoRow("Collaboration Rate:",
-	            String.format("%.1f%%", summary.getAvgCollaborationPercentage()),
+	            String.format(Locale.ENGLISH,"%.1f%%", summary.getAvgCollaborationPercentage()),
 	            VaadinIcons.CONNECT,
 	            "Cross-party collaboration percentage"));
 
@@ -306,7 +308,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 	        // Legislative Efficiency
 	        layout.addComponent(createInfoRow("Productivity:",
-	            String.format("%.1f", summary.getAvgDocumentsPerMember()),
+	            String.format(Locale.ENGLISH,"%.1f", summary.getAvgDocumentsPerMember()),
 	            VaadinIcons.CHART_GRID,
 	            "Average documents per member"));
 	    }
@@ -327,7 +329,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	    if (summary != null) {
 	        // Activity Distribution
 	        layout.addComponent(createInfoRow("High Performers:",
-	            String.format("%d (%d%%)",
+	            String.format(Locale.ENGLISH,"%d (%d%%)",
 	                summary.getVeryHighActivityMembers(),
 	                calculatePercentage(summary.getVeryHighActivityMembers(), party.getHeadCount())),
 	            VaadinIcons.STAR,
@@ -335,14 +337,14 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 	        // Member Focus Areas
 	        layout.addComponent(createInfoRow("Party Policy Focus:",
-	            String.format("%d (%d%%)",
+	            String.format(Locale.ENGLISH,"%d (%d%%)",
 	                summary.getPartyFocusedMembers(),
 	                calculatePercentage(summary.getPartyFocusedMembers(), party.getHeadCount())),
 	            VaadinIcons.FLAG,
 	            "Members focused on party policy work"));
 
 	        layout.addComponent(createInfoRow("Committee Focus:",
-	            String.format("%d (%d%%)",
+	            String.format(Locale.ENGLISH,"%d (%d%%)",
 	                summary.getCommitteeFocusedMembers(),
 	                calculatePercentage(summary.getCommitteeFocusedMembers(), party.getHeadCount())),
 	            VaadinIcons.CLIPBOARD_USER,
@@ -350,7 +352,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 	        // Collaboration Metrics
 	        layout.addComponent(createInfoRow("Collaborative Members:",
-	            String.format("%d (%d%%)",
+	            String.format(Locale.ENGLISH,"%d (%d%%)",
 	                summary.getHighlyCollaborativeMembers(),
 	                calculatePercentage(summary.getHighlyCollaborativeMembers(), party.getHeadCount())),
 	            VaadinIcons.CONNECT,
