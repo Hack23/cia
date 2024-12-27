@@ -43,14 +43,35 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeRankingDataGridPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
 	/** The Constant COLUMN_ORDER. */
-	private static final String[] COLUMN_ORDER = { "embeddedId.detail", "embeddedId", "totalDaysServed", "currentMemberSize",
-			"totalAssignments", "firstAssignmentDate", "active", "lastAssignmentDate" };
-
-	/** The Constant COMMITTEES. */
-	private static final String COMMITTEES = "Committees";
+	private static final String[] COLUMN_ORDER = { 
+		    "embeddedId.detail", 
+		    "embeddedId", 
+		    "currentMemberSize",
+		    "currentLeadershipPositions",
+		    "currentSubstitutePositions",
+		    "currentRegularMembers",
+		    "activityLevel",
+		    "totalCommitteeMotions",
+		    "avgDocumentsPerMember",
+		    "documentsLastYear",
+		    "totalDocuments",
+		    "totalAssignments", 
+		    "firstAssignmentDate", 
+		    "lastAssignmentDate",
+		    "totalDaysServed", 
+		    "totalLeadershipPositions",
+		    "totalSubstitutePositions"
+		};
 
 	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = { "active","embeddedId" };
+	private static final String[] HIDE_COLUMNS = { 
+		    "active", 
+		    "embeddedId",
+		    "totalFollowUpMotions"
+		};
+	
+	/** The Constant COMMITTEES. */
+	private static final String COMMITTEES = "Committees";
 
 	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, "embeddedId.orgCode");
