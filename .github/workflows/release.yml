@@ -24,6 +24,9 @@ jobs:
       statuses: write    # Required for commit statuses updated by actions
       issues: read       # Needed for release notes generation capability
       pull-requests: read    # Access for potential PR-related operations
+      pages: read
+      deployments: write
+      attestations: write # Required to create and persist attestations
     strategy:
       fail-fast: false
 
