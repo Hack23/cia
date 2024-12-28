@@ -17,17 +17,17 @@ on:
 env:
   javaVersion: java21
 
-permissions:
-  contents: write
-  security-events: write
-  pull-requests: read
-
+permissions: read-all
 
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-24.04
-
+    permissions:
+      contents: write        # Required for dependency submission and repository access
+      security-events: write # Required for CodeQL, checkov, and dependency submission
+      pull-requests: read   # Needed for PR analysis
+      actions: read         # Needed for CodeQL action metadata
     strategy:
       fail-fast: false
       matrix:
