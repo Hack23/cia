@@ -40,26 +40,55 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * The Class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.
+ */
 @Service
 public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
+	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
 	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
 	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
+
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
 	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
 
+	/** The Constant EXPENDITURE_GROUP_NAME. */
 	private static final String EXPENDITURE_GROUP_NAME = "Utgiftsområdesnamn";
+
+	/** The Constant INKOMSTTITELGRUPPSNAMN. */
 	private static final String INKOMSTTITELGRUPPSNAMN = "Inkomsttitelgruppsnamn";
+
+	/** The Constant CURRENT_YEAR. */
 	private static final int CURRENT_YEAR = 2024;
 
+	/** The esv api. */
 	private final EsvApi esvApi;
 
+	/**
+	 * Instantiates a new ministry ranking current parties leader scoreboard charts page mod content factory impl.
+	 *
+	 * @param esvApi the esv api
+	 */
 	public MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl(final EsvApi esvApi) {
 		super();
 		this.esvApi = esvApi;
 	}
 
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -119,6 +148,11 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		return panelContent;
 	}
 
+	/**
+	 * Load active government role members.
+	 *
+	 * @return the list
+	 */
 	private List<ViewRiksdagenGovermentRoleMember> loadActiveGovernmentRoleMembers() {
 		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -126,6 +160,11 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				ViewRiksdagenGovermentRoleMember_.active);
 	}
 
+	/**
+	 * Load active politicians by person id.
+	 *
+	 * @return the map
+	 */
 	private Map<String, List<ViewRiksdagenPolitician>> loadActivePoliticiansByPersonId() {
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPolitician.class);
@@ -134,6 +173,12 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		return activePoliticians.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
 	}
 
+	/**
+	 * Compute party leaders.
+	 *
+	 * @param personIds the person ids
+	 * @return the map
+	 */
 	private Map<String, Boolean> computePartyLeaders(Iterable<String> personIds) {
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
@@ -152,6 +197,13 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		return result;
 	}
 
+	/**
+	 * Gets the role priority.
+	 *
+	 * @param role the role
+	 * @param isPartyLeader the is party leader
+	 * @return the role priority
+	 */
 	private int getRolePriority(String role, boolean isPartyLeader) {
 		final String roleNormalized = role.toLowerCase(Locale.ROOT).trim();
 		if ("statsminister".equals(roleNormalized)) {
@@ -167,6 +219,16 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		}
 	}
 
+	/**
+	 * Creates the baseball style card.
+	 *
+	 * @param govMember the gov member
+	 * @param politician the politician
+	 * @param ballotSummary the ballot summary
+	 * @param governmentBodyByMinistry the government body by ministry
+	 * @param reportByMinistry the report by ministry
+	 * @return the panel
+	 */
 	private Panel createBaseballStyleCard(ViewRiksdagenGovermentRoleMember govMember,
 			ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
 			Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry) {
@@ -282,7 +344,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		sections2Grid.setSpacing(true);
 		sections2Grid.setWidth("100%");
 
-		
+
 		final VerticalLayout legislativeLayout = createSectionLayout("Legislative Activity");
 		addLegislativeMetrics(legislativeLayout, politician);
 		sections2Grid.addComponent(legislativeLayout);
@@ -297,6 +359,12 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		return cardPanel;
 	}
 
+	/**
+	 * Checks if is party leader.
+	 *
+	 * @param personId the person id
+	 * @return true, if is party leader
+	 */
 	private boolean isPartyLeader(String personId) {
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
@@ -308,6 +376,12 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		return partyRoles.stream().anyMatch(r -> "Partiledare".equalsIgnoreCase(r.getRoleCode()));
 	}
 
+	/**
+	 * Gets the party leader role.
+	 *
+	 * @param personId the person id
+	 * @return the party leader role
+	 */
 	private ViewRiksdagenPartyRoleMember getPartyLeaderRole(String personId) {
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
@@ -320,6 +394,14 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				.orElse(null);
 	}
 
+	/**
+	 * Adds the ministry role summary.
+	 *
+	 * @param cardLayout the card layout
+	 * @param govMember the gov member
+	 * @param governmentBodyByMinistry the government body by ministry
+	 * @param reportByMinistry the report by ministry
+	 */
 	private void addMinistryRoleSummary(final VerticalLayout cardLayout,
 			final ViewRiksdagenGovermentRoleMember govMember,
 			final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
@@ -386,6 +468,15 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				));
 	}
 
+	/**
+	 * Creates the metric row.
+	 *
+	 * @param icon the icon
+	 * @param linkComponent the link component
+	 * @param description the description
+	 * @param valueText the value text
+	 * @return the horizontal layout
+	 */
 	private HorizontalLayout createMetricRow(VaadinIcons icon, com.vaadin.ui.Component linkComponent,
 			String description, String valueText) {
 		final HorizontalLayout layout = new HorizontalLayout();
@@ -412,6 +503,12 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		return layout;
 	}
 
+	/**
+	 * Creates the section layout.
+	 *
+	 * @param title the title
+	 * @return the vertical layout
+	 */
 	private VerticalLayout createSectionLayout(String title) {
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setSpacing(true);
@@ -424,6 +521,14 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		return layout;
 	}
 
+	/**
+	 * Adds the political role metrics.
+	 *
+	 * @param layout the layout
+	 * @param govMember the gov member
+	 * @param politician the politician
+	 * @param ballotSummary the ballot summary
+	 */
 	private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenGovermentRoleMember govMember,
 			ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
@@ -432,11 +537,23 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 			layout.addComponent(createInfoRow("Career Length:",
 				String.format(Locale.ENGLISH,"%,d days", govMember.getTotalDaysServed()),
 				VaadinIcons.TIMER, "Years in parliament"));
-		layout.addComponent(
-				createInfoRow("Influence Score:", String.format(Locale.ENGLISH,"%.1f", ballotSummary.getVotingConsistencyScore()),
-						VaadinIcons.CHART_GRID, "Overall parliamentary influence"));
+
+			layout.addComponent(createInfoRow("Total Propositions:",
+					String.format(Locale.ENGLISH,"%,d", govMember.getTotalPropositions()),
+					VaadinIcons.GROUP, "Total Propositions"));
+			layout.addComponent(createInfoRow("Total Government Bills:",
+					String.format(Locale.ENGLISH,"%,d", govMember.getTotalGovernmentBills()),
+					VaadinIcons.GROUP, "Total Government Bills"));
+
 	}
 
+	/**
+	 * Adds the parliamentary performance metrics.
+	 *
+	 * @param layout the layout
+	 * @param politician the politician
+	 * @param ballotSummary the ballot summary
+	 */
 	private void addParliamentaryPerformanceMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
 			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
@@ -447,10 +564,18 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				VaadinIcons.TROPHY, "Votes on winning side"));
 		layout.addComponent(createInfoRow("Activity Level:", politician.getDocActivityLevel(), VaadinIcons.CHART_LINE,
 				"Overall engagement level"));
-		layout.addComponent(createInfoRow("Total Votes:", String.valueOf(ballotSummary != null ? ballotSummary.getTotalVotes() : 0),
-				VaadinIcons.USER_CARD, "Total votes cast"));
+		layout.addComponent(
+				createInfoRow("Influence Score:", String.format(Locale.ENGLISH,"%.1f", ballotSummary.getVotingConsistencyScore()),
+						VaadinIcons.CHART_GRID, "Overall parliamentary influence"));
+
 	}
 
+	/**
+	 * Adds the legislative metrics.
+	 *
+	 * @param layout the layout
+	 * @param politician the politician
+	 */
 	private void addLegislativeMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician) {
 
 		layout.addComponent(createInfoRow("Documents/Year:", String.format(Locale.ENGLISH,"%.1f", politician.getAverageDocsPerYear()),
@@ -463,6 +588,13 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				"Legislative influence assessment"));
 	}
 
+	/**
+	 * Adds the party alignment metrics.
+	 *
+	 * @param layout the layout
+	 * @param politician the politician
+	 * @param ballotSummary the ballot summary
+	 */
 	private void addPartyAlignmentMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
 			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
@@ -477,6 +609,15 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				VaadinIcons.USERS, "Cross-party legislative initiatives"));
 	}
 
+	/**
+	 * Creates the info row.
+	 *
+	 * @param caption the caption
+	 * @param value the value
+	 * @param icon the icon
+	 * @param tooltip the tooltip
+	 * @return the horizontal layout
+	 */
 	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
 			final String tooltip) {
 		final HorizontalLayout layout = new HorizontalLayout();
@@ -505,6 +646,13 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		return layout;
 	}
 
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())

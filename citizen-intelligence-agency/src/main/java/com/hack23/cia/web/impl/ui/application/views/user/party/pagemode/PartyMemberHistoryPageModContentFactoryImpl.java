@@ -22,8 +22,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
@@ -41,23 +41,21 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = { "personId", "firstName", "lastName", "party",
-			"bornYear", "totalDaysServed", "currentAssignments", "totalAssignments", "firstAssignmentDate",
-			"lastAssignmentDate", "totalDaysServedParliament", "totalDaysServedCommittee", "totalDaysServedGovernment",
-			"totalDaysServedEu",
+	/** The Constant COLUMN_ORDER. */
+	private static final String[] COLUMN_ORDER = { "id", "firstName", "lastName", "activityLevel", "activityProfile", "collaborationPercentage", "individualMotions", "partyMotions",
+			"committeeMotions", "multiPartyMotions", "documentsLastYear", "totalDocuments", "status"
+			 };
 
-			"active", "activeEu", "activeGovernment", "activeCommittee", "activeParliament",
+	/** The Constant HIDE_COLUMNS. */
+	private static final String[] HIDE_COLUMNS = { "id","partyId", "phoneNumber", "postCode", "registeredDate", "shortCode", "website",
+			"gender", "hangarGuid", "imageUrl192", "imageUrl80", "imageUrlMax","coAddress","city","hjid",
+			"personUrlXml", "place", "personAssignmentData", "personDetailData","party", "partyName","email","faxNumber","address","bornYear" };
 
-			"activeParty", "activeSpeaker", "totalDaysServedSpeaker", "totalDaysServedParty",
-
-			"totalPartyAssignments", "totalMinistryAssignments", "totalCommitteeAssignments", "totalSpeakerAssignments",
-
-			"currentPartyAssignments", "currentMinistryAssignments", "currentCommitteeAssignments",
-			"currentSpeakerAssignments", "gender" };
-	private static final String[] HIDE_COLUMNS = { "personId", "active", "party", "activeEu",
-			"activeGovernment", "activeCommittee", "activeParliament", "activeParty", "activeSpeaker", "bornYear" };
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.POLITICIAN_VIEW_NAME, "personId");
+			UserViews.POLITICIAN_VIEW_NAME, "id");
+
+	/** The Constant POLITICIANS. */
 	private static final String POLITICIANS = "Politicians";
 
 	/**
@@ -67,6 +65,14 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 		super();
 	}
 
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
 	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
@@ -79,11 +85,11 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 
 		createPageHeader(panel, panelContent, "Member History " + viewRiksdagenParty.getPartyName(), "Party Members", "Explore the history of party members and their roles.");
 
-		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPolitician.class);
+		final DataContainer<ViewRiksdagenPartyMember, String> partyMembernDataContainer = getApplicationManager()
+				.getDataContainer(ViewRiksdagenPartyMember.class);
 
-		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class,
-				politicianDataContainer.getAllBy(ViewRiksdagenPolitician_.party, viewRiksdagenParty.getPartyId()),
+		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartyMember.class,
+				partyMembernDataContainer.getAllBy(ViewRiksdagenPartyMember_.party, viewRiksdagenParty.getPartyId()),
 				POLITICIANS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
@@ -92,6 +98,13 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 
 	}
 
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && parameters.contains(PartyPageMode.MEMBERHISTORY.toString());
