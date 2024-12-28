@@ -15,6 +15,7 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
@@ -213,57 +214,29 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 			}
 		}
 
-		// After creating the divider following the header/subtitle
-		// We create a vertical layout to hold Tenure and Experience on separate rows
-		final VerticalLayout statsContainer = new VerticalLayout();
-		statsContainer.setSpacing(false); // Less space between rows
-		statsContainer.addStyleName("card-stats-container");
-		statsContainer.setWidth("100%");
+		// Create grid for the four sections
+		final HorizontalLayout sectionsGrid = new HorizontalLayout();
+		sectionsGrid.setSpacing(true);
+		sectionsGrid.setWidth("100%");
+		
+		// Add the four main sections
+		final VerticalLayout politicalRoleLayout = createSectionLayout("Political Role & Influence");
+		addPoliticalRoleMetrics(politicalRoleLayout, govMember, politician, null);
+		sectionsGrid.addComponent(politicalRoleLayout);
+		
+		final VerticalLayout performanceLayout = createSectionLayout("Parliamentary Performance");
+		addParliamentaryPerformanceMetrics(performanceLayout, politician, null);
+		sectionsGrid.addComponent(performanceLayout);
+		
+		final VerticalLayout legislativeLayout = createSectionLayout("Legislative Activity");
+		addLegislativeMetrics(legislativeLayout, politician);
+		sectionsGrid.addComponent(legislativeLayout);
+		
+		final VerticalLayout alignmentLayout = createSectionLayout("Party Alignment");
+		addPartyAlignmentMetrics(alignmentLayout, politician, null);
+		sectionsGrid.addComponent(alignmentLayout);
 
-		// Tenure Row
-		final HorizontalLayout tenureLayout = new HorizontalLayout();
-		tenureLayout.setSpacing(true);
-		tenureLayout.addStyleName("card-tenure");
-		final Label tenureIcon = new Label(VaadinIcons.CLOCK.getHtml(), ContentMode.HTML);
-		tenureIcon.setDescription("Tenure in days");
-
-		final Label tenureLabel = new Label("Tenure:");
-		tenureLabel.addStyleName("card-tenure-text");
-
-		final Label tenureValue = new Label(govMember.getTotalDaysServed() + " days");
-		tenureValue.addStyleName("card-tenure-value");
-
-		tenureLayout.addComponents(tenureIcon, tenureLabel, tenureValue);
-		statsContainer.addComponent(tenureLayout);
-
-		// Experience Row
-		final HorizontalLayout experienceLayout = new HorizontalLayout();
-		experienceLayout.setSpacing(true);
-		experienceLayout.addStyleName("card-experience-section");
-		final Label expIcon = new Label(VaadinIcons.USER_CHECK.getHtml(), ContentMode.HTML);
-		expIcon.setDescription("Political Experience");
-
-		final Label expLabel = new Label("Experience:");
-		expLabel.addStyleName("card-experience-text");
-
-		final int govYears = (int) (politician.getTotalDaysServedGovernment() / 365);
-		final int partyYears = (int) (politician.getTotalDaysServedParty() / 365);
-		final int parliamentYears = (int) (politician.getTotalDaysServedParliament() / 365);
-		final Label expValue = new Label(
-				"Goverment: " + govYears + "y, Party: " + partyYears + "y, Parliament: " + parliamentYears + "y");
-		expValue.addStyleName("card-experience-value");
-
-		experienceLayout.addComponents(expIcon, expLabel, expValue);
-		statsContainer.addComponent(experienceLayout);
-
-		// Add the statsContainer to the cardContent
-		cardContent.addComponent(statsContainer);
-
-//        // Another divider before ministry stats
-//        Label divider2 = new Label();
-//        divider2.addStyleName("card-divider");
-//        divider2.setWidth("100%");
-//        cardContent.addComponent(divider2);
+		cardContent.addComponent(sectionsGrid);
 
 		addMinistryRoleSummary(cardContent, govMember, governmentBodyByMinistry, reportByMinistry);
 
@@ -382,6 +355,126 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 			layout.addComponent(valueLabel);
 		}
 
+		return layout;
+	}
+
+	private VerticalLayout createSectionLayout(String title) {
+	    final VerticalLayout layout = new VerticalLayout();
+	    layout.setSpacing(true);
+	    layout.setMargin(true);
+	    layout.addStyleName("card-details-column");
+	    layout.setWidth("100%");
+
+	    final Label header = new Label(title);
+	    header.addStyleName("card-section-title");
+	    layout.addComponent(header);
+
+	    // Add some vertical padding after the header
+	    final Label padding = new Label();
+	    padding.setHeight("10px");
+	    layout.addComponent(padding);
+
+	    return layout;
+	}
+
+	private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenGovermentRoleMember govMember, 
+	      ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+	      
+	      // Add existing tenure info
+	      // Then add new metrics:
+	      layout.addComponent(createInfoRow("Political Experience:", 
+	          String.format("Gov: %dy, Party: %dy, Parliament: %dy",
+	              politician.getTotalDaysServedGovernment()/365,
+	              politician.getTotalDaysServedParty()/365, 
+	              politician.getTotalDaysServedParliament()/365),
+	          VaadinIcons.TROPHY, "Years served in different roles"));
+
+	      layout.addComponent(createInfoRow("Current Assignments:", 
+	          String.valueOf(politician.getCurrentAssignments()),
+	          VaadinIcons.USER_CARD, "Current political assignments"));
+
+	      if (ballotSummary != null) {
+	          layout.addComponent(createInfoRow("Voting Consistency:", 
+	              String.format(Locale.ENGLISH,"%.1f%%", ballotSummary.getVotingConsistencyScore()),
+	              VaadinIcons.CHECK, "Consistency in voting patterns"));
+	      }
+	  }
+
+	private void addParliamentaryPerformanceMetrics(VerticalLayout layout,
+	      ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+
+	      if (ballotSummary != null) {
+	          layout.addComponent(createInfoRow("Attendance Rate:", 
+	              String.format(Locale.ENGLISH,"%.1f%%", 100 - ballotSummary.getAbsenceRate()),
+	              VaadinIcons.USER_CHECK, "Session attendance rate"));
+
+	          layout.addComponent(createInfoRow("Voting Success:", 
+	              String.format(Locale.ENGLISH,"%.1f%%", ballotSummary.getSuccessRate()),
+	              VaadinIcons.STAR, "Votes on winning side"));
+	      }
+
+	      layout.addComponent(createInfoRow("Parliamentary Activity:", 
+	          politician.getDocActivityLevel(),
+	          VaadinIcons.CHART_LINE, "Overall parliamentary engagement"));
+	  }
+
+	private void addLegislativeMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician) {
+	      layout.addComponent(createInfoRow("Documents/Year:", 
+	          String.format(Locale.ENGLISH,"%.1f", politician.getAverageDocsPerYear()),
+	          VaadinIcons.FILE_TEXT, "Average documents per year"));
+
+	      layout.addComponent(createInfoRow("Individual Motions:", 
+	          String.valueOf(politician.getIndividualMotions()),
+	          VaadinIcons.USER, "Personal motions submitted"));
+	          
+	      layout.addComponent(createInfoRow("Party Motions:", 
+	          String.valueOf(politician.getPartyMotions()),
+	          VaadinIcons.GROUP, "Party-sponsored motions"));
+	  }
+
+	private void addPartyAlignmentMetrics(VerticalLayout layout,
+	      ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+
+	      if (ballotSummary != null) {
+	          layout.addComponent(createInfoRow("Party Loyalty:", 
+	              String.format(Locale.ENGLISH,"%.1f%%", ballotSummary.getLoyaltyRate()),
+	              VaadinIcons.GROUP, "Party line adherence"));
+
+	          layout.addComponent(createInfoRow("Independence Rate:", 
+	              String.format(Locale.ENGLISH,"%.1f%%", ballotSummary.getRebelRate()),
+	              VaadinIcons.RANDOM, "Votes against party line"));
+	      }
+
+	      layout.addComponent(createInfoRow("Cross-Party Work:", 
+	          String.format(Locale.ENGLISH,"%.1f%%", politician.getCollaborationPercentage()),
+	          VaadinIcons.CONNECT, "Inter-party cooperation"));
+	  }
+
+	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon, final String tooltip) {
+		final HorizontalLayout layout = new HorizontalLayout();
+		layout.setSpacing(true);
+		layout.addStyleName("metric-label");
+		layout.setWidthUndefined();
+
+		if (icon != null) {
+			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+			iconLabel.addStyleName("card-info-icon");
+			if (tooltip != null && !tooltip.isEmpty()) {
+				iconLabel.setDescription(tooltip);
+			}
+			layout.addComponent(iconLabel);
+		}
+
+		final Label captionLabel = new Label(caption);
+		captionLabel.addStyleName("card-info-caption");
+		if (tooltip != null && !tooltip.isEmpty()) {
+			captionLabel.setDescription(tooltip);
+		}
+
+		final Label valueLabel = new Label(value != null ? value : "");
+		valueLabel.addStyleName("card-info-value");
+
+		layout.addComponents(captionLabel, valueLabel);
 		return layout;
 	}
 
