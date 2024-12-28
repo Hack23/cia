@@ -426,9 +426,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		layout.addComponent(createInfoRow("Current Role:", govMember.getRoleCode(), VaadinIcons.INSTITUTION,
 				"Current position in parliament"));
-		layout.addComponent(createInfoRow("Region:", govMember.getElectoralDistrict(), VaadinIcons.MAP_MARKER,
-				"Electoral district"));
-		layout.addComponent(createInfoRow("Career Length:",
+			layout.addComponent(createInfoRow("Career Length:",
 				String.format(Locale.ENGLISH,"%,d days", govMember.getTotalDaysServed()),
 				VaadinIcons.TIMER, "Years in parliament"));
 		layout.addComponent(
