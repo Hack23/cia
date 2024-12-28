@@ -273,15 +273,21 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		addParliamentaryPerformanceMetrics(performanceLayout, politician, null);
 		sectionsGrid.addComponent(performanceLayout);
 
+	    cardContent.addComponent(sectionsGrid);
+
+		final HorizontalLayout sections2Grid = new HorizontalLayout();
+		sections2Grid.setSpacing(true);
+		sections2Grid.setWidth("100%");
+
+		
 		final VerticalLayout legislativeLayout = createSectionLayout("Legislative Activity");
 		addLegislativeMetrics(legislativeLayout, politician);
-		sectionsGrid.addComponent(legislativeLayout);
+		sections2Grid.addComponent(legislativeLayout);
 
 		final VerticalLayout alignmentLayout = createSectionLayout("Party Alignment");
 		addPartyAlignmentMetrics(alignmentLayout, politician, null);
-		sectionsGrid.addComponent(alignmentLayout);
-
-		cardContent.addComponent(sectionsGrid);
+		sections2Grid.addComponent(alignmentLayout);
+		cardContent.addComponent(sections2Grid);
 
 		addMinistryRoleSummary(cardContent, govMember, governmentBodyByMinistry, reportByMinistry);
 
