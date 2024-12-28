@@ -433,7 +433,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				String.format(Locale.ENGLISH,"%,d days", govMember.getTotalDaysServed()),
 				VaadinIcons.TIMER, "Years in parliament"));
 		layout.addComponent(
-				createInfoRow("Influence Score:", String.format(Locale.ENGLISH,"%.1f", 0.0),
+				createInfoRow("Influence Score:", String.format(Locale.ENGLISH,"%.1f", ballotSummary.getVotingConsistencyScore()),
 						VaadinIcons.CHART_GRID, "Overall parliamentary influence"));
 	}
 
