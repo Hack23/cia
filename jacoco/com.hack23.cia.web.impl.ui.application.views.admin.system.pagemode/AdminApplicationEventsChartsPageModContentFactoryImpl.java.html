@@ -59,18 +59,20 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 
 <span class="fc" id="L60">		createPageHeader(panel, content, &quot;Admin Application Event Charts&quot;, &quot;Event Analysis&quot;, &quot;Visualize and analyze application events using interactive charts and graphs.&quot;);</span>
 
-<span class="fc" id="L62">		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);</span>
+<span class="fc" id="L62">		content.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
 
-<span class="fc" id="L64">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW,</span>
+<span class="fc" id="L64">		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);</span>
+
+<span class="fc" id="L66">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW,</span>
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
-<span class="fc" id="L67">		return content;</span>
+<span class="fc" id="L69">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L73" title="1 of 6 branches missed.">		return parameters != null &amp;&amp; NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
+<span class="pc bpc" id="L75" title="1 of 6 branches missed.">		return parameters != null &amp;&amp; NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
 	}
 
 }

@@ -1,38 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenCommitteeRoleMember_.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.committee.impl</a> &gt; <span class="el_source">ViewRiksdagenCommitteeRoleMember_.java</span></div><h1>ViewRiksdagenCommitteeRoleMember_.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.committee.impl;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenCommitteeRoleMember_.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.committee.impl</a> &gt; <span class="el_source">ViewRiksdagenCommitteeRoleMember_.java</span></div><h1>ViewRiksdagenCommitteeRoleMember_.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.committee.impl;
 
 import java.util.Date;
-import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value = &quot;org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor&quot;)
 @StaticMetamodel(ViewRiksdagenCommitteeRoleMember.class)
-<span class="nc" id="L10">public abstract class ViewRiksdagenCommitteeRoleMember_ {</span>
+<span class="nc" id="L8">public abstract class ViewRiksdagenCommitteeRoleMember_ {</span>
 
-	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Date&gt; fromDate;
-	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; firstName;
 	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; lastName;
 	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Integer&gt; totalDaysServed;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; committeeType;
 	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Long&gt; roleId;
-	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; roleCode;
 	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Date&gt; toDate;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Long&gt; totalStatements;
 	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Boolean&gt; active;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; roleType;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Date&gt; fromDate;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; firstName;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Long&gt; documentsLastYear;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Long&gt; totalDocuments;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; roleCode;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Long&gt; totalInitiatives;
 	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; personId;
 	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; detail;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, Long&gt; totalCommitteeReports;
 	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; party;
+	public static volatile SingularAttribute&lt;ViewRiksdagenCommitteeRoleMember, String&gt; activityLevel;
 
-	public static final String FROM_DATE = &quot;fromDate&quot;;
-	public static final String FIRST_NAME = &quot;firstName&quot;;
 	public static final String LAST_NAME = &quot;lastName&quot;;
 	public static final String TOTAL_DAYS_SERVED = &quot;totalDaysServed&quot;;
+	public static final String COMMITTEE_TYPE = &quot;committeeType&quot;;
 	public static final String ROLE_ID = &quot;roleId&quot;;
-	public static final String ROLE_CODE = &quot;roleCode&quot;;
 	public static final String TO_DATE = &quot;toDate&quot;;
+	public static final String TOTAL_STATEMENTS = &quot;totalStatements&quot;;
 	public static final String ACTIVE = &quot;active&quot;;
+	public static final String ROLE_TYPE = &quot;roleType&quot;;
+	public static final String FROM_DATE = &quot;fromDate&quot;;
+	public static final String FIRST_NAME = &quot;firstName&quot;;
+	public static final String DOCUMENTS_LAST_YEAR = &quot;documentsLastYear&quot;;
+	public static final String TOTAL_DOCUMENTS = &quot;totalDocuments&quot;;
+	public static final String ROLE_CODE = &quot;roleCode&quot;;
+	public static final String TOTAL_INITIATIVES = &quot;totalInitiatives&quot;;
 	public static final String PERSON_ID = &quot;personId&quot;;
 	public static final String DETAIL = &quot;detail&quot;;
+	public static final String TOTAL_COMMITTEE_REPORTS = &quot;totalCommitteeReports&quot;;
 	public static final String PARTY = &quot;party&quot;;
+	public static final String ACTIVITY_LEVEL = &quot;activityLevel&quot;;
 
 }
 
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

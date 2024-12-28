@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -31,12 +30,15 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
-
 
 /**
  * The Class AdminPortalPageModContentFactoryImpl.
@@ -44,69 +46,185 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-<span class="fc" id="L47">	private static final List&lt;String&gt; AS_LIST = Arrays.asList(&quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;,</span>
-			&quot;googleMapApiKey&quot;);
+<span class="fc" id="L49">    private static final String[] COLUMN_ORDER = {</span>
+        &quot;hjid&quot;,
+        &quot;portalName&quot;,
+        &quot;description&quot;,
+        &quot;portalType&quot;,
+        &quot;googleMapApiKey&quot;,
+        &quot;modelObjectVersion&quot;
+    };
 
-<span class="fc" id="L50">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;, &quot;googleMapApiKey&quot;,</span>
-			&quot;modelObjectVersion&quot; };
+<span class="fc" id="L58">    private static final String[] HIDE_COLUMNS = {</span>
+        &quot;hjid&quot;,
+        &quot;modelObjectId&quot;,
+        &quot;googleMapApiKey&quot;,
+        &quot;modelObjectVersion&quot;
+    };
 
-<span class="fc" id="L53">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;googleMapApiKey&quot;, &quot;modelObjectVersion&quot; };</span>
+    /** The Constant NAME. */
+    public static final String NAME = AdminViews.ADMIN_PORTAL_VIEW_NAME;
 
-	/** The Constant NAME. */
-	public static final String NAME = AdminViews.ADMIN_PORTAL_VIEW_NAME;
+    private static final String PORTAL2 = &quot;Portal&quot;;
 
-	private static final String PORTAL2 = &quot;Portal&quot;;
+    /**
+     * Instantiates a new admin portal page mod content factory impl.
+     */
+    public AdminPortalPageModContentFactoryImpl() {
+<span class="fc" id="L74">        super(NAME);</span>
+<span class="fc" id="L75">    }</span>
 
-	/**
-	 * Instantiates a new admin agency page mod content factory impl.
-	 */
-	public AdminPortalPageModContentFactoryImpl() {
-<span class="fc" id="L64">		super(NAME);</span>
-<span class="fc" id="L65">	}</span>
+    @Secured({ &quot;ROLE_ADMIN&quot; })
+    @Override
+    public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L80">        final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L81">        content.setStyleName(&quot;admin-portal-content&quot;);</span>
 
+<span class="fc" id="L83">        final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L84">        final int pageNr = getPageNr(parameters);</span>
 
-	@Secured({ &quot;ROLE_ADMIN&quot; })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L71">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L86">        getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L73">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L74">		final int pageNr= getPageNr(parameters);</span>
+<span class="fc" id="L88">        createPageHeader(panel, content,</span>
+            &quot;Admin Portal Management&quot;,
+            &quot;Portal Overview&quot;,
+            &quot;Centralized management interface for accessing and controlling administrative tools.&quot;
+        );
 
-<span class="fc" id="L76">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L94">        final DataContainer&lt;Portal, Long&gt; dataContainer = getApplicationManager().getDataContainer(Portal.class);</span>
 
-<span class="fc" id="L78">		createPageHeader(panel, content, &quot;Admin Portal Management&quot;, &quot;Portal Overview&quot;, &quot;Centralized management interface for accessing and controlling administrative tools.&quot;);</span>
+<span class="fc" id="L96">        final List&lt;Portal&gt; pageOrderBy = dataContainer.getPageOrderBy(</span>
+            pageNr,
+            DEFAULT_RESULTS_PER_PAGE,
+            Portal_.portalName
+        );
 
-<span class="fc" id="L80">		final DataContainer&lt;Portal, Long&gt; dataContainer = getApplicationManager().getDataContainer(Portal.class);</span>
+<span class="fc" id="L102">        getPagingUtil().createPagingControls(</span>
+            content,
+            NAME,
+            pageId,
+<span class="fc" id="L106">            dataContainer.getSize(),</span>
+            pageNr,
+            DEFAULT_RESULTS_PER_PAGE
+        );
 
-<span class="fc" id="L82">		final List&lt;Portal&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,Portal_.portalName);</span>
+<span class="fc" id="L111">        getGridFactory().createBasicBeanItemGrid(</span>
+            content,
+            Portal.class,
+            pageOrderBy,
+            PORTAL2,
+            COLUMN_ORDER,
+            HIDE_COLUMNS,
+            new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;hjid&quot;),
+            null,
+            null
+        );
 
-<span class="fc" id="L84">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="pc bpc" id="L123" title="1 of 4 branches missed.">        if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="fc" id="L124">            final Portal portal = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">            if (portal != null) {</span>
+                // Create a card-style layout for Portal details
+<span class="fc" id="L127">                final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L128">                cardPanel.addStyleName(&quot;politician-overview-card&quot;); // Reuse existing card style</span>
+<span class="fc" id="L129">                cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L130">                cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L131">                Responsive.makeResponsive(cardPanel);</span>
 
+<span class="fc" id="L133">                final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L134">                cardContent.setMargin(true);</span>
+<span class="fc" id="L135">                cardContent.setSpacing(true);</span>
+<span class="fc" id="L136">                cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L137">                cardPanel.setContent(cardContent);</span>
 
-<span class="fc" id="L87">		getGridFactory().createBasicBeanItemGrid(content, Portal.class,</span>
-				pageOrderBy,
-				PORTAL2,
-				COLUMN_ORDER, HIDE_COLUMNS,
-				new PageItemPropertyClickListener(AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;hjid&quot;), null, null);
+<span class="fc" id="L139">                content.addComponent(cardPanel);</span>
 
-<span class="pc bpc" id="L93" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+                // Card Header
+<span class="fc" id="L142">                final HorizontalLayout headerLayout = new HorizontalLayout();</span>
+<span class="fc" id="L143">                headerLayout.setSpacing(true);</span>
+<span class="fc" id="L144">                headerLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L145">                headerLayout.addStyleName(&quot;card-header-section&quot;);</span>
 
-<span class="fc" id="L95">			final Portal portal = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="fc" id="L147">                final String titleText = &quot;Portal Details&quot;;</span>
+<span class="fc" id="L148">                final Label titleLabel = new Label(titleText, ContentMode.HTML);</span>
+<span class="fc" id="L149">                titleLabel.addStyleName(&quot;card-title&quot;);</span>
+<span class="fc" id="L150">                titleLabel.setWidthUndefined();</span>
+<span class="fc" id="L151">                headerLayout.addComponent(titleLabel);</span>
 
-<span class="pc bpc" id="L97" title="1 of 2 branches missed.">			if (portal != null) {</span>
+<span class="fc" id="L153">                cardContent.addComponent(headerLayout);</span>
 
-<span class="fc" id="L99">				getFormFactory().addFormPanelTextFields(content, portal, Portal.class,</span>
-						AS_LIST);
-			}
-		}
+                // Divider
+<span class="fc" id="L156">                final Label divider = new Label(&quot;&lt;hr/&gt;&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L157">                divider.addStyleName(&quot;card-divider&quot;);</span>
+<span class="fc" id="L158">                divider.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L159">                cardContent.addComponent(divider);</span>
 
-<span class="fc" id="L104">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_PORTAL_VIEW, ApplicationEventGroup.ADMIN,</span>
-				NAME, null, pageId);
+                // Attributes layout
+<span class="fc" id="L162">                final VerticalLayout attributesLayout = new VerticalLayout();</span>
+<span class="fc" id="L163">                attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L164">                attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L165">                cardContent.addComponent(attributesLayout);</span>
 
-<span class="fc" id="L107">		return content;</span>
+                // Display each field if not null or empty
+<span class="fc" id="L168">                addInfoRowIfNotNull(attributesLayout, &quot;Portal Name:&quot;, portal.getPortalName(), VaadinIcons.GLOBE_WIRE);</span>
+<span class="fc" id="L169">                addInfoRowIfNotNull(attributesLayout, &quot;Description:&quot;, portal.getDescription(), VaadinIcons.FILE_TEXT);</span>
+<span class="fc" id="L170">                addInfoRowIfNotNull(attributesLayout, &quot;Portal Type:&quot;, portal.getPortalType().toString(), VaadinIcons.VIEWPORT);</span>
+<span class="fc" id="L171">                addInfoRowIfNotNull(attributesLayout, &quot;Google Map API Key:&quot;, portal.getGoogleMapApiKey(), VaadinIcons.KEY);</span>
+            }
+        }
 
-	}
+<span class="fc" id="L175">        getPageActionEventHelper().createPageEvent(</span>
+            ViewAction.VISIT_ADMIN_PORTAL_VIEW,
+            ApplicationEventGroup.ADMIN,
+            NAME,
+            null,
+            pageId
+        );
 
+<span class="fc" id="L183">        return content;</span>
+    }
+
+    /**
+     * Adds an info row to the parent layout if value is not null or empty.
+     *
+     * @param parent the parent layout
+     * @param caption the field caption
+     * @param value the field value
+     * @param icon the VaadinIcons icon
+     */
+    private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value, final VaadinIcons icon) {
+<span class="pc bpc" id="L195" title="2 of 6 branches missed.">        if (value != null &amp;&amp; !value.trim().isEmpty() &amp;&amp; !&quot;null&quot;.equalsIgnoreCase(value)) {</span>
+<span class="fc" id="L196">            parent.addComponent(createInfoRow(caption, value, icon));</span>
+        }
+<span class="fc" id="L198">    }</span>
+
+    /**
+     * Creates a simple info row (caption and value) with an optional icon.
+     *
+     * @param caption the field caption
+     * @param value   the field value
+     * @param icon    a VaadinIcons icon
+     * @return a HorizontalLayout representing the info row
+     */
+    private HorizontalLayout createInfoRow(final String caption, final String value, final VaadinIcons icon) {
+<span class="fc" id="L209">        final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L210">        layout.setSpacing(true);</span>
+<span class="fc" id="L211">        layout.addStyleName(&quot;metric-label&quot;);</span>
+<span class="fc" id="L212">        layout.setWidthUndefined();</span>
+
+<span class="pc bpc" id="L214" title="1 of 2 branches missed.">        if (icon != null) {</span>
+<span class="fc" id="L215">            final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L216">            iconLabel.addStyleName(&quot;card-info-icon&quot;);</span>
+<span class="fc" id="L217">            layout.addComponent(iconLabel);</span>
+        }
+
+<span class="fc" id="L220">        final Label captionLabel = new Label(caption);</span>
+<span class="fc" id="L221">        captionLabel.addStyleName(&quot;card-info-caption&quot;);</span>
+
+<span class="fc" id="L223">        final Label valueLabel = new Label(value);</span>
+<span class="fc" id="L224">        valueLabel.addStyleName(&quot;card-info-value&quot;);</span>
+
+<span class="fc" id="L226">        layout.addComponents(captionLabel, valueLabel);</span>
+<span class="fc" id="L227">        return layout;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

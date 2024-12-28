@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -31,12 +30,15 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
-
 
 /**
  * The Class AdminCountryPageModContentFactoryImpl.
@@ -44,17 +46,30 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-<span class="fc" id="L47">	private static final List&lt;String&gt; AS_LIST = Arrays.asList( &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;,</span>
-			&quot;longitude&quot;, &quot;latitude&quot; );
-
-<span class="fc" id="L50">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;id&quot;, &quot;countryName&quot;, &quot;iso2Code&quot;, &quot;capitalCity&quot;, &quot;longitude&quot;,</span>
-			&quot;latitude&quot; };
+<span class="fc" id="L49">	private static final String[] COLUMN_ORDER = {</span>
+			&quot;hjid&quot;,
+			&quot;id&quot;,
+			&quot;countryName&quot;,
+			&quot;iso2Code&quot;,
+			&quot;capitalCity&quot;,
+			&quot;longitude&quot;,
+			&quot;latitude&quot;
+	};
 
 	private static final String COUNTRY2 = &quot;Country&quot;;
 
-<span class="fc" id="L55">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;,&quot;id&quot;, &quot;region&quot;, &quot;adminregion&quot; ,&quot;incomeLevel&quot;, &quot;lendingType&quot;,&quot;longitude&quot;, &quot;latitude&quot; };</span>
+<span class="fc" id="L61">	private static final String[] HIDE_COLUMNS = {</span>
+			&quot;hjid&quot;,
+			&quot;id&quot;,
+			&quot;region&quot;,
+			&quot;adminregion&quot;,
+			&quot;incomeLevel&quot;,
+			&quot;lendingType&quot;,
+			&quot;longitude&quot;,
+			&quot;latitude&quot;
+	};
 
-<span class="fc" id="L57">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, &quot;hjid&quot;);</span>
+<span class="fc" id="L72">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, &quot;hjid&quot;);</span>
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_COUNTRY_VIEW_NAME;
@@ -63,50 +78,162 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 	 * Instantiates a new admin country page mod content factory impl.
 	 */
 	public AdminCountryPageModContentFactoryImpl() {
-<span class="fc" id="L66">		super(NAME);</span>
-<span class="fc" id="L67">	}</span>
+<span class="fc" id="L81">		super(NAME);</span>
+<span class="fc" id="L82">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L72">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L87">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L88">		content.setSizeFull();</span>
+<span class="fc" id="L89">		content.addStyleName(&quot;admin-country-content&quot;);</span>
 
-<span class="fc" id="L74">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L75">		final int pageNr= getPageNr(parameters);</span>
+<span class="fc" id="L91">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L92">		final int pageNr = getPageNr(parameters);</span>
 
-<span class="fc" id="L77">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L94">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L79">		createPageHeader(panel, content, &quot;Admin Country Management&quot;, &quot;Country Overview&quot;, &quot;Manage and review country-specific data, including metrics and geopolitical information.&quot;);</span>
+<span class="fc" id="L96">		createPageHeader(panel, content,</span>
+				&quot;Admin Country Management&quot;,
+				&quot;Country Overview&quot;,
+				&quot;Manage and review country-specific data, including metrics and geopolitical information.&quot;);
 
-<span class="fc" id="L81">		final DataContainer&lt;CountryElement, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L82">				.getDataContainer(CountryElement.class);</span>
+<span class="fc" id="L101">		final DataContainer&lt;CountryElement, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L102">				.getDataContainer(CountryElement.class);</span>
 
-<span class="fc" id="L84">		final List&lt;CountryElement&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE,CountryElement_.countryName);</span>
+<span class="fc" id="L104">		final List&lt;CountryElement&gt; pageOrderBy = dataContainer.getPageOrderBy(</span>
+				pageNr,
+				DEFAULT_RESULTS_PER_PAGE,
+				CountryElement_.countryName);
 
-<span class="fc" id="L86">		getPagingUtil().createPagingControls(content,NAME,pageId, dataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);</span>
+<span class="fc" id="L109">		getPagingUtil().createPagingControls(</span>
+				content,
+				NAME,
+				pageId,
+<span class="fc" id="L113">				dataContainer.getSize(),</span>
+				pageNr,
+				DEFAULT_RESULTS_PER_PAGE);
 
-<span class="fc" id="L88">		getGridFactory()</span>
-<span class="fc" id="L89">				.createBasicBeanItemNestedPropertiesGrid(content, CountryElement.class, pageOrderBy,</span>
-						COUNTRY2,null,
-						COLUMN_ORDER, HIDE_COLUMNS,
-						LISTENER, null, null);
+<span class="fc" id="L117">		getGridFactory()</span>
+<span class="fc" id="L118">				.createBasicBeanItemNestedPropertiesGrid(</span>
+						content,
+						CountryElement.class,
+						pageOrderBy,
+						COUNTRY2,
+						null,
+						COLUMN_ORDER,
+						HIDE_COLUMNS,
+						LISTENER,
+						null,
+						null);
 
-<span class="pc bpc" id="L94" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="pc bpc" id="L130" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="fc" id="L131">			final CountryElement country = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">			if (country != null) {</span>
 
-<span class="fc" id="L96">			final CountryElement country = dataContainer.load(Long.valueOf(pageId));</span>
-<span class="pc bpc" id="L97" title="1 of 2 branches missed.">			if (country != null) {</span>
+				// Create a card panel for country details
+<span class="fc" id="L135">				final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L136">				cardPanel.addStyleName(&quot;politician-overview-card&quot;);</span>
+<span class="fc" id="L137">				cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L138">				cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L139">				Responsive.makeResponsive(cardPanel);</span>
 
-<span class="fc" id="L99">				getFormFactory().addFormPanelTextFields(content, country, CountryElement.class,</span>
-						AS_LIST);
+<span class="fc" id="L141">				final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L142">				cardContent.setMargin(true);</span>
+<span class="fc" id="L143">				cardContent.setSpacing(true);</span>
+<span class="fc" id="L144">				cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L145">				cardPanel.setContent(cardContent);</span>
+
+<span class="fc" id="L147">				content.addComponent(cardPanel);</span>
+
+				// Card Header
+<span class="fc" id="L150">				final HorizontalLayout headerLayout = new HorizontalLayout();</span>
+<span class="fc" id="L151">				headerLayout.setSpacing(true);</span>
+<span class="fc" id="L152">				headerLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L153">				headerLayout.addStyleName(&quot;card-header-section&quot;);</span>
+
+<span class="fc" id="L155">				final String titleText = &quot;Country Details&quot;;</span>
+<span class="fc" id="L156">				final Label titleLabel = new Label(titleText, ContentMode.HTML);</span>
+<span class="fc" id="L157">				titleLabel.addStyleName(&quot;card-title&quot;);</span>
+<span class="fc" id="L158">				titleLabel.setWidthUndefined();</span>
+<span class="fc" id="L159">				headerLayout.addComponent(titleLabel);</span>
+
+<span class="fc" id="L161">				cardContent.addComponent(headerLayout);</span>
+
+				// Divider
+<span class="fc" id="L164">				final Label divider = new Label(&quot;&lt;hr/&gt;&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L165">				divider.addStyleName(&quot;card-divider&quot;);</span>
+<span class="fc" id="L166">				divider.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L167">				cardContent.addComponent(divider);</span>
+
+				// Attributes layout
+<span class="fc" id="L170">				final VerticalLayout attributesLayout = new VerticalLayout();</span>
+<span class="fc" id="L171">				attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L172">				attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L173">				cardContent.addComponent(attributesLayout);</span>
+
+				// Show fields if not null or empty
+<span class="fc" id="L176">				addInfoRowIfNotNull(attributesLayout, &quot;Country ID:&quot;, country.getId(), VaadinIcons.FLAG_O);</span>
+<span class="fc" id="L177">				addInfoRowIfNotNull(attributesLayout, &quot;Name:&quot;, country.getCountryName(), VaadinIcons.GLOBE);</span>
+<span class="fc" id="L178">				addInfoRowIfNotNull(attributesLayout, &quot;ISO2 Code:&quot;, country.getIso2Code(), VaadinIcons.CODE);</span>
+<span class="fc" id="L179">				addInfoRowIfNotNull(attributesLayout, &quot;Capital:&quot;, country.getCapitalCity(), VaadinIcons.BUILDING);</span>
+<span class="fc" id="L180">				addInfoRowIfNotNull(attributesLayout, &quot;Longitude:&quot;, country.getLongitude(), VaadinIcons.ARROWS_LONG_H);</span>
+<span class="fc" id="L181">				addInfoRowIfNotNull(attributesLayout, &quot;Latitude:&quot;, country.getLatitude(), VaadinIcons.ARROWS_LONG_H);</span>
 			}
 		}
 
-<span class="fc" id="L104">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_COUNTRY_VIEW, ApplicationEventGroup.ADMIN,</span>
-				NAME, null, pageId);
+<span class="fc" id="L185">		getPageActionEventHelper().createPageEvent(</span>
+				ViewAction.VISIT_ADMIN_COUNTRY_VIEW,
+				ApplicationEventGroup.ADMIN,
+				NAME,
+				null,
+				pageId);
 
-<span class="fc" id="L107">		return content;</span>
-
+<span class="fc" id="L192">		return content;</span>
 	}
 
+	/**
+	 * Adds an info row to the parent layout if value is not null or empty.
+	 *
+	 * @param parent the parent layout
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon
+	 */
+	private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value, final VaadinIcons icon) {
+<span class="pc bpc" id="L204" title="3 of 6 branches missed.">		if (value != null &amp;&amp; !value.trim().isEmpty() &amp;&amp; !&quot;null&quot;.equalsIgnoreCase(value)) {</span>
+<span class="fc" id="L205">			parent.addComponent(createInfoRow(caption, value, icon));</span>
+		}
+<span class="fc" id="L207">	}</span>
+
+	/**
+	 * Creates a simple info row (caption and value) with optional icon.
+	 *
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon
+	 * @return a HorizontalLayout representing the info row
+	 */
+	private HorizontalLayout createInfoRow(final String caption, final String value, final VaadinIcons icon) {
+<span class="fc" id="L218">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L219">		layout.setSpacing(true);</span>
+<span class="fc" id="L220">		layout.addStyleName(&quot;metric-label&quot;);</span>
+<span class="fc" id="L221">		layout.setWidthUndefined();</span>
+
+<span class="pc bpc" id="L223" title="1 of 2 branches missed.">		if (icon != null) {</span>
+<span class="fc" id="L224">			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L225">			iconLabel.addStyleName(&quot;card-info-icon&quot;);</span>
+<span class="fc" id="L226">			layout.addComponent(iconLabel);</span>
+		}
+
+<span class="fc" id="L229">		final Label captionLabel = new Label(caption);</span>
+<span class="fc" id="L230">		captionLabel.addStyleName(&quot;card-info-caption&quot;);</span>
+
+<span class="fc" id="L232">		final Label valueLabel = new Label(value);</span>
+<span class="fc" id="L233">		valueLabel.addStyleName(&quot;card-info-value&quot;);</span>
+
+<span class="fc" id="L235">		layout.addComponents(captionLabel, valueLabel);</span>
+<span class="fc" id="L236">		return layout;</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

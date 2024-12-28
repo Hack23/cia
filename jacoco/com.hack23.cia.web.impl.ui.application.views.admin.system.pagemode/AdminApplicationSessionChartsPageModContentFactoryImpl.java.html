@@ -51,25 +51,26 @@ public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 <span class="fc" id="L53">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L54">		content.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
 
-<span class="fc" id="L55">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L56">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L57">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L58">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L59">		createPageHeader(panel, content, &quot;Admin Application Session Charts&quot;, &quot;Session Analysis&quot;, &quot;Analyze user sessions using graphical insights to track usage patterns.&quot;);</span>
+<span class="fc" id="L60">		createPageHeader(panel, content, &quot;Admin Application Session Charts&quot;, &quot;Session Analysis&quot;, &quot;Analyze user sessions using graphical insights to track usage patterns.&quot;);</span>
 
-<span class="fc" id="L61">		getAdminChartDataManager().createApplicationSessionPageDailySummaryChart(content);</span>
+<span class="fc" id="L62">		getAdminChartDataManager().createApplicationSessionPageDailySummaryChart(content);</span>
 
-<span class="fc" id="L63">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW,</span>
+<span class="fc" id="L64">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW,</span>
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
-<span class="fc" id="L66">		return content;</span>
+<span class="fc" id="L67">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="pc bpc" id="L72" title="1 of 6 branches missed.">		return parameters != null &amp;&amp; NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
+<span class="pc bpc" id="L73" title="1 of 6 branches missed.">		return parameters != null &amp;&amp; NAME.equals(page) &amp;&amp; parameters.contains(PageMode.CHARTS.toString());</span>
 	}
 
 }

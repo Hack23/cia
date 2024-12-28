@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPoliticianBallotSummary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.politician.impl</a> &gt; <span class="el_source">ViewRiksdagenPoliticianBallotSummary.java</span></div><h1>ViewRiksdagenPoliticianBallotSummary.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.politician.impl;
+
+import java.util.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * &lt;p&gt;
+ * Java class for ViewRiksdagenPoliticianBallotSummary.
+ * &lt;/p&gt;
+ *
+ * &lt;p&gt;
+ * Entity mapped to the view: VIEW_RIKSDAGEN_POLITICIAN_BALLOT_SUMMARY
+ * &lt;/p&gt;
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewRiksdagenPoliticianBallotSummary&quot;, propOrder = {
+    &quot;personId&quot;,
+    &quot;firstName&quot;,
+    &quot;lastName&quot;,
+    &quot;party&quot;,
+    &quot;bornYear&quot;,
+    &quot;gender&quot;,
+    &quot;status&quot;,
+    &quot;electionRegion&quot;,
+    &quot;totalVotes&quot;,
+    &quot;yesPercentage&quot;,
+    &quot;noPercentage&quot;,
+    &quot;absenceRate&quot;,
+    &quot;rebelRate&quot;,
+    &quot;successRate&quot;,
+    &quot;votingDays&quot;,
+    &quot;firstVoteDate&quot;,
+    &quot;lastVoteDate&quot;,
+    &quot;votingParticipationRate&quot;,
+    &quot;loyaltyRate&quot;,
+    &quot;votingConsistencyScore&quot;,
+    &quot;analysisComment&quot;
+})
+@Entity(name = &quot;ViewRiksdagenPoliticianBallotSummary&quot;)
+@Table(name = &quot;VIEW_RIKSDAGEN_POLITICIAN_BALLOT_SUMMARY&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L61">public class ViewRiksdagenPoliticianBallotSummary implements ModelObject {</span>
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+
+    /** The person id (primary key). */
+    private String personId;
+
+    /** The first name. */
+    private String firstName;
+
+    /** The last name. */
+    private String lastName;
+
+    /** The party. */
+    private String party;
+
+    /** The born year. */
+    private int bornYear;
+
+    /** The gender. */
+    private String gender;
+
+    /** The status. */
+    private String status;
+
+    /** The election region. */
+    private String electionRegion;
+
+    /** The total votes. */
+    private long totalVotes;
+
+    /** The yes percentage. */
+    private double yesPercentage;
+
+    /** The no percentage. */
+    private double noPercentage;
+
+    /** The absence rate. */
+    private double absenceRate;
+
+    /** The rebel rate. */
+    private double rebelRate;
+
+    /** The success rate. */
+    private double successRate;
+
+    /** The number of voting days. */
+    private long votingDays;
+
+    /** The first vote date. */
+    private Date firstVoteDate;
+
+    /** The last vote date. */
+    private Date lastVoteDate;
+
+    /** The voting participation rate. */
+    private double votingParticipationRate;
+
+    /** The loyalty rate. */
+    private double loyaltyRate;
+
+    /** The voting consistency score. */
+    private double votingConsistencyScore;
+
+    /** The analysis comment. */
+    private String analysisComment;
+
+    // -----------------------------------------------
+    // JPA &amp; XML Mappings
+    // -----------------------------------------------
+
+    /**
+     * Gets the person id.
+     *
+     * @return the person id
+     */
+    @Id
+    @Column(name = &quot;PERSON_ID&quot;)
+    public String getPersonId() {
+<span class="fc" id="L141">        return personId;</span>
+    }
+
+    /**
+     * Sets the person id.
+     *
+     * @param value the new person id
+     */
+    public void setPersonId(final String value) {
+<span class="fc" id="L150">        this.personId = value;</span>
+<span class="fc" id="L151">    }</span>
+
+    /**
+     * Gets the first name.
+     *
+     * @return the first name
+     */
+    @Basic
+    @Column(name = &quot;FIRST_NAME&quot;)
+    public String getFirstName() {
+<span class="fc" id="L161">        return firstName;</span>
+    }
+
+    /**
+     * Sets the first name.
+     *
+     * @param value the new first name
+     */
+    public void setFirstName(final String value) {
+<span class="fc" id="L170">        this.firstName = value;</span>
+<span class="fc" id="L171">    }</span>
+
+    /**
+     * Gets the last name.
+     *
+     * @return the last name
+     */
+    @Basic
+    @Column(name = &quot;LAST_NAME&quot;)
+    public String getLastName() {
+<span class="fc" id="L181">        return lastName;</span>
+    }
+
+    /**
+     * Sets the last name.
+     *
+     * @param value the new last name
+     */
+    public void setLastName(final String value) {
+<span class="fc" id="L190">        this.lastName = value;</span>
+<span class="fc" id="L191">    }</span>
+
+    /**
+     * Gets the party.
+     *
+     * @return the party
+     */
+    @Basic
+    @Column(name = &quot;PARTY&quot;)
+    public String getParty() {
+<span class="fc" id="L201">        return party;</span>
+    }
+
+    /**
+     * Sets the party.
+     *
+     * @param value the new party
+     */
+    public void setParty(final String value) {
+<span class="fc" id="L210">        this.party = value;</span>
+<span class="fc" id="L211">    }</span>
+
+    /**
+     * Gets the born year.
+     *
+     * @return the born year
+     */
+    @Basic
+    @Column(name = &quot;BORN_YEAR&quot;)
+    public int getBornYear() {
+<span class="fc" id="L221">        return bornYear;</span>
+    }
+
+    /**
+     * Sets the born year.
+     *
+     * @param value the new born year
+     */
+    public void setBornYear(final int value) {
+<span class="fc" id="L230">        this.bornYear = value;</span>
+<span class="fc" id="L231">    }</span>
+
+    /**
+     * Gets the gender.
+     *
+     * @return the gender
+     */
+    @Basic
+    @Column(name = &quot;GENDER&quot;)
+    public String getGender() {
+<span class="fc" id="L241">        return gender;</span>
+    }
+
+    /**
+     * Sets the gender.
+     *
+     * @param value the new gender
+     */
+    public void setGender(final String value) {
+<span class="fc" id="L250">        this.gender = value;</span>
+<span class="fc" id="L251">    }</span>
+
+    /**
+     * Gets the status.
+     *
+     * @return the status
+     */
+    @Basic
+    @Column(name = &quot;STATUS&quot;)
+    public String getStatus() {
+<span class="fc" id="L261">        return status;</span>
+    }
+
+    /**
+     * Sets the status.
+     *
+     * @param value the new status
+     */
+    public void setStatus(final String value) {
+<span class="fc" id="L270">        this.status = value;</span>
+<span class="fc" id="L271">    }</span>
+
+    /**
+     * Gets the election region.
+     *
+     * @return the election region
+     */
+    @Basic
+    @Column(name = &quot;ELECTION_REGION&quot;)
+    public String getElectionRegion() {
+<span class="fc" id="L281">        return electionRegion;</span>
+    }
+
+    /**
+     * Sets the election region.
+     *
+     * @param value the new election region
+     */
+    public void setElectionRegion(final String value) {
+<span class="fc" id="L290">        this.electionRegion = value;</span>
+<span class="fc" id="L291">    }</span>
+
+    /**
+     * Gets the total votes.
+     *
+     * @return the total votes
+     */
+    @Basic
+    @Column(name = &quot;TOTAL_VOTES&quot;, precision = 20)
+    public long getTotalVotes() {
+<span class="fc" id="L301">        return totalVotes;</span>
+    }
+
+    /**
+     * Sets the total votes.
+     *
+     * @param value the new total votes
+     */
+    public void setTotalVotes(final long value) {
+<span class="fc" id="L310">        this.totalVotes = value;</span>
+<span class="fc" id="L311">    }</span>
+
+    /**
+     * Gets the yes percentage.
+     *
+     * @return the yes percentage
+     */
+    @Basic
+    @Column(name = &quot;YES_PERCENTAGE&quot;, precision = 5, scale = 2)
+    public double getYesPercentage() {
+<span class="fc" id="L321">        return yesPercentage;</span>
+    }
+
+    /**
+     * Sets the yes percentage.
+     *
+     * @param value the new yes percentage
+     */
+    public void setYesPercentage(final double value) {
+<span class="fc" id="L330">        this.yesPercentage = value;</span>
+<span class="fc" id="L331">    }</span>
+
+    /**
+     * Gets the no percentage.
+     *
+     * @return the no percentage
+     */
+    @Basic
+    @Column(name = &quot;NO_PERCENTAGE&quot;, precision = 5, scale = 2)
+    public double getNoPercentage() {
+<span class="fc" id="L341">        return noPercentage;</span>
+    }
+
+    /**
+     * Sets the no percentage.
+     *
+     * @param value the new no percentage
+     */
+    public void setNoPercentage(final double value) {
+<span class="fc" id="L350">        this.noPercentage = value;</span>
+<span class="fc" id="L351">    }</span>
+
+    /**
+     * Gets the absence rate.
+     *
+     * @return the absence rate
+     */
+    @Basic
+    @Column(name = &quot;ABSENCE_RATE&quot;, precision = 5, scale = 2)
+    public double getAbsenceRate() {
+<span class="fc" id="L361">        return absenceRate;</span>
+    }
+
+    /**
+     * Sets the absence rate.
+     *
+     * @param value the new absence rate
+     */
+    public void setAbsenceRate(final double value) {
+<span class="fc" id="L370">        this.absenceRate = value;</span>
+<span class="fc" id="L371">    }</span>
+
+    /**
+     * Gets the rebel rate.
+     *
+     * @return the rebel rate
+     */
+    @Basic
+    @Column(name = &quot;REBEL_RATE&quot;, precision = 5, scale = 2)
+    public double getRebelRate() {
+<span class="fc" id="L381">        return rebelRate;</span>
+    }
+
+    /**
+     * Sets the rebel rate.
+     *
+     * @param value the new rebel rate
+     */
+    public void setRebelRate(final double value) {
+<span class="fc" id="L390">        this.rebelRate = value;</span>
+<span class="fc" id="L391">    }</span>
+
+    /**
+     * Gets the success rate.
+     *
+     * @return the success rate
+     */
+    @Basic
+    @Column(name = &quot;SUCCESS_RATE&quot;, precision = 5, scale = 2)
+    public double getSuccessRate() {
+<span class="fc" id="L401">        return successRate;</span>
+    }
+
+    /**
+     * Sets the success rate.
+     *
+     * @param value the new success rate
+     */
+    public void setSuccessRate(final double value) {
+<span class="fc" id="L410">        this.successRate = value;</span>
+<span class="fc" id="L411">    }</span>
+
+    /**
+     * Gets the voting days.
+     *
+     * @return the voting days
+     */
+    @Basic
+    @Column(name = &quot;VOTING_DAYS&quot;, precision = 20)
+    public long getVotingDays() {
+<span class="fc" id="L421">        return votingDays;</span>
+    }
+
+    /**
+     * Sets the voting days.
+     *
+     * @param value the new voting days
+     */
+    public void setVotingDays(final long value) {
+<span class="fc" id="L430">        this.votingDays = value;</span>
+<span class="fc" id="L431">    }</span>
+
+    /**
+     * Gets the first vote date.
+     *
+     * @return the first vote date
+     */
+    @Basic
+    @Column(name = &quot;FIRST_VOTE_DATE&quot;)
+    @Temporal(TemporalType.DATE)
+    public Date getFirstVoteDate() {
+<span class="fc" id="L442">        return firstVoteDate;</span>
+    }
+
+    /**
+     * Sets the first vote date.
+     *
+     * @param value the new first vote date
+     */
+    public void setFirstVoteDate(final Date value) {
+<span class="fc" id="L451">        this.firstVoteDate = value;</span>
+<span class="fc" id="L452">    }</span>
+
+    /**
+     * Gets the last vote date.
+     *
+     * @return the last vote date
+     */
+    @Basic
+    @Column(name = &quot;LAST_VOTE_DATE&quot;)
+    @Temporal(TemporalType.DATE)
+    public Date getLastVoteDate() {
+<span class="fc" id="L463">        return lastVoteDate;</span>
+    }
+
+    /**
+     * Sets the last vote date.
+     *
+     * @param value the new last vote date
+     */
+    public void setLastVoteDate(final Date value) {
+<span class="fc" id="L472">        this.lastVoteDate = value;</span>
+<span class="fc" id="L473">    }</span>
+
+    /**
+     * Gets the voting participation rate.
+     *
+     * @return the voting participation rate
+     */
+    @Basic
+    @Column(name = &quot;VOTING_PARTICIPATION_RATE&quot;, precision = 5, scale = 2)
+    public double getVotingParticipationRate() {
+<span class="fc" id="L483">        return votingParticipationRate;</span>
+    }
+
+    /**
+     * Sets the voting participation rate.
+     *
+     * @param value the new voting participation rate
+     */
+    public void setVotingParticipationRate(final double value) {
+<span class="fc" id="L492">        this.votingParticipationRate = value;</span>
+<span class="fc" id="L493">    }</span>
+
+    /**
+     * Gets the loyalty rate.
+     *
+     * @return the loyalty rate
+     */
+    @Basic
+    @Column(name = &quot;LOYALTY_RATE&quot;, precision = 5, scale = 2)
+    public double getLoyaltyRate() {
+<span class="fc" id="L503">        return loyaltyRate;</span>
+    }
+
+    /**
+     * Sets the loyalty rate.
+     *
+     * @param value the new loyalty rate
+     */
+    public void setLoyaltyRate(final double value) {
+<span class="fc" id="L512">        this.loyaltyRate = value;</span>
+<span class="fc" id="L513">    }</span>
+
+    /**
+     * Gets the voting consistency score.
+     *
+     * @return the voting consistency score
+     */
+    @Basic
+    @Column(name = &quot;VOTING_CONSISTENCY_SCORE&quot;, precision = 5, scale = 2)
+    public double getVotingConsistencyScore() {
+<span class="fc" id="L523">        return votingConsistencyScore;</span>
+    }
+
+    /**
+     * Sets the voting consistency score.
+     *
+     * @param value the new voting consistency score
+     */
+    public void setVotingConsistencyScore(final double value) {
+<span class="fc" id="L532">        this.votingConsistencyScore = value;</span>
+<span class="fc" id="L533">    }</span>
+
+    /**
+     * Gets the analysis comment.
+     *
+     * @return the analysis comment
+     */
+    @Basic
+    @Column(name = &quot;ANALYSIS_COMMENT&quot;)
+    public String getAnalysisComment() {
+<span class="fc" id="L543">        return analysisComment;</span>
+    }
+
+    /**
+     * Sets the analysis comment.
+     *
+     * @param value the new analysis comment
+     */
+    public void setAnalysisComment(final String value) {
+<span class="fc" id="L552">        this.analysisComment = value;</span>
+<span class="fc" id="L553">    }</span>
+
+    // -----------------------------------------------
+    // Builder-Style Setters
+    // -----------------------------------------------
+
+    /**
+     * With person id.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withPersonId(final String value) {
+<span class="fc" id="L566">        setPersonId(value);</span>
+<span class="fc" id="L567">        return this;</span>
+    }
+
+    /**
+     * With first name.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withFirstName(final String value) {
+<span class="fc" id="L577">        setFirstName(value);</span>
+<span class="fc" id="L578">        return this;</span>
+    }
+
+    /**
+     * With last name.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withLastName(final String value) {
+<span class="fc" id="L588">        setLastName(value);</span>
+<span class="fc" id="L589">        return this;</span>
+    }
+
+    /**
+     * With party.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withParty(final String value) {
+<span class="fc" id="L599">        setParty(value);</span>
+<span class="fc" id="L600">        return this;</span>
+    }
+
+    /**
+     * With born year.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withBornYear(final int value) {
+<span class="fc" id="L610">        setBornYear(value);</span>
+<span class="fc" id="L611">        return this;</span>
+    }
+
+    /**
+     * With gender.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withGender(final String value) {
+<span class="fc" id="L621">        setGender(value);</span>
+<span class="fc" id="L622">        return this;</span>
+    }
+
+    /**
+     * With status.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withStatus(final String value) {
+<span class="fc" id="L632">        setStatus(value);</span>
+<span class="fc" id="L633">        return this;</span>
+    }
+
+    /**
+     * With election region.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withElectionRegion(final String value) {
+<span class="fc" id="L643">        setElectionRegion(value);</span>
+<span class="fc" id="L644">        return this;</span>
+    }
+
+    /**
+     * With total votes.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withTotalVotes(final long value) {
+<span class="fc" id="L654">        setTotalVotes(value);</span>
+<span class="fc" id="L655">        return this;</span>
+    }
+
+    /**
+     * With yes percentage.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withYesPercentage(final double value) {
+<span class="fc" id="L665">        setYesPercentage(value);</span>
+<span class="fc" id="L666">        return this;</span>
+    }
+
+    /**
+     * With no percentage.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withNoPercentage(final double value) {
+<span class="fc" id="L676">        setNoPercentage(value);</span>
+<span class="fc" id="L677">        return this;</span>
+    }
+
+    /**
+     * With absence rate.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withAbsenceRate(final double value) {
+<span class="fc" id="L687">        setAbsenceRate(value);</span>
+<span class="fc" id="L688">        return this;</span>
+    }
+
+    /**
+     * With rebel rate.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withRebelRate(final double value) {
+<span class="fc" id="L698">        setRebelRate(value);</span>
+<span class="fc" id="L699">        return this;</span>
+    }
+
+    /**
+     * With success rate.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withSuccessRate(final double value) {
+<span class="fc" id="L709">        setSuccessRate(value);</span>
+<span class="fc" id="L710">        return this;</span>
+    }
+
+    /**
+     * With voting days.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withVotingDays(final long value) {
+<span class="fc" id="L720">        setVotingDays(value);</span>
+<span class="fc" id="L721">        return this;</span>
+    }
+
+    /**
+     * With first vote date.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withFirstVoteDate(final Date value) {
+<span class="fc" id="L731">        setFirstVoteDate(value);</span>
+<span class="fc" id="L732">        return this;</span>
+    }
+
+    /**
+     * With last vote date.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withLastVoteDate(final Date value) {
+<span class="fc" id="L742">        setLastVoteDate(value);</span>
+<span class="fc" id="L743">        return this;</span>
+    }
+
+    /**
+     * With voting participation rate.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withVotingParticipationRate(final double value) {
+<span class="fc" id="L753">        setVotingParticipationRate(value);</span>
+<span class="fc" id="L754">        return this;</span>
+    }
+
+    /**
+     * With loyalty rate.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withLoyaltyRate(final double value) {
+<span class="fc" id="L764">        setLoyaltyRate(value);</span>
+<span class="fc" id="L765">        return this;</span>
+    }
+
+    /**
+     * With voting consistency score.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withVotingConsistencyScore(final double value) {
+<span class="fc" id="L775">        setVotingConsistencyScore(value);</span>
+<span class="fc" id="L776">        return this;</span>
+    }
+
+    /**
+     * With analysis comment.
+     *
+     * @param value the value
+     * @return the view riksdagen politician ballot summary
+     */
+    public ViewRiksdagenPoliticianBallotSummary withAnalysisComment(final String value) {
+<span class="fc" id="L786">        setAnalysisComment(value);</span>
+<span class="fc" id="L787">        return this;</span>
+    }
+
+    // -----------------------------------------------
+    // Object Overrides
+    // -----------------------------------------------
+
+    /**
+     * To string.
+     *
+     * @return the string
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L801">        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+    }
+
+    /**
+     * Equals.
+     *
+     * @param obj the obj
+     * @return true, if successful
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L812">        return EqualsBuilder.reflectionEquals(this, obj);</span>
+    }
+
+    /**
+     * Hash code.
+     *
+     * @return the int
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L822">        return HashCodeBuilder.reflectionHashCode(this);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

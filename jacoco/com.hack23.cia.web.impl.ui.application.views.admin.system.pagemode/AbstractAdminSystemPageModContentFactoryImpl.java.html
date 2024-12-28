@@ -22,6 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractAdminSystemPageModContentFactoryImpl.
@@ -38,10 +40,10 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	 *
 	 * @param viewName the view name
 	 */
-	AbstractAdminSystemPageModContentFactoryImpl(final String viewName) {
-<span class="fc" id="L42">		super();</span>
-<span class="fc" id="L43">		this.viewName = viewName;</span>
-<span class="fc" id="L44">	}</span>
+	public AbstractAdminSystemPageModContentFactoryImpl(final String viewName) {
+<span class="fc" id="L44">		super();</span>
+<span class="fc" id="L45">		this.viewName = viewName;</span>
+<span class="fc" id="L46">	}</span>
 
 	/**
 	 * Gets the paging util.
@@ -49,13 +51,38 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 	 * @return the paging util
 	 */
 	protected final PagingUtil getPagingUtil() {
-<span class="fc" id="L52">		return pagingUtil;</span>
+<span class="fc" id="L54">		return pagingUtil;</span>
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L57">		return viewName.equals(page);</span>
+<span class="fc" id="L59">		return viewName.equals(page);</span>
 	}
 
+	/**
+	 * Creates a consistent HorizontalLayout for panel content.
+	 *
+	 * @return the horizontal layout
+	 */
+	protected HorizontalLayout createHorizontalLayout() {
+<span class="fc" id="L68">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L69">		layout.setSizeFull();</span>
+<span class="fc" id="L70">		layout.setMargin(true);</span>
+<span class="fc" id="L71">		layout.setSpacing(true);</span>
+<span class="fc" id="L72">		return layout;</span>
+	}
+
+	/**
+	 * Creates a consistent VerticalLayout for panel content.
+	 *
+	 * @return the vertical layout
+	 */
+	protected VerticalLayout createVerticalLayout() {
+<span class="nc" id="L81">		final VerticalLayout layout = new VerticalLayout();</span>
+<span class="nc" id="L82">		layout.setSizeFull();</span>
+<span class="nc" id="L83">		layout.setMargin(true);</span>
+<span class="nc" id="L84">		layout.setSpacing(true);</span>
+<span class="nc" id="L85">		return layout;</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

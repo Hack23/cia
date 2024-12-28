@@ -93,7 +93,7 @@
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">	 * Instantiates a new data summary overview page mod content factory impl.</em>
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  	<strong class="jxr_keyword">public</strong> <a name="DataSummaryOverviewPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/admin/datasummary/pagemode/DataSummaryOverviewPageModContentFactoryImpl.html#DataSummaryOverviewPageModContentFactoryImpl">DataSummaryOverviewPageModContentFactoryImpl</a>() {
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  		<strong class="jxr_keyword">super</strong>();
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  		<strong class="jxr_keyword">super</strong>(<span class="jxr_string">"DataSummaryOverview"</span>);
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  	}
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  	@Secured({ <span class="jxr_string">"ROLE_ADMIN"</span> })
@@ -107,74 +107,77 @@
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 		<strong class="jxr_keyword">final</strong> HorizontalLayout horizontalLayout = <strong class="jxr_keyword">new</strong> HorizontalLayout();
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> 		horizontalLayout.setSizeFull();
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> 
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 		content.addComponent(horizontalLayout);
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> 		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> 
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> 		<strong class="jxr_keyword">final</strong> DataContainer&lt;ViewAuditDataSummary, Long&gt; dataContainer = getApplicationManager()
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> 				.getDataContainer(ViewAuditDataSummary.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> 
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> 		getGridFactory().createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditDataSummary.<strong class="jxr_keyword">class</strong>,
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> 				dataContainer.getAll(), ADMIN_DATA_SUMMARY, <strong class="jxr_keyword">null</strong>, COLUMN_ORDER, HIDE_COLUMNS, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout overviewLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> 		overviewLayout.setSizeFull();
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> 		content.addComponent(overviewLayout);
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 		horizontalLayout.addStyleName(<span class="jxr_string">"v-layout-content-overview-panel-level1"</span>);
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> 
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> 		content.addComponent(horizontalLayout);
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> 		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 		<strong class="jxr_keyword">final</strong> DataContainer&lt;ViewAuditDataSummary, Long&gt; dataContainer = getApplicationManager()
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 					.getDataContainer(ViewAuditDataSummary.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> 
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 		getGridFactory().createBasicBeanItemNestedPropertiesGrid(horizontalLayout, ViewAuditDataSummary.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 				dataContainer.getAll(), ADMIN_DATA_SUMMARY, <strong class="jxr_keyword">null</strong>, COLUMN_ORDER, HIDE_COLUMNS, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> 
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout overviewLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> 		overviewLayout.setSizeFull();
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 		overviewLayout.addStyleName(<span class="jxr_string">"v-layout-content-overview-panel-level2"</span>);
 <a class="jxr_linenumber" name="L116" href="#L116">116</a> 
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> 		<strong class="jxr_keyword">final</strong> ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> 		<strong class="jxr_keyword">final</strong> RefreshDataViewsRequest refreshRequest = <strong class="jxr_keyword">new</strong> RefreshDataViewsRequest();
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> 		refreshRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 		content.addComponent(overviewLayout);
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> 
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> 		<strong class="jxr_keyword">final</strong> ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 <a class="jxr_linenumber" name="L121" href="#L121">121</a> 
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> 		<strong class="jxr_keyword">final</strong> Button refreshViewsButton = <strong class="jxr_keyword">new</strong> Button(REFRESH_VIEWS, VaadinIcons.REFRESH);
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> 		refreshViewsButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="RefreshDataViewsClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/RefreshDataViewsClickListener.html#RefreshDataViewsClickListener">RefreshDataViewsClickListener</a>(refreshRequest));
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> 		RowUtil.createRowItem(grid, refreshViewsButton, REFRESH_ALL_VIEWS);
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> 
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		<strong class="jxr_keyword">final</strong> Button updateSearchIndexButton = <strong class="jxr_keyword">new</strong> Button(UPDATE_SEARCH_INDEX, VaadinIcons.REFRESH);
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> 
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> 		<strong class="jxr_keyword">final</strong> UpdateSearchIndexRequest updateIndexRequest = <strong class="jxr_keyword">new</strong> UpdateSearchIndexRequest();
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> 		updateIndexRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> 		<strong class="jxr_keyword">final</strong> RefreshDataViewsRequest refreshRequest = <strong class="jxr_keyword">new</strong> RefreshDataViewsRequest();
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> 		refreshRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> 
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		<strong class="jxr_keyword">final</strong> Button refreshViewsButton = <strong class="jxr_keyword">new</strong> Button(REFRESH_VIEWS, VaadinIcons.REFRESH);
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		refreshViewsButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="RefreshDataViewsClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/RefreshDataViewsClickListener.html#RefreshDataViewsClickListener">RefreshDataViewsClickListener</a>(refreshRequest));
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> 		RowUtil.createRowItem(grid, refreshViewsButton, REFRESH_ALL_VIEWS);
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> 
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> 		<strong class="jxr_keyword">final</strong> Button updateSearchIndexButton = <strong class="jxr_keyword">new</strong> Button(UPDATE_SEARCH_INDEX, VaadinIcons.REFRESH);
 <a class="jxr_linenumber" name="L130" href="#L130">130</a> 
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> 		updateSearchIndexButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="UpdateSearchIndexClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/UpdateSearchIndexClickListener.html#UpdateSearchIndexClickListener">UpdateSearchIndexClickListener</a>(updateIndexRequest));
-<a class="jxr_linenumber" name="L132" href="#L132">132</a> 		RowUtil.createRowItem(grid, updateSearchIndexButton, UPDATE_DOCUMENT_SEARCH_INDEX);
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 		<strong class="jxr_keyword">final</strong> UpdateSearchIndexRequest updateIndexRequest = <strong class="jxr_keyword">new</strong> UpdateSearchIndexRequest();
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> 		updateIndexRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 <a class="jxr_linenumber" name="L133" href="#L133">133</a> 
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> 		<strong class="jxr_keyword">final</strong> Button removeDataButton = <strong class="jxr_keyword">new</strong> Button(REMOVE_POLITICIANS, VaadinIcons.DEL);
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> 
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> 		<strong class="jxr_keyword">final</strong> RemoveDataRequest removePoliticianRequest = <strong class="jxr_keyword">new</strong> RemoveDataRequest();
-<a class="jxr_linenumber" name="L137" href="#L137">137</a> 		removePoliticianRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-<a class="jxr_linenumber" name="L138" href="#L138">138</a> 		removePoliticianRequest.setDataType(RemoveDataRequest.DataType.POLITICIAN);
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> 
-<a class="jxr_linenumber" name="L140" href="#L140">140</a> 		removeDataButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="RemoveDataClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/RemoveDataClickListener.html#RemoveDataClickListener">RemoveDataClickListener</a>(removePoliticianRequest));
-<a class="jxr_linenumber" name="L141" href="#L141">141</a> 		RowUtil.createRowItem(grid, removeDataButton, REMOVE_POLITICIANS);
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> 		updateSearchIndexButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="UpdateSearchIndexClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/UpdateSearchIndexClickListener.html#UpdateSearchIndexClickListener">UpdateSearchIndexClickListener</a>(updateIndexRequest));
+<a class="jxr_linenumber" name="L135" href="#L135">135</a> 		RowUtil.createRowItem(grid, updateSearchIndexButton, UPDATE_DOCUMENT_SEARCH_INDEX);
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> 
+<a class="jxr_linenumber" name="L137" href="#L137">137</a> 		<strong class="jxr_keyword">final</strong> Button removeDataButton = <strong class="jxr_keyword">new</strong> Button(REMOVE_POLITICIANS, VaadinIcons.DEL);
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> 
+<a class="jxr_linenumber" name="L139" href="#L139">139</a> 		<strong class="jxr_keyword">final</strong> RemoveDataRequest removePoliticianRequest = <strong class="jxr_keyword">new</strong> RemoveDataRequest();
+<a class="jxr_linenumber" name="L140" href="#L140">140</a> 		removePoliticianRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+<a class="jxr_linenumber" name="L141" href="#L141">141</a> 		removePoliticianRequest.setDataType(RemoveDataRequest.DataType.POLITICIAN);
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> 		<strong class="jxr_keyword">final</strong> RemoveDataRequest removeDocumentsRequest = <strong class="jxr_keyword">new</strong> RemoveDataRequest();
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> 		removeDocumentsRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> 		removeDocumentsRequest.setDataType(RemoveDataRequest.DataType.DOCUMENTS);
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> 
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> 		<strong class="jxr_keyword">final</strong> Button removeDocumentsButton = <strong class="jxr_keyword">new</strong> Button(REMOVE_DOCUMENTS, VaadinIcons.DEL);
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> 		removeDocumentsButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="RemoveDataClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/RemoveDataClickListener.html#RemoveDataClickListener">RemoveDataClickListener</a>(removeDocumentsRequest));
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> 		RowUtil.createRowItem(grid, removeDocumentsButton, REMOVE_DOCUMENTS);
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> 
-<a class="jxr_linenumber" name="L151" href="#L151">151</a> 		<strong class="jxr_keyword">final</strong> RemoveDataRequest removeApplicationHistoryRequest = <strong class="jxr_keyword">new</strong> RemoveDataRequest();
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> 		removeApplicationHistoryRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> 		removeApplicationHistoryRequest.setDataType(RemoveDataRequest.DataType.APPLICATION_HISTORY);
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> 
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> 		<strong class="jxr_keyword">final</strong> Button removeApplicationHistoryButton = <strong class="jxr_keyword">new</strong> Button(REMOVE_APPLICATION_HISTORY, VaadinIcons.DEL);
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> 		removeApplicationHistoryButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="RemoveDataClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/RemoveDataClickListener.html#RemoveDataClickListener">RemoveDataClickListener</a>(removeApplicationHistoryRequest));
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> 		RowUtil.createRowItem(grid, removeApplicationHistoryButton, REMOVE_APPLICATION_HISTORY);
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> 
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> 		<strong class="jxr_keyword">return</strong> content;
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> 
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> 	}
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> 
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> 	@Override
-<a class="jxr_linenumber" name="L164" href="#L164">164</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> 		<strong class="jxr_keyword">return</strong> NAME.equals(page)
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> 				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> 	}
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> 
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> }
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> 		removeDataButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="RemoveDataClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/RemoveDataClickListener.html#RemoveDataClickListener">RemoveDataClickListener</a>(removePoliticianRequest));
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> 		RowUtil.createRowItem(grid, removeDataButton, REMOVE_POLITICIANS);
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> 
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> 		<strong class="jxr_keyword">final</strong> RemoveDataRequest removeDocumentsRequest = <strong class="jxr_keyword">new</strong> RemoveDataRequest();
+<a class="jxr_linenumber" name="L147" href="#L147">147</a> 		removeDocumentsRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+<a class="jxr_linenumber" name="L148" href="#L148">148</a> 		removeDocumentsRequest.setDataType(RemoveDataRequest.DataType.DOCUMENTS);
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
+<a class="jxr_linenumber" name="L150" href="#L150">150</a> 		<strong class="jxr_keyword">final</strong> Button removeDocumentsButton = <strong class="jxr_keyword">new</strong> Button(REMOVE_DOCUMENTS, VaadinIcons.DEL);
+<a class="jxr_linenumber" name="L151" href="#L151">151</a> 		removeDocumentsButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="RemoveDataClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/RemoveDataClickListener.html#RemoveDataClickListener">RemoveDataClickListener</a>(removeDocumentsRequest));
+<a class="jxr_linenumber" name="L152" href="#L152">152</a> 		RowUtil.createRowItem(grid, removeDocumentsButton, REMOVE_DOCUMENTS);
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> 
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> 		<strong class="jxr_keyword">final</strong> RemoveDataRequest removeApplicationHistoryRequest = <strong class="jxr_keyword">new</strong> RemoveDataRequest();
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> 		removeApplicationHistoryRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> 		removeApplicationHistoryRequest.setDataType(RemoveDataRequest.DataType.APPLICATION_HISTORY);
+<a class="jxr_linenumber" name="L157" href="#L157">157</a> 
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> 		<strong class="jxr_keyword">final</strong> Button removeApplicationHistoryButton = <strong class="jxr_keyword">new</strong> Button(REMOVE_APPLICATION_HISTORY, VaadinIcons.DEL);
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> 		removeApplicationHistoryButton.addClickListener(<strong class="jxr_keyword">new</strong> <a name="RemoveDataClickListener" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/pageclicklistener/RemoveDataClickListener.html#RemoveDataClickListener">RemoveDataClickListener</a>(removeApplicationHistoryRequest));
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> 		RowUtil.createRowItem(grid, removeApplicationHistoryButton, REMOVE_APPLICATION_HISTORY);
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> 
+<a class="jxr_linenumber" name="L162" href="#L162">162</a> 		<strong class="jxr_keyword">return</strong> content;
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> 
+<a class="jxr_linenumber" name="L164" href="#L164">164</a> 	}
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> 
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> 	@Override
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> 		<strong class="jxr_keyword">return</strong> NAME.equals(page)
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> 				&amp;&amp; (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> 	}
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> 
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> }
 </pre>
 <hr/>
 <div id="footer">© 2008–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>

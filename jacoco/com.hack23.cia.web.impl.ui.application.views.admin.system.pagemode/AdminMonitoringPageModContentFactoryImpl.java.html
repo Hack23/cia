@@ -58,21 +58,22 @@ public final class AdminMonitoringPageModContentFactoryImpl extends AbstractAdmi
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 <span class="fc" id="L60">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L61">		content.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
 
-<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L64">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L65">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L66">		final BrowserFrame browser = new BrowserFrame(ADMIN_MONITORING, new ExternalResource(MONITORING_CONTEXT_PATH));</span>
-<span class="fc" id="L67">		browser.setSizeFull();</span>
+<span class="fc" id="L67">		final BrowserFrame browser = new BrowserFrame(ADMIN_MONITORING, new ExternalResource(MONITORING_CONTEXT_PATH));</span>
+<span class="fc" id="L68">		browser.setSizeFull();</span>
 
-<span class="fc" id="L69">		content.addComponent(browser);</span>
-<span class="fc" id="L70">		content.setExpandRatio(browser, ContentRatio.FULL_SIZE);</span>
+<span class="fc" id="L70">		content.addComponent(browser);</span>
+<span class="fc" id="L71">		content.setExpandRatio(browser, ContentRatio.FULL_SIZE);</span>
 
-<span class="fc" id="L72">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_MONITORING_VIEW, ApplicationEventGroup.ADMIN,</span>
+<span class="fc" id="L73">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_MONITORING_VIEW, ApplicationEventGroup.ADMIN,</span>
 				NAME, null, pageId);
 
-<span class="fc" id="L75">		return content;</span>
+<span class="fc" id="L76">		return content;</span>
 
 	}
 

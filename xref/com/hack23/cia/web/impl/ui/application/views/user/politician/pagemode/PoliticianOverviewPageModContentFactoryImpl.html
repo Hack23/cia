@@ -26,254 +26,401 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">package</strong> com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.lang3.StringUtils;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.springframework.security.access.annotation.Secured;
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.springframework.stereotype.Component;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.action.ViewAction;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> com.vaadin.icons.VaadinIcons;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> com.vaadin.server.ExternalResource;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> com.vaadin.server.Responsive;
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> com.vaadin.server.Sizeable.Unit;
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> com.vaadin.shared.ui.ContentMode;
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.HorizontalLayout;
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Image;
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Label;
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Layout;
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Link;
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.MenuBar;
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Panel;
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.VerticalLayout;
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment"> * The Class PoliticianOverviewPageModContentFactoryImpl.</em>
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  @Component
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="PoliticianOverviewPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/politician/pagemode/PoliticianOverviewPageModContentFactoryImpl.html#PoliticianOverviewPageModContentFactoryImpl">PoliticianOverviewPageModContentFactoryImpl</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractPoliticianPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/politician/pagemode/AbstractPoliticianPageModContentFactoryImpl.html#AbstractPoliticianPageModContentFactoryImpl">AbstractPoliticianPageModContentFactoryImpl</a> {
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">	 * Instantiates a new politician overview page mod content factory impl.</em>
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">public</strong> <a name="PoliticianOverviewPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/politician/pagemode/PoliticianOverviewPageModContentFactoryImpl.html#PoliticianOverviewPageModContentFactoryImpl">PoliticianOverviewPageModContentFactoryImpl</a>() {
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  		<strong class="jxr_keyword">super</strong>();
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	}
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	@Override
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  		panel.setContent(panelContent);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		<strong class="jxr_keyword">final</strong> ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  		createPageHeader(
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  				panel,
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  				panelContent,
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  				<span class="jxr_string">"Politician Overview "</span> + viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName()
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  						+ <span class="jxr_string">" ("</span> + viewRiksdagenPolitician.getParty() + ')',
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  				<span class="jxr_string">"Politician Details"</span>,
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  				<span class="jxr_string">"Detailed profiles and activities of politicians."</span>
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  		);
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		<strong class="jxr_keyword">final</strong> PersonData personData = getApplicationManager().getDataContainer(PersonData.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  				.load(viewRiksdagenPolitician.getPersonId());
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.util.Date;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> java.util.Locale;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.lang3.StringUtils;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> org.springframework.security.access.annotation.Secured;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.springframework.stereotype.Component;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.action.ViewAction;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> com.vaadin.icons.VaadinIcons;
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> com.vaadin.server.ExternalResource;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> com.vaadin.server.Responsive;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> com.vaadin.server.Sizeable.Unit;
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> com.vaadin.shared.ui.ContentMode;
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.HorizontalLayout;
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Image;
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Label;
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Layout;
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Link;
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.MenuBar;
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.Panel;
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <strong class="jxr_keyword">import</strong> com.vaadin.ui.VerticalLayout;
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment"> * The Class PoliticianOverviewPageModContentFactoryImpl.</em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  @Component
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="PoliticianOverviewPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/politician/pagemode/PoliticianOverviewPageModContentFactoryImpl.html#PoliticianOverviewPageModContentFactoryImpl">PoliticianOverviewPageModContentFactoryImpl</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractPoliticianPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/politician/pagemode/AbstractPoliticianPageModContentFactoryImpl.html#AbstractPoliticianPageModContentFactoryImpl">AbstractPoliticianPageModContentFactoryImpl</a> {
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">	 * Instantiates a new politician overview page mod content factory impl.</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	<strong class="jxr_keyword">public</strong> <a name="PoliticianOverviewPageModContentFactoryImpl" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/politician/pagemode/PoliticianOverviewPageModContentFactoryImpl.html#PoliticianOverviewPageModContentFactoryImpl">PoliticianOverviewPageModContentFactoryImpl</a>() {
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  		<strong class="jxr_keyword">super</strong>();
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	}
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">	 * Creates the content.</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">	 * @param parameters the parameters</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">	 * @param menuBar the menu bar</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">	 * @param panel the panel</em>
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  <em class="jxr_javadoccomment">	 * @return the layout</em>
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	@Secured({ <span class="jxr_string">"ROLE_ANONYMOUS"</span>, <span class="jxr_string">"ROLE_USER"</span>, <span class="jxr_string">"ROLE_ADMIN"</span> })
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  	@Override
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	<strong class="jxr_keyword">public</strong> Layout createContent(<strong class="jxr_keyword">final</strong> String parameters, <strong class="jxr_keyword">final</strong> MenuBar menuBar, <strong class="jxr_keyword">final</strong> Panel panel) {
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  		<strong class="jxr_keyword">final</strong> VerticalLayout panelContent = createPanelContent();
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  		panel.setContent(panelContent);
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		<strong class="jxr_keyword">final</strong> ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  		<strong class="jxr_keyword">final</strong> ViewRiksdagenPoliticianBallotSummary viewRiksdagenPoliticianBallotSummary = getViewRiksdagenPoliticianBallotSummary(
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  				parameters);
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, pageId);
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  		getPageActionEventHelper().createPageEvent(
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  				ViewAction.VISIT_POLITICIAN_VIEW,
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  				ApplicationEventGroup.USER,
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  				UserViews.POLITICIAN_VIEW_NAME,
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  				parameters,
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  				pageId
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  		);
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  		createPageHeader(panel, panelContent,
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  				<span class="jxr_string">"Politician Overview "</span> + viewRiksdagenPolitician.getFirstName() + ' '
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  						+ viewRiksdagenPolitician.getLastName() + <span class="jxr_string">" ("</span> + viewRiksdagenPolitician.getParty() + ')',
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  				<span class="jxr_string">"Politician Details"</span>, <span class="jxr_string">"Detailed profiles and activities of politicians."</span>);
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  		<strong class="jxr_keyword">final</strong> PersonData personData = getApplicationManager().getDataContainer(PersonData.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  				.load(viewRiksdagenPolitician.getPersonId());
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		<strong class="jxr_keyword">return</strong> panelContent;
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  	}
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		createOverviewContent(panelContent, personData, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary,
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  				pageId);
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">	 * Creates the overview content in a card style similar to the scoreboard snippet.</em>
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">	 * @param panelContent            the panel content</em>
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">	 * @param personData              the person data</em>
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">	 * @param viewRiksdagenPolitician the view riksdagen politician</em>
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> <em class="jxr_javadoccomment">	 * @param pageId                  the page id</em>
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> createOverviewContent(<strong class="jxr_keyword">final</strong> VerticalLayout panelContent, <strong class="jxr_keyword">final</strong> PersonData personData,
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> 			<strong class="jxr_keyword">final</strong> ViewRiksdagenPolitician viewRiksdagenPolitician, <strong class="jxr_keyword">final</strong> String pageId) {
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> 
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> 		<em class="jxr_comment">// Link to politician detail page</em>
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> 		<strong class="jxr_keyword">final</strong> Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> 		createPoliticianPageLink.addStyleName(<span class="jxr_string">"card-subtitle"</span>);
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> 		panelContent.addComponent(createPoliticianPageLink);
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> 		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> 		<em class="jxr_comment">// Create a panel (card) for the politician</em>
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> 		<strong class="jxr_keyword">final</strong> Panel cardPanel = <strong class="jxr_keyword">new</strong> Panel();
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> 		cardPanel.addStyleName(<span class="jxr_string">"politician-overview-card"</span>);
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 		cardPanel.setWidth(<span class="jxr_string">"100%"</span>);
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 		cardPanel.setHeightUndefined();
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> 		Responsive.makeResponsive(cardPanel);
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout cardContent = <strong class="jxr_keyword">new</strong> VerticalLayout();
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> 		cardContent.setMargin(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> 		cardContent.setSpacing(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> 		cardContent.setWidth(<span class="jxr_string">"100%"</span>);
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> 		cardPanel.setContent(cardContent);
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> 
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		panelContent.addComponent(cardPanel);
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> 
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> 		<em class="jxr_comment">// Header layout similar to scoreboard snippet</em>
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> 		<strong class="jxr_keyword">final</strong> HorizontalLayout headerLayout = <strong class="jxr_keyword">new</strong> HorizontalLayout();
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> 		headerLayout.setSpacing(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> 		headerLayout.setWidth(<span class="jxr_string">"100%"</span>);
-<a class="jxr_linenumber" name="L132" href="#L132">132</a> 		headerLayout.addStyleName(<span class="jxr_string">"card-header-section"</span>);
-<a class="jxr_linenumber" name="L133" href="#L133">133</a> 
-<a class="jxr_linenumber" name="L134" href="#L134">134</a> 		<strong class="jxr_keyword">final</strong> String titleText = viewRiksdagenPolitician.getFirstName() + <span class="jxr_string">" "</span> + viewRiksdagenPolitician.getLastName()
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> 				+ <span class="jxr_string">" ("</span> + viewRiksdagenPolitician.getParty() + <span class="jxr_string">")"</span>;
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> 		<strong class="jxr_keyword">final</strong> Label titleLabel = <strong class="jxr_keyword">new</strong> Label(titleText, ContentMode.HTML);
-<a class="jxr_linenumber" name="L137" href="#L137">137</a> 		titleLabel.addStyleName(<span class="jxr_string">"card-title"</span>);
-<a class="jxr_linenumber" name="L138" href="#L138">138</a> 		titleLabel.setWidthUndefined();
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> 		headerLayout.addComponent(titleLabel);
-<a class="jxr_linenumber" name="L140" href="#L140">140</a> 
-<a class="jxr_linenumber" name="L141" href="#L141">141</a> 		<em class="jxr_comment">// Party link</em>
-<a class="jxr_linenumber" name="L142" href="#L142">142</a> 		<strong class="jxr_keyword">final</strong> Link partyLink = <strong class="jxr_keyword">new</strong> Link(<span class="jxr_string">"Party "</span> + viewRiksdagenPolitician.getParty(),
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> 				<strong class="jxr_keyword">new</strong> ExternalResource(<span class="jxr_string">"#!"</span> + UserViews.PARTY_VIEW_NAME + <span class="jxr_string">"/"</span> + viewRiksdagenPolitician.getParty()));
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> 		partyLink.setIcon(VaadinIcons.GROUP);
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> 		partyLink.addStyleName(<span class="jxr_string">"card-title"</span>);
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> 		headerLayout.addComponent(partyLink);
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> 
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> 		cardContent.addComponent(headerLayout);
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> 		<em class="jxr_comment">// Divider line for better separation</em>
-<a class="jxr_linenumber" name="L151" href="#L151">151</a> 		<strong class="jxr_keyword">final</strong> Label divider = <strong class="jxr_keyword">new</strong> Label(<span class="jxr_string">"&lt;hr/&gt;"</span>, ContentMode.HTML);
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> 		divider.addStyleName(<span class="jxr_string">"card-divider"</span>);
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> 		divider.setWidth(<span class="jxr_string">"100%"</span>);
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> 		cardContent.addComponent(divider);
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> 
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> 		<em class="jxr_comment">// Image and details layout</em>
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> 		<strong class="jxr_keyword">final</strong> HorizontalLayout imageAndDetailsLayout = <strong class="jxr_keyword">new</strong> HorizontalLayout();
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> 		imageAndDetailsLayout.setSpacing(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> 		imageAndDetailsLayout.setWidth(<span class="jxr_string">"100%"</span>);
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> 		cardContent.addComponent(imageAndDetailsLayout);
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> 
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> 		<em class="jxr_comment">// Politician image (smaller)</em>
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> 		<strong class="jxr_keyword">final</strong> String imageUrl = personData.getImageUrl192().replace(<span class="jxr_string">"http://"</span>, <span class="jxr_string">"https://"</span>);
-<a class="jxr_linenumber" name="L164" href="#L164">164</a> 		<strong class="jxr_keyword">final</strong> Image image = <strong class="jxr_keyword">new</strong> Image(<span class="jxr_string">""</span>, <strong class="jxr_keyword">new</strong> ExternalResource(imageUrl));
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> 		image.setDescription(<span class="jxr_string">"Picture of "</span> + viewRiksdagenPolitician.getFirstName() + <span class="jxr_string">" "</span>
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> 				+ viewRiksdagenPolitician.getLastName());
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> 		image.setWidth(100, Unit.PIXELS);
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> 		image.addStyleName(<span class="jxr_string">"politician-image"</span>);
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> 
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> 		imageAndDetailsLayout.addComponent(image);
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> 
-<a class="jxr_linenumber" name="L172" href="#L172">172</a> 		<em class="jxr_comment">// Two-column layout for attributes</em>
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> 		<strong class="jxr_keyword">final</strong> HorizontalLayout attributesLayout = <strong class="jxr_keyword">new</strong> HorizontalLayout();
-<a class="jxr_linenumber" name="L174" href="#L174">174</a> 		attributesLayout.setSpacing(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L175" href="#L175">175</a> 		attributesLayout.setWidth(<span class="jxr_string">"100%"</span>);
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> 		imageAndDetailsLayout.addComponent(attributesLayout);
-<a class="jxr_linenumber" name="L177" href="#L177">177</a> 		imageAndDetailsLayout.setExpandRatio(attributesLayout, 1.0f);
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 
-<a class="jxr_linenumber" name="L179" href="#L179">179</a> 		<em class="jxr_comment">// First column: Profile Details</em>
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout profileDetailsLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> 		profileDetailsLayout.setSpacing(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 		profileDetailsLayout.addStyleName(<span class="jxr_string">"card-details-column"</span>);
-<a class="jxr_linenumber" name="L183" href="#L183">183</a> 		profileDetailsLayout.setWidthUndefined();
-<a class="jxr_linenumber" name="L184" href="#L184">184</a> 
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> 		<strong class="jxr_keyword">final</strong> Label profileDetailsHeader = <strong class="jxr_keyword">new</strong> Label(<span class="jxr_string">"Profile Details"</span>);
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> 		profileDetailsHeader.addStyleName(<span class="jxr_string">"card-section-title"</span>);
-<a class="jxr_linenumber" name="L187" href="#L187">187</a> 		profileDetailsLayout.addComponent(profileDetailsHeader);
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  		<strong class="jxr_keyword">return</strong> panelContent;
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  	}
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> 
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> <em class="jxr_javadoccomment">	 * Gets the view riksdagen politician ballot summary.</em>
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> <em class="jxr_javadoccomment">	 * @param parameters the parameters</em>
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> <em class="jxr_javadoccomment">	 * @return the view riksdagen politician ballot summary</em>
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 	<strong class="jxr_keyword">protected</strong> ViewRiksdagenPoliticianBallotSummary getViewRiksdagenPoliticianBallotSummary(<strong class="jxr_keyword">final</strong> String parameters) {
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> 		<strong class="jxr_keyword">final</strong> PersonData personData = getApplicationManager().getDataContainer(PersonData.<strong class="jxr_keyword">class</strong>).load(pageId);
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 		<strong class="jxr_keyword">if</strong> (personData != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 			<strong class="jxr_keyword">return</strong> getApplicationManager().getDataContainer(ViewRiksdagenPoliticianBallotSummary.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> 					.load(personData.getId());
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> 		} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> 			<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 		}
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> 	}
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">	 * Creates the overview content in a card style similar to the scoreboard</em>
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">	 * snippet.</em>
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">	 * @param panelContent                         the panel content</em>
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">	 * @param personData                           the person data</em>
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment">	 * @param viewRiksdagenPolitician              the view riksdagen politician</em>
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> <em class="jxr_javadoccomment">	 * @param viewRiksdagenPoliticianBallotSummary the view riksdagen politician</em>
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_javadoccomment">	 *                                             ballot summary</em>
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_javadoccomment">	 * @param pageId                               the page id</em>
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> createOverviewContent(<strong class="jxr_keyword">final</strong> VerticalLayout panelContent, <strong class="jxr_keyword">final</strong> PersonData personData,
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> 			<strong class="jxr_keyword">final</strong> ViewRiksdagenPolitician viewRiksdagenPolitician,
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 			<strong class="jxr_keyword">final</strong> ViewRiksdagenPoliticianBallotSummary viewRiksdagenPoliticianBallotSummary, <strong class="jxr_keyword">final</strong> String pageId) {
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> 
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> 		<em class="jxr_comment">// Link to politician detail page</em>
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> 		<strong class="jxr_keyword">final</strong> Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);
+<a class="jxr_linenumber" name="L135" href="#L135">135</a> 		createPoliticianPageLink.addStyleName(<span class="jxr_string">"card-subtitle"</span>);
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> 		panelContent.addComponent(createPoliticianPageLink);
+<a class="jxr_linenumber" name="L137" href="#L137">137</a> 		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> 
+<a class="jxr_linenumber" name="L139" href="#L139">139</a> 		<em class="jxr_comment">// Create a panel (card) for the politician</em>
+<a class="jxr_linenumber" name="L140" href="#L140">140</a> 		<strong class="jxr_keyword">final</strong> Panel cardPanel = <strong class="jxr_keyword">new</strong> Panel();
+<a class="jxr_linenumber" name="L141" href="#L141">141</a> 		cardPanel.addStyleName(<span class="jxr_string">"politician-overview-card"</span>);
+<a class="jxr_linenumber" name="L142" href="#L142">142</a> 		cardPanel.setWidth(<span class="jxr_string">"100%"</span>);
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> 		cardPanel.setHeightUndefined();
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> 		Responsive.makeResponsive(cardPanel);
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> 
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout cardContent = <strong class="jxr_keyword">new</strong> VerticalLayout();
+<a class="jxr_linenumber" name="L147" href="#L147">147</a> 		cardContent.setMargin(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L148" href="#L148">148</a> 		cardContent.setSpacing(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 		cardContent.setWidth(<span class="jxr_string">"100%"</span>);
+<a class="jxr_linenumber" name="L150" href="#L150">150</a> 		cardPanel.setContent(cardContent);
+<a class="jxr_linenumber" name="L151" href="#L151">151</a> 
+<a class="jxr_linenumber" name="L152" href="#L152">152</a> 		panelContent.addComponent(cardPanel);
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> 
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> 		<em class="jxr_comment">// Header layout similar to scoreboard snippet</em>
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> 		<strong class="jxr_keyword">final</strong> HorizontalLayout headerLayout = <strong class="jxr_keyword">new</strong> HorizontalLayout();
+<a class="jxr_linenumber" name="L157" href="#L157">157</a> 		headerLayout.setSpacing(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> 		headerLayout.setWidth(<span class="jxr_string">"100%"</span>);
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> 		headerLayout.addStyleName(<span class="jxr_string">"card-header-section"</span>);
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> 
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> 		<strong class="jxr_keyword">final</strong> String titleText = viewRiksdagenPolitician.getFirstName() + <span class="jxr_string">" "</span> + viewRiksdagenPolitician.getLastName()
+<a class="jxr_linenumber" name="L162" href="#L162">162</a> 				+ <span class="jxr_string">" ("</span> + viewRiksdagenPolitician.getParty() + <span class="jxr_string">")"</span>;
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> 		<strong class="jxr_keyword">final</strong> Label titleLabel = <strong class="jxr_keyword">new</strong> Label(titleText, ContentMode.HTML);
+<a class="jxr_linenumber" name="L164" href="#L164">164</a> 		titleLabel.addStyleName(<span class="jxr_string">"card-title"</span>);
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> 		titleLabel.setWidthUndefined();
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> 		headerLayout.addComponent(titleLabel);
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> 
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> 		<em class="jxr_comment">// Party link</em>
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> 		<strong class="jxr_keyword">final</strong> Link partyLink = <strong class="jxr_keyword">new</strong> Link(<span class="jxr_string">"Party "</span> + viewRiksdagenPolitician.getParty(),
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> 				<strong class="jxr_keyword">new</strong> ExternalResource(<span class="jxr_string">"#!"</span> + UserViews.PARTY_VIEW_NAME + <span class="jxr_string">"/"</span> + viewRiksdagenPolitician.getParty()));
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> 		partyLink.setIcon(VaadinIcons.GROUP);
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> 		partyLink.addStyleName(<span class="jxr_string">"card-title"</span>);
+<a class="jxr_linenumber" name="L173" href="#L173">173</a> 		headerLayout.addComponent(partyLink);
+<a class="jxr_linenumber" name="L174" href="#L174">174</a> 
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> 		cardContent.addComponent(headerLayout);
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> 
+<a class="jxr_linenumber" name="L177" href="#L177">177</a> 		<em class="jxr_comment">// Divider line for better separation</em>
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> 		<strong class="jxr_keyword">final</strong> Label divider = <strong class="jxr_keyword">new</strong> Label(<span class="jxr_string">"&lt;hr/&gt;"</span>, ContentMode.HTML);
+<a class="jxr_linenumber" name="L179" href="#L179">179</a> 		divider.addStyleName(<span class="jxr_string">"card-divider"</span>);
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> 		divider.setWidth(<span class="jxr_string">"100%"</span>);
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> 		cardContent.addComponent(divider);
+<a class="jxr_linenumber" name="L182" href="#L182">182</a> 
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> 		<em class="jxr_comment">// Image and details layout</em>
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> 		<strong class="jxr_keyword">final</strong> HorizontalLayout imageAndDetailsLayout = <strong class="jxr_keyword">new</strong> HorizontalLayout();
+<a class="jxr_linenumber" name="L185" href="#L185">185</a> 		imageAndDetailsLayout.setSpacing(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> 		imageAndDetailsLayout.setWidth(<span class="jxr_string">"100%"</span>);
+<a class="jxr_linenumber" name="L187" href="#L187">187</a> 		cardContent.addComponent(imageAndDetailsLayout);
 <a class="jxr_linenumber" name="L188" href="#L188">188</a> 
-<a class="jxr_linenumber" name="L189" href="#L189">189</a> 		profileDetailsLayout.addComponent(createInfoRow(<span class="jxr_string">"Gender:"</span>, viewRiksdagenPolitician.getGender(), VaadinIcons.USER, <span class="jxr_string">"Politician's gender"</span>));
-<a class="jxr_linenumber" name="L190" href="#L190">190</a> 		profileDetailsLayout.addComponent(createInfoRow(<span class="jxr_string">"Born Year:"</span>, String.valueOf(viewRiksdagenPolitician.getBornYear()), VaadinIcons.CALENDAR, <span class="jxr_string">"Year the politician was born"</span>));
-<a class="jxr_linenumber" name="L191" href="#L191">191</a> 		profileDetailsLayout.addComponent(createInfoRow(<span class="jxr_string">"Total Days Served:"</span>, String.valueOf(viewRiksdagenPolitician.getTotalDaysServed()), VaadinIcons.CLOCK, <span class="jxr_string">"Total number of days in public service"</span>));
-<a class="jxr_linenumber" name="L192" href="#L192">192</a> 		profileDetailsLayout.addComponent(createInfoRow(<span class="jxr_string">"Ministry Days Served:"</span>, String.valueOf(viewRiksdagenPolitician.getTotalDaysServedGovernment()), VaadinIcons.CLOCK, <span class="jxr_string">"Total number of days as Minister"</span>));
-<a class="jxr_linenumber" name="L193" href="#L193">193</a> 		profileDetailsLayout.addComponent(createInfoRow(<span class="jxr_string">"Parliament Days Served:"</span>, String.valueOf(viewRiksdagenPolitician.getTotalDaysServedParliament()), VaadinIcons.CLOCK, <span class="jxr_string">"Total number of days in Parliament"</span>));
-<a class="jxr_linenumber" name="L194" href="#L194">194</a> 
-<a class="jxr_linenumber" name="L195" href="#L195">195</a> 		attributesLayout.addComponent(profileDetailsLayout);
+<a class="jxr_linenumber" name="L189" href="#L189">189</a> 		<em class="jxr_comment">// Politician image (smaller)</em>
+<a class="jxr_linenumber" name="L190" href="#L190">190</a> 		<strong class="jxr_keyword">final</strong> String imageUrl = personData.getImageUrl192().replace(<span class="jxr_string">"http://"</span>, <span class="jxr_string">"https://"</span>);
+<a class="jxr_linenumber" name="L191" href="#L191">191</a> 		<strong class="jxr_keyword">final</strong> Image image = <strong class="jxr_keyword">new</strong> Image(<span class="jxr_string">""</span>, <strong class="jxr_keyword">new</strong> ExternalResource(imageUrl));
+<a class="jxr_linenumber" name="L192" href="#L192">192</a> 		image.setDescription(
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> 				<span class="jxr_string">"Picture of "</span> + viewRiksdagenPolitician.getFirstName() + <span class="jxr_string">" "</span> + viewRiksdagenPolitician.getLastName());
+<a class="jxr_linenumber" name="L194" href="#L194">194</a> 		image.setWidth(100, Unit.PIXELS);
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> 		image.addStyleName(<span class="jxr_string">"politician-image"</span>);
 <a class="jxr_linenumber" name="L196" href="#L196">196</a> 
-<a class="jxr_linenumber" name="L197" href="#L197">197</a> 		<em class="jxr_comment">// Second column: Service Statistics</em>
-<a class="jxr_linenumber" name="L198" href="#L198">198</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout serviceStatsLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
-<a class="jxr_linenumber" name="L199" href="#L199">199</a> 		serviceStatsLayout.setSpacing(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> 		serviceStatsLayout.addStyleName(<span class="jxr_string">"card-details-column"</span>);
-<a class="jxr_linenumber" name="L201" href="#L201">201</a> 		serviceStatsLayout.setWidthUndefined();
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> 
-<a class="jxr_linenumber" name="L203" href="#L203">203</a> 		<strong class="jxr_keyword">final</strong> Label serviceStatsHeader = <strong class="jxr_keyword">new</strong> Label(<span class="jxr_string">"Service Statistics"</span>);
-<a class="jxr_linenumber" name="L204" href="#L204">204</a> 		serviceStatsHeader.addStyleName(<span class="jxr_string">"card-section-title"</span>);
-<a class="jxr_linenumber" name="L205" href="#L205">205</a> 		serviceStatsLayout.addComponent(serviceStatsHeader);
-<a class="jxr_linenumber" name="L206" href="#L206">206</a> 
-<a class="jxr_linenumber" name="L207" href="#L207">207</a> 		<em class="jxr_comment">// Additional stats (Assuming these methods exist)</em>
-<a class="jxr_linenumber" name="L208" href="#L208">208</a> 		serviceStatsLayout.addComponent(createInfoRow(<span class="jxr_string">"Total Assignments:"</span>, String.valueOf(viewRiksdagenPolitician.getTotalAssignments()), VaadinIcons.BAR_CHART, <span class="jxr_string">"Total number of assignments held"</span>));
-<a class="jxr_linenumber" name="L209" href="#L209">209</a> 		serviceStatsLayout.addComponent(createInfoRow(<span class="jxr_string">"First Assignment Date:"</span>, String.valueOf(viewRiksdagenPolitician.getFirstAssignmentDate().toString()), VaadinIcons.FLASH, <span class="jxr_string">"First assignment in public service"</span>));
-<a class="jxr_linenumber" name="L210" href="#L210">210</a> 		serviceStatsLayout.addComponent(createInfoRow(<span class="jxr_string">"Last Assignment Date:"</span>, String.valueOf(viewRiksdagenPolitician.getLastAssignmentDate().toString()), VaadinIcons.FLASH, <span class="jxr_string">"Last assignment in public service"</span>));
-<a class="jxr_linenumber" name="L211" href="#L211">211</a> 		serviceStatsLayout.addComponent(createInfoRow(<span class="jxr_string">"Ministry Assignments:"</span>, String.valueOf(viewRiksdagenPolitician.getTotalMinistryAssignments()), VaadinIcons.INSTITUTION, <span class="jxr_string">"Number of ministry level assignments"</span>));
-<a class="jxr_linenumber" name="L212" href="#L212">212</a> 		serviceStatsLayout.addComponent(createInfoRow(<span class="jxr_string">"Speaker Assignments:"</span>, String.valueOf(viewRiksdagenPolitician.getTotalSpeakerAssignments()), VaadinIcons.MICROPHONE, <span class="jxr_string">"Number of speaker assignments"</span>));
-<a class="jxr_linenumber" name="L213" href="#L213">213</a> 
-<a class="jxr_linenumber" name="L214" href="#L214">214</a> 
-<a class="jxr_linenumber" name="L215" href="#L215">215</a> 		attributesLayout.addComponent(serviceStatsLayout);
+<a class="jxr_linenumber" name="L197" href="#L197">197</a> 		imageAndDetailsLayout.addComponent(image);
+<a class="jxr_linenumber" name="L198" href="#L198">198</a> 
+<a class="jxr_linenumber" name="L199" href="#L199">199</a> 		<strong class="jxr_keyword">final</strong> HorizontalLayout sectionsGrid = <strong class="jxr_keyword">new</strong> HorizontalLayout();
+<a class="jxr_linenumber" name="L200" href="#L200">200</a> 		sectionsGrid.setSpacing(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> 		sectionsGrid.setWidth(<span class="jxr_string">"100%"</span>);
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> 		imageAndDetailsLayout.addComponent(sectionsGrid);
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> 		imageAndDetailsLayout.setExpandRatio(sectionsGrid, 1.0f);
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> 
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> 		<em class="jxr_comment">// 1. Political Role &amp; Influence</em>
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout politicalRoleLayout = createSectionLayout(<span class="jxr_string">"Political Role &amp; Influence"</span>);
+<a class="jxr_linenumber" name="L207" href="#L207">207</a> 		addPoliticalRoleMetrics(politicalRoleLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary);
+<a class="jxr_linenumber" name="L208" href="#L208">208</a> 		sectionsGrid.addComponent(politicalRoleLayout);
+<a class="jxr_linenumber" name="L209" href="#L209">209</a> 		sectionsGrid.setExpandRatio(politicalRoleLayout, 1.0f);
+<a class="jxr_linenumber" name="L210" href="#L210">210</a> 
+<a class="jxr_linenumber" name="L211" href="#L211">211</a> 		<em class="jxr_comment">// 2. Parliamentary Performance</em>
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout performanceLayout = createSectionLayout(<span class="jxr_string">"Parliamentary Performance"</span>);
+<a class="jxr_linenumber" name="L213" href="#L213">213</a> 		addParliamentaryPerformanceMetrics(performanceLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary);
+<a class="jxr_linenumber" name="L214" href="#L214">214</a> 		sectionsGrid.addComponent(performanceLayout);
+<a class="jxr_linenumber" name="L215" href="#L215">215</a> 		sectionsGrid.setExpandRatio(performanceLayout, 1.0f);
 <a class="jxr_linenumber" name="L216" href="#L216">216</a> 
-<a class="jxr_linenumber" name="L217" href="#L217">217</a> 		<em class="jxr_comment">// After the card, add the overview layout for extended details</em>
-<a class="jxr_linenumber" name="L218" href="#L218">218</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout overviewLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
-<a class="jxr_linenumber" name="L219" href="#L219">219</a> 		overviewLayout.setSizeFull();
-<a class="jxr_linenumber" name="L220" href="#L220">220</a> 		panelContent.addComponent(overviewLayout);
-<a class="jxr_linenumber" name="L221" href="#L221">221</a> 		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+<a class="jxr_linenumber" name="L217" href="#L217">217</a> 		<em class="jxr_comment">// 3. Legislative Activity</em>
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout legislativeLayout = createSectionLayout(<span class="jxr_string">"Legislative Impact"</span>);
+<a class="jxr_linenumber" name="L219" href="#L219">219</a> 		addLegislativeMetrics(legislativeLayout, viewRiksdagenPolitician);
+<a class="jxr_linenumber" name="L220" href="#L220">220</a> 		sectionsGrid.addComponent(legislativeLayout);
+<a class="jxr_linenumber" name="L221" href="#L221">221</a> 		sectionsGrid.setExpandRatio(legislativeLayout, 1.0f);
 <a class="jxr_linenumber" name="L222" href="#L222">222</a> 
-<a class="jxr_linenumber" name="L223" href="#L223">223</a> 		getPoliticianMenuItemFactory().createOverviewPage(overviewLayout, pageId);
-<a class="jxr_linenumber" name="L224" href="#L224">224</a> 	}
-<a class="jxr_linenumber" name="L225" href="#L225">225</a> 
-<a class="jxr_linenumber" name="L226" href="#L226">226</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L227" href="#L227">227</a> <em class="jxr_javadoccomment">	 * Creates a row displaying a caption and value, with optional icon and tooltip.</em>
-<a class="jxr_linenumber" name="L228" href="#L228">228</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L229" href="#L229">229</a> <em class="jxr_javadoccomment">	 * @param caption the field caption</em>
-<a class="jxr_linenumber" name="L230" href="#L230">230</a> <em class="jxr_javadoccomment">	 * @param value   the field value</em>
-<a class="jxr_linenumber" name="L231" href="#L231">231</a> <em class="jxr_javadoccomment">	 * @param icon    a VaadinIcons icon for better visual cue</em>
-<a class="jxr_linenumber" name="L232" href="#L232">232</a> <em class="jxr_javadoccomment">	 * @param tooltip optional tooltip to provide more info</em>
-<a class="jxr_linenumber" name="L233" href="#L233">233</a> <em class="jxr_javadoccomment">	 * @return a HorizontalLayout representing the info row</em>
-<a class="jxr_linenumber" name="L234" href="#L234">234</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L235" href="#L235">235</a> 	<strong class="jxr_keyword">private</strong> HorizontalLayout createInfoRow(<strong class="jxr_keyword">final</strong> String caption, <strong class="jxr_keyword">final</strong> String value, VaadinIcons icon, <strong class="jxr_keyword">final</strong> String tooltip) {
-<a class="jxr_linenumber" name="L236" href="#L236">236</a> 		<strong class="jxr_keyword">final</strong> HorizontalLayout layout = <strong class="jxr_keyword">new</strong> HorizontalLayout();
-<a class="jxr_linenumber" name="L237" href="#L237">237</a> 		layout.setSpacing(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L238" href="#L238">238</a> 		layout.addStyleName(<span class="jxr_string">"metric-label"</span>);
-<a class="jxr_linenumber" name="L239" href="#L239">239</a> 		layout.setWidthUndefined();
-<a class="jxr_linenumber" name="L240" href="#L240">240</a> 
-<a class="jxr_linenumber" name="L241" href="#L241">241</a> 		Label iconLabel = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L242" href="#L242">242</a> 		<strong class="jxr_keyword">if</strong> (icon != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L243" href="#L243">243</a> 			iconLabel = <strong class="jxr_keyword">new</strong> Label(icon.getHtml(), ContentMode.HTML);
-<a class="jxr_linenumber" name="L244" href="#L244">244</a> 			iconLabel.setDescription(tooltip);
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> 			iconLabel.addStyleName(<span class="jxr_string">"card-info-icon"</span>);
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> 			layout.addComponent(iconLabel);
-<a class="jxr_linenumber" name="L247" href="#L247">247</a> 		}
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> 
-<a class="jxr_linenumber" name="L249" href="#L249">249</a> 		<strong class="jxr_keyword">final</strong> Label captionLabel = <strong class="jxr_keyword">new</strong> Label(caption);
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> 		captionLabel.addStyleName(<span class="jxr_string">"card-info-caption"</span>);
-<a class="jxr_linenumber" name="L251" href="#L251">251</a> 		<strong class="jxr_keyword">if</strong> (tooltip != <strong class="jxr_keyword">null</strong> &amp;&amp; !tooltip.isEmpty()) {
-<a class="jxr_linenumber" name="L252" href="#L252">252</a> 			captionLabel.setDescription(tooltip);
-<a class="jxr_linenumber" name="L253" href="#L253">253</a> 		}
-<a class="jxr_linenumber" name="L254" href="#L254">254</a> 
-<a class="jxr_linenumber" name="L255" href="#L255">255</a> 		<strong class="jxr_keyword">final</strong> Label valueLabel = <strong class="jxr_keyword">new</strong> Label(value != <strong class="jxr_keyword">null</strong> ? value : <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L256" href="#L256">256</a> 		valueLabel.addStyleName(<span class="jxr_string">"card-info-value"</span>);
-<a class="jxr_linenumber" name="L257" href="#L257">257</a> 
-<a class="jxr_linenumber" name="L258" href="#L258">258</a> 		layout.addComponents(captionLabel, valueLabel);
-<a class="jxr_linenumber" name="L259" href="#L259">259</a> 		<strong class="jxr_keyword">return</strong> layout;
-<a class="jxr_linenumber" name="L260" href="#L260">260</a> 	}
-<a class="jxr_linenumber" name="L261" href="#L261">261</a> 
-<a class="jxr_linenumber" name="L262" href="#L262">262</a> 	@Override
-<a class="jxr_linenumber" name="L263" href="#L263">263</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
-<a class="jxr_linenumber" name="L264" href="#L264">264</a> 		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
-<a class="jxr_linenumber" name="L265" href="#L265">265</a> 		<strong class="jxr_keyword">return</strong> NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-<a class="jxr_linenumber" name="L266" href="#L266">266</a> 				|| parameters.contains(PageMode.OVERVIEW.toString()));
-<a class="jxr_linenumber" name="L267" href="#L267">267</a> 	}
-<a class="jxr_linenumber" name="L268" href="#L268">268</a> }
+<a class="jxr_linenumber" name="L223" href="#L223">223</a> 		<em class="jxr_comment">// 4. Party Alignment &amp; Cooperation</em>
+<a class="jxr_linenumber" name="L224" href="#L224">224</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout partyAlignmentLayout = createSectionLayout(<span class="jxr_string">"Party Alignment &amp; Cooperation"</span>);
+<a class="jxr_linenumber" name="L225" href="#L225">225</a> 		addPartyAlignmentMetrics(partyAlignmentLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary);
+<a class="jxr_linenumber" name="L226" href="#L226">226</a> 		sectionsGrid.addComponent(partyAlignmentLayout);
+<a class="jxr_linenumber" name="L227" href="#L227">227</a> 		sectionsGrid.setExpandRatio(partyAlignmentLayout, 1.0f);
+<a class="jxr_linenumber" name="L228" href="#L228">228</a> 
+<a class="jxr_linenumber" name="L229" href="#L229">229</a> 
+<a class="jxr_linenumber" name="L230" href="#L230">230</a> 		imageAndDetailsLayout.addComponent(sectionsGrid);
+<a class="jxr_linenumber" name="L231" href="#L231">231</a> 		imageAndDetailsLayout.setExpandRatio(sectionsGrid, ContentRatio.SMALL_GRID);
+<a class="jxr_linenumber" name="L232" href="#L232">232</a> 
+<a class="jxr_linenumber" name="L233" href="#L233">233</a> 		<em class="jxr_comment">// After the card, add the overview layout for extended details</em>
+<a class="jxr_linenumber" name="L234" href="#L234">234</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout overviewLayout = <strong class="jxr_keyword">new</strong> VerticalLayout();
+<a class="jxr_linenumber" name="L235" href="#L235">235</a> 		overviewLayout.setSizeFull();
+<a class="jxr_linenumber" name="L236" href="#L236">236</a> 		panelContent.addComponent(overviewLayout);
+<a class="jxr_linenumber" name="L237" href="#L237">237</a> 		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+<a class="jxr_linenumber" name="L238" href="#L238">238</a> 
+<a class="jxr_linenumber" name="L239" href="#L239">239</a> 		getPoliticianMenuItemFactory().createOverviewPage(overviewLayout, pageId);
+<a class="jxr_linenumber" name="L240" href="#L240">240</a> 	}
+<a class="jxr_linenumber" name="L241" href="#L241">241</a> 
+<a class="jxr_linenumber" name="L242" href="#L242">242</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">	 * Creates the section layout.</em>
+<a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">	 * @param title the title</em>
+<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">	 * @return the vertical layout</em>
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> 	<strong class="jxr_keyword">private</strong> VerticalLayout createSectionLayout(String title) {
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> 		<strong class="jxr_keyword">final</strong> VerticalLayout layout = <strong class="jxr_keyword">new</strong> VerticalLayout();
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> 		layout.setSpacing(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> 		layout.addStyleName(<span class="jxr_string">"card-details-column"</span>);
+<a class="jxr_linenumber" name="L252" href="#L252">252</a> 		layout.setWidth(<span class="jxr_string">"100%"</span>);
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> 
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> 		<strong class="jxr_keyword">final</strong> Label header = <strong class="jxr_keyword">new</strong> Label(title);
+<a class="jxr_linenumber" name="L255" href="#L255">255</a> 		header.addStyleName(<span class="jxr_string">"card-section-title"</span>);
+<a class="jxr_linenumber" name="L256" href="#L256">256</a> 		layout.addComponent(header);
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> 		<strong class="jxr_keyword">return</strong> layout;
+<a class="jxr_linenumber" name="L258" href="#L258">258</a> 	}
+<a class="jxr_linenumber" name="L259" href="#L259">259</a> 
+<a class="jxr_linenumber" name="L260" href="#L260">260</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L261" href="#L261">261</a> <em class="jxr_javadoccomment">	 * Adds the political role metrics.</em>
+<a class="jxr_linenumber" name="L262" href="#L262">262</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L263" href="#L263">263</a> <em class="jxr_javadoccomment">	 * @param layout the layout</em>
+<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">	 * @param politician the politician</em>
+<a class="jxr_linenumber" name="L265" href="#L265">265</a> <em class="jxr_javadoccomment">	 * @param ballotSummary the ballot summary</em>
+<a class="jxr_linenumber" name="L266" href="#L266">266</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L267" href="#L267">267</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
+<a class="jxr_linenumber" name="L268" href="#L268">268</a> 			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+<a class="jxr_linenumber" name="L269" href="#L269">269</a> 
+<a class="jxr_linenumber" name="L270" href="#L270">270</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Current Role:"</span>, ballotSummary.getStatus(), VaadinIcons.INSTITUTION,
+<a class="jxr_linenumber" name="L271" href="#L271">271</a> 				<span class="jxr_string">"Current position in parliament"</span>));
+<a class="jxr_linenumber" name="L272" href="#L272">272</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Region:"</span>, ballotSummary.getElectionRegion(), VaadinIcons.MAP_MARKER,
+<a class="jxr_linenumber" name="L273" href="#L273">273</a> 				<span class="jxr_string">"Electoral district"</span>));
+<a class="jxr_linenumber" name="L274" href="#L274">274</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Career Length:"</span>,
+<a class="jxr_linenumber" name="L275" href="#L275">275</a> 				calculateServiceYears(politician.getFirstAssignmentDate(), politician.getLastAssignmentDate()),
+<a class="jxr_linenumber" name="L276" href="#L276">276</a> 				VaadinIcons.TIMER, <span class="jxr_string">"Years in parliament"</span>));
+<a class="jxr_linenumber" name="L277" href="#L277">277</a> 		layout.addComponent(
+<a class="jxr_linenumber" name="L278" href="#L278">278</a> 				createInfoRow(<span class="jxr_string">"Influence Score:"</span>, String.format(Locale.ENGLISH,<span class="jxr_string">"%.1f"</span>, ballotSummary.getVotingConsistencyScore()),
+<a class="jxr_linenumber" name="L279" href="#L279">279</a> 						VaadinIcons.CHART_GRID, <span class="jxr_string">"Overall parliamentary influence"</span>));
+<a class="jxr_linenumber" name="L280" href="#L280">280</a> 	}
+<a class="jxr_linenumber" name="L281" href="#L281">281</a> 
+<a class="jxr_linenumber" name="L282" href="#L282">282</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L283" href="#L283">283</a> <em class="jxr_javadoccomment">	 * Adds the parliamentary performance metrics.</em>
+<a class="jxr_linenumber" name="L284" href="#L284">284</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L285" href="#L285">285</a> <em class="jxr_javadoccomment">	 * @param layout the layout</em>
+<a class="jxr_linenumber" name="L286" href="#L286">286</a> <em class="jxr_javadoccomment">	 * @param politician the politician</em>
+<a class="jxr_linenumber" name="L287" href="#L287">287</a> <em class="jxr_javadoccomment">	 * @param ballotSummary the ballot summary</em>
+<a class="jxr_linenumber" name="L288" href="#L288">288</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L289" href="#L289">289</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> addParliamentaryPerformanceMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
+<a class="jxr_linenumber" name="L290" href="#L290">290</a> 			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+<a class="jxr_linenumber" name="L291" href="#L291">291</a> 
+<a class="jxr_linenumber" name="L292" href="#L292">292</a> 		layout.addComponent(
+<a class="jxr_linenumber" name="L293" href="#L293">293</a> 				createInfoRow(<span class="jxr_string">"Attendance Rate:"</span>, String.format(Locale.ENGLISH,<span class="jxr_string">"%.1f%%"</span>, 100 - ballotSummary.getAbsenceRate()),
+<a class="jxr_linenumber" name="L294" href="#L294">294</a> 						VaadinIcons.USER_CHECK, <span class="jxr_string">"Session attendance rate"</span>));
+<a class="jxr_linenumber" name="L295" href="#L295">295</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Voting Success:"</span>, String.format(Locale.ENGLISH,<span class="jxr_string">"%.1f%%"</span>, ballotSummary.getSuccessRate()),
+<a class="jxr_linenumber" name="L296" href="#L296">296</a> 				VaadinIcons.TROPHY, <span class="jxr_string">"Votes on winning side"</span>));
+<a class="jxr_linenumber" name="L297" href="#L297">297</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Activity Level:"</span>, politician.getDocActivityLevel(), VaadinIcons.CHART_LINE,
+<a class="jxr_linenumber" name="L298" href="#L298">298</a> 				<span class="jxr_string">"Overall engagement level"</span>));
+<a class="jxr_linenumber" name="L299" href="#L299">299</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Total Votes:"</span>, String.valueOf(ballotSummary.getTotalVotes()),
+<a class="jxr_linenumber" name="L300" href="#L300">300</a> 				VaadinIcons.USER_CARD, <span class="jxr_string">"Total votes cast"</span>));
+<a class="jxr_linenumber" name="L301" href="#L301">301</a> 	}
+<a class="jxr_linenumber" name="L302" href="#L302">302</a> 
+<a class="jxr_linenumber" name="L303" href="#L303">303</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L304" href="#L304">304</a> <em class="jxr_javadoccomment">	 * Adds the legislative metrics.</em>
+<a class="jxr_linenumber" name="L305" href="#L305">305</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L306" href="#L306">306</a> <em class="jxr_javadoccomment">	 * @param layout the layout</em>
+<a class="jxr_linenumber" name="L307" href="#L307">307</a> <em class="jxr_javadoccomment">	 * @param politician the politician</em>
+<a class="jxr_linenumber" name="L308" href="#L308">308</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L309" href="#L309">309</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> addLegislativeMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician) {
+<a class="jxr_linenumber" name="L310" href="#L310">310</a> 
+<a class="jxr_linenumber" name="L311" href="#L311">311</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Documents/Year:"</span>, String.format(Locale.ENGLISH,<span class="jxr_string">"%.1f"</span>, politician.getAverageDocsPerYear()),
+<a class="jxr_linenumber" name="L312" href="#L312">312</a> 				VaadinIcons.FILE_TEXT, <span class="jxr_string">"Average documents per year"</span>));
+<a class="jxr_linenumber" name="L313" href="#L313">313</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Individual Motions:"</span>, String.valueOf(politician.getIndividualMotions()),
+<a class="jxr_linenumber" name="L314" href="#L314">314</a> 				VaadinIcons.USER, <span class="jxr_string">"Personal motions submitted"</span>));
+<a class="jxr_linenumber" name="L315" href="#L315">315</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Committee Motions:"</span>, String.valueOf(politician.getCommitteeMotions()),
+<a class="jxr_linenumber" name="L316" href="#L316">316</a> 				VaadinIcons.GROUP, <span class="jxr_string">"Committee-based motions"</span>));
+<a class="jxr_linenumber" name="L317" href="#L317">317</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Document Impact:"</span>, politician.getDocActivityProfile(), VaadinIcons.CHART_3D,
+<a class="jxr_linenumber" name="L318" href="#L318">318</a> 				<span class="jxr_string">"Legislative influence assessment"</span>));
+<a class="jxr_linenumber" name="L319" href="#L319">319</a> 	}
+<a class="jxr_linenumber" name="L320" href="#L320">320</a> 
+<a class="jxr_linenumber" name="L321" href="#L321">321</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L322" href="#L322">322</a> <em class="jxr_javadoccomment">	 * Adds the party alignment metrics.</em>
+<a class="jxr_linenumber" name="L323" href="#L323">323</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L324" href="#L324">324</a> <em class="jxr_javadoccomment">	 * @param layout the layout</em>
+<a class="jxr_linenumber" name="L325" href="#L325">325</a> <em class="jxr_javadoccomment">	 * @param politician the politician</em>
+<a class="jxr_linenumber" name="L326" href="#L326">326</a> <em class="jxr_javadoccomment">	 * @param ballotSummary the ballot summary</em>
+<a class="jxr_linenumber" name="L327" href="#L327">327</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L328" href="#L328">328</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> addPartyAlignmentMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
+<a class="jxr_linenumber" name="L329" href="#L329">329</a> 			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+<a class="jxr_linenumber" name="L330" href="#L330">330</a> 
+<a class="jxr_linenumber" name="L331" href="#L331">331</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Party Loyalty:"</span>, String.format(Locale.ENGLISH,<span class="jxr_string">"%.1f%%"</span>, ballotSummary.getLoyaltyRate()),
+<a class="jxr_linenumber" name="L332" href="#L332">332</a> 				VaadinIcons.GROUP, <span class="jxr_string">"Party line adherence"</span>));
+<a class="jxr_linenumber" name="L333" href="#L333">333</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Independence Rate:"</span>, String.format(Locale.ENGLISH,<span class="jxr_string">"%.1f%%"</span>, ballotSummary.getRebelRate()),
+<a class="jxr_linenumber" name="L334" href="#L334">334</a> 				VaadinIcons.RANDOM, <span class="jxr_string">"Votes against party line"</span>));
+<a class="jxr_linenumber" name="L335" href="#L335">335</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Cross-Party Collaboration:"</span>,
+<a class="jxr_linenumber" name="L336" href="#L336">336</a> 				String.format(Locale.ENGLISH,<span class="jxr_string">"%.1f%%"</span>, politician.getCollaborationPercentage()), VaadinIcons.CONNECT,
+<a class="jxr_linenumber" name="L337" href="#L337">337</a> 				<span class="jxr_string">"Inter-party cooperation"</span>));
+<a class="jxr_linenumber" name="L338" href="#L338">338</a> 		layout.addComponent(createInfoRow(<span class="jxr_string">"Multi-Party Motions:"</span>, String.valueOf(politician.getMultiPartyMotions()),
+<a class="jxr_linenumber" name="L339" href="#L339">339</a> 				VaadinIcons.USERS, <span class="jxr_string">"Cross-party legislative initiatives"</span>));
+<a class="jxr_linenumber" name="L340" href="#L340">340</a> 	}
+<a class="jxr_linenumber" name="L341" href="#L341">341</a> 
+<a class="jxr_linenumber" name="L342" href="#L342">342</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L343" href="#L343">343</a> <em class="jxr_javadoccomment">	 * Calculate service years.</em>
+<a class="jxr_linenumber" name="L344" href="#L344">344</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L345" href="#L345">345</a> <em class="jxr_javadoccomment">	 * @param start the start</em>
+<a class="jxr_linenumber" name="L346" href="#L346">346</a> <em class="jxr_javadoccomment">	 * @param end the end</em>
+<a class="jxr_linenumber" name="L347" href="#L347">347</a> <em class="jxr_javadoccomment">	 * @return the string</em>
+<a class="jxr_linenumber" name="L348" href="#L348">348</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L349" href="#L349">349</a> 	<strong class="jxr_keyword">private</strong> String calculateServiceYears(Date start, Date end) {
+<a class="jxr_linenumber" name="L350" href="#L350">350</a> 		<strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L351" href="#L351">351</a> 			<strong class="jxr_keyword">if</strong> (start == <strong class="jxr_keyword">null</strong> || end == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L352" href="#L352">352</a> 				<strong class="jxr_keyword">return</strong> <span class="jxr_string">"N/A"</span>;
+<a class="jxr_linenumber" name="L353" href="#L353">353</a> 			}
+<a class="jxr_linenumber" name="L354" href="#L354">354</a> 
+<a class="jxr_linenumber" name="L355" href="#L355">355</a> 			<em class="jxr_comment">// Convert java.util.Date to milliseconds and calculate years</em>
+<a class="jxr_linenumber" name="L356" href="#L356">356</a> 			<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> diffInMillies = Math.abs(end.getTime() - start.getTime());
+<a class="jxr_linenumber" name="L357" href="#L357">357</a> 			<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> years = diffInMillies / (1000L * 60 * 60 * 24 * 365);
+<a class="jxr_linenumber" name="L358" href="#L358">358</a> 
+<a class="jxr_linenumber" name="L359" href="#L359">359</a> 			<strong class="jxr_keyword">return</strong> years + <span class="jxr_string">" years"</span>;
+<a class="jxr_linenumber" name="L360" href="#L360">360</a> 		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception e) {
+<a class="jxr_linenumber" name="L361" href="#L361">361</a> 			<strong class="jxr_keyword">return</strong> <span class="jxr_string">"N/A"</span>;
+<a class="jxr_linenumber" name="L362" href="#L362">362</a> 		}
+<a class="jxr_linenumber" name="L363" href="#L363">363</a> 	}
+<a class="jxr_linenumber" name="L364" href="#L364">364</a> 
+<a class="jxr_linenumber" name="L365" href="#L365">365</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L366" href="#L366">366</a> <em class="jxr_javadoccomment">	 * Creates a row displaying a caption and value, with optional icon and tooltip.</em>
+<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L368" href="#L368">368</a> <em class="jxr_javadoccomment">	 * @param caption the field caption</em>
+<a class="jxr_linenumber" name="L369" href="#L369">369</a> <em class="jxr_javadoccomment">	 * @param value   the field value</em>
+<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">	 * @param icon    a VaadinIcons icon for better visual cue</em>
+<a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">	 * @param tooltip optional tooltip to provide more info</em>
+<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">	 * @return a HorizontalLayout representing the info row</em>
+<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L374" href="#L374">374</a> 	<strong class="jxr_keyword">private</strong> HorizontalLayout createInfoRow(<strong class="jxr_keyword">final</strong> String caption, <strong class="jxr_keyword">final</strong> String value, VaadinIcons icon,
+<a class="jxr_linenumber" name="L375" href="#L375">375</a> 			<strong class="jxr_keyword">final</strong> String tooltip) {
+<a class="jxr_linenumber" name="L376" href="#L376">376</a> 		<strong class="jxr_keyword">final</strong> HorizontalLayout layout = <strong class="jxr_keyword">new</strong> HorizontalLayout();
+<a class="jxr_linenumber" name="L377" href="#L377">377</a> 		layout.setSpacing(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L378" href="#L378">378</a> 		layout.addStyleName(<span class="jxr_string">"metric-label"</span>);
+<a class="jxr_linenumber" name="L379" href="#L379">379</a> 		layout.setWidthUndefined();
+<a class="jxr_linenumber" name="L380" href="#L380">380</a> 
+<a class="jxr_linenumber" name="L381" href="#L381">381</a> 		Label iconLabel = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L382" href="#L382">382</a> 		<strong class="jxr_keyword">if</strong> (icon != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L383" href="#L383">383</a> 			iconLabel = <strong class="jxr_keyword">new</strong> Label(icon.getHtml(), ContentMode.HTML);
+<a class="jxr_linenumber" name="L384" href="#L384">384</a> 			iconLabel.setDescription(tooltip);
+<a class="jxr_linenumber" name="L385" href="#L385">385</a> 			iconLabel.addStyleName(<span class="jxr_string">"card-info-icon"</span>);
+<a class="jxr_linenumber" name="L386" href="#L386">386</a> 			layout.addComponent(iconLabel);
+<a class="jxr_linenumber" name="L387" href="#L387">387</a> 		}
+<a class="jxr_linenumber" name="L388" href="#L388">388</a> 
+<a class="jxr_linenumber" name="L389" href="#L389">389</a> 		<strong class="jxr_keyword">final</strong> Label captionLabel = <strong class="jxr_keyword">new</strong> Label(caption);
+<a class="jxr_linenumber" name="L390" href="#L390">390</a> 		captionLabel.addStyleName(<span class="jxr_string">"card-info-caption"</span>);
+<a class="jxr_linenumber" name="L391" href="#L391">391</a> 		<strong class="jxr_keyword">if</strong> (tooltip != <strong class="jxr_keyword">null</strong> &amp;&amp; !tooltip.isEmpty()) {
+<a class="jxr_linenumber" name="L392" href="#L392">392</a> 			captionLabel.setDescription(tooltip);
+<a class="jxr_linenumber" name="L393" href="#L393">393</a> 		}
+<a class="jxr_linenumber" name="L394" href="#L394">394</a> 
+<a class="jxr_linenumber" name="L395" href="#L395">395</a> 		<strong class="jxr_keyword">final</strong> Label valueLabel = <strong class="jxr_keyword">new</strong> Label(value != <strong class="jxr_keyword">null</strong> ? value : <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L396" href="#L396">396</a> 		valueLabel.addStyleName(<span class="jxr_string">"card-info-value"</span>);
+<a class="jxr_linenumber" name="L397" href="#L397">397</a> 
+<a class="jxr_linenumber" name="L398" href="#L398">398</a> 		layout.addComponents(captionLabel, valueLabel);
+<a class="jxr_linenumber" name="L399" href="#L399">399</a> 		<strong class="jxr_keyword">return</strong> layout;
+<a class="jxr_linenumber" name="L400" href="#L400">400</a> 	}
+<a class="jxr_linenumber" name="L401" href="#L401">401</a> 
+<a class="jxr_linenumber" name="L402" href="#L402">402</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L403" href="#L403">403</a> <em class="jxr_javadoccomment">	 * Matches.</em>
+<a class="jxr_linenumber" name="L404" href="#L404">404</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L405" href="#L405">405</a> <em class="jxr_javadoccomment">	 * @param page the page</em>
+<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">	 * @param parameters the parameters</em>
+<a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_javadoccomment">	 * @return true, if successful</em>
+<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L409" href="#L409">409</a> 	@Override
+<a class="jxr_linenumber" name="L410" href="#L410">410</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matches(<strong class="jxr_keyword">final</strong> String page, <strong class="jxr_keyword">final</strong> String parameters) {
+<a class="jxr_linenumber" name="L411" href="#L411">411</a> 		<strong class="jxr_keyword">final</strong> String pageId = getPageId(parameters);
+<a class="jxr_linenumber" name="L412" href="#L412">412</a> 		<strong class="jxr_keyword">return</strong> NAME.equals(page) &amp;&amp; (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+<a class="jxr_linenumber" name="L413" href="#L413">413</a> 				|| parameters.contains(PageMode.OVERVIEW.toString()));
+<a class="jxr_linenumber" name="L414" href="#L414">414</a> 	}
+<a class="jxr_linenumber" name="L415" href="#L415">415</a> }
 </pre>
 <hr/>
 <div id="footer">© 2008–2024 <a href="http://www.hack23.com">www.hack23.com</a></div>

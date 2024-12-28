@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EncryptedValue.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.secure.impl</a> &gt; <span class="el_source">EncryptedValue.java</span></div><h1>EncryptedValue.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2019 James Pether Sörling
- * 
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EncryptedValue.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.secure.impl</a> &gt; <span class="el_source">EncryptedValue.java</span></div><h1>EncryptedValue.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
+ *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -80,11 +80,10 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	 *
 	 * @return the storage
 	 */
-	/** The storage. */
 	@Column(columnDefinition = &quot;bytea&quot;)
 	@DiffIgnore
 	public String getStorage() {
-<span class="fc" id="L87">		return storage;</span>
+<span class="fc" id="L86">		return storage;</span>
 	}
 
 	/**
@@ -94,8 +93,8 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	 *            the new storage
 	 */
 	public void setStorage(final String storage) {
-<span class="fc" id="L97">		this.storage = storage;</span>
-<span class="fc" id="L98">	}</span>
+<span class="fc" id="L96">		this.storage = storage;</span>
+<span class="fc" id="L97">	}</span>
 
 	/**
 	 * Gets the user id.
@@ -105,7 +104,7 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	@Basic
 	@Column(name = &quot;USER_ID&quot;)
 	public String getUserId() {
-<span class="fc" id="L108">		return userId;</span>
+<span class="fc" id="L107">		return userId;</span>
 	}
 
 	/**
@@ -115,8 +114,8 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	 *            the new user id
 	 */
 	public void setUserId(final String userId) {
-<span class="fc" id="L118">		this.userId = userId;</span>
-<span class="fc" id="L119">	}</span>
+<span class="fc" id="L117">		this.userId = userId;</span>
+<span class="fc" id="L118">	}</span>
 
 	/**
 	 * Gets the vault name.
@@ -126,7 +125,7 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	@Basic
 	@Column(name = &quot;VAULT_NAME&quot;)
 	public String getVaultName() {
-<span class="fc" id="L129">		return vaultName;</span>
+<span class="fc" id="L128">		return vaultName;</span>
 	}
 
 	/**
@@ -136,8 +135,8 @@ public class EncryptedValue extends AbstractModelObjectImpl {
 	 *            the new vault name
 	 */
 	public void setVaultName(final String vaultName) {
-<span class="fc" id="L139">		this.vaultName = vaultName;</span>
-<span class="fc" id="L140">	}</span>
+<span class="fc" id="L138">		this.vaultName = vaultName;</span>
+<span class="fc" id="L139">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

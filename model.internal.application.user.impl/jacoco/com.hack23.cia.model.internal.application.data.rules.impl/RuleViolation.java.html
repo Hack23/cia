@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RuleViolation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.rules.impl</a> &gt; <span class="el_source">RuleViolation.java</span></div><h1>RuleViolation.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2024 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.model.internal.application.data.rules.impl;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * The Class RuleViolation.
+ */
+@Entity(name = &quot;RuleViolation&quot;)
+@Table(name = &quot;RULE_VIOLATION&quot;)
+public class RuleViolation implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The id. */
+	private Long id;
+
+    private Date detectedDate;
+
+	/** The id. */
+	private String referenceId;
+
+	/** The name. */
+	private String name;
+
+	/** The resource type. */
+	private ResourceType resourceType;
+
+	/** The rule name. */
+	private String ruleName;
+
+	/** The rule description. */
+	private String ruleDescription;
+
+	/** The rule group. */
+	private String ruleGroup;
+
+	/** The status. */
+	private Status status;
+
+	/** The positive. */
+	private String positive;
+
+	/**
+	 * Instantiates a new rule violation.
+	 */
+<span class="fc" id="L83">	public RuleViolation() {</span>
+
+<span class="fc" id="L85">	}</span>
+
+	/**
+	 * Instantiates a new rule violation.
+	 *
+	 * @param referenceId the reference id
+	 * @param name            the name
+	 * @param resourceType            the resource type
+	 * @param ruleName            the rule name
+	 * @param ruleDescription            the rule description
+	 * @param ruleGroup            the rule group
+	 * @param status            the status
+	 * @param positive            the positive
+	 */
+	public RuleViolation(final String referenceId, final String name, final ResourceType resourceType, final String ruleName,
+			final String ruleDescription, final String ruleGroup, final Status status, final String positive) {
+<span class="nc" id="L101">		super();</span>
+<span class="nc" id="L102">		this.referenceId = referenceId;</span>
+<span class="nc" id="L103">		this.name = name;</span>
+<span class="nc" id="L104">		this.resourceType = resourceType;</span>
+<span class="nc" id="L105">		this.ruleName = ruleName;</span>
+<span class="nc" id="L106">		this.ruleDescription = ruleDescription;</span>
+<span class="nc" id="L107">		this.ruleGroup = ruleGroup;</span>
+<span class="nc" id="L108">		this.status = status;</span>
+<span class="nc" id="L109">		this.positive = positive;</span>
+<span class="nc" id="L110">		this.detectedDate = new Date();</span>
+<span class="nc" id="L111">	}</span>
+
+
+
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
+    @Id
+    @Column(name = &quot;ID&quot;)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * Sets the id.
+	 *
+	 * @param id the new id
+	 */
+	public void setId(final Long id) {
+<span class="fc" id="L133">		this.id = id;</span>
+<span class="fc" id="L134">	}</span>
+
+	/**
+	 * Gets the detected date.
+	 *
+	 * @return the detected date
+	 */
+    @Basic
+    @Column(name = &quot;detected_date&quot;)
+    @Temporal(TemporalType.DATE)
+	public Date getDetectedDate() {
+<span class="fc" id="L145">		return new Date(detectedDate.getTime());</span>
+	}
+
+	/**
+	 * Sets the detected date.
+	 *
+	 * @param detectedDate the new detected date
+	 */
+	public void setDetectedDate(final Date detectedDate) {
+<span class="fc" id="L154">		this.detectedDate = new Date(detectedDate.getTime());</span>
+<span class="fc" id="L155">	}</span>
+
+	/**
+	 * Gets the reference id.
+	 *
+	 * @return the reference id
+	 */
+    @Basic
+    @Column(name = &quot;reference_id&quot;)
+	public String getReferenceId() {
+<span class="fc" id="L165">		return referenceId;</span>
+	}
+
+	/**
+	 * Sets the reference id.
+	 *
+	 * @param referenceId the new reference id
+	 */
+	public void setReferenceId(final String referenceId) {
+<span class="fc" id="L174">		this.referenceId = referenceId;</span>
+<span class="fc" id="L175">	}</span>
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+    @Basic
+    @Column(name = &quot;name&quot;)
+	public String getName() {
+<span class="fc" id="L185">		return name;</span>
+	}
+
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
+	public void setName(final String name) {
+<span class="fc" id="L194">		this.name = name;</span>
+<span class="fc" id="L195">	}</span>
+
+	/**
+	 * Gets the resource type.
+	 *
+	 * @return the resource type
+	 */
+	@Enumerated(EnumType.STRING)
+    @Column(name = &quot;resource_type&quot;)
+	public ResourceType getResourceType() {
+<span class="fc" id="L205">		return resourceType;</span>
+	}
+
+	/**
+	 * Sets the resource type.
+	 *
+	 * @param resourceType the new resource type
+	 */
+	public void setResourceType(final ResourceType resourceType) {
+<span class="fc" id="L214">		this.resourceType = resourceType;</span>
+<span class="fc" id="L215">	}</span>
+
+	/**
+	 * Gets the rule name.
+	 *
+	 * @return the rule name
+	 */
+    @Basic
+    @Column(name = &quot;rule_name&quot;)
+	public String getRuleName() {
+<span class="fc" id="L225">		return ruleName;</span>
+	}
+
+	/**
+	 * Sets the rule name.
+	 *
+	 * @param ruleName the new rule name
+	 */
+	public void setRuleName(final String ruleName) {
+<span class="fc" id="L234">		this.ruleName = ruleName;</span>
+<span class="fc" id="L235">	}</span>
+
+	/**
+	 * Gets the rule description.
+	 *
+	 * @return the rule description
+	 */
+    @Basic
+    @Column(name = &quot;rule_description&quot;)
+	public String getRuleDescription() {
+<span class="fc" id="L245">		return ruleDescription;</span>
+	}
+
+	/**
+	 * Sets the rule description.
+	 *
+	 * @param ruleDescription the new rule description
+	 */
+	public void setRuleDescription(final String ruleDescription) {
+<span class="fc" id="L254">		this.ruleDescription = ruleDescription;</span>
+<span class="fc" id="L255">	}</span>
+
+	/**
+	 * Gets the rule group.
+	 *
+	 * @return the rule group
+	 */
+    @Basic
+    @Column(name = &quot;rule_group&quot;)
+	public String getRuleGroup() {
+<span class="fc" id="L265">		return ruleGroup;</span>
+	}
+
+	/**
+	 * Sets the rule group.
+	 *
+	 * @param ruleGroup the new rule group
+	 */
+	public void setRuleGroup(final String ruleGroup) {
+<span class="fc" id="L274">		this.ruleGroup = ruleGroup;</span>
+<span class="fc" id="L275">	}</span>
+
+	/**
+	 * Gets the status.
+	 *
+	 * @return the status
+	 */
+	@Enumerated(EnumType.STRING)
+    @Column(name = &quot;status&quot;)
+	public Status getStatus() {
+<span class="fc" id="L285">		return status;</span>
+	}
+
+	/**
+	 * Sets the status.
+	 *
+	 * @param status the new status
+	 */
+	public void setStatus(final Status status) {
+<span class="fc" id="L294">		this.status = status;</span>
+<span class="fc" id="L295">	}</span>
+
+	/**
+	 * Gets the positive.
+	 *
+	 * @return the positive
+	 */
+    @Basic
+    @Column(name = &quot;positive&quot;)
+	public String getPositive() {
+<span class="fc" id="L305">		return positive;</span>
+	}
+
+	/**
+	 * Sets the positive.
+	 *
+	 * @param positive the new positive
+	 */
+	public void setPositive(final String positive) {
+<span class="fc" id="L314">		this.positive = positive;</span>
+<span class="fc" id="L315">	}</span>
+
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L325">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
+	@Override
+	public String toString() {
+<span class="fc" id="L335">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
+	@Override
+	public int hashCode() {
+<span class="fc" id="L345">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

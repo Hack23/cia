@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.im
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,103 +42,164 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
 @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 
-	/** The application manager. */
-	@Autowired
-	private ApplicationManager applicationManager;
+    /** Common text constants for doc type. */
+    private static final String PROP = &quot;Proposition&quot;;
 
-	/**
-	 * Instantiates a new decision data factory impl.
-	 */
-	public DecisionDataFactoryImpl() {
-<span class="fc" id="L52">		super();</span>
-<span class="fc" id="L53">	}</span>
+    /** The Constant MOTION. */
+    private static final String MOTION = &quot;Motion&quot;;
 
-	/**
-	 * Adds the proposal committeee summary.
-	 *
-	 * @param processedIn the processed in
-	 * @param summary     the summary
-	 * @param document    the document
-	 */
-	private static void addProposalCommitteeeSummary(final String processedIn,
-			final List&lt;ProposalCommitteeeSummary&gt; summary, final DocumentStatusContainer document) {
-<span class="pc bpc" id="L64" title="1 of 4 branches missed.">		if (document.getDocumentProposal() != null &amp;&amp; document.getDocumentProposal().getProposal() != null) {</span>
+    /** Known min and max length constraints from original code. */
+<span class="fc" id="L52">    private static final int CHAMBER_MIN_LENGTH = &quot;avslag&quot;.length(); // 6</span>
 
-<span class="fc" id="L66">			final DocumentProposalData proposal = document.getDocumentProposal().getProposal();</span>
+    /** The Constant CHAMBER_MAX_LENGTH. */
+<span class="fc" id="L55">    private static final int CHAMBER_MAX_LENGTH = &quot;återförvisning till utskottet&quot;.length(); // 29</span>
 
-<span class="pc bpc" id="L68" title="1 of 4 branches missed.">			if (proposal.getProcessedIn() != null &amp;&amp; !proposal.getProcessedIn().isEmpty()</span>
-<span class="pc bpc" id="L69" title="1 of 4 branches missed.">					&amp;&amp; proposal.getCommittee() != null &amp;&amp; !proposal.getCommittee().isEmpty()</span>
-<span class="fc bfc" id="L70" title="All 2 branches covered.">					&amp;&amp; proposal.getProcessedIn().contains(processedIn)</span>
-<span class="pc bpc" id="L71" title="1 of 2 branches missed.">					&amp;&amp; proposal.getChamber().length() &lt;= &quot;återförvisning till utskottet&quot;.length()</span>
-<span class="pc bpc" id="L72" title="1 of 2 branches missed.">					&amp;&amp; proposal.getChamber().length() &gt;= &quot;avslag&quot;.length()) {</span>
+    /**
+     * Pattern for cleaning up the 'chamber' string. Aggregates multiple .replace() calls
+     * into a single regex. This pattern will remove or replace these tokens:
+     *  (UTSKOTTET), ( or ), UTBSKOTTET, UBTSKOTTET, UTKOTTET
+     *
+     * We'll do it case-insensitively, but remember we do an uppercase pass anyway.
+     */
+<span class="fc" id="L64">    private static final Pattern CLEANUP_PATTERN = Pattern.compile(</span>
+        &quot;(\\(UTSKOTTET\\))|(\\()|(\\))|(UTBSKOTTET)|(UBTSKOTTET)|(UTKOTTET)&quot;,
+        Pattern.CASE_INSENSITIVE
+    );
 
-<span class="fc" id="L74">				summary.add(new ProposalCommitteeeSummary(getCommittteeShortName(proposal), getDocumentName(document),</span>
-<span class="fc" id="L75">						cleanupDecision(proposal.getChamber()), document.getDocument().getHangarId(),</span>
-<span class="fc" id="L76">						proposal.getWording(), proposal.getWording2(), proposal.getDecisionType()));</span>
-			}
-		}
-<span class="fc" id="L79">	}</span>
+    /** The application manager. */
+    @Autowired
+    private ApplicationManager applicationManager;
 
-	/**
-	 * Cleanup decision.
-	 *
-	 * @param chamber the chamber
-	 * @return the string
-	 */
-	private static String cleanupDecision(final String chamber) {
-<span class="fc" id="L88">		return chamber.toUpperCase(Locale.ENGLISH).replace(&quot;(UTSKOTTET)&quot;, &quot;&quot;).replace(&quot;UTKOTTET&quot;, &quot;UTSKOTTET&quot;)</span>
-<span class="fc" id="L89">				.replace(&quot;UTBSKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;UBTSKOTTET&quot;, &quot;UTSKOTTET&quot;).replace(&quot;(&quot;, &quot;&quot;)</span>
-<span class="fc" id="L90">				.replace(&quot;)&quot;, &quot;&quot;);</span>
-	}
+    /**
+     * Instantiates a new decision data factory impl.
+     */
+    public DecisionDataFactoryImpl() {
+<span class="fc" id="L77">        super();</span>
+<span class="fc" id="L78">    }</span>
 
-	/**
-	 * Gets the committtee short name.
-	 *
-	 * @param proposal the proposal
-	 * @return the committtee short name
-	 */
-	private static String getCommittteeShortName(final DocumentProposalData proposal) {
-<span class="fc" id="L100">		final String upperCase = proposal.getProcessedIn().replaceAll(&quot;\\d&quot;, &quot;&quot;).replace(&quot;/:&quot;, &quot;&quot;)</span>
-<span class="fc" id="L101">				.toUpperCase(Locale.ENGLISH);</span>
+    /**
+     * Creates the committee summary.
+     *
+     * @param processedIn the processed in
+     * @return the list
+     */
+    @Override
+    public List&lt;ProposalCommitteeeSummary&gt; createCommitteeSummary(final String processedIn) {
+<span class="fc" id="L88">        final List&lt;ProposalCommitteeeSummary&gt; summary = new ArrayList&lt;&gt;();</span>
 
-<span class="fc bfc" id="L103" title="All 2 branches covered.">		if (upperCase.contains(&quot;,&quot;)) {</span>
-<span class="fc" id="L104">			return upperCase.substring(0, upperCase.indexOf(','));</span>
-		} else {
-<span class="fc" id="L106">			return upperCase;</span>
-		}
-	}
+        // NOTE: Still loads ALL DocumentStatusContainer rows
+<span class="fc" id="L91">        final DataContainer&lt;DocumentStatusContainer, Long&gt; dataContainer =</span>
+<span class="fc" id="L92">                applicationManager.getDataContainer(DocumentStatusContainer.class);</span>
 
-	/**
-	 * Gets the document name.
-	 *
-	 * @param document the document
-	 * @return the document name
-	 */
-	private static String getDocumentName(final DocumentStatusContainer document) {
-<span class="fc bfc" id="L117" title="All 2 branches covered.">		if (&quot;prop&quot;.equalsIgnoreCase(document.getDocument().getDocumentType())) {</span>
-<span class="fc" id="L118">			return &quot;Proposition&quot;;</span>
-<span class="pc bpc" id="L119" title="1 of 2 branches missed.">		} else if (document.getDocument().getSubType() != null</span>
-<span class="pc bpc" id="L120" title="1 of 2 branches missed.">				&amp;&amp; document.getDocument().getSubType().length() &gt; &quot;motion&quot;.length()) {</span>
-<span class="fc" id="L121">			return document.getDocument().getSubType();</span>
-		} else {
-<span class="nc" id="L123">			return &quot;Motion&quot;;</span>
-		}
+        // For each doc, potentially add a summary
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        for (final DocumentStatusContainer document : dataContainer.getAll()) {</span>
+<span class="fc" id="L96">            addProposalCommitteeeSummary(processedIn, summary, document);</span>
+<span class="fc" id="L97">        }</span>
+<span class="fc" id="L98">        return summary;</span>
+    }
 
-	}
+    /**
+     * Check and build a summary if the document qualifies based on 'processedIn' and
+     * the proposal/chamber constraints.
+     *
+     * @param processedIn the processed in
+     * @param summary the summary
+     * @param document the document
+     */
+    private static void addProposalCommitteeeSummary(final String processedIn,
+            final List&lt;ProposalCommitteeeSummary&gt; summary, final DocumentStatusContainer document) {
 
-	@Override
-	public List&lt;ProposalCommitteeeSummary&gt; createCommitteeSummary(final String processedIn) {
-<span class="fc" id="L130">		final List&lt;ProposalCommitteeeSummary&gt; summary = new ArrayList&lt;&gt;();</span>
+        // Null checks on 'documentProposal' and 'proposal'
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        if (document.getDocumentProposal() == null ||</span>
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">            document.getDocumentProposal().getProposal() == null) {</span>
+<span class="fc" id="L115">            return;</span>
+        }
 
-<span class="fc" id="L132">		final DataContainer&lt;DocumentStatusContainer, Long&gt; dataContainer = applicationManager</span>
-<span class="fc" id="L133">				.getDataContainer(DocumentStatusContainer.class);</span>
+<span class="fc" id="L118">        final DocumentProposalData proposal = document.getDocumentProposal().getProposal();</span>
+<span class="fc" id="L119">        final String chamber = proposal.getChamber();</span>
+        // Are we processed in the correct place?
+<span class="pc bpc" id="L121" title="2 of 6 branches missed.">        if ((chamber == null) || proposal.getProcessedIn() == null || proposal.getProcessedIn().isEmpty()) {</span>
+<span class="fc" id="L122">            return;</span>
+        }
+        // Do we have a non-empty 'committee'?
+        // Does 'processedIn' match?
+<span class="pc bpc" id="L126" title="1 of 6 branches missed.">        if (proposal.getCommittee() == null || proposal.getCommittee().isEmpty() || !proposal.getProcessedIn().contains(processedIn)) {</span>
+<span class="fc" id="L127">            return;</span>
+        }
+        // Is the chamber length within the specified min/max?
+<span class="fc" id="L130">        final int length = chamber.length();</span>
+<span class="pc bpc" id="L131" title="2 of 4 branches missed.">        if (length &lt; CHAMBER_MIN_LENGTH || length &gt; CHAMBER_MAX_LENGTH) {</span>
+<span class="nc" id="L132">            return;</span>
+        }
 
-<span class="fc bfc" id="L135" title="All 2 branches covered.">		for (final DocumentStatusContainer document : dataContainer.getAll()) {</span>
+        // If all checks pass, add the summary
+<span class="fc" id="L136">        summary.add(new ProposalCommitteeeSummary(</span>
+<span class="fc" id="L137">            getCommitteeShortName(proposal),</span>
+<span class="fc" id="L138">            getDocumentName(document),</span>
+<span class="fc" id="L139">            cleanupDecision(chamber),</span>
+<span class="fc" id="L140">            document.getDocument().getHangarId(),</span>
+<span class="fc" id="L141">            proposal.getWording(),</span>
+<span class="fc" id="L142">            proposal.getWording2(),</span>
+<span class="fc" id="L143">            proposal.getDecisionType()</span>
+        ));
+<span class="fc" id="L145">    }</span>
 
-<span class="fc" id="L137">			addProposalCommitteeeSummary(processedIn, summary, document);</span>
-<span class="fc" id="L138">		}</span>
-<span class="fc" id="L139">		return summary;</span>
-	}
+    /**
+     * Cleanup the 'chamber' string by uppercasing, removing tokens via regex,
+     * and normalizing &quot;UTKOTTET&quot; to &quot;UTSKOTTET&quot; if it appears alone.
+     *
+     * @param chamber the chamber
+     * @return the string
+     */
+    private static String cleanupDecision(final String chamber) {
+        // Convert to uppercase English
+<span class="fc" id="L156">        String upper = chamber.toUpperCase(Locale.ENGLISH);</span>
 
+        // Remove or replace known substrings with the pattern
+<span class="fc" id="L159">        upper = CLEANUP_PATTERN.matcher(upper).replaceAll(&quot;&quot;);</span>
+
+        // If we find &quot;UTKOTTET&quot; alone, replace it with &quot;UTSKOTTET&quot;
+        // (We already removed parentheses above).
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">        if (upper.contains(&quot;UTKOTTET&quot;)) {</span>
+<span class="nc" id="L164">            upper = upper.replace(&quot;UTKOTTET&quot;, &quot;UTSKOTTET&quot;);</span>
+        }
+<span class="fc" id="L166">        return upper.trim();</span>
+    }
+
+    /**
+     * Extract the committee short name from 'processedIn' by removing digits
+     * and certain punctuation, converting to uppercase, and truncating if comma found.
+     *
+     * @param proposal the proposal
+     * @return the committee short name
+     */
+    private static String getCommitteeShortName(final DocumentProposalData proposal) {
+        // e.g. &quot;UU12&quot; =&gt; &quot;UU&quot; then uppercase =&gt; &quot;UU&quot;
+<span class="fc" id="L178">        final String upperCase = proposal.getProcessedIn()</span>
+<span class="fc" id="L179">                                   .replaceAll(&quot;\\d&quot;, &quot;&quot;)</span>
+<span class="fc" id="L180">                                   .replace(&quot;/:&quot;, &quot;&quot;)</span>
+<span class="fc" id="L181">                                   .toUpperCase(Locale.ENGLISH);</span>
+        // If there's a comma, only take up to that comma
+<span class="fc" id="L183">        final int commaIndex = upperCase.indexOf(',');</span>
+<span class="fc bfc" id="L184" title="All 2 branches covered.">        return (commaIndex &gt;= 0) ? upperCase.substring(0, commaIndex) : upperCase;</span>
+    }
+
+    /**
+     * Return a human-readable doc name: &quot;Proposition&quot; if docType=&quot;prop&quot;,
+     * or doc.getSubType() if subType is long enough, else &quot;Motion&quot;.
+     *
+     * @param document the document
+     * @return the document name
+     */
+    private static String getDocumentName(final DocumentStatusContainer document) {
+<span class="fc bfc" id="L195" title="All 2 branches covered.">        if (&quot;prop&quot;.equalsIgnoreCase(document.getDocument().getDocumentType())) {</span>
+<span class="fc" id="L196">            return PROP;</span>
+<span class="pc bpc" id="L197" title="1 of 2 branches missed.">        } else if (document.getDocument().getSubType() != null</span>
+<span class="pc bpc" id="L198" title="1 of 2 branches missed.">                   &amp;&amp; document.getDocument().getSubType().length() &gt; MOTION.length()) {</span>
+<span class="fc" id="L199">            return document.getDocument().getSubType();</span>
+        } else {
+<span class="nc" id="L201">            return MOTION;</span>
+        }
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

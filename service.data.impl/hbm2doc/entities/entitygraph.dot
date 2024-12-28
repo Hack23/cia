@@ -324,11 +324,10 @@ digraph EntityGraph {
      
      
   /* Node com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember */
-  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyMember [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.party\.impl\.ViewRiksdagenPartyMember| activityLevel\l address\l averageDocumentsPerYear\l bornYear\l city\l coAddress\l collaborativeMotions\l committeeMotions\l crossPartyDocumentPercentage\l documentQualityRating\l electionRegion\l email\l faxNumber\l firstDocumentDate\l firstName\l followUpMotions\l gender\l hangarGuid\l hjid\l imageUrl192\l imageUrl80\l imageUrlMax\l individualMotions\l lastDocumentDate\l lastName\l party\l partyId\l partyMotions\l partyName\l personUrlXml\l phoneNumber\l place\l postCode\l registeredDate\l shortCode\l status\l totalDocuments\l website\l }", URL="com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartyMember.html" ]
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyMember [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.party\.impl\.ViewRiksdagenPartyMember| activityLevel\l activityProfile\l address\l bornYear\l city\l coAddress\l collaborationPercentage\l committeeMotions\l documentsLastYear\l electionRegion\l email\l faxNumber\l firstName\l gender\l hangarGuid\l hjid\l imageUrl192\l imageUrl80\l imageUrlMax\l individualMotions\l lastName\l multiPartyMotions\l party\l partyId\l partyMotions\l partyName\l personAssignmentData\l personDetailData\l personUrlXml\l phoneNumber\l place\l postCode\l registeredDate\l shortCode\l status\l totalDocuments\l website\l }", URL="com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartyMember.html" ]
   /* Subclass edges for com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember */
   
   /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_party_dot_impl_dot_ViewRiksdagenPartyMember */
-     
      
      
      
@@ -1985,6 +1984,31 @@ digraph EntityGraph {
   /* Subclass edges for com.hack23.cia.model.internal.application.secure.impl.EncryptedValue */
   
   /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_secure_dot_impl_dot_EncryptedValue */
+     
+     
+     
+  /* Node com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary */
+  com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_politician_dot_impl_dot_ViewRiksdagenPoliticianBallotSummary [ label = "{ com\.hack23\.cia\.model\.internal\.application\.data\.politician\.impl\.ViewRiksdagenPoliticianBallotSummary| absenceRate\l analysisComment\l bornYear\l electionRegion\l firstName\l firstVoteDate\l gender\l lastName\l lastVoteDate\l loyaltyRate\l noPercentage\l party\l rebelRate\l status\l successRate\l totalVotes\l votingConsistencyScore\l votingDays\l votingParticipationRate\l yesPercentage\l }", URL="com/hack23/cia/model/internal/application/data/politician/impl/ViewRiksdagenPoliticianBallotSummary.html" ]
+  /* Subclass edges for com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary */
+  
+  /* Property edges/nodes for com_dot_hack23_dot_cia_dot_model_dot_internal_dot_application_dot_data_dot_politician_dot_impl_dot_ViewRiksdagenPoliticianBallotSummary */
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
      
      
      

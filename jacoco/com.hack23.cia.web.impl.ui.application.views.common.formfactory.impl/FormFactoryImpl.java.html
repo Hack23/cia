@@ -139,20 +139,20 @@ public final class FormFactoryImpl implements FormFactory {
 	private static Converter getConverterForType(final Class&lt;?&gt; typeOfProperty) {
 		Converter converter;
 
-<span class="fc bfc" id="L142" title="All 2 branches covered.">		if (Date.class.equals(typeOfProperty)) {</span>
-<span class="fc" id="L143">			converter = new StringToDateConverter();</span>
-<span class="fc bfc" id="L144" title="All 4 branches covered.">		} else if (Integer.class.equals(typeOfProperty) || &quot;int&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">		if (Date.class.equals(typeOfProperty)) {</span>
+<span class="nc" id="L143">			converter = new StringToDateConverter();</span>
+<span class="pc bpc" id="L144" title="1 of 4 branches missed.">		} else if (Integer.class.equals(typeOfProperty) || &quot;int&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
 <span class="fc" id="L145">			converter = new StringToIntegerConverter(&quot;Input value should be an integer&quot;);</span>
-<span class="pc bpc" id="L146" title="1 of 4 branches missed.">		} else if (Long.class.equals(typeOfProperty) || &quot;long&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
-<span class="fc" id="L147">			converter = new StringToLongConverter(&quot;Input value should be an long&quot;);</span>
+<span class="pc bpc" id="L146" title="2 of 4 branches missed.">		} else if (Long.class.equals(typeOfProperty) || &quot;long&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
+<span class="nc" id="L147">			converter = new StringToLongConverter(&quot;Input value should be an long&quot;);</span>
 <span class="pc bpc" id="L148" title="1 of 2 branches missed.">		} else if (BigInteger.class.equals(typeOfProperty)) {</span>
 <span class="nc" id="L149">			converter = new StringToBigIntegerConverter(&quot;Input value should be an biginteger&quot;);</span>
 <span class="pc bpc" id="L150" title="1 of 2 branches missed.">		} else if (BigDecimal.class.equals(typeOfProperty)) {</span>
 <span class="nc" id="L151">			converter = new StringToBigDecimalConverter(&quot;Input value should be an bigdecimal&quot;);</span>
 <span class="pc bpc" id="L152" title="2 of 4 branches missed.">		} else if (Boolean.class.equals(typeOfProperty) || &quot;boolean&quot;.equalsIgnoreCase(typeOfProperty.getName())) {</span>
 <span class="nc" id="L153">			converter = new StringToBooleanConverter(&quot;Input value should be an boolean&quot;);</span>
-<span class="fc bfc" id="L154" title="All 2 branches covered.">		} else if (typeOfProperty.isEnum()) {</span>
-<span class="fc" id="L155">			converter = new StringToEnumConverter();</span>
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">		} else if (typeOfProperty.isEnum()) {</span>
+<span class="nc" id="L155">			converter = new StringToEnumConverter();</span>
 		} else {
 <span class="fc" id="L157">			converter = null;</span>
 		}
@@ -189,11 +189,11 @@ public final class FormFactoryImpl implements FormFactory {
 
 
 <span class="fc" id="L191">		panelContent.addComponent(formPanel);</span>
-<span class="fc bfc" id="L192" title="All 2 branches covered.">		if (displayProperties.size() &gt; SIZE_FOR_GRID) {</span>
+<span class="pc bpc" id="L192" title="1 of 2 branches missed.">		if (displayProperties.size() &gt; SIZE_FOR_GRID) {</span>
 <span class="fc" id="L193">			panelContent.setExpandRatio(formPanel, ContentRatio.GRID);</span>
 		}
 		else {
-<span class="fc" id="L196">			panelContent.setExpandRatio(formPanel, ContentRatio.SMALL_GRID);</span>
+<span class="nc" id="L196">			panelContent.setExpandRatio(formPanel, ContentRatio.SMALL_GRID);</span>
 		}
 
 
