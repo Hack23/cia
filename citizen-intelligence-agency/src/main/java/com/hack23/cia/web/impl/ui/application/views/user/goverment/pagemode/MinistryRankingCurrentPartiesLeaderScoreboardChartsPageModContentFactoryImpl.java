@@ -15,6 +15,7 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
@@ -102,7 +103,9 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		for (final ViewRiksdagenGovermentRoleMember govMember : activeGovMembers) {
 			final ViewRiksdagenPolitician politician = activePoliticianMap.get(govMember.getPersonId()).get(0);
-			final Panel cardPanel = createBaseballStyleCard(govMember, politician, governmentBodyByMinistry,
+			final ViewRiksdagenPoliticianBallotSummary ballotSummary = getApplicationManager()
+					.getDataContainer(ViewRiksdagenPoliticianBallotSummary.class).load(govMember.getPersonId());
+			final Panel cardPanel = createBaseballStyleCard(govMember, politician, ballotSummary, governmentBodyByMinistry,
 					reportByMinistry);
 
 			// Responsive column rules
@@ -165,7 +168,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	}
 
 	private Panel createBaseballStyleCard(ViewRiksdagenGovermentRoleMember govMember,
-			ViewRiksdagenPolitician politician, Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
+			ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
 			Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry) {
 
 		final Panel cardPanel = new Panel();
@@ -266,11 +269,11 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		// Add the four main sections
 		final VerticalLayout politicalRoleLayout = createSectionLayout("Political Role & Influence");
-		addPoliticalRoleMetrics(politicalRoleLayout, govMember, politician, null);
+		addPoliticalRoleMetrics(politicalRoleLayout, govMember, politician, ballotSummary);
 		sectionsGrid.addComponent(politicalRoleLayout);
 
 		final VerticalLayout performanceLayout = createSectionLayout("Parliamentary Performance");
-		addParliamentaryPerformanceMetrics(performanceLayout, politician, null);
+		addParliamentaryPerformanceMetrics(performanceLayout, politician, ballotSummary);
 		sectionsGrid.addComponent(performanceLayout);
 
 	    cardContent.addComponent(sectionsGrid);
@@ -285,7 +288,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		sections2Grid.addComponent(legislativeLayout);
 
 		final VerticalLayout alignmentLayout = createSectionLayout("Party Alignment");
-		addPartyAlignmentMetrics(alignmentLayout, politician, null);
+		addPartyAlignmentMetrics(alignmentLayout, politician, ballotSummary);
 		sections2Grid.addComponent(alignmentLayout);
 		cardContent.addComponent(sections2Grid);
 
@@ -422,7 +425,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	}
 
 	private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenGovermentRoleMember govMember,
-			ViewRiksdagenPolitician politician, Object ballotSummary) {
+			ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
 		layout.addComponent(createInfoRow("Current Role:", govMember.getRoleCode(), VaadinIcons.INSTITUTION,
 				"Current position in parliament"));
@@ -435,16 +438,16 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	}
 
 	private void addParliamentaryPerformanceMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
-			Object ballotSummary) {
+			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
 		layout.addComponent(
-				createInfoRow("Attendance Rate:", String.format(Locale.ENGLISH,"%.1f%%", 100 - 0.0),
+				createInfoRow("Attendance Rate:", String.format(Locale.ENGLISH,"%.1f%%", 100 - (ballotSummary != null ? ballotSummary.getAbsenceRate() : 0.0)),
 						VaadinIcons.USER_CHECK, "Session attendance rate"));
-		layout.addComponent(createInfoRow("Voting Success:", String.format(Locale.ENGLISH,"%.1f%%", 0.0),
+		layout.addComponent(createInfoRow("Voting Success:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary != null ? ballotSummary.getSuccessRate() : 0.0),
 				VaadinIcons.TROPHY, "Votes on winning side"));
 		layout.addComponent(createInfoRow("Activity Level:", politician.getDocActivityLevel(), VaadinIcons.CHART_LINE,
 				"Overall engagement level"));
-		layout.addComponent(createInfoRow("Total Votes:", String.valueOf(0),
+		layout.addComponent(createInfoRow("Total Votes:", String.valueOf(ballotSummary != null ? ballotSummary.getTotalVotes() : 0),
 				VaadinIcons.USER_CARD, "Total votes cast"));
 	}
 
@@ -461,11 +464,11 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	}
 
 	private void addPartyAlignmentMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
-			Object ballotSummary) {
+			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
-		layout.addComponent(createInfoRow("Party Loyalty:", String.format(Locale.ENGLISH,"%.1f%%", 0.0),
+		layout.addComponent(createInfoRow("Party Loyalty:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary != null ? ballotSummary.getLoyaltyRate() : 0.0),
 				VaadinIcons.GROUP, "Party line adherence"));
-		layout.addComponent(createInfoRow("Independence Rate:", String.format(Locale.ENGLISH,"%.1f%%", 0.0),
+		layout.addComponent(createInfoRow("Independence Rate:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary != null ? ballotSummary.getRebelRate() : 0.0),
 				VaadinIcons.RANDOM, "Votes against party line"));
 		layout.addComponent(createInfoRow("Cross-Party Collaboration:",
 				String.format(Locale.ENGLISH,"%.1f%%", politician.getCollaborationPercentage()), VaadinIcons.CONNECT,
