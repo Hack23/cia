@@ -20,8 +20,12 @@
  * - DocumentType: Represents a document type.
  * - ReferenceType: Represents a reference type.
  *
- * Annotations:
- * - @XmlSchema: Defines the XML namespace and element form default for the package.
+ * Dependencies and relationships:
+ * - Depends on com.hack23.cia.model.common.api for ModelObject interface.
+ * - Depends on com.hack23.cia.model.common.impl.xml for XmlDateTypeAdapter.
+ * - Uses javax.persistence for JPA annotations.
+ * - Uses javax.xml.bind.annotation for XML binding annotations.
+ * - Uses org.apache.commons.lang3.builder for EqualsBuilder, HashCodeBuilder, and ToStringBuilder.
  */
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://dokumentstatus.riksdagen.external.model.cia.hack23.com/impl")
 package com.hack23.cia.model.external.riksdagen.dokumentstatus.impl;
