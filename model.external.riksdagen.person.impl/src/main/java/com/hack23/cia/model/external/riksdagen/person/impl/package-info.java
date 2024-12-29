@@ -16,6 +16,8 @@
  * - Uses javax.persistence for JPA annotations.
  * - Uses javax.xml.bind.annotation for XML binding annotations.
  * - Uses org.apache.commons.lang3.builder for EqualsBuilder, HashCodeBuilder, and ToStringBuilder.
+ * - Depends on com.hack23.cia.model.external.riksdagen.personlista.impl for handling person list data.
+ * - Depends on com.hack23.cia.model.external.riksdagen.utskottsforslag.impl for handling committee proposal data.
  */
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://person.riksdagen.external.model.cia.hack23.com/impl")
 package com.hack23.cia.model.external.riksdagen.person.impl;

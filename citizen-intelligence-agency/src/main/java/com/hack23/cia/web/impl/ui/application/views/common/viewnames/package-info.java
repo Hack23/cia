@@ -21,5 +21,8 @@
  * Dependencies and relationships:
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common for common view classes.
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for page mode content factories.
+ * - Depends on com.hack23.cia.web.impl.ui.application.views.pageclicklistener for handling page click events.
+ *
+ * The package is responsible for providing the necessary structure and implementation for defining view names and page modes within the Citizen Intelligence Agency web application. The key classes and interfaces within this package manage various aspects of view names and page modes, such as admin views, application page modes, chart indicators, committee page modes, common views, data summary page modes, document page modes, government body page modes, ministry page modes, general page modes, party page modes, politician page modes, risk indicators, user home page modes, and user views. The package also has dependencies on other packages for specific functionalities, such as common view classes, page mode content factories, and handling page click events.
  */
 package com.hack23.cia.web.impl.ui.application.views.common.viewnames;

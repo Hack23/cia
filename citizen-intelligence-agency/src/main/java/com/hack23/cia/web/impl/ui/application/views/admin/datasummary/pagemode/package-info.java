@@ -20,5 +20,9 @@
  * - Depends on com.vaadin.ui for Button, Layout, MenuBar, Panel, VerticalLayout.
  * - Depends on org.springframework.security.access.annotation for Secured.
  * - Depends on org.springframework.stereotype for Component.
+ * - Depends on org.springframework.context for ApplicationContext.
+ * - Depends on com.vaadin.spring.annotation for SpringView.
+ *
+ * The package is responsible for providing the necessary structure and implementation for managing the page modes within the data summary view of the Citizen Intelligence Agency web application. The key classes and interfaces within this package manage various aspects of data summary, such as data summary views, page mode content factories, and their implementation. The package also has dependencies on other packages for specific functionalities, such as common page mode content factories, view names, audit data summaries, application manager services, label factories, row utilities, content sizing, page click listeners, responsive layout, Vaadin icons, UI components, security annotations, component annotations, application context, and Spring framework.
  */
 package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;

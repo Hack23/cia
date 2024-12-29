@@ -26,5 +26,7 @@
  * - Depends on org.springframework.stereotype for component annotations.
  * - Depends on org.springframework.web.context.request for request context holder.
  * - Depends on com.vaadin.ui for UI components.
+ *
+ * The package is responsible for providing the necessary structure and implementation for various system-related page modes within the Citizen Intelligence Agency web application. The key classes and interfaces within this package manage different aspects of the system, such as agency-related information, application configuration, application events, application sessions, country-related information, language-related information, system performance monitoring, portal-related information, and user accounts. The package also has dependencies on other packages for specific functionalities, such as common page mode content factories, paging utilities, view names, system-related entities, data container and application manager services, security annotations, component annotations, request context holder, and UI components.
  */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;

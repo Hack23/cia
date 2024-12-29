@@ -19,5 +19,7 @@
  * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for AdminViews.
  * - Depends on org.springframework.context for ApplicationContext.
  * - Depends on com.vaadin.spring.annotation for SpringView.
+ *
+ * The package is responsible for providing the necessary structure and implementation for various system-related functionalities within the Citizen Intelligence Agency web application. The key classes and interfaces within this package manage different aspects of the system, such as agency-related information, application configuration, application events, application sessions, country-related information, email-related information, language-related information, system performance monitoring, portal-related information, and user accounts. The package also has dependencies on other packages for specific functionalities, such as common admin views, page mode content factories, view names, Spring framework, and Vaadin framework.
  */
 package com.hack23.cia.web.impl.ui.application.views.admin.system;
