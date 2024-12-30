@@ -82,40 +82,11 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		panelContent.setExpandRatio(addCommitteePageLink, ContentRatio.SMALL);
 
 		// Create a card panel for the committee overview
-		final Panel cardPanel = new Panel();
-		cardPanel.addStyleName("politician-overview-card");
-		cardPanel.setWidth("100%");
-		cardPanel.setHeightUndefined();
-		Responsive.makeResponsive(cardPanel);
-
-		final VerticalLayout cardContent = new VerticalLayout();
-		cardContent.setMargin(true);
-		cardContent.setSpacing(true);
-		cardContent.setWidth("100%");
-		cardPanel.setContent(cardContent);
+		final Panel cardPanel = createCardPanel("Committee Overview");
+		final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
 		panelContent.addComponent(cardPanel);
 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
-
-		// Header layout
-		final HorizontalLayout headerLayout = new HorizontalLayout();
-		headerLayout.setSpacing(true);
-		headerLayout.setWidth("100%");
-		headerLayout.addStyleName("card-header-section");
-
-		final String titleText = "Committee: " + viewRiksdagenCommittee.getEmbeddedId().getDetail();
-		final Label titleLabel = new Label(titleText, ContentMode.HTML);
-		titleLabel.addStyleName("card-title");
-		titleLabel.setWidthUndefined();
-		headerLayout.addComponent(titleLabel);
-
-		cardContent.addComponent(headerLayout);
-
-		// Divider line
-		final Label divider = new Label("<hr/>", ContentMode.HTML);
-		divider.addStyleName("card-divider");
-		divider.setWidth("100%");
-		cardContent.addComponent(divider);
 
 		// Two-column layout for committee attributes
 		final HorizontalLayout attributesLayout = new HorizontalLayout();
@@ -133,16 +104,13 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		profileDetailsHeader.addStyleName("card-section-title");
 		profileDetailsLayout.addComponent(profileDetailsHeader);
 
-		profileDetailsLayout.addComponent(createInfoRow("Detail:", viewRiksdagenCommittee.getEmbeddedId().getDetail(),
-		        VaadinIcons.INFO_CIRCLE, "Internal identifier detail for the committee"));
-		profileDetailsLayout.addComponent(createInfoRow("Status:", viewRiksdagenCommittee.isActive() ? "Active" : "Inactive",
-		        VaadinIcons.FLAG, "Current committee status"));
-		profileDetailsLayout.addComponent(createInfoRow("Activity Level:", viewRiksdagenCommittee.getActivityLevel(),
-		        VaadinIcons.CHART, "Committee's current activity level"));
-		profileDetailsLayout.addComponent(createInfoRow("First Assignment:", String.valueOf(viewRiksdagenCommittee.getFirstAssignmentDate()),
-		        VaadinIcons.CALENDAR, "Date the committee's first assignment started"));
-		profileDetailsLayout.addComponent(createInfoRow("Last Assignment:", String.valueOf(viewRiksdagenCommittee.getLastAssignmentDate()),
-		        VaadinIcons.CALENDAR_CLOCK, "Date of the committee's most recent assignment"));
+		addInfoRowsToLayout(profileDetailsLayout,
+		        new InfoRowItem("Detail:", viewRiksdagenCommittee.getEmbeddedId().getDetail(), VaadinIcons.INFO_CIRCLE),
+		        new InfoRowItem("Status:", viewRiksdagenCommittee.isActive() ? "Active" : "Inactive", VaadinIcons.FLAG),
+		        new InfoRowItem("Activity Level:", viewRiksdagenCommittee.getActivityLevel(), VaadinIcons.CHART),
+		        new InfoRowItem("First Assignment:", String.valueOf(viewRiksdagenCommittee.getFirstAssignmentDate()), VaadinIcons.CALENDAR),
+		        new InfoRowItem("Last Assignment:", String.valueOf(viewRiksdagenCommittee.getLastAssignmentDate()), VaadinIcons.CALENDAR_CLOCK)
+		);
 
 		// Second column: Membership Statistics
 		final VerticalLayout membershipStatsLayout = new VerticalLayout();
@@ -154,18 +122,14 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		membershipStatsHeader.addStyleName("card-section-title");
 		membershipStatsLayout.addComponent(membershipStatsHeader);
 
-		membershipStatsLayout.addComponent(createInfoRow("Current Members:", String.valueOf(viewRiksdagenCommittee.getCurrentMemberSize()),
-		        VaadinIcons.GROUP, "Total current committee members"));
-		membershipStatsLayout.addComponent(createInfoRow("Regular Members:", String.valueOf(viewRiksdagenCommittee.getCurrentRegularMembers()),
-		        VaadinIcons.USER, "Number of current regular members"));
-		membershipStatsLayout.addComponent(createInfoRow("Leadership Positions:", String.valueOf(viewRiksdagenCommittee.getCurrentLeadershipPositions()),
-		        VaadinIcons.STAR, "Current number of leadership positions"));
-		membershipStatsLayout.addComponent(createInfoRow("Substitute Positions:", String.valueOf(viewRiksdagenCommittee.getCurrentSubstitutePositions()),
-		        VaadinIcons.USER_CLOCK, "Current number of substitute positions"));
-		membershipStatsLayout.addComponent(createInfoRow("Total Leadership Roles:", String.valueOf(viewRiksdagenCommittee.getTotalLeadershipPositions()),
-		        VaadinIcons.USERS, "Historical total of leadership positions"));
-		membershipStatsLayout.addComponent(createInfoRow("Total Substitute Roles:", String.valueOf(viewRiksdagenCommittee.getTotalSubstitutePositions()),
-		        VaadinIcons.USERS, "Historical total of substitute positions"));
+		addInfoRowsToLayout(membershipStatsLayout,
+		        new InfoRowItem("Current Members:", String.valueOf(viewRiksdagenCommittee.getCurrentMemberSize()), VaadinIcons.GROUP),
+		        new InfoRowItem("Regular Members:", String.valueOf(viewRiksdagenCommittee.getCurrentRegularMembers()), VaadinIcons.USER),
+		        new InfoRowItem("Leadership Positions:", String.valueOf(viewRiksdagenCommittee.getCurrentLeadershipPositions()), VaadinIcons.STAR),
+		        new InfoRowItem("Substitute Positions:", String.valueOf(viewRiksdagenCommittee.getCurrentSubstitutePositions()), VaadinIcons.USER_CLOCK),
+		        new InfoRowItem("Total Leadership Roles:", String.valueOf(viewRiksdagenCommittee.getTotalLeadershipPositions()), VaadinIcons.USERS),
+		        new InfoRowItem("Total Substitute Roles:", String.valueOf(viewRiksdagenCommittee.getTotalSubstitutePositions()), VaadinIcons.USERS)
+		);
 
 		// Third column: Document Statistics
 		final VerticalLayout documentStatsLayout = new VerticalLayout();
@@ -177,31 +141,25 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		documentStatsHeader.addStyleName("card-section-title");
 		documentStatsLayout.addComponent(documentStatsHeader);
 
-		documentStatsLayout.addComponent(createInfoRow("Total Documents:", String.valueOf(viewRiksdagenCommittee.getTotalDocuments()),
-		        VaadinIcons.FILE_TEXT, "Total number of documents produced"));
-		documentStatsLayout.addComponent(createInfoRow("Documents Last Year:", String.valueOf(viewRiksdagenCommittee.getDocumentsLastYear()),
-		        VaadinIcons.FILE_O, "Documents produced in the last year"));
-		documentStatsLayout.addComponent(createInfoRow("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenCommittee.getAvgDocumentsPerMember()),
-		        VaadinIcons.CHART_LINE, "Average documents per committee member"));
-		documentStatsLayout.addComponent(createInfoRow("Committee Motions:", String.valueOf(viewRiksdagenCommittee.getTotalCommitteeMotions()),
-		        VaadinIcons.FILE_PRESENTATION, "Total number of committee motions"));
-		documentStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenCommittee.getTotalAssignments()),
-		        VaadinIcons.TASKS, "Total number of assignments"));
-		documentStatsLayout.addComponent(createInfoRow("Days Served:", String.valueOf(viewRiksdagenCommittee.getTotalDaysServed()),
-		        VaadinIcons.CLOCK, "Total days of committee service"));
+		addInfoRowsToLayout(documentStatsLayout,
+		        new InfoRowItem("Total Documents:", String.valueOf(viewRiksdagenCommittee.getTotalDocuments()), VaadinIcons.FILE_TEXT),
+		        new InfoRowItem("Documents Last Year:", String.valueOf(viewRiksdagenCommittee.getDocumentsLastYear()), VaadinIcons.FILE_O),
+		        new InfoRowItem("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenCommittee.getAvgDocumentsPerMember()), VaadinIcons.CHART_LINE),
+		        new InfoRowItem("Committee Motions:", String.valueOf(viewRiksdagenCommittee.getTotalCommitteeMotions()), VaadinIcons.FILE_PRESENTATION),
+		        new InfoRowItem("Total Assignments:", String.valueOf(viewRiksdagenCommittee.getTotalAssignments()), VaadinIcons.TASKS),
+		        new InfoRowItem("Days Served:", String.valueOf(viewRiksdagenCommittee.getTotalDaysServed()), VaadinIcons.CLOCK)
+		);
 
 		// Clear existing components and add all three columns
 		attributesLayout.removeAllComponents();
 		attributesLayout.addComponents(profileDetailsLayout, membershipStatsLayout, documentStatsLayout);
 
-		// Optional: Add some styling to make the columns more responsive
+		 // Optional: Add some styling to make the columns more responsive
 		attributesLayout.setWidth("100%");
 		attributesLayout.setSpacing(true);
 
-
 		// After the card, add the overview layout
-		final VerticalLayout overviewLayout = new VerticalLayout();
-		overviewLayout.setSizeFull();
+		final VerticalLayout overviewLayout = createOverviewLayout();
 		panelContent.addComponent(overviewLayout);
 		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
 
@@ -211,43 +169,6 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 				parameters, pageId);
 
 		return panelContent;
-	}
-
-	/**
-	 * Creates a row displaying a caption and value, with optional icon and tooltip.
-	 *
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon for better visual cue
-	 * @param tooltip optional tooltip to provide more info
-	 * @return a HorizontalLayout representing the info row
-	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon, final String tooltip) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		if (icon != null) {
-			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-			iconLabel.addStyleName("card-info-icon");
-			if (tooltip != null && !tooltip.isEmpty()) {
-				iconLabel.setDescription(tooltip);
-			}
-			layout.addComponent(iconLabel);
-		}
-
-		final Label captionLabel = new Label(caption);
-		captionLabel.addStyleName("card-info-caption");
-		if (tooltip != null && !tooltip.isEmpty()) {
-			captionLabel.setDescription(tooltip);
-		}
-
-		final Label valueLabel = new Label(value != null ? value : "");
-		valueLabel.addStyleName("card-info-value");
-
-		layout.addComponents(captionLabel, valueLabel);
-		return layout;
 	}
 
 	/**

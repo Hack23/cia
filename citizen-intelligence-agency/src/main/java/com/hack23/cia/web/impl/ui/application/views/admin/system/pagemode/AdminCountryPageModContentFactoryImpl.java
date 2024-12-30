@@ -31,10 +31,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -131,54 +128,19 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 			final CountryElement country = dataContainer.load(Long.valueOf(pageId));
 			if (country != null) {
 
-				// Create a card panel for country details
-				final Panel cardPanel = new Panel();
-				cardPanel.addStyleName("politician-overview-card");
-				cardPanel.setWidth("100%");
-				cardPanel.setHeightUndefined();
-				Responsive.makeResponsive(cardPanel);
-
-				final VerticalLayout cardContent = new VerticalLayout();
-				cardContent.setMargin(true);
-				cardContent.setSpacing(true);
-				cardContent.setWidth("100%");
-				cardPanel.setContent(cardContent);
-
-				content.addComponent(cardPanel);
-
-				// Card Header
-				final HorizontalLayout headerLayout = new HorizontalLayout();
-				headerLayout.setSpacing(true);
-				headerLayout.setWidth("100%");
-				headerLayout.addStyleName("card-header-section");
-
-				final String titleText = "Country Details";
-				final Label titleLabel = new Label(titleText, ContentMode.HTML);
-				titleLabel.addStyleName("card-title");
-				titleLabel.setWidthUndefined();
-				headerLayout.addComponent(titleLabel);
-
-				cardContent.addComponent(headerLayout);
-
-				// Divider
-				final Label divider = new Label("<hr/>", ContentMode.HTML);
-				divider.addStyleName("card-divider");
-				divider.setWidth("100%");
-				cardContent.addComponent(divider);
-
-				// Attributes layout
-				final VerticalLayout attributesLayout = new VerticalLayout();
-				attributesLayout.setSpacing(true);
-				attributesLayout.setWidth("100%");
-				cardContent.addComponent(attributesLayout);
-
-				// Show fields if not null or empty
-				addInfoRowIfNotNull(attributesLayout, "Country ID:", country.getId(), VaadinIcons.FLAG_O);
-				addInfoRowIfNotNull(attributesLayout, "Name:", country.getCountryName(), VaadinIcons.GLOBE);
-				addInfoRowIfNotNull(attributesLayout, "ISO2 Code:", country.getIso2Code(), VaadinIcons.CODE);
-				addInfoRowIfNotNull(attributesLayout, "Capital:", country.getCapitalCity(), VaadinIcons.BUILDING);
-				addInfoRowIfNotNull(attributesLayout, "Longitude:", country.getLongitude(), VaadinIcons.ARROWS_LONG_H);
-				addInfoRowIfNotNull(attributesLayout, "Latitude:", country.getLatitude(), VaadinIcons.ARROWS_LONG_H);
+				 Panel cardPanel = createCardPanel("Country Details");
+                 VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
+                 
+                 addInfoRowsToLayout(cardContent,
+                     new InfoRowItem("Country ID:", country.getId(), VaadinIcons.FLAG_O),
+                     new InfoRowItem("Name:", country.getCountryName(), VaadinIcons.GLOBE),
+                     new InfoRowItem("ISO2 Code:", country.getIso2Code(), VaadinIcons.CODE),
+                     new InfoRowItem("Capital:", country.getCapitalCity(), VaadinIcons.BUILDING),
+                     new InfoRowItem("Longitude:", country.getLongitude(), VaadinIcons.ARROWS_LONG_H),
+                     new InfoRowItem("Latitude:", country.getLatitude(), VaadinIcons.ARROWS_LONG_H)
+                 );
+                 
+                 content.addComponent(cardPanel);
 			}
 		}
 
@@ -190,49 +152,5 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 				pageId);
 
 		return content;
-	}
-
-	/**
-	 * Adds an info row to the parent layout if value is not null or empty.
-	 *
-	 * @param parent the parent layout
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon
-	 */
-	private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value, final VaadinIcons icon) {
-		if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
-			parent.addComponent(createInfoRow(caption, value, icon));
-		}
-	}
-
-	/**
-	 * Creates a simple info row (caption and value) with optional icon.
-	 *
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon
-	 * @return a HorizontalLayout representing the info row
-	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, final VaadinIcons icon) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		if (icon != null) {
-			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-			iconLabel.addStyleName("card-info-icon");
-			layout.addComponent(iconLabel);
-		}
-
-		final Label captionLabel = new Label(caption);
-		captionLabel.addStyleName("card-info-caption");
-
-		final Label valueLabel = new Label(value);
-		valueLabel.addStyleName("card-info-value");
-
-		layout.addComponents(captionLabel, valueLabel);
-		return layout;
 	}
 }

@@ -84,39 +84,11 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         panelContent.setExpandRatio(addMinistryPageLink, ContentRatio.SMALL);
 
         // Create a card panel
-        final Panel cardPanel = new Panel();
-        cardPanel.addStyleName("ministry-overview-card");
-        cardPanel.setWidth("100%");
-        cardPanel.setHeightUndefined();
-        Responsive.makeResponsive(cardPanel);
-
-        final VerticalLayout cardContent = new VerticalLayout();
-        cardContent.setMargin(true);
-        cardContent.setSpacing(true);
-        cardContent.setWidth("100%");
-        cardPanel.setContent(cardContent);
+        final Panel cardPanel = createCardPanel(viewRiksdagenMinistry.getNameId());
+        final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
         panelContent.addComponent(cardPanel);
         panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
-
-        // Header layout
-        final HorizontalLayout headerLayout = new HorizontalLayout();
-        headerLayout.setSpacing(true);
-        headerLayout.setWidth("100%");
-        headerLayout.addStyleName("card-header-section");
-
-        final Label titleLabel = new Label(viewRiksdagenMinistry.getNameId(), ContentMode.HTML);
-        titleLabel.addStyleName("card-title");
-        titleLabel.setWidthUndefined();
-        headerLayout.addComponent(titleLabel);
-
-        cardContent.addComponent(headerLayout);
-
-        // Divider
-        final Label divider = new Label("<hr/>", ContentMode.HTML);
-        divider.addStyleName("card-divider");
-        divider.setWidth("100%");
-        cardContent.addComponent(divider);
 
         // Multi-column layout for attributes
         final HorizontalLayout attributesLayout = new HorizontalLayout();
@@ -134,14 +106,12 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         profileDetailsHeader.addStyleName("card-section-title");
         profileDetailsLayout.addComponent(profileDetailsHeader);
 
-        profileDetailsLayout.addComponent(createInfoRow("Ministry ID:", viewRiksdagenMinistry.getNameId(),
-            VaadinIcons.INFO_CIRCLE, "Ministry identifier"));
-        profileDetailsLayout.addComponent(createInfoRow("Status:", viewRiksdagenMinistry.isActive() ? "Active" : "Inactive",
-            VaadinIcons.FLAG, "Current ministry status"));
-        profileDetailsLayout.addComponent(createInfoRow("Current Members:", String.valueOf(viewRiksdagenMinistry.getCurrentMemberSize()),
-            VaadinIcons.GROUP, "Number of current ministry members"));
-        profileDetailsLayout.addComponent(createInfoRow("Activity Level:", viewRiksdagenMinistry.getActivityLevel(),
-            VaadinIcons.CHART, "Ministry's current activity level"));
+        addInfoRowsToLayout(profileDetailsLayout,
+            new InfoRowItem("Ministry ID:", viewRiksdagenMinistry.getNameId(), VaadinIcons.INFO_CIRCLE),
+            new InfoRowItem("Status:", viewRiksdagenMinistry.isActive() ? "Active" : "Inactive", VaadinIcons.FLAG),
+            new InfoRowItem("Current Members:", String.valueOf(viewRiksdagenMinistry.getCurrentMemberSize()), VaadinIcons.GROUP),
+            new InfoRowItem("Activity Level:", viewRiksdagenMinistry.getActivityLevel(), VaadinIcons.CHART)
+        );
 
         // Column 2: Service Statistics
         final VerticalLayout serviceStatsLayout = new VerticalLayout();
@@ -153,14 +123,12 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         serviceStatsHeader.addStyleName("card-section-title");
         serviceStatsLayout.addComponent(serviceStatsHeader);
 
-        serviceStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenMinistry.getTotalAssignments()),
-            VaadinIcons.TASKS, "Total number of assignments"));
-        serviceStatsLayout.addComponent(createInfoRow("First Assignment:", String.valueOf(viewRiksdagenMinistry.getFirstAssignmentDate()),
-            VaadinIcons.CALENDAR, "Date of first ministry assignment"));
-        serviceStatsLayout.addComponent(createInfoRow("Last Assignment:", String.valueOf(viewRiksdagenMinistry.getLastAssignmentDate()),
-            VaadinIcons.CALENDAR_CLOCK, "Date of most recent assignment"));
-        serviceStatsLayout.addComponent(createInfoRow("Total Days Served:", String.valueOf(viewRiksdagenMinistry.getTotalDaysServed()),
-            VaadinIcons.CLOCK, "Total days of ministry service"));
+        addInfoRowsToLayout(serviceStatsLayout,
+            new InfoRowItem("Total Assignments:", String.valueOf(viewRiksdagenMinistry.getTotalAssignments()), VaadinIcons.TASKS),
+            new InfoRowItem("First Assignment:", String.valueOf(viewRiksdagenMinistry.getFirstAssignmentDate()), VaadinIcons.CALENDAR),
+            new InfoRowItem("Last Assignment:", String.valueOf(viewRiksdagenMinistry.getLastAssignmentDate()), VaadinIcons.CALENDAR_CLOCK),
+            new InfoRowItem("Total Days Served:", String.valueOf(viewRiksdagenMinistry.getTotalDaysServed()), VaadinIcons.CLOCK)
+        );
 
         // Column 3: Document Statistics
         final VerticalLayout documentStatsLayout = new VerticalLayout();
@@ -172,23 +140,19 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         documentStatsHeader.addStyleName("card-section-title");
         documentStatsLayout.addComponent(documentStatsHeader);
 
-        documentStatsLayout.addComponent(createInfoRow("Total Documents:", String.valueOf(viewRiksdagenMinistry.getTotalDocuments()),
-            VaadinIcons.FILE_TEXT, "Total number of ministry documents"));
-        documentStatsLayout.addComponent(createInfoRow("Documents Last Year:", String.valueOf(viewRiksdagenMinistry.getDocumentsLastYear()),
-            VaadinIcons.FILE_O, "Documents produced in the last year"));
-        documentStatsLayout.addComponent(createInfoRow("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenMinistry.getAvgDocumentsPerMember()),
-            VaadinIcons.CHART_LINE, "Average documents per ministry member"));
-        documentStatsLayout.addComponent(createInfoRow("Total Propositions:", String.valueOf(viewRiksdagenMinistry.getTotalPropositions()),
-            VaadinIcons.FILE_PRESENTATION, "Total number of propositions"));
-        documentStatsLayout.addComponent(createInfoRow("Government Bills:", String.valueOf(viewRiksdagenMinistry.getTotalGovernmentBills()),
-            VaadinIcons.FILE_TEXT_O, "Total number of government bills"));
+        addInfoRowsToLayout(documentStatsLayout,
+            new InfoRowItem("Total Documents:", String.valueOf(viewRiksdagenMinistry.getTotalDocuments()), VaadinIcons.FILE_TEXT),
+            new InfoRowItem("Documents Last Year:", String.valueOf(viewRiksdagenMinistry.getDocumentsLastYear()), VaadinIcons.FILE_O),
+            new InfoRowItem("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenMinistry.getAvgDocumentsPerMember()), VaadinIcons.CHART_LINE),
+            new InfoRowItem("Total Propositions:", String.valueOf(viewRiksdagenMinistry.getTotalPropositions()), VaadinIcons.FILE_PRESENTATION),
+            new InfoRowItem("Government Bills:", String.valueOf(viewRiksdagenMinistry.getTotalGovernmentBills()), VaadinIcons.FILE_TEXT_O)
+        );
 
         // Add all columns to the attributes layout
         attributesLayout.addComponents(profileDetailsLayout, serviceStatsLayout, documentStatsLayout);
 
         // Add the overview layout
-        final VerticalLayout overviewLayout = new VerticalLayout();
-        overviewLayout.setSizeFull();
+        final VerticalLayout overviewLayout = createOverviewLayout();
         panelContent.addComponent(overviewLayout);
         panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
 
@@ -199,44 +163,6 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 
         return panelContent;
     }
-
-	/**
-	 * Creates a row displaying a caption and value, with optional icon and tooltip.
-	 *
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon for better visual cue
-	 * @param tooltip optional tooltip to provide more info
-	 * @return a HorizontalLayout representing the info row
-	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon, final String tooltip) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		if (icon != null) {
-			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-			iconLabel.addStyleName("card-info-icon");
-			if (tooltip != null && !tooltip.isEmpty()) {
-				iconLabel.setDescription(tooltip);
-			}
-			layout.addComponent(iconLabel);
-		}
-
-		final Label captionLabel = new Label(caption);
-		captionLabel.addStyleName("card-info-caption");
-		if (tooltip != null && !tooltip.isEmpty()) {
-			captionLabel.setDescription(tooltip);
-		}
-
-		final Label valueLabel = new Label(value != null ? value : "");
-		valueLabel.addStyleName("card-info-value");
-
-		layout.addComponents(captionLabel, valueLabel);
-		return layout;
-	}
-
 
     /**
      * Matches.

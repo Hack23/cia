@@ -86,40 +86,11 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 		final ViewRiksdagenPartySummary viewRiksdagenPartySummary = partySummaryDataContainer.load(pageId);
 
 		// Create a card panel similar to the politician overview
-		final Panel cardPanel = new Panel();
-		cardPanel.addStyleName("politician-overview-card");
-		cardPanel.setWidth("100%");
-		cardPanel.setHeightUndefined();
-		Responsive.makeResponsive(cardPanel);
-
-		final VerticalLayout cardContent = new VerticalLayout();
-		cardContent.setMargin(true);
-		cardContent.setSpacing(true);
-		cardContent.setWidth("100%");
-		cardPanel.setContent(cardContent);
+		final Panel cardPanel = createCardPanel(viewRiksdagenParty.getPartyName());
+		final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
 		panelContent.addComponent(cardPanel);
 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
-
-		// Header layout
-		final HorizontalLayout headerLayout = new HorizontalLayout();
-		headerLayout.setSpacing(true);
-		headerLayout.setWidth("100%");
-		headerLayout.addStyleName("card-header-section");
-
-		final String titleText = viewRiksdagenParty.getPartyName();
-		final Label titleLabel = new Label(titleText, ContentMode.HTML);
-		titleLabel.addStyleName("card-title");
-		titleLabel.setWidthUndefined();
-		headerLayout.addComponent(titleLabel);
-
-		cardContent.addComponent(headerLayout);
-
-		// Divider line for better separation
-		final Label divider = new Label("<hr/>", ContentMode.HTML);
-		divider.addStyleName("card-divider");
-		divider.setWidth("100%");
-		cardContent.addComponent(divider);
 
 		// Create single row for four sections
 		final HorizontalLayout sectionsLayout = new HorizontalLayout();
@@ -152,8 +123,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 		sectionsLayout.setExpandRatio(memberPerformanceLayout, 1.0f);
 
 		// After the card, add the overview layout
-		final VerticalLayout overviewLayout = new VerticalLayout();
-		overviewLayout.setSizeFull();
+		final VerticalLayout overviewLayout = createOverviewLayout();
 		panelContent.addComponent(overviewLayout);
 		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
 

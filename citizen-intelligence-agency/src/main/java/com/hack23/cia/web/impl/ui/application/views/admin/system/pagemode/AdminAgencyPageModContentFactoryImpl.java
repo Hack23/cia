@@ -35,10 +35,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -96,7 +92,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
     @Secured({ "ROLE_ADMIN" })
     @Override
     public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-        final VerticalLayout content = createPanelContent();
+        final VerticalLayout content = createOverviewLayout();
 
         final String pageId = getPageId(parameters);
         final int pageNr = getPageNr(parameters);
@@ -118,16 +114,15 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
                 AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS);
 
         if (pageId != null && !pageId.isEmpty()) {
-            final HorizontalLayout horizontalLayout = new HorizontalLayout();
-            horizontalLayout.setWidth(ContentSize.FULL_SIZE);
+            final VerticalLayout horizontalLayout = createSplitLayout();
             content.addComponent(horizontalLayout);
             content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);
 
-            final VerticalLayout leftLayout = new VerticalLayout();
+            final VerticalLayout leftLayout = createCardContentLayout();
             leftLayout.setSizeFull();
             leftLayout.addStyleName("v-layout-content-overview-panel-level1");
 
-            final VerticalLayout rightLayout = new VerticalLayout();
+            final VerticalLayout rightLayout = createCardContentLayout();
             rightLayout.setSizeFull();
             rightLayout.addStyleName("v-layout-content-overview-panel-level2");
 
@@ -136,39 +131,10 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
             final Agency agency = dataContainer.load(Long.valueOf(pageId));
             if (agency != null) {
                 // Card panel for Agency details
-                final Panel cardPanel = new Panel();
-                cardPanel.addStyleName("politician-overview-card"); // Reuse existing card style
-                cardPanel.setWidth("100%");
-                cardPanel.setHeightUndefined();
-                Responsive.makeResponsive(cardPanel);
-
-                final VerticalLayout cardContent = new VerticalLayout();
-                cardContent.setMargin(true);
-                cardContent.setSpacing(true);
-                cardContent.setWidth("100%");
-                cardPanel.setContent(cardContent);
+                final Panel cardPanel = createCardPanel("Agency Details");
+                final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
                 leftLayout.addComponent(cardPanel);
-
-                // Card Header
-                final HorizontalLayout headerLayout = new HorizontalLayout();
-                headerLayout.setSpacing(true);
-                headerLayout.setWidth("100%");
-                headerLayout.addStyleName("card-header-section");
-
-                final String titleText = "Agency Details";
-                final Label titleLabel = new Label(titleText, ContentMode.HTML);
-                titleLabel.addStyleName("card-title");
-                titleLabel.setWidthUndefined();
-                headerLayout.addComponent(titleLabel);
-
-                cardContent.addComponent(headerLayout);
-
-                // Divider line
-                final Label divider = new Label("<hr/>", ContentMode.HTML);
-                divider.addStyleName("card-divider");
-                divider.setWidth("100%");
-                cardContent.addComponent(divider);
 
                 // Attributes layout
                 final VerticalLayout attributesLayout = new VerticalLayout();
@@ -177,8 +143,9 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
                 cardContent.addComponent(attributesLayout);
 
                 // Display fields in a card layout (skipping null or empty ones)
-                addInfoRowIfNotNull(attributesLayout, "Agency Name:", agency.getAgencyName(), VaadinIcons.FLAG);
-                addInfoRowIfNotNull(attributesLayout, "Description:", agency.getDescription(), VaadinIcons.FILE_TEXT);
+                addInfoRowsToLayout(attributesLayout,
+                        new InfoRowItem("Agency Name:", agency.getAgencyName(), VaadinIcons.FLAG),
+                        new InfoRowItem("Description:", agency.getDescription(), VaadinIcons.FILE_TEXT));
 
                 // Right layout: portals grid
                 getGridFactory().createBasicBeanItemGrid(rightLayout, Portal.class, agency.getPortals(),
@@ -192,50 +159,4 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
         return content;
     }
-
-    /**
-     * Adds an info row to the parent layout if value is not null or empty.
-     *
-     * @param parent the parent layout
-     * @param caption the caption
-     * @param value the value
-     * @param icon the icon
-     */
-    private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value,
-            final VaadinIcons icon) {
-        if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
-            parent.addComponent(createInfoRow(caption, value, icon));
-        }
-    }
-
-    /**
-     * Creates a simple info row (caption and value) with optional icon.
-     *
-     * @param caption the field caption
-     * @param value   the field value
-     * @param icon    a VaadinIcons icon
-     * @return a HorizontalLayout representing the info row
-     */
-    private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon) {
-        final HorizontalLayout layout = new HorizontalLayout();
-        layout.setSpacing(true);
-        layout.addStyleName("metric-label");
-        layout.setWidthUndefined();
-
-        if (icon != null) {
-            final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-            iconLabel.addStyleName("card-info-icon");
-            layout.addComponent(iconLabel);
-        }
-
-        final Label captionLabel = new Label(caption);
-        captionLabel.addStyleName("card-info-caption");
-
-        final Label valueLabel = new Label(value);
-        valueLabel.addStyleName("card-info-value");
-
-        layout.addComponents(captionLabel, valueLabel);
-        return layout;
-    }
-
 }

@@ -32,10 +32,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.Responsive;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -79,10 +77,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
     @Secured({ "ROLE_ADMIN" })
     @Override
     public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-        final VerticalLayout content = new VerticalLayout();
-        content.setSizeFull();
-        content.setMargin(true);
-        content.setSpacing(true);
+        final VerticalLayout content = createOverviewLayout();
 
         getMenuItemFactory().createMainPageMenuBar(menuBar);
 
@@ -91,7 +86,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
             "Language Overview",
             "Administer and update language settings and configurations for the platform.");
 
-        final HorizontalLayout horizontalLayout = createHorizontalLayout();
+        final HorizontalLayout horizontalLayout = createSplitLayout();
         content.addComponent(horizontalLayout);
         content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
 
@@ -128,52 +123,17 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
         if (getPageId(parameters) != null && !getPageId(parameters).isEmpty()) {
             final LanguageData languageData = dataContainer.load(Long.valueOf(getPageId(parameters)));
             if (languageData != null) {
-                // Create a card-style panel to display LanguageData details
-                final Panel cardPanel = new Panel();
-                cardPanel.addStyleName("politician-overview-card"); // Reuse existing style
-                cardPanel.setWidth("100%");
-                cardPanel.setHeightUndefined();
-                Responsive.makeResponsive(cardPanel);
+                Panel cardPanel = createCardPanel("Language Details");
+                VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
-                final VerticalLayout cardContent = new VerticalLayout();
-                cardContent.setMargin(true);
-                cardContent.setSpacing(true);
-                cardContent.setWidth("100%");
-                cardPanel.setContent(cardContent);
+                addInfoRowsToLayout(cardContent,
+                    new InfoRowItem("Language Name:", languageData.getLanguageName(), VaadinIcons.GLOBE),
+                    new InfoRowItem("Created Date:", String.valueOf(languageData.getCreatedDate()), VaadinIcons.CALENDAR),
+                    new InfoRowItem("Last Modified Date:", String.valueOf(languageData.getLastModifiedDate()), VaadinIcons.CALENDAR_CLOCK),
+                    new InfoRowItem("Language Enabled:", String.valueOf(languageData.isLanguageEnabled()), VaadinIcons.CHECK)
+                );
 
                 horizontalLayout.addComponent(cardPanel);
-
-                // Card Header
-                final HorizontalLayout headerLayout = new HorizontalLayout();
-                headerLayout.setSpacing(true);
-                headerLayout.setWidth("100%");
-                headerLayout.addStyleName("card-header-section");
-
-                final String titleText = "Language Details";
-                final Label titleLabel = new Label(titleText, ContentMode.HTML);
-                titleLabel.addStyleName("card-title");
-                titleLabel.setWidthUndefined();
-                headerLayout.addComponent(titleLabel);
-
-                cardContent.addComponent(headerLayout);
-
-                // Divider
-                final Label divider = new Label("<hr/>", ContentMode.HTML);
-                divider.addStyleName("card-divider");
-                divider.setWidth("100%");
-                cardContent.addComponent(divider);
-
-                // Attributes layout
-                final VerticalLayout attributesLayout = new VerticalLayout();
-                attributesLayout.setSpacing(true);
-                attributesLayout.setWidth("100%");
-                cardContent.addComponent(attributesLayout);
-
-                // Display each field if not null or empty
-                addInfoRowIfNotNull(attributesLayout, "Language Name:", languageData.getLanguageName(), VaadinIcons.GLOBE);
-                addInfoRowIfNotNull(attributesLayout, "Created Date:", String.valueOf(languageData.getCreatedDate()), VaadinIcons.CALENDAR);
-                addInfoRowIfNotNull(attributesLayout, "Last Modified Date:", String.valueOf(languageData.getLastModifiedDate()), VaadinIcons.CALENDAR_CLOCK);
-                addInfoRowIfNotNull(attributesLayout, "Language Enabled:", String.valueOf(languageData.isLanguageEnabled()), VaadinIcons.CHECK);
             }
         }
 
@@ -186,50 +146,5 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
         );
 
         return content;
-    }
-
-
-    /**
-     * Adds an info row to the parent layout if value is not null or empty.
-     *
-     * @param parent the parent layout
-     * @param caption the field caption
-     * @param value the field value
-     * @param icon a VaadinIcons icon
-     */
-    private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value, final VaadinIcons icon) {
-        if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
-            parent.addComponent(createInfoRow(caption, value, icon));
-        }
-    }
-
-    /**
-     * Creates a simple info row (caption and value) with an optional icon.
-     *
-     * @param caption the field caption
-     * @param value   the field value
-     * @param icon    a VaadinIcons icon
-     * @return a HorizontalLayout representing the info row
-     */
-    private HorizontalLayout createInfoRow(final String caption, final String value, final VaadinIcons icon) {
-        final HorizontalLayout layout = new HorizontalLayout();
-        layout.setSpacing(true);
-        layout.addStyleName("metric-label");
-        layout.setWidthUndefined();
-
-        if (icon != null) {
-            final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-            iconLabel.addStyleName("card-info-icon");
-            layout.addComponent(iconLabel);
-        }
-
-        final Label captionLabel = new Label(caption);
-        captionLabel.addStyleName("card-info-caption");
-
-        final Label valueLabel = new Label(value != null ? value : "");
-        valueLabel.addStyleName("card-info-value");
-
-        layout.addComponents(captionLabel, valueLabel);
-        return layout;
     }
 }

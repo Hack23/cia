@@ -33,10 +33,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -77,38 +74,11 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 				"Document Details", "Access and explore official documents and reports.");
 
 		// Create a card panel for document info
-		final Panel cardPanel = new Panel();
-		cardPanel.addStyleName("politician-overview-card");
-		cardPanel.setWidth("100%");
-		cardPanel.setHeightUndefined();
-		Responsive.makeResponsive(cardPanel);
-
-		final VerticalLayout cardContent = new VerticalLayout();
-		cardContent.setMargin(true);
-		cardContent.setSpacing(true);
-		cardContent.setWidth("100%");
-		cardPanel.setContent(cardContent);
+		final Panel cardPanel = createCardPanel("Document Information");
+		final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
 		panelContent.addComponent(cardPanel);
 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
-
-		// Header layout for the card
-		final HorizontalLayout headerLayout = new HorizontalLayout();
-		headerLayout.setSpacing(true);
-		headerLayout.setWidth("100%");
-		headerLayout.addStyleName("card-header-section");
-
-		final Label titleLabel = new Label("Document Information", ContentMode.HTML);
-		titleLabel.addStyleName("card-title");
-		titleLabel.setWidthUndefined();
-		headerLayout.addComponent(titleLabel);
-		cardContent.addComponent(headerLayout);
-
-		// Divider line
-		final Label divider = new Label("<hr/>", ContentMode.HTML);
-		divider.addStyleName("card-divider");
-		divider.setWidth("100%");
-		cardContent.addComponent(divider);
 
 		// Two-column layout
 		final HorizontalLayout attributesLayout = new HorizontalLayout();
@@ -129,21 +99,13 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 		// Display a selection of DocumentElement fields
 		// Choose key fields: title, subTitle, org, documentType, status, rm,
 		// madePublicDate, createdDate
-		profileLayout.addComponent(createInfoRow("Title:", documentElement.getTitle(), VaadinIcons.FILE_TEXT_O,
-				"Main title of the document"));
-		if (!StringUtils.isEmpty(documentElement.getSubTitle())) {
-			profileLayout.addComponent(createInfoRow("SubTitle:", documentElement.getSubTitle(), VaadinIcons.FILE_TEXT,
-					"Subtitle or complementary title"));
-		}
-		profileLayout.addComponent(createInfoRow("Organization (Org):", documentElement.getOrg(),
-				VaadinIcons.INSTITUTION, "Originating organization or entity"));
-		profileLayout.addComponent(createInfoRow("Document Type:", documentElement.getDocumentType(),
-				VaadinIcons.FILE_CODE, "Type of the document"));
-		profileLayout.addComponent(createInfoRow("Status:", documentElement.getStatus(), VaadinIcons.QUESTION_CIRCLE,
-				"Current status of the document"));
-		profileLayout
-				.addComponent(createInfoRow("Made Public Date:", String.valueOf(documentElement.getMadePublicDate()),
-						VaadinIcons.CALENDAR_USER, "Date when the document was made public"));
+		addInfoRowsToLayout(profileLayout,
+				new InfoRowItem("Title:", documentElement.getTitle(), VaadinIcons.FILE_TEXT_O),
+				new InfoRowItem("SubTitle:", documentElement.getSubTitle(), VaadinIcons.FILE_TEXT),
+				new InfoRowItem("Organization (Org):", documentElement.getOrg(), VaadinIcons.INSTITUTION),
+				new InfoRowItem("Document Type:", documentElement.getDocumentType(), VaadinIcons.FILE_CODE),
+				new InfoRowItem("Status:", documentElement.getStatus(), VaadinIcons.QUESTION_CIRCLE),
+				new InfoRowItem("Made Public Date:", String.valueOf(documentElement.getMadePublicDate()), VaadinIcons.CALENDAR_USER));
 
 		// Right column: Metadata & Status (from DocumentStatusContainer and
 		// DocumentData)
@@ -158,40 +120,25 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 		if (documentStatusContainer != null) {
 			// DocumentCategory (from DocumentStatusContainer)
-			if (!StringUtils.isEmpty(documentStatusContainer.getDocumentCategory())) {
-				metadataLayout.addComponent(createInfoRow("Document Category:",
-						documentStatusContainer.getDocumentCategory(), VaadinIcons.BOOK, "Category of this document"));
-			}
+			addInfoRowsToLayout(metadataLayout,
+					new InfoRowItem("Document Category:", documentStatusContainer.getDocumentCategory(), VaadinIcons.BOOK));
 
 			// DocumentData fields (AS_LIST2)
 			final DocumentData documentData = documentStatusContainer.getDocument();
 			if (documentData != null) {
 				// Choose a few key fields from DocumentData
-				if (!StringUtils.isEmpty(documentData.getLabel())) {
-					metadataLayout.addComponent(createInfoRow("Label:", documentData.getLabel(), VaadinIcons.TAG,
-							"Short identifying label"));
-				}
-				if (!StringUtils.isEmpty(documentData.getTempLabel())) {
-					metadataLayout.addComponent(createInfoRow("Temp Label:", documentData.getTempLabel(),
-							VaadinIcons.EDIT, "Temporary label or note"));
-				}
-				if (!StringUtils.isEmpty(documentData.getHangarId())) {
-					metadataLayout.addComponent(createInfoRow("Hangar ID:", documentData.getHangarId(),
-							VaadinIcons.CLIPBOARD, "Storage or reference ID"));
-				}
-				if (documentData.getNumberValue() != null) {
-					metadataLayout
-							.addComponent(createInfoRow("Number Value:", String.valueOf(documentData.getNumberValue()),
-									VaadinIcons.BAR_CHART, "Numeric value associated with the document"));
-				}
+				addInfoRowsToLayout(metadataLayout,
+						new InfoRowItem("Label:", documentData.getLabel(), VaadinIcons.TAG),
+						new InfoRowItem("Temp Label:", documentData.getTempLabel(), VaadinIcons.EDIT),
+						new InfoRowItem("Hangar ID:", documentData.getHangarId(), VaadinIcons.CLIPBOARD),
+						new InfoRowItem("Number Value:", String.valueOf(documentData.getNumberValue()), VaadinIcons.BAR_CHART));
 			}
 		}
 
 		attributesLayout.addComponents(profileLayout, metadataLayout);
 
 		// After the card, add the overview layout
-		final VerticalLayout overviewLayout = new VerticalLayout();
-		overviewLayout.setSizeFull();
+		final VerticalLayout overviewLayout = createOverviewLayout();
 		panelContent.addComponent(overviewLayout);
 		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
 
@@ -203,44 +150,6 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 		return panelContent;
 
-	}
-
-	/**
-	 * Creates a row displaying a caption and value, with optional icon and tooltip.
-	 *
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon for better visual cue
-	 * @param tooltip optional tooltip to provide more info
-	 * @return a HorizontalLayout representing the info row
-	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
-			final String tooltip) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		if (icon != null) {
-			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-			iconLabel.addStyleName("card-info-icon");
-			if (tooltip != null && !tooltip.isEmpty()) {
-				iconLabel.setDescription(tooltip);
-			}
-			layout.addComponent(iconLabel);
-		}
-
-		final Label captionLabel = new Label(caption);
-		captionLabel.addStyleName("card-info-caption");
-		if (tooltip != null && !tooltip.isEmpty()) {
-			captionLabel.setDescription(tooltip);
-		}
-
-		final Label valueLabel = new Label(value != null ? value : "");
-		valueLabel.addStyleName("card-info-value");
-
-		layout.addComponents(captionLabel, valueLabel);
-		return layout;
 	}
 
 	@Override

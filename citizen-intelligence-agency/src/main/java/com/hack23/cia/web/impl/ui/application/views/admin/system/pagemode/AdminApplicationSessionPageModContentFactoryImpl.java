@@ -36,10 +36,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -160,46 +156,16 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 			final ApplicationSession applicationSession = dataContainer.load(Long.valueOf(pageId));
 			if (applicationSession != null) {
 				// Create container layout for both the session card and the events grid
-				final HorizontalLayout horizontalLayout = new HorizontalLayout();
-				horizontalLayout.setWidth(ContentSize.FULL_SIZE);
+				final VerticalLayout horizontalLayout = createSplitLayout();
 				content.addComponent(horizontalLayout);
 				content.setExpandRatio(horizontalLayout, ContentRatio.GRID);
 
 				// Left side: card layout for ApplicationSession details
-				final Panel cardPanel = new Panel();
-				cardPanel.addStyleName("politician-overview-card"); // Reuse existing card style
-				cardPanel.setWidth("100%");
-				cardPanel.setHeightUndefined();
-				Responsive.makeResponsive(cardPanel);
-
-				final VerticalLayout cardContent = new VerticalLayout();
-				cardContent.setMargin(true);
-				cardContent.setSpacing(true);
-				cardContent.setWidth("100%");
-				cardPanel.setContent(cardContent);
+				final Panel cardPanel = createCardPanel("Application Session Details");
+				final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
 				horizontalLayout.addComponent(cardPanel);
 				horizontalLayout.setExpandRatio(cardPanel, ContentRatio.GRID);
-
-				// Card Header
-				final HorizontalLayout headerLayout = new HorizontalLayout();
-				headerLayout.setSpacing(true);
-				headerLayout.setWidth("100%");
-				headerLayout.addStyleName("card-header-section");
-
-				final String titleText = "Application Session Details";
-				final Label titleLabel = new Label(titleText, ContentMode.HTML);
-				titleLabel.addStyleName("card-title");
-				titleLabel.setWidthUndefined();
-				headerLayout.addComponent(titleLabel);
-
-				cardContent.addComponent(headerLayout);
-
-				// Divider
-				final Label divider = new Label("<hr/>", ContentMode.HTML);
-				divider.addStyleName("card-divider");
-				divider.setWidth("100%");
-				cardContent.addComponent(divider);
 
 				// Attributes layout
 				final VerticalLayout attributesLayout = new VerticalLayout();
@@ -208,17 +174,18 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				cardContent.addComponent(attributesLayout);
 
 				// Display each field if not null or empty
-				addInfoRowIfNotNull(attributesLayout, "Created Date:", String.valueOf(applicationSession.getCreatedDate()), VaadinIcons.CALENDAR);
-				addInfoRowIfNotNull(attributesLayout, "Session Type:", applicationSession.getSessionType().toString(), VaadinIcons.CONNECT);
-				addInfoRowIfNotNull(attributesLayout, "User Id:", applicationSession.getUserId(), VaadinIcons.USER);
-				addInfoRowIfNotNull(attributesLayout, "Session Id:", applicationSession.getSessionId(), VaadinIcons.KEY);
-				addInfoRowIfNotNull(attributesLayout, "Operating System:", applicationSession.getOperatingSystem(), VaadinIcons.DESKTOP);
-				addInfoRowIfNotNull(attributesLayout, "Locale:", applicationSession.getLocale(), VaadinIcons.GLOBE);
-				addInfoRowIfNotNull(attributesLayout, "IP Information:", applicationSession.getIpInformation(), VaadinIcons.INFO);
-				addInfoRowIfNotNull(attributesLayout, "User Agent:", applicationSession.getUserAgentInformation(), VaadinIcons.BROWSER);
+				addInfoRowsToLayout(attributesLayout,
+						new InfoRowItem("Created Date:", String.valueOf(applicationSession.getCreatedDate()), VaadinIcons.CALENDAR),
+						new InfoRowItem("Session Type:", applicationSession.getSessionType().toString(), VaadinIcons.CONNECT),
+						new InfoRowItem("User Id:", applicationSession.getUserId(), VaadinIcons.USER),
+						new InfoRowItem("Session Id:", applicationSession.getSessionId(), VaadinIcons.KEY),
+						new InfoRowItem("Operating System:", applicationSession.getOperatingSystem(), VaadinIcons.DESKTOP),
+						new InfoRowItem("Locale:", applicationSession.getLocale(), VaadinIcons.GLOBE),
+						new InfoRowItem("IP Information:", applicationSession.getIpInformation(), VaadinIcons.INFO),
+						new InfoRowItem("User Agent:", applicationSession.getUserAgentInformation(), VaadinIcons.BROWSER));
 
 				// Right side: grid for ApplicationActionEvent (session events)
-				final VerticalLayout rightLayout = new VerticalLayout();
+				final VerticalLayout rightLayout = createCardContentLayout();
 				rightLayout.setSizeFull();
 				rightLayout.addStyleName("v-layout-content-overview-panel-level2");
 				horizontalLayout.addComponent(rightLayout);
@@ -252,49 +219,5 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));
-	}
-
-	/**
-	 * Adds an info row to the parent layout if value is not null or empty.
-	 *
-	 * @param parent the parent layout
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon
-	 */
-	private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value, final VaadinIcons icon) {
-		if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
-			parent.addComponent(createInfoRow(caption, value, icon));
-		}
-	}
-
-	/**
-	 * Creates a simple info row (caption and value) with an optional icon.
-	 *
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon
-	 * @return a HorizontalLayout representing the info row
-	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, final VaadinIcons icon) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		if (icon != null) {
-			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-			iconLabel.addStyleName("card-info-icon");
-			layout.addComponent(iconLabel);
-		}
-
-		final Label captionLabel = new Label(caption);
-		captionLabel.addStyleName("card-info-caption");
-
-		final Label valueLabel = new Label(value);
-		valueLabel.addStyleName("card-info-value");
-
-		layout.addComponents(captionLabel, valueLabel);
-		return layout;
 	}
 }

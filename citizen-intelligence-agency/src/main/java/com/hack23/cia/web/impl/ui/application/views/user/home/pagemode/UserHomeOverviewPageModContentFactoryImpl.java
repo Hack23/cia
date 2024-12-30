@@ -99,38 +99,11 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 			panelContent.addComponent(logoutButton);
 
 			// Create a card-style panel for user details
-			final Panel cardPanel = new Panel();
-			cardPanel.addStyleName("politician-overview-card");
-			cardPanel.setWidth("100%");
-			cardPanel.setHeightUndefined();
-			Responsive.makeResponsive(cardPanel);
-
-			final VerticalLayout cardContent = new VerticalLayout();
-			cardContent.setMargin(true);
-			cardContent.setSpacing(true);
-			cardContent.setWidth("100%");
-			cardPanel.setContent(cardContent);
+			final Panel cardPanel = createCardPanel("User Account Information");
+			final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
 			panelContent.addComponent(cardPanel);
 			panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
-
-			// Header layout for the card
-			final HorizontalLayout headerLayout = new HorizontalLayout();
-			headerLayout.setSpacing(true);
-			headerLayout.setWidth("100%");
-			headerLayout.addStyleName("card-header-section");
-
-			final Label titleLabel = new Label("User Account Information", ContentMode.HTML);
-			titleLabel.addStyleName("card-title");
-			titleLabel.setWidthUndefined();
-			headerLayout.addComponent(titleLabel);
-			cardContent.addComponent(headerLayout);
-
-			// Divider line
-			final Label divider = new Label("<hr/>", ContentMode.HTML);
-			divider.addStyleName("card-divider");
-			divider.setWidth("100%");
-			cardContent.addComponent(divider);
 
 			// Two-column layout for user attributes
 			final HorizontalLayout attributesLayout = new HorizontalLayout();
@@ -150,10 +123,10 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 			// Display key fields from user account in Profile Details
 			final UserAccount account = userAccount.get();
-			profileLayout.addComponent(createInfoRow("Username:", account.getUsername(), VaadinIcons.USER, "Your unique username"));
-			profileLayout.addComponent(createInfoRow("Email:", account.getEmail(), VaadinIcons.ENVELOPE_O, "Your registered email address"));
-			profileLayout.addComponent(createInfoRow("Country:", account.getCountry(), VaadinIcons.GLOBE, "Country of residence"));
-			profileLayout.addComponent(createInfoRow("Created Date:", String.valueOf(account.getCreatedDate()), VaadinIcons.CALENDAR, "Date when the account was created"));
+			profileLayout.addComponent(createInfoRow("Username:", account.getUsername(), VaadinIcons.USER));
+			profileLayout.addComponent(createInfoRow("Email:", account.getEmail(), VaadinIcons.ENVELOPE_O));
+			profileLayout.addComponent(createInfoRow("Country:", account.getCountry(), VaadinIcons.GLOBE));
+			profileLayout.addComponent(createInfoRow("Created Date:", String.valueOf(account.getCreatedDate()), VaadinIcons.CALENDAR));
 
 			// Right column: Status & Statistics
 			final VerticalLayout statusLayout = new VerticalLayout();
@@ -165,18 +138,17 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 			statusHeader.addStyleName("card-section-title");
 			statusLayout.addComponent(statusHeader);
 
-			statusLayout.addComponent(createInfoRow("User Type:", account.getUserType().toString(), VaadinIcons.INFO_CIRCLE, "Type of user account"));
-			statusLayout.addComponent(createInfoRow("User Role:", account.getUserRole().toString(), VaadinIcons.USER_CHECK, "Your assigned role in the system"));
-			statusLayout.addComponent(createInfoRow("Email Status:", account.getUserEmailStatus().toString(), VaadinIcons.ENVELOPE, "Status of email verification"));
-			statusLayout.addComponent(createInfoRow("Number of Visits:", String.valueOf(account.getNumberOfVisits()), VaadinIcons.CHART, "How many times you have visited"));
+			statusLayout.addComponent(createInfoRow("User Type:", account.getUserType().toString(), VaadinIcons.INFO_CIRCLE));
+			statusLayout.addComponent(createInfoRow("User Role:", account.getUserRole().toString(), VaadinIcons.USER_CHECK));
+			statusLayout.addComponent(createInfoRow("Email Status:", account.getUserEmailStatus().toString(), VaadinIcons.ENVELOPE));
+			statusLayout.addComponent(createInfoRow("Number of Visits:", String.valueOf(account.getNumberOfVisits()), VaadinIcons.CHART));
 
 			attributesLayout.addComponents(profileLayout, statusLayout);
 
 			panelContent.setExpandRatio(logoutButton, ContentRatio.SMALL);
 
 			// Overview layout after card
-			final VerticalLayout overviewLayout = new VerticalLayout();
-			overviewLayout.setSizeFull();
+			final VerticalLayout overviewLayout = createOverviewLayout();
 
 			panelContent.addComponent(overviewLayout);
 			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
@@ -189,44 +161,6 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 		return panelContent;
 
-	}
-
-	/**
-	 * Creates a row displaying a caption and value, with optional icon and tooltip.
-	 *
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon for better visual cue
-	 * @param tooltip optional tooltip to provide more info
-	 * @return a HorizontalLayout representing the info row
-	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
-			final String tooltip) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		if (icon != null) {
-			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-			iconLabel.addStyleName("card-info-icon");
-			if (tooltip != null && !tooltip.isEmpty()) {
-				iconLabel.setDescription(tooltip);
-			}
-			layout.addComponent(iconLabel);
-		}
-
-		final Label captionLabel = new Label(caption);
-		captionLabel.addStyleName("card-info-caption");
-		if (tooltip != null && !tooltip.isEmpty()) {
-			captionLabel.setDescription(tooltip);
-		}
-
-		final Label valueLabel = new Label(value != null ? value : "");
-		valueLabel.addStyleName("card-info-value");
-
-		layout.addComponents(captionLabel, valueLabel);
-		return layout;
 	}
 
 	/**

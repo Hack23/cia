@@ -115,54 +115,24 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
             final ApplicationConfiguration applicationConfiguration = dataContainer.load(Long.valueOf(pageId));
             if (applicationConfiguration != null) {
 
-                final HorizontalLayout horizontalLayout = new HorizontalLayout();
-                horizontalLayout.setWidth(ContentSize.FULL_SIZE);
+                final HorizontalLayout horizontalLayout = createSplitLayout();
                 content.addComponent(horizontalLayout);
 
-                final VerticalLayout leftLayout = new VerticalLayout();
+                final VerticalLayout leftLayout = createCardContentLayout();
                 leftLayout.setSizeFull();
                 leftLayout.addStyleName("v-layout-content-overview-panel-level1");
 
-                final VerticalLayout rightLayout = new VerticalLayout();
+                final VerticalLayout rightLayout = createCardContentLayout();
                 rightLayout.setSizeFull();
                 rightLayout.addStyleName("v-layout-content-overview-panel-level2");
 
                 horizontalLayout.addComponents(leftLayout, rightLayout);
 
                 // Left side: Card layout for ApplicationConfiguration details
-                final Panel cardPanel = new Panel();
-                cardPanel.addStyleName("politician-overview-card"); // Reuse existing card style
-                cardPanel.setWidth("100%");
-                cardPanel.setHeightUndefined();
-                Responsive.makeResponsive(cardPanel);
-
-                final VerticalLayout cardContent = new VerticalLayout();
-                cardContent.setMargin(true);
-                cardContent.setSpacing(true);
-                cardContent.setWidth("100%");
-                cardPanel.setContent(cardContent);
+                final Panel cardPanel = createCardPanel("Application Configuration Details");
+                final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
                 leftLayout.addComponent(cardPanel);
-
-                // Card Header
-                final HorizontalLayout headerLayout = new HorizontalLayout();
-                headerLayout.setSpacing(true);
-                headerLayout.setWidth("100%");
-                headerLayout.addStyleName("card-header-section");
-
-                final String titleText = "Application Configuration Details";
-                final Label titleLabel = new Label(titleText, ContentMode.HTML);
-                titleLabel.addStyleName("card-title");
-                titleLabel.setWidthUndefined();
-                headerLayout.addComponent(titleLabel);
-
-                cardContent.addComponent(headerLayout);
-
-                // Divider
-                final Label divider = new Label("<hr/>", ContentMode.HTML);
-                divider.addStyleName("card-divider");
-                divider.setWidth("100%");
-                cardContent.addComponent(divider);
 
                 // Attributes layout
                 final VerticalLayout attributesLayout = new VerticalLayout();
@@ -171,20 +141,14 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
                 cardContent.addComponent(attributesLayout);
 
                 // Display relevant fields using info rows, skipping null or empty
-                addInfoRowIfNotNull(attributesLayout, "Configuration Group:",
-                        applicationConfiguration.getConfigurationGroup().toString(), VaadinIcons.GROUP);
-                addInfoRowIfNotNull(attributesLayout, "Component:",
-                        applicationConfiguration.getComponent(), VaadinIcons.TOOLS);
-                addInfoRowIfNotNull(attributesLayout, "Config Title:",
-                        applicationConfiguration.getConfigTitle(), VaadinIcons.FILE_TEXT);
-                addInfoRowIfNotNull(attributesLayout, "Config Description:",
-                        applicationConfiguration.getConfigDescription(), VaadinIcons.FILE_O);
-                addInfoRowIfNotNull(attributesLayout, "Property Value:",
-                        applicationConfiguration.getPropertyValue(), VaadinIcons.PASTE);
-                addInfoRowIfNotNull(attributesLayout, "Created Date:",
-                        String.valueOf(applicationConfiguration.getCreatedDate()), VaadinIcons.CALENDAR);
-                addInfoRowIfNotNull(attributesLayout, "Updated Date:",
-                        String.valueOf(applicationConfiguration.getUpdatedDate()), VaadinIcons.CALENDAR_CLOCK);
+                addInfoRowsToLayout(attributesLayout,
+                        new InfoRowItem("Configuration Group:", applicationConfiguration.getConfigurationGroup().toString(), VaadinIcons.GROUP),
+                        new InfoRowItem("Component:", applicationConfiguration.getComponent(), VaadinIcons.TOOLS),
+                        new InfoRowItem("Config Title:", applicationConfiguration.getConfigTitle(), VaadinIcons.FILE_TEXT),
+                        new InfoRowItem("Config Description:", applicationConfiguration.getConfigDescription(), VaadinIcons.FILE_O),
+                        new InfoRowItem("Property Value:", applicationConfiguration.getPropertyValue(), VaadinIcons.PASTE),
+                        new InfoRowItem("Created Date:", String.valueOf(applicationConfiguration.getCreatedDate()), VaadinIcons.CALENDAR),
+                        new InfoRowItem("Updated Date:", String.valueOf(applicationConfiguration.getUpdatedDate()), VaadinIcons.CALENDAR_CLOCK));
 
                 // Right side: Form for updating the application configuration
                 final UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();
@@ -215,50 +179,5 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
                 ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
         return content;
-    }
-
-    /**
-     * Adds an info row to the parent layout if value is not null or empty.
-     *
-     * @param parent the parent layout
-     * @param caption the field caption
-     * @param value the field value
-     * @param icon the VaadinIcons icon
-     */
-    private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value,
-            final VaadinIcons icon) {
-        if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
-            parent.addComponent(createInfoRow(caption, value, icon));
-        }
-    }
-
-    /**
-     * Creates a simple info row (caption and value) with an optional icon.
-     *
-     * @param caption the field caption
-     * @param value   the field value
-     * @param icon    a VaadinIcons icon
-     * @return a HorizontalLayout representing the info row
-     */
-    private HorizontalLayout createInfoRow(final String caption, final String value, final VaadinIcons icon) {
-        final HorizontalLayout layout = new HorizontalLayout();
-        layout.setSpacing(true);
-        layout.addStyleName("metric-label");
-        layout.setWidthUndefined();
-
-        if (icon != null) {
-            final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-            iconLabel.addStyleName("card-info-icon");
-            layout.addComponent(iconLabel);
-        }
-
-        final Label captionLabel = new Label(caption);
-        captionLabel.addStyleName("card-info-caption");
-
-        final Label valueLabel = new Label(value != null ? value : "");
-        valueLabel.addStyleName("card-info-value");
-
-        layout.addComponents(captionLabel, valueLabel);
-        return layout;
     }
 }
