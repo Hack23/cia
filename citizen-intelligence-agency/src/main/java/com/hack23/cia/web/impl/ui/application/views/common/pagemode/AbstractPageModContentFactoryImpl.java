@@ -29,7 +29,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFac
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
@@ -268,4 +270,71 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		return pageNr;
 	}
 
+	/**
+	 * Creates a simple info row (caption and value) with optional icon.
+	 *
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon
+	 * @return a HorizontalLayout representing the info row
+	 */
+	protected HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon) {
+		final HorizontalLayout layout = new HorizontalLayout();
+		layout.setSpacing(true);
+		layout.addStyleName("metric-label");
+		layout.setWidthUndefined();
+
+		if (icon != null) {
+			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+			iconLabel.addStyleName("card-info-icon");
+			layout.addComponent(iconLabel);
+		}
+
+		final Label captionLabel = new Label(caption);
+		captionLabel.addStyleName("card-info-caption");
+
+		final Label valueLabel = new Label(value);
+		valueLabel.addStyleName("card-info-value");
+
+		layout.addComponents(captionLabel, valueLabel);
+		return layout;
+	}
+
+	/**
+	 * Creates a simple info row (caption and value) with optional icon and tooltip.
+	 *
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon
+	 * @param tooltip optional tooltip to provide more info
+	 * @return a HorizontalLayout representing the info row
+	 */
+	protected HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
+			final String tooltip) {
+		final HorizontalLayout layout = new HorizontalLayout();
+		layout.setSpacing(true);
+		layout.addStyleName("metric-label");
+		layout.setWidthUndefined();
+
+		if (icon != null) {
+			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+			iconLabel.addStyleName("card-info-icon");
+			if (tooltip != null && !tooltip.isEmpty()) {
+				iconLabel.setDescription(tooltip);
+			}
+			layout.addComponent(iconLabel);
+		}
+
+		final Label captionLabel = new Label(caption);
+		captionLabel.addStyleName("card-info-caption");
+		if (tooltip != null && !tooltip.isEmpty()) {
+			captionLabel.setDescription(tooltip);
+		}
+
+		final Label valueLabel = new Label(value != null ? value : "");
+		valueLabel.addStyleName("card-info-value");
+
+		layout.addComponents(captionLabel, valueLabel);
+		return layout;
+	}
 }
