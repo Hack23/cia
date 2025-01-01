@@ -160,23 +160,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			panelContent.addComponent(cardPanel);
 			panelContent.setExpandRatio(cardPanel, ContentRatio.GRID);
 
-			// Header layout for the card
-			final HorizontalLayout headerLayout = new HorizontalLayout();
-			headerLayout.setSpacing(true);
-			headerLayout.setWidth("100%");
-			headerLayout.addStyleName("card-header-section");
-
-			final Label titleLabel = new Label("Ballot Information", ContentMode.HTML);
-			titleLabel.addStyleName("card-title");
-			titleLabel.setWidthUndefined();
-			headerLayout.addComponent(titleLabel);
-			cardContent.addComponent(headerLayout);
-
-			// Divider line
-			final Label divider = new Label("<hr/>", ContentMode.HTML);
-			divider.addStyleName("card-divider");
-			divider.setWidth("100%");
-			cardContent.addComponent(divider);
+			createCardHeader(cardContent,"Ballot Information");
 
 			// Two-column layout
 			final HorizontalLayout attributesLayout = new HorizontalLayout();

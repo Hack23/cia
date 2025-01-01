@@ -139,7 +139,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		panelContent.setMargin(true);
 		panelContent.setWidth(100, Unit.PERCENTAGE);
 		panelContent.setHeight(100, Unit.PERCENTAGE);
-		panelContent.setStyleName("Header");
+		panelContent.setStyleName("v-layout-content-overview-panel-level1");
 		return panelContent;
 	}
 
@@ -362,6 +362,28 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 
 		return layout;
 	}
+
+	protected final void createCardHeader(final VerticalLayout cardContent, final String titleText) {
+		// Card Header
+		final HorizontalLayout headerLayout = new HorizontalLayout();
+		headerLayout.setSpacing(true);
+		headerLayout.setWidth("100%");
+		headerLayout.addStyleName("card-header-section");
+
+		final Label titleLabel = new Label(titleText, ContentMode.HTML);
+		titleLabel.addStyleName("card-title");
+		titleLabel.setWidthUndefined();
+		headerLayout.addComponent(titleLabel);
+
+		cardContent.addComponent(headerLayout);
+
+		// Divider line
+		final Label divider = new Label("<hr/>", ContentMode.HTML);
+		divider.addStyleName("card-divider");
+		divider.setWidth("100%");
+		cardContent.addComponent(divider);
+	}
+
 
 	/**
 	 * Gets the page link factory.

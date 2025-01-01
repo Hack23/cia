@@ -251,20 +251,8 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 		cardContent.setSizeFull();
 		cardPanel.setContent(cardContent);
 
-		// Header
-		final HorizontalLayout headerLayout = new HorizontalLayout();
-		headerLayout.setSpacing(true);
-		headerLayout.setWidth("100%");
-		headerLayout.addStyleName("card-header-section");
-
-		final String titleText = "Partiledare " + leader.getFirstName() + " " + leader.getLastName() + " ("
-				+ leader.getParty() + ")";
-		final Label titleLabel = new Label(titleText);
-		titleLabel.addStyleName("card-title");
-		titleLabel.setWidthUndefined();
-		headerLayout.addComponent(titleLabel);
-
-		cardContent.addComponent(headerLayout);
+		createCardHeader(cardContent,"Partiledare " + leader.getFirstName() + " " + leader.getLastName() + " ("
+				+ leader.getParty() + ")");
 
 		// Politician detail link
 		cardContent.addComponent(getPageLinkFactory().createPoliticianPageLink(leader));
