@@ -39,8 +39,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Worl
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -140,46 +138,6 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 		chartDataManager.createIndicatorChart(verticalLayout, dataList, indicatorSummaryValue);
 	}
 
-	/**
-	 * Creates a row displaying a caption and value, with optional icon and tooltip.
-	 *
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon for better visual cue
-	 * @param tooltip optional tooltip to provide more info
-	 * @return a HorizontalLayout representing the info row
-	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
-			final String tooltip) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		if (icon != null) {
-			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-			iconLabel.addStyleName("card-info-icon");
-			if (tooltip != null && !tooltip.isEmpty()) {
-				iconLabel.setDescription(tooltip);
-			}
-			layout.addComponent(iconLabel);
-		}
-
-		final Label captionLabel = new Label(caption);
-		captionLabel.addStyleName("card-info-caption");
-		if (tooltip != null && !tooltip.isEmpty()) {
-			captionLabel.setDescription(tooltip);
-		}
-		layout.addComponent(captionLabel);
-
-		if (value != null && !value.isEmpty()) {
-			final Label valueLabel = new Label(value);
-			valueLabel.addStyleName("card-info-value");
-			layout.addComponent(valueLabel);
-		}
-
-		return layout;
-	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {

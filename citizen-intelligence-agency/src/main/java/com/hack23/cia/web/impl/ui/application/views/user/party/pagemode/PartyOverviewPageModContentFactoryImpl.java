@@ -166,31 +166,6 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 
 	/**
-	 * Creates a section layout with a title and consistent styling.
-	 *
-	 * @param title the section title
-	 * @return the vertical layout configured for the section
-	 */
-	private VerticalLayout createSectionLayout(String title) {
-	    final VerticalLayout layout = new VerticalLayout();
-	    layout.setSpacing(true);
-	    layout.setMargin(true);
-	    layout.addStyleName("card-details-column");
-	    layout.setWidth("100%");
-
-	    final Label header = new Label(title);
-	    header.addStyleName("card-section-title");
-	    layout.addComponent(header);
-
-	    // Add some vertical padding after the header
-	    final Label padding = new Label();
-	    padding.setHeight("10px");
-	    layout.addComponent(padding);
-
-	    return layout;
-	}
-
-	/**
 	 * Adds the political influence metrics.
 	 *
 	 * @param layout the layout
@@ -385,44 +360,6 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	}
 
 
-
-
-	/**
-	 * Creates a row displaying a caption and value, with optional icon and tooltip.
-	 *
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon for better visual cue
-	 * @param tooltip optional tooltip to provide more info
-	 * @return a HorizontalLayout representing the info row
-	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon, final String tooltip) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		if (icon != null) {
-			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-			iconLabel.addStyleName("card-info-icon");
-			if (tooltip != null && !tooltip.isEmpty()) {
-				iconLabel.setDescription(tooltip);
-			}
-			layout.addComponent(iconLabel);
-		}
-
-		final Label captionLabel = new Label(caption);
-		captionLabel.addStyleName("card-info-caption");
-		if (tooltip != null && !tooltip.isEmpty()) {
-			captionLabel.setDescription(tooltip);
-		}
-
-		final Label valueLabel = new Label(value != null ? value : "");
-		valueLabel.addStyleName("card-info-value");
-
-		layout.addComponents(captionLabel, valueLabel);
-		return layout;
-	}
 
 	/**
 	 * Matches.

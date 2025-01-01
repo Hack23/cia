@@ -254,47 +254,4 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		return NAME.equals(page) && (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));
 	}
 
-	/**
-	 * Adds an info row to the parent layout if value is not null or empty.
-	 *
-	 * @param parent the parent layout
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon
-	 */
-	private void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value, final VaadinIcons icon) {
-		if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
-			parent.addComponent(createInfoRow(caption, value, icon));
-		}
-	}
-
-	/**
-	 * Creates a simple info row (caption and value) with an optional icon.
-	 *
-	 * @param caption the field caption
-	 * @param value   the field value
-	 * @param icon    a VaadinIcons icon
-	 * @return a HorizontalLayout representing the info row
-	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, final VaadinIcons icon) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		if (icon != null) {
-			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-			iconLabel.addStyleName("card-info-icon");
-			layout.addComponent(iconLabel);
-		}
-
-		final Label captionLabel = new Label(caption);
-		captionLabel.addStyleName("card-info-caption");
-
-		final Label valueLabel = new Label(value);
-		valueLabel.addStyleName("card-info-value");
-
-		layout.addComponents(captionLabel, valueLabel);
-		return layout;
-	}
 }
