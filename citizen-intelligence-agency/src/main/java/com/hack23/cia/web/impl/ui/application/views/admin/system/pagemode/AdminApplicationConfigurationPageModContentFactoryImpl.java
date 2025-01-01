@@ -18,30 +18,20 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
-import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateApplicationConfigurationClickListener;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -51,133 +41,95 @@ import com.vaadin.ui.VerticalLayout;
  * The Class AdminApplicationConfigurationPageModContentFactoryImpl.
  */
 @Component
-public final class AdminApplicationConfigurationPageModContentFactoryImpl
-        extends AbstractAdminSystemPageModContentFactoryImpl {
+public final class AdminApplicationConfigurationPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-    private static final String APPLICATION_CONFIGURATION = "ApplicationConfiguration";
+	private static final String APPLICATION_CONFIGURATION = "ApplicationConfiguration";
 
-    private static final List<String> AS_LIST2 = Arrays.asList("configTitle", "configDescription", "componentTitle",
-            "componentDescription", "propertyValue");
+	private static final String[] COLUMN_ORDER = { "hjid", "configKey", "configGroup", "configValue", "defaultValue",
+			"configDescription", "modelObjectVersion" };
 
-    private static final String[] COLUMN_ORDER = { "hjid", "configurationGroup", "component", "componentTitle",
-            "configTitle", "configDescription", "componentDescription", "propertyId", "propertyValue" };
+	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion" };
 
-    private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion", "createdDate",
-            "updatedDate", "propertyId", "componentDescription", "componentTitle" };
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			AdminViews.ADMIN_APPLICATION_CONFIGURATION_VIEW_NAME, "hjid");
 
-    /** The Constant NAME. */
-    public static final String NAME = AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME;
+	/** The Constant NAME. */
+	public static final String NAME = AdminViews.ADMIN_APPLICATION_CONFIGURATION_VIEW_NAME;
 
-    private static final String UPDATE_CONFIGURATION = "Update Configuration";
+	/**
+	 * Instantiates a new admin application configuration page mod content factory
+	 * impl.
+	 */
+	public AdminApplicationConfigurationPageModContentFactoryImpl() {
+		super(NAME);
+	}
 
-    /**
-     * Instantiates a new admin application configuration page mod content factory impl.
-     */
-    public AdminApplicationConfigurationPageModContentFactoryImpl() {
-        super(NAME);
-    }
+	@Secured({ "ROLE_ADMIN" })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+		final VerticalLayout content = createOverviewLayout();
 
-    @Secured({ "ROLE_ADMIN" })
-    @Override
-    public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-        final VerticalLayout content = createPanelContent();
+		final String pageId = getPageId(parameters);
+		final int pageNr = getPageNr(parameters);
 
-        final String pageId = getPageId(parameters);
-        final int pageNr = getPageNr(parameters);
+		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-        getMenuItemFactory().createMainPageMenuBar(menuBar);
+		createPageHeader(panel, content, "Admin Application Configuration", "Configuration Overview",
+				"Manage and review application configuration settings, including key-value pairs and descriptions.");
 
-        createPageHeader(panel, content, "Admin Application Configuration", "Application Configuration",
-                "View and edit application settings and configurations for optimal performance.");
+		final DataContainer<ApplicationConfiguration, Long> dataContainer = getApplicationManager()
+				.getDataContainer(ApplicationConfiguration.class);
+		final List<ApplicationConfiguration> pageOrderBy = dataContainer.getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE,
+				ApplicationConfiguration_.configKey);
 
-        final DataContainer<ApplicationConfiguration, Long> dataContainer = getApplicationManager()
-                .getDataContainer(ApplicationConfiguration.class);
+		getPagingUtil().createPagingControls(content, NAME, pageId, dataContainer.getSize(), pageNr,
+				DEFAULT_RESULTS_PER_PAGE);
 
-        final List<ApplicationConfiguration> pageOrderBy = dataContainer
-                .getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE, ApplicationConfiguration_.configurationGroup);
+		getGridFactory().createBasicBeanItemGrid(content, ApplicationConfiguration.class, pageOrderBy,
+				APPLICATION_CONFIGURATION, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-        getPagingUtil().createPagingControls(content, NAME, pageId, dataContainer.getSize(), pageNr,
-                DEFAULT_RESULTS_PER_PAGE);
+		if (pageId != null && !pageId.isEmpty()) {
+			final VerticalLayout horizontalLayout = createSplitLayout();
+			content.addComponent(horizontalLayout);
+			content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);
 
-        getGridFactory().createBasicBeanItemGrid(
-                content,
-                ApplicationConfiguration.class,
-                pageOrderBy,
-                APPLICATION_CONFIGURATION,
-                COLUMN_ORDER,
-                HIDE_COLUMNS,
-                new PageItemPropertyClickListener(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "hjid"),
-                null,
-                null
-        );
+			final VerticalLayout leftLayout = createCardContentLayout();
+			leftLayout.setSizeFull();
+			leftLayout.addStyleName("v-layout-content-overview-panel-level1");
 
-        if (pageId != null && !pageId.isEmpty()) {
-            final ApplicationConfiguration applicationConfiguration = dataContainer.load(Long.valueOf(pageId));
-            if (applicationConfiguration != null) {
+			final VerticalLayout rightLayout = createCardContentLayout();
+			rightLayout.setSizeFull();
+			rightLayout.addStyleName("v-layout-content-overview-panel-level2");
 
-                final HorizontalLayout horizontalLayout = createSplitLayout();
-                content.addComponent(horizontalLayout);
+			horizontalLayout.addComponents(leftLayout, rightLayout);
 
-                final VerticalLayout leftLayout = createCardContentLayout();
-                leftLayout.setSizeFull();
-                leftLayout.addStyleName("v-layout-content-overview-panel-level1");
+			final ApplicationConfiguration applicationConfiguration = dataContainer.load(Long.valueOf(pageId));
+			if (applicationConfiguration != null) {
+				// Card panel for Application Configuration details
+				final Panel cardPanel = createCardPanel("Application Configuration Details");
+				final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
-                final VerticalLayout rightLayout = createCardContentLayout();
-                rightLayout.setSizeFull();
-                rightLayout.addStyleName("v-layout-content-overview-panel-level2");
+				leftLayout.addComponent(cardPanel);
 
-                horizontalLayout.addComponents(leftLayout, rightLayout);
+				// Attributes layout
+				final VerticalLayout attributesLayout = new VerticalLayout();
+				attributesLayout.setSpacing(true);
+				attributesLayout.setWidth("100%");
+				cardContent.addComponent(attributesLayout);
 
-                // Left side: Card layout for ApplicationConfiguration details
-                final Panel cardPanel = createCardPanel("Application Configuration Details");
-                final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
+				// Display fields in a card layout (skipping null or empty ones)
+				addInfoRowsToLayout(attributesLayout,
+						new InfoRowItem("Config Key:", applicationConfiguration.getConfigKey(), VaadinIcons.KEY),
+						new InfoRowItem("Config Group:", applicationConfiguration.getConfigGroup(), VaadinIcons.GROUP),
+						new InfoRowItem("Config Value:", applicationConfiguration.getConfigValue(), VaadinIcons.VALUE),
+						new InfoRowItem("Default Value:", applicationConfiguration.getDefaultValue(), VaadinIcons.FILE_TEXT),
+						new InfoRowItem("Description:", applicationConfiguration.getConfigDescription(), VaadinIcons.INFO_CIRCLE));
+			}
+		}
 
-                leftLayout.addComponent(cardPanel);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW, ApplicationEventGroup.ADMIN,
+				NAME, null, pageId);
 
-                // Attributes layout
-                final VerticalLayout attributesLayout = new VerticalLayout();
-                attributesLayout.setSpacing(true);
-                attributesLayout.setWidth("100%");
-                cardContent.addComponent(attributesLayout);
-
-                // Display relevant fields using info rows, skipping null or empty
-                addInfoRowsToLayout(attributesLayout,
-                        new InfoRowItem("Configuration Group:", applicationConfiguration.getConfigurationGroup().toString(), VaadinIcons.GROUP),
-                        new InfoRowItem("Component:", applicationConfiguration.getComponent(), VaadinIcons.TOOLS),
-                        new InfoRowItem("Config Title:", applicationConfiguration.getConfigTitle(), VaadinIcons.FILE_TEXT),
-                        new InfoRowItem("Config Description:", applicationConfiguration.getConfigDescription(), VaadinIcons.FILE_O),
-                        new InfoRowItem("Property Value:", applicationConfiguration.getPropertyValue(), VaadinIcons.PASTE),
-                        new InfoRowItem("Created Date:", String.valueOf(applicationConfiguration.getCreatedDate()), VaadinIcons.CALENDAR),
-                        new InfoRowItem("Updated Date:", String.valueOf(applicationConfiguration.getUpdatedDate()), VaadinIcons.CALENDAR_CLOCK));
-
-                // Right side: Form for updating the application configuration
-                final UpdateApplicationConfigurationRequest request = new UpdateApplicationConfigurationRequest();
-                request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
-                request.setApplicationConfigurationId(applicationConfiguration.getHjid());
-                request.setConfigTitle(applicationConfiguration.getConfigTitle());
-                request.setConfigDescription(applicationConfiguration.getConfigDescription());
-                request.setComponentTitle(applicationConfiguration.getConfigTitle());
-                request.setComponentDescription(applicationConfiguration.getComponentDescription());
-                request.setPropertyValue(applicationConfiguration.getPropertyValue());
-
-                final ClickListener buttonListener = new UpdateApplicationConfigurationClickListener(request);
-
-                final Panel updateFormPanel = new Panel();
-                updateFormPanel.setSizeFull();
-                rightLayout.addComponent(updateFormPanel);
-
-                final FormLayout updateFormContent = new FormLayout();
-                updateFormPanel.setContent(updateFormContent);
-
-                getFormFactory().addRequestInputFormFields(updateFormContent, request,
-                        UpdateApplicationConfigurationRequest.class, AS_LIST2,
-                        UPDATE_CONFIGURATION, buttonListener);
-            }
-        }
-
-        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_CONFIGURATION_VIEW,
-                ApplicationEventGroup.ADMIN, NAME, null, pageId);
-
-        return content;
-    }
+		return content;
+	}
 }

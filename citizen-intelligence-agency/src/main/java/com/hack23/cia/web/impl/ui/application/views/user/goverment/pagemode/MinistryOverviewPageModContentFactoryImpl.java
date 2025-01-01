@@ -30,10 +30,6 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
@@ -91,7 +87,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
         // Multi-column layout for attributes
-        final HorizontalLayout attributesLayout = new HorizontalLayout();
+        final VerticalLayout attributesLayout = new VerticalLayout();
         attributesLayout.setSpacing(true);
         attributesLayout.setWidth("100%");
         cardContent.addComponent(attributesLayout);
@@ -101,10 +97,6 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         profileDetailsLayout.setSpacing(true);
         profileDetailsLayout.addStyleName("card-details-column");
         profileDetailsLayout.setWidthUndefined();
-
-        final Label profileDetailsHeader = new Label("Ministry Profile");
-        profileDetailsHeader.addStyleName("card-section-title");
-        profileDetailsLayout.addComponent(profileDetailsHeader);
 
         addInfoRowsToLayout(profileDetailsLayout,
             new InfoRowItem("Ministry ID:", viewRiksdagenMinistry.getNameId(), VaadinIcons.INFO_CIRCLE),
@@ -119,10 +111,6 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         serviceStatsLayout.addStyleName("card-details-column");
         serviceStatsLayout.setWidthUndefined();
 
-        final Label serviceStatsHeader = new Label("Service Statistics");
-        serviceStatsHeader.addStyleName("card-section-title");
-        serviceStatsLayout.addComponent(serviceStatsHeader);
-
         addInfoRowsToLayout(serviceStatsLayout,
             new InfoRowItem("Total Assignments:", String.valueOf(viewRiksdagenMinistry.getTotalAssignments()), VaadinIcons.TASKS),
             new InfoRowItem("First Assignment:", String.valueOf(viewRiksdagenMinistry.getFirstAssignmentDate()), VaadinIcons.CALENDAR),
@@ -135,10 +123,6 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         documentStatsLayout.setSpacing(true);
         documentStatsLayout.addStyleName("card-details-column");
         documentStatsLayout.setWidthUndefined();
-
-        final Label documentStatsHeader = new Label("Document Statistics");
-        documentStatsHeader.addStyleName("card-section-title");
-        documentStatsLayout.addComponent(documentStatsHeader);
 
         addInfoRowsToLayout(documentStatsLayout,
             new InfoRowItem("Total Documents:", String.valueOf(viewRiksdagenMinistry.getTotalDocuments()), VaadinIcons.FILE_TEXT),

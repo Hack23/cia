@@ -32,8 +32,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -86,7 +84,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
             "Language Overview",
             "Administer and update language settings and configurations for the platform.");
 
-        final HorizontalLayout horizontalLayout = createSplitLayout();
+        final VerticalLayout horizontalLayout = createSplitLayout();
         content.addComponent(horizontalLayout);
         content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);
 
