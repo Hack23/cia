@@ -154,9 +154,6 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		createCardHeader(cardContent,viewRiksdagenPolitician.getFirstName() + " " + viewRiksdagenPolitician.getLastName()
 		+ " (" + viewRiksdagenPolitician.getParty() + ")");
 
-		createCardHeader(cardContent,viewRiksdagenPolitician.getFirstName() + " " + viewRiksdagenPolitician.getLastName()
-		+ " (" + viewRiksdagenPolitician.getParty() + ")");
-
 		// Party link
 		final Link partyLink = new Link("Party " + viewRiksdagenPolitician.getParty(),
 				new ExternalResource("#!" + UserViews.PARTY_VIEW_NAME + "/" + viewRiksdagenPolitician.getParty()));

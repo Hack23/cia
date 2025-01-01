@@ -243,6 +243,43 @@
   }
 }
 
+.politician-overview-card {
+  background: #1f1f1f;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  color: #e0e0e0;
+  margin: 1rem 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+}
+
+.ministry-overview-card {
+  background: #1f1f1f;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  color: #e0e0e0;
+  margin: 1rem 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+}
+
+.card-ministry {
+  font-size: 0.9rem;
+  color: #a0ff90;
+  margin-top: 0.3rem;
+}
+
+
 .card-header-section {
   border-bottom: 2px solid #333;
   margin-bottom: 0.25rem; // Less empty space after headers
@@ -320,8 +357,3 @@
   }
 }
 
-.card-ministry {
-  font-size: 0.9rem;
-  color: #a0ff90;
-  margin-top: 0.3rem;
-}
