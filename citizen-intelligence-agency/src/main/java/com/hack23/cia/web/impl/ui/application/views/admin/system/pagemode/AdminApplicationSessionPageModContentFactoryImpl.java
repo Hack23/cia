@@ -106,7 +106,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout content = createPanelContent();
+		final VerticalLayout content = createOverviewLayout();
 
 		final String pageId = getPageId(parameters);
 		final int pageNr = getPageNr(parameters);
@@ -152,19 +152,27 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		);
 
 		if (pageId != null && !pageId.isEmpty()) {
+			final VerticalLayout horizontalLayout = createSplitLayout();
+			content.addComponent(horizontalLayout);
+			content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);
+
+			final VerticalLayout leftLayout = createCardContentLayout();
+			leftLayout.setSizeFull();
+			leftLayout.addStyleName("v-layout-content-overview-panel-level1");
+
+			final VerticalLayout rightLayout = createCardContentLayout();
+			rightLayout.setSizeFull();
+			rightLayout.addStyleName("v-layout-content-overview-panel-level2");
+
+			horizontalLayout.addComponents(leftLayout, rightLayout);
+
 			final ApplicationSession applicationSession = dataContainer.load(Long.valueOf(pageId));
 			if (applicationSession != null) {
-				// Create container layout for both the session card and the events grid
-				final VerticalLayout horizontalLayout = createSplitLayout();
-				content.addComponent(horizontalLayout);
-				content.setExpandRatio(horizontalLayout, ContentRatio.GRID);
-
-				// Left side: card layout for ApplicationSession details
+				// Card panel for ApplicationSession details
 				final Panel cardPanel = createCardPanel("Application Session Details");
 				final VerticalLayout cardContent = (VerticalLayout) cardPanel.getContent();
 
-				horizontalLayout.addComponent(cardPanel);
-				horizontalLayout.setExpandRatio(cardPanel, ContentRatio.GRID);
+				leftLayout.addComponent(cardPanel);
 
 				// Attributes layout
 				final VerticalLayout attributesLayout = new VerticalLayout();
@@ -172,7 +180,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				attributesLayout.setWidth("100%");
 				cardContent.addComponent(attributesLayout);
 
-				// Display each field if not null or empty
+				// Display fields in a card layout (skipping null or empty ones)
 				addInfoRowsToLayout(attributesLayout,
 						new InfoRowItem("Created Date:", String.valueOf(applicationSession.getCreatedDate()), VaadinIcons.CALENDAR),
 						new InfoRowItem("Session Type:", applicationSession.getSessionType().toString(), VaadinIcons.CONNECT),
@@ -183,13 +191,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 						new InfoRowItem("IP Information:", applicationSession.getIpInformation(), VaadinIcons.INFO),
 						new InfoRowItem("User Agent:", applicationSession.getUserAgentInformation(), VaadinIcons.BROWSER));
 
-				// Right side: grid for ApplicationActionEvent (session events)
-				final VerticalLayout rightLayout = createCardContentLayout();
-				rightLayout.setSizeFull();
-				rightLayout.addStyleName("v-layout-content-overview-panel-level2");
-				horizontalLayout.addComponent(rightLayout);
-				horizontalLayout.setExpandRatio(rightLayout, ContentRatio.GRID);
-
+				// Right layout: grid for ApplicationActionEvent (session events)
 				getGridFactory().createBasicBeanItemGrid(
 						rightLayout,
 						ApplicationActionEvent.class,

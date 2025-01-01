@@ -121,7 +121,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl extend
 				addInfoRowsToLayout(attributesLayout,
 						new InfoRowItem("Config Key:", applicationConfiguration.getConfigKey(), VaadinIcons.KEY),
 						new InfoRowItem("Config Group:", applicationConfiguration.getConfigGroup(), VaadinIcons.GROUP),
-						new InfoRowItem("Config Value:", applicationConfiguration.getConfigValue(), VaadinIcons.VALUE),
+						new InfoRowItem("Config Value:", applicationConfiguration.getConfigValue(), VaadinIcons.FILE_TEXT),
 						new InfoRowItem("Default Value:", applicationConfiguration.getDefaultValue(), VaadinIcons.FILE_TEXT),
 						new InfoRowItem("Description:", applicationConfiguration.getConfigDescription(), VaadinIcons.INFO_CIRCLE));
 			}
