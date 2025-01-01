@@ -114,14 +114,7 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 			cardContent.addComponent(attributesLayout);
 
 			// Left column: Organization Profile
-			final VerticalLayout profileDetailsLayout = new VerticalLayout();
-			profileDetailsLayout.setSpacing(true);
-			profileDetailsLayout.addStyleName("card-details-column");
-			profileDetailsLayout.setWidthUndefined();
-
-			final Label profileDetailsHeader = new Label("Organization Profile");
-			profileDetailsHeader.addStyleName("card-section-title");
-			profileDetailsLayout.addComponent(profileDetailsHeader);
+			final VerticalLayout profileDetailsLayout = createSectionLayout("Organization Profile");
 
 			// Add fields for Organization Profile
 			profileDetailsLayout.addComponent(createInfoRow("Name:", governmentBodyAnnualSummary.getName(), VaadinIcons.INFO_CIRCLE, "Government body name"));
@@ -132,14 +125,7 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 			profileDetailsLayout.addComponent(createInfoRow("VAT:", governmentBodyAnnualSummary.getVat(), VaadinIcons.MONEY, "VAT number"));
 
 			// Right column: Annual Statistics
-			final VerticalLayout serviceStatsLayout = new VerticalLayout();
-			serviceStatsLayout.setSpacing(true);
-			serviceStatsLayout.addStyleName("card-details-column");
-			serviceStatsLayout.setWidthUndefined();
-
-			final Label serviceStatsHeader = new Label("Annual Statistics");
-			serviceStatsHeader.addStyleName("card-section-title");
-			serviceStatsLayout.addComponent(serviceStatsHeader);
+			final VerticalLayout serviceStatsLayout = createSectionLayout("Annual Statistics");
 
 			// Add fields for Annual Statistics
 			serviceStatsLayout.addComponent(createInfoRow("Year:", String.valueOf(governmentBodyAnnualSummary.getYear()), VaadinIcons.CALENDAR, "The reporting year"));

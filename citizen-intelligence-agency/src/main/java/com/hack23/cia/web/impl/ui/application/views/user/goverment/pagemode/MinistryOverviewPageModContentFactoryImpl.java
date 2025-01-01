@@ -125,14 +125,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         cardContent.addComponent(attributesLayout);
 
         // Column 1: Basic Ministry Details
-        final VerticalLayout profileDetailsLayout = new VerticalLayout();
-        profileDetailsLayout.setSpacing(true);
-        profileDetailsLayout.addStyleName("card-details-column");
-        profileDetailsLayout.setWidthUndefined();
-
-        final Label profileDetailsHeader = new Label("Ministry Profile");
-        profileDetailsHeader.addStyleName("card-section-title");
-        profileDetailsLayout.addComponent(profileDetailsHeader);
+        final VerticalLayout profileDetailsLayout = createSectionLayout("Ministry Profile");
 
         profileDetailsLayout.addComponent(createInfoRow("Ministry ID:", viewRiksdagenMinistry.getNameId(),
             VaadinIcons.INFO_CIRCLE, "Ministry identifier"));
@@ -144,14 +137,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
             VaadinIcons.CHART, "Ministry's current activity level"));
 
         // Column 2: Service Statistics
-        final VerticalLayout serviceStatsLayout = new VerticalLayout();
-        serviceStatsLayout.setSpacing(true);
-        serviceStatsLayout.addStyleName("card-details-column");
-        serviceStatsLayout.setWidthUndefined();
-
-        final Label serviceStatsHeader = new Label("Service Statistics");
-        serviceStatsHeader.addStyleName("card-section-title");
-        serviceStatsLayout.addComponent(serviceStatsHeader);
+        final VerticalLayout serviceStatsLayout = createSectionLayout("Service Statistics");
 
         serviceStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenMinistry.getTotalAssignments()),
             VaadinIcons.TASKS, "Total number of assignments"));
@@ -163,14 +149,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
             VaadinIcons.CLOCK, "Total days of ministry service"));
 
         // Column 3: Document Statistics
-        final VerticalLayout documentStatsLayout = new VerticalLayout();
-        documentStatsLayout.setSpacing(true);
-        documentStatsLayout.addStyleName("card-details-column");
-        documentStatsLayout.setWidthUndefined();
-
-        final Label documentStatsHeader = new Label("Document Statistics");
-        documentStatsHeader.addStyleName("card-section-title");
-        documentStatsLayout.addComponent(documentStatsHeader);
+        final VerticalLayout documentStatsLayout = createSectionLayout("Document Statistics");
 
         documentStatsLayout.addComponent(createInfoRow("Total Documents:", String.valueOf(viewRiksdagenMinistry.getTotalDocuments()),
             VaadinIcons.FILE_TEXT, "Total number of ministry documents"));

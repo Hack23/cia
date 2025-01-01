@@ -124,14 +124,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		cardContent.addComponent(attributesLayout);
 
 		// First column: Committee Profile (keep existing, but add activity level)
-		final VerticalLayout profileDetailsLayout = new VerticalLayout();
-		profileDetailsLayout.setSpacing(true);
-		profileDetailsLayout.addStyleName("card-details-column");
-		profileDetailsLayout.setWidthUndefined();
-
-		final Label profileDetailsHeader = new Label("Committee Profile");
-		profileDetailsHeader.addStyleName("card-section-title");
-		profileDetailsLayout.addComponent(profileDetailsHeader);
+		final VerticalLayout profileDetailsLayout = createSectionLayout("Committee Profile");
 
 		profileDetailsLayout.addComponent(createInfoRow("Detail:", viewRiksdagenCommittee.getEmbeddedId().getDetail(),
 		        VaadinIcons.INFO_CIRCLE, "Internal identifier detail for the committee"));
@@ -145,14 +138,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		        VaadinIcons.CALENDAR_CLOCK, "Date of the committee's most recent assignment"));
 
 		// Second column: Membership Statistics
-		final VerticalLayout membershipStatsLayout = new VerticalLayout();
-		membershipStatsLayout.setSpacing(true);
-		membershipStatsLayout.addStyleName("card-details-column");
-		membershipStatsLayout.setWidthUndefined();
-
-		final Label membershipStatsHeader = new Label("Membership Statistics");
-		membershipStatsHeader.addStyleName("card-section-title");
-		membershipStatsLayout.addComponent(membershipStatsHeader);
+		final VerticalLayout membershipStatsLayout = createSectionLayout("Membership Statistics");
 
 		membershipStatsLayout.addComponent(createInfoRow("Current Members:", String.valueOf(viewRiksdagenCommittee.getCurrentMemberSize()),
 		        VaadinIcons.GROUP, "Total current committee members"));
@@ -168,14 +154,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		        VaadinIcons.USERS, "Historical total of substitute positions"));
 
 		// Third column: Document Statistics
-		final VerticalLayout documentStatsLayout = new VerticalLayout();
-		documentStatsLayout.setSpacing(true);
-		documentStatsLayout.addStyleName("card-details-column");
-		documentStatsLayout.setWidthUndefined();
-
-		final Label documentStatsHeader = new Label("Document Statistics");
-		documentStatsHeader.addStyleName("card-section-title");
-		documentStatsLayout.addComponent(documentStatsHeader);
+		final VerticalLayout documentStatsLayout = createSectionLayout("Document Statistics");
 
 		documentStatsLayout.addComponent(createInfoRow("Total Documents:", String.valueOf(viewRiksdagenCommittee.getTotalDocuments()),
 		        VaadinIcons.FILE_TEXT, "Total number of documents produced"));
