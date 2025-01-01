@@ -475,35 +475,6 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 	}
 
 	/**
-	 * Creates the metric row.
-	 *
-	 * @param icon the icon
-	 * @param linkComponent the link component
-	 * @param description the description
-	 * @param valueText the value text
-	 * @return the horizontal layout
-	 */
-	private HorizontalLayout createMetricRow(VaadinIcons icon, com.vaadin.ui.Component linkComponent,
-			String description, String valueText) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-		iconLabel.setDescription(description);
-
-		final Label valueLabel = new Label(valueText);
-		valueLabel.addStyleName("metric-value");
-
-		layout.addComponent(iconLabel);
-		layout.addComponent(linkComponent);
-		layout.addComponent(valueLabel);
-
-		return layout;
-	}
-
-	/**
 	 * Matches.
 	 *
 	 * @param page the page
@@ -516,23 +487,6 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 				&& parameters.contains(ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());
 	}
 
-	/**
-	 * Creates the section layout.
-	 *
-	 * @param title the title
-	 * @return the vertical layout
-	 */
-	private VerticalLayout createSectionLayout(String title) {
-		final VerticalLayout layout = new VerticalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("card-details-column");
-		layout.setWidth("100%");
-
-		final Label header = new Label(title);
-		header.addStyleName("card-section-title");
-		layout.addComponent(header);
-		return layout;
-	}
 
 	/**
 	 * Adds the political role metrics.
@@ -637,40 +591,4 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 				VaadinIcons.USERS, "Cross-party legislative initiatives"));
 	}
 
-	/**
-	 * Creates the info row.
-	 *
-	 * @param caption the caption
-	 * @param value the value
-	 * @param icon the icon
-	 * @param tooltip the tooltip
-	 * @return the horizontal layout
-	 */
-	private HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
-			final String tooltip) {
-		final HorizontalLayout layout = new HorizontalLayout();
-		layout.setSpacing(true);
-		layout.addStyleName("metric-label");
-		layout.setWidthUndefined();
-
-		Label iconLabel = null;
-		if (icon != null) {
-			iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-			iconLabel.setDescription(tooltip);
-			iconLabel.addStyleName("card-info-icon");
-			layout.addComponent(iconLabel);
-		}
-
-		final Label captionLabel = new Label(caption);
-		captionLabel.addStyleName("card-info-caption");
-		if (tooltip != null && !tooltip.isEmpty()) {
-			captionLabel.setDescription(tooltip);
-		}
-
-		final Label valueLabel = new Label(value != null ? value : "");
-		valueLabel.addStyleName("card-info-value");
-
-		layout.addComponents(captionLabel, valueLabel);
-		return layout;
-	}
 }
