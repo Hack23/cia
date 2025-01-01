@@ -34,9 +34,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -92,23 +90,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 		panelContent.addComponent(cardPanel);
 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
-		// Header layout for the card
-		final HorizontalLayout headerLayout = new HorizontalLayout();
-		headerLayout.setSpacing(true);
-		headerLayout.setWidth("100%");
-		headerLayout.addStyleName("card-header-section");
-
-		final Label titleLabel = new Label("Document Information", ContentMode.HTML);
-		titleLabel.addStyleName("card-title");
-		titleLabel.setWidthUndefined();
-		headerLayout.addComponent(titleLabel);
-		cardContent.addComponent(headerLayout);
-
-		// Divider line
-		final Label divider = new Label("<hr/>", ContentMode.HTML);
-		divider.addStyleName("card-divider");
-		divider.setWidth("100%");
-		cardContent.addComponent(divider);
+        createCardHeader(cardContent,"Document Information");
 
 		// Two-column layout
 		final HorizontalLayout attributesLayout = new HorizontalLayout();

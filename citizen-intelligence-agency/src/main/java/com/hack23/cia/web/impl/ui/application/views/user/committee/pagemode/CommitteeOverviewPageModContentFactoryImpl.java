@@ -31,9 +31,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
@@ -97,25 +95,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		panelContent.addComponent(cardPanel);
 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
-		// Header layout
-		final HorizontalLayout headerLayout = new HorizontalLayout();
-		headerLayout.setSpacing(true);
-		headerLayout.setWidth("100%");
-		headerLayout.addStyleName("card-header-section");
-
-		final String titleText = "Committee: " + viewRiksdagenCommittee.getEmbeddedId().getDetail();
-		final Label titleLabel = new Label(titleText, ContentMode.HTML);
-		titleLabel.addStyleName("card-title");
-		titleLabel.setWidthUndefined();
-		headerLayout.addComponent(titleLabel);
-
-		cardContent.addComponent(headerLayout);
-
-		// Divider line
-		final Label divider = new Label("<hr/>", ContentMode.HTML);
-		divider.addStyleName("card-divider");
-		divider.setWidth("100%");
-		cardContent.addComponent(divider);
+		createCardHeader(cardContent,"Committee: " + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 
 		// Two-column layout for committee attributes
 		final HorizontalLayout attributesLayout = new HorizontalLayout();

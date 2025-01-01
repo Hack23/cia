@@ -51,7 +51,6 @@ public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
-		content.addStyleName("v-layout-content-overview-panel-level1");
 
 		final String pageId = getPageId(parameters);
 

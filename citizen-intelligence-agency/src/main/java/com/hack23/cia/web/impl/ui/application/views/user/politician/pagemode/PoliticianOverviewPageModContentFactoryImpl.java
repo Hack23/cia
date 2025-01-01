@@ -37,10 +37,8 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Responsive;
 import com.vaadin.server.Sizeable.Unit;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
@@ -152,33 +150,20 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		panelContent.addComponent(cardPanel);
 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
-		// Header layout similar to scoreboard snippet
-		final HorizontalLayout headerLayout = new HorizontalLayout();
-		headerLayout.setSpacing(true);
-		headerLayout.setWidth("100%");
-		headerLayout.addStyleName("card-header-section");
 
-		final String titleText = viewRiksdagenPolitician.getFirstName() + " " + viewRiksdagenPolitician.getLastName()
-				+ " (" + viewRiksdagenPolitician.getParty() + ")";
-		final Label titleLabel = new Label(titleText, ContentMode.HTML);
-		titleLabel.addStyleName("card-title");
-		titleLabel.setWidthUndefined();
-		headerLayout.addComponent(titleLabel);
+		createCardHeader(cardContent,viewRiksdagenPolitician.getFirstName() + " " + viewRiksdagenPolitician.getLastName()
+		+ " (" + viewRiksdagenPolitician.getParty() + ")");
+
+		createCardHeader(cardContent,viewRiksdagenPolitician.getFirstName() + " " + viewRiksdagenPolitician.getLastName()
+		+ " (" + viewRiksdagenPolitician.getParty() + ")");
 
 		// Party link
 		final Link partyLink = new Link("Party " + viewRiksdagenPolitician.getParty(),
 				new ExternalResource("#!" + UserViews.PARTY_VIEW_NAME + "/" + viewRiksdagenPolitician.getParty()));
 		partyLink.setIcon(VaadinIcons.GROUP);
 		partyLink.addStyleName("card-title");
-		headerLayout.addComponent(partyLink);
+		cardContent.addComponent(partyLink);
 
-		cardContent.addComponent(headerLayout);
-
-		// Divider line for better separation
-		final Label divider = new Label("<hr/>", ContentMode.HTML);
-		divider.addStyleName("card-divider");
-		divider.setWidth("100%");
-		cardContent.addComponent(divider);
 
 		// Image and details layout
 		final HorizontalLayout imageAndDetailsLayout = new HorizontalLayout();

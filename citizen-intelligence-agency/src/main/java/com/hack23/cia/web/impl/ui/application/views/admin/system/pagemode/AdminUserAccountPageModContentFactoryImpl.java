@@ -40,10 +40,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPr
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -123,25 +120,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
                 content.addComponent(cardPanel);
 
-                // Card Header
-                final HorizontalLayout headerLayout = new HorizontalLayout();
-                headerLayout.setSpacing(true);
-                headerLayout.setWidth("100%");
-                headerLayout.addStyleName("card-header-section");
-
-                final String titleText = "User Account Details";
-                final Label titleLabel = new Label(titleText, ContentMode.HTML);
-                titleLabel.addStyleName("card-title");
-                titleLabel.setWidthUndefined();
-                headerLayout.addComponent(titleLabel);
-
-                cardContent.addComponent(headerLayout);
-
-                // Divider line
-                final Label divider = new Label("<hr/>", ContentMode.HTML);
-                divider.addStyleName("card-divider");
-                divider.setWidth("100%");
-                cardContent.addComponent(divider);
+                createCardHeader(cardContent,"User Account Details");
 
                 // Attributes layout
                 final VerticalLayout attributesLayout = new VerticalLayout();

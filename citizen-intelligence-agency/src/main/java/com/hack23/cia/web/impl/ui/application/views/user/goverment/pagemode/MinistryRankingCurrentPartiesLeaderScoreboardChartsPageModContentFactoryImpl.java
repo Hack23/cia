@@ -244,20 +244,8 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		cardContent.setSizeFull();
 		cardPanel.setContent(cardContent);
 
-		// Header Section
-		final HorizontalLayout headerLayout = new HorizontalLayout();
-		headerLayout.setSpacing(true);
-		headerLayout.setWidth("100%");
-		headerLayout.addStyleName("card-header-section");
-
-		final String titleText = govMember.getRoleCode() + " " + govMember.getFirstName() + " " + govMember.getLastName()
-				+ " (" + govMember.getParty() + ")";
-		final Label titleLabel = new Label(titleText);
-		titleLabel.addStyleName("card-title");
-		titleLabel.setWidthUndefined();
-		headerLayout.addComponent(titleLabel);
-
-		cardContent.addComponent(headerLayout);
+		 createCardHeader(cardContent,govMember.getRoleCode() + " " + govMember.getFirstName() + " " + govMember.getLastName()
+			+ " (" + govMember.getParty() + ")");
 		cardContent.addComponent(getPageLinkFactory().createPoliticianPageLink(politician));
 
 		final Link pageLink = new Link("Party " + politician.getParty(),
