@@ -31,7 +31,6 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -81,7 +80,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout content = createPanelContent();
+		final VerticalLayout content = createOverviewLayout();
 		content.setSizeFull();
 		content.addStyleName("admin-country-content");
 

@@ -92,7 +92,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 		profileLayout.addStyleName("card-details-column");
 		profileLayout.setWidthUndefined();
 
-		final Label profileHeader = new Label("Document Profile");
+		final com.vaadin.ui.Label profileHeader = new com.vaadin.ui.Label("Document Profile");
 		profileHeader.addStyleName("card-section-title");
 		profileLayout.addComponent(profileHeader);
 
@@ -114,7 +114,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 		metadataLayout.addStyleName("card-details-column");
 		metadataLayout.setWidthUndefined();
 
-		final Label metadataHeader = new Label("Metadata & Status");
+		final com.vaadin.ui.Label metadataHeader = new com.vaadin.ui.Label("Metadata & Status");
 		metadataHeader.addStyleName("card-section-title");
 		metadataLayout.addComponent(metadataHeader);
 
