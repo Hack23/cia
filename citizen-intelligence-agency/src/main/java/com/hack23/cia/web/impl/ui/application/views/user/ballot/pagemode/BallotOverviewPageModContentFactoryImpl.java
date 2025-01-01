@@ -185,24 +185,10 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			cardContent.addComponent(attributesLayout);
 
 			// Left column: Ballot Profile (Textual and identifying attributes)
-			final VerticalLayout profileDetailsLayout = new VerticalLayout();
-			profileDetailsLayout.setSpacing(true);
-			profileDetailsLayout.addStyleName("card-details-column");
-			profileDetailsLayout.setWidthUndefined();
-
-			final Label profileDetailsHeader = new Label("Ballot Profile");
-			profileDetailsHeader.addStyleName("card-section-title");
-			profileDetailsLayout.addComponent(profileDetailsHeader);
+			final VerticalLayout profileDetailsLayout = createSectionLayout("Ballot Profile");
 
 			// Right column: Voting Statistics (Numeric and outcome attributes)
-			final VerticalLayout serviceStatsLayout = new VerticalLayout();
-			serviceStatsLayout.setSpacing(true);
-			serviceStatsLayout.addStyleName("card-details-column");
-			serviceStatsLayout.setWidthUndefined();
-
-			final Label serviceStatsHeader = new Label("Voting Statistics");
-			serviceStatsHeader.addStyleName("card-section-title");
-			serviceStatsLayout.addComponent(serviceStatsHeader);
+			final VerticalLayout serviceStatsLayout = createSectionLayout("Voting Statistics");
 
 			attributesLayout.addComponents(profileDetailsLayout, serviceStatsLayout);
 
@@ -269,6 +255,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 		return panelContent;
 	}
+
 
 	/**
 	 * Matches.

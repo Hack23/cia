@@ -363,7 +363,6 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		return layout;
 	}
 
-
 	/**
 	 * Gets the page link factory.
 	 *

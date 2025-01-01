@@ -139,14 +139,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 			cardContent.addComponent(attributesLayout);
 
 			// Left column: Basic Profile
-			final VerticalLayout profileLayout = new VerticalLayout();
-			profileLayout.setSpacing(true);
-			profileLayout.addStyleName("card-details-column");
-			profileLayout.setWidthUndefined();
-
-			final Label profileHeader = new Label("Profile Details");
-			profileHeader.addStyleName("card-section-title");
-			profileLayout.addComponent(profileHeader);
+			final VerticalLayout profileLayout = createSectionLayout("Profile Details");
 
 			// Display key fields from user account in Profile Details
 			final UserAccount account = userAccount.get();
@@ -156,14 +149,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 			profileLayout.addComponent(createInfoRow("Created Date:", String.valueOf(account.getCreatedDate()), VaadinIcons.CALENDAR, "Date when the account was created"));
 
 			// Right column: Status & Statistics
-			final VerticalLayout statusLayout = new VerticalLayout();
-			statusLayout.setSpacing(true);
-			statusLayout.addStyleName("card-details-column");
-			statusLayout.setWidthUndefined();
-
-			final Label statusHeader = new Label("Status & Statistics");
-			statusHeader.addStyleName("card-section-title");
-			statusLayout.addComponent(statusHeader);
+			final VerticalLayout statusLayout = createSectionLayout("Status & Statistics");
 
 			statusLayout.addComponent(createInfoRow("User Type:", account.getUserType().toString(), VaadinIcons.INFO_CIRCLE, "Type of user account"));
 			statusLayout.addComponent(createInfoRow("User Role:", account.getUserRole().toString(), VaadinIcons.USER_CHECK, "Your assigned role in the system"));

@@ -117,14 +117,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 		cardContent.addComponent(attributesLayout);
 
 		// Left column: Document Profile (from DocumentElement)
-		final VerticalLayout profileLayout = new VerticalLayout();
-		profileLayout.setSpacing(true);
-		profileLayout.addStyleName("card-details-column");
-		profileLayout.setWidthUndefined();
-
-		final Label profileHeader = new Label("Document Profile");
-		profileHeader.addStyleName("card-section-title");
-		profileLayout.addComponent(profileHeader);
+		final VerticalLayout profileLayout = createSectionLayout("Document Profile");
 
 		// Display a selection of DocumentElement fields
 		// Choose key fields: title, subTitle, org, documentType, status, rm,
@@ -147,14 +140,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 		// Right column: Metadata & Status (from DocumentStatusContainer and
 		// DocumentData)
-		final VerticalLayout metadataLayout = new VerticalLayout();
-		metadataLayout.setSpacing(true);
-		metadataLayout.addStyleName("card-details-column");
-		metadataLayout.setWidthUndefined();
-
-		final Label metadataHeader = new Label("Metadata & Status");
-		metadataHeader.addStyleName("card-section-title");
-		metadataLayout.addComponent(metadataHeader);
+		final VerticalLayout metadataLayout = createSectionLayout("Metadata & Status");
 
 		if (documentStatusContainer != null) {
 			// DocumentCategory (from DocumentStatusContainer)
