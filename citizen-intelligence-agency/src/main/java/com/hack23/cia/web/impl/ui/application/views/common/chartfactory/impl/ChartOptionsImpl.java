@@ -280,13 +280,13 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	@Override
-	public Options createOptionsCountryLineChart(final Series series) {
-		final Axes axes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
+	public Options createOptionsCountryLineChart(final Series chartSeries) {
+		final Axes chartAxes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
 				.setTickOptions(new AxisTickRenderer().setFormatString(YEAR_MONTH_DAY_FORMAT).setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE))
 				.setNumberTicks(NUMBER_TICKS_DATE)).addAxis(new XYaxis(XYaxes.Y).setTickOptions(new AxisTickRenderer().setFontFamily(FONT_FAMILY).setTextColor(TEXT_COLOR).setFontSize(FONT_SIZE)).setNumberTicks(NUMBER_TICKS));
 
-		return new Options().addOption(new SeriesDefaults()).addOption(axes)
-				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendInsideOneRow())
+		return new Options().addOption(new SeriesDefaults()).addOption(chartAxes)
+				.addOption(createHighLighterNorth()).addOption(chartSeries).addOption(createLegendInsideOneRow())
 				.addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
@@ -297,22 +297,22 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	@Override
-	public Options createOptionsDonoutChartWithSeries(final Series series) {
+	public Options createOptionsDonoutChartWithSeries(final Series chartSeries) {
 		return new Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())
-				.setHighlighter(createHighLighter()).addOption(series).addOption(createDefaultGrid()).addOption(createCursor());
+				.setHighlighter(createHighLighter()).addOption(chartSeries).addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
 	@Override
-	public Options createOptionsPartyLineChart(final Series series) {
+	public Options createOptionsPartyLineChart(final Series chartSeries) {
 		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
-				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)
+				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(chartSeries)
 				.addOption(createLegendOutside()).addOption(createDefaultGrid());
 	}
 
 	@Override
-	public Options createOptionsPersonLineChart(final Series series) {
+	public Options createOptionsPersonLineChart(final Series chartSeries) {
 		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
-				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(series)
+				.addOption(createHighLighterNorth()).addOption(createCursor()).addOption(chartSeries)
 				.addOption(createLegendOutside()).addOption(createDefaultGrid());
 	}
 
@@ -324,15 +324,15 @@ public final class ChartOptionsImpl implements ChartOptions {
 	}
 
 	@Override
-	public Options createOptionsXYDateFloatLegendInsideOneColumn(final Series series) {
+	public Options createOptionsXYDateFloatLegendInsideOneColumn(final Series chartSeries) {
 		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
-				.addOption(createHighLighterNorth()).addOption(series).addOption(createLegendOutsideOneColumn())
+				.addOption(createHighLighterNorth()).addOption(chartSeries).addOption(createLegendOutsideOneColumn())
 				.addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
 	@Override
-	public Options createOptionsXYDateFloatLogYAxisLegendOutside(final Series series) {
-		return new Options().addOption(new SeriesDefaults()).addOption(series).addOption(createAxesXYDateFloatLog())
+	public Options createOptionsXYDateFloatLogYAxisLegendOutside(final Series chartSeries) {
+		return new Options().addOption(new SeriesDefaults()).addOption(chartSeries).addOption(createAxesXYDateFloatLog())
 				.addOption(createHighLighterNorth()).addOption(createLegendOutside())
 				.addOption(createDefaultGrid()).addOption(createCursor());
 	}

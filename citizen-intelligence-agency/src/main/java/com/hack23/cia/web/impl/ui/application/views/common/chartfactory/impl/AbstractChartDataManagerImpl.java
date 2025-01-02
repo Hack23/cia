@@ -39,35 +39,6 @@ import com.vaadin.ui.Panel;
  */
 public abstract class AbstractChartDataManagerImpl {
 
-	/** The Constant CHART_MARGIN_SIZE. */
-	private static final int CHART_BOTTOM_MARGIN_SIZE = 2;
-
-	/** The Constant CHART_LEFT_MARGIN. */
-	private static final int CHART_LEFT_MARGIN= 2;
-
-	/** The Constant CHART_RIGHT_MARGIN. */
-	private static final int CHART_RIGHT_MARGIN = 2;
-
-	/** The Constant CHART_TOP_MARGIN_SIZE. */
-	private static final int CHART_TOP_MARGIN_SIZE = 2;
-
-	/** The Constant CHART_WIDTH_REDUCTION. */
-	private static final int CHART_WIDTH_REDUCTION = 50;
-
-	/** The Constant HEIGHT_PERCENTAGE_FULL_PAGE. */
-	private static final double HEIGHT_PERCENTAGE_FULL_PAGE = 0.8;
-	/** The Constant HEIGHT_PERCETAGE_HALF_PAGE. */
-	private static final double HEIGHT_PERCETAGE_HALF_PAGE = 0.5;
-
-	/** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE. */
-	private static final int MINIMUM_CHART_HEIGHT_FULL_PAGE = 400;
-
-	/** The Constant MINIMUM_CHART_WIDTH. */
-	private static final int MINIMUM_CHART_WIDTH = 600;
-
-	/** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE. */
-	private static final int NINIMUM_CHART_HEIGHT_HALF_PAGE = 200;
-
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
@@ -75,7 +46,6 @@ public abstract class AbstractChartDataManagerImpl {
 	/** The chart options. */
 	@Autowired
 	private ChartOptions chartOptions;
-
 
 	/**
 	 * Instantiates a new abstract chart data manager impl.
@@ -85,71 +55,19 @@ public abstract class AbstractChartDataManagerImpl {
 	}
 
 	/**
-	 * Gets the chart window height.
-	 *
-	 * @param fullPage the full page
-	 * @return the chart window height
-	 */
-	private static int getChartWindowHeight(final boolean fullPage) {
-		if (fullPage) {
-			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCENTAGE_FULL_PAGE) ,MINIMUM_CHART_HEIGHT_FULL_PAGE);
-		} else {
-			return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCETAGE_HALF_PAGE),NINIMUM_CHART_HEIGHT_HALF_PAGE);
-		}
-	}
-
-	/**
-	 * Gets the chart window width.
-	 *
-	 * @return the chart window width
-	 */
-	private static int getChartWindowWidth() {
-		return Math.max(Page.getCurrent().getBrowserWindowWidth() - CHART_WIDTH_REDUCTION,MINIMUM_CHART_WIDTH);
-	}
-
-	/**
 	 * Adds the chart.
 	 *
-	 * @param content
-	 *            the content
+	 * @param layout
+	 *            the layout
 	 * @param caption
 	 *            the caption
 	 * @param chart
 	 *            the chart
-	 * @param fullPage
-	 *            the full page
+	 * @param isFullPage
+	 *            the isFullPage
 	 */
-	protected static final void addChart(final AbstractOrderedLayout content,final String caption, final DCharts chart, final boolean fullPage) {
-		final HorizontalLayout horizontalLayout = new HorizontalLayout();
-
-		final int browserWindowWidth = getChartWindowWidth();
-
-		final int browserWindowHeight = getChartWindowHeight(fullPage);
-
-		horizontalLayout.setWidth(browserWindowWidth, Unit.PIXELS);
-		horizontalLayout.setHeight(browserWindowHeight, Unit.PIXELS);
-		horizontalLayout.setMargin(true);
-		horizontalLayout.setSpacing(false);
-		horizontalLayout.addStyleName("v-layout-content-overview-panel-level1");
-
-		final Panel formPanel = new Panel();
-		formPanel.setSizeFull();
-		formPanel.setContent(horizontalLayout);
-		formPanel.setCaption(caption);
-
-		content.addComponent(formPanel);
-		content.setExpandRatio(formPanel, ContentRatio.LARGE);
-
-
-		chart.setWidth(100, Unit.PERCENTAGE);
-		chart.setHeight(100, Unit.PERCENTAGE);
-		chart.setMarginRight(CHART_RIGHT_MARGIN);
-		chart.setMarginLeft(CHART_LEFT_MARGIN);
-		chart.setMarginBottom(CHART_BOTTOM_MARGIN_SIZE);
-		chart.setMarginTop(CHART_TOP_MARGIN_SIZE);
-
-		horizontalLayout.addComponent(chart);
-		chart.setCaption(caption);
+	protected static final void addChart(final AbstractOrderedLayout layout, final String caption, final DCharts chart, final boolean isFullPage) {
+		ChartUtils.addChart(layout, caption, chart, isFullPage);
 	}
 
 	/**
@@ -173,25 +91,23 @@ public abstract class AbstractChartDataManagerImpl {
 	/**
 	 * Gets the party name.
 	 *
-	 * @param party
-	 *            the party
+	 * @param partySummary
+	 *            the partySummary
 	 * @return the party name
 	 */
-	protected final String getPartyName(final String party) {
+	protected final String getPartyName(final String partySummary) {
 		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
 				.getDataContainer(ViewRiksdagenParty.class);
 
 		final Optional<ViewRiksdagenParty> matchingObjects =dataContainer.getAll().stream().
-			    filter((final ViewRiksdagenParty p) -> p.getPartyId().equalsIgnoreCase(party)).
+			    filter((final ViewRiksdagenParty p) -> p.getPartyId().equalsIgnoreCase(partySummary)).
 			    findFirst();
 
 		if (matchingObjects.isPresent()) {
 			return matchingObjects.get().getPartyName();
 
 		} else {
-			return party;
+			return partySummary;
 		}
 	}
-
-
 }

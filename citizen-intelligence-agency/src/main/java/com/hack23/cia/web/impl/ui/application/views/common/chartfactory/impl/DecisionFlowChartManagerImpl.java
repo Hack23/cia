@@ -52,45 +52,45 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
     }
 
     @Override
-    public SankeyChart createAllDecisionFlow(final Map<String, List<ViewRiksdagenCommittee>> committeeMap,
-                                             final String rm) {
-        // Retrieve all proposals for the given 'rm'
-        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(rm);
+    public SankeyChart createAllDecisionFlow(final Map<String, List<ViewRiksdagenCommittee>> committeeSummaryMap,
+                                             final String reportMonth) {
+        // Retrieve all proposals for the given 'reportMonth'
+        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(reportMonth);
 
         // Prepare the sankey chart
-        final SankeyChart chart = new SankeyChart();
+        final SankeyChart sankeyChart = new SankeyChart();
 
         // Group by organization
         final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap =
             committeeSummaries.stream()
                               .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
 
-        // For each org, if we have a matching committee in 'committeeMap', add data rows
+        // For each org, if we have a matching committee in 'committeeSummaryMap', add data rows
         for (final Entry<String, List<ProposalCommitteeeSummary>> orgEntry : orgProposalMap.entrySet()) {
             final String orgKey = orgEntry.getKey();
             final List<ProposalCommitteeeSummary> orgSummaries = orgEntry.getValue();
-            if (committeeMap.containsKey(orgKey)) {
+            if (committeeSummaryMap.containsKey(orgKey)) {
                 final Optional<ViewRiksdagenCommittee> committeeOpt =
-                    committeeMap.get(orgKey).stream().findFirst();
+                    committeeSummaryMap.get(orgKey).stream().findFirst();
                 if (committeeOpt.isPresent()) {
                     final ViewRiksdagenCommittee committee = committeeOpt.get();
-                    addDocTypeDataRows(chart, orgSummaries, committee);
-                    addDecisionDataRows(chart, orgSummaries, committee);
+                    addDocTypeDataRows(sankeyChart, orgSummaries, committee);
+                    addDecisionDataRows(sankeyChart, orgSummaries, committee);
                 }
             }
         }
 
-        chart.drawChart();
-        return chart;
+        sankeyChart.drawChart();
+        return sankeyChart;
     }
 
     @Override
     public SankeyChart createCommitteeDecisionFlow(final ViewRiksdagenCommittee viewRiksdagenCommittee,
-                                                   final Map<String, List<ViewRiksdagenCommittee>> committeeMap,
-                                                   final String rm) {
-        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(rm);
+                                                   final Map<String, List<ViewRiksdagenCommittee>> committeeSummaryMap,
+                                                   final String reportMonth) {
+        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(reportMonth);
 
-        final SankeyChart chart = new SankeyChart();
+        final SankeyChart sankeyChart = new SankeyChart();
         // Group by organization
         final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap =
             committeeSummaries.stream()
@@ -99,22 +99,22 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         final String targetOrg = viewRiksdagenCommittee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH);
         for (final Entry<String, List<ProposalCommitteeeSummary>> orgEntry : orgProposalMap.entrySet()) {
             final String orgKeyUpper = orgEntry.getKey().toUpperCase(Locale.ENGLISH);
-            if (committeeMap.containsKey(orgKeyUpper) && targetOrg.equals(orgKeyUpper)) {
-                addDocTypeDecisionDataRows(chart, orgEntry.getValue());
+            if (committeeSummaryMap.containsKey(orgKeyUpper) && targetOrg.equals(orgKeyUpper)) {
+                addDocTypeDecisionDataRows(sankeyChart, orgEntry.getValue());
             }
         }
 
-        chart.drawChart();
-        return chart;
+        sankeyChart.drawChart();
+        return sankeyChart;
     }
 
     @Override
-    public TextArea createCommitteeeDecisionSummary(final Map<String, List<ViewRiksdagenCommittee>> committeeMap,
-                                                    final String rm) {
+    public TextArea createCommitteeeDecisionSummary(final Map<String, List<ViewRiksdagenCommittee>> committeeSummaryMap,
+                                                    final String reportMonth) {
         final TextArea area = new TextArea("Summary");
         final StringBuilder builder = new StringBuilder();
 
-        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(rm);
+        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(reportMonth);
 
         // Group by organization
         final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap =
@@ -123,10 +123,10 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 
         for (final Entry<String, List<ProposalCommitteeeSummary>> orgEntry : orgProposalMap.entrySet()) {
             final String orgKeyUpper = orgEntry.getKey().toUpperCase(Locale.ENGLISH);
-            if (committeeMap.containsKey(orgKeyUpper)) {
+            if (committeeSummaryMap.containsKey(orgKeyUpper)) {
                 // Grab the first committee from the list
                 final ViewRiksdagenCommittee committee =
-                    committeeMap.get(orgKeyUpper).stream().findFirst().orElse(null);
+                    committeeSummaryMap.get(orgKeyUpper).stream().findFirst().orElse(null);
                 addCommiteeSummary(builder, orgEntry.getValue(), committee);
             }
         }
@@ -136,11 +136,11 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 
     @Override
     public TextArea createCommitteeeDecisionSummary(final ViewRiksdagenCommittee viewRiksdagenCommittee,
-                                                    final String rm) {
+                                                    final String reportMonth) {
         final TextArea area = new TextArea("Summary");
         final StringBuilder builder = new StringBuilder();
 
-        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(rm);
+        final List<ProposalCommitteeeSummary> committeeSummaries = decisionDataFactory.createCommitteeSummary(reportMonth);
 
         // Group by organization
         final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap =
@@ -160,11 +160,11 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
     /**
      * Helper to add doc type data rows to sankey.
      *
-     * @param chart    the chart
+     * @param sankeyChart    the chart
      * @param proposals the summary list for the org
      * @param committee the committee
      */
-    private static void addDocTypeDataRows(final SankeyChart chart,
+    private static void addDocTypeDataRows(final SankeyChart sankeyChart,
                                            final List<ProposalCommitteeeSummary> proposals,
                                            final ViewRiksdagenCommittee committee) {
         // Group by doc type
@@ -175,7 +175,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         for (final Entry<String, List<ProposalCommitteeeSummary>> docEntry : docTypeMap.entrySet()) {
             final String docType = docEntry.getKey();
             if (!docType.isEmpty()) {
-                chart.addDataRow(docType, committeeName, docEntry.getValue().size());
+                sankeyChart.addDataRow(docType, committeeName, docEntry.getValue().size());
             }
         }
     }
@@ -183,11 +183,11 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
     /**
      * Helper to add decision data rows to sankey.
      *
-     * @param chart    the chart
+     * @param sankeyChart    the chart
      * @param proposals the summary list for the org
      * @param committee the committee
      */
-    private static void addDecisionDataRows(final SankeyChart chart,
+    private static void addDecisionDataRows(final SankeyChart sankeyChart,
                                             final List<ProposalCommitteeeSummary> proposals,
                                             final ViewRiksdagenCommittee committee) {
         // Group by decision
@@ -198,7 +198,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         for (final Entry<String, List<ProposalCommitteeeSummary>> decisionEntry : decisionMap.entrySet()) {
             final String decision = decisionEntry.getKey();
             if (!decision.isEmpty()) {
-                chart.addDataRow(committeeName, decision, decisionEntry.getValue().size());
+                sankeyChart.addDataRow(committeeName, decision, decisionEntry.getValue().size());
             }
         }
     }
@@ -206,10 +206,10 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
     /**
      * Helper to add doc type -> decision data rows to sankey.
      *
-     * @param chart   the chart
+     * @param sankeyChart   the chart
      * @param proposals the summary list for the org
      */
-    private static void addDocTypeDecisionDataRows(final SankeyChart chart,
+    private static void addDocTypeDecisionDataRows(final SankeyChart sankeyChart,
                                                    final List<ProposalCommitteeeSummary> proposals) {
         // Group by doc type
         final Map<String, List<ProposalCommitteeeSummary>> docTypeMap =
@@ -225,7 +225,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
                 for (final Entry<String, List<ProposalCommitteeeSummary>> decEntry : decisionMap.entrySet()) {
                     final String decision = decEntry.getKey();
                     if (!decision.isEmpty()) {
-                        chart.addDataRow(docType, decision, decEntry.getValue().size());
+                        sankeyChart.addDataRow(docType, decision, decEntry.getValue().size());
                     }
                 }
             }

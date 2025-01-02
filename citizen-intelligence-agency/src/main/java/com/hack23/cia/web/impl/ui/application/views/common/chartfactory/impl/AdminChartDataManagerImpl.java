@@ -8,7 +8,7 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -56,9 +55,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImpl implements AdminChartDataManager {
 
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
-
 	/** The Constant PAGE_HITS. */
 	private static final String PAGE_HITS = "Page Hits";
 
@@ -77,31 +73,28 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	 *
 	 * @param label the label
 	 * @param series the series
-	 * @param list the list
+	 * @param dailySummaries the dailySummaries
 	 * @param dataSeries the data series
-	 * @param simpleDateFormat the simple date format
 	 * @param t the t
 	 */
 	private static void addViewApplicationActionEventPageElementDailySummaryValues(final String label,
-			final Series series, final List<ViewApplicationActionEventPageElementDailySummary> list,
-			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
+			final Series series, final List<ViewApplicationActionEventPageElementDailySummary> dailySummaries,
+			final DataSeries dataSeries,
 			final ToLongFunction<ViewApplicationActionEventPageElementDailySummary> t) {
 		series.addSeries(new XYseries().setLabel(label));
 		dataSeries.newSeries();
 
-		for (final ViewApplicationActionEventPageElementDailySummary item : list) {
-			dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()), t.applyAsLong(item));
+		for (final ViewApplicationActionEventPageElementDailySummary summary : dailySummaries) {
+			dataSeries.add(DateUtils.formatDate(summary.getEmbeddedId().getCreatedDate()), t.applyAsLong(summary));
 		}
 	}
 
 	@Override
-	public void createApplicationActionEventPageDailySummaryChart(final AbstractOrderedLayout content) {
+	public void createApplicationActionEventPageDailySummaryChart(final AbstractOrderedLayout layout) {
 
 		final Map<String, List<ViewApplicationActionEventPageDailySummary>> map = getApplicationActionEventPageDailySummaryMap();
 
 		final DataSeries dataSeries = new DataSeries();
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
 		final Series series = new Series();
 
@@ -114,7 +107,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 				final List<ViewApplicationActionEventPageDailySummary> list = entry.getValue();
 				for (final ViewApplicationActionEventPageDailySummary dataSummaryDaily : list) {
 					dataSeries.add(
-							simpleDateFormat.format(
+							DateUtils.formatDate(
 									dataSummaryDaily.getEmbeddedId().getCreatedDate()),
 							dataSummaryDaily.getHits());
 				}
@@ -122,43 +115,40 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(content, "Application Action Events daily Summary",
+		addChart(layout, "Application Action Events daily Summary",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
 	}
 
 	@Override
-	public void createApplicationActionEventPageElementDailySummaryChart(final AbstractOrderedLayout content,
+	public void createApplicationActionEventPageElementDailySummaryChart(final AbstractOrderedLayout layout,
 			final String page, final String elementId) {
-		final List<ViewApplicationActionEventPageElementDailySummary> list = getApplicationActionEventPageElementDailySummaryList(
+		final List<ViewApplicationActionEventPageElementDailySummary> dailySummaries = getApplicationActionEventPageElementDailySummaryList(
 				page, elementId);
 
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 		final Series series = new Series();
 		final DataSeries dataSeries = new DataSeries();
 
-		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_HITS, series, list, dataSeries,
-				simpleDateFormat, ViewApplicationActionEventPageElementDailySummary::getHits);
-		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_RANK, series, list, dataSeries,
-				simpleDateFormat, ViewApplicationActionEventPageElementDailySummary::getRank);
+		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_HITS, series, dailySummaries, dataSeries,
+				ViewApplicationActionEventPageElementDailySummary::getHits);
+		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_RANK, series, dailySummaries, dataSeries,
+				ViewApplicationActionEventPageElementDailySummary::getRank);
 
-		addChart(content, "Page element Action Events daily Summary",
+		addChart(layout, "Page element Action Events daily Summary",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
 	}
 
 	@Override
-	public void createApplicationActionEventPageModeDailySummaryChart(final AbstractOrderedLayout content,
+	public void createApplicationActionEventPageModeDailySummaryChart(final AbstractOrderedLayout layout,
 			final String page) {
 
 		final Map<String, List<ViewApplicationActionEventPageModeDailySummary>> map = getApplicationActionEventPageModeDailySummaryMap(
 				page);
 
 		final DataSeries dataSeries = new DataSeries();
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
 		final Series series = new Series();
 
@@ -170,13 +160,13 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 				dataSeries.newSeries();
 				final List<ViewApplicationActionEventPageModeDailySummary> list = entry.getValue();
 				for (final ViewApplicationActionEventPageModeDailySummary item : list) {
-					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getCreatedDate()), item.getHits());
+					dataSeries.add(DateUtils.formatDate(item.getEmbeddedId().getCreatedDate()), item.getHits());
 				}
 			}
 
 		}
 
-		addChart(content, "Page Action Events daily Summary",
+		addChart(layout, "Page Action Events daily Summary",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
@@ -241,12 +231,11 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	}
 
 	@Override
-	public void createApplicationSessionPageDailySummaryChart(final VerticalLayout content) {
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+	public void createApplicationSessionPageDailySummaryChart(final VerticalLayout layout) {
 
 		final DataContainer<ApplicationSession, Serializable> dataContainer = getApplicationManager().getDataContainer(ApplicationSession.class);
 		final Map <String,Long> sessionByDayMap = dataContainer.getAll().stream()
-	                .collect(Collectors.groupingBy(p -> simpleDateFormat.format(p.getCreatedDate()), Collectors.counting()));
+	                .collect(Collectors.groupingBy(p -> DateUtils.formatDate(p.getCreatedDate()), Collectors.counting()));
 
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
@@ -258,7 +247,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 						entry.getValue());
 		}
 
-		addChart(content, "Application Active Daily Users",
+		addChart(layout, "Application Active Daily Users",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);

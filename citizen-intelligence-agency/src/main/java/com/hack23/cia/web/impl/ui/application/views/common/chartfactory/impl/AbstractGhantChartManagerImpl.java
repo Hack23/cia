@@ -93,47 +93,41 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	 * @return the date
 	 */
 	private static final Date stripDatesAfterCurrentDate(final Date toDate) {
-		final DateTime currentTime = new DateTime();
-
-		if (currentTime.isBefore(toDate.getTime())) {
-			return currentTime.plusDays(1).toDate();
-		} else {
-			return toDate;
-		}
+		return DateUtils.stripDatesAfterCurrentDate(toDate);
 	}
 
 	/**
 	 * Adds the view generic role member to step.
 	 *
-	 * @param stepName
-	 *            the step name
+	 * @param roleName
+	 *            the role name
 	 * @param step
 	 *            the step
-	 * @param assignments
-	 *            the assignments
+	 * @param roleAssignments
+	 *            the role assignments
 	 * @param stepMapping
 	 *            the step mapping
 	 */
-	private void addViewGenericRoleMemberToStep(final String stepName, final Step step, final List<T> assignments,
+	private void addViewGenericRoleMemberToStep(final String roleName, final Step step, final List<T> roleAssignments,
 			final StepMapping<T> stepMapping) {
 
-		for (final T assignmentData : assignments) {
+		for (final T roleMember : roleAssignments) {
 
 			String subStepName = "";
 
-			if (stepMapping.getRoleCode(assignmentData) != null) {
-				subStepName = new StringBuilder().append(stepMapping.getFirstName(assignmentData))
-						.append(CONTENT_SEPARATOR).append(stepMapping.getLastName(assignmentData))
-						.append(PARTY_START_TAG).append(stepMapping.getParty(assignmentData)).append(PARTY_END_TAG)
+			if (stepMapping.getRoleCode(roleMember) != null) {
+				subStepName = new StringBuilder().append(stepMapping.getFirstName(roleMember))
+						.append(CONTENT_SEPARATOR).append(stepMapping.getLastName(roleMember))
+						.append(PARTY_START_TAG).append(stepMapping.getParty(roleMember)).append(PARTY_END_TAG)
 						.toString();
 			}
 
-			final SubStep sameRoleSubStep = new SubStep(stepName + '.' + subStepName,CaptionMode.HTML);
-			sameRoleSubStep.setDescription(stepName + '.' + subStepName);
-			sameRoleSubStep.setBackgroundColor(stepMapping.getBackgroundColor(assignmentData));
+			final SubStep sameRoleSubStep = new SubStep(roleName + '.' + subStepName,CaptionMode.HTML);
+			sameRoleSubStep.setDescription(roleName + '.' + subStepName);
+			sameRoleSubStep.setBackgroundColor(stepMapping.getBackgroundColor(roleMember));
 
-			sameRoleSubStep.setStartDate(stepMapping.getFromDate(assignmentData).getTime());
-			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(stepMapping.getToDate(assignmentData)).getTime());
+			sameRoleSubStep.setStartDate(stepMapping.getFromDate(roleMember).getTime());
+			sameRoleSubStep.setEndDate(stripDatesAfterCurrentDate(stepMapping.getToDate(roleMember)).getTime());
 
 			step.addSubStep(sameRoleSubStep);
 		}

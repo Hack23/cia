@@ -47,7 +47,7 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 
 
 	@Override
-	public void createChart(final Tab tab,final AbstractOrderedLayout content,final List<ViewRiksdagenVoteDataBallotPartySummary> partyList) {
+	public void createChart(final Tab tab,final AbstractOrderedLayout content,final List<ViewRiksdagenVoteDataBallotPartySummary> partySummaries) {
 		final DataSeries dataSeries = new DataSeries();
 
 		final Series series = new Series();
@@ -58,18 +58,18 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 		series.addSeries(new XYseries().setLabel("Absent"));
 
 		String caption=null;
-		for (final ViewRiksdagenVoteDataBallotPartySummary viewRiksdagenVoteDataBallotPartySummary : partyList) {
+		for (final ViewRiksdagenVoteDataBallotPartySummary partySummary : partySummaries) {
 			if (caption == null) {
-				caption = "Party Summary : " + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getIssue() + " " + viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getConcern();
+				caption = "Party Summary : " + partySummary.getEmbeddedId().getIssue() + " " + partySummary.getEmbeddedId().getConcern();
 				content.setCaption(caption);
 				tab.setCaption(caption);
 			}
 
 			dataSeries.newSeries()
-			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()), viewRiksdagenVoteDataBallotPartySummary.getPartyYesVotes())
-			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyNoVotes())
-			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbstainVotes())
-			.add(getPartyName(viewRiksdagenVoteDataBallotPartySummary.getEmbeddedId().getParty()),viewRiksdagenVoteDataBallotPartySummary.getPartyAbsentVotes());
+			.add(getPartyName(partySummary.getEmbeddedId().getParty()), partySummary.getPartyYesVotes())
+			.add(getPartyName(partySummary.getEmbeddedId().getParty()),partySummary.getPartyNoVotes())
+			.add(getPartyName(partySummary.getEmbeddedId().getParty()),partySummary.getPartyAbstainVotes())
+			.add(getPartyName(partySummary.getEmbeddedId().getParty()),partySummary.getPartyAbsentVotes());
 		}
 
 
@@ -79,15 +79,15 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 
 
 	@Override
-	public void createChart(final Tab tab,final AbstractOrderedLayout content,final ViewRiksdagenVoteDataBallotSummary viewRiksdagenVoteDataBallotSummary) {
+	public void createChart(final Tab tab,final AbstractOrderedLayout content,final ViewRiksdagenVoteDataBallotSummary ballotSummary) {
 		final DataSeries dataSeries = new DataSeries();
 
-		dataSeries.newSeries().add("Yes", viewRiksdagenVoteDataBallotSummary.getYesVotes());
-		dataSeries.newSeries().add("No", viewRiksdagenVoteDataBallotSummary.getNoVotes());
-		dataSeries.newSeries().add("Abstain", viewRiksdagenVoteDataBallotSummary.getAbstainVotes());
-		dataSeries.newSeries().add("Absent", viewRiksdagenVoteDataBallotSummary.getAbsentVotes());
+		dataSeries.newSeries().add("Yes", ballotSummary.getYesVotes());
+		dataSeries.newSeries().add("No", ballotSummary.getNoVotes());
+		dataSeries.newSeries().add("Abstain", ballotSummary.getAbstainVotes());
+		dataSeries.newSeries().add("Absent", ballotSummary.getAbsentVotes());
 
-		final String caption = "Summary : " +viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getIssue() + " " + viewRiksdagenVoteDataBallotSummary.getEmbeddedId().getConcern();
+		final String caption = "Summary : " +ballotSummary.getEmbeddedId().getIssue() + " " + ballotSummary.getEmbeddedId().getConcern();
 		tab.setCaption(caption);
 
 		addChart(content,caption, new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsDonoutChart()).show(), true);
