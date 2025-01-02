@@ -351,12 +351,12 @@ You have now successfully configured:
 7. Download the CIA Debian package:
 
 ```bash
-$ wget https://github.com/Hack23/cia/releases/download/2024.11.23/cia-dist-deb-2024.11.23.all.deb```
+$ wget https://github.com/Hack23/cia/releases/download/2025.1.2/cia-dist-deb-2025.1.2.all.deb```
 
 8. Install the Debian package:
 
 ```bash
-$ sudo dpkg -i cia-dist-deb-2024.11.17.all.deb
+$ sudo dpkg -i cia-dist-deb-2025.1.2.all.deb
 ```
 
 ## Access the Server
