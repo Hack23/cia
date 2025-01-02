@@ -18,7 +18,6 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -47,9 +46,6 @@ import com.vaadin.ui.AbstractOrderedLayout;
 @Service
 public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements PartyDocumentChartDataManager {
-
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
 	private static final String DOCUMENT_HISTORY_PARTY = "Document history party";
 
@@ -84,44 +80,43 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 	 */
 	private static void addDocumentHistoryByPartyData(final DataSeries dataSeries, final Series series,
 			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map) {
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
 
-		for (final Entry<String, List<ViewRiksdagenPartyDocumentDailySummary>> entry : map.entrySet()) {
+		for (final Entry<String, List<ViewRiksdagenPartyDocumentDailySummary>> documentTypeEntry : map.entrySet()) {
 
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
+			series.addSeries(new XYseries().setLabel(documentTypeEntry.getKey()));
 
 			dataSeries.newSeries();
-			if (entry.getValue() != null) {
-				for (final ViewRiksdagenPartyDocumentDailySummary item : entry.getValue()) {
-					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
+			if (documentTypeEntry.getValue() != null) {
+				for (final ViewRiksdagenPartyDocumentDailySummary item : documentTypeEntry.getValue()) {
+					dataSeries.add(DateUtils.formatDate(item.getEmbeddedId().getPublicDate()), item.getTotal());
 				}
 			} else {
-				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
+				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, documentTypeEntry);
 			}
 
 		}
 	}
 
 	@Override
-	public void createDocumentHistoryPartyChart(final AbstractOrderedLayout content, final String org) {
+	public void createDocumentHistoryPartyChart(final AbstractOrderedLayout layout, final String partyShortCode) {
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 
 		final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> allMap = getViewRiksdagenPartyDocumentDailySummaryMap();
 
 		final List<ViewRiksdagenPartyDocumentDailySummary> itemList = allMap
-				.get(org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());
+				.get(partyShortCode.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());
 
 		if (itemList != null) {
 
-			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> map = itemList.parallelStream()
+			final Map<String, List<ViewRiksdagenPartyDocumentDailySummary>> documentTypeMap = itemList.parallelStream()
 					.filter(Objects::nonNull).collect(Collectors
 							.groupingBy(t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
 
-			addDocumentHistoryByPartyData(dataSeries, series, map);
+			addDocumentHistoryByPartyData(dataSeries, series, documentTypeMap);
 		}
 
-		addChart(content, DOCUMENT_HISTORY_PARTY,
+		addChart(layout, DOCUMENT_HISTORY_PARTY,
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
 				true);
