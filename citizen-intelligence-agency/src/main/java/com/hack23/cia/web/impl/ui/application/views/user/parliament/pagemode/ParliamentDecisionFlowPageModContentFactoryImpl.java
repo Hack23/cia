@@ -108,7 +108,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
     private static List<String> createAvailableYears() {
         final int currentYear = LocalDate.now().getYear();
         return IntStream.rangeClosed(2010, currentYear + 1)
-            .mapToObj(year -> String.format("%d/%02d", year, (year + 1) % 100))
+            .mapToObj(year -> String.format(Locale.ENGLISH,"%d/%02d", year, (year + 1) % 100))
             .sorted(Comparator.reverseOrder()) // Most recent years first
             .collect(Collectors.collectingAndThen(
                 Collectors.toList(),
