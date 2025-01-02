@@ -58,12 +58,12 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 		return new StepMapping<>() {
 
 			@Override
-			public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember t) {
+			public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember roleMember) {
 				String color;
 
-				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("statsråd")) {
+				if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("statsråd")) {
 					color = "ded858";
-				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("statsminister")) {
+				} else if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("statsminister")) {
 					color = "3271c8";
 				} else {
 					color = "0eab76";
@@ -73,38 +73,38 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 			}
 
 			@Override
-			public Object getFirstName(final ViewRiksdagenGovermentRoleMember t) {
-				return t.getFirstName();
+			public Object getFirstName(final ViewRiksdagenGovermentRoleMember roleMember) {
+				return roleMember.getFirstName();
 			}
 
 			@Override
-			public Date getFromDate(final ViewRiksdagenGovermentRoleMember t) {
-				return t.getFromDate();
+			public Date getFromDate(final ViewRiksdagenGovermentRoleMember roleMember) {
+				return roleMember.getFromDate();
 			}
 
 			@Override
-			public Object getLastName(final ViewRiksdagenGovermentRoleMember t) {
-				return t.getLastName();
+			public Object getLastName(final ViewRiksdagenGovermentRoleMember roleMember) {
+				return roleMember.getLastName();
 			}
 
 			@Override
-			public String getOrg(final ViewRiksdagenGovermentRoleMember t) {
-				return t.getDetail();
+			public String getOrg(final ViewRiksdagenGovermentRoleMember roleMember) {
+				return roleMember.getDetail();
 			}
 
 			@Override
-			public String getParty(final ViewRiksdagenGovermentRoleMember t) {
-				return t.getParty();
+			public String getParty(final ViewRiksdagenGovermentRoleMember roleMember) {
+				return roleMember.getParty();
 			}
 
 			@Override
-			public String getRoleCode(final ViewRiksdagenGovermentRoleMember t) {
-				return t.getRoleCode();
+			public String getRoleCode(final ViewRiksdagenGovermentRoleMember roleMember) {
+				return roleMember.getRoleCode();
 			}
 
 			@Override
-			public Date getToDate(final ViewRiksdagenGovermentRoleMember t) {
-				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
+			public Date getToDate(final ViewRiksdagenGovermentRoleMember roleMember) {
+				return Optional.ofNullable(roleMember.getToDate()).orElseGet(Date::new);
 			}
 
 		};
@@ -116,8 +116,8 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 	private static final class RoleMapping implements Function<ViewRiksdagenGovermentRoleMember, String> {
 
 		@Override
-		public String apply(final ViewRiksdagenGovermentRoleMember t) {
-			return t.getRoleCode()+ ".["+ t.getPersonId() +"]." + t.getDetail();
+		public String apply(final ViewRiksdagenGovermentRoleMember roleMember) {
+			return roleMember.getRoleCode()+ ".["+ roleMember.getPersonId() +"]." + roleMember.getDetail();
 		}
 	}
 
