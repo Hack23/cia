@@ -19,18 +19,18 @@
 package com.hack23.cia.service.external.esv.impl;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
@@ -41,238 +41,230 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 @Component
 final class EsvExcelReaderImpl implements EsvExcelReader {
 
-	/** The Constant COMMENT_CELL. */
-	private static final int COMMENT_CELL = 14;
+    /** The Constant GOVERNMENT_BODY_EXCEL. */
+    private static final String GOVERNMENT_BODY_EXCEL = "/Myndighetsinformation.xls";
+    
+    /** The Constant EXPECTED_COLUMN_LENGTH. */
+    private static final int EXPECTED_COLUMN_LENGTH = 14;
 
-	/** The Constant VAT_CELL. */
-	private static final int VAT_CELL = 8;
+    /**
+     * The Record ExcelColumn.
+     *
+     * @param name the name
+     * @param index the index
+     */
+    private record ExcelColumn(String name, int index) {
+        
+        /**
+         * Gets the value.
+         *
+         * @param row the row
+         * @return the value
+         */
+        public String getValue(Row row) {
+            final Cell cell = row.getCell(index);
+            return cell != null ? cell.toString() : "";
+        }
 
-	/** The Constant ANNUAL_HEADCOUNT_CELL. */
-	private static final int ANNUAL_HEADCOUNT_CELL = 7;
+        /**
+         * Gets the int value.
+         *
+         * @param row the row
+         * @return the int value
+         */
+        public int getIntValue(Row row) {
+            final String value = getValue(row);
+            return value.trim().isEmpty() ? 0 : Integer.parseInt(value);
+        }
+    }
 
-	/** The Constant HEADCOUNT_CELL. */
-	private static final int HEADCOUNT_CELL = 6;
+    /** The Constant COLUMNS. */
+    private static final ExcelColumn[] COLUMNS = {
+        new ExcelColumn("NAME", 0),
+        new ExcelColumn("CONSECUTIVE_NUMBER", 2),
+        new ExcelColumn("GOVERNMENT_BODY_ID", 3),
+        new ExcelColumn("MCODE", 3),
+        new ExcelColumn("MINISTRY", 4),
+        new ExcelColumn("ORG_NUMBER", 5),
+        new ExcelColumn("HEADCOUNT", 6),
+        new ExcelColumn("ANNUAL_HEADCOUNT", 7),
+        new ExcelColumn("VAT", 8),
+        new ExcelColumn("COMMENT", 14)
+    };
 
-	/** The Constant ORG_NUMBER_CELL. */
-	private static final int ORG_NUMBER_CELL = 5;
+    /**
+     * Gets the data per ministry.
+     *
+     * @param name the name
+     * @return the data per ministry
+     */
+    @Override
+    public Map<Integer, List<GovernmentBodyAnnualSummary>> getDataPerMinistry(final String name) {
+        final Map<Integer, List<GovernmentBodyAnnualSummary>> result = new TreeMap<>();
 
-	/** The Constant MINISTRY_CELL. */
-	private static final int MINISTRY_CELL = 4;
+        try (HSSFWorkbook workbook = loadWorkbook()) {
+            processSheets(workbook, (sheet, year) ->
+                result.put(year, processMinistrySheet(sheet, name)));
+        } catch (final IOException e) {
+            throw new EsvExcelReaderException("Failed to read ministry data", e);
+        }
 
-	/** The Constant MCODE_CELL. */
-	private static final int MCODE_CELL = 3;
+        return result;
+    }
 
-	/** The Constant GOVERNMENT_BODY_ID_CELL. */
-	private static final int GOVERNMENT_BODY_ID_CELL = 3;
+    /**
+     * Gets the data per government body.
+     *
+     * @param name the name
+     * @return the data per government body
+     */
+    @Override
+    public Map<Integer, GovernmentBodyAnnualSummary> getDataPerGovernmentBody(final String name) {
+        final Map<Integer, GovernmentBodyAnnualSummary> result = new TreeMap<>();
 
-	/** The Constant CONSECUTIVE_NUMBER_CELL. */
-	private static final int CONSECUTIVE_NUMBER_CELL = 2;
+        try (HSSFWorkbook workbook = loadWorkbook()) {
+            processSheets(workbook, (sheet, year) -> {
+                final Optional<GovernmentBodyAnnualSummary> summary = processGovernmentBodySheet(sheet, year, name);
+                summary.ifPresent(s -> result.put(year, s));
+            });
+        } catch (final IOException e) {
+            throw new EsvExcelReaderException("Failed to read government body data", e);
+        }
 
-	/** The Constant NAME_CELL. */
-	private static final int NAME_CELL = 0;
+        return result;
+    }
 
-	/** The Constant EXPECTED_COLUMN_LENGTH. */
-	private static final int EXPECTED_COLUMN_LENGTH = 14;
+    /**
+     * Load workbook.
+     *
+     * @return the HSSF workbook
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    private HSSFWorkbook loadWorkbook() throws IOException {
+        try (InputStream is = EsvExcelReaderImpl.class.getResourceAsStream(GOVERNMENT_BODY_EXCEL)) {
+            if (is == null) {
+                throw new IOException("Failed to load resource: " + GOVERNMENT_BODY_EXCEL);
+            }
+            return new HSSFWorkbook(is);
+        }
+    }
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(EsvExcelReaderImpl.class);
+    /**
+     * The Interface SheetProcessor.
+     */
+    @FunctionalInterface
+    private interface SheetProcessor {
+        
+        /**
+         * Process.
+         *
+         * @param sheet the sheet
+         * @param year the year
+         */
+        void process(HSSFSheet sheet, int year);
+    }
 
-	/**
-	 * Instantiates a new esv excel reader impl.
-	 */
-	public EsvExcelReaderImpl() {
-		super();
-	}
+    /**
+     * Process sheets.
+     *
+     * @param workbook the workbook
+     * @param processor the processor
+     */
+    private void processSheets(HSSFWorkbook workbook, SheetProcessor processor) {
+        for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
+            final HSSFSheet sheet = workbook.getSheetAt(i);
+            final String sheetName = sheet.getSheetName();
 
-	@Override
-	public Map<Integer, List<GovernmentBodyAnnualSummary>> getDataPerMinistry(final String name) {
-		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = new TreeMap<>();
-		try {
-			final HSSFWorkbook myWorkBook = createGovermentBodyWorkBook();
+            if (sheetName.chars().allMatch(Character::isDigit)) {
+                processor.process(sheet, Integer.parseInt(sheetName));
+            }
+        }
+    }
 
-			for (int sheetNr = 0; sheetNr < myWorkBook.getNumberOfSheets(); sheetNr++) {
-				addMinistryPerYearToMap(name, map, myWorkBook.getSheetAt(sheetNr));
-			}
+    /**
+     * Process ministry sheet.
+     *
+     * @param sheet the sheet
+     * @param ministryName the ministry name
+     * @return the list
+     */
+    private List<GovernmentBodyAnnualSummary> processMinistrySheet(HSSFSheet sheet, String ministryName) {
+        return StreamSupport.stream(sheet.spliterator(), false)
+            .skip(1) // Skip header row
+            .filter(r -> r instanceof Row)
+            .map(r -> r)
+            .filter(row -> isValidRow(row))
+            .map(row -> createSummary(row, Integer.parseInt(sheet.getSheetName())))
+            .filter(summary -> ministryName == null ||
+                             ministryName.equalsIgnoreCase(summary.getMinistry()))
+            .collect(Collectors.toList());
+    }
 
-			myWorkBook.close();
-		} catch (final IOException e) {
-			LOGGER.warn("Problem loading", e);
-		}
+    /**
+     * Process government body sheet.
+     *
+     * @param sheet the sheet
+     * @param year the year
+     * @param bodyName the body name
+     * @return the optional
+     */
+    private Optional<GovernmentBodyAnnualSummary> processGovernmentBodySheet(
+            HSSFSheet sheet, int year, String bodyName) {
+        return StreamSupport.stream(sheet.spliterator(), false)
+            .skip(1) // Skip header row
+            .filter(row -> isValidRow(row))
+            .map(row -> createSummary(row, year))
+            .filter(summary -> bodyName == null ||
+                             bodyName.equalsIgnoreCase(summary.getName()))
+            .findFirst();
+    }
 
-		return map;
-	}
+    /**
+     * Checks if is valid row.
+     *
+     * @param row the row
+     * @return true, if is valid row
+     */
+    private boolean isValidRow(Row row) {
+        return row != null && row.getLastCellNum() >= EXPECTED_COLUMN_LENGTH;
+    }
 
-	private static HSSFWorkbook createGovermentBodyWorkBook() throws IOException {
-		return new HSSFWorkbook(EsvExcelReaderImpl.class.getResourceAsStream("/Myndighetsinformation.xls"));
-	}
+    /**
+     * Creates the summary.
+     *
+     * @param row the row
+     * @param year the year
+     * @return the government body annual summary
+     */
+    private GovernmentBodyAnnualSummary createSummary(Row row, int year) {
+        return new GovernmentBodyAnnualSummary(
+            year,
+            COLUMNS[0].getValue(row),    // NAME
+            COLUMNS[1].getIntValue(row), // CONSECUTIVE_NUMBER
+            COLUMNS[2].getValue(row),    // GOVERNMENT_BODY_ID
+            COLUMNS[3].getValue(row),    // MCODE
+            COLUMNS[4].getValue(row),    // MINISTRY
+            COLUMNS[5].getValue(row),    // ORG_NUMBER
+            COLUMNS[6].getIntValue(row), // HEADCOUNT
+            COLUMNS[7].getIntValue(row), // ANNUAL_HEADCOUNT
+            COLUMNS[8].getValue(row),    // VAT
+            COLUMNS[9].getValue(row)     // COMMENT
+        );
+    }
 
-	/**
-	 * Adds the ministry per year to map.
-	 *
-	 * @param name
-	 *            the name
-	 * @param map
-	 *            the map
-	 * @param mySheet
-	 *            the my sheet
-	 */
-	private static void addMinistryPerYearToMap(final String name,
-			final Map<Integer, List<GovernmentBodyAnnualSummary>> map, final HSSFSheet mySheet) {
-		if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
-
-			final int year = Integer.parseInt(mySheet.getSheetName());
-
-			final List<GovernmentBodyAnnualSummary> yearList = new ArrayList<>();
-			final Iterator<Row> rowIterator = mySheet.iterator();
-
-			// Skip header row, ignore first
-			rowIterator.next();
-
-			while (rowIterator.hasNext()) {
-				addGovernmentBodyAnnualSummaryToList(name, year, yearList, rowIterator.next());
-			}
-			map.put(year, yearList);
-		}
-	}
-
-	/**
-	 * Adds the government body annual summary to list.
-	 *
-	 * @param name
-	 *            the name
-	 * @param year
-	 *            the year
-	 * @param yearList
-	 *            the year list
-	 * @param row
-	 *            the row
-	 */
-	private static void addGovernmentBodyAnnualSummaryToList(final String name, final int year,
-			final List<GovernmentBodyAnnualSummary> yearList, final Row row) {
-		if (row.getLastCellNum() >= EXPECTED_COLUMN_LENGTH) {
-
-			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = createGovernmentBodyAnnualSummaryFromRow(
-					year, row);
-
-			if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getMinistry())) {
-				yearList.add(governmentBodyAnnualSummary);
-			}
-		}
-	}
-
-	/**
-	 * Gets the integer.
-	 *
-	 * @param str
-	 *            the str
-	 * @return the integer
-	 */
-	private static int getInteger(final String str) {
-		if (str == null || str.trim().length() == 0) {
-			return 0;
-		} else {
-			return Integer.parseInt(str);
-		}
-	}
-
-	@Override
-	public Map<Integer, GovernmentBodyAnnualSummary> getDataPerGovernmentBody(final String name) {
-		final Map<Integer, GovernmentBodyAnnualSummary> map = new TreeMap<>();
-		try {
-			final HSSFWorkbook myWorkBook = createGovermentBodyWorkBook();
-
-			for (int sheetNr = 0; sheetNr < myWorkBook.getNumberOfSheets(); sheetNr++) {
-				final HSSFSheet mySheet = myWorkBook.getSheetAt(sheetNr);
-
-				addDataForYearToMap(name, map, mySheet);
-			}
-			myWorkBook.close();
-		} catch (
-
-		final IOException e) {
-			LOGGER.warn("Problem loading", e);
-		}
-
-		return map;
-	}
-
-	/**
-	 * Adds the data for year to map.
-	 *
-	 * @param name
-	 *            the name
-	 * @param map
-	 *            the map
-	 * @param mySheet
-	 *            the my sheet
-	 */
-	private static void addDataForYearToMap(final String name, final Map<Integer, GovernmentBodyAnnualSummary> map,
-			final HSSFSheet mySheet) {
-		if (mySheet.getSheetName().chars().allMatch(Character::isDigit)) {
-			final int year = Integer.parseInt(mySheet.getSheetName());
-			final Iterator<Row> rowIterator = mySheet.iterator();
-
-			rowIterator.next();
-
-			while (rowIterator.hasNext()) {
-				addGovernmentBodyAnnualSummaryToMap(name, map, year, rowIterator.next());
-			}
-		}
-	}
-
-	/**
-	 * Adds the government body annual summary to map.
-	 *
-	 * @param name
-	 *            the name
-	 * @param map
-	 *            the map
-	 * @param year
-	 *            the year
-	 * @param row
-	 *            the row
-	 */
-	private static void addGovernmentBodyAnnualSummaryToMap(final String name, final Map<Integer, GovernmentBodyAnnualSummary> map,
-			final int year, final Row row) {
-		if (row.getLastCellNum() >= EXPECTED_COLUMN_LENGTH) {
-
-			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = createGovernmentBodyAnnualSummaryFromRow(
-					year, row);
-			if (name == null || name.equalsIgnoreCase(governmentBodyAnnualSummary.getName())) {
-				map.put(year, governmentBodyAnnualSummary);
-			}
-		}
-	}
-
-	/**
-	 * Creates the government body annual summary from row.
-	 *
-	 * @param year
-	 *            the year
-	 * @param row
-	 *            the row
-	 * @return the government body annual summary
-	 */
-	private static GovernmentBodyAnnualSummary createGovernmentBodyAnnualSummaryFromRow(final int year, final Row row) {
-		return new GovernmentBodyAnnualSummary(year, defaultValueIfNull(row.getCell(NAME_CELL)), getInteger(defaultValueIfNull(row.getCell(CONSECUTIVE_NUMBER_CELL))),
-				defaultValueIfNull(row.getCell(GOVERNMENT_BODY_ID_CELL)), defaultValueIfNull(row.getCell(MCODE_CELL)), defaultValueIfNull(row.getCell(MINISTRY_CELL)),
-				defaultValueIfNull(row.getCell(ORG_NUMBER_CELL)), getInteger(defaultValueIfNull(row.getCell(HEADCOUNT_CELL))), getInteger(defaultValueIfNull(row.getCell(ANNUAL_HEADCOUNT_CELL))),
-				defaultValueIfNull(row.getCell(VAT_CELL)), defaultValueIfNull(row.getCell(COMMENT_CELL)));
-	}
-
-	/**
-	 * Default value if null.
-	 *
-	 * @param cell
-	 *            the cell
-	 * @return the string
-	 */
-	private static String defaultValueIfNull(final Cell cell) {
-		if (cell != null) {
-			return cell.toString();
-		} else {
-			return "";
-		}
-	}
-
+    /**
+     * The Class EsvExcelReaderException.
+     */
+    public static class EsvExcelReaderException extends RuntimeException {
+        
+        /**
+         * Instantiates a new esv excel reader exception.
+         *
+         * @param message the message
+         * @param cause the cause
+         */
+        public EsvExcelReaderException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
 }

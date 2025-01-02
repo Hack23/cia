@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
 
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -100,7 +101,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
      * @return Unmodifiable list of year strings in format "YYYY/YY"
      */
     private static List<String> createAvailableYears() {
-        final int currentYear = LocalDate.now().getYear();
+        final int currentYear = LocalDate.now((ZoneOffset.UTC)).getYear();
         return IntStream.rangeClosed(2010, currentYear + 1)
             .mapToObj(year -> String.format(Locale.ENGLISH,"%d/%02d", year, (year + 1) % 100))
             .sorted(Comparator.reverseOrder()) // Most recent years first
