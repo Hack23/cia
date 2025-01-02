@@ -111,7 +111,7 @@
             "Type": "String"
         },
         "DebPackageUrl": {
-            "Default": "https://github.com/Hack23/cia/releases/download/2024.12.15/cia-dist-deb-2024.12.15.all.deb",
+            "Default": "https://github.com/Hack23/cia/releases/download/2025.1.2/cia-dist-deb-2025.1.2.all.deb",
             "Description": "The debian package url",
             "Type": "String",
             "MinLength": "8"
