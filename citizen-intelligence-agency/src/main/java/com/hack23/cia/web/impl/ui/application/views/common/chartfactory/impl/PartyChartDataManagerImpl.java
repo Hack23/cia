@@ -18,11 +18,9 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -30,7 +28,6 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.time.DateUtils;
 import org.dussan.vaadin.dcharts.DCharts;
 import org.dussan.vaadin.dcharts.base.elements.XYseries;
 import org.dussan.vaadin.dcharts.data.DataSeries;
@@ -49,9 +46,6 @@ import com.vaadin.ui.AbstractOrderedLayout;
 @Service
 public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImpl implements PartyChartDataManager {
 
-
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
 	/** The Constant NUMBER_BALLOTS. */
 	private static final String NUMBER_BALLOTS = "Number ballots";
@@ -77,19 +71,17 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 	 * Adds the party data.
 	 *
 	 * @param dataSeries       the data series
-	 * @param simpleDateFormat the simple date format
 	 * @param list             the list
-	 * @param t                the t
+	 * @param dataValueFunction the data value function
 	 */
-	private static void addPartyData(final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat,
-			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list, final Function<ViewRiksdagenVoteDataBallotPartySummaryDaily, Object> t) {
+	private static void addPartyData(final DataSeries dataSeries,
+			final List<ViewRiksdagenVoteDataBallotPartySummaryDaily> list, final Function<ViewRiksdagenVoteDataBallotPartySummaryDaily, Object> dataValueFunction) {
 		dataSeries.newSeries();
 		for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
 			if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
 				dataSeries.add(
-						simpleDateFormat
-								.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
-						t.apply(viewRiksdagenVoteDataBallotPartySummaryDaily));
+						DateUtils.formatDate(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
+						dataValueFunction.apply(viewRiksdagenVoteDataBallotPartySummaryDaily));
 			}
 		}
 	}
@@ -100,12 +92,11 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 	 *
 	 * @param dataValueCalculator the data value calculator
 	 * @param dataSeries          the data series
-	 * @param simpleDateFormat    the simple date format
 	 * @param series              the series
 	 * @param entry               the entry
 	 */
 	private void addBallotData(final DataValueCalculator dataValueCalculator, final DataSeries dataSeries,
-			final SimpleDateFormat simpleDateFormat, final Series series,
+			final Series series,
 			final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry) {
 		series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
 
@@ -114,8 +105,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 		for (final ViewRiksdagenVoteDataBallotPartySummaryDaily viewRiksdagenVoteDataBallotPartySummaryDaily : list) {
 			if (viewRiksdagenVoteDataBallotPartySummaryDaily != null) {
 				dataSeries.add(
-						simpleDateFormat
-								.format(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
+						DateUtils.formatDate(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()),
 								dataValueCalculator.getDataValue(viewRiksdagenVoteDataBallotPartySummaryDaily));
 			}
 		}
@@ -127,7 +117,7 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 	@Override
 	public void createPartyAgeChart(final AbstractOrderedLayout content) {
-		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> DateUtils.toCalendar(viewRiksdagenVoteDataBallotPartySummaryDaily.getEmbeddedId().getVoteDate()).get(Calendar.YEAR) - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
+		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> Calendar.getInstance().get(Calendar.YEAR) - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
 	}
 
 	/**
@@ -142,18 +132,16 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		final DataSeries dataSeries = new DataSeries();
 
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-
 		final Series series = new Series();
 
 		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
 
 			if (!"-".equals(entry.getKey())) {
-				addBallotData(dataValueCalculator, dataSeries, simpleDateFormat, series, entry);
+				addBallotData(dataValueCalculator, dataSeries, series, entry);
 			}
 		}
 
-		addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		ChartUtils.addChart(content,"Party ballot chart", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 
@@ -176,12 +164,10 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 			final DataSeries dataSeries = new DataSeries();
 
-			final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+			addPartyData(dataSeries, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
+			addPartyData(dataSeries, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyPercentageAbsent);
 
-			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
-			addPartyData(dataSeries, simpleDateFormat, list, ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyPercentageAbsent);
-
-			addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
+			ChartUtils.addChart(content,"Party result by", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
 		}
 	}
 
@@ -193,19 +179,17 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		final DataSeries dataSeries = new DataSeries();
 
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-
 		final Series series = new Series();
 
 		for (final Entry<String, List<ViewRiksdagenVoteDataBallotPartySummaryDaily>> entry : map.entrySet()) {
 			series.addSeries(new XYseries().setLabel(getPartyName(entry.getKey())));
-			addPartyData(dataSeries, simpleDateFormat, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
+			addPartyData(dataSeries, entry.getValue(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getPartyWonPercentage);
 		}
 
 		series.addSeries(new XYseries().setLabel(NUMBER_BALLOTS));
-		addPartyData(dataSeries, simpleDateFormat, getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getNumberBallots);
+		addPartyData(dataSeries, getMaxSizeViewRiksdagenVoteDataBallotPartySummaryDaily(), ViewRiksdagenVoteDataBallotPartySummaryDaily::getNumberBallots);
 
-		addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
+		ChartUtils.addChart(content,"Party winner by daily ballot average", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(), true);
 	}
 
 
