@@ -18,12 +18,14 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
-import java.util.Arrays;
+import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,6 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -53,66 +54,189 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentDecisionFlowPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
+    /** The Constant TITLE. */
+    private static final String TITLE = "Parliament Decision Flow";
 
-	@Autowired
-	private DecisionFlowChartManager decisionFlowChartManager;
+    /** The Constant SUBTITLE. */
+    private static final String SUBTITLE = "Legislative Pipelines";
 
-	/**
-	 * Instantiates a new parliament decision flow page mod content factory impl.
-	 */
-	public ParliamentDecisionFlowPageModContentFactoryImpl() {
-		super();
-	}
+    /** The Constant DESCRIPTION. */
+    private static final String DESCRIPTION = "Mapping legislative pipelines shaping national policies";
 
-	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout panelContent = createPanelContent();
-		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-		createPageHeader(panel, panelContent,
-			    "Parliament - Decision Flow",
-			    "Legislative Pipelines",
-			    "Mapping legislative pipelines shaping national policies.");
+    /** The Constant DEFAULT_YEAR. */
+    private static final String DEFAULT_YEAR = "2023/24";
+
+    /** The Constant YEAR_SELECTOR_LABEL. */
+    private static final String YEAR_SELECTOR_LABEL = "Select year";
+
+    /** The decision flow chart manager. */
+    @Autowired
+    private DecisionFlowChartManager decisionFlowChartManager;
+
+    /**
+     * Creates the content.
+     *
+     * @param parameters the parameters
+     * @param menuBar the menu bar
+     * @param panel the panel
+     * @return the layout
+     */
+    @Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
+    @Override
+    public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+        final VerticalLayout panelContent = createPanelContent();
+
+        setupMenuAndHeader(menuBar, panel, panelContent);
+        final String selectedYear = extractSelectedYear(parameters);
+        final Map<String, List<ViewRiksdagenCommittee>> committeeMap = loadCommitteeMap();
+
+        addYearSelector(panelContent, selectedYear);
+        addDecisionFlowChart(panelContent, committeeMap, selectedYear);
+        addDecisionSummary(panelContent, committeeMap, selectedYear);
+
+        recordPageVisit(parameters, selectedYear);
+
+        return panelContent;
+    }
+
+    /**
+     * Creates list of available years for selection.
+     * Goes from 2010/11 up to (currentYear+1)/(currentYear+2).
+     *
+     * @return Unmodifiable list of year strings in format "YYYY/YY"
+     */
+    private static List<String> createAvailableYears() {
+        final int currentYear = LocalDate.now().getYear();
+        return IntStream.rangeClosed(2010, currentYear + 1)
+            .mapToObj(year -> String.format("%d/%02d", year, (year + 1) % 100))
+            .sorted(Comparator.reverseOrder()) // Most recent years first
+            .collect(Collectors.collectingAndThen(
+                Collectors.toList(),
+                Collections::unmodifiableList
+            ));
+    }
 
 
-		String selectedYear = "2022/23";
-		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
-			selectedYear = parameters.substring(parameters.indexOf('[') + 1, parameters.lastIndexOf(']'));
-		}
+    /**
+     * Setup menu and header.
+     *
+     * @param menuBar the menu bar
+     * @param panel the panel
+     * @param panelContent the panel content
+     */
+    private void setupMenuAndHeader(MenuBar menuBar, Panel panel, VerticalLayout panelContent) {
+        getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
+        createPageHeader(panel, panelContent, TITLE, SUBTITLE, DESCRIPTION);
+    }
 
-		final DataContainer<ViewRiksdagenCommittee, String> dataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenCommittee.class);
-		final List<ViewRiksdagenCommittee> allCommittess = dataContainer.getAll();
+    /**
+     * Extract selected year.
+     *
+     * @param parameters the parameters
+     * @return the string
+     */
+    private String extractSelectedYear(String parameters) {
+        if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
+            return parameters.substring(
+                parameters.indexOf('[') + 1,
+                parameters.lastIndexOf(']')
+            );
+        }
+        return DEFAULT_YEAR;
+    }
 
-		final Map<String, List<ViewRiksdagenCommittee>> committeeMap = allCommittess.stream().collect(Collectors.groupingBy(c -> c.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)));
+    /**
+     * Load committee map.
+     *
+     * @return the map
+     */
+    private Map<String, List<ViewRiksdagenCommittee>> loadCommitteeMap() {
+        return getApplicationManager()
+            .getDataContainer(ViewRiksdagenCommittee.class)
+            .getAll()
+            .stream()
+            .collect(Collectors.groupingBy(
+                committee -> committee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)
+            ));
+    }
 
-		final ComboBox<String> comboBox = new ComboBox<>("Select year", Collections.unmodifiableList(Arrays.asList("2024/25","2023/24","2022/23","2021/22","2020/21","2019/20","2018/19","2017/18","2016/17","2015/16","2014/15","2013/14","2012/13","2011/12","2010/11")));
-		panelContent.addComponent(comboBox);
-		panelContent.setExpandRatio(comboBox, ContentRatio.SMALL);
-		comboBox.setSelectedItem(selectedYear);
-		comboBox.addValueChangeListener(new DecisionFlowValueChangeListener(NAME,""));
+    /**
+     * Adds the year selector.
+     *
+     * @param panelContent the panel content
+     * @param selectedYear the selected year
+     */
+    private void addYearSelector(VerticalLayout panelContent, String selectedYear) {
+        final ComboBox<String> yearSelector = new ComboBox<>(YEAR_SELECTOR_LABEL, createAvailableYears());
+        yearSelector.setWidth("200px");
+        yearSelector.setEmptySelectionAllowed(false);
+        yearSelector.setSelectedItem(selectedYear);
+        yearSelector.addValueChangeListener(new DecisionFlowValueChangeListener(NAME, ""));
 
-		final SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
-		panelContent.addComponent(chart);
-		panelContent.setExpandRatio(chart, ContentRatio.LARGE);
+        panelContent.addComponent(yearSelector);
+        panelContent.setExpandRatio(yearSelector, ContentRatio.SMALL);
+    }
 
-		final TextArea textarea = decisionFlowChartManager.createCommitteeeDecisionSummary(committeeMap,comboBox.getSelectedItem().orElse(selectedYear));
-		textarea.setSizeFull();
-		panelContent.addComponent(textarea);
-		panelContent.setExpandRatio(textarea, ContentRatio.SMALL_GRID);
+    /**
+     * Adds the decision flow chart.
+     *
+     * @param panelContent the panel content
+     * @param committeeMap the committee map
+     * @param selectedYear the selected year
+     */
+    private void addDecisionFlowChart(VerticalLayout panelContent,
+            Map<String, List<ViewRiksdagenCommittee>> committeeMap, String selectedYear) {
+        final SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap, selectedYear);
+        chart.setWidth("100%");
 
+        panelContent.addComponent(chart);
+        panelContent.setExpandRatio(chart, ContentRatio.LARGE);
+}
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, selectedYear);
+    /**
+     * Adds the decision summary.
+     *
+     * @param panelContent the panel content
+     * @param committeeMap the committee map
+     * @param selectedYear the selected year
+     */
+    private void addDecisionSummary(VerticalLayout panelContent,
+            Map<String, List<ViewRiksdagenCommittee>> committeeMap, String selectedYear) {
+        final TextArea summaryArea = decisionFlowChartManager.createCommitteeeDecisionSummary(committeeMap, selectedYear);
+        summaryArea.setSizeFull();
+        summaryArea.setReadOnly(true);
 
-		return panelContent;
+        panelContent.addComponent(summaryArea);
+        panelContent.setExpandRatio(summaryArea, ContentRatio.SMALL_GRID);
+    }
 
-	}
+    /**
+     * Record page visit.
+     *
+     * @param parameters the parameters
+     * @param selectedYear the selected year
+     */
+    private void recordPageVisit(String parameters, String selectedYear) {
+        getPageActionEventHelper().createPageEvent(
+            ViewAction.VISIT_PARLIAMENT_RANKING_VIEW,
+            ApplicationEventGroup.USER,
+            NAME,
+            parameters,
+            selectedYear
+        );
+    }
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.DECISION_FLOW_CHART.toString());
-	}
-
+    /**
+     * Matches.
+     *
+     * @param page the page
+     * @param parameters the parameters
+     * @return true, if successful
+     */
+    @Override
+    public boolean matches(final String page, final String parameters) {
+        return NAME.equals(page)
+            && StringUtils.contains(parameters, PageMode.CHARTS.toString())
+            && parameters.contains(ChartIndicators.DECISION_FLOW_CHART.toString());
+    }
 }
