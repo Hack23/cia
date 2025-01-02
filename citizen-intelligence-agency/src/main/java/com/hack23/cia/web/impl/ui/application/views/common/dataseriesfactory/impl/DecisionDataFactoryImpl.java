@@ -18,11 +18,13 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -31,37 +33,40 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData;
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer;
 import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.DecisionDataFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.ProposalCommitteeeSummary;
 
 /**
- * The Class DecisionDataFactoryImpl.
+ * Implementation of DecisionDataFactory for processing parliamentary committee decisions.
+ * Handles document status data and creates summaries of committee proposals.
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 
-    /** Common text constants for doc type. */
-    private static final String PROP = "Proposition";
+    /**  Document type constants. */
+    private static final String PROPOSITION = "Proposition";
 
     /** The Constant MOTION. */
     private static final String MOTION = "Motion";
 
-    /** Known min and max length constraints from original code. */
+    /** The Constant PROP_TYPE. */
+    private static final String PROP_TYPE = "prop";
+
+    /**  Chamber text length constraints for valid proposals. */
     private static final int CHAMBER_MIN_LENGTH = "avslag".length(); // 6
 
     /** The Constant CHAMBER_MAX_LENGTH. */
     private static final int CHAMBER_MAX_LENGTH = "återförvisning till utskottet".length(); // 29
 
     /**
-     * Pattern for cleaning up the 'chamber' string. Aggregates multiple .replace() calls
-     * into a single regex. This pattern will remove or replace these tokens:
-     *  (UTSKOTTET), ( or ), UTBSKOTTET, UBTSKOTTET, UTKOTTET
-     *
-     * We'll do it case-insensitively, but remember we do an uppercase pass anyway.
+     * Pattern for standardizing committee decision text.
+     * Removes or replaces parliamentary specific tokens:
+     * - (UTSKOTTET)
+     * - Parentheses
+     * - Various committee spelling variants
      */
-    private static final Pattern CLEANUP_PATTERN = Pattern.compile(
+    private static final Pattern COMMITTEE_TEXT_CLEANUP_PATTERN = Pattern.compile(
         "(\\(UTSKOTTET\\))|(\\()|(\\))|(UTBSKOTTET)|(UBTSKOTTET)|(UTKOTTET)",
         Pattern.CASE_INSENSITIVE
     );
@@ -71,134 +76,155 @@ public final class DecisionDataFactoryImpl implements DecisionDataFactory {
     private ApplicationManager applicationManager;
 
     /**
-     * Instantiates a new decision data factory impl.
-     */
-    public DecisionDataFactoryImpl() {
-        super();
-    }
-
-    /**
-     * Creates the committee summary.
+     * Creates committee summaries for a specific processing location.
      *
-     * @param processedIn the processed in
-     * @return the list
+     * @param processedIn the location where proposals were processed
+     * @return List of committee summaries
+     * @throws IllegalArgumentException if processedIn is blank
      */
     @Override
     public List<ProposalCommitteeeSummary> createCommitteeSummary(final String processedIn) {
-        final List<ProposalCommitteeeSummary> summary = new ArrayList<>();
+        validateProcessedIn(processedIn);
 
-        // NOTE: Still loads ALL DocumentStatusContainer rows
-        final DataContainer<DocumentStatusContainer, Long> dataContainer =
-                applicationManager.getDataContainer(DocumentStatusContainer.class);
-
-        // For each doc, potentially add a summary
-        for (final DocumentStatusContainer document : dataContainer.getAll()) {
-            addProposalCommitteeeSummary(processedIn, summary, document);
-        }
-        return summary;
+        return applicationManager.getDataContainer(DocumentStatusContainer.class)
+                .getAll()
+                .parallelStream()
+                .filter(doc -> isValidDocument(doc, processedIn))
+                .map(doc -> createProposalSummary(doc))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     /**
-     * Check and build a summary if the document qualifies based on 'processedIn' and
-     * the proposal/chamber constraints.
+     * Validates the processedIn parameter.
      *
-     * @param processedIn the processed in
-     * @param summary the summary
-     * @param document the document
+     * @param processedIn location to validate
+     * @throws IllegalArgumentException if validation fails
      */
-    private static void addProposalCommitteeeSummary(final String processedIn,
-            final List<ProposalCommitteeeSummary> summary, final DocumentStatusContainer document) {
+    private void validateProcessedIn(final String processedIn) {
+        if (StringUtils.isBlank(processedIn)) {
+            throw new IllegalArgumentException("ProcessedIn parameter cannot be blank");
+        }
+    }
 
-        // Null checks on 'documentProposal' and 'proposal'
-        if (document.getDocumentProposal() == null ||
+    /**
+     * Validates if a document meets the criteria for processing.
+     *
+     * @param document the document to validate
+     * @param processedIn the required processing location
+     * @return true if document is valid for processing
+     */
+    private boolean isValidDocument(final DocumentStatusContainer document, final String processedIn) {
+        if (document == null || document.getDocumentProposal() == null ||
             document.getDocumentProposal().getProposal() == null) {
-            return;
+            return false;
         }
 
         final DocumentProposalData proposal = document.getDocumentProposal().getProposal();
-        final String chamber = proposal.getChamber();
-        // Are we processed in the correct place?
-        if ((chamber == null) || proposal.getProcessedIn() == null || proposal.getProcessedIn().isEmpty()) {
-            return;
-        }
-        // Do we have a non-empty 'committee'?
-        // Does 'processedIn' match?
-        if (proposal.getCommittee() == null || proposal.getCommittee().isEmpty() || !proposal.getProcessedIn().contains(processedIn)) {
-            return;
-        }
-        // Is the chamber length within the specified min/max?
-        final int length = chamber.length();
-        if (length < CHAMBER_MIN_LENGTH || length > CHAMBER_MAX_LENGTH) {
-            return;
-        }
-
-        // If all checks pass, add the summary
-        summary.add(new ProposalCommitteeeSummary(
-            getCommitteeShortName(proposal),
-            getDocumentName(document),
-            cleanupDecision(chamber),
-            document.getDocument().getHangarId(),
-            proposal.getWording(),
-            proposal.getWording2(),
-            proposal.getDecisionType()
-        ));
+        return isValidProposal(proposal, processedIn);
     }
 
     /**
-     * Cleanup the 'chamber' string by uppercasing, removing tokens via regex,
-     * and normalizing "UTKOTTET" to "UTSKOTTET" if it appears alone.
+     * Validates proposal data for processing requirements.
      *
-     * @param chamber the chamber
-     * @return the string
+     * @param proposal the proposal to validate
+     * @param processedIn the required processing location
+     * @return true if proposal meets requirements
      */
-    private static String cleanupDecision(final String chamber) {
-        // Convert to uppercase English
-        String upper = chamber.toUpperCase(Locale.ENGLISH);
-
-        // Remove or replace known substrings with the pattern
-        upper = CLEANUP_PATTERN.matcher(upper).replaceAll("");
-
-        // If we find "UTKOTTET" alone, replace it with "UTSKOTTET"
-        // (We already removed parentheses above).
-        if (upper.contains("UTKOTTET")) {
-            upper = upper.replace("UTKOTTET", "UTSKOTTET");
+    private boolean isValidProposal(final DocumentProposalData proposal, final String processedIn) {
+        if (proposal == null || StringUtils.isBlank(proposal.getChamber()) ||
+            StringUtils.isBlank(proposal.getProcessedIn()) ||
+            StringUtils.isBlank(proposal.getCommittee())) {
+            return false;
         }
-        return upper.trim();
+
+        final int chamberLength = proposal.getChamber().length();
+        return chamberLength >= CHAMBER_MIN_LENGTH &&
+               chamberLength <= CHAMBER_MAX_LENGTH &&
+               proposal.getProcessedIn().contains(processedIn);
     }
 
     /**
-     * Extract the committee short name from 'processedIn' by removing digits
-     * and certain punctuation, converting to uppercase, and truncating if comma found.
+     * Creates a ProposalCommitteeeSummary from a valid document.
      *
-     * @param proposal the proposal
-     * @return the committee short name
+     * @param document source document
+     * @return ProposalCommitteeeSummary or null if invalid
      */
-    private static String getCommitteeShortName(final DocumentProposalData proposal) {
-        // e.g. "UU12" => "UU" then uppercase => "UU"
-        final String upperCase = proposal.getProcessedIn()
-                                   .replaceAll("\\d", "")
-                                   .replace("/:", "")
-                                   .toUpperCase(Locale.ENGLISH);
-        // If there's a comma, only take up to that comma
-        final int commaIndex = upperCase.indexOf(',');
-        return (commaIndex >= 0) ? upperCase.substring(0, commaIndex) : upperCase;
+    private ProposalCommitteeeSummary createProposalSummary(final DocumentStatusContainer document) {
+        try {
+            final DocumentProposalData proposal = document.getDocumentProposal().getProposal();
+            return new ProposalCommitteeeSummary(
+                extractCommitteeShortName(proposal),
+                determineDocumentType(document),
+                standardizeDecisionText(proposal.getChamber()),
+                document.getDocument().getHangarId(),
+                proposal.getWording(),
+                proposal.getWording2(),
+                proposal.getDecisionType()
+            );
+        } catch (final Exception e) {
+            // Log error if needed
+            return null;
+        }
     }
 
     /**
-     * Return a human-readable doc name: "Proposition" if docType="prop",
-     * or doc.getSubType() if subType is long enough, else "Motion".
+     * Standardizes the decision text by removing variations and normalizing format.
      *
-     * @param document the document
-     * @return the document name
+     * @param chamber the original chamber text
+     * @return standardized decision text
      */
-    private static String getDocumentName(final DocumentStatusContainer document) {
-        if ("prop".equalsIgnoreCase(document.getDocument().getDocumentType())) {
-            return PROP;
-        } else if (document.getDocument().getSubType() != null
-                   && document.getDocument().getSubType().length() > MOTION.length()) {
-            return document.getDocument().getSubType();
-        } else {
-            return MOTION;
+    private static String standardizeDecisionText(final String chamber) {
+        if (StringUtils.isBlank(chamber)) {
+            return "";
         }
+
+        String standardized = chamber.toUpperCase(Locale.ENGLISH);
+        standardized = COMMITTEE_TEXT_CLEANUP_PATTERN.matcher(standardized).replaceAll("");
+
+        // Normalize committee spelling
+        if (standardized.contains("UTKOTTET")) {
+            standardized = standardized.replace("UTKOTTET", "UTSKOTTET");
+        }
+
+        return standardized.trim();
+    }
+
+    /**
+     * Extracts the standardized committee short name.
+     *
+     * @param proposal source proposal
+     * @return committee short name
+     */
+    private static String extractCommitteeShortName(final DocumentProposalData proposal) {
+        final String processedIn = proposal.getProcessedIn();
+        if (StringUtils.isBlank(processedIn)) {
+            return "";
+        }
+
+        final String shortName = processedIn
+            .replaceAll("\\d", "")
+            .replace("/:", "")
+            .toUpperCase(Locale.ENGLISH);
+
+        final int commaIndex = shortName.indexOf(',');
+        return (commaIndex >= 0) ? shortName.substring(0, commaIndex) : shortName;
+    }
+
+    /**
+     * Determines the human-readable document type.
+     *
+     * @param document source document
+     * @return document type string
+     */
+    private static String determineDocumentType(final DocumentStatusContainer document) {
+        if (PROP_TYPE.equalsIgnoreCase(document.getDocument().getDocumentType())) {
+            return PROPOSITION;
+        }
+
+        final String subType = document.getDocument().getSubType();
+        return (subType != null && subType.length() > MOTION.length())
+               ? subType
+               : MOTION;
     }
 }
