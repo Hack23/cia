@@ -77,25 +77,25 @@ public final class PartySupportsChartDataManagerImpl extends AbstractChartDataMa
 	}
 
 	@Override
-	public void createPartyChart(final AbstractOrderedLayout content, final String partyId) {
+	public void createPartyChart(final AbstractOrderedLayout layout, final String partyId) {
 
 		final DataContainer<ViewRiksdagenPartyBallotSupportAnnualSummary, ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyBallotSupportAnnualSummary.class);
 
-		final List<ViewRiksdagenPartyBallotSupportAnnualSummary> list = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.class,
+		final List<ViewRiksdagenPartyBallotSupportAnnualSummary> partySummaries = dataContainer.findListByEmbeddedProperty(ViewRiksdagenPartyBallotSupportAnnualSummary.class,
 				ViewRiksdagenPartyBallotSupportAnnualSummary_.embeddedId,
 				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId.class,
 				ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId_.party, partyId);
 
-		final Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> map = list.parallelStream().filter(Objects::nonNull)
-		.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getOtherParty()));
+		final Map<String, List<ViewRiksdagenPartyBallotSupportAnnualSummary>> partySummaryMap = partySummaries.parallelStream().filter(Objects::nonNull)
+		.collect(Collectors.groupingBy(summary -> summary.getEmbeddedId().getOtherParty()));
 
 		final Series series = new Series();
 		final DataSeries dataSeries = new DataSeries();
 
-		addData(map, series, dataSeries);
+		addData(partySummaryMap, series, dataSeries);
 
-		addChart(content,"Party support ballot", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
+		ChartUtils.addChart(layout,"Party support ballot", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPartyLineChart(series)).show(), true);
 	}
 
 }
