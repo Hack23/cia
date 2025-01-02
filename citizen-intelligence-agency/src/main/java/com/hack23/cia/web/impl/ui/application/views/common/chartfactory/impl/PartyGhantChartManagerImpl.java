@@ -58,14 +58,14 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 		return new StepMapping<>() {
 
 			@Override
-			public String getBackgroundColor(final ViewRiksdagenPartyRoleMember t) {
+			public String getBackgroundColor(final ViewRiksdagenPartyRoleMember roleMember) {
 				String color;
 
-				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("vice")) {
+				if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("vice")) {
 					color = "A8D999";
-				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("partiledare")
-						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("språkrör")
-						|| t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("partisekreterare")) {
+				} else if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("partiledare")
+						|| roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("språkrör")
+						|| roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("partisekreterare")) {
 					color = "3271c8";
 				} else {
 					color = "0eab76";
@@ -75,38 +75,38 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 			}
 
 			@Override
-			public Object getFirstName(final ViewRiksdagenPartyRoleMember t) {
-				return t.getFirstName();
+			public Object getFirstName(final ViewRiksdagenPartyRoleMember roleMember) {
+				return roleMember.getFirstName();
 			}
 
 			@Override
-			public Date getFromDate(final ViewRiksdagenPartyRoleMember t) {
-				return t.getFromDate();
+			public Date getFromDate(final ViewRiksdagenPartyRoleMember roleMember) {
+				return roleMember.getFromDate();
 			}
 
 			@Override
-			public Object getLastName(final ViewRiksdagenPartyRoleMember t) {
-				return t.getLastName();
+			public Object getLastName(final ViewRiksdagenPartyRoleMember roleMember) {
+				return roleMember.getLastName();
 			}
 
 			@Override
-			public String getOrg(final ViewRiksdagenPartyRoleMember t) {
-				return t.getDetail();
+			public String getOrg(final ViewRiksdagenPartyRoleMember roleMember) {
+				return roleMember.getDetail();
 			}
 
 			@Override
-			public String getParty(final ViewRiksdagenPartyRoleMember t) {
-				return t.getParty();
+			public String getParty(final ViewRiksdagenPartyRoleMember roleMember) {
+				return roleMember.getParty();
 			}
 
 			@Override
-			public String getRoleCode(final ViewRiksdagenPartyRoleMember t) {
-				return t.getRoleCode();
+			public String getRoleCode(final ViewRiksdagenPartyRoleMember roleMember) {
+				return roleMember.getRoleCode();
 			}
 
 			@Override
-			public Date getToDate(final ViewRiksdagenPartyRoleMember t) {
-				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
+			public Date getToDate(final ViewRiksdagenPartyRoleMember roleMember) {
+				return Optional.ofNullable(roleMember.getToDate()).orElseGet(Date::new);
 			}
 
 		};
@@ -118,8 +118,8 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 	private static final class RoleMapping implements Function<ViewRiksdagenPartyRoleMember, String> {
 
 		@Override
-		public String apply(final ViewRiksdagenPartyRoleMember t) {
-			return t.getRoleCode();
+		public String apply(final ViewRiksdagenPartyRoleMember roleMember) {
+			return roleMember.getRoleCode();
 		}
 	}
 
