@@ -25,14 +25,14 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
+import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.csv.CSVFormat;
@@ -51,207 +51,342 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 @Component
 final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmentBodyOperationOutcomeReader {
 
-	/** The Constant ORGANISATIONSNUMMER. */
-	private static final String ORGANISATIONSNUMMER = "Organisationsnummer";
+    /** The Constant ESV_BASE_URL. */
+    private static final String ESV_BASE_URL = "https://www.esv.se/OpenDataManadsUtfallPage/GetFile";
+    
+    /** The Constant CSV_DELIMITER. */
+    private static final String CSV_DELIMITER = ";";
 
-	/** The Constant MYNDIGHET. */
-	private static final String MYNDIGHET = "Myndighet";
+    /** The Constant CONNECT_TIMEOUT. */
+    private static final int CONNECT_TIMEOUT = 30_000;
+    
+    /** The Constant CHARSET. */
+    private static final String CHARSET = StandardCharsets.UTF_8.name();
 
-	/** The Constant ÅR. */
-	private static final String YEAR = "År";
+    /** The Constant SWEDISH_MONTH_NAMES. */
+    private static final Map<Month, String> SWEDISH_MONTH_NAMES = Map.ofEntries(
+    	    Map.entry(Month.JANUARY, "januari"),
+    	    Map.entry(Month.FEBRUARY, "februari"),
+    	    Map.entry(Month.MARCH, "mars"),
+    	    Map.entry(Month.APRIL, "april"),
+    	    Map.entry(Month.MAY, "maj"),
+    	    Map.entry(Month.JUNE, "juni"),
+    	    Map.entry(Month.JULY, "juli"),
+    	    Map.entry(Month.AUGUST, "augusti"),
+    	    Map.entry(Month.SEPTEMBER, "september"),
+    	    Map.entry(Month.OCTOBER, "oktober"),
+    	    Map.entry(Month.NOVEMBER, "november"),
+    	    Map.entry(Month.DECEMBER, "december")
+    	);
 
-	/** The Constant UTFALL_DECEMBER. */
-	private static final String UTFALL_DECEMBER = "Utfall december";
+    /**
+     * The Record MonthColumn.
+     *
+     * @param month the month
+     * @param columnName the column name
+     */
+    private record MonthColumn(Month month, String columnName) {}
 
-	/** The Constant UTFALL_NOVEMBER. */
-	private static final String UTFALL_NOVEMBER = "Utfall november";
+    /** The Constant MONTH_COLUMNS. */
+    private static final List<MonthColumn> MONTH_COLUMNS = Arrays.stream(Month.values())
+    	    .map(month -> new MonthColumn(month,
+    	        String.format(Locale.ENGLISH,"Utfall %s", SWEDISH_MONTH_NAMES.get(month))))
+    	    .collect(Collectors.toUnmodifiableList());
 
-	/** The Constant UTFALL_OKTOBER. */
-	private static final String UTFALL_OKTOBER = "Utfall oktober";
+    /** The Constant SPECIFIC_FIELDS. */
+    private static final Map<DataType, String[]> SPECIFIC_FIELDS = Map.of(
+        DataType.INCOME, new String[] {
+            "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp",
+            "Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn",
+            "Inkomsttitel", "Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn"
+        },
+        DataType.OUTGOING, new String[] {
+            "Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn",
+            "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn"
+        }
+    );
 
-	/** The Constant UTFALL_SEPTEMBER. */
-	private static final String UTFALL_SEPTEMBER = "Utfall september";
+    /** The esv excel reader. */
+    private final EsvExcelReader esvExcelReader;
 
-	/** The Constant UTFALL_AUGUSTI. */
-	private static final String UTFALL_AUGUSTI = "Utfall augusti";
+    /**
+     * Instantiates a new esv government body operation outcome reader impl.
+     *
+     * @param esvExcelReader the esv excel reader
+     */
+    @Autowired
+    public EsvGovernmentBodyOperationOutcomeReaderImpl(EsvExcelReader esvExcelReader) {
+        this.esvExcelReader = esvExcelReader;
+    }
 
-	/** The Constant UTFALL_JULI. */
-	private static final String UTFALL_JULI = "Utfall juli";
+    /**
+     * Read income csv.
+     *
+     * @return the list
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    @Override
+    public List<GovernmentBodyAnnualOutcomeSummary> readIncomeCsv() throws IOException {
+        return fetchData(DataType.INCOME);
+    }
 
-	/** The Constant UTFALL_JUNI. */
-	private static final String UTFALL_JUNI = "Utfall juni";
+    /**
+     * Read outgoing csv.
+     *
+     * @return the list
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    @Override
+    public List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {
+        return fetchData(DataType.OUTGOING);
+    }
 
-	/** The Constant UTFALL_MAJ. */
-	private static final String UTFALL_MAJ = "Utfall maj";
+    /**
+     * Fetch data.
+     *
+     * @param type the type
+     * @return the list
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    private List<GovernmentBodyAnnualOutcomeSummary> fetchData(DataType type) throws IOException {
+        final String url = buildUrl(type);
+        try (InputStream is = executeRequest(url)) {
+            return processZipStream(is, type);
+        }
+    }
 
-	/** The Constant UTFALL_APRIL. */
-	private static final String UTFALL_APRIL = "Utfall april";
+    /**
+     * Builds the url.
+     *
+     * @param type the type
+     * @return the string
+     */
+    private String buildUrl(DataType type) {
+        return String.format(Locale.ENGLISH,"%s?documentType=%s&fileType=Zip&fileName=M%%C3%%A5nadsutfall%%20%s%%20januari%%202006%%20-%%20november%%202024,%%20definitivt.zip&Year=2024&month=11&status=Definitiv",
+            ESV_BASE_URL,
+            type.getDocumentType(),
+            type.getUrlName());
+    }
 
-	/** The Constant UTFALL_MARS. */
-	private static final String UTFALL_MARS = "Utfall mars";
+    /**
+     * Execute request.
+     *
+     * @param url the url
+     * @return the input stream
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    private InputStream executeRequest(String url) throws IOException {
+        return Request.Get(url)
+            .connectTimeout(CONNECT_TIMEOUT)
+            .socketTimeout(CONNECT_TIMEOUT)
+            .execute()
+            .returnContent()
+            .asStream();
+    }
 
-	/** The Constant UTFALL_FEBRUARI. */
-	private static final String UTFALL_FEBRUARI = "Utfall februari";
+    /**
+     * Process zip stream.
+     *
+     * @param input the input
+     * @param type the type
+     * @return the list
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    private List<GovernmentBodyAnnualOutcomeSummary> processZipStream(InputStream input, DataType type)
+            throws IOException {
+        try (BufferedInputStream bis = new BufferedInputStream(input);
+             ZipInputStream zis = new ZipInputStream(bis)) {
 
-	/** The Constant UTFALL_JANUARI. */
-	private static final String UTFALL_JANUARI = "Utfall januari";
+            final List<GovernmentBodyAnnualOutcomeSummary> results = new ArrayList<>();
+            while ((zis.getNextEntry()) != null) {
+                results.addAll(processCsvContent(zis, type));
+            }
+            return Collections.unmodifiableList(results);
+        }
+    }
 
-	/** The Constant SPECIFIC_OUTGOING_FIELDS. */
-	private static final String[] SPECIFIC_OUTGOING_FIELDS = { "Inkomsttyp", "Inkomsttypsnamn", "Inkomsthuvudgrupp", "Inkomsthuvudgruppsnamn", "Inkomsttitelgrupp", "Inkomsttitelgruppsnamn", "Inkomsttitel", "Inkomsttitelsnamn", "Inkomstundertitel", "Inkomstundertitelsnamn"};
-	
-	/** The Constant SPECIFIC_INCOMING_FIELDS. */
-	private static final String[] SPECIFIC_INCOMING_FIELDS = { "Utgiftsområde", "Utgiftsområdesnamn", "Anslag", "Anslagsnamn", "Anslagspost", "Anslagspostsnamn", "Anslagsdelpost", "Anslagsdelpostsnamn"};
-	
-	/** The esv excel reader. */
-	@Autowired
-	private EsvExcelReader esvExcelReader;
+    /**
+     * Process csv content.
+     *
+     * @param is the is
+     * @param type the type
+     * @return the list
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    private List<GovernmentBodyAnnualOutcomeSummary> processCsvContent(InputStream is, DataType type)
+            throws IOException {
+        final CSVParser parser = CSVParser.parse(
+            new InputStreamReader(is, CHARSET),
+            CSVFormat.EXCEL.builder()
+                .setHeader()
+                .setDelimiter(CSV_DELIMITER)
+                .build()
+        );
 
-	private List<GovernmentBodyAnnualOutcomeSummary> incomeCsvValues;
+        final Map<Integer, Map<String, String>> ministryMap = createOrgMinistryMap(
+            esvExcelReader.getDataPerMinistry(null)
+        );
 
-	private List<GovernmentBodyAnnualOutcomeSummary> outGoingCsvValues;
+        return parser.getRecords().stream()
+            .skip(1) // Skip header
+            .filter(record -> record.get("Organisationsnummer") != null)
+            .map(record -> createSummary(record, type, ministryMap))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toUnmodifiableList());
+    }
 
-	/**
-	 * Instantiates a new esv government body operation outcome reader impl.
-	 */
-	public EsvGovernmentBodyOperationOutcomeReaderImpl() {
-		super();
-	}
+    /**
+     * Creates the summary.
+     *
+     * @param record the record
+     * @param type the type
+     * @param ministryMap the ministry map
+     * @return the government body annual outcome summary
+     */
+    private GovernmentBodyAnnualOutcomeSummary createSummary(
+            CSVRecord record,
+            DataType type,
+            Map<Integer, Map<String, String>> ministryMap) {
+        try {
+            final String orgNumber = record.get("Organisationsnummer");
+            final int year = Integer.parseInt(record.get("År"));
 
-	@Override
-	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readIncomeCsv() throws IOException {
-		if (incomeCsvValues == null) {
-			incomeCsvValues = readUsingZipInputStream(Request.Get(
-				"https://www.esv.se/OpenDataManadsUtfallPage/GetFile?documentType=Inkomst&fileType=Zip&fileName=M%C3%A5nadsutfall%20inkomster%20januari%202006%20-%20maj%202024,%20definitivt.zip&Year=2024&month=5&status=Definitiv")
-				.execute().returnContent().asStream(),SPECIFIC_OUTGOING_FIELDS);
-		}
-		return Collections.unmodifiableList(incomeCsvValues);
-	}
+            final GovernmentBodyAnnualOutcomeSummary summary = new GovernmentBodyAnnualOutcomeSummary(
+                record.get("Myndighet"),
+                orgNumber,
+                getMinistry(ministryMap, year, orgNumber),
+                year
+            );
 
-	@Override
-	public synchronized List<GovernmentBodyAnnualOutcomeSummary> readOutgoingCsv() throws IOException {
-		if (outGoingCsvValues == null) {
-			outGoingCsvValues = readUsingZipInputStream(Request.Get(
-				"https://www.esv.se/OpenDataManadsUtfallPage/GetFile?documentType=Utgift&fileType=Zip&fileName=M%C3%A5nadsutfall%20utgifter%20januari%202006%20-%20maj%202024,%20definitivt.zip&Year=2024&month=5&status=Definitiv")
-				.execute().returnContent().asStream(),SPECIFIC_INCOMING_FIELDS);
-		}
-		return Collections.unmodifiableList(outGoingCsvValues);
-	}
+            addFields(summary, record, type);
+            addMonthlyData(summary, record);
 
-	/**
-	 * Read using zip input stream.
-	 *
-	 * @param inputStream
-	 *            the input stream
-	 * @param specificFields
-	 *            the specific fields
-	 * @return the list
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	private List<GovernmentBodyAnnualOutcomeSummary> readUsingZipInputStream(final InputStream inputStream,final String[] specificFields) throws IOException {
-		final BufferedInputStream bis = new BufferedInputStream(inputStream);
-		final ZipInputStream is = new ZipInputStream(bis);
+            return summary;
+        } catch (final Exception e) {
+            return null;
+        }
+    }
 
-		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
-		try {
-			ZipEntry entry;
-			while ((entry = is.getNextEntry()) != null) {
-				list.addAll(readCsvContent(is,specificFields));
-			}
-		} finally {
-			is.close();
-		}
-		return list;
-	}
+    /**
+     * Adds the fields.
+     *
+     * @param summary the summary
+     * @param record the record
+     * @param type the type
+     */
+    private void addFields(
+            GovernmentBodyAnnualOutcomeSummary summary,
+            CSVRecord record,
+            DataType type) {
+        for (final String field : SPECIFIC_FIELDS.get(type)) {
+            final String value = record.get(field);
+            if (value != null) {
+                summary.addDescriptionField(field, value);
+            }
+        }
+    }
 
-	/**
-	 * Read csv content.
-	 *
-	 * @param is
-	 *            the is
-	 * @param specificFields
-	 *            the specific fields
-	 * @return the list
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	private List<GovernmentBodyAnnualOutcomeSummary> readCsvContent(final InputStream is,final String[] specificFields) throws IOException {
-		final CSVParser parser = CSVParser.parse(new InputStreamReader(is,StandardCharsets.UTF_8), CSVFormat.EXCEL.builder().setHeader().setDelimiter(';').build());
-		final List<CSVRecord> records = parser.getRecords();
-		records.remove(0);
+    /**
+     * Adds the monthly data.
+     *
+     * @param summary the summary
+     * @param record the record
+     */
+    private void addMonthlyData(
+            GovernmentBodyAnnualOutcomeSummary summary,
+            CSVRecord record) {
+        MONTH_COLUMNS.forEach(monthData -> {
+            final String value = record.get(monthData.columnName());
+            if (value != null && !value.isEmpty()) {
+                try {
+                    summary.addData(
+                        monthData.month().getValue(),
+                        Double.valueOf(value.replace(",", "."))
+                    );
+                } catch (final NumberFormatException ignored) {}
+            }
+        });
+    }
 
-		final Map<Integer, Map<String,String>> orgMinistryMap = createOrgMinistryMap(esvExcelReader.getDataPerMinistry(null));
+    /**
+     * Gets the ministry.
+     *
+     * @param ministryMap the ministry map
+     * @param year the year
+     * @param orgNumber the org number
+     * @return the ministry
+     */
+    private String getMinistry(Map<Integer, Map<String, String>> ministryMap,
+                             int year,
+                             String orgNumber) {
+        final Map<String, String> yearMap = ministryMap.get(year);
+        return yearMap != null ? yearMap.get(orgNumber.replace("-", "")) : null;
+    }
 
-		final List<GovernmentBodyAnnualOutcomeSummary> list = new ArrayList<>();
+    /**
+     * The Enum DataType.
+     */
+    private enum DataType {
+        
+        /** The income. */
+        INCOME("Inkomst", "inkomster"),
+        
+        /** The outgoing. */
+        OUTGOING("Utgift", "utgifter");
 
-		for (final CSVRecord csvRecord : records) {
+        /** The document type. */
+        private final String documentType;
+        
+        /** The url name. */
+        private final String urlName;
 
-			if (csvRecord.get(ORGANISATIONSNUMMER) != null) {
-				final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary = new GovernmentBodyAnnualOutcomeSummary(csvRecord.get(MYNDIGHET), csvRecord.get(ORGANISATIONSNUMMER), orgMinistryMap.get(Integer.valueOf(csvRecord.get(YEAR))).get(csvRecord.get(ORGANISATIONSNUMMER).replace("-", "")), Integer.parseInt(csvRecord.get(YEAR)));
+        /**
+         * Instantiates a new data type.
+         *
+         * @param documentType the document type
+         * @param urlName the url name
+         */
+        DataType(String documentType, String urlName) {
+            this.documentType = documentType;
+            this.urlName = urlName;
+        }
 
-				for (final String field : specificFields) {
-					governmentBodyAnnualOutcomeSummary.addDescriptionField(field,csvRecord.get(field));
-				}
+        /**
+         * Gets the document type.
+         *
+         * @return the document type
+         */
+        public String getDocumentType() {
+            return documentType;
+        }
 
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JANUARY.getValue(),csvRecord.get(UTFALL_JANUARI));
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.FEBRUARY.getValue(),csvRecord.get(UTFALL_FEBRUARI));
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.MARCH.getValue(),csvRecord.get(UTFALL_MARS));
+        /**
+         * Gets the url name.
+         *
+         * @return the url name
+         */
+        public String getUrlName() {
+            return urlName;
+        }
+    }
 
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.APRIL.getValue(),csvRecord.get(UTFALL_APRIL));
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.MAY.getValue(),csvRecord.get(UTFALL_MAJ));
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JUNE.getValue(),csvRecord.get(UTFALL_JUNI));
-
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.JULY.getValue(),csvRecord.get(UTFALL_JULI));
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.AUGUST.getValue(),csvRecord.get(UTFALL_AUGUSTI));
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.SEPTEMBER.getValue(),csvRecord.get(UTFALL_SEPTEMBER));
-
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.OCTOBER.getValue(),csvRecord.get(UTFALL_OKTOBER));
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.NOVEMBER.getValue(),csvRecord.get(UTFALL_NOVEMBER));
-				addResultForMonth(governmentBodyAnnualOutcomeSummary,Month.DECEMBER.getValue(),csvRecord.get(UTFALL_DECEMBER));
-
-				list.add(governmentBodyAnnualOutcomeSummary);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Creates the org ministry map.
-	 *
-	 * @param data the data
-	 * @return the map
-	 */
-	private static Map<Integer, Map<String, String>> createOrgMinistryMap(
-			final Map<Integer, List<GovernmentBodyAnnualSummary>> data) {
-		final Map<Integer, Map<String,String>> orgMinistryMap = new HashMap<>();
-
-		final Set<Entry<Integer, List<GovernmentBodyAnnualSummary>>> entrySet = data.entrySet();
-
-		for (final Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : entrySet) {
-			orgMinistryMap.put(entry.getKey(), entry.getValue().stream().collect(Collectors.groupingBy(t -> t.getOrgNumber().replace("-","") ,Collectors.collectingAndThen(
-                    Collectors.toList(),
-                    values -> values.get(0).getMinistry()))));
-		}
-
-		return orgMinistryMap;
-	}
-
-	/**
-	 * Adds the result for month.
-	 *
-	 * @param governmentBodyAnnualOutcomeSummary
-	 *            the government body annual outcome summary
-	 * @param month
-	 *            the month
-	 * @param value
-	 *            the value
-	 */
-	private static void addResultForMonth(final GovernmentBodyAnnualOutcomeSummary governmentBodyAnnualOutcomeSummary, final int month,
-			final String value) {
-		if (value != null && value.length() >0 ) {
-			governmentBodyAnnualOutcomeSummary.addData(month,Double.valueOf(value.replace(",", ".")));
-		}
-	}
-
+    /**
+     * Creates the org ministry map.
+     *
+     * @param data the data
+     * @return the map
+     */
+    private static Map<Integer, Map<String, String>> createOrgMinistryMap(
+            Map<Integer, List<GovernmentBodyAnnualSummary>> data) {
+        return data.entrySet().stream()
+            .collect(Collectors.toMap(
+                Entry::getKey,
+                e -> e.getValue().stream()
+                    .collect(Collectors.toMap(
+                        t -> t.getOrgNumber().replace("-", ""),
+                        GovernmentBodyAnnualSummary::getMinistry,
+                        (v1, v2) -> v1
+                    ))
+            ));
+    }
 }
