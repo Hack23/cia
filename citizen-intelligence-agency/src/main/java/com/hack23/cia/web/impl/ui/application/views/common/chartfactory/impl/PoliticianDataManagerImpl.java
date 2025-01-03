@@ -105,6 +105,12 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 
 
+	/**
+	 * Creates the person line chart.
+	 *
+	 * @param layout the layout
+	 * @param personId the person id
+	 */
 	@Override
 	public void createPersonLineChart(final AbstractOrderedLayout layout,final String personId) {
 

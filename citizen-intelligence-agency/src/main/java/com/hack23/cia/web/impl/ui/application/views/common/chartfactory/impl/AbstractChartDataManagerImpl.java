@@ -27,12 +27,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.vaadin.server.Page;
-import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.AbstractOrderedLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Panel;
 
 /**
  * The Class AbstractChartDataManagerImpl.

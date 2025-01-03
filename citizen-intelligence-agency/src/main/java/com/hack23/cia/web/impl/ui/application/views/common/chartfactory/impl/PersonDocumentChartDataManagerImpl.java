@@ -47,6 +47,7 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements PersonDocumentChartDataManager {
 
+	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document history";
 
 	/** The Constant EMPTY_STRING. */
@@ -96,6 +97,12 @@ public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataM
 		}
 	}
 
+	/**
+	 * Creates the person document history chart.
+	 *
+	 * @param layout the layout
+	 * @param personId the person id
+	 */
 	@Override
 	public void createPersonDocumentHistoryChart(final AbstractOrderedLayout layout, final String personId) {
 

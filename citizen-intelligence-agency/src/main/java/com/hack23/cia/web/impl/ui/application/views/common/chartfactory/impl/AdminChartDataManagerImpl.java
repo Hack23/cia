@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -89,6 +88,11 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 		}
 	}
 
+	/**
+	 * Creates the application action event page daily summary chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
 	public void createApplicationActionEventPageDailySummaryChart(final AbstractOrderedLayout layout) {
 
@@ -121,6 +125,13 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 				true);
 	}
 
+	/**
+	 * Creates the application action event page element daily summary chart.
+	 *
+	 * @param layout the layout
+	 * @param page the page
+	 * @param elementId the element id
+	 */
 	@Override
 	public void createApplicationActionEventPageElementDailySummaryChart(final AbstractOrderedLayout layout,
 			final String page, final String elementId) {
@@ -141,6 +152,12 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 				true);
 	}
 
+	/**
+	 * Creates the application action event page mode daily summary chart.
+	 *
+	 * @param layout the layout
+	 * @param page the page
+	 */
 	@Override
 	public void createApplicationActionEventPageModeDailySummaryChart(final AbstractOrderedLayout layout,
 			final String page) {
@@ -230,6 +247,11 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPageMode()));
 	}
 
+	/**
+	 * Creates the application session page daily summary chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
 	public void createApplicationSessionPageDailySummaryChart(final VerticalLayout layout) {
 

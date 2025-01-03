@@ -41,6 +41,7 @@ import com.vaadin.ui.TextArea;
 @Service
 public final class DecisionFlowChartManagerImpl implements DecisionFlowChartManager {
 
+    /** The decision data factory. */
     @Autowired
     private DecisionDataFactory decisionDataFactory;
 
@@ -51,6 +52,13 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         super();
     }
 
+    /**
+     * Creates the all decision flow.
+     *
+     * @param committeeSummaryMap the committee summary map
+     * @param reportMonth the report month
+     * @return the sankey chart
+     */
     @Override
     public SankeyChart createAllDecisionFlow(final Map<String, List<ViewRiksdagenCommittee>> committeeSummaryMap,
                                              final String reportMonth) {
@@ -84,6 +92,14 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         return sankeyChart;
     }
 
+    /**
+     * Creates the committee decision flow.
+     *
+     * @param viewRiksdagenCommittee the view riksdagen committee
+     * @param committeeSummaryMap the committee summary map
+     * @param reportMonth the report month
+     * @return the sankey chart
+     */
     @Override
     public SankeyChart createCommitteeDecisionFlow(final ViewRiksdagenCommittee viewRiksdagenCommittee,
                                                    final Map<String, List<ViewRiksdagenCommittee>> committeeSummaryMap,
@@ -108,6 +124,13 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         return sankeyChart;
     }
 
+    /**
+     * Creates the committeee decision summary.
+     *
+     * @param committeeSummaryMap the committee summary map
+     * @param reportMonth the report month
+     * @return the text area
+     */
     @Override
     public TextArea createCommitteeeDecisionSummary(final Map<String, List<ViewRiksdagenCommittee>> committeeSummaryMap,
                                                     final String reportMonth) {
@@ -134,6 +157,13 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         return area;
     }
 
+    /**
+     * Creates the committeee decision summary.
+     *
+     * @param viewRiksdagenCommittee the view riksdagen committee
+     * @param reportMonth the report month
+     * @return the text area
+     */
     @Override
     public TextArea createCommitteeeDecisionSummary(final ViewRiksdagenCommittee viewRiksdagenCommittee,
                                                     final String reportMonth) {

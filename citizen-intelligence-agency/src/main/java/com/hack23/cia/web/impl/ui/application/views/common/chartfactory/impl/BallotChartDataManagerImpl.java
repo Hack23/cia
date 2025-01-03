@@ -46,6 +46,13 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 	}
 
 
+	/**
+	 * Creates the chart.
+	 *
+	 * @param tab the tab
+	 * @param content the content
+	 * @param partySummaries the party summaries
+	 */
 	@Override
 	public void createChart(final Tab tab,final AbstractOrderedLayout content,final List<ViewRiksdagenVoteDataBallotPartySummary> partySummaries) {
 		final DataSeries dataSeries = new DataSeries();
@@ -78,6 +85,13 @@ public final class BallotChartDataManagerImpl extends AbstractChartDataManagerIm
 
 
 
+	/**
+	 * Creates the chart.
+	 *
+	 * @param tab the tab
+	 * @param content the content
+	 * @param ballotSummary the ballot summary
+	 */
 	@Override
 	public void createChart(final Tab tab,final AbstractOrderedLayout content,final ViewRiksdagenVoteDataBallotSummary ballotSummary) {
 		final DataSeries dataSeries = new DataSeries();

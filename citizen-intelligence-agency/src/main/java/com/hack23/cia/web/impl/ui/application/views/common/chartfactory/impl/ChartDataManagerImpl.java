@@ -39,6 +39,13 @@ public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl imp
 	}
 
 
+	/**
+	 * Creates the chart panel.
+	 *
+	 * @param layout the layout
+	 * @param chartDataSeries the chart data series
+	 * @param chartCaption the chart caption
+	 */
 	@Override
 	public void createChartPanel(final AbstractOrderedLayout layout,final DataSeries chartDataSeries, final String chartCaption) {
 

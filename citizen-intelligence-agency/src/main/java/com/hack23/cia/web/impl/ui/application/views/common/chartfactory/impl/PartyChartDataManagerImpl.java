@@ -18,8 +18,9 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -115,16 +116,21 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 
 
+	/**
+	 * Creates the party age chart.
+	 *
+	 * @param content the content
+	 */
 	@Override
 	public void createPartyAgeChart(final AbstractOrderedLayout content) {
-		createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> Calendar.getInstance().get(Calendar.YEAR) - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
+	        createPartyBallotChart(content,viewRiksdagenVoteDataBallotPartySummaryDaily -> ZonedDateTime.now(ZoneId.of("Europe/Stockholm")).getYear() - viewRiksdagenVoteDataBallotPartySummaryDaily.getPartyAvgBornYear().intValue());
 	}
 
 	/**
 	 * Creates the party ballot chart.
 	 *
-	 * @param dataValueCalculator
-	 *            the data value calculator
+	 * @param content the content
+	 * @param dataValueCalculator            the data value calculator
 	 * @return the d charts
 	 */
 	private void createPartyBallotChart(final AbstractOrderedLayout content,final DataValueCalculator dataValueCalculator) {
@@ -145,6 +151,11 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 	}
 
 
+	/**
+	 * Creates the party gender chart.
+	 *
+	 * @param content the content
+	 */
 	@Override
 	public void createPartyGenderChart(final AbstractOrderedLayout content) {
 
@@ -152,6 +163,12 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 
 	}
 
+	/**
+	 * Creates the party line chart.
+	 *
+	 * @param content the content
+	 * @param partyId the party id
+	 */
 	@Override
 	public void createPartyLineChart(final AbstractOrderedLayout content,final String partyId) {
 
@@ -172,6 +189,11 @@ public final class PartyChartDataManagerImpl extends AbstractChartDataManagerImp
 	}
 
 
+	/**
+	 * Creates the party winner chart.
+	 *
+	 * @param content the content
+	 */
 	@Override
 	public void createPartyWinnerChart(final AbstractOrderedLayout content) {
 

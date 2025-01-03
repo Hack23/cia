@@ -52,6 +52,14 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 		super();
 	}
 
+	/**
+	 * Creates the period data.
+	 *
+	 * @param outcomeMap the outcome map
+	 * @param variables the variables
+	 * @param chartDataSeries the chart data series
+	 * @param chartSeries the chart series
+	 */
 	private static void createPeriodData(final Map<String, List<GovernmentOperationPeriodOutcome>> outcomeMap, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries chartDataSeries,
 			final Series chartSeries) {
 		chartSeries.addSeries(new XYseries().setLabel(variables.toString()));
@@ -65,6 +73,11 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 		}
 	}
 
+	/**
+	 * Creates the government outcome chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
 	public void createGovernmentOutcomeChart(final AbstractOrderedLayout layout) {
 		final Map<String, List<GovernmentOperationPeriodOutcome>> outcomeMap = esvApi.getReport();

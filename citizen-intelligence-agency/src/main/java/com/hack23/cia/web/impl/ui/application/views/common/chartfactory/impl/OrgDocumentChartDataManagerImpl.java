@@ -50,8 +50,10 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements OrgDocumentChartDataManager {
 
+	/** The Constant DD_MMM_YYYY. */
 	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
+	/** The Constant DOCUMENT_HISTORY_BY_ORG. */
 	private static final String DOCUMENT_HISTORY_BY_ORG = "Document History by Org";
 
 	/** The Constant EMPTY_STRING. */
@@ -148,6 +150,12 @@ public final class OrgDocumentChartDataManagerImpl extends AbstractChartDataMana
 		}
 	}
 
+	/**
+	 * Creates the document history chart by org.
+	 *
+	 * @param content the content
+	 * @param org the org
+	 */
 	@Override
 	public void createDocumentHistoryChartByOrg(final AbstractOrderedLayout content, final String org) {
 		final String searchOrg = org.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING)

@@ -43,16 +43,31 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 		super();
 	}
 
+	/**
+	 * Gets the comparator.
+	 *
+	 * @return the comparator
+	 */
 	@Override
 	protected Comparator<ViewRiksdagenGovermentRoleMember> getComparator() {
 		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 	}
 
+	/**
+	 * Gets the role mapping.
+	 *
+	 * @return the role mapping
+	 */
 	@Override
 	protected Function<ViewRiksdagenGovermentRoleMember, String> getRoleMapping() {
 		return new RoleMapping();
 	}
 
+	/**
+	 * Gets the step mapping.
+	 *
+	 * @return the step mapping
+	 */
 	@Override
 	protected StepMapping<ViewRiksdagenGovermentRoleMember> getStepMapping() {
 		return new StepMapping<>() {
@@ -115,6 +130,12 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 	 */
 	private static final class RoleMapping implements Function<ViewRiksdagenGovermentRoleMember, String> {
 
+		/**
+		 * Apply.
+		 *
+		 * @param roleMember the role member
+		 * @return the string
+		 */
 		@Override
 		public String apply(final ViewRiksdagenGovermentRoleMember roleMember) {
 			return roleMember.getRoleCode()+ ".["+ roleMember.getPersonId() +"]." + roleMember.getDetail();

@@ -43,16 +43,31 @@ public final class CommitteeGhantChartManagerImpl
 		super();
 	}
 
+	/**
+	 * Gets the comparator.
+	 *
+	 * @return the comparator
+	 */
 	@Override
 	protected Comparator<ViewRiksdagenCommitteeRoleMember> getComparator() {
 		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 	}
 
+	/**
+	 * Gets the role mapping.
+	 *
+	 * @return the role mapping
+	 */
 	@Override
 	protected Function<ViewRiksdagenCommitteeRoleMember, String> getRoleMapping() {
 		return new RoleMapping();
 	}
 
+	/**
+	 * Gets the step mapping.
+	 *
+	 * @return the step mapping
+	 */
 	@Override
 	protected StepMapping<ViewRiksdagenCommitteeRoleMember> getStepMapping() {
 		return new StepMapping<>() {
@@ -115,6 +130,12 @@ public final class CommitteeGhantChartManagerImpl
 	 */
 	private static final class RoleMapping implements Function<ViewRiksdagenCommitteeRoleMember, String> {
 
+		/**
+		 * Apply.
+		 *
+		 * @param roleMember the role member
+		 * @return the string
+		 */
 		@Override
 		public String apply(final ViewRiksdagenCommitteeRoleMember roleMember) {
 			return roleMember.getRoleCode() +".["+ roleMember.getPersonId() +"]";

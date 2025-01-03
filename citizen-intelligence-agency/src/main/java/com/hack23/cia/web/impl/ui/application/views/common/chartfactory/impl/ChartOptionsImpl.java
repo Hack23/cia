@@ -279,6 +279,12 @@ public final class ChartOptionsImpl implements ChartOptions {
 		return legend;
 	}
 
+	/**
+	 * Creates the options country line chart.
+	 *
+	 * @param chartSeries the chart series
+	 * @return the options
+	 */
 	@Override
 	public Options createOptionsCountryLineChart(final Series chartSeries) {
 		final Axes chartAxes = new Axes().addAxis(new XYaxis().setRenderer(AxisRenderers.DATE)
@@ -290,18 +296,35 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
+	/**
+	 * Creates the options donout chart.
+	 *
+	 * @return the options
+	 */
 	@Override
 	public Options createOptionsDonoutChart() {
 		return new Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())
 				.setHighlighter(createHighLighter()).addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
+	/**
+	 * Creates the options donout chart with series.
+	 *
+	 * @param chartSeries the chart series
+	 * @return the options
+	 */
 	@Override
 	public Options createOptionsDonoutChartWithSeries(final Series chartSeries) {
 		return new Options().setSeriesDefaults(createDonoutSeriesDefault()).setLegend(createdLegendEnhancedInsideNorthWest())
 				.setHighlighter(createHighLighter()).addOption(chartSeries).addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
+	/**
+	 * Creates the options party line chart.
+	 *
+	 * @param chartSeries the chart series
+	 * @return the options
+	 */
 	@Override
 	public Options createOptionsPartyLineChart(final Series chartSeries) {
 		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
@@ -309,6 +332,12 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addOption(createLegendOutside()).addOption(createDefaultGrid());
 	}
 
+	/**
+	 * Creates the options person line chart.
+	 *
+	 * @param chartSeries the chart series
+	 * @return the options
+	 */
 	@Override
 	public Options createOptionsPersonLineChart(final Series chartSeries) {
 		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
@@ -316,6 +345,11 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addOption(createLegendOutside()).addOption(createDefaultGrid());
 	}
 
+	/**
+	 * Creates the options pie chart.
+	 *
+	 * @return the options
+	 */
 	@Override
 	public Options createOptionsPieChart() {
 		return new Options().setSeriesDefaults(createSeriesDefaultPieChart())
@@ -323,6 +357,12 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
+	/**
+	 * Creates the options XY date float legend inside one column.
+	 *
+	 * @param chartSeries the chart series
+	 * @return the options
+	 */
 	@Override
 	public Options createOptionsXYDateFloatLegendInsideOneColumn(final Series chartSeries) {
 		return new Options().addOption(new SeriesDefaults()).addOption(createAxesXYDateFloat())
@@ -330,6 +370,12 @@ public final class ChartOptionsImpl implements ChartOptions {
 				.addOption(createDefaultGrid()).addOption(createCursor());
 	}
 
+	/**
+	 * Creates the options XY date float log Y axis legend outside.
+	 *
+	 * @param chartSeries the chart series
+	 * @return the options
+	 */
 	@Override
 	public Options createOptionsXYDateFloatLogYAxisLegendOutside(final Series chartSeries) {
 		return new Options().addOption(new SeriesDefaults()).addOption(chartSeries).addOption(createAxesXYDateFloatLog())

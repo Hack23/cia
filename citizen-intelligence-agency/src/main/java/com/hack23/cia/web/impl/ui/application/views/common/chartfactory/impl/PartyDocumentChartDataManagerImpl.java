@@ -47,6 +47,7 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements PartyDocumentChartDataManager {
 
+	/** The Constant DOCUMENT_HISTORY_PARTY. */
 	private static final String DOCUMENT_HISTORY_PARTY = "Document history party";
 
 	/** The Constant EMPTY_STRING. */
@@ -97,6 +98,12 @@ public final class PartyDocumentChartDataManagerImpl extends AbstractChartDataMa
 		}
 	}
 
+	/**
+	 * Creates the document history party chart.
+	 *
+	 * @param layout the layout
+	 * @param partyShortCode the party short code
+	 */
 	@Override
 	public void createDocumentHistoryPartyChart(final AbstractOrderedLayout layout, final String partyShortCode) {
 		final DataSeries dataSeries = new DataSeries();

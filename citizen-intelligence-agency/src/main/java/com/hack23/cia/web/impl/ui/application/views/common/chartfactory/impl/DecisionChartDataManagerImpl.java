@@ -65,12 +65,11 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 	/**
 	 * Adds the decision type by org data.
 	 *
-	 * @param dateFormatter the date formatter
 	 * @param dataSeries the data series
 	 * @param series the series
 	 * @param decisionTypeMap the decision type map
 	 */
-	private static void addDecisionTypeByOrgData(final DateUtils dateFormatter, final DataSeries dataSeries,
+	private static void addDecisionTypeByOrgData(final DataSeries dataSeries,
 			final Series series, final Map<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> decisionTypeMap) {
 		for (final Entry<String, List<ViewRiksdagenCommitteeDecisionTypeOrgDailySummary>> decisionTypeEntry : decisionTypeMap.entrySet()) {
 			if (!EMPTY_STRING.equals(decisionTypeEntry.getKey())) {
@@ -82,13 +81,18 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 
 				dataSeries.newSeries();
 				for (final ViewRiksdagenCommitteeDecisionTypeOrgDailySummary item : decisionTypeEntry.getValue()) {
-						dataSeries.add(dateFormatter.formatDate(item.getEmbeddedId().getDecisionDate()),
+						dataSeries.add(DateUtils.formatDate(item.getEmbeddedId().getDecisionDate()),
 								item.getTotal());
 				}
 			}
 		}
 	}
 
+	/**
+	 * Creates the decision type chart.
+	 *
+	 * @param content the content
+	 */
 	@Override
 	public void createDecisionTypeChart(final AbstractOrderedLayout content) {
 
@@ -118,6 +122,12 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 				true);
 	}
 
+	/**
+	 * Creates the decision type chart.
+	 *
+	 * @param content the content
+	 * @param org the org
+	 */
 	@Override
 	public void createDecisionTypeChart(final AbstractOrderedLayout content, final String org) {
 
@@ -135,7 +145,7 @@ public final class DecisionChartDataManagerImpl extends AbstractChartDataManager
 					.filter(t -> t != null && t.getEmbeddedId().getDecisionDate() != null)
 					.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getDecisionType()));
 
-			addDecisionTypeByOrgData(DateUtils::formatDate, dataSeries, series, decisionTypeMap);
+			addDecisionTypeByOrgData(dataSeries, series, decisionTypeMap);
 		}
 
 		addChart(content, "Org Decision type daily summary",

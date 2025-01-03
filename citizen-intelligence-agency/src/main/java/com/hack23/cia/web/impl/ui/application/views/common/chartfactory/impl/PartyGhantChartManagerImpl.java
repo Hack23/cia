@@ -43,16 +43,31 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 		super();
 	}
 
+	/**
+	 * Gets the comparator.
+	 *
+	 * @return the comparator
+	 */
 	@Override
 	protected Comparator<ViewRiksdagenPartyRoleMember> getComparator() {
 		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 	}
 
+	/**
+	 * Gets the role mapping.
+	 *
+	 * @return the role mapping
+	 */
 	@Override
 	protected Function<ViewRiksdagenPartyRoleMember, String> getRoleMapping() {
 		return new RoleMapping();
 	}
 
+	/**
+	 * Gets the step mapping.
+	 *
+	 * @return the step mapping
+	 */
 	@Override
 	protected StepMapping<ViewRiksdagenPartyRoleMember> getStepMapping() {
 		return new StepMapping<>() {
@@ -117,6 +132,12 @@ public final class PartyGhantChartManagerImpl extends AbstractGhantChartManagerI
 	 */
 	private static final class RoleMapping implements Function<ViewRiksdagenPartyRoleMember, String> {
 
+		/**
+		 * Apply.
+		 *
+		 * @param roleMember the role member
+		 * @return the string
+		 */
 		@Override
 		public String apply(final ViewRiksdagenPartyRoleMember roleMember) {
 			return roleMember.getRoleCode();

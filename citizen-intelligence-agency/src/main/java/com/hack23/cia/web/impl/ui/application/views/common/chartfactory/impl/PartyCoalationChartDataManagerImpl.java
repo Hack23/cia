@@ -76,6 +76,12 @@ public final class PartyCoalationChartDataManagerImpl extends AbstractChartDataM
 		}
 	}
 
+	/**
+	 * Creates the party chart.
+	 *
+	 * @param layout the layout
+	 * @param partyId the party id
+	 */
 	@Override
 	public void createPartyChart(final AbstractOrderedLayout layout, final String partyId) {
 

@@ -219,11 +219,22 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 				true);
 	}
 
+	/**
+	 * Creates the government body expenditure summary chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
 	public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout) {
 		addAnnualSummary(esvApi.getGovernmentBodyReportByField(EXPENDITURE_GROUP_NAME), layout, ANNUAL_EXPENDITURE);
 	}
 
+	/**
+	 * Creates the government body expenditure summary chart.
+	 *
+	 * @param layout the layout
+	 * @param governmentBodyName the government body name
+	 */
 	@Override
 	public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout, final String governmentBodyName) {
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> annualOutcomeSummaries = esvApi.getGovernmentBodyReport().get(governmentBodyName)
@@ -233,6 +244,11 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 		addAnnualData(layout, governmentBodyName, ANNUAL_EXPENDITURE, annualOutcomeSummaries);
 	}
 
+	/**
+	 * Creates the government body headcount summary chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
 	public void createGovernmentBodyHeadcountSummaryChart(final VerticalLayout layout) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
@@ -255,6 +271,12 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	}
 
 
+	/**
+	 * Creates the government body headcount summary chart.
+	 *
+	 * @param layout the layout
+	 * @param governmentBodyName the government body name
+	 */
 	@Override
 	public void createGovernmentBodyHeadcountSummaryChart(final VerticalLayout layout, final String governmentBodyName) {
 		final Map<Integer, GovernmentBodyAnnualSummary> map = esvApi.getDataPerGovernmentBody(governmentBodyName);
@@ -275,11 +297,22 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 				true);
 	}
 
+	/**
+	 * Creates the government body income summary chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
 	public void createGovernmentBodyIncomeSummaryChart(final VerticalLayout layout) {
 		addAnnualSummary(esvApi.getGovernmentBodyReportByField(INKOMSTTITELGRUPPSNAMN), layout, ANNUAL_INCOME);
 	}
 
+	/**
+	 * Creates the government body income summary chart.
+	 *
+	 * @param layout the layout
+	 * @param governmentBodyName the government body name
+	 */
 	@Override
 	public void createGovernmentBodyIncomeSummaryChart(final VerticalLayout layout, final String governmentBodyName) {
 		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> annualOutcomeSummaries = esvApi.getGovernmentBodyReport().get(governmentBodyName)
@@ -290,16 +323,32 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 	}
 
+	/**
+	 * Creates the ministry government body expenditure summary chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
 	public void createMinistryGovernmentBodyExpenditureSummaryChart(final AbstractOrderedLayout layout) {
 		createMinistrySummary(layout,EXPENDITURE_GROUP_NAME,"MinistryGovernmentBodySpendingSummaryChart");
 	}
 
+	/**
+	 * Creates the ministry government body expenditure summary chart.
+	 *
+	 * @param layout the layout
+	 * @param governmentBodyName the government body name
+	 */
 	@Override
 	public void createMinistryGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout, final String governmentBodyName) {
 		addAnnualSummary(esvApi.getGovernmentBodyReportByFieldAndMinistry(EXPENDITURE_GROUP_NAME, governmentBodyName), layout, ANNUAL_EXPENDITURE);
 	}
 
+	/**
+	 * Creates the ministry government body headcount summary chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
 	public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout layout) {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
@@ -328,6 +377,12 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 	}
 
 
+	/**
+	 * Creates the ministry government body headcount summary chart.
+	 *
+	 * @param layout the layout
+	 * @param governmentBodyName the government body name
+	 */
 	@Override
 	public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout layout,
 			final String governmentBodyName) {
@@ -356,6 +411,11 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 	}
 
+	/**
+	 * Creates the ministry government body income summary chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
 	public void createMinistryGovernmentBodyIncomeSummaryChart(final AbstractOrderedLayout layout) {
 		createMinistrySummary(layout,INKOMSTTITELGRUPPSNAMN,"MinistryGovernmentBodyIncomeSummaryChart");
@@ -364,6 +424,12 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
 
 
+	/**
+	 * Creates the ministry government body income summary chart.
+	 *
+	 * @param layout the layout
+	 * @param governmentBodyName the government body name
+	 */
 	@Override
 	public void createMinistryGovernmentBodyIncomeSummaryChart(final VerticalLayout layout, final String governmentBodyName) {
 		addAnnualSummary(esvApi.getGovernmentBodyReportByFieldAndMinistry(INKOMSTTITELGRUPPSNAMN,governmentBodyName), layout, ANNUAL_INCOME);

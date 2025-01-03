@@ -1,6 +1,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
 import org.dussan.vaadin.dcharts.DCharts;
+
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Page;
 import com.vaadin.server.Sizeable.Unit;
@@ -8,23 +9,54 @@ import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
 
+/**
+ * The Class ChartUtils.
+ */
 public final class ChartUtils {
 
+    /** The Constant CHART_BOTTOM_MARGIN_SIZE. */
     private static final int CHART_BOTTOM_MARGIN_SIZE = 2;
+
+    /** The Constant CHART_LEFT_MARGIN. */
     private static final int CHART_LEFT_MARGIN = 2;
+
+    /** The Constant CHART_RIGHT_MARGIN. */
     private static final int CHART_RIGHT_MARGIN = 2;
+
+    /** The Constant CHART_TOP_MARGIN_SIZE. */
     private static final int CHART_TOP_MARGIN_SIZE = 2;
+
+    /** The Constant CHART_WIDTH_REDUCTION. */
     private static final int CHART_WIDTH_REDUCTION = 50;
+
+    /** The Constant HEIGHT_PERCENTAGE_FULL_PAGE. */
     private static final double HEIGHT_PERCENTAGE_FULL_PAGE = 0.8;
+
+    /** The Constant HEIGHT_PERCETAGE_HALF_PAGE. */
     private static final double HEIGHT_PERCETAGE_HALF_PAGE = 0.5;
+
+    /** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE. */
     private static final int MINIMUM_CHART_HEIGHT_FULL_PAGE = 400;
+
+    /** The Constant MINIMUM_CHART_WIDTH. */
     private static final int MINIMUM_CHART_WIDTH = 600;
+
+    /** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE. */
     private static final int NINIMUM_CHART_HEIGHT_HALF_PAGE = 200;
 
+    /**
+     * Instantiates a new chart utils.
+     */
     private ChartUtils() {
         // Utility class
     }
 
+    /**
+     * Gets the chart window height.
+     *
+     * @param isFullPage the is full page
+     * @return the chart window height
+     */
     public static int getChartWindowHeight(final boolean isFullPage) {
         if (isFullPage) {
             return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCENTAGE_FULL_PAGE), MINIMUM_CHART_HEIGHT_FULL_PAGE);
@@ -33,10 +65,23 @@ public final class ChartUtils {
         }
     }
 
+    /**
+     * Gets the chart window width.
+     *
+     * @return the chart window width
+     */
     public static int getChartWindowWidth() {
         return Math.max(Page.getCurrent().getBrowserWindowWidth() - CHART_WIDTH_REDUCTION, MINIMUM_CHART_WIDTH);
     }
 
+    /**
+     * Adds the chart.
+     *
+     * @param layout the layout
+     * @param caption the caption
+     * @param chart the chart
+     * @param isFullPage the is full page
+     */
     public static void addChart(final AbstractOrderedLayout layout, final String caption, final DCharts chart, final boolean isFullPage) {
         final HorizontalLayout horizontalLayout = new HorizontalLayout();
 
