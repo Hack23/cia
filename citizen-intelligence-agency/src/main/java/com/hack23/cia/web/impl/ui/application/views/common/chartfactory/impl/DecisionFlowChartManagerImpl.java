@@ -18,11 +18,13 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +64,14 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
     private Map<String, List<ProposalCommitteeeSummary>> getOrgProposalMap(final String reportMonth) {
         return decisionDataFactory.createCommitteeSummary(reportMonth)
                 .stream()
-                .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getOrg));
+                .filter(Objects::nonNull)
+                .collect(Collectors.groupingBy(
+                    ProposalCommitteeeSummary::getOrg,
+                    Collectors.mapping(
+                        Function.identity(),
+                        Collectors.toList()
+                    )
+                ));
     }
 
     /**
@@ -95,11 +104,13 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         Objects.requireNonNull(reportMonth, "Report month cannot be null");
 
         final SankeyChart sankeyChart = new SankeyChart();
-        final Map<String, List<ProposalCommitteeeSummary>> orgProposalMap = getOrgProposalMap(reportMonth);
 
-        orgProposalMap.forEach((orgKey, proposals) ->
-            findCommittee(committeeSummaryMap, orgKey)
-                .ifPresent(committee -> addChartData(sankeyChart, proposals, committee)));
+        getOrgProposalMap(reportMonth).entrySet().stream()
+            .filter(entry -> entry.getKey() != null && !entry.getValue().isEmpty())
+            .forEach(entry ->
+                findCommittee(committeeSummaryMap, entry.getKey())
+                    .ifPresent(committee ->
+                        addChartData(sankeyChart, entry.getValue(), committee)));
 
         sankeyChart.drawChart();
         return sankeyChart;
@@ -212,14 +223,28 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
 
         final String committeeName = committee.getEmbeddedId().getDetail();
 
-        proposals.stream()
-            .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType))
-            .forEach((docType, docProposals) -> {
-                if (!docType.isEmpty()) {
-                    sankeyChart.addDataRow(docType, committeeName, docProposals.size());
-                }
-            });
+        Optional.ofNullable(proposals)
+            .stream()
+            .flatMap(Collection::stream)
+            .filter(Objects::nonNull)
+            .collect(Collectors.groupingBy(
+                ProposalCommitteeeSummary::getDocType,
+                Collectors.collectingAndThen(
+                    Collectors.toList(),
+                    docProposals -> {
+                        if (!docProposals.get(0).getDocType().isEmpty()) {
+                            sankeyChart.addDataRow(
+                                docProposals.get(0).getDocType(),
+                                committeeName,
+                                docProposals.size()
+                            );
+                        }
+                        return docProposals;
+                    }
+                )
+            ));
     }
+
 
     /**
      * Adds the decision data rows.
@@ -254,17 +279,26 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
             final SankeyChart sankeyChart,
             final List<ProposalCommitteeeSummary> proposals) {
 
-        if (proposals == null) {
-            return;
-        }
-
-        proposals.stream()
-            .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType))
-            .forEach((docType, docTypeProposals) -> {
-                if (!docType.isEmpty()) {
-                    addDecisionRowsForDocType(sankeyChart, docType, docTypeProposals);
-                }
-            });
+        Optional.ofNullable(proposals)
+            .stream()
+            .flatMap(Collection::stream)
+            .filter(Objects::nonNull)
+            .collect(Collectors.groupingBy(
+                ProposalCommitteeeSummary::getDocType,
+                Collectors.collectingAndThen(
+                    Collectors.toList(),
+                    docTypeProposals -> {
+                        if (!docTypeProposals.get(0).getDocType().isEmpty()) {
+                            addDecisionRowsForDocType(
+                                sankeyChart,
+                                docTypeProposals.get(0).getDocType(),
+                                docTypeProposals
+                            );
+                        }
+                        return docTypeProposals;
+                    }
+                )
+            ));
     }
 
     /**
@@ -307,8 +341,17 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         builder.append('\n').append(committee.getEmbeddedId().getDetail());
 
         proposals.stream()
-            .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDocType))
-            .forEach((docType, docProposals) -> addSummaryEntry(builder, docType, docProposals));
+            .filter(Objects::nonNull)
+            .collect(Collectors.groupingBy(
+                ProposalCommitteeeSummary::getDocType,
+                Collectors.collectingAndThen(
+                    Collectors.toList(),
+                    docProposals -> {
+                        addSummaryEntry(builder, docProposals.get(0).getDocType(), docProposals);
+                        return docProposals;
+                    }
+                )
+            ));
     }
 
     /**
@@ -356,14 +399,17 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
                    .append(decision)
                    .append(' ');
 
-            summaries.forEach(summary ->
-                builder.append("\n    ")
-                       .append(summary.getDecision())
-                       .append(':')
-                       .append(summary.getWording())
-                       .append(' ')
-                       .append(summary.getWording2())
-                       .append(' '));
+            summaries.stream()
+                .filter(Objects::nonNull)
+                .forEach(summary ->
+                    builder.append("\n    ")
+                          .append(summary.getDecision())
+                          .append(':')
+                          .append(summary.getWording())
+                          .append(' ')
+                          .append(summary.getWording2())
+                          .append(' '));
         }
     }
+
 }
