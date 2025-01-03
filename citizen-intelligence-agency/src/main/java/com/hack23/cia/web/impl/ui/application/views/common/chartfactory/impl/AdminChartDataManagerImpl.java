@@ -8,7 +8,7 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -95,34 +95,36 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	 */
 	@Override
 	public void createApplicationActionEventPageDailySummaryChart(final AbstractOrderedLayout layout) {
-
 		final Map<String, List<ViewApplicationActionEventPageDailySummary>> map = getApplicationActionEventPageDailySummaryMap();
-
 		final DataSeries dataSeries = new DataSeries();
-
 		final Series series = new Series();
-
-		for (final Entry<String, List<ViewApplicationActionEventPageDailySummary>> entry : map.entrySet()) {
-
-			if (entry.getKey() != null) {
-				series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-				dataSeries.newSeries();
-				final List<ViewApplicationActionEventPageDailySummary> list = entry.getValue();
-				for (final ViewApplicationActionEventPageDailySummary dataSummaryDaily : list) {
-					dataSeries.add(
-							DateUtils.formatDate(
-									dataSummaryDaily.getEmbeddedId().getCreatedDate()),
-							dataSummaryDaily.getHits());
-				}
-			}
-
-		}
-
+		addDataToSeries(map, dataSeries, series);
 		addChart(layout, "Application Action Events daily Summary",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
+	}
+
+	/**
+	 * Adds data to series.
+	 *
+	 * @param map the map
+	 * @param dataSeries the data series
+	 * @param series the series
+	 */
+	private void addDataToSeries(final Map<String, List<ViewApplicationActionEventPageDailySummary>> map,
+			final DataSeries dataSeries, final Series series) {
+		for (final Entry<String, List<ViewApplicationActionEventPageDailySummary>> entry : map.entrySet()) {
+			if (entry.getKey() != null) {
+				series.addSeries(new XYseries().setLabel(entry.getKey()));
+				dataSeries.newSeries();
+				final List<ViewApplicationActionEventPageDailySummary> list = entry.getValue();
+				for (final ViewApplicationActionEventPageDailySummary dataSummaryDaily : list) {
+					dataSeries.add(DateUtils.formatDate(dataSummaryDaily.getEmbeddedId().getCreatedDate()),
+							dataSummaryDaily.getHits());
+				}
+			}
+		}
 	}
 
 	/**
@@ -161,28 +163,11 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	@Override
 	public void createApplicationActionEventPageModeDailySummaryChart(final AbstractOrderedLayout layout,
 			final String page) {
-
 		final Map<String, List<ViewApplicationActionEventPageModeDailySummary>> map = getApplicationActionEventPageModeDailySummaryMap(
 				page);
-
 		final DataSeries dataSeries = new DataSeries();
-
 		final Series series = new Series();
-
-		for (final Entry<String, List<ViewApplicationActionEventPageModeDailySummary>> entry : map.entrySet()) {
-
-			if (entry.getKey() != null) {
-				series.addSeries(new XYseries().setLabel(entry.getKey()));
-
-				dataSeries.newSeries();
-				final List<ViewApplicationActionEventPageModeDailySummary> list = entry.getValue();
-				for (final ViewApplicationActionEventPageModeDailySummary item : list) {
-					dataSeries.add(DateUtils.formatDate(item.getEmbeddedId().getCreatedDate()), item.getHits());
-				}
-			}
-
-		}
-
+		addDataToSeries(map, dataSeries, series);
 		addChart(layout, "Page Action Events daily Summary",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
@@ -254,21 +239,17 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 	 */
 	@Override
 	public void createApplicationSessionPageDailySummaryChart(final VerticalLayout layout) {
-
-		final DataContainer<ApplicationSession, Serializable> dataContainer = getApplicationManager().getDataContainer(ApplicationSession.class);
-		final Map <String,Long> sessionByDayMap = dataContainer.getAll().stream()
-	                .collect(Collectors.groupingBy(p -> DateUtils.formatDate(p.getCreatedDate()), Collectors.counting()));
-
+		final DataContainer<ApplicationSession, Serializable> dataContainer = getApplicationManager()
+				.getDataContainer(ApplicationSession.class);
+		final Map<String, Long> sessionByDayMap = dataContainer.getAll().stream()
+				.collect(Collectors.groupingBy(p -> DateUtils.formatDate(p.getCreatedDate()), Collectors.counting()));
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 		series.addSeries(new XYseries().setLabel("Daily Active Users"));
 		dataSeries.newSeries();
 		for (final Entry<String, Long> entry : sessionByDayMap.entrySet()) {
-			dataSeries.add(
-					entry.getKey(),
-						entry.getValue());
+			dataSeries.add(entry.getKey(), entry.getValue());
 		}
-
 		addChart(layout, "Application Active Daily Users",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
