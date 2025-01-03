@@ -21,6 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -72,7 +73,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
         final double doubleValue = value.doubleValue();
         if (doubleValue > 0) {
             // Ensure consistent date format: " 01-JAN-YYYY"
-            final String formattedDate = String.format(" 01-JAN-%d", year);
+            final String formattedDate = String.format(Locale.ENGLISH," 01-JAN-%d", year);
             dataSeries.add(formattedDate, doubleValue);
         }
     }
