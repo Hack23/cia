@@ -49,6 +49,13 @@ public final class WorldIndicatorChartDataManagerImpl extends AbstractChartDataM
 	}
 
 
+	/**
+	 * Creates the indicator chart.
+	 *
+	 * @param content the content
+	 * @param list the list
+	 * @param summary the summary
+	 */
 	@Override
 	public void createIndicatorChart(final AbstractOrderedLayout content,final List<WorldBankData> list,
 			final ViewWorldbankIndicatorDataCountrySummary summary) {

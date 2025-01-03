@@ -76,23 +76,29 @@ public final class PartyCoalationChartDataManagerImpl extends AbstractChartDataM
 		}
 	}
 
+	/**
+	 * Creates the party chart.
+	 *
+	 * @param layout the layout
+	 * @param partyId the party id
+	 */
 	@Override
-	public void createPartyChart(final AbstractOrderedLayout content, final String partyId) {
+	public void createPartyChart(final AbstractOrderedLayout layout, final String partyId) {
 
 		final DataContainer<ViewRiksdagenPartyCoalationAgainstAnnualSummary, ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId> dataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyCoalationAgainstAnnualSummary.class);
 
-		final Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> map = dataContainer.getAll().parallelStream()
-				.filter(t -> t.getEmbeddedId().getGroupAgainst().contains(partyId) && t.getTotal() > FILTER_LOW_VALUES)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getGroupAgainst()));
+		final Map<String, List<ViewRiksdagenPartyCoalationAgainstAnnualSummary>> partySummaryMap = dataContainer.getAll().parallelStream()
+				.filter(summary -> summary.getEmbeddedId().getGroupAgainst().contains(partyId) && summary.getTotal() > FILTER_LOW_VALUES)
+				.collect(Collectors.groupingBy(summary -> summary.getEmbeddedId().getGroupAgainst()));
 
-		final Series series = new Series();
-		final DataSeries dataSeries = new DataSeries();
+		final Series chartSeries = new Series();
+		final DataSeries chartDataSeries = new DataSeries();
 
-		addData(map, series, dataSeries);
+		addData(partySummaryMap, chartSeries, chartDataSeries);
 
-		addChart(content, "Part of coalations against committee proposal in ballot more than twice", new DCharts()
-				.setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsCountryLineChart(series)).show(),
+		ChartUtils.addChart(layout, "Part of coalations against committee proposal in ballot more than twice", new DCharts()
+				.setDataSeries(chartDataSeries).setOptions(getChartOptions().createOptionsCountryLineChart(chartSeries)).show(),
 				true);
 	}
 

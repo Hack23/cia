@@ -50,6 +50,12 @@ public final class ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl
 		super();
 	}
 
+	/**
+	 * Find by value.
+	 *
+	 * @param party the party
+	 * @return the list
+	 */
 	@Override
 	public List<ViewRiksdagenVoteDataBallotPartySummary> findByValue(final String party) {
 		final DataContainer<ViewRiksdagenVoteDataBallotPartySummary, RiksdagenVoteDataBallotPartyEmbeddedId> partyBallotSummaryDailyDataContainer = applicationManager

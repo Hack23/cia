@@ -18,7 +18,6 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -48,9 +47,7 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements PersonDocumentChartDataManager {
 
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
-
+	/** The Constant DOCUMENT_HISTORY. */
 	private static final String DOCUMENT_HISTORY = "Document history";
 
 	/** The Constant EMPTY_STRING. */
@@ -78,54 +75,56 @@ public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataM
 	/**
 	 * Adds the document history by person data.
 	 *
-	 * @param simpleDateFormat the simple date format
 	 * @param dataSeries the data series
 	 * @param series the series
-	 * @param map the map
+	 * @param documentSummaryMap the document summary map
 	 */
-	private static void addDocumentHistoryByPersonData(final SimpleDateFormat simpleDateFormat,
-			final DataSeries dataSeries, final Series series,
-			final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> map) {
-		for (final Entry<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> entry : map.entrySet()) {
+	private static void addDocumentHistoryByPersonData(final DataSeries dataSeries, final Series series,
+			final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> documentSummaryMap) {
+		for (final Entry<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> documentSummaryEntry : documentSummaryMap.entrySet()) {
 
-			series.addSeries(new XYseries().setLabel(entry.getKey()));
+			series.addSeries(new XYseries().setLabel(documentSummaryEntry.getKey()));
 
 			dataSeries.newSeries();
-			if (entry.getValue() != null) {
-				for (final ViewRiksdagenPoliticianDocumentDailySummary item : entry.getValue()) {
-					dataSeries.add(simpleDateFormat.format(item.getEmbeddedId().getPublicDate()), item.getTotal());
+			if (documentSummaryEntry.getValue() != null) {
+				for (final ViewRiksdagenPoliticianDocumentDailySummary documentSummary : documentSummaryEntry.getValue()) {
+					dataSeries.add(DateUtils.formatDate(documentSummary.getEmbeddedId().getPublicDate()), documentSummary.getTotal());
 				}
 			} else {
-				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, entry);
+				LOGGER.info(LOG_MSG_MISSING_DATA_FOR_KEY, documentSummaryEntry);
 			}
 
 		}
 	}
 
+	/**
+	 * Creates the person document history chart.
+	 *
+	 * @param layout the layout
+	 * @param personId the person id
+	 */
 	@Override
-	public void createPersonDocumentHistoryChart(final AbstractOrderedLayout content, final String personId) {
-
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
+	public void createPersonDocumentHistoryChart(final AbstractOrderedLayout layout, final String personId) {
 
 		final DataSeries dataSeries = new DataSeries();
 
 		final Series series = new Series();
 
-		final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> allMap = getViewRiksdagenPoliticianDocumentDailySummaryMap();
+		final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> allDocumentSummaryMap = getViewRiksdagenPoliticianDocumentDailySummaryMap();
 
-		final List<ViewRiksdagenPoliticianDocumentDailySummary> itemList = allMap
+		final List<ViewRiksdagenPoliticianDocumentDailySummary> documentSummaryList = allDocumentSummaryMap
 				.get(personId.toUpperCase(Locale.ENGLISH).replace(UNDER_SCORE, EMPTY_STRING).trim());
 
-		if (itemList != null) {
+		if (documentSummaryList != null) {
 
-			final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> map = itemList.parallelStream()
+			final Map<String, List<ViewRiksdagenPoliticianDocumentDailySummary>> documentSummaryMap = documentSummaryList.parallelStream()
 					.filter(Objects::nonNull).collect(Collectors
-							.groupingBy(t -> StringUtils.defaultIfBlank(t.getEmbeddedId().getDocumentType(), NO_INFO)));
+							.groupingBy(documentSummary -> StringUtils.defaultIfBlank(documentSummary.getEmbeddedId().getDocumentType(), NO_INFO)));
 
-			addDocumentHistoryByPersonData(simpleDateFormat, dataSeries, series, map);
+			addDocumentHistoryByPersonData(dataSeries, series, documentSummaryMap);
 		}
 
-		addChart(content, DOCUMENT_HISTORY,
+		ChartUtils.addChart(layout, DOCUMENT_HISTORY,
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
 				true);
@@ -141,7 +140,7 @@ public final class PersonDocumentChartDataManagerImpl extends AbstractChartDataM
 				.getDataContainer(ViewRiksdagenPoliticianDocumentDailySummary.class);
 
 		return politicianBallotSummaryDailyDataContainer.getAll().parallelStream().filter(Objects::nonNull)
-				.collect(Collectors.groupingBy(t -> t.getEmbeddedId().getPersonId()));
+				.collect(Collectors.groupingBy(documentSummary -> documentSummary.getEmbeddedId().getPersonId()));
 	}
 
 }

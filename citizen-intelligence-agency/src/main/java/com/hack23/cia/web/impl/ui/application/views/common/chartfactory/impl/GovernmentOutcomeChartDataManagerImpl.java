@@ -52,31 +52,44 @@ public final class GovernmentOutcomeChartDataManagerImpl extends AbstractChartDa
 		super();
 	}
 
-	private static void createPeriodData(final Map<String, List<GovernmentOperationPeriodOutcome>> map, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries dataSeries,
-			final Series series) {
-		series.addSeries(new XYseries().setLabel(variables.toString()));
-		dataSeries.newSeries();
+	/**
+	 * Creates the period data.
+	 *
+	 * @param outcomeMap the outcome map
+	 * @param variables the variables
+	 * @param chartDataSeries the chart data series
+	 * @param chartSeries the chart series
+	 */
+	private static void createPeriodData(final Map<String, List<GovernmentOperationPeriodOutcome>> outcomeMap, final GovernmentOperationPeriodOutcome.Variables variables,final DataSeries chartDataSeries,
+			final Series chartSeries) {
+		chartSeries.addSeries(new XYseries().setLabel(variables.toString()));
+		chartDataSeries.newSeries();
 
-		final List<GovernmentOperationPeriodOutcome> list = map.get(variables.toString());
+		final List<GovernmentOperationPeriodOutcome> list = outcomeMap.get(variables.toString());
 		Collections.sort(list);
 		for (final GovernmentOperationPeriodOutcome entry : list) {
 
-			dataSeries.add(entry.getPeriod() + "-01", entry.getValue());
+			chartDataSeries.add(entry.getPeriod() + "-01", entry.getValue());
 		}
 	}
 
+	/**
+	 * Creates the government outcome chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
-	public void createGovernmentOutcomeChart(final AbstractOrderedLayout content) {
-		final Map<String, List<GovernmentOperationPeriodOutcome>> map = esvApi.getReport();
-		final DataSeries dataSeries = new DataSeries();
-		final Series series = new Series();
+	public void createGovernmentOutcomeChart(final AbstractOrderedLayout layout) {
+		final Map<String, List<GovernmentOperationPeriodOutcome>> outcomeMap = esvApi.getReport();
+		final DataSeries chartDataSeries = new DataSeries();
+		final Series chartSeries = new Series();
 
-		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_REVENUE, dataSeries, series);
-		createPeriodData(map,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, dataSeries, series);
+		createPeriodData(outcomeMap,GovernmentOperationPeriodOutcome.Variables.TOTAL_REVENUE, chartDataSeries, chartSeries);
+		createPeriodData(outcomeMap,GovernmentOperationPeriodOutcome.Variables.TOTAL_EXPENDITURES, chartDataSeries, chartSeries);
 
-		addChart(content, "GovernmentOperationPeriodOutcome",
-				new DCharts().setDataSeries(dataSeries)
-						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
+		addChart(layout, "GovernmentOperationPeriodOutcome",
+				new DCharts().setDataSeries(chartDataSeries)
+						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(chartSeries)).show(),
 				true);
 
 	}

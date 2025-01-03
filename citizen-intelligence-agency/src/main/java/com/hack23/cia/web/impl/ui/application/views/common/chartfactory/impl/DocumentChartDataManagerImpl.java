@@ -18,7 +18,6 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -48,11 +47,10 @@ import com.vaadin.ui.AbstractOrderedLayout;
 public final class DocumentChartDataManagerImpl extends AbstractChartDataManagerImpl
 		implements DocumentChartDataManager {
 
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
-
 	/** The Constant EMPTY_STRING. */
 	private static final String EMPTY_STRING = "";
 
+	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentChartDataManagerImpl.class);
 
 	/** The Constant MOT_PROP_BET. */
@@ -71,24 +69,22 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	/**
 	 * Adds the data series.
 	 *
-	 * @param simpleDateFormat the simple date format
-	 * @param parseInputDateFormat the parse input date format
 	 * @param dataSeries the data series
 	 * @param series the series
 	 * @param entry the entry
 	 */
-	private static void addDataSeries(final SimpleDateFormat simpleDateFormat,
-			final SimpleDateFormat parseInputDateFormat, final DataSeries dataSeries, final Series series,
+	private static void addDataSeries(final DataSeries dataSeries, final Series series,
 			final Entry<String, List<ViewRiksdagenDocumentTypeDailySummary>> entry) {
 
 		series.addSeries(new XYseries().setLabel(entry.getKey()));
 		dataSeries.newSeries();
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH);
 
 		for (final ViewRiksdagenDocumentTypeDailySummary item : entry.getValue()) {
 			if (item != null && item.getEmbeddedId().getPublicDate().length() > 0) {
 				try {
-					dataSeries.add(simpleDateFormat.format(parseInputDateFormat.parse(item.getEmbeddedId().getPublicDate())), item.getTotal());
-				} catch (final ParseException e) {
+					dataSeries.add(DateUtils.formatDate(simpleDateFormat.parse(item.getEmbeddedId().getPublicDate())), item.getTotal());
+				} catch (final Exception e) {
 					LOGGER.warn("Problem parsing date:{}", item.getEmbeddedId().getPublicDate());
 				}
 
@@ -96,22 +92,25 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 		}
 	}
 
+	/**
+	 * Creates the document type chart.
+	 *
+	 * @param layout the layout
+	 */
 	@Override
-	public void createDocumentTypeChart(final AbstractOrderedLayout content) {
-		final Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> map = getDocumentTypeMap();
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-		final SimpleDateFormat parseInputDateFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH);
+	public void createDocumentTypeChart(final AbstractOrderedLayout layout) {
+		final Map<String, List<ViewRiksdagenDocumentTypeDailySummary>> documentTypeMap = getDocumentTypeMap();
 
 		final DataSeries dataSeries = new DataSeries();
 		final Series series = new Series();
 
-		for (final Entry<String, List<ViewRiksdagenDocumentTypeDailySummary>> entry : map.entrySet()) {
-			if (entry.getKey() != null && !EMPTY_STRING.equals(entry.getKey())) {
-				addDataSeries(simpleDateFormat, parseInputDateFormat, dataSeries, series, entry);
+		for (final Entry<String, List<ViewRiksdagenDocumentTypeDailySummary>> documentTypeEntry : documentTypeMap.entrySet()) {
+			if (documentTypeEntry.getKey() != null && !EMPTY_STRING.equals(documentTypeEntry.getKey())) {
+				addDataSeries(dataSeries, series, documentTypeEntry);
 			}
 		}
 
-		addChart(content, "Document type",
+		addChart(layout, "Document type",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLegendInsideOneColumn(series)).show(),
 				true);

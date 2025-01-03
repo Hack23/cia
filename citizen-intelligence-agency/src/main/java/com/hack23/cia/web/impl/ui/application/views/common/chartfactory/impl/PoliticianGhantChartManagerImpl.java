@@ -51,16 +51,31 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 		super();
 	}
 
+	/**
+	 * Gets the comparator.
+	 *
+	 * @return the comparator
+	 */
 	@Override
 	protected Comparator<AssignmentData> getComparator() {
 		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 	}
 
+	/**
+	 * Gets the role mapping.
+	 *
+	 * @return the role mapping
+	 */
 	@Override
 	protected Function<AssignmentData, String> getRoleMapping() {
 		return new RoleMapping();
 	}
 
+	/**
+	 * Gets the step mapping.
+	 *
+	 * @return the step mapping
+	 */
 	@Override
 	protected StepMapping<AssignmentData> getStepMapping() {
 		return new StepMapping<>() {
@@ -131,6 +146,12 @@ public final class PoliticianGhantChartManagerImpl extends AbstractGhantChartMan
 		/** The Constant RIKSDAGSLEDAMOT. */
 		private static final String RIKSDAGSLEDAMOT = "Riksdagsledamot";
 
+		/**
+		 * Apply.
+		 *
+		 * @param t the t
+		 * @return the string
+		 */
 		@Override
 		public String apply(final AssignmentData t) {
 			if (KAMMARUPPDRAG.equalsIgnoreCase(t.getAssignmentType())) {

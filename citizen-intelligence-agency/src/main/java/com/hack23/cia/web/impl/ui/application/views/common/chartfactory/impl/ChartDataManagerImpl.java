@@ -39,14 +39,21 @@ public final class ChartDataManagerImpl extends AbstractChartDataManagerImpl imp
 	}
 
 
+	/**
+	 * Creates the chart panel.
+	 *
+	 * @param layout the layout
+	 * @param chartDataSeries the chart data series
+	 * @param chartCaption the chart caption
+	 */
 	@Override
-	public void createChartPanel(final AbstractOrderedLayout content,final DataSeries dataSeries, final String caption) {
+	public void createChartPanel(final AbstractOrderedLayout layout,final DataSeries chartDataSeries, final String chartCaption) {
 
-		final DCharts chart = new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPieChart());
+		final DCharts chart = new DCharts().setDataSeries(chartDataSeries).setOptions(getChartOptions().createOptionsPieChart());
 
 		chart.show();
 
-		addChart(content,caption, chart, true);
+		addChart(layout,chartCaption, chart, true);
 
 	}
 

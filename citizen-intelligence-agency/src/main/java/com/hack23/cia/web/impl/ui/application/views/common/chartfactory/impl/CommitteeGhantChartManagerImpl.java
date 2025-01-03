@@ -43,27 +43,42 @@ public final class CommitteeGhantChartManagerImpl
 		super();
 	}
 
+	/**
+	 * Gets the comparator.
+	 *
+	 * @return the comparator
+	 */
 	@Override
 	protected Comparator<ViewRiksdagenCommitteeRoleMember> getComparator() {
 		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
 	}
 
+	/**
+	 * Gets the role mapping.
+	 *
+	 * @return the role mapping
+	 */
 	@Override
 	protected Function<ViewRiksdagenCommitteeRoleMember, String> getRoleMapping() {
 		return new RoleMapping();
 	}
 
+	/**
+	 * Gets the step mapping.
+	 *
+	 * @return the step mapping
+	 */
 	@Override
 	protected StepMapping<ViewRiksdagenCommitteeRoleMember> getStepMapping() {
 		return new StepMapping<>() {
 
 			@Override
-			public String getBackgroundColor(final ViewRiksdagenCommitteeRoleMember t) {
+			public String getBackgroundColor(final ViewRiksdagenCommitteeRoleMember roleMember) {
 				String color;
 
-				if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("suppleant")) {
+				if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("suppleant")) {
 					color = "ded858";
-				} else if (t.getRoleCode().toLowerCase(Locale.ENGLISH).contains("ordförande")) {
+				} else if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("ordförande")) {
 					color = "3271c8";
 				} else {
 					color = "0eab76";
@@ -73,38 +88,38 @@ public final class CommitteeGhantChartManagerImpl
 			}
 
 			@Override
-			public Object getFirstName(final ViewRiksdagenCommitteeRoleMember t) {
-				return t.getFirstName();
+			public Object getFirstName(final ViewRiksdagenCommitteeRoleMember roleMember) {
+				return roleMember.getFirstName();
 			}
 
 			@Override
-			public Date getFromDate(final ViewRiksdagenCommitteeRoleMember t) {
-				return t.getFromDate();
+			public Date getFromDate(final ViewRiksdagenCommitteeRoleMember roleMember) {
+				return roleMember.getFromDate();
 			}
 
 			@Override
-			public Object getLastName(final ViewRiksdagenCommitteeRoleMember t) {
-				return t.getLastName();
+			public Object getLastName(final ViewRiksdagenCommitteeRoleMember roleMember) {
+				return roleMember.getLastName();
 			}
 
 			@Override
-			public String getOrg(final ViewRiksdagenCommitteeRoleMember t) {
-				return t.getDetail();
+			public String getOrg(final ViewRiksdagenCommitteeRoleMember roleMember) {
+				return roleMember.getDetail();
 			}
 
 			@Override
-			public String getParty(final ViewRiksdagenCommitteeRoleMember t) {
-				return t.getParty();
+			public String getParty(final ViewRiksdagenCommitteeRoleMember roleMember) {
+				return roleMember.getParty();
 			}
 
 			@Override
-			public String getRoleCode(final ViewRiksdagenCommitteeRoleMember t) {
-				return t.getRoleCode();
+			public String getRoleCode(final ViewRiksdagenCommitteeRoleMember roleMember) {
+				return roleMember.getRoleCode();
 			}
 
 			@Override
-			public Date getToDate(final ViewRiksdagenCommitteeRoleMember t) {
-				return Optional.ofNullable(t.getToDate()).orElseGet(Date::new);
+			public Date getToDate(final ViewRiksdagenCommitteeRoleMember roleMember) {
+				return Optional.ofNullable(roleMember.getToDate()).orElseGet(Date::new);
 			}
 
 		};
@@ -115,9 +130,15 @@ public final class CommitteeGhantChartManagerImpl
 	 */
 	private static final class RoleMapping implements Function<ViewRiksdagenCommitteeRoleMember, String> {
 
+		/**
+		 * Apply.
+		 *
+		 * @param roleMember the role member
+		 * @return the string
+		 */
 		@Override
-		public String apply(final ViewRiksdagenCommitteeRoleMember t) {
-			return t.getRoleCode() +".["+ t.getPersonId() +"]";
+		public String apply(final ViewRiksdagenCommitteeRoleMember roleMember) {
+			return roleMember.getRoleCode() +".["+ roleMember.getPersonId() +"]";
 		}
 	}
 
