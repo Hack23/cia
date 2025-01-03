@@ -18,9 +18,7 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 import java.util.function.Function;
 
 import org.dussan.vaadin.dcharts.DCharts;
@@ -43,9 +41,6 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 	/** The Constant ABSENT. */
 	private static final String ABSENT = "Absent";
-
-	/** The Constant DD_MMM_YYYY. */
-	private static final String DD_MMM_YYYY = "dd-MMM-yyyy";
 
 	/** The Constant NUMBER_BALLOTS. */
 	private static final String NUMBER_BALLOTS = "Number ballots";
@@ -74,19 +69,18 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	 *
 	 * @param list             the list
 	 * @param dataSeries       the data series
-	 * @param simpleDateFormat the simple date format
 	 * @param t                the t
 	 */
 	private static void addPoliticanData(final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list,
-			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat, final Function<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, Object> t) {
+			final DataSeries dataSeries, final Function<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily, Object> t) {
 		dataSeries.newSeries();
 		for (final ViewRiksdagenVoteDataBallotPoliticianSummaryDaily viewRiksdagenVoteDataBallotPoliticianSummaryDaily : list) {
 			if (viewRiksdagenVoteDataBallotPoliticianSummaryDaily != null) {
 				dataSeries.add(
-						simpleDateFormat.format(
+						DateUtils.formatDate(
 								viewRiksdagenVoteDataBallotPoliticianSummaryDaily.getEmbeddedId().getVoteDate()),
 						t.apply(viewRiksdagenVoteDataBallotPoliticianSummaryDaily));
-			}
+				}
 		}
 	}
 
@@ -99,22 +93,20 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 	 *            the list
 	 * @param dataSeries
 	 *            the data series
-	 * @param simpleDateFormat
-	 *            the simple date format
 	 */
 	private static void addPoliticianIndicatorData(final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list,
-			final DataSeries dataSeries, final SimpleDateFormat simpleDateFormat) {
-		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getWonPercentage);
-		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getRebelPercentage);
-		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getPoliticianPercentageAbsent);
-		addPoliticanData(list, dataSeries, simpleDateFormat, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getNumberBallots);
+			final DataSeries dataSeries) {
+		addPoliticanData(list, dataSeries, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getWonPercentage);
+		addPoliticanData(list, dataSeries, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getRebelPercentage);
+		addPoliticanData(list, dataSeries, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getPoliticianPercentageAbsent);
+		addPoliticanData(list, dataSeries, ViewRiksdagenVoteDataBallotPoliticianSummaryDaily::getNumberBallots);
 	}
 
 
 
 
 	@Override
-	public void createPersonLineChart(final AbstractOrderedLayout content,final String personId) {
+	public void createPersonLineChart(final AbstractOrderedLayout layout,final String personId) {
 
 		final List<ViewRiksdagenVoteDataBallotPoliticianSummaryDaily> list = dataChartManager.findByValue(personId);
 
@@ -124,13 +116,11 @@ public final class PoliticianDataManagerImpl extends AbstractChartDataManagerImp
 
 		final DataSeries dataSeries = new DataSeries();
 
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DD_MMM_YYYY, Locale.ENGLISH);
-
 		if (list != null) {
-			addPoliticianIndicatorData(list, dataSeries, simpleDateFormat);
+			addPoliticianIndicatorData(list, dataSeries);
 		}
 
-		addChart(content,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPersonLineChart(series)).show(), true);
+		ChartUtils.addChart(layout,"Ballot indicators", new DCharts().setDataSeries(dataSeries).setOptions(getChartOptions().createOptionsPersonLineChart(series)).show(), true);
 	}
 
 
