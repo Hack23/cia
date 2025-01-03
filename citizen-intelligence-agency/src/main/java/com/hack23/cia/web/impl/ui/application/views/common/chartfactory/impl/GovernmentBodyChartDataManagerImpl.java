@@ -18,9 +18,12 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.dussan.vaadin.dcharts.DCharts;
@@ -39,291 +42,383 @@ import com.vaadin.ui.VerticalLayout;
 
 @Service
 public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl
-		implements GovernmentBodyChartDataManager {
+        implements GovernmentBodyChartDataManager {
 
-	private static final String ALL_GOVERNMENT_BODIES = "All government bodies";
-	private static final String ANNUAL_EXPENDITURE = "Annual Expenditure";
-	private static final String ANNUAL_HEADCOUNT = "Annual headcount";
-	private static final String ANNUAL_HEADCOUNT_ALL_MINISTRIES = "Annual headcount, all ministries";
-	private static final String ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES = "Annual headcount summary, all government bodies";
-	private static final String ANNUAL_HEADCOUNT_TOTAL_ALL_GOVERNMENT_BODIES = "Annual headcount total all government bodies";
-	private static final String ANNUAL_INCOME = "Annual Income";
-	private static final String ANSLAGSPOSTSNAMN = "Anslagspostsnamn";
-	private static final String EXPENDITURE_GROUP_NAME = "Utgiftsområdesnamn";
-	private static final String FIRST_JAN_DATA_SUFFIX = " 01-JAN-";
-	private static final String INKOMSTTITELGRUPPSNAMN = "Inkomsttitelgruppsnamn";
-	private static final String INKOMSTTITELSNAMN = "Inkomsttitelsnamn";
+    private static final String ALL_GOVERNMENT_BODIES = "All government bodies";
+    private static final String ANNUAL_EXPENDITURE = "Annual Expenditure";
+    private static final String ANNUAL_HEADCOUNT = "Annual headcount";
+    private static final String ANNUAL_HEADCOUNT_ALL_MINISTRIES = "Annual headcount, all ministries";
+    private static final String ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES =
+            "Annual headcount summary, all government bodies";
+    private static final String ANNUAL_HEADCOUNT_TOTAL_ALL_GOVERNMENT_BODIES =
+            "Annual headcount total all government bodies";
+    private static final String ANNUAL_INCOME = "Annual Income";
+    private static final String EXPENDITURE_GROUP_NAME = "Utgiftsområdesnamn";
+    private static final String INKOMSTTITELGRUPPSNAMN = "Inkomsttitelgruppsnamn";
+    private static final String INKOMSTTITELSNAMN = "Inkomsttitelsnamn";
+    private static final String ANSLAGSPOSTSNAMN = "Anslagspostsnamn";
 
-	@Autowired
-	private EsvApi esvApi;
+    @Autowired
+    private EsvApi esvApi;
 
-	private static String formatDateForChart(Integer year) {
-		return FIRST_JAN_DATA_SUFFIX + year;
-	}
 
-	private static void addDataPoint(DataSeries dataSeries, Integer year, Number value) {
-		if (year != null && value != null && value.doubleValue() > 0) {
-			dataSeries.add(formatDateForChart(year), value.doubleValue());
-		}
-	}
+    /**
+     * Adds a data point to the DataSeries if the year and value are valid and value > 0.
+     */
+    private static void addDataPoint(DataSeries dataSeries, Integer year, Number value) {
+        if (dataSeries == null || year == null || value == null) {
+            return;
+        }
+        final double doubleValue = value.doubleValue();
+        if (doubleValue > 0) {
+            // Ensure consistent date format: " 01-JAN-YYYY"
+            final String formattedDate = String.format(" 01-JAN-%d", year);
+            dataSeries.add(formattedDate, doubleValue);
+        }
+    }
+    /**
+     * Creates a chart using the provided data/series objects, then appends it to the given layout.
+     */
+    private void addChartToLayout(AbstractOrderedLayout layout, String label,
+                                  DataSeries dataSeries, Series series) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        Objects.requireNonNull(label, "Label cannot be null");
 
-//    private static void addAnnualSummaryData(final DataSeries dataSeries, final Series series,
-//            final Entry<String, List<GovernmentBodyAnnualOutcomeSummary>> entry,
-//            final List<GovernmentBodyAnnualOutcomeSummary> allValues) {
-//        series.addSeries(new XYseries().setLabel(entry.getKey()).setShowLabel(true));
-//        dataSeries.newSeries();
-//
-//        allValues.stream()
-//                .collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,
-//                        Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)))
-//                .forEach((year, sum) -> {
-//                    if (sum > 0) {
-//                        addDataPoint(dataSeries, year, sum);
-//                    }
-//                });
-//    }
+        final DCharts chart = new DCharts()
+                .setDataSeries(dataSeries)
+                .setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series))
+                .show();
 
-	private void addChartToLayout(AbstractOrderedLayout layout, String label, DataSeries dataSeries, Series series) {
-		ChartUtils.addChart(layout, label,
-				new DCharts().setDataSeries(dataSeries)
-						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
-				true);
-	}
+        ChartUtils.addChart(layout, label, chart, true);
+    }
 
-	private void processAnnualData(DataSeries dataSeries, Series series,
-			Map<String, List<GovernmentBodyAnnualOutcomeSummary>> data) {
-		data.forEach((key, values) -> {
-			if (!values.isEmpty()) {
-				series.addSeries(new XYseries().setLabel(key));
-				dataSeries.newSeries();
-				values.forEach(summary -> {
-					summary.getValueMap().forEach((date, value) -> {
-						if (value != null && value > 0) {
-							dataSeries.add(formatDateForChart(summary.getYear()), value);
-						}
-					});
-				});
-			}
-		});
-	}
+    /**
+     * Consolidates logic to retrieve, group, and process data by a descriptive field
+     * (e.g., 'Utgiftsområdesnamn' or 'Inkomsttitelgruppsnamn'), feeding the results into a DataSeries.
+     */
+    private void buildAnnualOutcomeDataSeriesByField(DataSeries dataSeries, Series series,
+            Map<String, List<GovernmentBodyAnnualOutcomeSummary>> groupedData) {
+        Optional.ofNullable(groupedData)
+            .ifPresent(data -> data.entrySet().stream()
+                .filter(entry -> entry.getValue() != null && !entry.getValue().isEmpty())
+                .forEach(entry -> {
+                    series.addSeries(new XYseries().setLabel(entry.getKey()));
+                    dataSeries.newSeries();
 
-	@Override
-	public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
+                    entry.getValue().stream()
+                        .filter(Objects::nonNull)
+                        .forEach(summary -> {
+                            // Only process if we have a valid year and value map
+                            Optional.ofNullable(summary.getValueMap())
+                                .ifPresent(valueMap -> {
+                                    // Get the year directly from the summary
+                                    final Integer year = summary.getYear();
+                                    // Get the total value for this year
+                                    final Double totalValue = valueMap.values().stream()
+                                        .filter(Objects::nonNull)
+                                        .mapToDouble(Number::doubleValue)
+                                        .sum();
 
-		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi
-				.getGovernmentBodyReportByField(EXPENDITURE_GROUP_NAME);
-		DataSeries dataSeries = new DataSeries();
-		Series series = new Series();
+                                    // Only add if we have valid year and value
+                                    if (year != null && totalValue > 0) {
+                                        addDataPoint(dataSeries, year, totalValue);
+                                    }
+                                });
+                        });
+                }));
+    }
 
-		processAnnualData(dataSeries, series, report);
-		addChartToLayout(layout, ANNUAL_EXPENDITURE, dataSeries, series);
-	}
+    /**
+     * Helper method to generate a headcount data series given a map of year -> list of summaries.
+     */
+    private void buildHeadcountDataSeries(DataSeries dataSeries, Series series,
+                                          Map<Integer, List<GovernmentBodyAnnualSummary>> yearlyData,
+                                          String label) {
+    	Optional.ofNullable(yearlyData)
+        .ifPresent(data -> {
+            series.addSeries(new XYseries().setLabel(label));
+            dataSeries.newSeries();
 
-	@Override
-	public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout,
-			final String governmentBodyName) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
-		Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
+            data.entrySet().stream()
+                .filter(entry -> Objects.nonNull(entry.getValue()) && !entry.getValue().isEmpty())
+                .forEach(entry -> {
+                    final int totalHeadcount = entry.getValue().stream()
+                        .filter(Objects::nonNull)
+                        .mapToInt(GovernmentBodyAnnualSummary::getHeadCount)
+                        .sum();
+                    addDataPoint(dataSeries, entry.getKey(), totalHeadcount);
+                });
+        });
+    }
 
-		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> summaries = esvApi.getGovernmentBodyReport()
-				.get(governmentBodyName).stream().filter(p -> p.getDescriptionFields().get(ANSLAGSPOSTSNAMN) != null)
-				.collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(ANSLAGSPOSTSNAMN)));
+    /**
+     * Consolidates logic for creating a chart that is grouped by some string field in descriptionFields.
+     */
+    private void createMinistryFieldSummary(AbstractOrderedLayout layout, String field, String chartLabel) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        Objects.requireNonNull(field, "Field cannot be null");
+        Objects.requireNonNull(chartLabel, "Chart label cannot be null");
 
-		DataSeries dataSeries = new DataSeries();
-		Series series = new Series();
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
 
-		processAnnualData(dataSeries, series, summaries);
-		addChartToLayout(layout, governmentBodyName + " " + ANNUAL_EXPENDITURE, dataSeries, series);
-	}
+        Optional.ofNullable(esvApi.getGovernmentBodyReportByMinistry())
+            .ifPresent(reportByMinistry ->
+                reportByMinistry.entrySet().stream()
+                    .filter(entry -> entry.getValue() != null && !entry.getValue().isEmpty())
+                    .forEach(entry -> {
+                        final Map<Integer, Double> annualTotals = entry.getValue().stream()
+                            .filter(Objects::nonNull)
+                            .filter(summary -> Optional.ofNullable(summary.getDescriptionFields())
+                                .map(fields -> fields.get(field))
+                                .isPresent())
+                            .collect(Collectors.groupingBy(
+                                GovernmentBodyAnnualOutcomeSummary::getYear,
+                                Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)
+                            ));
 
-	@Override
-	public void createGovernmentBodyHeadcountSummaryChart(final VerticalLayout layout) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
+                        if (!annualTotals.isEmpty()) {
+                            series.addSeries(new XYseries().setLabel(entry.getKey()));
+                            dataSeries.newSeries();
+                            annualTotals.forEach((year, total) ->
+                                addDataPoint(dataSeries, year + 1, total));
+                        }
+                    }));
 
-		Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
-		DataSeries dataSeries = new DataSeries();
-		Series series = new Series();
+        addChartToLayout(layout, chartLabel, dataSeries, series);
+    }
 
-		series.addSeries(new XYseries().setLabel(ALL_GOVERNMENT_BODIES));
-		dataSeries.newSeries();
+    // ==================== Public Chart Methods ====================
 
-		map.forEach((year, values) -> {
-			int totalHeadcount = values.stream().mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
-			addDataPoint(dataSeries, year, totalHeadcount);
-		});
+    @Override
+    public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report =
+                esvApi.getGovernmentBodyReportByField(EXPENDITURE_GROUP_NAME);
 
-		addChartToLayout(layout, ANNUAL_HEADCOUNT_TOTAL_ALL_GOVERNMENT_BODIES, dataSeries, series);
-	}
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
+        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);
 
-	@Override
-	public void createGovernmentBodyHeadcountSummaryChart(final VerticalLayout layout,
-			final String governmentBodyName) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
-		Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
+        addChartToLayout(layout, ANNUAL_EXPENDITURE, dataSeries, series);
+    }
 
-		Map<Integer, GovernmentBodyAnnualSummary> map = esvApi.getDataPerGovernmentBody(governmentBodyName);
-		DataSeries dataSeries = new DataSeries();
-		Series series = new Series();
+    @Override
+    public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout,
+                                                            final String governmentBodyName) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
 
-		series.addSeries(new XYseries().setLabel(governmentBodyName));
-		dataSeries.newSeries();
+        final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> allSummaries = esvApi.getGovernmentBodyReport();
 
-		map.forEach((year, summary) -> addDataPoint(dataSeries, year, summary.getHeadCount()));
-		addChartToLayout(layout, governmentBodyName + " " + ANNUAL_HEADCOUNT, dataSeries, series);
-	}
+        final List<GovernmentBodyAnnualOutcomeSummary> summariesForBody = Optional.ofNullable(allSummaries)
+                .map(summaries -> summaries.get(governmentBodyName))
+                .orElse(Collections.emptyList());
 
-	@Override
-	public void createGovernmentBodyIncomeSummaryChart(final VerticalLayout layout) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
+        final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> grouped = summariesForBody.stream()
+                .filter(Objects::nonNull)
+                .filter(summary -> Optional.ofNullable(summary.getDescriptionFields())
+                    .map(fields -> fields.get(ANSLAGSPOSTSNAMN))
+                    .isPresent())
+                .sorted(Comparator.comparing(GovernmentBodyAnnualOutcomeSummary::getYear))
+                .collect(Collectors.groupingBy(
+                    summary -> summary.getDescriptionFields().get(ANSLAGSPOSTSNAMN)));
 
-		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi
-				.getGovernmentBodyReportByField(INKOMSTTITELGRUPPSNAMN);
-		DataSeries dataSeries = new DataSeries();
-		Series series = new Series();
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
+        buildAnnualOutcomeDataSeriesByField(dataSeries, series, grouped);
 
-		processAnnualData(dataSeries, series, report);
-		addChartToLayout(layout, ANNUAL_INCOME, dataSeries, series);
-	}
+        addChartToLayout(layout, governmentBodyName + " " + ANNUAL_EXPENDITURE, dataSeries, series);
+    }
 
-	@Override
-	public void createGovernmentBodyIncomeSummaryChart(final VerticalLayout layout, final String governmentBodyName) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
-		Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
+    @Override
+    public void createGovernmentBodyHeadcountSummaryChart(final VerticalLayout layout) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
 
-		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> summaries = esvApi.getGovernmentBodyReport()
-				.get(governmentBodyName).stream().filter(p -> p.getDescriptionFields().get(INKOMSTTITELSNAMN) != null)
-				.collect(Collectors.groupingBy(t -> t.getDescriptionFields().get(INKOMSTTITELSNAMN)));
+        final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
 
-		DataSeries dataSeries = new DataSeries();
-		Series series = new Series();
+        buildHeadcountDataSeries(dataSeries, series, map, ALL_GOVERNMENT_BODIES);
+        addChartToLayout(layout, ANNUAL_HEADCOUNT_TOTAL_ALL_GOVERNMENT_BODIES, dataSeries, series);
+    }
 
-		processAnnualData(dataSeries, series, summaries);
-		addChartToLayout(layout, governmentBodyName + " " + ANNUAL_INCOME, dataSeries, series);
-	}
+    @Override
+    public void createGovernmentBodyHeadcountSummaryChart(final VerticalLayout layout,
+                                                          final String governmentBodyName) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
 
-	@Override
-	public void createMinistryGovernmentBodyExpenditureSummaryChart(final AbstractOrderedLayout layout) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
-		createMinistrySummary(layout, EXPENDITURE_GROUP_NAME, "MinistryGovernmentBodySpendingSummaryChart");
-	}
+        final Map<Integer, GovernmentBodyAnnualSummary> map = esvApi.getDataPerGovernmentBody(governmentBodyName);
 
-	@Override
-	public void createMinistryGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout,
-			final String governmentBodyName) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
-		Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
+        series.addSeries(new XYseries().setLabel(governmentBodyName));
+        dataSeries.newSeries();
 
-		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi
-				.getGovernmentBodyReportByFieldAndMinistry(EXPENDITURE_GROUP_NAME, governmentBodyName);
-		DataSeries dataSeries = new DataSeries();
-		Series series = new Series();
+        Optional.ofNullable(map)
+        .ifPresent(yearSummaryMap -> yearSummaryMap.entrySet().stream()
+            .filter(entry -> Objects.nonNull(entry.getValue()))
+            .forEach(entry -> addDataPoint(dataSeries, entry.getKey(), entry.getValue().getHeadCount())));
 
-		processAnnualData(dataSeries, series, report);
-		addChartToLayout(layout, governmentBodyName + " " + ANNUAL_EXPENDITURE, dataSeries, series);
-	}
+        addChartToLayout(layout, governmentBodyName + " " + ANNUAL_HEADCOUNT, dataSeries, series);
+    }
 
-	@Override
-	public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout layout) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
+    @Override
+    public void createGovernmentBodyIncomeSummaryChart(final VerticalLayout layout) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
 
-		Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
-		List<String> ministryNames = esvApi.getMinistryNames();
-		DataSeries dataSeries = new DataSeries();
-		Series series = new Series();
+        final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report =
+                esvApi.getGovernmentBodyReportByField(INKOMSTTITELGRUPPSNAMN);
 
-		ministryNames.forEach(ministryName -> {
-			series.addSeries(new XYseries().setLabel(ministryName));
-			dataSeries.newSeries();
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
+        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);
 
-			map.forEach((year, summaries) -> {
-				int headcount = summaries.stream().filter(p -> p.getMinistry().equalsIgnoreCase(ministryName))
-						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
-				addDataPoint(dataSeries, year, headcount);
-			});
-		});
+        addChartToLayout(layout, ANNUAL_INCOME, dataSeries, series);
+    }
 
-		addChartToLayout(layout, ANNUAL_HEADCOUNT_ALL_MINISTRIES, dataSeries, series);
-	}
+    @Override
+    public void createGovernmentBodyIncomeSummaryChart(final VerticalLayout layout,
+                                                       final String governmentBodyName) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
 
-	@Override
-	public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout layout,
-			final String governmentBodyName) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
-		Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
+        final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> allSummaries = esvApi.getGovernmentBodyReport();
 
-		Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getDataPerMinistry(governmentBodyName);
-		List<String> governmentBodyNames = esvApi.getGovernmentBodyNames(governmentBodyName);
-		DataSeries dataSeries = new DataSeries();
-		Series series = new Series();
+        final List<GovernmentBodyAnnualOutcomeSummary> summariesForBody = Optional.ofNullable(allSummaries)
+                .map(summaries -> summaries.get(governmentBodyName))
+                .orElse(Collections.emptyList());
 
-		governmentBodyNames.forEach(govBodyName -> {
-			series.addSeries(new XYseries().setLabel(govBodyName));
-			dataSeries.newSeries();
+        final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> grouped = summariesForBody.stream()
+                .filter(Objects::nonNull)
+                .filter(summary -> Optional.ofNullable(summary.getDescriptionFields())
+                    .map(fields -> fields.get(INKOMSTTITELSNAMN))
+                    .isPresent())
+                .sorted(Comparator.comparing(GovernmentBodyAnnualOutcomeSummary::getYear))
+                .collect(Collectors.groupingBy(
+                    summary -> summary.getDescriptionFields().get(INKOMSTTITELSNAMN)));
 
-			map.forEach((year, summaries) -> {
-				int headcount = summaries.stream().filter(p -> p.getName().equalsIgnoreCase(govBodyName))
-						.mapToInt(GovernmentBodyAnnualSummary::getHeadCount).sum();
-				addDataPoint(dataSeries, year, headcount);
-			});
-		});
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
+        buildAnnualOutcomeDataSeriesByField(dataSeries, series, grouped);
 
-		addChartToLayout(layout, governmentBodyName + " " + ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES, dataSeries,
-				series);
-	}
+        addChartToLayout(layout, governmentBodyName + " " + ANNUAL_INCOME, dataSeries, series);
+    }
 
-	@Override
-	public void createMinistryGovernmentBodyIncomeSummaryChart(final AbstractOrderedLayout layout) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
-		createMinistrySummary(layout, INKOMSTTITELGRUPPSNAMN, "MinistryGovernmentBodyIncomeSummaryChart");
-	}
+    @Override
+    public void createMinistryGovernmentBodyExpenditureSummaryChart(final AbstractOrderedLayout layout) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        createMinistryFieldSummary(layout, EXPENDITURE_GROUP_NAME, "MinistryGovernmentBodySpendingSummaryChart");
+    }
 
-	@Override
-	public void createMinistryGovernmentBodyIncomeSummaryChart(final VerticalLayout layout,
-			final String governmentBodyName) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
-		Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
+    @Override
+    public void createMinistryGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout,
+                                                                    final String governmentBodyName) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
 
-		Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report = esvApi
-				.getGovernmentBodyReportByFieldAndMinistry(INKOMSTTITELGRUPPSNAMN, governmentBodyName);
-		DataSeries dataSeries = new DataSeries();
-		Series series = new Series();
+        final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report =
+                esvApi.getGovernmentBodyReportByFieldAndMinistry(EXPENDITURE_GROUP_NAME, governmentBodyName);
 
-		processAnnualData(dataSeries, series, report);
-		addChartToLayout(layout, governmentBodyName + " " + ANNUAL_INCOME, dataSeries, series);
-	}
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
+        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);
 
-	private void createMinistrySummary(final AbstractOrderedLayout layout, final String field, final String label) {
-		Objects.requireNonNull(layout, "Layout cannot be null");
-		Objects.requireNonNull(field, "Field cannot be null");
-		Objects.requireNonNull(label, "Label cannot be null");
+        addChartToLayout(layout, governmentBodyName + " " + ANNUAL_EXPENDITURE, dataSeries, series);
+    }
 
-		final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry = esvApi
-				.getGovernmentBodyReportByMinistry();
-		final DataSeries dataSeries = new DataSeries();
-		final Series series = new Series();
+    @Override
+    public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout layout) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
 
-		if (reportByMinistry != null) {
-			reportByMinistry.forEach((ministry, summaries) -> {
-				if (summaries != null && !summaries.isEmpty()) {
-					series.addSeries(new XYseries().setLabel(ministry));
-					dataSeries.newSeries();
+        final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getData();
+        final List<String> ministryNames = esvApi.getMinistryNames();
 
-					Map<Integer, Double> annualSummaryMap = summaries.stream().filter(
-							t -> t.getDescriptionFields() != null && t.getDescriptionFields().get(field) != null)
-							.collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,
-									Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
 
-					annualSummaryMap.forEach((year, total) -> {
-						if (total != null && total > 0) {
-							addDataPoint(dataSeries, year + 1, total);
-						}
-					});
-				}
-			});
-		}
+        Optional.ofNullable(ministryNames)
+            .filter(names -> map != null)
+            .ifPresent(names -> names.stream()
+                .forEach(ministryName -> {
+                    series.addSeries(new XYseries().setLabel(ministryName));
+                    dataSeries.newSeries();
 
-		addChartToLayout(layout, label, dataSeries, series);
-	}
+                    map.entrySet().stream()
+                        .filter(entry -> entry.getValue() != null)
+                        .forEach(entry -> {
+                            final int headcount = entry.getValue().stream()
+                                .filter(Objects::nonNull)
+                                .filter(summary -> summary.getMinistry() != null)
+                                .filter(summary -> summary.getMinistry().equalsIgnoreCase(ministryName))
+                                .mapToInt(GovernmentBodyAnnualSummary::getHeadCount)
+                                .sum();
+                            addDataPoint(dataSeries, entry.getKey(), headcount);
+                        });
+                }));
 
+        addChartToLayout(layout, ANNUAL_HEADCOUNT_ALL_MINISTRIES, dataSeries, series);
+    }
+
+    @Override
+    public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout layout,
+                                                                  final String governmentBodyName) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
+
+        final Map<Integer, List<GovernmentBodyAnnualSummary>> map = esvApi.getDataPerMinistry(governmentBodyName);
+        final List<String> governmentBodyNames = esvApi.getGovernmentBodyNames(governmentBodyName);
+
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
+
+        Optional.ofNullable(governmentBodyNames)
+            .filter(names -> map != null)
+            .ifPresent(names -> names.stream()
+                .forEach(govBodyName -> {
+                    series.addSeries(new XYseries().setLabel(govBodyName));
+                    dataSeries.newSeries();
+
+                    map.entrySet().stream()
+                        .filter(entry -> entry.getValue() != null)
+                        .forEach(entry -> {
+                            final int headcount = entry.getValue().stream()
+                                .filter(Objects::nonNull)
+                                .filter(summary -> govBodyName.equalsIgnoreCase(summary.getName()))
+                                .mapToInt(GovernmentBodyAnnualSummary::getHeadCount)
+                                .sum();
+                            addDataPoint(dataSeries, entry.getKey(), headcount);
+                        });
+                }));
+
+        if (map != null && governmentBodyNames != null) {
+            addChartToLayout(layout,
+                    governmentBodyName + " " + ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES,
+                    dataSeries,
+                    series);
+        }
+    }
+
+    @Override
+    public void createMinistryGovernmentBodyIncomeSummaryChart(final AbstractOrderedLayout layout) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        createMinistryFieldSummary(layout, INKOMSTTITELGRUPPSNAMN, "MinistryGovernmentBodyIncomeSummaryChart");
+    }
+
+    @Override
+    public void createMinistryGovernmentBodyIncomeSummaryChart(final VerticalLayout layout,
+                                                               final String governmentBodyName) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        Objects.requireNonNull(governmentBodyName, "Government body name cannot be null");
+
+        final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> report =
+                esvApi.getGovernmentBodyReportByFieldAndMinistry(INKOMSTTITELGRUPPSNAMN, governmentBodyName);
+
+        final DataSeries dataSeries = new DataSeries();
+        final Series series = new Series();
+        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);
+
+        addChartToLayout(layout, governmentBodyName + " " + ANNUAL_INCOME, dataSeries, series);
+    }
 }
