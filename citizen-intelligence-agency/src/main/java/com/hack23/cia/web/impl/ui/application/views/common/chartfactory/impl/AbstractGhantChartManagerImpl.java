@@ -187,6 +187,22 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 	 */
 	public final void createRoleGhant(final AbstractOrderedLayout roleSummaryLayoutTabsheet, final Collection<T> assignmentList) {
 
+		final List<T> list = filterAndSortAssignments(assignmentList);
+
+		final Gantt createGantt = createGenericGantt(list, getRoleMapping(), getStepMapping());
+		roleSummaryLayoutTabsheet.addComponent(createGantt);
+		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, ContentRatio.GRID);
+
+	}
+
+	/**
+	 * Filter and sort assignments.
+	 *
+	 * @param assignmentList
+	 *            the assignment list
+	 * @return the list
+	 */
+	private List<T> filterAndSortAssignments(final Collection<T> assignmentList) {
 		final Comparator<T> compare = getComparator();
 
 		final List<T> list = assignmentList.stream().filter(
@@ -194,11 +210,7 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 				.collect(Collectors.toList());
 
 		Collections.sort(list, compare);
-
-		final Gantt createGantt = createGenericGantt(list, getRoleMapping(), getStepMapping());
-		roleSummaryLayoutTabsheet.addComponent(createGantt);
-		roleSummaryLayoutTabsheet.setExpandRatio(createGantt, ContentRatio.GRID);
-
+		return list;
 	}
 
 	/**
@@ -335,7 +347,6 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 		 * Gets the to date.
 		 *
 		 * @param t
-		 *            the t
 		 * @return the to date
 		 */
 		Date getToDate(T t);
