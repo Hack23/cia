@@ -327,12 +327,8 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 				VaadinIcons.TIMER, "Years in parliament"));
 
 		politicianLeaderboardUtil.addTopRoles(layout, experienceSummary);
-
-		// Top Knowledge Areas
 		politicianLeaderboardUtil.addKnowledgeAreas(layout, experienceSummary);
-
 		politicianLeaderboardUtil.addExperienceMetrics(layout,experienceSummary);
-
 		politicianLeaderboardUtil.addPoliticalAnalysisComment(layout, experienceSummary);
 
 	}

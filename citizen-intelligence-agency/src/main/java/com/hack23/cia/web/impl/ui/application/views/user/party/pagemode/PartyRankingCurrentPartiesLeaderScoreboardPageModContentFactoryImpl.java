@@ -451,7 +451,6 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 				VaadinIcons.TIMER, "Years as Party Leader"));
 	}
 
-
 	/**
 	 * Matches.
 	 *
@@ -464,9 +463,5 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
 				&& parameters.contains(ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());
 	}
-
-
-
-
 
 }
