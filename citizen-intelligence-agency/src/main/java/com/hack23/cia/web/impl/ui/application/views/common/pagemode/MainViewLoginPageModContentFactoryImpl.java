@@ -73,7 +73,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 		final String pageId = getPageId(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-		createPageHeader(panel, content,"Login","Login User","Secure login for agency users.");
+		CardInfoRowUtil.createPageHeader(panel, content,"Login","Login User","Secure login for agency users.");
 
 		final VerticalLayout loginLayout = new VerticalLayout();
 		loginLayout.setSizeFull();

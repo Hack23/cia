@@ -30,6 +30,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -76,7 +77,7 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);
-		createPageHeader(panel, panelContent, "Government Body Ranking Overview", "Government Body Rankings", "Examine rankings of government bodies based on roles, efficiency, and achievements.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Ranking Overview", "Government Body Rankings", "Examine rankings of government bodies based on roles, efficiency, and achievements.");
 
 		final String pageId = getPageId(parameters);
 

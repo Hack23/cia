@@ -33,6 +33,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -70,7 +71,7 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		createPageHeader(panel, panelContent, "Document Decision", "Decision Overview", "Review decisions made regarding the document and their implications.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document Decision", "Decision Overview", "Review decisions made regarding the document and their implications.");
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
 				&& documentStatusContainer.getDocumentProposal().getProposal() != null) {

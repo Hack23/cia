@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -57,7 +58,7 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Admin Application Event Charts", "Event Analysis", "Visualize and analyze application events using interactive charts and graphs.");
+		CardInfoRowUtil.createPageHeader(panel, content, "Admin Application Event Charts", "Event Analysis", "Visualize and analyze application events using interactive charts and graphs.");
 
 		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);
 

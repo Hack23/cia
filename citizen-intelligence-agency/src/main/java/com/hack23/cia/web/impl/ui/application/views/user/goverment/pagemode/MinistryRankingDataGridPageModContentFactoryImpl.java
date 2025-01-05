@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -80,7 +81,7 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
-		createPageHeader(panel, panelContent, "Ministry Ranking Dashboard", "Ministry Rankings", "Compare ministry rankings to assess their assignments, performance, and overall impact.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Ranking Dashboard", "Ministry Rankings", "Compare ministry rankings to assess their assignments, performance, and overall impact.");
 
 		final String pageId = getPageId(parameters);
 

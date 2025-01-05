@@ -26,6 +26,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentOutcomeChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -55,7 +56,7 @@ public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl ext
 		final VerticalLayout panelContent = createPanelContent();
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
-		createPageHeader(panel, panelContent,
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 			    "Ministry Ranking - Government Outcomes",
 			    "Evaluating Results",
 			    "Evaluating ministry influence on governance results.");

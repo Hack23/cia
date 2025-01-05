@@ -31,6 +31,7 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -83,7 +84,7 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 		if (userAccount.isPresent()) {
 
 			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
-			createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::User Events",USER_EVENTS,"All past user events");
+			CardInfoRowUtil.createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::User Events",USER_EVENTS,"All past user events");
 
 			final DataContainer<ApplicationActionEvent, Long> eventDataContainer = getApplicationManager()
 					.getDataContainer(ApplicationActionEvent.class);

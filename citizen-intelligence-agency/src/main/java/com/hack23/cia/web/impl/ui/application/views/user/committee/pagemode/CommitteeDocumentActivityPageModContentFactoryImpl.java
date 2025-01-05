@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.OrgDocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -62,7 +63,7 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Committee Documents " + viewRiksdagenCommittee.getEmbeddedId().getDetail() , "Document Activity Overview", "Tracks and visualizes the activity associated with committee documents.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Documents " + viewRiksdagenCommittee.getEmbeddedId().getDetail() , "Document Activity Overview", "Tracks and visualizes the activity associated with committee documents.");
 
 		chartDataManager.createDocumentHistoryChartByOrg(panelContent,
 				viewRiksdagenCommittee.getEmbeddedId().getOrgCode());

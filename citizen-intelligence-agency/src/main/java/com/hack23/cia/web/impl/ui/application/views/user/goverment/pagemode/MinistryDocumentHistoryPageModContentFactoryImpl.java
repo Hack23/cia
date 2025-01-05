@@ -28,6 +28,7 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -73,7 +74,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Document History " + viewRiksdagenMinistry.getNameId(), "Ministry Document History", "Displays the historical progression of documents managed by ministries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document History " + viewRiksdagenMinistry.getNameId(), "Ministry Document History", "Displays the historical progression of documents managed by ministries.");
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocument.class);

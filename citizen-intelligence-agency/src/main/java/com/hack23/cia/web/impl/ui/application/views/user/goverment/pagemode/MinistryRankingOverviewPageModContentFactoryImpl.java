@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -51,7 +52,7 @@ public final class MinistryRankingOverviewPageModContentFactoryImpl extends Abst
 		final VerticalLayout panelContent = createPanelContent();
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
-		createPageHeader(panel, panelContent, "Ministry Rankings", "Ranking Overview", "Evaluate and compare the performance of various ministries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Rankings", "Ranking Overview", "Evaluate and compare the performance of various ministries.");
 
 
 		final String pageId = getPageId(parameters);

@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -73,7 +74,7 @@ public final class CommitteeRankingCommitteeByPartyChartsPageModContentFactoryIm
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
 
-		createPageHeader(panel, panelContent, "Committee Rankings", "Committee by Party Charts Overview", "Provides comparative rankings for committees based on performance or metrics.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Rankings", "Committee by Party Charts Overview", "Provides comparative rankings for committees based on performance or metrics.");
 
 
 		final String pageId = getPageId(parameters);

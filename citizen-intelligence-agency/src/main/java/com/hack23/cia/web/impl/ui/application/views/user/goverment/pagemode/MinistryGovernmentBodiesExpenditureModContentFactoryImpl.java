@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdage
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -60,7 +61,7 @@ public final class MinistryGovernmentBodiesExpenditureModContentFactoryImpl exte
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Expenditure Analysis " + viewRiksdagenMinistry.getNameId(), "Government Bodies Expenditure Analysis", "Provides detailed expenditure data for government bodies under ministries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Expenditure Analysis " + viewRiksdagenMinistry.getNameId(), "Government Bodies Expenditure Analysis", "Provides detailed expenditure data for government bodies under ministries.");
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyExpenditureSummaryChart(panelContent,
 				viewRiksdagenMinistry.getNameId());

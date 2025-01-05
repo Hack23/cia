@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -55,7 +56,7 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl
 		getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Committee Visits", "Page Visit History for Committees", "Tracks user interaction with committee pages for analytical purposes.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Visits", "Page Visit History for Committees", "Tracks user interaction with committee pages for analytical purposes.");
 
 		createPageVisitHistory(NAME, pageId, panelContent);
 

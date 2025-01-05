@@ -28,6 +28,7 @@ import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 import com.hack23.cia.model.internal.application.system.impl.LanguageData_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -84,7 +85,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 
         getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-        createPageHeader(panel, content,
+        CardInfoRowUtil.createPageHeader(panel, content,
             "Admin Language Management",
             "Language Overview",
             "Administer and update language settings and configurations for the platform.");
@@ -141,7 +142,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
 
                 horizontalLayout.addComponent(cardPanel);
 
-                createCardHeader(cardContent,"Language Details");
+                CardInfoRowUtil.createCardHeader(cardContent,"Language Details");
 
                 // Attributes layout
                 final VerticalLayout attributesLayout = new VerticalLayout();
@@ -150,10 +151,10 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
                 cardContent.addComponent(attributesLayout);
 
                 // Display each field if not null or empty
-                addInfoRowIfNotNull(attributesLayout, "Language Name:", languageData.getLanguageName(), VaadinIcons.GLOBE);
-                addInfoRowIfNotNull(attributesLayout, "Created Date:", String.valueOf(languageData.getCreatedDate()), VaadinIcons.CALENDAR);
-                addInfoRowIfNotNull(attributesLayout, "Last Modified Date:", String.valueOf(languageData.getLastModifiedDate()), VaadinIcons.CALENDAR_CLOCK);
-                addInfoRowIfNotNull(attributesLayout, "Language Enabled:", String.valueOf(languageData.isLanguageEnabled()), VaadinIcons.CHECK);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Language Name:", languageData.getLanguageName(), VaadinIcons.GLOBE);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Created Date:", String.valueOf(languageData.getCreatedDate()), VaadinIcons.CALENDAR);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Last Modified Date:", String.valueOf(languageData.getLastModifiedDate()), VaadinIcons.CALENDAR_CLOCK);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Language Enabled:", String.valueOf(languageData.isLanguageEnabled()), VaadinIcons.CHECK);
             }
         }
 

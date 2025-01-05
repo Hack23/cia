@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
@@ -54,7 +55,7 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
-		createPageHeader(panel, panelContent, "Party Rankings", "Ranking Overview", "Compare and rank political parties based on predefined metrics.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Party Rankings", "Ranking Overview", "Compare and rank political parties based on predefined metrics.");
 		final String pageId = getPageId(parameters);
 
 

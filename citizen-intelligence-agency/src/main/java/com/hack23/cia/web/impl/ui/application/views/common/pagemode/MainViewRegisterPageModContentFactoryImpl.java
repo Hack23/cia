@@ -71,7 +71,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-		createPageHeader(panel, content,"Register","Register User","Register new users with essential details.");
+		CardInfoRowUtil.createPageHeader(panel, content,"Register","Register User","Register new users with essential details.");
 
 		final VerticalLayout registerLayout = new VerticalLayout();
 		registerLayout.setSizeFull();

@@ -27,6 +27,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
@@ -71,7 +72,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
 
         getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-        createPageHeader(panel,
+        CardInfoRowUtil.createPageHeader(panel,
                 panelContent,
                 "Ministry Overview " + viewRiksdagenMinistry.getNameId(),
                 "Ministry Details",
@@ -98,7 +99,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
         // Header layout
-        createCardHeader(cardContent,viewRiksdagenMinistry.getNameId());
+        CardInfoRowUtil.createCardHeader(cardContent,viewRiksdagenMinistry.getNameId());
 
         // Multi-column layout for attributes
         final HorizontalLayout attributesLayout = new HorizontalLayout();
@@ -107,41 +108,41 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         cardContent.addComponent(attributesLayout);
 
         // Column 1: Basic Ministry Details
-        final VerticalLayout profileDetailsLayout = createSectionLayout("Ministry Profile");
+        final VerticalLayout profileDetailsLayout = CardInfoRowUtil.createSectionLayout("Ministry Profile");
 
-        profileDetailsLayout.addComponent(createInfoRow("Ministry ID:", viewRiksdagenMinistry.getNameId(),
+        profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Ministry ID:", viewRiksdagenMinistry.getNameId(),
             VaadinIcons.INFO_CIRCLE, "Ministry identifier"));
-        profileDetailsLayout.addComponent(createInfoRow("Status:", viewRiksdagenMinistry.isActive() ? "Active" : "Inactive",
+        profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Status:", viewRiksdagenMinistry.isActive() ? "Active" : "Inactive",
             VaadinIcons.FLAG, "Current ministry status"));
-        profileDetailsLayout.addComponent(createInfoRow("Current Members:", String.valueOf(viewRiksdagenMinistry.getCurrentMemberSize()),
+        profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Current Members:", String.valueOf(viewRiksdagenMinistry.getCurrentMemberSize()),
             VaadinIcons.GROUP, "Number of current ministry members"));
-        profileDetailsLayout.addComponent(createInfoRow("Activity Level:", viewRiksdagenMinistry.getActivityLevel(),
+        profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Activity Level:", viewRiksdagenMinistry.getActivityLevel(),
             VaadinIcons.CHART, "Ministry's current activity level"));
 
         // Column 2: Service Statistics
-        final VerticalLayout serviceStatsLayout = createSectionLayout("Service Statistics");
+        final VerticalLayout serviceStatsLayout = CardInfoRowUtil.createSectionLayout("Service Statistics");
 
-        serviceStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenMinistry.getTotalAssignments()),
+        serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenMinistry.getTotalAssignments()),
             VaadinIcons.TASKS, "Total number of assignments"));
-        serviceStatsLayout.addComponent(createInfoRow("First Assignment:", String.valueOf(viewRiksdagenMinistry.getFirstAssignmentDate()),
+        serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("First Assignment:", String.valueOf(viewRiksdagenMinistry.getFirstAssignmentDate()),
             VaadinIcons.CALENDAR, "Date of first ministry assignment"));
-        serviceStatsLayout.addComponent(createInfoRow("Last Assignment:", String.valueOf(viewRiksdagenMinistry.getLastAssignmentDate()),
+        serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Last Assignment:", String.valueOf(viewRiksdagenMinistry.getLastAssignmentDate()),
             VaadinIcons.CALENDAR_CLOCK, "Date of most recent assignment"));
-        serviceStatsLayout.addComponent(createInfoRow("Total Days Served:", String.valueOf(viewRiksdagenMinistry.getTotalDaysServed()),
+        serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Total Days Served:", String.valueOf(viewRiksdagenMinistry.getTotalDaysServed()),
             VaadinIcons.CLOCK, "Total days of ministry service"));
 
         // Column 3: Document Statistics
-        final VerticalLayout documentStatsLayout = createSectionLayout("Document Statistics");
+        final VerticalLayout documentStatsLayout = CardInfoRowUtil.createSectionLayout("Document Statistics");
 
-        documentStatsLayout.addComponent(createInfoRow("Total Documents:", String.valueOf(viewRiksdagenMinistry.getTotalDocuments()),
+        documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Total Documents:", String.valueOf(viewRiksdagenMinistry.getTotalDocuments()),
             VaadinIcons.FILE_TEXT, "Total number of ministry documents"));
-        documentStatsLayout.addComponent(createInfoRow("Documents Last Year:", String.valueOf(viewRiksdagenMinistry.getDocumentsLastYear()),
+        documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Documents Last Year:", String.valueOf(viewRiksdagenMinistry.getDocumentsLastYear()),
             VaadinIcons.FILE_O, "Documents produced in the last year"));
-        documentStatsLayout.addComponent(createInfoRow("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenMinistry.getAvgDocumentsPerMember()),
+        documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenMinistry.getAvgDocumentsPerMember()),
             VaadinIcons.CHART_LINE, "Average documents per ministry member"));
-        documentStatsLayout.addComponent(createInfoRow("Total Propositions:", String.valueOf(viewRiksdagenMinistry.getTotalPropositions()),
+        documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Total Propositions:", String.valueOf(viewRiksdagenMinistry.getTotalPropositions()),
             VaadinIcons.FILE_PRESENTATION, "Total number of propositions"));
-        documentStatsLayout.addComponent(createInfoRow("Government Bills:", String.valueOf(viewRiksdagenMinistry.getTotalGovernmentBills()),
+        documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Government Bills:", String.valueOf(viewRiksdagenMinistry.getTotalGovernmentBills()),
             VaadinIcons.FILE_TEXT_O, "Total number of government bills"));
 
         // Add all columns to the attributes layout

@@ -26,6 +26,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -60,7 +61,7 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Party Won Daily Summary Chart " + viewRiksdagenParty.getPartyName(), "Daily Summary", "Analyze the daily summary of party wins over time.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Party Won Daily Summary Chart " + viewRiksdagenParty.getPartyName(), "Daily Summary", "Analyze the daily summary of party wins over time.");
 
 		chartDataManager.createPartyLineChart(panelContent, pageId);
 

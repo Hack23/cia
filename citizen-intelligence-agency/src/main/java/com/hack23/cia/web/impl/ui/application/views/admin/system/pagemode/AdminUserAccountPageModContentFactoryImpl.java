@@ -32,6 +32,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -87,7 +88,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
         getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-        createPageHeader(panel, content, "Admin User Account Management", "User Account Overview",
+        CardInfoRowUtil.createPageHeader(panel, content, "Admin User Account Management", "User Account Overview",
                 "Manage user accounts, including roles, permissions, and activity logs.");
 
         final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
@@ -120,7 +121,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
                 content.addComponent(cardPanel);
 
-                createCardHeader(cardContent,"User Account Details");
+                CardInfoRowUtil.createCardHeader(cardContent,"User Account Details");
 
                 // Attributes layout
                 final VerticalLayout attributesLayout = new VerticalLayout();
@@ -129,12 +130,12 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
                 cardContent.addComponent(attributesLayout);
 
                 // Display fields using a card layout approach with null-check
-                addInfoRowIfNotNull(attributesLayout, "Username:", userAccount.getUsername(), VaadinIcons.USER);
-                addInfoRowIfNotNull(attributesLayout, "Created Date:", String.valueOf(userAccount.getCreatedDate()),
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Username:", userAccount.getUsername(), VaadinIcons.USER);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Created Date:", String.valueOf(userAccount.getCreatedDate()),
                         VaadinIcons.CALENDAR);
-                addInfoRowIfNotNull(attributesLayout, "Email:", userAccount.getEmail(), VaadinIcons.ENVELOPE);
-                addInfoRowIfNotNull(attributesLayout, "Country:", userAccount.getCountry(), VaadinIcons.GLOBE);
-                addInfoRowIfNotNull(attributesLayout, "Number Of Visits:", String.valueOf(userAccount.getNumberOfVisits()),
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Email:", userAccount.getEmail(), VaadinIcons.ENVELOPE);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Country:", userAccount.getCountry(), VaadinIcons.GLOBE);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Number Of Visits:", String.valueOf(userAccount.getNumberOfVisits()),
                         VaadinIcons.EYE);
 
                 final VerticalLayout overviewLayout = new VerticalLayout();

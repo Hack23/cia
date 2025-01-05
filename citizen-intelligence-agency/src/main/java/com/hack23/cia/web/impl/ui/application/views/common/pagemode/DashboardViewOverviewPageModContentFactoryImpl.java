@@ -116,7 +116,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 		final String pageId = getPageId(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-		createPageHeader(panel, panelContent,
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 				"CitizenIntelligence Agency::Dashboard Overview",
 				"Dashboard Overview",
 				"Visualize political activity in Sweden, present key performance indicators and metadata.");

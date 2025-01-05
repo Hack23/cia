@@ -31,6 +31,7 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
@@ -87,7 +88,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 
 			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 
-			createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::Overview",OVERVIEW,"Manage user and security settings");
+			CardInfoRowUtil.createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::Overview",OVERVIEW,"Manage user and security settings");
 
 			// Logout button
 			final Button logoutButton = new Button(LOGOUT, VaadinIcons.SIGN_OUT);
@@ -112,7 +113,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 			panelContent.addComponent(cardPanel);
 			panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
-			createCardHeader(cardContent,"User Account Information");
+			CardInfoRowUtil.createCardHeader(cardContent,"User Account Information");
 
 			// Two-column layout for user attributes
 			final HorizontalLayout attributesLayout = new HorizontalLayout();
@@ -121,22 +122,22 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 			cardContent.addComponent(attributesLayout);
 
 			// Left column: Basic Profile
-			final VerticalLayout profileLayout = createSectionLayout("Profile Details");
+			final VerticalLayout profileLayout = CardInfoRowUtil.createSectionLayout("Profile Details");
 
 			// Display key fields from user account in Profile Details
 			final UserAccount account = userAccount.get();
-			profileLayout.addComponent(createInfoRow("Username:", account.getUsername(), VaadinIcons.USER, "Your unique username"));
-			profileLayout.addComponent(createInfoRow("Email:", account.getEmail(), VaadinIcons.ENVELOPE_O, "Your registered email address"));
-			profileLayout.addComponent(createInfoRow("Country:", account.getCountry(), VaadinIcons.GLOBE, "Country of residence"));
-			profileLayout.addComponent(createInfoRow("Created Date:", String.valueOf(account.getCreatedDate()), VaadinIcons.CALENDAR, "Date when the account was created"));
+			profileLayout.addComponent(CardInfoRowUtil.createInfoRow("Username:", account.getUsername(), VaadinIcons.USER, "Your unique username"));
+			profileLayout.addComponent(CardInfoRowUtil.createInfoRow("Email:", account.getEmail(), VaadinIcons.ENVELOPE_O, "Your registered email address"));
+			profileLayout.addComponent(CardInfoRowUtil.createInfoRow("Country:", account.getCountry(), VaadinIcons.GLOBE, "Country of residence"));
+			profileLayout.addComponent(CardInfoRowUtil.createInfoRow("Created Date:", String.valueOf(account.getCreatedDate()), VaadinIcons.CALENDAR, "Date when the account was created"));
 
 			// Right column: Status & Statistics
-			final VerticalLayout statusLayout = createSectionLayout("Status & Statistics");
+			final VerticalLayout statusLayout = CardInfoRowUtil.createSectionLayout("Status & Statistics");
 
-			statusLayout.addComponent(createInfoRow("User Type:", account.getUserType().toString(), VaadinIcons.INFO_CIRCLE, "Type of user account"));
-			statusLayout.addComponent(createInfoRow("User Role:", account.getUserRole().toString(), VaadinIcons.USER_CHECK, "Your assigned role in the system"));
-			statusLayout.addComponent(createInfoRow("Email Status:", account.getUserEmailStatus().toString(), VaadinIcons.ENVELOPE, "Status of email verification"));
-			statusLayout.addComponent(createInfoRow("Number of Visits:", String.valueOf(account.getNumberOfVisits()), VaadinIcons.CHART, "How many times you have visited"));
+			statusLayout.addComponent(CardInfoRowUtil.createInfoRow("User Type:", account.getUserType().toString(), VaadinIcons.INFO_CIRCLE, "Type of user account"));
+			statusLayout.addComponent(CardInfoRowUtil.createInfoRow("User Role:", account.getUserRole().toString(), VaadinIcons.USER_CHECK, "Your assigned role in the system"));
+			statusLayout.addComponent(CardInfoRowUtil.createInfoRow("Email Status:", account.getUserEmailStatus().toString(), VaadinIcons.ENVELOPE, "Status of email verification"));
+			statusLayout.addComponent(CardInfoRowUtil.createInfoRow("Number of Visits:", String.valueOf(account.getNumberOfVisits()), VaadinIcons.CHART, "How many times you have visited"));
 
 			attributesLayout.addComponents(profileLayout, statusLayout);
 

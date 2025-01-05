@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary;
 import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummaryPageMode;
@@ -62,7 +63,7 @@ public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDa
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Admin Author Summary", "Author Overview", "Detailed summary of authors and their contributions to data records.");
+		CardInfoRowUtil.createPageHeader(panel, content, "Admin Author Summary", "Author Overview", "Detailed summary of authors and their contributions to data records.");
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSizeFull();

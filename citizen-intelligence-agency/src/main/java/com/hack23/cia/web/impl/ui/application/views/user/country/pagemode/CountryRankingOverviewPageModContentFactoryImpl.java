@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -49,7 +50,7 @@ public final class CountryRankingOverviewPageModContentFactoryImpl extends Abstr
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);
-		createPageHeader(panel, panelContent,"Country Rankings","Ranking Overview","Visualize and compare country-level political or economic indicators.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,"Country Rankings","Ranking Overview","Visualize and compare country-level political or economic indicators.");
 		final String pageId = getPageId(parameters);
 		getCountryMenuItemFactory().createOverviewPage(panelContent);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);

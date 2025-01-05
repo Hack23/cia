@@ -32,6 +32,7 @@ import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentCont
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.shared.ui.ContentMode;
@@ -65,7 +66,7 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Document Data", "Data Overview", "Detailed view of the document's core data and metadata.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document Data", "Data Overview", "Detailed view of the document's core data and metadata.");
 
 
 		final DataContainer<DocumentContentData, String> documentContentDataDataContainer = getApplicationManager()

@@ -36,6 +36,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.WorldIndicatorChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
@@ -67,7 +68,7 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);
-		createPageHeader(panel, panelContent, "Country Indicator", "Country Indicator",
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Country Indicator", "Country Indicator",
 				"Compare key performance indicators across multiple countries.");
 		final String pageId = getPageId(parameters);
 
@@ -114,15 +115,15 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 
 			// For each field in AS_LIST, we create a row
 			if (indicatorSummaryValue.getIndicatorName() != null) {
-				card.addComponent(createInfoRow("Indicator Name:", indicatorSummaryValue.getIndicatorName(),
+				card.addComponent(CardInfoRowUtil.createInfoRow("Indicator Name:", indicatorSummaryValue.getIndicatorName(),
 						VaadinIcons.INFO_CIRCLE, "Name of the indicator"));
 			}
 			if (indicatorSummaryValue.getSourceValue() != null) {
-				card.addComponent(createInfoRow("Source Value:", indicatorSummaryValue.getSourceValue(),
+				card.addComponent(CardInfoRowUtil.createInfoRow("Source Value:", indicatorSummaryValue.getSourceValue(),
 						VaadinIcons.GLOBE, "Source of this indicator data"));
 			}
 			if (indicatorSummaryValue.getSourceOrganization() != null) {
-				card.addComponent(createInfoRow("Source Organization:", indicatorSummaryValue.getSourceOrganization(),
+				card.addComponent(CardInfoRowUtil.createInfoRow("Source Organization:", indicatorSummaryValue.getSourceOrganization(),
 						VaadinIcons.INSTITUTION, "Organization providing this data"));
 			}
 

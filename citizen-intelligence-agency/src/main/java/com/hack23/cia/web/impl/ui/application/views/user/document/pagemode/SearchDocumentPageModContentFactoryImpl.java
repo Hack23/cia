@@ -31,6 +31,7 @@ import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
@@ -76,7 +77,7 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasic
 		final String pageId = getPageId(parameters);
 
 		documentMenuItemFactory.createDocumentsMenuBar(menuBar);
-		createPageHeader(panel, panelContent,"Search","Document Search","Search and access detailed parliamentary documents.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,"Search","Document Search","Search and access detailed parliamentary documents.");
 
 		final VerticalLayout searchLayout = new VerticalLayout();
 		searchLayout.setSizeFull();

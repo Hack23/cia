@@ -37,6 +37,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -127,7 +128,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
      */
     private void setupMenuAndHeader(MenuBar menuBar, Panel panel, VerticalLayout panelContent) {
         getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-        createPageHeader(panel, panelContent, TITLE, SUBTITLE, DESCRIPTION);
+        CardInfoRowUtil.createPageHeader(panel, panelContent, TITLE, SUBTITLE, DESCRIPTION);
     }
 
     /**

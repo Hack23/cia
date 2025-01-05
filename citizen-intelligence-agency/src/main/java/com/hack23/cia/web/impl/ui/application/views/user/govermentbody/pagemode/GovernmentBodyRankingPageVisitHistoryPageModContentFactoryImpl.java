@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
@@ -58,7 +59,7 @@ public final class GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImp
 
 		final String pageId = getPageId(parameters);
 
-		createPageHeader(panel, panelContent, "Government Body Ranking Page Visit History", "Page Visit History", "Track the visit history of government body ranking pages.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Ranking Page Visit History", "Page Visit History", "Track the visit history of government body ranking pages.");
 
 		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 

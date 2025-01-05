@@ -29,6 +29,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElemen
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -73,7 +74,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 		final int pageNr= getPageNr(parameters);
 
 		getDocumentMenuItemFactory().createDocumentsMenuBar(menuBar);
-		createPageHeader(panel, panelContent, "Documents Overview", "Documents Repository", "Comprehensive repository of Swedish Parliament(Riksdagen) documents.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Documents Overview", "Documents Repository", "Comprehensive repository of Swedish Parliament(Riksdagen) documents.");
 
 		final DataContainer<DocumentElement, String> documentElementDataContainer = getApplicationManager()
 				.getDataContainer(DocumentElement.class);

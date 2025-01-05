@@ -30,6 +30,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -69,7 +70,7 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		createPageHeader(panel, panelContent, "Document References", "References Overview", "Analyze and review references within the document, including cross-references.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document References", "References Overview", "Analyze and review references within the document, including cross-references.");
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentReferenceContainer() != null
 				&& documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList() != null) {

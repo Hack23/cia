@@ -30,6 +30,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
@@ -70,7 +71,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		createPageHeader(panel, panelContent,
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 				"Document Overview " + documentElement.getTitle() + " " + documentElement.getSubTitle(),
 				"Document Details", "Access and explore official documents and reports.");
 
@@ -90,7 +91,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 		panelContent.addComponent(cardPanel);
 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
-        createCardHeader(cardContent,"Document Information");
+        CardInfoRowUtil.createCardHeader(cardContent,"Document Information");
 
 		// Two-column layout
 		final HorizontalLayout attributesLayout = new HorizontalLayout();
@@ -99,35 +100,35 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 		cardContent.addComponent(attributesLayout);
 
 		// Left column: Document Profile (from DocumentElement)
-		final VerticalLayout profileLayout = createSectionLayout("Document Profile");
+		final VerticalLayout profileLayout = CardInfoRowUtil.createSectionLayout("Document Profile");
 
 		// Display a selection of DocumentElement fields
 		// Choose key fields: title, subTitle, org, documentType, status, rm,
 		// madePublicDate, createdDate
-		profileLayout.addComponent(createInfoRow("Title:", documentElement.getTitle(), VaadinIcons.FILE_TEXT_O,
+		profileLayout.addComponent(CardInfoRowUtil.createInfoRow("Title:", documentElement.getTitle(), VaadinIcons.FILE_TEXT_O,
 				"Main title of the document"));
 		if (!StringUtils.isEmpty(documentElement.getSubTitle())) {
-			profileLayout.addComponent(createInfoRow("SubTitle:", documentElement.getSubTitle(), VaadinIcons.FILE_TEXT,
+			profileLayout.addComponent(CardInfoRowUtil.createInfoRow("SubTitle:", documentElement.getSubTitle(), VaadinIcons.FILE_TEXT,
 					"Subtitle or complementary title"));
 		}
-		profileLayout.addComponent(createInfoRow("Organization (Org):", documentElement.getOrg(),
+		profileLayout.addComponent(CardInfoRowUtil.createInfoRow("Organization (Org):", documentElement.getOrg(),
 				VaadinIcons.INSTITUTION, "Originating organization or entity"));
-		profileLayout.addComponent(createInfoRow("Document Type:", documentElement.getDocumentType(),
+		profileLayout.addComponent(CardInfoRowUtil.createInfoRow("Document Type:", documentElement.getDocumentType(),
 				VaadinIcons.FILE_CODE, "Type of the document"));
-		profileLayout.addComponent(createInfoRow("Status:", documentElement.getStatus(), VaadinIcons.QUESTION_CIRCLE,
+		profileLayout.addComponent(CardInfoRowUtil.createInfoRow("Status:", documentElement.getStatus(), VaadinIcons.QUESTION_CIRCLE,
 				"Current status of the document"));
 		profileLayout
-				.addComponent(createInfoRow("Made Public Date:", String.valueOf(documentElement.getMadePublicDate()),
+				.addComponent(CardInfoRowUtil.createInfoRow("Made Public Date:", String.valueOf(documentElement.getMadePublicDate()),
 						VaadinIcons.CALENDAR_USER, "Date when the document was made public"));
 
 		// Right column: Metadata & Status (from DocumentStatusContainer and
 		// DocumentData)
-		final VerticalLayout metadataLayout = createSectionLayout("Metadata & Status");
+		final VerticalLayout metadataLayout = CardInfoRowUtil.createSectionLayout("Metadata & Status");
 
 		if (documentStatusContainer != null) {
 			// DocumentCategory (from DocumentStatusContainer)
 			if (!StringUtils.isEmpty(documentStatusContainer.getDocumentCategory())) {
-				metadataLayout.addComponent(createInfoRow("Document Category:",
+				metadataLayout.addComponent(CardInfoRowUtil.createInfoRow("Document Category:",
 						documentStatusContainer.getDocumentCategory(), VaadinIcons.BOOK, "Category of this document"));
 			}
 
@@ -136,20 +137,20 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 			if (documentData != null) {
 				// Choose a few key fields from DocumentData
 				if (!StringUtils.isEmpty(documentData.getLabel())) {
-					metadataLayout.addComponent(createInfoRow("Label:", documentData.getLabel(), VaadinIcons.TAG,
+					metadataLayout.addComponent(CardInfoRowUtil.createInfoRow("Label:", documentData.getLabel(), VaadinIcons.TAG,
 							"Short identifying label"));
 				}
 				if (!StringUtils.isEmpty(documentData.getTempLabel())) {
-					metadataLayout.addComponent(createInfoRow("Temp Label:", documentData.getTempLabel(),
+					metadataLayout.addComponent(CardInfoRowUtil.createInfoRow("Temp Label:", documentData.getTempLabel(),
 							VaadinIcons.EDIT, "Temporary label or note"));
 				}
 				if (!StringUtils.isEmpty(documentData.getHangarId())) {
-					metadataLayout.addComponent(createInfoRow("Hangar ID:", documentData.getHangarId(),
+					metadataLayout.addComponent(CardInfoRowUtil.createInfoRow("Hangar ID:", documentData.getHangarId(),
 							VaadinIcons.CLIPBOARD, "Storage or reference ID"));
 				}
 				if (documentData.getNumberValue() != null) {
 					metadataLayout
-							.addComponent(createInfoRow("Number Value:", String.valueOf(documentData.getNumberValue()),
+							.addComponent(CardInfoRowUtil.createInfoRow("Number Value:", String.valueOf(documentData.getNumberValue()),
 									VaadinIcons.BAR_CHART, "Numeric value associated with the document"));
 				}
 			}

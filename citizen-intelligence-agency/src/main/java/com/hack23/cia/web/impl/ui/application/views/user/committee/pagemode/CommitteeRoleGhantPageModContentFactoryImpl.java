@@ -32,6 +32,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.CommitteeGhantChartManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -63,7 +64,7 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Committee Role Gantt Chart " +  viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Role Timeline", "Visualize the timeline and duration of roles within the committee, highlighting key assignments and transitions.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Role Gantt Chart " +  viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Role Timeline", "Visualize the timeline and duration of roles within the committee, highlighting key assignments and transitions.");
 
 		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);

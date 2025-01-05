@@ -26,6 +26,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -59,7 +60,7 @@ public final class GovernmentBodyRankingIncomePageModContentFactoryImpl extends 
 
 		final String pageId = getPageId(parameters);
 
-		createPageHeader(panel, panelContent, "Government Body Income", "Income Details", "Explore detailed income information for government bodies.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Income", "Income Details", "Explore detailed income information for government bodies.");
 
 		governmentBodyChartDataManager.createGovernmentBodyIncomeSummaryChart(panelContent);
 
