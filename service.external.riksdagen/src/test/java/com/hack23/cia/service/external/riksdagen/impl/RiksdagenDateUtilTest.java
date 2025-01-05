@@ -15,7 +15,7 @@
  *
  *	$Id$
  *  $HeadURL$
-*/
+ */
 package com.hack23.cia.service.external.riksdagen.impl;
 
 import java.text.SimpleDateFormat;
@@ -46,8 +46,6 @@ public final class RiksdagenDateUtilTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void tryToFindValidVoteDateListExistSameDateSuccess() throws Exception {
-		final RiksdagenDateUtil riksdagenDateUtil = new RiksdagenDateUtil();
-
 		final String madePublicBallotDate = "2018-01-01";
 		final BallotContainer ballotContainer = new BallotContainer().withBallotDocumentData(new BallotDocumentData()).withBallotDocumentElement(new BallotDocumentElement().withCreatedDate(madePublicBallotDate));
 		final List<VoteDataDto> voteDataList = new ArrayList<>();
@@ -68,8 +66,6 @@ public final class RiksdagenDateUtilTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void tryToFindValidVoteDateListExistDifferentDateSuccess() throws Exception {
-		final RiksdagenDateUtil riksdagenDateUtil = new RiksdagenDateUtil();
-
 		final String madePublicBallotDate = "2018-01-01";
 		final BallotContainer ballotContainer = new BallotContainer().withBallotDocumentData(new BallotDocumentData()).withBallotDocumentElement(new BallotDocumentElement().withCreatedDate(madePublicBallotDate));
 		final List<VoteDataDto> voteDataList = new ArrayList<>();
@@ -92,8 +88,6 @@ public final class RiksdagenDateUtilTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void tryToFindValidVoteDateBallotCreatedDayExistSuccess() throws Exception {
-		final RiksdagenDateUtil riksdagenDateUtil = new RiksdagenDateUtil();
-
 		final String ballotDate = "2018-01-01";
 		final BallotContainer ballotContainer = new BallotContainer().withBallotDocumentData(new BallotDocumentData()).withBallotDocumentElement(new BallotDocumentElement().withCreatedDate(ballotDate));
 		final List<VoteDataDto> voteDataList = new ArrayList<>();
@@ -111,8 +105,6 @@ public final class RiksdagenDateUtilTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void tryToFindValidVoteDateBallotCreatedDayInvalidFallbackToSystemDateExistSuccess() throws Exception {
-		final RiksdagenDateUtil riksdagenDateUtil = new RiksdagenDateUtil();
-
 		final String ballotDate = "2018-01";
 		final String systemDate = "2018-01-01";
 
@@ -132,8 +124,6 @@ public final class RiksdagenDateUtilTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void tryToFindValidVoteDateBallotPublicDateExistSuccess() throws Exception {
-		final RiksdagenDateUtil riksdagenDateUtil = new RiksdagenDateUtil();
-
 		final String ballotDate = "2017-01-01";
 		final BallotContainer ballotContainer = new BallotContainer().withBallotDocumentData(new BallotDocumentData()).withBallotDocumentElement(new BallotDocumentElement().withMadePublicDate(ballotDate));
 		final List<VoteDataDto> voteDataList = new ArrayList<>();
@@ -150,8 +140,6 @@ public final class RiksdagenDateUtilTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void tryToFindValidVoteDateSystemDateExistSuccess() throws Exception {
-		final RiksdagenDateUtil riksdagenDateUtil = new RiksdagenDateUtil();
-
 		final String ballotDate = "2016-01-01";
 		final BallotContainer ballotContainer = new BallotContainer().withBallotDocumentData(new BallotDocumentData()).withBallotDocumentElement(new BallotDocumentElement().withSystemDate(ballotDate));
 		final List<VoteDataDto> voteDataList = new ArrayList<>();
@@ -169,8 +157,6 @@ public final class RiksdagenDateUtilTest extends AbstractUnitTest {
 	 */
 	@Test
 	public void tryToFindValidVoteDateSystemDateInvalidFallbackToPublicDateExistSuccess() throws Exception {
-		final RiksdagenDateUtil riksdagenDateUtil = new RiksdagenDateUtil();
-
 		final String systemDate = "2016-01";
 		final String madePublicDate = "2016-01-01";
 

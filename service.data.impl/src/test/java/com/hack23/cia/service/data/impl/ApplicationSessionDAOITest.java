@@ -15,7 +15,7 @@
  *
  *	$Id$
  *  $HeadURL$
-*/
+ */
 package com.hack23.cia.service.data.impl;
 
 import java.util.Date;
@@ -48,7 +48,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void loadTest() throws Exception {
-		final ApplicationSession applicationSession = createApplicationSession();
+		createApplicationSession();
 		final List<ApplicationSession> all = applicationSessionDAO.getAll();
 		final ApplicationSession firstValue = all.iterator().next();
 		final ApplicationSession load = applicationSessionDAO.load(firstValue.getHjid());
@@ -121,7 +121,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void findFirstByPropertyTest() throws Exception {
-		final ApplicationSession applicationSession = createApplicationSession();
+		createApplicationSession();
 		final List<ApplicationSession> all = applicationSessionDAO.getAll();
 		final ApplicationSession findFirstByProperty = applicationSessionDAO.findFirstByProperty(ApplicationSession_.ipInformation, all.iterator().next().getIpInformation());
 		assertNotNull(findFirstByProperty);
@@ -135,7 +135,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void findListByPropertyTest() throws Exception {
-		final ApplicationSession applicationSession = createApplicationSession();
+		createApplicationSession();
 		final List<ApplicationSession> all = applicationSessionDAO.getAll();
 
 		final List<ApplicationSession> findListByProperty = applicationSessionDAO.findListByProperty(ApplicationSession_.ipInformation, all.iterator().next().getIpInformation());
@@ -168,7 +168,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void getAllTest() throws Exception {
-		final ApplicationSession applicationSession = createApplicationSession();
+		createApplicationSession();
 		final List<ApplicationSession> all = applicationSessionDAO.getAll();
 		assertNotNull(all);
 		assertFalse(all.isEmpty());
@@ -183,7 +183,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void getPageTest() throws Exception {
-		final ApplicationSession applicationSession = createApplicationSession();
+		createApplicationSession();
 		final int resultPerPage=1;
 		final List<ApplicationSession> pageList = applicationSessionDAO.getPage(1, resultPerPage);
 		assertNotNull(pageList);
@@ -200,7 +200,7 @@ public class ApplicationSessionDAOITest extends AbstractServiceDataFunctionalInt
 	 */
 	@Test
 	public void getPageOrderByTest() throws Exception {
-		final ApplicationSession applicationSession = createApplicationSession();
+		createApplicationSession();
 		final int resultPerPage=1;
 		final List<ApplicationSession> pageList = applicationSessionDAO.getPageOrderBy(1, resultPerPage,ApplicationSession_.createdDate);
 		assertNotNull(pageList);
