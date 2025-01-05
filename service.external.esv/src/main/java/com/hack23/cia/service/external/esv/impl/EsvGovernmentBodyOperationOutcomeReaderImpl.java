@@ -15,7 +15,7 @@
  *
  *	$Id$
  *  $HeadURL$
-*/
+ */
 package com.hack23.cia.service.external.esv.impl;
 
 import java.io.BufferedInputStream;
@@ -229,8 +229,8 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
 
         return parser.getRecords().stream()
             .skip(1) // Skip header
-            .filter(record -> record.get("Organisationsnummer") != null)
-            .map(record -> createSummary(record, type, ministryMap))
+            .filter(csvRecord -> csvRecord.get("Organisationsnummer") != null)
+            .map(csvRecord -> createSummary(csvRecord, type, ministryMap))
             .filter(Objects::nonNull)
             .collect(Collectors.toUnmodifiableList());
     }
@@ -238,28 +238,28 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
     /**
      * Creates the summary.
      *
-     * @param record the record
+     * @param csvRecord the csvRecord
      * @param type the type
      * @param ministryMap the ministry map
      * @return the government body annual outcome summary
      */
     private GovernmentBodyAnnualOutcomeSummary createSummary(
-            CSVRecord record,
+            CSVRecord csvRecord,
             DataType type,
             Map<Integer, Map<String, String>> ministryMap) {
         try {
-            final String orgNumber = record.get("Organisationsnummer");
-            final int year = Integer.parseInt(record.get("År"));
+            final String orgNumber = csvRecord.get("Organisationsnummer");
+            final int year = Integer.parseInt(csvRecord.get("År"));
 
             final GovernmentBodyAnnualOutcomeSummary summary = new GovernmentBodyAnnualOutcomeSummary(
-                record.get("Myndighet"),
+                csvRecord.get("Myndighet"),
                 orgNumber,
                 getMinistry(ministryMap, year, orgNumber),
                 year
             );
 
-            addFields(summary, record, type);
-            addMonthlyData(summary, record);
+            addFields(summary, csvRecord, type);
+            addMonthlyData(summary, csvRecord);
 
             return summary;
         } catch (final Exception e) {
@@ -271,15 +271,15 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
      * Adds the fields.
      *
      * @param summary the summary
-     * @param record the record
+     * @param csvRecord the csvRecord
      * @param type the type
      */
     private void addFields(
             GovernmentBodyAnnualOutcomeSummary summary,
-            CSVRecord record,
+            CSVRecord csvRecord,
             DataType type) {
         for (final String field : SPECIFIC_FIELDS.get(type)) {
-            final String value = record.get(field);
+            final String value = csvRecord.get(field);
             if (value != null) {
                 summary.addDescriptionField(field, value);
             }
@@ -290,13 +290,13 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
      * Adds the monthly data.
      *
      * @param summary the summary
-     * @param record the record
+     * @param csvRecord the csvRecord
      */
     private void addMonthlyData(
             GovernmentBodyAnnualOutcomeSummary summary,
-            CSVRecord record) {
+            CSVRecord csvRecord) {
         MONTH_COLUMNS.forEach(monthData -> {
-            final String value = record.get(monthData.columnName());
+            final String value = csvRecord.get(monthData.columnName());
             if (value != null && !value.isEmpty()) {
                 try {
                     summary.addData(
@@ -317,8 +317,8 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
      * @return the ministry
      */
     private String getMinistry(Map<Integer, Map<String, String>> ministryMap,
-                             int year,
-                             String orgNumber) {
+                              int year,
+                              String orgNumber) {
         final Map<String, String> yearMap = ministryMap.get(year);
         return yearMap != null ? yearMap.get(orgNumber.replace("-", "")) : null;
     }
