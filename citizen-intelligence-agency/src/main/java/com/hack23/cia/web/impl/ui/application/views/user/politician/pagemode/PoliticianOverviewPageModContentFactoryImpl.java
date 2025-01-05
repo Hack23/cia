@@ -264,14 +264,6 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	            VaadinIcons.SPECIALIST, 
 	            "Area of specialization"));
 
-	        // Experience Metrics
-	        if (experienceSummary.getTotalDays() != null) {
-	            layout.addComponent(createInfoRow("Total Days Served:", 
-	                String.format(Locale.ENGLISH,"%,d", experienceSummary.getTotalDays()), 
-	                VaadinIcons.CLOCK, 
-	                "Total days in political service"));
-	        }
-
 	        // Top Knowledge Areas
 	        if (experienceSummary.getKnowledgeAreas() != null && !experienceSummary.getKnowledgeAreas().isEmpty()) {
 	            String topAreas = experienceSummary.getKnowledgeAreas().stream()
