@@ -41,6 +41,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.BallotChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.server.Sizeable.Unit;
@@ -117,13 +118,13 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 					.getAllBy(ViewRiksdagenCommitteeBallotDecisionSummary_.ballotId, pageId);
 
 			if (!decisionSummaries.isEmpty()) {
-				createPageHeader(panel, panelContent,
+				CardInfoRowUtil.createPageHeader(panel, panelContent,
 						"Ballot Charts : " + decisionSummaries.get(0).getTitle() + " - "
 								+ decisionSummaries.get(0).getSubTitle(),
 						"Ballot Trends and Visualizations",
 						"Provides insights into election trends by visualizing ballot data, assisting in strategic decision-making and voter engagement analysis.");
 			} else {
-				createPageHeader(panel, panelContent, "Ballot Charts : " + ballots.get(0).getEmbeddedId().getConcern(),
+				CardInfoRowUtil.createPageHeader(panel, panelContent, "Ballot Charts : " + ballots.get(0).getEmbeddedId().getConcern(),
 						"Ballot Trends and Visualizations",
 						"Provides insights into election trends by visualizing ballot data, assisting in strategic decision-making and voter engagement analysis.");
 

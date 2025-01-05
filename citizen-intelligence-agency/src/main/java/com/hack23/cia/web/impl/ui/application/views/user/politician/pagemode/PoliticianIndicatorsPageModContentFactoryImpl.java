@@ -26,6 +26,7 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
@@ -59,7 +60,7 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Performance Indicators", "Indicator Overview", "Key performance indicators reflecting the politician's impact and activity.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Performance Indicators", "Indicator Overview", "Key performance indicators reflecting the politician's impact and activity.");
 
 		politicianChartDataManager.createPersonLineChart(panelContent, viewRiksdagenPolitician.getPersonId());
 

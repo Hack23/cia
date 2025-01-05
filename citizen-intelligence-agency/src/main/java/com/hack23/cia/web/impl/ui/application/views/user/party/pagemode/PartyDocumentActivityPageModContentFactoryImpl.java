@@ -26,6 +26,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyDocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -59,7 +60,7 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Document Activity " + viewRiksdagenParty.getPartyName(), "Document Activity details", "Review the summary of document activity for the selected party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document Activity " + viewRiksdagenParty.getPartyName(), "Document Activity details", "Review the summary of document activity for the selected party.");
 
 		documentChartDataManager.createDocumentHistoryPartyChart(panelContent, pageId);
 

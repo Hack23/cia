@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -146,7 +147,7 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
-		createPageHeader(panel, panelContent, "Politician Performance Overview", "Politician Rankings", "Review rankings of politicians based on tenure, contributions, and performance metrics.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Politician Performance Overview", "Politician Rankings", "Review rankings of politicians based on tenure, contributions, and performance metrics.");
 
 		final String pageId = getPageId(parameters);
 

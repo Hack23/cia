@@ -30,6 +30,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.MinistryGhantChartManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -64,7 +65,7 @@ public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		createPageHeader(panel, panelContent, "Ministry Rankings", "All Roles", "Visual representation of all government roles.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Rankings", "All Roles", "Visual representation of all government roles.");
 
 		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);

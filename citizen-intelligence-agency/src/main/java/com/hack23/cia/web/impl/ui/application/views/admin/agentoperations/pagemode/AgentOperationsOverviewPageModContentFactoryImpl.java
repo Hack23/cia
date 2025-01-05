@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentOperation;
 import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -74,7 +75,7 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Admin Agent Operation Overview", "Admin Agent Operation", "Overview of administrative agent operations and tasks.");
+		CardInfoRowUtil.createPageHeader(panel, content, "Admin Agent Operation Overview", "Admin Agent Operation", "Overview of administrative agent operations and tasks.");
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSizeFull();

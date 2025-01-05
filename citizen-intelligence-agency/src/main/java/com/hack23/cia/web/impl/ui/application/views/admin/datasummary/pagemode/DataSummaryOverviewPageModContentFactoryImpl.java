@@ -28,6 +28,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -95,7 +96,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content, "Admin Data Summary Overview", "Data Summary Overview", "Comprehensive overview of data summaries for administrative review.");
+		CardInfoRowUtil.createPageHeader(panel, content, "Admin Data Summary Overview", "Data Summary Overview", "Comprehensive overview of data summaries for administrative review.");
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSizeFull();

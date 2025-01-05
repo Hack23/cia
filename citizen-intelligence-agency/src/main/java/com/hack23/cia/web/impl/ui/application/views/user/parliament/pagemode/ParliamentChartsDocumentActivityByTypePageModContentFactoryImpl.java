@@ -26,6 +26,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DocumentChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
@@ -57,7 +58,7 @@ public final class ParliamentChartsDocumentActivityByTypePageModContentFactoryIm
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-		createPageHeader(panel, panelContent,
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 			    "Parliament - Document Activity by Type",
 			    "Information Dynamics",
 			    "Uncovering how information shapes legislative agendas.");

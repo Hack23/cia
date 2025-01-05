@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -128,7 +129,7 @@ public final class PartyRankingDataGridPageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
-		createPageHeader(panel, panelContent, "Party Performance Dashboard", "Party Rankings", "Evaluate political parties using data on legislative activity, assignments, and influence.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Party Performance Dashboard", "Party Rankings", "Evaluate political parties using data on legislative activity, assignments, and influence.");
 
 		final String pageId = getPageId(parameters);
 

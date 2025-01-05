@@ -31,6 +31,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -92,7 +93,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Committee Ballot Decision Summary " + viewRiksdagenParty.getPartyName(), "Ballot Decisions", "Review the summary of committee ballot decisions for the selected party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Ballot Decision Summary " + viewRiksdagenParty.getPartyName(), "Ballot Decisions", "Review the summary of committee ballot decisions for the selected party.");
 
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);

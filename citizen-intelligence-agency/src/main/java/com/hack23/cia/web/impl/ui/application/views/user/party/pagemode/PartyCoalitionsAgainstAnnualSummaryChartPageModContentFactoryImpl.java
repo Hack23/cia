@@ -26,6 +26,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyCoalationChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -60,7 +61,7 @@ public final class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactory
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Party Coalitions Against " + viewRiksdagenParty.getPartyName(), "Party Coalitions", "Review the summary of party coalitions against the selected party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Party Coalitions Against " + viewRiksdagenParty.getPartyName(), "Party Coalitions", "Review the summary of party coalitions against the selected party.");
 
 		chartDataManager.createPartyChart(panelContent,pageId);
 

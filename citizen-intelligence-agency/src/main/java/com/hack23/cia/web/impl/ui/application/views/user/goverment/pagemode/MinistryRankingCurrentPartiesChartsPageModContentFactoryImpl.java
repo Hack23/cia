@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -67,7 +68,7 @@ public final class MinistryRankingCurrentPartiesChartsPageModContentFactoryImpl 
 
 		final String pageId = getPageId(parameters);
 
-		createPageHeader(panel, panelContent, "Ministry Rankings", "Current Parties", "Visual representation of current parties and their headcount.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Rankings", "Current Parties", "Visual representation of current parties and their headcount.");
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 

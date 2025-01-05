@@ -29,6 +29,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -67,7 +68,7 @@ public final class GovernmentBodyExpenditurePageModContentFactoryImpl extends Ab
 			if (governmentBodyAnnualSummary != null) {
 				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
 
-				createPageHeader(panel, panelContent, "Government Body Expenditure " + governmentBodyAnnualSummary.getName(), "Expenditure Details", "Explore detailed expenditure information for government bodies.");
+				CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Expenditure " + governmentBodyAnnualSummary.getName(), "Expenditure Details", "Explore detailed expenditure information for government bodies.");
 
 				governmentBodyChartDataManager.createGovernmentBodyExpenditureSummaryChart(panelContent, governmentBodyAnnualSummary.getName());
 

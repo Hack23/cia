@@ -27,6 +27,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
@@ -70,7 +71,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent,
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 				"Committee Overview " + viewRiksdagenCommittee.getEmbeddedId().getDetail(),
 				"Committee Details",
 				"Detailed insights into parliamentary committees and their activities.");
@@ -95,7 +96,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		panelContent.addComponent(cardPanel);
 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
-		createCardHeader(cardContent,"Committee: " + viewRiksdagenCommittee.getEmbeddedId().getDetail());
+		CardInfoRowUtil.createCardHeader(cardContent,"Committee: " + viewRiksdagenCommittee.getEmbeddedId().getDetail());
 
 		// Two-column layout for committee attributes
 		final HorizontalLayout attributesLayout = new HorizontalLayout();
@@ -104,49 +105,49 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		cardContent.addComponent(attributesLayout);
 
 		// First column: Committee Profile (keep existing, but add activity level)
-		final VerticalLayout profileDetailsLayout = createSectionLayout("Committee Profile");
+		final VerticalLayout profileDetailsLayout = CardInfoRowUtil.createSectionLayout("Committee Profile");
 
-		profileDetailsLayout.addComponent(createInfoRow("Detail:", viewRiksdagenCommittee.getEmbeddedId().getDetail(),
+		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Detail:", viewRiksdagenCommittee.getEmbeddedId().getDetail(),
 		        VaadinIcons.INFO_CIRCLE, "Internal identifier detail for the committee"));
-		profileDetailsLayout.addComponent(createInfoRow("Status:", viewRiksdagenCommittee.isActive() ? "Active" : "Inactive",
+		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Status:", viewRiksdagenCommittee.isActive() ? "Active" : "Inactive",
 		        VaadinIcons.FLAG, "Current committee status"));
-		profileDetailsLayout.addComponent(createInfoRow("Activity Level:", viewRiksdagenCommittee.getActivityLevel(),
+		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Activity Level:", viewRiksdagenCommittee.getActivityLevel(),
 		        VaadinIcons.CHART, "Committee's current activity level"));
-		profileDetailsLayout.addComponent(createInfoRow("First Assignment:", String.valueOf(viewRiksdagenCommittee.getFirstAssignmentDate()),
+		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("First Assignment:", String.valueOf(viewRiksdagenCommittee.getFirstAssignmentDate()),
 		        VaadinIcons.CALENDAR, "Date the committee's first assignment started"));
-		profileDetailsLayout.addComponent(createInfoRow("Last Assignment:", String.valueOf(viewRiksdagenCommittee.getLastAssignmentDate()),
+		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Last Assignment:", String.valueOf(viewRiksdagenCommittee.getLastAssignmentDate()),
 		        VaadinIcons.CALENDAR_CLOCK, "Date of the committee's most recent assignment"));
 
 		// Second column: Membership Statistics
-		final VerticalLayout membershipStatsLayout = createSectionLayout("Membership Statistics");
+		final VerticalLayout membershipStatsLayout = CardInfoRowUtil.createSectionLayout("Membership Statistics");
 
-		membershipStatsLayout.addComponent(createInfoRow("Current Members:", String.valueOf(viewRiksdagenCommittee.getCurrentMemberSize()),
+		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Current Members:", String.valueOf(viewRiksdagenCommittee.getCurrentMemberSize()),
 		        VaadinIcons.GROUP, "Total current committee members"));
-		membershipStatsLayout.addComponent(createInfoRow("Regular Members:", String.valueOf(viewRiksdagenCommittee.getCurrentRegularMembers()),
+		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Regular Members:", String.valueOf(viewRiksdagenCommittee.getCurrentRegularMembers()),
 		        VaadinIcons.USER, "Number of current regular members"));
-		membershipStatsLayout.addComponent(createInfoRow("Leadership Positions:", String.valueOf(viewRiksdagenCommittee.getCurrentLeadershipPositions()),
+		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Leadership Positions:", String.valueOf(viewRiksdagenCommittee.getCurrentLeadershipPositions()),
 		        VaadinIcons.STAR, "Current number of leadership positions"));
-		membershipStatsLayout.addComponent(createInfoRow("Substitute Positions:", String.valueOf(viewRiksdagenCommittee.getCurrentSubstitutePositions()),
+		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Substitute Positions:", String.valueOf(viewRiksdagenCommittee.getCurrentSubstitutePositions()),
 		        VaadinIcons.USER_CLOCK, "Current number of substitute positions"));
-		membershipStatsLayout.addComponent(createInfoRow("Total Leadership Roles:", String.valueOf(viewRiksdagenCommittee.getTotalLeadershipPositions()),
+		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Total Leadership Roles:", String.valueOf(viewRiksdagenCommittee.getTotalLeadershipPositions()),
 		        VaadinIcons.USERS, "Historical total of leadership positions"));
-		membershipStatsLayout.addComponent(createInfoRow("Total Substitute Roles:", String.valueOf(viewRiksdagenCommittee.getTotalSubstitutePositions()),
+		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Total Substitute Roles:", String.valueOf(viewRiksdagenCommittee.getTotalSubstitutePositions()),
 		        VaadinIcons.USERS, "Historical total of substitute positions"));
 
 		// Third column: Document Statistics
-		final VerticalLayout documentStatsLayout = createSectionLayout("Document Statistics");
+		final VerticalLayout documentStatsLayout = CardInfoRowUtil.createSectionLayout("Document Statistics");
 
-		documentStatsLayout.addComponent(createInfoRow("Total Documents:", String.valueOf(viewRiksdagenCommittee.getTotalDocuments()),
+		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Total Documents:", String.valueOf(viewRiksdagenCommittee.getTotalDocuments()),
 		        VaadinIcons.FILE_TEXT, "Total number of documents produced"));
-		documentStatsLayout.addComponent(createInfoRow("Documents Last Year:", String.valueOf(viewRiksdagenCommittee.getDocumentsLastYear()),
+		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Documents Last Year:", String.valueOf(viewRiksdagenCommittee.getDocumentsLastYear()),
 		        VaadinIcons.FILE_O, "Documents produced in the last year"));
-		documentStatsLayout.addComponent(createInfoRow("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenCommittee.getAvgDocumentsPerMember()),
+		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", viewRiksdagenCommittee.getAvgDocumentsPerMember()),
 		        VaadinIcons.CHART_LINE, "Average documents per committee member"));
-		documentStatsLayout.addComponent(createInfoRow("Committee Motions:", String.valueOf(viewRiksdagenCommittee.getTotalCommitteeMotions()),
+		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Committee Motions:", String.valueOf(viewRiksdagenCommittee.getTotalCommitteeMotions()),
 		        VaadinIcons.FILE_PRESENTATION, "Total number of committee motions"));
-		documentStatsLayout.addComponent(createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenCommittee.getTotalAssignments()),
+		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Total Assignments:", String.valueOf(viewRiksdagenCommittee.getTotalAssignments()),
 		        VaadinIcons.TASKS, "Total number of assignments"));
-		documentStatsLayout.addComponent(createInfoRow("Days Served:", String.valueOf(viewRiksdagenCommittee.getTotalDaysServed()),
+		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Days Served:", String.valueOf(viewRiksdagenCommittee.getTotalDaysServed()),
 		        VaadinIcons.CLOCK, "Total days of committee service"));
 
 		// Clear existing components and add all three columns

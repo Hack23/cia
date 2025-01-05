@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -71,7 +72,7 @@ public final class PartyRankingAllPartiesChartsPageModContentFactoryImpl extends
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
 
-		createPageHeader(panel, panelContent, "All Parties Charts", "Party Performance", "Analyze the performance of all political parties using various charts.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "All Parties Charts", "Party Performance", "Analyze the performance of all political parties using various charts.");
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();

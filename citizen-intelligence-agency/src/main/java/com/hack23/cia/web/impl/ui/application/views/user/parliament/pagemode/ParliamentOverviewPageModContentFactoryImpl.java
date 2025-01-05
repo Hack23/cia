@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -48,7 +49,7 @@ public final class ParliamentOverviewPageModContentFactoryImpl extends AbstractP
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-		createPageHeader(panel, panelContent, "Parliament Overview", "Parliament Details", "Insights into parliamentary structure, members, and activities.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Parliament Overview", "Parliament Details", "Insights into parliamentary structure, members, and activities.");
 
 		getParliamentMenuItemFactory().createOverviewPage(panelContent);
 

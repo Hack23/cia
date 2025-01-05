@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -55,7 +56,7 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Page Visit History " + viewRiksdagenParty.getPartyName(), "Visit History", "Review the history of page visits for the selected party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Page Visit History " + viewRiksdagenParty.getPartyName(), "Visit History", "Review the history of page visits for the selected party.");
 
 		createPageVisitHistory(NAME, pageId, panelContent);
 

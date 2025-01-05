@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -66,7 +67,7 @@ public final class PartyCommitteeRolesPageModContentFactoryImpl extends Abstract
 
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Committee Roles " +viewRiksdagenParty.getPartyName(), "Committee Members", "Explore the roles and members of various committees within the party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Roles " +viewRiksdagenParty.getPartyName(), "Committee Members", "Explore the roles and members of various committees within the party.");
 
 		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);

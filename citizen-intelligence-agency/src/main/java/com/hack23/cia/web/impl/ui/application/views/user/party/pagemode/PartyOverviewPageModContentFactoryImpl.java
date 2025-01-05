@@ -29,6 +29,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
@@ -71,7 +72,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
-		createPageHeader(panel, panelContent, "Party Overview " + viewRiksdagenParty.getPartyName(),
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Party Overview " + viewRiksdagenParty.getPartyName(),
 				"Party Details", "Explore detailed information about political parties and their activities.");
 
 		final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
@@ -99,7 +100,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 		panelContent.addComponent(cardPanel);
 		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
-		createCardHeader(cardContent,viewRiksdagenParty.getPartyName());
+		CardInfoRowUtil.createCardHeader(cardContent,viewRiksdagenParty.getPartyName());
 
 		// Create single row for four sections
 		final HorizontalLayout sectionsLayout = new HorizontalLayout();
@@ -108,25 +109,25 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 		cardContent.addComponent(sectionsLayout);
 
 		// 1. Political Influence & Position
-		final VerticalLayout politicalInfluenceLayout = createSectionLayout("Political Influence & Position");
+		final VerticalLayout politicalInfluenceLayout = CardInfoRowUtil.createSectionLayout("Political Influence & Position");
 		addPoliticalInfluenceMetrics(politicalInfluenceLayout, viewRiksdagenParty, viewRiksdagenPartySummary);
 		sectionsLayout.addComponent(politicalInfluenceLayout);
 		sectionsLayout.setExpandRatio(politicalInfluenceLayout, 1.0f);
 
 		// 2. Parliamentary Engagement
-		final VerticalLayout parliamentaryEngagementLayout = createSectionLayout("Parliamentary Engagement");
+		final VerticalLayout parliamentaryEngagementLayout = CardInfoRowUtil.createSectionLayout("Parliamentary Engagement");
 		addParliamentaryEngagementMetrics(parliamentaryEngagementLayout, viewRiksdagenParty, viewRiksdagenPartySummary);
 		sectionsLayout.addComponent(parliamentaryEngagementLayout);
 		sectionsLayout.setExpandRatio(parliamentaryEngagementLayout, 1.0f);
 
 		// 3. Legislative Impact
-		final VerticalLayout legislativeImpactLayout = createSectionLayout("Legislative Impact");
+		final VerticalLayout legislativeImpactLayout = CardInfoRowUtil.createSectionLayout("Legislative Impact");
 		addLegislativeImpactMetrics(legislativeImpactLayout, viewRiksdagenParty, viewRiksdagenPartySummary);
 		sectionsLayout.addComponent(legislativeImpactLayout);
 		sectionsLayout.setExpandRatio(legislativeImpactLayout, 1.0f);
 
 		// 4. Member Performance
-		final VerticalLayout memberPerformanceLayout = createSectionLayout("Member Performance");
+		final VerticalLayout memberPerformanceLayout = CardInfoRowUtil.createSectionLayout("Member Performance");
 		addMemberPerformanceMetrics(memberPerformanceLayout, viewRiksdagenParty, viewRiksdagenPartySummary);
 		sectionsLayout.addComponent(memberPerformanceLayout);
 		sectionsLayout.setExpandRatio(memberPerformanceLayout, 1.0f);
@@ -159,29 +160,29 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 	    if (summary != null) {
 	        // Government Influence
-	        layout.addComponent(createInfoRow("Government Position:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Government Position:",
 	            summary.isActiveGovernment() ? "In Government" : "Opposition",
 	            VaadinIcons.INSTITUTION,
 	            "Current position in government"));
 
-	        layout.addComponent(createInfoRow("Ministers:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Ministers:",
 	            String.valueOf(summary.getCurrentMinistryAssignments()),
 	            VaadinIcons.GROUP,
 	            "Current ministerial positions"));
 
 	        // Parliamentary Strength
-	        layout.addComponent(createInfoRow("Parliament Members:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Parliament Members:",
 	            String.valueOf(party.getHeadCount()),
 	            VaadinIcons.USERS,
 	            "Total number of parliament members"));
 
-	        layout.addComponent(createInfoRow("Committee Positions:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Committee Positions:",
 	            String.valueOf(summary.getCurrentCommitteeAssignments()),
 	            VaadinIcons.CLIPBOARD_USER,
 	            "Current committee assignments"));
 
 	        // Leadership Roles
-	        layout.addComponent(createInfoRow("Leadership Positions:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Leadership Positions:",
 	            String.valueOf(summary.getCurrentCommitteeLeadershipAssignments()),
 	            VaadinIcons.STAR,
 	            "Current committee leadership roles"));
@@ -202,24 +203,24 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 	    if (summary != null) {
 	        // Active Participation
-	        layout.addComponent(createInfoRow("Parliament Activity:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Parliament Activity:",
 	            String.format(Locale.ENGLISH,"%.1f%%", calculateActivityRate(summary.getTotalActiveParliament(), party.getHeadCount())),
 	            VaadinIcons.CHART_LINE,
 	            "Percentage of active members in parliament"));
 
 	        // Committee Engagement
-	        layout.addComponent(createInfoRow("Committee Involvement:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Committee Involvement:",
 	            String.valueOf(summary.getTotalActiveCommittee()),
 	            VaadinIcons.USERS,
 	            "Members active in committees"));
 
 	        // Historical Presence
-	        layout.addComponent(createInfoRow("Days in Government:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Days in Government:",
 	            String.format(Locale.ENGLISH,"%,d", summary.getTotalDaysServedGovernment()),
 	            VaadinIcons.CLOCK,
 	            "Total days served in government"));
 
-	        layout.addComponent(createInfoRow("Parliamentary Experience:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Parliamentary Experience:",
 	            String.format(Locale.ENGLISH,"%,d", summary.getTotalDaysServedParliament()),
 	            VaadinIcons.CALENDAR_CLOCK,
 	            "Total days served in parliament"));
@@ -240,29 +241,29 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 	    if (summary != null) {
 	        // Legislative Production
-	        layout.addComponent(createInfoRow("Total Motions:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Total Motions:",
 	            String.valueOf(summary.getTotalPartyMotions()),
 	            VaadinIcons.FILE_TEXT,
 	            "Total party-initiated motions"));
 
-	        layout.addComponent(createInfoRow("Recent Activity:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Recent Activity:",
 	            String.valueOf(summary.getTotalDocumentsLastYear()),
 	            VaadinIcons.CHART_TIMELINE,
 	            "Documents produced in the last year"));
 
 	        // Cross-party Cooperation
-	        layout.addComponent(createInfoRow("Collaboration Rate:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Collaboration Rate:",
 	            String.format(Locale.ENGLISH,"%.1f%%", summary.getAvgCollaborationPercentage()),
 	            VaadinIcons.CONNECT,
 	            "Cross-party collaboration percentage"));
 
-	        layout.addComponent(createInfoRow("Joint Initiatives:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Joint Initiatives:",
 	            String.valueOf(summary.getTotalCollaborativeMotions()),
 	            VaadinIcons.USERS,
 	            "Multi-party collaborative motions"));
 
 	        // Legislative Efficiency
-	        layout.addComponent(createInfoRow("Productivity:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Productivity:",
 	            String.format(Locale.ENGLISH,"%.1f", summary.getAvgDocumentsPerMember()),
 	            VaadinIcons.CHART_GRID,
 	            "Average documents per member"));
@@ -283,7 +284,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 
 	    if (summary != null) {
 	        // Activity Distribution
-	        layout.addComponent(createInfoRow("High Performers:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("High Performers:",
 	            String.format(Locale.ENGLISH,"%d (%d%%)",
 	                summary.getVeryHighActivityMembers(),
 	                calculatePercentage(summary.getVeryHighActivityMembers(), party.getHeadCount())),
@@ -291,14 +292,14 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	            "Members with very high activity levels"));
 
 	        // Member Focus Areas
-	        layout.addComponent(createInfoRow("Party Policy Focus:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Party Policy Focus:",
 	            String.format(Locale.ENGLISH,"%d (%d%%)",
 	                summary.getPartyFocusedMembers(),
 	                calculatePercentage(summary.getPartyFocusedMembers(), party.getHeadCount())),
 	            VaadinIcons.FLAG,
 	            "Members focused on party policy work"));
 
-	        layout.addComponent(createInfoRow("Committee Focus:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Committee Focus:",
 	            String.format(Locale.ENGLISH,"%d (%d%%)",
 	                summary.getCommitteeFocusedMembers(),
 	                calculatePercentage(summary.getCommitteeFocusedMembers(), party.getHeadCount())),
@@ -306,7 +307,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	            "Members focused on committee work"));
 
 	        // Collaboration Metrics
-	        layout.addComponent(createInfoRow("Collaborative Members:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Collaborative Members:",
 	            String.format(Locale.ENGLISH,"%d (%d%%)",
 	                summary.getHighlyCollaborativeMembers(),
 	                calculatePercentage(summary.getHighlyCollaborativeMembers(), party.getHeadCount())),

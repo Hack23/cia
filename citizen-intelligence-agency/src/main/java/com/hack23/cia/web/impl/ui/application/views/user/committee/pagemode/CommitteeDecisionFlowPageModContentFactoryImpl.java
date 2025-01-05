@@ -37,6 +37,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -123,7 +124,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
     private void setupMenuAndHeader(MenuBar menuBar, Panel panel, VerticalLayout panelContent,
             String pageId, ViewRiksdagenCommittee committee) {
         getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
-        createPageHeader(panel, panelContent,
+        CardInfoRowUtil.createPageHeader(panel, panelContent,
             "Committee Decision Flow " + committee.getEmbeddedId().getDetail(),
             "Decision Flow",
             "Analyze decision-making processes within committees."

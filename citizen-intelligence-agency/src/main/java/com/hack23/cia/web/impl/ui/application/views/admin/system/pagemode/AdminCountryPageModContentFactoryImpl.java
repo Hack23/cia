@@ -28,6 +28,7 @@ import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.icons.VaadinIcons;
@@ -90,7 +91,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		createPageHeader(panel, content,
+		CardInfoRowUtil.createPageHeader(panel, content,
 				"Admin Country Management",
 				"Country Overview",
 				"Manage and review country-specific data, including metrics and geopolitical information.");
@@ -143,7 +144,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 
 				content.addComponent(cardPanel);
 
-				createCardHeader(cardContent,"Country Details");
+				CardInfoRowUtil.createCardHeader(cardContent,"Country Details");
 
 				// Attributes layout
 				final VerticalLayout attributesLayout = new VerticalLayout();
@@ -152,12 +153,12 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 				cardContent.addComponent(attributesLayout);
 
 				// Show fields if not null or empty
-				addInfoRowIfNotNull(attributesLayout, "Country ID:", country.getId(), VaadinIcons.FLAG_O);
-				addInfoRowIfNotNull(attributesLayout, "Name:", country.getCountryName(), VaadinIcons.GLOBE);
-				addInfoRowIfNotNull(attributesLayout, "ISO2 Code:", country.getIso2Code(), VaadinIcons.CODE);
-				addInfoRowIfNotNull(attributesLayout, "Capital:", country.getCapitalCity(), VaadinIcons.BUILDING);
-				addInfoRowIfNotNull(attributesLayout, "Longitude:", country.getLongitude(), VaadinIcons.ARROWS_LONG_H);
-				addInfoRowIfNotNull(attributesLayout, "Latitude:", country.getLatitude(), VaadinIcons.ARROWS_LONG_H);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Country ID:", country.getId(), VaadinIcons.FLAG_O);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Name:", country.getCountryName(), VaadinIcons.GLOBE);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "ISO2 Code:", country.getIso2Code(), VaadinIcons.CODE);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Capital:", country.getCapitalCity(), VaadinIcons.BUILDING);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Longitude:", country.getLongitude(), VaadinIcons.ARROWS_LONG_H);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Latitude:", country.getLatitude(), VaadinIcons.ARROWS_LONG_H);
 			}
 		}
 

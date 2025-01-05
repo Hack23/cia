@@ -30,6 +30,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -83,7 +84,7 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 		getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		createPageHeader(panel, panelContent, "Committee Decision Summary", "Decision Summary", "Overview of decisions made by the committee.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Decision Summary", "Decision Summary", "Overview of decisions made by the committee.");
 
 		final DataContainer<ViewRiksdagenCommitteeDecisions, ViewRiksdagenCommitteeDecisionsEmbeddedId> committeeDecisionDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeDecisions.class);

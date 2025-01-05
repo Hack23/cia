@@ -34,6 +34,7 @@ import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredenti
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
@@ -120,7 +121,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		final String pageId = getPageId(parameters);
 
 		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
-		createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::Security Settings",SECURITY_SETTINGS,"Manage user security settings");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::Security Settings",SECURITY_SETTINGS,"Manage user security settings");
 
 
 		final VerticalLayout overviewLayout = new VerticalLayout();

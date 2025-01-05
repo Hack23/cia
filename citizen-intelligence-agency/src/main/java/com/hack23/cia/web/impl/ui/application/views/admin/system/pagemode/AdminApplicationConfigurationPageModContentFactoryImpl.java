@@ -31,6 +31,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -85,7 +86,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
         getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-        createPageHeader(panel, content, "Admin Application Configuration", "Application Configuration",
+        CardInfoRowUtil.createPageHeader(panel, content, "Admin Application Configuration", "Application Configuration",
                 "View and edit application settings and configurations for optimal performance.");
 
         final DataContainer<ApplicationConfiguration, Long> dataContainer = getApplicationManager()
@@ -142,7 +143,7 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
                 leftLayout.addComponent(cardPanel);
 
-                createCardHeader(cardContent,"Application Configuration Details");
+                CardInfoRowUtil.createCardHeader(cardContent,"Application Configuration Details");
 
                 // Attributes layout
                 final VerticalLayout attributesLayout = new VerticalLayout();
@@ -151,19 +152,19 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
                 cardContent.addComponent(attributesLayout);
 
                 // Display relevant fields using info rows, skipping null or empty
-                addInfoRowIfNotNull(attributesLayout, "Configuration Group:",
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Configuration Group:",
                         applicationConfiguration.getConfigurationGroup().toString(), VaadinIcons.GROUP);
-                addInfoRowIfNotNull(attributesLayout, "Component:",
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Component:",
                         applicationConfiguration.getComponent(), VaadinIcons.TOOLS);
-                addInfoRowIfNotNull(attributesLayout, "Config Title:",
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Config Title:",
                         applicationConfiguration.getConfigTitle(), VaadinIcons.FILE_TEXT);
-                addInfoRowIfNotNull(attributesLayout, "Config Description:",
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Config Description:",
                         applicationConfiguration.getConfigDescription(), VaadinIcons.FILE_O);
-                addInfoRowIfNotNull(attributesLayout, "Property Value:",
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Property Value:",
                         applicationConfiguration.getPropertyValue(), VaadinIcons.PASTE);
-                addInfoRowIfNotNull(attributesLayout, "Created Date:",
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Created Date:",
                         String.valueOf(applicationConfiguration.getCreatedDate()), VaadinIcons.CALENDAR);
-                addInfoRowIfNotNull(attributesLayout, "Updated Date:",
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Updated Date:",
                         String.valueOf(applicationConfiguration.getUpdatedDate()), VaadinIcons.CALENDAR_CLOCK);
 
                 // Right side: Form for updating the application configuration

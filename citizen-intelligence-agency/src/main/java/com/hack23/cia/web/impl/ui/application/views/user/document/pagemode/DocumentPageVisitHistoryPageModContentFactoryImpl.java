@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -51,7 +52,7 @@ public final class DocumentPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 		final String pageId = getPageId(parameters);
 		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
-		createPageHeader(panel, panelContent,
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 			    "Documents - Page Visit History",
 			    "Engagement Insights",
 			    "Tracking how interest in policy materials evolves.");

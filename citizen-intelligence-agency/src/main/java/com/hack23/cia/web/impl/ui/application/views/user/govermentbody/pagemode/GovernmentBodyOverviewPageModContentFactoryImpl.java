@@ -27,6 +27,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
@@ -66,7 +67,7 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 
 			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId, governmentBodyAnnualSummary.getName());
 
-			createPageHeader(panel, panelContent,
+			CardInfoRowUtil.createPageHeader(panel, panelContent,
 					"Government Body Overview " + governmentBodyAnnualSummary.getName(),
 					"Government Details",
 					"Explore detailed information about government bodies and their functions.");
@@ -87,7 +88,7 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 			panelContent.addComponent(cardPanel);
 			panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
 
-			createCardHeader(cardContent,"Government Body Information");
+			CardInfoRowUtil.createCardHeader(cardContent,"Government Body Information");
 
 			// Two-column layout
 			final HorizontalLayout attributesLayout = new HorizontalLayout();
@@ -96,28 +97,28 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 			cardContent.addComponent(attributesLayout);
 
 			// Left column: Organization Profile
-			final VerticalLayout profileDetailsLayout = createSectionLayout("Organization Profile");
+			final VerticalLayout profileDetailsLayout = CardInfoRowUtil.createSectionLayout("Organization Profile");
 
 			// Add fields for Organization Profile
-			profileDetailsLayout.addComponent(createInfoRow("Name:", governmentBodyAnnualSummary.getName(), VaadinIcons.INFO_CIRCLE, "Government body name"));
-			profileDetailsLayout.addComponent(createInfoRow("ID:", governmentBodyAnnualSummary.getGovermentBodyId(), VaadinIcons.CLIPBOARD_USER, "Unique government body identifier"));
-			profileDetailsLayout.addComponent(createInfoRow("Ministry:", governmentBodyAnnualSummary.getMinistry(), VaadinIcons.INSTITUTION, "Ministry overseeing the body"));
-			profileDetailsLayout.addComponent(createInfoRow("Org Number:", governmentBodyAnnualSummary.getOrgNumber(), VaadinIcons.BOOK, "Official organization number"));
-			profileDetailsLayout.addComponent(createInfoRow("M Code:", governmentBodyAnnualSummary.getmCode(), VaadinIcons.CODE, "Internal M code identifier"));
-			profileDetailsLayout.addComponent(createInfoRow("VAT:", governmentBodyAnnualSummary.getVat(), VaadinIcons.MONEY, "VAT number"));
+			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Name:", governmentBodyAnnualSummary.getName(), VaadinIcons.INFO_CIRCLE, "Government body name"));
+			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("ID:", governmentBodyAnnualSummary.getGovermentBodyId(), VaadinIcons.CLIPBOARD_USER, "Unique government body identifier"));
+			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Ministry:", governmentBodyAnnualSummary.getMinistry(), VaadinIcons.INSTITUTION, "Ministry overseeing the body"));
+			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Org Number:", governmentBodyAnnualSummary.getOrgNumber(), VaadinIcons.BOOK, "Official organization number"));
+			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("M Code:", governmentBodyAnnualSummary.getmCode(), VaadinIcons.CODE, "Internal M code identifier"));
+			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("VAT:", governmentBodyAnnualSummary.getVat(), VaadinIcons.MONEY, "VAT number"));
 
 			// Right column: Annual Statistics
-			final VerticalLayout serviceStatsLayout = createSectionLayout("Annual Statistics");
+			final VerticalLayout serviceStatsLayout = CardInfoRowUtil.createSectionLayout("Annual Statistics");
 
 			// Add fields for Annual Statistics
-			serviceStatsLayout.addComponent(createInfoRow("Year:", String.valueOf(governmentBodyAnnualSummary.getYear()), VaadinIcons.CALENDAR, "The reporting year"));
-			serviceStatsLayout.addComponent(createInfoRow("Annual Work Head Count:", String.valueOf(governmentBodyAnnualSummary.getAnnualWorkHeadCount()), VaadinIcons.USER_CHECK, "Annual average number of full-time equivalents"));
-			serviceStatsLayout.addComponent(createInfoRow("Head Count:", String.valueOf(governmentBodyAnnualSummary.getHeadCount()), VaadinIcons.GROUP, "Total number of staff members"));
-			serviceStatsLayout.addComponent(createInfoRow("Consecutive Number:", String.valueOf(governmentBodyAnnualSummary.getConsecutiveNumber()), VaadinIcons.LINES_LIST, "Internal consecutive reference number"));
+			serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Year:", String.valueOf(governmentBodyAnnualSummary.getYear()), VaadinIcons.CALENDAR, "The reporting year"));
+			serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Annual Work Head Count:", String.valueOf(governmentBodyAnnualSummary.getAnnualWorkHeadCount()), VaadinIcons.USER_CHECK, "Annual average number of full-time equivalents"));
+			serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Head Count:", String.valueOf(governmentBodyAnnualSummary.getHeadCount()), VaadinIcons.GROUP, "Total number of staff members"));
+			serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Consecutive Number:", String.valueOf(governmentBodyAnnualSummary.getConsecutiveNumber()), VaadinIcons.LINES_LIST, "Internal consecutive reference number"));
 
 			// If comment is short and informative, display it
 			if (governmentBodyAnnualSummary.getComment() != null && !governmentBodyAnnualSummary.getComment().isEmpty()) {
-				serviceStatsLayout.addComponent(createInfoRow("Comment:", governmentBodyAnnualSummary.getComment(), VaadinIcons.COMMENT_ELLIPSIS, "Additional remarks or notes"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Comment:", governmentBodyAnnualSummary.getComment(), VaadinIcons.COMMENT_ELLIPSIS, "Additional remarks or notes"));
 			}
 
 			attributesLayout.addComponents(profileDetailsLayout, serviceStatsLayout);

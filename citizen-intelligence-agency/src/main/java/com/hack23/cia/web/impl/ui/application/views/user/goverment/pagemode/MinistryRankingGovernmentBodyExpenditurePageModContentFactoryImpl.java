@@ -26,6 +26,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -59,7 +60,7 @@ public final class MinistryRankingGovernmentBodyExpenditurePageModContentFactory
 
 		final String pageId = getPageId(parameters);
 
-		createPageHeader(panel, panelContent, "Government Bodies Expenditure", "Government Body Expenditure", "Provides detailed expenditure data for government bodies under ministries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Bodies Expenditure", "Government Body Expenditure", "Provides detailed expenditure data for government bodies under ministries.");
 
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyExpenditureSummaryChart(panelContent);

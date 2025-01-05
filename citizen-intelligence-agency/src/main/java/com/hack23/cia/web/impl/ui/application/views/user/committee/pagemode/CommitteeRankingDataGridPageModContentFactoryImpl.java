@@ -27,6 +27,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -97,7 +98,7 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 		final VerticalLayout panelContent = createPanelContent();
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
-        createPageHeader(panel, panelContent, "Committee Ranking Overview", "Committee Rankings", "Analyze committee rankings with a focus on membership, performance, and activity metrics.");
+        CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Ranking Overview", "Committee Rankings", "Analyze committee rankings with a focus on membership, performance, and activity metrics.");
 
 		final String pageId = getPageId(parameters);
 

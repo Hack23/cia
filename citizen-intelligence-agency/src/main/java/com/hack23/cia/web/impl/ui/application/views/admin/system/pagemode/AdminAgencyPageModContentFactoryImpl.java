@@ -30,6 +30,7 @@ import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -101,7 +102,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
         getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-        createPageHeader(panel, content, "Admin Agency Management", "Agency Overview",
+        CardInfoRowUtil.createPageHeader(panel, content, "Admin Agency Management", "Agency Overview",
                 "Manage and review details of agencies, including organizational data and performance metrics.");
 
         final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
@@ -148,7 +149,7 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
                 leftLayout.addComponent(cardPanel);
 
-                createCardHeader(cardContent, "Agency Details");
+                CardInfoRowUtil.createCardHeader(cardContent, "Agency Details");
 
                 // Attributes layout
                 final VerticalLayout attributesLayout = new VerticalLayout();
@@ -157,8 +158,8 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
                 cardContent.addComponent(attributesLayout);
 
                 // Display fields in a card layout (skipping null or empty ones)
-                addInfoRowIfNotNull(attributesLayout, "Agency Name:", agency.getAgencyName(), VaadinIcons.FLAG);
-                addInfoRowIfNotNull(attributesLayout, "Description:", agency.getDescription(), VaadinIcons.FILE_TEXT);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Agency Name:", agency.getAgencyName(), VaadinIcons.FLAG);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Description:", agency.getDescription(), VaadinIcons.FILE_TEXT);
 
                 // Right layout: portals grid
                 getGridFactory().createBasicBeanItemGrid(rightLayout, Portal.class, agency.getPortals(),
