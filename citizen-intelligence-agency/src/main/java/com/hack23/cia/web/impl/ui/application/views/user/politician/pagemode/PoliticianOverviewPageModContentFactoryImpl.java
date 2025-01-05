@@ -339,7 +339,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
         // Split the analysis points and create a bullet list
         final String[] analysisPoints = experienceSummary.getPoliticalAnalysisComment().split("\\s*\\|\\|\\s*");
-        StringBuilder analys=new StringBuilder();
+        final StringBuilder analys=new StringBuilder();
         for (final String point : analysisPoints) {
             if (StringUtils.isNotBlank(point)) {
             	analys.append(" • ").append(point);
