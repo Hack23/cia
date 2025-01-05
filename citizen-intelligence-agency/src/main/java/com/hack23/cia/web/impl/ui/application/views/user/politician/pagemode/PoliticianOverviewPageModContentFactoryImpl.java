@@ -278,7 +278,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	                .filter(ka -> ka.getArea() != null && !ka.getArea().equals("Other"))
 	                .sorted((ka1, ka2) -> ka2.getWeightedExp().compareTo(ka1.getWeightedExp()))
 	                .limit(6)
-	                .map(ka -> String.format("%s (Weight: %d)", 
+	                .map(ka -> String.format(Locale.ENGLISH,"%s (Weight: %d)", 
 	                    ka.getArea(), 
 	                    ka.getWeightedExp()))
 	                .collect(Collectors.joining(", "));
@@ -297,7 +297,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	                .filter(role -> role.getRole() != null && !role.getRole().equals("Other"))
 	                .sorted((r1, r2) -> r2.getWeightedExp().compareTo(r1.getWeightedExp()))
 	                .limit(6)
-	                .map(role -> String.format("%s%s (Weight: %d)", 
+	                .map(role -> String.format(Locale.ENGLISH,"%s%s (Weight: %d)", 
 	                    role.getRole(),
 	                    role.getOrg() != null ? " - " + role.getOrg() : "",
 	                    role.getWeightedExp()))
