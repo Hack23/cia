@@ -197,7 +197,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 
 		// 1. Political Role & Influence
 		final VerticalLayout politicalRoleLayout = createSectionLayout("Political Role & Influence");
-		addPoliticalRoleMetrics(politicalRoleLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary);
+		addPoliticalRoleMetrics(politicalRoleLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary,experienceSummary);
 		sectionsGrid.addComponent(politicalRoleLayout);
 		sectionsGrid.setExpandRatio(politicalRoleLayout, 1.0f);
 		
@@ -263,45 +263,6 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	            experienceSummary.getSpecializationLevel().toString().replace("_", " "), 
 	            VaadinIcons.SPECIALIST, 
 	            "Area of specialization"));
-
-	        // Top Knowledge Areas
-	        if (experienceSummary.getKnowledgeAreas() != null && !experienceSummary.getKnowledgeAreas().isEmpty()) {
-	            String topAreas = experienceSummary.getKnowledgeAreas().stream()
-	                .filter(ka -> ka.getArea() != null && !ka.getArea().equals("Other"))
-	                .sorted((ka1, ka2) -> ka2.getWeightedExp().compareTo(ka1.getWeightedExp()))
-	                .limit(6)
-	                .map(ka -> String.format(Locale.ENGLISH,"%s (Weight: %d)", 
-	                    ka.getArea(), 
-	                    ka.getWeightedExp()))
-	                .collect(Collectors.joining(", "));
-
-	            if (!topAreas.isEmpty()) {
-	                layout.addComponent(createInfoRow("Key Policy Areas:", 
-	                    topAreas, 
-	                    VaadinIcons.CLIPBOARD_TEXT, 
-	                    "Main areas of expertise with weighted importance"));
-	            }
-	        }
-
-	        // Top Roles
-	        if (experienceSummary.getRoles() != null && !experienceSummary.getRoles().isEmpty()) {
-	            String topRoles = experienceSummary.getRoles().stream()
-	                .filter(role -> role.getRole() != null && !role.getRole().equals("Other"))
-	                .sorted((r1, r2) -> r2.getWeightedExp().compareTo(r1.getWeightedExp()))
-	                .limit(6)
-	                .map(role -> String.format(Locale.ENGLISH,"%s%s (Weight: %d)", 
-	                    role.getRole(),
-	                    role.getOrg() != null ? " - " + role.getOrg() : "",
-	                    role.getWeightedExp()))
-	                .collect(Collectors.joining(", "));
-
-	            if (!topRoles.isEmpty()) {
-	                layout.addComponent(createInfoRow("Key Political Roles:", 
-	                    topRoles, 
-	                    VaadinIcons.USERS, 
-	                    "Most significant positions with weighted importance"));
-	            }
-	        }
 	        
 	        // Political Analysis Comment
 	        if (StringUtils.isNotBlank(experienceSummary.getPoliticalAnalysisComment())) {
@@ -313,12 +274,6 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	    }
 	}
 	
-	private String formatRole(PoliticalRole role) {
-	    return String.format(Locale.ENGLISH,"%s%s (%d days)", 
-	        role.getRole(),
-	        role.getOrg() != null ? " - " + role.getOrg() : "",
-	        role.getDays() != null ? role.getDays() : 0);
-	}
 	
 	/**
 	 * Adds the political role metrics.
@@ -328,7 +283,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 * @param ballotSummary the ballot summary
 	 */
 	private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
-			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+			ViewRiksdagenPoliticianBallotSummary ballotSummary, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
 		layout.addComponent(createInfoRow("Current Role:", ballotSummary.getStatus(), VaadinIcons.INSTITUTION,
 				"Current position in parliament"));
@@ -337,9 +292,43 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		layout.addComponent(createInfoRow("Career Length:",
 				calculateServiceYears(politician.getFirstAssignmentDate(), politician.getLastAssignmentDate()),
 				VaadinIcons.TIMER, "Years in parliament"));
-		layout.addComponent(
-				createInfoRow("Influence Score:", String.format(Locale.ENGLISH,"%.1f", ballotSummary.getVotingConsistencyScore()),
-						VaadinIcons.CHART_GRID, "Overall parliamentary influence"));
+       
+		// Top Knowledge Areas
+        if (experienceSummary.getKnowledgeAreas() != null && !experienceSummary.getKnowledgeAreas().isEmpty()) {
+            String topAreas = experienceSummary.getKnowledgeAreas().stream()
+                .filter(ka -> ka.getArea() != null && !ka.getArea().equals("Other"))
+                .sorted((ka1, ka2) -> ka2.getWeightedExp().compareTo(ka1.getWeightedExp()))
+                .limit(3)
+                .map(ka -> String.format(Locale.ENGLISH,"%s ", 
+                    ka.getArea()))
+                .collect(Collectors.joining(", "));
+
+            if (!topAreas.isEmpty()) {
+                layout.addComponent(createInfoRow("Key Policy Areas:", 
+                    topAreas, 
+                    VaadinIcons.CLIPBOARD_TEXT, 
+                    "Main areas of expertise with weighted importance"));
+            }
+        }
+
+        // Top Roles
+        if (experienceSummary.getRoles() != null && !experienceSummary.getRoles().isEmpty()) {
+            String topRoles = experienceSummary.getRoles().stream()
+                .filter(role -> role.getRole() != null && !role.getRole().equals("Other"))
+                .sorted((r1, r2) -> r2.getWeightedExp().compareTo(r1.getWeightedExp()))
+                .limit(3)
+                .map(role -> String.format(Locale.ENGLISH,"%s", 
+                    role.getRole()))
+                .collect(Collectors.joining(", "));
+
+            if (!topRoles.isEmpty()) {
+                layout.addComponent(createInfoRow("Key Political Roles:", 
+                    topRoles, 
+                    VaadinIcons.USERS, 
+                    "Most significant positions with weighted importance"));
+            }
+        }
+
 	}
 
 	/**
