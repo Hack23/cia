@@ -16,6 +16,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
@@ -134,8 +135,11 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 			final ViewRiksdagenPolitician politician = activePoliticianMap.get(govMember.getPersonId()).get(0);
 			final ViewRiksdagenPoliticianBallotSummary ballotSummary = getApplicationManager()
 					.getDataContainer(ViewRiksdagenPoliticianBallotSummary.class).load(govMember.getPersonId());
+		    final ViewRiksdagenPoliticianExperienceSummary experienceSummary = getApplicationManager().getDataContainer(ViewRiksdagenPoliticianExperienceSummary.class).load(govMember.getPersonId());
+
+
 			final Panel cardPanel = createBaseballStyleCard(govMember, politician, ballotSummary, governmentBodyByMinistry,
-					reportByMinistry);
+					reportByMinistry,experienceSummary);
 
 			// Responsive column rules
 			row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
@@ -227,11 +231,12 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	 * @param ballotSummary the ballot summary
 	 * @param governmentBodyByMinistry the government body by ministry
 	 * @param reportByMinistry the report by ministry
+	 * @param experienceSummary
 	 * @return the panel
 	 */
 	private Panel createBaseballStyleCard(ViewRiksdagenGovermentRoleMember govMember,
 			ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
-			Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry) {
+			Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
 		final Panel cardPanel = new Panel();
 		cardPanel.addStyleName("leader-baseball-card");
@@ -319,7 +324,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		// Add the four main sections
 		final VerticalLayout politicalRoleLayout = createSectionLayout("Political Role & Influence");
-		addPoliticalRoleMetrics(politicalRoleLayout, govMember, politician, ballotSummary);
+		addPoliticalRoleMetrics(politicalRoleLayout, govMember, politician, ballotSummary, experienceSummary);
 		sectionsGrid.addComponent(politicalRoleLayout);
 
 		final VerticalLayout performanceLayout = createSectionLayout("Parliamentary Performance");
@@ -464,9 +469,10 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	 * @param govMember the gov member
 	 * @param politician the politician
 	 * @param ballotSummary the ballot summary
+	 * @param experienceSummary
 	 */
 	private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenGovermentRoleMember govMember,
-			ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+			ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
 		layout.addComponent(createInfoRow("Current Role:", govMember.getRoleCode(), VaadinIcons.INSTITUTION,
 				"Current position in parliament"));
@@ -481,7 +487,102 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 					String.format(Locale.ENGLISH,"%,d", govMember.getTotalGovernmentBills()),
 					VaadinIcons.GROUP, "Total Government Bills"));
 
+
+	        // Top Roles
+	        if (experienceSummary.getRoles() != null && !experienceSummary.getRoles().isEmpty()) {
+	            final String topRoles = experienceSummary.getRoles().stream()
+	                .filter(role -> role.getRole() != null && !role.getRole().equals("Other"))
+	                .sorted((r1, r2) -> r2.getWeightedExp().compareTo(r1.getWeightedExp()))
+	                .limit(3)
+	                .map(role -> String.format(Locale.ENGLISH,"%s",
+	                    role.getRole()))
+	                .collect(Collectors.joining(", "));
+
+	            if (!topRoles.isEmpty()) {
+	                layout.addComponent(createInfoRow("Key Political Roles:",
+	                    topRoles,
+	                    VaadinIcons.USERS,
+	                    "Most significant positions with weighted importance"));
+	            }
+	        }
+
+			// Top Knowledge Areas
+	        if (experienceSummary.getKnowledgeAreas() != null && !experienceSummary.getKnowledgeAreas().isEmpty()) {
+	            final String topAreas = experienceSummary.getKnowledgeAreas().stream()
+	                .filter(ka -> ka.getArea() != null && !ka.getArea().equals("Other"))
+	                .sorted((ka1, ka2) -> ka2.getWeightedExp().compareTo(ka1.getWeightedExp()))
+	                .limit(3)
+	                .map(ka -> String.format(Locale.ENGLISH,"%s ",
+	                    ka.getArea()))
+	                .collect(Collectors.joining(", "));
+
+	            if (!topAreas.isEmpty()) {
+	                layout.addComponent(createInfoRow("Key Policy Areas:",
+	                    topAreas,
+	                    VaadinIcons.CLIPBOARD_TEXT,
+	                    "Main areas of expertise with weighted importance"));
+	            }
+	        }
+
+
+	        addExperienceMetrics(layout,experienceSummary);
+
+	        // Split the analysis points and create a bullet list
+	        final String[] analysisPoints = experienceSummary.getPoliticalAnalysisComment().split("\\s*\\|\\|\\s*");
+	        final StringBuilder analys=new StringBuilder();
+	        for (final String point : analysisPoints) {
+	            if (StringUtils.isNotBlank(point)) {
+	            	analys.append(" • ").append(point);
+	            }
+	           }
+
+	        // Political Analysis Comment
+	        if (StringUtils.isNotBlank(experienceSummary.getPoliticalAnalysisComment())) {
+	            layout.addComponent(createInfoRow("Analysis:",
+	            		analys.toString(),
+	                VaadinIcons.COMMENT,
+	                "Political career analysis"));
+	        }
+
 	}
+
+
+	/**
+	 * Adds the experience metrics.
+	 *
+	 * @param layout the layout
+	 * @param experienceSummary the experience summary
+	 */
+	private void addExperienceMetrics(VerticalLayout layout, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+	    if (experienceSummary != null) {
+	        // Career Overview
+	        layout.addComponent(createInfoRow("Career Phase:",
+	            experienceSummary.getCareerPhase().toString().replace("_", " "),
+	            VaadinIcons.CALENDAR_CLOCK,
+	            "Current career stage"));
+
+	        // Experience Level
+	        layout.addComponent(createInfoRow("Experience Level:",
+	            experienceSummary.getExperienceLevel().toString().replace("_", " "),
+	            VaadinIcons.CHART_TIMELINE,
+	            "Overall political experience classification"));
+
+	        // Leadership Profile
+	        layout.addComponent(createInfoRow("Leadership Role:",
+	            experienceSummary.getLeadershipProfile().toString().replace("_", " "),
+	            VaadinIcons.USER_STAR,
+	            "Leadership experience level"));
+
+	        // Specialization
+	        layout.addComponent(createInfoRow("Expertise:",
+	            experienceSummary.getSpecializationLevel().toString().replace("_", " "),
+	            VaadinIcons.SPECIALIST,
+	            "Area of specialization"));
+
+
+ 	    }
+	}
+
 
 	/**
 	 * Adds the parliamentary performance metrics.
@@ -518,6 +619,8 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 				VaadinIcons.FILE_TEXT, "Average documents per year"));
 		layout.addComponent(createInfoRow("Individual Motions:", String.valueOf(politician.getIndividualMotions()),
 				VaadinIcons.USER, "Personal motions submitted"));
+		layout.addComponent(createInfoRow("Party Motions:", String.valueOf(politician.getPartyMotions()),
+				VaadinIcons.GROUP, "Party-based motions"));
 		layout.addComponent(createInfoRow("Committee Motions:", String.valueOf(politician.getCommitteeMotions()),
 				VaadinIcons.GROUP, "Committee-based motions"));
 		layout.addComponent(createInfoRow("Document Impact:", politician.getDocActivityProfile(), VaadinIcons.CHART_3D,
