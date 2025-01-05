@@ -1526,6 +1526,419 @@ ORDER BY total_weighted_exp DESC;
 </createView>
 </changeSet>
 
+
+
+
+
+
+
+<changeSet author="pethers" id="672321-view_riksdagen_politician_experience_summary-update4"
+		failOnError="true">
+
+ <dropView viewName="view_riksdagen_politician_experience_summary" />
+
+<createView viewName="view_riksdagen_politician_experience_summary">
+    <![CDATA[
+WITH role_day_spans AS (
+    SELECT
+        a.intressent_id              AS person_id,
+        a.assignment_type,
+        a.role_code,
+        a.org_code,
+        (
+            CASE WHEN a.to_date IS NULL
+                 THEN (CURRENT_DATE - a.from_date)
+                 ELSE (a.to_date - a.from_date)
+            END
+        )::int AS days_in_role,
+
+       CASE
+            /* Top Leadership Roles - Level 1 (500-400) */
+            WHEN a.assignment_type = 'Departement' AND a.role_code = 'Statsminister' 
+                THEN 50000 -- Prime Minister
+            WHEN a.assignment_type = 'partiuppdrag' AND a.role_code = 'Partiledare' 
+                THEN 45000 -- Party Leader
+            WHEN a.assignment_type = 'Departement' AND a.role_code = 'Vice statsminister' 
+                THEN 40000 -- Deputy Prime Minister
+
+            /* Senior Government Roles - Level 2 (390-300) */
+            WHEN a.assignment_type = 'Departement' AND 
+                (a.role_code ILIKE '%minister%' OR a.role_code = 'Statsråd') 
+                THEN 35000 -- Ministers
+            WHEN a.assignment_type = 'kammaruppdrag' AND a.role_code = 'Talman' 
+                THEN 300 -- Speaker
+            WHEN a.assignment_type = 'talmansuppdrag' AND 
+                a.role_code IN ('Andre vice talman','Tredje vice talman') 
+                THEN 250 -- Deputy Speakers
+
+            /* Committee & Party Leadership - Level 3 (290-200) */
+            WHEN (a.assignment_type = 'uppdrag' OR a.assignment_type = 'Riksdagsorgan') AND 
+                a.role_code = 'Ordförande' AND 
+                a.org_code IN ('FiU', 'KU', 'UU', 'FÖU') 
+                THEN 250 -- Key Committee Chairs
+            WHEN a.assignment_type = 'partiuppdrag' AND a.role_code = 'Gruppledare' 
+                THEN 230 -- Party Group Leader
+            WHEN a.assignment_type = 'partiuppdrag' AND a.role_code = 'Partisekreterare' 
+                THEN 220 -- Party Secretary
+            WHEN (a.assignment_type = 'uppdrag' OR a.assignment_type = 'Riksdagsorgan') AND 
+                a.role_code = 'Ordförande'
+                THEN 200 -- Other Committee Chairs
+
+            /* Senior Party & Committee Positions - Level 4 (19-15) */
+            WHEN a.assignment_type = 'partiuppdrag' AND a.role_code = 'Förste vice gruppledare' 
+                THEN 18 -- First Deputy Party Group Leader
+            WHEN a.assignment_type = 'partiuppdrag' AND a.role_code = 'Andre vice gruppledare' 
+                THEN 16 -- Second Deputy Party Group Leader
+            WHEN (a.assignment_type = 'uppdrag' OR a.assignment_type = 'Riksdagsorgan') AND 
+                a.role_code = 'Vice ordförande'
+                THEN 15 -- Committee Vice Chairs
+
+            /* Regular Members - Level 5 (14-8) */
+            WHEN a.assignment_type = 'kammaruppdrag' AND a.role_code = 'Riksdagsledamot' 
+                THEN 12 -- MP
+            WHEN a.assignment_type = 'Europaparlamentet' AND a.role_code = 'Ledamot' 
+                THEN 10 -- MEP
+            WHEN (a.assignment_type IN ('uppdrag','Riksdagsorgan') AND a.role_code = 'Ledamot') 
+                THEN 8 -- Committee Member
+
+            /* Substitute Roles - Level 6 (7-3) */
+            WHEN a.assignment_type = 'kammaruppdrag' AND 
+                a.role_code IN ('Ersättare','Statsrådsersättare')
+                THEN 5 -- Parliament Substitute
+            WHEN (a.assignment_type = 'uppdrag' OR a.assignment_type = 'Riksdagsorgan') AND 
+                a.role_code IN ('Suppleant','Extra suppleant')
+                THEN 1 -- Committee Substitute
+
+            ELSE 1 -- Other roles
+        END AS role_weight,
+        
+        CASE WHEN (a.role_code ILIKE '%ersättare%' OR a.role_code ILIKE '%suppleant%')
+            THEN 1 ELSE 0
+        END AS is_substitute,
+
+        CASE WHEN a.role_code IN (
+            'Ordförande','Vice ordförande','Gruppledare','Partiledare','Partisekreterare',
+            'Förste vice gruppledare','Andre vice gruppledare'
+        ) THEN 1 ELSE 0
+        END AS is_leadership,
+
+        /* Knowledge area mapping */
+CASE
+  /* --- UTSKOTT codes --- */
+  WHEN a.org_code = 'AU'      THEN 'Arbetsmarknad (Committee)'
+  WHEN a.org_code = 'SoU'     THEN 'Social (Committee)'
+  WHEN a.org_code = 'sou'     THEN 'Social (Committee)'
+  WHEN a.org_code = 'SfU'     THEN 'Social Insurance (Committee)'
+  WHEN a.org_code = 'FiU'     THEN 'Finance/Budget (Committee)'
+  WHEN a.org_code = 'NU'      THEN 'Business/Industry (Committee)'
+  WHEN a.org_code = 'UFÖU'    THEN 'Foreign & Defense (Committee)'
+  WHEN a.org_code = 'FÖU'     THEN 'Defense (Committee)'
+  WHEN a.org_code = 'KU'      THEN 'Constitutional (Committee)'
+  WHEN a.org_code = 'KUU'     THEN 'Constitution & Foreign Affairs (Committee)'
+  WHEN a.org_code = 'KrU'     THEN 'Culture (Committee)'
+  WHEN a.org_code = 'CKrU'    THEN 'Civil & Culture (Committee)'
+  WHEN a.org_code = 'USoU'    THEN 'Foreign & Social (Committee)'
+  WHEN a.org_code = 'UMJU'    THEN 'Foreign, Environment & Agriculture (Committee)'
+  WHEN a.org_code = 'MJU'     THEN 'Environment & Agriculture (Committee)'
+  WHEN a.org_code = 'BoU'     THEN 'Housing (Committee)'
+  WHEN a.org_code = 'SkU'     THEN 'Taxes (Committee)'
+  WHEN a.org_code = 'UbU'     THEN 'Education (Committee)'
+  WHEN a.org_code = 'UU'      THEN 'Foreign Affairs (Committee)'
+  WHEN a.org_code = 'EUN'     THEN 'EU Affairs (Committee)'
+  WHEN a.org_code = 'JuU'     THEN 'Justice (Committee)'
+
+  /* --- DEPARTEMENT names --- */
+  WHEN a.org_code ILIKE 'Arbetsmarknadsdepartementet'    THEN 'Labour (Ministry)'
+  WHEN a.org_code ILIKE 'Finansdepartementet'            THEN 'Finance/Budget (Ministry)'
+  WHEN a.org_code ILIKE 'Försvarsdepartementet'          THEN 'Defense (Ministry)'
+  WHEN a.org_code ILIKE 'Infrastrukturdepartementet'     THEN 'Infrastructure (Ministry)'
+  WHEN a.org_code ILIKE 'Integrations- och jämställdhetsdepartementet'
+       THEN 'Integration & Gender Equality (Ministry)'
+  WHEN a.org_code ILIKE 'Jordbruksdepartementet'         THEN 'Agriculture (Ministry)'
+  WHEN a.org_code ILIKE 'Justitiedepartementet'          THEN 'Justice (Ministry)'
+  WHEN a.org_code ILIKE 'Klimat- och näringslivsdepartementet'
+       THEN 'Climate & Business (Ministry)'
+  WHEN a.org_code ILIKE 'Kulturdepartementet'            THEN 'Culture (Ministry)'
+  WHEN a.org_code ILIKE 'Landsbygdsdepartementet'        THEN 'Rural Affairs (Ministry)'
+  WHEN a.org_code ILIKE 'Landsbygds- och infrastrukturdepartementet'
+       THEN 'Rural & Infrastructure (Ministry)'
+  WHEN a.org_code ILIKE 'Miljödepartementet'             THEN 'Environment (Ministry)'
+  WHEN a.org_code ILIKE 'Miljö- och energidepartementet'
+       THEN 'Environment & Energy (Ministry)'
+  WHEN a.org_code ILIKE 'Miljö- och samhällsbyggnadsdepartementet'
+       THEN 'Environment & Planning (Ministry)'
+  WHEN a.org_code ILIKE 'Näringsdepartementet'           THEN 'Business/Industry (Ministry)'
+  WHEN a.org_code ILIKE 'Socialdepartementet'            THEN 'Social (Ministry)'
+  WHEN a.org_code ILIKE 'Statsrådsberedningen'           THEN 'Prime Ministers Office'
+  WHEN a.org_code ILIKE 'Utbildningsdepartementet'       THEN 'Education (Ministry)'
+  WHEN a.org_code ILIKE 'Utbildnings- och kulturdepartementet'
+       THEN 'Education & Culture (Ministry)'
+  WHEN a.org_code ILIKE 'Utrikesdepartementet'           THEN 'Foreign Affairs (Ministry)'
+
+  /* Anything else not matched above => Other */
+  ELSE 'Other'
+  END AS knowledge_area,
+  
+   /* --- Knowledge Area Weighting --- */
+CASE
+    /* Ministerial & Executive Level - Level 1 (100.0) */
+    WHEN a.org_code ILIKE 'Statsrådsberedningen'
+        THEN 100.0 -- Prime Minister's Office
+    
+    /* Core State Functions Ministries - Level 2 (80.0) */
+    WHEN a.org_code ILIKE ANY(ARRAY['Finansdepartementet', 
+                                   'Justitiedepartementet',
+                                   'Utrikesdepartementet',
+                                   'Försvarsdepartementet'])
+        THEN 80.0 -- Finance, Justice, Foreign Affairs, Defense Ministries
+    
+    /* Other Ministries - Level 3 (60.0) */
+    WHEN a.org_code ILIKE ANY(ARRAY['Näringsdepartementet',
+                                   'Socialdepartementet',
+                                   'Arbetsmarknadsdepartementet',
+                                   'Miljödepartementet',
+                                   'Utbildningsdepartementet',
+                                   'Kulturdepartementet',
+                                   'Infrastrukturdepartementet',
+                                   'Klimat- och näringslivsdepartementet'])
+        THEN 60.0 -- Other Ministries
+    
+    /* Key Parliamentary Committees - Level 4 (40.0) */
+    WHEN a.org_code IN ('FiU', 'KU', 'UU', 'FÖU', 'JuU')
+        THEN 4.0 -- Finance, Constitutional, Foreign Affairs, Defense, Justice Committees
+    
+    /* Economic & Social Committees - Level 5 (30.0) */
+    WHEN a.org_code IN ('NU', 'SoU', 'AU', 'SfU')
+        THEN 3.0 -- Business, Social Affairs, Labor, Social Insurance Committees
+    
+    /* Infrastructure & Environment Committees - Level 6 (25.0) */
+    WHEN a.org_code IN ('MJU', 'BoU', 'TU')
+        THEN 2.5 -- Environment, Housing, Transport Committees
+    
+    /* Education & Culture Committees - Level 7 (20.0) */
+    WHEN a.org_code IN ('UbU', 'KrU')
+        THEN 2.0 -- Education, Culture Committees
+    
+    /* EU Affairs & Special Committees - Level 8 (15.0) */
+    WHEN a.org_code IN ('EUN', 'CU') OR
+         a.org_code ILIKE '%EU%'
+        THEN 1.5 -- EU Affairs, Special Committees
+    
+    /* Other Committees/Unspecified - Level 9 (5.0) */
+    ELSE 1.0 -- Other Committees/Areas
+END AS area_weight  
+    FROM assignment_data a
+),
+per_role_stats AS (
+  SELECT
+        p.id              AS person_id,
+        MAX(p.first_name) AS first_name,
+        MAX(p.last_name)  AS last_name,
+        r.assignment_type,
+        r.role_code,
+        r.org_code,
+        r.knowledge_area,
+        COUNT(*)                       AS total_assignments,
+        SUM(r.days_in_role)           AS total_days,
+        SUM(r.days_in_role * r.role_weight * r.area_weight) AS weighted_experience, -- Here
+        SUM(CASE WHEN r.is_substitute=1 THEN r.days_in_role ELSE 0 END) AS substitute_days,
+        SUM(CASE WHEN r.is_leadership=1 THEN r.days_in_role ELSE 0 END) AS leadership_days
+    FROM role_day_spans r
+    JOIN person_data p ON p.id = r.person_id
+    GROUP BY p.id, r.assignment_type, r.role_code, r.org_code, r.knowledge_area
+),
+experience_summary AS (
+    SELECT 
+        person_id,
+        MAX(first_name) AS first_name,
+        MAX(last_name) AS last_name,
+        SUM(total_days) AS total_days,
+        SUM(weighted_experience) AS total_weighted_exp,
+        SUM(CASE WHEN assignment_type = 'Departement' THEN total_days ELSE 0 END) AS govt_days,
+        SUM(CASE WHEN assignment_type = 'kammaruppdrag' THEN total_days ELSE 0 END) AS riksdag_days,
+        SUM(CASE WHEN assignment_type = 'partiuppdrag' THEN total_days ELSE 0 END) AS party_days,
+        SUM(CASE WHEN assignment_type IN ('uppdrag','Riksdagsorgan') THEN total_days ELSE 0 END) AS committee_days,
+        SUM(substitute_days) AS total_substitute_days,
+        SUM(leadership_days) AS total_leadership_days,
+        
+        JSON_AGG(
+            JSON_BUILD_OBJECT(
+                'area', knowledge_area,
+                'days', total_days,
+                'weightedExp', weighted_experience
+            )
+            ORDER BY weighted_experience DESC
+        ) AS knowledge_areas,
+        
+        JSON_AGG(
+            JSON_BUILD_OBJECT(
+                'type', assignment_type,
+                'role', role_code,
+                'org', org_code,
+                'days', total_days,
+                'weightedExp', weighted_experience,
+                'substituteDays', substitute_days,
+                'leadershipDays', leadership_days
+            )
+            ORDER BY weighted_experience DESC
+        ) AS roles
+    FROM per_role_stats
+    GROUP BY person_id
+),
+political_analysis AS (
+    SELECT 
+        es.*,
+        /* Basic experience classification */
+        CASE
+            WHEN govt_days > 2000 AND riksdag_days > 4000 AND committee_days > 2000
+                THEN 'EXTENSIVE_EXPERIENCE'
+            WHEN govt_days > 2000
+                THEN 'SIGNIFICANT_GOVERNMENT'
+            WHEN riksdag_days > 4000
+                THEN 'LONG_SERVING_PARLIAMENT'
+            WHEN committee_days > 1500
+                THEN 'ACTIVE_COMMITTEES'
+            WHEN party_days > 1500
+                THEN 'PARTY_LEADERSHIP'
+            ELSE 'MIXED_EXPERIENCE'
+        END AS experience_level,
+        
+        /* Experience breadth score */
+        CASE 
+            WHEN (govt_days > 0)::int + 
+                 (riksdag_days > 0)::int + 
+                 (party_days > 0)::int + 
+                 (committee_days > 0)::int >= 3 
+                THEN 'HIGH'
+            WHEN (govt_days > 0)::int + 
+                 (riksdag_days > 0)::int + 
+                 (party_days > 0)::int + 
+                 (committee_days > 0)::int = 2 
+                THEN 'MEDIUM'
+            ELSE 'LOW'
+        END AS experience_breadth,
+
+        /* Leadership tendency */
+        CASE 
+            WHEN total_leadership_days > 1000 THEN 'SIGNIFICANT_LEADERSHIP'
+            WHEN total_leadership_days > 500 THEN 'MODERATE_LEADERSHIP'
+            WHEN total_leadership_days > 0 THEN 'SOME_LEADERSHIP'
+            ELSE 'NO_LEADERSHIP'
+        END AS leadership_profile,
+
+        /* Role stability */
+        CASE 
+            WHEN total_substitute_days::float / NULLIF(total_days, 0) > 0.5 THEN 'PRIMARILY_SUBSTITUTE'
+            WHEN total_substitute_days::float / NULLIF(total_days, 0) > 0.25 THEN 'FREQUENT_SUBSTITUTE'
+            WHEN total_substitute_days::float / NULLIF(total_days, 0) > 0 THEN 'OCCASIONAL_SUBSTITUTE'
+            ELSE 'REGULAR_ROLES'
+        END AS role_stability,
+
+        /* Career phase */
+        CASE 
+            WHEN total_weighted_exp > 100000 THEN 'SENIOR_STATESPERSON'
+            WHEN total_weighted_exp > 50000 THEN 'ESTABLISHED_POLITICIAN'
+            WHEN total_weighted_exp > 20000 THEN 'EXPERIENCED_POLITICIAN'
+            WHEN total_weighted_exp > 5000 THEN 'MID_CAREER'
+            ELSE 'EARLY_CAREER'
+        END AS career_phase,
+
+        /* Specialization score */
+CASE
+    WHEN (
+        SELECT COUNT(DISTINCT area)
+        FROM jsonb_array_elements(knowledge_areas::jsonb) AS ka(area)
+    ) <= 2 AND total_days > 1000 THEN 'HIGHLY_SPECIALIZED'
+    WHEN (
+        SELECT COUNT(DISTINCT area)
+        FROM jsonb_array_elements(knowledge_areas::jsonb) AS ka(area)
+    ) <= 4 THEN 'MODERATELY_SPECIALIZED'
+    ELSE 'BROADLY_EXPERIENCED'
+END AS specialization_level
+
+    FROM experience_summary es
+)
+SELECT 
+    person_id,
+    first_name,
+    last_name,
+    total_days,
+    total_weighted_exp,
+    govt_days,
+    riksdag_days,
+    party_days,
+    committee_days,
+    total_substitute_days,
+    total_leadership_days,
+    knowledge_areas::text AS knowledge_areas_json,
+    roles::text AS roles_json,
+    experience_level,
+    experience_breadth,
+    leadership_profile,
+    role_stability,
+    career_phase,
+    specialization_level,
+    
+    /* Generate detailed political analyst comment */
+    CONCAT_WS(' || ',
+        /* Basic Experience Summary */
+        CASE experience_level
+            WHEN 'EXTENSIVE_EXPERIENCE' THEN 'Distinguished career spanning government, parliament, and committees'
+            WHEN 'SIGNIFICANT_GOVERNMENT' THEN 'Notable government service record'
+            WHEN 'LONG_SERVING_PARLIAMENT' THEN 'Long-standing parliamentary experience'
+            WHEN 'ACTIVE_COMMITTEES' THEN 'Significant committee work experience'
+            WHEN 'PARTY_LEADERSHIP' THEN 'Strong party leadership background'
+            ELSE 'Diverse political experience'
+        END,
+        
+        /* Experience Breadth Analysis */
+        CASE experience_breadth
+            WHEN 'HIGH' THEN 'Demonstrates broad political competence across multiple domains'
+            WHEN 'MEDIUM' THEN 'Shows focused expertise in select political areas'
+            ELSE 'Specialized in specific political domain'
+        END,
+        
+        /* Leadership Commentary */
+        CASE leadership_profile
+            WHEN 'SIGNIFICANT_LEADERSHIP' THEN 'Extensive leadership experience with over 1000 days in key positions'
+            WHEN 'MODERATE_LEADERSHIP' THEN 'Proven leadership capabilities with over 500 days in leadership roles'
+            WHEN 'SOME_LEADERSHIP' THEN 'Some leadership experience'
+            ELSE 'Primarily collaborative roles'
+        END,
+        
+        /* Role Stability Analysis */
+        CASE role_stability
+            WHEN 'PRIMARILY_SUBSTITUTE' THEN 'Frequently serves in substitute positions, showing adaptability'
+            WHEN 'FREQUENT_SUBSTITUTE' THEN 'Regular substitute experience complementing primary roles'
+            WHEN 'OCCASIONAL_SUBSTITUTE' THEN 'Mainly stable positions with occasional substitute duties'
+            ELSE 'Consistent role appointments'
+        END,
+        
+        /* Career Phase Insight */
+        CASE career_phase
+            WHEN 'SENIOR_STATESPERSON' THEN 'Senior political figure with extensive influence'
+            WHEN 'ESTABLISHED_POLITICIAN' THEN 'Well-established political career'
+            WHEN 'EXPERIENCED_POLITICIAN' THEN 'Seasoned political operator'
+            WHEN 'MID_CAREER' THEN 'Building significant political experience'
+            ELSE 'Developing political career'
+        END,
+        
+        /* Specialization Commentary */
+        CASE specialization_level
+            WHEN 'HIGHLY_SPECIALIZED' THEN 'Deep expertise in specific policy areas'
+            WHEN 'MODERATELY_SPECIALIZED' THEN 'Balanced mix of specialized knowledge and broader experience'
+            ELSE 'Broad political portfolio'
+        END
+    ) AS political_analysis_comment
+
+FROM political_analysis
+ORDER BY total_weighted_exp DESC;
+    ]]>
+</createView>
+</changeSet>
+
+
+
 </databaseChangeLog>
 
 
