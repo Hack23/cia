@@ -18,14 +18,10 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import java.util.Optional;
-
 import org.dussan.vaadin.dcharts.DCharts;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartOptions;
 import com.vaadin.ui.AbstractOrderedLayout;
 

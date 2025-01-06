@@ -27,7 +27,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.MessageFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -74,6 +76,22 @@ public final class FormFactoryImpl implements FormFactory {
 
 	/** The Constant SIZE_FOR_GRID. */
 	private static final int SIZE_FOR_GRID = 8;
+
+	private static final Map<Class<?>, Converter<String, ?>> TYPE_CONVERTERS = new HashMap<>();
+
+	static {
+	    TYPE_CONVERTERS.put(Date.class, new StringToDateConverter());
+	    TYPE_CONVERTERS.put(Integer.class, new StringToIntegerConverter("Input value should be an integer"));
+	    TYPE_CONVERTERS.put(Long.class, new StringToLongConverter("Input value should be a long"));
+	    TYPE_CONVERTERS.put(BigInteger.class, new StringToBigIntegerConverter("Input value should be a biginteger"));
+	    TYPE_CONVERTERS.put(BigDecimal.class, new StringToBigDecimalConverter("Input value should be a bigdecimal"));
+	    TYPE_CONVERTERS.put(Boolean.class, new StringToBooleanConverter("Input value should be a boolean"));
+
+	    // Map primitive types to their wrapper classes
+	    TYPE_CONVERTERS.put(int.class, TYPE_CONVERTERS.get(Integer.class));
+	    TYPE_CONVERTERS.put(long.class, TYPE_CONVERTERS.get(Long.class));
+	    TYPE_CONVERTERS.put(boolean.class, TYPE_CONVERTERS.get(Boolean.class));
+	}
 
 	/**
 	 * Default constructor for FormFactoryImpl.
@@ -136,28 +154,18 @@ public final class FormFactoryImpl implements FormFactory {
 	 *            the type of property
 	 * @return the converter for type
 	 */
-	private static Converter getConverterForType(final Class<?> typeOfProperty) {
-		Converter converter;
+	private static Converter<String, ?> getConverterForType(final Class<?> typeOfProperty) {
+	    if (typeOfProperty == null) {
+	        return null;
+	    }
 
-		if (Date.class.equals(typeOfProperty)) {
-			converter = new StringToDateConverter();
-		} else if (Integer.class.equals(typeOfProperty) || "int".equalsIgnoreCase(typeOfProperty.getName())) {
-			converter = new StringToIntegerConverter("Input value should be an integer");
-		} else if (Long.class.equals(typeOfProperty) || "long".equalsIgnoreCase(typeOfProperty.getName())) {
-			converter = new StringToLongConverter("Input value should be an long");
-		} else if (BigInteger.class.equals(typeOfProperty)) {
-			converter = new StringToBigIntegerConverter("Input value should be an biginteger");
-		} else if (BigDecimal.class.equals(typeOfProperty)) {
-			converter = new StringToBigDecimalConverter("Input value should be an bigdecimal");
-		} else if (Boolean.class.equals(typeOfProperty) || "boolean".equalsIgnoreCase(typeOfProperty.getName())) {
-			converter = new StringToBooleanConverter("Input value should be an boolean");
-		} else if (typeOfProperty.isEnum()) {
-			converter = new StringToEnumConverter();
-		} else {
-			converter = null;
-		}
+	    // Handle enums separately since they're dynamic
+	    if (typeOfProperty.isEnum()) {
+	        return new StringToEnumConverter();
+	    }
 
-		return converter;
+	    // Look up converter from map
+	    return TYPE_CONVERTERS.get(typeOfProperty);
 	}
 
 	/**

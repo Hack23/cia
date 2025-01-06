@@ -1,6 +1,5 @@
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary;

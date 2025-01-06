@@ -1,17 +1,18 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
+import java.util.Optional;
+
 import org.dussan.vaadin.dcharts.DCharts;
 
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Page;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
-import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import java.util.Optional;
 
 /**
  * The Class ChartUtils.
