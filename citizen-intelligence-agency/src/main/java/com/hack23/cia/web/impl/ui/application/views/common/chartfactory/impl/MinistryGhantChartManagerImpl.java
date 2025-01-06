@@ -74,7 +74,7 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember roleMember) {
-				return ChartUtils.getRoleColor(roleMember.getRoleCode(), "suppleant", "ordförande");
+				return ChartUtils.getRoleColor(roleMember.getRoleCode(), "statsråd", "statsminister");
 			}
 
 			@Override
