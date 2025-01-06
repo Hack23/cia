@@ -177,7 +177,9 @@ public class ViewRiksdagenPoliticianExperienceSummary implements ModelObject {
         /** The medium. */
         MEDIUM,
         /** The low. */
-        LOW
+        LOW,        
+        /** The very low. */
+        VERY_LOW
     }
 
     /**
