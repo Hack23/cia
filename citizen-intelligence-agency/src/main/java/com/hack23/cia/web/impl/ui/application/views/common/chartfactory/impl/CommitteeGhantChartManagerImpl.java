@@ -60,7 +60,7 @@ public final class CommitteeGhantChartManagerImpl
 	 */
 	@Override
 	protected Function<ViewRiksdagenCommitteeRoleMember, String> getRoleMapping() {
-		return ViewRiksdagenCommitteeRoleMember::getRoleCode;
+		return new RoleMapping();
 	}
 
 	/**
@@ -114,4 +114,22 @@ public final class CommitteeGhantChartManagerImpl
 
 		};
 	}
+
+	/**
+	 * The Class RoleMapping.
+	 */
+	private static final class RoleMapping implements Function<ViewRiksdagenCommitteeRoleMember, String> {
+
+		/**
+		 * Apply.
+		 *
+		 * @param roleMember the role member
+		 * @return the string
+		 */
+		@Override
+		public String apply(final ViewRiksdagenCommitteeRoleMember roleMember) {
+			return roleMember.getRoleCode()+ ".["+ roleMember.getPersonId() +"]." + roleMember.getDetail();
+		}
+	}
+
 }

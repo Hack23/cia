@@ -24,28 +24,28 @@ public final class ChartUtils {
     /** The Constant CHART_LEFT_MARGIN. */
     private static final int CHART_LEFT_MARGIN = 2;
 
-    /** The Constant CHART_RIGHT_MARGIN = 2. */
+    /** The Constant CHART_RIGHT_MARGIN = 2; */
     private static final int CHART_RIGHT_MARGIN = 2;
 
-    /** The Constant CHART_TOP_MARGIN_SIZE = 2. */
+    /** The Constant CHART_TOP_MARGIN_SIZE = 2; */
     private static final int CHART_TOP_MARGIN_SIZE = 2;
 
-    /** The Constant CHART_WIDTH_REDUCTION = 50. */
+    /** The Constant CHART_WIDTH_REDUCTION = 50; */
     private static final int CHART_WIDTH_REDUCTION = 50;
 
-    /** The Constant HEIGHT_PERCENTAGE_FULL_PAGE = 0.8. */
+    /** The Constant HEIGHT_PERCENTAGE_FULL_PAGE = 0.8; */
     private static final double HEIGHT_PERCENTAGE_FULL_PAGE = 0.8;
 
-    /** The Constant HEIGHT_PERCETAGE_HALF_PAGE = 0.5. */
+    /** The Constant HEIGHT_PERCETAGE_HALF_PAGE = 0.5; */
     private static final double HEIGHT_PERCETAGE_HALF_PAGE = 0.5;
 
-    /** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE = 400. */
+    /** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE = 400; */
     private static final int MINIMUM_CHART_HEIGHT_FULL_PAGE = 400;
 
-    /** The Constant MINIMUM_CHART_WIDTH = 600. */
+    /** The Constant MINIMUM_CHART_WIDTH = 600; */
     private static final int MINIMUM_CHART_WIDTH = 600;
 
-    /** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE = 200. */
+    /** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE = 200; */
     private static final int NINIMUM_CHART_HEIGHT_HALF_PAGE = 200;
 
     /**
@@ -118,13 +118,18 @@ public final class ChartUtils {
     }
 
     /**
-     * Gets the role color.
+     * Gets the party name.
      *
-     * @param roleCode the role code
-     * @return the role color
+     * @param applicationManager the application manager
+     * @param partySummary the party summary
+     * @return the party name
      */
-    public static String getRoleColor(final String roleCode) {
-        return getRoleColor(roleCode, "", "");
+    public static String getPartyName(final ApplicationManager applicationManager, final String partySummary) {
+        final DataContainer<ViewRiksdagenParty, String> partyDataContainer = applicationManager.getDataContainer(ViewRiksdagenParty.class);
+        final Optional<ViewRiksdagenParty> party = partyDataContainer.getAll().stream()
+                .filter(p -> p.getEmbeddedId().getParty().equalsIgnoreCase(partySummary))
+                .findFirst();
+        return party.map(ViewRiksdagenParty::getParty).orElse(partySummary);
     }
 
     /**
@@ -137,28 +142,21 @@ public final class ChartUtils {
      */
     public static String getRoleColor(final String roleCode, final String role1, final String role2) {
         if (roleCode.equalsIgnoreCase(role1)) {
-            return "green";
+            return "#FF0000"; // Red
         } else if (roleCode.equalsIgnoreCase(role2)) {
-            return "blue";
+            return "#0000FF"; // Blue
         } else {
-            return "gray";
+            return "#00FF00"; // Green
         }
     }
 
     /**
-     * Gets the party name.
+     * Gets the role color.
      *
-     * @param applicationManager the application manager
-     * @param partySummary the party summary
-     * @return the party name
+     * @param roleCode the role code
+     * @return the role color
      */
-    public static String getPartyName(final ApplicationManager applicationManager, final String partySummary) {
-        final DataContainer<ViewRiksdagenParty, String> partyDataContainer = applicationManager
-                .getDataContainer(ViewRiksdagenParty.class);
-
-        final Optional<ViewRiksdagenParty> party = partyDataContainer.getAll().stream()
-                .filter(p -> p.getEmbeddedId().getParty().equalsIgnoreCase(partySummary)).findFirst();
-
-        return party.isPresent() ? party.get().getPartyName() : partySummary;
+    public static String getRoleColor(final String roleCode) {
+        return getRoleColor(roleCode, "defaultRole1", "defaultRole2");
     }
 }
