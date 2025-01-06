@@ -25,6 +25,7 @@ import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.util.PartyLeaderUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PoliticianLeaderboardUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
@@ -113,7 +114,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		final List<ViewRiksdagenGovermentRoleMember> activeGovMembers = loadActiveGovernmentRoleMembers();
 		final Map<String, List<ViewRiksdagenPolitician>> activePoliticianMap = loadActivePoliticiansByPersonId();
 
-		final Map<String, Boolean> partyLeaderMap = computePartyLeaders(activePoliticianMap.keySet());
+		final Map<String, Boolean> partyLeaderMap = PartyLeaderUtil.computePartyLeaders(getApplicationManager(), activePoliticianMap.keySet());
 
 		// Sort roles
 		activeGovMembers.sort((a, b) -> {
@@ -179,30 +180,6 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	}
 
 	/**
-	 * Compute party leaders.
-	 *
-	 * @param personIds the person ids
-	 * @return the map
-	 */
-	private Map<String, Boolean> computePartyLeaders(Iterable<String> personIds) {
-		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
-
-		final Map<String, Boolean> result = new HashMap<>();
-		for (final String personId : personIds) {
-			final List<ViewRiksdagenPartyRoleMember> roles = partyRoleMemberDataContainer.findListByProperty(
-					new Object[] { personId, Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.personId,
-					ViewRiksdagenPartyRoleMember_.active);
-
-			final boolean isLeader = roles.stream().anyMatch(
-					role -> role.getRoleCode() != null && "Partiledare".equalsIgnoreCase(role.getRoleCode().trim()));
-
-			result.put(personId, isLeader);
-		}
-		return result;
-	}
-
-	/**
 	 * Gets the role priority.
 	 *
 	 * @param role the role
@@ -261,9 +238,9 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		cardContent.addComponent(pageLink);
 
-		final boolean isPartyLeader = isPartyLeader(politician.getPersonId());
+		final boolean isPartyLeader = PartyLeaderUtil.isPartyLeader(getApplicationManager(), politician.getPersonId());
 		if (isPartyLeader) {
-			final ViewRiksdagenPartyRoleMember leaderRole = getPartyLeaderRole(politician.getPersonId());
+			final ViewRiksdagenPartyRoleMember leaderRole = PartyLeaderUtil.getPartyLeaderRole(getApplicationManager(), politician.getPersonId());
 			if (leaderRole != null) {
 				final Label subHeader = new Label(
 						"Partiledare (" + govMember.getParty() + ") since " + leaderRole.getFromDate());
@@ -351,37 +328,6 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		politicianLeaderboardUtil.addMinistryRoleSummary(cardContent, govMember, governmentBodyByMinistry, reportByMinistry);
 
 		return cardPanel;
-	}
-
-	/**
-	 * Checks if is party leader.
-	 *
-	 * @param personId the person id
-	 * @return true, if is party leader
-	 */
-	private boolean isPartyLeader(String personId) {
-		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
-		final List<ViewRiksdagenPartyRoleMember> partyRoles = partyRoleMemberDataContainer.findListByProperty(
-				new Object[] { personId, Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.personId,
-				ViewRiksdagenPartyRoleMember_.active);
-		return partyRoles.stream().anyMatch(r -> "Partiledare".equalsIgnoreCase(r.getRoleCode()));
-	}
-
-	/**
-	 * Gets the party leader role.
-	 *
-	 * @param personId the person id
-	 * @return the party leader role
-	 */
-	private ViewRiksdagenPartyRoleMember getPartyLeaderRole(String personId) {
-		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
-		final List<ViewRiksdagenPartyRoleMember> partyRoles = partyRoleMemberDataContainer.findListByProperty(
-				new Object[] { personId, Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.personId,
-				ViewRiksdagenPartyRoleMember_.active);
-		return partyRoles.stream().filter(r -> "Partiledare".equalsIgnoreCase(r.getRoleCode())).findFirst()
-				.orElse(null);
 	}
 
 
