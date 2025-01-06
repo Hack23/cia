@@ -24,28 +24,28 @@ public final class ChartUtils {
     /** The Constant CHART_LEFT_MARGIN. */
     private static final int CHART_LEFT_MARGIN = 2;
 
-    /** The Constant CHART_RIGHT_MARGIN = 2; */
+    /** The Constant CHART_RIGHT_MARGIN. */
     private static final int CHART_RIGHT_MARGIN = 2;
 
-    /** The Constant CHART_TOP_MARGIN_SIZE = 2; */
+    /** The Constant CHART_TOP_MARGIN_SIZE. */
     private static final int CHART_TOP_MARGIN_SIZE = 2;
 
-    /** The Constant CHART_WIDTH_REDUCTION = 50; */
+    /** The Constant CHART_WIDTH_REDUCTION. */
     private static final int CHART_WIDTH_REDUCTION = 50;
 
-    /** The Constant HEIGHT_PERCENTAGE_FULL_PAGE = 0.8; */
+    /** The Constant HEIGHT_PERCENTAGE_FULL_PAGE. */
     private static final double HEIGHT_PERCENTAGE_FULL_PAGE = 0.8;
 
-    /** The Constant HEIGHT_PERCETAGE_HALF_PAGE = 0.5; */
+    /** The Constant HEIGHT_PERCETAGE_HALF_PAGE. */
     private static final double HEIGHT_PERCETAGE_HALF_PAGE = 0.5;
 
-    /** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE = 400; */
+    /** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE. */
     private static final int MINIMUM_CHART_HEIGHT_FULL_PAGE = 400;
 
-    /** The Constant MINIMUM_CHART_WIDTH = 600; */
+    /** The Constant MINIMUM_CHART_WIDTH. */
     private static final int MINIMUM_CHART_WIDTH = 600;
 
-    /** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE = 200; */
+    /** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE. */
     private static final int NINIMUM_CHART_HEIGHT_HALF_PAGE = 200;
 
     /**
@@ -126,37 +126,7 @@ public final class ChartUtils {
      */
     public static String getPartyName(final ApplicationManager applicationManager, final String partySummary) {
         final DataContainer<ViewRiksdagenParty, String> partyDataContainer = applicationManager.getDataContainer(ViewRiksdagenParty.class);
-        final Optional<ViewRiksdagenParty> party = partyDataContainer.getAll().stream()
-                .filter(p -> p.getEmbeddedId().getParty().equalsIgnoreCase(partySummary))
-                .findFirst();
-        return party.map(ViewRiksdagenParty::getParty).orElse(partySummary);
-    }
-
-    /**
-     * Gets the role color.
-     *
-     * @param roleCode the role code
-     * @param role1 the role 1
-     * @param role2 the role 2
-     * @return the role color
-     */
-    public static String getRoleColor(final String roleCode, final String role1, final String role2) {
-        if (roleCode.equalsIgnoreCase(role1)) {
-            return "#FF0000"; // Red
-        } else if (roleCode.equalsIgnoreCase(role2)) {
-            return "#0000FF"; // Blue
-        } else {
-            return "#00FF00"; // Green
-        }
-    }
-
-    /**
-     * Gets the role color.
-     *
-     * @param roleCode the role code
-     * @return the role color
-     */
-    public static String getRoleColor(final String roleCode) {
-        return getRoleColor(roleCode, "defaultRole1", "defaultRole2");
+        final Optional<ViewRiksdagenParty> party = partyDataContainer.load(partySummary);
+        return party.map(ViewRiksdagenParty::getParty).orElse(null);
     }
 }
