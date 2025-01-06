@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenPartyRoleMember;
-import com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenPartyRoleMember_;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.ApplicationManager;
 
