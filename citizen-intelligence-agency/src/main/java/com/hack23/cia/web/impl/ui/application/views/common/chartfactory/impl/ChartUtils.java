@@ -126,8 +126,8 @@ public final class ChartUtils {
      */
     public static String getPartyName(final ApplicationManager applicationManager, final String partySummary) {
         final DataContainer<ViewRiksdagenParty, String> partyDataContainer = applicationManager.getDataContainer(ViewRiksdagenParty.class);
-        final Optional<ViewRiksdagenParty> party = Optional.ofNullable(partyDataContainer.load(partySummary));
-        return party.map(ViewRiksdagenParty::getParty).orElse(null);
+        final ViewRiksdagenParty party = partyDataContainer.load(partySummary);
+        return Optional.ofNullable(party).map(ViewRiksdagenParty::getPartyName).orElse(null);
     }
 
     /**
