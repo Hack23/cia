@@ -74,17 +74,7 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember roleMember) {
-				String color;
-
-				if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("statsråd")) {
-					color = "ded858";
-				} else if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("statsminister")) {
-					color = "3271c8";
-				} else {
-					color = "0eab76";
-				}
-
-				return color;
+				return ChartUtils.getRoleColor(roleMember.getRoleCode());
 			}
 
 			@Override
@@ -92,7 +82,7 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 				return roleMember.getFirstName();
 			}
 
-			@Override
+				@Override
 			public Date getFromDate(final ViewRiksdagenGovermentRoleMember roleMember) {
 				return roleMember.getFromDate();
 			}

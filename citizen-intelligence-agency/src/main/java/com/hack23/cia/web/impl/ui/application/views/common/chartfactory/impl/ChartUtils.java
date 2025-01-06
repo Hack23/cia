@@ -112,4 +112,49 @@ public final class ChartUtils {
         horizontalLayout.addComponent(chart);
         chart.setCaption(caption);
     }
+
+    /**
+     * Gets the role color.
+     *
+     * @param roleCode the role code
+     * @return the role color
+     */
+    public static String getRoleColor(final String roleCode) {
+        return getRoleColor(roleCode, "", "");
+    }
+
+    /**
+     * Gets the role color.
+     *
+     * @param roleCode the role code
+     * @param role1 the role 1
+     * @param role2 the role 2
+     * @return the role color
+     */
+    public static String getRoleColor(final String roleCode, final String role1, final String role2) {
+        if (roleCode.equalsIgnoreCase(role1)) {
+            return "green";
+        } else if (roleCode.equalsIgnoreCase(role2)) {
+            return "blue";
+        } else {
+            return "gray";
+        }
+    }
+
+    /**
+     * Gets the party name.
+     *
+     * @param applicationManager the application manager
+     * @param partySummary the party summary
+     * @return the party name
+     */
+    public static String getPartyName(final ApplicationManager applicationManager, final String partySummary) {
+        final DataContainer<ViewRiksdagenParty, String> partyDataContainer = applicationManager
+                .getDataContainer(ViewRiksdagenParty.class);
+
+        final Optional<ViewRiksdagenParty> party = partyDataContainer.getAll().stream()
+                .filter(p -> p.getParty().equalsIgnoreCase(partySummary)).findFirst();
+
+        return party.isPresent() ? party.get().getPartyName() : partySummary;
+    }
 }

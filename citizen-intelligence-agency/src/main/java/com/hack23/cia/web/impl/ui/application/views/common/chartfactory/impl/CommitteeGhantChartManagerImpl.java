@@ -8,7 +8,7 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -50,7 +50,7 @@ public final class CommitteeGhantChartManagerImpl
 	 */
 	@Override
 	protected Comparator<ViewRiksdagenCommitteeRoleMember> getComparator() {
-		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
+		return Comparator.comparing(ViewRiksdagenCommitteeRoleMember::getFromDate);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public final class CommitteeGhantChartManagerImpl
 	 */
 	@Override
 	protected Function<ViewRiksdagenCommitteeRoleMember, String> getRoleMapping() {
-		return new RoleMapping();
+		return RoleMapping::new;
 	}
 
 	/**
@@ -74,17 +74,7 @@ public final class CommitteeGhantChartManagerImpl
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenCommitteeRoleMember roleMember) {
-				String color;
-
-				if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("suppleant")) {
-					color = "ded858";
-				} else if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("ordförande")) {
-					color = "3271c8";
-				} else {
-					color = "0eab76";
-				}
-
-				return color;
+				return ChartUtils.getRoleColor(roleMember.getRoleCode(), "suppleant", "ordförande");
 			}
 
 			@Override

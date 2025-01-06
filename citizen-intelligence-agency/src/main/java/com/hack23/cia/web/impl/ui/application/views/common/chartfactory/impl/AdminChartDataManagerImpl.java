@@ -119,7 +119,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(layout, "Application Action Events daily Summary",
+		ChartUtils.addChart(layout, "Application Action Events daily Summary",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
@@ -146,7 +146,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 		addViewApplicationActionEventPageElementDailySummaryValues(PAGE_RANK, series, dailySummaries, dataSeries,
 				ViewApplicationActionEventPageElementDailySummary::getRank);
 
-		addChart(layout, "Page element Action Events daily Summary",
+		ChartUtils.addChart(layout, "Page element Action Events daily Summary",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
@@ -183,7 +183,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 
 		}
 
-		addChart(layout, "Page Action Events daily Summary",
+		ChartUtils.addChart(layout, "Page Action Events daily Summary",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
@@ -269,7 +269,7 @@ public final class AdminChartDataManagerImpl extends AbstractChartDataManagerImp
 						entry.getValue());
 		}
 
-		addChart(layout, "Application Active Daily Users",
+		ChartUtils.addChart(layout, "Application Active Daily Users",
 				new DCharts().setDataSeries(dataSeries)
 						.setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series)).show(),
 				true);
