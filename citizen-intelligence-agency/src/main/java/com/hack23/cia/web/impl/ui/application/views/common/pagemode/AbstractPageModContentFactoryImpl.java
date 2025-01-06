@@ -96,28 +96,13 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	protected final void createPageVisitHistory(final String pageName, final String pageId,
 			final VerticalLayout panelContent) {
 
-		final TabSheet tabsheet = new TabSheet();
-		tabsheet.setWidth(100, Unit.PERCENTAGE);
-		tabsheet.setHeight(100, Unit.PERCENTAGE);
+		final TabSheet tabsheet = createTabSheet(panelContent);
 
-		panelContent.addComponent(tabsheet);
-		panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);
-
-		final HorizontalLayout tabContentPageItemRankHistory = new HorizontalLayout();
-		tabContentPageItemRankHistory.setWidth(100, Unit.PERCENTAGE);
-		tabContentPageItemRankHistory.setHeight(100, Unit.PERCENTAGE);
-		final Tab tabPageItemRankHistory = tabsheet.addTab(tabContentPageItemRankHistory);
-
-		tabPageItemRankHistory.setCaption(CURRENT_PAGE_VISIT_HISTORY);
+		final HorizontalLayout tabContentPageItemRankHistory = createTabContent(tabsheet, CURRENT_PAGE_VISIT_HISTORY);
 		adminChartDataManager.createApplicationActionEventPageElementDailySummaryChart(tabContentPageItemRankHistory,
 				pageName, pageId);
 
-		final HorizontalLayout tabContentPageModeSummary = new HorizontalLayout();
-		tabContentPageModeSummary.setWidth(100, Unit.PERCENTAGE);
-		tabContentPageModeSummary.setHeight(100, Unit.PERCENTAGE);
-		final Tab tabPageModeSummary = tabsheet.addTab(tabContentPageModeSummary);
-		tabPageModeSummary.setCaption(GENERAL_PAGE_MODE_PAGE_VISIT);
-
+		final HorizontalLayout tabContentPageModeSummary = createTabContent(tabsheet, GENERAL_PAGE_MODE_PAGE_VISIT);
 		adminChartDataManager.createApplicationActionEventPageModeDailySummaryChart(tabContentPageModeSummary,
 				pageName);
 
@@ -243,4 +228,36 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 		return pageNr;
 	}
 
+	/**
+	 * Creates a TabSheet and adds it to the given panel content.
+	 *
+	 * @param panelContent the panel content
+	 * @return the created TabSheet
+	 */
+	private TabSheet createTabSheet(final VerticalLayout panelContent) {
+		final TabSheet tabsheet = new TabSheet();
+		tabsheet.setWidth(100, Unit.PERCENTAGE);
+		tabsheet.setHeight(100, Unit.PERCENTAGE);
+
+		panelContent.addComponent(tabsheet);
+		panelContent.setExpandRatio(tabsheet, ContentRatio.LARGE);
+
+		return tabsheet;
+	}
+
+	/**
+	 * Creates a HorizontalLayout for a tab and adds it to the given TabSheet.
+	 *
+	 * @param tabsheet the TabSheet
+	 * @param caption  the caption for the tab
+	 * @return the created HorizontalLayout
+	 */
+	private HorizontalLayout createTabContent(final TabSheet tabsheet, final String caption) {
+		final HorizontalLayout tabContent = new HorizontalLayout();
+		tabContent.setWidth(100, Unit.PERCENTAGE);
+		tabContent.setHeight(100, Unit.PERCENTAGE);
+		final Tab tab = tabsheet.addTab(tabContent);
+		tab.setCaption(caption);
+		return tabContent;
+	}
 }

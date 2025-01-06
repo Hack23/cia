@@ -91,18 +91,6 @@ public abstract class AbstractChartDataManagerImpl {
 	 * @return the party name
 	 */
 	protected final String getPartyName(final String partySummary) {
-		final DataContainer<ViewRiksdagenParty, String> dataContainer = applicationManager
-				.getDataContainer(ViewRiksdagenParty.class);
-
-		final Optional<ViewRiksdagenParty> matchingObjects =dataContainer.getAll().stream().
-			    filter((final ViewRiksdagenParty p) -> p.getPartyId().equalsIgnoreCase(partySummary)).
-			    findFirst();
-
-		if (matchingObjects.isPresent()) {
-			return matchingObjects.get().getPartyName();
-
-		} else {
-			return partySummary;
-		}
+		return ChartUtils.getPartyName(applicationManager, partySummary);
 	}
 }

@@ -8,6 +8,10 @@ import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import java.util.Optional;
 
 /**
  * The Class ChartUtils.
@@ -20,7 +24,7 @@ public final class ChartUtils {
     /** The Constant CHART_LEFT_MARGIN. */
     private static final int CHART_LEFT_MARGIN = 2;
 
-    /** The Constant CHART_RIGHT_MARGIN. */
+    /** The Constant CHART_RIGHT_MARGIN = 2; */
     private static final int CHART_RIGHT_MARGIN = 2;
 
     /** The Constant CHART_TOP_MARGIN_SIZE. */
@@ -111,5 +115,36 @@ public final class ChartUtils {
 
         horizontalLayout.addComponent(chart);
         chart.setCaption(caption);
+    }
+
+    /**
+     * Gets the party name.
+     *
+     * @param applicationManager the application manager
+     * @param partySummary the party summary
+     * @return the party name
+     */
+    public static String getPartyName(final ApplicationManager applicationManager, final String partySummary) {
+        final DataContainer<ViewRiksdagenParty, String> partyDataContainer = applicationManager.getDataContainer(ViewRiksdagenParty.class);
+        final ViewRiksdagenParty party = partyDataContainer.load(partySummary);
+        return Optional.ofNullable(party).map(ViewRiksdagenParty::getPartyName).orElse(null);
+    }
+
+    /**
+     * Gets the role color.
+     *
+     * @param roleCode the role code
+     * @param role1 the role 1
+     * @param role2 the role 2
+     * @return the role color
+     */
+    public static String getRoleColor(final String roleCode, final String role1, final String role2) {
+        if (roleCode.equalsIgnoreCase(role1)) {
+            return "red";
+        } else if (roleCode.equalsIgnoreCase(role2)) {
+            return "blue";
+        } else {
+            return "green";
+        }
     }
 }

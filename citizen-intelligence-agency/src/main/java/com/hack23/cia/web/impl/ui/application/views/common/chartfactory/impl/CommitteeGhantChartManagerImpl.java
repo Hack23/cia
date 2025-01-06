@@ -50,7 +50,7 @@ public final class CommitteeGhantChartManagerImpl
 	 */
 	@Override
 	protected Comparator<ViewRiksdagenCommitteeRoleMember> getComparator() {
-		return (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
+		return Comparator.comparing(ViewRiksdagenCommitteeRoleMember::getFromDate);
 	}
 
 	/**
@@ -74,17 +74,7 @@ public final class CommitteeGhantChartManagerImpl
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenCommitteeRoleMember roleMember) {
-				String color;
-
-				if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("suppleant")) {
-					color = "ded858";
-				} else if (roleMember.getRoleCode().toLowerCase(Locale.ENGLISH).contains("ordförande")) {
-					color = "3271c8";
-				} else {
-					color = "0eab76";
-				}
-
-				return color;
+				return ChartUtils.getRoleColor(roleMember.getRoleCode(), "suppleant", "ordförande");
 			}
 
 			@Override
@@ -138,7 +128,7 @@ public final class CommitteeGhantChartManagerImpl
 		 */
 		@Override
 		public String apply(final ViewRiksdagenCommitteeRoleMember roleMember) {
-			return roleMember.getRoleCode() +".["+ roleMember.getPersonId() +"]";
+			return roleMember.getRoleCode()+ ".["+ roleMember.getPersonId() +"]." + roleMember.getDetail();
 		}
 	}
 
