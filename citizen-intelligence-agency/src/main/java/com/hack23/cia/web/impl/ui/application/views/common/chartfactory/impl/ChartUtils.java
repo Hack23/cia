@@ -24,7 +24,7 @@ public final class ChartUtils {
     /** The Constant CHART_LEFT_MARGIN. */
     private static final int CHART_LEFT_MARGIN = 2;
 
-    /** The Constant CHART_RIGHT_MARGIN. */
+    /** The Constant CHART_RIGHT_MARGIN = 2; */
     private static final int CHART_RIGHT_MARGIN = 2;
 
     /** The Constant CHART_TOP_MARGIN_SIZE. */
@@ -126,7 +126,25 @@ public final class ChartUtils {
      */
     public static String getPartyName(final ApplicationManager applicationManager, final String partySummary) {
         final DataContainer<ViewRiksdagenParty, String> partyDataContainer = applicationManager.getDataContainer(ViewRiksdagenParty.class);
-        final Optional<ViewRiksdagenParty> party = partyDataContainer.load(partySummary);
+        final Optional<ViewRiksdagenParty> party = Optional.ofNullable(partyDataContainer.load(partySummary));
         return party.map(ViewRiksdagenParty::getParty).orElse(null);
+    }
+
+    /**
+     * Gets the role color.
+     *
+     * @param roleCode the role code
+     * @param role1 the role 1
+     * @param role2 the role 2
+     * @return the role color
+     */
+    public static String getRoleColor(final String roleCode, final String role1, final String role2) {
+        if (roleCode.equalsIgnoreCase(role1)) {
+            return "red";
+        } else if (roleCode.equalsIgnoreCase(role2)) {
+            return "blue";
+        } else {
+            return "green";
+        }
     }
 }

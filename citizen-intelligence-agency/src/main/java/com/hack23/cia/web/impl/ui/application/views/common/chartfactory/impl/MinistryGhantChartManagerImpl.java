@@ -74,7 +74,7 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 
 			@Override
 			public String getBackgroundColor(final ViewRiksdagenGovermentRoleMember roleMember) {
-				return ChartUtils.getRoleColor(roleMember.getRoleCode());
+				return ChartUtils.getRoleColor(roleMember.getRoleCode(), "suppleant", "ordförande");
 			}
 
 			@Override
@@ -82,7 +82,7 @@ public final class MinistryGhantChartManagerImpl extends AbstractGhantChartManag
 				return roleMember.getFirstName();
 			}
 
-				@Override
+					@Override
 			public Date getFromDate(final ViewRiksdagenGovermentRoleMember roleMember) {
 				return roleMember.getFromDate();
 			}
