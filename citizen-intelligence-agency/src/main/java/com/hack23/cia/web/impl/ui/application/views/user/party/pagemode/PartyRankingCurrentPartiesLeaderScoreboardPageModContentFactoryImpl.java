@@ -8,7 +8,7 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -43,6 +43,7 @@ import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.util.PartyLeaderUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PoliticianLeaderboardUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
@@ -121,7 +122,7 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 		row.setSizeFull();
 
 		final Map<String, ViewRiksdagenPolitician> politicianMap = loadPoliticiansByPersonId();
-		final Map<String, Boolean> partyLeaderMap = computePartyLeaders(politicianMap.keySet());
+		final Map<String, Boolean> partyLeaderMap = PartyLeaderUtil.computePartyLeaders(getApplicationManager(), politicianMap.keySet());
 
 		final List<ViewRiksdagenPolitician> partyLeaders = politicianMap.values().stream()
 				.filter(p -> partyLeaderMap.getOrDefault(p.getPersonId(), false))
@@ -179,63 +180,6 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 	}
 
 	/**
-	 * Compute party leaders.
-	 *
-	 * @param personIds the person ids
-	 * @return the map
-	 */
-	private Map<String, Boolean> computePartyLeaders(Iterable<String> personIds) {
-		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
-
-		final Map<String, Boolean> result = new HashMap<>();
-		for (final String personId : personIds) {
-			final List<ViewRiksdagenPartyRoleMember> roles = partyRoleMemberDataContainer.findListByProperty(
-					new Object[] { personId, Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.personId,
-					ViewRiksdagenPartyRoleMember_.active);
-
-			final boolean isLeader = roles.stream()
-					.anyMatch(role -> role.getRoleCode() != null && "Partiledare".equalsIgnoreCase(role.getRoleCode().trim()));
-			result.put(personId, isLeader);
-		}
-		return result;
-	}
-
-	/**
-	 * Checks if is party leader.
-	 *
-	 * @param personId the person id
-	 * @return true, if is party leader
-	 */
-	private boolean isPartyLeader(String personId) {
-		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
-
-		final List<ViewRiksdagenPartyRoleMember> partyRoles = partyRoleMemberDataContainer.findListByProperty(
-				new Object[] { personId, Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.personId,
-				ViewRiksdagenPartyRoleMember_.active);
-
-		return partyRoles.stream().anyMatch(r -> "Partiledare".equalsIgnoreCase(r.getRoleCode()));
-	}
-
-	/**
-	 * Gets the party leader role.
-	 *
-	 * @param personId the person id
-	 * @return the party leader role
-	 */
-	private ViewRiksdagenPartyRoleMember getPartyLeaderRole(String personId) {
-		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
-
-		final List<ViewRiksdagenPartyRoleMember> partyRoles = partyRoleMemberDataContainer.findListByProperty(
-				new Object[] { personId, Boolean.TRUE }, ViewRiksdagenPartyRoleMember_.personId,
-				ViewRiksdagenPartyRoleMember_.active);
-
-		return partyRoles.stream().filter(r -> "Partiledare".equalsIgnoreCase(r.getRoleCode())).findFirst().orElse(null);
-	}
-
-	/**
 	 * Creates the leader card.
 	 *
 	 * @param leader the leader
@@ -272,9 +216,9 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 		partyLink.setIcon(VaadinIcons.GROUP);
 		cardContent.addComponent(partyLink);
 
-		final boolean isPartyLeader = isPartyLeader(leader.getPersonId());
+		final boolean isPartyLeader = PartyLeaderUtil.isPartyLeader(getApplicationManager(), leader.getPersonId());
 		if (isPartyLeader) {
-			final ViewRiksdagenPartyRoleMember leaderRole = getPartyLeaderRole(leader.getPersonId());
+			final ViewRiksdagenPartyRoleMember leaderRole = PartyLeaderUtil.getPartyLeaderRole(getApplicationManager(), leader.getPersonId());
 			if (leaderRole != null) {
 				final Label subHeader = new Label("Partiledare (" + leader.getParty() + ") since " + leaderRole.getFromDate());
 				subHeader.addStyleName("card-subtitle");
@@ -356,7 +300,7 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 
 		// Add the four main sections
 		final VerticalLayout politicalRoleLayout = CardInfoRowUtil.createSectionLayout("Political Role & Influence");
-		addPoliticalRoleMetrics(politicalRoleLayout,getPartyLeaderRole(leader.getPersonId()), govMember, leader, ballotSummary,experienceSummary);
+		addPoliticalRoleMetrics(politicalRoleLayout, PartyLeaderUtil.getPartyLeaderRole(getApplicationManager(), leader.getPersonId()), govMember, leader, ballotSummary,experienceSummary);
 		sectionsGrid.addComponent(politicalRoleLayout);
 
 		final VerticalLayout performanceLayout = CardInfoRowUtil.createSectionLayout("Parliamentary Performance");
