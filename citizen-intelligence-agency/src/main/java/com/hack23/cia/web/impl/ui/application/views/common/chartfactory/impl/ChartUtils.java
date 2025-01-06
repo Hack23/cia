@@ -157,7 +157,7 @@ public final class ChartUtils {
                 .getDataContainer(ViewRiksdagenParty.class);
 
         final Optional<ViewRiksdagenParty> party = partyDataContainer.getAll().stream()
-                .filter(p -> p.getParty().equalsIgnoreCase(partySummary)).findFirst();
+                .filter(p -> p.getEmbeddedId().getParty().equalsIgnoreCase(partySummary)).findFirst();
 
         return party.isPresent() ? party.get().getPartyName() : partySummary;
     }
