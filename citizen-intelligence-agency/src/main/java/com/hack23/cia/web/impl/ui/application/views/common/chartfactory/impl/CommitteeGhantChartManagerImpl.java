@@ -8,7 +8,7 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -60,7 +60,7 @@ public final class CommitteeGhantChartManagerImpl
 	 */
 	@Override
 	protected Function<ViewRiksdagenCommitteeRoleMember, String> getRoleMapping() {
-		return RoleMapping::new;
+		return ViewRiksdagenCommitteeRoleMember::getRoleCode;
 	}
 
 	/**
@@ -114,22 +114,4 @@ public final class CommitteeGhantChartManagerImpl
 
 		};
 	}
-
-	/**
-	 * The Class RoleMapping.
-	 */
-	private static final class RoleMapping implements Function<ViewRiksdagenCommitteeRoleMember, String> {
-
-		/**
-		 * Apply.
-		 *
-		 * @param roleMember the role member
-		 * @return the string
-		 */
-		@Override
-		public String apply(final ViewRiksdagenCommitteeRoleMember roleMember) {
-			return roleMember.getRoleCode() +".["+ roleMember.getPersonId() +"]";
-		}
-	}
-
 }
