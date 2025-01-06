@@ -8,6 +8,10 @@ import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import java.util.Optional;
 
 /**
  * The Class ChartUtils.
@@ -20,28 +24,28 @@ public final class ChartUtils {
     /** The Constant CHART_LEFT_MARGIN. */
     private static final int CHART_LEFT_MARGIN = 2;
 
-    /** The Constant CHART_RIGHT_MARGIN. */
+    /** The Constant CHART_RIGHT_MARGIN = 2. */
     private static final int CHART_RIGHT_MARGIN = 2;
 
-    /** The Constant CHART_TOP_MARGIN_SIZE. */
+    /** The Constant CHART_TOP_MARGIN_SIZE = 2. */
     private static final int CHART_TOP_MARGIN_SIZE = 2;
 
-    /** The Constant CHART_WIDTH_REDUCTION. */
+    /** The Constant CHART_WIDTH_REDUCTION = 50. */
     private static final int CHART_WIDTH_REDUCTION = 50;
 
-    /** The Constant HEIGHT_PERCENTAGE_FULL_PAGE. */
+    /** The Constant HEIGHT_PERCENTAGE_FULL_PAGE = 0.8. */
     private static final double HEIGHT_PERCENTAGE_FULL_PAGE = 0.8;
 
-    /** The Constant HEIGHT_PERCETAGE_HALF_PAGE. */
+    /** The Constant HEIGHT_PERCETAGE_HALF_PAGE = 0.5. */
     private static final double HEIGHT_PERCETAGE_HALF_PAGE = 0.5;
 
-    /** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE. */
+    /** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE = 400. */
     private static final int MINIMUM_CHART_HEIGHT_FULL_PAGE = 400;
 
-    /** The Constant MINIMUM_CHART_WIDTH. */
+    /** The Constant MINIMUM_CHART_WIDTH = 600. */
     private static final int MINIMUM_CHART_WIDTH = 600;
 
-    /** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE. */
+    /** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE = 200. */
     private static final int NINIMUM_CHART_HEIGHT_HALF_PAGE = 200;
 
     /**
