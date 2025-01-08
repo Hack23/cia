@@ -1,0 +1,30 @@
+{
+  "name": "CIA Java Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
+    "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "distribution": "temurin"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "GitHub.copilot",
+        "redhat.vscode-xml",
+        "vscjava.vscode-maven"
+      ]
+    }
+  },
+  "forwardPorts": [],
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make",
+  "remoteUser": "vscode"
+}
