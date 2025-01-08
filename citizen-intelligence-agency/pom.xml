@@ -1490,6 +1490,7 @@
         </configuration>
         <executions>
           <execution>
+            <?m2e ignore?>
             <id>generateKeyPair</id>
             <goals>
               <goal>generateKeyPair</goal>
@@ -1577,6 +1578,7 @@
         <version>3.5.0</version>
         <executions>
           <execution>
+            <?m2e ignore?>
             <goals>
               <goal>java</goal>
             </goals>

@@ -86,6 +86,7 @@
         </configuration>
         <executions>
           <execution>
+            <?m2e ignore?>
             <id>generateKeyPair</id>
             <goals>
               <goal>generateKeyPair</goal>
@@ -251,7 +252,7 @@
             <goals>
               <goal>enforce</goal>
             </goals>
-            <configuration combine.self="override">
+            <configuration>
               <rules>
                 <requireMavenVersion>
                   <version>${cia.project.versions.maven}</version>

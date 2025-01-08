@@ -32,7 +32,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.hack23.cia.model.common.api.ModelObject;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * <p>Java class for ViewRiksdagenDocumentTypeDailySummary complex type.
  *

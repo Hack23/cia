@@ -1,0 +1,34 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.dependency.packagePresentation": "hierarchical",
+    "maven.workspace.autoReload": true,
+
+    "maven.workspace.resolveFolders": false, // Disable workspace resolution
+    "maven.terminal.defaultProfiles": ["use-m2"], // Custom Maven profile to enforce .m2 resolution
+  
+    // Recommended Maven commands
+    "maven.terminal.customGoals": ["clean", "install", "verify"],
+  
+    // Optional: Optimize builds by skipping tests and unnecessary plugins
+    "java.configuration.maven.defaultOptions": [
+      "-DskipTests",
+      "-Denforcer.skip=true"
+    ],
+    "files.exclude": {
+        "**/module-info.java": true,
+        "**/module-info.class": true,
+        "**/target": true
+      },
+      "files.watcherExclude": {
+        "**/module-info.java": true,
+        "**/module-info.class": true,
+        "**/target": true
+      },
+      "java.import.exclusions": [
+        "**/module-info.java",
+        "**/module-info.class",
+        "**/target/**"
+      ],
+      "maven.view": "hierarchical"
+}
