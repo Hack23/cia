@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/java:21-bullseye
+FROM mcr.microsoft.com/devcontainers/java:21-bookworm
 
 # Install additional packages
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
