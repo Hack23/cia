@@ -32,4 +32,8 @@ ENV PATH=${PATH}:${MAVEN_HOME}/bin
 WORKDIR /workspace
 
 # Cache Maven packages
-VOLUME /root/.m2
+RUN mkdir -p /home/vscode/.m2 \
+    && chown -R vscode:vscode /home/vscode/.m2
+
+# Define volume for Maven cache
+VOLUME /home/vscode/.m2
