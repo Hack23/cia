@@ -104,6 +104,7 @@
         </dependencies>
         <executions>
           <execution>
+            <?m2e ignore?>
             <goals>
               <goal>run</goal>
             </goals>
