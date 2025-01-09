@@ -17,15 +17,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN ln -fs /usr/share/zoneinfo/Europe/Stockholm /etc/localtime \
     && dpkg-reconfigure -f noninteractive tzdata
 
-# Install specific Maven version (3.9.9 to match your workflow)
+# Use the built-in MAVEN_VERSION argument from the base image
 ARG MAVEN_VERSION=3.9.9
-RUN curl -fsSL https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
-    | tar xzvf - -C /usr/local/ \
-    && ln -s /usr/local/apache-maven-${MAVEN_VERSION} /usr/local/maven \
-    && ln -s /usr/local/maven/bin/mvn /usr/local/bin/mvn
-
-# Set Maven environment variables
-ENV MAVEN_HOME=/usr/local/maven
+ENV MAVEN_HOME=/usr/share/maven
 ENV PATH=${PATH}:${MAVEN_HOME}/bin
 
 # Set working directory
