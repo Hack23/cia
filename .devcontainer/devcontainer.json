@@ -6,7 +6,7 @@
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash",
     "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
-    "maven.executable.path": "/usr/share/maven/bin/mvn"
+    "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn"
   },
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
