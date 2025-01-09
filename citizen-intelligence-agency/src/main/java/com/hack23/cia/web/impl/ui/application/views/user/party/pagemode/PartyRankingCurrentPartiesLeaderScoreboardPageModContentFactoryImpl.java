@@ -19,7 +19,6 @@
 package com.hack23.cia.web.impl.ui.application.views.user.party.pagemode;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -28,15 +27,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
-import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary;
-import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
@@ -44,21 +38,14 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.util.LeaderCardUtil;
 import com.hack23.cia.web.impl.ui.application.util.PartyLeaderUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PoliticianLeaderboardUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -78,9 +65,7 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 	@Autowired
 	private EsvApi esvApi;
 
-	@Autowired
-	private PoliticianLeaderboardUtil politicianLeaderboardUtil;
-
+	/** The leader card util. */
 	@Autowired
 	private LeaderCardUtil leaderCardUtil;
 
@@ -123,12 +108,14 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 		final ResponsiveRow row = RowUtil.createGridLayout(wrapper);
 		row.setSizeFull();
 
-		final Map<String, ViewRiksdagenPolitician> politicianMap = leaderCardUtil.loadPoliticiansByPersonId(getApplicationManager());
+		final Map<String, List<ViewRiksdagenPolitician>> politicianMap = leaderCardUtil.loadActivePoliticiansByPersonId();
 		final Map<String, Boolean> partyLeaderMap = PartyLeaderUtil.computePartyLeaders(getApplicationManager(), politicianMap.keySet());
 
+
 		final List<ViewRiksdagenPolitician> partyLeaders = politicianMap.values().stream()
-				.filter(p -> partyLeaderMap.getOrDefault(p.getPersonId(), false))
-				.collect(Collectors.toList());
+		        .flatMap(List::stream) // Flatten the list of politicians
+		        .filter(p -> partyLeaderMap.getOrDefault(p.getPersonId(), false)) // Filter using the flattened stream
+		        .collect(Collectors.toList());
 
 		// Sort: in government first, then alphabetical by last name
 		partyLeaders.sort((a, b) -> {
@@ -156,7 +143,7 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 					.getDataContainer(ViewRiksdagenPoliticianBallotSummary.class).load(leader.getPersonId());
 		    final ViewRiksdagenPoliticianExperienceSummary experienceSummary = getApplicationManager().getDataContainer(ViewRiksdagenPoliticianExperienceSummary.class).load(leader.getPersonId());
 
-			final Panel cardPanel = leaderCardUtil.createLeaderCard(getApplicationManager(), leader, ballotSummary, governmentBodyByMinistry, reportByMinistry, experienceSummary);
+			final Panel cardPanel = leaderCardUtil.createLeaderCard(leader, ballotSummary, governmentBodyByMinistry, reportByMinistry, experienceSummary);
 			row.addColumn().withDisplayRules(12, 6, 4, 4).withComponent(cardPanel);
 		}
 

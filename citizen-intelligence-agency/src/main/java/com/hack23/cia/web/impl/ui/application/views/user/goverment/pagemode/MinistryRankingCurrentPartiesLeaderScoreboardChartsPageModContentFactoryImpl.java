@@ -11,34 +11,22 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
-import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary;
-import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.util.LeaderCardUtil;
+import com.hack23.cia.web.impl.ui.application.util.PartyLeaderUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PoliticianLeaderboardUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
-import com.vaadin.icons.VaadinIcons;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.Responsive;
-import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
-import com.vaadin.ui.Link;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -68,9 +56,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	/** The esv api. */
 	private final EsvApi esvApi;
 
-	@Autowired
-	private PoliticianLeaderboardUtil politicianLeaderboardUtil;
-
+	/** The leader card util. */
 	@Autowired
 	private LeaderCardUtil leaderCardUtil;
 
@@ -114,7 +100,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 		final List<ViewRiksdagenGovermentRoleMember> activeGovMembers = leaderCardUtil.loadActiveGovernmentRoleMembers();
 		final Map<String, List<ViewRiksdagenPolitician>> activePoliticianMap = leaderCardUtil.loadActivePoliticiansByPersonId();
 
-		final Map<String, Boolean> partyLeaderMap = leaderCardUtil.computePartyLeaders(activePoliticianMap.keySet());
+		final Map<String, Boolean> partyLeaderMap = PartyLeaderUtil.computePartyLeaders( getApplicationManager() ,activePoliticianMap.keySet());
 
 		// Sort roles
 		activeGovMembers.sort((a, b) -> {

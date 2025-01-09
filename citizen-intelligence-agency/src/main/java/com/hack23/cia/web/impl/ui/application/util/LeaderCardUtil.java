@@ -14,13 +14,17 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PoliticianLeaderboardUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.Responsive;
 import com.vaadin.shared.ui.ContentMode;
@@ -30,18 +34,29 @@ import com.vaadin.ui.Link;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * The Class LeaderCardUtil.
+ */
 @Component
 public class LeaderCardUtil {
 
+    /** The application manager. */
     @Autowired
     private ApplicationManager applicationManager;
 
+    /** The politician leaderboard util. */
     @Autowired
     private PoliticianLeaderboardUtil politicianLeaderboardUtil;
 
-    @Autowired
-    private EsvApi esvApi;
+	/** The page link factory. */
+	@Autowired
+	public PageLinkFactory pageLinkFactory;
 
+    /**
+     * Load active government role members.
+     *
+     * @return the list
+     */
     public List<ViewRiksdagenGovermentRoleMember> loadActiveGovernmentRoleMembers() {
         final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
                 .getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -49,14 +64,31 @@ public class LeaderCardUtil {
                 ViewRiksdagenGovermentRoleMember_.active);
     }
 
+    /**
+     * Load active politicians by person id.
+     *
+     * @return the map
+     */
     public Map<String, List<ViewRiksdagenPolitician>> loadActivePoliticiansByPersonId() {
         final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
                 .getDataContainer(ViewRiksdagenPolitician.class);
         final List<ViewRiksdagenPolitician> activePoliticians = politicianDataContainer
-                .findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.activeGovernment);
+                .findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.active);
         return activePoliticians.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
     }
 
+
+    /**
+     * Creates the baseball style card.
+     *
+     * @param govMember the gov member
+     * @param politician the politician
+     * @param ballotSummary the ballot summary
+     * @param governmentBodyByMinistry the government body by ministry
+     * @param reportByMinistry the report by ministry
+     * @param experienceSummary the experience summary
+     * @return the panel
+     */
     public Panel createBaseballStyleCard(ViewRiksdagenGovermentRoleMember govMember,
             ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
             Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
@@ -74,7 +106,7 @@ public class LeaderCardUtil {
 
         CardInfoRowUtil.createCardHeader(cardContent,govMember.getRoleCode() + " " + govMember.getFirstName() + " " + govMember.getLastName()
             + " (" + govMember.getParty() + ")");
-        cardContent.addComponent(getPageLinkFactory().createPoliticianPageLink(politician));
+        cardContent.addComponent(pageLinkFactory.createPoliticianPageLink(politician));
 
         final Link pageLink = new Link("Party " + politician.getParty(),
                 new ExternalResource("#!" + UserViews.PARTY_VIEW_NAME + "/" + politician.getParty()));
@@ -174,6 +206,16 @@ public class LeaderCardUtil {
         return cardPanel;
     }
 
+    /**
+     * Creates the leader card.
+     *
+     * @param leader the leader
+     * @param ballotSummary the ballot summary
+     * @param governmentBodyByMinistry the government body by ministry
+     * @param reportByMinistry the report by ministry
+     * @param experienceSummary the experience summary
+     * @return the panel
+     */
     public Panel createLeaderCard(final ViewRiksdagenPolitician leader, final ViewRiksdagenPoliticianBallotSummary ballotSummary,
             final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
             final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
@@ -193,7 +235,7 @@ public class LeaderCardUtil {
                 + leader.getParty() + ")");
 
         // Politician detail link
-        cardContent.addComponent(getPageLinkFactory().createPoliticianPageLink(leader));
+        cardContent.addComponent(pageLinkFactory.createPoliticianPageLink(leader));
 
         // Party link
         final Link partyLink = new Link("Party " + leader.getParty(),
@@ -309,6 +351,15 @@ public class LeaderCardUtil {
         return cardPanel;
     }
 
+    /**
+     * Adds the political role metrics.
+     *
+     * @param layout the layout
+     * @param govMember the gov member
+     * @param politician the politician
+     * @param ballotSummary the ballot summary
+     * @param experienceSummary the experience summary
+     */
     private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenGovermentRoleMember govMember,
             ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
@@ -331,6 +382,16 @@ public class LeaderCardUtil {
 
     }
 
+    /**
+     * Adds the political role metrics.
+     *
+     * @param layout the layout
+     * @param riksdagenPartyRoleMember the riksdagen party role member
+     * @param govMember the gov member
+     * @param politician the politician
+     * @param ballotSummary the ballot summary
+     * @param experienceSummary the experience summary
+     */
     private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenPartyRoleMember riksdagenPartyRoleMember, ViewRiksdagenGovermentRoleMember govMember,
             ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
@@ -348,6 +409,14 @@ public class LeaderCardUtil {
 
     }
 
+    /**
+     * Adds the party experince.
+     *
+     * @param layout the layout
+     * @param riksdagenPartyRoleMember the riksdagen party role member
+     * @param govMember the gov member
+     * @param politician the politician
+     */
     private void addPartyExperince(VerticalLayout layout, ViewRiksdagenPartyRoleMember riksdagenPartyRoleMember,
             ViewRiksdagenGovermentRoleMember govMember, ViewRiksdagenPolitician politician) {
         if (govMember != null) {
@@ -369,6 +438,12 @@ public class LeaderCardUtil {
                 VaadinIcons.TIMER, "Years as Party Leader"));
     }
 
+    /**
+     * Find government role for leader.
+     *
+     * @param leader the leader
+     * @return the view riksdagen goverment role member
+     */
     private ViewRiksdagenGovermentRoleMember findGovernmentRoleForLeader(ViewRiksdagenPolitician leader) {
         final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
                 .getDataContainer(ViewRiksdagenGovermentRoleMember.class);
