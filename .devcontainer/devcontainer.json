@@ -15,6 +15,9 @@
     "ghcr.io/devcontainers/features/java:1": {
       "version": "21",
       "distribution": "temurin"
+    },
+      "ghcr.io/devcontainers/features/maven:1": {
+      "version": "3.9.9"
     }
   },
   "customizations": {
