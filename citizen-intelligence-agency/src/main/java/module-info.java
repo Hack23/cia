@@ -133,7 +133,7 @@ open module com.hack23.cia.web {
 	requires gantt.addon;
 
 	requires dcharts;
-	requires commons.beanutils;
+	requires org.apache.commons.beanutils;
 	requires org.jsoup;
 	requires vaadin.spring;
 	requires spring.web;
