@@ -342,7 +342,7 @@ public final class LoginServiceITest extends AbstractServiceFunctionalIntegratio
 	 */
 	@Test
 	public void serviceRequestValidationFailureTest() throws Exception {
-		final CreateApplicationSessionRequest createApplicationSesstion = createApplicationSesstionWithRoleAnonymous();
+		createApplicationSesstionWithRoleAnonymous();
 		final LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setEmail("some@email.com");
 		loginRequest.setUserpassword("someValidPassword123!");

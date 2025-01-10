@@ -61,8 +61,8 @@ open module com.hack23.cia.service.external.val {
 	
 	requires com.hack23.cia.service.external.common;
 
-	requires com.hack23.cia.model.external.val.riksdagsvalkrets.impl;
-	requires com.hack23.cia.model.external.val.kommunvalkrets.impl;
-	requires com.hack23.cia.model.external.val.partier.impl;
-	requires com.hack23.cia.model.external.val.landstingvalkrets.impl;
+	requires transitive com.hack23.cia.model.external.val.riksdagsvalkrets.impl;
+	requires transitive com.hack23.cia.model.external.val.kommunvalkrets.impl;
+	requires transitive com.hack23.cia.model.external.val.partier.impl;
+	requires transitive com.hack23.cia.model.external.val.landstingvalkrets.impl;
 }

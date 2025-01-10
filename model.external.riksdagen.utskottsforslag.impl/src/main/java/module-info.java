@@ -11,6 +11,6 @@ open module com.hack23.cia.model.external.riksdagen.utskottsforslag.impl {
 	requires org.slf4j;
 	requires org.apache.commons.lang3;
 	requires jaxb2.basics.runtime;
-
+	requires transitive java.xml;
 
 }

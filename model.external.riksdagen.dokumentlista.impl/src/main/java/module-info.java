@@ -11,8 +11,6 @@ open module com.hack23.cia.model.external.riksdagen.dokumentlista.impl {
 	requires org.slf4j;
 	requires org.apache.commons.lang3;
 	requires jaxb2.basics.runtime;
-	requires org.hibernate.search.mapper.pojo;
-
-
-
+	requires transitive org.hibernate.search.mapper.pojo;
+	requires org.hibernate.search.engine;
 }
