@@ -218,6 +218,8 @@
         <groupId>org.bsc.maven</groupId>
         <artifactId>maven-processor-plugin</artifactId>
         <inherited>true</inherited>
+        <?m2e execute onConfiguration?>
+        <?m2e execute onIncremental?>
         <dependencies>
           <dependency>
             <groupId>org.hibernate</groupId>

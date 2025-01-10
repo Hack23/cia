@@ -4,8 +4,7 @@
     "java.dependency.packagePresentation": "hierarchical",
     "maven.workspace.autoReload": true,
 
-    "maven.workspace.resolveFolders": false, // Disable workspace resolution
-    "maven.terminal.defaultProfiles": ["use-m2"], // Custom Maven profile to enforce .m2 resolution
+    "maven.workspace.resolveFolders": true, // Disable workspace resolution
   
     // Recommended Maven commands
     "maven.terminal.customGoals": ["clean", "install", "verify"],
@@ -15,20 +14,5 @@
       "-DskipTests",
       "-Denforcer.skip=true"
     ],
-    "files.exclude": {
-        "**/module-info.java": true,
-        "**/module-info.class": true,
-        "**/target": true
-      },
-      "files.watcherExclude": {
-        "**/module-info.java": true,
-        "**/module-info.class": true,
-        "**/target": true
-      },
-      "java.import.exclusions": [
-        "**/module-info.java",
-        "**/module-info.class",
-        "**/target/**"
-      ],
-      "maven.view": "hierarchical"
+     "maven.view": "hierarchical"
 }
