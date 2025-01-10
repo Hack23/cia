@@ -102,7 +102,6 @@ open module com.hack23.cia.web {
 	requires vaadin.server;
 	requires responsive.layout;
 
-
 	requires java.annotation;
 	requires org.slf4j;
 	requires spring.context;
