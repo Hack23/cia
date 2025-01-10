@@ -1,4 +1,4 @@
-package com.hack23.cia.web.impl.ui.application.util;
+package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
 import java.util.HashMap;
 import java.util.List;

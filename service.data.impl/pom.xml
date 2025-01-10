@@ -1177,7 +1177,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>hibernate3-maven-plugin</artifactId>
-        <?m2e ignore ?>	
+        <?m2e ignore ?>
         <configuration>
           <hibernatetool destdir="target/classes">
             <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"></jpaconfiguration>

@@ -1,4 +1,4 @@
-package com.hack23.cia.web.impl.ui.application.util;
+package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 
 import java.util.List;
 import java.util.Locale;
@@ -21,8 +21,6 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummar
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PoliticianLeaderboardUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.ExternalResource;
