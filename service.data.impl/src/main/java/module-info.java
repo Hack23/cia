@@ -34,7 +34,7 @@ open module com.hack23.cia.service.data.impl {
 
 	requires java.xml.bind;
 	requires jakarta.activation;
-	requires java.sql;
+	requires transitive java.sql;
 	requires java.desktop;
 	requires java.annotation;
 	requires org.slf4j;
@@ -47,7 +47,7 @@ open module com.hack23.cia.service.data.impl {
 	requires spring.tx;
 	requires spring.core;	
 	requires org.postgresql.jdbc;
-	requires java.naming;
+	requires transitive java.naming;
 	
 	requires java.persistence;
 	requires org.hibernate.orm.core;
@@ -59,17 +59,14 @@ open module com.hack23.cia.service.data.impl {
 
 	requires org.hibernate.search.engine;
 	requires org.hibernate.search.backend.lucene;
-	requires org.hibernate.search.mapper.pojo;
+	requires transitive org.hibernate.search.mapper.pojo; // Make this transitive
 	requires org.hibernate.search.mapper.orm;	
 	
 	requires com.fasterxml.jackson.databind;	
-	requires aws.secretsmanager.caching.java;
-	requires aws.secretsmanager.jdbc;
-	requires aws.java.sdk.secretsmanager;
-	requires aws.java.sdk.core;
-	
-	
-	
+	requires transitive aws.secretsmanager.caching.java;
+	requires transitive aws.secretsmanager.jdbc;
+	requires transitive aws.java.sdk.secretsmanager;
+	requires transitive aws.java.sdk.core;
 	
 	requires org.apache.commons.lang3;
 	requires lucene.analyzers.common;

@@ -534,6 +534,12 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-jmx</artifactId>
+      <version>${jetty.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>com.squareup.okio</groupId>
       <artifactId>okio</artifactId>
       <scope>test</scope>
@@ -1576,7 +1582,7 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.5.0</version>
-        <?m2e ignore ?>	
+        <?m2e ignore ?>
         <executions>
           <execution>
             <goals>
@@ -1597,7 +1603,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <?m2e ignore ?>	
+        <?m2e ignore ?>
         <executions>
           <execution>
             <id>unpack</id>

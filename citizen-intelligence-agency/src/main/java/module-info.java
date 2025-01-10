@@ -98,55 +98,57 @@ open module com.hack23.cia.web {
 
 	requires vaadin.compatibility.shared;
 	requires vaadin.compatibility.server;
-	requires vaadin.shared;
-	requires vaadin.server;
 	requires responsive.layout;
-
+	
 	requires java.annotation;
 	requires org.slf4j;
-	requires spring.context;
-	requires spring.beans;
 	requires spring.tx;
 	requires spring.messaging;
 	requires spring.context.support;
 	requires quartz;
-
-	requires spring.security.core;
-	requires spring.security.web;
+	
 	requires org.apache.commons.lang3;
 	requires org.bouncycastle.provider;
-
+	
 	requires passay;
 	requires wt.pdf.viewer;
 	requires spring.aop;
 	requires statistics.card;
-	requires org.eclipse.jetty.servlet;
-	requires jetty.servlet.api;
-
+	
 	requires vaadin.grid.util;
 	requires nl.basjes.parse.useragent;
 	requires qrcode;
-
+	
 	requires java.desktop;
 	requires org.apache.commons.text;
 	requires gantt.addon;
-
+	
 	requires dcharts;
-	requires org.apache.commons.beanutils;
 	requires org.jsoup;
 	requires vaadin.spring;
 	requires spring.web;
-	requires java.logging;
 	requires java.management;
+	requires java.logging;
 
+	
+	
+	requires transitive spring.context;
+	requires transitive vaadin.shared;
+	requires transitive spring.security.core;
+	requires transitive spring.security.web;
+	requires transitive org.eclipse.jetty.servlet;
+	requires transitive jetty.servlet.api;
+	requires transitive vaadin.server;
+	requires transitive spring.beans;
+	
 	requires transitive com.hack23.cia.web.widgets;
 	requires transitive com.hack23.cia.service.api;
 	requires transitive com.hack23.cia.service.impl;
 	requires transitive com.hack23.cia.service.external.esv;
-
+	
 	requires transitive com.hack23.cia.service.component.agent.api;
 	requires transitive com.hack23.cia.service.component.agent.impl;
-
+	
 	requires transitive com.hack23.cia.service.external.common;
     requires transitive com.hack23.cia.service.data.api;
 	requires transitive com.hack23.cia.service.external.riksdagen;
@@ -169,5 +171,5 @@ open module com.hack23.cia.web {
 	requires transitive com.hack23.cia.model.external.val.landstingvalkrets.impl;
 	requires transitive com.hack23.cia.model.external.riksdagen.votering.impl;
 	requires transitive com.hack23.cia.model.external.worldbank.countries.impl;
-
+    requires org.apache.commons.beanutils;
 }
