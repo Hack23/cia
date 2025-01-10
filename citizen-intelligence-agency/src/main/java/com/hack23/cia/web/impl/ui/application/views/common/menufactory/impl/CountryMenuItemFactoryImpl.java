@@ -67,12 +67,6 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	/** The Constant COUNTRY_RANKING_TEXT. */
 	private static final String COUNTRY_RANKING_TEXT = "Counry Ranking";
 
-	/** The Constant DATA_POINTS_FOR_YEAR_ABOVE. */
-	private static final int DATA_POINTS_FOR_YEAR_ABOVE = 2010;
-
-	/** The Constant MINIMUM_NUMBER_DATA_POINTS. */
-	private static final int MINIMUM_NUMBER_DATA_POINTS = 10;
-
 	/** The Constant OVERVIEW_TEXT. */
 	private static final String OVERVIEW_TEXT = "Overview";
 
