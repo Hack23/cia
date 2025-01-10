@@ -37,7 +37,6 @@ open module com.hack23.cia.service.data.impl {
 	requires java.sql;
 	requires java.desktop;
 	requires java.annotation;
-	requires org.apache.commons.beanutils;
 	requires org.slf4j;
 	requires spring.context;
 	requires spring.context.support;
@@ -46,6 +45,7 @@ open module com.hack23.cia.service.data.impl {
 	requires spring.beans;
 	requires spring.jdbc;
 	requires spring.tx;
+	requires spring.core;	
 	requires org.postgresql.jdbc;
 	requires java.naming;
 	
