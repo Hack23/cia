@@ -244,6 +244,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>hibernate3-maven-plugin</artifactId>
+        <?m2e ignore?>
         <configuration>
           <hibernatetool destdir="target/classes">
             <jpaconfiguration persistenceunit="model.internal.application.user.impl" propertyfile="src/main/resources/schema-database.properties"></jpaconfiguration>
@@ -272,7 +273,6 @@
         </dependencies>
         <executions>
           <execution>
-            <?m2e ignore?>
             <goals>
               <goal>run</goal>
             </goals>
