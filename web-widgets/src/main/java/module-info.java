@@ -1,4 +1,4 @@
-open module ccom.hack23.cia.web.widgets.charts {
+open module com.hack23.cia.web.widgets.charts {
 	exports com.hack23.cia.web.widgets.charts;
 	
 	requires vaadin.compatibility.shared;

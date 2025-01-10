@@ -101,7 +101,7 @@ open module com.hack23.cia.web {
 	requires vaadin.shared;
 	requires vaadin.server;
 	requires responsive.layout;
-
+	requires com.hack23.cia.web.widgets.charts;
 
 	requires java.annotation;
 	requires org.slf4j;
