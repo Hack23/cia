@@ -15,6 +15,7 @@ import com.hack23.cia.service.api.DataContainer;
 public final class PartyLeaderUtil {
 
     private static final String ROLE_CODE_PARTILEDARE = "Partiledare";
+
     private PartyLeaderUtil() {
         // Utility class, no instantiation
     }
@@ -27,16 +28,8 @@ public final class PartyLeaderUtil {
      * @return true, if the person is a party leader
      */
     public static boolean isPartyLeader(ApplicationManager applicationManager, String personId) {
-        final DataContainer<ViewRiksdagenPartyRoleMember, String> container =
-            applicationManager.getDataContainer(ViewRiksdagenPartyRoleMember.class);
-        final List<ViewRiksdagenPartyRoleMember> roles =
-            container.findListByProperty(new Object[] { personId, Boolean.TRUE },
-                    ViewRiksdagenPartyRoleMember_.personId,
-                    ViewRiksdagenPartyRoleMember_.active);
-
-        return roles.stream()
-                .anyMatch(r -> r.getRoleCode() != null
-                    && ROLE_CODE_PARTILEDARE.equalsIgnoreCase(r.getRoleCode().trim()));
+        return getActiveRoles(applicationManager, personId).stream()
+                .anyMatch(PartyLeaderUtil::isPartyLeaderRole);
     }
 
     /**
@@ -47,16 +40,8 @@ public final class PartyLeaderUtil {
      * @return the party leader role, or null if not found
      */
     public static ViewRiksdagenPartyRoleMember getPartyLeaderRole(ApplicationManager applicationManager, String personId) {
-        final DataContainer<ViewRiksdagenPartyRoleMember, String> container =
-            applicationManager.getDataContainer(ViewRiksdagenPartyRoleMember.class);
-        final List<ViewRiksdagenPartyRoleMember> roles =
-            container.findListByProperty(new Object[] { personId, Boolean.TRUE },
-                    ViewRiksdagenPartyRoleMember_.personId,
-                    ViewRiksdagenPartyRoleMember_.active);
-
-        return roles.stream()
-                .filter(r -> r.getRoleCode() != null
-                    && ROLE_CODE_PARTILEDARE.equalsIgnoreCase(r.getRoleCode().trim()))
+        return getActiveRoles(applicationManager, personId).stream()
+                .filter(PartyLeaderUtil::isPartyLeaderRole)
                 .findFirst()
                 .orElse(null);
     }
@@ -69,21 +54,23 @@ public final class PartyLeaderUtil {
      * @return a map of person ids to boolean indicating if they are party leaders
      */
     public static Map<String, Boolean> computePartyLeaders(ApplicationManager applicationManager, Iterable<String> personIds) {
-        final DataContainer<ViewRiksdagenPartyRoleMember, String> container =
-            applicationManager.getDataContainer(ViewRiksdagenPartyRoleMember.class);
-
-        final Map<String, Boolean> result = new HashMap<>();
-        for (final String personId : personIds) {
-            final List<ViewRiksdagenPartyRoleMember> roles =
-                container.findListByProperty(new Object[] { personId, Boolean.TRUE },
-                        ViewRiksdagenPartyRoleMember_.personId,
-                        ViewRiksdagenPartyRoleMember_.active);
-
-            final boolean isLeader = roles.stream()
-                    .anyMatch(r -> r.getRoleCode() != null
-                        && ROLE_CODE_PARTILEDARE.equalsIgnoreCase(r.getRoleCode().trim()));
-            result.put(personId, isLeader);
+        Map<String, Boolean> result = new HashMap<>();
+        for (String personId : personIds) {
+            result.put(personId, isPartyLeader(applicationManager, personId));
         }
         return result;
+    }
+
+    private static List<ViewRiksdagenPartyRoleMember> getActiveRoles(ApplicationManager applicationManager, String personId) {
+        return applicationManager.getDataContainer(ViewRiksdagenPartyRoleMember.class)
+                .findListByProperty(
+                    new Object[] { personId, Boolean.TRUE },
+                    ViewRiksdagenPartyRoleMember_.personId,
+                    ViewRiksdagenPartyRoleMember_.active
+                );
+    }
+
+    private static boolean isPartyLeaderRole(ViewRiksdagenPartyRoleMember role) {
+        return role.getRoleCode() != null && ROLE_CODE_PARTILEDARE.equalsIgnoreCase(role.getRoleCode().trim());
     }
 }

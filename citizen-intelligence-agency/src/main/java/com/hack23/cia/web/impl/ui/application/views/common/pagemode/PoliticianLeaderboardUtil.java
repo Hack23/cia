@@ -69,19 +69,13 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 */
 	public final void addKnowledgeAreas(VerticalLayout layout, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 		if (experienceSummary.getKnowledgeAreas() != null && !experienceSummary.getKnowledgeAreas().isEmpty()) {
-		    final String topAreas = experienceSummary.getKnowledgeAreas().stream()
-		        .filter(ka -> ka.getArea() != null && !ka.getArea().equals("Other"))
-		        .sorted((ka1, ka2) -> ka2.getWeightedExp().compareTo(ka1.getWeightedExp()))
-		        .limit(3)
-		        .map(ka -> String.format(Locale.ENGLISH,"%s ",
-		            ka.getArea()))
-		        .collect(Collectors.joining(", "));
-
+		    final String topAreas = buildTopString(
+		        experienceSummary.getKnowledgeAreas(),
+		        ka -> ka.getArea(),
+		        ka -> ka.getWeightedExp()
+		    );
 		    if (!topAreas.isEmpty()) {
-		        layout.addComponent(createInfoRow("Key Policy Areas:",
-		            topAreas,
-		            VaadinIcons.CLIPBOARD_TEXT,
-		            "Main areas of expertise with weighted importance"));
+		        layout.addComponent(createInfoRow("Top Knowledge Areas:", topAreas, VaadinIcons.BOOK, "Key expertise"));
 		    }
 		}
 	}
@@ -94,19 +88,13 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 */
 	public final void addTopRoles(VerticalLayout layout, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 		if (experienceSummary.getRoles() != null && !experienceSummary.getRoles().isEmpty()) {
-		    final String topRoles = experienceSummary.getRoles().stream()
-		        .filter(role -> role.getRole() != null && !role.getRole().equals("Other"))
-		        .sorted((r1, r2) -> r2.getWeightedExp().compareTo(r1.getWeightedExp()))
-		        .limit(3)
-		        .map(role -> String.format(Locale.ENGLISH,"%s",
-		            role.getRole()))
-		        .collect(Collectors.joining(", "));
-
+		    final String topRoles = buildTopString(
+		        experienceSummary.getRoles(),
+		        role -> role.getRole(),
+		        role -> role.getWeightedExp()
+		    );
 		    if (!topRoles.isEmpty()) {
-		        layout.addComponent(createInfoRow("Key Political Roles:",
-		            topRoles,
-		            VaadinIcons.USERS,
-		            "Most significant positions with weighted importance"));
+		        layout.addComponent(createInfoRow("Top Roles:", topRoles, VaadinIcons.STAR, "Most significant roles")); // Changed from CROWN to STAR
 		    }
 		}
 	}
@@ -282,6 +270,44 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 		cardLayout.addComponent(createMetricRow(VaadinIcons.ARROW_DOWN,
 				pageLinkFactory.addMinistrGovermentBodiesSpendingPageLink(govMember.getDetail()),
 				"Yearly Spending (B SEK)", spendingStr));
+	}
+
+	private <T> String buildTopString(List<T> items,
+	                                  java.util.function.Function<T, String> nameFunction,
+	                                  java.util.function.Function<T, Long> weightFunction) {
+	    return items.stream()
+	        .filter(i -> nameFunction.apply(i) != null && !"Other".equals(nameFunction.apply(i)))
+	        .sorted((o1, o2) -> weightFunction.apply(o2).compareTo(weightFunction.apply(o1)))
+	        .limit(3)
+	        .map(nameFunction)
+	        .collect(Collectors.joining(", "));
+	}
+
+	private void addMetricsSection(VerticalLayout layout, String sectionTitle, 
+	    ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary,
+	    MetricType metricType) {
+	    
+	    final VerticalLayout sectionLayout = CardInfoRowUtil.createSectionLayout(sectionTitle);
+	    
+	    switch(metricType) {
+	        case PARLIAMENTARY:
+	            addParliamentaryPerformanceMetrics(sectionLayout, politician, ballotSummary);
+	            break;
+	        case LEGISLATIVE:
+	            addLegislativeMetrics(sectionLayout, politician);
+	            break;
+	        case PARTY_ALIGNMENT:
+	            addPartyAlignmentMetrics(sectionLayout, politician, ballotSummary);
+	            break;
+	    }
+	    
+	    layout.addComponent(sectionLayout);
+	}
+
+	private enum MetricType {
+	    PARLIAMENTARY,
+	    LEGISLATIVE, 
+	    PARTY_ALIGNMENT
 	}
 
 }

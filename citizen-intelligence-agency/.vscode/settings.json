@@ -14,17 +14,5 @@
       "-DskipTests",
       "-Denforcer.skip=true"
     ],
-    "files.exclude": {
-      "**/module-info.java": true,
-      "**/module-info.class": true
-    },
-    "files.watcherExclude": {
-      "**/module-info.java": true,
-      "**/module-info.class": true
-    },
-    "java.import.exclusions": [
-      "**/module-info.java",
-      "**/module-info.class"
-    ],
     "maven.view": "hierarchical"
 }

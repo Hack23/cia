@@ -188,4 +188,41 @@ public class CardInfoRowUtil {
 		cardContent.addComponent(divider);
 	}
 
+	/**
+	 * Creates a standard stats container.
+	 *
+	 * @return the vertical layout configured for the stats container
+	 */
+	public static final VerticalLayout createStatsContainer() {
+	    final VerticalLayout layout = new VerticalLayout();
+	    layout.setSpacing(false);
+	    layout.addStyleName("card-stats-container");
+	    layout.setWidth("100%");
+	    return layout;
+	}
+
+	public static final class LayoutConstants {
+	    public static final String CARD_TENURE = "card-tenure";
+	    public static final String CARD_EXPERIENCE = "card-experience-section";
+	    public static final String CARD_INFO_VALUE = "card-info-value"; 
+	    public static final String CARD_INFO_ICON = "card-info-icon";
+	    public static final String METRIC_LABEL = "metric-label";
+	}
+
+	public static HorizontalLayout createStandardRow() {
+	    final HorizontalLayout layout = new HorizontalLayout();
+	    layout.setSpacing(true);
+	    layout.setWidthUndefined();
+	    return layout;
+	}
+
+	public static Label createIconLabel(VaadinIcons icon, String tooltip) {
+	    final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+	    iconLabel.addStyleName(LayoutConstants.CARD_INFO_ICON);
+	    if (tooltip != null) {
+	        iconLabel.setDescription(tooltip);
+	    }
+	    return iconLabel;
+	}
+
 }

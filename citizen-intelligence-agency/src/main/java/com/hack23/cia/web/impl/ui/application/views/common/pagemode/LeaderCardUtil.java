@@ -75,6 +75,39 @@ public class LeaderCardUtil {
         return activePoliticians.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
     }
 
+    private Panel createBaseCard() {
+        final Panel cardPanel = new Panel();
+        cardPanel.addStyleName("leader-baseball-card");
+        cardPanel.setSizeFull();
+        Responsive.makeResponsive(cardPanel);
+        return cardPanel;
+    }
+
+    private VerticalLayout createCardContent() {
+        final VerticalLayout cardContent = new VerticalLayout();
+        cardContent.setMargin(true);
+        cardContent.setSpacing(true);
+        cardContent.setSizeFull();
+        return cardContent;
+    }
+
+    private void addExperienceRow(VerticalLayout container, int govYears, int partyYears, int parliamentYears) {
+        final HorizontalLayout experienceLayout = CardInfoRowUtil.createStandardRow();
+        experienceLayout.addStyleName(CardInfoRowUtil.LayoutConstants.CARD_EXPERIENCE);
+        
+        final Label expIcon = CardInfoRowUtil.createIconLabel(VaadinIcons.USER_CHECK, "Political Experience");
+        final Label expLabel = new Label("Experience:");
+        expLabel.addStyleName("card-experience-text");
+        
+        final String expText = String.format(Locale.ENGLISH, 
+            "Government: %dy, Party: %dy, Parliament: %dy",
+            govYears, partyYears, parliamentYears);
+        final Label expValue = new Label(expText);
+        expValue.addStyleName(CardInfoRowUtil.LayoutConstants.CARD_INFO_VALUE);
+        
+        experienceLayout.addComponents(expIcon, expLabel, expValue);
+        container.addComponent(experienceLayout);
+    }
 
     /**
      * Creates the baseball style card.
@@ -91,15 +124,8 @@ public class LeaderCardUtil {
             ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
             Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
-        final Panel cardPanel = new Panel();
-        cardPanel.addStyleName("leader-baseball-card");
-        cardPanel.setSizeFull();
-        Responsive.makeResponsive(cardPanel);
-
-        final VerticalLayout cardContent = new VerticalLayout();
-        cardContent.setMargin(true);
-        cardContent.setSpacing(true);
-        cardContent.setSizeFull();
+        final Panel cardPanel = createBaseCard();
+        final VerticalLayout cardContent = createCardContent();
         cardPanel.setContent(cardContent);
 
         CardInfoRowUtil.createCardHeader(cardContent,govMember.getRoleCode() + " " + govMember.getFirstName() + " " + govMember.getLastName()
@@ -126,10 +152,7 @@ public class LeaderCardUtil {
 
         // After creating the divider following the header/subtitle
         // We create a vertical layout to hold Tenure and Experience on separate rows
-        final VerticalLayout statsContainer = new VerticalLayout();
-        statsContainer.setSpacing(false); // Less space between rows
-        statsContainer.addStyleName("card-stats-container");
-        statsContainer.setWidth("100%");
+        final VerticalLayout statsContainer = CardInfoRowUtil.createStatsContainer();
 
         // Tenure Row
         final HorizontalLayout tenureLayout = new HorizontalLayout();
@@ -148,24 +171,10 @@ public class LeaderCardUtil {
         statsContainer.addComponent(tenureLayout);
 
         // Experience Row
-        final HorizontalLayout experienceLayout = new HorizontalLayout();
-        experienceLayout.setSpacing(true);
-        experienceLayout.addStyleName("card-experience-section");
-        final Label expIcon = new Label(VaadinIcons.USER_CHECK.getHtml(), ContentMode.HTML);
-        expIcon.setDescription("Political Experience");
-
-        final Label expLabel = new Label("Experience:");
-        expLabel.addStyleName("card-experience-text");
-
         final int govYears = (int) (politician.getTotalDaysServedGovernment() / 365);
         final int partyYears = (int) (politician.getTotalDaysServedParty() / 365);
         final int parliamentYears = (int) (politician.getTotalDaysServedParliament() / 365);
-        final Label expValue = new Label(
-                "Goverment: " + govYears + "y, Party: " + partyYears + "y, Parliament: " + parliamentYears + "y");
-        expValue.addStyleName("card-experience-value");
-
-        experienceLayout.addComponents(expIcon, expLabel, expValue);
-        statsContainer.addComponent(experienceLayout);
+        addExperienceRow(statsContainer, govYears, partyYears, parliamentYears);
 
         // Add the statsContainer to the cardContent
         cardContent.addComponent(statsContainer);
@@ -218,15 +227,8 @@ public class LeaderCardUtil {
             final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
             final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
-        final Panel cardPanel = new Panel();
-        cardPanel.addStyleName("leader-baseball-card");
-        cardPanel.setSizeFull();
-        Responsive.makeResponsive(cardPanel);
-
-        final VerticalLayout cardContent = new VerticalLayout();
-        cardContent.setMargin(true);
-        cardContent.setSpacing(true);
-        cardContent.setSizeFull();
+        final Panel cardPanel = createBaseCard();
+        final VerticalLayout cardContent = createCardContent();
         cardPanel.setContent(cardContent);
 
         CardInfoRowUtil.createCardHeader(cardContent,"Partiledare " + leader.getFirstName() + " " + leader.getLastName() + " ("
@@ -279,10 +281,7 @@ public class LeaderCardUtil {
         }
 
         // Tenure and Experience rows
-        final VerticalLayout statsContainer = new VerticalLayout();
-        statsContainer.setSpacing(false);
-        statsContainer.addStyleName("card-stats-container");
-        statsContainer.setWidth("100%");
+        final VerticalLayout statsContainer = CardInfoRowUtil.createStatsContainer();
 
         // Tenure (assuming leader might have totalDaysServed property)
         final Label tenureIcon = new Label(VaadinIcons.CLOCK.getHtml(), ContentMode.HTML);
@@ -297,23 +296,10 @@ public class LeaderCardUtil {
         statsContainer.addComponent(tenureLayout);
 
         // Experience
-        final HorizontalLayout experienceLayout = new HorizontalLayout();
-        experienceLayout.setSpacing(true);
-        experienceLayout.addStyleName("card-experience-section");
-        final Label expIcon = new Label(VaadinIcons.USER_CHECK.getHtml(), ContentMode.HTML);
-        expIcon.setDescription("Political Experience");
-        final Label expLabel = new Label("Experience:");
-        expLabel.addStyleName("card-experience-text");
-
         final int govYears = (int) (leader.getTotalDaysServedGovernment() / 365);
         final int partyYears = (int) (leader.getTotalDaysServedParty() / 365);
         final int parliamentYears = (int) (leader.getTotalDaysServedParliament() / 365);
-        final String expText = String.format(Locale.ENGLISH, "Government: %dy, Party: %dy, Parliament: %dy",
-                govYears, partyYears, parliamentYears);
-        final Label expValue = new Label(expText);
-        expValue.addStyleName("card-experience-value");
-        experienceLayout.addComponents(expIcon, expLabel, expValue);
-        statsContainer.addComponent(experienceLayout);
+        addExperienceRow(statsContainer, govYears, partyYears, parliamentYears);
 
         cardContent.addComponent(statsContainer);
 
