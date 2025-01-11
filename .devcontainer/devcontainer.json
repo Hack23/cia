@@ -24,7 +24,11 @@
         "environmentVariable": "MAVEN_OPTS",
         "value": "-Xmx2048m -Xms1024m -XX:+UseG1GC"
       }
-    ]
+    ],
+    "coverage-gutters.showGutterCoverage": true,
+    "coverage-gutters.showLineCoverage": true,
+    "coverage-gutters.showRulerCoverage": true,
+    "java.test.report.showCoverageData": true
   },
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
@@ -44,7 +48,8 @@
         "vscjava.vscode-maven",
         "vscjava.vscode-java-test",
         "vscjava.vscode-java-debug",
-        "vscjava.vscode-java-dependency"
+        "vscjava.vscode-java-dependency",
+        "ryanluker.vscode-coverage-gutters"
       ]
     }
   },
