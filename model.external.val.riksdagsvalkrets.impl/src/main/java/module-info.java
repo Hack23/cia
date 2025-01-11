@@ -2,6 +2,7 @@ open module com.hack23.cia.model.external.val.riksdagsvalkrets.impl {
 	exports com.hack23.cia.model.external.val.riksdagsvalkrets.impl;
 	
 	requires com.hack23.model.common.api;
+    requires transitive com.hack23.cia.model.common.impl;
 
 	requires java.xml.bind;
 	requires java.persistence;

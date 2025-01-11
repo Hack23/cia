@@ -80,13 +80,28 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jpamodelgen</artifactId>
-      <scope>provided</scope>
       <exclusions>
         <exclusion>
           <groupId>org.jboss.logging</groupId>
           <artifactId>jboss-logging</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-jpamodelgen</artifactId>
+      <version>${cia.project.versions.hibernate}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+      <version>${cia.project.versions.hibernate.jpa2}</version>
     </dependency>
     <dependency>
       <groupId>org.jboss.spec.javax.transaction</groupId>
