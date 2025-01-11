@@ -2,7 +2,7 @@ open module com.hack23.cia.model.external.val.kommunvalkrets.impl {
 	exports com.hack23.cia.model.external.val.kommunvalkrets.impl;
 	
 	requires com.hack23.model.common.api;
-	requires com.hack23.cia.model.common.impl;
+    requires transitive com.hack23.cia.model.common.impl;
 
 	requires java.xml.bind;
 	requires java.persistence;
