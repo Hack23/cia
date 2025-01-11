@@ -7,7 +7,7 @@
     "terminal.integrated.defaultProfile.linux": "bash",
     "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
     "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn",
-    "java.jdt.ls.vmargs": "--add-modules=ALL-SYSTEM --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED",
+    "java.jdt.ls.vmargs": "--add-modules=ALL-SYSTEM --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED --add-opens=java.management/javax.management=ALL-UNNAMED",
     "java.test.config": {
       "vmargs": [
         "--add-modules=ALL-SYSTEM",
@@ -15,7 +15,9 @@
         "--add-exports=java.base/jdk.internal.ref=ALL-UNNAMED",
         "--add-opens=java.base/java.lang=ALL-UNNAMED",
         "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
-        "--add-opens=java.base/java.util=ALL-UNNAMED"
+        "--add-opens=java.base/java.util=ALL-UNNAMED",
+        "--add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED",
+        "--add-opens=java.management/javax.management=ALL-UNNAMED"
       ]
     },
     "java.configuration.updateBuildConfiguration": "automatic",
@@ -32,14 +34,8 @@
     "coverage-gutters.showRulerCoverage": true,
     "java.test.report.showCoverageData": true,
     "coverage-gutters.coverageFileNames": [
-      "lcov.info",
-      "cov.xml",
-      "coverage.xml",
-      "cobertura.xml",
-      "jacoco.xml",
-      "coverage.cobertura.xml"
+      "jacoco.xml"
     ]
-
   },
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
@@ -50,6 +46,9 @@
       "installAnt" : true
     }
   },
+  "mounts": [
+  "source=${localEnv:HOME}/.m2,target=/home/vscode/.m2,type=bind"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
