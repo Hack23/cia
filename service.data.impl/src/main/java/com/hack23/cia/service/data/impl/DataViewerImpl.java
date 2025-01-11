@@ -75,6 +75,7 @@ final class DataViewerImpl implements DataViewer {
 		typedQuery.setHint("org.hibernate.comment", comment);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T,V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property,final Class<V> clazz2,
@@ -134,6 +135,7 @@ final class DataViewerImpl implements DataViewer {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> List<T> findListByProperty(final Class<T> clazz, final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {
@@ -212,6 +214,7 @@ final class DataViewerImpl implements DataViewer {
 		return typedQuery.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> List<T> findOrderedListByProperty(final Class<T> clazz, final SingularAttribute<T, ? extends Object> property,
 			final Object value, final SingularAttribute<T, ? extends Object> orderByProperty) {
@@ -242,6 +245,7 @@ final class DataViewerImpl implements DataViewer {
 		return typedQuery.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> List<T> findOrderedListByProperty(final Class<T> clazz, final SingularAttribute<T, ? extends Object> orderByProperty,
 			final Object[] values, final SingularAttribute<T, ? extends Object>... properties) {

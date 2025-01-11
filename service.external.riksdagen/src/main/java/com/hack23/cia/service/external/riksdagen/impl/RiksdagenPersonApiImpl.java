@@ -94,6 +94,7 @@ final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi#getPerson(java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public PersonData getPerson(final String id) throws DataFailureException {
 		try {
@@ -110,6 +111,7 @@ final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenPersonApi#getPersonList()
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public PersonContainerElement getPersonList() throws DataFailureException {
 		try {

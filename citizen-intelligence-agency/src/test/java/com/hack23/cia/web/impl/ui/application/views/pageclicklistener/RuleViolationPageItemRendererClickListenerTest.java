@@ -38,6 +38,7 @@ public class RuleViolationPageItemRendererClickListenerTest extends AbstractUnit
 	/**
 	 * Click party test.
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void clickPartyTest() {
 		final RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
@@ -58,6 +59,7 @@ public class RuleViolationPageItemRendererClickListenerTest extends AbstractUnit
 	/**
 	 * Click politician test.
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void clickPoliticianTest() {
 		final RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();
@@ -79,6 +81,7 @@ public class RuleViolationPageItemRendererClickListenerTest extends AbstractUnit
 	/**
 	 * Selection change event source empty test.
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void selectionChangeEventSourceEmptyTest() {
 		final RuleViolationPageItemRendererClickListener listener = new RuleViolationPageItemRendererClickListener();

@@ -27,6 +27,7 @@ import com.hack23.cia.testfoundation.AbstractUnitTest;
  */
 public final class DefaultStringIdentifierTest extends AbstractUnitTest {
 
+	@SuppressWarnings("resource")
 	@Test
 	public void basicTest() {
 		final String arg0 = "argo";

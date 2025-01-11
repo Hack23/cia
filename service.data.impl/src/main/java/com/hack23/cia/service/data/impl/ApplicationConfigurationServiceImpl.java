@@ -51,6 +51,7 @@ final class ApplicationConfigurationServiceImpl implements ApplicationConfigurat
 		super();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ApplicationConfiguration checkValueOrLoadDefault(final String configTitle, final String configDescription,
 			final ConfigurationGroup configurationGroup, final String component, final String componentTitle, final String componentDescription,

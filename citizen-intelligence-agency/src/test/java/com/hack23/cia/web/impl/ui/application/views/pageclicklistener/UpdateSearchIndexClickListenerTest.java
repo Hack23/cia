@@ -39,6 +39,7 @@ public class UpdateSearchIndexClickListenerTest extends AbstractUnitTest {
 	/**
 	 * Show notification success test.
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void showNotificationSuccessTest() {
 		final UpdateSearchIndexRequest request = new UpdateSearchIndexRequest();

@@ -53,6 +53,7 @@ public final class QueryHelper {
 	 *            the property
 	 * @return the predicate
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> Predicate equalsIgnoreCaseIfStringPredicate(final CriteriaBuilder criteriaBuilder,final Path<T> path,
 			final Object value, final SingularAttribute<T, ? extends Object> property) {
 		Predicate condition;

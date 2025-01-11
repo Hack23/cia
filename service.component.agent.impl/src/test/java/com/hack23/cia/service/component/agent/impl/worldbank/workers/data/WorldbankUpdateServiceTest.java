@@ -104,6 +104,7 @@ public class WorldbankUpdateServiceTest extends AbstractUnitTest {
 	 * @throws Exception
 	 *             the exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void updateDataNullOrEmptyTest() throws Exception {
 		final DataDAO dataDAO = mock(DataDAO.class);

@@ -36,6 +36,7 @@ public class RemoveDataClickListenerTest extends AbstractUnitTest {
 	/**
 	 * Show notification success test.
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void showNotificationSuccessTest() {
 		final RemoveDataRequest request = new RemoveDataRequest();

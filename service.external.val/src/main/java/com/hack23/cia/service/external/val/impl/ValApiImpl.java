@@ -85,6 +85,7 @@ final class ValApiImpl implements ValApi {
 		this.xmlAgent = xmlAgent;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SwedenElectionType> getElectionTypes() throws ValApiException {
 
@@ -98,6 +99,7 @@ final class ValApiImpl implements ValApi {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SwedenParliamentElectoralRegion> getParliamentElectoralRegions() throws ValApiException {
 		try {
@@ -112,6 +114,7 @@ final class ValApiImpl implements ValApi {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SwedenCountyElectoralRegion> getCountyElectoralRegions() throws ValApiException {
 		try {
@@ -126,7 +129,8 @@ final class ValApiImpl implements ValApi {
 
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
+    @Override
 	public List<SwedenCountyData> getCountyRegions() throws ValApiException {
 		try {
 			final URL resource = ValApiImpl.class.getResource("/kommunvalkrets.xml");
@@ -139,6 +143,7 @@ final class ValApiImpl implements ValApi {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public SwedenElectionRegion getSwedenElectionRegion() throws ValApiException {
 		final URL resource = ValApiImpl.class.getResource("/partier20151217.xml");

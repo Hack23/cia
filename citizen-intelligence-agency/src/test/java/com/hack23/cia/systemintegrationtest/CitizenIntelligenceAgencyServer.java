@@ -118,6 +118,7 @@ public final class CitizenIntelligenceAgencyServer {
 			final Class<?> cl = env.getClass();
 			final Field field = cl.getDeclaredField("m");
 			field.setAccessible(true);
+			@SuppressWarnings("unchecked")
 			final Map<String, String> writableEnv = (Map<String, String>) field.get(env);
 			writableEnv.put(key, value);
 		} catch (final Exception e) {

@@ -57,7 +57,6 @@ open module com.hack23.cia.service.external.val {
 	
 	requires java.xml.bind;
 	requires transitive spring.beans;
-	requires transitive spring.context.support;
 	requires org.slf4j;
 	
 	requires transitive com.hack23.cia.service.external.common;

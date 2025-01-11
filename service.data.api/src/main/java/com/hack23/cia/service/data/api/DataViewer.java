@@ -103,6 +103,7 @@ public interface DataViewer {
 	 *            the properties
 	 * @return the list
 	 */
+	@SuppressWarnings("unchecked")
 	<T> List<T> findListByProperty(Class<T> clazz, final Object[] values,final SingularAttribute<T, ? extends Object>... properties);
 
 
@@ -210,6 +211,7 @@ public interface DataViewer {
 	 *            the properties
 	 * @return the list
 	 */
+	@SuppressWarnings("unchecked")
 	<T> List<T> findOrderedListByProperty(Class<T> clazz, SingularAttribute<T, ? extends Object> orderByProperty,final Object[] values,final SingularAttribute<T, ? extends Object>... properties);
 
 

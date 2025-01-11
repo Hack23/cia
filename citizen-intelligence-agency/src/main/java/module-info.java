@@ -99,7 +99,9 @@ open module com.hack23.cia.web {
 	requires vaadin.compatibility.shared;
 	requires vaadin.compatibility.server;
 	requires responsive.layout;
-	
+	requires org.hibernate.orm.jpamodelgen;
+	requires java.persistence;
+	requires org.hibernate.orm.core;
 	requires java.annotation;
 	requires org.slf4j;
 	requires spring.tx;
@@ -138,7 +140,6 @@ open module com.hack23.cia.web {
 	requires transitive jetty.servlet.api;
 	requires transitive vaadin.server;
 	requires transitive spring.beans;
-        requires org.hibernate.orm.jpamodelgen;
 
 	requires transitive com.hack23.cia.web.widgets;
 	requires transitive com.hack23.cia.service.api;

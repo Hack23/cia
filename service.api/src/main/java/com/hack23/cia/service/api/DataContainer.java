@@ -93,6 +93,7 @@ public interface DataContainer<T extends Serializable, I extends Serializable> {
 	 *            the properties
 	 * @return the list
 	 */
+	@SuppressWarnings("unchecked")
 	List<T> findListByProperty(final Object[] values, final SingularAttribute<T, ? extends Object>... properties);
 
 	/**
@@ -120,6 +121,7 @@ public interface DataContainer<T extends Serializable, I extends Serializable> {
 	 *            the properties
 	 * @return the list
 	 */
+	@SuppressWarnings("unchecked")
 	List<T> findOrderedListByProperty(SingularAttribute<T, ? extends Object> orderByProperty, final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties);
 
