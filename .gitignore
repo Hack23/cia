@@ -20,3 +20,8 @@ parent-pom/DocumentContentData/write.lock
 parent-pom/DocumentElement/write.lock
 citizen-intelligence-agency/src/main/webapp/VAADIN/addons/gantt/gantt.scss
 citizen-intelligence-agency/.ant-targets-build.xml
+DocumentContentData/segments_1
+DocumentContentData/write.lock
+DocumentElement/segments_1
+DocumentElement/write.lock
+citizen-intelligence-agency/src/main/webapp/VAADIN/addons/gantt/gantt.scss

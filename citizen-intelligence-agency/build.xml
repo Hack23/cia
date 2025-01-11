@@ -23,6 +23,14 @@
 		<property name="maven.binary" value="mvn" />
 		<echo message="MAVEN binary = ${maven.binary}" />
 	</target>
+
+	<target name="unit-test" description="run-unit-test" depends="init">
+		<exec executable="${maven.binary}" dir="../parent-pom/">
+			<env key="MAVEN_OPTS" value="-server -Xmx2048m -Xms2048m " />
+			<arg line="-B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.failure.ignore=true -DfailIfNoTests=false  -Dsurefire.failIfNoSpecifiedTests=false  -Dsurefire.reportNameSuffix=UNIT" />
+		</exec>
+	</target>			 
+
 	<target name="check-updates" description="cia-check-updates" depends="init">
 		<exec executable="${maven.binary}" dir="../parent-pom">
 			<arg line="versions:display-dependency-updates -Prelease-site,release-sign-artifacts,all-modules -U" />
