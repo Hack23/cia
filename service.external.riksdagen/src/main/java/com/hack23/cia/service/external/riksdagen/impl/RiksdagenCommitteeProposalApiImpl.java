@@ -85,6 +85,7 @@ final class RiksdagenCommitteeProposalApiImpl implements RiksdagenCommitteePropo
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenCommitteeProposalApi#getCommitteeProposal(java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public CommitteeProposalComponentData getCommitteeProposal(final String id) throws DataFailureException {
 		try {

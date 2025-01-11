@@ -7,7 +7,6 @@ import java.util.Map;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember_;
 import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.service.api.DataContainer;
 
 /**
  * Utility class for handling party leader related operations.

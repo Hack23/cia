@@ -106,6 +106,7 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 	 * @throws Exception
 	 *             the exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void createDefaultLanguagesIfEmptyIgnoreWhenExistTest() throws Exception {
 		final LanguageDataDAO languageDataDAO = mock(LanguageDataDAO.class);
@@ -124,6 +125,7 @@ public final class ConfigurationManagerITest extends AbstractServiceFunctionalIn
 	 * @throws Exception
 	 *             the exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void createDefaultLanguagesIfEmptyIgnoreWhenEmptyTest() throws Exception {
 		final LanguageDataDAO languageDataDAO = mock(LanguageDataDAO.class);

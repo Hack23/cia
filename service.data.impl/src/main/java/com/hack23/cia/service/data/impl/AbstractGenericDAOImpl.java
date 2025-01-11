@@ -137,6 +137,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public final List<T> findListByProperty(final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {
@@ -169,6 +170,7 @@ abstract class AbstractGenericDAOImpl<T extends Serializable, I extends Serializ
 		return typedQuery.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public final List<T> findListByPropertyBeforeDate(final Date beforeDate, final SingularAttribute<T, Date> dateField, final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {

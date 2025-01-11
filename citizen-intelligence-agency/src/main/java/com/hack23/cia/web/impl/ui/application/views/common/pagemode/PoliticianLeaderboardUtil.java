@@ -283,6 +283,7 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	        .collect(Collectors.joining(", "));
 	}
 
+	@SuppressWarnings("unused")
 	private void addMetricsSection(VerticalLayout layout, String sectionTitle, 
 	    ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary,
 	    MetricType metricType) {

@@ -259,6 +259,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi#getDocumentStatus(java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public DocumentStatusContainer getDocumentStatus(final String id) throws DataFailureException {
 		try {
@@ -282,6 +283,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 * @throws XmlAgentException
 	 *             the xml agent exception
 	 */
+	@SuppressWarnings("unchecked")
 	private void loadAndProcessDocumentList(final String url,
 			final ProcessDataStrategy<DocumentElement> processStrategy) throws XmlAgentException {
 		final DocumentContainerElement dokumentLista = ((JAXBElement<DocumentContainerElement>) xmlAgent.unmarshallXml(
@@ -312,6 +314,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 * @throws XmlAgentException
 	 *             the xml agent exception
 	 */
+	@SuppressWarnings("unchecked")
 	private List<DocumentElement> loadDocumentList(final String url, final int maxNumberPages) throws XmlAgentException {
 		final List<DocumentElement> result = new ArrayList<>();
 

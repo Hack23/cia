@@ -110,6 +110,7 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi#getBallot(java.lang.String)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<VoteData> getBallot(final String id) throws DataFailureException {
 		final String url = BALLOT.replace(ID_KEY, id);
@@ -163,6 +164,7 @@ final class RiksdagenBallotApiImpl implements RiksdagenBallotApi {
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenBallotApi#getBallotList()
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BallotDocumentElement> getBallotList() throws DataFailureException {
 

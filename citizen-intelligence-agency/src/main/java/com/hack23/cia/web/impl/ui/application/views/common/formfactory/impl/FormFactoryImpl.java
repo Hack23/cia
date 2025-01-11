@@ -109,6 +109,7 @@ public final class FormFactoryImpl implements FormFactory {
 	 * @param binder              the binder
 	 * @param propertyDescriptors the property descriptors
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static <T extends Serializable> void createDisplayPropertyConverters(final List<String> displayProperties,
 			final ComponentContainer formContent, final Binder<T> binder, final PropertyDescriptor[] propertyDescriptors) {
 		for (final String property : displayProperties) {
@@ -225,6 +226,7 @@ public final class FormFactoryImpl implements FormFactory {
 		createDisplayPropertyConverters(displayProperties, formContent, binder, propertyDescriptors);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public <T extends Serializable> void addRequestInputFormFields(final FormLayout panelContent, final T item,
 			final Class<T> beanType, final List<String> displayProperties,final String buttonLabel,final ClickListener buttonListener) {

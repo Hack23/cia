@@ -49,6 +49,7 @@ public final class UpdateSearchIndexServiceTest extends AbstractUnitTest {
 	 *
 	 * @throws Exception the exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void serviceRequestInteruptExceptionFailureTest() throws Exception {
 		SecurityContextHolder.clearContext();

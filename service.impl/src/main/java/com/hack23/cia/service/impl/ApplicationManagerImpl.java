@@ -86,6 +86,7 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
 		return dataAgentContainer;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Secured({ "ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public <T extends Serializable, V extends Serializable> DataContainer<T, V> getDataContainer(
@@ -102,6 +103,7 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public ServiceResponse service(final ServiceRequest serviceRequest) {
@@ -124,6 +126,7 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void setApplicationContext(final ApplicationContext applicationContext) {
 		final Map<String, BusinessService> beansOfType = applicationContext.getBeansOfType(BusinessService.class);

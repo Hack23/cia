@@ -34,6 +34,7 @@ public class DecisionFlowValueChangeListenerTest extends AbstractUnitTest {
 	/**
 	 * Selection value change event source empty test.
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void selectionValueChangeEventSourceEmptyTest() {
 		final String pageName = "pageName";
@@ -57,6 +58,7 @@ public class DecisionFlowValueChangeListenerTest extends AbstractUnitTest {
 	/**
 	 * Selection value change test.
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void selectionValueChangeTest() {
 		final String pageName = "pageName";

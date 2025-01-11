@@ -76,6 +76,7 @@ DataContainer<T, I> {
 
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public final List<T> findListByProperty(final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {
@@ -102,6 +103,7 @@ DataContainer<T, I> {
 		return dataProxy.findOrderedListByProperty(clazz,property,value,orderByProperty);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public final List<T> findOrderedListByProperty(final SingularAttribute<T, ? extends Object> orderByProperty, final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {

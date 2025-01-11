@@ -322,6 +322,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	 *
 	 * @throws Exception the exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void updateVoteDataDataIgnoreEmptySuccessTest() throws Exception {
 		final VoteDataDAO voteDataDAO = mock(VoteDataDAO.class);
@@ -353,6 +354,7 @@ public class RiksdagenUpdateServiceITest extends AbstractServiceComponentAgentFu
 	 *
 	 * @throws Exception the exception
 	 */
+	@SuppressWarnings("unchecked")
 	@Test
 	public void updateVoteDataDataAlreadyExistSuccessTest() throws Exception {
 		final VoteDataDAO voteDataDAO = mock(VoteDataDAO.class);

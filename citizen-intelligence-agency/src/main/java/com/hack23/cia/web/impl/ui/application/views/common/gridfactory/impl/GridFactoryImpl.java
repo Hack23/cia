@@ -71,6 +71,7 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param grid
 	 *            the grid
 	 */
+	@SuppressWarnings("rawtypes")
 	private static void configureColumnOrdersAndHiddenFields(final String[] columnOrder, final String[] hideColumns,
 			final Grid grid) {
 		if (columnOrder != null) {
@@ -92,6 +93,7 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param grid
 	 *            the grid
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static void configureListeners(final SelectionListener listener, final Grid grid) {
 
 		if (listener != null) {
@@ -109,6 +111,7 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param dataType
 	 *            the data type
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static void createGridCellFilter(final String[] columnOrder, final Grid grid, final Class dataType) {
 		if (columnOrder != null) {
 			final GridCellFilter filter = new GridCellFilter(grid, dataType);
@@ -138,6 +141,7 @@ public final class GridFactoryImpl implements GridFactory {
 	 * @param grid
 	 *            the grid
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static void setColumnConverters(final ListPropertyConverter[] collectionPropertyConverter,
 			final Grid grid) {
 		if (collectionPropertyConverter != null) {

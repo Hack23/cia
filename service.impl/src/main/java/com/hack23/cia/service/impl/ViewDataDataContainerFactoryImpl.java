@@ -85,6 +85,7 @@ final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataC
 
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> List<T> findListByProperty(final Class<T> clazz, final Object[] values,
 			final SingularAttribute<T, ? extends Object>... properties) {
@@ -127,6 +128,7 @@ final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataC
 
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> List<T> findOrderedListByProperty(final Class<T> clazz, final SingularAttribute<T, ? extends Object> orderByProperty,
 			final Object[] values, final SingularAttribute<T, ? extends Object>... properties) {

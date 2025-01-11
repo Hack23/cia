@@ -54,6 +54,7 @@ public abstract class AbstractUnmarshallXmlTest<T> extends AbstractFunctionalInt
 	 * @throws Exception
 	 *             the exception
 	 */
+	@SuppressWarnings("unchecked")
 	protected final T unmarshallXml(final Unmarshaller unmarshaller, final String filename) throws Exception {
 		final BufferedReader inputStream = new BufferedReader(new InputStreamReader(
 				java.nio.file.Files.newInputStream(

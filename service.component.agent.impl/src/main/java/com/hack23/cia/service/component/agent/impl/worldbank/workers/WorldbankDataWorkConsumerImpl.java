@@ -67,6 +67,7 @@ MessageListener {
 		this.worldbankDataApi = worldbankDataApi;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onMessage(final Message message) {
 		try {

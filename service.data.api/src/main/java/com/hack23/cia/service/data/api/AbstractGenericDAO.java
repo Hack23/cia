@@ -63,6 +63,8 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 *            the properties
 	 * @return the list
 	 */
+
+	@SuppressWarnings("unchecked")
 	List<T> findListByProperty(Object[] values, SingularAttribute<T, ? extends Object>... properties);
 
 	/**
@@ -74,6 +76,7 @@ public interface AbstractGenericDAO<T extends Serializable, I extends Serializab
 	 * @param properties the properties
 	 * @return the list
 	 */
+	@SuppressWarnings("unchecked")
 	List<T> findListByPropertyBeforeDate(Date beforeDate, SingularAttribute<T, Date> dateField, Object[] values,
 			SingularAttribute<T, ? extends Object>... properties);
 
