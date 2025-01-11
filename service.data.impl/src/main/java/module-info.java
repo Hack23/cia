@@ -38,14 +38,14 @@ open module com.hack23.cia.service.data.impl {
 	requires java.desktop;
 	requires java.annotation;
 	requires org.slf4j;
-	requires spring.context;
+	requires transitive spring.context;
 	requires spring.context.support;
 	requires com.fasterxml.jackson.core;
 	
-	requires spring.beans;
+	requires transitive spring.beans;
 	requires spring.jdbc;
 	requires spring.tx;
-	requires spring.core;	
+	requires transitive spring.core;	
 	requires org.postgresql.jdbc;
 	requires transitive java.naming;
 	
@@ -60,7 +60,7 @@ open module com.hack23.cia.service.data.impl {
 	requires org.hibernate.search.engine;
 	requires org.hibernate.search.backend.lucene;
 	requires transitive org.hibernate.search.mapper.pojo; // Make this transitive
-	requires org.hibernate.search.mapper.orm;	
+	requires transitive org.hibernate.search.mapper.orm;	
 	
 	requires com.fasterxml.jackson.databind;	
 	requires transitive aws.secretsmanager.caching.java;
@@ -79,5 +79,5 @@ open module com.hack23.cia.service.data.impl {
 
 	requires com.google.common;
 
-    requires com.hack23.cia.service.data.api;
+    requires transitive com.hack23.cia.service.data.api;
 }

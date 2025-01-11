@@ -55,9 +55,9 @@ open module com.hack23.cia.service.external.common {
 	requires jakarta.activation;
 	requires org.jdom2;
 	requires transitive spring.oxm;
-	requires spring.beans;	
-	requires spring.core;	
-	requires spring.context;
+	requires transitive spring.beans;	
+	requires transitive spring.core;	
+	requires transitive spring.context;
 	requires org.apache.httpcomponents.httpclient;
 	requires org.apache.httpcomponents.httpclient.fluent;
 }
