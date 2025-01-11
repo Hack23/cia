@@ -66,6 +66,7 @@ public class AuditableAspectConfiguration {
 	 * @param txManager the tx manager
 	 * @return the javers
 	 */
+	@SuppressWarnings("rawtypes")
 	@Bean
 	public Javers getJavers(final PlatformTransactionManager txManager) {
 		final JaversSqlRepository sqlRepository = SqlRepositoryBuilder.sqlRepository()

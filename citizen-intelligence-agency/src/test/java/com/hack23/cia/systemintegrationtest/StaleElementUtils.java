@@ -73,6 +73,7 @@ public class StaleElementUtils {
 	 *            the method name
 	 * @return the case insensitive static declared method
 	 */
+	@SuppressWarnings("rawtypes")
 	private static Method getCaseInsensitiveStaticDeclaredMethod(final Class clazz, final String methodName) {
 		final Method[] methods = clazz.getMethods();
 		Method method = null;

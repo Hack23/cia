@@ -41,7 +41,7 @@ public final class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 	/**
 	 * Check correct page id click success test.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Test
 	public void checkCorrectPageIdClickSuccessTest() {
 		final PageItemPropertyClickListener pageItemPropertyClickListener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"personId");
@@ -83,7 +83,7 @@ public final class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 	/**
 	 * Selection change empty test.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Test
 	public void selectionChangeEmptyTest() {
 		final PageItemPropertyClickListener listener = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME,"wrongProperty");

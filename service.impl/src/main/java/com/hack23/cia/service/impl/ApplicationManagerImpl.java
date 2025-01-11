@@ -103,7 +103,7 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Secured({"ROLE_ANONYMOUS","ROLE_USER", "ROLE_ADMIN" })
 	@Override
 	public ServiceResponse service(final ServiceRequest serviceRequest) {
@@ -126,7 +126,7 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
 	}
 
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void setApplicationContext(final ApplicationContext applicationContext) {
 		final Map<String, BusinessService> beansOfType = applicationContext.getBeansOfType(BusinessService.class);

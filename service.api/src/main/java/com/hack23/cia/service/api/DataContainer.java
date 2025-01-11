@@ -144,6 +144,7 @@ public interface DataContainer<T extends Serializable, I extends Serializable> {
 	 *            the value
 	 * @return the t
 	 */
+	@SuppressWarnings("hiding")
 	<T, V> T findByQueryProperty(Class<T> clazz, SingularAttribute<T, ? extends Object> property, Class<V> clazz2,
 			SingularAttribute<V, ? extends Object> property2, Object value);
 
@@ -166,6 +167,7 @@ public interface DataContainer<T extends Serializable, I extends Serializable> {
 	 *            the value
 	 * @return the list
 	 */
+	@SuppressWarnings("hiding")
 	<T, V> List<T> findListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property, Class<V> clazz2,
 			SingularAttribute<V, ? extends Object> property2, Object value);
 
@@ -190,6 +192,7 @@ public interface DataContainer<T extends Serializable, I extends Serializable> {
 	 *            the order by property
 	 * @return the list
 	 */
+	@SuppressWarnings("hiding")
 	<T, V> List<T> findOrderedListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property, Class<V> clazz2,
 			SingularAttribute<V, ? extends Object> property2, Object value,
 			SingularAttribute<V, ? extends Object> orderByProperty);
@@ -215,6 +218,7 @@ public interface DataContainer<T extends Serializable, I extends Serializable> {
 	 *            the order by property
 	 * @return the list
 	 */
+	@SuppressWarnings("hiding")
 	<T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(Class<T> clazz, SingularAttribute<T, V> property,
 			Class<V> clazz2, SingularAttribute<V, ? extends Object> property2, Object value,
 			SingularAttribute<T, ? extends Object> orderByProperty);

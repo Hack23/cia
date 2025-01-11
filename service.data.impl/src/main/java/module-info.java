@@ -49,9 +49,9 @@ open module com.hack23.cia.service.data.impl {
 	requires org.postgresql.jdbc;
 	requires transitive java.naming;
 	
-	requires java.persistence;
-	requires org.hibernate.orm.core;
-	requires java.transaction;
+	requires transitive java.persistence;  // Changed from requires java.persistence
+	requires transitive org.hibernate.orm.core;
+	requires transitive java.transaction;
 	requires ehcache;
 	requires cache.api;
 
@@ -71,10 +71,10 @@ open module com.hack23.cia.service.data.impl {
 	requires org.apache.commons.lang3;
 	requires lucene.analyzers.common;
 
-	requires javers.spring;
-	requires javers.spring.jpa;
-	requires javers.persistence.sql;
-	requires javers.core;
+	requires transitive javers.spring;
+	requires transitive javers.spring.jpa;
+	requires transitive javers.persistence.sql;
+	requires transitive javers.core;
 
 
 	requires com.google.common;

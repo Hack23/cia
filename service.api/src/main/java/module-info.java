@@ -56,6 +56,7 @@ open module com.hack23.cia.service.api {
 	exports com.hack23.cia.service.api.action.user;
 	exports com.hack23.cia.service.api.action.kpi;
 
+	requires transitive java.persistence;  // Added for SingularAttribute
 	requires java.validation;
 	requires org.apache.commons.lang3;
 	requires org.apache.commons.collections4;

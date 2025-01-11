@@ -21,7 +21,6 @@ package com.hack23.cia.systemintegrationtest;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -166,6 +165,7 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 	 *
 	 * @return the web driver
 	 */
+	@SuppressWarnings("null")
 	protected final synchronized WebDriver getWebDriver() {
 
 		WebDriver driver = null;
@@ -182,11 +182,10 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 			fail("No valid browser parameter:" + browser);
 		}
 
-		driver.manage().timeouts().pageLoadTimeout(90, TimeUnit.SECONDS);
-	    driver.manage().timeouts().setScriptTimeout(90, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(java.time.Duration.ofSeconds(90));
+		driver.manage().timeouts().scriptTimeout(java.time.Duration.ofSeconds(90));
 
-
-	    webDriverMap.put(browser, driver);
+		webDriverMap.put(browser, driver);
 		return driver;
 	}
 
