@@ -156,7 +156,7 @@ public final class ListPropertyConverter implements Converter<String, List<?>>,V
 	}
 
 	@Override
-	public String convertToPresentation(final List value, final ValueContext context) {
+	public String convertToPresentation(final List<?> value, final ValueContext context) {
 		final StringBuilder stringBuilder = new StringBuilder();
 
 		if (value != null) {

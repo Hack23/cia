@@ -154,6 +154,7 @@ public final class FormFactoryImpl implements FormFactory {
 	 *            the type of property
 	 * @return the converter for type
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static Converter<String, ?> getConverterForType(final Class<?> typeOfProperty) {
 	    if (typeOfProperty == null) {
 	        return null;

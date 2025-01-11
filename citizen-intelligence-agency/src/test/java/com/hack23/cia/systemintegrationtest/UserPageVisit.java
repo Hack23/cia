@@ -316,7 +316,7 @@ public final class UserPageVisit extends Assert {
 		final String xPath = "//*[contains(@id,'" + action.name() + "')]";
 
 		for (final WebElement webElement : driver.findElements(By.xpath(xPath))) {
-			idList.add(webElement.getAttribute("id"));
+			idList.add(webElement.getDomAttribute("id"));
 
 		}
 
