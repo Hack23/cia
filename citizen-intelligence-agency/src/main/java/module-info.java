@@ -100,8 +100,14 @@ open module com.hack23.cia.web {
 	requires vaadin.compatibility.server;
 	requires responsive.layout;
 	requires org.hibernate.orm.jpamodelgen;
+	
 	requires java.persistence;
 	requires org.hibernate.orm.core;
+	requires java.transaction;
+	requires ehcache;
+	requires cache.api;
+
+	
 	requires java.annotation;
 	requires org.slf4j;
 	requires spring.tx;
@@ -171,5 +177,5 @@ open module com.hack23.cia.web {
 	requires transitive com.hack23.cia.model.external.val.landstingvalkrets.impl;
 	requires transitive com.hack23.cia.model.external.riksdagen.votering.impl;
 	requires transitive com.hack23.cia.model.external.worldbank.countries.impl;
-        requires org.apache.commons.beanutils;
+    requires org.apache.commons.beanutils;
 }
