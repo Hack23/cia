@@ -70,6 +70,7 @@ final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOpera
 				.getResourceAsStream("/sdds-plus-august-20202.xlsx"));
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<GovernmentOperationPeriodOutcome> getReport() throws IOException {
 		final List<GovernmentOperationPeriodOutcome> result = new ArrayList<>();

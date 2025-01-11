@@ -60,6 +60,7 @@ public final class PartyLeaderUtil {
         return result;
     }
 
+    @SuppressWarnings("unchecked")
     private static List<ViewRiksdagenPartyRoleMember> getActiveRoles(ApplicationManager applicationManager, String personId) {
         return applicationManager.getDataContainer(ViewRiksdagenPartyRoleMember.class)
                 .findListByProperty(

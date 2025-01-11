@@ -171,6 +171,7 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	 * @param loginBlockResultImpl
 	 *            the login block result impl
 	 */
+	@SuppressWarnings("unchecked")
 	private void blockByUserFailedLoginAttempts(final String email, final LoginBlockResultImpl loginBlockResultImpl) {
 		final UserAccount userExist = userDAO.findFirstByProperty(UserAccount_.email, email);
 
@@ -199,6 +200,7 @@ public final class LoginBlockedAccessImpl implements LoginBlockedAccess {
 	 * @param loginBlockResultImpl
 	 *            the login block result impl
 	 */
+	@SuppressWarnings("unchecked")
 	private void blockBySessionOrIpFailedLoginAttempts(final String sessionId, final LoginBlockResultImpl loginBlockResultImpl) {
 		final ApplicationSession applicationSession = applicationSessionDAO
 				.findFirstByProperty(ApplicationSession_.sessionId, sessionId);

@@ -40,7 +40,7 @@ public class ComplianceCheckPageItemRendererClickListenerTest extends AbstractUn
 	/**
 	 * Click party test.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Test
 	public void clickPartyTest() {
 		final ComplianceCheckPageItemRendererClickListener listener = new ComplianceCheckPageItemRendererClickListener();
@@ -61,7 +61,7 @@ public class ComplianceCheckPageItemRendererClickListenerTest extends AbstractUn
 	/**
 	 * Click politician test.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Test
 	public void clickPoliticianTest() {
 		final ComplianceCheckPageItemRendererClickListener listener = new ComplianceCheckPageItemRendererClickListener();
@@ -83,7 +83,7 @@ public class ComplianceCheckPageItemRendererClickListenerTest extends AbstractUn
 	/**
 	 * Selection change event source empty test.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Test
 	public void selectionChangeEventSourceEmptyTest() {
 		final ComplianceCheckPageItemRendererClickListener listener = new ComplianceCheckPageItemRendererClickListener();

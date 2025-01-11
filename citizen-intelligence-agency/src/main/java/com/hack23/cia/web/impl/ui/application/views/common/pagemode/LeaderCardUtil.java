@@ -55,6 +55,7 @@ public class LeaderCardUtil {
      *
      * @return the list
      */
+    @SuppressWarnings("unchecked")
     public List<ViewRiksdagenGovermentRoleMember> loadActiveGovernmentRoleMembers() {
         final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
                 .getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -67,6 +68,7 @@ public class LeaderCardUtil {
      *
      * @return the map
      */
+    @SuppressWarnings("unchecked")
     public Map<String, List<ViewRiksdagenPolitician>> loadActivePoliticiansByPersonId() {
         final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = applicationManager
                 .getDataContainer(ViewRiksdagenPolitician.class);
@@ -428,6 +430,7 @@ public class LeaderCardUtil {
      * @param leader the leader
      * @return the view riksdagen goverment role member
      */
+    @SuppressWarnings("unchecked")
     private ViewRiksdagenGovermentRoleMember findGovernmentRoleForLeader(ViewRiksdagenPolitician leader) {
         final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
                 .getDataContainer(ViewRiksdagenGovermentRoleMember.class);

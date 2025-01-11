@@ -155,6 +155,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	/**
 	 * Create a section for Government info.
 	 */
+	@SuppressWarnings("unchecked")
 	private void createDashboardGovernment(final ResponsiveRow row) {
 		final VerticalLayout govLayout = createLayoutWithTitle("Government");
 		final HorizontalLayout statsLayout = new HorizontalLayout();
@@ -201,6 +202,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	/**
 	 * Create a section for Parliament info.
 	 */
+	@SuppressWarnings("unchecked")
 	private void createDashboardParliament(final ResponsiveRow row) {
 		final VerticalLayout parliamentLayout = createLayoutWithTitle("Parliament");
 		final HorizontalLayout statsLayout = new HorizontalLayout();

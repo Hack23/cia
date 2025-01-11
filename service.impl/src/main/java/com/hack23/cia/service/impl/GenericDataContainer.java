@@ -58,6 +58,7 @@ DataContainer<T, I> {
 		dataProxy = dataViewer;
 	}
 
+	@SuppressWarnings("hiding")
 	@Override
 	public final <T, V> T findByQueryProperty(final Class<T> clazz,
 			final SingularAttribute<T, ? extends Object> property,
@@ -66,6 +67,7 @@ DataContainer<T, I> {
 		return dataProxy.findByQueryProperty(clazz, property, clazz2, property2, value);
 	}
 
+	@SuppressWarnings("hiding")
 	@Override
 	public final <T, V> List<T> findListByEmbeddedProperty(final Class<T> clazz,
 			final SingularAttribute<T, V> property,
@@ -83,6 +85,7 @@ DataContainer<T, I> {
 		return dataProxy.findListByProperty(clazz, values, properties);
 	}
 
+	@SuppressWarnings("hiding")
 	@Override
 	public final <T, V> List<T> findOrderedByPropertyListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
@@ -90,6 +93,7 @@ DataContainer<T, I> {
 		return dataProxy.findOrderedByPropertyListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);
 	}
 
+	@SuppressWarnings("hiding")
 	@Override
 	public final <T, V> List<T> findOrderedListByEmbeddedProperty(final Class<T> clazz, final SingularAttribute<T, V> property,
 			final Class<V> clazz2, final SingularAttribute<V, ? extends Object> property2, final Object value,
