@@ -47,6 +47,11 @@
       <version>${cia.project.versions.jakarta.activation}</version>
     </dependency>
     <dependency>
+      <groupId>com.sun.activation</groupId>
+      <artifactId>jakarta.activation</artifactId>
+      <version>${cia.project.versions.com.sun.activation}</version>
+    </dependency>
+    <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-xjc</artifactId>
       <exclusions>
