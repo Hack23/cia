@@ -25,14 +25,11 @@
 
 package com.hack23.cia.model.external.riksdagen.utskottsforslag.impl;
 
-import org.jvnet.jaxb2_commons.xml.bind.ContextPathAware;
-
 /**
  * The Class RoundtripTest.
  */
 public class RoundtripTest
     extends org.jvnet.hyperjaxb3.ejb.test.RoundtripTest
-    implements ContextPathAware
 {
 
 

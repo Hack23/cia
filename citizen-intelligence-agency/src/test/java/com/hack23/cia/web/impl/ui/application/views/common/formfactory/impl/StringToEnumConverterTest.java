@@ -31,6 +31,7 @@ public class StringToEnumConverterTest extends AbstractUnitTest {
 	/**
 	 * Convert to model test.
 	 */
+	@SuppressWarnings("rawtypes")
 	@Test
 	public void convertToModelNoFailureTest() {
 		assertFalse(new StringToEnumConverter().convertToModel(null,null).isError());

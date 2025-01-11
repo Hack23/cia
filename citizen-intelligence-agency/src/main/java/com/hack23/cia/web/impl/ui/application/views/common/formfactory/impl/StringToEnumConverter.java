@@ -25,18 +25,18 @@ import com.vaadin.data.ValueContext;
 /**
  * The Class StringToEnumConverter.
  */
-final class StringToEnumConverter implements Converter<String, Enum> {
+final class StringToEnumConverter<E extends Enum<E>> implements Converter<String, E> {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public Result<Enum> convertToModel(final String value, final ValueContext context) {
+	public Result<E> convertToModel(final String value, final ValueContext context) {
 		return Result.ok(null);
 	}
 
 	@Override
-	public String convertToPresentation(final Enum value, final ValueContext context) {
+	public String convertToPresentation(final E value, final ValueContext context) {
 		return value.toString();
 	}
 }

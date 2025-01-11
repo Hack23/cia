@@ -33,7 +33,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.component.agent.impl.AbstractServiceComponentAgentFunctionalIntegrationTest;
-import com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator.data.RiksdagenImportService;
 
 /**
  * The Class RiksdagenDocumentContentWorkConsumerImplITest.
@@ -44,10 +43,6 @@ public class RiksdagenDocumentContentWorkConsumerImplITest extends AbstractServi
 	@Autowired
 	@Qualifier("riksdagenDocumentContentWorkConsumerImpl")
 	private MessageListener messsageListener;
-
-	/** The riksdagen import service. */
-	@Autowired
-	private RiksdagenImportService riksdagenImportService;
 
 	/**
 	 * On message success test.
