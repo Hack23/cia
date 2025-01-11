@@ -6,7 +6,25 @@
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash",
     "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
-    "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn"
+    "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn",
+    "java.test.config": {
+      "vmargs": [
+        "--add-exports=java.base/sun.nio.ch=ALL-UNNAMED",
+        "--add-exports=java.base/jdk.internal.ref=ALL-UNNAMED",
+        "--add-opens=java.base/java.lang=ALL-UNNAMED",
+        "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+        "--add-opens=java.base/java.util=ALL-UNNAMED"
+      ]
+    },
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.test.defaultConfig": "default",
+    "maven.terminal.customEnv": [
+      {
+        "environmentVariable": "MAVEN_OPTS",
+        "value": "-Xmx2048m -Xms1024m -XX:+UseG1GC"
+      }
+    ]
   },
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
@@ -23,7 +41,10 @@
         "vscjava.vscode-java-pack",
         "GitHub.copilot",
         "redhat.vscode-xml",
-        "vscjava.vscode-maven"
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-dependency"
       ]
     }
   },
