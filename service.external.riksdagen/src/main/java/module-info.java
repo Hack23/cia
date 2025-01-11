@@ -59,7 +59,8 @@ open module com.hack23.cia.service.external.riksdagen {
 	requires org.slf4j;
 	requires transitive spring.context;
 	requires transitive spring.beans;
-
+    requires transitive spring.aop;
+	requires jakarta.activation;
 
 	requires transitive com.hack23.cia.service.external.common;
 

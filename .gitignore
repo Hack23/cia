@@ -25,3 +25,7 @@ DocumentContentData/write.lock
 DocumentElement/segments_1
 DocumentElement/write.lock
 citizen-intelligence-agency/src/main/webapp/VAADIN/addons/gantt/gantt.scss
+service.data.impl/DocumentElement/write.lock
+service.data.impl/DocumentContentData/segments_1
+service.data.impl/DocumentContentData/write.lock
+service.data.impl/DocumentElement/segments_1
