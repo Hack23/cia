@@ -1,30 +1,36 @@
 /**
  * Riksdagen Document Content Module.
  *
- * <p>This module provides implementation for handling document content from Riksdagen.</p>
+ * <p>
+ * This module provides implementation for handling document content from Riksdagen.
+ * </p>
  *
- * <p>Key Features:</p>
+ * <p>
+ * Key Features:
+ * </p>
  * <ul>
- *   <li>Fetching and parsing document content</li>
- *   <li>Data transformation and storage</li>
- *   <li>Integration with other Riksdagen modules</li>
+ * <li>Fetching and parsing document content</li>
+ * <li>Data transformation and storage</li>
+ * <li>Integration with other Riksdagen modules</li>
  * </ul>
  *
- * <p>Technologies / Integrations:</p>
+ * <p>
+ * Technologies / Integrations:
+ * </p>
  * <ul>
- *   <li>Java Persistence API (JPA)</li>
- *   <li>Hibernate ORM</li>
- *   <li>SLF4J for logging</li>
+ * <li>Java Persistence API (JPA)</li>
+ * <li>Hibernate ORM</li>
+ * <li>SLF4J for logging</li>
  * </ul>
  *
  * @see com.hack23.cia.model.common.api
  */
 open module com.hack23.cia.model.external.riksdagen.documentcontent.impl {
 	exports com.hack23.cia.model.external.riksdagen.documentcontent.impl;
-	
+
 	requires com.hack23.model.common.api;
-    requires transitive com.hack23.cia.model.common.impl;
-	
+	requires transitive com.hack23.cia.model.common.impl;
+
 
 	requires java.xml.bind;
 	requires java.persistence;
@@ -32,7 +38,7 @@ open module com.hack23.cia.model.external.riksdagen.documentcontent.impl {
 	requires org.slf4j;
 	requires org.apache.commons.lang3;
 	requires jaxb2.basics.runtime;
-	requires org.hibernate.search.mapper.pojo;
-
+	requires transitive org.hibernate.search.mapper.pojo;
+	requires org.hibernate.search.engine;
 
 }

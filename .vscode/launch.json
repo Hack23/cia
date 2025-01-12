@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CitizenIntelligenceAgencyServer",
+      "request": "launch",
+      "mainClass": "com.hack23.cia.web/com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer",
+      "projectName": "citizen-intelligence-agency"
+    },
+    {
+      "type": "java",
       "name": "Debug Application",
       "request": "launch",
       "mainClass": "${workspaceFolder}/src/main/java/com/hack23/cia/CitizenIntelligenceAgencyApplication.java",

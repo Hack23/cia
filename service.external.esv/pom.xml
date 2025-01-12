@@ -27,6 +27,16 @@
   </distributionManagement>
   <dependencies>
     <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>aws-core</artifactId>
+      <version>${cia.project.versions.aws.v2}</version>
+    </dependency>
+    <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>sdk-core</artifactId>
+      <version>${cia.project.versions.aws.v2}</version>
+    </dependency>
+    <dependency>
       <groupId>com.hack23.cia</groupId>
       <artifactId>testfoundation</artifactId>
       <scope>test</scope>

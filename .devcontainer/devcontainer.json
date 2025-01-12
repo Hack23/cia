@@ -105,7 +105,9 @@
     "PGHOST": "localhost",
     "PGUSER": "eris",
     "PGPASSWORD": "discord",
-    "PGDATABASE": "cia_dev"
+    "PGDATABASE": "cia_dev",
+    "PGSSLMODE": "verify-full",
+    "PGSSLCERT": "/home/vscode/.postgresql/root.crt"
   },
   "remoteUser": "vscode"
 }
