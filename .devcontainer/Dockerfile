@@ -29,6 +29,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     libgbm1 \
     libasound2 \
     libxtst6 \
+    libx11-6 \
+    libxext6 \
+    libxi6 \
+    x11-xserver-utils \
     && sh -c 'echo "deb [signed-by=/usr/share/keyrings/postgres-archive-keyring.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/postgresql.list' \
     && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/postgres-archive-keyring.gpg \
     && apt-get update \
