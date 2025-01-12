@@ -1,6 +1,22 @@
 /**
  * CIA (Citizen Intelligence Agency) Data Service API Module.
  *
+ * <p>This module defines the standardized data service APIs for persistence
+ * and retrieval across the CIA application.</p>
+ *
+ * <p>Key Features:</p>
+ * <ul>
+ *   <li>Database operation interfaces</li>
+ *   <li>Model integration for various government data</li>
+ *   <li>Transitive access to external data models</li>
+ * </ul>
+ *
+ * <p>Technologies / Integrations:</p>
+ * <ul>
+ *   <li>Java Persistence API for ORM</li>
+ *   <li>Model classes for external data structures</li>
+ * </ul>
+ *
  * <p>This module defines the data service API for the CIA application, providing
  * interfaces for data persistence and retrieval operations. It serves as the primary
  * contract for database operations across the application.</p>

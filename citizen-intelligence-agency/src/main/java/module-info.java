@@ -1,6 +1,23 @@
 /**
  * CIA (Citizen Intelligence Agency) Web Module.
- * 
+ *
+ * <p>This module delivers the Vaadin-based user interface, enabling users to
+ * explore political data, perform analyses, and manage administrative operations.</p>
+ *
+ * <p>Key Features:</p>
+ * <ul>
+ *   <li>Vaadin UI for interactive dashboards</li>
+ *   <li>Spring Security integration</li>
+ *   <li>Responsive layouts and charting</li>
+ * </ul>
+ *
+ * <p>Technologies / Integrations:</p>
+ * <ul>
+ *   <li>Vaadin for UI components</li>
+ *   <li>Spring Framework for security and backend integration</li>
+ *   <li>Third-party libraries for PDF viewing, charting, and user-agent parsing</li>
+ * </ul>
+ *
  * <p>This module implements the web interface for the CIA application using Vaadin framework.
  * It provides a comprehensive user interface for monitoring political figures, institutions,
  * and analyzing political/financial trends.</p>

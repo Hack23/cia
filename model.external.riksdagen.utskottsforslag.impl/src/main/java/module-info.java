@@ -1,3 +1,21 @@
+/**
+ * CIA (Citizen Intelligence Agency) Riksdagen Utskottsförslag Model Module.
+ *
+ * <p>This module manages committee proposals (utskottsförslag) from the Swedish
+ * Parliament, detailing recommended actions and decisions.</p>
+ *
+ * <p>Key Features:</p>
+ * <ul>
+ *   <li>Utskottsförslag entity mappings</li>
+ *   <li>Structured representation of committee proposals</li>
+ * </ul>
+ *
+ * <p>Technologies / Integrations:</p>
+ * <ul>
+ *   <li>Hibernate ORM for persistence</li>
+ *   <li>HyperJAXB/Java XML Binding</li>
+ * </ul>
+ */
 open module com.hack23.cia.model.external.riksdagen.utskottsforslag.impl {
 	exports com.hack23.cia.model.external.riksdagen.utskottsforslag.impl;
 	

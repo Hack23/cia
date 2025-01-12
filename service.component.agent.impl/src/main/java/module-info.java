@@ -1,6 +1,23 @@
 /**
  * CIA (Citizen Intelligence Agency) Agent Implementation Module.
  *
+ * <p>This module handles data collection and background processing, retrieving
+ * information from multiple sources such as Riksdagen, Val, and the World Bank.</p>
+ *
+ * <p>Key Features:</p>
+ * <ul>
+ *   <li>Automated data collection agents</li>
+ *   <li>JMS-based message handling</li>
+ *   <li>Transaction management with Spring</li>
+ * </ul>
+ *
+ * <p>Technologies / Integrations:</p>
+ * <ul>
+ *   <li>Spring Framework for scheduling and dependency injection</li>
+ *   <li>JMS for asynchronous message processing</li>
+ *   <li>Integration with external data services</li>
+ * </ul>
+ *
  * <p>This module implements the data collection and processing agents for the CIA application.
  * It provides implementations for retrieving and processing data from multiple sources including
  * the Swedish Parliament (Riksdagen), Election Authority (Val), and World Bank.</p>

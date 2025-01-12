@@ -1,3 +1,24 @@
+/**
+ * World Bank Indicators Module.
+ *
+ * <p>This module provides implementation for handling indicators data from the World Bank.</p>
+ *
+ * <p>Key Features:</p>
+ * <ul>
+ *   <li>Fetching and parsing indicators data</li>
+ *   <li>Data transformation and storage</li>
+ *   <li>Integration with other World Bank modules</li>
+ * </ul>
+ *
+ * <p>Technologies / Integrations:</p>
+ * <ul>
+ *   <li>Java Persistence API (JPA)</li>
+ *   <li>Hibernate ORM</li>
+ *   <li>SLF4J for logging</li>
+ * </ul>
+ *
+ * @see com.hack23.cia.model.common.api
+ */
 open module com.hack23.cia.model.external.worldbank.indicators.impl {
 	exports com.hack23.cia.model.external.worldbank.indicators.impl;
 	
