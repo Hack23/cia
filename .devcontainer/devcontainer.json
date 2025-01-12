@@ -41,7 +41,6 @@
       "source.organizeImports": true,
       "source.fixAll": true
     },
-    "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
     "java.completion.importOrder": [
       "java",
       "javax",
@@ -50,7 +49,6 @@
     ],
     "java.saveActions.organizeImports": true,
     "java.debug.settings.hotCodeReplace": "auto",
-    "java.checkstyle.configuration": "/google_checks.xml",
     "sonarlint.rules": {
       "java:S106": "off"
     }
@@ -91,7 +89,6 @@
         "vscjava.vscode-spring-boot-dashboard",
         "redhat.vscode-yaml",
         "SonarSource.sonarlint-vscode",
-        "shengchen.vscode-checkstyle",
         "VisualStudioExptTeam.vscodeintellicode",
         "VisualStudioExptTeam.intellicode-api-usage-examples",
         "redhat.fabric8-analytics",
