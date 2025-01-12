@@ -1,3 +1,21 @@
+/**
+ * CIA (Citizen Intelligence Agency) Val Partier Model Module.
+ *
+ * <p>This module models Swedish political parties' data, covering official
+ * registrations and other party-related information.</p>
+ *
+ * <p>Key Features:</p>
+ * <ul>
+ *   <li>Party entity definitions</li>
+ *   <li>Integration with the CIA model framework</li>
+ * </ul>
+ *
+ * <p>Technologies / Integrations:</p>
+ * <ul>
+ *   <li>Hibernate-based persistence</li>
+ *   <li>JAXB for data import</li>
+ * </ul>
+ */
 open module com.hack23.cia.model.external.val.partier.impl {
 	exports com.hack23.cia.model.external.val.partier.impl;
 	

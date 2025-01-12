@@ -1,3 +1,21 @@
+/**
+ * CIA (Citizen Intelligence Agency) Val Landstingvalkrets Model Module.
+ *
+ * <p>This module contains data structures and JPA entities for representing
+ * Swedish county council electoral districts.</p>
+ *
+ * <p>Key Features:</p>
+ * <ul>
+ *   <li>Mapping of landstingvalkrets (county council regions)</li>
+ *   <li>Integration with the CIA model framework</li>
+ * </ul>
+ *
+ * <p>Technologies / Integrations:</p>
+ * <ul>
+ *   <li>Hibernate-based entity persistence</li>
+ *   <li>Java XML Binding for data import</li>
+ * </ul>
+ */
 open module com.hack23.cia.model.external.val.landstingvalkrets.impl {
 	exports com.hack23.cia.model.external.val.landstingvalkrets.impl;
 	
