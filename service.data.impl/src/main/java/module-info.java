@@ -68,6 +68,9 @@ open module com.hack23.cia.service.data.impl {
 	requires transitive aws.java.sdk.secretsmanager;
 	requires transitive aws.java.sdk.core;
 	
+    requires software.amazon.awssdk.core;
+    requires software.amazon.awssdk.services.secretsmanager;
+
 	requires org.apache.commons.lang3;
 	requires lucene.analyzers.common;
 
