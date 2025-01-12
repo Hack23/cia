@@ -66,7 +66,7 @@ RUN chmod +x /usr/local/bin/init-postgresql.sh \
 ARG MAVEN_VERSION=3.9.9
 ENV MAVEN_HOME=/usr/share/maven
 ENV PATH=${PATH}:${MAVEN_HOME}/bin
-ENV MAVEN_OPTS="-Xmx4096m -Xms4096 -XX:+UseG1GC"
+ENV MAVEN_OPTS="-Xmx8192m -Xms2048m -XX:+UseG1GC"
 ENV JAVA_TOOL_OPTIONS="\
     --add-exports=java.base/sun.nio.ch=ALL-UNNAMED \
     --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED \

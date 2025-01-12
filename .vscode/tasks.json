@@ -13,8 +13,8 @@
 			"detail": "$(tools) Build all the Java projects in workspace.",
 			"options": {
 				"env": {
-					"JAVA_OPTS": "-Xmx4096m -Xms4096m -XX:+UseG1GC",
-					"MAVEN_OPTS": "-Xmx4096m -Xms4096m -XX:+UseG1GC"
+					"JAVA_OPTS": "-Xmx8192m -Xms2048m -XX:+UseG1GC",
+					"MAVEN_OPTS": "-Xmx8192m -Xms2048m -XX:+UseG1GC"
 				}
 			}
 		}

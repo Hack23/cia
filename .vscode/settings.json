@@ -19,7 +19,7 @@
   "maven.terminal.customEnv": [
     {
       "environmentVariable": "MAVEN_OPTS",
-      "value": "-Xmx2048m -Xms1024m -XX:+UseG1GC"
+      "value": "-Xmx8192m -Xms2048m -XX:+UseG1GC"
     }
   ],
   "coverage-gutters.showGutterCoverage": true,
