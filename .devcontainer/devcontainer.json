@@ -26,7 +26,7 @@
     "maven.terminal.customEnv": [
       {
         "environmentVariable": "MAVEN_OPTS",
-        "value": "-Xmx4096m -Xms4096m -XX:+UseG1GC"
+        "value": "-Xmx8192m -Xms2048m -XX:+UseG1GC"
       }
     ],
     "coverage-gutters.showGutterCoverage": true,
@@ -61,7 +61,7 @@
           "mainClass": "com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer",
           "projectName": "citizen-intelligence-agency",
           "cwd": "${workspaceFolder}/citizen-intelligence-agency",
-          "vmArgs": "-Xmx4096m -Xms4096m -XX:+UseG1GC",
+          "vmArgs": "-Xmx8192m -Xms2048m -XX:+UseG1GC",
           "classpath": [
             "${workspaceFolder}/citizen-intelligence-agency/target/test-classes",
             "${workspaceFolder}/citizen-intelligence-agency/target/classes"
