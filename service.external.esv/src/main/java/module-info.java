@@ -35,4 +35,6 @@ open module com.hack23.cia.service.external.esv {
 	requires org.apache.commons.csv;
 	
 	requires com.hack23.cia.service.external.common;
+	requires transitive org.apache.httpcomponents.httpclient.fluent;
+
 }

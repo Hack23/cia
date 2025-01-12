@@ -58,6 +58,6 @@ open module com.hack23.cia.service.external.common {
 	requires transitive spring.beans;	
 	requires transitive spring.core;	
 	requires transitive spring.context;
-	requires org.apache.httpcomponents.httpclient;
-	requires org.apache.httpcomponents.httpclient.fluent;
+	requires transitive org.apache.httpcomponents.httpclient;
+	requires transitive org.apache.httpcomponents.httpclient.fluent;
 }

@@ -220,7 +220,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
             CSVFormat.EXCEL.builder()
                 .setHeader()
                 .setDelimiter(CSV_DELIMITER)
-                .build()
+                .get()
         );
 
         final Map<Integer, Map<String, String>> ministryMap = createOrgMinistryMap(
