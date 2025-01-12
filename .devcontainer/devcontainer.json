@@ -94,7 +94,7 @@
             "-Dsurefire.reportNameSuffix=UNIT"
           ],
           "options": {
-            "cwd": "${workspaceFolder}/../parent-pom",
+            "cwd": "${workspaceFolder}/parent-pom",
             "env": {
               "MAVEN_OPTS": "-server -Xmx2048m -Xms2048m"
             }
@@ -115,7 +115,7 @@
             "-Dhttps.protocols=TLSv1.2"
           ],
           "options": {
-            "cwd": "${workspaceFolder}/../parent-pom",
+            "cwd": "${workspaceFolder}/parent-pom",
             "env": {
               "MAVEN_OPTS": "-server -Xmx2048m -Xms2048m"
             }
