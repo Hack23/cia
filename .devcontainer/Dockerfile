@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/devcontainers/java:21-bookworm
 # Install all packages in a single layer to reduce image size
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
     && apt-get update \
     && apt-get -y install --no-install-recommends \
     graphviz \
@@ -28,6 +28,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     libnss3 \
     libgbm1 \
     libasound2 \
+    libxtst6 \
+    libx11-6 \
+    libxext6 \
+    libxi6 \
+    x11-xserver-utils \
     && sh -c 'echo "deb [signed-by=/usr/share/keyrings/postgres-archive-keyring.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/postgresql.list' \
     && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/postgres-archive-keyring.gpg \
     && apt-get update \
@@ -66,7 +71,7 @@ RUN chmod +x /usr/local/bin/init-postgresql.sh \
 ARG MAVEN_VERSION=3.9.9
 ENV MAVEN_HOME=/usr/share/maven
 ENV PATH=${PATH}:${MAVEN_HOME}/bin
-ENV MAVEN_OPTS="-Xmx4096m -Xms4096 -XX:+UseG1GC"
+ENV MAVEN_OPTS="-Xmx8192m -Xms2048m -XX:+UseG1GC"
 ENV JAVA_TOOL_OPTIONS="\
     --add-exports=java.base/sun.nio.ch=ALL-UNNAMED \
     --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED \
