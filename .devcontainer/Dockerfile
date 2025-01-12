@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/devcontainers/java:21-bookworm
 
 # Install additional packages
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends \
+    && apt-get -y install \
     graphviz \
     build-essential \
     fakeroot \
@@ -12,6 +12,41 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     wget \
     tzdata \
     && rm -rf /var/lib/apt/lists/*
+
+# Install PostgreSQL 15
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install \
+    postgresql-15 \
+    postgresql-contrib-15 \
+    postgresql-15-pgaudit \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install additional development tools
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install \
+        git \
+        curl \
+        unzip \
+        jq \
+        shellcheck \
+        vim \
+    && rm -rf /var/lib/apt/lists/*
+
+# Configure Git
+RUN git config --system core.fileMode false \
+    && git config --system core.autocrlf input \
+    && git config --system pull.rebase true \
+    && git config --system push.default current
+
+# Install Checkstyle
+RUN wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.12.7/checkstyle-10.12.7-all.jar \
+    -O /usr/local/lib/checkstyle.jar \
+    && wget https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml \
+    -O /google_checks.xml
+
+# Copy PostgreSQL initialization script
+COPY init-postgresql.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/init-postgresql.sh
 
 # Set timezone to match your workflow (Europe/Stockholm)
 RUN ln -fs /usr/share/zoneinfo/Europe/Stockholm /etc/localtime \

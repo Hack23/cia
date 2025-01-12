@@ -35,7 +35,25 @@
     "java.test.report.showCoverageData": true,
     "coverage-gutters.coverageFileNames": [
       "jacoco.xml"
-    ]
+    ],
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll": true
+    },
+    "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+    "java.completion.importOrder": [
+      "java",
+      "javax",
+      "org",
+      "com"
+    ],
+    "java.saveActions.organizeImports": true,
+    "java.debug.settings.hotCodeReplace": "auto",
+    "java.checkstyle.configuration": "/google_checks.xml",
+    "sonarlint.rules": {
+      "java:S106": "off"
+    }
   },
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
@@ -47,7 +65,8 @@
     }
   },
   "mounts": [
-  "source=${localEnv:HOME}/.m2,target=/home/vscode/.m2,type=bind"
+    "source=${localEnv:HOME}/.m2,target=/home/vscode/.m2,type=bind",
+    "source=postgres_data,target=/var/lib/postgresql/15/main,type=volume"
   ],
   "customizations": {
     "vscode": {
@@ -59,11 +78,30 @@
         "vscjava.vscode-java-test",
         "vscjava.vscode-java-debug",
         "vscjava.vscode-java-dependency",
-        "ryanluker.vscode-coverage-gutters"
+        "ryanluker.vscode-coverage-gutters",
+        "ckolkman.vscode-postgres",
+        "vscjava.vscode-spring-initializr",
+        "vscjava.vscode-spring-boot-dashboard",
+        "redhat.vscode-yaml",
+        "SonarSource.sonarlint-vscode",
+        "shengchen.vscode-checkstyle",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "VisualStudioExptTeam.intellicode-api-usage-examples",
+        "redhat.fabric8-analytics",
+        "ms-azuretools.vscode-docker",
+        "streetsidesoftware.code-spell-checker",
+        "eamodio.gitlens"
       ]
     }
   },
-  "forwardPorts": [],
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make",
+  "forwardPorts": [5432],
+  "postCreateCommand": "sudo /usr/local/bin/init-postgresql.sh",
+  "postStartCommand": "sudo service postgresql start",
+  "remoteEnv": {
+    "PGHOST": "localhost",
+    "PGUSER": "eris",
+    "PGPASSWORD": "discord",
+    "PGDATABASE": "cia_dev"
+  },
   "remoteUser": "vscode"
 }

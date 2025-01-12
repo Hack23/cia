@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Debug Application",
+      "request": "launch",
+      "mainClass": "${workspaceFolder}/src/main/java/com/hack23/cia/CitizenIntelligenceAgencyApplication.java",
+      "projectName": "cia",
+      "env": {
+        "SPRING_PROFILES_ACTIVE": "dev"
+      },
+      "vmArgs": [
+        "-Xms1024m",
+        "-Xmx2048m",
+        "-XX:+UseG1GC",
+        "--add-opens=java.base/java.lang=ALL-UNNAMED",
+        "--add-opens=java.base/java.util=ALL-UNNAMED"
+      ]
+    },
+    {
+      "type": "java",
+      "name": "Debug (Attach)",
+      "request": "attach",
+      "hostName": "localhost",
+      "port": 5005
+    }
+  ]
+}
