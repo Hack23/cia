@@ -26,7 +26,7 @@
     "maven.terminal.customEnv": [
       {
         "environmentVariable": "MAVEN_OPTS",
-        "value": "-Xmx2048m -Xms1024m -XX:+UseG1GC"
+        "value": "-Xmx4096m -Xms4096m -XX:+UseG1GC"
       }
     ],
     "coverage-gutters.showGutterCoverage": true,
@@ -61,6 +61,7 @@
           "mainClass": "com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer",
           "projectName": "citizen-intelligence-agency",
           "cwd": "${workspaceFolder}/citizen-intelligence-agency",
+          "vmArgs": "-Xmx4096m -Xms4096m -XX:+UseG1GC",
           "classpath": [
             "${workspaceFolder}/citizen-intelligence-agency/target/test-classes",
             "${workspaceFolder}/citizen-intelligence-agency/target/classes"
@@ -101,8 +102,8 @@
       "version": "21",
       "distribution": "open",
       "installMaven": true,
-      "mavenVersion" : "3.9.9",
-      "installAnt" : true
+      "mavenVersion": "3.9.9",
+      "installAnt": true
     },
     "ghcr.io/devcontainers/features/node:1": {
       "version": "20"
@@ -128,20 +129,18 @@
         "vscjava.vscode-java-dependency",
         "ryanluker.vscode-coverage-gutters",
         "ckolkman.vscode-postgres",
-        "vscjava.vscode-spring-initializr",
-        "vscjava.vscode-spring-boot-dashboard",
         "redhat.vscode-yaml",
         "SonarSource.sonarlint-vscode",
         "VisualStudioExptTeam.vscodeintellicode",
         "VisualStudioExptTeam.intellicode-api-usage-examples",
-        "redhat.fabric8-analytics",
         "ms-azuretools.vscode-docker",
-        "streetsidesoftware.code-spell-checker",
         "eamodio.gitlens"
       ]
     }
   },
-  "forwardPorts": [5432],
+  "forwardPorts": [
+    5432
+  ],
   "postCreateCommand": "sudo /usr/local/bin/init-postgresql.sh",
   "postStartCommand": "sudo service postgresql start",
   "remoteEnv": {
