@@ -52,24 +52,6 @@
     "sonarlint.rules": {
       "java:S106": "off"
     },
-    "launch": {
-      "configurations": [
-        {
-          "type": "java",
-          "name": "Launch CIA Server",
-          "request": "launch",
-          "mainClass": "com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer",
-          "projectName": "citizen-intelligence-agency",
-          "cwd": "${workspaceFolder}/citizen-intelligence-agency",
-          "vmArgs": "-Xmx8192m -Xms2048m -XX:+UseG1GC",
-          "classpath": [
-            "${workspaceFolder}/citizen-intelligence-agency/target/test-classes",
-            "${workspaceFolder}/citizen-intelligence-agency/target/classes"
-          ]
-        }
-      ],
-      "compounds": []
-    },
     "tasks": {
       "version": "2.0.0",
       "tasks": [
