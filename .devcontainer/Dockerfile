@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/devcontainers/java:21-bookworm
 
-# Install additional packages
+# Install all packages in a single layer to reduce image size
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install \
+    && apt-get -y install --no-install-recommends \
     graphviz \
     build-essential \
     fakeroot \
@@ -11,25 +11,24 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     dh-make \
     wget \
     tzdata \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install PostgreSQL 15
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install \
-    postgresql-15 \
-    postgresql-contrib-15 \
-    postgresql-15-pgaudit \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install additional development tools
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install \
-        git \
-        curl \
-        unzip \
-        jq \
-        shellcheck \
-        vim \
+    git \
+    curl \
+    unzip \
+    jq \
+    shellcheck \
+    vim \
+    lsb-release \
+    gnupg2 \
+    && sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' \
+    && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/postgres-archive-keyring.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/postgres-archive-keyring.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/postgresql.list \
+    && apt-get update \
+    && apt-get -y install --no-install-recommends \
+    postgresql-16 \
+    postgresql-contrib-16 \
+    postgresql-16-pgaudit \
+    postgresql-16-pgvector \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Configure Git
@@ -37,12 +36,6 @@ RUN git config --system core.fileMode false \
     && git config --system core.autocrlf input \
     && git config --system pull.rebase true \
     && git config --system push.default current
-
-# Install Checkstyle
-RUN wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-10.12.7/checkstyle-10.12.7-all.jar \
-    -O /usr/local/lib/checkstyle.jar \
-    && wget https://raw.githubusercontent.com/checkstyle/checkstyle/master/src/main/resources/google_checks.xml \
-    -O /google_checks.xml
 
 # Copy PostgreSQL initialization script
 COPY init-postgresql.sh /usr/local/bin/

@@ -1,17 +1,48 @@
 #!/bin/bash
-set -e
+set -euo pipefail
+
+# Function for error handling
+handle_error() {
+    echo "Error occurred in script at line: ${1}"
+    exit 1
+}
+trap 'handle_error ${LINENO}' ERR
+
+# Ensure running as root
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run as root" >&2
+    exit 1
+fi
 
 # Start PostgreSQL service
-service postgresql start
+service postgresql start || { echo "Failed to start PostgreSQL"; exit 1; }
 
-# Create the database and user
+# Wait for PostgreSQL to be ready
+for i in {1..30}; do
+    if su - postgres -c "psql -c '\q'" >/dev/null 2>&1; then
+        break
+    fi
+    echo "Waiting for PostgreSQL to start..."
+    sleep 1
+    if [ $i -eq 30 ]; then
+        echo "Timeout waiting for PostgreSQL to start"
+        exit 1
+    fi
+done
+
+# Create the database and user - with NVM_DIR unset to avoid permission errors
+export NVM_DIR=""
 su - postgres -c "psql -c 'CREATE USER eris WITH password '\''discord'\'';'"
 su - postgres -c "psql -c 'CREATE DATABASE cia_dev;'"
 su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;'"
+su - postgres -c "psql -d cia_dev -c 'GRANT ALL ON SCHEMA public TO eris;'"
+su - postgres -c "psql -d cia_dev -c 'ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO eris;'"
+su - postgres -c "psql -d cia_dev -c 'ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO eris;'"
 
-# Generate SSL certificates
+# Generate SSL certificates with stronger security settings
 openssl rand -base64 48 > passphrase.txt
-openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
+umask 077 # Ensure secure file permissions
+openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 4096  # Increased key size
 openssl rsa -passin file:passphrase.txt -in server.pass.key -out server.key
 rm server.pass.key
 # Create OpenSSL config file
@@ -45,13 +76,17 @@ rm passphrase.txt
 rm server.csr
 rm openssl.cnf
 
+# Secure the certificate files
+chmod 600 server.key server.crt
+chown postgres:postgres server.key server.crt
+
 # Configure PostgreSQL SSL and other settings
-cp server.crt /var/lib/postgresql/15/main/server.crt
-cp server.key /var/lib/postgresql/15/main/server.key
+cp server.crt /var/lib/postgresql/16/main/server.crt
+cp server.key /var/lib/postgresql/16/main/server.key
 rm server.key
-chmod 700 /var/lib/postgresql/15/main/server.key
-chmod 700 /var/lib/postgresql/15/main/server.crt
-chown -R postgres:postgres /var/lib/postgresql/15/main/
+chmod 700 /var/lib/postgresql/16/main/server.key
+chmod 700 /var/lib/postgresql/16/main/server.crt
+chown -R postgres:postgres /var/lib/postgresql/16/main/
 
 # Create .postgresql directory for the vscode user
 mkdir -p /home/vscode/.postgresql
@@ -61,19 +96,31 @@ chown -R vscode:vscode /home/vscode/.postgresql
 rm server.crt
 
 # Update PostgreSQL configuration
-echo "ssl = on" >> /etc/postgresql/15/main/postgresql.conf
-echo "ssl_cert_file = '/var/lib/postgresql/15/main/server.crt'" >> /etc/postgresql/15/main/postgresql.conf
-echo "ssl_key_file = '/var/lib/postgresql/15/main/server.key'" >> /etc/postgresql/15/main/postgresql.conf
-echo "max_prepared_transactions = 100" >> /etc/postgresql/15/main/postgresql.conf
-echo "shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'" >> /etc/postgresql/15/main/postgresql.conf
-echo "pgaudit.log = ddl" >> /etc/postgresql/15/main/postgresql.conf
-echo "pg_stat_statements.track = all" >> /etc/postgresql/15/main/postgresql.conf
-echo "pg_stat_statements.max = 10000" >> /etc/postgresql/15/main/postgresql.conf
-echo "listen_addresses = '*'" >> /etc/postgresql/15/main/postgresql.conf
+echo "ssl = on" >> /etc/postgresql/16/main/postgresql.conf
+echo "ssl_cert_file = '/var/lib/postgresql/16/main/server.crt'" >> /etc/postgresql/16/main/postgresql.conf
+echo "ssl_key_file = '/var/lib/postgresql/16/main/server.key'" >> /etc/postgresql/16/main/postgresql.conf
+echo "max_prepared_transactions = 100" >> /etc/postgresql/16/main/postgresql.conf
+echo "shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'" >> /etc/postgresql/16/main/postgresql.conf
+echo "pgaudit.log = ddl" >> /etc/postgresql/16/main/postgresql.conf
+echo "pg_stat_statements.track = all" >> /etc/postgresql/16/main/postgresql.conf
+echo "pg_stat_statements.max = 10000" >> /etc/postgresql/16/main/postgresql.conf
+echo "listen_addresses = '*'" >> /etc/postgresql/16/main/postgresql.conf
 
 # Update pg_hba.conf
-echo "hostssl all all 0.0.0.0/0 md5" >> /etc/postgresql/15/main/pg_hba.conf
-echo "hostssl all all ::1/128 md5" >> /etc/postgresql/15/main/pg_hba.conf
+echo "hostssl all all 0.0.0.0/0 md5" >> /etc/postgresql/16/main/pg_hba.conf
+echo "hostssl all all ::1/128 md5" >> /etc/postgresql/16/main/pg_hba.conf
 
-# Restart PostgreSQL to apply changes
+# Verify SSL configuration
+if ! su - postgres -c "psql -c 'SHOW ssl'" | grep -q 'on'; then
+    echo "SSL configuration verification failed"
+    exit 1
+fi
+
+# Restart PostgreSQL and verify it's running
 service postgresql restart
+if ! service postgresql status | grep -q "active (running)"; then
+    echo "PostgreSQL failed to restart"
+    exit 1
+fi
+
+echo "PostgreSQL 16 initialization completed successfully"

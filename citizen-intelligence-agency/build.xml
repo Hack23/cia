@@ -94,6 +94,12 @@
 			<arg line="clean compile jetty:run  -Dtest=no -DfailIfNoTests=false -Dcom.sun.management.jmxremote.port=9002 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djavamelody.system-actions-enabled=true -Djava.awt.headless=true -Djavamelody.storage-directory=${user.dir}/target/" />
 		</exec>
 	</target>
+	<target name="run-server" description="cia-run-server" depends="init">
+		<exec executable="${maven.binary}" dir=".">
+			<env key="MAVEN_OPTS" value="-server -Xmx2048m -Xms2048m" />
+			<arg line="exec:java -Dexec.classpathScope=test -Dexec.mainClass=com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer" />
+		</exec>
+	</target>
 	<target name="site-cia" description="cia-site-cia" depends="init">
 			<exec executable="${maven.binary}" dir=".">
 				<env key="MAVEN_OPTS" value="-server -Xmx6048m -Xms6048m  " />

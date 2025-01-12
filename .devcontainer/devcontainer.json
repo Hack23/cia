@@ -51,6 +51,49 @@
     "java.debug.settings.hotCodeReplace": "auto",
     "sonarlint.rules": {
       "java:S106": "off"
+    },
+    "launch": {
+      "configurations": [
+        {
+          "type": "java",
+          "name": "Launch CIA Server",
+          "request": "launch",
+          "mainClass": "com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer",
+          "projectName": "citizen-intelligence-agency",
+          "cwd": "${workspaceFolder}/citizen-intelligence-agency",
+          "classpath": [
+            "${workspaceFolder}/citizen-intelligence-agency/target/test-classes",
+            "${workspaceFolder}/citizen-intelligence-agency/target/classes"
+          ]
+        }
+      ],
+      "compounds": []
+    },
+    "tasks": {
+      "version": "2.0.0",
+      "tasks": [
+        {
+          "label": "Run CIA Server",
+          "type": "shell",
+          "command": "mvn",
+          "args": [
+            "exec:java",
+            "-Dexec.classpathScope=test",
+            "-Dexec.mainClass=com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer"
+          ],
+          "options": {
+            "cwd": "${workspaceFolder}/citizen-intelligence-agency"
+          },
+          "group": {
+            "kind": "run",
+            "isDefault": true
+          },
+          "presentation": {
+            "reveal": "always",
+            "panel": "new"
+          }
+        }
+      ]
     }
   },
   "features": {
@@ -71,7 +114,7 @@
   },
   "mounts": [
     "source=${localEnv:HOME}/.m2,target=/home/vscode/.m2,type=bind",
-    "source=postgres_data,target=/var/lib/postgresql/15/main,type=volume"
+    "source=postgres_data,target=/var/lib/postgresql/16/main,type=volume"
   ],
   "customizations": {
     "vscode": {
