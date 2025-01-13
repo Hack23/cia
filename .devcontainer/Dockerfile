@@ -23,6 +23,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     lsb-release \
     gnupg2 \
     xvfb \
+    xauth \
     google-chrome-stable \
     xdg-utils \
     libnss3 \

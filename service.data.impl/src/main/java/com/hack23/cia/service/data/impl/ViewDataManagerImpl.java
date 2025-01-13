@@ -31,7 +31,7 @@ import com.hack23.cia.service.data.api.ViewDataManager;
  * The Class ViewDataManagerImpl.
  */
 @Service
-@Transactional(timeout=900)
+@Transactional(timeout = 900)
 final class ViewDataManagerImpl implements ViewDataManager {
 
 	/** The data source. */
@@ -49,8 +49,8 @@ final class ViewDataManagerImpl implements ViewDataManager {
 	public void refreshViews() {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-
-		//Handle FP changed to L for folkpartiet name changed to liberalerna.
+		// Handle FP changed to L for folkpartiet name changed to liberalerna.
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_worldbank_indicator_data_country_summary");
 
 		jdbcTemplate.execute("update vote_data set gender='MAN' where gender='M'");
 		jdbcTemplate.execute("update vote_data set gender='KVINNA' where gender='K'");
@@ -58,14 +58,14 @@ final class ViewDataManagerImpl implements ViewDataManager {
 		jdbcTemplate.execute("update vote_data set gender='MAN' where gender='man'");
 		jdbcTemplate.execute("update vote_data set gender='KVINNA' where gender='kvinna'");
 
-
 		jdbcTemplate.execute("update vote_data set party='L' where party='FP'");
 
 		jdbcTemplate.execute("update person_data set party='L' where party='FP'");
 		jdbcTemplate.execute("update document_element set org='L' where org='FP' or org='fp'");
 		jdbcTemplate.execute("update document_data set org='L' where org='FP' or org='fp'");
 		jdbcTemplate.execute("update committee_document_data set org='L' where org='FP' or org='fp'");
-		jdbcTemplate.execute("update document_person_reference_da_0 set party_short_code='L' where party_short_code='FP' or party_short_code='fp'");
+		jdbcTemplate.execute(
+				"update document_person_reference_da_0 set party_short_code='L' where party_short_code='FP' or party_short_code='fp'");
 
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_worldbank_indicator_data_country_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary");
@@ -93,14 +93,15 @@ final class ViewDataManagerImpl implements ViewDataManager {
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_org_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_summary");
 
-
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_org_document_daily_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_party_document_daily_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document_daily_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_document_type_daily_summary");
 
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_worldbank_indicator_data_country_summary");
+		// Add refresh for new materialized views
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_ballot_summary");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_experience_summary");
 
 	}
 
