@@ -19,23 +19,14 @@
 package com.hack23.cia.systemintegrationtest;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.hack23.cia.testfoundation.AbstractSystemIntegrationTest;
 import com.hack23.cia.testfoundation.Parallelized;
@@ -61,54 +52,35 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 	private static final boolean usingExternalServer;
 
 	/** The Constant webDriverMap. */
-	private static final Map<String, WebDriver> webDriverMap = new ConcurrentHashMap<>();
-
 	static {
-		 final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
-		 if (systemTestTargetUrlProperty != null && systemTestTargetUrlProperty.trim().length() > 0) {
-			 usingExternalServer=true;
-		 } else {
-			 usingExternalServer=false;
-		 }
+		final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
+		if (systemTestTargetUrlProperty != null && systemTestTargetUrlProperty.isEmpty()) {
+			usingExternalServer = true;
+		} else {
+			usingExternalServer = false;
+		}
 
-		 systemTestTargetAdminEmail = System.getProperty("system.test.target.admin.email");
-		 if (systemTestTargetAdminEmail == null) {
-			 systemTestTargetAdminEmail = "admin@hack23.com";
-		 }
+		systemTestTargetAdminEmail = System.getProperty("system.test.target.admin.email");
+		if (systemTestTargetAdminEmail == null) {
+			systemTestTargetAdminEmail = "admin@hack23.com";
+		}
 
-		 systemTestTargetAdminPassword = System.getProperty("system.test.target.admin.password");
-		 if (systemTestTargetAdminPassword == null) {
-			 systemTestTargetAdminPassword = "Admin4hack23!";
-		 }
+		systemTestTargetAdminPassword = System.getProperty("system.test.target.admin.password");
+		if (systemTestTargetAdminPassword == null) {
+			systemTestTargetAdminPassword = "Admin4hack23!";
+		}
 
 		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
 	}
-
-	/** The browser. */
-	protected final String browser;
-
-	/**
-	 * Instantiates a new abstract role system test.
-	 *
-	 * @param browser
-	 *            the browser
-	 */
-	public AbstractRoleSystemITest(final String browser) {
-		super();
-		this.browser = browser;
-
-
-	}
-
 
 	/**
 	 * Start server.
 	 *
 	 * @throws Exception
-	 *             the exception
+	 *                   the exception
 	 */
 	@BeforeClass
-	static final synchronized public void startServer() throws Exception {
+	public static final synchronized void startServer() throws Exception {
 		System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver-0.13.0-linux64");
 		if (!usingExternalServer) {
 			CitizenIntelligenceAgencyServer.startTestServer();
@@ -120,10 +92,10 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 	 * Stop server.
 	 *
 	 * @throws Exception
-	 *             the exception
+	 *                   the exception
 	 */
 	@AfterClass
-	static final synchronized public void stopServer() throws Exception {
+	public static final synchronized void stopServer() throws Exception {
 		if (!usingExternalServer) {
 			CitizenIntelligenceAgencyServer.stopTestServer();
 		}
@@ -133,11 +105,11 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 	 * Click first row in grid.
 	 *
 	 * @param userPageVisit
-	 *            the user page visit
+	 *                      the user page visit
 	 * @throws InterruptedException
-	 *             the interrupted exception
+	 *                              the interrupted exception
 	 */
-	protected final  void clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
+	protected final void clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
 		final List<WebElement> gridRows = userPageVisit.getGridRows();
 		assertFalse(gridRows.isEmpty());
 
@@ -152,53 +124,16 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 	}
 
 	/**
-	 * Close web driver.
-	 */
-	@After
-	public final void closeWebDriver() {
-		webDriverMap.get(browser).quit();
-	}
-
-
-	/**
-	 * Gets the web driver.
-	 *
-	 * @return the web driver
-	 */
-	@SuppressWarnings("null")
-	protected final synchronized WebDriver getWebDriver() {
-
-		WebDriver driver = null;
-		if ("firefox".equals(browser)) {
-			final DesiredCapabilities capabilities = new DesiredCapabilities();
-			capabilities.setCapability("marionette", true);
-			driver = new FirefoxDriver(new FirefoxOptions(capabilities));
-			driver.manage().window().maximize();
-		} else if ("chrome".equals(browser)) {
-			final ChromeOptions chromeOptions = new ChromeOptions();
-		    chromeOptions.addArguments("--allow-insecure-localhost","--start-maximized");
-			driver = new ChromeDriver(chromeOptions);
-		} else {
-			fail("No valid browser parameter:" + browser);
-		}
-
-		driver.manage().timeouts().pageLoadTimeout(java.time.Duration.ofSeconds(90));
-		driver.manage().timeouts().scriptTimeout(java.time.Duration.ofSeconds(90));
-
-		webDriverMap.put(browser, driver);
-		return driver;
-	}
-
-	/**
 	 * Login as admin.
 	 *
 	 * @param userPageVisit
-	 *            the user page visit
+	 *                      the user page visit
 	 * @throws Exception
-	 *             the exception
+	 *                   the exception
 	 */
 	protected final void loginAsAdmin(final UserPageVisit userPageVisit) throws Exception {
-		userPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
 		userPageVisit.loginUser(systemTestTargetAdminEmail, systemTestTargetAdminPassword);
 	}
 

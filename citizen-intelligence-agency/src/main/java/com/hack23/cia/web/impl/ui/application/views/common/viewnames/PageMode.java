@@ -32,6 +32,9 @@ public enum PageMode {
 	/** The indicators. */
 	INDICATORS,
 
+	/** The login. */
+	LOGIN,
+
 	/** The overview. */
 	OVERVIEW,
 

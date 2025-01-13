@@ -1,57 +1,79 @@
 /**
  * CIA (Citizen Intelligence Agency) Web Module.
  *
- * <p>This module delivers the Vaadin-based user interface, enabling users to
- * explore political data, perform analyses, and manage administrative operations.</p>
+ * <p>
+ * This module delivers the Vaadin-based user interface, enabling users to
+ * explore political data, perform analyses, and manage administrative
+ * operations.
+ * </p>
  *
- * <p>Key Features:</p>
+ * <p>
+ * Key Features:
+ * </p>
  * <ul>
- *   <li>Vaadin UI for interactive dashboards</li>
- *   <li>Spring Security integration</li>
- *   <li>Responsive layouts and charting</li>
+ * <li>Vaadin UI for interactive dashboards</li>
+ * <li>Spring Security integration</li>
+ * <li>Responsive layouts and charting</li>
  * </ul>
  *
- * <p>Technologies / Integrations:</p>
+ * <p>
+ * Technologies / Integrations:
+ * </p>
  * <ul>
- *   <li>Vaadin for UI components</li>
- *   <li>Spring Framework for security and backend integration</li>
- *   <li>Third-party libraries for PDF viewing, charting, and user-agent parsing</li>
+ * <li>Vaadin for UI components</li>
+ * <li>Spring Framework for security and backend integration</li>
+ * <li>Third-party libraries for PDF viewing, charting, and user-agent
+ * parsing</li>
  * </ul>
  *
- * <p>This module implements the web interface for the CIA application using Vaadin framework.
- * It provides a comprehensive user interface for monitoring political figures, institutions,
- * and analyzing political/financial trends.</p>
+ * <p>
+ * This module implements the web interface for the CIA application using Vaadin
+ * framework.
+ * It provides a comprehensive user interface for monitoring political figures,
+ * institutions,
+ * and analyzing political/financial trends.
+ * </p>
  *
- * <p>The module contains views and components for:</p>
+ * <p>
+ * The module contains views and components for:
+ * </p>
  * <ul>
- *   <li>Administrative operations and system management</li>
- *   <li>Parliament data visualization and analysis</li>
- *   <li>Political party information and statistics</li>
- *   <li>Government body and committee tracking</li>
- *   <li>Document management and ballot tracking</li>
- *   <li>Politician profiles and activities</li>
+ * <li>Administrative operations and system management</li>
+ * <li>Parliament data visualization and analysis</li>
+ * <li>Political party information and statistics</li>
+ * <li>Government body and committee tracking</li>
+ * <li>Document management and ballot tracking</li>
+ * <li>Politician profiles and activities</li>
  * </ul>
  *
- * <p>Key Features:</p>
+ * <p>
+ * Key Features:
+ * </p>
  * <ul>
- *   <li>Responsive web interface using Vaadin framework</li>
- *   <li>Security integration with Spring Security</li>
- *   <li>Data visualization with charts and grids</li>
- *   <li>PDF viewing capabilities</li>
- *   <li>QR code generation</li>
- *   <li>User agent parsing and analytics</li>
+ * <li>Responsive web interface using Vaadin framework</li>
+ * <li>Security integration with Spring Security</li>
+ * <li>Data visualization with charts and grids</li>
+ * <li>PDF viewing capabilities</li>
+ * <li>QR code generation</li>
+ * <li>User agent parsing and analytics</li>
  * </ul>
  *
- * <p>The module is organized into the following main packages:</p>
+ * <p>
+ * The module is organized into the following main packages:
+ * </p>
  * <ul>
- *   <li>application - Core application infrastructure</li>
- *   <li>views.admin.* - Administrative interface components</li>
- *   <li>views.user.* - User-facing interface components</li>
- *   <li>views.common.* - Shared UI components and utilities</li>
+ * <li>application - Core application infrastructure</li>
+ * <li>views.admin.* - Administrative interface components</li>
+ * <li>views.user.* - User-facing interface components</li>
+ * <li>views.common.* - Shared UI components and utilities</li>
  * </ul>
  *
- * <p>This module requires and integrates with various CIA service modules and external
- * data sources including Riksdagen (Swedish Parliament), Val (Elections), and World Bank data.</p>
+ * <p>
+ * This module requires and integrates with various CIA service modules and
+ * external
+ * data sources including Riksdagen (Swedish Parliament), Val (Elections), and
+ * World Bank data.
+ * </p>
  *
  * @see com.hack23.cia.service.api
  * @see com.hack23.cia.web.widgets
@@ -117,14 +139,13 @@ open module com.hack23.cia.web {
 	requires vaadin.compatibility.server;
 	requires responsive.layout;
 	requires org.hibernate.orm.jpamodelgen;
-	
+
 	requires java.persistence;
 	requires org.hibernate.orm.core;
 	requires java.transaction;
 	requires ehcache;
 	requires cache.api;
 
-	
 	requires java.annotation;
 	requires org.slf4j;
 	requires spring.tx;
@@ -173,7 +194,7 @@ open module com.hack23.cia.web {
 	requires transitive com.hack23.cia.service.component.agent.impl;
 
 	requires transitive com.hack23.cia.service.external.common;
-        requires transitive com.hack23.cia.service.data.api;
+	requires transitive com.hack23.cia.service.data.api;
 	requires transitive com.hack23.cia.service.external.riksdagen;
 	requires transitive com.hack23.cia.service.external.val;
 	requires transitive com.hack23.cia.service.external.worldbank;
