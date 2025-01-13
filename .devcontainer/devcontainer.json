@@ -66,7 +66,10 @@
             "-Djava.awt.headless=true"
           ],
           "options": {
-            "cwd": "${workspaceFolder}/citizen-intelligence-agency"
+            "cwd": "${workspaceFolder}/citizen-intelligence-agency",
+            "env": {
+              "MAVEN_OPTS": "-server -Xmx8192m -Xms2048m"
+            }
           },
           "group": {
             "kind": "run",
@@ -96,7 +99,7 @@
           "options": {
             "cwd": "${workspaceFolder}/parent-pom",
             "env": {
-              "MAVEN_OPTS": "-server -Xmx2048m -Xms2048m"
+              "MAVEN_OPTS": "-server -Xmx8192m -Xms2048m"
             }
           },
           "group": "test"
@@ -117,7 +120,7 @@
           "options": {
             "cwd": "${workspaceFolder}/parent-pom",
             "env": {
-              "MAVEN_OPTS": "-server -Xmx2048m -Xms2048m"
+              "MAVEN_OPTS": "-Xmx8192m -Xms2048m"
             }
           },
           "group": "build"
