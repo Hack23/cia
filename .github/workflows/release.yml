@@ -136,7 +136,7 @@ jobs:
     - name: Copy SBOM attestation
       run: cp ${{ steps.attestsbom.outputs.bundle-path }} cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json.intoto.jsonl
     - name: Create a GitHub release
-      uses: ncipollo/release-action@2c591bcc8ecdcd2db72b97d6147f871fcd833ba5 # v1.14.0
+      uses: ncipollo/release-action@cdcc88a9acf3ca41c16c37bb7d21b9ad48560d87 # v1.15.0
       with:
         tag: '${{ github.event.inputs.release }}'
         generateReleaseNotes: false
