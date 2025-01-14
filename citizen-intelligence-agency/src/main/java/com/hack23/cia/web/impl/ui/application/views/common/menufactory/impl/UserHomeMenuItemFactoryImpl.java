@@ -74,7 +74,7 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		initApplicationMenuBar(menuBar);
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
-		final MenuItem accountItem = menuBar.addItem("Useraccount", VaadinIcons.USER,null);
+		final MenuItem accountItem = menuBar.addItem(USERACCOUNT, VaadinIcons.USER,null);
 
 
 		accountItem.addItem(USER_HOME_OVERVIEW_TEXT, VaadinIcons.USER,
