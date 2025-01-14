@@ -34,109 +34,13 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class PartyMenuItemFactoryImpl.
  */
 @Service
-public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyMenuItemFactory {
-
-	/** The Constant BALLOT_DECISION_SUMMARY_TEXT. */
-	private static final String BALLOT_DECISION_SUMMARY_TEXT = "Ballot Decision Summary";
-
-	/** The Constant BALLOTS_TEXT. */
-	private static final String BALLOTS_TEXT = "Ballots";
-
-	/** The Constant COMMITTEE_ROLES. */
-	private static final String COMMITTEE_ROLES = "Committee Roles";
-
-	/** The Constant CURRENT_LEADERS. */
-	private static final String CURRENT_LEADERS = "Current Leaders";
-
-	/** The Constant CURRENT_MEMBERS_TEXT. */
-	private static final String CURRENT_MEMBERS_TEXT = "Current Members";
-
-	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
-	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
-
-	/** The Constant DOCUMENT_HISTORY_TEXT. */
-	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
-
-	/** The Constant DOCUMENTS_TEXT. */
-	private static final String DOCUMENTS_TEXT = "Documents";
-
-	/** The Constant GOVERMENT_ROLES. */
-	private static final String GOVERMENT_ROLES = "Goverment Roles";
-
-	/** The Constant LEADER_HISTORY. */
-	private static final String LEADER_HISTORY = "Leader History";
-
-	/** The Constant MEMBER_HISTORY_TEXT. */
-	private static final String MEMBER_HISTORY_TEXT = "Member History";
-
-
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-
-	/** The Constant PARTY_RANKING. */
-	private static final String PARTY_RANKING = "Party Ranking";
-
-	/** The Constant PARTY_WON_DAILY_SUMMARY_CHART. */
-	private static final String PARTY_WON_DAILY_SUMMARY_CHART = "Party Won Daily Summary Chart";
-
-	/** The Constant ROLE_CHART_PARTY_LEADERS. */
-	private static final String ROLE_CHART_PARTY_LEADERS = "Role chart, party leaders";
-
-	/** The Constant ROLES_TEXT. */
-	private static final String ROLES_TEXT = "Roles";
-
-	/** The Constant VOTE_HISTORY. */
-	private static final String VOTE_HISTORY = "Vote history";
-
-	/** The Constant CURRENT_LEADERS_DESCRIPTION. */
-	private static final String CURRENT_LEADERS_DESCRIPTION = "Current leaders";
-
-	/** The Constant LEADER_HISTORY_DESCRIPTION. */
-	private static final String LEADER_HISTORY_DESCRIPTION = "Leader history";
-
-	/** The Constant CURRENT_MEMBERS_DESCRIPTION. */
-	private static final String CURRENT_MEMBERS_DESCRIPTION = "Current members";
-
-	/** The Constant MEMBER_HISTORY_DESCRIPTION. */
-	private static final String MEMBER_HISTORY_DESCRIPTION = "Current and past members";
-
-	/** The Constant GOVERMENT_ROLES_DESCRIPTION. */
-	private static final String GOVERMENT_ROLES_DESCRIPTION = "Government roles hold";
-
-	/** The Constant COMMITTEE_ROLES_DESCRIPTION. */
-	private static final String COMMITTEE_ROLES_DESCRIPTION = "Committe roles hold";
-
-	/** The Constant ROLE_CHART_PARTY_LEADERS_DESCRIPTION. */
-	private static final String ROLE_CHART_PARTY_LEADERS_DESCRIPTION = "Gantt chart all party leaders";
-
-	/** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
-	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Chart over document activity by type";
-
-	/** The Constant DOCUMENT_HISTORY_DESCRIPTION. */
-	private static final String DOCUMENT_HISTORY_DESCRIPTION = "List all document history";
-
-	/** The Constant BALLOT_DECISION_SUMMARY_DESCRIPTION. */
-	private static final String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Ballot decision summary";
-
-	/** The Constant PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION. */
-	private static final String PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION = "Chart for Party over won,absent and party rebel votes";
-
-	/** The Constant PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION. */
-	private static final String PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION = "Coalations with groups of diffrent parties aginst committe proposals ballots";
-
-	/** The Constant PARTY_SUPPORT_SUMMARY_DESCRIPTION. */
-	private static final String PARTY_SUPPORT_SUMMARY_DESCRIPTION = "Trend of agreements with other parties during ballots";
-
-	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
-	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyMenuItemFactory, MenuItemConstants {
 
 	/** The application menu item factory. */
 	@Autowired
