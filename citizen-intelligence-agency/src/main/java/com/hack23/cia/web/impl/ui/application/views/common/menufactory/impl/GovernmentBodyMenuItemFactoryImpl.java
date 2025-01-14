@@ -68,7 +68,7 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 		final MenuItem governmentBodyItem = menuBar.addItem(title, VaadinIcons.BUILDING_O,null);
 
 
-		governmentBodyItem.addItem(OVERVIEW_TEXT, VaadinIcons.FILE_TEXT,
+		governmentBodyItem.addItem(GOVERNMENT_BODY_OVERVIEW_TEXT, VaadinIcons.FILE_TEXT,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
 		governmentBodyItem.addItem(HEADCOUNT_CHART, VaadinIcons.USER,
@@ -81,7 +81,7 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId));
 
 
-		governmentBodyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
+		governmentBodyItem.addItem(GOVERNMENT_BODY_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
@@ -99,8 +99,8 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 		createButtonLink(grid,EXPENDITURE, VaadinIcons.CREDIT_CARD,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId), EXPENDITURE_DESCRIPTION);
 
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), PAGE_VISIT_HISTORY_DESCRIPTION);
+		createButtonLink(grid,GOVERNMENT_BODY_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), GOVERNMENT_BODY_PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 

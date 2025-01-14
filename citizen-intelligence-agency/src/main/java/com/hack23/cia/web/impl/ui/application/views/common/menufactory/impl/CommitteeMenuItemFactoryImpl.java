@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
@@ -45,79 +46,7 @@ import com.vaadin.ui.VerticalLayout;
  * overview pages with relevant descriptions and icons.
  */
 @Service
-public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CommitteeMenuItemFactory {
-
-	/** The Constant BALLOT_DECISION_SUMMARY_TEXT. */
-	private static final String BALLOT_DECISION_SUMMARY_TEXT = "Ballot Decision Summary";
-
-	/** The Constant BALLOTS_TEXT. */
-	private static final String BALLOTS_TEXT = "Ballots";
-
-	/** The Constant COMMITTEE_RANKING_TEXT. */
-	private static final String COMMITTEE_RANKING_TEXT = "Committee Ranking";
-
-	/** The Constant CURRENT_MEMBERS_TEXT. */
-	private static final String CURRENT_MEMBERS_TEXT = "Current Members";
-
-	/** The Constant DECISION_SUMMARY_TEXT. */
-	private static final String DECISION_SUMMARY_TEXT = "Decision Summary";
-
-	/** The Constant DECISION_TYPE_DAILY_SUMMARY_TEXT. */
-	private static final String DECISION_TYPE_DAILY_SUMMARY_TEXT = "Decision Type Daily Summary";
-
-	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
-	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
-
-	/** The Constant DOCUMENT_HISTORY_TEXT. */
-	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
-
-	/** The Constant DOCUMENTS_TEXT. */
-	private static final String DOCUMENTS_TEXT = "Documents";
-
-	/** The Constant MEMBER_HISTORY_TEXT. */
-	private static final String MEMBER_HISTORY_TEXT = "Member History";
-
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-
-	/** The Constant ROLE_GHANT_TEXT. */
-	private static final String ROLE_GHANT_TEXT = "RoleGhant";
-
-	/** The Constant ROLES_TEXT. */
-	private static final String ROLES_TEXT = "Roles";
-
-	/** The Constant CURRENT_MEMBERS_DESCRIPTION. */
-	private static final String CURRENT_MEMBERS_DESCRIPTION = "Current roles and days served";
-
-	/** The Constant MEMBER_HISTORY_DESCRIPTION. */
-	private static final String MEMBER_HISTORY_DESCRIPTION = "History of all roles and days served";
-
-	/** The Constant ROLE_GHANT_DESCRIPTION. */
-	private static final String ROLE_GHANT_DESCRIPTION = "Gantt chart of all roles over time";
-
-	/** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
-	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Chart of document activity by document type.";
-
-	/** The Constant DOCUMENT_HISTORY_DESCRIPTION. */
-	private static final String DOCUMENT_HISTORY_DESCRIPTION = "Document history list";
-
-	/** The Constant BALLOT_DECISION_SUMMARY_DESCRIPTION. */
-	private static final String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Summary of all ballot decisions";
-
-	/** The Constant DECISION_SUMMARY_DESCRIPTION. */
-	private static final String DECISION_SUMMARY_DESCRIPTION = "Summary of all ballots";
-
-	/** The Constant DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION. */
-	private static final String DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION = "Chart over decisions by decisions type, daily summary";
-
-	/** The Constant DECISION_FLOW_DESCRIPTION. */
-	private static final String DECISION_FLOW_DESCRIPTION = "Decision flow chart";
-
-	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
-	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CommitteeMenuItemFactory, MenuItemConstants {
 
 	/** The application menu item factory. */
 	@Autowired
@@ -146,7 +75,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		final MenuItem committeeItem = menuBar.addItem("Committee "+ pageId, VaadinIcons.GROUP,null);
 
 
-		committeeItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,
+		committeeItem.addItem(COMMITTEE_RANKING_OVERVIEW_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
 		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, VaadinIcons.GROUP, null);
@@ -183,7 +112,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId));
 
 
-		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
+		committeeItem.addItem(COMMITTEE_RANKING_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
@@ -222,8 +151,8 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId), DECISION_FLOW_DESCRIPTION);
 
 
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), PAGE_VISIT_HISTORY_DESCRIPTION);
+		createButtonLink(grid,COMMITTEE_RANKING_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), COMMITTEE_RANKING_PAGE_VISIT_HISTORY_DESCRIPTION);
 
 
 	}
