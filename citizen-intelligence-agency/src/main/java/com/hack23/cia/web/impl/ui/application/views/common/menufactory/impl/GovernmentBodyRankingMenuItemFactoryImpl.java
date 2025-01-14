@@ -33,6 +33,7 @@ import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.VerticalLayout;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class GovernmentBodyRankingMenuItemFactoryImpl.
@@ -45,7 +46,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
-        implements GovernmentBodyRankingMenuItemFactory {
+        implements GovernmentBodyRankingMenuItemFactory, MenuItemConstants {
 
     /** Commands for different page modes within the Government Body Ranking view. */
     private static final PageModeMenuCommand COMMAN_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
@@ -73,44 +74,6 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
 	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_INCOME = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
 			MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString());
 
-
-	/** The Constant GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY. */
-	private static final String GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY = "Government body expenditure by ministry";
-
-	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY = "Government body headcount by ministry";
-
-	/** The Constant GOVERNMENT_BODY_INCOME_PER_MINISTRY. */
-	private static final String GOVERNMENT_BODY_INCOME_PER_MINISTRY = "Government body income by ministry";
-
-
-	/** The Constant GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY_DESCRIPTION. */
-	private static final String GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY_DESCRIPTION = "Chart over total headcount for all goverment bodies governed by ministries";
-
-	/** The Constant GOVERNMENT_BODY_INCOME_PER_MINISTRY_DESCRIPTION. */
-	private static final String GOVERNMENT_BODY_INCOME_PER_MINISTRY_DESCRIPTION = "Chart over total income for all goverment bodies governed by ministries";
-
-	/** The Constant GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY_DESCRIPTION. */
-	private static final String GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY_DESCRIPTION = "Chart over total spending for all goverment bodies governed by ministries";
-
-
-
-
-    /** Menu labels. */
-    private static final String EXPENDITURE = "Expenditure";
-    private static final String GOVERNMENT_BODIES = "Government bodies";
-    private static final String GOVERNMENT_BODY_RANKING = "GovernmentBody Ranking";
-    private static final String HEADCOUNT = "Headcount";
-    private static final String INCOME = "Income";
-    private static final String OVERVIEW_TEXT = "Overview";
-    private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-
-    /** Descriptions ~50 chars. */
-    private static final String HEADCOUNT_DESCRIPTION = "Staffing levels reveal institutional influence.";
-    private static final String INCOME_DESCRIPTION = "Compare institutions by their revenue streams.";
-    private static final String EXPENDITURE_DESCRIPTION = "Assess how bodies allocate and prioritize spending.";
-    private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "Explore historical interest, engagement patterns.";
-    private static final String CURRENT_GOVERNMENT_BODIES_DESCRIPTION = "All bodies: study structural roles and authority.";
 
     /** The application menu item factory, used to integrate into the main menu. */
     @Autowired
@@ -155,9 +118,9 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
     public void createGovernmentBodyRankingTopics(final MenuBar.MenuItem menuItem) {
         menuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAN_OVERVIEW);
         menuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID);
-        menuItem.addItem(GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY, VaadinIcons.USER_CHECK, COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
-        menuItem.addItem(GOVERNMENT_BODY_INCOME_PER_MINISTRY, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME);
-        menuItem.addItem(GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY, VaadinIcons.MONEY_WITHDRAW, COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
+        menuItem.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK, COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
+        menuItem.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME);
+        menuItem.addItem(GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
 
         menuItem.addItem(HEADCOUNT, VaadinIcons.USERS, COMMAND_HEADCOUNT);
         menuItem.addItem(INCOME, VaadinIcons.MONEY_DEPOSIT, COMMAND_INCOME);
@@ -183,10 +146,10 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
     public void createOverviewPage(final VerticalLayout panelContent) {
         final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-        createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID, CURRENT_GOVERNMENT_BODIES_DESCRIPTION);
-		createButtonLink(grid, GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY, VaadinIcons.USER_CHECK, COMMAND_GOVERNMENT_BODIES_HEADCOUNT, GOVERNMENT_BODY_HEADCOUNT_PER_MINISTRY_DESCRIPTION);
-		createButtonLink(grid, GOVERNMENT_BODY_INCOME_PER_MINISTRY, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME, GOVERNMENT_BODY_INCOME_PER_MINISTRY_DESCRIPTION);
-		createButtonLink(grid, GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY, VaadinIcons.MONEY_WITHDRAW, COMMAND_GOVERNMENT_BODIES_EXPENDITURE, GOVERNMENT_BODY_EXPENDITURE_PER_MINISTRY_DESCRIPTION);
+        createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID, GOVERNMENT_BODIES_DESCRIPTION);
+		createButtonLink(grid, GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK, COMMAND_GOVERNMENT_BODIES_HEADCOUNT, GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION);
+		createButtonLink(grid, GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME, GOVERNMENT_BODIES_INCOME_DESCRIPTION);
+		createButtonLink(grid, GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, COMMAND_GOVERNMENT_BODIES_EXPENDITURE, GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION);
 
         createButtonLink(grid, HEADCOUNT, VaadinIcons.USERS, COMMAND_HEADCOUNT, HEADCOUNT_DESCRIPTION);
         createButtonLink(grid, INCOME, VaadinIcons.MONEY_DEPOSIT, COMMAND_INCOME, INCOME_DESCRIPTION);

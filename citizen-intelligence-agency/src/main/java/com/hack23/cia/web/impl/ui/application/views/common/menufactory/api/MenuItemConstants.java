@@ -504,4 +504,167 @@ public interface MenuItemConstants {
     /** The Constant USER_HOME_OVERVIEW_TEXT. */
     String USER_HOME_OVERVIEW_TEXT = "User Home Overview";
 
+    /** The Constant SWEDEN_DASHBOARD. */
+    String SWEDEN_DASHBOARD = "Sweden Dashboard";
+
+    /** The Constant COMMAND_COMMITTEE_RANKING_DATAGRID. */
+    PageModeMenuCommand COMMAND_COMMITTEE_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+    /** The Constant COMMAND_COMMITTEE_RANKING_OVERVIEW. */
+    PageModeMenuCommand COMMAND_COMMITTEE_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The Constant COMMAND_COUNTRY_RANKING_OVERVIEW. */
+    PageModeMenuCommand COMMAND_COUNTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The Constant COMMAND_DOCUMENTS. */
+    PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The Constant COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID. */
+    PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+    /** The Constant COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW. */
+    PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The Constant COMMAND_MINISTRY_RANKING_DATAGRID. */
+    PageModeMenuCommand COMMAND_MINISTRY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+    /** The Constant COMMAND_MINISTRY_RANKING_OVERVIEW. */
+    PageModeMenuCommand COMMAND_MINISTRY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The Constant COMMAND_PARLIAMENT_RANKING_OVERVIEW. */
+    PageModeMenuCommand COMMAND_PARLIAMENT_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The Constant COMMAND_PARTY_RANKING_DATAGRID. */
+    PageModeMenuCommand COMMAND_PARTY_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+    /** The Constant COMMAND_PARTY_RANKING_OVERVIEW. */
+    PageModeMenuCommand COMMAND_PARTY_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The Constant COMMAND_POLITICIAN_RANKING_DATAGRID. */
+    PageModeMenuCommand COMMAND_POLITICIAN_RANKING_DATAGRID = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+    /** The Constant COMMAND_POLITICIAN_RANKING_OVERVIEW. */
+    PageModeMenuCommand COMMAND_POLITICIAN_RANKING_OVERVIEW = new PageModeMenuCommand(UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The Constant COMMAND_SEARCH_DOCUMENT. */
+    PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME, "");
+
+    /** The Constant COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD. */
+    PageModeMenuCommand COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
+            PageMode.CHARTS, ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());
+
+    /** The Constant COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD. */
+    PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());
+
+    /** The Constant COMMITTEE_RANKING_TEXT. */
+    String COMMITTEE_RANKING_TEXT = "Committee Ranking";
+
+    /** The Constant DESC_LEADERS_SCOREBOARD. */
+    String DESC_LEADERS_SCOREBOARD = "Leaders: comparing party leadership impact.";
+
+    /** The Constant PART_LEADERS_SCOREBOARD. */
+    String PART_LEADERS_SCOREBOARD = "Party leaders scoreboard";
+
+    /** The Constant COMMITTEE_RANKING_LINK_TEXT. */
+    String COMMITTEE_RANKING_LINK_TEXT = COMMITTEE_RANKING_TEXT;
+
+    /** The Constant COMMITTEES_LINK_TEXT. */
+    String COMMITTEES_LINK_TEXT = "Committees";
+
+    /** The Constant COUNTRY_RANKING_LINK_TEXT. */
+    String COUNTRY_RANKING_LINK_TEXT = "Country Ranking";
+
+    /** The Constant DOCUMENTS. */
+    String DOCUMENTS = "Documents";
+
+    /** The Constant GOVERNMENT_BODIES. */
+    String GOVERNMENT_BODIES = "Government bodies";
+
+    /** The Constant GOVERNMENT_BODY_RANKING. */
+    String GOVERNMENT_BODY_RANKING = "Government body Ranking";
+
+    /** The Constant MINISTRIES_LINK_TEXT. */
+    String MINISTRIES_LINK_TEXT = "Ministries";
+
+    /** The Constant MINISTRY_RANKING. */
+    String MINISTRY_RANKING = "Ministry Ranking";
+
+    /** The Constant MINISTRY_RANKING_LINK_TEXT. */
+    String MINISTRY_RANKING_LINK_TEXT = MINISTRY_RANKING;
+
+    /** The Constant PARLIAMENT_RANKING_LINK_TEXT. */
+    String PARLIAMENT_RANKING_LINK_TEXT = "Parliament Ranking";
+
+    /** The Constant PARTIES_LINK_TEXT. */
+    String PARTIES_LINK_TEXT = "Parties";
+
+    /** The Constant PARTY_RANKING. */
+    String PARTY_RANKING = "Party Ranking";
+
+    /** The Constant PARTY_RANKING_LINK_TEXT. */
+    String PARTY_RANKING_LINK_TEXT = PARTY_RANKING;
+
+    /** The Constant POLITICIAN_RANKING. */
+    String POLITICIAN_RANKING = "Politician Ranking";
+
+    /** The Constant POLITICIAN_RANKING_LINK_TEXT. */
+    String POLITICIAN_RANKING_LINK_TEXT = POLITICIAN_RANKING;
+
+    /** The Constant POLITICIANS_LINK_TEXT. */
+    String POLITICIANS_LINK_TEXT = "Politicians";
+
+    /** The Constant RANKING_TEXT. */
+    String RANKING_TEXT = "Ranking";
+
+    /** The Constant SEARCH_DOCUMENTS. */
+    String SEARCH_DOCUMENTS = "Search documents";
+
+    /** The Constant COUNTRY_RANKING_DESCRIPTION. */
+    String COUNTRY_RANKING_DESCRIPTION = "Sweden’s governance: key indicators.";
+
+    /** The Constant MINISTRIES_LEADER_SCOREBOARD. */
+    String MINISTRIES_LEADER_SCOREBOARD = "Government Ministers Scoreboard";
+
+    /** The Constant MINISTRIES_LEADER_SCOREBOARD_DESCRIPTION. */
+    String MINISTRIES_LEADER_SCOREBOARD_DESCRIPTION = "Cabinet leaders: power and institutional impact.";
+
+    /** The Constant MINISTRY_RANKING_DESCRIPTION. */
+    String MINISTRY_RANKING_DESCRIPTION = "Ministry influence on policy.";
+
+    /** The Constant MINISTRIES_DESCRIPTION. */
+    String MINISTRIES_DESCRIPTION = "All ministries: roles and commitments.";
+
+    /** The Constant GOVERNMENT_BODY_RANKING_DESCRIPTION. */
+    String GOVERNMENT_BODY_RANKING_DESCRIPTION = "Government bodies: performance snapshots.";
+
+    /** The Constant GOVERNMENT_BODIES_DESCRIPTION. */
+    String GOVERNMENT_BODIES_DESCRIPTION = "All bodies: structure and influence.";
+
+    /** The Constant PARLIAMENT_RANKING_DESCRIPTION. */
+    String PARLIAMENT_RANKING_DESCRIPTION = "Parliament: legislative effectiveness.";
+
+    /** The Constant COMMITTEE_RANKING_DESCRIPTION. */
+    String COMMITTEE_RANKING_DESCRIPTION = "Committees: shaping policy debates.";
+
+    /** The Constant COMMITTEES_DESCRIPTION. */
+    String COMMITTEES_DESCRIPTION = "All committees: roles and responsibilities.";
+
+    /** The Constant PARTY_RANKING_DESCRIPTION. */
+    String PARTY_RANKING_DESCRIPTION = "Parties: influence on agenda.";
+
+    /** The Constant PARTIES_DESCRIPTION. */
+    String PARTIES_DESCRIPTION = "All parties: leadership and policy roles.";
+
+    /** The Constant POLITICIAN_RANKING_DESCRIPTION. */
+    String POLITICIAN_RANKING_DESCRIPTION = "Politicians: individual impact.";
+
+    /** The Constant POLITICIANS_DESCRIPTION. */
+    String POLITICIANS_DESCRIPTION = "All politicians: service and contributions.";
+
+    /** The Constant SEARCH_DOCUMENTS_DESCRIPTION. */
+    String SEARCH_DOCUMENTS_DESCRIPTION = "Search documents: legislative records.";
+
+    /** The Constant DOCUMENTS_DESCRIPTION. */
+    String DOCUMENTS_DESCRIPTION = "All documents: official records.";
+
 }
