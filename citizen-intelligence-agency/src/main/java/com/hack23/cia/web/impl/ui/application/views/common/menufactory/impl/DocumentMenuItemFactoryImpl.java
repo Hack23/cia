@@ -59,7 +59,7 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 			final MenuItem documentItem = menuBar.addItem(DOCUMENT, VaadinIcons.FILE_TEXT, null);
 
-			documentItem.addItem(OVERVIEW_TEXT, VaadinIcons.FILE_TEXT,
+			documentItem.addItem(DOCUMENT_OVERVIEW_TEXT, VaadinIcons.FILE_TEXT,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
 			documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_PROCESS, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
@@ -84,7 +84,7 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 					DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));
 
 
-			documentItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
+			documentItem.addItem(DOCUMENT_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
 					new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY,pageId));
 
 	}

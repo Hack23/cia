@@ -24,7 +24,6 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
@@ -36,6 +35,7 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class CommitteeMenuItemFactoryImpl.
@@ -75,7 +75,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		final MenuItem committeeItem = menuBar.addItem("Committee "+ pageId, VaadinIcons.GROUP,null);
 
 
-		committeeItem.addItem(COMMITTEE_RANKING_OVERVIEW_TEXT, VaadinIcons.GROUP,
+		committeeItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
 		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, VaadinIcons.GROUP, null);
@@ -112,7 +112,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId));
 
 
-		committeeItem.addItem(COMMITTEE_RANKING_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
+		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
@@ -151,8 +151,8 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId), DECISION_FLOW_DESCRIPTION);
 
 
-		createButtonLink(grid,COMMITTEE_RANKING_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), COMMITTEE_RANKING_PAGE_VISIT_HISTORY_DESCRIPTION);
+		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), PAGE_VISIT_HISTORY_DESCRIPTION);
 
 
 	}

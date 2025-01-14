@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -76,7 +77,7 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		final MenuItem accountItem = menuBar.addItem("Useraccount", VaadinIcons.USER,null);
 
 
-		accountItem.addItem(OVERVIEW_TEXT, VaadinIcons.USER,
+		accountItem.addItem(USER_HOME_OVERVIEW_TEXT, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
 		accountItem.addItem(SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
