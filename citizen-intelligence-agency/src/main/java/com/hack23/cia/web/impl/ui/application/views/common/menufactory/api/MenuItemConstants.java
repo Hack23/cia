@@ -7,6 +7,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsView
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummaryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 
 public interface MenuItemConstants {
 
@@ -59,7 +60,7 @@ public interface MenuItemConstants {
     String MAIN = "Main";
     String MANAGEMENT = "Management";
     String MENU_BAR_WIDTH = "80%";
-    String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+    String ABSTRACT_PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
     String PORTAL = "Portal";
     String REGISTER = "Register";
     String ROLE_ADMIN = "ROLE_ADMIN";
@@ -85,15 +86,15 @@ public interface MenuItemConstants {
     String CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT = "Current committees, current members";
     String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS = "Current parties in committees";
     String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "Current parties,days served";
-    String OVERVIEW_TEXT = "Overview";
-    String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+    String COMMITTEE_RANKING_OVERVIEW_TEXT = "Overview";
+    String COMMITTEE_RANKING_PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
     String POLITICAL_WORK_SUMMARY_TEXT = "Political Work Summary";
     String POLITICAL_WORK_SUMMARY_DESCRIPTION = "Scoreboard over current member size, political days served and total assignments";
     String CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION = "Chart over current committees and member size";
     String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION = "Chart over current parties active in committees and member size";
     String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION = "Chart over current parties active in committees days served";
     String ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION = "Chart over all committees and member size";
-    String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+    String COMMITTEE_RANKING_PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
 
     // CountryMenuItemFactoryImpl constants
     PageModeMenuCommand COUNTRY_COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
@@ -144,7 +145,7 @@ public interface MenuItemConstants {
 
     // MinistryMenuItemFactoryImpl constants
     String CURRENT_MEMBERS_TEXT = "Current Members";
-    String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
+    String MINISTRY_DOCUMENT_ACTIVITY_TEXT = "Document Activity";
     String DOCUMENT_HISTORY_TEXT = "Document history";
     String DOCUMENTS_TEXT = "Documents";
     String GOVERNMENT_BODIES_EXPENDITURE = "Government bodies expenditure";
@@ -162,7 +163,7 @@ public interface MenuItemConstants {
     String GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION = "All government bodies that are governed by ministry";
     String GOVERNMENT_BODIES_INCOME_DESCRIPTION = "All government bodies income";
     String GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION = "All government bodies expenditure";
-    String DOCUMENT_ACTIVITY_DESCRIPTION = "Chart over document activity";
+    String MINISTRY_DOCUMENT_ACTIVITY_DESCRIPTION = "Chart over document activity";
     String DOCUMENT_HISTORY_DESCRIPTION = "List of all document sorted by most recent";
     String MINISTRY_PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
 
@@ -175,4 +176,10 @@ public interface MenuItemConstants {
     String USER_PROFILE_DESCRIPTION = "View and edit user profile";
     String USER_SETTINGS_DESCRIPTION = "Adjust user settings";
     String USER_LOGOUT_DESCRIPTION = "Logout from the application";
+    String SECURITY_SETTING_TEXT = "Security Settings";
+    String USER_VISITS = "User Visits";
+    String USER_EVENTS = "User Events";
+    String SECURITY_SETTINGS_DESCRIPTION = "Manage your security settings";
+    String USER_VISITS_DESCRIPTION = "View your visit history";
+    String USER_EVENTS_DESCRIPTION = "View your event history";
 }
