@@ -303,7 +303,205 @@ public interface MenuItemConstants {
     /** The Constant USER_EVENTS. */
     String USER_EVENTS = "User Events";
 
-    /** The Constant USER_EVENTS_DESCRIPTION. */
+    /** The Constant USER_EVENTS_DESCRIPTION = "View user event history."; */
     String USER_EVENTS_DESCRIPTION = "View user event history.";
+
+    /** The Constant ROLES_TEXT. */
+    String ROLES_TEXT = "Roles";
+
+    /** The Constant CURRENT_MEMBERS_TEXT. */
+    String CURRENT_MEMBERS_TEXT = "Current Members";
+
+    /** The Constant MEMBER_HISTORY_TEXT. */
+    String MEMBER_HISTORY_TEXT = "Member History";
+
+    /** The Constant ROLE_GHANT_TEXT. */
+    String ROLE_GHANT_TEXT = "Role Ghant";
+
+    /** The Constant DOCUMENTS_TEXT. */
+    String DOCUMENTS_TEXT = "Documents";
+
+    /** The Constant DOCUMENT_HISTORY_TEXT. */
+    String DOCUMENT_HISTORY_TEXT = "Document History";
+
+    /** The Constant BALLOTS_TEXT. */
+    String BALLOTS_TEXT = "Ballots";
+
+    /** The Constant BALLOT_DECISION_SUMMARY_TEXT. */
+    String BALLOT_DECISION_SUMMARY_TEXT = "Ballot Decision Summary";
+
+    /** The Constant DECISION_SUMMARY_TEXT. */
+    String DECISION_SUMMARY_TEXT = "Decision Summary";
+
+    /** The Constant DECISION_TYPE_DAILY_SUMMARY_TEXT. */
+    String DECISION_TYPE_DAILY_SUMMARY_TEXT = "Decision Type Daily Summary";
+
+    /** The Constant CURRENT_MEMBERS_DESCRIPTION. */
+    String CURRENT_MEMBERS_DESCRIPTION = "Current members description";
+
+    /** The Constant MEMBER_HISTORY_DESCRIPTION. */
+    String MEMBER_HISTORY_DESCRIPTION = "Member history description";
+
+    /** The Constant ROLE_GHANT_DESCRIPTION. */
+    String ROLE_GHANT_DESCRIPTION = "Role ghant description";
+
+    /** The Constant DOCUMENT_HISTORY_DESCRIPTION. */
+    String DOCUMENT_HISTORY_DESCRIPTION = "Document history description";
+
+    /** The Constant BALLOT_DECISION_SUMMARY_DESCRIPTION. */
+    String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Ballot decision summary description";
+
+    /** The Constant DECISION_SUMMARY_DESCRIPTION. */
+    String DECISION_SUMMARY_DESCRIPTION = "Decision summary description";
+
+    /** The Constant DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION. */
+    String DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION = "Decision type daily summary description";
+
+    /** The Constant DECISION_FLOW_DESCRIPTION. */
+    String DECISION_FLOW_DESCRIPTION = "Decision flow description";
+
+    /** The Constant COUNTRY_RANKING_TEXT. */
+    String COUNTRY_RANKING_TEXT = "Country Ranking";
+
+    /** The Constant COUNTRY_OVERVIEW_TEXT. */
+    String COUNTRY_OVERVIEW_TEXT = "Country Overview";
+
+    /** The Constant COUNTRY_COMMAND_OVERVIEW. */
+    PageModeMenuCommand COUNTRY_COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The Constant COUNTRY_INDICATORS_SWEDEN. */
+    String COUNTRY_INDICATORS_SWEDEN = "Country Indicators Sweden";
+
+    /** The Constant COUNTRY_PAGE_VISIT_HISTORY_TEXT. */
+    String COUNTRY_PAGE_VISIT_HISTORY_TEXT = "Country Page Visit History";
+
+    /** The Constant COUNTRY_COMMAND_PAGEVISITHISTORY. */
+    PageModeMenuCommand COUNTRY_COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+    /** The Constant BY_TOPIC. */
+    String BY_TOPIC = "By Topic";
+
+    /** The Constant DATA_POINTS_FOR_YEAR_ABOVE. */
+    int DATA_POINTS_FOR_YEAR_ABOVE = 2000;
+
+    /** The Constant MINIMUM_NUMBER_DATA_POINTS. */
+    int MINIMUM_NUMBER_DATA_POINTS = 10;
+
+    /** The Constant DOCUMENT. */
+    String DOCUMENT = "Document";
+
+    /** The Constant DOCUMENT_OVERVIEW_TEXT. */
+    String DOCUMENT_OVERVIEW_TEXT = "Document Overview";
+
+    /** The Constant PERSON_REFERENCES. */
+    String PERSON_REFERENCES = "Person References";
+
+    /** The Constant DOCUMENT_DETAILS. */
+    String DOCUMENT_DETAILS = "Document Details";
+
+    /** The Constant DOCUMENT_DATA. */
+    String DOCUMENT_DATA = "Document Data";
+
+    /** The Constant DOCUMENT_REFERENCES. */
+    String DOCUMENT_REFERENCES = "Document References";
+
+    /** The Constant DOCUMENT_DECISION. */
+    String DOCUMENT_DECISION = "Document Decision";
+
+    /** The Constant DOCUMENT_ATTACHEMENTS. */
+    String DOCUMENT_ATTACHEMENTS = "Document Attachments";
+
+    /** The Constant DOCUMENT_PAGE_VISIT_HISTORY_TEXT. */
+    String DOCUMENT_PAGE_VISIT_HISTORY_TEXT = "Document Page Visit History";
+
+    /** The Constant DOCUMENTS. */
+    String DOCUMENTS = "Documents";
+
+    /** The Constant LIST_ALL. */
+    String LIST_ALL = "List All";
+
+    /** The Constant COMMAND_DOCUMENTS. */
+    PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.LIST);
+
+    /** The Constant SEARCH_DOCUMENTS. */
+    String SEARCH_DOCUMENTS = "Search Documents";
+
+    /** The Constant COMMAND_SEARCH_DOCUMENT. */
+    PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.SEARCH);
+
+    /** The Constant DOCUMENT_ACTIVITIES_AND_UPDATES. */
+    String DOCUMENT_ACTIVITIES_AND_UPDATES = "Document activities and updates";
+
+    /** The Constant REFERENCES_TO_INDIVIDUALS_IN_THE_DOCUMENT. */
+    String REFERENCES_TO_INDIVIDUALS_IN_THE_DOCUMENT = "References to individuals in the document";
+
+    /** The Constant DETAILED_INFORMATION_ABOUT_THE_DOCUMENT. */
+    String DETAILED_INFORMATION_ABOUT_THE_DOCUMENT = "Detailed information about the document";
+
+    /** The Constant COMPLETE_DOCUMENT_TEXT_AND_DATA. */
+    String COMPLETE_DOCUMENT_TEXT_AND_DATA = "Complete document text and data";
+
+    /** The Constant REFERENCES_CITED_IN_THE_DOCUMENT. */
+    String REFERENCES_CITED_IN_THE_DOCUMENT = "References cited in the document";
+
+    /** The Constant DECISIONS_AND_OUTCOMES_RELATED_TO_THE_DOCUMENT. */
+    String DECISIONS_AND_OUTCOMES_RELATED_TO_THE_DOCUMENT = "Decisions and outcomes related to the document";
+
+    /** The Constant ATTACHMENTS_AND_SUPPLEMENTARY_FILES. */
+    String ATTACHMENTS_AND_SUPPLEMENTARY_FILES = "Attachments and supplementary files";
+
+    /** The Constant GOVERNMENT_BODY_RANKING. */
+    String GOVERNMENT_BODY_RANKING = "Government Body Ranking";
+
+    /** The Constant GOVERNMENT_BODY_OVERVIEW_TEXT. */
+    String GOVERNMENT_BODY_OVERVIEW_TEXT = "Government Body Overview";
+
+    /** The Constant HEADCOUNT_CHART. */
+    String HEADCOUNT_CHART = "Headcount Chart";
+
+    /** The Constant INCOME. */
+    String INCOME = "Income";
+
+    /** The Constant EXPENDITURE. */
+    String EXPENDITURE = "Expenditure";
+
+    /** The Constant GOVERNMENT_BODY_PAGE_VISIT_HISTORY_TEXT. */
+    String GOVERNMENT_BODY_PAGE_VISIT_HISTORY_TEXT = "Government Body Page Visit History";
+
+    /** The Constant HEADCOUNT_DESCRIPTION. */
+    String HEADCOUNT_DESCRIPTION = "Headcount description";
+
+    /** The Constant INCOME_DESCRIPTION. */
+    String INCOME_DESCRIPTION = "Income description";
+
+    /** The Constant EXPENDITURE_DESCRIPTION. */
+    String EXPENDITURE_DESCRIPTION = "Expenditure description";
+
+    /** The Constant GOVERNMENT_BODY_PAGE_VISIT_HISTORY_DESCRIPTION. */
+    String GOVERNMENT_BODY_PAGE_VISIT_HISTORY_DESCRIPTION = "Government body page visit history description";
+
+    /** The Constant MINISTRY_RANKING. */
+    String MINISTRY_RANKING = "Ministry Ranking";
+
+    /** The Constant GOVERNMENT_BODIES_HEADCOUNT. */
+    String GOVERNMENT_BODIES_HEADCOUNT = "Government Bodies Headcount";
+
+    /** The Constant GOVERNMENT_BODIES_INCOME. */
+    String GOVERNMENT_BODIES_INCOME = "Government Bodies Income";
+
+    /** The Constant GOVERNMENT_BODIES_EXPENDITURE. */
+    String GOVERNMENT_BODIES_EXPENDITURE = "Government Bodies Expenditure";
+
+    /** The Constant GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION. */
+    String GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION = "Government bodies headcount description";
+
+    /** The Constant GOVERNMENT_BODIES_INCOME_DESCRIPTION. */
+    String GOVERNMENT_BODIES_INCOME_DESCRIPTION = "Government bodies income description";
+
+    /** The Constant GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION. */
+    String GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION = "Government bodies expenditure description";
+
+    /** The Constant USER_HOME_OVERVIEW_TEXT. */
+    String USER_HOME_OVERVIEW_TEXT = "User Home Overview";
 
 }
