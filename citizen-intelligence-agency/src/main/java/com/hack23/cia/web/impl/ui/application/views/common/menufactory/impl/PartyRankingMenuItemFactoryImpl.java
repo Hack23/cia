@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
@@ -46,40 +47,7 @@ import com.vaadin.ui.VerticalLayout;
  * </p>
  */
 @Service
-public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyRankingMenuItemFactory {
-
-    // Label constants
-    private static final String PART_LEADERS_SCOREBOARD = "Party leaders scoreboard";
-    private static final String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = "All parties total days served in parliament";
-    private static final String CHART_BY_TOPIC_TEXT = "Chart by topic";
-    private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT = "Current parties in committees";
-    private static final String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT = "Current parties in government";
-    private static final String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT = "Current parties in parliament";
-    private static final String OVERVIEW_TEXT = "Overview";
-    private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-    private static final String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT =
-            "Party by total members across EU/gov/committees/parliament";
-    private static final String PARTY_RANKING = "Party Ranking";
-    private static final String TOTAL_MEMBERS = "Total members";
-
-    // Political analyst perspective descriptions (~50 chars)
-    private static final String DESC_ALL_PARTIES_ROLES = "All parties: influence across key institutions.";
-    private static final String DESC_GOVERNMENT_HEADCOUNT = "Governing parties: evaluating institutional strength.";
-    private static final String DESC_COMMITTEES_HEADCOUNT = "Committees: parties' agenda-setting influence.";
-    private static final String DESC_PARLIAMENT_HEADCOUNT = "Parliament: mapping party legislative leverage.";
-    private static final String DESC_LEADERS_SCOREBOARD = "Leaders: comparing party leadership impact.";
-    private static final String DESC_DAYS_SERVED_PARLIAMENT = "All parties: experience shaping policy timelines.";
-    private static final String DESC_PAGE_VISIT_HISTORY = "Visit history: tracking public engagement patterns.";
-
-    // Page mode commands
-    private static final PageModeMenuCommand COMMAND_CHARTS_ALL_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
-    private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_COMMITTEES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTCOMMITTEES.toString());
-    private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTGOVERMENTPARTIES.toString());
-    private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());
-    private static final PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());
-    private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);
-    private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
-    private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyRankingMenuItemFactory, MenuItemConstants {
 
     /** Application menu item factory for integrating ranking menus. */
     @Autowired

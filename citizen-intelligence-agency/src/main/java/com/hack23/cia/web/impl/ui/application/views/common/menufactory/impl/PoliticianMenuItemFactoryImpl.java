@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -46,34 +47,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
-        implements PoliticianMenuItemFactory {
-
-    /** Menu labels. */
-    private static final String BALLOT_DECISION_SUMMARY_TEXT = "Ballot Decision Summary";
-    private static final String BALLOTS_TEXT = "Ballots";
-    private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
-    private static final String DOCUMENT_HISTORY_TEXT = "Document History";
-    private static final String DOCUMENTS_TEXT = "Documents";
-    private static final String INDICATORS_TEXT = "Indicators";
-    private static final String OVERVIEW_TEXT = "Overview";
-    private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-    private static final String POLITICIAN_RANKING = "Politician Ranking";
-    private static final String ROLE_GHANT_TEXT = "Role Gantt";
-    private static final String ROLE_LIST = "Role List";
-    private static final String ROLES_TEXT = "Roles";
-    private static final String TOTAL_EXPERIENCE = "Total Experience";
-    private static final String VOTE_HISTORY = "Vote History";
-
-    /** Descriptions (~50 characters). */
-    private static final String INDICATORS_DESCRIPTION = "Key performance indicators.";
-    private static final String TOTAL_EXPERIENCE_DESCRIPTION = "Summary of political experience.";
-    private static final String ROLE_LIST_DESCRIPTION = "Detailed list of roles.";
-    private static final String ROLE_GHANT_DESCRIPTION = "Gantt chart of roles.";
-    private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Activity by document type.";
-    private static final String DOCUMENT_HISTORY_DESCRIPTION = "History of document access.";
-    private static final String VOTE_HISTORY_DESCRIPTION = "Summary of voting records.";
-    private static final String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Overview of ballot decisions.";
-    private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "History of page visits.";
+        implements PoliticianMenuItemFactory, MenuItemConstants {
 
     /** The application menu item factory. */
     @Autowired
