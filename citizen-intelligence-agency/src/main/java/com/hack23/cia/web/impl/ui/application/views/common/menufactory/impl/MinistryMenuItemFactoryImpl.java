@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
@@ -39,73 +40,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class MenuItemFactoryImpl.
  */
 @Service
-public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryMenuItemFactory {
-
-	/** The Constant CURRENT_MEMBERS_TEXT. */
-	private static final String CURRENT_MEMBERS_TEXT = "Current Members";
-
-	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
-	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
-
-	/** The Constant DOCUMENT_HISTORY_TEXT. */
-	private static final String DOCUMENT_HISTORY_TEXT = "Document history";
-
-	/** The Constant DOCUMENTS_TEXT. */
-	private static final String DOCUMENTS_TEXT = "Documents";
-
-	/** The Constant GOVERNMENT_BODIES_EXPENDITURE. */
-	private static final String GOVERNMENT_BODIES_EXPENDITURE = "Government bodies expenditure";
-
-	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODIES_HEADCOUNT = "Government bodies headcount";
-
-	/** The Constant GOVERNMENT_BODIES_INCOME. */
-	private static final String GOVERNMENT_BODIES_INCOME = "Government bodies income";
-
-	/** The Constant MEMBER_HISTORY_TEXT. */
-	private static final String MEMBER_HISTORY_TEXT = "Member History";
-
-	/** The Constant MINISTRY_RANKING. */
-	private static final String MINISTRY_RANKING = "Ministry Ranking";
-
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-
-	/** The Constant ROLE_GHANT_TEXT. */
-	private static final String ROLE_GHANT_TEXT = "RoleGhant";
-
-	/** The Constant ROLES_TEXT. */
-	private static final String ROLES_TEXT = "Roles";
-
-	/** The Constant CURRENT_MEMBERS_DESCRIPTION. */
-	private static final String CURRENT_MEMBERS_DESCRIPTION = "Members currently holding positions";
-
-	/** The Constant MEMBER_HISTORY_DESCRIPTION. */
-	private static final String MEMBER_HISTORY_DESCRIPTION = "Current and past members";
-
-	/** The Constant ROLE_GHANT_DESCRIPTION. */
-	private static final String ROLE_GHANT_DESCRIPTION = "Gantt chart for all the roles";
-
-	/** The Constant GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION. */
-	private static final String GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION = "All government bodies that are governed by ministry";
-
-	/** The Constant GOVERNMENT_BODIES_INCOME_DESCRIPTION. */
-	private static final String GOVERNMENT_BODIES_INCOME_DESCRIPTION = "All government bodies income";
-
-	/** The Constant GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION. */
-	private static final String GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION = "All government bodies expenditure";
-
-	/** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
-	private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Chart over document activity";
-
-	/** The Constant DOCUMENT_HISTORY_DESCRIPTION. */
-	private static final String DOCUMENT_HISTORY_DESCRIPTION = "List of all document sorted by most recent";
-
-	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
-	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryMenuItemFactory, MenuItemConstants {
 
 	/** The application menu item factory. */
 	@Autowired

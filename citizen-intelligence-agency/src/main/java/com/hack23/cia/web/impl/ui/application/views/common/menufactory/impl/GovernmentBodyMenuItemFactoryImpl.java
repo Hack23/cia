@@ -34,42 +34,13 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class GovernmentBodyMenuItemFactoryImpl.
  */
 @Service
-public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements GovernmentBodyMenuItemFactory {
-
-	/** The Constant EXPENDITURE. */
-	private static final String EXPENDITURE = "Expenditure";
-
-	/** The Constant GOVERNMENT_BODY_RANKING. */
-	private static final String GOVERNMENT_BODY_RANKING = "GovernmentBody Ranking";
-
-	/** The Constant HEADCOUNT_CHART. */
-	private static final String HEADCOUNT_CHART = "Headcount chart";
-
-	/** The Constant INCOME. */
-	private static final String INCOME = "Income";
-
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-
-	/** The Constant HEADCOUNT_DESCRIPTION. */
-	private static final String HEADCOUNT_DESCRIPTION = "Government body: headcount trends.";
-
-	/** The Constant INCOME_DESCRIPTION. */
-	private static final String INCOME_DESCRIPTION = "Government body: income analysis.";
-
-	/** The Constant EXPENDITURE_DESCRIPTION. */
-	private static final String EXPENDITURE_DESCRIPTION = "Government body: expenditure review.";
-
-	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
-	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "Page visit history for this government body.";
+public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements GovernmentBodyMenuItemFactory, MenuItemConstants {
 
 	/** The application menu item factory. */
 	@Autowired

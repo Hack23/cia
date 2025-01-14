@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
@@ -39,89 +40,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
-		implements CommitteeRankingMenuItemFactory {
-
-	/** The Constant ALL_COMMITTEES_TOTAL_MEMBERS. */
-	private static final String ALL_COMMITTEES_TOTAL_MEMBERS = "All committees, total members";
-
-	/** The Constant CHART_BY_TOPIC_TEXT. */
-	private static final String CHART_BY_TOPIC_TEXT = "Chart by topic";
-
-	/** The Constant COMMAND_ALL_COMMITTEES_BY_HEADCOUNT. */
-	private static final PageModeMenuCommand COMMAND_ALL_COMMITTEES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
-			PageMode.CHARTS,ChartIndicators.ALLCOMMITTEESBYHEADCOUNT.toString());
-
-	/** The Constant COMMAND_COMMITTEES_BY_PARTY. */
-	private static final PageModeMenuCommand COMMAND_COMMITTEES_BY_PARTY = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
-			PageMode.CHARTS,ChartIndicators.COMMITTEESBYPARTY.toString());
-
-	/** The Constant COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT. */
-	private static final PageModeMenuCommand COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
-			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYHEADCOUNT.toString());
-
-
-	/** The Constant COMMAND_CURRENT_COMMITTEES_BY_PARTY_HEADCOUNT. */
-	private static final PageModeMenuCommand COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
-			PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());
-
-	/** The Constant COMMAND_DATAGRID. */
-	private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
-			PageMode.DATAGRID);
-
-	/** The Constant COMMAND_OVERVIEW. */
-	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
-			PageMode.OVERVIEW);
-
-	/** The Constant COMMAND_PAGEVISIT_HISTORY. */
-	private static final PageModeMenuCommand COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(UserViews.COMMITTEE_RANKING_VIEW_NAME,
-			PageMode.PAGEVISITHISTORY);
-
-	/** The Constant COMMITTEE_RANKING_TEXT. */
-	private static final String COMMITTEE_RANKING_TEXT = "Committee Ranking";
-
-	/** The Constant CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS. */
-	private static final String CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS = "Current and past member, polticial days";
-
-	/** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT. */
-	private static final String CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT = "Current committees, current members";
-
-	/**
-	 * The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS.
-	 */
-	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS = "Current parties in committees";
-
-	/**
-	 * The Constant
-	 * CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES.
-	 */
-	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "Current parties,days served";
-
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-
-	/** The Constant POLITICAL_WORK_SUMMARY_TEXT. */
-	private static final String POLITICAL_WORK_SUMMARY_TEXT = "Political Work Summary";
-
-	/** The Constant POLITICAL_WORK_SUMMARY_DESCRIPTION. */
-	private static final String POLITICAL_WORK_SUMMARY_DESCRIPTION = "Scoreboard over current member size, political days served and total assignments";
-
-	/** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION. */
-	private static final String CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION = "Chart over current committees and member size";
-
-	/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION. */
-	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION = "Chart over current parties active in committees and member size";
-
-	/** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION. */
-	private static final String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION = "Chart over current parties active in committees days served";
-
-	/** The Constant ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION. */
-	private static final String ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION = "Chart over all committees and member size";
-
-	/** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
-	private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+		implements CommitteeRankingMenuItemFactory, MenuItemConstants {
 
 	/** The application menu item factory. */
 	@Autowired

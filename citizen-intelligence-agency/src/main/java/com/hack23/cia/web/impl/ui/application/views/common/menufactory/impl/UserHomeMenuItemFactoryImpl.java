@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
@@ -38,28 +39,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class UserHomeMenuItemFactoryImpl.
  */
 @Service
-public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements UserHomeMenuItemFactory {
-
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant SECURITY_SETTING_TEXT. */
-	private static final String SECURITY_SETTING_TEXT = "Security settings";
-
-	/** The Constant USER_EVENTS. */
-	private static final String USER_EVENTS = "User Events";
-
-	/** The Constant USER_VISITS. */
-	private static final String USER_VISITS = "User Visits";
-
-	/** The Constant SECURITY_SETTINGS_DESCRIPTION. */
-	private static final String SECURITY_SETTINGS_DESCRIPTION = "Security settings, enable MFA";
-
-	/** The Constant USER_VISITS_DESCRIPTION. */
-	private static final String USER_VISITS_DESCRIPTION = "All past visits";
-
-	/** The Constant USER_EVENTS_DESCRIPTION. */
-	private static final String USER_EVENTS_DESCRIPTION = "All past events";
+public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements UserHomeMenuItemFactory, MenuItemConstants {
 
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;

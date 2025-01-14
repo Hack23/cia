@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
@@ -38,74 +39,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class DocumentMenuItemFactoryImpl.
  */
 @Service
-public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements DocumentMenuItemFactory {
-
-	/** The Constant COMMAND_DOCUMENTS. */
-	private static final PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(UserViews.DOCUMENTS_VIEW_NAME,PageMode.OVERVIEW);
-
-	/** The Constant COMMAND_SEARCH_DOCUMENT. */
-	private static final PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(UserViews.SEARCH_DOCUMENT_VIEW_NAME,"");
-
-	/** The Constant DOCUMENT. */
-	private static final String DOCUMENT = "Document";
-
-	/** The Constant DOCUMENT_ACTIVITY_TEXT. */
-	private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
-
-	/** The Constant DOCUMENT_ATTACHEMENTS. */
-	private static final String DOCUMENT_ATTACHEMENTS = "Document Attachements";
-
-	/** The Constant DOCUMENT_DATA. */
-	private static final String DOCUMENT_DATA = "Document data";
-
-	/** The Constant DOCUMENT_DECISION. */
-	private static final String DOCUMENT_DECISION = "Document Decision";
-
-
-	/** The Constant DOCUMENT_DETAILS. */
-	private static final String DOCUMENT_DETAILS = "Document details";
-
-	/** The Constant DOCUMENT_REFERENCES. */
-	private static final String DOCUMENT_REFERENCES = "Document References";
-
-	/** The Constant DOCUMENTS. */
-	private static final String DOCUMENTS = "Documents";
-
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-
-	/** The Constant PERSON_REFERENCES. */
-	private static final String PERSON_REFERENCES = "Person references";
-
-	/** The Constant LIST_ALL. */
-	private static final String LIST_ALL = "List all";
-
-	/** The Constant SEARCH_DOCUMENTS. */
-	private static final String SEARCH_DOCUMENTS = "Search Documents";
-
-	/** The Constant DOCUMENT_ACTIVITIES_AND_UPDATES. */
-	private static final String DOCUMENT_ACTIVITIES_AND_UPDATES = "Document activities and updates.";
-
-	/** The Constant REFERENCES_TO_INDIVIDUALS_IN_THE_DOCUMENT. */
-	private static final String REFERENCES_TO_INDIVIDUALS_IN_THE_DOCUMENT = "References to individuals in the document.";
-
-	/** The Constant DETAILED_INFORMATION_ABOUT_THE_DOCUMENT. */
-	private static final String DETAILED_INFORMATION_ABOUT_THE_DOCUMENT = "Detailed information about the document.";
-
-	/** The Constant COMPLETE_DOCUMENT_TEXT_AND_DATA. */
-	private static final String COMPLETE_DOCUMENT_TEXT_AND_DATA = "Complete document text and data.";
-
-	/** The Constant REFERENCES_CITED_IN_THE_DOCUMENT. */
-	private static final String REFERENCES_CITED_IN_THE_DOCUMENT = "References cited in the document.";
-
-	/** The Constant DECISIONS_AND_OUTCOMES_RELATED_TO_THE_DOCUMENT. */
-	private static final String DECISIONS_AND_OUTCOMES_RELATED_TO_THE_DOCUMENT = "Decisions and outcomes related to the document.";
-
-	/** The Constant ATTACHMENTS_AND_SUPPLEMENTARY_FILES. */
-	private static final String ATTACHMENTS_AND_SUPPLEMENTARY_FILES = "Attachments and supplementary files.";
+public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements DocumentMenuItemFactory, MenuItemConstants {
 
 	/** The application menu item factory. */
 	@Autowired

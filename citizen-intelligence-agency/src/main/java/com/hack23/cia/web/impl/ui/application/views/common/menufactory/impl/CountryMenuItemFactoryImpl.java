@@ -38,6 +38,7 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -52,35 +53,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class CountryMenuItemFactoryImpl.
  */
 @Service
-public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CountryMenuItemFactory {
-
-	/** The Constant COMMAND_OVERVIEW. */
-	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
-
-	/** The Constant COMMAND_PAGEVISITHISTORY. */
-	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
-
-	/** The Constant COUNTRY_INDICATORS_SWEDEN. */
-	private static final String COUNTRY_INDICATORS_SWEDEN = "Country Indicators, Sweden";
-
-
-	/** The Constant COUNTRY_RANKING_TEXT. */
-	private static final String COUNTRY_RANKING_TEXT = "Counry Ranking";
-
-	/** The Constant DATA_POINTS_FOR_YEAR_ABOVE. */
-	private static final int DATA_POINTS_FOR_YEAR_ABOVE = 2010;
-
-	/** The Constant MINIMUM_NUMBER_DATA_POINTS. */
-	private static final int MINIMUM_NUMBER_DATA_POINTS = 10;
-
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-
-	/** The Constant BY_TOPIC. */
-	private static final String BY_TOPIC = "By Topic";
+public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CountryMenuItemFactory, MenuItemConstants {
 
 	/** The application manager. */
 	@Autowired
