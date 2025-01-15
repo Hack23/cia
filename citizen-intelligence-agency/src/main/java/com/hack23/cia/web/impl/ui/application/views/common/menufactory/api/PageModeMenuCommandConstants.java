@@ -1,11 +1,9 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummaryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -14,7 +12,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 /**
  * The Interface MenuItemConstants.
  */
-public interface PageModeMenuCommandConstants extends MenuItemConstants {
+public interface PageModeMenuCommandConstants extends PageModeMenuCommandAdminConstants {
 
        // Page mode commands
        PageModeMenuCommand COMMAND_CHARTS_ALL_PARTIES = new PageModeMenuCommand(
@@ -65,51 +63,6 @@ public interface PageModeMenuCommandConstants extends MenuItemConstants {
                      UserViews.MINISTRY_RANKING_VIEW_NAME,
                      MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString());
 
-       /** The Constant COMMAND_AGENCY. */
-       PageModeMenuCommand COMMAND_AGENCY = new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, "");
-
-       /** The Constant COMMAND_AGENT_OPERATION. */
-       PageModeMenuCommand COMMAND_AGENT_OPERATION = new PageModeMenuCommand(
-                     AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, "");
-
-       /** The Constant COMMAND_APPLICATION_CONFIGURATION. */
-       PageModeMenuCommand COMMAND_APPLICATION_CONFIGURATION = new PageModeMenuCommand(
-                     AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, "");
-
-       /** The Constant COMMAND_APPLICATION_EVENTS. */
-       PageModeMenuCommand COMMAND_APPLICATION_EVENTS = new PageModeMenuCommand(
-                     AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "");
-
-       /** The Constant COMMAND_APPLICATION_EVENTS_CHARTS. */
-       PageModeMenuCommand COMMAND_APPLICATION_EVENTS_CHARTS = new PageModeMenuCommand(
-                     AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
-
-       /** The Constant COMMAND_APPLICATION_SESSION. */
-       PageModeMenuCommand COMMAND_APPLICATION_SESSION = new PageModeMenuCommand(
-                     AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "");
-
-       /** The Constant COMMAND_APPLICATION_SESSION_CHARTS. */
-       PageModeMenuCommand COMMAND_APPLICATION_SESSION_CHARTS = new PageModeMenuCommand(
-                     AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS);
-
-       /** The Constant COMMAND_AUTHOR_DATASUMMARY. */
-       PageModeMenuCommand COMMAND_AUTHOR_DATASUMMARY = new PageModeMenuCommand(
-                     AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString());
-
-       /** The Constant COMMAND_COUNTRY. */
-       PageModeMenuCommand COMMAND_COUNTRY = new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "");
-
-       /** The Constant COMMAND_DATASUMMARY. */
-       PageModeMenuCommand COMMAND_DATASUMMARY = new PageModeMenuCommand(
-                     AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, "");
-
-       /** The Constant COMMAND_EMAIL. */
-       PageModeMenuCommand COMMAND_EMAIL = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,
-                     "");
-
-       /** The Constant COMMAND_LANGUAGE. */
-       PageModeMenuCommand COMMAND_LANGUAGE = new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME,
-                     "");
 
        /** The Constant COMMAND_LOGIN. */
        PageModeMenuCommand COMMAND_LOGIN = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
@@ -131,20 +84,11 @@ public interface PageModeMenuCommandConstants extends MenuItemConstants {
        PageModeMenuCommand COMMAND_MAINVIEW_PAGEVISITHISTORY = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
                      PageMode.PAGEVISITHISTORY);
 
-       /** The Constant COMMAND_MONITORING. */
-       PageModeMenuCommand COMMAND_MONITORING = new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME,
-                     "");
-
-       /** The Constant COMMAND_PORTAL. */
-       PageModeMenuCommand COMMAND_PORTAL = new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, "");
 
        /** The Constant COMMAND_REGISTER. */
        PageModeMenuCommand COMMAND_REGISTER = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
                      ApplicationPageMode.REGISTER.toString());
 
-       /** The Constant COMMAND_USERACCOUNT. */
-       PageModeMenuCommand COMMAND_USERACCOUNT = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,
-                     "");
 
        /** The Constant COMMAND_USERHOME. */
        PageModeMenuCommand COMMAND_USERHOME = new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, "");
