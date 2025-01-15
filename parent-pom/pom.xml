@@ -87,7 +87,7 @@
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.commons.text>1.13.0</cia.project.versions.commons.text>
     <cia.project.versions.commons.codec>1.17.2</cia.project.versions.commons.codec>
-    <cia.project.versions.bouncycastle>1.79</cia.project.versions.bouncycastle>
+    <cia.project.versions.bouncycastle>1.80</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.16</cia.project.versions.slf4j>
     <cia.project.versions.aws.v2>2.29.51</cia.project.versions.aws.v2>
     <cia.project.versions.logback>1.5.16</cia.project.versions.logback>
