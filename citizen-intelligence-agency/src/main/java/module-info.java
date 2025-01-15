@@ -136,14 +136,14 @@ open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application.views.common;
 
 	// Non-modular dependencies (remove transitive)
-	requires vaadin.compatibility.shared;
-	requires vaadin.compatibility.server;
-	requires responsive.layout;
-	requires org.hibernate.orm.jpamodelgen;
-	requires vaadin.shared;
-	requires org.eclipse.jetty.servlet;
-	requires jetty.servlet.api;
-	requires vaadin.server;
+	requires transitive vaadin.compatibility.shared;
+	requires transitive vaadin.compatibility.server;
+	requires transitive responsive.layout;
+	requires transitive org.hibernate.orm.jpamodelgen;
+	requires transitive vaadin.shared;
+	requires transitive org.eclipse.jetty.servlet;
+	requires transitive jetty.servlet.api;
+	requires transitive vaadin.server;
 
 	// Keep transitive for Spring and our own modules
 	requires transitive spring.context;
@@ -152,9 +152,9 @@ open module com.hack23.cia.web {
 	requires transitive spring.beans;
 	requires transitive com.hack23.cia.web.widgets;
 
-	requires java.persistence;
-	requires org.hibernate.orm.core;
-	requires java.transaction;
+	requires transitive java.persistence;
+	requires transitive org.hibernate.orm.core;
+	requires transitive java.transaction;
 	requires ehcache;
 	requires cache.api;
 
