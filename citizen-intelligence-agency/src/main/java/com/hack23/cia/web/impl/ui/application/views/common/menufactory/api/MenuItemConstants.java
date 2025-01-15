@@ -1,277 +1,248 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
-/**
- * The Interface MenuItemConstants.
- */
-public interface MenuItemConstants {
+public interface MenuItemConstants extends 
+    MenuItemLayoutConstants,
+    MenuItemPartyConstants,
+    MenuItemUserConstants,
+    MenuItemPoliticianConstants,
+    MenuItemDocumentConstants,
+    MenuItemCommitteeConstants,
+    MenuItemGovernmentConstants,
+    MenuItemNavigationConstants {
+
+    // Core navigation constants
+    String DASHBOARD = "Dashboard";
+    String MAIN = "Main";
+    String START_TEXT = "Start";
+    String OVERVIEW_TEXT = "Overview";
+    String RANKING_TEXT = "Ranking";
+    String BY_TOPIC = "By Topic";
+    String LIST_ALL = "List All";
+
+    // Security related constants
+    String LOGIN = "Login";
+    String LOGOUT = "Logout";
+    String REGISTER = "Register";
+    String ROLE_ADMIN = "ROLE_ADMIN";
+    String ROLE_USER = "ROLE_USER";
+
+    // String constants
+    /** The Constant PARTY_WON_DAILY_SUMMARY_CHART. */
+    String PARTY_WON_DAILY_SUMMARY_CHART = "Party Won Daily Summary Chart";
+
+    /** The Constant ROLE_CHART_PARTY_LEADERS. */
+    String ROLE_CHART_PARTY_LEADERS = "Role chart, party leaders";
+
+    /** The Constant VOTE_HISTORY. */
+    String VOTE_HISTORY = "Vote history";
+
+    /** The Constant ROLE_CHART_PARTY_LEADERS_DESCRIPTION. */
+    String ROLE_CHART_PARTY_LEADERS_DESCRIPTION = "Gantt chart all party leaders";
+
+    /** The Constant PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION. */
+    String PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION = "Chart for Party over won,absent and party rebel votes";
+
+    /** The Constant PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION. */
+    String PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION = "Coalations with groups of diffrent parties aginst committe proposals ballots";
 
-        // String constants
-        /** The Constant PARTY_WON_DAILY_SUMMARY_CHART. */
-        String PARTY_WON_DAILY_SUMMARY_CHART = "Party Won Daily Summary Chart";
+    /** The Constant PARTY_SUPPORT_SUMMARY_DESCRIPTION. */
+    String PARTY_SUPPORT_SUMMARY_DESCRIPTION = "Trend of agreements with other parties during ballots";
 
-        /** The Constant ROLE_CHART_PARTY_LEADERS. */
-        String ROLE_CHART_PARTY_LEADERS = "Role chart, party leaders";
+    // Label constants
+    String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = "All parties total days served in parliament";
+    String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT = "Current parties in committees";
+    String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT = "Current parties in government";
+    String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT = "Current parties in parliament";
+    String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT = "Party by total members across EU/gov/committees/parliament";
+    String TOTAL_MEMBERS = "Total members";
 
-        /** The Constant VOTE_HISTORY. */
-        String VOTE_HISTORY = "Vote history";
+    // Political analyst perspective descriptions (~50 chars)
+    String DESC_ALL_PARTIES_ROLES = "All parties: influence across key institutions.";
+    String DESC_GOVERNMENT_HEADCOUNT = "Governing parties: evaluating institutional strength.";
+    String DESC_COMMITTEES_HEADCOUNT = "Committees: parties' agenda-setting influence.";
+    String DESC_PARLIAMENT_HEADCOUNT = "Parliament: mapping party legislative leverage.";
+    String DESC_DAYS_SERVED_PARLIAMENT = "All parties: experience shaping policy timelines.";
+    String DESC_PAGE_VISIT_HISTORY = "Visit history: tracking public engagement patterns.";
 
-        /** The Constant ROLE_CHART_PARTY_LEADERS_DESCRIPTION. */
-        String ROLE_CHART_PARTY_LEADERS_DESCRIPTION = "Gantt chart all party leaders";
+    String MINISTRY_DOCUMENT_ACTIVITY_TEXT = "Document Activity";
 
-        /** The Constant PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION. */
-        String PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION = "Chart for Party over won,absent and party rebel votes";
+    String MINISTRY_OVERVIEW_TEXT = "Overview";
+    String MINISTRY_PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+    String MINISTRY_PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
 
-        /** The Constant PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION. */
-        String PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION = "Coalations with groups of diffrent parties aginst committe proposals ballots";
+    // UserHomeMenuItemFactoryImpl constants
+    String USER_HOME = "User Home";
+    String USER_PROFILE = "User Profile";
+    String USER_SETTINGS = "User Settings";
+    String USER_LOGOUT = "User Logout";
+    String USER_HOME_DESCRIPTION = "Navigate to user home page";
+    String USER_PROFILE_DESCRIPTION = "View and edit user profile";
+    String USER_SETTINGS_DESCRIPTION = "Adjust user settings";
+    String USER_LOGOUT_DESCRIPTION = "Logout from the application";
 
-        /** The Constant PARTY_SUPPORT_SUMMARY_DESCRIPTION. */
-        String PARTY_SUPPORT_SUMMARY_DESCRIPTION = "Trend of agreements with other parties during ballots";
+    /** The Constant ADMIN_TEXT. */
+    String ADMIN_TEXT = "Admin";
 
-        // Label constants
-        String ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT = "All parties total days served in parliament";
-        String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT = "Current parties in committees";
-        String CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT = "Current parties in government";
-        String CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT = "Current parties in parliament";
-        String PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT = "Party by total members across EU/gov/committees/parliament";
-        String TOTAL_MEMBERS = "Total members";
+    /** The Constant AGENCY. */
+    String AGENCY = "Agency";
 
-        // Political analyst perspective descriptions (~50 chars)
-        String DESC_ALL_PARTIES_ROLES = "All parties: influence across key institutions.";
-        String DESC_GOVERNMENT_HEADCOUNT = "Governing parties: evaluating institutional strength.";
-        String DESC_COMMITTEES_HEADCOUNT = "Committees: parties' agenda-setting influence.";
-        String DESC_PARLIAMENT_HEADCOUNT = "Parliament: mapping party legislative leverage.";
-        String DESC_DAYS_SERVED_PARLIAMENT = "All parties: experience shaping policy timelines.";
-        String DESC_PAGE_VISIT_HISTORY = "Visit history: tracking public engagement patterns.";
+    /** The Constant AGENT_OPERATIONS_TEXT. */
+    String AGENT_OPERATIONS_TEXT = "Agent operations";
 
-        String MINISTRY_DOCUMENT_ACTIVITY_TEXT = "Document Activity";
+    /** The Constant APPLICATION. */
+    String APPLICATION = "Application";
 
-        String MINISTRY_OVERVIEW_TEXT = "Overview";
-        String MINISTRY_PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-        String MINISTRY_PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+    /** The Constant APPLICATION_CONFIGURATION. */
+    String APPLICATION_CONFIGURATION = "System settings";
 
-        // UserHomeMenuItemFactoryImpl constants
-        String USER_HOME = "User Home";
-        String USER_PROFILE = "User Profile";
-        String USER_SETTINGS = "User Settings";
-        String USER_LOGOUT = "User Logout";
-        String USER_HOME_DESCRIPTION = "Navigate to user home page";
-        String USER_PROFILE_DESCRIPTION = "View and edit user profile";
-        String USER_SETTINGS_DESCRIPTION = "Adjust user settings";
-        String USER_LOGOUT_DESCRIPTION = "Logout from the application";
+    /** The Constant APPLICATION_EVENT. */
+    String APPLICATION_EVENT = "Application Event";
 
-        /** The Constant DASHBOARD. */
-        String DASHBOARD = "Dashboard";
+    /** The Constant APPLICATION_EVENT_CHARTS. */
+    String APPLICATION_EVENT_CHARTS = "Application Event charts";
 
-        /** The Constant ADMIN_TEXT. */
-        String ADMIN_TEXT = "Admin";
+    /** The Constant APPLICATION_SESSION. */
+    String APPLICATION_SESSION = "Application Session";
 
-        /** The Constant AGENCY. */
-        String AGENCY = "Agency";
+    /** The Constant APPLICATION_SESSION_CHARTS. */
+    String APPLICATION_SESSION_CHARTS = "Active Daily Users";
 
-        /** The Constant AGENT_OPERATIONS_TEXT. */
-        String AGENT_OPERATIONS_TEXT = "Agent operations";
+    /** The Constant CONFIGURATION. */
+    String CONFIGURATION = "Configuration";
 
-        /** The Constant APPLICATION. */
-        String APPLICATION = "Application";
+    /** The Constant COUNTRY. */
+    String COUNTRY = "Country";
 
-        /** The Constant APPLICATION_CONFIGURATION. */
-        String APPLICATION_CONFIGURATION = "System settings";
+    /** The Constant DATA_AUTHOR_SUMMARY. */
+    String DATA_AUTHOR_SUMMARY = "Data author summary";
 
-        /** The Constant APPLICATION_EVENT. */
-        String APPLICATION_EVENT = "Application Event";
+    /** The Constant DATA_SUMMARY_TEXT. */
+    String DATA_SUMMARY_TEXT = "Data Summary";
 
-        /** The Constant APPLICATION_EVENT_CHARTS. */
-        String APPLICATION_EVENT_CHARTS = "Application Event charts";
+    /** The Constant DISPLAY_SIZE_LG_DEVICE. */
+    int DISPLAY_SIZE_LG_DEVICE = 4;
 
-        /** The Constant APPLICATION_SESSION. */
-        String APPLICATION_SESSION = "Application Session";
+    /** The Constant DISPLAY_SIZE_MD_DEVICE. */
+    int DISPLAY_SIZE_MD_DEVICE = 4;
 
-        /** The Constant APPLICATION_SESSION_CHARTS. */
-        String APPLICATION_SESSION_CHARTS = "Active Daily Users";
+    /** The Constant DISPLAY_SIZE_XS_DEVICE. */
+    int DISPLAY_SIZE_XS_DEVICE = 12;
 
-        /** The Constant CONFIGURATION. */
-        String CONFIGURATION = "Configuration";
+    /** The Constant DISPLAYS_SIZE_XM_DEVICE. */
+    int DISPLAYS_SIZE_XM_DEVICE = 6;
 
-        /** The Constant COUNTRY. */
-        String COUNTRY = "Country";
+    /** The Constant EMAIL. */
+    String EMAIL = "Email";
 
-        /** The Constant DATA_AUTHOR_SUMMARY. */
-        String DATA_AUTHOR_SUMMARY = "Data author summary";
+    /** The Constant HEADER_STYLE_NAME. */
+    String HEADER_STYLE_NAME = "Header";
 
-        /** The Constant DATA_SUMMARY_TEXT. */
-        String DATA_SUMMARY_TEXT = "Data Summary";
+    /** The Constant LANGUAGE. */
+    String LANGUAGE = "Language";
 
-        /** The Constant DISPLAY_SIZE_LG_DEVICE. */
-        int DISPLAY_SIZE_LG_DEVICE = 4;
+    /** The Constant LINK_STYLE_NAME. */
+    String LINK_STYLE_NAME = "link";
 
-        /** The Constant DISPLAY_SIZE_MD_DEVICE. */
-        int DISPLAY_SIZE_MD_DEVICE = 4;
+    /** The Constant MANAGEMENT. */
+    String MANAGEMENT = "Management";
 
-        /** The Constant DISPLAY_SIZE_XS_DEVICE. */
-        int DISPLAY_SIZE_XS_DEVICE = 12;
+    /** The Constant MENU_BAR_WIDTH. */
+    String MENU_BAR_WIDTH = "80%";
 
-        /** The Constant DISPLAYS_SIZE_XM_DEVICE. */
-        int DISPLAYS_SIZE_XM_DEVICE = 6;
+    /** The Constant PAGE_VISIT_HISTORY_TEXT. */
+    String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
-        /** The Constant EMAIL. */
-        String EMAIL = "Email";
+    /** The Constant PORTAL. */
+    String PORTAL = "Portal";
 
-        /** The Constant HEADER_STYLE_NAME. */
-        String HEADER_STYLE_NAME = "Header";
+    /** The Constant SYSTEM_PERFORMANCE. */
+    String SYSTEM_PERFORMANCE = "System Performance";
 
-        /** The Constant LANGUAGE. */
-        String LANGUAGE = "Language";
+    /** The Constant USER_ACTIVITY. */
+    String USER_ACTIVITY = "User Activity";
 
-        /** The Constant LINK_STYLE_NAME. */
-        String LINK_STYLE_NAME = "link";
+    /** The Constant USERACCOUNT. */
+    String USERACCOUNT = "Useraccount";
 
-        /** The Constant LOGIN. */
-        String LOGIN = "Login";
+    /** The Constant USERHOME. */
+    String USERHOME = "Userhome";
 
-        /** The Constant LOGOUT. */
-        String LOGOUT = "Logout";
+    /** The Constant ALL_COMMITTEES_TOTAL_MEMBERS. */
+    String ALL_COMMITTEES_TOTAL_MEMBERS = "All committees, total members";
 
-        /** The Constant MAIN. */
-        String MAIN = "Main";
+    /** The Constant CHART_BY_TOPIC_TEXT. */
+    String CHART_BY_TOPIC_TEXT = "Chart by topic";
 
-        /** The Constant MANAGEMENT. */
-        String MANAGEMENT = "Management";
+    /** The Constant CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS. */
+    String CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS = "Current and past member, polticial days";
 
-        /** The Constant MENU_BAR_WIDTH. */
-        String MENU_BAR_WIDTH = "80%";
+    /** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT. */
+    String CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT = "Current committees, current members";
 
-        /** The Constant PAGE_VISIT_HISTORY_TEXT. */
-        String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+    /** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS. */
+    String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS = "Current parties in committees";
 
-        /** The Constant PORTAL. */
-        String PORTAL = "Portal";
+    /**
+     * The Constant
+     * CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES.
+     */
+    String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "Current parties,days served";
 
-        /** The Constant REGISTER. */
-        String REGISTER = "Register";
+    /** The Constant POLITICAL_WORK_SUMMARY_TEXT. */
+    String POLITICAL_WORK_SUMMARY_TEXT = "Political Work Summary";
 
-        /** The Constant ROLE_ADMIN. */
-        String ROLE_ADMIN = "ROLE_ADMIN";
+    /** The Constant POLITICAL_WORK_SUMMARY_DESCRIPTION. */
+    String POLITICAL_WORK_SUMMARY_DESCRIPTION = "Scoreboard over current member size, political days served and total assignments";
 
-        /** The Constant ROLE_USER. */
-        String ROLE_USER = "ROLE_USER";
+    /** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION. */
+    String CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION = "Chart over current committees and member size";
 
-        /** The Constant START_TEXT. */
-        String START_TEXT = "Start";
+    /**
+     * The Constant
+     * CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION.
+     */
+    String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION = "Chart over current parties active in committees and member size";
 
-        /** The Constant SYSTEM_PERFORMANCE. */
-        String SYSTEM_PERFORMANCE = "System Performance";
+    /**
+     * The Constant
+     * CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION.
+     */
+    String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION = "Chart over current parties active in committees days served";
 
-        /** The Constant USER_ACTIVITY. */
-        String USER_ACTIVITY = "User Activity";
+    /** The Constant ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION. */
+    String ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION = "Chart over all committees and member size";
 
-        /** The Constant USERACCOUNT. */
-        String USERACCOUNT = "Useraccount";
+    /** The Constant DOCUMENT_ACTIVITY_TEXT. */
+    String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
 
-        /** The Constant USERHOME. */
-        String USERHOME = "Userhome";
+    /** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
+    String DOCUMENT_ACTIVITY_DESCRIPTION = "View document activity.";
 
-        /** The Constant ALL_COMMITTEES_TOTAL_MEMBERS. */
-        String ALL_COMMITTEES_TOTAL_MEMBERS = "All committees, total members";
+    /** The Constant SECURITY_SETTING_TEXT. */
+    String SECURITY_SETTING_TEXT = "Security Settings";
 
-        /** The Constant CHART_BY_TOPIC_TEXT. */
-        String CHART_BY_TOPIC_TEXT = "Chart by topic";
+    /** The Constant SECURITY_SETTINGS_DESCRIPTION. */
+    String SECURITY_SETTINGS_DESCRIPTION = "View and update security settings.";
 
-        /** The Constant CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS. */
-        String CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS = "Current and past member, polticial days";
+    /** The Constant USER_VISITS. */
+    String USER_VISITS = "User Visits";
 
-        /** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT. */
-        String CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT = "Current committees, current members";
+    /** The Constant USER_VISITS_DESCRIPTION. */
+    String USER_VISITS_DESCRIPTION = "View user visit history.";
 
-        /** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS. */
-        String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS = "Current parties in committees";
+    /** The Constant USER_EVENTS. */
+    String USER_EVENTS = "User Events";
 
-        /**
-         * The Constant
-         * CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES.
-         */
-        String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "Current parties,days served";
+    /** The Constant USER_EVENTS_DESCRIPTION = "View user event history."; */
+    String USER_EVENTS_DESCRIPTION = "View user event history.";
 
-        /** The Constant OVERVIEW_TEXT. */
-        String OVERVIEW_TEXT = "Overview";
+    /** The Constant ROLES_TEXT. */
+    String ROLES_TEXT = "Roles";
 
-        /** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
-        String PAGE_VISIT_HISTORY_DESCRIPTION = "View history of page visit for this page.";
+    /** The Constant CURRENT_MEMBERS_TEXT. */
+    String CURRENT_MEMBERS_TEXT = "Current Members";
 
-        /** The Constant POLITICAL_WORK_SUMMARY_TEXT. */
-        String POLITICAL_WORK_SUMMARY_TEXT = "Political Work Summary";
-
-        /** The Constant POLITICAL_WORK_SUMMARY_DESCRIPTION. */
-        String POLITICAL_WORK_SUMMARY_DESCRIPTION = "Scoreboard over current member size, political days served and total assignments";
-
-        /** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION. */
-        String CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION = "Chart over current committees and member size";
-
-        /**
-         * The Constant
-         * CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION.
-         */
-        String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION = "Chart over current parties active in committees and member size";
-
-        /**
-         * The Constant
-         * CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION.
-         */
-        String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION = "Chart over current parties active in committees days served";
-
-        /** The Constant ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION. */
-        String ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION = "Chart over all committees and member size";
-
-        /** The Constant DOCUMENT_ACTIVITY_TEXT. */
-        String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
-
-        /** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
-        String DOCUMENT_ACTIVITY_DESCRIPTION = "View document activity.";
-
-        /** The Constant SECURITY_SETTING_TEXT. */
-        String SECURITY_SETTING_TEXT = "Security Settings";
-
-        /** The Constant SECURITY_SETTINGS_DESCRIPTION. */
-        String SECURITY_SETTINGS_DESCRIPTION = "View and update security settings.";
-
-        /** The Constant USER_VISITS. */
-        String USER_VISITS = "User Visits";
-
-        /** The Constant USER_VISITS_DESCRIPTION. */
-        String USER_VISITS_DESCRIPTION = "View user visit history.";
-
-        /** The Constant USER_EVENTS. */
-        String USER_EVENTS = "User Events";
-
-        /** The Constant USER_EVENTS_DESCRIPTION = "View user event history."; */
-        String USER_EVENTS_DESCRIPTION = "View user event history.";
-
-        /** The Constant ROLES_TEXT. */
-        String ROLES_TEXT = "Roles";
-
-        /** The Constant CURRENT_MEMBERS_TEXT. */
-        String CURRENT_MEMBERS_TEXT = "Current Members";
-
-        /** The Constant MEMBER_HISTORY_TEXT. */
-        String MEMBER_HISTORY_TEXT = "Member History";
-
-        /** The Constant ROLE_GHANT_TEXT. */
-        String ROLE_GHANT_TEXT = "Role Ghant";
-
-        /** The Constant DOCUMENTS_TEXT. */
-        String DOCUMENTS_TEXT = "Documents";
-
-        /** The Constant DOCUMENT_HISTORY_TEXT. */
-        String DOCUMENT_HISTORY_TEXT = "Document History";
-
-        /** The Constant BALLOTS_TEXT. */
-        String BALLOTS_TEXT = "Ballots";
-
-        /** The Constant BALLOT_DECISION_SUMMARY_TEXT. */
-        String BALLOT_DECISION_SUMMARY_TEXT = "Ballot Decision Summary";
-
-        /** The Constant DECISION_SUMMARY_TEXT. */
-        String DECISION_SUMMARY_TEXT = "Decision Summary";
-
+    /** The Constant MEMBER_HISTORY_TEXT. */
         /** The Constant DECISION_TYPE_DAILY_SUMMARY_TEXT. */
         String DECISION_TYPE_DAILY_SUMMARY_TEXT = "Decision Type Daily Summary";
 
@@ -311,9 +282,6 @@ public interface MenuItemConstants {
         /** The Constant COUNTRY_PAGE_VISIT_HISTORY_TEXT. */
         String COUNTRY_PAGE_VISIT_HISTORY_TEXT = "Country Page Visit History";
 
-        /** The Constant BY_TOPIC. */
-        String BY_TOPIC = "By Topic";
-
         /** The Constant DATA_POINTS_FOR_YEAR_ABOVE. */
         int DATA_POINTS_FOR_YEAR_ABOVE = 2000;
 
@@ -346,9 +314,6 @@ public interface MenuItemConstants {
 
         /** The Constant DOCUMENT_PAGE_VISIT_HISTORY_TEXT. */
         String DOCUMENT_PAGE_VISIT_HISTORY_TEXT = "Document Page Visit History";
-
-        /** The Constant LIST_ALL. */
-        String LIST_ALL = "List All";
 
         /** The Constant DOCUMENT_ACTIVITIES_AND_UPDATES. */
         String DOCUMENT_ACTIVITIES_AND_UPDATES = "Document activities and updates";
@@ -478,9 +443,6 @@ public interface MenuItemConstants {
 
         /** The Constant POLITICIANS_LINK_TEXT. */
         String POLITICIANS_LINK_TEXT = "Politicians";
-
-        /** The Constant RANKING_TEXT. */
-        String RANKING_TEXT = "Ranking";
 
         /** The Constant SEARCH_DOCUMENTS. */
         String SEARCH_DOCUMENTS = "Search documents";

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.hack23.cia</groupId>
@@ -1183,8 +1181,7 @@
         <?m2e ignore?>
         <configuration>
           <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="ciaPersistenceUnit"
-              propertyfile="src/test/resources/database.properties"></jpaconfiguration>
+            <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"></jpaconfiguration>
             <!-- <hbm2ddl export="false" outputfilename="schema-database.sql"></hbm2ddl> -->
             <!-- <hbm2doc destdir="target/site/hbm2doc"></hbm2doc> -->
             <property key="dot.executable" value="${graphviz.dot.executable}"></property>
