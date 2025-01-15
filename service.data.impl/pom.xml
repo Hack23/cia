@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.hack23.cia</groupId>
@@ -892,9 +894,10 @@
       <version>1.7.0</version>
     </dependency>
     <dependency>
-      <groupId>org.jboss</groupId>
+      <groupId>io.smallrye</groupId>
       <artifactId>jandex</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.jboss.logging</groupId>
       <artifactId>jboss-logging</artifactId>
@@ -1177,12 +1180,13 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>hibernate3-maven-plugin</artifactId>
-        <?m2e ignore ?>
+        <?m2e ignore?>
         <configuration>
           <hibernatetool destdir="target/classes">
-            <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-database.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <jpaconfiguration persistenceunit="ciaPersistenceUnit"
+              propertyfile="src/test/resources/database.properties"></jpaconfiguration>
+            <!-- <hbm2ddl export="false" outputfilename="schema-database.sql"></hbm2ddl> -->
+            <!-- <hbm2doc destdir="target/site/hbm2doc"></hbm2doc> -->
             <property key="dot.executable" value="${graphviz.dot.executable}"></property>
             <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
           </hibernatetool>

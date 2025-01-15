@@ -20,7 +20,8 @@
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
-    <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
+    <!--
+    http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <site>
       <id>github</id>
       <url>scm:git:ssh://git@github.com/Hack23/cia.git/model.internal.application.user.impl</url>
@@ -231,11 +232,11 @@
             <configuration>
               <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
               <outputDirectory>target/metamodel</outputDirectory>
-              <skipSourcesUnchangedAnnotationProcessing>true</skipSourcesUnchangedAnnotationProcessing>
               <processors>
                 <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
               </processors>
-              <compilerArguments>-source 8 -target ${jdk.target.version} -AaddGeneratedAnnotation=false</compilerArguments>
+              <compilerArguments>-source 8 -target ${jdk.target.version}
+                -AaddGeneratedAnnotation=false</compilerArguments>
               <excludes>**/module-info.*</excludes>
             </configuration>
           </execution>
@@ -248,8 +249,6 @@
         <configuration>
           <hibernatetool destdir="target/classes">
             <jpaconfiguration persistenceunit="model.internal.application.user.impl" propertyfile="src/main/resources/schema-database.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-database.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
             <property key="dot.executable" value="${graphviz.dot.executable}"></property>
             <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
           </hibernatetool>

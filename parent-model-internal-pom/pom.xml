@@ -200,7 +200,6 @@
             <configuration>
               <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
               <outputDirectory>target/metamodel</outputDirectory>
-              <skipSourcesUnchangedAnnotationProcessing>true</skipSourcesUnchangedAnnotationProcessing>
               <processors>
                 <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
               </processors>
