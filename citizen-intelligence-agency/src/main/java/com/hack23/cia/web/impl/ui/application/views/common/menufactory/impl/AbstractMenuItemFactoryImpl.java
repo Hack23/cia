@@ -42,7 +42,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * application menus, creating admin menus, and generating button links with
  * descriptions.
  */
-public abstract class AbstractMenuItemFactoryImpl implements MenuItemConstants {
+public abstract class AbstractMenuItemFactoryImpl implements MenuItemPageModeMenuCommand {
 
 	/**
 	 * Instantiates a new abstract menu item factory impl.
