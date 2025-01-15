@@ -23,137 +23,120 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.VerticalLayout;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class GovernmentBodyRankingMenuItemFactoryImpl.
  *
- * <p>This class builds menus and overview pages for government body rankings,
+ * <p>
+ * This class builds menus and overview pages for government body rankings,
  * enabling users to navigate through institutional staffing, revenue streams,
  * expenditure focus, and historical engagement patterns. Through integration
  * with {@link ApplicationMenuItemFactory}, it ensures a coherent experience
- * within the main menu structure.</p>
+ * within the main menu structure.
+ * </p>
  */
 @Service
 public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
-        implements GovernmentBodyRankingMenuItemFactory, MenuItemConstants {
+                implements GovernmentBodyRankingMenuItemFactory {
 
-    /** Commands for different page modes within the Government Body Ranking view. */
-    private static final PageModeMenuCommand COMMAN_OVERVIEW = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-            PageMode.OVERVIEW);
-    private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-            PageMode.DATAGRID);
-    private static final PageModeMenuCommand COMMAND_EXPENDITURE = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-            GovernmentBodyPageMode.EXPENDITURE.toString());
-    private static final PageModeMenuCommand COMMAND_HEADCOUNT = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-            GovernmentBodyPageMode.HEADCOUNT.toString());
-    private static final PageModeMenuCommand COMMAND_INCOME = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-            GovernmentBodyPageMode.INCOME.toString());
-    private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-            PageMode.PAGEVISITHISTORY);
+        /** The application menu item factory, used to integrate into the main menu. */
+        @Autowired
+        private ApplicationMenuItemFactory applicationMenuItemFactory;
 
-	/** The Constant COMMAND_GOVERNMENT_BODIES_EXPENDITURE. */
-	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_EXPENDITURE = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
-			MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString());
+        /**
+         * Instantiates a new government body ranking menu item factory implementation.
+         */
+        public GovernmentBodyRankingMenuItemFactoryImpl() {
+                super();
+        }
 
-	/** The Constant COMMAND_GOVERNMENT_BODIES_HEADCOUNT. */
-	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
-			MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());
+        /**
+         * Creates the government body ranking menu bar and integrates it into the main
+         * application menu. Adds government body ranking topics as sub-items.
+         *
+         * @param menuBar the main application {@link MenuBar} to which the government
+         *                body ranking menu will be added.
+         */
+        @Override
+        public void createGovernmentBodyRankingMenuBar(final MenuBar menuBar) {
+                initApplicationMenuBar(menuBar);
+                applicationMenuItemFactory.addRankingMenu(menuBar);
+                createGovernmentBodyRankingTopics(
+                                menuBar.addItem(GOVERNMENT_BODY_RANKING, VaadinIcons.BUILDING_O, null));
+        }
 
-	/** The Constant COMMAND_GOVERNMENT_BODIES_INCOME. */
-	private static final PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_INCOME = new PageModeMenuCommand(UserViews.MINISTRY_RANKING_VIEW_NAME,
-			MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString());
+        /**
+         * Adds menu items for various government body ranking topics:
+         * <ul>
+         * <li>Overview: General dashboard icon</li>
+         * <li>Government Bodies: Building icon for institutions</li>
+         * <li>Headcount: Multiple users for staffing</li>
+         * <li>Income: Money deposit icon for revenues</li>
+         * <li>Expenditure: Money withdraw icon for spending</li>
+         * <li>Page Visit History: History icon for past engagement</li>
+         * </ul>
+         *
+         * @param menuItem the {@link MenuBar.MenuItem} representing "GovernmentBody
+         *                 Ranking"
+         *                 under which these topics will be added.
+         */
+        @Override
+        public void createGovernmentBodyRankingTopics(final MenuBar.MenuItem menuItem) {
+                menuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, GOVERNMENT_BODY_COMMAN_OVERVIEW);
+                menuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID);
+                menuItem.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK,
+                                COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
+                menuItem.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME);
+                menuItem.addItem(GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.MONEY_WITHDRAW,
+                                COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
 
+                menuItem.addItem(HEADCOUNT, VaadinIcons.USERS, GOVERNMENT_BODY_COMMAND_HEADCOUNT);
+                menuItem.addItem(INCOME, VaadinIcons.MONEY_DEPOSIT, GOVERNMENT_BODY_COMMAND_INCOME);
+                menuItem.addItem(EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, GOVERNMENT_BODY_COMMAND_EXPENDITURE);
+                menuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY);
+        }
 
-    /** The application menu item factory, used to integrate into the main menu. */
-    @Autowired
-    private ApplicationMenuItemFactory applicationMenuItemFactory;
+        /**
+         * Creates the overview page with quick-access links to government body ranking
+         * topics.
+         * Each button uses an icon and a brief description to guide the user:
+         * <ul>
+         * <li>Government Bodies: Building icon, structural roles</li>
+         * <li>Headcount: Users icon, staffing influence</li>
+         * <li>Income: Money deposit icon, revenue streams</li>
+         * <li>Expenditure: Money withdraw icon, spending focus</li>
+         * <li>Page Visit History: History icon, past engagement</li>
+         * </ul>
+         *
+         * @param panelContent the {@link VerticalLayout} container that holds the
+         *                     overview
+         *                     content. New UI components will be added here.
+         */
+        @Override
+        public void createOverviewPage(final VerticalLayout panelContent) {
+                final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-    /**
-     * Instantiates a new government body ranking menu item factory implementation.
-     */
-    public GovernmentBodyRankingMenuItemFactoryImpl() {
-        super();
-    }
+                createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID,
+                                GOVERNMENT_BODIES_DESCRIPTION);
+                createButtonLink(grid, GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK,
+                                COMMAND_GOVERNMENT_BODIES_HEADCOUNT, GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION);
+                createButtonLink(grid, GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME,
+                                GOVERNMENT_BODIES_INCOME_DESCRIPTION);
+                createButtonLink(grid, GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.MONEY_WITHDRAW,
+                                COMMAND_GOVERNMENT_BODIES_EXPENDITURE, GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION);
 
-    /**
-     * Creates the government body ranking menu bar and integrates it into the main
-     * application menu. Adds government body ranking topics as sub-items.
-     *
-     * @param menuBar the main application {@link MenuBar} to which the government
-     *                body ranking menu will be added.
-     */
-    @Override
-    public void createGovernmentBodyRankingMenuBar(final MenuBar menuBar) {
-        initApplicationMenuBar(menuBar);
-        applicationMenuItemFactory.addRankingMenu(menuBar);
-        createGovernmentBodyRankingTopics(menuBar.addItem(GOVERNMENT_BODY_RANKING, VaadinIcons.BUILDING_O, null));
-    }
-
-    /**
-     * Adds menu items for various government body ranking topics:
-     * <ul>
-     *   <li>Overview: General dashboard icon</li>
-     *   <li>Government Bodies: Building icon for institutions</li>
-     *   <li>Headcount: Multiple users for staffing</li>
-     *   <li>Income: Money deposit icon for revenues</li>
-     *   <li>Expenditure: Money withdraw icon for spending</li>
-     *   <li>Page Visit History: History icon for past engagement</li>
-     * </ul>
-     *
-     * @param menuItem the {@link MenuBar.MenuItem} representing "GovernmentBody Ranking"
-     *                 under which these topics will be added.
-     */
-    @Override
-    public void createGovernmentBodyRankingTopics(final MenuBar.MenuItem menuItem) {
-        menuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAN_OVERVIEW);
-        menuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID);
-        menuItem.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK, COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
-        menuItem.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME);
-        menuItem.addItem(GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
-
-        menuItem.addItem(HEADCOUNT, VaadinIcons.USERS, COMMAND_HEADCOUNT);
-        menuItem.addItem(INCOME, VaadinIcons.MONEY_DEPOSIT, COMMAND_INCOME);
-        menuItem.addItem(EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, COMMAND_EXPENDITURE);
-        menuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY);
-    }
-
-    /**
-     * Creates the overview page with quick-access links to government body ranking topics.
-     * Each button uses an icon and a brief description to guide the user:
-     * <ul>
-     *   <li>Government Bodies: Building icon, structural roles</li>
-     *   <li>Headcount: Users icon, staffing influence</li>
-     *   <li>Income: Money deposit icon, revenue streams</li>
-     *   <li>Expenditure: Money withdraw icon, spending focus</li>
-     *   <li>Page Visit History: History icon, past engagement</li>
-     * </ul>
-     *
-     * @param panelContent the {@link VerticalLayout} container that holds the overview
-     *                     content. New UI components will be added here.
-     */
-    @Override
-    public void createOverviewPage(final VerticalLayout panelContent) {
-        final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
-
-        createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID, GOVERNMENT_BODIES_DESCRIPTION);
-		createButtonLink(grid, GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK, COMMAND_GOVERNMENT_BODIES_HEADCOUNT, GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION);
-		createButtonLink(grid, GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME, GOVERNMENT_BODIES_INCOME_DESCRIPTION);
-		createButtonLink(grid, GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, COMMAND_GOVERNMENT_BODIES_EXPENDITURE, GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION);
-
-        createButtonLink(grid, HEADCOUNT, VaadinIcons.USERS, COMMAND_HEADCOUNT, HEADCOUNT_DESCRIPTION);
-        createButtonLink(grid, INCOME, VaadinIcons.MONEY_DEPOSIT, COMMAND_INCOME, INCOME_DESCRIPTION);
-        createButtonLink(grid, EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, COMMAND_EXPENDITURE, EXPENDITURE_DESCRIPTION);
-        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
-    }
+                createButtonLink(grid, HEADCOUNT, VaadinIcons.USERS, GOVERNMENT_BODY_COMMAND_HEADCOUNT,
+                                HEADCOUNT_DESCRIPTION);
+                createButtonLink(grid, INCOME, VaadinIcons.MONEY_DEPOSIT, GOVERNMENT_BODY_COMMAND_INCOME,
+                                INCOME_DESCRIPTION);
+                createButtonLink(grid, EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, GOVERNMENT_BODY_COMMAND_EXPENDITURE,
+                                EXPENDITURE_DESCRIPTION);
+                createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY,
+                                PAGE_VISIT_HISTORY_DESCRIPTION);
+        }
 }

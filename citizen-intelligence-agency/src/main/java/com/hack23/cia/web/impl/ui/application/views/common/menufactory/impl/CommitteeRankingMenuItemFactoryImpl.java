@@ -23,12 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
@@ -40,7 +35,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
-		implements CommitteeRankingMenuItemFactory, MenuItemConstants {
+		implements CommitteeRankingMenuItemFactory {
 
 	/** The application menu item factory. */
 	@Autowired
@@ -57,7 +52,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 * Creates the committeee ranking menu bar.
 	 *
 	 * @param menuBar
-	 *            the menu bar
+	 *                the menu bar
 	 */
 	@Override
 	public void createCommitteeeRankingMenuBar(final MenuBar menuBar) {
@@ -72,23 +67,26 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 * Creates the committee ranking topics.
 	 *
 	 * @param committeeMenuItem
-	 *            the committee menu item
+	 *                          the committee menu item
 	 */
 	@Override
 	public void createCommitteeRankingTopics(final MenuItem committeeMenuItem) {
 		committeeMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAND_OVERVIEW);
 
-		final MenuItem listItem = committeeMenuItem.addItem(POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID);
+		final MenuItem listItem = committeeMenuItem.addItem(POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.GROUP,
+				COMMAND_DATAGRID);
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS);
 
 		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
 
+		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,
+				COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS, VaadinIcons.GROUP,
+				COMMAND_COMMITTEES_BY_PARTY);
+		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES, VaadinIcons.GROUP,
+				COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED);
 
-		chartByTopic.addItem(CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,VaadinIcons.GROUP, COMMAND_COMMITTEES_BY_PARTY);
-		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED);
-
-		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS,VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
+		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS, VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
 
 		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY);
 
@@ -98,23 +96,28 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 * Creates the overview page.
 	 *
 	 * @param panelContent
-	 *            the panel content
+	 *                     the panel content
 	 */
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
+		createButtonLink(grid, POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.GROUP, COMMAND_DATAGRID,
+				POLITICAL_WORK_SUMMARY_DESCRIPTION);
+		createButtonLink(grid, CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,
+				COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid,POLITICAL_WORK_SUMMARY_TEXT,VaadinIcons.GROUP, COMMAND_DATAGRID, POLITICAL_WORK_SUMMARY_DESCRIPTION);
-		createButtonLink(grid,CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION);
+		createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS, VaadinIcons.GROUP,
+				COMMAND_COMMITTEES_BY_PARTY, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION);
+		createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES, VaadinIcons.GROUP,
+				COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED,
+				CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION);
+		createButtonLink(grid, ALL_COMMITTEES_TOTAL_MEMBERS, VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT,
+				ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS,VaadinIcons.GROUP, COMMAND_COMMITTEES_BY_PARTY, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION);
-		createButtonLink(grid,CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES,VaadinIcons.GROUP, COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION);
-		createButtonLink(grid,ALL_COMMITTEES_TOTAL_MEMBERS,VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT, ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);
-
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY,
+				PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
-
 
 }

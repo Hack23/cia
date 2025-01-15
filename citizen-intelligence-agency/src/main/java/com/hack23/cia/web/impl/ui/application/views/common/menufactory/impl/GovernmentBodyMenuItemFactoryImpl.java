@@ -34,13 +34,13 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class GovernmentBodyMenuItemFactoryImpl.
  */
 @Service
-public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements GovernmentBodyMenuItemFactory, MenuItemConstants {
+public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
+		implements GovernmentBodyMenuItemFactory {
 
 	/** The application menu item factory. */
 	@Autowired
@@ -58,28 +58,30 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 	}
 
 	@Override
-	public void createGovernmentBodyMenuBar(final MenuBar menuBar, final String pageId, final String title ) {
+	public void createGovernmentBodyMenuBar(final MenuBar menuBar, final String pageId, final String title) {
 		initApplicationMenuBar(menuBar);
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(menuBar.addItem(GOVERNMENT_BODY_RANKING, VaadinIcons.BUILDING_O,null));
+		governmentBodyRankingMenuItemFactory.createGovernmentBodyRankingTopics(
+				menuBar.addItem(GOVERNMENT_BODY_RANKING, VaadinIcons.BUILDING_O, null));
 
-		final MenuItem governmentBodyItem = menuBar.addItem(title, VaadinIcons.BUILDING_O,null);
-
+		final MenuItem governmentBodyItem = menuBar.addItem(title, VaadinIcons.BUILDING_O, null);
 
 		governmentBodyItem.addItem(GOVERNMENT_BODY_OVERVIEW_TEXT, VaadinIcons.FILE_TEXT,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
 		governmentBodyItem.addItem(HEADCOUNT_CHART, VaadinIcons.USER,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId));
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME,
+						GovernmentBodyPageMode.HEADCOUNT.toString(), pageId));
 
 		governmentBodyItem.addItem(INCOME, VaadinIcons.MONEY,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId));
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(),
+						pageId));
 
 		governmentBodyItem.addItem(EXPENDITURE, VaadinIcons.CREDIT_CARD,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId));
-
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME,
+						GovernmentBodyPageMode.EXPENDITURE.toString(), pageId));
 
 		governmentBodyItem.addItem(GOVERNMENT_BODY_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
 				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
@@ -90,17 +92,24 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid,HEADCOUNT_CHART, VaadinIcons.USER,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString(), pageId), HEADCOUNT_DESCRIPTION);
+		createButtonLink(grid, HEADCOUNT_CHART, VaadinIcons.USER,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME,
+						GovernmentBodyPageMode.HEADCOUNT.toString(), pageId),
+				HEADCOUNT_DESCRIPTION);
 
-		createButtonLink(grid,INCOME, VaadinIcons.MONEY,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(), pageId), INCOME_DESCRIPTION);
+		createButtonLink(grid, INCOME, VaadinIcons.MONEY,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString(),
+						pageId),
+				INCOME_DESCRIPTION);
 
-		createButtonLink(grid,EXPENDITURE, VaadinIcons.CREDIT_CARD,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString(), pageId), EXPENDITURE_DESCRIPTION);
+		createButtonLink(grid, EXPENDITURE, VaadinIcons.CREDIT_CARD,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME,
+						GovernmentBodyPageMode.EXPENDITURE.toString(), pageId),
+				EXPENDITURE_DESCRIPTION);
 
-		createButtonLink(grid,GOVERNMENT_BODY_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
-				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), GOVERNMENT_BODY_PAGE_VISIT_HISTORY_DESCRIPTION);
+		createButtonLink(grid, GOVERNMENT_BODY_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
+				new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId),
+				GOVERNMENT_BODY_PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 

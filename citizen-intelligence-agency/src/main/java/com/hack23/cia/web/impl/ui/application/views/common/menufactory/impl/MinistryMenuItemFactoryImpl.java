@@ -34,13 +34,12 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class MenuItemFactoryImpl.
  */
 @Service
-public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryMenuItemFactory, MenuItemConstants {
+public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryMenuItemFactory {
 
 	/** The application menu item factory. */
 	@Autowired
@@ -63,10 +62,10 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		ministryRankingMenuItemFactory.createMinistryRankingTopics(menuBar.addItem(MINISTRY_RANKING, VaadinIcons.GROUP,null));
+		ministryRankingMenuItemFactory
+				.createMinistryRankingTopics(menuBar.addItem(MINISTRY_RANKING, VaadinIcons.GROUP, null));
 
-		final MenuItem ministryItem = menuBar.addItem("Ministry "+ pageId, VaadinIcons.GROUP,null);
-
+		final MenuItem ministryItem = menuBar.addItem("Ministry " + pageId, VaadinIcons.GROUP, null);
 
 		ministryItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, pageId));
@@ -82,21 +81,26 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId));
 
 		rolesItem.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId));
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId));
 
 		rolesItem.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId));
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId));
 
 		rolesItem.addItem(GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId));
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId));
 
 		final MenuItem documentItem = ministryItem.addItem(DOCUMENTS_TEXT, VaadinIcons.GROUP, null);
 
-		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId));
+		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-		documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));
+		documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));
 
 		ministryItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
@@ -107,33 +111,48 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid,CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.CURRENTMEMBERS.toString(), pageId), CURRENT_MEMBERS_DESCRIPTION);
+		createButtonLink(grid, CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.CURRENTMEMBERS.toString(), pageId),
+				CURRENT_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.MEMBERHISTORY.toString(), pageId), MEMBER_HISTORY_DESCRIPTION);
+		createButtonLink(grid, MEMBER_HISTORY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.MEMBERHISTORY.toString(), pageId),
+				MEMBER_HISTORY_DESCRIPTION);
 
-		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId), ROLE_GHANT_DESCRIPTION);
+		createButtonLink(grid, ROLE_GHANT_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString(), pageId),
+				ROLE_GHANT_DESCRIPTION);
 
-		createButtonLink(grid,GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId), GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION);
+		createButtonLink(grid, GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString(), pageId),
+				GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION);
 
-		createButtonLink(grid,GOVERNMENT_BODIES_INCOME, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId), GOVERNMENT_BODIES_INCOME_DESCRIPTION);
+		createButtonLink(grid, GOVERNMENT_BODIES_INCOME, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString(), pageId),
+				GOVERNMENT_BODIES_INCOME_DESCRIPTION);
 
-		createButtonLink(grid,GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId), GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION);
+		createButtonLink(grid, GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString(), pageId),
+				GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION);
 
-		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITY_DESCRIPTION);
+		createButtonLink(grid, DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.DOCUMENTACTIVITY.toString(), pageId),
+				DOCUMENT_ACTIVITY_DESCRIPTION);
 
-		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-				MinistryPageMode.DOCUMENTHISTORY.toString(), pageId), DOCUMENT_HISTORY_DESCRIPTION);
+		createButtonLink(grid, DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
+						MinistryPageMode.DOCUMENTHISTORY.toString(), pageId),
+				DOCUMENT_HISTORY_DESCRIPTION);
 
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), PAGE_VISIT_HISTORY_DESCRIPTION);
-
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId),
+				PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 

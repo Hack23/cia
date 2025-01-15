@@ -35,7 +35,6 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class CommitteeMenuItemFactoryImpl.
@@ -46,7 +45,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuI
  * overview pages with relevant descriptions and icons.
  */
 @Service
-public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CommitteeMenuItemFactory, MenuItemConstants {
+public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
+		implements CommitteeMenuItemFactory {
 
 	/** The application menu item factory. */
 	@Autowired
@@ -55,7 +55,6 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	/** The committee ranking menu item factory. */
 	@Autowired
 	private CommitteeRankingMenuItemFactory committeeRankingMenuItemFactory;
-
 
 	/**
 	 * Instantiates a new committee menu item factory impl.
@@ -70,10 +69,10 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		committeeRankingMenuItemFactory.createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, VaadinIcons.GROUP, null));
+		committeeRankingMenuItemFactory
+				.createCommitteeRankingTopics(menuBar.addItem(COMMITTEE_RANKING_TEXT, VaadinIcons.GROUP, null));
 
-		final MenuItem committeeItem = menuBar.addItem("Committee "+ pageId, VaadinIcons.GROUP,null);
-
+		final MenuItem committeeItem = menuBar.addItem("Committee " + pageId, VaadinIcons.GROUP, null);
 
 		committeeItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW, pageId));
@@ -83,34 +82,38 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		rolesItem.addItem(CURRENT_MEMBERS_TEXT, VaadinIcons.USER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
 				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId));
 
-		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.CALENDAR_USER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.MEMBERHISTORY.toString(), pageId));
+		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.CALENDAR_USER,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.MEMBERHISTORY.toString(), pageId));
 
 		rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.LINE_CHART,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId));
 
 		final MenuItem documentItem = committeeItem.addItem(DOCUMENTS_TEXT, VaadinIcons.FILE_TEXT, null);
 
-		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_PROCESS, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId));
+		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_PROCESS,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId));
 
-		documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.FILE_TREE, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId));
+		documentItem.addItem(DOCUMENT_HISTORY_TEXT, VaadinIcons.FILE_TREE,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId));
 
 		final MenuItem ballotItem = committeeItem.addItem(BALLOTS_TEXT, VaadinIcons.CLIPBOARD_TEXT, null);
 
-		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_CHECK, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
+		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_CHECK,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId));
 
-		ballotItem.addItem(DECISION_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_PULSE, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DECISIONSUMMARY.toString(), pageId));
+		ballotItem.addItem(DECISION_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_PULSE,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.DECISIONSUMMARY.toString(), pageId));
 
 		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_TEXT, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId));
 
 		ballotItem.addItem("Decision flow", VaadinIcons.LINE_CHART, new PageModeMenuCommand(
-				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId));
-
+				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS + "/" + ChartIndicators.DECISION_FLOW_CHART, pageId));
 
 		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
 				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
@@ -121,41 +124,52 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid,CURRENT_MEMBERS_TEXT, VaadinIcons.USER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.CURRENT_MEMBERS.toString(), pageId), CURRENT_MEMBERS_DESCRIPTION);
+		createButtonLink(grid, CURRENT_MEMBERS_TEXT, VaadinIcons.USER,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.CURRENT_MEMBERS.toString(), pageId),
+				CURRENT_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.CALENDAR_USER, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.MEMBERHISTORY.toString(), pageId), MEMBER_HISTORY_DESCRIPTION);
+		createButtonLink(grid, MEMBER_HISTORY_TEXT, VaadinIcons.CALENDAR_USER,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.MEMBERHISTORY.toString(), pageId),
+				MEMBER_HISTORY_DESCRIPTION);
 
-		createButtonLink(grid,ROLE_GHANT_TEXT, VaadinIcons.LINE_CHART,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId), ROLE_GHANT_DESCRIPTION);
+		createButtonLink(grid, ROLE_GHANT_TEXT, VaadinIcons.LINE_CHART,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString(), pageId),
+				ROLE_GHANT_DESCRIPTION);
 
+		createButtonLink(grid, DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_PROCESS,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId),
+				DOCUMENT_ACTIVITY_DESCRIPTION);
 
-		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_PROCESS, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITY_DESCRIPTION);
+		createButtonLink(grid, DOCUMENT_HISTORY_TEXT, VaadinIcons.FILE_TREE,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId),
+				DOCUMENT_HISTORY_DESCRIPTION);
 
-		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.FILE_TREE, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DOCUMENT_HISTORY.toString(), pageId), DOCUMENT_HISTORY_DESCRIPTION);
+		createButtonLink(grid, BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_CHECK,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId),
+				BALLOT_DECISION_SUMMARY_DESCRIPTION);
 
+		createButtonLink(grid, DECISION_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_PULSE,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
+						CommitteePageMode.DECISIONSUMMARY.toString(), pageId),
+				DECISION_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_CHECK, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.BALLOTDECISIONSUMMARY.toString(), pageId), BALLOT_DECISION_SUMMARY_DESCRIPTION);
+		createButtonLink(grid, DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_TEXT, new PageModeMenuCommand(
+				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId),
+				DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid,DECISION_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_PULSE, new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME,
-				CommitteePageMode.DECISIONSUMMARY.toString(), pageId), DECISION_SUMMARY_DESCRIPTION);
+		createButtonLink(grid, "Decision flow", VaadinIcons.LINE_CHART, new PageModeMenuCommand(
+				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS + "/" + ChartIndicators.DECISION_FLOW_CHART, pageId),
+				DECISION_FLOW_DESCRIPTION);
 
-		createButtonLink(grid,DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_TEXT, new PageModeMenuCommand(
-				UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString(), pageId), DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION);
-
-		createButtonLink(grid,"Decision flow", VaadinIcons.LINE_CHART, new PageModeMenuCommand(
-				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS+"/"+ ChartIndicators.DECISION_FLOW_CHART, pageId), DECISION_FLOW_DESCRIPTION);
-
-
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), PAGE_VISIT_HISTORY_DESCRIPTION);
-
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
+				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId),
+				PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
-
 
 }

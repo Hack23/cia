@@ -23,24 +23,19 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.RiskIndicators;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class ParliamentMenuItemFactoryImpl.
  */
 @Service
-public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements ParliamentMenuItemFactory, MenuItemConstants {
+public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
+		implements ParliamentMenuItemFactory {
 
 	/** The application menu item factory. */
 	@Autowired
@@ -57,23 +52,28 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid,PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER, PARTY_WINNER_DESCRIPTION);
+		createButtonLink(grid, PARTY_WINNER, VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER,
+				PARTY_WINNER_DESCRIPTION);
 
-		createButtonLink(grid,PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER, PARTY_GENDER_DESCRIPTION);
+		createButtonLink(grid, PARTY_GENDER, VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER,
+				PARTY_GENDER_DESCRIPTION);
 
-		createButtonLink(grid,PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE, PARTY_AGE_DESCRIPTION);
+		createButtonLink(grid, PARTY_AGE, VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_AGE, PARTY_AGE_DESCRIPTION);
 
-		createButtonLink(grid,RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY,RISK_SUMMARY_DESCRIPTION);
+		createButtonLink(grid, RISK_SUMMARY, VaadinIcons.INSTITUTION, COMMAND_RISK_SUMMARY, RISK_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid,RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION,RULE_VIOLATIONS_DESCRIPTION);
+		createButtonLink(grid, RULE_VIOLATIONS, VaadinIcons.INSTITUTION, COMMAND_RULE_VIOLATION,
+				RULE_VIOLATIONS_DESCRIPTION);
 
-		createButtonLink(grid,DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY, DOCUMENT_ACTIVITY_DESCRIPTION);
-		createButtonLink(grid,DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY, DECISION_ACTIVITY_DESCRIPTION);
+		createButtonLink(grid, DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY,
+				DOCUMENT_ACTIVITY_DESCRIPTION);
+		createButtonLink(grid, DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION, COMMAND_DECISION_ACTIVITY,
+				DECISION_ACTIVITY_DESCRIPTION);
 
-		createButtonLink(grid,DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW,DECISION_FLOW_DESCRIPTION);
+		createButtonLink(grid, DECISION_FLOW, VaadinIcons.INSTITUTION, COMMAND_CHARTS_DECISION_FLOW,
+				DECISION_FLOW_DESCRIPTION);
 
-
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,
 				COMMAND_PAGEVISITHISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
@@ -95,34 +95,38 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, VaadinIcons.INSTITUTION, null);
 
-		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER);
+		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER, VaadinIcons.INSTITUTION,
+				COMMAND_CHARTS_PARTY_WINNER);
 		addItem.setDescription(PARTY_WINNER_DESCRIPTION);
 
-		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER,VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER);
+		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER, VaadinIcons.INSTITUTION,
+				COMMAND_CHARTS_PARTY_GENDER);
 		addItem2.setDescription(PARTY_GENDER_DESCRIPTION);
 
-		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION,COMMAND_CHARTS_PARTY_AGE);
+		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_AGE);
 		addItem3.setDescription(PARTY_AGE_DESCRIPTION);
 
-		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION,COMMAND_RISK_SUMMARY);
+		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION, COMMAND_RISK_SUMMARY);
 		addItem7.setDescription(RISK_SUMMARY_DESCRIPTION);
 
-		final MenuItem addItem8 = chartIndicators.addItem(RULE_VIOLATIONS, VaadinIcons.INSTITUTION,COMMAND_RULE_VIOLATION);
+		final MenuItem addItem8 = chartIndicators.addItem(RULE_VIOLATIONS, VaadinIcons.INSTITUTION,
+				COMMAND_RULE_VIOLATION);
 		addItem8.setDescription(RULE_VIOLATIONS_DESCRIPTION);
 
-
-		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE,VaadinIcons.INSTITUTION, COMMAND_DOCUMENT_ACTIVITY);
+		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,
+				COMMAND_DOCUMENT_ACTIVITY);
 		addItem4.setDescription(DOCUMENT_ACTIVITY_DESCRIPTION);
 
-		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,COMMAND_DECISION_ACTIVITY);
+		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,
+				COMMAND_DECISION_ACTIVITY);
 		addItem5.setDescription(DECISION_ACTIVITY_DESCRIPTION);
 
-		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,COMMAND_CHARTS_DECISION_FLOW);
+		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,
+				COMMAND_CHARTS_DECISION_FLOW);
 		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);
 
 		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.INSTITUTION,
 				COMMAND_PAGEVISITHISTORY);
 	}
-
 
 }

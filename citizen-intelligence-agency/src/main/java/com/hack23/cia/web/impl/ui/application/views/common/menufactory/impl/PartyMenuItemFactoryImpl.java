@@ -34,13 +34,13 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class PartyMenuItemFactoryImpl.
  */
 @Service
-public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements PartyMenuItemFactory, MenuItemConstants {
+public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
+		implements PartyMenuItemFactory {
 
 	/** The application menu item factory. */
 	@Autowired
@@ -61,55 +61,69 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid,CURRENT_LEADERS, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId), CURRENT_LEADERS_DESCRIPTION);
+		createButtonLink(grid, CURRENT_LEADERS, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString(), pageId),
+				CURRENT_LEADERS_DESCRIPTION);
 
-		createButtonLink(grid,LEADER_HISTORY, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId), LEADER_HISTORY_DESCRIPTION);
+		createButtonLink(grid, LEADER_HISTORY, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString(), pageId),
+				LEADER_HISTORY_DESCRIPTION);
 
-		createButtonLink(grid,CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), pageId), CURRENT_MEMBERS_DESCRIPTION);
+		createButtonLink(grid, CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString(), pageId),
+				CURRENT_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid,MEMBER_HISTORY_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId), MEMBER_HISTORY_DESCRIPTION);
+		createButtonLink(grid, MEMBER_HISTORY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString(), pageId),
+				MEMBER_HISTORY_DESCRIPTION);
 
-		createButtonLink(grid,GOVERMENT_ROLES, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), pageId), GOVERMENT_ROLES_DESCRIPTION);
+		createButtonLink(grid, GOVERMENT_ROLES, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString(), pageId),
+				GOVERMENT_ROLES_DESCRIPTION);
 
-		createButtonLink(grid,COMMITTEE_ROLES, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId), COMMITTEE_ROLES_DESCRIPTION);
+		createButtonLink(grid, COMMITTEE_ROLES, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString(), pageId),
+				COMMITTEE_ROLES_DESCRIPTION);
 
-		createButtonLink(grid,ROLE_CHART_PARTY_LEADERS, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId), ROLE_CHART_PARTY_LEADERS_DESCRIPTION);
+		createButtonLink(grid, ROLE_CHART_PARTY_LEADERS, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId),
+				ROLE_CHART_PARTY_LEADERS_DESCRIPTION);
 
+		createButtonLink(grid, DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId),
+				DOCUMENT_ACTIVITY_DESCRIPTION);
 
-		createButtonLink(grid,DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString(), pageId), DOCUMENT_ACTIVITY_DESCRIPTION);
+		createButtonLink(grid, DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId),
+				DOCUMENT_HISTORY_DESCRIPTION);
 
-		createButtonLink(grid,DOCUMENT_HISTORY_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString(), pageId), DOCUMENT_HISTORY_DESCRIPTION);
+		createButtonLink(grid, VOTE_HISTORY, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId),
+				VOTE_HISTORY);
 
+		createButtonLink(grid, BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+						PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId),
+				BALLOT_DECISION_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid,VOTE_HISTORY, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId), VOTE_HISTORY);
+		createButtonLink(grid, PARTY_WON_DAILY_SUMMARY_CHART, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+						PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId),
+				PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION);
 
-		createButtonLink(grid,BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId), BALLOT_DECISION_SUMMARY_DESCRIPTION);
+		createButtonLink(grid, PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+						PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), pageId),
+				PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid,PARTY_WON_DAILY_SUMMARY_CHART, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId), PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION);
+		createButtonLink(grid, PartyPageMode.PARTYSUPPORTSUMMARY.toString(), VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+						PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId),
+				PARTY_SUPPORT_SUMMARY_DESCRIPTION);
 
-
-		createButtonLink(grid,PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-				PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), pageId), PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION);
-
-		createButtonLink(grid,PartyPageMode.PARTYSUPPORTSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-				PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId), PARTY_SUPPORT_SUMMARY_DESCRIPTION);
-
-
-		createButtonLink(grid,PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId), PAGE_VISIT_HISTORY_DESCRIPTION);
-
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId),
+				PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 
@@ -119,9 +133,9 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-		partyRankingMenuItemFactory.createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, VaadinIcons.GROUP,null));
+		partyRankingMenuItemFactory.createPartyRankingTopics(menuBar.addItem(PARTY_RANKING, VaadinIcons.GROUP, null));
 
-		final MenuItem partyItem = menuBar.addItem("Party "+ pageId, VaadinIcons.GROUP,null);
+		final MenuItem partyItem = menuBar.addItem("Party " + pageId, VaadinIcons.GROUP, null);
 
 		partyItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, pageId));
@@ -149,7 +163,6 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		rolesItem.addItem(ROLE_CHART_PARTY_LEADERS, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString(), pageId));
 
-
 		final MenuItem documentItem = partyItem.addItem(DOCUMENTS_TEXT, VaadinIcons.GROUP, null);
 
 		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.GROUP,
@@ -163,24 +176,25 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
 		ballotItem.addItem(VOTE_HISTORY, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString(), pageId));
 
-		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-				PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId));
+		ballotItem.addItem(BALLOT_DECISION_SUMMARY_TEXT, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+						PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString(), pageId));
 
-		ballotItem.addItem(PARTY_WON_DAILY_SUMMARY_CHART, VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-				PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId));
+		ballotItem.addItem(PARTY_WON_DAILY_SUMMARY_CHART, VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+						PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString(), pageId));
 
+		ballotItem.addItem(PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+						PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), pageId));
 
-		ballotItem.addItem(PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-				PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString(), pageId));
-
-		ballotItem.addItem(PartyPageMode.PARTYSUPPORTSUMMARY.toString(), VaadinIcons.GROUP, new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-				PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId));
-
+		ballotItem.addItem(PartyPageMode.PARTYSUPPORTSUMMARY.toString(), VaadinIcons.GROUP,
+				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
+						PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId));
 
 		partyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
-
 
 }

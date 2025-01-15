@@ -38,7 +38,6 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -53,7 +52,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class CountryMenuItemFactoryImpl.
  */
 @Service
-public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CountryMenuItemFactory, MenuItemConstants {
+public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CountryMenuItemFactory {
 
 	/** The application manager. */
 	@Autowired
@@ -74,9 +73,9 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	 * Adds the sources and indicators to menu.
 	 *
 	 * @param countryIndicators
-	 *            the country indicators
+	 *                           the country indicators
 	 * @param sourceIndicatorMap
-	 *            the source indicator map
+	 *                           the source indicator map
 	 */
 	private static void addSourcesAndIndicatorsToMenu(final MenuItem countryIndicators,
 			final Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> sourceIndicatorMap) {
@@ -110,15 +109,14 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-
-		createCountryTopicMenu( menuBar.addItem(COUNTRY_RANKING_TEXT, VaadinIcons.FLAG, null));
+		createCountryTopicMenu(menuBar.addItem(COUNTRY_RANKING_TEXT, VaadinIcons.FLAG, null));
 
 	}
 
 	@Override
 	public void createCountryTopicMenu(final MenuItem charts) {
 		charts.addItem(COUNTRY_OVERVIEW_TEXT, VaadinIcons.LINE_CHART,
-				 COUNTRY_COMMAND_OVERVIEW);
+				COUNTRY_COMMAND_OVERVIEW);
 
 		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, VaadinIcons.LINE_CHART, null);
 
@@ -135,7 +133,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		panelContent.setComponentAlignment(menuBar, Alignment.TOP_LEFT);
 		panelContent.setExpandRatio(menuBar, ContentRatio.LARGE);
 
-		addSourcesAndIndicatorsToMenu(menuBar.addItem(BY_TOPIC,VaadinIcons.LINE_CHART, null), getTopicIndicatorMap());
+		addSourcesAndIndicatorsToMenu(menuBar.addItem(BY_TOPIC, VaadinIcons.LINE_CHART, null), getTopicIndicatorMap());
 		menuBar.setAutoOpen(true);
 	}
 
@@ -149,8 +147,13 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
 
 		return indicatorDataCountrSummaryDailyDataContainer
-				.findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,ViewWorldbankIndicatorDataCountrySummary_.embeddedId,WorldbankIndicatorDataCountrySummaryEmbeddedId.class,WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId,"SE").parallelStream()
-				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > DATA_POINTS_FOR_YEAR_ABOVE && t.getDataPoint() > MINIMUM_NUMBER_DATA_POINTS)
+				.findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,
+						ViewWorldbankIndicatorDataCountrySummary_.embeddedId,
+						WorldbankIndicatorDataCountrySummaryEmbeddedId.class,
+						WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId, "SE")
+				.parallelStream()
+				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > DATA_POINTS_FOR_YEAR_ABOVE
+						&& t.getDataPoint() > MINIMUM_NUMBER_DATA_POINTS)
 				.flatMap(t -> Arrays.asList(t.getTopics().split(";")).stream()
 						.map(topic -> new AbstractMap.SimpleEntry<>(topic, t)))
 

@@ -19,13 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummaryPageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Resource;
@@ -37,14 +31,16 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 
 /**
  * The Class AbstractMenuItemFactoryImpl.
  *
- * This abstract class provides common functionality for creating menu items and button links
- * in the Citizen Intelligence Agency web application. It includes methods for initializing
- * application menus, creating admin menus, and generating button links with descriptions.
+ * This abstract class provides common functionality for creating menu items and
+ * button links
+ * in the Citizen Intelligence Agency web application. It includes methods for
+ * initializing
+ * application menus, creating admin menus, and generating button links with
+ * descriptions.
  */
 public abstract class AbstractMenuItemFactoryImpl implements MenuItemConstants {
 
@@ -59,40 +55,41 @@ public abstract class AbstractMenuItemFactoryImpl implements MenuItemConstants {
 	 * Creates the admin menu.
 	 *
 	 * @param mainViewItem
-	 *            the main view item
+	 *                     the main view item
 	 */
 	private static void createAdminMenu(final MenuItem mainViewItem) {
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)) {
 			final MenuItem adminMenuItem = mainViewItem.addItem(ADMIN_TEXT, VaadinIcons.SERVER, null);
 
 			final MenuItem configurationMenuItem = adminMenuItem.addItem(CONFIGURATION, VaadinIcons.TOOLS, null);
-			configurationMenuItem.addItem(APPLICATION_CONFIGURATION,VaadinIcons.TOOLS, COMMAND_APPLICATION_CONFIGURATION);
+			configurationMenuItem.addItem(APPLICATION_CONFIGURATION, VaadinIcons.TOOLS,
+					COMMAND_APPLICATION_CONFIGURATION);
 
-			configurationMenuItem.addItem(AGENCY,VaadinIcons.SERVER, COMMAND_AGENCY);
-			configurationMenuItem.addItem(PORTAL, VaadinIcons.SITEMAP,COMMAND_PORTAL);
-			configurationMenuItem.addItem(COUNTRY,VaadinIcons.FLAG, COMMAND_COUNTRY);
-			configurationMenuItem.addItem(LANGUAGE,VaadinIcons.ACCESSIBILITY, COMMAND_LANGUAGE);
+			configurationMenuItem.addItem(AGENCY, VaadinIcons.SERVER, COMMAND_AGENCY);
+			configurationMenuItem.addItem(PORTAL, VaadinIcons.SITEMAP, COMMAND_PORTAL);
+			configurationMenuItem.addItem(COUNTRY, VaadinIcons.FLAG, COMMAND_COUNTRY);
+			configurationMenuItem.addItem(LANGUAGE, VaadinIcons.ACCESSIBILITY, COMMAND_LANGUAGE);
 
 			final MenuItem managementMenuItem = adminMenuItem.addItem(MANAGEMENT, VaadinIcons.SERVER, null);
 
-			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT,VaadinIcons.BRIEFCASE, COMMAND_AGENT_OPERATION);
+			managementMenuItem.addItem(AGENT_OPERATIONS_TEXT, VaadinIcons.BRIEFCASE, COMMAND_AGENT_OPERATION);
 
-			managementMenuItem.addItem(DATA_SUMMARY_TEXT,VaadinIcons.DATABASE, COMMAND_DATASUMMARY);
-			managementMenuItem.addItem(DATA_AUTHOR_SUMMARY,VaadinIcons.DATABASE, COMMAND_AUTHOR_DATASUMMARY);
+			managementMenuItem.addItem(DATA_SUMMARY_TEXT, VaadinIcons.DATABASE, COMMAND_DATASUMMARY);
+			managementMenuItem.addItem(DATA_AUTHOR_SUMMARY, VaadinIcons.DATABASE, COMMAND_AUTHOR_DATASUMMARY);
 
+			managementMenuItem.addItem(EMAIL, VaadinIcons.MAILBOX, COMMAND_EMAIL);
 
-			managementMenuItem.addItem(EMAIL,VaadinIcons.MAILBOX, COMMAND_EMAIL);
-
-
-			managementMenuItem.addItem(SYSTEM_PERFORMANCE,VaadinIcons.DASHBOARD, COMMAND_MONITORING);
+			managementMenuItem.addItem(SYSTEM_PERFORMANCE, VaadinIcons.DASHBOARD, COMMAND_MONITORING);
 
 			final MenuItem userActivityMenuItem = adminMenuItem.addItem(USER_ACTIVITY, VaadinIcons.DATABASE, null);
-			userActivityMenuItem.addItem(APPLICATION_SESSION,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION);
-			userActivityMenuItem.addItem(APPLICATION_SESSION_CHARTS,VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION_CHARTS);
-			userActivityMenuItem.addItem(APPLICATION_EVENT,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS);
-			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS,VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS_CHARTS);
+			userActivityMenuItem.addItem(APPLICATION_SESSION, VaadinIcons.LAPTOP, COMMAND_APPLICATION_SESSION);
+			userActivityMenuItem.addItem(APPLICATION_SESSION_CHARTS, VaadinIcons.LAPTOP,
+					COMMAND_APPLICATION_SESSION_CHARTS);
+			userActivityMenuItem.addItem(APPLICATION_EVENT, VaadinIcons.ARROWS, COMMAND_APPLICATION_EVENTS);
+			userActivityMenuItem.addItem(APPLICATION_EVENT_CHARTS, VaadinIcons.ARROWS,
+					COMMAND_APPLICATION_EVENTS_CHARTS);
 
-			userActivityMenuItem.addItem(USERACCOUNT,VaadinIcons.GROUP, COMMAND_USERACCOUNT);
+			userActivityMenuItem.addItem(USERACCOUNT, VaadinIcons.GROUP, COMMAND_USERACCOUNT);
 
 		}
 	}
@@ -101,22 +98,22 @@ public abstract class AbstractMenuItemFactoryImpl implements MenuItemConstants {
 	 * Creates the button link.
 	 *
 	 * @param row
-	 *            the panel content
+	 *                    the panel content
 	 * @param linkText
-	 *            the link text
+	 *                    the link text
 	 * @param icon
-	 *            the icon
+	 *                    the icon
 	 * @param command
-	 *            the command
+	 *                    the command
 	 * @param description
-	 *            the description
+	 *                    the description
 	 */
-	protected static final void createButtonLink(final ResponsiveRow row,final String linkText,final Resource icon, final ClickListener command, final String description) {
+	protected static final void createButtonLink(final ResponsiveRow row, final String linkText, final Resource icon,
+			final ClickListener command, final String description) {
 		final CssLayout layout = new CssLayout();
 		layout.addStyleName("v-layout-content-overview-panel-level2");
 		Responsive.makeResponsive(layout);
 		layout.setSizeUndefined();
-
 
 		final Button button = new Button(linkText);
 		Responsive.makeResponsive(button);
@@ -126,7 +123,6 @@ public abstract class AbstractMenuItemFactoryImpl implements MenuItemConstants {
 		button.setIcon(icon);
 		button.setWidth(100, Unit.PERCENTAGE);
 
-
 		layout.addComponent(button);
 
 		final Label descriptionLabel = new Label(description);
@@ -135,14 +131,15 @@ public abstract class AbstractMenuItemFactoryImpl implements MenuItemConstants {
 		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
 		layout.addComponent(descriptionLabel);
 
-		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE,DISPLAYS_SIZE_XM_DEVICE,DISPLAY_SIZE_MD_DEVICE,DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
+		row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,
+				DISPLAY_SIZE_LG_DEVICE).withComponent(layout);
 	}
 
 	/**
 	 * Inits the application menu bar.
 	 *
 	 * @param menuBar
-	 *            the menu bar
+	 *                the menu bar
 	 */
 	protected static final void initApplicationMenuBar(final MenuBar menuBar) {
 		menuBar.removeItems();
@@ -158,9 +155,9 @@ public abstract class AbstractMenuItemFactoryImpl implements MenuItemConstants {
 
 		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);
 
-
-		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN) || UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
-			mainViewItem.addItem(USERHOME, VaadinIcons.USER,COMMAND_USERHOME);
+		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)
+				|| UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {
+			mainViewItem.addItem(USERHOME, VaadinIcons.USER, COMMAND_USERHOME);
 			createAdminMenu(mainViewItem);
 			mainViewItem.addItem(LOGOUT, VaadinIcons.SIGN_OUT, COMMAND_LOGOUT);
 		} else {
