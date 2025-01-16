@@ -87,9 +87,9 @@
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.commons.text>1.13.0</cia.project.versions.commons.text>
     <cia.project.versions.commons.codec>1.17.2</cia.project.versions.commons.codec>
-    <cia.project.versions.bouncycastle>1.79</cia.project.versions.bouncycastle>
+    <cia.project.versions.bouncycastle>1.80</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.16</cia.project.versions.slf4j>
-    <cia.project.versions.aws.v2>2.29.50</cia.project.versions.aws.v2>
+    <cia.project.versions.aws.v2>2.29.52</cia.project.versions.aws.v2>
     <cia.project.versions.logback>1.5.16</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>10.0.0</cia.project.versions.drools>
@@ -103,7 +103,7 @@
     <cia.project.versions.hibernate.validator>6.2.5.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.bytebuddy>1.15.11</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>2.3.232</cia.project.versions.h2>
-    <cia.project.versions.postgresql>42.7.4</cia.project.versions.postgresql>
+    <cia.project.versions.postgresql>42.7.5</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
     <cia.project.versions.poi>5.4.0</cia.project.versions.poi>
     <cia.project.versions.pdfbox>3.0.3</cia.project.versions.pdfbox>
@@ -136,7 +136,7 @@
     <cia.project.versions.httpclient>4.5.14</cia.project.versions.httpclient>
     <cia.project.versions.guava>33.4.0-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.18.2</cia.project.versions.jackson>
-    <cia.project.versions.netty>4.1.116.Final</cia.project.versions.netty>
+    <cia.project.versions.netty>4.1.117.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.2</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.27.1</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
@@ -197,7 +197,7 @@
       <dependency>
         <groupId>io.projectreactor</groupId>
         <artifactId>reactor-core</artifactId>
-        <version>3.7.1</version>
+        <version>3.7.2</version>
       </dependency>
       <dependency>
         <groupId>com.sun.istack</groupId>
