@@ -28,6 +28,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEv
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -73,8 +74,8 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, content, "Admin Application Events", "Event Details",
-				"Review a comprehensive list of application events, including timestamps and statuses.");
+		CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_APPLICATION_EVENTS, AdminViewConstants.EVENT_DETAILS,
+				AdminViewConstants.EVENT_REVIEW);
 
 		final DataContainer<ApplicationActionEvent, Long> dataContainer = getApplicationManager()
 				.getDataContainer(ApplicationActionEvent.class);
@@ -106,7 +107,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 				content.addComponent(cardPanel);
 
-				CardInfoRowUtil.createCardHeader(cardContent,"Application Event Details");
+				CardInfoRowUtil.createCardHeader(cardContent, AdminViewConstants.EVENT_DETAILS);
 
 				// Attributes layout
 				final VerticalLayout attributesLayout = new VerticalLayout();
@@ -114,27 +115,27 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 				attributesLayout.setWidth("100%");
 				cardContent.addComponent(attributesLayout);
 
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Created Date:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.CREATED_DATE,
 						String.valueOf(applicationActionEvent.getCreatedDate()), VaadinIcons.CALENDAR);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Event Group:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.EVENT_GROUP,
 						String.valueOf(applicationActionEvent.getEventGroup()), VaadinIcons.INFO);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Application Operation:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.APPLICATION_OPERATION,
 						String.valueOf(applicationActionEvent.getApplicationOperation()), VaadinIcons.TOOLS);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Page:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.PAGE,
 						String.valueOf(applicationActionEvent.getPage()), VaadinIcons.FILE_TEXT);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Page Mode:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.PAGE_MODE,
 						String.valueOf(applicationActionEvent.getPageMode()), VaadinIcons.LIST);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Element Id:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.ELEMENT_ID,
 						String.valueOf(applicationActionEvent.getElementId()), VaadinIcons.POINTER);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Action Name:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.ACTION_NAME,
 						String.valueOf(applicationActionEvent.getActionName()), VaadinIcons.PLAY_CIRCLE);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "User Id:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.USER_ID,
 						String.valueOf(applicationActionEvent.getUserId()), VaadinIcons.USER);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Session Id:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.SESSION_ID,
 						String.valueOf(applicationActionEvent.getSessionId()), VaadinIcons.KEY);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Error Message:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.ERROR_MESSAGE,
 						String.valueOf(applicationActionEvent.getErrorMessage()), VaadinIcons.WARNING);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Application Message:",
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.APPLICATION_MESSAGE,
 						String.valueOf(applicationActionEvent.getApplicationMessage()), VaadinIcons.INFO_CIRCLE);
 			}
 		}

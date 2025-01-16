@@ -28,6 +28,7 @@ import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.model.internal.application.system.impl.Portal_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -84,9 +85,9 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
         getMenuItemFactory().createMainPageMenuBar(menuBar);
 
         CardInfoRowUtil.createPageHeader(panel, content,
-            "Admin Portal Management",
-            "Portal Overview",
-            "Centralized management interface for accessing and controlling administrative tools."
+            AdminViewConstants.ADMIN_PORTAL_MANAGEMENT,
+            AdminViewConstants.PORTAL_OVERVIEW,
+            AdminViewConstants.PORTAL_MANAGEMENT_OVERVIEW
         );
 
         final DataContainer<Portal, Long> dataContainer = getApplicationManager().getDataContainer(Portal.class);
@@ -136,7 +137,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
 
                 content.addComponent(cardPanel);
 
-                CardInfoRowUtil.createCardHeader(cardContent,"Portal Details");
+                CardInfoRowUtil.createCardHeader(cardContent, AdminViewConstants.PORTAL_DETAILS);
 
                 // Attributes layout
                 final VerticalLayout attributesLayout = new VerticalLayout();
@@ -145,10 +146,10 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
                 cardContent.addComponent(attributesLayout);
 
                 // Display each field if not null or empty
-                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Portal Name:", portal.getPortalName(), VaadinIcons.GLOBE_WIRE);
-                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Description:", portal.getDescription(), VaadinIcons.FILE_TEXT);
-                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Portal Type:", portal.getPortalType().toString(), VaadinIcons.VIEWPORT);
-                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Google Map API Key:", portal.getGoogleMapApiKey(), VaadinIcons.KEY);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.PORTAL_NAME, portal.getPortalName(), VaadinIcons.GLOBE_WIRE);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.DESCRIPTION, portal.getDescription(), VaadinIcons.FILE_TEXT);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.PORTAL_TYPE, portal.getPortalType().toString(), VaadinIcons.VIEWPORT);
+                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.GOOGLE_MAP_API_KEY, portal.getGoogleMapApiKey(), VaadinIcons.KEY);
             }
         }
 

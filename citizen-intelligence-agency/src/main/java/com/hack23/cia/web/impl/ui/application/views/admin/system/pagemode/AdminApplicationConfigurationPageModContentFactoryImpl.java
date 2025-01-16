@@ -31,6 +31,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.admin.UpdateApplicationConfigurationRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -86,8 +87,8 @@ public final class AdminApplicationConfigurationPageModContentFactoryImpl
 
         getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-        CardInfoRowUtil.createPageHeader(panel, content, "Admin Application Configuration", "Application Configuration",
-                "View and edit application settings and configurations for optimal performance.");
+        CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_APPLICATION_CONFIGURATION, AdminViewConstants.APPLICATION_CONFIGURATION_OVERVIEW,
+                AdminViewConstants.APPLICATION_CONFIGURATION_OVERVIEW);
 
         final DataContainer<ApplicationConfiguration, Long> dataContainer = getApplicationManager()
                 .getDataContainer(ApplicationConfiguration.class);
