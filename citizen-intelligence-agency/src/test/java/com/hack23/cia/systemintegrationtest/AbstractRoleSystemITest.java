@@ -18,21 +18,14 @@
 */
 package com.hack23.cia.systemintegrationtest;
 
-import java.util.List;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import com.hack23.cia.testfoundation.AbstractSystemIntegrationTest;
 import com.hack23.cia.testfoundation.Parallelized;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
@@ -44,12 +37,9 @@ import io.github.bonigarcia.wdm.config.DriverManagerType;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationTest {
 
-	private static String systemTestTargetAdminEmail;
-
-	private static String systemTestTargetAdminPassword;
 
 	/** The Constant usingExternalServer. */
-	private static final boolean usingExternalServer;
+	protected static final boolean usingExternalServer;
 
 	/** The Constant webDriverMap. */
 	static {
@@ -60,15 +50,7 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 			usingExternalServer = false;
 		}
 
-		systemTestTargetAdminEmail = System.getProperty("system.test.target.admin.email");
-		if (systemTestTargetAdminEmail == null) {
-			systemTestTargetAdminEmail = "admin@hack23.com";
-		}
-
-		systemTestTargetAdminPassword = System.getProperty("system.test.target.admin.password");
-		if (systemTestTargetAdminPassword == null) {
-			systemTestTargetAdminPassword = "Admin4hack23!";
-		}
+		
 
 		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
 	}
@@ -81,7 +63,6 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 	 */
 	@BeforeClass
 	public static final synchronized void startServer() throws Exception {
-		System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver-0.13.0-linux64");
 		if (!usingExternalServer) {
 			CitizenIntelligenceAgencyServer.startTestServer();
 		}
@@ -99,42 +80,6 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 		if (!usingExternalServer) {
 			CitizenIntelligenceAgencyServer.stopTestServer();
 		}
-	}
-
-	/**
-	 * Click first row in grid.
-	 *
-	 * @param userPageVisit
-	 *                      the user page visit
-	 * @throws InterruptedException
-	 *                              the interrupted exception
-	 */
-	protected final void clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
-		final List<WebElement> gridRows = userPageVisit.getGridRows();
-		assertFalse(gridRows.isEmpty());
-
-		final WebElement choosenRow = gridRows.iterator().next();
-
-		final List<WebElement> cells = choosenRow.findElements(By.className("v-grid-cell"));
-
-		final WebElement choosenCell = cells.iterator().next();
-
-		userPageVisit.performClickAction(choosenCell);
-
-	}
-
-	/**
-	 * Login as admin.
-	 *
-	 * @param userPageVisit
-	 *                      the user page visit
-	 * @throws Exception
-	 *                   the exception
-	 */
-	protected final void loginAsAdmin(final UserPageVisit userPageVisit) throws Exception {
-		userPageVisit.visitDirectPage(
-				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
-		userPageVisit.loginUser(systemTestTargetAdminEmail, systemTestTargetAdminPassword);
 	}
 
 }

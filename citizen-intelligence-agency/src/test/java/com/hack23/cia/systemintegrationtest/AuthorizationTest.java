@@ -11,14 +11,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 @Category(IntegrationTest.class)
 public class AuthorizationTest extends AbstractUITest {
-    private static final int MAX_RETRIES = 3;
-
-    @Override
-    protected Browser getBrowser() {
-        return Browser.CHROME;
-    }
-
-    @Test(timeout = 60000)
+ 
+    @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldDenyAccessToAdminPages() {
         try {
             retryOnFailure(() -> {
@@ -38,7 +32,7 @@ public class AuthorizationTest extends AbstractUITest {
         }
     }
 
-    @Test(timeout = 60000)
+    @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldAllowAccessToPublicPages() {
         try {
             retryOnFailure(() -> {

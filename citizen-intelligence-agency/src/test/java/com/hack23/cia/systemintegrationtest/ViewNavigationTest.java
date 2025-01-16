@@ -1,42 +1,22 @@
 package com.hack23.cia.systemintegrationtest;
 
-import java.util.Arrays;
-import java.util.Collection;
+import static com.hack23.cia.systemintegrationtest.TestConstants.DEFAULT_MAX_RETRIES;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
+import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
-import static com.hack23.cia.systemintegrationtest.TestConstants.*;
-
-@RunWith(Parameterized.class)
 @Category(IntegrationTest.class)
 public final class ViewNavigationTest extends AbstractUITest {
-    private static final int MAX_RETRIES = 3;
-    private final Browser browser;
-
-    public ViewNavigationTest(final Browser browser) {
-        this.browser = browser;
-    }
-
-    @Override
-    protected Browser getBrowser() {
-        return browser;
-    }
-
-    @Parameters(name = "ViewNavTest{index}: browser({0})")
-    public static Collection<Browser[]> browsers() {
-        return Arrays.asList(new Browser[][] { { Browser.CHROME } });
-    }
-
-    @Test(timeout = 60000)
+ 
+    @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldNavigateCommitteeRanking() throws Exception {
         retryOnFailure(() -> {
             try {
@@ -48,7 +28,7 @@ public final class ViewNavigationTest extends AbstractUITest {
         }, MAX_RETRIES);
     }
 
-    @Test(timeout = 60000)
+    @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldNavigateMinistryRanking() throws Exception {
         retryOnFailure(() -> {
             try {
@@ -60,7 +40,7 @@ public final class ViewNavigationTest extends AbstractUITest {
         }, MAX_RETRIES);
     }
 
-    @Test(timeout = 60000)
+    @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldNavigatePartyRanking() throws Exception {
         retryOnFailure(() -> {
             try {
@@ -72,7 +52,7 @@ public final class ViewNavigationTest extends AbstractUITest {
         }, MAX_RETRIES);
     }
 
-    @Test(timeout = 60000)
+    @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldNavigatePoliticianRanking() throws Exception {
         retryOnFailure(() -> {
             try {

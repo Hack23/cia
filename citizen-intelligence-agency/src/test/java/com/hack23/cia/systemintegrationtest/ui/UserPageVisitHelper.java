@@ -1,4 +1,4 @@
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.ui;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,11 +25,9 @@ public class UserPageVisitHelper {
     private static int screenShotNumber;
 
     private final WebDriver driver;
-    private final String browserName;
 
-    UserPageVisitHelper(WebDriver driver, String browserName) {
+    UserPageVisitHelper(WebDriver driver) {
         this.driver = driver;
-        this.browserName = browserName;
     }
 
     public void waitForElement(By locator) {
@@ -67,7 +65,4 @@ public class UserPageVisitHelper {
         return ExpectedConditions.stalenessOf(element);
     }
 
-    public String getBrowserName() {
-        return browserName;
-    }
 }

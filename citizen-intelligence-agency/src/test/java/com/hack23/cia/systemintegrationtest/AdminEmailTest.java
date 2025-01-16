@@ -3,29 +3,18 @@ package com.hack23.cia.systemintegrationtest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
+import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 
 @Category(IntegrationTest.class)
 public final class AdminEmailTest extends AbstractUITest {
 
-    private static final int MAX_RETRIES = TestConstants.DEFAULT_MAX_RETRIES;
-    private final UserPageVisit pageVisit;
-
-    public AdminEmailTest(Browser browser) {
-        this.pageVisit = new UserPageVisit(getWebDriver(), browser);
-    }
-
-    @Override
-    protected Browser getBrowser() {
-        return Browser.CHROME;
-    }
-
     @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
     public void shouldSendValidEmail() {
         retryOnFailure(() -> {
             try {
-                loginAsAdmin(pageVisit);
+                pageVisit.loginAsAdmin(pageVisit);
                 pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
                 pageVisit.verifyPageContent("email");
                 pageVisit.sendEmailOnEmailPage("james@hack23.com", "Test Subject", "Test content");
@@ -40,7 +29,7 @@ public final class AdminEmailTest extends AbstractUITest {
     public void shouldFailWithInvalidEmail() {
         retryOnFailure(() -> {
             try {
-                loginAsAdmin(pageVisit);
+                pageVisit.loginAsAdmin(pageVisit);
                 pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
                 pageVisit.verifyPageContent("email");
                 pageVisit.sendEmailOnEmailPage("invalidemail", "Test Subject", "Test content");

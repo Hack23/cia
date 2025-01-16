@@ -2,7 +2,7 @@
  * From http://www.sahajamit.com/post/mystery-of-stale-element-reference-exception/
  *
 */
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.ui;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

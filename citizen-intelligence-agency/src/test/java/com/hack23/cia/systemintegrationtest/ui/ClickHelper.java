@@ -9,8 +9,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.systemintegrationtest.UserPageVisitHelper;
-
 public class ClickHelper {
     private static final Logger LOG = LoggerFactory.getLogger(ClickHelper.class);
 
@@ -34,15 +32,11 @@ public class ClickHelper {
     public void clickWithDelay(WebElement element) {
         helper.waitForElement(By.id(element.getDomAttribute("id")));
 
-        if (helper.getBrowserName().contains("htmlunit")) {
-            helper.refreshElement(element).click();
-        } else {
-            actions.pause(Duration.ofMillis(250))
+        actions.pause(Duration.ofMillis(250))
                     .clickAndHold(helper.refreshElement(element))
                     .release()
                     .pause(Duration.ofMillis(250))
                     .perform();
-        }
 
         helper.waitForPageLoad();
         helper.grabScreenshot();

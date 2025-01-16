@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.ui;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,10 +44,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.systemintegrationtest.ui.ClickHelper;
-import com.hack23.cia.systemintegrationtest.ui.ElementHelper;
+import com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer;
+import com.hack23.cia.systemintegrationtest.TestConstants;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
@@ -58,6 +59,11 @@ public final class UserPageVisit extends Assert {
 
 	/** The screen shot number. */
 	private static int screenShotNumber;
+
+
+	protected static String systemTestTargetAdminEmail;
+
+	protected static String systemTestTargetAdminPassword;
 
 	/** The Constant systemTestTargetUrl. */
 	private static final String systemTestTargetUrl;
@@ -70,6 +76,16 @@ public final class UserPageVisit extends Assert {
 			systemTestTargetUrl = systemTestTargetUrlProperty;
 		} else {
 			systemTestTargetUrl = CitizenIntelligenceAgencyServer.ACCESS_URL;
+		}
+
+		systemTestTargetAdminEmail = System.getProperty("system.test.target.admin.email");
+		if (systemTestTargetAdminEmail == null) {
+			systemTestTargetAdminEmail = "admin@hack23.com";
+		}
+
+		systemTestTargetAdminPassword = System.getProperty("system.test.target.admin.password");
+		if (systemTestTargetAdminPassword == null) {
+			systemTestTargetAdminPassword = "Admin4hack23!";
 		}
 	}
 
@@ -89,10 +105,10 @@ public final class UserPageVisit extends Assert {
 	 * @param browserType
 	 *                    the browserType
 	 */
-	public UserPageVisit(final WebDriver driver, final Browser browserType) {
+	public UserPageVisit(final WebDriver driver) {
 		super();
 		this.driver = driver;
-		this.helper = new UserPageVisitHelper(driver, browserType.name());
+		this.helper = new UserPageVisitHelper(driver);
 		this.elementHelper = new ElementHelper(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
 		this.clickHelper = new ClickHelper(driver, helper);
 		action = new Actions(driver);
@@ -372,6 +388,44 @@ public final class UserPageVisit extends Assert {
 
 	}
 
+
+/**
+	 * Click first row in grid.
+	 *
+	 * @param userPageVisit
+	 *                      the user page visit
+	 * @throws InterruptedException
+	 *                              the interrupted exception
+	 */
+	protected final void clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
+		final List<WebElement> gridRows = userPageVisit.getGridRows();
+		assertFalse(gridRows.isEmpty());
+
+		final WebElement choosenRow = gridRows.iterator().next();
+
+		final List<WebElement> cells = choosenRow.findElements(By.className("v-grid-cell"));
+
+		final WebElement choosenCell = cells.iterator().next();
+
+		userPageVisit.performClickAction(choosenCell);
+
+	}
+
+	/**
+	 * Login as admin.
+	 *
+	 * @param userPageVisit
+	 *                      the user page visit
+	 * @throws Exception
+	 *                   the exception
+	 */
+	public final void loginAsAdmin(final UserPageVisit userPageVisit) throws Exception {
+		userPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+		userPageVisit.loginUser(systemTestTargetAdminEmail, systemTestTargetAdminPassword);
+	}
+
+
 	/**
 	 * Gets the html body as text.
 	 *
@@ -524,7 +578,7 @@ public final class UserPageVisit extends Assert {
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
 		wait.until(ExpectedConditions.urlContains(url));
 
-		assertEquals(getBrowserName(), url, driver.getCurrentUrl());
+		assertEquals(url, driver.getCurrentUrl());
 	}
 
 	/**
@@ -563,7 +617,7 @@ public final class UserPageVisit extends Assert {
 
 		final String url = systemTestTargetUrl + "#!" + CommonsViews.MAIN_VIEW_NAME;
 
-		assertEquals(getBrowserName(), url, driver.getCurrentUrl());
+		assertEquals(url, driver.getCurrentUrl());
 	}
 
 	/**
@@ -572,7 +626,7 @@ public final class UserPageVisit extends Assert {
 	 * @param clickElement
 	 *                     the click element
 	 */
-	void performClickAction(final WebElement clickElement) {
+	public void performClickAction(final WebElement clickElement) {
 		assertNotNull(clickElement);
 		helper.waitForElement(By.id(clickElement.getDomAttribute("id")));
 		helper.refreshElement(clickElement).click();
@@ -613,7 +667,7 @@ public final class UserPageVisit extends Assert {
 
 		if (userView != null) {
 			final String url = systemTestTargetUrl + "#!" + userView;
-			assertEquals(getBrowserName(), url, driver.getCurrentUrl());
+			assertEquals(url, driver.getCurrentUrl());
 		}
 	}
 
@@ -631,7 +685,7 @@ public final class UserPageVisit extends Assert {
 
 		final String url = systemTestTargetUrl + "#!" + UserViews.SEARCH_DOCUMENT_VIEW_NAME;
 
-		assertEquals(getBrowserName(), url,
+		assertEquals(url,
 				driver.getCurrentUrl());
 
 	}
@@ -697,7 +751,7 @@ public final class UserPageVisit extends Assert {
 		assertFalse("Page contains widget exception, url:" + url, text.contains("Widget"));
 
 		wait.until(ExpectedConditions.urlContains(url));
-		assertNotNull(getBrowserName(), driver.getWindowHandle());
+		assertNotNull(driver.getWindowHandle());
 
 	}
 
@@ -710,7 +764,7 @@ public final class UserPageVisit extends Assert {
 	public void verifyViewActions(final ViewAction[] viewActions) {
 		final Set<ViewAction> actionsAvailable = getActionsAvailable();
 		for (final ViewAction viewAction : viewActions) {
-			assertTrue(getBrowserName(), actionsAvailable.contains(viewAction));
+			assertTrue(actionsAvailable.contains(viewAction));
 
 		}
 	}
@@ -772,8 +826,8 @@ public final class UserPageVisit extends Assert {
 		assertFalse("Page contains widget exception, url:" + url, text.contains("Widget"));
 
 		wait.until(ExpectedConditions.urlContains(url));
-		assertEquals(getBrowserName(), url, driver.getCurrentUrl());
-		assertNotNull(getBrowserName(), driver.getWindowHandle());
+		assertEquals(url, driver.getCurrentUrl());
+		assertNotNull(driver.getWindowHandle());
 	}
 
 	/**
@@ -883,10 +937,10 @@ public final class UserPageVisit extends Assert {
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
 		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
-		assertEquals(getBrowserName(), systemTestTargetUrl,
+		assertEquals(systemTestTargetUrl,
 				driver.getCurrentUrl());
-		assertEquals(getBrowserName(), "Citizen Intelligence Agency", driver.getTitle());
-		assertNotNull(getBrowserName(), driver.getWindowHandle());
+		assertEquals("Citizen Intelligence Agency", driver.getTitle());
+		assertNotNull(driver.getWindowHandle());
 		grabScreenshot(driver);
 
 		verifyViewActions(new ViewAction[] {
@@ -914,10 +968,6 @@ public final class UserPageVisit extends Assert {
 		WebElement firstRow = getGridRows().get(0);
 		performClickActionWithRetry(firstRow);
 		return this;
-	}
-
-	public String getBrowserName() {
-		return helper.getBrowserName();
 	}
 
 	// Consolidate duplicate visit view methods into one

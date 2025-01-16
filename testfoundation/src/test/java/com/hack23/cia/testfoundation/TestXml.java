@@ -24,5 +24,6 @@ package com.hack23.cia.testfoundation;
 public final class TestXml {
 
 	/** The content. */
+	@SuppressWarnings("unused")
 	private String content;
 }

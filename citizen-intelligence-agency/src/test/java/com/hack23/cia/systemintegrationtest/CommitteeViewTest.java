@@ -2,31 +2,27 @@ package com.hack23.cia.systemintegrationtest;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
+import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import static com.hack23.cia.systemintegrationtest.TestConstants.*;
 
 @Category(IntegrationTest.class)
-public class CommitteeViewTest extends AbstractUITest {
-
-    @Override
-    protected Browser getBrowser() {
-        return Browser.CHROME;
-    }
+public final class CommitteeViewTest extends AbstractUITest {
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void testCommitteeView() throws Exception {
         retryOnFailure(() -> {
             try {
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW));
-                pageVisit.verifyPageContent("Committees");
+                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, ""));
+                pageVisit.verifyPageContent("Committee View");
                 pageVisit.selectFirstGridRow();
-                pageVisit.validatePage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW));
+                pageVisit.validatePage(new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, ""));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, DEFAULT_MAX_RETRIES);
+        }, 3);
     }
 }

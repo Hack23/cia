@@ -1,18 +1,15 @@
 package com.hack23.cia.systemintegrationtest;
 
-import java.util.Arrays;
-import java.util.Collection;
+import static com.hack23.cia.systemintegrationtest.TestConstants.DEFAULT_MAX_RETRIES;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
+import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import static com.hack23.cia.systemintegrationtest.TestConstants.*;
 
-@RunWith(Parameterized.class)
 @Category(IntegrationTest.class)
 public final class ViewPageTest extends AbstractUITest {
     private static final ViewAction[] VIEW_ACTIONS = {
@@ -25,22 +22,7 @@ public final class ViewPageTest extends AbstractUITest {
         ViewAction.VISIT_COUNTRY_VIEW
     };
     
-    private final Browser browser;
-
-    public ViewPageTest(final Browser browser) {
-        this.browser = browser;
-    }
-
-    @Override
-    protected Browser getBrowser() {
-        return browser;
-    }
-
-    @Parameters(name = "ViewPageTest{index}: browser({0})")
-    public static Collection<Browser[]> browsers() {
-        return Arrays.asList(new Browser[][] { { Browser.CHROME } });
-    }
-
+   
     @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldViewMainPage() throws Exception {
         retryOnFailure(() -> {
@@ -53,7 +35,7 @@ public final class ViewPageTest extends AbstractUITest {
         }, DEFAULT_MAX_RETRIES);
     }
 
-    @Test(timeout = 60000)
+    @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldViewStartPage() throws Exception {
         retryOnFailure(() -> {
             try {

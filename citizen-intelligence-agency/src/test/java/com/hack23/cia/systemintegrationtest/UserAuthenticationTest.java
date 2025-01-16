@@ -1,20 +1,18 @@
 package com.hack23.cia.systemintegrationtest;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.UUID;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
+import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
+import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 
-@RunWith(Parameterized.class)
 @Category(IntegrationTest.class)
 public final class UserAuthenticationTest extends AbstractUITest {
     private static final int MAX_RETRIES = TestConstants.DEFAULT_MAX_RETRIES;
@@ -22,26 +20,10 @@ public final class UserAuthenticationTest extends AbstractUITest {
     private static final String PATH_PREFIX = "main/";
     private static final String ERROR_USER_EXISTS = "USER_ALREADY_EXISTS";
     private static final String ERROR_INVALID_CREDENTIALS = "USERNAME_OR_PASSWORD_DO_NOT_MATCH";
-    private final Browser browser;
-    private final UserPageVisit pageVisit;
 
-    public UserAuthenticationTest(final Browser browser) {
-        this.browser = browser;
-        this.pageVisit = new UserPageVisit(getWebDriver(), browser);
-    }
-
-    @Override
-    protected Browser getBrowser() {
-        return browser;
-    }
 
     private String generatePassword() {
         return "Test123!" + UUID.randomUUID().toString();
-    }
-
-    @Parameters(name = "UserAuthTest{index}: browser({0})")
-    public static Collection<Browser[]> browsers() {
-        return Arrays.asList(new Browser[][] { { Browser.CHROME } });
     }
 
     @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
@@ -57,7 +39,7 @@ public final class UserAuthenticationTest extends AbstractUITest {
                 pageVisit.registerNewUser(username, password);
                 pageVisit.logoutUser();
 
-                UserPageVisit loginPageVisit = new UserPageVisit(getWebDriver(), browser);
+                UserPageVisit loginPageVisit = new UserPageVisit(driver);
                 loginPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
                         ApplicationPageMode.LOGIN.toString()));
                 loginPageVisit.loginUser(username + EMAIL_SUFFIX, password);
@@ -101,7 +83,7 @@ public final class UserAuthenticationTest extends AbstractUITest {
                 pageVisit.logoutUser();
 
                 // Try registering same user again
-                UserPageVisit secondRegisterVisit = new UserPageVisit(getWebDriver(), browser);
+                UserPageVisit secondRegisterVisit = new UserPageVisit(driver);
                 secondRegisterVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
                         ApplicationPageMode.REGISTER.toString()));
                 secondRegisterVisit.registerNewUserCheckView(username, password,

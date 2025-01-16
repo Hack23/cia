@@ -1,11 +1,9 @@
-package com.hack23.cia.systemintegrationtest.suites;
+package com.hack23.cia.systemintegrationtest;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import com.hack23.cia.systemintegrationtest.AbstractUITest;
-import com.hack23.cia.systemintegrationtest.Browser;
-import com.hack23.cia.systemintegrationtest.IntegrationTest;
+import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
@@ -13,12 +11,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 public class ViewRankingTest extends AbstractUITest {
     private static final int DEFAULT_MAX_RETRIES = 3;
 
-    @Override
-    protected Browser getBrowser() {
-        return Browser.CHROME;
-    }
 
-    @Test(timeout = 60000)
+    @Test(timeout = DEFAULT_TIMEOUT)
     public void testViewRanking() throws Exception {
         retryOnFailure(() -> {
             try {

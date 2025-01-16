@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.openqa.selenium.WebElement;
 
+import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 
@@ -12,22 +13,12 @@ public final class SessionManagementTest extends AbstractUITest {
     private static final int DEFAULT_MAX_RETRIES = 3;
     private static final int MAX_RETRIES = 3;
     private static final int DEFAULT_TIMEOUT = 60000;
-    private final Browser browser;
-
-    public SessionManagementTest(final Browser browser) {
-        this.browser = browser;
-    }
-
-    @Override
-    protected Browser getBrowser() {
-        return browser;
-    }
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldHandleSessionPagination() throws Exception {
         retryOnFailure(() -> {
             try {
-                loginAsAdmin(pageVisit);
+                pageVisit.loginAsAdmin(pageVisit);
                 pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
                 pageVisit.verifyPageContent("Application Session");
                 
@@ -47,11 +38,11 @@ public final class SessionManagementTest extends AbstractUITest {
         }, DEFAULT_MAX_RETRIES);
     }
 
-    @Test(timeout = 60000)
+    @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldShowSessionDetails() throws Exception {
         retryOnFailure(() -> {
             try {
-                loginAsAdmin(pageVisit);
+                pageVisit.loginAsAdmin(pageVisit);
                 pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
                 pageVisit.verifyPageContent("Application Session");
                 pageVisit.selectFirstGridRow();

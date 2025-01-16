@@ -1,4 +1,4 @@
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.ui;
 
 import java.util.Arrays;
 import java.util.List;
