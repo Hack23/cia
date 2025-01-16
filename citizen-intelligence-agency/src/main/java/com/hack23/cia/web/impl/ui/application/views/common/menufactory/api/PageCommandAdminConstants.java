@@ -9,7 +9,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 /**
  * The Interface MenuItemConstants.
  */
-public interface PageModeMenuCommandAdminConstants extends MenuItemConstants {
+public interface PageCommandAdminConstants extends MenuItemConstants {
 
 
        /** The Constant COMMAND_AGENCY. */
