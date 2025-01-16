@@ -32,6 +32,7 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -88,8 +89,8 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
         getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-        CardInfoRowUtil.createPageHeader(panel, content, "Admin User Account Management", "User Account Overview",
-                "Manage user accounts, including roles, permissions, and activity logs.");
+        CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_USER_ACCOUNT_MANAGEMENT, AdminViewConstants.USER_ACCOUNT_OVERVIEW,
+                AdminViewConstants.USER_ACCOUNT_MANAGEMENT_DESCRIPTION);
 
         final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
                 .getDataContainer(UserAccount.class);

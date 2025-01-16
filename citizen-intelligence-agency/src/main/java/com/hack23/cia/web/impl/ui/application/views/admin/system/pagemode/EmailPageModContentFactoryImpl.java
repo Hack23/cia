@@ -28,6 +28,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.admin.SendEmailRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -71,7 +72,7 @@ public final class EmailPageModContentFactoryImpl extends AbstractAdminSystemPag
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, content, "Admin Email Management", "Email Overview", "Page for managing email configurations and communications within the agency.");
+		CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_EMAIL_MANAGEMENT, "Email Overview", AdminViewConstants.EMAIL_OVERVIEW);
 
 		final VerticalLayout emailLayout = createPanelContent();
 

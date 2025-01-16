@@ -29,6 +29,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -102,8 +103,8 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
 
         getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-        CardInfoRowUtil.createPageHeader(panel, content, "Admin Agency Management", "Agency Overview",
-                "Manage and review details of agencies, including organizational data and performance metrics.");
+        CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_AGENCY_MANAGEMENT, "Agency Overview",
+                AdminViewConstants.AGENCY_OVERVIEW);
 
         final DataContainer<Agency, Long> dataContainer = getApplicationManager().getDataContainer(Agency.class);
         final List<Agency> pageOrderBy = dataContainer.getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE,

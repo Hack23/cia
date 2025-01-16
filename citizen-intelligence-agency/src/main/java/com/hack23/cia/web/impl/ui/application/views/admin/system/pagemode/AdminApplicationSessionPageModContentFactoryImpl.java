@@ -29,6 +29,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -120,9 +121,9 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 		CardInfoRowUtil.createPageHeader(
 				panel,
 				content,
-				"Admin Application Sessions",
-				"Session Details",
-				"Explore detailed data on user sessions, including durations and activity logs."
+				 AdminViewConstants.ADMIN_APPLICATION_SESSIONS,
+				 AdminViewConstants.SESSION_DETAILS,
+				 AdminViewConstants.SESSION_OVERVIEW
 		);
 
 		final DataContainer<ApplicationSession, Long> dataContainer = getApplicationManager()
@@ -180,7 +181,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				horizontalLayout.addComponent(cardPanel);
 				horizontalLayout.setExpandRatio(cardPanel, ContentRatio.GRID);
 
-				CardInfoRowUtil.createCardHeader(cardContent,"Application Session Details");
+				CardInfoRowUtil.createCardHeader(cardContent, AdminViewConstants.APPLICATION_SESSION_DETAILS);
 
 				// Attributes layout
 				final VerticalLayout attributesLayout = new VerticalLayout();
@@ -189,14 +190,14 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 				cardContent.addComponent(attributesLayout);
 
 				// Display each field if not null or empty
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Created Date:", String.valueOf(applicationSession.getCreatedDate()), VaadinIcons.CALENDAR);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Session Type:", applicationSession.getSessionType().toString(), VaadinIcons.CONNECT);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "User Id:", applicationSession.getUserId(), VaadinIcons.USER);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Session Id:", applicationSession.getSessionId(), VaadinIcons.KEY);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Operating System:", applicationSession.getOperatingSystem(), VaadinIcons.DESKTOP);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "Locale:", applicationSession.getLocale(), VaadinIcons.GLOBE);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "IP Information:", applicationSession.getIpInformation(), VaadinIcons.INFO);
-				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, "User Agent:", applicationSession.getUserAgentInformation(), VaadinIcons.BROWSER);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.CREATED_DATE, String.valueOf(applicationSession.getCreatedDate()), VaadinIcons.CALENDAR);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.SESSION_TYPE, applicationSession.getSessionType().toString(), VaadinIcons.CONNECT);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.USER_ID, applicationSession.getUserId(), VaadinIcons.USER);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.SESSION_ID, applicationSession.getSessionId(), VaadinIcons.KEY);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.OPERATING_SYSTEM, applicationSession.getOperatingSystem(), VaadinIcons.DESKTOP);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.LOCALE, applicationSession.getLocale(), VaadinIcons.GLOBE);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.IP_INFORMATION, applicationSession.getIpInformation(), VaadinIcons.INFO);
+				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.USER_AGENT, applicationSession.getUserAgentInformation(), VaadinIcons.BROWSER);
 
 				// Right side: grid for ApplicationActionEvent (session events)
 				final VerticalLayout rightLayout = new VerticalLayout();

@@ -28,6 +28,7 @@ import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
@@ -92,9 +93,9 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
 		CardInfoRowUtil.createPageHeader(panel, content,
-				"Admin Country Management",
-				"Country Overview",
-				"Manage and review country-specific data, including metrics and geopolitical information.");
+				 AdminViewConstants.ADMIN_COUNTRY_MANAGEMENT,
+				 AdminViewConstants.COUNTRY_OVERVIEW,
+				 AdminViewConstants.COUNTRY_OVERVIEW_DESCRIPTION);
 
 		final DataContainer<CountryElement, Long> dataContainer = getApplicationManager()
 				.getDataContainer(CountryElement.class);
