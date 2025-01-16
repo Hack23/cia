@@ -47,7 +47,6 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jpamodelgen</artifactId>
-      <version>${cia.project.versions.hibernate}</version>
       <exclusions>
         <exclusion>
           <groupId>org.slf4j</groupId>
@@ -1422,7 +1421,6 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-      <version>1.10.0</version>
     </dependency>
   </dependencies>
   <repositories>
@@ -1511,7 +1509,6 @@
               <alias>jetty</alias>
               <dname>cn=localhost, ou=None, L=None, ST=None, o=None, c=SE</dname>
               <sigalg>SHA256withRSA</sigalg>
-              <ext></ext>
               <validity>365</validity>
               <keyalg>RSA</keyalg>
               <keysize>4096</keysize>
@@ -1685,45 +1682,6 @@
             </manifestEntries>
           </archive>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
-        <configuration>
-          <systemProperties>
-            <systemProperty>
-              <name>logback.configurationFile</name>
-              <value>src/main/resources/logback.xml</value>
-            </systemProperty>
-            <systemProperty>
-              <name>slf4j</name>
-              <value>true</value>
-            </systemProperty>
-          </systemProperties>
-          <stopPort>9966</stopPort>
-          <stopKey>stop</stopKey>
-          <scanIntervalSeconds>0</scanIntervalSeconds>
-          <webAppConfig>
-            <contextPath>/cia</contextPath>
-          </webAppConfig>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-servlets</artifactId>
-            <version>${cia.project.versions.jetty}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm-tree</artifactId>
-            <version>${cia.project.versions.asm}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm</artifactId>
-            <version>${cia.project.versions.asm}</version>
-          </dependency>
-        </dependencies>
       </plugin>
     </plugins>
   </build>
