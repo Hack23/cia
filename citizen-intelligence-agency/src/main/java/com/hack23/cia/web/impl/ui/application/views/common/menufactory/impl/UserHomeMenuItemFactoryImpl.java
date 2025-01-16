@@ -40,27 +40,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements UserHomeMenuItemFactory {
 
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant SECURITY_SETTING_TEXT. */
-	private static final String SECURITY_SETTING_TEXT = "Security settings";
-
-	/** The Constant USER_EVENTS. */
-	private static final String USER_EVENTS = "User Events";
-
-	/** The Constant USER_VISITS. */
-	private static final String USER_VISITS = "User Visits";
-
-	/** The Constant SECURITY_SETTINGS_DESCRIPTION. */
-	private static final String SECURITY_SETTINGS_DESCRIPTION = "Security settings, enable MFA";
-
-	/** The Constant USER_VISITS_DESCRIPTION. */
-	private static final String USER_VISITS_DESCRIPTION = "All past visits";
-
-	/** The Constant USER_EVENTS_DESCRIPTION. */
-	private static final String USER_EVENTS_DESCRIPTION = "All past events";
-
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
@@ -71,44 +50,44 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		super();
 	}
 
-
 	@Override
 	public void createOverviewPage(final VerticalLayout overviewLayout) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 
-		createButtonLink(grid,SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),""),SECURITY_SETTINGS_DESCRIPTION);
+		createButtonLink(grid, SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),
+						""),
+				SECURITY_SETTINGS_DESCRIPTION);
 
-		createButtonLink(grid,USER_VISITS, VaadinIcons.EYE,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString()),USER_VISITS_DESCRIPTION);
+		createButtonLink(grid, USER_VISITS, VaadinIcons.EYE,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString()),
+				USER_VISITS_DESCRIPTION);
 
-		createButtonLink(grid,USER_EVENTS, VaadinIcons.CALENDAR,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString()),USER_EVENTS_DESCRIPTION);
-
+		createButtonLink(grid, USER_EVENTS, VaadinIcons.CALENDAR,
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString()),
+				USER_EVENTS_DESCRIPTION);
 
 	}
-
 
 	@Override
 	public void createUserHomeMenuBar(final MenuBar menuBar, final String pageId) {
 		initApplicationMenuBar(menuBar);
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
-		final MenuItem accountItem = menuBar.addItem("Useraccount", VaadinIcons.USER,null);
+		final MenuItem accountItem = menuBar.addItem(USERACCOUNT, VaadinIcons.USER, null);
 
-
-		accountItem.addItem(OVERVIEW_TEXT, VaadinIcons.USER,
+		accountItem.addItem(USER_HOME_OVERVIEW_TEXT, VaadinIcons.USER,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));
 
 		accountItem.addItem(SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(), pageId));
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),
+						pageId));
 
 		accountItem.addItem(USER_VISITS, VaadinIcons.EYE,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString(), pageId));
 
 		accountItem.addItem(USER_EVENTS, VaadinIcons.CALENDAR,
 				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString(), pageId));
-
 
 	}
 

@@ -54,34 +54,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements CountryMenuItemFactory {
 
-	/** The Constant COMMAND_OVERVIEW. */
-	private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
-
-	/** The Constant COMMAND_PAGEVISITHISTORY. */
-	private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
-
-	/** The Constant COUNTRY_INDICATORS_SWEDEN. */
-	private static final String COUNTRY_INDICATORS_SWEDEN = "Country Indicators, Sweden";
-
-
-	/** The Constant COUNTRY_RANKING_TEXT. */
-	private static final String COUNTRY_RANKING_TEXT = "Counry Ranking";
-
-	/** The Constant DATA_POINTS_FOR_YEAR_ABOVE. */
-	private static final int DATA_POINTS_FOR_YEAR_ABOVE = 2010;
-
-	/** The Constant MINIMUM_NUMBER_DATA_POINTS. */
-	private static final int MINIMUM_NUMBER_DATA_POINTS = 10;
-
-	/** The Constant OVERVIEW_TEXT. */
-	private static final String OVERVIEW_TEXT = "Overview";
-
-	/** The Constant PAGE_VISIT_HISTORY_TEXT. */
-	private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
-
-	/** The Constant BY_TOPIC. */
-	private static final String BY_TOPIC = "By Topic";
-
 	/** The application manager. */
 	@Autowired
 	private ApplicationManager applicationManager;
@@ -101,9 +73,9 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	 * Adds the sources and indicators to menu.
 	 *
 	 * @param countryIndicators
-	 *            the country indicators
+	 *                           the country indicators
 	 * @param sourceIndicatorMap
-	 *            the source indicator map
+	 *                           the source indicator map
 	 */
 	private static void addSourcesAndIndicatorsToMenu(final MenuItem countryIndicators,
 			final Map<String, List<ViewWorldbankIndicatorDataCountrySummary>> sourceIndicatorMap) {
@@ -137,21 +109,20 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 
-
-		createCountryTopicMenu( menuBar.addItem(COUNTRY_RANKING_TEXT, VaadinIcons.FLAG, null));
+		createCountryTopicMenu(menuBar.addItem(COUNTRY_RANKING_TEXT, VaadinIcons.FLAG, null));
 
 	}
 
 	@Override
 	public void createCountryTopicMenu(final MenuItem charts) {
-		charts.addItem(OVERVIEW_TEXT, VaadinIcons.LINE_CHART,
-				 COMMAND_OVERVIEW);
+		charts.addItem(COUNTRY_OVERVIEW_TEXT, VaadinIcons.LINE_CHART,
+				COUNTRY_COMMAND_OVERVIEW);
 
 		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, VaadinIcons.LINE_CHART, null);
 
 		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
 
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COMMAND_PAGEVISITHISTORY);
+		charts.addItem(COUNTRY_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COUNTRY_COMMAND_PAGEVISITHISTORY);
 
 	}
 
@@ -162,7 +133,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		panelContent.setComponentAlignment(menuBar, Alignment.TOP_LEFT);
 		panelContent.setExpandRatio(menuBar, ContentRatio.LARGE);
 
-		addSourcesAndIndicatorsToMenu(menuBar.addItem(BY_TOPIC,VaadinIcons.LINE_CHART, null), getTopicIndicatorMap());
+		addSourcesAndIndicatorsToMenu(menuBar.addItem(BY_TOPIC, VaadinIcons.LINE_CHART, null), getTopicIndicatorMap());
 		menuBar.setAutoOpen(true);
 	}
 
@@ -176,8 +147,13 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 				.getDataContainer(ViewWorldbankIndicatorDataCountrySummary.class);
 
 		return indicatorDataCountrSummaryDailyDataContainer
-				.findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,ViewWorldbankIndicatorDataCountrySummary_.embeddedId,WorldbankIndicatorDataCountrySummaryEmbeddedId.class,WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId,"SE").parallelStream()
-				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > DATA_POINTS_FOR_YEAR_ABOVE && t.getDataPoint() > MINIMUM_NUMBER_DATA_POINTS)
+				.findListByEmbeddedProperty(ViewWorldbankIndicatorDataCountrySummary.class,
+						ViewWorldbankIndicatorDataCountrySummary_.embeddedId,
+						WorldbankIndicatorDataCountrySummaryEmbeddedId.class,
+						WorldbankIndicatorDataCountrySummaryEmbeddedId_.countryId, "SE")
+				.parallelStream()
+				.filter(t -> t != null && t.getSourceValue() != null && t.getEndYear() > DATA_POINTS_FOR_YEAR_ABOVE
+						&& t.getDataPoint() > MINIMUM_NUMBER_DATA_POINTS)
 				.flatMap(t -> Arrays.asList(t.getTopics().split(";")).stream()
 						.map(topic -> new AbstractMap.SimpleEntry<>(topic, t)))
 

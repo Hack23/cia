@@ -59,14 +59,14 @@ open module com.hack23.cia.service.data.impl {
 
 	requires org.hibernate.search.engine;
 	requires org.hibernate.search.backend.lucene;
-	requires transitive org.hibernate.search.mapper.pojo; // Make this transitive
-	requires transitive org.hibernate.search.mapper.orm;	
+	requires org.hibernate.search.mapper.pojo;
+	requires org.hibernate.search.mapper.orm;	
 	
 	requires com.fasterxml.jackson.databind;	
-	requires transitive aws.secretsmanager.caching.java;
-	requires transitive aws.secretsmanager.jdbc;
-	requires transitive aws.java.sdk.secretsmanager;
-	requires transitive aws.java.sdk.core;
+	requires aws.secretsmanager.caching.java;
+	requires aws.secretsmanager.jdbc;
+	requires aws.java.sdk.secretsmanager;
+	requires aws.java.sdk.core;
 	
     requires software.amazon.awssdk.core;
     requires software.amazon.awssdk.services.secretsmanager;
@@ -74,10 +74,10 @@ open module com.hack23.cia.service.data.impl {
 	requires org.apache.commons.lang3;
 	requires lucene.analyzers.common;
 
-	requires transitive javers.spring;
-	requires transitive javers.spring.jpa;
-	requires transitive javers.persistence.sql;
-	requires transitive javers.core;
+	requires javers.spring;
+	requires javers.spring.jpa;
+	requires javers.persistence.sql;
+	requires javers.core;
 
 
 	requires com.google.common;

@@ -15,7 +15,7 @@
  *
  *	$Id$
  *  $HeadURL$
-*/
+ */
 package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 /**
@@ -32,6 +32,9 @@ public enum PageMode {
 	/** The indicators. */
 	INDICATORS,
 
+	/** The list. */
+	LIST,
+
 	/** The login. */
 	LOGIN,
 
@@ -42,6 +45,8 @@ public enum PageMode {
 	PAGEVISITHISTORY,
 
 	/** The rules. */
-	RULES
+	RULES,
 
+	/** The search. */
+	SEARCH
 }
