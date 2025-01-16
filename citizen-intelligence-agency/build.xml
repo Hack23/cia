@@ -74,7 +74,8 @@
 
 	<target name="start" description="start" depends="init">
 		<exec executable="${maven.binary}" dir="../citizen-intelligence-agency/">
-			<env key="MAVEN_OPTS" value="-server -Xmx8192m -Xms2048m  " />
+			<env key="MAVEN_OPTS"
+				value="-server -Xmx8192m -Xms2048m --add-exports java.base/sun.nio.ch=ALL-UNNAMED --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED" />
 			<arg
 				line="exec:java -Dexec.mainClass=com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer -Dexec.classpathScope=test -Djava.awt.headless=true" />
 		</exec>

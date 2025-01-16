@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.hack23.cia</groupId>
   <artifactId>parent-pom</artifactId>
@@ -87,7 +89,7 @@
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
     <cia.project.versions.commons.text>1.13.0</cia.project.versions.commons.text>
     <cia.project.versions.commons.codec>1.17.2</cia.project.versions.commons.codec>
-    <cia.project.versions.bouncycastle>1.80</cia.project.versions.bouncycastle>
+    <cia.project.versions.bouncycastle>1.79</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.16</cia.project.versions.slf4j>
     <cia.project.versions.aws.v2>2.30.0</cia.project.versions.aws.v2>
     <cia.project.versions.logback>1.5.16</cia.project.versions.logback>
@@ -1313,7 +1315,6 @@
           <target>${jdk.target.version}</target>
           <parameters>true</parameters>
           <debuglevel>lines,vars,source</debuglevel>
-          cd
         </configuration>
         <executions>
           <execution>
