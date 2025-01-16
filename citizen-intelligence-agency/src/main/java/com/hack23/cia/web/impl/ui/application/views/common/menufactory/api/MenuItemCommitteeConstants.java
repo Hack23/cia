@@ -19,7 +19,6 @@ public interface MenuItemCommitteeConstants {
     String DOCUMENTS_TEXT = "Documents";
     String BALLOTS_TEXT = "Ballots";
     String BALLOT_DECISION_SUMMARY_TEXT = "Ballot Decision Summary";
-    String DECISION_SUMMARY_TEXT = "Decision Summary";
     
     // Other committee constants
     String CURRENT_COMMITTEES_TEXT = "Current Committees";

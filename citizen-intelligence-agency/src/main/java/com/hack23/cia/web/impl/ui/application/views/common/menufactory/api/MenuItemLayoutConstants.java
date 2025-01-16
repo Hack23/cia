@@ -8,4 +8,6 @@ public interface MenuItemLayoutConstants {
     String MENU_BAR_WIDTH = "80%";
     String HEADER_STYLE_NAME = "Header";
     String LINK_STYLE_NAME = "link";
+
+    
 }
