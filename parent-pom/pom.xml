@@ -156,13 +156,26 @@
     <jdk.target.version>21</jdk.target.version>
     <javadoc.src.version>21</javadoc.src.version>
     <javadoc.target.version>21</javadoc.target.version>
-    <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+    <testAdditionalRuntimeArgLine>--add-exports java.base/sun.nio.ch=ALL-UNNAMED
+      --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
+      java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+      --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
     <tattletale-source-directory>${project.build.directory}/${project.artifactId}-${project.version}</tattletale-source-directory>
     <tattletale-destination-directory>${project.build.directory}/site/tattleTaleReport</tattletale-destination-directory>
   </properties>
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-jpamodelgen</artifactId>
+        <version>${cia.project.versions.hibernate}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
       <dependency>
         <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
@@ -425,6 +438,11 @@
       </dependency>
       <dependency>
         <groupId>org.jboss</groupId>
+        <artifactId>jandex</artifactId>
+        <version>3.2.3</version>
+      </dependency>
+      <dependency>
+        <groupId>io.smallrye</groupId>
         <artifactId>jandex</artifactId>
         <version>3.2.3</version>
       </dependency>
@@ -786,7 +804,7 @@
           <configuration>
             <checkoutDirectory>${scmPublish.checkoutDirectory}</checkoutDirectory>
             <checkinComment>Publishing Site Docs for
-							${project.artifactId}:${project.version}</checkinComment>
+              ${project.artifactId}:${project.version}</checkinComment>
             <content>${project.build.directory}/staging</content>
             <skipDeletedFiles>true</skipDeletedFiles>
             <pubScmUrl>${scm-publish.pubScmUrl}</pubScmUrl>
@@ -1295,7 +1313,7 @@
           <target>${jdk.target.version}</target>
           <parameters>true</parameters>
           <debuglevel>lines,vars,source</debuglevel>
-          <optimize>true</optimize>
+          cd
         </configuration>
         <executions>
           <execution>
@@ -1414,8 +1432,10 @@
         <jdk>21</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--add-exports	java.base/sun.nio.ch=ALL-UNNAMED
-        			--add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+        <testAdditionalRuntimeArgLine>--add-exports java.base/sun.nio.ch=ALL-UNNAMED
+          --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
+          java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+          --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
         <jdk.src.version>21</jdk.src.version>
         <jdk.target.version>21</jdk.target.version>
         <forbiddenapis.skip>false</forbiddenapis.skip>

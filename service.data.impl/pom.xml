@@ -892,9 +892,10 @@
       <version>1.7.0</version>
     </dependency>
     <dependency>
-      <groupId>org.jboss</groupId>
+      <groupId>io.smallrye</groupId>
       <artifactId>jandex</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.jboss.logging</groupId>
       <artifactId>jboss-logging</artifactId>
@@ -1177,12 +1178,12 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>hibernate3-maven-plugin</artifactId>
-        <?m2e ignore ?>
+        <?m2e ignore?>
         <configuration>
           <hibernatetool destdir="target/classes">
             <jpaconfiguration persistenceunit="ciaPersistenceUnit" propertyfile="src/test/resources/database.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-database.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <!-- <hbm2ddl export="false" outputfilename="schema-database.sql"></hbm2ddl> -->
+            <!-- <hbm2doc destdir="target/site/hbm2doc"></hbm2doc> -->
             <property key="dot.executable" value="${graphviz.dot.executable}"></property>
             <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
           </hibernatetool>

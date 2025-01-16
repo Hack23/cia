@@ -20,7 +20,8 @@
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
-    <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
+    <!--
+    http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <site>
       <id>github</id>
       <url>scm:git:ssh://git@github.com/Hack23/cia.git/model.external.riksdagen.dokumentlista.impl</url>
@@ -80,8 +81,8 @@
         <configuration>
           <hibernatetool destdir="target/classes">
             <jpaconfiguration persistenceunit="com.hack23.cia.${project.artifactId}" propertyfile="src/main/resources/schema-database.properties"></jpaconfiguration>
-            <hbm2ddl export="false" outputfilename="schema-database.sql"></hbm2ddl>
-            <hbm2doc destdir="target/site/hbm2doc"></hbm2doc>
+            <!-- <hbm2ddl export="false" outputfilename="schema-database.sql"></hbm2ddl> -->
+            <!-- <hbm2doc destdir="target/site/hbm2doc"></hbm2doc> -->
             <property key="dot.executable" value="${graphviz.dot.executable}"></property>
             <property key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect"></property>
           </hibernatetool>
