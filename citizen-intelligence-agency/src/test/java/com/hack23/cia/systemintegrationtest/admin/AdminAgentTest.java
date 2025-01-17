@@ -1,34 +1,36 @@
 package com.hack23.cia.systemintegrationtest.admin;
 
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
 import org.openqa.selenium.WebElement;
 
-import com.hack23.cia.systemintegrationtest.AbstractUITest;
-import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.systemintegrationtest.ui.TestConstants;
 import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandAdminConstants;
 
-@Category(IntegrationTest.class)
-public final class AdminAgentTest extends AbstractUITest {
+public final class AdminAgentTest extends AbstractAdminTest {
 
-	@Test(timeout = TestConstants.DEFAULT_TIMEOUT)
-	public void shouldStartImportOperations() throws Exception {
-		pageVisit.loginAsAdmin();
-		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENT_OPERATION);
-		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_AGENT_OPERATION_OVERVIEW);
-		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_AGENT_OPERATION);
-		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_AGENT_OPERATION_TASKS_OVERVIEW);
+    @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
+    public void shouldStartImportOperations() throws Exception {
 
-		final WebElement worldBankButton = pageVisit
-				.findButton(AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_SWEDEN_BUTTON);
-		assertNotNull(worldBankButton);
+        pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENT_OPERATION);
+        
+        verifyViewContent(
+            AdminViewConstants.ADMIN_AGENT_OPERATION_OVERVIEW,
+            AdminViewConstants.ADMIN_AGENT_OPERATION,
+            AdminViewConstants.ADMIN_AGENT_OPERATION_TASKS_OVERVIEW
+        );
 
-		final WebElement riksdagenButton = pageVisit
-				.findButton(AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_SWEDEN_BUTTON);
-		assertNotNull(riksdagenButton);
+        final WebElement worldBankButton = pageVisit
+                .findButton(AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_WORLD_BUTTON);
+        assertNotNull("World bank button should exist", worldBankButton);
 
-		pageVisit.performClickAction(riksdagenButton);
-	}
+        final WebElement swedenButton = pageVisit
+                .findButton(AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_SWEDEN_BUTTON);
+        assertNotNull("Sweden button should exist", swedenButton);
+
+        pageVisit.performClickAction(swedenButton);
+        
+        // Verify operation started
+        pageVisit.verifyPageContent(AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_DESC);
+    }
 }
