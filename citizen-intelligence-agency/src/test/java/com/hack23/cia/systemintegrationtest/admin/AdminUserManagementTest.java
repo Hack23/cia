@@ -14,7 +14,6 @@ public final class AdminUserManagementTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void shouldManageLanguageSettings() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
 		pageVisit.verifyPageContent("Language");
 		pageVisit.selectFirstGridRow();
@@ -24,7 +23,6 @@ public final class AdminUserManagementTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void shouldManageUserAccount() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 		pageVisit.verifyPageContent("User");
 		pageVisit.selectFirstGridRow();
@@ -34,7 +32,6 @@ public final class AdminUserManagementTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void shouldManageCountrySettings() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
 		pageVisit.verifyPageContent("Country");
 		pageVisit.selectFirstGridRow();
@@ -44,7 +41,6 @@ public final class AdminUserManagementTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void shouldDeleteUserAccount() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
 		pageVisit.verifyPageContent("Admin User Account Management");
 		pageVisit.selectFirstGridRow();

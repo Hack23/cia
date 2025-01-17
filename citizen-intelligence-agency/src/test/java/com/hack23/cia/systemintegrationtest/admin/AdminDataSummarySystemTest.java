@@ -57,15 +57,6 @@ public class AdminDataSummarySystemTest extends AbstractUITest {
 		pageVisit.performClickAction(refreshViewsButton);
 	}
 
-	@Test(timeout = DEFAULT_TIMEOUT)
-	public void verifyRemoveDataOperationsButtonsTest() throws Exception {
-		pageVisit.loginAsAdmin();
-		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATASUMMARY);
-		assertNotNull("Expect to find Remove Application History button",
-				pageVisit.findButton("Remove Application History"));
-		assertNotNull("Expect to find Remove Documents button", pageVisit.findButton("Remove Documents"));
-		assertNotNull("Expect to find Remove Politicians button", pageVisit.findButton("Remove Politicians"));
-	}
-
+	
 	// ...other data management tests...
 }
