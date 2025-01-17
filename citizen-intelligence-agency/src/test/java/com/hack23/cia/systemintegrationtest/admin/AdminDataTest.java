@@ -1,11 +1,11 @@
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.admin;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
-import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
+import com.hack23.cia.systemintegrationtest.AbstractUITest;
+import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
+import com.hack23.cia.systemintegrationtest.suites.TestConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 

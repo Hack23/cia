@@ -1,11 +1,13 @@
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.user;
 
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.experimental.categories.Category;
 
+import com.hack23.cia.systemintegrationtest.AbstractUITest;
+import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
+import com.hack23.cia.systemintegrationtest.suites.TestConstants;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;

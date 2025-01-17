@@ -1,9 +1,9 @@
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.admin;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
+import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 
 @Category(IntegrationTest.class)
 public class AdminMonitoringTest {
