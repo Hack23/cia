@@ -256,5 +256,9 @@ public final class AdminViewConstants {
 
 	public static final String ADMIN_AGENT_OPERATION_DEPLOY_DESC = "Gathering osint";
 
+    public static final String MONITORING_ACCESS_DENIED = null;
+
+    public static final String ACCESS_DENIED = null;
+
 
 }

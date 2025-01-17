@@ -13,7 +13,8 @@ public class AdminPageSystemTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyAgencyPageTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENCY);
-		pageVisit.verifyPageContent(AdminViewConstants.AGENCY_OVERVIEW);
+		pageVisit.verifyPageContent("Agency");
+		pageVisit.selectFirstGridRow();
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_AGENCY);
 	}
 
@@ -45,19 +46,19 @@ public class AdminPageSystemTest extends AbstractAdminTest {
 		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_SESSION);
 		pageVisit.selectFirstGridRow();
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
-		pageVisit.verifyPageContent("ApplicationActionEvent");
+		pageVisit.verifyPageContent(AdminViewConstants.APPLICATION_SESSION_DETAILS);
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyMonitoringPageFailedAccessTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_MONITORING);
-		pageVisit.verifyPageContent("Access denied:adminmonitoring");
+		pageVisit.verifyPageContent(AdminViewConstants.MONITORING_ACCESS_DENIED);
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyMonitoringPageSuccessTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_MONITORING);
-		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_MONITORING);
+		pageVisit.verifyPageContent("Admin Monitoring");
 		assertFalse("Dont expect this content",
 				pageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
 	}
@@ -84,14 +85,14 @@ public class AdminPageSystemTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyLanguagePageTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_LANGUAGE);
-		pageVisit.verifyPageContent("Language");
+		pageVisit.verifyPageContent(AdminViewConstants.LANGUAGE_OVERVIEW);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_LANGUAGE);
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyUserAccountPageTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_USERACCOUNT);
-		pageVisit.verifyPageContent("User Account");
+		pageVisit.verifyPageContent(AdminViewConstants.USER_ACCOUNT_OVERVIEW);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_USERACCOUNT);
 	}
 }
