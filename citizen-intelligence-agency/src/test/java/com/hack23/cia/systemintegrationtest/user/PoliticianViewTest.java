@@ -1,0 +1,27 @@
+package com.hack23.cia.systemintegrationtest;
+
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
+import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+
+@Category(IntegrationTest.class)
+public class PoliticianViewTest extends AbstractUITest {
+    
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void testPoliticianView() throws Exception {
+        retryOnFailure(() -> {
+            try {
+                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, ""));
+                pageVisit.verifyPageContent("Politicians");
+                pageVisit.selectFirstGridRow();
+                pageVisit.validatePage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, ""));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }, 3);
+    }
+}

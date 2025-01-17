@@ -45,7 +45,7 @@ open module com.hack23.cia.service.impl {
 	requires transitive spring.security.crypto;
 	requires transitive spring.core;
 	requires org.apache.commons.lang3;
-	requires org.hibernate.orm.jpamodelgen;
+	requires transitive org.hibernate.orm.jpamodelgen;
 
 	requires passay;
 
@@ -63,8 +63,8 @@ open module com.hack23.cia.service.impl {
 	requires transitive com.hack23.cia.service.component.agent.api;
 	requires com.hack23.cia.service.component.agent.impl;
 
-	requires com.hack23.cia.service.external.common;
-        requires com.hack23.cia.service.data.api;
+	requires transitive com.hack23.cia.service.external.common;
+    requires transitive com.hack23.cia.service.data.api;
 	requires com.hack23.cia.service.external.riksdagen;
 	requires com.hack23.cia.service.external.val;
 	requires com.hack23.cia.service.external.worldbank;

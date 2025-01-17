@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
+import com.hack23.cia.systemintegrationtest.ui.WebDriverFactory;
+
 public abstract class AbstractUITest extends AbstractRoleSystemITest {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractUITest.class);
     protected static final long DEFAULT_TIMEOUT = TestConstants.DEFAULT_TIMEOUT;
@@ -17,10 +20,9 @@ public abstract class AbstractUITest extends AbstractRoleSystemITest {
 
     @Before
     public void setup() {
-        Browser browserType = getBrowser();
-        LOG.info("Setting up test with browser: {}", browserType);
-        driver = WebDriverFactory.createDriver(browserType);
-        pageVisit = new UserPageVisit(driver, browserType);
+        LOG.info("Setting up test with browser");
+        driver = WebDriverFactory.createDriver();
+        pageVisit = new UserPageVisit(driver);
     }
 
     @After
@@ -35,11 +37,6 @@ public abstract class AbstractUITest extends AbstractRoleSystemITest {
         }
     }
 
-    protected abstract Browser getBrowser();
-
-    protected WebDriver getWebDriver() {
-        return WebDriverFactory.createDriver(getBrowser());
-    }
 
     protected void retryOnFailure(Runnable test, int maxRetries) {
         Exception lastException = null;
