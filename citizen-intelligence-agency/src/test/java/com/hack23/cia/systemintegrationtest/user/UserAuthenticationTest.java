@@ -1,4 +1,4 @@
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.user;
 
 import java.util.UUID;
 

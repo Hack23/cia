@@ -1,4 +1,4 @@
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.admin;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
