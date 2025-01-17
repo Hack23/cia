@@ -22,7 +22,7 @@ public final class AdminAgentTest extends AbstractUITest {
         try {
             retryOnFailure(() -> {
                 try {
-                    pageVisit.loginAsAdmin(pageVisit);
+                    pageVisit.loginAsAdmin();
                     pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, ""));
 
                     WebElement worldBankButton = pageVisit.findButton("Start IMPORT MODEL_EXTERNAL_WORLDBANK");

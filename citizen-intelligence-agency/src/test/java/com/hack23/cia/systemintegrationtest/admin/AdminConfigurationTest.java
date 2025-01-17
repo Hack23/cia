@@ -22,7 +22,7 @@ public final class AdminConfigurationTest extends AbstractUITest {
         try {
             retryOnFailure(() -> {
                 try {
-                    pageVisit.loginAsAdmin(pageVisit);
+                    pageVisit.loginAsAdmin();
                     pageVisit.visitDirectPage(
                             new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, ""));
                     pageVisit.verifyPageContent("Admin Application Configuration");

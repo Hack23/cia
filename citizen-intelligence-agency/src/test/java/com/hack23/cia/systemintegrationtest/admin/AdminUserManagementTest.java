@@ -19,7 +19,7 @@ public final class AdminUserManagementTest extends AbstractUITest {
         try {
             retryOnFailure(() -> {
                 try {
-                    pageVisit.loginAsAdmin(pageVisit);
+                    pageVisit.loginAsAdmin();
                     pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, ""));
                     pageVisit.verifyPageContent("Language");
                     pageVisit.selectFirstGridRow();
@@ -38,7 +38,7 @@ public final class AdminUserManagementTest extends AbstractUITest {
         try {
             retryOnFailure(() -> {
                 try {
-                    pageVisit.loginAsAdmin(pageVisit);
+                    pageVisit.loginAsAdmin();
                     pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
                     pageVisit.verifyPageContent("User");
                     pageVisit.selectFirstGridRow();
@@ -57,7 +57,7 @@ public final class AdminUserManagementTest extends AbstractUITest {
         try {
             retryOnFailure(() -> {
                 try {
-                    pageVisit.loginAsAdmin(pageVisit);
+                    pageVisit.loginAsAdmin();
                     pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, ""));
                     pageVisit.verifyPageContent("Country");
                     pageVisit.selectFirstGridRow();
@@ -76,7 +76,7 @@ public final class AdminUserManagementTest extends AbstractUITest {
         try {
             retryOnFailure(() -> {
                 try {
-                    pageVisit.loginAsAdmin(pageVisit);
+                    pageVisit.loginAsAdmin();
                     pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, ""));
                     pageVisit.verifyPageContent("Admin User Account Management");
                     pageVisit.selectFirstGridRow();

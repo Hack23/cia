@@ -16,7 +16,7 @@ public final class AdminEmailTest extends AbstractUITest {
     public void shouldSendValidEmail() {
         retryOnFailure(() -> {
             try {
-                pageVisit.loginAsAdmin(pageVisit);
+                pageVisit.loginAsAdmin();
                 pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
                 pageVisit.verifyPageContent("email");
                 pageVisit.sendEmailOnEmailPage("james@hack23.com", "Test Subject", "Test content");
@@ -31,7 +31,7 @@ public final class AdminEmailTest extends AbstractUITest {
     public void shouldFailWithInvalidEmail() {
         retryOnFailure(() -> {
             try {
-                pageVisit.loginAsAdmin(pageVisit);
+                pageVisit.loginAsAdmin();
                 pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
                 pageVisit.verifyPageContent("email");
                 pageVisit.sendEmailOnEmailPage("invalidemail", "Test Subject", "Test content");

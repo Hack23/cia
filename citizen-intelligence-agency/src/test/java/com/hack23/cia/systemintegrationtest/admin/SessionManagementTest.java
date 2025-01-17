@@ -17,7 +17,7 @@ public final class SessionManagementTest extends AbstractUITest {
     public void shouldHandleSessionPagination() throws Exception {
         retryOnFailure(() -> {
             try {
-                pageVisit.loginAsAdmin(pageVisit);
+                pageVisit.loginAsAdmin();
                 pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
                 pageVisit.verifyPageContent("Application Session");
                 
@@ -41,7 +41,7 @@ public final class SessionManagementTest extends AbstractUITest {
     public void shouldShowSessionDetails() throws Exception {
         retryOnFailure(() -> {
             try {
-                pageVisit.loginAsAdmin(pageVisit);
+                pageVisit.loginAsAdmin();
                 pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
                 pageVisit.verifyPageContent("Application Session");
                 pageVisit.selectFirstGridRow();
