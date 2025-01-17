@@ -10,10 +10,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 
 @Category(IntegrationTest.class)
 public final class SessionManagementTest extends AbstractUITest {
-    private static final int DEFAULT_MAX_RETRIES = 3;
-    private static final int MAX_RETRIES = 3;
-    private static final int DEFAULT_TIMEOUT = 60000;
-
+  
     @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldHandleSessionPagination() throws Exception {
         retryOnFailure(() -> {
@@ -51,6 +48,6 @@ public final class SessionManagementTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 }

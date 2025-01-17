@@ -9,7 +9,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 @Category(IntegrationTest.class)
 public class SearchViewTest extends AbstractUITest {
-    private static final int DEFAULT_MAX_RETRIES = 3;
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void testSearch() throws Exception {

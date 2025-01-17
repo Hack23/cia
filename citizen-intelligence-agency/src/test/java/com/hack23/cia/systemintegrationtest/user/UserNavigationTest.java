@@ -13,7 +13,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 @Category(IntegrationTest.class)
 public final class UserNavigationTest extends AbstractUITest {
-    private static final int MAX_RETRIES = 3;
     // Constants for page modes
     private static final String DOCUMENT_ACTIVITY = "DOCUMENTACTIVITY";
     private static final String ROLE_SUMMARY = "ROLESUMMARY";
@@ -43,7 +42,7 @@ public final class UserNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -67,7 +66,7 @@ public final class UserNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -79,7 +78,7 @@ public final class UserNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -91,7 +90,7 @@ public final class UserNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -106,7 +105,7 @@ public final class UserNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -118,7 +117,7 @@ public final class UserNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     // Other navigation tests...

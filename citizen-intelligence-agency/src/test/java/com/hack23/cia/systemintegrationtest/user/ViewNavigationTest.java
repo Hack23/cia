@@ -25,7 +25,7 @@ public final class ViewNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -37,7 +37,7 @@ public final class ViewNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -49,7 +49,7 @@ public final class ViewNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -61,7 +61,7 @@ public final class ViewNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -80,6 +80,6 @@ public final class ViewNavigationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, DEFAULT_MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 }

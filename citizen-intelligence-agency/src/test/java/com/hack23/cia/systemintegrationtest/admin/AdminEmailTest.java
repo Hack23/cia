@@ -22,7 +22,7 @@ public final class AdminEmailTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
@@ -36,6 +36,6 @@ public final class AdminEmailTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 }

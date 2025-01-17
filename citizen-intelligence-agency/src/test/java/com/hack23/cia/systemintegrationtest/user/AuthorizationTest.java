@@ -26,7 +26,7 @@ public class AuthorizationTest extends AbstractUITest {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-            }, MAX_RETRIES);
+            }, TestConstants.DEFAULT_MAX_RETRIES);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -46,7 +46,7 @@ public class AuthorizationTest extends AbstractUITest {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-            }, MAX_RETRIES);
+            }, TestConstants.DEFAULT_MAX_RETRIES);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

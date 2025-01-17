@@ -10,7 +10,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 @Category(IntegrationTest.class)
 public final class PartyViewTest extends AbstractUITest {
-    private static final int MAX_RETRIES = 3;
  
     @Test(timeout = DEFAULT_TIMEOUT)
     public void shouldViewPartyCommitteeRoles() throws Exception {
@@ -22,7 +21,7 @@ public final class PartyViewTest extends AbstractUITest {
                 throw new RuntimeException("Failed to visit party committee roles page", e);
             }
             pageVisit.verifyPageContent("Committee Roles");
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
@@ -35,7 +34,7 @@ public final class PartyViewTest extends AbstractUITest {
                 e.printStackTrace();
             }
             pageVisit.verifyPageContent("Document History");
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     // ... other party view tests

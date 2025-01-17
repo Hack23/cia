@@ -15,7 +15,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsView
 
 @Category(IntegrationTest.class)
 public final class UserAuthenticationTest extends AbstractUITest {
-    private static final int MAX_RETRIES = TestConstants.DEFAULT_MAX_RETRIES;
     private static final String EMAIL_SUFFIX = "@test.com";
     private static final String PATH_PREFIX = "main/";
     private static final String ERROR_USER_EXISTS = "USER_ALREADY_EXISTS";
@@ -46,7 +45,7 @@ public final class UserAuthenticationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
@@ -66,7 +65,7 @@ public final class UserAuthenticationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
@@ -93,7 +92,7 @@ public final class UserAuthenticationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
@@ -128,7 +127,7 @@ public final class UserAuthenticationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
@@ -152,7 +151,7 @@ public final class UserAuthenticationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
@@ -179,6 +178,6 @@ public final class UserAuthenticationTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 }
