@@ -4,22 +4,18 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.openqa.selenium.WebElement;
 
-import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandAdminConstants;
 
 @Category(IntegrationTest.class)
-public final class SessionManagementTest extends AbstractUITest {
+public final class SessionManagementTest extends AbstractAdminTest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void shouldHandleSessionPagination() throws Exception {
 
-		pageVisit.loginAsAdmin();
-		pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		pageVisit.verifyPageContent("Application Session");
+		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
 
-		// Test next page navigation
 		final WebElement nextPageButton = pageVisit.findButton("next page");
 		pageVisit.performClickAction(nextPageButton);
 
@@ -36,12 +32,11 @@ public final class SessionManagementTest extends AbstractUITest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void shouldShowSessionDetails() throws Exception {
 
-		pageVisit.loginAsAdmin();
-		pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		pageVisit.verifyPageContent("Application Session");
+		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
+		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_SESSION);
 		pageVisit.selectFirstGridRow();
-		pageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		pageVisit.verifyPageContent("ApplicationActionEvent");
+		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
+		pageVisit.verifyPageContent(AdminViewConstants.APPLICATION_SESSION_DETAILS);
 
 	}
 }

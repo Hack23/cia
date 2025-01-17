@@ -111,6 +111,7 @@
           "args": [
             "clean",
             "install",
+            "-pl !cia-dist-deb",
             "-Dtest=no",
             "-DfailIfNoTests=false",
             "-Dsurefire.failIfNoSpecifiedTests=false",
