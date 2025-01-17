@@ -419,10 +419,10 @@ public final class UserPageVisit extends Assert {
 	 * @throws Exception
 	 *                   the exception
 	 */
-	public final void loginAsAdmin(final UserPageVisit userPageVisit) throws Exception {
-		userPageVisit.visitDirectPage(
+	public final void loginAsAdmin() throws Exception {
+		visitDirectPage(
 				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
-		userPageVisit.loginUser(systemTestTargetAdminEmail, systemTestTargetAdminPassword);
+		loginUser(systemTestTargetAdminEmail, systemTestTargetAdminPassword);
 	}
 
 
