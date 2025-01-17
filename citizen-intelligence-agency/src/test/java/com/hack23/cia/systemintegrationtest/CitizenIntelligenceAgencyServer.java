@@ -71,18 +71,7 @@ public final class CitizenIntelligenceAgencyServer {
 	/** The server. */
 	private Server server;
 
-	/**
-	 * Instantiates a new citizen intelligence agency server.
-	 */
-	public CitizenIntelligenceAgencyServer() {
-		super();
-		initLogger();
-	}
-
-	/**
-	 * Inits the logger.
-	 */
-	private static void initLogger() {
+	static {
 		System.setProperty("logback.configurationFile", "src/main/resources/logback.xml");
 		System.setProperty("slf4j", "true");
 		System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.Slf4jLog");
@@ -93,6 +82,15 @@ public final class CitizenIntelligenceAgencyServer {
 		SLF4JBridgeHandler.install();
 		java.util.logging.Logger.getLogger("global").setLevel(Level.FINEST);
 	}
+
+
+	/**
+	 * Instantiates a new citizen intelligence agency server.
+	 */
+	public CitizenIntelligenceAgencyServer() {
+		super();
+	}
+
 
 	/**
 	 * The main method.
@@ -230,7 +228,6 @@ public final class CitizenIntelligenceAgencyServer {
 	 */
 	public void startServer() {
 		try {
-			initLogger();
 			init();
 			start();
 			while (!server.isStarted()) {

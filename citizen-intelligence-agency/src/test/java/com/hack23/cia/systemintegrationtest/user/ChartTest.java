@@ -34,8 +34,7 @@ public final class ChartTest extends Assert {
 	/**
 	 * To json string.
 	 *
-	 * @param object
-	 *            the object
+	 * @param object the object
 	 * @return the string
 	 */
 	public static String toJsonString(final Object object) {
@@ -47,32 +46,28 @@ public final class ChartTest extends Assert {
 				Object fieldValue = entry.getValue();
 
 				if (!fieldName.contains("jacocoData")) {
-				if (ObjectHelper.isArray(fieldValue)) {
+					if (ObjectHelper.isArray(fieldValue)) {
 
-					if (fieldValue instanceof Object[][]) {
-						fieldValue = ObjectHelper
-								.toArrayString((Object[][]) fieldValue);
-					} else if (fieldValue instanceof boolean[]) {
+						if (fieldValue instanceof Object[][]) {
+							fieldValue = ObjectHelper.toArrayString((Object[][]) fieldValue);
+						} else if (fieldValue instanceof boolean[]) {
 
-					} else
+						} else
 
-					{
-						fieldValue = ObjectHelper
-								.toArrayString((Object[]) fieldValue);
+						{
+							fieldValue = ObjectHelper.toArrayString((Object[]) fieldValue);
+						}
 					}
-				}
 
-				if (fieldValue != null) {
-					fieldValue = !ObjectHelper.isString(fieldValue) ? fieldValue
-							: fieldValue.toString().replace('"', '\'');
-					builder.append(builder.length() > 0 ? ", " : "");
-					builder.append(fieldName).append(": ");
-					builder.append(ObjectHelper.isString(fieldValue) ? "\""
-							: "");
-					builder.append(fieldValue);
-					builder.append(ObjectHelper.isString(fieldValue) ? "\""
-							: "");
-				}
+					if (fieldValue != null) {
+						fieldValue = !ObjectHelper.isString(fieldValue) ? fieldValue
+								: fieldValue.toString().replace('"', '\'');
+						builder.append(builder.length() > 0 ? ", " : "");
+						builder.append(fieldName).append(": ");
+						builder.append(ObjectHelper.isString(fieldValue) ? "\"" : "");
+						builder.append(fieldValue);
+						builder.append(ObjectHelper.isString(fieldValue) ? "\"" : "");
+					}
 				}
 			}
 			return builder.insert(0, "{").append("}").toString();
@@ -90,7 +85,7 @@ public final class ChartTest extends Assert {
 		final XYseries label = new XYseriesFix();
 		label.setLabel("sune");
 		toJsonString(label);
-		assertNotNull("Problem with toJsonString, no label",label);
+		assertNotNull("Problem with toJsonString, no label", label);
 	}
 
 	static class XYaxisFix extends XYaxis {
@@ -108,8 +103,7 @@ public final class ChartTest extends Assert {
 		/**
 		 * Instantiates a new x yaxis fix.
 		 *
-		 * @param y
-		 *            the y
+		 * @param y the y
 		 */
 		public XYaxisFix(final XYaxes y) {
 			super(y);
@@ -121,7 +115,6 @@ public final class ChartTest extends Assert {
 		}
 
 	}
-
 
 	static class XYseriesFix extends XYseries {
 

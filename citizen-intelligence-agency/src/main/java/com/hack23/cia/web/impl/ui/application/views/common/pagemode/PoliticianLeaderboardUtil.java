@@ -284,12 +284,12 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	}
 
 	@SuppressWarnings("unused")
-	private void addMetricsSection(VerticalLayout layout, String sectionTitle, 
+	private void addMetricsSection(VerticalLayout layout, String sectionTitle,
 	    ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary,
 	    MetricType metricType) {
-	    
+
 	    final VerticalLayout sectionLayout = CardInfoRowUtil.createSectionLayout(sectionTitle);
-	    
+
 	    switch(metricType) {
 	        case PARLIAMENTARY:
 	            addParliamentaryPerformanceMetrics(sectionLayout, politician, ballotSummary);
@@ -301,13 +301,13 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	            addPartyAlignmentMetrics(sectionLayout, politician, ballotSummary);
 	            break;
 	    }
-	    
+
 	    layout.addComponent(sectionLayout);
 	}
 
 	private enum MetricType {
 	    PARLIAMENTARY,
-	    LEGISLATIVE, 
+	    LEGISLATIVE,
 	    PARTY_ALIGNMENT
 	}
 

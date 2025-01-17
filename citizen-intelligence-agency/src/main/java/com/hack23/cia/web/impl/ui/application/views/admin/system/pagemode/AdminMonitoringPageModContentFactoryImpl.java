@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.server.ExternalResource;
@@ -38,11 +39,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminMonitoringPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
-	/** The Constant ADMIN_MONITORING. */
-	private static final String ADMIN_MONITORING = "Admin Monitoring";
-
-	/** The Constant MONITORING_CONTEXT_PATH. */
-	private static final String MONITORING_CONTEXT_PATH = "./monitoring";
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_MONITORING_VIEW_NAME;
@@ -64,7 +60,7 @@ public final class AdminMonitoringPageModContentFactoryImpl extends AbstractAdmi
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		final BrowserFrame browser = new BrowserFrame(ADMIN_MONITORING, new ExternalResource(MONITORING_CONTEXT_PATH));
+		final BrowserFrame browser = new BrowserFrame(AdminViewConstants.ADMIN_MONITORING, new ExternalResource(AdminViewConstants.MONITORING_CONTEXT_PATH));
 		browser.setSizeFull();
 
 		content.addComponent(browser);

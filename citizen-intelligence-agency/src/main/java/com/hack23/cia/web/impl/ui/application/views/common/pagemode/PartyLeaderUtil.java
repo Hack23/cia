@@ -53,8 +53,8 @@ public final class PartyLeaderUtil {
      * @return a map of person ids to boolean indicating if they are party leaders
      */
     public static Map<String, Boolean> computePartyLeaders(ApplicationManager applicationManager, Iterable<String> personIds) {
-        Map<String, Boolean> result = new HashMap<>();
-        for (String personId : personIds) {
+        final Map<String, Boolean> result = new HashMap<>();
+        for (final String personId : personIds) {
             result.put(personId, isPartyLeader(applicationManager, personId));
         }
         return result;

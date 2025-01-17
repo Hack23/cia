@@ -242,4 +242,19 @@ public final class AdminViewConstants {
 	/** The Constant EMAIL_OVERVIEW. */
 	public static final String EMAIL_OVERVIEW = "Email Overview";
 
+	/** The Constant ADMIN_MONITORING. */
+	public static final String ADMIN_MONITORING = "Admin Monitoring";
+
+	/** The Constant MONITORING_CONTEXT_PATH. */
+	public static final String MONITORING_CONTEXT_PATH = "./monitoring";
+
+	/** The Constant ADMIN_AGENT_OPERATION_DEPLOY_SWEDEN_BUTTON. */
+	public static final String ADMIN_AGENT_OPERATION_DEPLOY_SWEDEN_BUTTON = "Deploy Agents:Sweden";
+
+	/** The Constant ADMIN_AGENT_OPERATION_DEPLOY_WORLD_BUTTON. */
+	public static final String ADMIN_AGENT_OPERATION_DEPLOY_WORLD_BUTTON = "Deploy Agents:World";
+
+	public static final String ADMIN_AGENT_OPERATION_DEPLOY_DESC = "Gathering osint";
+
+
 }

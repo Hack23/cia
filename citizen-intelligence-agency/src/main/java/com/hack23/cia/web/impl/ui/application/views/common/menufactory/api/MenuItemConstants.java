@@ -3,7 +3,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 /**
  * The Interface MenuItemConstants.
  */
-public interface MenuItemConstants extends 
+public interface MenuItemConstants extends
     MenuItemLayoutConstants,
     MenuItemPartyConstants,
     MenuItemUserConstants,
@@ -22,71 +22,71 @@ public interface MenuItemConstants extends
     MenuItemParliamentConstants,
     MenuItemRiskConstants,
     MenuItemPageVisitConstants {
-    
+
     /** The dashboard. */
     // Core navigation constants
     String DASHBOARD = "Dashboard";
-    
+
     /** The main. */
     String MAIN = "Main";
-    
+
     /** The start text. */
     String START_TEXT = "Start";
-    
+
     /** The overview text. */
     String OVERVIEW_TEXT = "Overview";
-    
+
     /** The ranking text. */
     String RANKING_TEXT = "Ranking";
-    
+
     /** The by topic. */
     String BY_TOPIC = "By Topic";
-    
+
     /** The list all. */
     String LIST_ALL = "List All";
 
     /** The login. */
     // Security related constants
     String LOGIN = "Login";
-    
+
     /** The logout. */
     String LOGOUT = "Logout";
-    
+
     /** The register. */
     String REGISTER = "Register";
-    
+
     /** The role admin. */
     String ROLE_ADMIN = "ROLE_ADMIN";
-    
+
     /** The role user. */
     String ROLE_USER = "ROLE_USER";
 
     /** The user home. */
     // UserHomeMenuItemFactoryImpl constants
     String USER_HOME = "User Home";
-    
+
     /** The user profile. */
     String USER_PROFILE = "User Profile";
-    
+
     /** The user settings. */
     String USER_SETTINGS = "User Settings";
-    
+
     /** The user logout. */
     String USER_LOGOUT = "User Logout";
-    
+
     /** The user home description. */
     String USER_HOME_DESCRIPTION = "Navigate to user home page";
-    
+
     /** The user profile description. */
     String USER_PROFILE_DESCRIPTION = "View and edit user profile";
-    
+
     /** The user settings description. */
     String USER_SETTINGS_DESCRIPTION = "Adjust user settings";
-    
+
     /** The user logout description. */
     String USER_LOGOUT_DESCRIPTION = "Logout from the application";
 
- 
+
     /** The Constant MANAGEMENT. */
     String MANAGEMENT = "Management";
 

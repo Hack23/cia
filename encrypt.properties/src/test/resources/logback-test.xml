@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
 <configuration>
-	<jmxConfigurator />
 
 
 	<appender name="console"
@@ -11,6 +10,8 @@
 			<pattern>%date [%thread] %-5level %logger - %msg%n</pattern>
 		</encoder>
 	</appender>
+
+	<logger name="ch.qos.logback.core" level="warn" />
 
 	<root level="error">
 		<appender-ref ref="console" />

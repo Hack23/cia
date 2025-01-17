@@ -11,16 +11,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 @Category(IntegrationTest.class)
 public final class BallotViewTest extends AbstractUITest {
 
- 
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void testBallotView() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, ""));
-                pageVisit.verifyPageContent("Ballot View");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, 3);
-    }
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void testBallotView() throws Exception {
+
+		pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, ""));
+		pageVisit.verifyPageContent("Ballot View");
+
+	}
 }

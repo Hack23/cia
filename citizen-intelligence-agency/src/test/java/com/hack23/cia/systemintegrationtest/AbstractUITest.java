@@ -1,56 +1,56 @@
 package com.hack23.cia.systemintegrationtest;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hack23.cia.systemintegrationtest.suites.TestConstants;
+import com.hack23.cia.systemintegrationtest.ui.TestConstants;
 import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
 import com.hack23.cia.systemintegrationtest.ui.WebDriverFactory;
 
 public abstract class AbstractUITest extends AbstractRoleSystemITest {
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractUITest.class);
-    protected static final long DEFAULT_TIMEOUT = TestConstants.DEFAULT_TIMEOUT;
-    protected static final String BASE_URL = System.getProperty("system.test.target.url",
-            CitizenIntelligenceAgencyServer.ACCESS_URL);
+	private static final Logger LOG = LoggerFactory.getLogger(AbstractUITest.class);
+	protected static final long DEFAULT_TIMEOUT = TestConstants.DEFAULT_TIMEOUT;
+	protected static final String BASE_URL = System.getProperty("system.test.target.url",
+			CitizenIntelligenceAgencyServer.ACCESS_URL);
 
-    protected WebDriver driver;
-    protected UserPageVisit pageVisit;
+	protected static WebDriver driver;
+	protected static UserPageVisit pageVisit;
 
-    @Before
-    public void setup() {
-        LOG.info("Setting up test with browser");
-        driver = WebDriverFactory.createDriver();
-        pageVisit = new UserPageVisit(driver);
-    }
+	@BeforeClass
+	public static void globalSetup() {
+		LOG.info("Setting up test with browser");
+		driver = WebDriverFactory.createDriver();
+		pageVisit = new UserPageVisit(driver);
+	}
 
-    @After
-    public void teardown() {
-        LOG.info("Tearing down test");
-        if (driver != null) {
-            try {
-                driver.quit();
-            } catch (Exception e) {
-                LOG.error("Error closing WebDriver", e);
-            }
-        }
-    }
+	@AfterClass
+	public static void globalTeardown() {
+		LOG.info("Tearing down WebDriver after all tests have run");
+		if (driver != null) {
+			driver.quit();
+		}
+	}
 
+	@Before
+	public void setup() {
+		cleanBrowser();
+	}
 
-    protected void retryOnFailure(Runnable test, int maxRetries) {
-        Exception lastException = null;
-        for (int i = 0; i < maxRetries; i++) {
-            try {
-                test.run();
-                return;
-            } catch (Exception e) {
-                lastException = e;
-                LOG.warn("Test failed, attempt {} of {}", i + 1, maxRetries);
-            }
-        }
-        throw new AssertionError("Test failed after " + maxRetries + " attempts", lastException);
-    }
+	@After
+	public void teardown() {
+		cleanBrowser();
+	}
+
+	private void cleanBrowser() {
+		if (driver != null) {
+			driver.manage().deleteAllCookies();
+			driver.get("about:blank");
+		}
+	}
 
 }

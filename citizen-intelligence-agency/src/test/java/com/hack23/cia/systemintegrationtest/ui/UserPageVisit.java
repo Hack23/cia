@@ -18,13 +18,7 @@
 */
 package com.hack23.cia.systemintegrationtest.ui;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,19 +27,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer;
-import com.hack23.cia.systemintegrationtest.suites.TestConstants;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
@@ -57,18 +45,12 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  */
 public final class UserPageVisit extends Assert {
 
-	/** The screen shot number. */
-	private static int screenShotNumber;
-
-
 	protected static String systemTestTargetAdminEmail;
 
 	protected static String systemTestTargetAdminPassword;
 
 	/** The Constant systemTestTargetUrl. */
 	private static final String systemTestTargetUrl;
-
-	private static final Logger LOG = LoggerFactory.getLogger(UserPageVisit.class);
 
 	static {
 		final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
@@ -90,7 +72,7 @@ public final class UserPageVisit extends Assert {
 	}
 
 	/** The driver. */
-	private final WebDriver driver;
+	final WebDriver driver;
 
 	private final UserPageVisitHelper helper;
 	private final ElementHelper elementHelper;
@@ -114,29 +96,12 @@ public final class UserPageVisit extends Assert {
 		action = new Actions(driver);
 	}
 
-	/**
-	 * Grab screenshot.
-	 *
-	 * @param webDriver
-	 *                  the web driver
-	 */
-	private static void grabScreenshot(final WebDriver webDriver) {
-		final File scrFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-		try {
-			screenShotNumber = screenShotNumber + 1;
-			final Path targetPath = Path.of("target", "screenshot_" + screenShotNumber + ".png");
-			Files.copy(scrFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-		} catch (final IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void changePassword(final String password, final String newPassword, final String repeatNewPassword) {
 		setFieldValue("Change password.currentPassword", password);
 		setFieldValue("Change password.newPassword", newPassword);
 		setFieldValue("Change password.repeatNewPassword", repeatNewPassword);
 
-		WebElement button = elementHelper.waitForClickable(By.id("Change password"));
+		final WebElement button = elementHelper.waitForClickable(By.id("Change password"));
 		clickHelper.clickWithRetry(button);
 	}
 
@@ -149,8 +114,8 @@ public final class UserPageVisit extends Assert {
 	 */
 	public boolean checkHtmlBodyContainsText(final String text) {
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
-		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
-		wait.until(containsText(text));
+		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
+		wait.until(helper.containsText(this, text));
 		return true;
 	}
 
@@ -178,71 +143,6 @@ public final class UserPageVisit extends Assert {
 
 		performClickActionWithRetry(closeModalWindow);
 
-	}
-
-	public ExpectedCondition<Boolean> containsButton(final String value) {
-		return new ExpectedCondition<>() {
-
-			@Override
-			public Boolean apply(final WebDriver driver) {
-				for (final WebElement webElement : getButtons()) {
-
-					final WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
-					if (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver)
-							&& (value.equalsIgnoreCase(refreshElement.getText().trim())
-									|| refreshElement.getText().trim().endsWith(value))) {
-						return true;
-					}
-				}
-
-				return false;
-			}
-
-			@Override
-			public String toString() {
-				return String.format("Button \"%s\". ", value);
-			}
-		};
-	}
-
-	public ExpectedCondition<Boolean> containsMenuItem(final WebElement element, final String... caption) {
-		return new ExpectedCondition<>() {
-			@Override
-			public Boolean apply(final WebDriver driver) {
-				return !ExpectedConditions.stalenessOf(element).apply(driver)
-						&& getMenuItem(element, 1, caption) != null;
-			}
-		};
-	}
-
-	public ExpectedCondition<Boolean> containsText(final String value) {
-		return new ExpectedCondition<>() {
-
-			@Override
-			public Boolean apply(final WebDriver driver) {
-				return getHtmlBodyAsText().contains(value);
-			}
-
-			@Override
-			public String toString() {
-				return String.format("containsText \"%s\". ", value);
-			}
-		};
-	}
-
-	public ExpectedCondition<Boolean> containsViewAction(final ViewAction value) {
-		return new ExpectedCondition<>() {
-
-			@Override
-			public Boolean apply(final WebDriver driver) {
-				return getActionsAvailable().contains(value);
-			}
-
-			@Override
-			public String toString() {
-				return String.format("ViewAction \"%s\". ", value);
-			}
-		};
 	}
 
 	public void disableGoogleAuthenticator(final String password) {
@@ -288,9 +188,9 @@ public final class UserPageVisit extends Assert {
 	 */
 	public WebElement findButton(final String buttonLabel) {
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
-		wait.until(containsButton(buttonLabel));
+		wait.until(helper.containsButton(buttonLabel));
 
-		for (final WebElement webElement : getButtons()) {
+		for (final WebElement webElement : helper.getButtons()) {
 			final WebElement refreshElement = StaleElementUtils.refreshElement(webElement, driver);
 			if (ExpectedConditions.not(ExpectedConditions.stalenessOf(refreshElement)).apply(driver)
 					&& (buttonLabel.equalsIgnoreCase(refreshElement.getText().trim())
@@ -327,43 +227,6 @@ public final class UserPageVisit extends Assert {
 		return idList;
 	}
 
-	/**
-	 * Gets the actions available.
-	 *
-	 * @return the actions available
-	 */
-	public Set<ViewAction> getActionsAvailable() {
-		final Set<ViewAction> actions = new HashSet<>();
-
-		for (final ViewAction actionValue : ViewAction.values()) {
-			if (driver.findElements(By.id(actionValue.name())).size() > 0) {
-				actions.add(actionValue);
-			}
-		}
-		return actions;
-	}
-
-	private List<WebElement> getButtonElements() {
-		final List<WebElement> result = new ArrayList<>(driver.findElements(By.className("v-nativebutton")));
-		result.addAll(driver.findElements(By.className("v-button")));
-		result.addAll(driver.findElements(By.className("v-button-caption")));
-		result.addAll(driver.findElements(By.tagName("a")));
-
-		return result;
-	}
-
-	/**
-	 * Gets the buttons.
-	 *
-	 * @return the buttons
-	 */
-	public List<WebElement> getButtons() {
-		final List<WebElement> result = getButtonElements();
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfAllElements(result)));
-
-		return getButtonElements();
-	}
 
 	/**
 	 * Gets the grid headers.
@@ -431,7 +294,7 @@ public final class UserPageVisit extends Assert {
 	 *
 	 * @return the html body as text
 	 */
-	private String getHtmlBodyAsText() {
+	String getHtmlBodyAsText() {
 		return driver.findElement(By.tagName("body")).getText();
 	}
 
@@ -484,7 +347,7 @@ public final class UserPageVisit extends Assert {
 	 *                the caption
 	 * @return the menu item
 	 */
-	private WebElement getMenuItem(final WebElement element, final int level, final String... caption) {
+	WebElement getMenuItem(final WebElement element, final int level, final String... caption) {
 		final List<WebElement> findElements = element.findElements(By.className("v-menubar-menuitem-caption"));
 		if (caption.length == level) {
 			for (final WebElement webElement : findElements) {
@@ -527,7 +390,7 @@ public final class UserPageVisit extends Assert {
 	public WebElement getMenuItem(final WebElement element, final String... caption) {
 
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
-		wait.until(containsMenuItem(element, caption));
+		wait.until(helper.containsMenuItem(this, element, caption));
 
 		return getMenuItem(element, 1, caption);
 	}
@@ -598,7 +461,7 @@ public final class UserPageVisit extends Assert {
 		body.sendKeys(Keys.ESCAPE);
 
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
-		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
+		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName("body")));
 		driver.navigate().refresh();
@@ -627,11 +490,7 @@ public final class UserPageVisit extends Assert {
 	 *                     the click element
 	 */
 	public void performClickAction(final WebElement clickElement) {
-		assertNotNull(clickElement);
-		helper.waitForElement(By.id(clickElement.getDomAttribute("id")));
-		helper.refreshElement(clickElement).click();
-		helper.waitForPageLoad();
-		helper.grabScreenshot();
+		performClickActionWithRetry(clickElement);
 	}
 
 	/**
@@ -743,7 +602,7 @@ public final class UserPageVisit extends Assert {
 		final String url = systemTestTargetUrl + "#!" + page.getPagePath();
 
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
-		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
+		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		final String text = getHtmlBodyAsText();
 		assertNotNull(text);
@@ -762,7 +621,7 @@ public final class UserPageVisit extends Assert {
 	 *                    the view actions
 	 */
 	public void verifyViewActions(final ViewAction[] viewActions) {
-		final Set<ViewAction> actionsAvailable = getActionsAvailable();
+		final Set<ViewAction> actionsAvailable = helper.getActionsAvailable();
 		for (final ViewAction viewAction : viewActions) {
 			assertTrue(actionsAvailable.contains(viewAction));
 
@@ -787,16 +646,6 @@ public final class UserPageVisit extends Assert {
 	}
 
 	/**
-	 * Visit committee view.
-	 *
-	 * @param id
-	 *           the id
-	 */
-	public void VisitCommitteeView(final String id) {
-		visitEntityView(id);
-	}
-
-	/**
 	 * Visit direct page.
 	 *
 	 * @param page
@@ -804,21 +653,17 @@ public final class UserPageVisit extends Assert {
 	 */
 	public void visitDirectPage(final PageModeMenuCommand page) {
 		final String url = systemTestTargetUrl + "#!" + page.getPagePath();
-		LOG.info("Navigating to URL: {}", url);
 		driver.get(url);
 
 		action.pause(500L).perform();
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
 
 		wait.until(webDriver -> {
-			String readyState = (String) ((JavascriptExecutor) webDriver).executeScript("return document.readyState");
-			LOG.info("Document ready state: {}", readyState);
+			final String readyState = (String) ((JavascriptExecutor) webDriver).executeScript("return document.readyState");
 			return "complete".equals(readyState);
 		});
 
-		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
-
-		grabScreenshot(driver);
+		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		final String text = getHtmlBodyAsText();
 		assertNotNull(text);
@@ -865,15 +710,6 @@ public final class UserPageVisit extends Assert {
 		assertTrue(actionIdsBy.size() > 0);
 	}
 
-	/**
-	 * Visit ministry view.
-	 *
-	 * @param id
-	 *           the id
-	 */
-	public void VisitMinistryView(final String id) {
-		visitEntityView(id);
-	}
 
 	/**
 	 * Visit party ranking view.
@@ -881,8 +717,6 @@ public final class UserPageVisit extends Assert {
 	public void VisitPartyRankingView() {
 		performClickActionWithRetry(driver.findElement(By
 				.id(ViewAction.VISIT_PARTY_RANKING_VIEW.name())));
-
-		LOG.info("Visiting Party Ranking View");
 
 		assertEquals("https://localhost:28443/#!partyranking",
 				driver.getCurrentUrl());
@@ -893,15 +727,6 @@ public final class UserPageVisit extends Assert {
 
 	}
 
-	/**
-	 * Visit party view.
-	 *
-	 * @param id
-	 *           the id
-	 */
-	public void VisitPartyView(final String id) {
-		visitEntityView(id);
-	}
 
 	/**
 	 * Visit politician ranking view.
@@ -919,29 +744,18 @@ public final class UserPageVisit extends Assert {
 	}
 
 	/**
-	 * Visit politician view.
-	 *
-	 * @param id
-	 *           the id
-	 */
-	public void VisitPoliticianView(final String id) {
-		visitEntityView(id);
-	}
-
-	/**
 	 * Visit start page.
 	 */
 	public void visitStartPage() {
 		driver.get(systemTestTargetUrl);
 
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
-		wait.until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
+		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		assertEquals(systemTestTargetUrl,
 				driver.getCurrentUrl());
 		assertEquals("Citizen Intelligence Agency", driver.getTitle());
 		assertNotNull(driver.getWindowHandle());
-		grabScreenshot(driver);
 
 		verifyViewActions(new ViewAction[] {
 				ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW,
@@ -958,24 +772,17 @@ public final class UserPageVisit extends Assert {
 			assertTrue("Expected content: " + expectedContent,
 					checkHtmlBodyContainsText(expectedContent));
 			return this;
-		} catch (Exception e) {
-			LOG.error("Failed to verify page content", e);
+		} catch (final Exception e) {
 			throw new RuntimeException("Page content verification failed", e);
 		}
 	}
 
 	public UserPageVisit selectFirstGridRow() {
-		WebElement firstRow = getGridRows().get(0);
+		final WebElement firstRow = getGridRows().get(0);
 		performClickActionWithRetry(firstRow);
 		return this;
 	}
 
-	// Consolidate duplicate visit view methods into one
-	private void visitEntityView(final String id) {
-		final WebElement viewLink = driver.findElement(By.id(id));
-		performClickActionWithRetry(viewLink);
-		verifyViewActions(new ViewAction[] { ViewAction.VISIT_MAIN_VIEW });
-	}
 
 	// The public click methods needed by all the calls
 	public void performClickActionWithRetry(WebElement element) {

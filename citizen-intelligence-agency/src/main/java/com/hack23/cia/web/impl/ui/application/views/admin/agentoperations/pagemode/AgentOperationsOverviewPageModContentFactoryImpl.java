@@ -18,8 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode;
 
-import java.text.MessageFormat;
-
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -49,21 +47,12 @@ import com.vaadin.ui.VerticalLayout;
 public final class AgentOperationsOverviewPageModContentFactoryImpl
 		extends AbstractAgentOperationsPageModContentFactoryImpl {
 
-	/** The Constant BUTTON_ID_PATTERN. */
-	private static final String BUTTON_ID_PATTERN = "{0}.{1}.{2}";
-
-	/** The Constant BUTTON_PATTERN. */
-	private static final String BUTTON_PATTERN = "Start {0} {1}";
-
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME;
 
-	/** The Constant WILL_FETCH_DATA_FROM_SOURCE. */
-	private static final String WILL_FETCH_DATA_FROM_SOURCE = "Will fetch data from source";
 
 	/**
-	 * Instantiates a new agent operations overview page mod content factory
-	 * impl.
+	 * Instantiates a new agent operations overview page mod content factory impl.
 	 */
 	public AgentOperationsOverviewPageModContentFactoryImpl() {
 		super();
@@ -76,7 +65,8 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_AGENT_OPERATION_OVERVIEW, AdminViewConstants.ADMIN_AGENT_OPERATION, AdminViewConstants.ADMIN_AGENT_OPERATION_TASKS_OVERVIEW);
+		CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_AGENT_OPERATION_OVERVIEW,
+				AdminViewConstants.ADMIN_AGENT_OPERATION, AdminViewConstants.ADMIN_AGENT_OPERATION_TASKS_OVERVIEW);
 
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		horizontalLayout.setSizeFull();
@@ -91,16 +81,20 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 
 		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 
-		for (final DataAgentTarget dataAgentTarget : DataAgentTarget.values()) {
-			final Button importDataButton = new Button(MessageFormat.format(BUTTON_PATTERN, DataAgentOperation.IMPORT, dataAgentTarget) , VaadinIcons.BULLSEYE);
-			importDataButton.addClickListener(new StartAgentClickListener(dataAgentTarget, DataAgentOperation.IMPORT));
-			importDataButton.setId(MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, DataAgentOperation.IMPORT, dataAgentTarget));
-			RowUtil.createRowItem(grid, importDataButton, WILL_FETCH_DATA_FROM_SOURCE);
-		}
+		final Button deployAgentSwedenButton = new Button(AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_SWEDEN_BUTTON, VaadinIcons.BULLSEYE);
+		deployAgentSwedenButton.addClickListener(
+				new StartAgentClickListener(DataAgentTarget.MODEL_EXTERNAL_RIKSDAGEN, DataAgentOperation.IMPORT));
+		deployAgentSwedenButton.setId(AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_SWEDEN_BUTTON);
+		RowUtil.createRowItem(grid, deployAgentSwedenButton, AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_DESC);
+		final Button deployAgentWorldButton = new Button(AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_WORLD_BUTTON, VaadinIcons.BULLSEYE);
+		deployAgentWorldButton.addClickListener(
+				new StartAgentClickListener(DataAgentTarget.MODEL_EXTERNAL_WORLDBANK, DataAgentOperation.IMPORT));
+		deployAgentWorldButton.setId(AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_WORLD_BUTTON);
+		RowUtil.createRowItem(grid, deployAgentWorldButton, AdminViewConstants.ADMIN_AGENT_OPERATION_DEPLOY_DESC);
 
 		final String pageId = getPageId(parameters);
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW, ApplicationEventGroup.ADMIN,
-				NAME, null, pageId);
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW,
+				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
 		return content;
 	}

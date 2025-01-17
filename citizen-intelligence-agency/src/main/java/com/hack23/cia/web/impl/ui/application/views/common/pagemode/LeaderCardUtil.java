@@ -96,17 +96,17 @@ public class LeaderCardUtil {
     private void addExperienceRow(VerticalLayout container, int govYears, int partyYears, int parliamentYears) {
         final HorizontalLayout experienceLayout = CardInfoRowUtil.createStandardRow();
         experienceLayout.addStyleName(CardInfoRowUtil.LayoutConstants.CARD_EXPERIENCE);
-        
+
         final Label expIcon = CardInfoRowUtil.createIconLabel(VaadinIcons.USER_CHECK, "Political Experience");
         final Label expLabel = new Label("Experience:");
         expLabel.addStyleName("card-experience-text");
-        
-        final String expText = String.format(Locale.ENGLISH, 
+
+        final String expText = String.format(Locale.ENGLISH,
             "Government: %dy, Party: %dy, Parliament: %dy",
             govYears, partyYears, parliamentYears);
         final Label expValue = new Label(expText);
         expValue.addStyleName(CardInfoRowUtil.LayoutConstants.CARD_INFO_VALUE);
-        
+
         experienceLayout.addComponents(expIcon, expLabel, expValue);
         container.addComponent(experienceLayout);
     }
