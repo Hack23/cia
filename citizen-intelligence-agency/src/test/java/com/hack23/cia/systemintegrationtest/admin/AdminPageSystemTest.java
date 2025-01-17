@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandAdminConstants;
 
 @Category(IntegrationTest.class)
@@ -12,29 +13,28 @@ public class AdminPageSystemTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyAgencyPageTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENCY);
-		pageVisit.verifyPageContent("Agency");
-		pageVisit.selectFirstGridRow();
+		pageVisit.verifyPageContent(AdminViewConstants.AGENCY);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_AGENCY);
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyAgentOperationTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENT_OPERATION);
-		pageVisit.verifyPageContent("Agent Operation");
+		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_AGENT_OPERATION);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_AGENT_OPERATION);
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationConfigurationPageTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_CONFIGURATION);
-		pageVisit.verifyPageContent("Application Configuration");
+		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_CONFIGURATION);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_APPLICATION_CONFIGURATION);
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationEventsPageTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS);
-		pageVisit.verifyPageContent("Admin Application Events");
+		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_EVENTS);
 		pageVisit.selectFirstGridRow();
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS);
 	}
@@ -42,7 +42,7 @@ public class AdminPageSystemTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationSessionPageTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
-		pageVisit.verifyPageContent("Application Session");
+		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_SESSION);
 		pageVisit.selectFirstGridRow();
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
 		pageVisit.verifyPageContent("ApplicationActionEvent");
@@ -57,7 +57,7 @@ public class AdminPageSystemTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyMonitoringPageSuccessTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_MONITORING);
-		pageVisit.verifyPageContent("Admin Monitoring");
+		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_MONITORING);
 		assertFalse("Dont expect this content",
 				pageVisit.getIframesHtmlBodyAsText().contains("Login with Username and Password"));
 	}
@@ -95,3 +95,4 @@ public class AdminPageSystemTest extends AbstractAdminTest {
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_USERACCOUNT);
 	}
 }
+

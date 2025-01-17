@@ -23,6 +23,7 @@ import org.junit.experimental.categories.Category;
 import org.openqa.selenium.WebElement;
 
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandAdminConstants;
 
 @Category(IntegrationTest.class)
@@ -36,7 +37,7 @@ public final class AdminRoleSystemITest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void siteAdminApplicationSessionLastPageTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
-		pageVisit.verifyPageContent("Application Session");
+		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_SESSION);
 		final WebElement nextPageButton = pageVisit.findButton("last page");
 		pageVisit.performClickAction(nextPageButton);
 	}

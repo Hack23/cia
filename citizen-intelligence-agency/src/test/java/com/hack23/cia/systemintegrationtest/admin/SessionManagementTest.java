@@ -5,19 +5,20 @@ import org.junit.experimental.categories.Category;
 import org.openqa.selenium.WebElement;
 
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 
 @Category(IntegrationTest.class)
 public final class SessionManagementTest extends AbstractAdminTest {
+	@Test(timeout = DEFAULT_TIMEOUT)
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void shouldHandleSessionPagination() throws Exception {
 
 		pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		pageVisit.verifyPageContent("Application Session");
+		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_SESSION);
 
-		// Test next page navigation
 		final WebElement nextPageButton = pageVisit.findButton("next page");
 		pageVisit.performClickAction(nextPageButton);
 
@@ -35,10 +36,10 @@ public final class SessionManagementTest extends AbstractAdminTest {
 	public void shouldShowSessionDetails() throws Exception {
 
 		pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		pageVisit.verifyPageContent("Application Session");
+		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_SESSION);
 		pageVisit.selectFirstGridRow();
 		pageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		pageVisit.verifyPageContent("ApplicationActionEvent");
+		pageVisit.verifyPageContent(AdminViewConstants.APPLICATION_ACTION_EVENT);
 
 	}
 }
