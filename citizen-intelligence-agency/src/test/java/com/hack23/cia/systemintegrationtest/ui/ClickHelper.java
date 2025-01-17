@@ -2,18 +2,15 @@ package com.hack23.cia.systemintegrationtest.ui;
 
 import java.time.Duration;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ClickHelper {
-    private static final Logger LOG = LoggerFactory.getLogger(ClickHelper.class);
 
     private final Actions actions;
     private final UserPageVisitHelper helper;
+    public static boolean enableScreenShot = false;
 
     public ClickHelper(WebDriver driver, UserPageVisitHelper helper) {
         this.actions = new Actions(driver);
@@ -21,17 +18,15 @@ public class ClickHelper {
     }
 
     public void clickWithRetry(WebElement element) {
-        try {
-            clickElement(element);
-        } catch (Exception e) {
-            LOG.debug("Regular click failed, trying with delay", e);
-            clickWithDelay(element);
-        }
+    	clickElement(element);
     }
 
     public void clickWithDelay(WebElement element) {
-        helper.waitForElement(By.id(element.getDomAttribute("id")));
+    	clickElement(element);
 
+    }
+
+    private void clickElement(WebElement element) {
         actions.pause(Duration.ofMillis(250))
                     .clickAndHold(helper.refreshElement(element))
                     .release()
@@ -39,13 +34,9 @@ public class ClickHelper {
                     .perform();
 
         helper.waitForPageLoad();
-        helper.grabScreenshot();
-    }
 
-    private void clickElement(WebElement element) {
-        helper.waitForElement(By.id(element.getDomAttribute("id")));
-        helper.refreshElement(element).click();
-        helper.waitForPageLoad();
-        helper.grabScreenshot();
+        if(enableScreenShot) {
+			helper.grabScreenshot();
+		}
     }
 }

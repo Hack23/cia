@@ -18,17 +18,17 @@ public interface PageCommandUserConstants extends PageCommandAdminConstants {
        // Page mode commands
        PageModeMenuCommand COMMAND_CHARTS_ALL_PARTIES = new PageModeMenuCommand(
                      UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
-       
+
        /** The command charts current committees. */
        PageModeMenuCommand COMMAND_CHARTS_CURRENT_COMMITTEES = new PageModeMenuCommand(
                      UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,
                      ChartIndicators.CURRENTCOMMITTEES.toString());
-       
+
        /** The command charts current government parties. */
        PageModeMenuCommand COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES = new PageModeMenuCommand(
                      UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,
                      ChartIndicators.CURRENTGOVERMENTPARTIES.toString());
-       
+
        /** The command charts current parties. */
        PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES = new PageModeMenuCommand(
                      UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());
@@ -39,27 +39,27 @@ public interface PageCommandUserConstants extends PageCommandAdminConstants {
        PageModeMenuCommand GOVERNMENT_BODY_COMMAN_OVERVIEW = new PageModeMenuCommand(
                      UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
                      PageMode.OVERVIEW);
-       
+
        /** The government body command datagrid. */
        PageModeMenuCommand GOVERNMENT_BODY_COMMAND_DATAGRID = new PageModeMenuCommand(
                      UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
                      PageMode.DATAGRID);
-       
+
        /** The government body command expenditure. */
        PageModeMenuCommand GOVERNMENT_BODY_COMMAND_EXPENDITURE = new PageModeMenuCommand(
                      UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
                      GovernmentBodyPageMode.EXPENDITURE.toString());
-       
+
        /** The government body command headcount. */
        PageModeMenuCommand GOVERNMENT_BODY_COMMAND_HEADCOUNT = new PageModeMenuCommand(
                      UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
                      GovernmentBodyPageMode.HEADCOUNT.toString());
-       
+
        /** The government body command income. */
        PageModeMenuCommand GOVERNMENT_BODY_COMMAND_INCOME = new PageModeMenuCommand(
                      UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
                      GovernmentBodyPageMode.INCOME.toString());
-       
+
        /** The government body min command pagevisithistory. */
        PageModeMenuCommand GOVERNMENT_BODY_MIN_COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(
                      UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,

@@ -21,11 +21,9 @@ package com.hack23.cia.systemintegrationtest;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
-import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
 import com.hack23.cia.testfoundation.AbstractSystemIntegrationTest;
-import com.hack23.cia.testfoundation.Parallelized;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
@@ -33,7 +31,6 @@ import io.github.bonigarcia.wdm.config.DriverManagerType;
 /**
  * The Class AbstractRoleSystemITest.
  */
-@RunWith(Parallelized.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationTest {
 
@@ -50,7 +47,7 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 			usingExternalServer = false;
 		}
 
-		
+
 
 		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
 	}

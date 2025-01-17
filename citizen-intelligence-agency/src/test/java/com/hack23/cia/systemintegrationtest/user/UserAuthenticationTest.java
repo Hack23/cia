@@ -7,7 +7,7 @@ import org.junit.experimental.categories.Category;
 
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
-import com.hack23.cia.systemintegrationtest.suites.TestConstants;
+import com.hack23.cia.systemintegrationtest.ui.TestConstants;
 import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
@@ -15,169 +15,139 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsView
 
 @Category(IntegrationTest.class)
 public final class UserAuthenticationTest extends AbstractUITest {
-    private static final String EMAIL_SUFFIX = "@test.com";
-    private static final String PATH_PREFIX = "main/";
-    private static final String ERROR_USER_EXISTS = "USER_ALREADY_EXISTS";
-    private static final String ERROR_INVALID_CREDENTIALS = "USERNAME_OR_PASSWORD_DO_NOT_MATCH";
+	private static final String EMAIL_SUFFIX = "@test.com";
+	private static final String PATH_PREFIX = "main/";
+	private static final String ERROR_USER_EXISTS = "USER_ALREADY_EXISTS";
+	private static final String ERROR_INVALID_CREDENTIALS = "USERNAME_OR_PASSWORD_DO_NOT_MATCH";
 
+	private String generatePassword() {
+		return "Test123!" + UUID.randomUUID().toString();
+	}
 
-    private String generatePassword() {
-        return "Test123!" + UUID.randomUUID().toString();
-    }
+	@Test(timeout = TestConstants.DEFAULT_TIMEOUT)
+	public void shouldRegisterNewUser() throws Exception {
 
-    @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
-    public void shouldRegisterNewUser() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                pageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-                        ApplicationPageMode.REGISTER.toString()));
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-                String username = UUID.randomUUID().toString();
-                String password = generatePassword();
+		final String username = UUID.randomUUID().toString();
+		final String password = generatePassword();
 
-                pageVisit.registerNewUser(username, password);
-                pageVisit.logoutUser();
+		pageVisit.registerNewUser(username, password);
+		pageVisit.logoutUser();
 
-                UserPageVisit loginPageVisit = new UserPageVisit(driver);
-                loginPageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-                        ApplicationPageMode.LOGIN.toString()));
-                loginPageVisit.loginUser(username + EMAIL_SUFFIX, password);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+		final UserPageVisit loginPageVisit = new UserPageVisit(driver);
+		loginPageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+		loginPageVisit.loginUser(username + EMAIL_SUFFIX, password);
 
-    @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
-    public void shouldRegisterUserWithWeakPasswordFail() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                pageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-                        ApplicationPageMode.REGISTER.toString()));
+	}
 
-                String username = UUID.randomUUID().toString();
-                pageVisit.registerNewUserCheckView(username, "weak",
-                        PATH_PREFIX + ApplicationPageMode.REGISTER.toString());
-                pageVisit.checkNotificationMessage("Register failed:" +
-                        "[Password must be 8 or more characters in length., Password must contain 1 or more uppercase characters., "
-                        +
-                        "Password must contain 1 or more digit characters., Password must contain 1 or more special characters.]");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+	@Test(timeout = TestConstants.DEFAULT_TIMEOUT)
+	public void shouldRegisterUserWithWeakPasswordFail() throws Exception {
 
-    @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
-    public void shouldNotRegisterDuplicateUser() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                String username = UUID.randomUUID().toString();
-                String password = generatePassword();
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
 
-                // First registration
-                pageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-                        ApplicationPageMode.REGISTER.toString()));
-                pageVisit.registerNewUser(username, password);
-                pageVisit.logoutUser();
+		final String username = UUID.randomUUID().toString();
+		pageVisit.registerNewUserCheckView(username, "weak", PATH_PREFIX + ApplicationPageMode.REGISTER.toString());
+		pageVisit.checkNotificationMessage("Register failed:"
+				+ "[Password must be 8 or more characters in length., Password must contain 1 or more uppercase characters., "
+				+ "Password must contain 1 or more digit characters., Password must contain 1 or more special characters.]");
 
-                // Try registering same user again
-                UserPageVisit secondRegisterVisit = new UserPageVisit(driver);
-                secondRegisterVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-                        ApplicationPageMode.REGISTER.toString()));
-                secondRegisterVisit.registerNewUserCheckView(username, password,
-                        PATH_PREFIX + ApplicationPageMode.REGISTER.toString());
-                secondRegisterVisit.checkNotificationMessage("Register failed:" +
-                        ERROR_USER_EXISTS);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+	}
 
-    @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
-    public void shouldManageUserSecurity() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                String username = UUID.randomUUID().toString();
-                String password = generatePassword();
-                String newPassword = generatePassword();
+	@Test(timeout = TestConstants.DEFAULT_TIMEOUT)
+	public void shouldNotRegisterDuplicateUser() throws Exception {
 
-                // Register and login
-                pageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-                        ApplicationPageMode.REGISTER.toString()));
-                pageVisit.registerNewUser(username, password);
+		final String username = UUID.randomUUID().toString();
+		final String password = generatePassword();
 
-                // Security settings navigation
-                pageVisit.performClickAction(pageVisit.getMenuItem("Useraccount"));
-                pageVisit.performClickAction(pageVisit.getMenuItem("Security settings"));
+		// First registration
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+		pageVisit.registerNewUser(username, password);
+		pageVisit.logoutUser();
 
-                // Test password change
-                pageVisit.changePassword(password, newPassword, newPassword);
-                pageVisit.checkNotificationMessage("Password changed successfully");
+		// Try registering same user again
+		final UserPageVisit secondRegisterVisit = new UserPageVisit(driver);
+		secondRegisterVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+		secondRegisterVisit.registerNewUserCheckView(username, password,
+				PATH_PREFIX + ApplicationPageMode.REGISTER.toString());
+		secondRegisterVisit.checkNotificationMessage("Register failed:" + ERROR_USER_EXISTS);
 
-                // Test 2FA
-                pageVisit.enableGoogleAuthenticator(newPassword);
-                pageVisit.closeModal();
-                pageVisit.disableGoogleAuthenticator(newPassword);
+	}
 
-                // Verify login with new password
-                pageVisit.logoutUser();
-                pageVisit.loginUser(username + EMAIL_SUFFIX, newPassword);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+	@Test(timeout = TestConstants.DEFAULT_TIMEOUT)
+	public void shouldManageUserSecurity() throws Exception {
 
-    @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
-    public void shouldFailLoginWithWrongPassword() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                String username = UUID.randomUUID().toString();
-                String password = generatePassword();
+		final String username = UUID.randomUUID().toString();
+		final String password = generatePassword();
+		final String newPassword = generatePassword();
 
-                // Register user
-                pageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-                        ApplicationPageMode.REGISTER.toString()));
-                pageVisit.registerNewUser(username, password);
-                pageVisit.logoutUser();
+		// Register and login
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+		pageVisit.registerNewUser(username, password);
 
-                // Try wrong password
-                pageVisit.loginUserCheckView(username + EMAIL_SUFFIX, "wrongpassword",
-                        PATH_PREFIX + ApplicationPageMode.LOGIN);
-                pageVisit.checkNotificationMessage("Login failed:" +
-                        ERROR_INVALID_CREDENTIALS);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+		// Security settings navigation
+		pageVisit.performClickAction(pageVisit.getMenuItem("Useraccount"));
+		pageVisit.performClickAction(pageVisit.getMenuItem("Security settings"));
 
-    @Test(timeout = TestConstants.DEFAULT_TIMEOUT)
-    public void shouldEnableAndDisableGoogleAuthenticator() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                String username = UUID.randomUUID().toString();
-                String password = generatePassword();
+		// Test password change
+		pageVisit.changePassword(password, newPassword, newPassword);
+		pageVisit.checkNotificationMessage("Password changed successfully");
 
-                // Register and login
-                pageVisit.visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
-                        ApplicationPageMode.REGISTER.toString()));
-                pageVisit.registerNewUser(username, password);
+		// Test 2FA
+		pageVisit.enableGoogleAuthenticator(newPassword);
+		pageVisit.closeModal();
+		pageVisit.disableGoogleAuthenticator(newPassword);
 
-                // Enable 2FA
-                pageVisit.performClickAction(pageVisit.getMenuItem("Useraccount"));
-                pageVisit.performClickAction(pageVisit.getMenuItem("Security settings"));
-                pageVisit.enableGoogleAuthenticator(password);
-                pageVisit.verifyPageContent("Two-factor authentication enabled");
+		// Verify login with new password
+		pageVisit.logoutUser();
+		pageVisit.loginUser(username + EMAIL_SUFFIX, newPassword);
 
-                // Disable 2FA
-                pageVisit.disableGoogleAuthenticator(password);
-                pageVisit.verifyPageContent("Two-factor authentication disabled");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+	}
+
+	@Test(timeout = TestConstants.DEFAULT_TIMEOUT)
+	public void shouldFailLoginWithWrongPassword() throws Exception {
+
+		final String username = UUID.randomUUID().toString();
+		final String password = generatePassword();
+
+		// Register user
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+		pageVisit.registerNewUser(username, password);
+		pageVisit.logoutUser();
+
+		// Try wrong password
+		pageVisit.loginUserCheckView(username + EMAIL_SUFFIX, "wrongpassword", PATH_PREFIX + ApplicationPageMode.LOGIN);
+		pageVisit.checkNotificationMessage("Login failed:" + ERROR_INVALID_CREDENTIALS);
+
+	}
+
+	@Test(timeout = TestConstants.DEFAULT_TIMEOUT)
+	public void shouldEnableAndDisableGoogleAuthenticator() throws Exception {
+
+		final String username = UUID.randomUUID().toString();
+		final String password = generatePassword();
+
+		// Register and login
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.REGISTER.toString()));
+		pageVisit.registerNewUser(username, password);
+
+		// Enable 2FA
+		pageVisit.performClickAction(pageVisit.getMenuItem("Useraccount"));
+		pageVisit.performClickAction(pageVisit.getMenuItem("Security settings"));
+		pageVisit.enableGoogleAuthenticator(password);
+		pageVisit.verifyPageContent("Two-factor authentication enabled");
+
+		// Disable 2FA
+		pageVisit.disableGoogleAuthenticator(password);
+		pageVisit.verifyPageContent("Two-factor authentication disabled");
+
+	}
 }

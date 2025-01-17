@@ -204,7 +204,7 @@ public class CardInfoRowUtil {
 	public static final class LayoutConstants {
 	    public static final String CARD_TENURE = "card-tenure";
 	    public static final String CARD_EXPERIENCE = "card-experience-section";
-	    public static final String CARD_INFO_VALUE = "card-info-value"; 
+	    public static final String CARD_INFO_VALUE = "card-info-value";
 	    public static final String CARD_INFO_ICON = "card-info-icon";
 	    public static final String METRIC_LABEL = "metric-label";
 	}

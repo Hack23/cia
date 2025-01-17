@@ -7,7 +7,6 @@ import org.junit.experimental.categories.Category;
 
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
-import com.hack23.cia.systemintegrationtest.suites.TestConstants;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -15,112 +14,86 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 @Category(IntegrationTest.class)
 public final class UserNavigationTest extends AbstractUITest {
-    // Constants for page modes
-    private static final String DOCUMENT_ACTIVITY = "DOCUMENTACTIVITY";
-    private static final String ROLE_SUMMARY = "ROLESUMMARY";
-    private static final String DECISION_FLOW_CHART = "DECISION_FLOW_CHART";
-    private static final String RISK_SUMMARY = "RISK_SUMMARY";
+	// Constants for page modes
+	private static final String DOCUMENT_ACTIVITY = "DOCUMENTACTIVITY";
+	private static final String ROLE_SUMMARY = "ROLESUMMARY";
+	private static final String DECISION_FLOW_CHART = "DECISION_FLOW_CHART";
+	private static final String RISK_SUMMARY = "RISK_SUMMARY";
 
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void shouldNavigatePoliticianViews() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                String politicianId = "0980681611418";
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void shouldNavigatePoliticianViews() throws Exception {
 
-                // Overview
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-                        PageMode.OVERVIEW, politicianId));
-                pageVisit.verifyPageContent("Politician");
+		final String politicianId = "0980681611418";
 
-                // Document Activity
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-                        DOCUMENT_ACTIVITY, politicianId));
-                pageVisit.verifyPageContent("Document Activity");
+		// Overview
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW, politicianId));
+		pageVisit.verifyPageContent("Politician");
 
-                // Role Summary
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME,
-                        ROLE_SUMMARY, politicianId));
-                pageVisit.verifyPageContent("Role Summary");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+		// Document Activity
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, DOCUMENT_ACTIVITY, politicianId));
+		pageVisit.verifyPageContent("Document Activity");
 
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void shouldNavigateParliamentViews() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                // Overview
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                        PageMode.OVERVIEW));
-                pageVisit.verifyPageContent("Parliament");
+		// Role Summary
+		pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, ROLE_SUMMARY, politicianId));
+		pageVisit.verifyPageContent("Role Summary");
 
-                // Decision Flow Chart
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                        PageMode.CHARTS, DECISION_FLOW_CHART));
-                pageVisit.verifyPageContent("Decision Flow");
+	}
 
-                // Risk Summary
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                        PageMode.RULES, RISK_SUMMARY));
-                pageVisit.selectFirstGridRow();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void shouldNavigateParliamentViews() throws Exception {
 
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void shouldNavigateCommitteeRanking() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                pageVisit.VisitCommitteeRankingView();
-                pageVisit.verifyPageContent("Committee Rankings");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+		// Overview
+		pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.OVERVIEW));
+		pageVisit.verifyPageContent("Parliament");
 
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void shouldNavigateMinistryRanking() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                pageVisit.VisitMinistryRankingView();
-                pageVisit.verifyPageContent("Ministry Rankings");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+		// Decision Flow Chart
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, DECISION_FLOW_CHART));
+		pageVisit.verifyPageContent("Decision Flow");
 
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void shouldNavigatePartyRanking() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                pageVisit.VisitPartyRankingView();
-                pageVisit.verifyPageContent("Party Rankings");
+		// Risk Summary
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.RULES, RISK_SUMMARY));
+		pageVisit.selectFirstGridRow();
 
-                List<String> actionIdsBy = pageVisit.getActionIdsBy(ViewAction.VISIT_PARTY_VIEW);
-                assertTrue(actionIdsBy.size() > 0);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+	}
 
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void shouldNavigatePoliticianRanking() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                pageVisit.VisitPoliticianRankingView();
-                pageVisit.verifyPageContent("Politician Rankings");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void shouldNavigateCommitteeRanking() throws Exception {
 
-    // Other navigation tests...
+		pageVisit.VisitCommitteeRankingView();
+		pageVisit.verifyPageContent("Committee Rankings");
+
+	}
+
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void shouldNavigateMinistryRanking() throws Exception {
+
+		pageVisit.VisitMinistryRankingView();
+		pageVisit.verifyPageContent("Ministry Rankings");
+
+	}
+
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void shouldNavigatePartyRanking() throws Exception {
+
+		pageVisit.VisitPartyRankingView();
+		pageVisit.verifyPageContent("Party Rankings");
+
+		final List<String> actionIdsBy = pageVisit.getActionIdsBy(ViewAction.VISIT_PARTY_VIEW);
+		assertTrue(actionIdsBy.size() > 0);
+
+	}
+
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void shouldNavigatePoliticianRanking() throws Exception {
+
+		pageVisit.VisitPoliticianRankingView();
+		pageVisit.verifyPageContent("Politician Rankings");
+
+	}
+
+	// Other navigation tests...
 }

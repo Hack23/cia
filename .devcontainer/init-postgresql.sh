@@ -35,6 +35,7 @@ export NVM_DIR=""
 su - postgres -c "psql -c 'CREATE USER eris WITH password '\''discord'\'';'"
 su - postgres -c "psql -c 'CREATE DATABASE cia_dev;'"
 su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;'"
+su - postgres -c "psql -c 'ALTER USER eris WITH SUPERUSER;'"
 su - postgres -c "psql -d cia_dev -c 'GRANT ALL ON SCHEMA public TO eris;'"
 su - postgres -c "psql -d cia_dev -c 'ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO eris;'"
 su - postgres -c "psql -d cia_dev -c 'ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO eris;'"
@@ -100,7 +101,7 @@ echo "ssl = on" >> /etc/postgresql/16/main/postgresql.conf
 echo "ssl_cert_file = '/var/lib/postgresql/16/main/server.crt'" >> /etc/postgresql/16/main/postgresql.conf
 echo "ssl_key_file = '/var/lib/postgresql/16/main/server.key'" >> /etc/postgresql/16/main/postgresql.conf
 echo "max_prepared_transactions = 100" >> /etc/postgresql/16/main/postgresql.conf
-echo "shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'" >> /etc/postgresql/16/main/postgresql.conf
+echo "shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto, pgml'" >> /etc/postgresql/16/main/postgresql.conf
 echo "pgaudit.log = ddl" >> /etc/postgresql/16/main/postgresql.conf
 echo "pg_stat_statements.track = all" >> /etc/postgresql/16/main/postgresql.conf
 echo "pg_stat_statements.max = 10000" >> /etc/postgresql/16/main/postgresql.conf

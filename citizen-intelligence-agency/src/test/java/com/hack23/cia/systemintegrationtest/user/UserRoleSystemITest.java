@@ -23,7 +23,6 @@ import org.junit.experimental.categories.Category;
 
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
-import com.hack23.cia.systemintegrationtest.suites.TestConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
@@ -32,49 +31,35 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 @Category(IntegrationTest.class)
 public final class UserRoleSystemITest extends AbstractUITest {
 
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void shouldViewMinistryContent() throws Exception {
 
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void shouldViewMinistryContent() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-                        PageMode.OVERVIEW, "N%C3%A4ringsdepartementet"));
-                pageVisit.verifyPageContent("Ministry");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW, "N%C3%A4ringsdepartementet"));
+		pageVisit.verifyPageContent("Ministry");
 
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void shouldViewPartyContent() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
-                        PageMode.OVERVIEW, "S"));
-                pageVisit.verifyPageContent("Party");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+	}
 
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void shouldHandleUnauthorizedAccess() throws Exception {
-        retryOnFailure(() -> {
-            try {
-                // Test user events access
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME,
-                        UserHomePageMode.USER_EVENTS.toString()));
-                pageVisit.verifyPageContent("Access denied:userhome");
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void shouldViewPartyContent() throws Exception {
 
-                // Test security settings access
-                pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME,
-                        UserHomePageMode.SECURITY_SETTINGS.toString()));
-                pageVisit.verifyPageContent("Access denied:userhome");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }, TestConstants.DEFAULT_MAX_RETRIES);
-    }
+		pageVisit.visitDirectPage(new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW, "S"));
+		pageVisit.verifyPageContent("Party");
+
+	}
+
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void shouldHandleUnauthorizedAccess() throws Exception {
+
+		// Test user events access
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString()));
+		pageVisit.verifyPageContent("Access denied:userhome");
+
+		// Test security settings access
+		pageVisit.visitDirectPage(
+				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString()));
+		pageVisit.verifyPageContent("Access denied:userhome");
+
+	}
 }

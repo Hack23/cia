@@ -17,13 +17,13 @@ public class WebDriverFactory {
 
     public static WebDriver createDriver() {
         LOG.info("Creating WebDriver for browser");
-        WebDriver driver = createChromeDriver();
+        final WebDriver driver = createChromeDriver();
         configureDriver(driver);
         return driver;
     }
 
     private static WebDriver createChromeDriver() {
-        ChromeOptions options = new ChromeOptions();
+        final ChromeOptions options = new ChromeOptions();
         options.addArguments(
                 "--allow-insecure-localhost",
                 "--start-maximized");

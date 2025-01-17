@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-<jmxConfigurator />
+	<logger name="ch.qos.logback.core" level="warn" />
 
 
   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">

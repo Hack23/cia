@@ -126,7 +126,7 @@
 		<exec executable="${maven.binary}" dir=".">
 			<env key="MAVEN_OPTS" value="-server -Xmx6048m -Xms6048m  " />
 			<arg
-				line="clean install site -Prelease-site -Dtest=no -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false  -DforkMode=once -Dannotation.failOnError=false" />
+				line="clean install site -Prelease-site -Dmaven.test.failure.ignore=true  -DforkMode=once -Dannotation.failOnError=false" />
 		</exec>
 	</target>
 	<target name="site-cia-all" description="cia-site-cia-all" depends="init">
