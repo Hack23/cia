@@ -4,18 +4,16 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.openqa.selenium.WebElement;
 
-import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandAdminConstants;
 
 // ...imports...
 
 @Category(IntegrationTest.class)
-public class AdminDataSummarySystemTest extends AbstractUITest {
+public class AdminDataSummarySystemTest extends AbstractAdminTest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyDataManagementOperationsTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATASUMMARY);
 
 		// Test refresh views
@@ -31,7 +29,6 @@ public class AdminDataSummarySystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyDataManagementRemoveOperationsTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATASUMMARY);
 
 		assertNotNull("Expect to find Remove Application History button",
@@ -42,7 +39,6 @@ public class AdminDataSummarySystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyAuthorDataSummaryTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AUTHOR_DATASUMMARY);
 		pageVisit.verifyPageContent("Author Summary");
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_AUTHOR_DATASUMMARY);
@@ -50,7 +46,6 @@ public class AdminDataSummarySystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyRefreshViewsTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATASUMMARY);
 		final WebElement refreshViewsButton = pageVisit.findButton("Refresh Views");
 		assertNotNull("Expect to find a Refresh Views Button", refreshViewsButton);

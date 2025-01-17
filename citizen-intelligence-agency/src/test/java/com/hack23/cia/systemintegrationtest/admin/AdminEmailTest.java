@@ -15,8 +15,6 @@ public final class AdminEmailTest extends AbstractAdminTest {
 
 	@Test(timeout = TestConstants.DEFAULT_TIMEOUT)
 	public void shouldSendValidEmail() throws Exception {
-
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
 		pageVisit.verifyPageContent("email");
 		pageVisit.sendEmailOnEmailPage("james@hack23.com", "Test Subject", "Test content");
@@ -26,8 +24,6 @@ public final class AdminEmailTest extends AbstractAdminTest {
 
 	@Test(timeout = TestConstants.DEFAULT_TIMEOUT)
 	public void shouldFailWithInvalidEmail() throws Exception {
-
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME, ""));
 		pageVisit.verifyPageContent("email");
 		pageVisit.sendEmailOnEmailPage("invalidemail", "Test Subject", "Test content");

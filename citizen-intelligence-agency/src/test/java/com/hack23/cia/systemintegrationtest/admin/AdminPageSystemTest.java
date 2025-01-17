@@ -3,16 +3,14 @@ package com.hack23.cia.systemintegrationtest.admin;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandAdminConstants;
 
 @Category(IntegrationTest.class)
-public class AdminPageSystemTest extends AbstractUITest {
+public class AdminPageSystemTest extends AbstractAdminTest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyAgencyPageTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENCY);
 		pageVisit.verifyPageContent("Agency");
 		pageVisit.selectFirstGridRow();
@@ -21,7 +19,6 @@ public class AdminPageSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyAgentOperationTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENT_OPERATION);
 		pageVisit.verifyPageContent("Agent Operation");
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_AGENT_OPERATION);
@@ -29,7 +26,6 @@ public class AdminPageSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationConfigurationPageTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_CONFIGURATION);
 		pageVisit.verifyPageContent("Application Configuration");
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_APPLICATION_CONFIGURATION);
@@ -37,7 +33,6 @@ public class AdminPageSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationEventsPageTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS);
 		pageVisit.verifyPageContent("Admin Application Events");
 		pageVisit.selectFirstGridRow();
@@ -46,7 +41,6 @@ public class AdminPageSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationSessionPageTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
 		pageVisit.verifyPageContent("Application Session");
 		pageVisit.selectFirstGridRow();
@@ -62,7 +56,6 @@ public class AdminPageSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyMonitoringPageSuccessTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_MONITORING);
 		pageVisit.verifyPageContent("Admin Monitoring");
 		assertFalse("Dont expect this content",
@@ -71,7 +64,6 @@ public class AdminPageSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyDataSummaryPageOperationsTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATASUMMARY);
 
 		// Verify all buttons exist
@@ -91,7 +83,6 @@ public class AdminPageSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyLanguagePageTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_LANGUAGE);
 		pageVisit.verifyPageContent("Language");
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_LANGUAGE);
@@ -99,7 +90,6 @@ public class AdminPageSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyUserAccountPageTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_USERACCOUNT);
 		pageVisit.verifyPageContent("User Account");
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_USERACCOUNT);
