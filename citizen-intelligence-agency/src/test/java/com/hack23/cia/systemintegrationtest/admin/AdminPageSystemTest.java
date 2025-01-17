@@ -13,7 +13,7 @@ public class AdminPageSystemTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyAgencyPageTest() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENCY);
-		pageVisit.verifyPageContent(AdminViewConstants.AGENCY);
+		pageVisit.verifyPageContent(AdminViewConstants.AGENCY_OVERVIEW);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_AGENCY);
 	}
 

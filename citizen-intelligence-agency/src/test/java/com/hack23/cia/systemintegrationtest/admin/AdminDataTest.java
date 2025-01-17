@@ -14,7 +14,7 @@ public final class AdminDataTest extends AbstractAdminTest {
 	@Test(timeout = TestConstants.DEFAULT_TIMEOUT)
 	public void shouldViewAdminData() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATASUMMARY);
-		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_DATA_SUMMARY);
+		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_DATA_SUMMARY_OVERVIEW);
 
 	}
 }

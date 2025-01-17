@@ -11,7 +11,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 
 @Category(IntegrationTest.class)
 public final class SessionManagementTest extends AbstractAdminTest {
-	@Test(timeout = DEFAULT_TIMEOUT)
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void shouldHandleSessionPagination() throws Exception {
@@ -39,7 +38,7 @@ public final class SessionManagementTest extends AbstractAdminTest {
 		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_SESSION);
 		pageVisit.selectFirstGridRow();
 		pageVisit.validatePage(new PageModeMenuCommand(AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, ""));
-		pageVisit.verifyPageContent(AdminViewConstants.APPLICATION_ACTION_EVENT);
+		pageVisit.verifyPageContent(AdminViewConstants.APPLICATION_SESSION_DETAILS);
 
 	}
 }
