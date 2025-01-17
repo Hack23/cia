@@ -1,13 +1,12 @@
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.user;
 
-import static com.hack23.cia.systemintegrationtest.TestConstants.DEFAULT_MAX_RETRIES;
+import static com.hack23.cia.systemintegrationtest.suites.TestConstants.DEFAULT_MAX_RETRIES;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
-import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
+import com.hack23.cia.systemintegrationtest.AbstractUITest;
+import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 
 @Category(IntegrationTest.class)

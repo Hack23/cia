@@ -1,13 +1,11 @@
-package com.hack23.cia.systemintegrationtest;
-
-import static com.hack23.cia.systemintegrationtest.TestConstants.DEFAULT_MAX_RETRIES;
+package com.hack23.cia.systemintegrationtest.user;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
-import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
+import com.hack23.cia.systemintegrationtest.AbstractUITest;
+import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
+import com.hack23.cia.systemintegrationtest.suites.TestConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;

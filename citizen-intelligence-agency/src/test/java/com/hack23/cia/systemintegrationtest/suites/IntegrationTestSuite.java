@@ -3,23 +3,23 @@ package com.hack23.cia.systemintegrationtest.suites;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import com.hack23.cia.systemintegrationtest.AdminAgentTest;
-import com.hack23.cia.systemintegrationtest.AdminConfigurationTest;
-import com.hack23.cia.systemintegrationtest.AdminDataTest;
-import com.hack23.cia.systemintegrationtest.AdminEmailTest;
-import com.hack23.cia.systemintegrationtest.AdminUserManagementTest;
-import com.hack23.cia.systemintegrationtest.AuthorizationTest;
-import com.hack23.cia.systemintegrationtest.BallotViewTest;
-import com.hack23.cia.systemintegrationtest.CommitteeViewTest;
-import com.hack23.cia.systemintegrationtest.MinistryViewTest;
-import com.hack23.cia.systemintegrationtest.PartyViewTest;
-import com.hack23.cia.systemintegrationtest.PoliticianViewTest;
-import com.hack23.cia.systemintegrationtest.SearchViewTest;
-import com.hack23.cia.systemintegrationtest.SessionManagementTest;
-import com.hack23.cia.systemintegrationtest.UserAuthenticationTest;
-import com.hack23.cia.systemintegrationtest.UserNavigationTest;
-import com.hack23.cia.systemintegrationtest.ViewPageTest;
-import com.hack23.cia.systemintegrationtest.ViewRankingTest;
+import com.hack23.cia.systemintegrationtest.admin.AdminAgentTest;
+import com.hack23.cia.systemintegrationtest.admin.AdminConfigurationTest;
+import com.hack23.cia.systemintegrationtest.admin.AdminDataTest;
+import com.hack23.cia.systemintegrationtest.admin.AdminEmailTest;
+import com.hack23.cia.systemintegrationtest.admin.AdminUserManagementTest;
+import com.hack23.cia.systemintegrationtest.admin.SessionManagementTest;
+import com.hack23.cia.systemintegrationtest.user.AuthorizationTest;
+import com.hack23.cia.systemintegrationtest.user.BallotViewTest;
+import com.hack23.cia.systemintegrationtest.user.CommitteeViewTest;
+import com.hack23.cia.systemintegrationtest.user.MinistryViewTest;
+import com.hack23.cia.systemintegrationtest.user.PartyViewTest;
+import com.hack23.cia.systemintegrationtest.user.PoliticianViewTest;
+import com.hack23.cia.systemintegrationtest.user.SearchViewTest;
+import com.hack23.cia.systemintegrationtest.user.UserAuthenticationTest;
+import com.hack23.cia.systemintegrationtest.user.UserNavigationTest;
+import com.hack23.cia.systemintegrationtest.user.ViewPageTest;
+import com.hack23.cia.systemintegrationtest.user.ViewRankingTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

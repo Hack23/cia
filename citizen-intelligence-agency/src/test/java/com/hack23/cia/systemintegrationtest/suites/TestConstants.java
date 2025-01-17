@@ -1,4 +1,4 @@
-package com.hack23.cia.systemintegrationtest;
+package com.hack23.cia.systemintegrationtest.suites;
 
 import java.time.Duration;
 import java.util.UUID;
