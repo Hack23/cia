@@ -3,6 +3,8 @@ package com.hack23.cia.systemintegrationtest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.openqa.selenium.WebElement;
+import com.hack23.cia.systemintegrationtest.TestConstants;
+
 
 import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
@@ -32,7 +34,7 @@ public final class SessionManagementTest extends AbstractUITest {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }, DEFAULT_MAX_RETRIES);
+        }, TestConstants.DEFAULT_MAX_RETRIES);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)

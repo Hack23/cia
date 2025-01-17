@@ -2,6 +2,8 @@ package com.hack23.cia.systemintegrationtest;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import static com.hack23.cia.systemintegrationtest.TestConstants.DEFAULT_MAX_RETRIES;
+
 
 import com.hack23.cia.systemintegrationtest.suites.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
