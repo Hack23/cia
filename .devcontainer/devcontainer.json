@@ -90,7 +90,7 @@
             "install",
             "-Prelease-site,all-modules",
             "-DforkMode=once",
-            "-Dtest=!**ITest*,!**DocumentationTest*",
+            "-Dtest='!**ITest*,!**DocumentationTest*'",
             "-Dmaven.test.failure.ignore=true",
             "-DfailIfNoTests=false",
             "-Dsurefire.failIfNoSpecifiedTests=false",
@@ -111,12 +111,11 @@
           "args": [
             "clean",
             "install",
-            "-pl !cia-dist-deb",
+            "-pl '!cia-dist-deb'",
             "-Dtest=no",
             "-DfailIfNoTests=false",
             "-Dsurefire.failIfNoSpecifiedTests=false",
-            "-Pall-modules",
-            "-Dhttps.protocols=TLSv1.2"
+            "-Pall-modules"
           ],
           "options": {
             "cwd": "${workspaceFolder}/parent-pom",
