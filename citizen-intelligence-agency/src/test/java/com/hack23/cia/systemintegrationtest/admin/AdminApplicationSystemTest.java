@@ -3,7 +3,6 @@ package com.hack23.cia.systemintegrationtest.admin;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandAdminConstants;
@@ -11,11 +10,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageC
 // ...imports...
 
 @Category(IntegrationTest.class)
-public class AdminApplicationSystemTest extends AbstractUITest {
+public class AdminApplicationSystemTest extends AbstractAdminTest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationSessionPaginationTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
 		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_SESSION);
 
@@ -30,14 +28,12 @@ public class AdminApplicationSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationEventsChartTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS_CHARTS);
 		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_EVENT_CHARTS);
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationSessionChartsTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION_CHARTS);
 		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_SESSION_CHARTS);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION_CHARTS);
@@ -45,7 +41,6 @@ public class AdminApplicationSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyAgentOperationsTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENT_OPERATION);
 		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_AGENT_OPERATION_OVERVIEW);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_AGENT_OPERATION);
@@ -53,7 +48,6 @@ public class AdminApplicationSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationGridOperationsTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
 		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_APPLICATION_SESSION);
 		pageVisit.selectFirstGridRow();

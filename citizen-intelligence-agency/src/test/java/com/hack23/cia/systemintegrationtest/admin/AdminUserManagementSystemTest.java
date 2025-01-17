@@ -13,7 +13,6 @@ public class AdminUserManagementSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyUserAccountManagementTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_USERACCOUNT);
 		pageVisit.verifyPageContent("User Account Management");
 		pageVisit.selectFirstGridRow();
@@ -22,7 +21,6 @@ public class AdminUserManagementSystemTest extends AbstractUITest {
 
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyEmailConfigurationTest() throws Exception {
-		pageVisit.loginAsAdmin();
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_EMAIL);
 		pageVisit.verifyPageContent(AdminViewConstants.ADMIN_EMAIL_MANAGEMENT);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_EMAIL);
