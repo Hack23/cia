@@ -9,6 +9,14 @@
   <description>CIA Parent pom</description>
   <url>github:https://hack23.github.io/cia/parent-pom/</url>
   <inceptionYear>2008</inceptionYear>
+  <modules>
+    <module>../testfoundation</module>
+    <module>../parent-model-pom</module>
+    <module>../parent-service-pom</module>
+    <module>../parent-web-pom</module>
+    <module>../cia-dist-deb</module>
+    <module>../cia-dist-cloudformation</module>
+    </modules> 
   <organization>
     <name>www.hack23.com</name>
     <url>http://www.hack23.com</url>
@@ -1438,130 +1446,6 @@
         <jdk.src.version>21</jdk.src.version>
         <jdk.target.version>21</jdk.target.version>
         <forbiddenapis.skip>false</forbiddenapis.skip>
-      </properties>
-    </profile>
-    <profile>
-      <id>all-modules</id>
-      <activation>
-        <jdk>[21,22)</jdk>
-      </activation>
-      <modules>
-        <module>../testfoundation</module>
-        <module>../parent-model-pom</module>
-        <module>../parent-service-pom</module>
-        <module>../parent-web-pom</module>
-        <module>../cia-dist-deb</module>
-        <module>../cia-dist-cloudformation</module>
-      </modules>
-    </profile>
-    <profile>
-      <id>site-run</id>
-      <modules>
-        <module>../parent-model-pom</module>
-        <module>../parent-service-pom</module>
-        <module>../citizen-intelligence-agency</module>
-      </modules>
-      <properties>
-        <cia.project.phase.site>true</cia.project.phase.site>
-      </properties>
-    </profile>
-    <profile>
-      <id>model-modules</id>
-      <modules>
-        <module>../parent-model-pom</module>
-      </modules>
-      <properties>
-        <cia.project.phase.site>true</cia.project.phase.site>
-      </properties>
-    </profile>
-    <profile>
-      <id>service-modules</id>
-      <modules>
-        <module>../parent-service-pom</module>
-      </modules>
-      <properties>
-        <cia.project.phase.site>true</cia.project.phase.site>
-      </properties>
-    </profile>
-    <profile>
-      <id>web-modules</id>
-      <modules>
-        <module>../parent-web-pom</module>
-      </modules>
-      <properties>
-        <cia.project.phase.site>true</cia.project.phase.site>
-      </properties>
-    </profile>
-    <profile>
-      <id>cia-app</id>
-      <modules>
-        <module>../citizen-intelligence-agency</module>
-      </modules>
-      <properties>
-        <cia.project.phase.site>true</cia.project.phase.site>
-      </properties>
-    </profile>
-    <profile>
-      <id>cia-dev-windows</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
-      <properties>
-        <platform>windows</platform>
-        <file.separator>\</file.separator>
-        <graphviz.dot.executable>C:\Program\Graphviz2.22\bin\dot.exe</graphviz.dot.executable>
-      </properties>
-    </profile>
-    <profile>
-      <id>cia-dev-mac</id>
-      <activation>
-        <os>
-          <family>mac</family>
-        </os>
-      </activation>
-      <properties>
-        <platform>mac</platform>
-        <file.separator>/</file.separator>
-      </properties>
-    </profile>
-    <profile>
-      <id>cia-dev-linux</id>
-      <activation>
-        <os>
-          <name>linux</name>
-        </os>
-      </activation>
-      <properties>
-        <platform>linux</platform>
-        <file.separator>/</file.separator>
-        <graphviz.dot.executable>/usr/bin/dot</graphviz.dot.executable>
-      </properties>
-    </profile>
-    <profile>
-      <id>no-release</id>
-      <activation>
-        <property>
-          <name>!performRelease</name>
-        </property>
-      </activation>
-      <properties>
-        <dependency.plugin.unpack.phase>test-compile</dependency.plugin.unpack.phase>
-      </properties>
-    </profile>
-    <profile>
-      <id>release-sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <properties>
-        <dependency.plugin.unpack.phase>test-compile</dependency.plugin.unpack.phase>
-        <cyclonedx.skipAttach>false</cyclonedx.skipAttach>
-        <cyclonedx.skip>false</cyclonedx.skip>
       </properties>
     </profile>
     <profile>
