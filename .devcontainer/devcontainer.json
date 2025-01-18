@@ -89,7 +89,6 @@
             "-B",
             "clean",
             "install",
-            "-Pall-modules",
             "-DforkMode=once",
             "-pl",
             "!cia-dist-deb",
@@ -114,7 +113,6 @@
           "args": [
             "clean",
             "install",
-            "-Pall-modules",
             "-pl",
             "!cia-dist-deb",
             "-DskipTests",
