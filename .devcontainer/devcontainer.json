@@ -90,7 +90,7 @@
             "install",
             "-Pall-modules",
             "-DforkMode=once",
-             "-pl '!cia-dist-deb'",
+            "-pl '!cia-dist-deb'",
             "-Dtest='!**ITest*,!**DocumentationTest*'",
             "-Dmaven.test.failure.ignore=true",
             "-DfailIfNoTests=false",
