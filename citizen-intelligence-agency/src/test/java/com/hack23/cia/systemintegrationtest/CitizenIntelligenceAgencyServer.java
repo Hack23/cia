@@ -145,8 +145,8 @@ public final class CitizenIntelligenceAgencyServer {
 	public static synchronized void stopTestServer() throws Exception {
 		serverStarted--;
 		if (serverStarted == 0 && testServer != null) {
-			// testServer.stop();
-			// testServer = null;
+			testServer.stop();
+			testServer = null;
 		}
 	}
 
@@ -233,7 +233,7 @@ public final class CitizenIntelligenceAgencyServer {
 			while (!server.isStarted()) {
 
 			}
-
+			LOGGER.info("Server Started");
 		} catch (final Exception e) {
 			LOGGER.error("Application Exception", e);
 		}
