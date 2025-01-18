@@ -83,8 +83,9 @@
         {
           "label": "Unit Tests",
           "type": "shell",
-          "command": "mvn",
+          "command": "xvfb-run",
           "args": [
+            "mvn",
             "-B",
             "clean",
             "install",
@@ -92,7 +93,7 @@
             "-DforkMode=once",
             "-pl",
             "!cia-dist-deb",
-            "-Dtest='!**ITest*,!**DocumentationTest*'",
+            "-Dtest=!**ITest*,!**DocumentationTest*",
             "-Dmaven.test.failure.ignore=true",
             "-DfailIfNoTests=false",
             "-Dsurefire.failIfNoSpecifiedTests=false",
@@ -116,9 +117,8 @@
             "-Pall-modules",
             "-pl",
             "!cia-dist-deb",
-            "-Dtest=no",
-            "-DfailIfNoTests=false",
-            "-Dsurefire.failIfNoSpecifiedTests=false"
+            "-DskipTests",
+            "-DfailIfNoTests=false"
           ],
           "options": {
             "cwd": "${workspaceFolder}/parent-pom",
