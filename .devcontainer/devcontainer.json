@@ -113,12 +113,12 @@
           "args": [
             "clean",
             "install",
+            "-Pall-modules",
             "-pl",
             "!cia-dist-deb",
             "-Dtest=no",
             "-DfailIfNoTests=false",
-            "-Dsurefire.failIfNoSpecifiedTests=false",
-            "-Pall-modules"
+            "-Dsurefire.failIfNoSpecifiedTests=false"
           ],
           "options": {
             "cwd": "${workspaceFolder}/parent-pom",
