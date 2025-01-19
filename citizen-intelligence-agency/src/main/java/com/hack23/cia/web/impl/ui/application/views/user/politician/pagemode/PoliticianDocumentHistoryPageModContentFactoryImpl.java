@@ -71,7 +71,10 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Document History", "History Overview", "Historical record of documents associated with the politician's roles and activities.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician, PoliticianPageTitleConstants.DOCUMENT_HISTORY_TITLE),
+			PoliticianPageTitleConstants.HISTORY_SUBTITLE,
+			PoliticianPageTitleConstants.DOC_HISTORY_DESC);
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -80,7 +83,10 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 				politicianDocumentDataContainer.findOrderedListByProperty(
 						ViewRiksdagenPoliticianDocument_.personReferenceId, viewRiksdagenPolitician.getPersonId(),
 						ViewRiksdagenPoliticianDocument_.madePublicDate),
-				DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+				PoliticianDocumentConstants.DOCUMENT_GRID_NAME, 
+				PoliticianDocumentConstants.COLUMN_ORDER, 
+				PoliticianDocumentConstants.HIDE_COLUMNS, 
+				LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
 		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);

@@ -71,13 +71,13 @@ public final class PoliticianRankingChartsAllPartiesPageModContentFactoryImpl
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			    "Politician Ranking - All Parties Charts",
-			    "Cross-Party Influence",
-			    "All parties: mapping politician influence across coalitions.");
+			    PoliticianRankingDescriptionConstants.ALL_PARTIES_HEADER,
+			    PoliticianRankingDescriptionConstants.ALL_PARTIES_SUBTITLE,
+			    PoliticianRankingDescriptionConstants.ALL_PARTIES_DESC);
 
-
-		chartDataManager
-				.createChartPanel(panelContent,dataSeriesFactory.createPartyChartTimeSeriesAll(), "All");
+		chartDataManager.createChartPanel(panelContent,
+		    dataSeriesFactory.createPartyChartTimeSeriesAll(),
+		    PoliticianRankingConstants.CHART_TYPE_ALL);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);

@@ -65,7 +65,10 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Role List", "Roles Overview", "Explore the list of roles held by the politician across their career.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician, PoliticianPageTitleConstants.ROLE_LIST_TITLE),
+            PoliticianPageTitleConstants.ROLES_SUBTITLE,
+            PoliticianPageTitleConstants.ROLE_LIST_DESC);
 
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
 				.load(viewRiksdagenPolitician.getPersonId());
@@ -88,14 +91,14 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 	 */
 	private void createRoleList(final VerticalLayout roleSummaryLayoutTabsheet,
 			final List<AssignmentData> assignmentList) {
-
 		final Comparator<AssignmentData> compare = (o1, o2) -> o1.getFromDate().compareTo(o2.getFromDate());
-
 		Collections.sort(assignmentList, compare);
 
 		getGridFactory().createBasicBeanItemGrid(roleSummaryLayoutTabsheet, AssignmentData.class, assignmentList,
-				ASSIGNMENTS, COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
-
+				PoliticianRoleConstants.ASSIGNMENTS,
+				PoliticianRoleConstants.ROLE_COLUMN_ORDER,
+				PoliticianRoleConstants.ROLE_HIDE_COLUMNS,
+				null, null, null);
 	}
 
 	@Override

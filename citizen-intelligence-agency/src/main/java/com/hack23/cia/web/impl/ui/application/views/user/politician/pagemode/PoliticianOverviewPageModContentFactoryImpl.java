@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
 import java.util.Date;
+import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -182,7 +183,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 * @return the vertical layout
 	 */
 	private VerticalLayout createCardContent(final VerticalLayout panelContent, final Panel cardPanel) {
-		cardPanel.addStyleName("politician-overview-card");
+		cardPanel.addStyleName(PoliticianStyleConstants.POLITICIAN_OVERVIEW_CARD);
 		cardPanel.setWidth("100%");
 		cardPanel.setHeightUndefined();
 		Responsive.makeResponsive(cardPanel);
@@ -220,31 +221,38 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		imageAndDetailsLayout.addComponent(sectionsGrid);
 		imageAndDetailsLayout.setExpandRatio(sectionsGrid, 1.0f);
 
+		 // Section layouts
+        final VerticalLayout politicalRoleLayout = CardInfoRowUtil.createSectionLayout(
+            PoliticianSectionHeaderConstants.POLITICAL_ROLE);
+        final VerticalLayout experienceLayout = CardInfoRowUtil.createSectionLayout(
+            PoliticianSectionHeaderConstants.EXPERIENCE_EXPERTISE);
+        final VerticalLayout performanceLayout = CardInfoRowUtil.createSectionLayout(
+            PoliticianSectionHeaderConstants.PARLIAMENTARY_PERFORMANCE);
+        final VerticalLayout legislativeLayout = CardInfoRowUtil.createSectionLayout(
+            PoliticianSectionHeaderConstants.LEGISLATIVE_IMPACT);
+        final VerticalLayout partyAlignmentLayout = CardInfoRowUtil.createSectionLayout(
+            PoliticianSectionHeaderConstants.PARTY_ALIGNMENT);
+
 		// 1. Political Role & Influence
-		final VerticalLayout politicalRoleLayout = CardInfoRowUtil.createSectionLayout("Political Role & Influence");
 		addPoliticalRoleMetrics(politicalRoleLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary,experienceSummary);
 		sectionsGrid.addComponent(politicalRoleLayout);
 		sectionsGrid.setExpandRatio(politicalRoleLayout, 1.0f);
 
-		  final VerticalLayout experienceLayout = CardInfoRowUtil.createSectionLayout("Experience & Expertise");
-		  politicianLeaderboardUtil.addExperienceMetrics(experienceLayout, experienceSummary);
-		    sectionsGrid.addComponent(experienceLayout);
-		    sectionsGrid.setExpandRatio(experienceLayout, 1.0f);
+		politicianLeaderboardUtil.addExperienceMetrics(experienceLayout, experienceSummary);
+		sectionsGrid.addComponent(experienceLayout);
+		sectionsGrid.setExpandRatio(experienceLayout, 1.0f);
 
 		// 2. Parliamentary Performance
-		final VerticalLayout performanceLayout = CardInfoRowUtil.createSectionLayout("Parliamentary Performance");
 		politicianLeaderboardUtil.addParliamentaryPerformanceMetrics(performanceLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary);
 		sectionsGrid.addComponent(performanceLayout);
 		sectionsGrid.setExpandRatio(performanceLayout, 1.0f);
 
 		// 3. Legislative Activity
-		final VerticalLayout legislativeLayout = CardInfoRowUtil.createSectionLayout("Legislative Impact");
 		politicianLeaderboardUtil.addLegislativeMetrics(legislativeLayout, viewRiksdagenPolitician);
 		sectionsGrid.addComponent(legislativeLayout);
 		sectionsGrid.setExpandRatio(legislativeLayout, 1.0f);
 
 		// 4. Party Alignment & Cooperation
-		final VerticalLayout partyAlignmentLayout = CardInfoRowUtil.createSectionLayout("Party Alignment & Cooperation");
 		politicianLeaderboardUtil.addPartyAlignmentMetrics(partyAlignmentLayout, viewRiksdagenPolitician, viewRiksdagenPoliticianBallotSummary);
 		sectionsGrid.addComponent(partyAlignmentLayout);
 		sectionsGrid.setExpandRatio(partyAlignmentLayout, 1.0f);
@@ -262,7 +270,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 */
 	private void addPoliticalLink(final VerticalLayout panelContent, final PersonData personData) {
 		final Link createPoliticianPageLink = getPageLinkFactory().createPoliticianPageLink(personData);
-		createPoliticianPageLink.addStyleName("card-subtitle");
+		createPoliticianPageLink.addStyleName(PoliticianStyleConstants.CARD_SUBTITLE);
 		panelContent.addComponent(createPoliticianPageLink);
 		panelContent.setExpandRatio(createPoliticianPageLink, ContentRatio.SMALL);
 	}
@@ -274,10 +282,10 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 * @param cardContent the card content
 	 */
 	private void addPartyLink(final ViewRiksdagenPolitician viewRiksdagenPolitician, final VerticalLayout cardContent) {
-		final Link partyLink = new Link("Party " + viewRiksdagenPolitician.getParty(),
+		final Link partyLink = new Link(PoliticianDescriptionConstants.PARTY_PREFIX + viewRiksdagenPolitician.getParty(),
 				new ExternalResource("#!" + UserViews.PARTY_VIEW_NAME + "/" + viewRiksdagenPolitician.getParty()));
 		partyLink.setIcon(VaadinIcons.GROUP);
-		partyLink.addStyleName("card-title");
+		partyLink.addStyleName(PoliticianStyleConstants.CARD_TITLE);
 		cardContent.addComponent(partyLink);
 	}
 
@@ -292,16 +300,18 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	private void addImage(final PersonData personData, final ViewRiksdagenPolitician viewRiksdagenPolitician,
 			final VerticalLayout cardContent, final HorizontalLayout imageAndDetailsLayout) {
 		imageAndDetailsLayout.setSpacing(true);
-		imageAndDetailsLayout.setWidth("100%");
+		imageAndDetailsLayout.setWidth(PoliticianLayoutConstants.WIDTH_100_PERCENT);
 		cardContent.addComponent(imageAndDetailsLayout);
 
 		// Politician image (smaller)
 		final String imageUrl = personData.getImageUrl192().replace("http://", "https://");
 		final Image image = new Image("", new ExternalResource(imageUrl));
 		image.setDescription(
-				"Picture of " + viewRiksdagenPolitician.getFirstName() + " " + viewRiksdagenPolitician.getLastName());
-		image.setWidth(100, Unit.PIXELS);
-		image.addStyleName("politician-image");
+				String.format(Locale.ENGLISH, PoliticianDescriptionConstants.PICTURE_DESC_FORMAT, 
+            viewRiksdagenPolitician.getFirstName(), 
+            viewRiksdagenPolitician.getLastName()));
+		image.setWidth(PoliticianLayoutConstants.POLITICIAN_IMAGE_WIDTH, Unit.PIXELS);
+		image.addStyleName(PoliticianStyleConstants.POLITICIAN_IMAGE);
 
 		imageAndDetailsLayout.addComponent(image);
 	}
@@ -318,10 +328,10 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
 			ViewRiksdagenPoliticianBallotSummary ballotSummary, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
-		layout.addComponent(CardInfoRowUtil.createInfoRow("Current Role:", ballotSummary.getStatus(), VaadinIcons.INSTITUTION,
-				"Current position in parliament"));
-		layout.addComponent(CardInfoRowUtil.createInfoRow("Region:", ballotSummary.getElectionRegion(), VaadinIcons.MAP_MARKER,
-				"Electoral district"));
+		layout.addComponent(CardInfoRowUtil.createInfoRow(PoliticianMetricConstants.CURRENT_ROLE, 
+            ballotSummary.getStatus(), VaadinIcons.INSTITUTION, PoliticianDescriptionConstants.CURRENT_POSITION_DESC));
+        layout.addComponent(CardInfoRowUtil.createInfoRow(PoliticianMetricConstants.REGION, 
+            ballotSummary.getElectionRegion(), VaadinIcons.MAP_MARKER, "Electoral district"));
 		layout.addComponent(CardInfoRowUtil.createInfoRow("Career Length:",
 				calculateServiceYears(politician.getFirstAssignmentDate(), politician.getLastAssignmentDate()),
 				VaadinIcons.TIMER, "Years in parliament"));

@@ -61,7 +61,12 @@ public final class PoliticianDocumentActivityPageModContentFactoryImpl
 		final String pageId = getPageId(parameters);
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Document Activity", "Activity Overview", "Detailed insights into the politician's document-related legislative activities.");
+		
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician, 
+                PoliticianPageTitleConstants.DOCUMENT_ACTIVITY_TITLE),
+            PoliticianPageTitleConstants.ACTIVITY_SUBTITLE,
+            PoliticianPageTitleConstants.DOC_ACTIVITY_DESC);
 
 		documentChartDataManager.createPersonDocumentHistoryChart(panelContent, viewRiksdagenPolitician.getPersonId());
 

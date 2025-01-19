@@ -57,7 +57,10 @@ public final class PoliticianRankingOverviewPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Politician Rankings", "Ranking Overview", "Evaluate and rank politicians based on performance and influence.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            PoliticianRankingDescriptionConstants.RANKING_HEADER,
+            PoliticianRankingDescriptionConstants.RANKING_SUBTITLE,
+            PoliticianRankingDescriptionConstants.RANKING_DESC);
 
 		final String pageId = getPageId(parameters);
 

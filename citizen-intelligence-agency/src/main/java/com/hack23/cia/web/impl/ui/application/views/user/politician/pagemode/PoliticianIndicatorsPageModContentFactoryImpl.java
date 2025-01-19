@@ -60,7 +60,11 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Performance Indicators", "Indicator Overview", "Key performance indicators reflecting the politician's impact and activity.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician, 
+                PoliticianPageTitleConstants.INDICATORS_TITLE),
+            PoliticianPageTitleConstants.INDICATOR_SUBTITLE,
+            PoliticianPageTitleConstants.INDICATORS_DESC);
 
 		politicianChartDataManager.createPersonLineChart(panelContent, viewRiksdagenPolitician.getPersonId());
 
