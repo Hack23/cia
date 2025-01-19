@@ -59,7 +59,10 @@ public final class GovernmentBodyPageVisitHistoryPageModContentFactoryImpl
 
 		getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Page Visit History", "Page Visit History", "Track the visit history of government body pages.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            GovernmentBodyDescriptionConstants.VISIT_HISTORY_HEADER,
+            GovernmentBodyDescriptionConstants.VISIT_HISTORY_SUBTITLE,
+            GovernmentBodyDescriptionConstants.VISIT_HISTORY_DESC);
 
 		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 

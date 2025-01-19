@@ -66,7 +66,11 @@ public final class GovernmentBodyHeadcountPageModContentFactoryImpl extends Abst
 
 			if (governmentBodyAnnualSummary != null) {
 				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
-				CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Headcount " + governmentBodyAnnualSummary.getName(), "Headcount Details", "Explore detailed headcount information for government bodies.");
+				CardInfoRowUtil.createPageHeader(panel, panelContent,
+					GovernmentBodyTitleFormatter.formatTitle(governmentBodyAnnualSummary, 
+						GovernmentBodyDescriptionConstants.HEADCOUNT_HEADER),
+					GovernmentBodyDescriptionConstants.HEADCOUNT_SUBTITLE,
+					GovernmentBodyDescriptionConstants.HEADCOUNT_DESC);
 				governmentBodyChartDataManager.createGovernmentBodyHeadcountSummaryChart(panelContent, governmentBodyAnnualSummary.getName());
 			}
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
