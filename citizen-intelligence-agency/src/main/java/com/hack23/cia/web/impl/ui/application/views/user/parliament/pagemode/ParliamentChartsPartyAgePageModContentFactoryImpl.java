@@ -57,9 +57,9 @@ public final class ParliamentChartsPartyAgePageModContentFactoryImpl extends Abs
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-            ParliamentViewConstants.PARTY_AGE_TITLE,
-            ParliamentViewConstants.PARTY_AGE_SUBTITLE,
-            ParliamentViewConstants.PARTY_AGE_DESC);
+            ParliamentPageTitleConstants.PARTY_AGE_TITLE,
+            ParliamentPageTitleConstants.PARTY_AGE_SUBTITLE,
+            ParliamentPageTitleConstants.PARTY_AGE_DESC);
 
 		final String pageId = getPageId(parameters);
 

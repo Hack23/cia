@@ -58,9 +58,9 @@ public final class ParliamentChartsPartyGenderPageModContentFactoryImpl extends 
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-		    ParliamentViewConstants.PARTY_GENDER_TITLE,
-		    ParliamentViewConstants.PARTY_GENDER_SUBTITLE,
-		    ParliamentViewConstants.PARTY_GENDER_DESC);
+		    ParliamentPageTitleConstants.PARTY_GENDER_TITLE,
+		    ParliamentPageTitleConstants.PARTY_GENDER_SUBTITLE,
+		    ParliamentPageTitleConstants.PARTY_GENDER_DESC);
 
 		final String pageId = getPageId(parameters);
 
