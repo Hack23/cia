@@ -93,7 +93,6 @@
             "install",
             "-pl",
             "!com.hack23.cia:cia-dist-deb",
-            "-Prelease-site,all-modules",
             "-DforkMode=once",
             "-Dtest=!**ITest*,!**DocumentationTest*",
             "-Dmaven.test.failure.ignore=true",
@@ -118,7 +117,6 @@
             "install",
             "-pl",
             "!com.hack23.cia:cia-dist-deb,!com.hack23.cia:cia-dist-cloudformation",
-            "-Pall-modules",
             "-DskipTests",
             "-DfailIfNoTests=false",
             "-Dsurefire.failIfNoSpecifiedTests=false"
