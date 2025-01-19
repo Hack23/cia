@@ -43,16 +43,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryCurrentMembersPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = { "roleCode", "roleId", "personId", "firstName",
-			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
-
-	/** The Constant CURRENT_MEMBERS. */
-	private static final String CURRENT_MEMBERS = "Current Members";
-
-	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "detail", "active" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.POLITICIAN_VIEW_NAME, "personId");
+			UserViews.POLITICIAN_VIEW_NAME, MinistryMemberConstants.PERSON_ID);
 
 	/**
 	 * Instantiates a new ministry current members page mod content factory
@@ -74,7 +67,10 @@ public final class MinistryCurrentMembersPageModContentFactoryImpl extends Abstr
 
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Members " + viewRiksdagenMinistry.getNameId(), "Current Members of Ministry", "Details the current composition of ministry members.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            MinistryViewConstants.CURRENT_MEMBERS_TITLE + " " + viewRiksdagenMinistry.getNameId(),
+            MinistryViewConstants.CURRENT_MEMBERS_SUBTITLE,
+            MinistryViewConstants.CURRENT_MEMBERS_DESC);
 
 		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -83,7 +79,10 @@ public final class MinistryCurrentMembersPageModContentFactoryImpl extends Abstr
 				govermentRoleMemberDataContainer.findListByProperty(
 						new Object[] { viewRiksdagenMinistry.getNameId(), Boolean.TRUE },
 						ViewRiksdagenGovermentRoleMember_.detail, ViewRiksdagenGovermentRoleMember_.active),
-				CURRENT_MEMBERS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+				MinistryMemberConstants.CURRENT_MEMBERS,
+				MinistryMemberConstants.MEMBER_COLUMN_ORDER,
+				MinistryMemberConstants.MEMBER_HIDE_COLUMNS,
+				LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

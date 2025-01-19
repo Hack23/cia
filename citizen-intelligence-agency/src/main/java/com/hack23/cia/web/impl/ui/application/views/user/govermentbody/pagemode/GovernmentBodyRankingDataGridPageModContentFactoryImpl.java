@@ -46,18 +46,8 @@ import com.vaadin.ui.VerticalLayout;
 public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 		extends AbstractGovernmentBodyRankingPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = { "name", "ministry", "orgNumber",
-			"headCount", "annualWorkHeadCount" };
-
-	/** The Constant GOVERNMENT_BODIES. */
-	private static final String GOVERNMENT_BODIES = "Government bodies";
-
-	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = { "vat", "consecutiveNumber", "comment", "mCode","govermentBodyId" };
-
-	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.GOVERNMENT_BODY_VIEW_NAME, "orgNumber");
+			UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyViewConstants.ORG_NUMBER_PROPERTY);
 
 	/** The esv api. */
 	@Autowired
@@ -77,16 +67,24 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Ranking Overview", "Government Body Rankings", "Examine rankings of government bodies based on roles, efficiency, and achievements.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+				GovernmentBodyDescriptionConstants.RANKING_HEADER,
+				GovernmentBodyDescriptionConstants.RANKING_SUBTITLE,
+				GovernmentBodyDescriptionConstants.RANKING_DESC);
 
 		final String pageId = getPageId(parameters);
 
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> dataMap = esvApi.getData();
 
-		final List<GovernmentBodyAnnualSummary> list = dataMap.get(2024);
+		final List<GovernmentBodyAnnualSummary> list = dataMap.get(GovernmentBodyViewConstants.DEFAULT_YEAR);
 
-		getGridFactory().createBasicBeanItemGrid(panelContent, GovernmentBodyAnnualSummary.class, list,
-				GOVERNMENT_BODIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+		getGridFactory().createBasicBeanItemGrid(panelContent, 
+			GovernmentBodyAnnualSummary.class, 
+			list,
+			GovernmentBodyViewConstants.GOVERNMENT_BODIES,
+			GovernmentBodyViewConstants.COLUMN_ORDER,
+			GovernmentBodyViewConstants.HIDE_COLUMNS,
+			LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW,
 				ApplicationEventGroup.USER, NAME, parameters, pageId);

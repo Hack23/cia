@@ -56,15 +56,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentDecisionFlowPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-    /** The Constant TITLE. */
-    private static final String TITLE = "Parliament Decision Flow";
-
-    /** The Constant SUBTITLE. */
-    private static final String SUBTITLE = "Legislative Pipelines";
-
-    /** The Constant DESCRIPTION. */
-    private static final String DESCRIPTION = "Mapping legislative pipelines shaping national policies";
-
     /** The Constant DEFAULT_YEAR. */
     private static final String DEFAULT_YEAR = "2023/24";
 
@@ -128,7 +119,10 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
      */
     private void setupMenuAndHeader(MenuBar menuBar, Panel panel, VerticalLayout panelContent) {
         getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-        CardInfoRowUtil.createPageHeader(panel, panelContent, TITLE, SUBTITLE, DESCRIPTION);
+        CardInfoRowUtil.createPageHeader(panel, panelContent,
+            ParliamentPageTitleConstants.DECISION_FLOW_TITLE,
+            ParliamentPageTitleConstants.DECISION_FLOW_SUBTITLE,
+            ParliamentPageTitleConstants.DECISION_FLOW_DESC);
     }
 
     /**

@@ -148,7 +148,10 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Politician Performance Overview", "Politician Rankings", "Review rankings of politicians based on tenure, contributions, and performance metrics.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            PoliticianRankingDescriptionConstants.RANKING_HEADER,
+            PoliticianRankingDescriptionConstants.PERFORMANCE_SUBTITLE,
+            PoliticianRankingDescriptionConstants.PERFORMANCE_DESC);
 
 		final String pageId = getPageId(parameters);
 
@@ -157,8 +160,8 @@ public final class PoliticianRankingDataGridPageModContentFactoryImpl
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPolitician.class, politicianDataContainer.findListByProperty(
 				new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.active),
-				POLITICIANS,
-				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+				PoliticianRankingGridConstants.POLITICIANS,
+				PoliticianRankingGridConstants.COLUMN_ORDER, PoliticianRankingGridConstants.HIDE_COLUMNS, LISTENER, null, null);
 
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,

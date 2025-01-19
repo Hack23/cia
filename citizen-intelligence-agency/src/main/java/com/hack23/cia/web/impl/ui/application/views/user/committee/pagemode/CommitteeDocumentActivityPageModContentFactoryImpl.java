@@ -63,7 +63,10 @@ public final class CommitteeDocumentActivityPageModContentFactoryImpl
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Documents " + viewRiksdagenCommittee.getEmbeddedId().getDetail() , "Document Activity Overview", "Tracks and visualizes the activity associated with committee documents.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		    CommitteeViewConstants.DA_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
+		    CommitteeViewConstants.DA_TITLE, 
+		    CommitteeViewConstants.DA_DESCRIPTION);
 
 		chartDataManager.createDocumentHistoryChartByOrg(panelContent,
 				viewRiksdagenCommittee.getEmbeddedId().getOrgCode());

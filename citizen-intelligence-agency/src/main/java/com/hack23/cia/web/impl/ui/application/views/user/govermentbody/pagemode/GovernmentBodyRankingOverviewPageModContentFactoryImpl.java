@@ -50,21 +50,32 @@ public final class GovernmentBodyRankingOverviewPageModContentFactoryImpl extend
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
+        final String pageId = getPageId(parameters);
 
-		getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Rankings", "Ranking Overview", "Analyze and rank government bodies based on predefined metrics.");
+        createMenuBar(menuBar);
+        createHeader(panel, panelContent);
+        createOverviewContent(panelContent);
 
+        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW, 
+            ApplicationEventGroup.USER, NAME, parameters, pageId);
 
-		final String pageId = getPageId(parameters);
-
-		getGovernmentBodyRankingMenuItemFactory().createOverviewPage(panelContent);
-
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, pageId);
-
-		return panelContent;
-
+        return panelContent;
 	}
+
+    private void createMenuBar(final MenuBar menuBar) {
+        getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);
+    }
+
+    private void createHeader(final Panel panel, final VerticalLayout panelContent) {
+        CardInfoRowUtil.createPageHeader(panel, panelContent,
+            GovernmentBodyDescriptionConstants.RANKING_HEADER,
+            GovernmentBodyDescriptionConstants.RANKING_SUBTITLE,
+            GovernmentBodyDescriptionConstants.RANKING_DESC);
+    }
+
+    private void createOverviewContent(final VerticalLayout panelContent) {
+        getGovernmentBodyRankingMenuItemFactory().createOverviewPage(panelContent);
+    }
 
 	@Override
 	public boolean matches(final String page, final String parameters) {

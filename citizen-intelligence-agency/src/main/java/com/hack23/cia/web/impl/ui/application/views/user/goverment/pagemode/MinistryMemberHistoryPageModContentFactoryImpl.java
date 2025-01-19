@@ -49,7 +49,7 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "detail" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.POLITICIAN_VIEW_NAME, "personId");
+			UserViews.POLITICIAN_VIEW_NAME, MinistryMemberConstants.PERSON_ID);
 
 	/** The Constant MEMBER_HISTORY. */
 	private static final String MEMBER_HISTORY = "Member History";
@@ -72,7 +72,10 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Member History " + viewRiksdagenMinistry.getNameId(), "Member History", "Details the historical composition of ministry members.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			MinistryPageModeConstants.MEMBER_HISTORY_TITLE + " " + viewRiksdagenMinistry.getNameId(),
+			MinistryPageModeConstants.MEMBER_HISTORY_SUBTITLE,
+			MinistryPageModeConstants.MEMBER_HISTORY_DESC);
 
 		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
@@ -80,7 +83,10 @@ public final class MinistryMemberHistoryPageModContentFactoryImpl extends Abstra
 		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenGovermentRoleMember.class,
 				govermentRoleMemberDataContainer.getAllBy(ViewRiksdagenGovermentRoleMember_.detail,
 						viewRiksdagenMinistry.getNameId()),
-				MEMBER_HISTORY, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+				MinistryMemberConstants.MEMBER_HISTORY,
+				MinistryMemberConstants.MEMBER_COLUMN_ORDER,
+				MinistryMemberConstants.MEMBER_HIDE_COLUMNS,
+				LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

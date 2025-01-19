@@ -54,7 +54,7 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 			"percentageAbsent", "percentageAbstain", "firstName", "lastName", "party", EMBEDDED_ID_BALLOT_ID,
 			"ballotType" };
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
+			UserViews.BALLOT_VIEW_NAME, PoliticianVoteHistoryConstants.EMBEDDED_ID_BALLOT_ID);
 	private static final String[] NESTED_PROPERTIES = { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern",
 			"embeddedId.issue" };
 	/**
@@ -81,13 +81,22 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Votes History", "Voting Record", "Review the politician's voting history, including key decisions and patterns.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician, PoliticianPageTitleConstants.VOTES_HISTORY_TITLE),
+            PoliticianPageTitleConstants.VOTES_SUBTITLE,
+            PoliticianPageTitleConstants.VOTES_DESC);
 
 		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
 				ViewRiksdagenVoteDataBallotPoliticianSummary.class,
 				viewRiksdagenVoteDataBallotPoliticianSummaryChartDataManager
 						.findByValue(viewRiksdagenPolitician.getPersonId()),
-				BALLOTS, NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_BALLOT_ID, null);
+				PoliticianSectionHeaderConstants.BALLOTS,
+				PoliticianVoteHistoryConstants.NESTED_PROPERTIES,
+				PoliticianVoteHistoryConstants.COLUMN_ORDER,
+				PoliticianVoteHistoryConstants.HIDE_COLUMNS,
+				LISTENER,
+				PoliticianVoteHistoryConstants.EMBEDDED_ID_BALLOT_ID,
+				null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
 		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);

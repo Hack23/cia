@@ -50,7 +50,10 @@ public final class CountryRankingOverviewPageModContentFactoryImpl extends Abstr
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent,"Country Rankings","Ranking Overview","Visualize and compare country-level political or economic indicators.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            CountryViewConstants.RANKING_OVERVIEW_TITLE,
+            CountryViewConstants.RANKING_OVERVIEW_SUBTITLE,
+            CountryViewConstants.RANKING_OVERVIEW_DESC);
 		final String pageId = getPageId(parameters);
 		getCountryMenuItemFactory().createOverviewPage(panelContent);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COUNTRY_VIEW, ApplicationEventGroup.USER, NAME, parameters, pageId);

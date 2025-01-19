@@ -69,9 +69,9 @@ public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParli
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			    "Parliament - Risk Assessment",
-			    "Identifying Vulnerabilities",
-			    "Identifying institutional vulnerabilities and threats.");
+			    ParliamentViewConstants.RISK_ASSESSMENT_TITLE,
+			    ParliamentViewConstants.RISK_ASSESSMENT_SUBTITLE,
+			    ParliamentViewConstants.RISK_ASSESSMENT_DESC);
 
 
 		final String pageId = getPageId(parameters);

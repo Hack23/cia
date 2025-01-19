@@ -56,8 +56,10 @@ public final class CommitteeRankingPageVisitHistoryPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Rankings", "Page Visit History", "Tracks and visualizes the history of page visits for committee rankings.");
-
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			CommitteeViewConstants.CR_VISIT_TITLE_HEADER,
+			CommitteeViewConstants.CR_VISIT_TITLE,
+			CommitteeViewConstants.CR_VISIT_DESCRIPTION);
 
 		final String pageId = getPageId(parameters);
 

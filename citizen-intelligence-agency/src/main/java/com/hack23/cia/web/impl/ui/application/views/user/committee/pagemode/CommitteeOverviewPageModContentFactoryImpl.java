@@ -72,9 +72,9 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-				"Committee Overview " + viewRiksdagenCommittee.getEmbeddedId().getDetail(),
-				"Committee Details",
-				"Detailed insights into parliamentary committees and their activities.");
+				CommitteeViewConstants.OV_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),
+				CommitteeViewConstants.OV_TITLE,
+				CommitteeViewConstants.OV_DESCRIPTION);
 
 		final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);
 		panelContent.addComponent(addCommitteePageLink);
@@ -105,7 +105,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		cardContent.addComponent(attributesLayout);
 
 		// First column: Committee Profile (keep existing, but add activity level)
-		final VerticalLayout profileDetailsLayout = CardInfoRowUtil.createSectionLayout("Committee Profile");
+		final VerticalLayout profileDetailsLayout = CardInfoRowUtil.createSectionLayout(CommitteeViewConstants.OV_SECTION_PROFILE);
 
 		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Detail:", viewRiksdagenCommittee.getEmbeddedId().getDetail(),
 		        VaadinIcons.INFO_CIRCLE, "Internal identifier detail for the committee"));
@@ -119,7 +119,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		        VaadinIcons.CALENDAR_CLOCK, "Date of the committee's most recent assignment"));
 
 		// Second column: Membership Statistics
-		final VerticalLayout membershipStatsLayout = CardInfoRowUtil.createSectionLayout("Membership Statistics");
+		final VerticalLayout membershipStatsLayout = CardInfoRowUtil.createSectionLayout(CommitteeViewConstants.OV_SECTION_MEMBERSHIP);
 
 		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Current Members:", String.valueOf(viewRiksdagenCommittee.getCurrentMemberSize()),
 		        VaadinIcons.GROUP, "Total current committee members"));
@@ -135,7 +135,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 		        VaadinIcons.USERS, "Historical total of substitute positions"));
 
 		// Third column: Document Statistics
-		final VerticalLayout documentStatsLayout = CardInfoRowUtil.createSectionLayout("Document Statistics");
+		final VerticalLayout documentStatsLayout = CardInfoRowUtil.createSectionLayout(CommitteeViewConstants.OV_SECTION_DOCUMENT);
 
 		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Total Documents:", String.valueOf(viewRiksdagenCommittee.getTotalDocuments()),
 		        VaadinIcons.FILE_TEXT, "Total number of documents produced"));

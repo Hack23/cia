@@ -115,7 +115,10 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document Attachments", "Attachments Overview", "Explore and manage attachments associated with the document.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            DocumentViewConstants.ATTACHMENTS_TITLE,
+            DocumentViewConstants.ATTACHMENTS_SUBTITLE,
+            DocumentViewConstants.ATTACHMENTS_DESC);
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentAttachmentContainer() != null
 				&& documentStatusContainer.getDocumentAttachmentContainer().getDocumentAttachmentList() != null) {

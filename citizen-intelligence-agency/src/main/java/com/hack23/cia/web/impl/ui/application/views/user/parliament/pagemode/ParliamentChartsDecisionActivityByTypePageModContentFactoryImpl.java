@@ -56,15 +56,13 @@ public final class ParliamentChartsDecisionActivityByTypePageModContentFactoryIm
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-
-		final String pageId = getPageId(parameters);
-
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			    "Parliament - Decision Activity by Type",
-			    "Policy Priorities",
-			    "Comparing legislative outputs to reveal policy priorities.");
+		    ParliamentPageTitleConstants.DECISION_ACTIVITY_TITLE,
+		    ParliamentPageTitleConstants.DECISION_ACTIVITY_SUBTITLE,
+		    ParliamentPageTitleConstants.DECISION_ACTIVITY_DESC);
 
+		final String pageId = getPageId(parameters);
 
 		decisionChartDataManager.createDecisionTypeChart(panelContent);
 

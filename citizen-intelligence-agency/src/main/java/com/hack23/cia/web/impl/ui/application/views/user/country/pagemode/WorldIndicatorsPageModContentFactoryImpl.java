@@ -68,8 +68,10 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getCountryMenuItemFactory().createCountryTopicMenu(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Country Indicator", "Country Indicator",
-				"Compare key performance indicators across multiple countries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			CountryViewConstants.INDICATOR_TITLE,
+			CountryViewConstants.INDICATOR_SUBTITLE,
+			CountryViewConstants.INDICATOR_DESC);
 		final String pageId = getPageId(parameters);
 
 		final String indicator = parameters.substring(PageMode.INDICATORS.toString().length() + "/".length());
@@ -103,20 +105,23 @@ public final class WorldIndicatorsPageModContentFactoryImpl extends AbstractCoun
 			indicatorSummaryValue = indicatorSummary.get();
 
 			// Instead of formFactory, we create a card for the indicator summary
-			final Label sectionHeader = new Label("Indicator Summary");
-			sectionHeader.addStyleName("section-header");
+			final Label sectionHeader = new Label(CountryViewConstants.INDICATOR_SUMMARY_HEADER);
+			sectionHeader.addStyleName(CountryViewConstants.SECTION_HEADER_STYLE);
 			verticalLayout.addComponent(sectionHeader);
 
 			final VerticalLayout card = new VerticalLayout();
 			card.setMargin(true);
 			card.setSpacing(true);
-			card.addStyleName("indicator-summary-card");
+			card.addStyleName(CountryViewConstants.INDICATOR_SUMMARY_CARD_STYLE);
 			Responsive.makeResponsive(card);
 
 			// For each field in AS_LIST, we create a row
 			if (indicatorSummaryValue.getIndicatorName() != null) {
-				card.addComponent(CardInfoRowUtil.createInfoRow("Indicator Name:", indicatorSummaryValue.getIndicatorName(),
-						VaadinIcons.INFO_CIRCLE, "Name of the indicator"));
+				card.addComponent(CardInfoRowUtil.createInfoRow(
+					CountryViewConstants.INDICATOR_NAME_LABEL,
+					indicatorSummaryValue.getIndicatorName(),
+					VaadinIcons.INFO_CIRCLE,
+					CountryViewConstants.INDICATOR_NAME_TOOLTIP));
 			}
 			if (indicatorSummaryValue.getSourceValue() != null) {
 				card.addComponent(CardInfoRowUtil.createInfoRow("Source Value:", indicatorSummaryValue.getSourceValue(),

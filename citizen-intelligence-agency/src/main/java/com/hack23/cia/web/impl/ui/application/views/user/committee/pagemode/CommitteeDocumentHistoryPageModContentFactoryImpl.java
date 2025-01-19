@@ -44,15 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = { "rm", "madePublicDate", "id", "docId",
-			"personReferenceId", "roleDescription", "title", "subTitle", "documentType", "subType", "org", "label",
-			"numberValue", "status", "tempLabel", "orderNumber", "referenceName", "partyShortCode" };
-
-	private static final String DOCUMENTS = "Documents";
-
-	private static final String[] HIDE_COLUMNS = { "id", "numberValue", "orderNumber", "tempLabel",
-			"personReferenceId", "org", "docId", "label", "roleDescription" };
-
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.DOCUMENT_VIEW_NAME, "docId", true);
 
@@ -75,18 +66,24 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document History " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Committee Document History", "Displays the historical progression of documents managed by committees.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		    CommitteeViewConstants.DH_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
+		    CommitteeViewConstants.DH_TITLE, 
+		    CommitteeViewConstants.DH_DESCRIPTION);
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
 
-		getGridFactory()
-				.createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,
-						politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,
-								viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(" ", "").replace("_", "")
-										.trim(),
-								ViewRiksdagenPoliticianDocument_.madePublicDate),
-						DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+		getGridFactory().createBasicBeanItemGrid(panelContent,
+				ViewRiksdagenPoliticianDocument.class,
+				politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,
+						viewRiksdagenCommittee.getEmbeddedId().getOrgCode().replace(" ", "").replace("_", "")
+								.trim(),
+						ViewRiksdagenPoliticianDocument_.madePublicDate),
+				CommitteeGridConstants.DOCUMENT_HISTORY_GRID_NAME,
+				CommitteeGridConstants.DOCUMENT_HISTORY_COLUMN_ORDER,
+				CommitteeGridConstants.DOCUMENT_HISTORY_HIDDEN_COLUMNS,
+				LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

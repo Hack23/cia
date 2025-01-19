@@ -70,7 +70,10 @@ public final class DocumentReferencesPageModContentFactoryImpl extends AbstractD
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document References", "References Overview", "Analyze and review references within the document, including cross-references.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            DocumentViewConstants.REFERENCES_TITLE,
+            DocumentViewConstants.REFERENCES_SUBTITLE,
+            DocumentViewConstants.REFERENCES_DESC);
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentReferenceContainer() != null
 				&& documentStatusContainer.getDocumentReferenceContainer().getDocumentReferenceList() != null) {

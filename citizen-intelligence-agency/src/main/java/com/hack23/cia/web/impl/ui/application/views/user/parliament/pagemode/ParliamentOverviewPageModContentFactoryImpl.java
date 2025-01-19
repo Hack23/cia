@@ -49,7 +49,10 @@ public final class ParliamentOverviewPageModContentFactoryImpl extends AbstractP
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Parliament Overview", "Parliament Details", "Insights into parliamentary structure, members, and activities.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			ParliamentViewConstants.OVERVIEW_TITLE,
+			ParliamentViewConstants.OVERVIEW_SUBTITLE,
+			ParliamentViewConstants.OVERVIEW_DESC);
 
 		getParliamentMenuItemFactory().createOverviewPage(panelContent);
 

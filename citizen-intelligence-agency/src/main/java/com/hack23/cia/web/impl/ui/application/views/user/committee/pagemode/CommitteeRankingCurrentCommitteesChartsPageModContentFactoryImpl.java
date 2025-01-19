@@ -70,8 +70,10 @@ public final class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryI
 		final VerticalLayout panelContent = createPanelContent();
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Rankings", "Current Committees", "Provides comparative rankings for committees based on performance or metrics.");
-
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			CommitteeViewConstants.CR_CURRENT_TITLE_HEADER,
+			CommitteeViewConstants.CR_CURRENT_TITLE,
+			CommitteeViewConstants.CR_CURRENT_DESCRIPTION);
 
 		final String pageId = getPageId(parameters);
 

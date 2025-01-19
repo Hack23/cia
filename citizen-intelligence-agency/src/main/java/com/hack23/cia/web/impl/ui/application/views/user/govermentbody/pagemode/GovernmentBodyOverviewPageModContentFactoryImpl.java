@@ -59,7 +59,6 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		panel.setContent(panelContent);
 
 		final String pageId = getPageId(parameters);
-
 		final List<GovernmentBodyAnnualSummary> item = getItem(parameters);
 
 		if (item != null && !item.isEmpty()) {
@@ -67,69 +66,8 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 
 			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId, governmentBodyAnnualSummary.getName());
 
-			CardInfoRowUtil.createPageHeader(panel, panelContent,
-					"Government Body Overview " + governmentBodyAnnualSummary.getName(),
-					"Government Details",
-					"Explore detailed information about government bodies and their functions.");
-
-			// Create a card-style panel
-			final Panel cardPanel = new Panel();
-			cardPanel.addStyleName("politician-overview-card");
-			cardPanel.setWidth("100%");
-			cardPanel.setHeightUndefined();
-			Responsive.makeResponsive(cardPanel);
-
-			final VerticalLayout cardContent = new VerticalLayout();
-			cardContent.setMargin(true);
-			cardContent.setSpacing(true);
-			cardContent.setWidth("100%");
-			cardPanel.setContent(cardContent);
-
-			panelContent.addComponent(cardPanel);
-			panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
-
-			CardInfoRowUtil.createCardHeader(cardContent,"Government Body Information");
-
-			// Two-column layout
-			final HorizontalLayout attributesLayout = new HorizontalLayout();
-			attributesLayout.setSpacing(true);
-			attributesLayout.setWidth("100%");
-			cardContent.addComponent(attributesLayout);
-
-			// Left column: Organization Profile
-			final VerticalLayout profileDetailsLayout = CardInfoRowUtil.createSectionLayout("Organization Profile");
-
-			// Add fields for Organization Profile
-			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Name:", governmentBodyAnnualSummary.getName(), VaadinIcons.INFO_CIRCLE, "Government body name"));
-			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("ID:", governmentBodyAnnualSummary.getGovermentBodyId(), VaadinIcons.CLIPBOARD_USER, "Unique government body identifier"));
-			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Ministry:", governmentBodyAnnualSummary.getMinistry(), VaadinIcons.INSTITUTION, "Ministry overseeing the body"));
-			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Org Number:", governmentBodyAnnualSummary.getOrgNumber(), VaadinIcons.BOOK, "Official organization number"));
-			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("M Code:", governmentBodyAnnualSummary.getmCode(), VaadinIcons.CODE, "Internal M code identifier"));
-			profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("VAT:", governmentBodyAnnualSummary.getVat(), VaadinIcons.MONEY, "VAT number"));
-
-			// Right column: Annual Statistics
-			final VerticalLayout serviceStatsLayout = CardInfoRowUtil.createSectionLayout("Annual Statistics");
-
-			// Add fields for Annual Statistics
-			serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Year:", String.valueOf(governmentBodyAnnualSummary.getYear()), VaadinIcons.CALENDAR, "The reporting year"));
-			serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Annual Work Head Count:", String.valueOf(governmentBodyAnnualSummary.getAnnualWorkHeadCount()), VaadinIcons.USER_CHECK, "Annual average number of full-time equivalents"));
-			serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Head Count:", String.valueOf(governmentBodyAnnualSummary.getHeadCount()), VaadinIcons.GROUP, "Total number of staff members"));
-			serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Consecutive Number:", String.valueOf(governmentBodyAnnualSummary.getConsecutiveNumber()), VaadinIcons.LINES_LIST, "Internal consecutive reference number"));
-
-			// If comment is short and informative, display it
-			if (governmentBodyAnnualSummary.getComment() != null && !governmentBodyAnnualSummary.getComment().isEmpty()) {
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Comment:", governmentBodyAnnualSummary.getComment(), VaadinIcons.COMMENT_ELLIPSIS, "Additional remarks or notes"));
-			}
-
-			attributesLayout.addComponents(profileDetailsLayout, serviceStatsLayout);
-
-			// After the card, add the overview layout
-			final VerticalLayout overviewLayout = new VerticalLayout();
-			overviewLayout.setSizeFull();
-			panelContent.addComponent(overviewLayout);
-			panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
-
-			getGovernmentBodyMenuItemFactory().createOverviewPage(overviewLayout, pageId);
+			createPageHeader(panel, panelContent, governmentBodyAnnualSummary);
+			createMainCard(panelContent, governmentBodyAnnualSummary, pageId);
 
 			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW,
 					ApplicationEventGroup.USER, NAME, parameters, pageId);
@@ -138,11 +76,141 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		return panelContent;
 	}
 
+	private void createPageHeader(Panel panel, VerticalLayout panelContent, GovernmentBodyAnnualSummary govBody) {
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			GovernmentBodyTitleFormatter.formatTitle(govBody, GovernmentBodyDescriptionConstants.OVERVIEW_HEADER),
+			GovernmentBodyDescriptionConstants.OVERVIEW_SUBTITLE,
+			GovernmentBodyDescriptionConstants.OVERVIEW_DESC);
+	}
+
+	private void createMainCard(VerticalLayout panelContent, GovernmentBodyAnnualSummary govBody, String pageId) {
+		final Panel cardPanel = createCardPanel();
+		final VerticalLayout cardContent = createCardContent(cardPanel);
+		panelContent.addComponent(cardPanel);
+		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);
+
+		CardInfoRowUtil.createCardHeader(cardContent, GovernmentBodyViewConstants.BODY_INFO);
+
+		final HorizontalLayout attributesLayout = createAttributesLayout();
+		cardContent.addComponent(attributesLayout);
+
+		addProfileAndStatsColumns(attributesLayout, govBody);
+		addOverviewLayout(panelContent, pageId);
+	}
+
+	private Panel createCardPanel() {
+		final Panel cardPanel = new Panel();
+		cardPanel.addStyleName(GovernmentBodyViewConstants.STYLE_GOVERNMENT_BODY_CARD);
+		cardPanel.setWidth(GovernmentBodyViewConstants.WIDTH_100_PERCENT);
+		cardPanel.setHeightUndefined();
+		Responsive.makeResponsive(cardPanel);
+		return cardPanel;
+	}
+
+	private VerticalLayout createCardContent(Panel cardPanel) {
+		final VerticalLayout cardContent = new VerticalLayout();
+		cardContent.setMargin(GovernmentBodyLayoutConstants.USE_MARGIN);
+		cardContent.setSpacing(GovernmentBodyLayoutConstants.USE_SPACING);
+		cardContent.setWidth(GovernmentBodyLayoutConstants.WIDTH_100_PERCENT);
+		cardPanel.setContent(cardContent);
+		return cardContent;
+	}
+
+	private HorizontalLayout createAttributesLayout() {
+		final HorizontalLayout attributesLayout = new HorizontalLayout();
+		attributesLayout.setSpacing(GovernmentBodyLayoutConstants.USE_SPACING);
+		attributesLayout.setWidth(GovernmentBodyLayoutConstants.WIDTH_100_PERCENT);
+		return attributesLayout;
+	}
+
+	private void addProfileAndStatsColumns(HorizontalLayout attributesLayout, GovernmentBodyAnnualSummary govBody) {
+		final VerticalLayout profileLayout = CardInfoRowUtil.createSectionLayout(
+			GovernmentBodyViewConstants.ORG_PROFILE);
+		final VerticalLayout statsLayout = createStatsColumn(govBody);	
+
+		attributesLayout.addComponents(profileLayout, statsLayout);
+	}
+
+	private VerticalLayout createProfileColumn(GovernmentBodyAnnualSummary govBody) {
+		final VerticalLayout profileLayout = CardInfoRowUtil.createSectionLayout(
+			GovernmentBodyViewConstants.ORG_PROFILE);
+
+		addProfileDetails(profileLayout, govBody);
+		return profileLayout;
+	}
+
+	private void addProfileDetails(VerticalLayout profileLayout, GovernmentBodyAnnualSummary govBody) {
+		profileLayout.addComponents(
+			createProfileInfoRow(GovernmentBodyHeaderConstants.NAME_FIELD, 
+				govBody.getName(), 
+				GovernmentBodyIconConstants.INFO_ICON, 
+				GovernmentBodyHeaderConstants.NAME_DESC),
+			createProfileInfoRow(GovernmentBodyHeaderConstants.ID_FIELD, 
+				govBody.getGovermentBodyId(),
+				GovernmentBodyIconConstants.USER_ICON, 
+				GovernmentBodyHeaderConstants.ID_DESC),
+			// ...add other profile fields...
+			createProfileInfoRow(GovernmentBodyHeaderConstants.VAT_FIELD, 
+				govBody.getVat(),
+				GovernmentBodyIconConstants.MONEY_ICON, 
+				GovernmentBodyHeaderConstants.VAT_DESC)
+		);
+	}
+
+	private com.vaadin.ui.Component createProfileInfoRow(String label, String value, VaadinIcons icon, String description) {
+		return CardInfoRowUtil.createInfoRow(label, value, icon, description);
+	}
+
+	private VerticalLayout createStatsColumn(GovernmentBodyAnnualSummary govBody) {
+		final VerticalLayout statsLayout = CardInfoRowUtil.createSectionLayout(
+			GovernmentBodyViewConstants.ANNUAL_STATS);
+
+		addStatsDetails(statsLayout, govBody);
+		return statsLayout;
+	}
+
+	private void addStatsDetails(VerticalLayout statsLayout, GovernmentBodyAnnualSummary govBody) {
+        statsLayout.addComponents(
+            createStatsInfoRow(GovernmentBodyHeaderConstants.YEAR_FIELD,
+                GovernmentBodyFieldValueFormatter.formatYear(govBody.getYear()),
+                GovernmentBodyIconConstants.CALENDAR_ICON,
+                GovernmentBodyHeaderConstants.YEAR_DESC),
+            createStatsInfoRow(GovernmentBodyHeaderConstants.HEAD_COUNT_FIELD,
+                GovernmentBodyFieldValueFormatter.formatCount(govBody.getHeadCount()),
+                GovernmentBodyIconConstants.GROUP_ICON,
+                GovernmentBodyHeaderConstants.HEAD_COUNT_DESC),
+            createStatsInfoRow(GovernmentBodyHeaderConstants.ANNUAL_HEADCOUNT_FIELD,
+                GovernmentBodyFieldValueFormatter.formatCount(govBody.getAnnualWorkHeadCount()),
+                GovernmentBodyIconConstants.USER_CHECK_ICON,
+                GovernmentBodyHeaderConstants.ANNUAL_HEAD_DESC)
+        );
+
+        if (govBody.getComment() != null && !govBody.getComment().isEmpty()) {
+            statsLayout.addComponent(createStatsInfoRow(
+                GovernmentBodyHeaderConstants.COMMENT_FIELD,
+                govBody.getComment(),
+                GovernmentBodyIconConstants.COMMENT_ICON,
+                GovernmentBodyHeaderConstants.COMMENT_DESC));
+        }
+    }
+
+    private com.vaadin.ui.Component createStatsInfoRow(String label, String value, VaadinIcons icon, String description) {
+        return CardInfoRowUtil.createInfoRow(label, value, icon, description);
+    }
+
+    private void addOverviewLayout(VerticalLayout panelContent, String pageId) {
+        final VerticalLayout overviewLayout = new VerticalLayout();
+        overviewLayout.setSizeFull();
+        panelContent.addComponent(overviewLayout);
+        panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);
+        getGovernmentBodyMenuItemFactory().createOverviewPage(overviewLayout, pageId);
+    }
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		final String pageId = getPageId(parameters);
 		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
+
 				|| parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 

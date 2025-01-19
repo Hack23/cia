@@ -68,7 +68,11 @@ public final class GovernmentBodyExpenditurePageModContentFactoryImpl extends Ab
 			if (governmentBodyAnnualSummary != null) {
 				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
 
-				CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Expenditure " + governmentBodyAnnualSummary.getName(), "Expenditure Details", "Explore detailed expenditure information for government bodies.");
+				CardInfoRowUtil.createPageHeader(panel, panelContent,
+					GovernmentBodyTitleFormatter.formatTitle(governmentBodyAnnualSummary, 
+						GovernmentBodyDescriptionConstants.EXPENDITURE_HEADER),
+					GovernmentBodyDescriptionConstants.EXPENDITURE_SUBTITLE,
+					GovernmentBodyDescriptionConstants.EXPENDITURE_DESC);
 
 				governmentBodyChartDataManager.createGovernmentBodyExpenditureSummaryChart(panelContent, governmentBodyAnnualSummary.getName());
 

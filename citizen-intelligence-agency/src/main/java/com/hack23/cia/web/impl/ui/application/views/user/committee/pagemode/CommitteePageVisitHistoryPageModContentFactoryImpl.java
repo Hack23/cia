@@ -56,7 +56,10 @@ public final class CommitteePageVisitHistoryPageModContentFactoryImpl
 		getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Visits", "Page Visit History for Committees", "Tracks user interaction with committee pages for analytical purposes.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+			CommitteeViewConstants.PV_TITLE_HEADER, 
+			CommitteeViewConstants.PV_TITLE, 
+			CommitteeViewConstants.PV_DESCRIPTION);
 
 		createPageVisitHistory(NAME, pageId, panelContent);
 

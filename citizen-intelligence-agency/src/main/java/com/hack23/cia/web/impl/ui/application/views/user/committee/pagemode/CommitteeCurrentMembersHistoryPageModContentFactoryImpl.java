@@ -44,14 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = { "roleCode", "roleId", "personId", "firstName",
-			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
-
-	/** The Constant CURRENT_MEMBERS. */
-	private static final String CURRENT_MEMBERS = "Current Members";
-
-	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "detail", "active" };
-
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personId");
 
@@ -74,7 +66,10 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee History " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Current Members History", "Tracks and presents historical data about committee members' participation.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		    CommitteeViewConstants.CM_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
+		    CommitteeViewConstants.CM_TITLE, 
+		    CommitteeViewConstants.CM_DESCRIPTION);
 
 		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
@@ -83,7 +78,10 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 				committeeRoleMemberDataContainer.findListByProperty(
 						new Object[] { viewRiksdagenCommittee.getEmbeddedId().getDetail(), Boolean.TRUE },
 						ViewRiksdagenCommitteeRoleMember_.detail, ViewRiksdagenCommitteeRoleMember_.active),
-				CURRENT_MEMBERS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+				CommitteeGridConstants.CURRENT_MEMBERS_GRID_NAME,
+				CommitteeGridConstants.MEMBER_HISTORY_COLUMN_ORDER,
+				CommitteeGridConstants.CURRENT_MEMBERS_HIDDEN_COLUMNS,
+				LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

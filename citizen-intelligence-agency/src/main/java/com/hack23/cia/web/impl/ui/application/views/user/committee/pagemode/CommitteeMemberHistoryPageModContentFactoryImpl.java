@@ -43,11 +43,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeMemberHistoryPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = { "roleCode", "roleId", "personId", "firstName",
-			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
-
-	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "detail" };
-
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personId");
 
@@ -73,7 +68,10 @@ public final class CommitteeMemberHistoryPageModContentFactoryImpl extends Abstr
 
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Member History " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Committee Member Participation History", "Analyzes and presents participation trends for committee members.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		    CommitteeViewConstants.MH_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
+		    CommitteeViewConstants.MH_TITLE, 
+		    CommitteeViewConstants.MH_DESCRIPTION);
 
 		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);
@@ -81,7 +79,10 @@ public final class CommitteeMemberHistoryPageModContentFactoryImpl extends Abstr
 		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenCommitteeRoleMember.class,
 				committeeRoleMemberDataContainer.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail,
 						viewRiksdagenCommittee.getEmbeddedId().getDetail()),
-				MEMBER_HISTORY, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+				CommitteeGridConstants.MEMBER_HISTORY_GRID_NAME, 
+				CommitteeGridConstants.MEMBER_HISTORY_COLUMN_ORDER,
+				CommitteeGridConstants.MEMBER_HISTORY_HIDDEN_COLUMNS,
+				LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

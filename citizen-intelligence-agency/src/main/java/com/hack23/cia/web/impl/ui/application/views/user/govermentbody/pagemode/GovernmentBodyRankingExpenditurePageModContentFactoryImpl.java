@@ -60,7 +60,10 @@ public final class GovernmentBodyRankingExpenditurePageModContentFactoryImpl ext
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Expenditure", "Expenditure Details", "Explore detailed expenditure information for government bodies.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            GovernmentBodyDescriptionConstants.EXPENDITURE_HEADER,
+            GovernmentBodyDescriptionConstants.EXPENDITURE_SUBTITLE,
+            GovernmentBodyDescriptionConstants.EXPENDITURE_DESC);
 
 		governmentBodyChartDataManager.createGovernmentBodyExpenditureSummaryChart(panelContent);
 

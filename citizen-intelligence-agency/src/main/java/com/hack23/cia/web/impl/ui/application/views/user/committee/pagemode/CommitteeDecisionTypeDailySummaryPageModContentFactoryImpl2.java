@@ -63,7 +63,10 @@ public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Daily Committee Decisions " + viewRiksdagenCommittee.getEmbeddedId().getDetail() , "Summary of Decision Types", "Displays a summary of daily committee decision-making activity.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		    CommitteeViewConstants.DD_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
+		    CommitteeViewConstants.DD_TITLE, 
+		    CommitteeViewConstants.DD_DESCRIPTION);
 
 		chartDataManager.createDecisionTypeChart(panelContent, viewRiksdagenCommittee.getEmbeddedId().getOrgCode());
 

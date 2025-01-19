@@ -70,7 +70,10 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document Details", "Details Overview", "Comprehensive details about the document, including key attributes and content.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            DocumentViewConstants.DETAILS_TITLE,
+            DocumentViewConstants.DETAILS_SUBTITLE,
+            DocumentViewConstants.DETAILS_DESC);
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentDetailContainer() != null
 				&& documentStatusContainer.getDocumentDetailContainer().getDocumentDetailList() != null) {

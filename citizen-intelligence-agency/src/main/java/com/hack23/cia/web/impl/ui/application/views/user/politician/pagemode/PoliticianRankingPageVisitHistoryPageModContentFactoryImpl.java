@@ -57,10 +57,9 @@ public final class PoliticianRankingPageVisitHistoryPageModContentFactoryImpl
 
 		getPoliticianRankingMenuItemFactory().createPoliticianRankingMenuBar(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			    "Politician Ranking - Page Visit History",
-			    "Engagement Trends",
-			    "Viewing interest trends to understand shifting political focus.");
-
+		    PoliticianRankingDescriptionConstants.VISIT_HISTORY_HEADER,
+		    PoliticianRankingDescriptionConstants.VISIT_HISTORY_SUBTITLE,
+		    PoliticianRankingDescriptionConstants.VISIT_HISTORY_DESC);
 
 		final String pageId = getPageId(parameters);
 

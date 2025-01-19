@@ -59,7 +59,7 @@ public final class GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImp
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Body Ranking Page Visit History", "Page Visit History", "Track the visit history of government body ranking pages.");
+		createHeader(panel, panelContent);
 
 		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 
@@ -68,6 +68,13 @@ public final class GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImp
 
 		return panelContent;
 
+	}
+
+	private void createHeader(Panel panel, VerticalLayout panelContent) {
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            GovernmentBodyDescriptionConstants.VISIT_HISTORY_HEADER,
+            GovernmentBodyDescriptionConstants.VISIT_HISTORY_SUBTITLE,
+            GovernmentBodyDescriptionConstants.VISIT_HISTORY_DESC);
 	}
 
 	@Override

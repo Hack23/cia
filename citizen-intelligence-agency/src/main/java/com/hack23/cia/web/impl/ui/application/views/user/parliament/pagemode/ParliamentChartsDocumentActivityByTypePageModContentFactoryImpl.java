@@ -59,9 +59,9 @@ public final class ParliamentChartsDocumentActivityByTypePageModContentFactoryIm
 		final VerticalLayout panelContent = createPanelContent();
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			    "Parliament - Document Activity by Type",
-			    "Information Dynamics",
-			    "Uncovering how information shapes legislative agendas.");
+		    ParliamentViewConstants.DOC_ACTIVITY_TITLE,
+		    ParliamentViewConstants.DOC_ACTIVITY_SUBTITLE,
+		    ParliamentViewConstants.DOC_ACTIVITY_DESC);
 
 
 		final String pageId = getPageId(parameters);

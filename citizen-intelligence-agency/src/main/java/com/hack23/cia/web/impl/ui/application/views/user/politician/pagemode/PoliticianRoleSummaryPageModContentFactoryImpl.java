@@ -109,22 +109,22 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setSizeFull();
 
-		layout.addComponent(new Label(TOTAL_ASSIGNMENTS + assignmentList.size()));
+		layout.addComponent(new Label(PoliticianViewConstants.TOTAL_ASSIGNMENTS + assignmentList.size()));
 
 		if (viewRiksdagenPolitician != null) {
-
-			layout.addComponent(new Label(GOVERNMENT_EXPERIENCE
+			layout.addComponent(new Label(PoliticianViewConstants.GOVERNMENT_EXPERIENCE
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedGovernment())));
 			layout.addComponent(new Label(
-					SPEAKER_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));
-			layout.addComponent(new Label(COMMITTEE_EXPERIENCE
+					PoliticianViewConstants.SPEAKER_EXPERIENCE
+					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));
+			layout.addComponent(new Label(PoliticianViewConstants.COMMITTEE_EXPERIENCE
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedCommittee())));
 			layout.addComponent(
-					new Label(EU_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));
-			layout.addComponent(new Label(PARLIAMENT_EXPERIENCE
+					new Label(PoliticianViewConstants.EU_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));
+			layout.addComponent(new Label(PoliticianViewConstants.PARLIAMENT_EXPERIENCE
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParliament())));
 			layout.addComponent(new Label(
-					PARTY_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));
+					PoliticianViewConstants.PARTY_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));
 		}
 
 		roleSummaryLayoutTabsheet.addComponent(layout);

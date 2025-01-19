@@ -98,7 +98,10 @@ public final class CommitteeRankingDataGridPageModContentFactoryImpl extends Abs
 		final VerticalLayout panelContent = createPanelContent();
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
-        CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Ranking Overview", "Committee Rankings", "Analyze committee rankings with a focus on membership, performance, and activity metrics.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			CommitteeViewConstants.CR_GRID_TITLE_HEADER,
+			CommitteeViewConstants.CR_GRID_TITLE,
+			CommitteeViewConstants.CR_GRID_DESCRIPTION);
 
 		final String pageId = getPageId(parameters);
 

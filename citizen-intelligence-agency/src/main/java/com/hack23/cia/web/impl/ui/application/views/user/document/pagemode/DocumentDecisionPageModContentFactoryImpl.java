@@ -71,7 +71,12 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document Decision", "Decision Overview", "Review decisions made regarding the document and their implications.");
+// ...existing code...
+        CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            DocumentViewConstants.DECISION_TITLE,
+            DocumentViewConstants.DECISION_SUBTITLE,
+            DocumentViewConstants.DECISION_DESC);
+// ...existing code...
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentProposal() != null
 				&& documentStatusContainer.getDocumentProposal().getProposal() != null) {

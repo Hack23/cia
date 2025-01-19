@@ -61,7 +61,10 @@ public final class MinistryGovernmentBodiesExpenditureModContentFactoryImpl exte
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Expenditure Analysis " + viewRiksdagenMinistry.getNameId(), "Government Bodies Expenditure Analysis", "Provides detailed expenditure data for government bodies under ministries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            MinistryViewConstants.EXPENDITURE_TITLE + " " + viewRiksdagenMinistry.getNameId(),
+            MinistryViewConstants.EXPENDITURE_SUBTITLE,
+            MinistryViewConstants.EXPENDITURE_DESC);
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyExpenditureSummaryChart(panelContent,
 				viewRiksdagenMinistry.getNameId());
