@@ -57,10 +57,9 @@ public final class ParliamentPageVisitHistoryPageModContentFactoryImpl
 
 		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			    "Parliament - Page Visit History",
-			    "Engagement Over Time",
-			    "Tracing shifts in engagement with legislative proceedings.");
-
+			ParliamentViewConstants.VISIT_HISTORY_TITLE,
+			ParliamentViewConstants.VISIT_HISTORY_SUBTITLE,
+			ParliamentViewConstants.VISIT_HISTORY_DESC);
 
 		final String pageId = getPageId(parameters);
 

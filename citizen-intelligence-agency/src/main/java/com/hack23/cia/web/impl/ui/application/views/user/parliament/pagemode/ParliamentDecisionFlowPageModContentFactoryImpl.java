@@ -128,7 +128,10 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
      */
     private void setupMenuAndHeader(MenuBar menuBar, Panel panel, VerticalLayout panelContent) {
         getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
-        CardInfoRowUtil.createPageHeader(panel, panelContent, TITLE, SUBTITLE, DESCRIPTION);
+        CardInfoRowUtil.createPageHeader(panel, panelContent,
+            ParliamentViewConstants.DECISION_FLOW_TITLE,
+            ParliamentViewConstants.DECISION_FLOW_SUBTITLE,
+            ParliamentViewConstants.DECISION_FLOW_DESC);
     }
 
     /**
