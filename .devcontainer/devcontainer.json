@@ -87,11 +87,14 @@
           "args": [
             "mvn",
             "-B",
+            "--file",
+            "pom.xml",
             "clean",
             "install",
-            "-DforkMode=once",
             "-pl",
-            "!cia-dist-deb",
+            "!com.hack23.cia:cia-dist-deb",
+            "-Prelease-site,all-modules",
+            "-DforkMode=once",
             "-Dtest=!**ITest*,!**DocumentationTest*",
             "-Dmaven.test.failure.ignore=true",
             "-DfailIfNoTests=false",
@@ -114,9 +117,11 @@
             "clean",
             "install",
             "-pl",
-            "!cia-dist-deb",
+            "!com.hack23.cia:cia-dist-deb,!com.hack23.cia:cia-dist-cloudformation",
+            "-Pall-modules",
             "-DskipTests",
-            "-DfailIfNoTests=false"
+            "-DfailIfNoTests=false",
+            "-Dsurefire.failIfNoSpecifiedTests=false"
           ],
           "options": {
             "cwd": "${workspaceFolder}/parent-pom",

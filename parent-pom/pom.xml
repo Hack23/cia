@@ -9,14 +9,6 @@
   <description>CIA Parent pom</description>
   <url>github:https://hack23.github.io/cia/parent-pom/</url>
   <inceptionYear>2008</inceptionYear>
-  <modules>
-    <module>../testfoundation</module>
-    <module>../parent-model-pom</module>
-    <module>../parent-service-pom</module>
-    <module>../parent-web-pom</module>
-    <module>../cia-dist-deb</module>
-    <module>../cia-dist-cloudformation</module>
-    </modules> 
   <organization>
     <name>www.hack23.com</name>
     <url>http://www.hack23.com</url>
@@ -44,6 +36,14 @@
   <prerequisites>
     <maven>3.9.1</maven>
   </prerequisites>
+  <modules>
+    <module>../testfoundation</module>
+    <module>../parent-model-pom</module>
+    <module>../parent-service-pom</module>
+    <module>../parent-web-pom</module>
+    <module>../cia-dist-deb</module>
+    <module>../cia-dist-cloudformation</module>
+  </modules>
   <scm>
     <connection>scm:git:ssh://git@github.com/Hack23/cia.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Hack23/cia.git</developerConnection>
