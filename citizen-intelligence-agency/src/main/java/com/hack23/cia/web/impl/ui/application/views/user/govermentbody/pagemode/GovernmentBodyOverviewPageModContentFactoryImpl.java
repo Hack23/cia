@@ -126,7 +126,8 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	private void addProfileAndStatsColumns(HorizontalLayout attributesLayout, GovernmentBodyAnnualSummary govBody) {
 		final VerticalLayout profileLayout = CardInfoRowUtil.createSectionLayout(
 			GovernmentBodyViewConstants.ORG_PROFILE);
-		final VerticalLayout statsLayout = createStatsColumn(govBody);
+		final VerticalLayout statsLayout = createStatsColumn(govBody);	
+
 		attributesLayout.addComponents(profileLayout, statsLayout);
 	}
 

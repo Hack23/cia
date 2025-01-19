@@ -18,6 +18,8 @@ public interface MinistryViewConstants extends
     String DOCUMENT_HISTORY_TITLE = "Document History";
     String CURRENT_MEMBERS_TITLE = "Ministry Members";
     String EXPENDITURE_TITLE = "Expenditure Analysis";
+    String MINISTRY_SERVICE_STATS_TITLE = "Service Statistics";
+    String MINISTRY_DOCUMENT_STATS_TITLE = "Document Statistics";
     
     // Subtitles
     String ROLE_GHANT_SUBTITLE = "Role Timeline";
@@ -38,4 +40,14 @@ public interface MinistryViewConstants extends
     // Grid Config
     int DEFAULT_PAGE_SIZE = 40;
     boolean HIDE_DETAILS = true;
+    
+    // Labels
+    String MINISTRY_CURRENT_MEMBERS_LABEL = "Current Members:";
+    String MINISTRY_ACTIVITY_LEVEL_LABEL = "Activity Level:";
+    String MINISTRY_LAST_ASSIGNMENT_LABEL = "Last Assignment:";
+    String MINISTRY_TOTAL_DAYS_SERVED_LABEL = "Total Days Served:";
+    String MINISTRY_DOCUMENTS_LAST_YEAR_LABEL = "Documents Last Year:";
+    String MINISTRY_AVG_DOCUMENTS_MEMBER_LABEL = "Avg Documents/Member:";
+    String MINISTRY_TOTAL_PROPOSITIONS_LABEL = "Total Propositions:";
+    String MINISTRY_GOVERNMENT_BILLS_LABEL = "Government Bills:";
 }

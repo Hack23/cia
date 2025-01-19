@@ -1,4 +1,3 @@
-
 package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
 public interface MinistryDescriptionConstants {
@@ -12,4 +11,14 @@ public interface MinistryDescriptionConstants {
     String HEADCOUNT_DESC = "Provides detailed headcount data for government bodies under ministries.";
     String INCOME_DESC = "Provides detailed income data for government bodies under ministries.";
     String VISIT_HISTORY_DESC = "Tracks and visualizes the history of page visits for ministries.";
+
+    // Tooltips/Descriptions
+    String CURRENT_MINISTRY_MEMBERS_DESC = "Number of current ministry members";
+    String ACTIVITY_LEVEL_DESC = "Ministry's current activity level";
+    String LAST_ASSIGNMENT_DESC = "Date of most recent assignment";
+    String TOTAL_DAYS_SERVED_DESC = "Total days of ministry service";
+    String DOCUMENTS_LAST_YEAR_DESC = "Documents produced in the last year";
+    String AVG_DOCUMENTS_MEMBER_DESC = "Average documents per ministry member";
+    String TOTAL_PROPOSITIONS_DESC = "Total number of propositions";
+    String GOVERNMENT_BILLS_DESC = "Total number of government bills";
 }

@@ -113,12 +113,12 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         createProfileDetails(profileDetailsLayout, viewRiksdagenMinistry);
 
         // Column 2: Service Statistics
-        final VerticalLayout serviceStatsLayout = CardInfoRowUtil.createSectionLayout("Service Statistics");
+        final VerticalLayout serviceStatsLayout = CardInfoRowUtil.createSectionLayout(MinistryViewConstants.MINISTRY_SERVICE_STATS_TITLE);
 
         createServiceStatisticsSection(serviceStatsLayout, viewRiksdagenMinistry);
 
         // Column 3: Document Statistics
-        final VerticalLayout documentStatsLayout = CardInfoRowUtil.createSectionLayout("Document Statistics");
+        final VerticalLayout documentStatsLayout = CardInfoRowUtil.createSectionLayout(MinistryViewConstants.MINISTRY_DOCUMENT_STATS_TITLE);
 
         createDocumentStatisticsSection(documentStatsLayout, viewRiksdagenMinistry);
 
@@ -152,10 +152,12 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
             MinistryIconConstants.FLAG_ICON,
             MinistryFieldConstants.STATUS_DESC));
 
-        layout.addComponent(CardInfoRowUtil.createInfoRow("Current Members:", String.valueOf(ministry.getCurrentMemberSize()),
-            VaadinIcons.GROUP, "Number of current ministry members"));
-        layout.addComponent(CardInfoRowUtil.createInfoRow("Activity Level:", ministry.getActivityLevel(),
-            VaadinIcons.CHART, "Ministry's current activity level"));
+        layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_CURRENT_MEMBERS_LABEL,
+            String.valueOf(ministry.getCurrentMemberSize()), VaadinIcons.GROUP, 
+            MinistryDescriptionConstants.CURRENT_MINISTRY_MEMBERS_DESC));
+        layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_ACTIVITY_LEVEL_LABEL,
+            ministry.getActivityLevel(), VaadinIcons.CHART, 
+            MinistryDescriptionConstants.ACTIVITY_LEVEL_DESC));
     }
 
  
@@ -172,10 +174,12 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
             MinistryIconConstants.CALENDAR_ICON,
             MinistryStatisticsConstants.FIRST_DATE_DESC));
 
-        layout.addComponent(CardInfoRowUtil.createInfoRow("Last Assignment:", String.valueOf(ministry.getLastAssignmentDate()),
-            VaadinIcons.CALENDAR_CLOCK, "Date of most recent assignment"));
-        layout.addComponent(CardInfoRowUtil.createInfoRow("Total Days Served:", String.valueOf(ministry.getTotalDaysServed()),
-            VaadinIcons.CLOCK, "Total days of ministry service"));
+        layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_LAST_ASSIGNMENT_LABEL,
+            String.valueOf(ministry.getLastAssignmentDate()), VaadinIcons.CALENDAR_CLOCK, 
+            MinistryDescriptionConstants.LAST_ASSIGNMENT_DESC));
+        layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_TOTAL_DAYS_SERVED_LABEL,
+            String.valueOf(ministry.getTotalDaysServed()), VaadinIcons.CLOCK, 
+            MinistryDescriptionConstants.TOTAL_DAYS_SERVED_DESC));
     }
 
     private void createDocumentStatisticsSection(VerticalLayout layout, ViewRiksdagenMinistry ministry) {
@@ -191,14 +195,18 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
             MinistryIconConstants.CHART_ICON,
             MinistryStatisticsConstants.AVG_DOCS_DESC));
 
-        layout.addComponent(CardInfoRowUtil.createInfoRow("Documents Last Year:", String.valueOf(ministry.getDocumentsLastYear()),
-            VaadinIcons.FILE_O, "Documents produced in the last year"));
-        layout.addComponent(CardInfoRowUtil.createInfoRow("Avg Documents/Member:", String.format(Locale.ENGLISH,"%.1f", ministry.getAvgDocumentsPerMember()),
-            VaadinIcons.CHART_LINE, "Average documents per ministry member"));
-        layout.addComponent(CardInfoRowUtil.createInfoRow("Total Propositions:", String.valueOf(ministry.getTotalPropositions()),
-            VaadinIcons.FILE_PRESENTATION, "Total number of propositions"));
-        layout.addComponent(CardInfoRowUtil.createInfoRow("Government Bills:", String.valueOf(ministry.getTotalGovernmentBills()),
-            VaadinIcons.FILE_TEXT_O, "Total number of government bills"));
+        layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_DOCUMENTS_LAST_YEAR_LABEL,
+            String.valueOf(ministry.getDocumentsLastYear()), VaadinIcons.FILE_O, 
+            MinistryDescriptionConstants.DOCUMENTS_LAST_YEAR_DESC));
+        layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_AVG_DOCUMENTS_MEMBER_LABEL,
+            String.format(Locale.ENGLISH,"%.1f", ministry.getAvgDocumentsPerMember()),
+            VaadinIcons.CHART_LINE, MinistryDescriptionConstants.AVG_DOCUMENTS_MEMBER_DESC));
+        layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_TOTAL_PROPOSITIONS_LABEL,
+            String.valueOf(ministry.getTotalPropositions()), VaadinIcons.FILE_PRESENTATION, 
+            MinistryDescriptionConstants.TOTAL_PROPOSITIONS_DESC));
+        layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_GOVERNMENT_BILLS_LABEL,
+            String.valueOf(ministry.getTotalGovernmentBills()), VaadinIcons.FILE_TEXT_O, 
+            MinistryDescriptionConstants.GOVERNMENT_BILLS_DESC));
     }
 
     /**
