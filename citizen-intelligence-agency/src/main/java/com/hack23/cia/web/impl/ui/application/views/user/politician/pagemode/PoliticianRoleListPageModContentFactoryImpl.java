@@ -44,11 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
-	private static final String ASSIGNMENTS = "Assignments";
-	private static final String[] COLUMN_ORDER = { "roleCode", "assignmentType", "status", "detail",
-			"orgCode", "fromDate", "toDate" };
-	private static final String[] HIDE_COLUMNS = { "hjid", "intressentId", "orderNumber", "orgCode" };
-
 	/**
 	 * Instantiates a new politician role list page mod content factory impl.
 	 */

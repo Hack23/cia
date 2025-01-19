@@ -53,7 +53,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 			"personReferenceId", "org", "roleDescription", "label", "subTitle", "docId" };
 
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
-			UserViews.DOCUMENT_VIEW_NAME, "docId", true);
+			UserViews.DOCUMENT_VIEW_NAME, MinistryDocumentConstants.DOC_ID, true);
 
 	/**
 	 * Instantiates a new ministry document history page mod content factory
@@ -74,7 +74,10 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document History " + viewRiksdagenMinistry.getNameId(), "Ministry Document History", "Displays the historical progression of documents managed by ministries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            MinistryViewConstants.DOCUMENT_HISTORY_TITLE + " " + viewRiksdagenMinistry.getNameId(),
+            MinistryViewConstants.DOCUMENT_HISTORY_SUBTITLE,
+            MinistryViewConstants.DOCUMENT_HISTORY_DESC);
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -82,7 +85,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPoliticianDocument.class,
 				politicianDocumentDataContainer.findOrderedListByProperty(ViewRiksdagenPoliticianDocument_.org,
 						viewRiksdagenMinistry.getNameId(), ViewRiksdagenPoliticianDocument_.madePublicDate),
-				DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+				MinistryDocumentConstants.DOCUMENTS, MinistryDocumentConstants.COLUMN_ORDER, MinistryDocumentConstants.HIDE_COLUMNS, LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
