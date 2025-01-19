@@ -1,4 +1,83 @@
 /*
+package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+
+import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import org.springframework.stereotype.Component;
+
+@Component
+public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+
+    @Override
+    public Component createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+        final VerticalLayout panelContent = createPanelContent();
+        panel.setContent(panelContent);
+
+        getGridFactory().createBasicChart(panelContent,
+                DocumentViewConstants.ACTIVITY_TITLE,
+                DocumentViewConstants.ACTIVITY_DESC,
+                createDocumentActivityChart(documentChartDataManager));
+
+        final HorizontalLayout horizontalLayout = new HorizontalLayout();
+        horizontalLayout.setSizeFull();
+
+        final Chart documentTypeChart = createDocumentTypeChart(documentChartDataManager);
+        getGridFactory().createBasicChart(horizontalLayout,
+                DocumentViewConstants.OVERVIEW_SECTION_DOC_PROFILE,
+                DocumentViewConstants.OVERVIEW_DESC,
+                documentTypeChart);
+
+        final Chart statusChart = createDocumentStatusChart(documentChartDataManager);
+        getGridFactory().createBasicChart(horizontalLayout,
+                DocumentViewConstants.OVERVIEW_SECTION_METADATA,
+                DocumentViewConstants.OVERVIEW_DESC,
+                statusChart);
+
+        panelContent.addComponent(horizontalLayout);
+
+        return panelContent;
+    }
+
+    private Chart createDocumentTypeChart(final DocumentChartDataManager documentChartDataManager) {
+        final Chart chart = new Chart(ChartType.PIE);
+        final Configuration conf = chart.getConfiguration();
+        conf.setTitle(DocumentViewConstants.FIELD_DOC_TYPE);
+
+        final DataSeries series = new DataSeries();
+        series.setName(DocumentViewConstants.FIELD_DOC_TYPE);
+        series.setData(documentChartDataManager.getDocumentTypeData());
+        conf.addSeries(series);
+
+        final PlotOptionsPie plotOptions = new PlotOptionsPie();
+        plotOptions.setAllowPointSelect(true);
+        plotOptions.setCursor(Cursor.POINTER);
+        plotOptions.setDataLabels(new DataLabels(true));
+        conf.setPlotOptions(plotOptions);
+
+        return chart;
+    }
+
+    private Chart createDocumentStatusChart(final DocumentChartDataManager documentChartDataManager) {
+        final Chart chart = new Chart(ChartType.PIE);
+        final Configuration conf = chart.getConfiguration();
+        conf.setTitle(DocumentViewConstants.FIELD_STATUS);
+
+        final DataSeries series = new DataSeries();
+        series.setName(DocumentViewConstants.FIELD_STATUS);
+        series.setData(documentChartDataManager.getDocumentStatusData());
+        conf.addSeries(series);
+
+        final PlotOptionsPie plotOptions = new PlotOptionsPie();
+        plotOptions.setAllowPointSelect(true);
+        plotOptions.setCursor(Cursor.POINTER);
+        plotOptions.setDataLabels(new DataLabels(true));
+        conf.setPlotOptions(plotOptions);
+
+        return chart;
+    }
+}
  * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

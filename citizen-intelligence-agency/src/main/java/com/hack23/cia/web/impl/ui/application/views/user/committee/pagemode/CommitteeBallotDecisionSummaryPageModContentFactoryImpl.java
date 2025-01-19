@@ -88,7 +88,10 @@ extends AbstractCommitteePageModContentFactoryImpl {
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Ballot Decision Summary  " + viewRiksdagenCommittee.getEmbeddedId().getDetail(), "Ballot Decision Summary", "Summary of ballot decisions made by the specified committee.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		    CommitteeViewConstants.BD_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
+		    CommitteeViewConstants.BD_TITLE, 
+		    CommitteeViewConstants.BD_DESCRIPTION);
 
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 						.getDataContainer(ViewRiksdagenCommitteeBallotDecisionSummary.class);

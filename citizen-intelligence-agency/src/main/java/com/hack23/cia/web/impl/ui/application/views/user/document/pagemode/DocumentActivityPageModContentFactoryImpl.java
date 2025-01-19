@@ -64,14 +64,17 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 
 		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+			DocumentViewConstants.ACTIVITY_TITLE,
+			DocumentViewConstants.ACTIVITY_SUBTITLE,
+			DocumentViewConstants.ACTIVITY_DESC);
+
 		final DataContainer<DocumentStatusContainer, String> documentStatusContainerDataContainer = getApplicationManager()
 				.getDataContainer(DocumentStatusContainer.class);
 
 		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
-
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document Activity", "Activity Overview", "Analyze document activities, including modifications, approvals, and related events.");
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentActivityContainer() != null
 				&& documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {

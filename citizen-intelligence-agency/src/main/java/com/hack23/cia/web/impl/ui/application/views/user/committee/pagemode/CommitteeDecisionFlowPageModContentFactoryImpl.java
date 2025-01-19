@@ -125,9 +125,9 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
             String pageId, ViewRiksdagenCommittee committee) {
         getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
         CardInfoRowUtil.createPageHeader(panel, panelContent,
-            "Committee Decision Flow " + committee.getEmbeddedId().getDetail(),
-            "Decision Flow",
-            "Analyze decision-making processes within committees."
+            CommitteeViewConstants.DF_TITLE_HEADER + committee.getEmbeddedId().getDetail(),
+            CommitteeViewConstants.DF_TITLE,
+            CommitteeViewConstants.DF_DESCRIPTION
         );
     }
 
@@ -170,7 +170,7 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
      * @param pageId the page id
      */
     private void addYearSelector(VerticalLayout panelContent, String selectedYear, String pageId) {
-        final ComboBox<String> yearSelector = new ComboBox<>(YEAR_SELECTOR_LABEL, createAvailableYears());
+        final ComboBox<String> yearSelector = new ComboBox<>(CommitteeViewConstants.DF_YEAR_SELECTOR, createAvailableYears());
         yearSelector.setWidth("200px");
         yearSelector.setEmptySelectionAllowed(false);
         yearSelector.setSelectedItem(selectedYear);

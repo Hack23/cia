@@ -134,16 +134,16 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			String mainTitle;
 			String subTitle;
 			if (useDecisionSummaries) {
-				mainTitle = "Ballot Overview " + decisionSummaries.get(0).getTitle() + " - "
+				mainTitle = BallotViewConstants.OVERVIEW_MAIN_TITLE_PREFIX + decisionSummaries.get(0).getTitle() + " - "
 						+ decisionSummaries.get(0).getSubTitle();
 			} else {
 				final ViewRiksdagenVoteDataBallotSummary firstBallot = ballots.get(FIRST_OBJECT);
-				mainTitle = "Ballot Overview " + firstBallot.getEmbeddedId().getConcern();
+				mainTitle = BallotViewConstants.OVERVIEW_MAIN_TITLE_PREFIX + firstBallot.getEmbeddedId().getConcern();
 			}
-			subTitle = "Ballot Details";
+			subTitle = BallotViewConstants.OVERVIEW_CARD_BALLOT_INFO;
 
 			CardInfoRowUtil.createPageHeader(panel, panelContent, mainTitle, subTitle,
-					"Explore and analyze ballot results and voting statistics.");
+					BallotViewConstants.OVERVIEW_PAGE_DESCRIPTION);
 
 			// Card panel
 			final Panel cardPanel = new Panel();
@@ -161,7 +161,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			panelContent.addComponent(cardPanel);
 			panelContent.setExpandRatio(cardPanel, ContentRatio.GRID);
 
-			CardInfoRowUtil.createCardHeader(cardContent,"Ballot Information");
+			CardInfoRowUtil.createCardHeader(cardContent, BallotViewConstants.OVERVIEW_CARD_BALLOT_INFO);
 
 			// Two-column layout
 			final HorizontalLayout attributesLayout = new HorizontalLayout();
@@ -170,10 +170,10 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			cardContent.addComponent(attributesLayout);
 
 			// Left column: Ballot Profile (Textual and identifying attributes)
-			final VerticalLayout profileDetailsLayout = CardInfoRowUtil.createSectionLayout("Ballot Profile");
+			final VerticalLayout profileDetailsLayout = CardInfoRowUtil.createSectionLayout(BallotViewConstants.OVERVIEW_CARD_BALLOT_PROFILE);
 
 			// Right column: Voting Statistics (Numeric and outcome attributes)
-			final VerticalLayout serviceStatsLayout = CardInfoRowUtil.createSectionLayout("Voting Statistics");
+			final VerticalLayout serviceStatsLayout = CardInfoRowUtil.createSectionLayout(BallotViewConstants.OVERVIEW_CARD_VOTING_STATS);
 
 			attributesLayout.addComponents(profileDetailsLayout, serviceStatsLayout);
 
@@ -181,16 +181,16 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 			if (useDecisionSummaries) {
 				final ViewRiksdagenCommitteeBallotDecisionSummary ds = decisionSummaries.get(FIRST_OBJECT);
 				// Show essential profile fields
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Vote Date:", String.valueOf(ds.getVoteDate()), VaadinIcons.CALENDAR, "Date of the vote"));
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Title:", ds.getTitle(), VaadinIcons.FILE_TEXT_O, "Title of the ballot"));
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("SubTitle:", ds.getSubTitle(), VaadinIcons.FILE_TEXT, "Subtitle of the ballot"));
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Decision Type:", ds.getDecisionType(), VaadinIcons.QUESTION_CIRCLE, "Type of decision"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_VOTE_DATE, String.valueOf(ds.getVoteDate()), VaadinIcons.CALENDAR, "Date of the vote"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_TITLE, ds.getTitle(), VaadinIcons.FILE_TEXT_O, "Title of the ballot"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_SUBTITLE, ds.getSubTitle(), VaadinIcons.FILE_TEXT, "Subtitle of the ballot"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_DECISION_TYPE, ds.getDecisionType(), VaadinIcons.QUESTION_CIRCLE, "Type of decision"));
 
 				// Stats fields
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Concern:", ds.getEmbeddedId().getConcern(), VaadinIcons.CLIPBOARD, "Concern or topic of the ballot"));
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Ballot Type:", ds.getBallotType(), VaadinIcons.BULLETS, "Type of ballot"));
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Winner:", ds.getWinner(), VaadinIcons.TROPHY, "Winner or outcome"));
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Approved:", String.valueOf(ds.isApproved()), VaadinIcons.CHECK, "Whether the proposal was approved"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_CONCERN, ds.getEmbeddedId().getConcern(), VaadinIcons.CLIPBOARD, "Concern or topic of the ballot"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_BALLOT_TYPE, ds.getBallotType(), VaadinIcons.BULLETS, "Type of ballot"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_WINNER, ds.getWinner(), VaadinIcons.TROPHY, "Winner or outcome"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_APPROVED, String.valueOf(ds.isApproved()), VaadinIcons.CHECK, "Whether the proposal was approved"));
 
 				// Optional: If still too crowded, remove againstProposal fields
 				// serviceStatsLayout.addComponent(createInfoRow("Against Proposal Parties:", ds.getAgainstProposalParties(), VaadinIcons.WARNING, "Parties against the proposal"));
@@ -199,21 +199,21 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 				// Non-decision scenario
 				final ViewRiksdagenVoteDataBallotSummary bs = ballots.get(FIRST_OBJECT);
 				// Profile fields
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Ballot ID:", bs.getEmbeddedId().getBallotId(), VaadinIcons.CLIPBOARD_USER, "Ballot identification"));
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("RM:", bs.getRm(), VaadinIcons.CALENDAR, "Session (RM) identifier"));
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Vote Date:", String.valueOf(bs.getVoteDate()), VaadinIcons.CALENDAR, "Date of the vote"));
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Issue:", bs.getEmbeddedId().getIssue(), VaadinIcons.CLIPBOARD_TEXT, "The specific issue voted upon"));
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Concern:", bs.getEmbeddedId().getConcern(), VaadinIcons.CLIPBOARD, "Concern or topic of the ballot"));
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Ballot Type:", bs.getBallotType(), VaadinIcons.BULLETS, "Type of ballot"));
-				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow("Label:", bs.getLabel(), VaadinIcons.FILE_TEXT, "Short label or description"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_BALLOT_ID, bs.getEmbeddedId().getBallotId(), VaadinIcons.CLIPBOARD_USER, "Ballot identification"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_RM, bs.getRm(), VaadinIcons.CALENDAR, "Session (RM) identifier"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_VOTE_DATE, String.valueOf(bs.getVoteDate()), VaadinIcons.CALENDAR, "Date of the vote"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_ISSUE, bs.getEmbeddedId().getIssue(), VaadinIcons.CLIPBOARD_TEXT, "The specific issue voted upon"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_CONCERN, bs.getEmbeddedId().getConcern(), VaadinIcons.CLIPBOARD, "Concern or topic of the ballot"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_BALLOT_TYPE, bs.getBallotType(), VaadinIcons.BULLETS, "Type of ballot"));
+				profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_LABEL, bs.getLabel(), VaadinIcons.FILE_TEXT, "Short label or description"));
 
 				// Stats fields
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Total Votes:", String.valueOf(bs.getTotalVotes()), VaadinIcons.GROUP, "Total number of votes cast"));
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Yes Votes:", String.valueOf(bs.getYesVotes()), VaadinIcons.THUMBS_UP, "Number of 'yes' votes"));
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("No Votes:", String.valueOf(bs.getNoVotes()), VaadinIcons.THUMBS_DOWN, "Number of 'no' votes"));
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Abstain Votes:", String.valueOf(bs.getAbstainVotes()), VaadinIcons.SPLIT, "Number of abstentions"));
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Absent Votes:", String.valueOf(bs.getAbsentVotes()), VaadinIcons.EXIT_O, "Number of absent voters"));
-				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow("Approved:", String.valueOf(bs.isApproved()), VaadinIcons.CHECK, "Whether the proposal was approved"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_TOTAL_VOTES, String.valueOf(bs.getTotalVotes()), VaadinIcons.GROUP, "Total number of votes cast"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_YES_VOTES, String.valueOf(bs.getYesVotes()), VaadinIcons.THUMBS_UP, "Number of 'yes' votes"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_NO_VOTES, String.valueOf(bs.getNoVotes()), VaadinIcons.THUMBS_DOWN, "Number of 'no' votes"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_ABSTAIN_VOTES, String.valueOf(bs.getAbstainVotes()), VaadinIcons.SPLIT, "Number of abstentions"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_ABSENT_VOTES, String.valueOf(bs.getAbsentVotes()), VaadinIcons.EXIT_O, "Number of absent voters"));
+				serviceStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(BallotViewConstants.FIELD_APPROVED, String.valueOf(bs.isApproved()), VaadinIcons.CHECK, "Whether the proposal was approved"));
 			}
 
 			// Spacer before Party Ballot Summary
@@ -224,8 +224,10 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 			// Party Ballot Summary table
 			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
-					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList, PARTY_BALLOT_SUMMARY,
-					NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, EMBEDDED_ID_PARTY, null);
+					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList, 
+					BallotViewConstants.GRID_PARTY_BALLOT_SUMMARY,
+					NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, 
+					BallotViewConstants.GRID_EMBEDDED_ID_PARTY, null);
 
 			// Overview layout after table
 			final VerticalLayout overviewLayout = new VerticalLayout();

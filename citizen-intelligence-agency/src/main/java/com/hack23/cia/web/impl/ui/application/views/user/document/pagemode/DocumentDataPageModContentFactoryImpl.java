@@ -66,7 +66,10 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document Data", "Data Overview", "Detailed view of the document's core data and metadata.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            DocumentViewConstants.DATA_TITLE,
+            DocumentViewConstants.DATA_SUBTITLE,
+            DocumentViewConstants.DATA_DESC);
 
 
 		final DataContainer<DocumentContentData, String> documentContentDataDataContainer = getApplicationManager()

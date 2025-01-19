@@ -119,15 +119,15 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 
 			if (!decisionSummaries.isEmpty()) {
 				CardInfoRowUtil.createPageHeader(panel, panelContent,
-						"Ballot Charts : " + decisionSummaries.get(0).getTitle() + " - "
+						BallotViewConstants.CHARTS_TITLE_PREFIX + decisionSummaries.get(0).getTitle() + " - "
 								+ decisionSummaries.get(0).getSubTitle(),
-						"Ballot Trends and Visualizations",
-						"Provides insights into election trends by visualizing ballot data, assisting in strategic decision-making and voter engagement analysis.");
+						BallotViewConstants.CHARTS_SUBTITLE,
+						BallotViewConstants.CHARTS_DESCRIPTION);
 			} else {
-				CardInfoRowUtil.createPageHeader(panel, panelContent, "Ballot Charts : " + ballots.get(0).getEmbeddedId().getConcern(),
-						"Ballot Trends and Visualizations",
-						"Provides insights into election trends by visualizing ballot data, assisting in strategic decision-making and voter engagement analysis.");
-
+				CardInfoRowUtil.createPageHeader(panel, panelContent, 
+						BallotViewConstants.CHARTS_TITLE_PREFIX + ballots.get(0).getEmbeddedId().getConcern(),
+						BallotViewConstants.CHARTS_SUBTITLE,
+						BallotViewConstants.CHARTS_DESCRIPTION);
 			}
 
 			final TabSheet tabsheet = new TabSheet();

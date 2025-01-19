@@ -74,7 +74,10 @@ public final class DocumentPersonReferencesPageModContentFactoryImpl extends Abs
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document Person References", "Person References", "Identify and explore references to individuals within the document.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            DocumentViewConstants.PERSON_REFERENCES_TITLE,
+            DocumentViewConstants.PERSON_REFERENCES_SUBTITLE,
+            DocumentViewConstants.PERSON_REFERENCES_DESC);
 
 		if (documentStatusContainer != null && documentStatusContainer.getDocumentPersonReferenceContainer() != null
 				&& documentStatusContainer.getDocumentPersonReferenceContainer()
