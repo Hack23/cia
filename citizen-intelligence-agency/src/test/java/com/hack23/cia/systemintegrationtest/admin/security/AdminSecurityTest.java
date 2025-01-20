@@ -10,7 +10,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageC
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 
 /**
- * The Class AdminSecurityTest.
+ * The Class UserHomeTest.
  */
 @Category(IntegrationTest.class)
 public final class AdminSecurityTest extends AbstractAdminTest {
@@ -66,8 +66,8 @@ public final class AdminSecurityTest extends AbstractAdminTest {
 
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AUTHOR_DATASUMMARY);
 		pageVisit.verifyPageContent(AdminViewConstants.ACCESS_DENIED + AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME);
-		
-		
-	}	
-		
+
+
+	}
+
 }

@@ -66,9 +66,10 @@ public class UserPageVisitHelper {
      */
     public void waitForPageLoad() {
         new WebDriverWait(driver, DEFAULT_WAIT)
-                .until(webDriver -> "complete".equals(
-                        ((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
+               .until(driver -> "complete".equals(
+                        ((JavascriptExecutor) driver).executeScript("return document.readyState")));
         new WebDriverWait(driver, DEFAULT_WAIT).until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
+
 
     }
 
@@ -250,6 +251,13 @@ public class UserPageVisitHelper {
 			}
 		}
 		return actions;
+	}
+
+	public void waitForClickable(WebElement element) {
+		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		wait.until(ExpectedConditions.elementToBeClickable(StaleElementUtils.refreshElement(element,driver)));
+
+
 	}
 
 }

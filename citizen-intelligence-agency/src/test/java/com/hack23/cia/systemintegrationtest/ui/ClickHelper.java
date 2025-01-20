@@ -56,6 +56,10 @@ public class ClickHelper {
      * @param element the element
      */
     private void clickElement(WebElement element) {
+
+
+		helper.waitForClickable(element);
+
         actions.pause(Duration.ofMillis(250))
                     .clickAndHold(helper.refreshElement(element))
                     .release()

@@ -114,8 +114,7 @@ public final class UserPageVisit extends Assert {
 		setFieldValue("Change password.newPassword", newPassword);
 		setFieldValue("Change password.repeatNewPassword", repeatNewPassword);
 
-		final WebElement button = elementHelper.waitForClickable(By.id("Change password"));
-		clickHelper.clickWithRetry(button);
+		clickHelper.clickWithRetry(findButton("Change password"));
 	}
 
 	/**
@@ -552,6 +551,7 @@ public final class UserPageVisit extends Assert {
 		setFieldValue("Register.userpassword", password);
 
 		performClickActionWithRetry(findClickable("Register"));
+
 
 		if (userView != null) {
 			final String url = systemTestTargetUrl + "#!" + userView;
