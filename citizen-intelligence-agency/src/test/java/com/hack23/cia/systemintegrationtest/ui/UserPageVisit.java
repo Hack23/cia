@@ -45,8 +45,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  */
 public final class UserPageVisit extends Assert {
 
+	/** The system test target admin email. */
 	protected static String systemTestTargetAdminEmail;
 
+	/** The system test target admin password. */
 	protected static String systemTestTargetAdminPassword;
 
 	/** The Constant systemTestTargetUrl. */
@@ -74,18 +76,22 @@ public final class UserPageVisit extends Assert {
 	/** The driver. */
 	final WebDriver driver;
 
+	/** The helper. */
 	private final UserPageVisitHelper helper;
+
+	/** The element helper. */
 	private final ElementHelper elementHelper;
+
+	/** The click helper. */
 	private final ClickHelper clickHelper;
+
+	/** The action. */
 	private final Actions action;
 
 	/**
 	 * Instantiates a new user page visit.
 	 *
-	 * @param driver
-	 *                    the driver
-	 * @param browserType
-	 *                    the browserType
+	 * @param driver                    the driver
 	 */
 	public UserPageVisit(final WebDriver driver) {
 		super();
@@ -96,6 +102,13 @@ public final class UserPageVisit extends Assert {
 		action = new Actions(driver);
 	}
 
+	/**
+	 * Change password.
+	 *
+	 * @param password the password
+	 * @param newPassword the new password
+	 * @param repeatNewPassword the repeat new password
+	 */
 	public void changePassword(final String password, final String newPassword, final String repeatNewPassword) {
 		setFieldValue("Change password.currentPassword", password);
 		setFieldValue("Change password.newPassword", newPassword);
@@ -115,8 +128,7 @@ public final class UserPageVisit extends Assert {
 	public boolean checkHtmlBodyContainsText(final String text) {
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
-		wait.until(helper.containsText(this, text));
-		return true;
+		return getHtmlBodyAsText().contains(text);
 	}
 
 	/**
@@ -145,6 +157,11 @@ public final class UserPageVisit extends Assert {
 
 	}
 
+	/**
+	 * Disable google authenticator.
+	 *
+	 * @param password the password
+	 */
 	public void disableGoogleAuthenticator(final String password) {
 		setFieldValue("Disable Google Authenticator.userpassword", password);
 
@@ -154,6 +171,11 @@ public final class UserPageVisit extends Assert {
 		performClickActionWithRetry(enableGoogleAuthButton);
 	}
 
+	/**
+	 * Delete account.
+	 *
+	 * @param password the password
+	 */
 	public void deleteAccount(final String password) {
 		setFieldValue("Delete Account.userpassword", password);
 
@@ -166,8 +188,7 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Enable google authenticator.
 	 *
-	 * @throws Exception
-	 *                   the exception
+	 * @param password the password
 	 */
 	public void enableGoogleAuthenticator(final String password) {
 
@@ -201,6 +222,12 @@ public final class UserPageVisit extends Assert {
 		return null;
 	}
 
+	/**
+	 * Find clickable.
+	 *
+	 * @param id the id
+	 * @return the web element
+	 */
 	private WebElement findClickable(final String id) {
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
 		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
@@ -277,10 +304,7 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Login as admin.
 	 *
-	 * @param userPageVisit
-	 *                      the user page visit
-	 * @throws Exception
-	 *                   the exception
+	 * @throws Exception                   the exception
 	 */
 	public final void loginAsAdmin() throws Exception {
 		visitDirectPage(
@@ -407,6 +431,13 @@ public final class UserPageVisit extends Assert {
 		loginUserCheckView(username, password, UserViews.USERHOME_VIEW_NAME);
 	}
 
+	/**
+	 * Login user check view.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param view the view
+	 */
 	public void loginUserCheckView(final String username, final String password, final String view) {
 		loginUserCheckView(username, password, null, view);
 	}
@@ -414,12 +445,10 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Login user check view.
 	 *
-	 * @param username
-	 *                 the username
-	 * @param password
-	 *                 the password
-	 * @param view
-	 *                 the view
+	 * @param username                 the username
+	 * @param password                 the password
+	 * @param otpCode the otp code
+	 * @param view                 the view
 	 */
 	public void loginUserCheckView(final String username, final String password, final String otpCode,
 			final String view) {
@@ -549,6 +578,13 @@ public final class UserPageVisit extends Assert {
 
 	}
 
+	/**
+	 * Send email on email page.
+	 *
+	 * @param email the email
+	 * @param subject the subject
+	 * @param content the content
+	 */
 	public void sendEmailOnEmailPage(final String email, final String subject, final String content) {
 
 		setFieldValue("Email.email", email);
@@ -629,23 +665,6 @@ public final class UserPageVisit extends Assert {
 	}
 
 	/**
-	 * Visit committee ranking view.
-	 */
-	public void VisitCommitteeRankingView() {
-		final WebElement committeeViewLink = driver.findElement(By
-				.id(ViewAction.VISIT_COMMITTEE_RANKING_VIEW.name()));
-		performClickActionWithRetry(committeeViewLink);
-
-		assertEquals("https://localhost:28443/#!committeeranking",
-				driver.getCurrentUrl());
-
-		verifyViewActions(new ViewAction[] { ViewAction.VISIT_MAIN_VIEW });
-
-		final List<String> actionIdsBy = getActionIdsBy(ViewAction.VISIT_COMMITTEE_VIEW);
-		assertTrue(!actionIdsBy.isEmpty());
-	}
-
-	/**
 	 * Visit direct page.
 	 *
 	 * @param page
@@ -693,55 +712,6 @@ public final class UserPageVisit extends Assert {
 				ViewAction.VISIT_COUNTRY_VIEW });
 	}
 
-	/**
-	 * Visit ministry ranking view.
-	 */
-	public void VisitMinistryRankingView() {
-		final WebElement ministryViewLink = driver.findElement(By
-				.id(ViewAction.VISIT_MINISTRY_RANKING_VIEW.name()));
-		performClickActionWithRetry(ministryViewLink);
-
-		assertEquals("https://localhost:28443/#!ministryranking",
-				driver.getCurrentUrl());
-
-		verifyViewActions(new ViewAction[] { ViewAction.VISIT_MAIN_VIEW });
-
-		final List<String> actionIdsBy = getActionIdsBy(ViewAction.VISIT_MINISTRY_VIEW);
-		assertTrue(actionIdsBy.size() > 0);
-	}
-
-
-	/**
-	 * Visit party ranking view.
-	 */
-	public void VisitPartyRankingView() {
-		performClickActionWithRetry(driver.findElement(By
-				.id(ViewAction.VISIT_PARTY_RANKING_VIEW.name())));
-
-		assertEquals("https://localhost:28443/#!partyranking",
-				driver.getCurrentUrl());
-		verifyViewActions(new ViewAction[] { ViewAction.VISIT_MAIN_VIEW });
-
-		final List<String> actionIdsBy = getActionIdsBy(ViewAction.VISIT_PARTY_VIEW);
-		assertTrue(actionIdsBy.size() > 0);
-
-	}
-
-
-	/**
-	 * Visit politician ranking view.
-	 */
-	public void VisitPoliticianRankingView() {
-		final WebElement politiciansViewLink = driver.findElement(By
-				.id(ViewAction.VISIT_POLITICIAN_RANKING_VIEW.name()));
-		performClickActionWithRetry(politiciansViewLink);
-
-		assertEquals("https://localhost:28443/#!politicianranking",
-				driver.getCurrentUrl());
-
-		verifyViewActions(new ViewAction[] { ViewAction.VISIT_MAIN_VIEW });
-
-	}
 
 	/**
 	 * Visit start page.
@@ -767,9 +737,15 @@ public final class UserPageVisit extends Assert {
 				ViewAction.VISIT_COUNTRY_VIEW });
 	}
 
+	/**
+	 * Verify page content.
+	 *
+	 * @param expectedContent the expected content
+	 * @return the user page visit
+	 */
 	public UserPageVisit verifyPageContent(String expectedContent) {
 		try {
-			assertTrue("Expected content: " + expectedContent,
+			assertTrue("Expected content: " + expectedContent +"\nNot in:\n " + getHtmlBodyAsText(),
 					checkHtmlBodyContainsText(expectedContent));
 			return this;
 		} catch (final Exception e) {
@@ -777,6 +753,11 @@ public final class UserPageVisit extends Assert {
 		}
 	}
 
+	/**
+	 * Select first grid row.
+	 *
+	 * @return the user page visit
+	 */
 	public UserPageVisit selectFirstGridRow() {
 		final WebElement firstRow = getGridRows().get(0);
 		performClickActionWithRetry(firstRow);
@@ -784,6 +765,11 @@ public final class UserPageVisit extends Assert {
 	}
 
 
+	/**
+	 * Perform click action with retry.
+	 *
+	 * @param element the element
+	 */
 	// The public click methods needed by all the calls
 	public void performClickActionWithRetry(WebElement element) {
 		clickHelper.clickWithRetry(element);

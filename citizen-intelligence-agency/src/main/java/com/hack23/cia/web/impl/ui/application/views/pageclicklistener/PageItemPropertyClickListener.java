@@ -28,6 +28,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * The Class PageItemPropertyClickListener.
+ *
+ * @see PageItemPropertyClickEvent
  */
 public final class PageItemPropertyClickListener extends AbstractPageItemRendererClickListener<Serializable> {
 

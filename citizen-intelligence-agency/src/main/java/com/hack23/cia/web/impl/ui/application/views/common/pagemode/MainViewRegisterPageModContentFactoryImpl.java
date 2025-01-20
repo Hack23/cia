@@ -49,11 +49,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
+	/** The Constant AS_LIST. */
 	private static final List<String> AS_LIST = Arrays.asList( "username", "email", "country", "userpassword" );
 
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 
+	/** The Constant REGISTER. */
 	private static final String REGISTER = "Register";
 
 	/**

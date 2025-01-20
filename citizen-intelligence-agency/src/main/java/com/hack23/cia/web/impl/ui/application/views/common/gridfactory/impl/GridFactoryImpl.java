@@ -123,6 +123,13 @@ public final class GridFactoryImpl implements GridFactory {
 		}
 	}
 
+	/**
+	 * Creates the nested properties.
+	 *
+	 * @param <T> the generic type
+	 * @param grid the grid
+	 * @param nestedProperties the nested properties
+	 */
 	private static <T extends Serializable> void createNestedProperties(final Grid<T> grid,
 			final String[] nestedProperties) {
 		if (nestedProperties != null) {

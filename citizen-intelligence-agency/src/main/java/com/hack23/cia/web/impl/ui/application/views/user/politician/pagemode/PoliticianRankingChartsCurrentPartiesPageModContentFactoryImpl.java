@@ -75,8 +75,8 @@ public final class PoliticianRankingChartsCurrentPartiesPageModContentFactoryImp
 			    PoliticianRankingDescriptionConstants.CURRENT_PARTIES_SUBTITLE,
 			    PoliticianRankingDescriptionConstants.CURRENT_PARTIES_DESC);
 
-		chartDataManager.createChartPanel(panelContent, 
-		    dataSeriesFactory.createPartyChartTimeSeriesCurrent(), 
+		chartDataManager.createChartPanel(panelContent,
+		    dataSeriesFactory.createPartyChartTimeSeriesCurrent(),
 		    PoliticianRankingConstants.CHART_TYPE_CURRENT);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_RANKING_VIEW, ApplicationEventGroup.USER,

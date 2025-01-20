@@ -59,10 +59,6 @@ public final class CommitteeDecisionFlowPageModContentFactoryImpl extends Abstra
     /** The Constant DEFAULT_YEAR. */
     private static final String DEFAULT_YEAR = "2023/24";
 
-    /** The Constant YEAR_SELECTOR_LABEL. */
-    private static final String YEAR_SELECTOR_LABEL = "Select year";
-
-
     /** The decision flow chart manager. */
     @Autowired
     private DecisionFlowChartManager decisionFlowChartManager;

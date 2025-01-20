@@ -25,6 +25,8 @@ import com.vaadin.ui.Notification;
 
 /**
  * The Class UpdateSearchIndexClickListener.
+ *
+ * @see UpdateSearchIndexClickEvent
  */
 public class UpdateSearchIndexClickListener extends AbstractClickListener implements ClickListener {
 

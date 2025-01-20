@@ -77,6 +77,11 @@ public class LeaderCardUtil {
         return activePoliticians.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));
     }
 
+    /**
+     * Creates the base card.
+     *
+     * @return the panel
+     */
     private Panel createBaseCard() {
         final Panel cardPanel = new Panel();
         cardPanel.addStyleName("leader-baseball-card");
@@ -85,6 +90,11 @@ public class LeaderCardUtil {
         return cardPanel;
     }
 
+    /**
+     * Creates the card content.
+     *
+     * @return the vertical layout
+     */
     private VerticalLayout createCardContent() {
         final VerticalLayout cardContent = new VerticalLayout();
         cardContent.setMargin(true);
@@ -93,6 +103,14 @@ public class LeaderCardUtil {
         return cardContent;
     }
 
+    /**
+     * Adds the experience row.
+     *
+     * @param container the container
+     * @param govYears the gov years
+     * @param partyYears the party years
+     * @param parliamentYears the parliament years
+     */
     private void addExperienceRow(VerticalLayout container, int govYears, int partyYears, int parliamentYears) {
         final HorizontalLayout experienceLayout = CardInfoRowUtil.createStandardRow();
         experienceLayout.addStyleName(CardInfoRowUtil.LayoutConstants.CARD_EXPERIENCE);

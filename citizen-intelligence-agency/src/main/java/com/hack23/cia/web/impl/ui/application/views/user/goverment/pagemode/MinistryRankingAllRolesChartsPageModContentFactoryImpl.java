@@ -45,6 +45,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
+	/** The ministry ghant chart manager. */
 	@Autowired
 	private MinistryGhantChartManager ministryGhantChartManager;
 

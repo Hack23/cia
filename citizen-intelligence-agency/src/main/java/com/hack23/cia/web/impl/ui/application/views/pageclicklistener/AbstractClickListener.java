@@ -28,6 +28,8 @@ import com.vaadin.ui.Notification.Type;
 
 /**
  * The Class AbstractClickListener.
+ *
+ * @see AbstractClickEvent
  */
 abstract class AbstractClickListener {
 

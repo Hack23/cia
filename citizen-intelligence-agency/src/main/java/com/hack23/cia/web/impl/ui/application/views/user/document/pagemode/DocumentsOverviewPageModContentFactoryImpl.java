@@ -124,13 +124,20 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDocumentsPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
+
+	/** The Constant DOCUMENT. */
 	private static final String DOCUMENT = "Document";
+
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "rm", "lang", "noteTitle", "origin", "subType", "note", "subTitle", "status", "label",
 			"id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId", "org",
 			"documentType", "docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",
 			"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",
 			"committeeReportUrlXml" };
+
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id",true);
 
 	/** The paging util. */

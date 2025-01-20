@@ -39,6 +39,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
 
+	/** The government outcome chart data manager. */
 	@Autowired
 	private GovernmentOutcomeChartDataManager governmentOutcomeChartDataManager;
 

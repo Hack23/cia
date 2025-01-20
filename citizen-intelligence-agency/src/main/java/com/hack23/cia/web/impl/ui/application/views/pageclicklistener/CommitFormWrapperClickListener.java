@@ -24,6 +24,8 @@ import com.vaadin.ui.Button.ClickListener;
 
 /**
  * The Class CommitFormWrapperClickListener.
+ *
+ * @see CommitFormWrapperClickEvent
  */
 public final class CommitFormWrapperClickListener implements ClickListener {
 

@@ -272,6 +272,15 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 				"Yearly Spending (B SEK)", spendingStr));
 	}
 
+	/**
+	 * Builds the top string.
+	 *
+	 * @param <T> the generic type
+	 * @param items the items
+	 * @param nameFunction the name function
+	 * @param weightFunction the weight function
+	 * @return the string
+	 */
 	private <T> String buildTopString(List<T> items,
 	                                  java.util.function.Function<T, String> nameFunction,
 	                                  java.util.function.Function<T, Long> weightFunction) {
@@ -283,6 +292,15 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	        .collect(Collectors.joining(", "));
 	}
 
+	/**
+	 * Adds the metrics section.
+	 *
+	 * @param layout the layout
+	 * @param sectionTitle the section title
+	 * @param politician the politician
+	 * @param ballotSummary the ballot summary
+	 * @param metricType the metric type
+	 */
 	@SuppressWarnings("unused")
 	private void addMetricsSection(VerticalLayout layout, String sectionTitle,
 	    ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary,
@@ -305,10 +323,19 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	    layout.addComponent(sectionLayout);
 	}
 
+	/**
+	 * The Enum MetricType.
+	 */
 	private enum MetricType {
-	    PARLIAMENTARY,
-	    LEGISLATIVE,
-	    PARTY_ALIGNMENT
+
+    	/** The parliamentary. */
+    	PARLIAMENTARY,
+
+    	/** The legislative. */
+    	LEGISLATIVE,
+
+    	/** The party alignment. */
+    	PARTY_ALIGNMENT
 	}
 
 }

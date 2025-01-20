@@ -42,24 +42,30 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
+	/** The Constant BALLOTS. */
 	private static final String BALLOTS = "Ballots";
 
+	/** The Constant EMBEDDED_ID_BALLOT_ID. */
 	private static final String EMBEDDED_ID_BALLOT_ID = "embeddedId.ballotId";
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "embeddedId.party", "voteDate", "rm", "label",
 			"embeddedId.concern", "embeddedId.issue", "approved", "partyApproved", "totalVotes", "partyTotalVotes",
 			"yesVotes", "partyYesVotes", "noVotes", "partyNoVotes", "partyAbstainVotes", "abstainVotes",
 			"partyAbsentVotes", "absentVotes", "partyAvgBornYear", "avgBornYear", "partyPercentageMale",
 			"percentageMale", "ballotType", EMBEDDED_ID_BALLOT_ID };
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "embeddedId", "partyNoWinner", "partyPercentageYes",
 			"partyPercentageNo", "partyPercentageAbsent", "partyPercentageAbstain", "percentageYes", "percentageNo",
 			"percentageAbsent", "percentageAbstain", "ballotType", "embeddedId.party", EMBEDDED_ID_BALLOT_ID,
 			"partyAvgBornYear", "avgBornYear", "partyPercentageMale", "percentageMale", "noWinner" };
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.BALLOT_VIEW_NAME, EMBEDDED_ID_BALLOT_ID);
 
+	/** The Constant NESTED_PROPERTIES. */
 	private static final String[] NESTED_PROPERTIES = { EMBEDDED_ID_BALLOT_ID, "embeddedId.concern",
 			"embeddedId.issue", "embeddedId.party" };
 

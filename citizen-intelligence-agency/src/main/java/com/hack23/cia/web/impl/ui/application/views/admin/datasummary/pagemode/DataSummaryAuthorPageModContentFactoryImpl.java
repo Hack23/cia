@@ -40,8 +40,10 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DataSummaryAuthorPageModContentFactoryImpl extends AbstractDataSummaryPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "author", "changes", "firstDate", "lastDate" };
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "id" };
 
 	/** The Constant NAME. */

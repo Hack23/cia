@@ -47,15 +47,19 @@ import com.vaadin.ui.VerticalLayout;
 public final class UserHomeApplicationEventsPageModContentFactoryImpl
 		extends AbstractUserHomePageModContentFactoryImpl {
 
+	/** The Constant APPLICATION_ACTION_EVENT. */
 	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "hjid", "createdDate", "eventGroup",
 			"applicationOperation", "actionName", "page", "pageMode", "elementId", "applicationMessage", "errorMessage",
 			"modelObjectVersion" };
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "hjid", "userId", "sessionId", "modelObjectId",
 			"modelObjectVersion" };
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
 

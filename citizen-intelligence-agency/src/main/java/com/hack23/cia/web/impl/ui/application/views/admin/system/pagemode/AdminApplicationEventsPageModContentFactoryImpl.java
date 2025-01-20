@@ -40,17 +40,24 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * The Class AdminApplicationEventsPageModContentFactoryImpl.
+ */
 @Component
 public final class AdminApplicationEventsPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	/** The Constant APPLICATION_ACTION_EVENT. */
 	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "hjid", "createdDate", "userId", "actionName", "errorMessage",
 			"applicationMessage", "page", "pageMode", "elementId", "modelObjectVersion" };
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion", "sessionId",
 			"eventGroup", "applicationOperation" };
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
 

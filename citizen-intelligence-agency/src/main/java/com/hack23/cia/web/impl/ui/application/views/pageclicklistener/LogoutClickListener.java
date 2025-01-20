@@ -33,6 +33,8 @@ import com.vaadin.ui.UI;
 
 /**
  * The Class LogoutClickListener.
+ *
+ * @see LogoutClickEvent
  */
 public class LogoutClickListener extends AbstractClickListener implements ClickListener {
 

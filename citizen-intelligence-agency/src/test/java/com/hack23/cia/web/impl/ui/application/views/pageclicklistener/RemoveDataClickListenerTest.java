@@ -31,6 +31,9 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Panel;
 
+/**
+ * The Class RemoveDataClickListenerTest.
+ */
 public class RemoveDataClickListenerTest extends AbstractUnitTest {
 
 	/**

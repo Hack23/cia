@@ -3,7 +3,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 /**
  * Constants for the politician view pages.
  */
-public interface PoliticianViewConstants extends 
+public interface PoliticianViewConstants extends
     PoliticianPageTitleConstants,
     PoliticianDocumentConstants,
     PoliticianBallotConstants,

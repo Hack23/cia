@@ -47,6 +47,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 		extends AbstractPoliticianPageModContentFactoryImpl {
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.BALLOT_VIEW_NAME, PoliticianBallotConstants.BALLOT_ID);
 

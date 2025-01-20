@@ -35,6 +35,9 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 
+/**
+ * The Class PageItemPropertyClickListenerTest.
+ */
 public final class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 
 

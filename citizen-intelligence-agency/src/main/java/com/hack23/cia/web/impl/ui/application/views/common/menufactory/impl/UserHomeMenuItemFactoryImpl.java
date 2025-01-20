@@ -40,6 +40,7 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements UserHomeMenuItemFactory {
 
+	/** The application menu item factory. */
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 

@@ -346,7 +346,7 @@ public abstract class AbstractGhantChartManagerImpl<T extends Object> {
 		/**
 		 * Gets the to date.
 		 *
-		 * @param t
+		 * @param t the t
 		 * @return the to date
 		 */
 		Date getToDate(T t);

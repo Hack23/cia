@@ -38,6 +38,8 @@ import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRe
 
 /**
  * The Class HttpSessionDestroyedEventListener.
+ *
+ * @see HttpSessionDestroyedEventEvent
  */
 @Service
 public final class HttpSessionDestroyedEventListener implements ApplicationListener<HttpSessionDestroyedEvent> {

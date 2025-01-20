@@ -48,8 +48,10 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeBallotDecisionSummaryPageModContentFactoryImpl
 extends AbstractCommitteePageModContentFactoryImpl {
 
+	/** The Constant BALLOT_ID. */
 	private static final String BALLOT_ID = "ballotId";
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "voteDate", "embeddedId.concern", "embeddedId.id",
 			"committeeReport", "embeddedId.issue", "rm", "title", "subTitle", "endNumber", "org", "createdDate",
 			"publicDate", BALLOT_ID, "decisionType", "againstProposalParties", "againstProposalNumber", "winner",
@@ -57,16 +59,20 @@ extends AbstractCommitteePageModContentFactoryImpl {
 			"approved", "noWinner", "percentageYes", "percentageNo", "percentageAbsent", "percentageAbstain",
 			"percentageMale" };
 
+	/** The Constant COMMITTEE_BALLOT_DECISION_SUMMARY. */
 	private static final String COMMITTEE_BALLOT_DECISION_SUMMARY = "Committee Ballot Decision Summary";
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "embeddedId", "embeddedId.id", "endNumber", "org",
 			"createdDate", "publicDate", BALLOT_ID, "decisionType", "label", "againstProposalNumber", "avgBornYear",
 			"percentageMale", "approved", "noWinner", "ballotType", "percentageYes", "percentageNo", "percentageAbsent",
 			"percentageAbstain" };
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
 
+	/** The Constant NESTED_PROPERTIES. */
 	private static final String[] NESTED_PROPERTIES = { "embeddedId.concern", "embeddedId.issue",
 			"embeddedId.id" };
 
@@ -88,9 +94,9 @@ extends AbstractCommitteePageModContentFactoryImpl {
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
-		    CommitteeViewConstants.BD_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
-		    CommitteeViewConstants.BD_TITLE, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+		    CommitteeViewConstants.BD_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),
+		    CommitteeViewConstants.BD_TITLE,
 		    CommitteeViewConstants.BD_DESCRIPTION);
 
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionSummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()

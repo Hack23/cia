@@ -54,20 +54,25 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminApplicationConfigurationPageModContentFactoryImpl
         extends AbstractAdminSystemPageModContentFactoryImpl {
 
+    /** The Constant APPLICATION_CONFIGURATION. */
     private static final String APPLICATION_CONFIGURATION = "ApplicationConfiguration";
 
+    /** The Constant AS_LIST2. */
     private static final List<String> AS_LIST2 = Arrays.asList("configTitle", "configDescription", "componentTitle",
             "componentDescription", "propertyValue");
 
+    /** The Constant COLUMN_ORDER. */
     private static final String[] COLUMN_ORDER = { "hjid", "configurationGroup", "component", "componentTitle",
             "configTitle", "configDescription", "componentDescription", "propertyId", "propertyValue" };
 
+    /** The Constant HIDE_COLUMNS. */
     private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion", "createdDate",
             "updatedDate", "propertyId", "componentDescription", "componentTitle" };
 
     /** The Constant NAME. */
     public static final String NAME = AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME;
 
+    /** The Constant UPDATE_CONFIGURATION. */
     private static final String UPDATE_CONFIGURATION = "Update Configuration";
 
     /**

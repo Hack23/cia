@@ -73,7 +73,7 @@ public final class CommitteeRankingAllCommitteesChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 			CommitteeViewConstants.CR_ALL_TITLE_HEADER,
 			CommitteeViewConstants.CR_ALL_TITLE,
 			CommitteeViewConstants.CR_ALL_DESCRIPTION);

@@ -106,41 +106,41 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 		// Display a selection of DocumentElement fields
         profileLayout.addComponent(CardInfoRowUtil.createInfoRow(
-            DocumentViewConstants.FIELD_TITLE, 
-            documentElement.getTitle(), 
+            DocumentViewConstants.FIELD_TITLE,
+            documentElement.getTitle(),
             VaadinIcons.FILE_TEXT_O,
             DocumentViewConstants.TOOLTIP_TITLE));
 
         if (!StringUtils.isEmpty(documentElement.getSubTitle())) {
             profileLayout.addComponent(CardInfoRowUtil.createInfoRow(
-                DocumentViewConstants.FIELD_SUBTITLE, 
-                documentElement.getSubTitle(), 
+                DocumentViewConstants.FIELD_SUBTITLE,
+                documentElement.getSubTitle(),
                 VaadinIcons.FILE_TEXT,
                 DocumentViewConstants.TOOLTIP_SUBTITLE));
         }
 
         profileLayout.addComponent(CardInfoRowUtil.createInfoRow(
-            DocumentViewConstants.FIELD_ORGANIZATION, 
+            DocumentViewConstants.FIELD_ORGANIZATION,
             documentElement.getOrg(),
-            VaadinIcons.INSTITUTION, 
+            VaadinIcons.INSTITUTION,
             DocumentViewConstants.TOOLTIP_ORGANIZATION));
 
         profileLayout.addComponent(CardInfoRowUtil.createInfoRow(
-            DocumentViewConstants.FIELD_DOC_TYPE, 
+            DocumentViewConstants.FIELD_DOC_TYPE,
             documentElement.getDocumentType(),
-            VaadinIcons.FILE_CODE, 
+            VaadinIcons.FILE_CODE,
             DocumentViewConstants.TOOLTIP_DOC_TYPE));
 
         profileLayout.addComponent(CardInfoRowUtil.createInfoRow(
-            DocumentViewConstants.FIELD_STATUS, 
-            documentElement.getStatus(), 
+            DocumentViewConstants.FIELD_STATUS,
+            documentElement.getStatus(),
             VaadinIcons.QUESTION_CIRCLE,
             DocumentViewConstants.TOOLTIP_STATUS));
 
         profileLayout.addComponent(CardInfoRowUtil.createInfoRow(
-            DocumentViewConstants.FIELD_MADE_PUBLIC, 
+            DocumentViewConstants.FIELD_MADE_PUBLIC,
             String.valueOf(documentElement.getMadePublicDate()),
-            VaadinIcons.CALENDAR_USER, 
+            VaadinIcons.CALENDAR_USER,
             DocumentViewConstants.TOOLTIP_MADE_PUBLIC));
 
 		// Right column: Metadata & Status (from DocumentStatusContainer and
@@ -153,8 +153,8 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 			if (!StringUtils.isEmpty(documentStatusContainer.getDocumentCategory())) {
 				metadataLayout.addComponent(CardInfoRowUtil.createInfoRow(
                     DocumentViewConstants.FIELD_CATEGORY,
-                    documentStatusContainer.getDocumentCategory(), 
-                    VaadinIcons.BOOK, 
+                    documentStatusContainer.getDocumentCategory(),
+                    VaadinIcons.BOOK,
                     DocumentViewConstants.TOOLTIP_CATEGORY));
 			}
 
@@ -164,30 +164,30 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 				// Choose a few key fields from DocumentData
 				if (!StringUtils.isEmpty(documentData.getLabel())) {
 					metadataLayout.addComponent(CardInfoRowUtil.createInfoRow(
-                        DocumentViewConstants.FIELD_LABEL, 
-                        documentData.getLabel(), 
+                        DocumentViewConstants.FIELD_LABEL,
+                        documentData.getLabel(),
                         VaadinIcons.TAG,
                         DocumentViewConstants.TOOLTIP_LABEL));
 				}
 				if (!StringUtils.isEmpty(documentData.getTempLabel())) {
 					metadataLayout.addComponent(CardInfoRowUtil.createInfoRow(
-                        DocumentViewConstants.FIELD_TEMP_LABEL, 
+                        DocumentViewConstants.FIELD_TEMP_LABEL,
                         documentData.getTempLabel(),
-                        VaadinIcons.EDIT, 
+                        VaadinIcons.EDIT,
                         DocumentViewConstants.TOOLTIP_TEMP_LABEL));
 				}
 				if (!StringUtils.isEmpty(documentData.getHangarId())) {
 					metadataLayout.addComponent(CardInfoRowUtil.createInfoRow(
-                        DocumentViewConstants.FIELD_HANGAR_ID, 
+                        DocumentViewConstants.FIELD_HANGAR_ID,
                         documentData.getHangarId(),
-                        VaadinIcons.CLIPBOARD, 
+                        VaadinIcons.CLIPBOARD,
                         DocumentViewConstants.TOOLTIP_HANGAR_ID));
 				}
 				if (documentData.getNumberValue() != null) {
 					metadataLayout.addComponent(CardInfoRowUtil.createInfoRow(
-                        DocumentViewConstants.FIELD_NUMBER_VALUE, 
+                        DocumentViewConstants.FIELD_NUMBER_VALUE,
                         String.valueOf(documentData.getNumberValue()),
-                        VaadinIcons.BAR_CHART, 
+                        VaadinIcons.BAR_CHART,
                         DocumentViewConstants.TOOLTIP_NUMBER_VALUE));
 				}
 			}

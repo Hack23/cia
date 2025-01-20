@@ -24,6 +24,8 @@ import com.vaadin.data.ValueContext;
 
 /**
  * The Class StringToEnumConverter.
+ *
+ * @param <E> the element type
  */
 final class StringToEnumConverter<E extends Enum<E>> implements Converter<String, E> {
 

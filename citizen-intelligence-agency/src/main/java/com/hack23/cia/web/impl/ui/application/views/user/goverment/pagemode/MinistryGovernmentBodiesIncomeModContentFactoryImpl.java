@@ -40,6 +40,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryGovernmentBodiesIncomeModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
+	/** The government body chart data manager. */
 	@Autowired
 	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
 

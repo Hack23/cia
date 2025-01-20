@@ -48,6 +48,9 @@ import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * The Class AdminUserAccountPageModContentFactoryImpl.
+ */
 @Component
 public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
@@ -58,18 +61,22 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
     /** The Constant BUTTON_PATTERN. */
     private static final String BUTTON_PATTERN = "Perform {0}";
 
+    /** The Constant COLUMN_ORDER. */
     private static final String[] COLUMN_ORDER = { "hjid", "modelObjectId", "modelObjectVersion", "createdDate",
             "userId", "username", "userType", "userRole", "userpassword", "email", "country", "numberOfVisits" };
 
+    /** The Constant HIDE_COLUMNS. */
     private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion", "userId",
             "userpassword", "address" };
 
+    /** The Constant LISTENER. */
     private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
             AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, "hjid");
 
     /** The Constant NAME. */
     public static final String NAME = AdminViews.ADMIN_USERACCOUNT_VIEW_NAME;
 
+    /** The Constant USER_ACCOUNT. */
     private static final String USER_ACCOUNT = "UserAccount";
 
     /**

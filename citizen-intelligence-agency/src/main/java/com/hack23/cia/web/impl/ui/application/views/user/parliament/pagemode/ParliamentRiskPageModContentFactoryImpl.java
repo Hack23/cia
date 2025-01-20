@@ -55,6 +55,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentRiskPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
+	/** The Constant CLICK_LISTENER. */
 	private static final ComplianceCheckPageItemRendererClickListener CLICK_LISTENER = new ComplianceCheckPageItemRendererClickListener();
 	/**
 	 * Instantiates a new parliament risk page mod content factory impl.

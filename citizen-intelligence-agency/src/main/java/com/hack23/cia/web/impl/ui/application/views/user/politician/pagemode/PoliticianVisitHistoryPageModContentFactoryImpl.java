@@ -33,7 +33,7 @@ public final class PoliticianVisitHistoryPageModContentFactoryImpl extends Abstr
         final VerticalLayout panelContent = createPanelContent();
         final String pageId = getPageId(parameters);
         final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
-        
+
         getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
         CardInfoRowUtil.createPageHeader(panel, panelContent,

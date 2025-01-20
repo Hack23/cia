@@ -30,6 +30,8 @@ import com.vaadin.ui.Notification;
 
 /**
  * The Class SendEmailClickListener.
+ *
+ * @see SendEmailClickEvent
  */
 public class SendEmailClickListener extends AbstractClickListener implements ClickListener {
 

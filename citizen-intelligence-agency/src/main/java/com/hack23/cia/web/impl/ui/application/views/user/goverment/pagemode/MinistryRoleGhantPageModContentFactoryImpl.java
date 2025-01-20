@@ -45,6 +45,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
+	/** The ministry ghant chart manager. */
 	@Autowired
 	private MinistryGhantChartManager ministryGhantChartManager;
 
@@ -65,7 +66,7 @@ public final class MinistryRoleGhantPageModContentFactoryImpl extends AbstractMi
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             MinistryViewConstants.ROLE_GHANT_TITLE + " " + viewRiksdagenMinistry.getNameId(),
             MinistryViewConstants.ROLE_GHANT_SUBTITLE,
             MinistryViewConstants.ROLE_GHANT_DESC);

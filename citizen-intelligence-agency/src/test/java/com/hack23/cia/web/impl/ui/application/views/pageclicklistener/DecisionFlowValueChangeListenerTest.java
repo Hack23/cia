@@ -29,6 +29,9 @@ import com.vaadin.data.HasValue.ValueChangeEvent;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.UI;
 
+/**
+ * The Class DecisionFlowValueChangeListenerTest.
+ */
 public class DecisionFlowValueChangeListenerTest extends AbstractUnitTest {
 
 	/**

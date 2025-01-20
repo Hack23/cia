@@ -39,6 +39,7 @@ abstract class AbstractBallotPageModContentFactoryImpl extends AbstractItemPageM
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.BALLOT_VIEW_NAME;
 
+	/** The ballot menu item factory. */
 	@Autowired
 	private BallotMenuItemFactory ballotMenuItemFactory;
 

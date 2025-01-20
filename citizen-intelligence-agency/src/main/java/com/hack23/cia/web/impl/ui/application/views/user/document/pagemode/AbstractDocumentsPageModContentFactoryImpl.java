@@ -32,6 +32,7 @@ abstract class AbstractDocumentsPageModContentFactoryImpl extends AbstractBasicP
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.DOCUMENTS_VIEW_NAME;
 
+	/** The document menu item factory. */
 	@Autowired
 	private DocumentMenuItemFactory documentMenuItemFactory;
 

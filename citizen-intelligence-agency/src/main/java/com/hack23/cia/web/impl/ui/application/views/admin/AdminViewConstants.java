@@ -125,6 +125,8 @@ public final class AdminViewConstants {
 	/** The Constant ADMIN_AGENCY_MANAGEMENT. */
 	public static final String ADMIN_AGENCY_MANAGEMENT = "Controls for agency-level data and settings.";
 
+	public static final String AGENCY_OVERVIEW_HEADER = "Agency Overview";
+
 	/** The Constant AGENCY_OVERVIEW. */
 	public static final String AGENCY_OVERVIEW = "High-level review of agencies and their attributes.";
 
@@ -133,6 +135,8 @@ public final class AdminViewConstants {
 
 	/** The Constant ADMIN_APPLICATION_EVENT_CHARTS. */
 	public static final String ADMIN_APPLICATION_EVENT_CHARTS = "Visual analytics of application events for trend analysis.";
+
+	public static final String EVENT_ANALYSIS_HEADER = "Event Analysis";
 
 	/** The Constant EVENT_ANALYSIS. */
 	public static final String EVENT_ANALYSIS = "Advanced examination of event data and metrics.";
@@ -254,11 +258,11 @@ public final class AdminViewConstants {
 	/** The Constant ADMIN_AGENT_OPERATION_DEPLOY_WORLD_BUTTON. */
 	public static final String ADMIN_AGENT_OPERATION_DEPLOY_WORLD_BUTTON = "Initiates agent deployment worldwide.";
 
+	/** The Constant ADMIN_AGENT_OPERATION_DEPLOY_DESC. */
 	public static final String ADMIN_AGENT_OPERATION_DEPLOY_DESC = "Starts OSINT gathering for the specified region.";
 
-    public static final String MONITORING_ACCESS_DENIED = null;
-
-    public static final String ACCESS_DENIED = null;
+    /** The Constant ACCESS_DENIED. */
+    public static final String ACCESS_DENIED = "Access denied:";
 
 
 }

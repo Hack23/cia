@@ -41,30 +41,59 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Gove
 import com.vaadin.ui.AbstractOrderedLayout;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * The Class GovernmentBodyChartDataManagerImpl.
+ */
 @Service
 public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl
         implements GovernmentBodyChartDataManager {
 
+    /** The Constant ALL_GOVERNMENT_BODIES. */
     private static final String ALL_GOVERNMENT_BODIES = "All government bodies";
+
+    /** The Constant ANNUAL_EXPENDITURE. */
     private static final String ANNUAL_EXPENDITURE = "Annual Expenditure";
+
+    /** The Constant ANNUAL_HEADCOUNT. */
     private static final String ANNUAL_HEADCOUNT = "Annual headcount";
+
+    /** The Constant ANNUAL_HEADCOUNT_ALL_MINISTRIES. */
     private static final String ANNUAL_HEADCOUNT_ALL_MINISTRIES = "Annual headcount, all ministries";
+
+    /** The Constant ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES. */
     private static final String ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES =
             "Annual headcount summary, all government bodies";
+
+    /** The Constant ANNUAL_HEADCOUNT_TOTAL_ALL_GOVERNMENT_BODIES. */
     private static final String ANNUAL_HEADCOUNT_TOTAL_ALL_GOVERNMENT_BODIES =
             "Annual headcount total all government bodies";
+
+    /** The Constant ANNUAL_INCOME. */
     private static final String ANNUAL_INCOME = "Annual Income";
+
+    /** The Constant EXPENDITURE_GROUP_NAME. */
     private static final String EXPENDITURE_GROUP_NAME = "Utgiftsområdesnamn";
+
+    /** The Constant INKOMSTTITELGRUPPSNAMN. */
     private static final String INKOMSTTITELGRUPPSNAMN = "Inkomsttitelgruppsnamn";
+
+    /** The Constant INKOMSTTITELSNAMN. */
     private static final String INKOMSTTITELSNAMN = "Inkomsttitelsnamn";
+
+    /** The Constant ANSLAGSPOSTSNAMN. */
     private static final String ANSLAGSPOSTSNAMN = "Anslagspostsnamn";
 
+    /** The esv api. */
     @Autowired
     private EsvApi esvApi;
 
 
     /**
      * Adds a data point to the DataSeries if the year and value are valid and value > 0.
+     *
+     * @param dataSeries the data series
+     * @param year the year
+     * @param value the value
      */
     private static void addDataPoint(DataSeries dataSeries, Integer year, Number value) {
         if (dataSeries == null || year == null || value == null) {
@@ -77,8 +106,14 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
             dataSeries.add(formattedDate, doubleValue);
         }
     }
+
     /**
      * Creates a chart using the provided data/series objects, then appends it to the given layout.
+     *
+     * @param layout the layout
+     * @param label the label
+     * @param dataSeries the data series
+     * @param series the series
      */
     private void addChartToLayout(AbstractOrderedLayout layout, String label,
                                   DataSeries dataSeries, Series series) {
@@ -96,6 +131,10 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
     /**
      * Consolidates logic to retrieve, group, and process data by a descriptive field
      * (e.g., 'Utgiftsområdesnamn' or 'Inkomsttitelgruppsnamn'), feeding the results into a DataSeries.
+     *
+     * @param dataSeries the data series
+     * @param series the series
+     * @param groupedData the grouped data
      */
     private void buildAnnualOutcomeDataSeriesByField(DataSeries dataSeries, Series series,
             Map<String, List<GovernmentBodyAnnualOutcomeSummary>> groupedData) {
@@ -131,6 +170,11 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
     /**
      * Helper method to generate a headcount data series given a map of year -> list of summaries.
+     *
+     * @param dataSeries the data series
+     * @param series the series
+     * @param yearlyData the yearly data
+     * @param label the label
      */
     private void buildHeadcountDataSeries(DataSeries dataSeries, Series series,
                                           Map<Integer, List<GovernmentBodyAnnualSummary>> yearlyData,
@@ -154,6 +198,10 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
 
     /**
      * Consolidates logic for creating a chart that is grouped by some string field in descriptionFields.
+     *
+     * @param layout the layout
+     * @param field the field
+     * @param chartLabel the chart label
      */
     private void createMinistryFieldSummary(AbstractOrderedLayout layout, String field, String chartLabel) {
         Objects.requireNonNull(layout, "Layout cannot be null");

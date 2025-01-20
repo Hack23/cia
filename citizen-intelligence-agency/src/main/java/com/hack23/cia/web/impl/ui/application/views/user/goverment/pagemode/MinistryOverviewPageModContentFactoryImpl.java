@@ -139,13 +139,19 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
         return panelContent;
     }
 
+    /**
+     * Creates the profile details.
+     *
+     * @param layout the layout
+     * @param ministry the ministry
+     */
     private void createProfileDetails(VerticalLayout layout, ViewRiksdagenMinistry ministry) {
         layout.addComponent(CardInfoRowUtil.createInfoRow(
             MinistryFieldConstants.MINISTRY_ID_LABEL,
             ministry.getNameId(),
             MinistryIconConstants.INFO_ICON,
             MinistryFieldConstants.MINISTRY_ID_DESC));
-            
+
         layout.addComponent(CardInfoRowUtil.createInfoRow(
             MinistryFieldConstants.STATUS_LABEL,
             ministry.isActive() ? "Active" : "Inactive",
@@ -153,14 +159,20 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
             MinistryFieldConstants.STATUS_DESC));
 
         layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_CURRENT_MEMBERS_LABEL,
-            String.valueOf(ministry.getCurrentMemberSize()), VaadinIcons.GROUP, 
+            String.valueOf(ministry.getCurrentMemberSize()), VaadinIcons.GROUP,
             MinistryDescriptionConstants.CURRENT_MINISTRY_MEMBERS_DESC));
         layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_ACTIVITY_LEVEL_LABEL,
-            ministry.getActivityLevel(), VaadinIcons.CHART, 
+            ministry.getActivityLevel(), VaadinIcons.CHART,
             MinistryDescriptionConstants.ACTIVITY_LEVEL_DESC));
     }
 
- 
+
+    /**
+     * Creates the service statistics section.
+     *
+     * @param layout the layout
+     * @param ministry the ministry
+     */
     private void createServiceStatisticsSection(VerticalLayout layout, ViewRiksdagenMinistry ministry) {
         layout.addComponent(CardInfoRowUtil.createInfoRow(
             MinistryStatisticsConstants.TOTAL_ASSIGNMENTS,
@@ -175,13 +187,19 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
             MinistryStatisticsConstants.FIRST_DATE_DESC));
 
         layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_LAST_ASSIGNMENT_LABEL,
-            String.valueOf(ministry.getLastAssignmentDate()), VaadinIcons.CALENDAR_CLOCK, 
+            String.valueOf(ministry.getLastAssignmentDate()), VaadinIcons.CALENDAR_CLOCK,
             MinistryDescriptionConstants.LAST_ASSIGNMENT_DESC));
         layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_TOTAL_DAYS_SERVED_LABEL,
-            String.valueOf(ministry.getTotalDaysServed()), VaadinIcons.CLOCK, 
+            String.valueOf(ministry.getTotalDaysServed()), VaadinIcons.CLOCK,
             MinistryDescriptionConstants.TOTAL_DAYS_SERVED_DESC));
     }
 
+    /**
+     * Creates the document statistics section.
+     *
+     * @param layout the layout
+     * @param ministry the ministry
+     */
     private void createDocumentStatisticsSection(VerticalLayout layout, ViewRiksdagenMinistry ministry) {
         layout.addComponent(CardInfoRowUtil.createInfoRow(
             MinistryStatisticsConstants.TOTAL_DOCUMENTS,
@@ -196,16 +214,16 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
             MinistryStatisticsConstants.AVG_DOCS_DESC));
 
         layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_DOCUMENTS_LAST_YEAR_LABEL,
-            String.valueOf(ministry.getDocumentsLastYear()), VaadinIcons.FILE_O, 
+            String.valueOf(ministry.getDocumentsLastYear()), VaadinIcons.FILE_O,
             MinistryDescriptionConstants.DOCUMENTS_LAST_YEAR_DESC));
         layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_AVG_DOCUMENTS_MEMBER_LABEL,
             String.format(Locale.ENGLISH,"%.1f", ministry.getAvgDocumentsPerMember()),
             VaadinIcons.CHART_LINE, MinistryDescriptionConstants.AVG_DOCUMENTS_MEMBER_DESC));
         layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_TOTAL_PROPOSITIONS_LABEL,
-            String.valueOf(ministry.getTotalPropositions()), VaadinIcons.FILE_PRESENTATION, 
+            String.valueOf(ministry.getTotalPropositions()), VaadinIcons.FILE_PRESENTATION,
             MinistryDescriptionConstants.TOTAL_PROPOSITIONS_DESC));
         layout.addComponent(CardInfoRowUtil.createInfoRow(MinistryViewConstants.MINISTRY_GOVERNMENT_BILLS_LABEL,
-            String.valueOf(ministry.getTotalGovernmentBills()), VaadinIcons.FILE_TEXT_O, 
+            String.valueOf(ministry.getTotalGovernmentBills()), VaadinIcons.FILE_TEXT_O,
             MinistryDescriptionConstants.GOVERNMENT_BILLS_DESC));
     }
 

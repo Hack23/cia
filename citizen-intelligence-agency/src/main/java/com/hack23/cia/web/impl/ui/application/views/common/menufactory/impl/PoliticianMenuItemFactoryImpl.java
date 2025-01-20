@@ -53,29 +53,71 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
 
         /** Menu labels. */
         private static final String BALLOT_DECISION_SUMMARY_TEXT = "Ballot Decision Summary";
+
+        /** The Constant BALLOTS_TEXT. */
         private static final String BALLOTS_TEXT = "Ballots";
+
+        /** The Constant DOCUMENT_ACTIVITY_TEXT. */
         private static final String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
+
+        /** The Constant DOCUMENT_HISTORY_TEXT. */
         private static final String DOCUMENT_HISTORY_TEXT = "Document History";
+
+        /** The Constant DOCUMENTS_TEXT. */
         private static final String DOCUMENTS_TEXT = "Documents";
+
+        /** The Constant INDICATORS_TEXT. */
         private static final String INDICATORS_TEXT = "Indicators";
+
+        /** The Constant OVERVIEW_TEXT. */
         private static final String OVERVIEW_TEXT = "Overview";
+
+        /** The Constant PAGE_VISIT_HISTORY_TEXT. */
         private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+
+        /** The Constant POLITICIAN_RANKING. */
         private static final String POLITICIAN_RANKING = "Politician Ranking";
+
+        /** The Constant ROLE_GHANT_TEXT. */
         private static final String ROLE_GHANT_TEXT = "Role Gantt";
+
+        /** The Constant ROLE_LIST. */
         private static final String ROLE_LIST = "Role List";
+
+        /** The Constant ROLES_TEXT. */
         private static final String ROLES_TEXT = "Roles";
+
+        /** The Constant TOTAL_EXPERIENCE. */
         private static final String TOTAL_EXPERIENCE = "Total Experience";
+
+        /** The Constant VOTE_HISTORY. */
         private static final String VOTE_HISTORY = "Vote History";
 
         /** Descriptions (~50 characters). */
         private static final String INDICATORS_DESCRIPTION = "Key performance indicators.";
+
+        /** The Constant TOTAL_EXPERIENCE_DESCRIPTION. */
         private static final String TOTAL_EXPERIENCE_DESCRIPTION = "Summary of political experience.";
+
+        /** The Constant ROLE_LIST_DESCRIPTION. */
         private static final String ROLE_LIST_DESCRIPTION = "Detailed list of roles.";
+
+        /** The Constant ROLE_GHANT_DESCRIPTION. */
         private static final String ROLE_GHANT_DESCRIPTION = "Gantt chart of roles.";
+
+        /** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
         private static final String DOCUMENT_ACTIVITY_DESCRIPTION = "Activity by document type.";
+
+        /** The Constant DOCUMENT_HISTORY_DESCRIPTION. */
         private static final String DOCUMENT_HISTORY_DESCRIPTION = "History of document access.";
+
+        /** The Constant VOTE_HISTORY_DESCRIPTION. */
         private static final String VOTE_HISTORY_DESCRIPTION = "Summary of voting records.";
+
+        /** The Constant BALLOT_DECISION_SUMMARY_DESCRIPTION. */
         private static final String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Overview of ballot decisions.";
+
+        /** The Constant PAGE_VISIT_HISTORY_DESCRIPTION. */
         private static final String PAGE_VISIT_HISTORY_DESCRIPTION = "History of page visits.";
 
         /** The application menu item factory. */

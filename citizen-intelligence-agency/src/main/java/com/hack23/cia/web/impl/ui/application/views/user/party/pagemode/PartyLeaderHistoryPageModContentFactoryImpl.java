@@ -42,10 +42,17 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyLeaderHistoryPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "roleId", "roleCode", "personId", "firstName",
 			"lastName", "party", "totalDaysServed", "active", "detail", "fromDate", "toDate" };
+
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "party", "detail" };
+
+	/** The Constant LEADER_HISTORY2. */
 	private static final String LEADER_HISTORY2 = "Leader History";
+
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personId");
 

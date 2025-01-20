@@ -68,7 +68,7 @@ public final class GovernmentBodyIncomePageModContentFactoryImpl extends Abstrac
 			if (governmentBodyAnnualSummary != null) {
 				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
 				CardInfoRowUtil.createPageHeader(panel, panelContent,
-					GovernmentBodyTitleFormatter.formatTitle(governmentBodyAnnualSummary, 
+					GovernmentBodyTitleFormatter.formatTitle(governmentBodyAnnualSummary,
 						GovernmentBodyDescriptionConstants.INCOME_HEADER),
 					GovernmentBodyDescriptionConstants.INCOME_SUBTITLE,
 					GovernmentBodyDescriptionConstants.INCOME_DESC);

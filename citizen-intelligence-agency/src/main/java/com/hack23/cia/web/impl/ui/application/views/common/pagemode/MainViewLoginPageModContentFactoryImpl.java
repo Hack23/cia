@@ -50,10 +50,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
+	/** The Constant AS_LIST. */
 	private static final List<String> AS_LIST = Arrays.asList( "email", "otpCode", "userpassword" );
 
+	/** The Constant LOGIN. */
 	private static final String LOGIN = "Login";
 
+	/** The Constant LOGIN_USER. */
 	private static final String LOGIN_USER = "Login user";
 
 	/** The Constant NAME. */

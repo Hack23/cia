@@ -59,7 +59,7 @@ public final class AdminApplicationEventsChartsPageModContentFactoryImpl
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_APPLICATION_EVENT_CHARTS, "Event Analysis", AdminViewConstants.EVENT_ANALYSIS);
+		CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_APPLICATION_EVENT_CHARTS, AdminViewConstants.EVENT_ANALYSIS_HEADER, AdminViewConstants.EVENT_ANALYSIS);
 
 		getAdminChartDataManager().createApplicationActionEventPageDailySummaryChart(content);
 

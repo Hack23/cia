@@ -45,6 +45,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+    /** The Constant COLUMN_ORDER. */
     private static final String[] COLUMN_ORDER = {
         "hjid",
         "portalName",
@@ -54,6 +55,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
         "modelObjectVersion"
     };
 
+    /** The Constant HIDE_COLUMNS. */
     private static final String[] HIDE_COLUMNS = {
         "hjid",
         "modelObjectId",
@@ -64,6 +66,7 @@ public final class AdminPortalPageModContentFactoryImpl extends AbstractAdminSys
     /** The Constant NAME. */
     public static final String NAME = AdminViews.ADMIN_PORTAL_VIEW_NAME;
 
+    /** The Constant PORTAL2. */
     private static final String PORTAL2 = "Portal";
 
     /**

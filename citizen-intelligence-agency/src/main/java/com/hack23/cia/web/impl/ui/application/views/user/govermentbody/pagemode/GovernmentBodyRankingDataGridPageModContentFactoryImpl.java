@@ -46,6 +46,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 		extends AbstractGovernmentBodyRankingPageModContentFactoryImpl {
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyViewConstants.ORG_NUMBER_PROPERTY);
 
@@ -78,8 +79,8 @@ public final class GovernmentBodyRankingDataGridPageModContentFactoryImpl
 
 		final List<GovernmentBodyAnnualSummary> list = dataMap.get(GovernmentBodyViewConstants.DEFAULT_YEAR);
 
-		getGridFactory().createBasicBeanItemGrid(panelContent, 
-			GovernmentBodyAnnualSummary.class, 
+		getGridFactory().createBasicBeanItemGrid(panelContent,
+			GovernmentBodyAnnualSummary.class,
 			list,
 			GovernmentBodyViewConstants.GOVERNMENT_BODIES,
 			GovernmentBodyViewConstants.COLUMN_ORDER,

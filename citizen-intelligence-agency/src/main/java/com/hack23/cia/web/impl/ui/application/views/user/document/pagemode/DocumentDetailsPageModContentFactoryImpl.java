@@ -43,8 +43,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "code", "detailName", "text" };
+
+	/** The Constant DOCUMENT_DETAILS2. */
 	private static final String DOCUMENT_DETAILS2 = "Document details";
+
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "hjid" };
 
 	/**
@@ -70,7 +75,7 @@ public final class DocumentDetailsPageModContentFactoryImpl extends AbstractDocu
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             DocumentViewConstants.DETAILS_TITLE,
             DocumentViewConstants.DETAILS_SUBTITLE,
             DocumentViewConstants.DETAILS_DESC);

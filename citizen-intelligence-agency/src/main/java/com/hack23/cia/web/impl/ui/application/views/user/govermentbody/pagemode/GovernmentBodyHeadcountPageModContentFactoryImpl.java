@@ -67,7 +67,7 @@ public final class GovernmentBodyHeadcountPageModContentFactoryImpl extends Abst
 			if (governmentBodyAnnualSummary != null) {
 				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
 				CardInfoRowUtil.createPageHeader(panel, panelContent,
-					GovernmentBodyTitleFormatter.formatTitle(governmentBodyAnnualSummary, 
+					GovernmentBodyTitleFormatter.formatTitle(governmentBodyAnnualSummary,
 						GovernmentBodyDescriptionConstants.HEADCOUNT_HEADER),
 					GovernmentBodyDescriptionConstants.HEADCOUNT_SUBTITLE,
 					GovernmentBodyDescriptionConstants.HEADCOUNT_DESC);
