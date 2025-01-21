@@ -30,12 +30,6 @@ jobs:
       actions: read         # Needed for CodeQL action metadata
     strategy:
       fail-fast: false
-      matrix:
-        # Override automatic language detection by changing the below list
-        # Supported options are ['csharp', 'cpp', 'go', 'java', 'javascript', 'python']
-        language: ['java']
-        # Learn more...
-        # https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#overriding-automatic-language-detection
 
     steps:
     - name: Harden Runner
@@ -93,7 +87,8 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@b6a472f63d85b9c78a3ac5e89422239fc15e9b3c # v3.28.1
       with:
-        languages: ${{ matrix.language }}
+        languages: java
+        dependency-caching: true      
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file. 
         # Prefix the list here with "+" to use these queries and those in the config file.
