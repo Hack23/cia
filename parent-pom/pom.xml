@@ -164,7 +164,7 @@
     <jdk.target.version>21</jdk.target.version>
     <javadoc.src.version>21</javadoc.src.version>
     <javadoc.target.version>21</javadoc.target.version>
-    <testAdditionalRuntimeArgLine>--add-exports java.base/sun.nio.ch=ALL-UNNAMED
+    <testAdditionalRuntimeArgLine>-XX:+EnableDynamicAgentLoading --add-exports java.base/sun.nio.ch=ALL-UNNAMED
       --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
       java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
       --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
@@ -1439,7 +1439,7 @@
         <jdk>21</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>--add-exports java.base/sun.nio.ch=ALL-UNNAMED
+        <testAdditionalRuntimeArgLine>-XX:+EnableDynamicAgentLoading --add-exports java.base/sun.nio.ch=ALL-UNNAMED
           --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
           java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
           --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>

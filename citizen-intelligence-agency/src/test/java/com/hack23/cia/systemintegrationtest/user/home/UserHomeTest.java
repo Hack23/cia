@@ -10,7 +10,6 @@ import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.systemintegrationtest.ui.TestUtils;
-import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandUserConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
@@ -47,7 +46,6 @@ public final class UserHomeTest extends AbstractUITest {
 		pageVisit.changePassword("wrong" + password,"new"+ password,"new" + password);
 
 		pageVisit.checkNotificationMessage(ChangePasswordClickListener.PROBLEM_CHANGING_PASSWORD);
-		pageVisit.logoutUser();
 
 	}
 
@@ -77,7 +75,6 @@ public final class UserHomeTest extends AbstractUITest {
 		pageVisit.performClickAction(securitySettingMenuItem);
 
 		pageVisit.changePassword(password,"new"+ password,"new" + password);
-		pageVisit.logoutUser();
 	}
 
 
@@ -98,12 +95,6 @@ public final class UserHomeTest extends AbstractUITest {
 
 		pageVisit.registerNewUser(username, password);
 
-		pageVisit.logoutUser();
-
-		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_LOGIN);
-
-		pageVisit.loginUser(username + "@test.com", password);
-
 
 		final WebElement useraccountMenuItem = pageVisit.getMenuItem(MenuItemConstants.USERACCOUNT);
 		assertNotNull(useraccountMenuItem);
@@ -112,7 +103,6 @@ public final class UserHomeTest extends AbstractUITest {
 		final WebElement userEventsMenuItem = pageVisit.getMenuItem("User Events");
 		assertNotNull(userEventsMenuItem);
 		pageVisit.performClickAction(userEventsMenuItem);
-		pageVisit.logoutUser();
 	}
 
 	/**
@@ -131,15 +121,6 @@ public final class UserHomeTest extends AbstractUITest {
 
 		pageVisit.registerNewUser(username, password);
 
-		pageVisit.logoutUser();
-
-
-		pageVisit.visitDirectPage(
-				PageCommandUserConstants.COMMAND_LOGIN);
-
-		pageVisit.loginUser(username + "@test.com", password);
-
-
 		final WebElement useraccountMenuItem = pageVisit.getMenuItem(MenuItemConstants.USERACCOUNT);
 		assertNotNull(useraccountMenuItem);
 		pageVisit.performClickAction(useraccountMenuItem);
@@ -147,7 +128,6 @@ public final class UserHomeTest extends AbstractUITest {
 		final WebElement userVisitsMenuItem = pageVisit.getMenuItem("User Visits");
 		assertNotNull(userVisitsMenuItem);
 		pageVisit.performClickAction(userVisitsMenuItem);
-		pageVisit.logoutUser();
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
@@ -171,7 +151,6 @@ public final class UserHomeTest extends AbstractUITest {
 		pageVisit.disableGoogleAuthenticator("wrong" + password);
 
 		pageVisit.checkNotificationMessage("Problem disable google authenticatorError message");
-		pageVisit.logoutUser();
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
@@ -195,8 +174,6 @@ public final class UserHomeTest extends AbstractUITest {
 		pageVisit.performClickAction(securitySettingMenuItem);
 
 		pageVisit.disableGoogleAuthenticator(password);
-		pageVisit.logoutUser();
-
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
@@ -222,15 +199,13 @@ public final class UserHomeTest extends AbstractUITest {
 
 		pageVisit.closeModal();
 
-		pageVisit.logoutUser();
+		pageVisit.cleanBrowser();
 
-		final UserPageVisit failedLoginWrongMfaVisit = new UserPageVisit(driver);
+		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_LOGIN);
 
-		failedLoginWrongMfaVisit.visitDirectPage(PageCommandUserConstants.COMMAND_LOGIN);
+		pageVisit.loginUserCheckView(username + "@test.com", password,"123456","main/" + ApplicationPageMode.LOGIN);
 
-		failedLoginWrongMfaVisit.loginUserCheckView(username + "@test.com", password,"123456","main/" + ApplicationPageMode.LOGIN);
-
-		failedLoginWrongMfaVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
+		pageVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
@@ -254,14 +229,14 @@ public final class UserHomeTest extends AbstractUITest {
 
 		pageVisit.deleteAccount(password);
 
-		final UserPageVisit failedLoginUserDeletedVisit = new UserPageVisit(driver);
+		pageVisit.cleanBrowser();
 
-		failedLoginUserDeletedVisit.visitDirectPage(
+		pageVisit.visitDirectPage(
 				PageCommandUserConstants.COMMAND_LOGIN);
 
-		failedLoginUserDeletedVisit.loginUserCheckView(username + "@test.com", password,"123456","main/" + ApplicationPageMode.LOGIN);
+		pageVisit.loginUserCheckView(username + "@test.com", password,"123456","main/" + ApplicationPageMode.LOGIN);
 
-		failedLoginUserDeletedVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
+		pageVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)

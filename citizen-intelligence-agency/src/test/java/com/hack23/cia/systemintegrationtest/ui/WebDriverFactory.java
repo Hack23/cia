@@ -1,23 +1,14 @@
 package com.hack23.cia.systemintegrationtest.ui;
 
-import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A factory for creating WebDriver objects.
  */
 public class WebDriverFactory {
 
-    /** The Constant LOG. */
-    private static final Logger LOG = LoggerFactory.getLogger(WebDriverFactory.class);
-
-    /** The Constant DEFAULT_TIMEOUT. */
-    private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(90);
 
     /**
      * Instantiates a new web driver factory.
@@ -31,7 +22,6 @@ public class WebDriverFactory {
      * @return the web driver
      */
     public static WebDriver createDriver() {
-        LOG.info("Creating WebDriver for browser");
         final WebDriver driver = createChromeDriver();
         configureDriver(driver);
         return driver;
@@ -56,7 +46,7 @@ public class WebDriverFactory {
      * @param driver the driver
      */
     private static void configureDriver(WebDriver driver) {
-        driver.manage().timeouts().pageLoadTimeout(DEFAULT_TIMEOUT);
-        driver.manage().timeouts().scriptTimeout(DEFAULT_TIMEOUT);
+        driver.manage().timeouts().pageLoadTimeout(TestConstants.DEFAULT_BROWSER_TIMEOUT);
+        driver.manage().timeouts().scriptTimeout(TestConstants.DEFAULT_BROWSER_TIMEOUT);
     }
 }

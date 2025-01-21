@@ -12,10 +12,18 @@ public final class TestConstants {
     public static final long DEFAULT_TIMEOUT = 25000;
 
     /** The Constant WAIT_FOR_PAGE_DELAY. */
-    public static final int WAIT_FOR_PAGE_DELAY = 7500;
+    public static final long CHECK = 100;
 
     /** The Constant WAIT_FOR_PAGE_ELEMENT. */
-    public static final Duration WAIT_FOR_PAGE_ELEMENT = Duration.ofMillis(7500);
+    public static final Duration WAIT_FOR_PAGE_ELEMENT = Duration.ofMillis(8000);
+
+    public static final Duration DEFAULT_BROWSER_TIMEOUT = Duration.ofSeconds(7);
+
+    public static final Duration CLICK_PAUSE = Duration.ofSeconds(5);
+
+    public static final Duration CLICK__MOVE_TO_PAUSE = Duration.ofMillis(500);
+    public static final Duration CLICK_PAUSE_AFTER = Duration.ofMillis(1000);
+
 
     /**
      * Instantiates a new test constants.
@@ -38,6 +46,7 @@ public final class TestConstants {
 
     /** The Constant DEFAULT_COUNTRY. */
     public static final String DEFAULT_COUNTRY = "Sweden";
+
 
     /**
      * Generate password.

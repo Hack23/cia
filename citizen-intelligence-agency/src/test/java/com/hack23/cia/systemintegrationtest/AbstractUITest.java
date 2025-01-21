@@ -1,7 +1,8 @@
 package com.hack23.cia.systemintegrationtest;
 
 import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,16 +27,16 @@ public abstract class AbstractUITest extends AbstractRoleSystemITest {
 			CitizenIntelligenceAgencyServer.ACCESS_URL);
 
 	/** The driver. */
-	protected WebDriver driver;
+	protected static WebDriver driver;
 
 	/** The page visit. */
-	protected UserPageVisit pageVisit;
+	protected static UserPageVisit pageVisit;
 
 	/**
 	 * Global setup.
 	 */
-	@Before
-	public void globalSetup() {
+	@BeforeClass
+	public static void globalSetup() {
 		LOG.info("Setting up test with browser");
 		driver = WebDriverFactory.createDriver();
 		pageVisit = new UserPageVisit(driver);
@@ -44,12 +45,17 @@ public abstract class AbstractUITest extends AbstractRoleSystemITest {
 	/**
 	 * Global teardown.
 	 */
-	@After
-	public void globalTeardown() {
+	@AfterClass
+	public static void globalTeardown() {
 		LOG.info("Tearing down WebDriver after all tests have run");
 		if (driver != null) {
 			driver.quit();
 		}
+	}
+
+	@After
+	public void cleanBrowser() {
+		pageVisit.cleanBrowser();
 	}
 
 }

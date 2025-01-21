@@ -19,6 +19,7 @@ public abstract class AbstractAdminTest extends AbstractUITest {
      */
     @Before
     public void adminSetup() throws Exception {
+    	pageVisit.cleanBrowser();
         pageVisit.loginAsAdmin();
     }
 

@@ -32,7 +32,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer;
@@ -75,40 +74,93 @@ public final class UserPageVisit extends Assert {
 		}
 	}
 
-	/** The driver. */
-	final WebDriver driver;
-
-	/** The helper. */
-	private final UserPageVisitHelper helper;
-
-	/** The element helper. */
-	private final ElementHelper elementHelper;
+	/** The action. */
+	private final Actions action;
 
 	/** The click helper. */
 	private final ClickHelper clickHelper;
 
-	/** The action. */
-	private final Actions action;
+	/** The driver. */
+	final WebDriver driver;
+
+
+	/** The helper. */
+	private final UserPageVisitHelper helper;
+
+	private final WebDriverWait wait;
 
 	/**
 	 * Instantiates a new user page visit.
 	 *
-	 * @param driver                    the driver
+	 * @param driver the driver
 	 */
 	public UserPageVisit(final WebDriver driver) {
 		super();
 		this.driver = driver;
 		this.helper = new UserPageVisitHelper(driver);
-		this.elementHelper = new ElementHelper(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
 		this.clickHelper = new ClickHelper(driver, helper);
 		action = new Actions(driver);
+		wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,Duration.ofMillis(TestConstants.CHECK));
 	}
+
+
+    /**
+     * Wait for clickable.
+     *
+     * @param locator the locator
+     * @return the web element
+     */
+    public WebElement waitForClickable(By locator) {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    /**
+     * Find buttons.
+     *
+     * @return the list
+     */
+    public List<WebElement> findButtons() {
+        final List<WebElement> buttons = new ArrayList<>();
+        buttons.addAll(driver.findElements(By.className("v-nativebutton")));
+        buttons.addAll(driver.findElements(By.className("v-button")));
+        buttons.addAll(driver.findElements(By.className("v-button-caption")));
+        buttons.addAll(driver.findElements(By.tagName("a")));
+        return buttons;
+    }
+
+    /**
+     * Find button by text.
+     *
+     * @param text the text
+     * @return the web element
+     */
+    public WebElement findButtonByText(String text) {
+        return findButtons().stream()
+            .filter(button -> matchesButtonText(button, text))
+            .findFirst()
+            .orElse(null);
+    }
+
+    /**
+     * Matches button text.
+     *
+     * @param button the button
+     * @param text the text
+     * @return true, if successful
+     */
+    private boolean matchesButtonText(WebElement button, String text) {
+        final String buttonText = button.getText().trim();
+        return text.equalsIgnoreCase(buttonText) || buttonText.endsWith(text);
+    }
+
+
+
 
 	/**
 	 * Change password.
 	 *
-	 * @param password the password
-	 * @param newPassword the new password
+	 * @param password          the password
+	 * @param newPassword       the new password
 	 * @param repeatNewPassword the repeat new password
 	 */
 	public void changePassword(final String password, final String newPassword, final String repeatNewPassword) {
@@ -116,18 +168,17 @@ public final class UserPageVisit extends Assert {
 		setFieldValue("Change password.newPassword", newPassword);
 		setFieldValue("Change password.repeatNewPassword", repeatNewPassword);
 
-		clickHelper.clickWithRetry(findButton("Change password"));
+		clickHelper.performClick(findButton("Change password"));
 	}
 
 	/**
 	 * Check html body contains text.
 	 *
-	 * @param text
-	 *             the text
+	 * @param text the text
 	 * @return true, if successful
 	 */
 	public boolean checkHtmlBodyContainsText(final String text) {
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
+
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 		return getHtmlBodyAsText().contains(text);
 	}
@@ -135,15 +186,44 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Check notification message.
 	 *
-	 * @param expectedValue
-	 *                      the expected value
+	 * @param expectedValue the expected value
 	 */
 	public void checkNotificationMessage(final String expectedValue) {
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
+
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-Notification")));
 		final WebElement notification = driver.findElement(By.className("v-Notification"));
 		assertNotNull(notification);
 		assertEquals(expectedValue, notification.getText());
+
+	}
+
+	/**
+	 * Clean browser.
+	 */
+	public void cleanBrowser() {
+		if (driver != null) {
+			driver.manage().deleteAllCookies();
+			driver.get("about:blank");
+		}
+	}
+
+	/**
+	 * Click first row in grid.
+	 *
+	 * @param userPageVisit the user page visit
+	 * @throws InterruptedException the interrupted exception
+	 */
+	protected final void clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
+		final List<WebElement> gridRows = userPageVisit.getGridRows();
+		assertFalse(gridRows.isEmpty());
+
+		final WebElement choosenRow = gridRows.iterator().next();
+
+		final List<WebElement> cells = choosenRow.findElements(By.className("v-grid-cell"));
+
+		final WebElement choosenCell = cells.iterator().next();
+
+		userPageVisit.performClickAction(choosenCell);
 
 	}
 
@@ -154,22 +234,8 @@ public final class UserPageVisit extends Assert {
 		final WebElement closeModalWindow = driver.findElement(By.className("v-window-closebox"));
 		assertNotNull("Expect to find a Window close Box", closeModalWindow);
 
-		performClickActionWithRetry(closeModalWindow);
+		performClick(closeModalWindow);
 
-	}
-
-	/**
-	 * Disable google authenticator.
-	 *
-	 * @param password the password
-	 */
-	public void disableGoogleAuthenticator(final String password) {
-		setFieldValue("Disable Google Authenticator.userpassword", password);
-
-		final WebElement enableGoogleAuthButton = driver.findElement(By.id("Disable Google Authenticator"));
-		assertNotNull("Expect to find a Enable Google Authenticator Button", enableGoogleAuthButton);
-
-		performClickActionWithRetry(enableGoogleAuthButton);
 	}
 
 	/**
@@ -183,7 +249,21 @@ public final class UserPageVisit extends Assert {
 		final WebElement deleteButton = driver.findElement(By.id("Delete Account"));
 		assertNotNull("Expect to find a Delete Account Button", deleteButton);
 
-		performClickActionWithRetry(deleteButton);
+		performClick(deleteButton);
+	}
+
+	/**
+	 * Disable google authenticator.
+	 *
+	 * @param password the password
+	 */
+	public void disableGoogleAuthenticator(final String password) {
+		setFieldValue("Disable Google Authenticator.userpassword", password);
+
+		final WebElement enableGoogleAuthButton = driver.findElement(By.id("Disable Google Authenticator"));
+		assertNotNull("Expect to find a Enable Google Authenticator Button", enableGoogleAuthButton);
+
+		performClick(enableGoogleAuthButton);
 	}
 
 	/**
@@ -198,18 +278,17 @@ public final class UserPageVisit extends Assert {
 		final WebElement enableGoogleAuthButton = driver.findElement(By.id("Enable Google Authenticator"));
 		assertNotNull("Expect to find a Enable Google Authenticator Button", enableGoogleAuthButton);
 
-		performClickActionWithRetry(enableGoogleAuthButton);
+		performClick(enableGoogleAuthButton);
 	}
 
 	/**
 	 * Find button.
 	 *
-	 * @param buttonLabel
-	 *                    the button label
+	 * @param buttonLabel the button label
 	 * @return the web element
 	 */
 	public WebElement findButton(final String buttonLabel) {
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
+
 		wait.until(helper.containsButton(buttonLabel));
 
 		for (final WebElement webElement : helper.getButtons()) {
@@ -230,7 +309,7 @@ public final class UserPageVisit extends Assert {
 	 * @return the web element
 	 */
 	private WebElement findClickable(final String id) {
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
+
 		wait.pollingEvery(Duration.ofMillis(10));
 		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
 
@@ -240,8 +319,7 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Gets the action ids by.
 	 *
-	 * @param action
-	 *               the action
+	 * @param action the action
 	 * @return the action ids by
 	 */
 	public List<String> getActionIdsBy(final ViewAction action) {
@@ -255,7 +333,6 @@ public final class UserPageVisit extends Assert {
 
 		return idList;
 	}
-
 
 	/**
 	 * Gets the grid headers.
@@ -279,41 +356,6 @@ public final class UserPageVisit extends Assert {
 		return gridBody.findElements(By.className("v-grid-row"));
 
 	}
-
-
-/**
-	 * Click first row in grid.
-	 *
-	 * @param userPageVisit
-	 *                      the user page visit
-	 * @throws InterruptedException
-	 *                              the interrupted exception
-	 */
-	protected final void clickFirstRowInGrid(final UserPageVisit userPageVisit) throws InterruptedException {
-		final List<WebElement> gridRows = userPageVisit.getGridRows();
-		assertFalse(gridRows.isEmpty());
-
-		final WebElement choosenRow = gridRows.iterator().next();
-
-		final List<WebElement> cells = choosenRow.findElements(By.className("v-grid-cell"));
-
-		final WebElement choosenCell = cells.iterator().next();
-
-		userPageVisit.performClickAction(choosenCell);
-
-	}
-
-	/**
-	 * Login as admin.
-	 *
-	 * @throws Exception                   the exception
-	 */
-	public final void loginAsAdmin() throws Exception {
-		visitDirectPage(
-				new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
-		loginUser(systemTestTargetAdminEmail, systemTestTargetAdminPassword);
-	}
-
 
 	/**
 	 * Gets the html body as text.
@@ -353,8 +395,7 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Gets the menu item.
 	 *
-	 * @param caption
-	 *                the caption
+	 * @param caption the caption
 	 * @return the menu item
 	 */
 
@@ -365,12 +406,9 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Gets the menu item.
 	 *
-	 * @param element
-	 *                the element
-	 * @param level
-	 *                the level
-	 * @param caption
-	 *                the caption
+	 * @param element the element
+	 * @param level   the level
+	 * @param caption the caption
 	 * @return the menu item
 	 */
 	WebElement getMenuItem(final WebElement element, final int level, final String... caption) {
@@ -407,27 +445,32 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Gets the menu item.
 	 *
-	 * @param element
-	 *                the element
-	 * @param caption
-	 *                the caption
+	 * @param element the element
+	 * @param caption the caption
 	 * @return the menu item
 	 */
 	public WebElement getMenuItem(final WebElement element, final String... caption) {
 
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(helper.containsMenuItem(this, element, caption));
 
 		return getMenuItem(element, 1, caption);
 	}
 
 	/**
+	 * Login as admin.
+	 *
+	 * @throws Exception the exception
+	 */
+	public final void loginAsAdmin() throws Exception {
+		visitDirectPage(new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME, ApplicationPageMode.LOGIN.toString()));
+		loginUser(systemTestTargetAdminEmail, systemTestTargetAdminPassword);
+	}
+
+	/**
 	 * Login user.
 	 *
-	 * @param username
-	 *                 the username
-	 * @param password
-	 *                 the password
+	 * @param username the username
+	 * @param password the password
 	 */
 	public void loginUser(final String username, final String password) {
 		loginUserCheckView(username, password, UserViews.USERHOME_VIEW_NAME);
@@ -438,7 +481,7 @@ public final class UserPageVisit extends Assert {
 	 *
 	 * @param username the username
 	 * @param password the password
-	 * @param view the view
+	 * @param view     the view
 	 */
 	public void loginUserCheckView(final String username, final String password, final String view) {
 		loginUserCheckView(username, password, null, view);
@@ -447,10 +490,10 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Login user check view.
 	 *
-	 * @param username                 the username
-	 * @param password                 the password
-	 * @param otpCode the otp code
-	 * @param view                 the view
+	 * @param username the username
+	 * @param password the password
+	 * @param otpCode  the otp code
+	 * @param view     the view
 	 */
 	public void loginUserCheckView(final String username, final String password, final String otpCode,
 			final String view) {
@@ -465,11 +508,10 @@ public final class UserPageVisit extends Assert {
 		final WebElement loginButton = findButton("Login");
 		assertNotNull("Expect to find a Login Button", loginButton);
 
-		performClickActionWithRetry(loginButton);
+		performClick(loginButton);
 
 		final String url = systemTestTargetUrl + "#!" + view;
 
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,(Duration.ofMillis(100)));
 		wait.until(ExpectedConditions.urlContains(url));
 
 		assertEquals(url, driver.getCurrentUrl());
@@ -491,7 +533,6 @@ public final class UserPageVisit extends Assert {
 		final WebElement body = driver.findElement(By.tagName("body"));
 		body.sendKeys(Keys.ESCAPE);
 
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName("body")));
@@ -515,37 +556,31 @@ public final class UserPageVisit extends Assert {
 		cleanBrowser();
 	}
 
-
-
-
 	/**
-	 * Clean browser.
+	 * Perform click action with retry.
+	 *
+	 * @param element the element
 	 */
-	private void cleanBrowser() {
-		if (driver != null) {
-			driver.manage().deleteAllCookies();
-			driver.get("about:blank");
-		}
+	// The public click methods needed by all the calls
+	public void performClick(WebElement clickElement) {
+		assertNotNull(clickElement);
+		clickHelper.performClick(clickElement);
 	}
-
 
 	/**
 	 * Perform click action.
 	 *
-	 * @param clickElement
-	 *                     the click element
+	 * @param clickElement the click element
 	 */
 	public void performClickAction(final WebElement clickElement) {
-		performClickActionWithRetry(clickElement);
+		performClick(clickElement);
 	}
 
 	/**
 	 * Register new user.
 	 *
-	 * @param username
-	 *                 the username
-	 * @param password
-	 *                 the password
+	 * @param username the username
+	 * @param password the password
 	 */
 	public void registerNewUser(final String username, final String password) {
 		registerNewUserCheckView(username, password, UserViews.USERHOME_VIEW_NAME);
@@ -554,12 +589,9 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Register new user check view.
 	 *
-	 * @param username
-	 *                 the username
-	 * @param password
-	 *                 the password
-	 * @param userView
-	 *                 the user view
+	 * @param username the username
+	 * @param password the password
+	 * @param userView the user view
 	 */
 	public void registerNewUserCheckView(final String username, final String password, final String userView) {
 
@@ -568,7 +600,7 @@ public final class UserPageVisit extends Assert {
 		setFieldValue("Register.country", "Sweden");
 		setFieldValue("Register.userpassword", password);
 
-		performClickActionWithRetry(findClickable("Register"));
+		performClick(findClickable("Register"));
 
 		findButton("Logout");
 
@@ -581,26 +613,35 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Search document.
 	 *
-	 * @param search
-	 *               the search
+	 * @param search the search
 	 */
 	public void searchDocument(final String search) {
 
 		setFieldValue("Search.searchExpression", search);
 
-		performClickActionWithRetry(findClickable("Search"));
+		performClick(findClickable("Search"));
 
 		final String url = systemTestTargetUrl + "#!" + UserViews.SEARCH_DOCUMENT_VIEW_NAME;
 
-		assertEquals(url,
-				driver.getCurrentUrl());
+		assertEquals(url, driver.getCurrentUrl());
 
+	}
+
+	/**
+	 * Select first grid row.
+	 *
+	 * @return the user page visit
+	 */
+	public UserPageVisit selectFirstGridRow() {
+		final WebElement firstRow = getGridRows().get(0);
+		clickHelper.performClick(firstRow);
+		return this;
 	}
 
 	/**
 	 * Send email on email page.
 	 *
-	 * @param email the email
+	 * @param email   the email
 	 * @param subject the subject
 	 * @param content the content
 	 */
@@ -610,19 +651,17 @@ public final class UserPageVisit extends Assert {
 		setFieldValue("Email.subject", subject);
 		setFieldValue("Email.content", content);
 
-		performClickActionWithRetry(findClickable("Email"));
+		performClick(findClickable("Email"));
 	}
 
 	/**
 	 * Sets the field value.
 	 *
-	 * @param id
-	 *              the id
-	 * @param value
-	 *              the value
+	 * @param id    the id
+	 * @param value the value
 	 */
 	private void setFieldValue(final String id, final String value) {
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
+
 		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
 
 		final WebElement findElement = driver.findElement(By.id(id));
@@ -633,30 +672,26 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Update configuration property.
 	 *
-	 * @param property
-	 *                 the property
-	 * @param value
-	 *                 the value
+	 * @param property the property
+	 * @param value    the value
 	 */
 	public void updateConfigurationProperty(final String property, final String value) {
 		setFieldValue(property, value);
 		final WebElement updateConfigButton = findButton("Update Configuration");
 		assertNotNull("Expect to find a Update Config Button", updateConfigButton);
 
-		performClickActionWithRetry(updateConfigButton);
+		performClick(updateConfigButton);
 
 	}
 
 	/**
 	 * Validate page.
 	 *
-	 * @param page
-	 *             the page
+	 * @param page the page
 	 */
 	public void validatePage(final PageModeMenuCommand page) {
 		final String url = systemTestTargetUrl + "#!" + page.getPagePath();
 
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		final String text = getHtmlBodyAsText();
@@ -670,10 +705,25 @@ public final class UserPageVisit extends Assert {
 	}
 
 	/**
+	 * Verify page content.
+	 *
+	 * @param expectedContent the expected content
+	 * @return the user page visit
+	 */
+	public UserPageVisit verifyPageContent(String expectedContent) {
+		try {
+			assertTrue("Expected content: " + expectedContent + "\nNot in:\n " + getHtmlBodyAsText(),
+					checkHtmlBodyContainsText(expectedContent));
+			return this;
+		} catch (final Exception e) {
+			throw new RuntimeException("Page content verification failed", e);
+		}
+	}
+
+	/**
 	 * Verify view actions.
 	 *
-	 * @param viewActions
-	 *                    the view actions
+	 * @param viewActions the view actions
 	 */
 	public void verifyViewActions(final ViewAction[] viewActions) {
 		final Set<ViewAction> actionsAvailable = helper.getActionsAvailable();
@@ -686,18 +736,20 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Visit direct page.
 	 *
-	 * @param page
-	 *             the page
+	 * @param page the page
 	 */
 	public void visitDirectPage(final PageModeMenuCommand page) {
 		final String url = systemTestTargetUrl + "#!" + page.getPagePath();
 		driver.get(url);
 
-		action.pause(500L).perform();
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 
+		wait.until(webDriver -> "complete"
+		.equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
+
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName("body")));
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
+        action.pause(TestConstants.CLICK_PAUSE_AFTER).build().perform();
 		final String text = getHtmlBodyAsText();
 		assertNotNull(text);
 		assertFalse("Page contains exception, url:" + url, text.contains("Exception"));
@@ -712,20 +764,14 @@ public final class UserPageVisit extends Assert {
 	 * Visit main view.
 	 */
 	public void visitMainView() {
-		final WebElement mainViewLink = driver.findElement(By
-				.id(ViewAction.VISIT_MAIN_VIEW.name()));
-		performClickActionWithRetry(mainViewLink);
+		final WebElement mainViewLink = driver.findElement(By.id(ViewAction.VISIT_MAIN_VIEW.name()));
+		performClick(mainViewLink);
 
-		verifyViewActions(new ViewAction[] {
-				ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW,
-				ViewAction.VISIT_ADMIN_DATA_SUMMARY_VIEW,
-				ViewAction.VISIT_POLITICIAN_RANKING_VIEW,
-				ViewAction.VISIT_PARTY_RANKING_VIEW,
-				ViewAction.VISIT_MINISTRY_RANKING_VIEW,
-				ViewAction.VISIT_COMMITTEE_RANKING_VIEW,
-				ViewAction.VISIT_COUNTRY_VIEW });
+		verifyViewActions(new ViewAction[] { ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW,
+				ViewAction.VISIT_ADMIN_DATA_SUMMARY_VIEW, ViewAction.VISIT_POLITICIAN_RANKING_VIEW,
+				ViewAction.VISIT_PARTY_RANKING_VIEW, ViewAction.VISIT_MINISTRY_RANKING_VIEW,
+				ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ViewAction.VISIT_COUNTRY_VIEW });
 	}
-
 
 	/**
 	 * Visit start page.
@@ -733,60 +779,15 @@ public final class UserPageVisit extends Assert {
 	public void visitStartPage() {
 		driver.get(systemTestTargetUrl);
 
-		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
-		assertEquals(systemTestTargetUrl,
-				driver.getCurrentUrl());
+		assertEquals(systemTestTargetUrl, driver.getCurrentUrl());
 		assertEquals("Citizen Intelligence Agency", driver.getTitle());
 		assertNotNull(driver.getWindowHandle());
 
-		verifyViewActions(new ViewAction[] {
-				ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW,
-				ViewAction.VISIT_ADMIN_DATA_SUMMARY_VIEW,
-				ViewAction.VISIT_POLITICIAN_RANKING_VIEW,
-				ViewAction.VISIT_PARTY_RANKING_VIEW,
-				ViewAction.VISIT_MINISTRY_RANKING_VIEW,
-				ViewAction.VISIT_COMMITTEE_RANKING_VIEW,
-				ViewAction.VISIT_COUNTRY_VIEW });
-	}
-
-	/**
-	 * Verify page content.
-	 *
-	 * @param expectedContent the expected content
-	 * @return the user page visit
-	 */
-	public UserPageVisit verifyPageContent(String expectedContent) {
-		try {
-			assertTrue("Expected content: " + expectedContent +"\nNot in:\n " + getHtmlBodyAsText(),
-					checkHtmlBodyContainsText(expectedContent));
-			return this;
-		} catch (final Exception e) {
-			throw new RuntimeException("Page content verification failed", e);
-		}
-	}
-
-	/**
-	 * Select first grid row.
-	 *
-	 * @return the user page visit
-	 */
-	public UserPageVisit selectFirstGridRow() {
-		final WebElement firstRow = getGridRows().get(0);
-		performClickActionWithRetry(firstRow);
-		return this;
-	}
-
-
-	/**
-	 * Perform click action with retry.
-	 *
-	 * @param element the element
-	 */
-	// The public click methods needed by all the calls
-	public void performClickActionWithRetry(WebElement clickElement) {
-		assertNotNull(clickElement);
-		clickHelper.clickWithRetry(clickElement);
+		verifyViewActions(new ViewAction[] { ViewAction.VISIT_ADMIN_AGENT_OPERATION_VIEW,
+				ViewAction.VISIT_ADMIN_DATA_SUMMARY_VIEW, ViewAction.VISIT_POLITICIAN_RANKING_VIEW,
+				ViewAction.VISIT_PARTY_RANKING_VIEW, ViewAction.VISIT_MINISTRY_RANKING_VIEW,
+				ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ViewAction.VISIT_COUNTRY_VIEW });
 	}
 }

@@ -1,7 +1,6 @@
 package com.hack23.cia.systemintegrationtest.ui;
 
-import java.time.Duration;
-
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -11,66 +10,39 @@ import org.openqa.selenium.interactions.Actions;
  */
 public class ClickHelper {
 
-    /** The actions. */
-    private final Actions actions;
+	private final Actions actions;
+	private final UserPageVisitHelper helper;
+	public static boolean enableScreenShot = false;
 
-    /** The helper. */
-    private final UserPageVisitHelper helper;
+	public ClickHelper(WebDriver driver, UserPageVisitHelper helper) {
+		this.actions = new Actions(driver);
+		this.helper = helper;
+	}
 
-    /** The enable screen shot. */
-    public static boolean enableScreenShot = false;
+	/**
+	 * Perform click on a given element, waiting for it to be clickable.
+	 *
+	 * @param element the element
+	 */
+	public void performClick(WebElement element) {
+		for (int i = 0; i < 2; i++) {
+			try {
+				actions.pause(TestConstants.CLICK_PAUSE_AFTER).moveToElement(helper.refreshElement(element))
+						.pause(TestConstants.CLICK__MOVE_TO_PAUSE).click().pause(TestConstants.CLICK_PAUSE_AFTER)
+						.perform();
 
-    /**
-     * Instantiates a new click helper.
-     *
-     * @param driver the driver
-     * @param helper the helper
-     */
-    public ClickHelper(WebDriver driver, UserPageVisitHelper helper) {
-        this.actions = new Actions(driver);
-        this.helper = helper;
-    }
+				if (enableScreenShot) {
+					helper.grabScreenshot();
+				}
+				return; // success, break out of method
 
-    /**
-     * Click with retry.
-     *
-     * @param element the element
-     */
-    public void clickWithRetry(WebElement element) {
-    	clickElement(element);
-    }
-
-    /**
-     * Click with delay.
-     *
-     * @param element the element
-     */
-    public void clickWithDelay(WebElement element) {
-    	clickElement(element);
-
-    }
-
-    /**
-     * Click element.
-     *
-     * @param element the element
-     */
-    private void clickElement(WebElement element) {
-
-
-
-		actions.pause(Duration.ofMillis(400)).build().perform();
-
-        actions.pause(Duration.ofMillis(250))
-                    .clickAndHold(helper.refreshElement(element))
-                    .release()
-                    .pause(Duration.ofMillis(250))
-                    .perform();
-
-		actions.pause(Duration.ofMillis(400)).build().perform();
-
-        if(enableScreenShot) {
-			helper.grabScreenshot();
+			} catch (final StaleElementReferenceException stale) {
+				if (i == 1) {
+					// if second attempt fails, re-throw
+					throw stale;
+				}
+			}
 		}
-    }
+
+	}
 }

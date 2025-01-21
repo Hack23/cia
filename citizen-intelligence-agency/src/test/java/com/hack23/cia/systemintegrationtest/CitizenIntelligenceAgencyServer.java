@@ -77,6 +77,7 @@ public final class CitizenIntelligenceAgencyServer {
 		System.setProperty("org.eclipse.jetty.util.log.class", "org.eclipse.jetty.util.log.Slf4jLog");
 		System.setProperty("jetty.sslContext.sniRequired", "false");
 		System.setProperty("jetty.ssl.sniRequired", "false");
+		System.setProperty("java.util.logging.manage", "org.jboss.logmanager.LogManager");
 
 		LogManager.getLogManager().reset();
 		SLF4JBridgeHandler.install();
