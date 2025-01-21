@@ -100,21 +100,19 @@ public final class UserHomeTest extends AbstractUITest {
 
 		pageVisit.logoutUser();
 
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(driver);
+		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_LOGIN);
 
-		userLoginPageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_LOGIN);
-
-		userLoginPageVisit.loginUser(username + "@test.com", password);
+		pageVisit.loginUser(username + "@test.com", password);
 
 
-		final WebElement useraccountMenuItem = userLoginPageVisit.getMenuItem(MenuItemConstants.USERACCOUNT);
+		final WebElement useraccountMenuItem = pageVisit.getMenuItem(MenuItemConstants.USERACCOUNT);
 		assertNotNull(useraccountMenuItem);
-		userLoginPageVisit.performClickAction(useraccountMenuItem);
+		pageVisit.performClickAction(useraccountMenuItem);
 
-		final WebElement userEventsMenuItem = userLoginPageVisit.getMenuItem("User Events");
+		final WebElement userEventsMenuItem = pageVisit.getMenuItem("User Events");
 		assertNotNull(userEventsMenuItem);
-		userLoginPageVisit.performClickAction(userEventsMenuItem);
-		userLoginPageVisit.logoutUser();
+		pageVisit.performClickAction(userEventsMenuItem);
+		pageVisit.logoutUser();
 	}
 
 	/**
@@ -135,22 +133,21 @@ public final class UserHomeTest extends AbstractUITest {
 
 		pageVisit.logoutUser();
 
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(driver);
 
-		userLoginPageVisit.visitDirectPage(
+		pageVisit.visitDirectPage(
 				PageCommandUserConstants.COMMAND_LOGIN);
 
-		userLoginPageVisit.loginUser(username + "@test.com", password);
+		pageVisit.loginUser(username + "@test.com", password);
 
 
-		final WebElement useraccountMenuItem = userLoginPageVisit.getMenuItem(MenuItemConstants.USERACCOUNT);
+		final WebElement useraccountMenuItem = pageVisit.getMenuItem(MenuItemConstants.USERACCOUNT);
 		assertNotNull(useraccountMenuItem);
-		userLoginPageVisit.performClickAction(useraccountMenuItem);
+		pageVisit.performClickAction(useraccountMenuItem);
 
-		final WebElement userVisitsMenuItem = userLoginPageVisit.getMenuItem("User Visits");
+		final WebElement userVisitsMenuItem = pageVisit.getMenuItem("User Visits");
 		assertNotNull(userVisitsMenuItem);
-		userLoginPageVisit.performClickAction(userVisitsMenuItem);
-		userLoginPageVisit.logoutUser();
+		pageVisit.performClickAction(userVisitsMenuItem);
+		pageVisit.logoutUser();
 	}
 
 	@Test(timeout = DEFAULT_TIMEOUT)
@@ -327,33 +324,6 @@ public final class UserHomeTest extends AbstractUITest {
 
 
 	/**
-	 * Site login user test.
-	 *
-	 * @throws Exception
-	 *             the exception
-	 */
-	@Test(timeout = DEFAULT_TIMEOUT)
-	public void siteLoginUserTest() throws Exception {
-
-		pageVisit.visitDirectPage(
-				PageCommandUserConstants.COMMAND_REGISTER);
-
-		final String username = UUID.randomUUID().toString();
-		final String password = TestUtils.generatePassword();
-
-		pageVisit.registerNewUser(username, password);
-
-		pageVisit.logoutUser();
-
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(driver);
-
-		userLoginPageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_LOGIN);
-
-		userLoginPageVisit.loginUser(username + "@test.com", password);
-	}
-
-
-	/**
 	 * Site login user wrong password test.
 	 *
 	 * @throws Exception
@@ -372,14 +342,13 @@ public final class UserHomeTest extends AbstractUITest {
 
 		pageVisit.logoutUser();
 
-		final UserPageVisit userLoginPageVisit = new UserPageVisit(driver);
 
-		userLoginPageVisit.visitDirectPage(
+		pageVisit.visitDirectPage(
 				PageCommandUserConstants.COMMAND_LOGIN);
 
-		userLoginPageVisit.loginUserCheckView(username + "@test.com", "wrongpassword","main/" + ApplicationPageMode.LOGIN);
+		pageVisit.loginUserCheckView(username + "@test.com", "wrongpassword","main/" + ApplicationPageMode.LOGIN);
 
-		userLoginPageVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
+		pageVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 
 	}
 

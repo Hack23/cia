@@ -58,7 +58,8 @@ public class ClickHelper {
     private void clickElement(WebElement element) {
 
 
-		helper.waitForClickable(element);
+
+		actions.pause(Duration.ofMillis(400)).build().perform();
 
         actions.pause(Duration.ofMillis(250))
                     .clickAndHold(helper.refreshElement(element))
@@ -66,7 +67,7 @@ public class ClickHelper {
                     .pause(Duration.ofMillis(250))
                     .perform();
 
-        helper.waitForPageLoad();
+		actions.pause(Duration.ofMillis(400)).build().perform();
 
         if(enableScreenShot) {
 			helper.grabScreenshot();

@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +33,7 @@ public class UserPageVisitHelper {
     private static final Logger LOG = LoggerFactory.getLogger(UserPageVisitHelper.class);
 
     /** The Constant DEFAULT_WAIT. */
-    private static final Duration DEFAULT_WAIT = Duration.ofMillis(120000);
+    private static final Duration DEFAULT_WAIT = Duration.ofMillis(100);
 
     /** The screen shot number. */
     private static int screenShotNumber;
@@ -51,24 +50,12 @@ public class UserPageVisitHelper {
         this.driver = driver;
     }
 
-    /**
-     * Wait for element.
-     *
-     * @param locator the locator
-     */
-    public void waitForElement(By locator) {
-        new WebDriverWait(driver, DEFAULT_WAIT)
-                .until(ExpectedConditions.elementToBeClickable(locator));
-    }
 
     /**
      * Wait for page load.
      */
     public void waitForPageLoad() {
-        new WebDriverWait(driver, DEFAULT_WAIT)
-               .until(driver -> "complete".equals(
-                        ((JavascriptExecutor) driver).executeScript("return document.readyState")));
-        new WebDriverWait(driver, DEFAULT_WAIT).until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
+        new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,DEFAULT_WAIT).until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 
     }
@@ -231,7 +218,7 @@ public class UserPageVisitHelper {
 	 */
 	public List<WebElement> getButtons() {
 		final List<WebElement> result = getButtonElements();
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,DEFAULT_WAIT);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfAllElements(result)));
 
 		return getButtonElements();
@@ -254,7 +241,7 @@ public class UserPageVisitHelper {
 	}
 
 	public void waitForClickable(WebElement element) {
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,DEFAULT_WAIT);
 		wait.until(ExpectedConditions.elementToBeClickable(StaleElementUtils.refreshElement(element,driver)));
 
 

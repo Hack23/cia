@@ -16,34 +16,34 @@
 		<exec executable="${maven.binary}" dir="../parent-pom/">
 			<env key="MAVEN_OPTS" value="-server -Xmx2048m -Xms2048m " />
 			<arg
-				line="-B --file pom.xml clean install -pl !cia-dist-deb  -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.failure.ignore=true -DfailIfNoTests=false  -Dsurefire.failIfNoSpecifiedTests=false  -Dsurefire.reportNameSuffix=UNIT" />
+				line="-B --file pom.xml clean install -pl '!cia-dist-deb,!cia-dist-cloudformation'  -Prelease-site -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.failure.ignore=true -DfailIfNoTests=false  -Dsurefire.failIfNoSpecifiedTests=false  -Dsurefire.reportNameSuffix=UNIT -Dspdx.skip=true" />
 		</exec>
 	</target>
 
 	<target name="check-updates" description="cia-check-updates" depends="init">
 		<exec executable="${maven.binary}" dir="../parent-pom">
 			<arg
-				line="versions:display-dependency-updates -Prelease-site,release-sign-artifacts,all-modules -U" />
+				line="versions:display-dependency-updates -Prelease-site,release-sign-artifacts -U" />
 		</exec>
 	</target>
 	<target name="check-plugin-updates" description="cia-check-plugin-updates" depends="init">
 		<exec executable="${maven.binary}" dir="../parent-pom">
 			<arg
-				line="versions:display-plugin-updates -Prelease-site,release-sign-artifacts,all-modules  -U " />
+				line="versions:display-plugin-updates -Prelease-site,release-sign-artifacts  -U " />
 		</exec>
 	</target>
 	<target name="clean-install" description="cia-clean-install" depends="init">
 		<exec executable="${maven.binary}" dir="../parent-pom/">
 			<env key="MAVEN_OPTS" value="-server -Xmx2048m -Xms2048m " />
 			<arg
-				line="clean install -T 1.5C -pl !cia-dist-deb -Pall-modules -Dhttps.protocols=TLSv1.2 -Dmaven.test.failure.ignore=true" />
+				line="clean install -pl '!cia-dist-deb,!cia-dist-cloudformation' -Dmaven.test.failure.ignore=true -Dspdx.skip=true" />
 		</exec>
 	</target>
 	<target name="clean-install-notest" description="cia-clean-install-notest" depends="init">
 		<exec executable="${maven.binary}" dir="../">
 			<env key="MAVEN_OPTS" value="-server -Xmx2048m -Xms2048m  " />
 			<arg
-				line="clean install -Pall-modules -DskipTests -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -pl '!cia-dist-deb,!cia-dist-cloudformation'" />
+				line="clean install -pl '!cia-dist-deb,!cia-dist-cloudformation' -DskipTests -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dspdx.skip=true" />
 		</exec>
 	</target>
 
@@ -60,7 +60,7 @@
 		<exec executable="${maven.binary}" dir=".">
 			<env key="MAVEN_OPTS" value="-server -Xmx6048m -Xms6048m  " />
 			<arg
-				line="clean install site -Prelease-site -Dmaven.test.failure.ignore=true  -DforkMode=once -Dannotation.failOnError=false" />
+				line="clean install site -Prelease-site -Dmaven.test.failure.ignore=true  -DforkMode=once -Dannotation.failOnError=false -Dspdx.skip=true" />
 		</exec>
 	</target>
 </project>

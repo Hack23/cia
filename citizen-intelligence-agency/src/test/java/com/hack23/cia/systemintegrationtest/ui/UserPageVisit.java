@@ -18,6 +18,7 @@
 */
 package com.hack23.cia.systemintegrationtest.ui;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +32,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer;
@@ -125,7 +127,7 @@ public final class UserPageVisit extends Assert {
 	 * @return true, if successful
 	 */
 	public boolean checkHtmlBodyContainsText(final String text) {
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 		return getHtmlBodyAsText().contains(text);
 	}
@@ -137,7 +139,7 @@ public final class UserPageVisit extends Assert {
 	 *                      the expected value
 	 */
 	public void checkNotificationMessage(final String expectedValue) {
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-Notification")));
 		final WebElement notification = driver.findElement(By.className("v-Notification"));
 		assertNotNull(notification);
@@ -207,7 +209,7 @@ public final class UserPageVisit extends Assert {
 	 * @return the web element
 	 */
 	public WebElement findButton(final String buttonLabel) {
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(helper.containsButton(buttonLabel));
 
 		for (final WebElement webElement : helper.getButtons()) {
@@ -228,7 +230,8 @@ public final class UserPageVisit extends Assert {
 	 * @return the web element
 	 */
 	private WebElement findClickable(final String id) {
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
+		wait.pollingEvery(Duration.ofMillis(10));
 		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
 
 		return driver.findElement(By.id(id));
@@ -412,7 +415,7 @@ public final class UserPageVisit extends Assert {
 	 */
 	public WebElement getMenuItem(final WebElement element, final String... caption) {
 
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(helper.containsMenuItem(this, element, caption));
 
 		return getMenuItem(element, 1, caption);
@@ -466,7 +469,7 @@ public final class UserPageVisit extends Assert {
 
 		final String url = systemTestTargetUrl + "#!" + view;
 
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,(Duration.ofMillis(100)));
 		wait.until(ExpectedConditions.urlContains(url));
 
 		assertEquals(url, driver.getCurrentUrl());
@@ -488,7 +491,7 @@ public final class UserPageVisit extends Assert {
 		final WebElement body = driver.findElement(By.tagName("body"));
 		body.sendKeys(Keys.ESCAPE);
 
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.tagName("body")));
@@ -509,7 +512,22 @@ public final class UserPageVisit extends Assert {
 		final String url = systemTestTargetUrl + "#!" + CommonsViews.MAIN_VIEW_NAME;
 
 		assertEquals(url, driver.getCurrentUrl());
+		cleanBrowser();
 	}
+
+
+
+
+	/**
+	 * Clean browser.
+	 */
+	private void cleanBrowser() {
+		if (driver != null) {
+			driver.manage().deleteAllCookies();
+			driver.get("about:blank");
+		}
+	}
+
 
 	/**
 	 * Perform click action.
@@ -552,6 +570,7 @@ public final class UserPageVisit extends Assert {
 
 		performClickActionWithRetry(findClickable("Register"));
 
+		findButton("Logout");
 
 		if (userView != null) {
 			final String url = systemTestTargetUrl + "#!" + userView;
@@ -603,7 +622,7 @@ public final class UserPageVisit extends Assert {
 	 *              the value
 	 */
 	private void setFieldValue(final String id, final String value) {
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
 
 		final WebElement findElement = driver.findElement(By.id(id));
@@ -637,7 +656,7 @@ public final class UserPageVisit extends Assert {
 	public void validatePage(final PageModeMenuCommand page) {
 		final String url = systemTestTargetUrl + "#!" + page.getPagePath();
 
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		final String text = getHtmlBodyAsText();
@@ -675,12 +694,7 @@ public final class UserPageVisit extends Assert {
 		driver.get(url);
 
 		action.pause(500L).perform();
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
-
-		wait.until(webDriver -> {
-			final String readyState = (String) ((JavascriptExecutor) webDriver).executeScript("return document.readyState");
-			return "complete".equals(readyState);
-		});
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
@@ -719,7 +733,7 @@ public final class UserPageVisit extends Assert {
 	public void visitStartPage() {
 		driver.get(systemTestTargetUrl);
 
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final FluentWait<WebDriver> wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT).pollingEvery(Duration.ofMillis(10));
 		wait.until(helper.containsViewAction(ViewAction.VISIT_MAIN_VIEW));
 
 		assertEquals(systemTestTargetUrl,
@@ -771,7 +785,8 @@ public final class UserPageVisit extends Assert {
 	 * @param element the element
 	 */
 	// The public click methods needed by all the calls
-	public void performClickActionWithRetry(WebElement element) {
-		clickHelper.clickWithRetry(element);
+	public void performClickActionWithRetry(WebElement clickElement) {
+		assertNotNull(clickElement);
+		clickHelper.clickWithRetry(clickElement);
 	}
 }
