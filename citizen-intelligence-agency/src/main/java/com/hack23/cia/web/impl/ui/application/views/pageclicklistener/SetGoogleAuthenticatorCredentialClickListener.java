@@ -38,6 +38,8 @@ import fi.jasoft.qrcode.QRCode;
 
 /**
  * The Class SetGoogleAuthenticatorCredentialClickListener.
+ *
+ * @see SetGoogleAuthenticatorCredentialClickEvent
  */
 public final class SetGoogleAuthenticatorCredentialClickListener extends AbstractClickListener implements ClickListener {
 

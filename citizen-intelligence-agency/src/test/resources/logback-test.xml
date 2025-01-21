@@ -23,7 +23,7 @@
 	<logger name="atomikos" level="error" />
 	<logger name="com.atomikos" level="error" />
 
-	<logger name="org.eclipse" level="warn" />
+	<logger name="org.eclipse" level="error" />
 
 	<logger name="org.springframework" level="warn" />
 	<logger name="org.springframework.web" level="warn" />
@@ -36,7 +36,9 @@
 	<logger name="ch.qos.logback.core" level="warn" />
 
 
-	<logger name="com.hack23.cia" level="info" />
+	<logger name="com.hack23.cia" level="error" />
+	<logger name="com.hack23.cia.systemintegrationtest" level="info" />
+	
 
 	<root level="error">
 		<appender-ref ref="console" />

@@ -55,6 +55,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
+	/** The politician leaderboard util. */
 	@Autowired
 	private PoliticianLeaderboardUtil politicianLeaderboardUtil;
 
@@ -307,8 +308,8 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		final String imageUrl = personData.getImageUrl192().replace("http://", "https://");
 		final Image image = new Image("", new ExternalResource(imageUrl));
 		image.setDescription(
-				String.format(Locale.ENGLISH, PoliticianDescriptionConstants.PICTURE_DESC_FORMAT, 
-            viewRiksdagenPolitician.getFirstName(), 
+				String.format(Locale.ENGLISH, PoliticianDescriptionConstants.PICTURE_DESC_FORMAT,
+            viewRiksdagenPolitician.getFirstName(),
             viewRiksdagenPolitician.getLastName()));
 		image.setWidth(PoliticianLayoutConstants.POLITICIAN_IMAGE_WIDTH, Unit.PIXELS);
 		image.addStyleName(PoliticianStyleConstants.POLITICIAN_IMAGE);
@@ -328,9 +329,9 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
 			ViewRiksdagenPoliticianBallotSummary ballotSummary, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
-		layout.addComponent(CardInfoRowUtil.createInfoRow(PoliticianMetricConstants.CURRENT_ROLE, 
+		layout.addComponent(CardInfoRowUtil.createInfoRow(PoliticianMetricConstants.CURRENT_ROLE,
             ballotSummary.getStatus(), VaadinIcons.INSTITUTION, PoliticianDescriptionConstants.CURRENT_POSITION_DESC));
-        layout.addComponent(CardInfoRowUtil.createInfoRow(PoliticianMetricConstants.REGION, 
+        layout.addComponent(CardInfoRowUtil.createInfoRow(PoliticianMetricConstants.REGION,
             ballotSummary.getElectionRegion(), VaadinIcons.MAP_MARKER, "Electoral district"));
 		layout.addComponent(CardInfoRowUtil.createInfoRow("Career Length:",
 				calculateServiceYears(politician.getFirstAssignmentDate(), politician.getLastAssignmentDate()),

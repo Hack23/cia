@@ -63,9 +63,9 @@ public final class CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
-		    CommitteeViewConstants.DD_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
-		    CommitteeViewConstants.DD_TITLE, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+		    CommitteeViewConstants.DD_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),
+		    CommitteeViewConstants.DD_TITLE,
 		    CommitteeViewConstants.DD_DESCRIPTION);
 
 		chartDataManager.createDecisionTypeChart(panelContent, viewRiksdagenCommittee.getEmbeddedId().getOrgCode());

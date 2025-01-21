@@ -59,6 +59,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotPageModContentFactoryImpl {
 
+	/** The ballot chart data manager. */
 	@Autowired
 	private BallotChartDataManager ballotChartDataManager;
 
@@ -124,7 +125,7 @@ public final class BallotChartsPageModContentFactoryImpl extends AbstractBallotP
 						BallotViewConstants.CHARTS_SUBTITLE,
 						BallotViewConstants.CHARTS_DESCRIPTION);
 			} else {
-				CardInfoRowUtil.createPageHeader(panel, panelContent, 
+				CardInfoRowUtil.createPageHeader(panel, panelContent,
 						BallotViewConstants.CHARTS_TITLE_PREFIX + ballots.get(0).getEmbeddedId().getConcern(),
 						BallotViewConstants.CHARTS_SUBTITLE,
 						BallotViewConstants.CHARTS_DESCRIPTION);

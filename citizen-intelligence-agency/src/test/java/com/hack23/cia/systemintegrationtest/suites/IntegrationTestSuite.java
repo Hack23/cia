@@ -8,6 +8,9 @@ import com.hack23.cia.systemintegrationtest.admin.data.AdminDataTest;
 import com.hack23.cia.systemintegrationtest.admin.operations.AdminOperationsTest;
 import com.hack23.cia.systemintegrationtest.admin.security.AdminSecurityTest;
 
+/**
+ * The Class IntegrationTestSuite.
+ */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
     // Admin Tests only - remove other test references that don't exist

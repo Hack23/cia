@@ -1,28 +1,35 @@
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
+/**
+ * The Interface PoliticianRankingGridConstants.
+ */
 public interface PoliticianRankingGridConstants {
+
+    /** The politicians. */
     String POLITICIANS = "Politicians";
-    
+
+    /** The column order. */
     String[] COLUMN_ORDER = {
         // Basic Information
         "personId", "firstName", "lastName", "party", "gender",
         // Current Activity & Performance
-        "documentsLastYear", "averageDocsPerYear", "docActivityLevel", 
+        "documentsLastYear", "averageDocsPerYear", "docActivityLevel",
         "docActivityProfile", "collaborationPercentage",
         // Document Breakdown
-        "totalDocuments", "individualMotions", "partyMotions", 
+        "totalDocuments", "individualMotions", "partyMotions",
         "committeeMotions", "multiPartyMotions",
         // Current Roles
-        "currentAssignments", "currentMinistryAssignments", 
+        "currentAssignments", "currentMinistryAssignments",
         "currentCommitteeAssignments", "currentCommitteeLeadershipAssignments",
         // Historical Performance
-        "documentYearsActive", "totalDaysServed", "totalCommitteeAssignments", 
+        "documentYearsActive", "totalDaysServed", "totalCommitteeAssignments",
         "totalMinistryAssignments",
         // Dates for Context
-        "firstAssignmentDate", "lastAssignmentDate", "firstDocumentDate", 
+        "firstAssignmentDate", "lastAssignmentDate", "firstDocumentDate",
         "lastDocumentDate"
     };
 
+    /** The hide columns. */
     String[] HIDE_COLUMNS = {
         // Hidden IDs and Boolean Flags
         "personId", "active", "activeEu", "activeGovernment", "activeCommittee",

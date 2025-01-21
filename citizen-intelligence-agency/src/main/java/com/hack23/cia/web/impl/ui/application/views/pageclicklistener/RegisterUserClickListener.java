@@ -32,6 +32,8 @@ import com.vaadin.ui.UI;
 
 /**
  * The Class RegisterUserClickListener.
+ *
+ * @see RegisterUserClickEvent
  */
 public final class RegisterUserClickListener extends AbstractClickListener implements ClickListener {
 

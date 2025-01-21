@@ -43,12 +43,19 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 		extends AbstractPoliticianPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "rm", "madePublicDate", "documentType", "subType",
 			"title", "subTitle", "referenceName", "partyShortCode", "personReferenceId", "roleDescription", "org", "id",
 			"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" };
+
+	/** The Constant DOCUMENTS. */
 	private static final String DOCUMENTS = "Documents";
+
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "id", "partyShortCode", "personReferenceId",
 			"numberValue", "orderNumber", "tempLabel", "referenceName", "docId", "label", "roleDescription" };
+
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.DOCUMENT_VIEW_NAME, "docId", true);
 

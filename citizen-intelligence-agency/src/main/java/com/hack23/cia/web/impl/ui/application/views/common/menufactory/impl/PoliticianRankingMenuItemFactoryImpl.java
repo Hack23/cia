@@ -49,34 +49,64 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
         implements PoliticianRankingMenuItemFactory {
 
+    /** The Constant ALL_PARTIES. */
     // Label constants
     private static final String ALL_PARTIES = "All parties";
+
+    /** The Constant CHART_BY_TOPIC_TEXT. */
     private static final String CHART_BY_TOPIC_TEXT = "Chart by topic";
+
+    /** The Constant CURRENT_PARTIES. */
     private static final String CURRENT_PARTIES = "Current parties";
+
+    /** The Constant OVERVIEW_TEXT. */
     private static final String OVERVIEW_TEXT = "Overview";
+
+    /** The Constant PAGE_VISIT_HISTORY_TEXT. */
     private static final String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+
+    /** The Constant POLITICAL_EXPERIENCE_SUMMARY. */
     private static final String POLITICAL_EXPERIENCE_SUMMARY = "Political Experience Summary";
+
+    /** The Constant POLITICIAN_RANKING. */
     private static final String POLITICIAN_RANKING = "Politician Ranking";
 
+    /** The Constant CURRENT_AND_PAST_ASSIGNMENTS_DESCRIPTION. */
     // Description for total experience detail (tooltip)
     private static final String CURRENT_AND_PAST_ASSIGNMENTS_DESCRIPTION =
             "Summarized roles, responsibilities, and tenure influence";
 
+    /** The Constant DESC_POLITICAL_EXPERIENCE. */
     // Politically focused descriptions (~50 chars)
     private static final String DESC_POLITICAL_EXPERIENCE = "Experience metrics: roles shaping political influence.";
+
+    /** The Constant DESC_ALL_PARTIES. */
     private static final String DESC_ALL_PARTIES = "All parties: mapping legislative engagements.";
+
+    /** The Constant DESC_CURRENT_PARTIES. */
     private static final String DESC_CURRENT_PARTIES = "Current parties: active parliamentary presence.";
+
+    /** The Constant DESC_PAGE_HISTORY. */
     private static final String DESC_PAGE_HISTORY = "Visit history: tracing engagement over time.";
 
+    /** The Constant COMMAND_ALL_PARTIES. */
     // Page mode commands
     private static final PageModeMenuCommand COMMAND_ALL_PARTIES = new PageModeMenuCommand(
             UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
+
+    /** The Constant COMMAND_CURRENT_PARTIES. */
     private static final PageModeMenuCommand COMMAND_CURRENT_PARTIES = new PageModeMenuCommand(
             UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());
+
+    /** The Constant COMMAND_DATAGRID. */
     private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(
             UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+    /** The Constant COMMAND_OVERVIEW. */
     private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(
             UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The Constant COMMAND_PAGEVISITHISTORY. */
     private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(
             UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 

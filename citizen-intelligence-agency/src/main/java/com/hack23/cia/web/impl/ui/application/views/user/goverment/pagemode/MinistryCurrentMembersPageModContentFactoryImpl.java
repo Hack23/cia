@@ -44,6 +44,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryCurrentMembersPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, MinistryMemberConstants.PERSON_ID);
 

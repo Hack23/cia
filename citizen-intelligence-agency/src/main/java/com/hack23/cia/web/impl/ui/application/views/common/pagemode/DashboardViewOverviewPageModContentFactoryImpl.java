@@ -77,19 +77,40 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DashboardViewOverviewPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
+	/** The Constant ORG_CODE_GOV_OFFICES. */
 	private static final String ORG_CODE_GOV_OFFICES = "202100-3831";
+
+	/** The Constant ORG_CODE_RIKSDAG. */
 	private static final String ORG_CODE_RIKSDAG = "202100-2627";
+
+	/** The Constant ORG_CODE_MONARCH. */
 	private static final String ORG_CODE_MONARCH = "202100-3484";
+
+	/** The Constant FINANCIAL. */
 	private static final String FINANCIAL = "Financial";
+
+	/** The Constant NAME. */
 	private static final String NAME = CommonsViews.DASHBOARD_VIEW_NAME;
+
+	/** The Constant PAGE_PREFIX. */
 	private static final String PAGE_PREFIX = "#!";
+
+	/** The Constant PAGE_SEPARATOR. */
 	private static final char PAGE_SEPARATOR = '/';
 
+	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
 	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
 	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
 	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
+
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
 	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
 
+	/** The esv api. */
 	@Autowired
 	private EsvApi esvApi;
 
@@ -137,6 +158,8 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Create a section for Monarch info.
+	 *
+	 * @param row the row
 	 */
 	private void createDashboardMonarch(final ResponsiveRow row) {
 		final VerticalLayout monarchLayout = createLayoutWithTitle("Monarch");
@@ -154,6 +177,8 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Create a section for Government info.
+	 *
+	 * @param row the row
 	 */
 	@SuppressWarnings("unchecked")
 	private void createDashboardGovernment(final ResponsiveRow row) {
@@ -201,6 +226,8 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Create a section for Parliament info.
+	 *
+	 * @param row the row
 	 */
 	@SuppressWarnings("unchecked")
 	private void createDashboardParliament(final ResponsiveRow row) {
@@ -241,6 +268,8 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Create a section listing the number of risks by type.
+	 *
+	 * @param row the row
 	 */
 	private void createDashboardPartRiskByType(final ResponsiveRow row) {
 		final VerticalLayout layout = createLayoutWithTitle("Number of risk by each type");
@@ -268,6 +297,8 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Create a section listing the number of risks by severity.
+	 *
+	 * @param row the row
 	 */
 	private void createDashboardPartRiskBySeverity(final ResponsiveRow row) {
 		final VerticalLayout layout = createLayoutWithTitle("Number of risk by severity");
@@ -295,6 +326,13 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Add income/spending overview for a given orgId.
+	 *
+	 * @param layout the layout
+	 * @param orgId the org id
+	 * @param linkTitle the link title
+	 * @param incomeBillionSek the income billion sek
+	 * @param spendingBillionSek the spending billion sek
+	 * @param resultBillionSek the result billion sek
 	 */
 	private void addIncomeSpending(final VerticalLayout layout, String orgId, String linkTitle,
 			int incomeBillionSek, int spendingBillionSek, int resultBillionSek) {
@@ -320,6 +358,11 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Add Parliament income and spending info.
+	 *
+	 * @param layout the layout
+	 * @param orgId the org id
+	 * @param linkTitle the link title
+	 * @param spendingMSek the spending M sek
 	 */
 	private void addParliamentIncomeSpending(final VerticalLayout layout, String orgId, String linkTitle,
 			int spendingMSek) {
@@ -343,6 +386,8 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Add Monarch income and spending info.
+	 *
+	 * @param layout the layout
 	 */
 	private void addMonarchIncomeSpending(final VerticalLayout layout) {
 		addGovernmentBodyLink(layout, ORG_CODE_MONARCH, "Kungliga hov- och slottsstaten(The Royal Court)");
@@ -365,6 +410,10 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Create a statistic card with a given title and value.
+	 *
+	 * @param title the title
+	 * @param value the value
+	 * @return the counter statistics card
 	 */
 	private CounterStatisticsCard createStatisticCard(final String title, final int value) {
 		return new CounterStatisticsCard(
@@ -375,6 +424,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Create a vertical layout with a title label.
+	 *
+	 * @param title the title
+	 * @return the vertical layout
 	 */
 	private static VerticalLayout createLayoutWithTitle(final String title) {
 		final VerticalLayout layout = new VerticalLayout();
@@ -393,6 +445,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Add a full-width label to a layout.
+	 *
+	 * @param layout the layout
+	 * @param text the text
 	 */
 	private static void addFullWidthLabel(final VerticalLayout layout, final String text) {
 		final Label label = new Label(text);
@@ -403,6 +458,10 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Add a link to a government body page.
+	 *
+	 * @param layout the layout
+	 * @param orgId the org id
+	 * @param linkTitle the link title
 	 */
 	private void addGovernmentBodyLink(final VerticalLayout layout, final String orgId, final String linkTitle) {
 		final Link pageLink = new Link(linkTitle,
@@ -416,6 +475,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/**
 	 * Create a card showing headcount for a given orgId.
+	 *
+	 * @param panelContent the panel content
+	 * @param orgId the org id
 	 */
 	private void createHeadCountCard(final Layout panelContent, final String orgId) {
 		final Map<String, List<GovernmentBodyAnnualSummary>> yearlyData = esvApi.getData().get(2024).stream()

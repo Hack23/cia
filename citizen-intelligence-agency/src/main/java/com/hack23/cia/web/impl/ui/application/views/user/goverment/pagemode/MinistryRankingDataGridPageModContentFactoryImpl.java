@@ -44,6 +44,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryRankingDataGridPageModContentFactoryImpl
 		extends AbstractMinistryRankingPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = {
 		    "nameId",
 		    "currentMemberSize",

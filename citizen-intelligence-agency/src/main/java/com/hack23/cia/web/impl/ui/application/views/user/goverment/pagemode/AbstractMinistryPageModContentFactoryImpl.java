@@ -33,6 +33,7 @@ abstract class AbstractMinistryPageModContentFactoryImpl extends AbstractItemPag
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.MINISTRY_VIEW_NAME;
 
+	/** The ministry menu item factory. */
 	@Autowired
 	private MinistryMenuItemFactory ministryMenuItemFactory;
 

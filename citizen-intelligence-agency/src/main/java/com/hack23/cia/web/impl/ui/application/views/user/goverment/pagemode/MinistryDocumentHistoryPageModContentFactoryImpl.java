@@ -43,15 +43,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryDocumentHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = { "id", "docId", "personReferenceId", "roleDescription",
-			"org", "label", "rm", "madePublicDate", "numberValue", "title", "subTitle", "tempLabel", "orderNumber",
-			"documentType", "subType", "status", "partyShortCode", "referenceName" };
-
-	private static final String DOCUMENTS = "Documents";
-
-	private static final String[] HIDE_COLUMNS = { "id", "numberValue", "orderNumber", "tempLabel",
-			"personReferenceId", "org", "roleDescription", "label", "subTitle", "docId" };
-
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.DOCUMENT_VIEW_NAME, MinistryDocumentConstants.DOC_ID, true);
 
@@ -74,7 +66,7 @@ public final class MinistryDocumentHistoryPageModContentFactoryImpl extends Abst
 
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             MinistryViewConstants.DOCUMENT_HISTORY_TITLE + " " + viewRiksdagenMinistry.getNameId(),
             MinistryViewConstants.DOCUMENT_HISTORY_SUBTITLE,
             MinistryViewConstants.DOCUMENT_HISTORY_DESC);

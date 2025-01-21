@@ -51,9 +51,13 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminApplicationSessionPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	/** The Constant APPLICATION_ACTION_EVENT. */
 	private static final String APPLICATION_ACTION_EVENT = "ApplicationActionEvent";
+
+	/** The Constant APPLICATION_SESSION. */
 	private static final String APPLICATION_SESSION = "ApplicationSession";
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = {
 			"hjid",
 			"createdDate",
@@ -67,6 +71,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 			"sessionId"
 	};
 
+	/** The Constant COLUMN_ORDER2. */
 	private static final String[] COLUMN_ORDER2 = {
 			"hjid",
 			"createdDate",
@@ -81,6 +86,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 			"modelObjectVersion"
 	};
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = {
 			"hjid",
 			"modelObjectId",
@@ -90,6 +96,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 			"ipInformation"
 	};
 
+	/** The Constant HIDE_COLUMNS2. */
 	private static final String[] HIDE_COLUMNS2 = {
 			"hjid",
 			"modelObjectId",

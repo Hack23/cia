@@ -30,9 +30,11 @@ import com.vaadin.ui.VerticalLayout;
  */
 public abstract class AbstractAdminSystemPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
+	/** The paging util. */
 	@Autowired
 	private PagingUtil pagingUtil;
 
+	/** The view name. */
 	private final String viewName;
 
 	/**

@@ -201,14 +201,32 @@ public class CardInfoRowUtil {
 	    return layout;
 	}
 
+	/**
+	 * The Class LayoutConstants.
+	 */
 	public static final class LayoutConstants {
-	    public static final String CARD_TENURE = "card-tenure";
-	    public static final String CARD_EXPERIENCE = "card-experience-section";
-	    public static final String CARD_INFO_VALUE = "card-info-value";
-	    public static final String CARD_INFO_ICON = "card-info-icon";
-	    public static final String METRIC_LABEL = "metric-label";
+
+    	/** The Constant CARD_TENURE. */
+    	public static final String CARD_TENURE = "card-tenure";
+
+    	/** The Constant CARD_EXPERIENCE. */
+    	public static final String CARD_EXPERIENCE = "card-experience-section";
+
+    	/** The Constant CARD_INFO_VALUE. */
+    	public static final String CARD_INFO_VALUE = "card-info-value";
+
+    	/** The Constant CARD_INFO_ICON. */
+    	public static final String CARD_INFO_ICON = "card-info-icon";
+
+    	/** The Constant METRIC_LABEL. */
+    	public static final String METRIC_LABEL = "metric-label";
 	}
 
+	/**
+	 * Creates the standard row.
+	 *
+	 * @return the horizontal layout
+	 */
 	public static HorizontalLayout createStandardRow() {
 	    final HorizontalLayout layout = new HorizontalLayout();
 	    layout.setSpacing(true);
@@ -216,6 +234,13 @@ public class CardInfoRowUtil {
 	    return layout;
 	}
 
+	/**
+	 * Creates the icon label.
+	 *
+	 * @param icon the icon
+	 * @param tooltip the tooltip
+	 * @return the label
+	 */
 	public static Label createIconLabel(VaadinIcons icon, String tooltip) {
 	    final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
 	    iconLabel.addStyleName(LayoutConstants.CARD_INFO_ICON);

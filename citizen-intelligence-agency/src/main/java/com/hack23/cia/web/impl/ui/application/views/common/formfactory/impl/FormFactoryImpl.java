@@ -77,6 +77,7 @@ public final class FormFactoryImpl implements FormFactory {
 	/** The Constant SIZE_FOR_GRID. */
 	private static final int SIZE_FOR_GRID = 8;
 
+	/** The Constant TYPE_CONVERTERS. */
 	private static final Map<Class<?>, Converter<String, ?>> TYPE_CONVERTERS = new HashMap<>();
 
 	static {

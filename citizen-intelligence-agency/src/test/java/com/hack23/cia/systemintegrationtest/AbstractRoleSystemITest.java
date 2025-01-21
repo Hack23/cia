@@ -38,6 +38,9 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 	/** The Constant usingExternalServer. */
 	protected static final boolean usingExternalServer;
 
+	/** The webdriver setup. */
+	private static boolean webdriverSetup = false;
+
 	/** The Constant webDriverMap. */
 	static {
 		final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
@@ -63,7 +66,10 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 		if (!usingExternalServer) {
 			CitizenIntelligenceAgencyServer.startTestServer();
 		}
-		WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
+		if(!webdriverSetup) {
+			WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
+			webdriverSetup=true;
+		}
 	}
 
 	/**

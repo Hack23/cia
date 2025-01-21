@@ -33,6 +33,9 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 
+/**
+ * The Class RuleViolationPageItemRendererClickListenerTest.
+ */
 public class RuleViolationPageItemRendererClickListenerTest extends AbstractUnitTest {
 
 	/**

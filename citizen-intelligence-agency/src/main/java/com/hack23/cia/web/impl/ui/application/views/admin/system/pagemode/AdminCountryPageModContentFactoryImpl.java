@@ -45,6 +45,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = {
 			"hjid",
 			"id",
@@ -55,8 +56,10 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 			"latitude"
 	};
 
+	/** The Constant COUNTRY2. */
 	private static final String COUNTRY2 = "Country";
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = {
 			"hjid",
 			"id",
@@ -68,6 +71,7 @@ public final class AdminCountryPageModContentFactoryImpl extends AbstractAdminSy
 			"latitude"
 	};
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(AdminViews.ADMIN_COUNTRY_VIEW_NAME, "hjid");
 
 	/** The Constant NAME. */

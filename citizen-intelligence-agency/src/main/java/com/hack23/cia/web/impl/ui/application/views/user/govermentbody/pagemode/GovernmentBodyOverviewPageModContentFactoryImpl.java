@@ -76,6 +76,13 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		return panelContent;
 	}
 
+	/**
+	 * Creates the page header.
+	 *
+	 * @param panel the panel
+	 * @param panelContent the panel content
+	 * @param govBody the gov body
+	 */
 	private void createPageHeader(Panel panel, VerticalLayout panelContent, GovernmentBodyAnnualSummary govBody) {
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
 			GovernmentBodyTitleFormatter.formatTitle(govBody, GovernmentBodyDescriptionConstants.OVERVIEW_HEADER),
@@ -83,6 +90,13 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 			GovernmentBodyDescriptionConstants.OVERVIEW_DESC);
 	}
 
+	/**
+	 * Creates the main card.
+	 *
+	 * @param panelContent the panel content
+	 * @param govBody the gov body
+	 * @param pageId the page id
+	 */
 	private void createMainCard(VerticalLayout panelContent, GovernmentBodyAnnualSummary govBody, String pageId) {
 		final Panel cardPanel = createCardPanel();
 		final VerticalLayout cardContent = createCardContent(cardPanel);
@@ -98,6 +112,11 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		addOverviewLayout(panelContent, pageId);
 	}
 
+	/**
+	 * Creates the card panel.
+	 *
+	 * @return the panel
+	 */
 	private Panel createCardPanel() {
 		final Panel cardPanel = new Panel();
 		cardPanel.addStyleName(GovernmentBodyViewConstants.STYLE_GOVERNMENT_BODY_CARD);
@@ -107,6 +126,12 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		return cardPanel;
 	}
 
+	/**
+	 * Creates the card content.
+	 *
+	 * @param cardPanel the card panel
+	 * @return the vertical layout
+	 */
 	private VerticalLayout createCardContent(Panel cardPanel) {
 		final VerticalLayout cardContent = new VerticalLayout();
 		cardContent.setMargin(GovernmentBodyLayoutConstants.USE_MARGIN);
@@ -116,6 +141,11 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		return cardContent;
 	}
 
+	/**
+	 * Creates the attributes layout.
+	 *
+	 * @return the horizontal layout
+	 */
 	private HorizontalLayout createAttributesLayout() {
 		final HorizontalLayout attributesLayout = new HorizontalLayout();
 		attributesLayout.setSpacing(GovernmentBodyLayoutConstants.USE_SPACING);
@@ -123,14 +153,25 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		return attributesLayout;
 	}
 
+	/**
+	 * Adds the profile and stats columns.
+	 *
+	 * @param attributesLayout the attributes layout
+	 * @param govBody the gov body
+	 */
 	private void addProfileAndStatsColumns(HorizontalLayout attributesLayout, GovernmentBodyAnnualSummary govBody) {
-		final VerticalLayout profileLayout = CardInfoRowUtil.createSectionLayout(
-			GovernmentBodyViewConstants.ORG_PROFILE);
-		final VerticalLayout statsLayout = createStatsColumn(govBody);	
+		final VerticalLayout profileLayout = createProfileColumn(govBody);
+		final VerticalLayout statsLayout = createStatsColumn(govBody);
 
 		attributesLayout.addComponents(profileLayout, statsLayout);
 	}
 
+	/**
+	 * Creates the profile column.
+	 *
+	 * @param govBody the gov body
+	 * @return the vertical layout
+	 */
 	private VerticalLayout createProfileColumn(GovernmentBodyAnnualSummary govBody) {
 		final VerticalLayout profileLayout = CardInfoRowUtil.createSectionLayout(
 			GovernmentBodyViewConstants.ORG_PROFILE);
@@ -139,28 +180,49 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		return profileLayout;
 	}
 
+	/**
+	 * Adds the profile details.
+	 *
+	 * @param profileLayout the profile layout
+	 * @param govBody the gov body
+	 */
 	private void addProfileDetails(VerticalLayout profileLayout, GovernmentBodyAnnualSummary govBody) {
 		profileLayout.addComponents(
-			createProfileInfoRow(GovernmentBodyHeaderConstants.NAME_FIELD, 
-				govBody.getName(), 
-				GovernmentBodyIconConstants.INFO_ICON, 
+			createProfileInfoRow(GovernmentBodyHeaderConstants.NAME_FIELD,
+				govBody.getName(),
+				GovernmentBodyIconConstants.INFO_ICON,
 				GovernmentBodyHeaderConstants.NAME_DESC),
-			createProfileInfoRow(GovernmentBodyHeaderConstants.ID_FIELD, 
+			createProfileInfoRow(GovernmentBodyHeaderConstants.ID_FIELD,
 				govBody.getGovermentBodyId(),
-				GovernmentBodyIconConstants.USER_ICON, 
+				GovernmentBodyIconConstants.USER_ICON,
 				GovernmentBodyHeaderConstants.ID_DESC),
 			// ...add other profile fields...
-			createProfileInfoRow(GovernmentBodyHeaderConstants.VAT_FIELD, 
+			createProfileInfoRow(GovernmentBodyHeaderConstants.VAT_FIELD,
 				govBody.getVat(),
-				GovernmentBodyIconConstants.MONEY_ICON, 
+				GovernmentBodyIconConstants.MONEY_ICON,
 				GovernmentBodyHeaderConstants.VAT_DESC)
 		);
 	}
 
+	/**
+	 * Creates the profile info row.
+	 *
+	 * @param label the label
+	 * @param value the value
+	 * @param icon the icon
+	 * @param description the description
+	 * @return the com.vaadin.ui. component
+	 */
 	private com.vaadin.ui.Component createProfileInfoRow(String label, String value, VaadinIcons icon, String description) {
 		return CardInfoRowUtil.createInfoRow(label, value, icon, description);
 	}
 
+	/**
+	 * Creates the stats column.
+	 *
+	 * @param govBody the gov body
+	 * @return the vertical layout
+	 */
 	private VerticalLayout createStatsColumn(GovernmentBodyAnnualSummary govBody) {
 		final VerticalLayout statsLayout = CardInfoRowUtil.createSectionLayout(
 			GovernmentBodyViewConstants.ANNUAL_STATS);
@@ -169,6 +231,12 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 		return statsLayout;
 	}
 
+	/**
+	 * Adds the stats details.
+	 *
+	 * @param statsLayout the stats layout
+	 * @param govBody the gov body
+	 */
 	private void addStatsDetails(VerticalLayout statsLayout, GovernmentBodyAnnualSummary govBody) {
         statsLayout.addComponents(
             createStatsInfoRow(GovernmentBodyHeaderConstants.YEAR_FIELD,
@@ -194,10 +262,25 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
         }
     }
 
+    /**
+     * Creates the stats info row.
+     *
+     * @param label the label
+     * @param value the value
+     * @param icon the icon
+     * @param description the description
+     * @return the com.vaadin.ui. component
+     */
     private com.vaadin.ui.Component createStatsInfoRow(String label, String value, VaadinIcons icon, String description) {
         return CardInfoRowUtil.createInfoRow(label, value, icon, description);
     }
 
+    /**
+     * Adds the overview layout.
+     *
+     * @param panelContent the panel content
+     * @param pageId the page id
+     */
     private void addOverviewLayout(VerticalLayout panelContent, String pageId) {
         final VerticalLayout overviewLayout = new VerticalLayout();
         overviewLayout.setSizeFull();

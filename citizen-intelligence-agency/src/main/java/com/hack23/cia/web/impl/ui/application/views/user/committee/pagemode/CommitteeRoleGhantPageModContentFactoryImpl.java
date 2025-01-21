@@ -45,6 +45,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
+	/** The committee ghant chart manager. */
 	@Autowired
 	private CommitteeGhantChartManager committeeGhantChartManager;
 
@@ -64,9 +65,9 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
-		    CommitteeViewConstants.RG_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
-		    CommitteeViewConstants.RG_TITLE, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+		    CommitteeViewConstants.RG_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),
+		    CommitteeViewConstants.RG_TITLE,
 		    CommitteeViewConstants.RG_DESCRIPTION);
 
 		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()

@@ -115,7 +115,7 @@ public final class DocumentAttachementsPageModContentFactoryImpl extends Abstrac
 				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,
 						DocumentData.class, DocumentData_.id, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             DocumentViewConstants.ATTACHMENTS_TITLE,
             DocumentViewConstants.ATTACHMENTS_SUBTITLE,
             DocumentViewConstants.ATTACHMENTS_DESC);

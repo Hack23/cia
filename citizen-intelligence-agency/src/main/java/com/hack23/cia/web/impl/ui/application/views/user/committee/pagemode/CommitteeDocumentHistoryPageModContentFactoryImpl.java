@@ -44,6 +44,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.DOCUMENT_VIEW_NAME, "docId", true);
 
@@ -66,9 +67,9 @@ public final class CommitteeDocumentHistoryPageModContentFactoryImpl
 
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
-		    CommitteeViewConstants.DH_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
-		    CommitteeViewConstants.DH_TITLE, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+		    CommitteeViewConstants.DH_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),
+		    CommitteeViewConstants.DH_TITLE,
 		    CommitteeViewConstants.DH_DESCRIPTION);
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()

@@ -48,17 +48,22 @@ import com.vaadin.ui.VerticalLayout;
 public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 		extends AbstractUserHomePageModContentFactoryImpl {
 
+	/** The Constant APPLICATION_SESSION. */
 	private static final String APPLICATION_SESSION = "ApplicationSession";
 
+	/** The Constant COLLECTION_PROPERTY_CONVERTERS. */
 	private static final ListPropertyConverter[] COLLECTION_PROPERTY_CONVERTERS = {
 			new ListPropertyConverter("page", "events", "actionName") };
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "hjid", "createdDate", "operatingSystem",
 			"ipInformation", "events", "userAgentInformation" };
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "hjid", "modelObjectId", "modelObjectVersion",
 			"sessionId", "sessionType", "userId", "locale" };
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid");
 

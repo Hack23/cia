@@ -42,6 +42,7 @@ abstract class AbstractGovernmentBodyPageModContentFactoryImpl extends AbstractI
 	@Autowired
 	private EsvApi esvApi;
 
+	/** The government body menu item factory. */
 	@Autowired
 	private GovernmentBodyMenuItemFactory governmentBodyMenuItemFactory;
 

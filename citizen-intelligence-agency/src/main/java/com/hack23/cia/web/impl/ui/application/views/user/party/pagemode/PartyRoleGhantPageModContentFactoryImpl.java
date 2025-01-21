@@ -47,6 +47,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 	/** The Constant ROLE_GHANT. */
 	private static final String ROLE_GHANT = "Role chart";
 
+	/** The party ghant chart manager. */
 	@Autowired
 	private PartyGhantChartManager partyGhantChartManager;
 

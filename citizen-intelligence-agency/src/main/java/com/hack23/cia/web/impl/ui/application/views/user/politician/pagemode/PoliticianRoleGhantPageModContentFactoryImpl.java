@@ -44,6 +44,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianRoleGhantPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
+	/** The politician ghant chart manager. */
 	@Autowired
 	private PoliticianGhantChartManager politicianGhantChartManager;
 
@@ -64,7 +65,7 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 			PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician, PoliticianPageTitleConstants.ROLE_GANTT_TITLE),
 			PoliticianPageTitleConstants.GANTT_SUBTITLE,
 			PoliticianPageTitleConstants.GANTT_DESC);

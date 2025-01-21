@@ -46,8 +46,10 @@ import com.vaadin.ui.VerticalLayout;
 public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
+	/** The Constant BALLOT_ID. */
 	private static final String BALLOT_ID = "ballotId";
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "createdDate", "publicDate", "committeeReport",
 			"embeddedId.hangarId", "embeddedId.id", "embeddedId.issueNummer", "rm", "decisionType", "winner", "title",
 			"header", "endNumber", "org", "committeeProposalUrlXml", BALLOT_ID, "againstProposalParties",
@@ -56,13 +58,16 @@ public final class CommitteeDecisionSummaryPageModContentFactoryImpl
 	/** The Constant DECISION_SUMMARY. */
 	private static final String DECISION_SUMMARY = "Decision Summary";
 
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "embeddedId", "embeddedId.hangarId", "embeddedId.id",
 			"endNumber", "org", "committeeProposalUrlXml", BALLOT_ID, "againstProposalParties", "againstProposalNumber",
 			"createdDate" };
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.BALLOT_VIEW_NAME, BALLOT_ID);
 
+	/** The Constant NESTED_PROPERTIES. */
 	private static final String[] NESTED_PROPERTIES = { "embeddedId.hangarId", "embeddedId.id",
 			"embeddedId.issueNummer" };
 

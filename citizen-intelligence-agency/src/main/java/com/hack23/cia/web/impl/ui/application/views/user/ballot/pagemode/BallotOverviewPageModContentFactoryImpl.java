@@ -84,9 +84,6 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 	private static final String[] NESTED_PROPERTIES = { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue",
 			EMBEDDED_ID_PARTY };
 
-	/** The Constant PARTY_BALLOT_SUMMARY. */
-	private static final String PARTY_BALLOT_SUMMARY = "Party Ballot Summary";
-
 	/**
 	 * Instantiates a new ballot overview page mod content factory impl.
 	 */
@@ -224,9 +221,9 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 
 			// Party Ballot Summary table
 			getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
-					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList, 
+					ViewRiksdagenVoteDataBallotPartySummary.class, partyBallotList,
 					BallotViewConstants.GRID_PARTY_BALLOT_SUMMARY,
-					NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, 
+					NESTED_PROPERTIES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER,
 					BallotViewConstants.GRID_EMBEDDED_ID_PARTY, null);
 
 			// Overview layout after table

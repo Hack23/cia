@@ -60,7 +60,7 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician, PoliticianPageTitleConstants.ROLE_LIST_TITLE),
             PoliticianPageTitleConstants.ROLES_SUBTITLE,
             PoliticianPageTitleConstants.ROLE_LIST_DESC);

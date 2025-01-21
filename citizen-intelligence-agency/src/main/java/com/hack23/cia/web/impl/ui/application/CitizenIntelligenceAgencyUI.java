@@ -75,6 +75,7 @@ public final class CitizenIntelligenceAgencyUI extends UI {
 	@Autowired
 	private transient ApplicationManager applicationManager;
 
+	/** The configuration manager. */
 	@Autowired
 	private transient ConfigurationManager configurationManager;
 

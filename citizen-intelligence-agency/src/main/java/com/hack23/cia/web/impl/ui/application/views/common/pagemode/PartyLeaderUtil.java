@@ -13,8 +13,12 @@ import com.hack23.cia.service.api.ApplicationManager;
  */
 public final class PartyLeaderUtil {
 
+    /** The Constant ROLE_CODE_PARTILEDARE. */
     private static final String ROLE_CODE_PARTILEDARE = "Partiledare";
 
+    /**
+     * Instantiates a new party leader util.
+     */
     private PartyLeaderUtil() {
         // Utility class, no instantiation
     }
@@ -60,6 +64,13 @@ public final class PartyLeaderUtil {
         return result;
     }
 
+    /**
+     * Gets the active roles.
+     *
+     * @param applicationManager the application manager
+     * @param personId the person id
+     * @return the active roles
+     */
     @SuppressWarnings("unchecked")
     private static List<ViewRiksdagenPartyRoleMember> getActiveRoles(ApplicationManager applicationManager, String personId) {
         return applicationManager.getDataContainer(ViewRiksdagenPartyRoleMember.class)
@@ -70,6 +81,12 @@ public final class PartyLeaderUtil {
                 );
     }
 
+    /**
+     * Checks if is party leader role.
+     *
+     * @param role the role
+     * @return true, if is party leader role
+     */
     private static boolean isPartyLeaderRole(ViewRiksdagenPartyRoleMember role) {
         return role.getRoleCode() != null && ROLE_CODE_PARTILEDARE.equalsIgnoreCase(role.getRoleCode().trim());
     }

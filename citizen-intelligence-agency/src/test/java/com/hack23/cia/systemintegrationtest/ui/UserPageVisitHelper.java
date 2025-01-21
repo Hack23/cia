@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -25,30 +24,45 @@ import org.slf4j.LoggerFactory;
 
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 
+/**
+ * The Class UserPageVisitHelper.
+ */
 public class UserPageVisitHelper {
+
+    /** The Constant LOG. */
     private static final Logger LOG = LoggerFactory.getLogger(UserPageVisitHelper.class);
-    private static final Duration DEFAULT_WAIT = Duration.ofMillis(120000);
+
+    /** The Constant DEFAULT_WAIT. */
+    private static final Duration DEFAULT_WAIT = Duration.ofMillis(100);
+
+    /** The screen shot number. */
     private static int screenShotNumber;
 
+    /** The driver. */
     private final WebDriver driver;
 
+    /**
+     * Instantiates a new user page visit helper.
+     *
+     * @param driver the driver
+     */
     UserPageVisitHelper(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void waitForElement(By locator) {
-        new WebDriverWait(driver, DEFAULT_WAIT)
-                .until(ExpectedConditions.elementToBeClickable(locator));
-    }
 
+    /**
+     * Wait for page load.
+     */
     public void waitForPageLoad() {
-        new WebDriverWait(driver, DEFAULT_WAIT)
-                .until(webDriver -> "complete".equals(
-                        ((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
-        new WebDriverWait(driver, DEFAULT_WAIT).until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
+        new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,DEFAULT_WAIT).until(containsViewAction(ViewAction.VISIT_MAIN_VIEW));
+
 
     }
 
+    /**
+     * Grab screenshot.
+     */
     public void grabScreenshot() {
         try {
             final File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -60,19 +74,42 @@ public class UserPageVisitHelper {
         }
     }
 
+    /**
+     * Refresh element.
+     *
+     * @param element the element
+     * @return the web element
+     */
     public WebElement refreshElement(WebElement element) {
         return StaleElementUtils.refreshElement(element, driver);
     }
 
+    /**
+     * Handle interrupted exception.
+     *
+     * @param e the e
+     */
     public void handleInterruptedException(InterruptedException e) {
         Thread.currentThread().interrupt();
         throw new RuntimeException("Operation interrupted", e);
     }
 
+    /**
+     * Element is stale.
+     *
+     * @param element the element
+     * @return the expected condition
+     */
     public ExpectedCondition<Boolean> elementIsStale(WebElement element) {
         return ExpectedConditions.stalenessOf(element);
     }
 
+	/**
+	 * Contains button.
+	 *
+	 * @param value the value
+	 * @return the expected condition
+	 */
 	public ExpectedCondition<Boolean> containsButton(final String value) {
 		return new ExpectedCondition<>() {
 
@@ -98,6 +135,14 @@ public class UserPageVisitHelper {
 		};
 	}
 
+	/**
+	 * Contains menu item.
+	 *
+	 * @param userPageVisit the user page visit
+	 * @param element the element
+	 * @param caption the caption
+	 * @return the expected condition
+	 */
 	public ExpectedCondition<Boolean> containsMenuItem(final UserPageVisit userPageVisit, final WebElement element, final String... caption) {
 		return new ExpectedCondition<>() {
 			@Override
@@ -108,6 +153,13 @@ public class UserPageVisitHelper {
 		};
 	}
 
+	/**
+	 * Contains text.
+	 *
+	 * @param userPageVisit the user page visit
+	 * @param value the value
+	 * @return the expected condition
+	 */
 	public ExpectedCondition<Boolean> containsText(final UserPageVisit userPageVisit, final String value) {
 		return new ExpectedCondition<>() {
 
@@ -123,6 +175,12 @@ public class UserPageVisitHelper {
 		};
 	}
 
+	/**
+	 * Contains view action.
+	 *
+	 * @param value the value
+	 * @return the expected condition
+	 */
 	public ExpectedCondition<Boolean> containsViewAction(final ViewAction value) {
 		return new ExpectedCondition<>() {
 
@@ -138,6 +196,11 @@ public class UserPageVisitHelper {
 		};
 	}
 
+	/**
+	 * Gets the button elements.
+	 *
+	 * @return the button elements
+	 */
 	List<WebElement> getButtonElements() {
 		final List<WebElement> result = new ArrayList<>(driver.findElements(By.className("v-nativebutton")));
 		result.addAll(driver.findElements(By.className("v-button")));
@@ -151,12 +214,11 @@ public class UserPageVisitHelper {
 	/**
 	 * Gets the buttons.
 	 *
-	 * @param userPageVisit TODO
 	 * @return the buttons
 	 */
 	public List<WebElement> getButtons() {
 		final List<WebElement> result = getButtonElements();
-		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT);
+		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,DEFAULT_WAIT);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfAllElements(result)));
 
 		return getButtonElements();
@@ -165,7 +227,6 @@ public class UserPageVisitHelper {
 	/**
 	 * Gets the actions available.
 	 *
-	 * @param userPageVisit TODO
 	 * @return the actions available
 	 */
 	public Set<ViewAction> getActionsAvailable() {
@@ -177,6 +238,13 @@ public class UserPageVisitHelper {
 			}
 		}
 		return actions;
+	}
+
+	public void waitForClickable(WebElement element) {
+		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,DEFAULT_WAIT);
+		wait.until(ExpectedConditions.elementToBeClickable(StaleElementUtils.refreshElement(element,driver)));
+
+
 	}
 
 }

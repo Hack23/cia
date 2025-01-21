@@ -43,16 +43,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class MinistryMemberHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
-	private static final String[] COLUMN_ORDER = { "roleCode", "roleId", "personId", "firstName",
-			"lastName", "party", "active", "totalDaysServed", "detail", "fromDate", "toDate" };
-
-	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "detail" };
-
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, MinistryMemberConstants.PERSON_ID);
-
-	/** The Constant MEMBER_HISTORY. */
-	private static final String MEMBER_HISTORY = "Member History";
 
 	/**
 	 * Instantiates a new ministry member history page mod content factory impl.

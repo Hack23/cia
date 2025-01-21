@@ -46,6 +46,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
+	/** The Constant AS_LIST. */
 	private static final List<String> AS_LIST = Arrays.asList("committee", "chamber", "processedIn", "decisionType",
 			"proposalNumber", "designation", "wording", "wording2", "wording3", "wording4");
 	/**
@@ -72,7 +73,7 @@ public final class DocumentDecisionPageModContentFactoryImpl extends AbstractDoc
 						DocumentData.class, DocumentData_.id, pageId);
 
 // ...existing code...
-        CardInfoRowUtil.createPageHeader(panel, panelContent, 
+        CardInfoRowUtil.createPageHeader(panel, panelContent,
             DocumentViewConstants.DECISION_TITLE,
             DocumentViewConstants.DECISION_SUBTITLE,
             DocumentViewConstants.DECISION_DESC);

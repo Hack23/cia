@@ -44,94 +44,11 @@ import com.vaadin.ui.VerticalLayout;
 public final class PoliticianRankingDataGridPageModContentFactoryImpl
 		extends AbstractPoliticianRankingPageModContentFactoryImpl {
 
-	/** The Constant COLUMN_ORDER. */
-	private static final String[] COLUMN_ORDER = {
-		    // Basic Information
-		    "personId",
-		    "firstName",
-		    "lastName",
-		    "party",
-		    "gender",
-
-		    // Current Activity & Performance
-		    "documentsLastYear",          // Recent activity
-		    "averageDocsPerYear",        // Productivity metric
-		    "docActivityLevel",          // Activity classification
-		    "docActivityProfile",        // Work style
-		    "collaborationPercentage",   // Team player metric
-
-		    // Document Breakdown
-		    "totalDocuments",            // Total contribution
-		    "individualMotions",         // Individual initiatives
-		    "partyMotions",             // Party work
-		    "committeeMotions",          // Committee work
-		    "multiPartyMotions",        // Collaboration metric
-
-		    // Current Roles
-		    "currentAssignments",
-		    "currentMinistryAssignments",
-		    "currentCommitteeAssignments",
-		    "currentCommitteeLeadershipAssignments",
-
-		    // Historical Performance
-		    "documentYearsActive",       // Experience metric
-		    "totalDaysServed",
-		    "totalCommitteeAssignments",
-		    "totalMinistryAssignments",
-
-		    // Dates for Context
-		    "firstAssignmentDate",
-		    "lastAssignmentDate",
-		    "firstDocumentDate",
-		    "lastDocumentDate"
-		};
-
-	/** The Constant HIDE_COLUMNS. */
-	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = {
-	    // Hidden IDs and Boolean Flags
-	    "personId",
-	    "active",
-	    "activeEu",
-	    "activeGovernment",
-	    "activeCommittee",
-	    "activeParliament",
-	    "activeParty",
-	    "activeSpeaker",
-	    "bornYear",
-
-	    // Hidden Detail Metrics
-	    "followUpMotions",
-	    "totalDaysServedParliament",
-	    "totalDaysServedCommittee",
-	    "totalDaysServedGovernment",
-	    "totalDaysServedEu",
-	    "totalDaysServedSpeaker",
-	    "totalDaysServedParty",
-	    "totalDaysServedCommitteeSubstitute",
-	    "totalDaysServedCommitteeLeadership",
-
-	    // Hidden Assignment Details
-	    "totalPartyAssignments",
-	    "totalSpeakerAssignments",
-	    "currentPartyAssignments",
-	    "currentSpeakerAssignments",
-	    "totalCommitteeSubstituteAssignments",
-	    "currentCommitteeSubstituteAssignments",
-
-	    // Hidden Technical Fields
-	    "documentTypes",
-	    "documentTypesString"
-	};
-
 	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.POLITICIAN_VIEW_NAME, "personId");
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.POLITICIAN_RANKING_VIEW_NAME;
-
-	/** The Constant POLITICIANS. */
-	private static final String POLITICIANS = "Politicians";
 
 	/**
 	 * Instantiates a new politician ranking data grid page mod content factory

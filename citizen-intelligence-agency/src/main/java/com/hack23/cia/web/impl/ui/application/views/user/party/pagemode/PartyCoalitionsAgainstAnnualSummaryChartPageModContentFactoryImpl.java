@@ -40,6 +40,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class PartyCoalitionsAgainstAnnualSummaryChartPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
 
+	/** The chart data manager. */
 	@Autowired
 	private PartyCoalationChartDataManager chartDataManager;
 

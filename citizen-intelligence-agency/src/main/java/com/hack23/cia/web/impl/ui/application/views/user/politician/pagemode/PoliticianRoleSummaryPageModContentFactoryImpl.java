@@ -44,27 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PoliticianRoleSummaryPageModContentFactoryImpl extends AbstractPoliticianPageModContentFactoryImpl {
 
-	/** The Constant COMMITTEE_EXPERIENCE. */
-	private static final String COMMITTEE_EXPERIENCE = "Committee experience:";
-
-	/** The Constant EU_EXPERIENCE. */
-	private static final String EU_EXPERIENCE = "EU experience:";
-
-	/** The Constant GOVERNMENT_EXPERIENCE. */
-	private static final String GOVERNMENT_EXPERIENCE = "Government experience:";
-
-	/** The Constant PARLIAMENT_EXPERIENCE. */
-	private static final String PARLIAMENT_EXPERIENCE = "Parliament experience:";
-
-	/** The Constant PARTY_EXPERIENCE. */
-	private static final String PARTY_EXPERIENCE = "Party experience:";
-
-	/** The Constant SPEAKER_EXPERIENCE. */
-	private static final String SPEAKER_EXPERIENCE = "Speaker experience:";
-
-	/** The Constant TOTAL_ASSIGNMENTS. */
-	private static final String TOTAL_ASSIGNMENTS = "Total Assignments:";
-
 	/**
 	 * Instantiates a new politician role summary page mod content factory impl.
 	 */

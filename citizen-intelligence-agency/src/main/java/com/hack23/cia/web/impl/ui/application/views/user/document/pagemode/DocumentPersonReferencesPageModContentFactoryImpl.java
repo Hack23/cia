@@ -45,10 +45,17 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentPersonReferencesPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "personReferenceId", "referenceName", "partyShortCode",
 			"orderNumber", "roleDescription" };
+
+	/** The Constant DOCUMENT_PERSON_REFERENCES. */
 	private static final String DOCUMENT_PERSON_REFERENCES = "Document person references";
+
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "personReferenceId", "hjid" };
+
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personReferenceId");
 	/**

@@ -43,11 +43,9 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class CommitteeMemberHistoryPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
 
+	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.POLITICIAN_VIEW_NAME, "personId");
-
-	/** The Constant MEMBER_HISTORY. */
-	private static final String MEMBER_HISTORY = "Member History";
 
 	/**
 	 * Instantiates a new committee member history page mod content factory
@@ -68,9 +66,9 @@ public final class CommitteeMemberHistoryPageModContentFactoryImpl extends Abstr
 
 		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
-		    CommitteeViewConstants.MH_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(), 
-		    CommitteeViewConstants.MH_TITLE, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+		    CommitteeViewConstants.MH_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),
+		    CommitteeViewConstants.MH_TITLE,
 		    CommitteeViewConstants.MH_DESCRIPTION);
 
 		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
@@ -79,7 +77,7 @@ public final class CommitteeMemberHistoryPageModContentFactoryImpl extends Abstr
 		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenCommitteeRoleMember.class,
 				committeeRoleMemberDataContainer.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail,
 						viewRiksdagenCommittee.getEmbeddedId().getDetail()),
-				CommitteeGridConstants.MEMBER_HISTORY_GRID_NAME, 
+				CommitteeGridConstants.MEMBER_HISTORY_GRID_NAME,
 				CommitteeGridConstants.MEMBER_HISTORY_COLUMN_ORDER,
 				CommitteeGridConstants.MEMBER_HISTORY_HIDDEN_COLUMNS,
 				LISTENER, null, null);

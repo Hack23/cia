@@ -85,6 +85,28 @@ public enum ChartIndicators {
 	PARTYGENDER,
 
 	/** The partywinner. */
-	PARTYWINNER, GOVERNMENTBODIESHEADCOUNT, GOVERNMENTBODIESINCOME, GOVERNMENTBODIESEXPENDITURE, GOVERNMENTOUTCOME, ALLGOVERNMENTROLEGANTT, ALLMINISTRIESBYTOTALDAYS, RISKSUMMARY, RULEVIOLATION, DOCUMENTACTIVITY, DECISIONACTIVITY, DECISIONFLOW;
+	PARTYWINNER,
+ /** The governmentbodiesheadcount. */
+ GOVERNMENTBODIESHEADCOUNT,
+ /** The governmentbodiesincome. */
+ GOVERNMENTBODIESINCOME,
+ /** The governmentbodiesexpenditure. */
+ GOVERNMENTBODIESEXPENDITURE,
+ /** The governmentoutcome. */
+ GOVERNMENTOUTCOME,
+ /** The allgovernmentrolegantt. */
+ ALLGOVERNMENTROLEGANTT,
+ /** The allministriesbytotaldays. */
+ ALLMINISTRIESBYTOTALDAYS,
+ /** The risksummary. */
+ RISKSUMMARY,
+ /** The ruleviolation. */
+ RULEVIOLATION,
+ /** The documentactivity. */
+ DOCUMENTACTIVITY,
+ /** The decisionactivity. */
+ DECISIONACTIVITY,
+ /** The decisionflow. */
+ DECISIONFLOW;
 
 }

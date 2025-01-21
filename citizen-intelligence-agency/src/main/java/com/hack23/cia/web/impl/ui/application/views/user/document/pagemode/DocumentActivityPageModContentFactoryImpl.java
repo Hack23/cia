@@ -43,9 +43,14 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class DocumentActivityPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
+	/** The Constant COLUMN_ORDER. */
 	private static final String[] COLUMN_ORDER = { "createdDate", "code", "activityName", "orderNumber",
 			"process", "status" };
+
+	/** The Constant DOCUMENT_ACTIVITIES. */
 	private static final String DOCUMENT_ACTIVITIES = "Document activities";
+
+	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "hjid" };
 
 	/**
@@ -64,7 +69,7 @@ public final class DocumentActivityPageModContentFactoryImpl extends AbstractDoc
 
 		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 			DocumentViewConstants.ACTIVITY_TITLE,
 			DocumentViewConstants.ACTIVITY_SUBTITLE,
 			DocumentViewConstants.ACTIVITY_DESC);

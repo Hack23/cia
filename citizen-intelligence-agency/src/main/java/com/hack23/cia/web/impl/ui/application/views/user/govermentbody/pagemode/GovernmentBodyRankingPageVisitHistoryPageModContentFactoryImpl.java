@@ -70,6 +70,12 @@ public final class GovernmentBodyRankingPageVisitHistoryPageModContentFactoryImp
 
 	}
 
+	/**
+	 * Creates the header.
+	 *
+	 * @param panel the panel
+	 * @param panelContent the panel content
+	 */
 	private void createHeader(Panel panel, VerticalLayout panelContent) {
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
             GovernmentBodyDescriptionConstants.VISIT_HISTORY_HEADER,

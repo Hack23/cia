@@ -42,6 +42,8 @@ import com.vaadin.ui.UI;
 
 /**
  * The Class AuthorizationFailureEventListener.
+ *
+ * @see AuthorizationFailureEventEvent
  */
 @Service
 public final class AuthorizationFailureEventListener implements ApplicationListener<AuthorizationFailureEvent> {

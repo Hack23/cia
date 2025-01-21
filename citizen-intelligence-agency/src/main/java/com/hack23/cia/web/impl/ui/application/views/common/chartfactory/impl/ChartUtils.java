@@ -25,7 +25,7 @@ public final class ChartUtils {
     /** The Constant CHART_LEFT_MARGIN. */
     private static final int CHART_LEFT_MARGIN = 2;
 
-    /** The Constant CHART_RIGHT_MARGIN = 2; */
+    /**  The Constant CHART_RIGHT_MARGIN = 2;. */
     private static final int CHART_RIGHT_MARGIN = 2;
 
     /** The Constant CHART_TOP_MARGIN_SIZE. */

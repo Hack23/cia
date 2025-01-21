@@ -56,16 +56,27 @@ public final class GovernmentBodyRankingOverviewPageModContentFactoryImpl extend
         createHeader(panel, panelContent);
         createOverviewContent(panelContent);
 
-        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW, 
+        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW,
             ApplicationEventGroup.USER, NAME, parameters, pageId);
 
         return panelContent;
 	}
 
+    /**
+     * Creates the menu bar.
+     *
+     * @param menuBar the menu bar
+     */
     private void createMenuBar(final MenuBar menuBar) {
         getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);
     }
 
+    /**
+     * Creates the header.
+     *
+     * @param panel the panel
+     * @param panelContent the panel content
+     */
     private void createHeader(final Panel panel, final VerticalLayout panelContent) {
         CardInfoRowUtil.createPageHeader(panel, panelContent,
             GovernmentBodyDescriptionConstants.RANKING_HEADER,
@@ -73,6 +84,11 @@ public final class GovernmentBodyRankingOverviewPageModContentFactoryImpl extend
             GovernmentBodyDescriptionConstants.RANKING_DESC);
     }
 
+    /**
+     * Creates the overview content.
+     *
+     * @param panelContent the panel content
+     */
     private void createOverviewContent(final VerticalLayout panelContent) {
         getGovernmentBodyRankingMenuItemFactory().createOverviewPage(panelContent);
     }

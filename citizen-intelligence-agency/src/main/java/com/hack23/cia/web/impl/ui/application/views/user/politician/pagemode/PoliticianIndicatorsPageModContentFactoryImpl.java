@@ -61,7 +61,7 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-            PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician, 
+            PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician,
                 PoliticianPageTitleConstants.INDICATORS_TITLE),
             PoliticianPageTitleConstants.INDICATOR_SUBTITLE,
             PoliticianPageTitleConstants.INDICATORS_DESC);

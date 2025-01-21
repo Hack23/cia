@@ -30,6 +30,8 @@ import com.vaadin.ui.Notification;
 
 /**
  * The Class ChangePasswordClickListener.
+ *
+ * @see ChangePasswordClickEvent
  */
 public class ChangePasswordClickListener extends AbstractClickListener implements ClickListener {
 
@@ -38,7 +40,7 @@ public class ChangePasswordClickListener extends AbstractClickListener implement
 			.getLogger(ChangePasswordClickListener.class);
 
 	/** The Constant PROBLEM_CHANGING_PASSWORD. */
-	private static final String PROBLEM_CHANGING_PASSWORD = "Problem changing password";
+	public static final String PROBLEM_CHANGING_PASSWORD = "Problem changing password";
 
 	/** The Constant PROBLEM_CHANGING_PASSWORD_SESSIONID. */
 	private static final String PROBLEM_CHANGING_PASSWORD_SESSIONID = "Problem changing password, sessionid{}";

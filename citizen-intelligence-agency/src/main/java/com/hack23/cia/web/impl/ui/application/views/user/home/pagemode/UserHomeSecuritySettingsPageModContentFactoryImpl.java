@@ -198,6 +198,11 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		return formLayout;
 	}
 
+	/**
+	 * Creates the delete account button.
+	 *
+	 * @return the vertical layout
+	 */
 	private VerticalLayout createDeleteAccountButton() {
 
 		final VerticalLayout formLayout = new VerticalLayout();

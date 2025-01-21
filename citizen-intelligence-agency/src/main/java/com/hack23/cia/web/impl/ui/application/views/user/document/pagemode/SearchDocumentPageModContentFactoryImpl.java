@@ -49,6 +49,7 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
+	/** The Constant AS_LIST. */
 	private static final List<String> AS_LIST = Collections.singletonList( "searchExpression" );
 
 	/** The Constant MAX_RESULT_SIZE. */
@@ -57,8 +58,10 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasic
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.SEARCH_DOCUMENT_VIEW_NAME;
 
+	/** The Constant SEARCH. */
 	private static final String SEARCH = "Search";
 
+	/** The document menu item factory. */
 	@Autowired
 	private DocumentMenuItemFactory documentMenuItemFactory;
 

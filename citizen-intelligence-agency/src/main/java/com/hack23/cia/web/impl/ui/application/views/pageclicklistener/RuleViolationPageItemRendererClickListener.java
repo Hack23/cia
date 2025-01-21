@@ -29,6 +29,8 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 
 /**
  * The Class RuleViolationPageItemRendererClickListener.
+ *
+ * @see RuleViolationPageItemRendererClickEvent
  */
 
 public final class RuleViolationPageItemRendererClickListener implements PageItemRendererClickListener<RuleViolation> {
