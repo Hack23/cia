@@ -387,7 +387,7 @@ public class DocumentElement
 	 * @return the note
 	 */
     @Basic
-    @Column(name = "NOTE")
+    @Column(name = "NOTE", length = 10485760)
     public String getNote() {
         return note;
     }
@@ -407,7 +407,7 @@ public class DocumentElement
 	 * @return the summary
 	 */
     @Basic
-    @Column(name = "SUMMARY")
+    @Column(name = "SUMMARY",length = 10485760)
     public String getSummary() {
         return summary;
     }
