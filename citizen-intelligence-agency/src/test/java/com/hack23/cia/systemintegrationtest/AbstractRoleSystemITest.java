@@ -18,15 +18,10 @@
 */
 package com.hack23.cia.systemintegrationtest;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
 import com.hack23.cia.testfoundation.AbstractSystemIntegrationTest;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.wdm.config.DriverManagerType;
 
 /**
  * The Class AbstractRoleSystemITest.
@@ -36,53 +31,5 @@ public abstract class AbstractRoleSystemITest extends AbstractSystemIntegrationT
 
 
 	/** The Constant usingExternalServer. */
-	protected static final boolean usingExternalServer;
-
-	/** The webdriver setup. */
-	private static boolean webdriverSetup = false;
-
-	/** The Constant webDriverMap. */
-	static {
-		final String systemTestTargetUrlProperty = System.getProperty("system.test.target.url");
-		if (systemTestTargetUrlProperty != null && systemTestTargetUrlProperty.isEmpty()) {
-			usingExternalServer = true;
-		} else {
-			usingExternalServer = false;
-		}
-
-
-
-		CitizenIntelligenceAgencyServer.setEnv("CIA_APP_ENCRYPTION_PASSWORD", "allhaildiscordia");
-	}
-
-	/**
-	 * Start server.
-	 *
-	 * @throws Exception
-	 *                   the exception
-	 */
-	@BeforeClass
-	public static final synchronized void startServer() throws Exception {
-		if (!usingExternalServer) {
-			CitizenIntelligenceAgencyServer.startTestServer();
-		}
-		if(!webdriverSetup) {
-			WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
-			webdriverSetup=true;
-		}
-	}
-
-	/**
-	 * Stop server.
-	 *
-	 * @throws Exception
-	 *                   the exception
-	 */
-	@AfterClass
-	public static final synchronized void stopServer() throws Exception {
-		if (!usingExternalServer) {
-			CitizenIntelligenceAgencyServer.stopTestServer();
-		}
-	}
 
 }

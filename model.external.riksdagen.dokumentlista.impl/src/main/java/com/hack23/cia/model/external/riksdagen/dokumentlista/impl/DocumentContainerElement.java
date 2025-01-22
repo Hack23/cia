@@ -43,8 +43,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
@@ -59,10 +61,11 @@ import com.hack23.cia.model.common.api.ModelObject;
 /**
  * The Class DocumentContainerElement.
  */
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "dokumentlista")
 @XmlType(name = "DocumentContainerElement", propOrder = {
     "dokument"
 })
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity(name = "DocumentContainerElement")
 @Table(name = "DOCUMENT_CONTAINER_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -76,8 +79,8 @@ public class DocumentContainerElement
 	private static final long serialVersionUID = 1L;
 
 	/** The dokument. */
-    @XmlElement(required = true)
-    protected List<DocumentElement> dokument = new ArrayList<>();
+	@XmlElement(name = "dokument", required = true)
+    protected List<DocumentElement> dokument = new ArrayList<DocumentElement>();
 
     /** The datum. */
     @XmlAttribute(name = "datum", required = true)
@@ -121,7 +124,7 @@ public class DocumentContainerElement
     protected String documentVersion;
 
     /** The warning. */
-    @XmlAttribute(name = "warning", required = true)
+    @XmlAttribute(name = "varning", required = true)
     protected String warning;
 
     /** The hjid. */
