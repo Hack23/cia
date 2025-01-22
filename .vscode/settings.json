@@ -1,20 +1,32 @@
 {
   "java.test.config": {
     "vmargs": [
-      "--add-modules=ALL-MODULE-PATH",
+      "-Xmx2048M",
+      "--add-modules",
+      "ALL-SYSTEM",
+      "--add-modules",
+      "java.xml.bind",
+      "--add-opens=java.base/java.lang=ALL-UNNAMED",
+      "--add-opens=java.base/java.util=ALL-UNNAMED",
+      "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
       "--add-exports=java.base/sun.nio.ch=ALL-UNNAMED",
       "--add-exports=java.base/jdk.internal.ref=ALL-UNNAMED",
-      "--add-opens=java.base/java.lang=ALL-UNNAMED",
-      "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
-      "--add-opens=java.base/java.util=ALL-UNNAMED",
+      "--add-exports=java.xml/com.sun.org.apache.xerces.internal.dom=ALL-UNNAMED",
+      "--add-exports=java.xml.bind/javax.xml.bind=ALL-UNNAMED"
     ],
     "name": "CIA Tests",
     "showTestResults": true,
-    "excludes": ["**/module-info.java"]
+    "excludes": [
+      "**/module-info.java"
+    ]
   },
-  "java.test.defaultConfig": "default",
-  "java.project.sourcePaths": ["src/main/java"],
-  "java.project.testSourcePaths": ["src/test/java"],
+  "java.test.defaultConfig": "CIA Tests",
+  "java.project.sourcePaths": [
+    "src/main/java"
+  ],
+  "java.project.testSourcePaths": [
+    "src/test/java"
+  ],
   "java.compile.nullAnalysis.mode": "automatic",
   "java.configuration.updateBuildConfiguration": "automatic",
   "java.dependency.packagePresentation": "hierarchical",
@@ -39,5 +51,11 @@
   "java.debug.settings.onBuildFailureProceed": true,
   "java.test.editor.enableShortcuts": true,
   "java.test.message.showFullStackTrace": true,
-  "java.test.message.displayNameFormat": "${className} - ${methodName}"
+  "java.test.message.displayNameFormat": "${className} - ${methodName}",
+  "maven.dependency.enableConflictDiagnostics": true,
+  "java.import.exclusions": [
+    "**/node_modules/**",
+    "**/.metadata/**"
+  ],
+  "maven.pomfile.autoUpdateEffectivePOM": true
 }
