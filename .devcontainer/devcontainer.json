@@ -98,7 +98,8 @@
             "-Dmaven.test.failure.ignore=true",
             "-DfailIfNoTests=false",
             "-Dsurefire.failIfNoSpecifiedTests=false",
-            "-Dsurefire.reportNameSuffix=UNIT"
+            "-Dsurefire.reportNameSuffix=UNIT",
+            "-Dspdx.skip"
           ],
           "options": {
             "cwd": "${workspaceFolder}/parent-pom",
@@ -119,7 +120,8 @@
             "!com.hack23.cia:cia-dist-deb,!com.hack23.cia:cia-dist-cloudformation",
             "-DskipTests",
             "-DfailIfNoTests=false",
-            "-Dsurefire.failIfNoSpecifiedTests=false"
+            "-Dsurefire.failIfNoSpecifiedTests=false",
+            "-Dspdx.skip"
           ],
           "options": {
             "cwd": "${workspaceFolder}/parent-pom",
