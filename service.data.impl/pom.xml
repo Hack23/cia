@@ -34,6 +34,18 @@
   <properties>
     <liquibase.changeLogDirectory>${project.basedir}/target/classes/</liquibase.changeLogDirectory>
   </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-bom</artifactId>
+        <version>${cia.project.versions.aws}</version>
+        <!-- Align to latest stable version -->
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>jakarta.activation</groupId>
@@ -60,10 +72,6 @@
         <exclusion>
           <groupId>com.fasterxml.jackson.dataformat</groupId>
           <artifactId>jackson-dataformat-cbor</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>software.amazon.ion</groupId>
-          <artifactId>ion-java</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -92,16 +100,7 @@
           <groupId>com.fasterxml.jackson.dataformat</groupId>
           <artifactId>jackson-dataformat-cbor</artifactId>
         </exclusion>
-        <exclusion>
-          <groupId>software.amazon.ion</groupId>
-          <artifactId>ion-java</artifactId>
-        </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>software.amazon.ion</groupId>
-      <artifactId>ion-java</artifactId>
-      <version>1.5.1</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>

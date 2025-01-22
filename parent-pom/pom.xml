@@ -164,7 +164,8 @@
     <jdk.target.version>21</jdk.target.version>
     <javadoc.src.version>21</javadoc.src.version>
     <javadoc.target.version>21</javadoc.target.version>
-    <testAdditionalRuntimeArgLine>-XX:+EnableDynamicAgentLoading --add-exports java.base/sun.nio.ch=ALL-UNNAMED
+    <testAdditionalRuntimeArgLine>-XX:+EnableDynamicAgentLoading --add-exports
+      java.base/sun.nio.ch=ALL-UNNAMED
       --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
       java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
       --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
@@ -336,7 +337,7 @@
       <dependency>
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
-        <version>1.10.0</version>
+        <version>1.9.0</version>
       </dependency>
       <dependency>
         <groupId>org.jvnet.jaxb2_commons</groupId>
@@ -1439,7 +1440,8 @@
         <jdk>21</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>-XX:+EnableDynamicAgentLoading --add-exports java.base/sun.nio.ch=ALL-UNNAMED
+        <testAdditionalRuntimeArgLine>-XX:+EnableDynamicAgentLoading --add-exports
+          java.base/sun.nio.ch=ALL-UNNAMED
           --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
           java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
           --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
