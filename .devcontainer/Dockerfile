@@ -80,15 +80,21 @@ ENV JAVA_TOOL_OPTIONS="\
     --add-opens=java.base/java.lang.reflect=ALL-UNNAMED \
     --add-opens=java.base/java.util=ALL-UNNAMED"
 
+# Set up Maven cache directory with proper permissions
+RUN mkdir -p /home/vscode/.m2 \
+    && chown -R vscode:vscode /home/vscode/.m2 \
+    && chmod -R 755 /home/vscode/.m2
+
+# Configure persistent storage directories
+RUN mkdir -p /var/lib/postgresql/16/main \
+    && chown -R postgres:postgres /var/lib/postgresql/16/main \
+    && chmod 700 /var/lib/postgresql/16/main
+
+# Remove VOLUME instruction to prevent conflicts with named volumes
+# VOLUME /home/vscode/.m2
+
 # Set working directory
 WORKDIR /workspace
-
-# Cache Maven packages
-RUN mkdir -p /home/vscode/.m2 \
-    && chown -R vscode:vscode /home/vscode/.m2
-
-# Define volume for Maven cache
-VOLUME /home/vscode/.m2
 
 # Copy settings.xml
 COPY --chown=vscode:vscode settings.xml /home/vscode/.m2/settings.xml
