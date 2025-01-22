@@ -151,7 +151,7 @@
     }
   },
   "mounts": [
-    "source=${localEnv:HOME}/.m2,target=/home/vscode/.m2,type=bind",
+    "source=codespaces-maven-cache,target=/home/vscode/.m2,type=volume",
     "source=postgres_data,target=/var/lib/postgresql/16/main,type=volume"
   ],
   "customizations": {
