@@ -18,13 +18,13 @@
 */
 package com.hack23.cia.service.external.common.impl;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.URL;
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
@@ -57,33 +57,11 @@ final class XmlAgentImpl implements XmlAgent {
 		super();
 	}
 
-	/**
-	 * Read with string buffer.
-	 *
-	 * @param fr
-	 *            the fr
-	 * @return the string
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	private static String readWithStringBuffer(final Reader fr) throws IOException {
-
-		final BufferedReader br = new BufferedReader(fr);
-		String line;
-		final StringBuilder result = new StringBuilder();
-		while ((line = br.readLine()) != null) {
-			result.append(line);
-		}
-
-		return result.toString();
-	}
 
 	@Override
 	public String retriveContent(final String accessUrl) throws XmlAgentException {
 		try {
-			final URL url = URI.create(accessUrl.replace(" ", "")).toURL(); 
-					
-			return readWithStringBuffer(new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8)));
+			return new String(readInputStreamAsBytes(accessUrl), StandardCharsets.UTF_8);
 		} catch (final IOException e) {
 			throw new XmlAgentException(e);
 		}
@@ -105,20 +83,20 @@ final class XmlAgentImpl implements XmlAgent {
 			final boolean isWeb = accessUrl.toLowerCase(Locale.ENGLISH).startsWith("http://")
 					|| accessUrl.toLowerCase(Locale.ENGLISH).startsWith("https://");
 
-			String xmlContent;
+			byte[] xmlContent;
 			if (isWeb) {
-				xmlContent = Request.Get(accessUrl.replace(" ", "")).execute().returnContent()
-						.asString(StandardCharsets.UTF_8);
+				xmlContent = Request.Get(accessUrl).execute().returnContent().asBytes();
 			} else {
-				xmlContent = readInputStream(accessUrl.replace(" ", ""));
+				xmlContent = readInputStreamAsBytes(accessUrl);
 			}
 
 			if (replace != null) {
-				xmlContent = xmlContent.replace(replace, with);
+				final String xmlContentReplaced = new String(xmlContent, StandardCharsets.UTF_8).replace(replace, with);
+
+				xmlContent = xmlContentReplaced.getBytes(StandardCharsets.UTF_8);
 			}
 
-			final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
-					xmlContent.getBytes(StandardCharsets.UTF_8));
+			final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(xmlContent);
 
 			Source source;
 			if (nameSpace != null) {
@@ -133,17 +111,29 @@ final class XmlAgentImpl implements XmlAgent {
 		}
 	}
 
+
+
 	/**
-	 * Read input stream.
+	 * Read input stream as bytes.
 	 *
-	 * @param accessUrl
-	 *            the access url
-	 * @return the string
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @param accessUrl the access url
+	 * @return the byte[]
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	private static String readInputStream(final String accessUrl) throws IOException {
-		final URL url = URI.create(accessUrl.replace(" ", "")).toURL();
-		return readWithStringBuffer(new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(), StandardCharsets.UTF_8)));
+	private static byte[] readInputStreamAsBytes(final String accessUrl) throws IOException {
+	    final URL url = URI.create(accessUrl).toURL();
+
+	    final URLConnection connection = url.openConnection();
+	    final int contentLength = connection.getContentLength();
+
+	    try (InputStream inputStream = connection.getInputStream();
+	         ByteArrayOutputStream outputStream =
+	             contentLength > 0 ? new ByteArrayOutputStream(contentLength)
+	                               : new ByteArrayOutputStream()) {
+
+	        inputStream.transferTo(outputStream);
+
+	        return outputStream.toByteArray();
+	    }
 	}
 }
