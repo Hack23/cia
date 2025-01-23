@@ -17,7 +17,7 @@ public abstract class AbstractUITest extends AbstractRoleSystemITest {
 	/** The Constant DEFAULT_TIMEOUT. */
 	protected static final long DEFAULT_TIMEOUT = TestConstants.DEFAULT_TIMEOUT;
 
-	
+
 	/** The driver. */
 	protected static WebDriver driver;
 

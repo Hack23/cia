@@ -12,7 +12,7 @@ import io.github.bonigarcia.wdm.config.DriverManagerType;
  */
 public class WebDriverFactory {
 
-	private static WebDriver driver; 
+	private static WebDriver driver;
 
     /**
      * Instantiates a new web driver factory.
