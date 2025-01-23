@@ -25,19 +25,17 @@
 
 	<logger name="org.eclipse" level="warn" />
 
-	<logger name="org.springframework" level="info" />
-	<logger name="org.springframework.web" level="info" />
+	<logger name="org.springframework" level="error" />
+	<logger name="org.springframework.web" level="error" />
 	<logger name="org.springframework.oxm.jaxb" level="error" />
 
-	<logger name="org.springframework.security" level="warn" />
+	<logger name="org.springframework.security" level="error" />
 
-	<logger name="org.apache.activemq.artemis" level="warn" />
+	<logger name="org.apache.activemq.artemis" level="error" />
 
 	<logger name="ch.qos.logback.core" level="warn" />
 
-
-	<logger name="com.hack23.cia" level="info" />
-	<logger name="com.hack23.cia.systemintegrationtest" level="info" />
+	<logger name="com.hack23.cia" level="error" />
 	
 
 	<root level="error">
