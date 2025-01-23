@@ -1,19 +1,20 @@
 package com.hack23.cia.systemintegrationtest.suites;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.openqa.selenium.WebDriver;
 
 import com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer;
 import com.hack23.cia.systemintegrationtest.admin.configuration.AdminConfigurationTest;
 import com.hack23.cia.systemintegrationtest.admin.data.AdminDataTest;
 import com.hack23.cia.systemintegrationtest.admin.operations.AdminOperationsTest;
 import com.hack23.cia.systemintegrationtest.admin.security.AdminSecurityTest;
+import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
+import com.hack23.cia.systemintegrationtest.ui.WebDriverFactory;
 import com.hack23.cia.systemintegrationtest.user.home.UserHomeTest;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.wdm.config.DriverManagerType;
 
 /**
  * The Class IntegrationTestSuite.
@@ -27,11 +28,19 @@ import io.github.bonigarcia.wdm.config.DriverManagerType;
     UserHomeTest.class
 })
 public class IntegrationTestSuite {
-	
-	protected static final boolean usingExternalServer;
 
-	/** The webdriver setup. */
-	private static boolean webdriverSetup = false;
+	/** The Constant BASE_URL. */
+	protected static final String BASE_URL = System.getProperty("system.test.target.url",
+			CitizenIntelligenceAgencyServer.ACCESS_URL);
+
+	/** The driver. */
+	protected static WebDriver driver;
+
+
+	/** The page visit. */
+	protected static UserPageVisit pageVisit;
+
+	protected static final boolean usingExternalServer;
 
 	/** The Constant webDriverMap. */
 	static {
@@ -48,6 +57,25 @@ public class IntegrationTestSuite {
 	}
 
 	/**
+	 * Global setup.
+	 */
+	@BeforeClass
+	public static void globalSetup() {
+		driver = WebDriverFactory.createDriver();
+		pageVisit = new UserPageVisit(driver);
+	}
+
+	/**
+	 * Global teardown.
+	 */
+	@AfterClass
+	public static void globalTeardown() {
+		if (driver != null) {
+			driver.quit();
+		}
+	}
+
+	/**
 	 * Start server.
 	 *
 	 * @throws Exception
@@ -57,10 +85,6 @@ public class IntegrationTestSuite {
 	public static final synchronized void startServer() throws Exception {
 		if (!usingExternalServer) {
 			CitizenIntelligenceAgencyServer.startTestServer();
-		}
-		if(!webdriverSetup) {
-			WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
-			webdriverSetup=true;
 		}
 	}
 
@@ -77,6 +101,10 @@ public class IntegrationTestSuite {
 		}
 	}
 
-	
-	
+	@After
+	public void cleanBrowser() {
+		pageVisit.cleanBrowser();
+	}
+
+
 }

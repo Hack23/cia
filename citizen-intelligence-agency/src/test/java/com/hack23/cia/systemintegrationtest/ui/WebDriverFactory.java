@@ -4,11 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.config.DriverManagerType;
+
 /**
  * A factory for creating WebDriver objects.
  */
 public class WebDriverFactory {
 
+	private static WebDriver driver; 
 
     /**
      * Instantiates a new web driver factory.
@@ -22,8 +26,11 @@ public class WebDriverFactory {
      * @return the web driver
      */
     public static WebDriver createDriver() {
-        final WebDriver driver = createChromeDriver();
-        configureDriver(driver);
+       if (driver == null ) {
+    	   WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
+    	   driver = createChromeDriver();
+    	   configureDriver(driver);
+       }
         return driver;
     }
 

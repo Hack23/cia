@@ -48,5 +48,5 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateSear
     ListPropertyConverterTest.class,
     UserContextUtilTest.class})
 public class UnitTestSuite {
-		
+
 }
