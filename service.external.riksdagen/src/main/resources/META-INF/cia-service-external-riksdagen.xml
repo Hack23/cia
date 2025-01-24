@@ -3,26 +3,146 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:oxm="http://www.springframework.org/schema/oxm"
     xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-    http://www.springframework.org/schema/oxm
-    http://www.springframework.org/schema/oxm/spring-oxm.xsd">
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
 
-	<context:annotation-config />
-	<context:spring-configured />
+    <!-- Context Configuration -->
+    <context:annotation-config />
+    <context:spring-configured />
     <context:component-scan base-package="com.hack23.cia.service.external.riksdagen" />
 
+    <!-- Document List Marshaller -->
+    <bean id="riksdagenDocumentListMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath"
+            value="com.hack23.cia.model.external.riksdagen.dokumentlista.impl" />
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.formatted.output" value="true" />
+                <entry key="jaxb.encoding" value="UTF-8" />
+                <entry key="jaxb.fragment" value="true" />
+                <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
+            </map>
+        </property>
+        <property name="validationEventHandler">
+            <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
+        </property>
+        <property name="supportDtd" value="false" />
+        <property name="processExternalEntities" value="false" />
+    </bean>
 
-    <oxm:jaxb2-marshaller id="riksdagenDocumentListMarshaller"  context-path="com.hack23.cia.model.external.riksdagen.dokumentlista.impl"/>
-	<oxm:jaxb2-marshaller id="riksdagenDocumentStatusMarshaller" context-path="com.hack23.cia.model.external.riksdagen.dokumentstatus.impl"/>
+    <!-- Document Status Marshaller -->
+    <bean id="riksdagenDocumentStatusMarshaller"
+        class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath"
+            value="com.hack23.cia.model.external.riksdagen.dokumentstatus.impl" />
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.formatted.output" value="true" />
+                <entry key="jaxb.encoding" value="UTF-8" />
+                <entry key="jaxb.fragment" value="true" />
+                <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
+            </map>
+        </property>
+        <property name="validationEventHandler">
+            <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
+        </property>
+        <property name="supportDtd" value="false" />
+        <property name="processExternalEntities" value="false" />
+    </bean>
 
-	<oxm:jaxb2-marshaller id="riksdagenPersonMarshaller" context-path="com.hack23.cia.model.external.riksdagen.person.impl"/>
-	<oxm:jaxb2-marshaller id="riksdagenPersonListMarshaller" context-path="com.hack23.cia.model.external.riksdagen.personlista.impl"/>
+    <!-- Person Marshaller -->
+    <bean id="riksdagenPersonMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="com.hack23.cia.model.external.riksdagen.person.impl" />
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.formatted.output" value="true" />
+                <entry key="jaxb.encoding" value="UTF-8" />
+                <entry key="jaxb.fragment" value="true" />
+                <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
+            </map>
+        </property>
+        <property name="validationEventHandler">
+            <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
+        </property>
+        <property name="supportDtd" value="false" />
+        <property name="processExternalEntities" value="false" />
+    </bean>
 
-	<oxm:jaxb2-marshaller id="riksdagenCommitteeProposalMarshaller" context-path="com.hack23.cia.model.external.riksdagen.utskottsforslag.impl"/>
-	<oxm:jaxb2-marshaller id="riksdagenBallotMarshaller" context-path="com.hack23.cia.model.external.riksdagen.votering.impl"/>
-	<oxm:jaxb2-marshaller id="riksdagenBallotListMarshaller"    context-path="com.hack23.cia.model.external.riksdagen.voteringlista.impl"/>
+    <!-- Person List Marshaller -->
+    <bean id="riksdagenPersonListMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath"
+            value="com.hack23.cia.model.external.riksdagen.personlista.impl" />
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.formatted.output" value="true" />
+                <entry key="jaxb.encoding" value="UTF-8" />
+                <entry key="jaxb.fragment" value="true" />
+                <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
+            </map>
+        </property>
+        <property name="validationEventHandler">
+            <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
+        </property>
+        <property name="supportDtd" value="false" />
+        <property name="processExternalEntities" value="false" />
+    </bean>
 
+    <!-- Committee Proposal Marshaller -->
+    <bean id="riksdagenCommitteeProposalMarshaller"
+        class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath"
+            value="com.hack23.cia.model.external.riksdagen.utskottsforslag.impl" />
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.formatted.output" value="true" />
+                <entry key="jaxb.encoding" value="UTF-8" />
+                <entry key="jaxb.fragment" value="true" />
+                <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
+            </map>
+        </property>
+        <property name="validationEventHandler">
+            <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
+        </property>
+        <property name="supportDtd" value="false" />
+        <property name="processExternalEntities" value="false" />
+    </bean>
+
+    <!-- Ballot Marshaller -->
+    <bean id="riksdagenBallotMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="com.hack23.cia.model.external.riksdagen.votering.impl" />
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.formatted.output" value="true" />
+                <entry key="jaxb.encoding" value="UTF-8" />
+                <entry key="jaxb.fragment" value="true" />
+                <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
+            </map>
+        </property>
+        <property name="validationEventHandler">
+            <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
+        </property>
+        <property name="supportDtd" value="false" />
+        <property name="processExternalEntities" value="false" />
+    </bean>
+
+    <!-- Ballot List Marshaller -->
+    <bean id="riksdagenBallotListMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath"
+            value="com.hack23.cia.model.external.riksdagen.voteringlista.impl" />
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.formatted.output" value="true" />
+                <entry key="jaxb.encoding" value="UTF-8" />
+                <entry key="jaxb.fragment" value="true" />
+                <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
+            </map>
+        </property>
+        <property name="validationEventHandler">
+            <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
+        </property>
+        <property name="supportDtd" value="false" />
+        <property name="processExternalEntities" value="false" />
+    </bean>
 
 </beans>

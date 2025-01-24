@@ -29,7 +29,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,7 +42,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -57,7 +55,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.hack23.cia.model.common.api.ModelObject;
 
-
 /**
  * The Class DocumentContainerElement.
  */
@@ -66,76 +63,66 @@ import com.hack23.cia.model.common.api.ModelObject;
     "dokument"
 })
 @XmlAccessorType(XmlAccessType.FIELD)
-@Entity(name = "DocumentContainerElement")
+@Entity
 @Table(name = "DOCUMENT_CONTAINER_ELEMENT")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class DocumentContainerElement
-    implements ModelObject
-{
+public class DocumentContainerElement implements ModelObject {
 
-    /**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/** The dokument. */
-	@XmlElement(name = "dokument", required = true)
-    protected List<DocumentElement> dokument = new ArrayList<DocumentElement>();
+    @XmlElement(name = "dokument")
+    private List<DocumentElement> dokument = new ArrayList<>();
 
-    /** The datum. */
-    @XmlAttribute(name = "datum", required = true)
-    protected String datum;
+    @XmlAttribute(name = "datum")
+    @Column(name = "DATUM")
+    private String datum;
 
-    /** The debug. */
-    @XmlAttribute(name = "debug", required = true)
-    protected String debug;
+    @XmlAttribute(name = "debug")
+    @Column(name = "DEBUG")
+    private String debug;
 
-    /** The next page. */
-    @XmlAttribute(name = "nasta_sida", required = true)
+    @XmlAttribute(name = "nasta_sida")
     @XmlSchemaType(name = "anyURI")
-    protected String nextPage;
+    @Column(name = "NEXT_PAGE")
+    private String nextPage;
 
-    /** The page. */
-    @XmlAttribute(name = "sida", required = true)
-    protected BigInteger page;
+    @XmlAttribute(name = "sida")
+    @Column(name = "PAGE", precision = 20)
+    private BigInteger page;
 
-    /** The total pages. */
-    @XmlAttribute(name = "sidor", required = true)
-    protected BigInteger totalPages;
+    @XmlAttribute(name = "sidor")
+    @Column(name = "TOTAL_PAGES", precision = 20)
+    private BigInteger totalPages;
 
-    /** The created. */
-    @XmlAttribute(name = "skapad", required = true)
-    protected String created;
+    @XmlAttribute(name = "skapad")
+    @Column(name = "CREATED")
+    private String created;
 
-    /** The hits from. */
-    @XmlAttribute(name = "traff_fran", required = true)
-    protected BigInteger hitsFrom;
+    @XmlAttribute(name = "traff_fran")
+    @Column(name = "HITS_FROM", precision = 20)
+    private BigInteger hitsFrom;
 
-    /** The hits to. */
-    @XmlAttribute(name = "traff_till", required = true)
-    protected BigInteger hitsTo;
+    @XmlAttribute(name = "traff_till")
+    @Column(name = "HITS_TO", precision = 20)
+    private BigInteger hitsTo;
 
-    /** The hits. */
-    @XmlAttribute(name = "traffar", required = true)
-    protected BigInteger hits;
+    @XmlAttribute(name = "traffar")
+    @Column(name = "HITS", precision = 20)
+    private BigInteger hits;
 
-    /** The document version. */
-    @XmlAttribute(name = "version", required = true)
-    protected String documentVersion;
+    @XmlAttribute(name = "version")
+    @Column(name = "DOCUMENT_VERSION")
+    private String documentVersion;
 
-    /** The warning. */
-    @XmlAttribute(name = "varning", required = true)
-    protected String warning;
+    @XmlAttribute(name = "varning")
+    @Column(name = "WARNING")
+    private String warning;
 
-    /** The hjid. */
+    
     @XmlAttribute(name = "Hjid")
-    protected Long hjid;
+    private Long hjid;
 
-    /**
-	 * Gets the dokument.
-	 *
-	 * @return the dokument
-	 */
+    // Plain getters and setters without annotations
     @OneToMany(targetEntity = DocumentElement.class, cascade = {
         CascadeType.ALL
     })
@@ -144,381 +131,99 @@ public class DocumentContainerElement
         return this.dokument;
     }
 
-    /**
-	 * Sets the dokument.
-	 *
-	 * @param dokument the new dokument
-	 */
+
     public void setDokument(final List<DocumentElement> dokument) {
         this.dokument = dokument;
     }
 
-    /**
-	 * Gets the datum.
-	 *
-	 * @return the datum
-	 */
-    @Basic
-    @Column(name = "DATUM")
     public String getDatum() {
         return datum;
     }
 
-    /**
-	 * Sets the datum.
-	 *
-	 * @param value the new datum
-	 */
     public void setDatum(final String value) {
         this.datum = value;
     }
 
-    /**
-	 * Gets the debug.
-	 *
-	 * @return the debug
-	 */
-    @Basic
-    @Column(name = "DEBUG")
     public String getDebug() {
         return debug;
     }
 
-    /**
-	 * Sets the debug.
-	 *
-	 * @param value the new debug
-	 */
     public void setDebug(final String value) {
         this.debug = value;
     }
 
-    /**
-	 * Gets the next page.
-	 *
-	 * @return the next page
-	 */
-    @Basic
-    @Column(name = "NEXT_PAGE")
     public String getNextPage() {
         return nextPage;
     }
 
-    /**
-	 * Sets the next page.
-	 *
-	 * @param value the new next page
-	 */
     public void setNextPage(final String value) {
         this.nextPage = value;
     }
 
-    /**
-	 * Gets the page.
-	 *
-	 * @return the page
-	 */
-    @Basic
-    @Column(name = "PAGE", precision = 20)
     public BigInteger getPage() {
         return page;
     }
 
-    /**
-	 * Sets the page.
-	 *
-	 * @param value the new page
-	 */
     public void setPage(final BigInteger value) {
         this.page = value;
     }
 
-    /**
-	 * Gets the total pages.
-	 *
-	 * @return the total pages
-	 */
-    @Basic
-    @Column(name = "TOTAL_PAGES", precision = 20)
     public BigInteger getTotalPages() {
         return totalPages;
     }
 
-    /**
-	 * Sets the total pages.
-	 *
-	 * @param value the new total pages
-	 */
     public void setTotalPages(final BigInteger value) {
         this.totalPages = value;
     }
 
-    /**
-	 * Gets the created.
-	 *
-	 * @return the created
-	 */
-    @Basic
-    @Column(name = "CREATED")
     public String getCreated() {
         return created;
     }
 
-    /**
-	 * Sets the created.
-	 *
-	 * @param value the new created
-	 */
     public void setCreated(final String value) {
         this.created = value;
     }
 
-    /**
-	 * Gets the hits from.
-	 *
-	 * @return the hits from
-	 */
-    @Basic
-    @Column(name = "HITS_FROM", precision = 20)
     public BigInteger getHitsFrom() {
         return hitsFrom;
     }
 
-    /**
-	 * Sets the hits from.
-	 *
-	 * @param value the new hits from
-	 */
     public void setHitsFrom(final BigInteger value) {
         this.hitsFrom = value;
     }
 
-    /**
-	 * Gets the hits to.
-	 *
-	 * @return the hits to
-	 */
-    @Basic
-    @Column(name = "HITS_TO", precision = 20)
     public BigInteger getHitsTo() {
         return hitsTo;
     }
 
-    /**
-	 * Sets the hits to.
-	 *
-	 * @param value the new hits to
-	 */
     public void setHitsTo(final BigInteger value) {
         this.hitsTo = value;
     }
 
-    /**
-	 * Gets the hits.
-	 *
-	 * @return the hits
-	 */
-    @Basic
-    @Column(name = "HITS", precision = 20)
     public BigInteger getHits() {
         return hits;
     }
 
-    /**
-	 * Sets the hits.
-	 *
-	 * @param value the new hits
-	 */
     public void setHits(final BigInteger value) {
         this.hits = value;
     }
 
-    /**
-	 * Gets the document version.
-	 *
-	 * @return the document version
-	 */
-    @Basic
-    @Column(name = "DOCUMENT_VERSION")
     public String getDocumentVersion() {
         return documentVersion;
     }
 
-    /**
-	 * Sets the document version.
-	 *
-	 * @param value the new document version
-	 */
     public void setDocumentVersion(final String value) {
         this.documentVersion = value;
     }
 
-    /**
-	 * Gets the warning.
-	 *
-	 * @return the warning
-	 */
-    @Basic
-    @Column(name = "WARNING")
     public String getWarning() {
         return warning;
     }
 
-    /**
-	 * Sets the warning.
-	 *
-	 * @param value the new warning
-	 */
     public void setWarning(final String value) {
         this.warning = value;
     }
 
-    /**
-	 * With dokument.
-	 *
-	 * @param dokument the dokument
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withDokument(final List<DocumentElement> dokument) {
-        setDokument(dokument);
-        return this;
-    }
-
-    /**
-	 * With datum.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withDatum(final String value) {
-        setDatum(value);
-        return this;
-    }
-
-    /**
-	 * With debug.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withDebug(final String value) {
-        setDebug(value);
-        return this;
-    }
-
-    /**
-	 * With next page.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withNextPage(final String value) {
-        setNextPage(value);
-        return this;
-    }
-
-    /**
-	 * With page.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withPage(final BigInteger value) {
-        setPage(value);
-        return this;
-    }
-
-    /**
-	 * With total pages.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withTotalPages(final BigInteger value) {
-        setTotalPages(value);
-        return this;
-    }
-
-    /**
-	 * With created.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withCreated(final String value) {
-        setCreated(value);
-        return this;
-    }
-
-    /**
-	 * With hits from.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withHitsFrom(final BigInteger value) {
-        setHitsFrom(value);
-        return this;
-    }
-
-    /**
-	 * With hits to.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withHitsTo(final BigInteger value) {
-        setHitsTo(value);
-        return this;
-    }
-
-    /**
-	 * With hits.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withHits(final BigInteger value) {
-        setHits(value);
-        return this;
-    }
-
-    /**
-	 * With document version.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withDocumentVersion(final String value) {
-        setDocumentVersion(value);
-        return this;
-    }
-
-    /**
-	 * With warning.
-	 *
-	 * @param value the value
-	 * @return the document container element
-	 */
-    public DocumentContainerElement withWarning(final String value) {
-        setWarning(value);
-        return this;
-    }
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public final String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-	}
-
-
-    /**
-	 * Gets the hjid.
-	 *
-	 * @return the hjid
-	 */
     @Id
     @Column(name = "HJID")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -526,35 +231,31 @@ public class DocumentContainerElement
         return hjid;
     }
 
-    /**
-	 * Sets the hjid.
-	 *
-	 * @param value the new hjid
-	 */
     public void setHjid(final Long value) {
         this.hjid = value;
     }
 
-	@Override
-	public boolean equals(final Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (obj == this) {
-			return true;
-		}
-		if (obj.getClass() != getClass()) {
-			return false;
-		}
-		return new EqualsBuilder().append(getDokument().toArray(), ((DocumentContainerElement) obj).getDokument().toArray()).isEquals();
-	}
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
+        return new EqualsBuilder().append(getDokument().toArray(), ((DocumentContainerElement) obj).getDokument().toArray()).isEquals();
+    }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public final int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
-	}
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
 
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 }

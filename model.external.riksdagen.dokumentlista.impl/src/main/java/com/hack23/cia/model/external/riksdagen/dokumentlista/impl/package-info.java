@@ -8,9 +8,12 @@
  * - DocumentSubType: Represents a document sub-type.
  * - DocumentType: Represents a document type.
  * - ObjectFactory: Factory class for creating instances of document list data.
- *
- * Annotations:
- * - @XmlSchema: Defines the XML namespace and element form default for the package.
  */
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://dokumentlista.riksdagen.external.model.cia.hack23.com/impl", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@XmlSchema(
+    elementFormDefault = XmlNsForm.QUALIFIED,
+    namespace = ""
+)
 package com.hack23.cia.model.external.riksdagen.dokumentlista.impl;
+
+import javax.xml.bind.annotation.XmlNsForm;
+import javax.xml.bind.annotation.XmlSchema;

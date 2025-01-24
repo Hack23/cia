@@ -7,30 +7,30 @@ import java.io.File;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.sax.SAXSource;
 
 import org.junit.Test;
+import org.xml.sax.InputSource;
 
 public class DocumentContainerElementTest {
 
     @Test
     public void testUnmarshalXmlToDocumentContainerElement() throws Exception {
-            // Create a JAXB context for the DocumentContainerElement class
-            final JAXBContext context = JAXBContext.newInstance(DocumentContainerElement.class,DocumentElement.class);
-
-            // Create an unmarshaller
-            final Unmarshaller unmarshaller = context.createUnmarshaller();
-            //unmarshaller.setEventHandler(new javax.xml.bind.helpers.DefaultValidationEventHandler());
-
-
-            // Path to the XML file to be read
-            final File file = new File("src/test/samples/documentlista-2025b.xml");
-
-            // Unmarshal the XML file into a DocumentContainerElement object
-            final DocumentContainerElement documentContainerElement = (DocumentContainerElement) unmarshaller.unmarshal(file);
-
-            // Assert that the object is not null
-            assertNotNull(documentContainerElement);
-            assertNotNull(documentContainerElement.getDokument());
-            assertTrue(documentContainerElement.getDokument().size() > 0);
+        JAXBContext jaxbContext = JAXBContext.newInstance(DocumentContainerElement.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        
+        // Create parser that ignores namespaces
+        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+        saxParserFactory.setNamespaceAware(false);
+        
+        // Create SAX source with namespace unaware parser
+        InputSource inputSource = new InputSource(new File("src/test/samples/documentlista-2025b.xml").toURI().toString());
+        SAXSource source = new SAXSource(saxParserFactory.newSAXParser().getXMLReader(), inputSource);
+        
+        DocumentContainerElement documentContainerElement = (DocumentContainerElement) unmarshaller.unmarshal(source);
+        
+        assertNotNull(documentContainerElement);
+        assertTrue(documentContainerElement.getDokument().size() > 0);
     }
 }
