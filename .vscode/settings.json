@@ -57,5 +57,7 @@
     "**/node_modules/**",
     "**/.metadata/**"
   ],
-  "maven.pomfile.autoUpdateEffectivePOM": true
+  "maven.pomfile.autoUpdateEffectivePOM": true,
+  "java.jdt.ls.java.home": "/usr/local/sdkman/candidates/java/current",
+  "maven.executable.path": "/usr/local/sdkman/candidates/maven/current/bin/mvn"
 }
