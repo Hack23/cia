@@ -116,13 +116,14 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 	@Override
 	public void createCountryTopicMenu(final MenuItem charts) {
 		charts.addItem(COUNTRY_OVERVIEW_TEXT, VaadinIcons.LINE_CHART,
-				COUNTRY_COMMAND_OVERVIEW);
+				COMMAND_COUNTRY_RANKING_OVERVIEW);
 
 		final MenuItem countryIndicators = charts.addItem(COUNTRY_INDICATORS_SWEDEN, VaadinIcons.LINE_CHART, null);
 
 		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
 
-		charts.addItem(COUNTRY_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, COUNTRY_COMMAND_PAGEVISITHISTORY);
+		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, 
+				COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 

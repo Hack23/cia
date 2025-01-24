@@ -88,7 +88,8 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 
 		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS, VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
 
-		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY);
+		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, 
+				COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
@@ -115,8 +116,8 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 		createButtonLink(grid, ALL_COMMITTEES_TOTAL_MEMBERS, VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT,
 				ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY,
-				PAGE_VISIT_HISTORY_DESCRIPTION);
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
+				COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 

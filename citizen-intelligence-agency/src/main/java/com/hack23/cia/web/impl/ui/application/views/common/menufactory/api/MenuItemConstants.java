@@ -21,7 +21,9 @@ public interface MenuItemConstants extends
     MenuItemLeadershipConstants,
     MenuItemParliamentConstants,
     MenuItemRiskConstants,
-    MenuItemPageVisitConstants {
+    MenuItemPageVisitConstants,
+    MenuItemRankingPageVisitHistoryConstants,
+    PageCommandCountryRankingConstants {
 
     /** The dashboard. */
     // Core navigation constants
@@ -92,9 +94,6 @@ public interface MenuItemConstants extends
 
     /** The Constant MENU_BAR_WIDTH. */
     String MENU_BAR_WIDTH = "80%";
-
-    /** The Constant PAGE_VISIT_HISTORY_TEXT. */
-    String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
 
     /** The Constant PORTAL. */
     String PORTAL = "Portal";
@@ -225,9 +224,6 @@ public interface MenuItemConstants extends
     /** The Constant COUNTRY_INDICATORS_SWEDEN. */
     String COUNTRY_INDICATORS_SWEDEN = "Country Indicators Sweden";
 
-    /** The Constant COUNTRY_PAGE_VISIT_HISTORY_TEXT. */
-    String COUNTRY_PAGE_VISIT_HISTORY_TEXT = "Country Page Visit History";
-
     /** The Constant DATA_POINTS_FOR_YEAR_ABOVE. */
     int DATA_POINTS_FOR_YEAR_ABOVE = 2000;
 
@@ -257,9 +253,6 @@ public interface MenuItemConstants extends
 
     /** The Constant DOCUMENT_ATTACHEMENTS. */
     String DOCUMENT_ATTACHEMENTS = "Document Attachments";
-
-    /** The Constant DOCUMENT_PAGE_VISIT_HISTORY_TEXT. */
-    String DOCUMENT_PAGE_VISIT_HISTORY_TEXT = "Document Page Visit History";
 
     /** The Constant DOCUMENT_ACTIVITIES_AND_UPDATES. */
     String DOCUMENT_ACTIVITIES_AND_UPDATES = "Document activities and updates";
@@ -294,9 +287,6 @@ public interface MenuItemConstants extends
     /** The Constant EXPENDITURE. */
     String EXPENDITURE = "Expenditure";
 
-    /** The Constant GOVERNMENT_BODY_PAGE_VISIT_HISTORY_TEXT. */
-    String GOVERNMENT_BODY_PAGE_VISIT_HISTORY_TEXT = "Government Body Page Visit History";
-
     /** The Constant HEADCOUNT_DESCRIPTION. */
     String HEADCOUNT_DESCRIPTION = "Headcount description";
 
@@ -305,9 +295,6 @@ public interface MenuItemConstants extends
 
     /** The Constant EXPENDITURE_DESCRIPTION. */
     String EXPENDITURE_DESCRIPTION = "Expenditure description";
-
-    /** The Constant GOVERNMENT_BODY_PAGE_VISIT_HISTORY_DESCRIPTION. */
-    String GOVERNMENT_BODY_PAGE_VISIT_HISTORY_DESCRIPTION = "Government body page visit history description";
 
     /** The Constant GOVERNMENT_BODIES_HEADCOUNT. */
     String GOVERNMENT_BODIES_HEADCOUNT = "Government Bodies Headcount";

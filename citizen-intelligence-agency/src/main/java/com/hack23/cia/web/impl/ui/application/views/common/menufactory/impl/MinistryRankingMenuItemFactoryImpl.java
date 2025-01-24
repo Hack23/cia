@@ -61,7 +61,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 	@Override
 	public void createMinistryRankingTopics(final MenuItem ministryMenuItem) {
 
-		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_MINISTRY_RANKING_OVERVIEW);
+		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_OVERVIEW);
 
 		final MenuItem listItem = ministryMenuItem.addItem(POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.BAR_CHART,
 				COMMAND_MINISTRY_RANKING_DATAGRID);
@@ -94,7 +94,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 		chartByTopic.addItem(GOVERNMENT_ROLES_CHART, VaadinIcons.BAR_CHART, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
 
-		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY);
+		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
@@ -135,7 +135,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		createButtonLink(grid, ALL_MINISTRIES_TOTAL_MEMBERS, VaadinIcons.USER,
 				COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT, ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY,
+		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY,
 				PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}

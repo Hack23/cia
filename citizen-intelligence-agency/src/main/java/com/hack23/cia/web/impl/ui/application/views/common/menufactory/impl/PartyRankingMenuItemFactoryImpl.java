@@ -86,7 +86,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
                                 COMMAND_CHARTS_ALL_PARTIES, DESC_DAYS_SERVED_PARLIAMENT);
 
                 createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
-                                COMMAND_PAGEVISITHISTORY, DESC_PAGE_VISIT_HISTORY);
+                                PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);
         }
 
         /**
@@ -140,6 +140,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
                 chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT, VaadinIcons.CLOCK,
                                 COMMAND_CHARTS_ALL_PARTIES);
 
-                partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY);
+                partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, 
+                                PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);
         }
 }
