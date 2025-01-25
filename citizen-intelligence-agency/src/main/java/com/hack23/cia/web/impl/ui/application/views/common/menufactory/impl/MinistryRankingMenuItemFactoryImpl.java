@@ -22,10 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandPageModeConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemRankingPageVisitHistoryConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandPageModeConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -63,10 +63,10 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 	@Override
 	public void createMinistryRankingTopics(final MenuItem ministryMenuItem) {
-		ministryMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
+		ministryMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
                 PageCommandPageModeConstants.COMMAND_OVERVIEW);
 
-		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
+		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
                 PageCommandPageModeConstants.COMMAND_OVERVIEW);
 
 		final MenuItem listItem = ministryMenuItem.addItem(POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.BAR_CHART,
@@ -100,7 +100,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 		chartByTopic.addItem(GOVERNMENT_ROLES_CHART, VaadinIcons.BAR_CHART, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
 
-		ministryMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, 
+		ministryMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
                 PageCommandRankingHistoryConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}

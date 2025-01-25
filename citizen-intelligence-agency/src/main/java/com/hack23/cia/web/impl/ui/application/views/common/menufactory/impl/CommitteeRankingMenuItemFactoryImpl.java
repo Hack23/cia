@@ -23,8 +23,8 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemRankingPageVisitHistoryConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -90,7 +90,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 
 		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS, VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
 
-		committeeMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, 
+		committeeMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
 				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
@@ -119,7 +119,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 				ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);
 
 		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY, 
+				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY,
 				MenuItemRankingPageVisitHistoryConstants.PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}

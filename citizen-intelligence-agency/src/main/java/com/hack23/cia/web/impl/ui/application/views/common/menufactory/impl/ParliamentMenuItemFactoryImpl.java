@@ -22,10 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandDocumentConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -63,18 +63,18 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 		createButtonLink(grid, PARTY_AGE, VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_AGE, PARTY_AGE_DESCRIPTION);
 
-		createButtonLink(grid, RISK_SUMMARY, VaadinIcons.INSTITUTION, 
+		createButtonLink(grid, RISK_SUMMARY, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_RISK_SUMMARY, RISK_SUMMARY_DESCRIPTION);
 
 		createButtonLink(grid, RULE_VIOLATIONS, VaadinIcons.INSTITUTION, COMMAND_RULE_VIOLATION,
 				RULE_VIOLATIONS_DESCRIPTION);
 
-		createButtonLink(grid, DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION, 
+		createButtonLink(grid, DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,
 			PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY, DOCUMENT_ACTIVITY_DESCRIPTION);
 		createButtonLink(grid, DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION, COMMAND_DECISION_ACTIVITY,
 				DECISION_ACTIVITY_DESCRIPTION);
 
-		createButtonLink(grid, DECISION_FLOW, VaadinIcons.INSTITUTION, 
+		createButtonLink(grid, DECISION_FLOW, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW, DECISION_FLOW_DESCRIPTION);
 
 		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,
@@ -110,7 +110,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_AGE);
 		addItem3.setDescription(PARTY_AGE_DESCRIPTION);
 
-		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION, 
+		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_RISK_SUMMARY);
 		addItem7.setDescription(RISK_SUMMARY_DESCRIPTION);
 

@@ -130,6 +130,11 @@ public final class UserHomeTest extends AbstractUITest {
 		pageVisit.performClickAction(userVisitsMenuItem);
 	}
 
+	/**
+	 * Site login user disable google authenticator failure test.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void siteLoginUserDisableGoogleAuthenticatorFailureTest() throws Exception {
 		pageVisit.visitDirectPage(
@@ -153,6 +158,11 @@ public final class UserHomeTest extends AbstractUITest {
 		pageVisit.checkNotificationMessage("Problem disable google authenticatorError message");
 	}
 
+	/**
+	 * Site login user disable google authenticator test.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void siteLoginUserDisableGoogleAuthenticatorTest() throws Exception {
 
@@ -176,6 +186,11 @@ public final class UserHomeTest extends AbstractUITest {
 		pageVisit.disableGoogleAuthenticator(password);
 	}
 
+	/**
+	 * Site login user enable google authenticator failed login no otp test.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void siteLoginUserEnableGoogleAuthenticatorFailedLoginNoOtpTest() throws Exception {
 		pageVisit.visitDirectPage(
@@ -208,6 +223,11 @@ public final class UserHomeTest extends AbstractUITest {
 		pageVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 	}
 
+	/**
+	 * Site login delete account test.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void siteLoginDeleteAccountTest() throws Exception {
 		pageVisit.visitDirectPage(
@@ -239,6 +259,11 @@ public final class UserHomeTest extends AbstractUITest {
 		pageVisit.checkNotificationMessage("Login failed:" + LoginResponse.ErrorMessage.USERNAME_OR_PASSWORD_DO_NOT_MATCH);
 	}
 
+	/**
+	 * Site login user enable google authenticator failure test.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void siteLoginUserEnableGoogleAuthenticatorFailureTest() throws Exception {
 
@@ -327,30 +352,55 @@ public final class UserHomeTest extends AbstractUITest {
 
 	}
 
+	/**
+	 * Verify agency page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyAgencyPage() throws Exception {
 		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_AGENCY);
 		pageVisit.validatePage(PageCommandUserConstants.COMMAND_AGENCY);
 	}
 
+	/**
+	 * Verify application configuration page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationConfigurationPage() throws Exception {
 		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_APPLICATION_CONFIGURATION);
 		pageVisit.validatePage(PageCommandUserConstants.COMMAND_APPLICATION_CONFIGURATION);
 	}
 
+	/**
+	 * Verify ballot overview page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyBallotOverviewPage() throws Exception {
 		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_BALLOT_OVERVIEW);
 		pageVisit.validatePage(PageCommandUserConstants.COMMAND_BALLOT_OVERVIEW);
 	}
 
+	/**
+	 * Verify main view overview page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyMainViewOverviewPage() throws Exception {
 		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_MAINVIEW_OVERVIEW);
 		pageVisit.validatePage(PageCommandUserConstants.COMMAND_MAINVIEW_OVERVIEW);
 	}
 
+	/**
+	 * Verify monitoring page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyMonitoringPage() throws Exception {
 		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_MONITORING);

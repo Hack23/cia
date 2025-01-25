@@ -34,6 +34,9 @@ public abstract class AbstractUITest extends AbstractRoleSystemITest {
 	}
 
 
+	/**
+	 * Clean browser.
+	 */
 	@After
 	public void cleanBrowser() {
 		pageVisit.cleanBrowser();

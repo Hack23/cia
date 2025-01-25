@@ -125,6 +125,7 @@ public final class AdminViewConstants {
 	/** The Constant ADMIN_AGENCY_MANAGEMENT. */
 	public static final String ADMIN_AGENCY_MANAGEMENT = "Controls for agency-level data and settings.";
 
+	/** The Constant AGENCY_OVERVIEW_HEADER. */
 	public static final String AGENCY_OVERVIEW_HEADER = "Agency Overview";
 
 	/** The Constant AGENCY_OVERVIEW. */
@@ -136,6 +137,7 @@ public final class AdminViewConstants {
 	/** The Constant ADMIN_APPLICATION_EVENT_CHARTS. */
 	public static final String ADMIN_APPLICATION_EVENT_CHARTS = "Visual analytics of application events for trend analysis.";
 
+	/** The Constant EVENT_ANALYSIS_HEADER. */
 	public static final String EVENT_ANALYSIS_HEADER = "Event Analysis";
 
 	/** The Constant EVENT_ANALYSIS. */

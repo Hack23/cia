@@ -10,10 +10,21 @@ import org.openqa.selenium.interactions.Actions;
  */
 public class ClickHelper {
 
+	/** The actions. */
 	private final Actions actions;
+
+	/** The helper. */
 	private final UserPageVisitHelper helper;
+
+	/** The enable screen shot. */
 	public static boolean enableScreenShot = false;
 
+	/**
+	 * Instantiates a new click helper.
+	 *
+	 * @param driver the driver
+	 * @param helper the helper
+	 */
 	public ClickHelper(WebDriver driver, UserPageVisitHelper helper) {
 		this.actions = new Actions(driver);
 		this.helper = helper;

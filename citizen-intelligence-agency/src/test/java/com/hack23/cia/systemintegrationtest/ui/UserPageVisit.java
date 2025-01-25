@@ -87,6 +87,7 @@ public final class UserPageVisit extends Assert {
 	/** The helper. */
 	private final UserPageVisitHelper helper;
 
+	/** The wait. */
 	private final WebDriverWait wait;
 
 	/**
@@ -559,7 +560,7 @@ public final class UserPageVisit extends Assert {
 	/**
 	 * Perform click action with retry.
 	 *
-	 * @param element the element
+	 * @param clickElement the click element
 	 */
 	// The public click methods needed by all the calls
 	public void performClick(WebElement clickElement) {

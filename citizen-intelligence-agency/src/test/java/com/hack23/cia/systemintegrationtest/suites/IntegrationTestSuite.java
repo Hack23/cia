@@ -14,15 +14,15 @@ import com.hack23.cia.systemintegrationtest.admin.operations.AdminOperationsTest
 import com.hack23.cia.systemintegrationtest.admin.security.AdminSecurityTest;
 import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
 import com.hack23.cia.systemintegrationtest.ui.WebDriverFactory;
-import com.hack23.cia.systemintegrationtest.user.home.UserHomeTest;
-import com.hack23.cia.systemintegrationtest.user.party.UserPartyTest;
 import com.hack23.cia.systemintegrationtest.user.committee.UserCommitteeTest;
 import com.hack23.cia.systemintegrationtest.user.country.UserCountryTest;
-import com.hack23.cia.systemintegrationtest.user.ministry.UserMinistryTest;
-import com.hack23.cia.systemintegrationtest.user.governmentbody.UserGovernmentBodyTest;
-import com.hack23.cia.systemintegrationtest.user.parliament.UserParliamentTest;
-import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
 import com.hack23.cia.systemintegrationtest.user.document.UserDocumentTest;
+import com.hack23.cia.systemintegrationtest.user.governmentbody.UserGovernmentBodyTest;
+import com.hack23.cia.systemintegrationtest.user.home.UserHomeTest;
+import com.hack23.cia.systemintegrationtest.user.ministry.UserMinistryTest;
+import com.hack23.cia.systemintegrationtest.user.parliament.UserParliamentTest;
+import com.hack23.cia.systemintegrationtest.user.party.UserPartyTest;
+import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
 
 /**
  * The Class IntegrationTestSuite.
@@ -56,6 +56,7 @@ public class IntegrationTestSuite {
 	/** The page visit. */
 	protected static UserPageVisit pageVisit;
 
+	/** The Constant usingExternalServer. */
 	protected static final boolean usingExternalServer;
 
 	/** The Constant webDriverMap. */
@@ -117,6 +118,9 @@ public class IntegrationTestSuite {
 		}
 	}
 
+	/**
+	 * Clean browser.
+	 */
 	@After
 	public void cleanBrowser() {
 		pageVisit.cleanBrowser();
