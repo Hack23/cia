@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandApplicationChartConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -124,7 +125,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
                 partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, PARTY_RANKING_COMMAND_OVERVIEW);
 
                 partynMenuItem.addItem(PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,
-                                COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD);
+                                PageCommandApplicationChartConstants.COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD);
 
                 // Total members using USERS icon for multiple people
                 final MenuItem listItem = partynMenuItem.addItem(TOTAL_MEMBERS, VaadinIcons.USERS, COMMAND_DATAGRID);
@@ -136,7 +137,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
                                 PARTY_RANKING_COMMAND_CHARTS_CURRENT_PARTIES);
 
                 chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT, VaadinIcons.GROUP,
-                                COMMAND_CHARTS_CURRENT_COMMITTEES);
+                                PageCommandApplicationChartConstants.COMMAND_CHARTS_CURRENT_COMMITTEES);
 
                 chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT, VaadinIcons.INSTITUTION,
                                 PARTY_RANKING_COMMAND_CHARTS_CURRENT_PARTIES);

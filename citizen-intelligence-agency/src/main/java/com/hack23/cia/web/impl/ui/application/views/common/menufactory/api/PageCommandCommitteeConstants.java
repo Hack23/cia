@@ -24,4 +24,16 @@ public interface PageCommandCommitteeConstants {
     PageModeMenuCommand COMMAND_CHARTS_CURRENT_COMMITTEES = new PageModeMenuCommand(
                      UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,
                      ChartIndicators.CURRENTCOMMITTEES.toString());
+
+    /** The command committee overview. */
+    PageModeMenuCommand COMMAND_COMMITTEE_OVERVIEW = new PageModeMenuCommand(
+                     UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The command committee role ghant. */
+    PageModeMenuCommand COMMAND_COMMITTEE_ROLE_GHANT = new PageModeMenuCommand(
+                     UserViews.COMMITTEE_VIEW_NAME, "roleghant");
+
+    /** The command committee pagevisit history. */
+    PageModeMenuCommand COMMAND_COMMITTEE_PAGEVISIT_HISTORY = new PageModeMenuCommand(
+                     UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 }

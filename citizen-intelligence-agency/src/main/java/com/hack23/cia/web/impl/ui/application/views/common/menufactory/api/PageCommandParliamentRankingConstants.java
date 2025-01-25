@@ -16,13 +16,11 @@ public interface PageCommandParliamentRankingConstants {
 
     /** The command risk summary. */
     PageModeMenuCommand COMMAND_RISK_SUMMARY = new PageModeMenuCommand(
-                     UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.RISKSUMMARY.toString());
+                     UserViews.PARLIAMENT_RANKING_VIEW_NAME, "risksummary");
 
     /** The command rule violation. */
     PageModeMenuCommand COMMAND_RULE_VIOLATION = new PageModeMenuCommand(
-                     UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.RULEVIOLATION.toString());
+                     UserViews.PARLIAMENT_RANKING_VIEW_NAME, "ruleviolation");
 
     /** The command document activity. */
     PageModeMenuCommand COMMAND_DOCUMENT_ACTIVITY = new PageModeMenuCommand(
@@ -36,8 +34,7 @@ public interface PageCommandParliamentRankingConstants {
 
     /** The command charts decision flow. */
     PageModeMenuCommand COMMAND_CHARTS_DECISION_FLOW = new PageModeMenuCommand(
-                     UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.DECISIONFLOW.toString());
+                     UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, "DECISION_FLOW");
 
     /** The parliament ranking command pagevisit history. */
     PageModeMenuCommand PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(

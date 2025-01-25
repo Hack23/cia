@@ -33,4 +33,16 @@ public interface PageCommandMainViewConstants {
     /** The command register. */
     PageModeMenuCommand COMMAND_REGISTER = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
                      ApplicationPageMode.REGISTER.toString());
+
+    /** The command main overview. */
+    PageModeMenuCommand COMMAND_MAIN_OVERVIEW = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+                     PageMode.OVERVIEW);
+
+    /** The command main ranking. */
+    PageModeMenuCommand COMMAND_MAIN_RANKING = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+                     "ranking");
+
+    /** The command main datagrid. */
+    PageModeMenuCommand COMMAND_MAIN_DATAGRID = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
+                     PageMode.DATAGRID);
 }

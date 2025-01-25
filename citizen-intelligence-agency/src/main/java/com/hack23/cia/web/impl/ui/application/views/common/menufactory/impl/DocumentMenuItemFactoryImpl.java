@@ -23,16 +23,12 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
-import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class DocumentMenuItemFactoryImpl.
@@ -58,36 +54,31 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		final MenuItem documentItem = menuBar.addItem(DOCUMENT, VaadinIcons.FILE_TEXT, null);
 
 		documentItem.addItem(DOCUMENT_OVERVIEW_TEXT, VaadinIcons.FILE_TEXT,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.OVERVIEW, pageId));
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_OVERVIEW);
 
 		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_PROCESS,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId));
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY);
 
-		documentItem.addItem(PERSON_REFERENCES, VaadinIcons.USER, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.PERSONREFERENCES.toString(), pageId));
+		documentItem.addItem(PERSON_REFERENCES, VaadinIcons.USER,
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_PERSON_REFERENCES);
 
 		documentItem.addItem(DOCUMENT_DETAILS, VaadinIcons.FILE_TEXT,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTDETAILS.toString(), pageId));
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DETAILS);
 
-		documentItem.addItem(DOCUMENT_DATA, VaadinIcons.FILE_TEXT, new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-				DocumentPageMode.DOCUMENTDATA.toString(), pageId));
+		documentItem.addItem(DOCUMENT_DATA, VaadinIcons.FILE_TEXT,
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DATA);
 
 		documentItem.addItem(DOCUMENT_REFERENCES, VaadinIcons.FILE_TREE,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId));
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_REFERENCES);
 
 		documentItem.addItem(DOCUMENT_DECISION, VaadinIcons.CLIPBOARD_CHECK,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTDECISION.toString(), pageId));
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DECISION);
 
 		documentItem.addItem(DOCUMENT_ATTACHEMENTS, VaadinIcons.PAPERCLIP,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId));
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_ATTACHMENTS);
 
 		documentItem.addItem(DOCUMENT_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_PAGEVISIT_HISTORY);
 
 	}
 
@@ -107,38 +98,31 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid, DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_PROCESS,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTACTIVITY.toString(), pageId),
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY,
 				DOCUMENT_ACTIVITIES_AND_UPDATES);
 
 		createButtonLink(grid, PERSON_REFERENCES, VaadinIcons.USER,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.PERSONREFERENCES.toString(), pageId),
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_PERSON_REFERENCES,
 				REFERENCES_TO_INDIVIDUALS_IN_THE_DOCUMENT);
 
 		createButtonLink(grid, DOCUMENT_DETAILS, VaadinIcons.FILE_TEXT,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTDETAILS.toString(), pageId),
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DETAILS,
 				DETAILED_INFORMATION_ABOUT_THE_DOCUMENT);
 
 		createButtonLink(grid, DOCUMENT_DATA, VaadinIcons.FILE_TEXT,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTDATA.toString(), pageId),
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DATA,
 				COMPLETE_DOCUMENT_TEXT_AND_DATA);
 
 		createButtonLink(grid, DOCUMENT_REFERENCES, VaadinIcons.FILE_TREE,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTREFERENCES.toString(), pageId),
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_REFERENCES,
 				REFERENCES_CITED_IN_THE_DOCUMENT);
 
 		createButtonLink(grid, DOCUMENT_DECISION, VaadinIcons.CLIPBOARD_CHECK,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTDECISION.toString(), pageId),
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DECISION,
 				DECISIONS_AND_OUTCOMES_RELATED_TO_THE_DOCUMENT);
 
 		createButtonLink(grid, DOCUMENT_ATTACHEMENTS, VaadinIcons.PAPERCLIP,
-				new PageModeMenuCommand(UserViews.DOCUMENT_VIEW_NAME,
-						DocumentPageMode.DOCUMENTATTACHMENTS.toString(), pageId),
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_ATTACHMENTS,
 				ATTACHMENTS_AND_SUPPLEMENTARY_FILES);
 	}
 

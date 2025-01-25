@@ -20,4 +20,8 @@ public interface PageCommandBallotConstants {
     /** The command ballot pagevisit history. */
     PageModeMenuCommand COMMAND_BALLOT_PAGEVISIT_HISTORY = new PageModeMenuCommand(
                      UserViews.BALLOT_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+    /** The command ballot charts. */
+    PageModeMenuCommand COMMAND_BALLOT_CHARTS = new PageModeMenuCommand(
+                     UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS);
 }

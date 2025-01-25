@@ -21,10 +21,8 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.BallotMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandBallotConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
@@ -39,7 +37,7 @@ import com.vaadin.ui.VerticalLayout;
  * overview pages with relevant descriptions and icons.
  */
 @Service
-public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements BallotMenuItemFactory {
+public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements BallotMenuItemFactory,PageCommandBallotConstants {
 
 	/** The Constant CHARTS_TEXT. */
 	private static final String CHARTS_TEXT = "Charts";
@@ -68,9 +66,9 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		initApplicationMenuBar(menuBar);
 
 		menuBar.addItem(OVERVIEW_TEXT, VaadinIcons.PIE_CHART,
-				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.OVERVIEW, pageId));
+				PageCommandBallotConstants.COMMAND_BALLOT_OVERVIEW);
 		menuBar.addItem(CHARTS_TEXT, VaadinIcons.PIE_CHART,
-				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId));
+				PageCommandBallotConstants.COMMAND_BALLOT_CHARTS);
 	}
 
 	/**
@@ -83,8 +81,8 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 	public void createOverviewPage(final VerticalLayout panelContent, final String pageId) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid,CHARTS_TEXT, VaadinIcons.PIE_CHART,
-				new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS, pageId), BALLOT_RESULTS_DESCRIPTION);
+		createButtonLink(grid, CHARTS_TEXT, VaadinIcons.PIE_CHART,
+				PageCommandBallotConstants.COMMAND_BALLOT_CHARTS, BALLOT_RESULTS_DESCRIPTION);
 	}
 
 }

@@ -19,4 +19,8 @@ public interface PageCommandCountryRankingConstants {
     PageModeMenuCommand COMMAND_COUNTRY_RANKING_PAGEVISIT_HISTORY = new PageModeMenuCommand(
                      UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
+    /** The command country ranking indicators. */
+    PageModeMenuCommand COMMAND_COUNTRY_RANKING_INDICATORS = new PageModeMenuCommand(
+                     UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.INDICATORS);
+
 }

@@ -24,8 +24,11 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemRankingPageVisitHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandPageModeConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandChartIndicatorConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandMinistryRankingChartConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandMinistryRankingPageVisitHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandSystemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -67,7 +70,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
                 PageCommandPageModeConstants.COMMAND_OVERVIEW);
 
 		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
-                PageCommandPageModeConstants.COMMAND_OVERVIEW);
+                PageCommandMinistryRankingPageVisitHistoryConstants.COMMAND_MINISTRY_RANKING_OVERVIEW);
 
 		final MenuItem listItem = ministryMenuItem.addItem(POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.BAR_CHART,
 				COMMAND_MINISTRY_RANKING_DATAGRID);
@@ -76,21 +79,25 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		final MenuItem chartByTopic = ministryMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.PIE_CHART, null);
 
 		chartByTopic.addItem(MINISTRIES_LEADER_SCOREBOARD, VaadinIcons.TROPHY,
-				COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD);
+				PageCommandMinistryRankingChartConstants.COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD);
 
-		chartByTopic.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK, COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
+		chartByTopic.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK, 
+				PageCommandSystemConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
 
-		chartByTopic.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME);
+		chartByTopic.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, 
+				PageCommandChartIndicatorConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
 
 		chartByTopic.addItem(GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.MONEY_WITHDRAW,
-				COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
+				PageCommandChartIndicatorConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
 
-		chartByTopic.addItem(GOVERNMENT_OUTCOME, VaadinIcons.BAR_CHART, COMMAND_GOVERNMENT_OUTCOME);
+		chartByTopic.addItem(GOVERNMENT_OUTCOME, VaadinIcons.BAR_CHART, 
+				PageCommandChartIndicatorConstants.COMMAND_GOVERNMENT_OUTCOME);
 
 		chartByTopic.addItem(CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT, VaadinIcons.USERS,
-				COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT);
+				PageCommandChartIndicatorConstants.COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT);
+
 		chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_CURRENT_ASSIGNMENTS, VaadinIcons.GROUP,
-				COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT);
+				PageCommandChartIndicatorConstants.COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT);
 
 		chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES, VaadinIcons.CALENDAR,
 				COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS);
@@ -101,7 +108,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		chartByTopic.addItem(GOVERNMENT_ROLES_CHART, VaadinIcons.BAR_CHART, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
 
 		ministryMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-                PageCommandRankingHistoryConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+                PageCommandMinistryRankingPageVisitHistoryConstants.COMMAND_MINISTRY_RANKING_PAGEVISIT_HISTORY);
 
 	}
 
@@ -131,21 +138,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		createButtonLink(grid, CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT, VaadinIcons.USERS,
 				COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT,
 				CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION);
-
-		createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_CURRENT_ASSIGNMENTS, VaadinIcons.GROUP,
-				COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT,
-				CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION);
-
-		createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES, VaadinIcons.CALENDAR,
-				COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS,
-				CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION);
-		createButtonLink(grid, ALL_MINISTRIES_TOTAL_MEMBERS, VaadinIcons.USER,
-				COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT, ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);
-
-		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-				PageCommandRankingHistoryConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY,
-				MenuItemRankingPageVisitHistoryConstants.PAGE_VISIT_HISTORY_DESCRIPTION);
+		createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_CURRENT_ASSIGNMENTS, VaadinIcons.GROUP,				COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT,				CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS_DESCRIPTION);		createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_MINISTRIES, VaadinIcons.CALENDAR,				COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS,				CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES_DESCRIPTION);		createButtonLink(grid, ALL_MINISTRIES_TOTAL_MEMBERS, VaadinIcons.USER,				COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT, ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,				PageCommandRankingHistoryConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY,				MenuItemRankingPageVisitHistoryConstants.PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
-
 }

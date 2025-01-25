@@ -36,6 +36,7 @@ import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandCommitteeConstants;
 
 /**
  * The Class CommitteeMenuItemFactoryImpl.

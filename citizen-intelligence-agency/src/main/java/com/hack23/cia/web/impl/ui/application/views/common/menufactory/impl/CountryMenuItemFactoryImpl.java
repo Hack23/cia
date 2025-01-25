@@ -162,4 +162,12 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 				.collect(Collectors.groupingBy(SimpleEntry::getKey,
 						Collectors.mapping(SimpleEntry::getValue, Collectors.toList())));
 	}
+	
+	@Override
+	public void createCountryMenuBar(final MenuBar menuBar, final String pageId) {
+		initApplicationMenuBar(menuBar);
+
+		menuBar.addItem(INDICATORS_TEXT, VaadinIcons.PIE_CHART,
+				PageCommandRankingHistoryConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+	}
 }
