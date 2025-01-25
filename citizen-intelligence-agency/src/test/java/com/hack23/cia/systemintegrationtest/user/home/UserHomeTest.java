@@ -327,5 +327,33 @@ public final class UserHomeTest extends AbstractUITest {
 
 	}
 
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void verifyAgencyPage() throws Exception {
+		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_AGENCY);
+		pageVisit.validatePage(PageCommandUserConstants.COMMAND_AGENCY);
+	}
 
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void verifyApplicationConfigurationPage() throws Exception {
+		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_APPLICATION_CONFIGURATION);
+		pageVisit.validatePage(PageCommandUserConstants.COMMAND_APPLICATION_CONFIGURATION);
+	}
+
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void verifyBallotOverviewPage() throws Exception {
+		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_BALLOT_OVERVIEW);
+		pageVisit.validatePage(PageCommandUserConstants.COMMAND_BALLOT_OVERVIEW);
+	}
+
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void verifyMainViewOverviewPage() throws Exception {
+		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_MAINVIEW_OVERVIEW);
+		pageVisit.validatePage(PageCommandUserConstants.COMMAND_MAINVIEW_OVERVIEW);
+	}
+
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void verifyMonitoringPage() throws Exception {
+		pageVisit.visitDirectPage(PageCommandUserConstants.COMMAND_MONITORING);
+		pageVisit.validatePage(PageCommandUserConstants.COMMAND_MONITORING);
+	}
 }
