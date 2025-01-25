@@ -23,7 +23,7 @@ public final class AdminConfigurationTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyPortalConfiguration() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_PORTAL);
-		verifyViewContent(AdminViewConstants.ADMIN_PORTAL_MANAGEMENT, AdminViewConstants.PORTAL_OVERVIEW,
+		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_PORTAL_MANAGEMENT, AdminViewConstants.PORTAL_OVERVIEW,
 				AdminViewConstants.PORTAL_MANAGEMENT_OVERVIEW);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_PORTAL);
 	}
@@ -36,7 +36,7 @@ public final class AdminConfigurationTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCountryConfiguration() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_COUNTRY);
-		verifyViewContent(AdminViewConstants.ADMIN_COUNTRY_MANAGEMENT, AdminViewConstants.COUNTRY_OVERVIEW,
+		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_COUNTRY_MANAGEMENT, AdminViewConstants.COUNTRY_OVERVIEW,
 				AdminViewConstants.COUNTRY_OVERVIEW_DESCRIPTION);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_COUNTRY);
 	}
@@ -49,7 +49,7 @@ public final class AdminConfigurationTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyLanguageConfiguration() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_LANGUAGE);
-		verifyViewContent(AdminViewConstants.ADMIN_LANGUAGE_MANAGEMENT, AdminViewConstants.LANGUAGE_OVERVIEW,
+		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_LANGUAGE_MANAGEMENT, AdminViewConstants.LANGUAGE_OVERVIEW,
 				AdminViewConstants.LANGUAGE_ADMINISTRATION);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_LANGUAGE);
 	}
@@ -62,7 +62,7 @@ public final class AdminConfigurationTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyAgencyConfiguration() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENCY);
-		verifyViewContent(AdminViewConstants.ADMIN_AGENCY_MANAGEMENT, AdminViewConstants.AGENCY_OVERVIEW_HEADER,
+		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_AGENCY_MANAGEMENT, AdminViewConstants.AGENCY_OVERVIEW_HEADER,
 				AdminViewConstants.AGENCY_OVERVIEW);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_AGENCY);
 	}
@@ -75,7 +75,7 @@ public final class AdminConfigurationTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyApplicationConfiguration() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_CONFIGURATION);
-		verifyViewContent(AdminViewConstants.ADMIN_APPLICATION_CONFIGURATION,
+		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_APPLICATION_CONFIGURATION,
 				AdminViewConstants.APPLICATION_CONFIGURATION_OVERVIEW,
 				AdminViewConstants.APPLICATION_CONFIGURATION_OVERVIEW);
 		pageVisit.selectFirstGridRow();

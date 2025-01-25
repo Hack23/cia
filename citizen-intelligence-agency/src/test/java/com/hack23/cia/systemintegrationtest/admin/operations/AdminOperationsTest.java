@@ -22,7 +22,7 @@ public final class AdminOperationsTest extends AbstractAdminTest {
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyAgentOperation() throws Exception {
         pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AGENT_OPERATION);
-        verifyViewContent(
+        pageVisit.verifyViewContent(
             AdminViewConstants.ADMIN_AGENT_OPERATION_OVERVIEW,
             AdminViewConstants.ADMIN_AGENT_OPERATION,
             AdminViewConstants.ADMIN_AGENT_OPERATION_TASKS_OVERVIEW

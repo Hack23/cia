@@ -23,7 +23,7 @@ public final class AdminSecurityTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyUserAccount() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_USERACCOUNT);
-		verifyViewContent(AdminViewConstants.ADMIN_USER_ACCOUNT_MANAGEMENT, AdminViewConstants.USER_ACCOUNT_OVERVIEW,
+		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_USER_ACCOUNT_MANAGEMENT, AdminViewConstants.USER_ACCOUNT_OVERVIEW,
 				AdminViewConstants.USER_ACCOUNT_MANAGEMENT_DESCRIPTION);
 		pageVisit.selectFirstGridRow();
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_USERACCOUNT);
@@ -37,7 +37,7 @@ public final class AdminSecurityTest extends AbstractAdminTest {
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifySessionAccess() throws Exception {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
-		verifyViewContent(AdminViewConstants.ADMIN_APPLICATION_SESSIONS, AdminViewConstants.SESSION_DETAILS,
+		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_APPLICATION_SESSIONS, AdminViewConstants.SESSION_DETAILS,
 				AdminViewConstants.SESSION_OVERVIEW);
 		pageVisit.selectFirstGridRow();
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
