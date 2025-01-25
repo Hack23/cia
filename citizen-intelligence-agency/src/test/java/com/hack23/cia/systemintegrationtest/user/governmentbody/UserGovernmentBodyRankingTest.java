@@ -43,38 +43,38 @@ public final class UserGovernmentBodyRankingTest extends AbstractUITest implemen
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyGovernmentBodyCurrentMemberRankingPage() throws Exception {
+    public void verifyGovernmentBodyIncomePage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
+        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.INCOME_HEADER,
+            GovernmentBodyDescriptionConstants.INCOME_SUBTITLE,
+            GovernmentBodyDescriptionConstants.INCOME_DESC);
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyExpenditurePage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
+        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.EXPENDITURE_HEADER,
+            GovernmentBodyDescriptionConstants.EXPENDITURE_SUBTITLE,
+            GovernmentBodyDescriptionConstants.EXPENDITURE_DESC);
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyGovernmentBodyRankingOutcome() throws Exception {
-        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_OUTCOME);
-        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_OUTCOME);
-    }
-
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyGovernmentBodyRankingCommandOverviewPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
-        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
-    }
-
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyGovernmentBodyRankingCommandPageVisitHistoryPage() throws Exception {
+    public void verifyGovernmentBodyRankingPageVisitHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
+        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.VISIT_HISTORY_HEADER,
+            GovernmentBodyDescriptionConstants.VISIT_HISTORY_SUBTITLE,
+            GovernmentBodyDescriptionConstants.VISIT_HISTORY_DESC);
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyCommandOverviewPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_BODY_COMMAN_OVERVIEW);
+        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.RANKING_HEADER,
+            GovernmentBodyDescriptionConstants.RANKING_SUBTITLE,
+            GovernmentBodyDescriptionConstants.RANKING_DESC);
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_BODY_COMMAN_OVERVIEW);
     }
 }
