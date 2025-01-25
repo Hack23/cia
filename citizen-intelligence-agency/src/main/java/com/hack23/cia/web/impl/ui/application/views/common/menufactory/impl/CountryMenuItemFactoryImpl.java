@@ -27,6 +27,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import javax.persistence.metamodel.SingularAttribute;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,7 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -122,8 +125,8 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
 
-		charts.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.LINE_CHART, 
-				COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+		countryIndicators.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.LINE_CHART, 
+				PageCommandRankingHistoryConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 

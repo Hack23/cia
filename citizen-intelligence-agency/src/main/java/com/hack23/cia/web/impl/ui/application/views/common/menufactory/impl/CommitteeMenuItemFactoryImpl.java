@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
@@ -115,8 +116,8 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		ballotItem.addItem("Decision flow", VaadinIcons.LINE_CHART, new PageModeMenuCommand(
 				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS + "/" + ChartIndicators.DECISION_FLOW_CHART, pageId));
 
-		committeeItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+		committeeItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CLOCK,
+				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
@@ -166,9 +167,8 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS + "/" + ChartIndicators.DECISION_FLOW_CHART, pageId),
 				DECISION_FLOW_DESCRIPTION);
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
-				new PageModeMenuCommand(UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId),
-				PAGE_VISIT_HISTORY_DESCRIPTION);
+		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
+				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
 
 	}
 

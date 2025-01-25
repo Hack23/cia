@@ -3,6 +3,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -20,15 +21,16 @@ public final class CountryRankingMenuItemFactoryImpl extends AbstractMenuItemFac
         createButtonLink(grid, OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
                 COMMAND_COUNTRY_RANKING_OVERVIEW, COUNTRY_RANKING_DESCRIPTION);
                 
-        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
-                COMMAND_COUNTRY_RANKING_PAGEVISIT_HISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
+        createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
+                PageCommandRankingHistoryConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY, 
+                RANKING_PAGE_VISIT_DESC);
     }
     
     @Override
     public void createCountryRankingTopics(final MenuItem countryMenuItem) {
         countryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
                 COMMAND_COUNTRY_RANKING_OVERVIEW);
-        countryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, 
-                COMMAND_COUNTRY_RANKING_PAGEVISIT_HISTORY);
+        countryMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, 
+                PageCommandRankingHistoryConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 }

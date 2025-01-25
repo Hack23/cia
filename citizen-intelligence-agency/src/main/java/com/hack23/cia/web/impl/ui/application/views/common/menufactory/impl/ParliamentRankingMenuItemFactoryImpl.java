@@ -8,6 +8,7 @@ import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandPageModeConstants;
 
 @Service
 public final class ParliamentRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
@@ -16,14 +17,15 @@ public final class ParliamentRankingMenuItemFactoryImpl extends AbstractMenuItem
     @Override
     public void createOverviewPage(final VerticalLayout panelContent) {
         final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
-        createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
-                PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY, PAGE_VISIT_HISTORY_DESCRIPTION);
+        createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
+                PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
     }
     
     @Override
     public void createParliamentRankingTopics(final MenuItem parliamentMenuItem) {
-        parliamentMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_OVERVIEW);
-        parliamentMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, 
+        parliamentMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
+                PageCommandPageModeConstants.COMMAND_OVERVIEW);
+        parliamentMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, 
                 PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 }

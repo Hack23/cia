@@ -23,7 +23,8 @@ public interface MenuItemConstants extends
     MenuItemRiskConstants,
     MenuItemPageVisitConstants,
     MenuItemRankingPageVisitHistoryConstants,
-    PageCommandCountryRankingConstants {
+    PageCommandCountryRankingConstants,
+    RankingNavigationConstants {
 
     /** The dashboard. */
     // Core navigation constants
@@ -34,9 +35,6 @@ public interface MenuItemConstants extends
 
     /** The start text. */
     String START_TEXT = "Start";
-
-    /** The overview text. */
-    String OVERVIEW_TEXT = "Overview";
 
     /** The ranking text. */
     String RANKING_TEXT = "Ranking";

@@ -2,7 +2,7 @@
  * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *   http://www.apache.org/licenses/LICENSE-2.0
@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -98,7 +99,8 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
                 menuItem.addItem(HEADCOUNT, VaadinIcons.USERS, GOVERNMENT_BODY_COMMAND_HEADCOUNT);
                 menuItem.addItem(INCOME, VaadinIcons.MONEY_DEPOSIT, GOVERNMENT_BODY_COMMAND_INCOME);
                 menuItem.addItem(EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, GOVERNMENT_BODY_COMMAND_EXPENDITURE);
-                menuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY);
+                menuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
+                                PageCommandRankingHistoryConstants.GOVERNMENT_BODY_COMMAND_PAGEVISIT_HISTORY);
         }
 
         /**
@@ -136,7 +138,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
                                 INCOME_DESCRIPTION);
                 createButtonLink(grid, EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, GOVERNMENT_BODY_COMMAND_EXPENDITURE,
                                 EXPENDITURE_DESCRIPTION);
-                createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY,
-                                PAGE_VISIT_HISTORY_DESCRIPTION);
+                createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
+                                PageCommandRankingHistoryConstants.GOVERNMENT_BODY_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
         }
 }

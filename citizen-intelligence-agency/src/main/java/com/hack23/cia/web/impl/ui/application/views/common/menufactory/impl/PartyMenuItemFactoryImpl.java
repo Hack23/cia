@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemRankingPageVisitHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -121,9 +122,9 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 						PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId),
 				PARTY_SUPPORT_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
+		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId),
-				PAGE_VISIT_HISTORY_DESCRIPTION);
+				MenuItemRankingPageVisitHistoryConstants.PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 
@@ -192,7 +193,7 @@ public final class PartyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME,
 						PartyPageMode.PARTYSUPPORTSUMMARY.toString(), pageId));
 
-		partyItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
+		partyItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
