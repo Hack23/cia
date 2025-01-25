@@ -43,7 +43,4 @@ public interface PageCommandCommitteeRankingConstants {
     PageModeMenuCommand COMMAND_CHARTS_CURRENT_COMMITTEES = new PageModeMenuCommand(
         UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS, "CURRENT_COMMITTEES");
 
-
-    // Remove this line to avoid ambiguity
-    // PageModeMenuCommand COMMAND_PAGEVISIT_HISTORY = COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY;
 }

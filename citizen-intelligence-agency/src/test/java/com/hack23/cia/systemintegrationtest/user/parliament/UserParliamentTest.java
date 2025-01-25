@@ -20,19 +20,8 @@ public final class UserParliamentTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyParliamentPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_RANKING_OVERVIEW);
-        pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_RANKING_OVERVIEW);
-    }
-
-    /**
-     * Verify parliament ranking page.
-     *
-     * @throws Exception the exception
-     */
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyParliamentRankingPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_RANKING_OVERVIEW);
-        pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_RANKING_OVERVIEW);
+        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_OVERVIEW);
+        pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_OVERVIEW);
     }
 
     /**
