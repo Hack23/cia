@@ -50,4 +50,10 @@ public final class UserCommitteeRankingTest extends AbstractUITest implements Pa
          pageVisit.validatePage(PageCommandCommitteeRankingConstants.COMMAND_CHARTS_CURRENT_COMMITTEES);
     }
 
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyCommitteesLinkPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandCommitteeRankingConstants.COMMAND_COMMITTEES_LINK);
+        pageVisit.validatePage(PageCommandCommitteeRankingConstants.COMMAND_COMMITTEES_LINK);
+    }
+
 }

@@ -56,4 +56,37 @@ public final class UserParliamentTest extends AbstractUITest {
         pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_DOCUMENT_ACTIVITY);
         pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_DOCUMENT_ACTIVITY);
     }
+
+    /**
+     * Verify decision activity page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyDecisionActivityPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_DECISION_ACTIVITY);
+        pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_DECISION_ACTIVITY);
+    }
+
+    /**
+     * Verify parliament page visit history page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyParliamentPageVisitHistoryPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.PARLIAMENT_COMMAND_PAGEVISIT_HISTORY);
+        pageVisit.validatePage(PageCommandParliamentRankingConstants.PARLIAMENT_COMMAND_PAGEVISIT_HISTORY);
+    }
+
+    /**
+     * Verify decision flow page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyDecisionFlowPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW);
+        pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW);
+    }
 }

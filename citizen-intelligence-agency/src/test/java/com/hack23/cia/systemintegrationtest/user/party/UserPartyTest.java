@@ -67,4 +67,26 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_CHARTS_PARTY_AGE);
         pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_CHARTS_PARTY_AGE);
     }
+
+    /**
+     * Verify parties link page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartiesLinkPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_PARTIES_LINK);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_PARTIES_LINK);
+    }
+
+    /**
+     * Verify party ranking page visit history page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyRankingPageVisitHistoryPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+    }
 }

@@ -61,4 +61,10 @@ public final class UserGovernmentBodyRankingTest extends AbstractUITest implemen
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyGovernmentBodyCommandOverviewPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_BODY_COMMAN_OVERVIEW);
+        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_BODY_COMMAN_OVERVIEW);
+    }
 }
