@@ -12,7 +12,31 @@ public final class UserPoliticianTest extends AbstractUITest {
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianRankingPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.COMMAND_POLITICIAN_RANKING);
-        pageVisit.validatePage(PageCommandPoliticianRankingConstants.COMMAND_POLITICIAN_RANKING);
+        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_DATAGRID);
+        pageVisit.validatePage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_DATAGRID);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPoliticianRankingOverviewPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_OVERVIEW);
+        pageVisit.validatePage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_OVERVIEW);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPoliticianRankingPageVisitHistoryPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_PAGEVISIT_HISTORY);
+        pageVisit.validatePage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_PAGEVISIT_HISTORY);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPoliticianRankingChartsPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_CHARTS);
+        pageVisit.validatePage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_CHARTS);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPoliticianRankingDataGridPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_DATAGRID);
+        pageVisit.validatePage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_DATAGRID);
     }
 }

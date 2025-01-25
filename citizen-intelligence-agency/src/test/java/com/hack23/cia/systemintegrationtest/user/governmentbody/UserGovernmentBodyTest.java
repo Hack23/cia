@@ -13,13 +13,31 @@ public final class UserGovernmentBodyTest extends AbstractUITest {
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY);
-        pageVisit.validatePage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY);
+        pageVisit.visitDirectPage(PageCommandGovernmentBodyConstants.GOVERNMENT_BODY_COMMAND_EXPENDITURE);
+        pageVisit.validatePage(PageCommandGovernmentBodyConstants.GOVERNMENT_BODY_COMMAND_EXPENDITURE);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyRankingPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING);
-        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING);
+        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID);
+        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyGovernmentBodyRankingOverviewPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
+        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyGovernmentBodiesHeadcountPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
+        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyGovernmentBodiesIncomePage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
+        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
     }
 }

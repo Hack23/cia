@@ -12,7 +12,31 @@ public final class UserCountryTest extends AbstractUITest {
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyCountryRankingPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandCountryRankingConstants.COMMAND_COUNTRY_RANKING);
-        pageVisit.validatePage(PageCommandCountryRankingConstants.COMMAND_COUNTRY_RANKING);
+        pageVisit.visitDirectPage(PageCommandCountryRankingConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+        pageVisit.validatePage(PageCommandCountryRankingConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyCountryRankingOverviewPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandCountryRankingConstants.COUNTRY_RANKING_COMMAND_OVERVIEW);
+        pageVisit.validatePage(PageCommandCountryRankingConstants.COUNTRY_RANKING_COMMAND_OVERVIEW);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyCountryRankingDataGridPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandCountryRankingConstants.COUNTRY_RANKING_COMMAND_DATAGRID);
+        pageVisit.validatePage(PageCommandCountryRankingConstants.COUNTRY_RANKING_COMMAND_DATAGRID);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyCountryRankingChartsPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandCountryRankingConstants.COUNTRY_RANKING_COMMAND_CHARTS);
+        pageVisit.validatePage(PageCommandCountryRankingConstants.COUNTRY_RANKING_COMMAND_CHARTS);
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyCountryRankingPageVisitHistoryPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandCountryRankingConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+        pageVisit.validatePage(PageCommandCountryRankingConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 }
