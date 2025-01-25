@@ -77,7 +77,7 @@ public final class UserViews {
 	/**
 	 * Default constructor for UserViews.
 	 */
-	public UserViews() {
+	private UserViews() {
 		// Default constructor
 	}
 }
