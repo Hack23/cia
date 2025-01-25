@@ -7,6 +7,7 @@ import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserConstants;
+import com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode.GovernmentBodyDescriptionConstants;
 
 /**
  * The Class UserGovernmentBodyRankingTest.
@@ -17,18 +18,27 @@ public final class UserGovernmentBodyRankingTest extends AbstractUITest implemen
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyRankingDataGridPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID);
+        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.RANKING_HEADER,
+				GovernmentBodyDescriptionConstants.RANKING_SUBTITLE,
+				GovernmentBodyDescriptionConstants.RANKING_DESC);
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyRankingOverviewPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
+        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.RANKING_HEADER,
+        GovernmentBodyDescriptionConstants.RANKING_SUBTITLE,
+        GovernmentBodyDescriptionConstants.RANKING_DESC);        
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
     }
 
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyRankingHeadcountPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
+        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.HEADCOUNT_HEADER,
+        GovernmentBodyDescriptionConstants.HEADCOUNT_SUBTITLE,
+        GovernmentBodyDescriptionConstants.HEADCOUNT_DESC);        
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
     }
 
