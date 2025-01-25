@@ -5,9 +5,9 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.page
  */
 public interface PageCommandUserConstants
 		extends PageCommandAdminConstants, PageCommandBallotConstants, PageCommandCommitteeConstants,
-		PageCommandCommitteeRankingConstants, PageCommandCountryRankingConstants, PageCommandDocumentConstants,
+		PageCommandCommitteeRankingConstants, PageCommandDocumentConstants,
 		PageCommandGovernmentBodyConstants, PageCommandMainViewConstants, PageCommandGovernmentBodyRankingConstants,
 		PageCommandMinistryConstants, PageCommandMinistryRankingConstants, PageCommandParliamentRankingConstants,
-		PageCommandPartyConstants, PageCommandPartyRankingConstants, PageCommandPoliticianRankingConstants {
+		PageCommandPartyConstants, PageCommandPartyRankingConstants, PageCommandPoliticianRankingConstants,PageCommandUserHomeConstants {
 
 }

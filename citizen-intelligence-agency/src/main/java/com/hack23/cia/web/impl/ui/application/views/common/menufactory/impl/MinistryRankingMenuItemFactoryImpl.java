@@ -25,7 +25,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Appli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMinistryRankingConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text.MenuItemRankingPageVisitHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -39,7 +38,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
-		implements MinistryRankingMenuItemFactory,PageCommandUserConstants {
+		implements MinistryRankingMenuItemFactory {
 
 	/** The application menu item factory. */
 	@Autowired
