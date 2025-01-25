@@ -74,19 +74,19 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
                                 COMMAND_DATAGRID, DESC_ALL_PARTIES_ROLES);
 
                 createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.INSTITUTION,
-                                COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, DESC_GOVERNMENT_HEADCOUNT);
+                                PARTY_RANKING_COMMAND_CHARTS_CURRENT_PARTIES, DESC_GOVERNMENT_HEADCOUNT);
 
                 createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT, VaadinIcons.GROUP,
                                 COMMAND_CHARTS_CURRENT_COMMITTEES, DESC_COMMITTEES_HEADCOUNT);
 
                 createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT, VaadinIcons.INSTITUTION,
-                                COMMAND_CHARTS_CURRENT_PARTIES, DESC_PARLIAMENT_HEADCOUNT);
+                                PARTY_RANKING_COMMAND_CHARTS_CURRENT_PARTIES, DESC_PARLIAMENT_HEADCOUNT);
 
                 createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT, VaadinIcons.CLOCK,
-                                COMMAND_CHARTS_ALL_PARTIES, DESC_DAYS_SERVED_PARLIAMENT);
+                                PARTY_RANKING_COMMAND_CHARTS_ALL_PARTIES, DESC_DAYS_SERVED_PARLIAMENT);
 
-                createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
-                                COMMAND_PAGEVISITHISTORY, DESC_PAGE_VISIT_HISTORY);
+                createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
+                                PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
         }
 
         /**
@@ -117,7 +117,11 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
          */
         @Override
         public void createPartyRankingTopics(final MenuItem partynMenuItem) {
-                partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_OVERVIEW);
+                // Use specific ranking commands instead of generic ones
+                partynMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
+                                PARTY_RANKING_COMMAND_OVERVIEW);
+
+                partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, PARTY_RANKING_COMMAND_OVERVIEW);
 
                 partynMenuItem.addItem(PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,
                                 COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD);
@@ -129,17 +133,24 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
                 final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.CHART, null);
 
                 chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.INSTITUTION,
-                                COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
+                                PARTY_RANKING_COMMAND_CHARTS_CURRENT_PARTIES);
 
                 chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT, VaadinIcons.GROUP,
                                 COMMAND_CHARTS_CURRENT_COMMITTEES);
 
                 chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT, VaadinIcons.INSTITUTION,
-                                COMMAND_CHARTS_CURRENT_PARTIES);
+                                PARTY_RANKING_COMMAND_CHARTS_CURRENT_PARTIES);
 
                 chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT, VaadinIcons.CLOCK,
-                                COMMAND_CHARTS_ALL_PARTIES);
+                                PARTY_RANKING_COMMAND_CHARTS_ALL_PARTIES);
 
-                partynMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY);
+                partynMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, 
+                                PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+
+                partynMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
+                                PARTY_RANKING_COMMAND_OVERVIEW);
+
+                partynMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, 
+                                PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);
         }
 }

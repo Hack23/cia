@@ -102,7 +102,7 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 						MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));
 
-		ministryItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
+		ministryItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
 
 	}
@@ -150,9 +150,9 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 						MinistryPageMode.DOCUMENTHISTORY.toString(), pageId),
 				DOCUMENT_HISTORY_DESCRIPTION);
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP,
+		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.GROUP,
 				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId),
-				PAGE_VISIT_HISTORY_DESCRIPTION);
+				RANKING_PAGE_VISIT_DESC);
 
 	}
 

@@ -153,7 +153,7 @@ public abstract class AbstractMenuItemFactoryImpl implements PageCommandUserCons
 
 		final MenuItem mainItem = mainViewItem.addItem(MAIN, VaadinIcons.STAR, null);
 
-		mainItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);
+		mainItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, COMMAND_MAINVIEW_PAGEVISITHISTORY);
 
 		if (UserContextUtil.allowRoleInSecurityContext(ROLE_ADMIN)
 				|| UserContextUtil.allowRoleInSecurityContext(ROLE_USER)) {

@@ -23,6 +23,9 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandPageModeConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemRankingPageVisitHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -60,8 +63,11 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 	@Override
 	public void createMinistryRankingTopics(final MenuItem ministryMenuItem) {
+		ministryMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
+                PageCommandPageModeConstants.COMMAND_OVERVIEW);
 
-		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_MINISTRY_RANKING_OVERVIEW);
+		ministryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
+                PageCommandPageModeConstants.COMMAND_OVERVIEW);
 
 		final MenuItem listItem = ministryMenuItem.addItem(POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.BAR_CHART,
 				COMMAND_MINISTRY_RANKING_DATAGRID);
@@ -94,7 +100,8 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 
 		chartByTopic.addItem(GOVERNMENT_ROLES_CHART, VaadinIcons.BAR_CHART, COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
 
-		ministryMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY);
+		ministryMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, 
+                PageCommandRankingHistoryConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
@@ -135,8 +142,9 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		createButtonLink(grid, ALL_MINISTRIES_TOTAL_MEMBERS, VaadinIcons.USER,
 				COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT, ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY,
-				PAGE_VISIT_HISTORY_DESCRIPTION);
+		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
+				PageCommandRankingHistoryConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY,
+				MenuItemRankingPageVisitHistoryConstants.PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 

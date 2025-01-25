@@ -23,6 +23,8 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemRankingPageVisitHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -71,7 +73,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 */
 	@Override
 	public void createCommitteeRankingTopics(final MenuItem committeeMenuItem) {
-		committeeMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAND_OVERVIEW);
+		committeeMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAND_GENERIC_OVERVIEW);
 
 		final MenuItem listItem = committeeMenuItem.addItem(POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.GROUP,
 				COMMAND_DATAGRID);
@@ -88,7 +90,8 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 
 		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS, VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
 
-		committeeMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY);
+		committeeMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, 
+				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
@@ -115,8 +118,9 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 		createButtonLink(grid, ALL_COMMITTEES_TOTAL_MEMBERS, VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT,
 				ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);
 
-		createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.GROUP, COMMAND_PAGEVISIT_HISTORY,
-				PAGE_VISIT_HISTORY_DESCRIPTION);
+		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
+				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY, 
+				MenuItemRankingPageVisitHistoryConstants.PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}
 
