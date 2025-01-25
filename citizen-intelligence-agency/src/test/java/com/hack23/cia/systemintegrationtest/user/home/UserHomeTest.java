@@ -10,8 +10,8 @@ import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.systemintegrationtest.ui.TestUtils;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandUserConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ChangePasswordClickListener;
 

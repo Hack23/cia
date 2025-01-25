@@ -23,8 +23,8 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MenuItemRankingPageVisitHistoryConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text.MenuItemRankingPageVisitHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -73,10 +73,10 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	 */
 	@Override
 	public void createCommitteeRankingTopics(final MenuItem committeeMenuItem) {
-		committeeMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, COMMAND_GENERIC_OVERVIEW);
+		committeeMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.GROUP, PageCommandCommitteeRankingConstants.COMMAND_COMMITTEE_RANKING_OVERVIEW);
 
 		final MenuItem listItem = committeeMenuItem.addItem(POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.GROUP,
-				COMMAND_DATAGRID);
+				PageCommandCommitteeRankingConstants.COMMAND_COMMITTEE_RANKING_DATAGRID);
 		listItem.setDescription(CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS);
 
 		final MenuItem chartByTopic = committeeMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.GROUP, null);
@@ -91,7 +91,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 		chartByTopic.addItem(ALL_COMMITTEES_TOTAL_MEMBERS, VaadinIcons.GROUP, COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
 
 		committeeMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY);
+				COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
@@ -105,7 +105,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid, POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.GROUP, COMMAND_DATAGRID,
+		createButtonLink(grid, POLITICAL_WORK_SUMMARY_TEXT, VaadinIcons.GROUP, PageCommandCommitteeRankingConstants.COMMAND_COMMITTEE_RANKING_DATAGRID,
 				POLITICAL_WORK_SUMMARY_DESCRIPTION);
 		createButtonLink(grid, CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,
 				COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT, CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION);
@@ -119,7 +119,7 @@ public final class CommitteeRankingMenuItemFactoryImpl extends AbstractMenuItemF
 				ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION);
 
 		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY,
+				PageCommandCommitteeRankingConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY,
 				MenuItemRankingPageVisitHistoryConstants.PAGE_VISIT_HISTORY_DESCRIPTION);
 
 	}

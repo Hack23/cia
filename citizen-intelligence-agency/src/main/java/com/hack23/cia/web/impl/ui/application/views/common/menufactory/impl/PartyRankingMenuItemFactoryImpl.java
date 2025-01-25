@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -71,19 +72,19 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
                                 COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, DESC_LEADERS_SCOREBOARD);
 
                 createButtonLink(grid, TOTAL_MEMBERS, VaadinIcons.USERS,
-                                COMMAND_DATAGRID, DESC_ALL_PARTIES_ROLES);
+                		PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_DATAGRID, DESC_ALL_PARTIES_ROLES);
 
                 createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.INSTITUTION,
-                                PARTY_RANKING_COMMAND_CHARTS_CURRENT_PARTIES, DESC_GOVERNMENT_HEADCOUNT);
+                                COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, DESC_GOVERNMENT_HEADCOUNT);
 
                 createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT, VaadinIcons.GROUP,
-                                COMMAND_CHARTS_CURRENT_COMMITTEES, DESC_COMMITTEES_HEADCOUNT);
+                		PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_CHARTS_CURRENT_PARTIES, DESC_COMMITTEES_HEADCOUNT);
 
                 createButtonLink(grid, CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT, VaadinIcons.INSTITUTION,
-                                PARTY_RANKING_COMMAND_CHARTS_CURRENT_PARTIES, DESC_PARLIAMENT_HEADCOUNT);
+                                COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES, DESC_PARLIAMENT_HEADCOUNT);
 
                 createButtonLink(grid, ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT, VaadinIcons.CLOCK,
-                                PARTY_RANKING_COMMAND_CHARTS_ALL_PARTIES, DESC_DAYS_SERVED_PARLIAMENT);
+                		PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_CHARTS_ALL_PARTIES, DESC_DAYS_SERVED_PARLIAMENT);
 
                 createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
                                 PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
@@ -119,36 +120,36 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
         public void createPartyRankingTopics(final MenuItem partynMenuItem) {
                 // Use specific ranking commands instead of generic ones
                 partynMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
-                                PARTY_RANKING_COMMAND_OVERVIEW);
+                		PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_OVERVIEW);
 
-                partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, PARTY_RANKING_COMMAND_OVERVIEW);
+                partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_OVERVIEW);
 
                 partynMenuItem.addItem(PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,
                                 COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD);
 
                 // Total members using USERS icon for multiple people
-                final MenuItem listItem = partynMenuItem.addItem(TOTAL_MEMBERS, VaadinIcons.USERS, COMMAND_DATAGRID);
+                final MenuItem listItem = partynMenuItem.addItem(TOTAL_MEMBERS, VaadinIcons.USERS, PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_DATAGRID);
                 listItem.setDescription(PARTY_BY_TOTAL_MEMBERS_BASED_ON_ROLES_IN_DEPARTMENTS_COMMITTEES_AND_PARLIAMENT);
 
                 final MenuItem chartByTopic = partynMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.CHART, null);
 
                 chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_MINISTRIES_HEAD_COUNT_TEXT, VaadinIcons.INSTITUTION,
-                                PARTY_RANKING_COMMAND_CHARTS_CURRENT_PARTIES);
+                		PageCommandPartyRankingConstants.COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
 
                 chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_HEAD_COUNT, VaadinIcons.GROUP,
-                                COMMAND_CHARTS_CURRENT_COMMITTEES);
+                		PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_CHARTS_CURRENT_PARTIES);
 
                 chartByTopic.addItem(CURRENT_PARTIES_ACTIVE_IN_PARLIAMENT_HEAD_COUNT, VaadinIcons.INSTITUTION,
-                                PARTY_RANKING_COMMAND_CHARTS_CURRENT_PARTIES);
+                                COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
 
                 chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT, VaadinIcons.CLOCK,
-                                PARTY_RANKING_COMMAND_CHARTS_ALL_PARTIES);
+                		PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_CHARTS_ALL_PARTIES);
 
                 partynMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
                                 PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
                 partynMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
-                                PARTY_RANKING_COMMAND_OVERVIEW);
+                		PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_OVERVIEW);
 
                 partynMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
                                 PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);

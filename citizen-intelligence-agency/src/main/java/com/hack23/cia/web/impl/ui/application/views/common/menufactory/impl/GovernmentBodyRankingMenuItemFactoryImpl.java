@@ -23,7 +23,8 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -89,18 +90,18 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
         @Override
         public void createGovernmentBodyRankingTopics(final MenuBar.MenuItem menuItem) {
                 menuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, GOVERNMENT_BODY_COMMAN_OVERVIEW);
-                menuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID);
+                menuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID);
                 menuItem.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK,
-                                COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
-                menuItem.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME);
+                		PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
+                menuItem.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
                 menuItem.addItem(GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.MONEY_WITHDRAW,
-                                COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
+                		PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
 
-                menuItem.addItem(HEADCOUNT, VaadinIcons.USERS, GOVERNMENT_BODY_COMMAND_HEADCOUNT);
-                menuItem.addItem(INCOME, VaadinIcons.MONEY_DEPOSIT, GOVERNMENT_BODY_COMMAND_INCOME);
-                menuItem.addItem(EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, GOVERNMENT_BODY_COMMAND_EXPENDITURE);
+                menuItem.addItem(HEADCOUNT, VaadinIcons.USERS, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
+                menuItem.addItem(INCOME, VaadinIcons.MONEY_DEPOSIT, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
+                menuItem.addItem(EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
                 menuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-                                PageCommandRankingHistoryConstants.GOVERNMENT_BODY_COMMAND_PAGEVISIT_HISTORY);
+                                GOVERNMENT_BODY_COMMAND_PAGEVISIT_HISTORY);
         }
 
         /**
@@ -123,22 +124,22 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
         public void createOverviewPage(final VerticalLayout panelContent) {
                 final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-                createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_DATAGRID,
+                createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,
                                 GOVERNMENT_BODIES_DESCRIPTION);
                 createButtonLink(grid, GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK,
-                                COMMAND_GOVERNMENT_BODIES_HEADCOUNT, GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION);
-                createButtonLink(grid, GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, COMMAND_GOVERNMENT_BODIES_INCOME,
+                		PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT, GOVERNMENT_BODIES_HEADCOUNT_DESCRIPTION);
+                createButtonLink(grid, GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME,
                                 GOVERNMENT_BODIES_INCOME_DESCRIPTION);
                 createButtonLink(grid, GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.MONEY_WITHDRAW,
-                                COMMAND_GOVERNMENT_BODIES_EXPENDITURE, GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION);
+                		PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE, GOVERNMENT_BODIES_EXPENDITURE_DESCRIPTION);
 
-                createButtonLink(grid, HEADCOUNT, VaadinIcons.USERS, GOVERNMENT_BODY_COMMAND_HEADCOUNT,
+                createButtonLink(grid, HEADCOUNT, VaadinIcons.USERS, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT,
                                 HEADCOUNT_DESCRIPTION);
-                createButtonLink(grid, INCOME, VaadinIcons.MONEY_DEPOSIT, GOVERNMENT_BODY_COMMAND_INCOME,
+                createButtonLink(grid, INCOME, VaadinIcons.MONEY_DEPOSIT, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME,
                                 INCOME_DESCRIPTION);
-                createButtonLink(grid, EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, GOVERNMENT_BODY_COMMAND_EXPENDITURE,
+                createButtonLink(grid, EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE,
                                 EXPENDITURE_DESCRIPTION);
                 createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-                                PageCommandRankingHistoryConstants.GOVERNMENT_BODY_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
+                                GOVERNMENT_BODY_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
         }
 }

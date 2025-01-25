@@ -5,8 +5,7 @@ import org.junit.experimental.categories.Category;
 
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandPartyConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandPartyRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyRankingConstants;
 
 /**
  * The Class UserPartyTest.
@@ -21,8 +20,8 @@ public final class UserPartyTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
-        pageVisit.validatePage(PageCommandPartyConstants.COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
     }
 
     /**
@@ -32,8 +31,8 @@ public final class UserPartyTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyRankingPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.PARTY_RANKING_COMMAND_DATAGRID);
-        pageVisit.validatePage(PageCommandPartyRankingConstants.PARTY_RANKING_COMMAND_DATAGRID);
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_OVERVIEW);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_OVERVIEW);
     }
 
     /**
@@ -43,8 +42,8 @@ public final class UserPartyTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyWinnerPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_CHARTS_PARTY_WINNER);
-        pageVisit.validatePage(PageCommandPartyConstants.COMMAND_CHARTS_PARTY_WINNER);
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_CHARTS_PARTY_WINNER);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_CHARTS_PARTY_WINNER);
     }
 
     /**
@@ -54,8 +53,8 @@ public final class UserPartyTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyGenderPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_CHARTS_PARTY_GENDER);
-        pageVisit.validatePage(PageCommandPartyConstants.COMMAND_CHARTS_PARTY_GENDER);
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_CHARTS_PARTY_GENDER);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_CHARTS_PARTY_GENDER);
     }
 
     /**
@@ -65,7 +64,7 @@ public final class UserPartyTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyAgePage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_CHARTS_PARTY_AGE);
-        pageVisit.validatePage(PageCommandPartyConstants.COMMAND_CHARTS_PARTY_AGE);
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_CHARTS_PARTY_AGE);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_CHARTS_PARTY_AGE);
     }
 }

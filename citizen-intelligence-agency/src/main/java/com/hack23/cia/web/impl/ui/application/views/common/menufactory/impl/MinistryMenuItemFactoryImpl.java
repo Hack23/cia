@@ -40,6 +40,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements MinistryMenuItemFactory {
+	/** The application menu item factory. */
 
 	/** The application menu item factory. */
 	@Autowired
@@ -103,7 +104,7 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 						MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));
 
 		ministryItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.GROUP,
-				new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY, pageId));
+				MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
@@ -155,5 +156,4 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 				RANKING_PAGE_VISIT_DESC);
 
 	}
-
 }

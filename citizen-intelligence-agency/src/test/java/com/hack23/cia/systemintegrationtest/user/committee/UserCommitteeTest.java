@@ -5,8 +5,8 @@ import org.junit.experimental.categories.Category;
 
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandCommitteeConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandCommitteeRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeRankingConstants;
 
 /**
  * The Class UserCommitteeTest.

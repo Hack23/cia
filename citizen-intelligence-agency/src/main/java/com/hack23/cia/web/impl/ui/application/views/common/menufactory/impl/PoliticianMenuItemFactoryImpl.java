@@ -40,6 +40,7 @@ import com.vaadin.ui.VerticalLayout;
  *
  * <p>
  * This class builds menus and overview pages for politician-related views,
+ * vote histories, and more. It integrates with
  * enabling users to navigate through indicators, roles, document activities,
  * vote histories, and more. It integrates with
  * {@link ApplicationMenuItemFactory}
@@ -256,5 +257,4 @@ public final class PoliticianMenuItemFactoryImpl extends AbstractMenuItemFactory
                 politicianItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
                                 new PageModeMenuCommand(UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY,
                                                 pageId));
-        }
-}
+        }}

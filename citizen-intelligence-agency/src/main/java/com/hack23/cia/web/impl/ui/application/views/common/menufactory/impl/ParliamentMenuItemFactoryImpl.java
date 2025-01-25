@@ -22,10 +22,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandDocumentConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandParliamentRankingConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -55,13 +54,15 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	public void createOverviewPage(final VerticalLayout panelContent) {
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
-		createButtonLink(grid, PARTY_WINNER, VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_WINNER,
-				PARTY_WINNER_DESCRIPTION);
+		createButtonLink(grid, PARTY_WINNER, VaadinIcons.INSTITUTION,
+				PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_WINNER,
+			PARTY_WINNER_DESCRIPTION);
 
-		createButtonLink(grid, PARTY_GENDER, VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_GENDER,
-				PARTY_GENDER_DESCRIPTION);
+		createButtonLink(grid, PARTY_GENDER, VaadinIcons.INSTITUTION,
+				PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_GENDER,
+			PARTY_GENDER_DESCRIPTION);
 
-		createButtonLink(grid, PARTY_AGE, VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_AGE, PARTY_AGE_DESCRIPTION);
+		createButtonLink(grid, PARTY_AGE, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_AGE, PARTY_AGE_DESCRIPTION);
 
 		createButtonLink(grid, RISK_SUMMARY, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_RISK_SUMMARY, RISK_SUMMARY_DESCRIPTION);
@@ -78,7 +79,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 			PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW, DECISION_FLOW_DESCRIPTION);
 
 		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,
-			PageCommandRankingHistoryConstants.PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
+			PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
 
 	}
 
@@ -95,19 +96,19 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	@Override
 	public void createParliamentTopicMenu(final MenuItem charts) {
 		charts.addItem(OVERVIEW_TEXT, VaadinIcons.INSTITUTION,
-				 COMMAND_PARLIAMENT_OVERVIEW);
+				 PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_RANKING_OVERVIEW);
 
 		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, VaadinIcons.INSTITUTION, null);
 
 		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER, VaadinIcons.INSTITUTION,
-				COMMAND_CHARTS_PARTY_WINNER);
+				PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_WINNER);
 		addItem.setDescription(PARTY_WINNER_DESCRIPTION);
 
 		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER, VaadinIcons.INSTITUTION,
-				COMMAND_CHARTS_PARTY_GENDER);
+				PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_GENDER);
 		addItem2.setDescription(PARTY_GENDER_DESCRIPTION);
 
-		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION, COMMAND_CHARTS_PARTY_AGE);
+		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_AGE);
 		addItem3.setDescription(PARTY_AGE_DESCRIPTION);
 
 		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION,
@@ -115,7 +116,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		addItem7.setDescription(RISK_SUMMARY_DESCRIPTION);
 
 		final MenuItem addItem8 = chartIndicators.addItem(RULE_VIOLATIONS, VaadinIcons.INSTITUTION,
-				COMMAND_RULE_VIOLATION);
+				PageCommandParliamentRankingConstants.COMMAND_RULE_VIOLATION);
 		addItem8.setDescription(RULE_VIOLATIONS_DESCRIPTION);
 
 		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,
@@ -131,7 +132,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);
 
 		charts.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,
-			PageCommandRankingHistoryConstants.PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
+			PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
 	}
 
 }

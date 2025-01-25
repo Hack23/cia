@@ -24,7 +24,6 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CommitteeRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
@@ -117,7 +116,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS + "/" + ChartIndicators.DECISION_FLOW_CHART, pageId));
 
 		committeeItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CLOCK,
-				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY);
+				COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
@@ -168,7 +167,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				DECISION_FLOW_DESCRIPTION);
 
 		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-				PageCommandRankingHistoryConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
+				COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
 
 	}
 
