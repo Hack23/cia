@@ -15,6 +15,14 @@ import com.hack23.cia.systemintegrationtest.admin.security.AdminSecurityTest;
 import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
 import com.hack23.cia.systemintegrationtest.ui.WebDriverFactory;
 import com.hack23.cia.systemintegrationtest.user.home.UserHomeTest;
+import com.hack23.cia.systemintegrationtest.user.party.UserPartyTest;
+import com.hack23.cia.systemintegrationtest.user.committee.UserCommitteeTest;
+import com.hack23.cia.systemintegrationtest.user.country.UserCountryTest;
+import com.hack23.cia.systemintegrationtest.user.ministry.UserMinistryTest;
+import com.hack23.cia.systemintegrationtest.user.governmentbody.UserGovernmentBodyTest;
+import com.hack23.cia.systemintegrationtest.user.parliament.UserParliamentTest;
+import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
+import com.hack23.cia.systemintegrationtest.user.document.UserDocumentTest;
 
 /**
  * The Class IntegrationTestSuite.
@@ -25,7 +33,15 @@ import com.hack23.cia.systemintegrationtest.user.home.UserHomeTest;
     AdminDataTest.class,
     AdminOperationsTest.class,
     AdminSecurityTest.class,
-    UserHomeTest.class
+    UserHomeTest.class,
+    UserPartyTest.class,
+    UserCommitteeTest.class,
+    UserCountryTest.class,
+    UserMinistryTest.class,
+    UserGovernmentBodyTest.class,
+    UserParliamentTest.class,
+    UserPoliticianTest.class,
+    UserDocumentTest.class
 })
 public class IntegrationTestSuite {
 
