@@ -240,6 +240,11 @@ public class UserPageVisitHelper {
 		return actions;
 	}
 
+	/**
+	 * Wait for clickable.
+	 *
+	 * @param element the element
+	 */
 	public void waitForClickable(WebElement element) {
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,DEFAULT_WAIT);
 		wait.until(ExpectedConditions.elementToBeClickable(StaleElementUtils.refreshElement(element,driver)));

@@ -118,7 +118,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
         @Override
         public void createPartyRankingTopics(final MenuItem partynMenuItem) {
                 // Use specific ranking commands instead of generic ones
-                partynMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
+                partynMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
                                 PARTY_RANKING_COMMAND_OVERVIEW);
 
                 partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, PARTY_RANKING_COMMAND_OVERVIEW);
@@ -144,13 +144,13 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
                 chartByTopic.addItem(ALL_PARTIES_TOTAL_DAYS_SERVED_IN_PARLIAMENT, VaadinIcons.CLOCK,
                                 PARTY_RANKING_COMMAND_CHARTS_ALL_PARTIES);
 
-                partynMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, 
+                partynMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
                                 PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
-                partynMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD, 
+                partynMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
                                 PARTY_RANKING_COMMAND_OVERVIEW);
 
-                partynMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART, 
+                partynMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
                                 PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);
         }
 }

@@ -12,6 +12,7 @@ import io.github.bonigarcia.wdm.config.DriverManagerType;
  */
 public class WebDriverFactory {
 
+	/** The driver. */
 	private static WebDriver driver;
 
     /**

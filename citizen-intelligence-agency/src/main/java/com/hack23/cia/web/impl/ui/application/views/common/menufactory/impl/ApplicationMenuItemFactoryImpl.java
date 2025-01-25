@@ -122,7 +122,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
         partyRankingMenuItemFactory.createPartyRankingTopics(partynMenuItem);
 
         final MenuItem politicianMenuItem = rankingsMenuItem.addItem(POLITICIAN_RANKING_LINK_TEXT, VaadinIcons.USER,
-                COMMAND_POLITICIAN_RANKING_OVERVIEW);
+        		POLITICIAN_RANKING_COMMAND_OVERVIEW);
         politicianRankingMenuItemFactory.createPoliticianRankingTopics(politicianMenuItem);
 
         final MenuItem documentsMenuItem = rankingsMenuItem.addItem(DOCUMENTS, VaadinIcons.FILE_TABLE,
@@ -182,9 +182,9 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
                 PARTY_RANKING_DESCRIPTION);
         createButtonLink(grid, PARTIES_LINK_TEXT, VaadinIcons.USERS, COMMAND_PARTY_RANKING_DATAGRID,
                 PARTIES_DESCRIPTION);
-        createButtonLink(grid, POLITICIAN_RANKING_LINK_TEXT, VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_OVERVIEW,
+        createButtonLink(grid, POLITICIAN_RANKING_LINK_TEXT, VaadinIcons.USER, POLITICIAN_RANKING_COMMAND_DATAGRID,
                 POLITICIAN_RANKING_DESCRIPTION);
-        createButtonLink(grid, POLITICIANS_LINK_TEXT, VaadinIcons.USER, COMMAND_POLITICIAN_RANKING_DATAGRID,
+        createButtonLink(grid, POLITICIANS_LINK_TEXT, VaadinIcons.USER, POLITICIAN_RANKING_COMMAND_OVERVIEW,
                 POLITICIANS_DESCRIPTION);
         createButtonLink(grid, SEARCH_DOCUMENTS, VaadinIcons.SEARCH, COMMAND_SEARCH_DOCUMENT,
                 SEARCH_DOCUMENTS_DESCRIPTION);

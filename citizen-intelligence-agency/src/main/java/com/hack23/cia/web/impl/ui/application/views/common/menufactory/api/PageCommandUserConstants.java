@@ -1,6 +1,9 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 
-public interface PageCommandUserConstants extends 
+/**
+ * The Interface PageCommandUserConstants.
+ */
+public interface PageCommandUserConstants extends
     PageCommandAdminConstants,
     PageCommandPartyConstants,
     PageCommandPartyRankingConstants,
@@ -19,5 +22,5 @@ public interface PageCommandUserConstants extends
     PageCommandMainViewConstants,
     PageCommandPageModeConstants,
     PageCommandParliamentConstants {
-    
+
 }

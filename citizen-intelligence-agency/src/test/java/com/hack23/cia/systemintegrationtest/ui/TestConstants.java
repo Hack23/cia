@@ -17,11 +17,16 @@ public final class TestConstants {
     /** The Constant WAIT_FOR_PAGE_ELEMENT. */
     public static final Duration WAIT_FOR_PAGE_ELEMENT = Duration.ofMillis(8000);
 
+    /** The Constant DEFAULT_BROWSER_TIMEOUT. */
     public static final Duration DEFAULT_BROWSER_TIMEOUT = Duration.ofSeconds(7);
 
+    /** The Constant CLICK_PAUSE. */
     public static final Duration CLICK_PAUSE = Duration.ofSeconds(5);
 
+    /** The Constant CLICK__MOVE_TO_PAUSE. */
     public static final Duration CLICK__MOVE_TO_PAUSE = Duration.ofMillis(500);
+
+    /** The Constant CLICK_PAUSE_AFTER. */
     public static final Duration CLICK_PAUSE_AFTER = Duration.ofMillis(1000);
 
 

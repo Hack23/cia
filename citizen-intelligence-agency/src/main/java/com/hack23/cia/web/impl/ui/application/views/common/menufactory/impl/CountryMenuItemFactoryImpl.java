@@ -27,8 +27,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import javax.persistence.metamodel.SingularAttribute;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -125,7 +123,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
 
-		countryIndicators.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.LINE_CHART, 
+		countryIndicators.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.LINE_CHART,
 				PageCommandRankingHistoryConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
