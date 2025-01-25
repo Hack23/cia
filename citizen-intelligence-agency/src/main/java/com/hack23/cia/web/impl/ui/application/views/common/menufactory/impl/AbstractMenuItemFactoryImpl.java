@@ -19,7 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
 import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandUserConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserConstants;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Resource;

@@ -38,7 +38,6 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
@@ -124,7 +123,7 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
 
 		countryIndicators.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.LINE_CHART,
-				PageCommandRankingHistoryConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+				COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
@@ -162,12 +161,5 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 				.collect(Collectors.groupingBy(SimpleEntry::getKey,
 						Collectors.mapping(SimpleEntry::getValue, Collectors.toList())));
 	}
-	
-	@Override
-	public void createCountryMenuBar(final MenuBar menuBar, final String pageId) {
-		initApplicationMenuBar(menuBar);
 
-		menuBar.addItem(INDICATORS_TEXT, VaadinIcons.PIE_CHART,
-				PageCommandRankingHistoryConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
-	}
 }

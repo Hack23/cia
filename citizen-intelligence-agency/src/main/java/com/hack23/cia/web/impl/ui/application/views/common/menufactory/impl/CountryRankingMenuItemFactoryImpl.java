@@ -3,7 +3,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.CountryRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -25,7 +24,7 @@ public final class CountryRankingMenuItemFactoryImpl extends AbstractMenuItemFac
                 COMMAND_COUNTRY_RANKING_OVERVIEW, COUNTRY_RANKING_DESCRIPTION);
 
         createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-                PageCommandRankingHistoryConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY,
+                COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY,
                 RANKING_PAGE_VISIT_DESC);
     }
 
@@ -34,6 +33,6 @@ public final class CountryRankingMenuItemFactoryImpl extends AbstractMenuItemFac
         countryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
                 COMMAND_COUNTRY_RANKING_OVERVIEW);
         countryMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-                PageCommandRankingHistoryConstants.COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+                COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 }

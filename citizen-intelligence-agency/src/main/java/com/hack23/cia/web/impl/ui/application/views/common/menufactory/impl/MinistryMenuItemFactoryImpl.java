@@ -24,7 +24,6 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.MinistryRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandRankingHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
@@ -105,7 +104,7 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 						MinistryPageMode.DOCUMENTHISTORY.toString(), pageId));
 
 		ministryItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.GROUP,
-				PageCommandRankingHistoryConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
+				MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 

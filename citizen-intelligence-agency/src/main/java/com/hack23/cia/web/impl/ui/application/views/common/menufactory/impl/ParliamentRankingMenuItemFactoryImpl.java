@@ -2,8 +2,8 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandPageModeConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentRankingMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -27,7 +27,7 @@ public final class ParliamentRankingMenuItemFactoryImpl extends AbstractMenuItem
     @Override
     public void createParliamentRankingTopics(final MenuItem parliamentMenuItem) {
         parliamentMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
-                PageCommandPageModeConstants.COMMAND_OVERVIEW);
+        		PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_OVERVIEW);
         parliamentMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
                 PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }

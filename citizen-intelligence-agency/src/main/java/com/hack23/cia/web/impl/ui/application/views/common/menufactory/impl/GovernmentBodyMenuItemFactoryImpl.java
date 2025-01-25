@@ -6,11 +6,8 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandGovernmentBodyConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
@@ -21,7 +18,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class GovernmentBodyMenuItemFactoryImpl.
  */
 @Service
-public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl 
+public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
         implements GovernmentBodyMenuItemFactory {
 
     /** The application menu item factory. */

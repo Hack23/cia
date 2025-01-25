@@ -5,7 +5,8 @@ import org.junit.experimental.categories.Category;
 
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PageCommandDocumentConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMainViewConstants;
 
 /**
  * The Class UserDocumentTest.
@@ -53,8 +54,8 @@ public final class UserDocumentTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyDocumentsPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandDocumentConstants.COMMAND_DOCUMENTS);
-        pageVisit.validatePage(PageCommandDocumentConstants.COMMAND_DOCUMENTS);
+        pageVisit.visitDirectPage(PageCommandDocumentConstants.COMMAND_DOCUMENT_OVERVIEW);
+        pageVisit.validatePage(PageCommandDocumentConstants.COMMAND_DOCUMENT_OVERVIEW);
     }
 
     /**
@@ -64,7 +65,7 @@ public final class UserDocumentTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifySearchDocumentPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandDocumentConstants.COMMAND_SEARCH_DOCUMENT);
-        pageVisit.validatePage(PageCommandDocumentConstants.COMMAND_SEARCH_DOCUMENT);
+        pageVisit.visitDirectPage(PageCommandMainViewConstants.COMMAND_SEARCH_DOCUMENT);
+        pageVisit.validatePage(PageCommandMainViewConstants.COMMAND_SEARCH_DOCUMENT);
     }
 }
