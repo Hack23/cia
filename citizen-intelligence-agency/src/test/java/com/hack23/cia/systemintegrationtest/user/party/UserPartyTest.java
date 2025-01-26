@@ -90,11 +90,11 @@ public final class UserPartyTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartiesLinkPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_PARTIES_LINK);
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_DATAGRID);
         pageVisit.verifyViewContent("All Parties Charts",
             "Party Performance",
             "Analyze the performance of all political parties using various charts.");
-        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_PARTIES_LINK);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_DATAGRID);
     }
 
     /**

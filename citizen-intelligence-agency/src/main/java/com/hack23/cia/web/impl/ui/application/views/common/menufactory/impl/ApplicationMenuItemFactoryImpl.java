@@ -24,6 +24,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Parli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PartyRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMainViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPoliticianConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
@@ -90,7 +91,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
         rankingsMenuItem.addItem(MINISTRIES_LEADER_SCOREBOARD, VaadinIcons.TROPHY,
                 PageCommandUserConstants.COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD);
         rankingsMenuItem.addItem(PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,
-                COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD);
+        		COMMAND_PARTY_LEADER_SCOREBOARD);
 
         final MenuItem countryMenuItem = rankingsMenuItem.addItem(COUNTRY_RANKING_LINK_TEXT, VaadinIcons.FLAG,
                 COMMAND_COUNTRY_RANKING_OVERVIEW);
@@ -146,7 +147,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
     @Override
     public void createOverviewPage(final VerticalLayout panelContent) {
         final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
-        createButtonLink(grid, SWEDEN_DASHBOARD, VaadinIcons.FLAG, COMMAND_DASHBOARDVIEW_OVERVIEW,                "Visualize political activity in Sweden, present key performance indicators and metadata");        createButtonLink(grid, MINISTRIES_LEADER_SCOREBOARD, VaadinIcons.TROPHY,                COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD,                MINISTRIES_LEADER_SCOREBOARD_DESCRIPTION);        createButtonLink(grid, PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,                COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, DESC_LEADERS_SCOREBOARD);        createButtonLink(grid, COUNTRY_RANKING_LINK_TEXT, VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW,                COUNTRY_RANKING_DESCRIPTION);        createButtonLink(grid, MINISTRY_RANKING_LINK_TEXT, VaadinIcons.OFFICE, COMMAND_MINISTRY_RANKING_OVERVIEW,                MINISTRY_RANKING_DESCRIPTION);        createButtonLink(grid, MINISTRIES_LINK_TEXT, VaadinIcons.OFFICE,            COMMAND_MINISTRIES_LINK,            MINISTRIES_DESCRIPTION);        createButtonLink(grid, GOVERNMENT_BODY_RANKING, VaadinIcons.BUILDING_O,                COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW, GOVERNMENT_BODY_RANKING_DESCRIPTION);        createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,                GOVERNMENT_BODIES_DESCRIPTION);        createButtonLink(grid, PARLIAMENT_RANKING_LINK_TEXT, VaadinIcons.INSTITUTION,                COMMAND_PARLIAMENT_RANKING_OVERVIEW, PARLIAMENT_RANKING_DESCRIPTION);
+        createButtonLink(grid, SWEDEN_DASHBOARD, VaadinIcons.FLAG, COMMAND_DASHBOARDVIEW_OVERVIEW,                "Visualize political activity in Sweden, present key performance indicators and metadata");        createButtonLink(grid, MINISTRIES_LEADER_SCOREBOARD, VaadinIcons.TROPHY,                COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD,                MINISTRIES_LEADER_SCOREBOARD_DESCRIPTION);        createButtonLink(grid, PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,                COMMAND_PARTY_LEADER_SCOREBOARD, DESC_LEADERS_SCOREBOARD);        createButtonLink(grid, COUNTRY_RANKING_LINK_TEXT, VaadinIcons.FLAG, COMMAND_COUNTRY_RANKING_OVERVIEW,                COUNTRY_RANKING_DESCRIPTION);        createButtonLink(grid, MINISTRY_RANKING_LINK_TEXT, VaadinIcons.OFFICE, COMMAND_MINISTRY_RANKING_OVERVIEW,                MINISTRY_RANKING_DESCRIPTION);        createButtonLink(grid, MINISTRIES_LINK_TEXT, VaadinIcons.OFFICE,            COMMAND_MINISTRIES_LINK,            MINISTRIES_DESCRIPTION);        createButtonLink(grid, GOVERNMENT_BODY_RANKING, VaadinIcons.BUILDING_O,                COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW, GOVERNMENT_BODY_RANKING_DESCRIPTION);        createButtonLink(grid, GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID,                GOVERNMENT_BODIES_DESCRIPTION);        createButtonLink(grid, PARLIAMENT_RANKING_LINK_TEXT, VaadinIcons.INSTITUTION,                COMMAND_PARLIAMENT_RANKING_OVERVIEW, PARLIAMENT_RANKING_DESCRIPTION);
         createButtonLink(grid, COMMITTEE_RANKING_LINK_TEXT, VaadinIcons.GROUP, COMMAND_COMMITTEE_RANKING_OVERVIEW,
                 COMMITTEE_RANKING_DESCRIPTION);
         createButtonLink(grid, COMMITTEES_LINK_TEXT, VaadinIcons.GROUP,
@@ -155,7 +156,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
         createButtonLink(grid, PARTY_RANKING_LINK_TEXT, VaadinIcons.USERS, COMMAND_PARTY_RANKING_OVERVIEW,
                 PARTY_RANKING_DESCRIPTION);
         createButtonLink(grid, PARTIES_LINK_TEXT, VaadinIcons.USERS,
-            COMMAND_PARTIES_LINK,
+        	PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_DATAGRID,
             PARTIES_DESCRIPTION);
         createButtonLink(grid, POLITICIAN_RANKING_LINK_TEXT, VaadinIcons.USER, POLITICIAN_RANKING_COMMAND_DATAGRID,
                 POLITICIAN_RANKING_DESCRIPTION);
