@@ -15,6 +15,11 @@ import com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode.
 @Category(IntegrationTest.class)
 public final class UserGovernmentBodyRankingTest extends AbstractUITest implements PageCommandUserConstants {
 
+    /**
+     * Verify government body ranking data grid page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyRankingDataGridPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID);
@@ -24,24 +29,39 @@ public final class UserGovernmentBodyRankingTest extends AbstractUITest implemen
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID);
     }
 
+    /**
+     * Verify government body ranking overview page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyRankingOverviewPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
         pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.RANKING_HEADER,
         GovernmentBodyDescriptionConstants.RANKING_SUBTITLE,
-        GovernmentBodyDescriptionConstants.RANKING_DESC);        
+        GovernmentBodyDescriptionConstants.RANKING_DESC);
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
     }
 
+    /**
+     * Verify government body ranking headcount page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyRankingHeadcountPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
         pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.HEADCOUNT_HEADER,
         GovernmentBodyDescriptionConstants.HEADCOUNT_SUBTITLE,
-        GovernmentBodyDescriptionConstants.HEADCOUNT_DESC);        
+        GovernmentBodyDescriptionConstants.HEADCOUNT_DESC);
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
     }
 
+    /**
+     * Verify government body income page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyIncomePage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
@@ -51,6 +71,11 @@ public final class UserGovernmentBodyRankingTest extends AbstractUITest implemen
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
     }
 
+    /**
+     * Verify government body expenditure page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyExpenditurePage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
@@ -60,6 +85,11 @@ public final class UserGovernmentBodyRankingTest extends AbstractUITest implemen
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
     }
 
+    /**
+     * Verify government body ranking page visit history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyRankingPageVisitHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
@@ -69,6 +99,11 @@ public final class UserGovernmentBodyRankingTest extends AbstractUITest implemen
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 
+    /**
+     * Verify government body command overview page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyCommandOverviewPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_BODY_COMMAN_OVERVIEW);

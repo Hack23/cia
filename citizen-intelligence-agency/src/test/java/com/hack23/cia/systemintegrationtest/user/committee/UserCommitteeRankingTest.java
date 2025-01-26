@@ -15,6 +15,11 @@ import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.Comm
 @Category(IntegrationTest.class)
 public final class UserCommitteeRankingTest extends AbstractUITest implements PageCommandUserConstants {
 
+    /**
+     * Verify committee ranking data grid page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyCommitteeRankingDataGridPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandCommitteeRankingConstants.COMMAND_COMMITTEE_RANKING_DATAGRID);
@@ -24,6 +29,11 @@ public final class UserCommitteeRankingTest extends AbstractUITest implements Pa
         pageVisit.validatePage(PageCommandCommitteeRankingConstants.COMMAND_COMMITTEE_RANKING_DATAGRID);
     }
 
+    /**
+     * Verify committee ranking overview page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyCommitteeRankingOverviewPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandCommitteeRankingConstants.COMMAND_COMMITTEE_RANKING_OVERVIEW);
@@ -33,6 +43,11 @@ public final class UserCommitteeRankingTest extends AbstractUITest implements Pa
         pageVisit.validatePage(PageCommandCommitteeRankingConstants.COMMAND_COMMITTEE_RANKING_OVERVIEW);
     }
 
+    /**
+     * Verify all committees by headcount page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyAllCommitteesByHeadcountPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandCommitteeRankingConstants.COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
@@ -42,6 +57,11 @@ public final class UserCommitteeRankingTest extends AbstractUITest implements Pa
         pageVisit.validatePage(PageCommandCommitteeRankingConstants.COMMAND_ALL_COMMITTEES_BY_HEADCOUNT);
     }
 
+    /**
+     * Verify current committees by headcount page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyCurrentCommitteesByHeadcountPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandCommitteeRankingConstants.COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT);
@@ -51,6 +71,11 @@ public final class UserCommitteeRankingTest extends AbstractUITest implements Pa
         pageVisit.validatePage(PageCommandCommitteeRankingConstants.COMMAND_CURRENT_COMMITTEES_BY_HEADCOUNT);
     }
 
+    /**
+     * Verify committee ranking command page visit history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyCommitteeRankingCommandPageVisitHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandCommitteeRankingConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY);
@@ -60,6 +85,11 @@ public final class UserCommitteeRankingTest extends AbstractUITest implements Pa
         pageVisit.validatePage(PageCommandCommitteeRankingConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 
+    /**
+     * Verify charts current committees page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyChartsCurrentCommitteesPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandCommitteeRankingConstants.COMMAND_CHARTS_CURRENT_COMMITTEES);
@@ -69,6 +99,11 @@ public final class UserCommitteeRankingTest extends AbstractUITest implements Pa
         pageVisit.validatePage(PageCommandCommitteeRankingConstants.COMMAND_CHARTS_CURRENT_COMMITTEES);
     }
 
+    /**
+     * Verify committees link page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyCommitteesLinkPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandCommitteeRankingConstants.COMMAND_COMMITTEES_LINK);
