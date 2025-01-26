@@ -19,6 +19,8 @@
 package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
 import java.util.Optional;
+import java.util.Date;
+import javax.persistence.metamodel.SingularAttribute;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;

@@ -124,10 +124,10 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 
-		RowUtil.createRowComponent(grid, createChangePasswordButton(), "Change password");
-		RowUtil.createRowComponent(grid, createEnableGoogleAuthButton(), "Enable MFA using google authenticator");
-		RowUtil.createRowComponent(grid, createDisableGoogleAuthButton(), "Disable MFA using google authenticator");
-		RowUtil.createRowComponent(grid, createDeleteAccountButton(), "Delete Account");
+		RowUtil.createRowComponent(grid, createChangePasswordButton(), UserHomeViewConstants.LABEL_CHANGE_PASSWORD);
+        RowUtil.createRowComponent(grid, createEnableGoogleAuthButton(), UserHomeViewConstants.LABEL_ENABLE_MFA);
+        RowUtil.createRowComponent(grid, createDisableGoogleAuthButton(), UserHomeViewConstants.LABEL_DISABLE_MFA);
+        RowUtil.createRowComponent(grid, createDeleteAccountButton(), UserHomeViewConstants.LABEL_DELETE_ACCOUNT);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);
