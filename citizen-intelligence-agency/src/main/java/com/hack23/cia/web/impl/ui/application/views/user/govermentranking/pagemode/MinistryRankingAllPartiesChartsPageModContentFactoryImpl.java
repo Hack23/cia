@@ -69,14 +69,17 @@ public final class MinistryRankingAllPartiesChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Rankings", "All Parties", "Visual representation of all parties and their total days served.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+            MinistryRankingViewConstants.ALL_PARTIES_TITLE,
+            MinistryRankingViewConstants.ALL_PARTIES_DESC);
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
 		chartDataManager.createChartPanel(chartLayout,
 				dataSeriesFactory.createChartTimeSeriesTotalDaysServedGovernmentByParty(),
-				"All Parties, total days served");
+				MinistryRankingViewConstants.CHART_LABEL_ALL_PARTIES);
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);

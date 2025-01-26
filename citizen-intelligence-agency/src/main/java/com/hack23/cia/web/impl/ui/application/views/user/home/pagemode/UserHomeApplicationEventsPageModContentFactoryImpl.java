@@ -63,9 +63,6 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "hjid");
 
-	/** The Constant USER_EVENTS. */
-	private static final String USER_EVENTS = "User Events";
-
 	/** The user home menu item factory. */
 	@Autowired
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
@@ -88,7 +85,10 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 		if (userAccount.isPresent()) {
 
 			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
-			CardInfoRowUtil.createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::User Events",USER_EVENTS,"All past user events");
+			CardInfoRowUtil.createPageHeader(panel, panelContent,
+                UserHomeViewConstants.TITLE_PREFIX + UserHomeViewConstants.USER_EVENTS_TITLE,
+                UserHomeViewConstants.USER_EVENTS_TITLE,
+                UserHomeViewConstants.USER_EVENTS_DESC);
 
 			final DataContainer<ApplicationActionEvent, Long> eventDataContainer = getApplicationManager()
 					.getDataContainer(ApplicationActionEvent.class);

@@ -55,7 +55,10 @@ public final class MinistryRankingPageVisitHistoryPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Rankings", "Page Visit History", "Tracks and visualizes the history of page visits for ministry rankings.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+            MinistryRankingViewConstants.PAGE_HISTORY_TITLE,
+            MinistryRankingViewConstants.PAGE_HISTORY_DESC);
 
 		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 

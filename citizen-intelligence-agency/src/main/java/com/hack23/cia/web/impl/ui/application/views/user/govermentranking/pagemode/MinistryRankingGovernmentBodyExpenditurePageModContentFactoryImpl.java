@@ -60,7 +60,10 @@ public final class MinistryRankingGovernmentBodyExpenditurePageModContentFactory
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Bodies Expenditure", "Government Body Expenditure", "Provides detailed expenditure data for government bodies under ministries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+			MinistryRankingViewConstants.GOV_BODY_EXP_TITLE,
+			MinistryRankingViewConstants.GOV_BODY_EXP_SUBTITLE,
+			MinistryRankingViewConstants.GOV_BODY_EXP_DESC);
 
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyExpenditureSummaryChart(panelContent);

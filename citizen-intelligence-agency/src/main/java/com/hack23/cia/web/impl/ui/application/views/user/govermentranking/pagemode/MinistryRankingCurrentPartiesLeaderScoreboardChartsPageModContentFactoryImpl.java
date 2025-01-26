@@ -91,8 +91,10 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Rankings", "Leader Scoreboard",
-				"Visual representation of ministry leaders and their performance.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+            MinistryRankingViewConstants.LEADER_SCOREBOARD_TITLE,
+            MinistryRankingViewConstants.LEADER_SCOREBOARD_DESC);
 
 		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);
 		row.setSizeFull();
@@ -172,7 +174,6 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	@Override
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());
-	}
+				&& parameters.contains(ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());	}
 
 }

@@ -43,50 +43,50 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Service
 public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl
-		extends AbstractMinistryRankingPageModContentFactoryImpl {
+        extends AbstractMinistryRankingPageModContentFactoryImpl {
 
-	/** The ministry ghant chart manager. */
-	@Autowired
-	private MinistryGhantChartManager ministryGhantChartManager;
+    /** The ministry ghant chart manager. */
+    @Autowired
+    private MinistryGhantChartManager ministryGhantChartManager;
 
-	/**
-	 * Instantiates a new ministry ranking all roles charts page mod content
-	 * factory impl.
-	 */
-	public MinistryRankingAllRolesChartsPageModContentFactoryImpl() {
-		super();
-	}
+    /**
+     * Instantiates a new ministry ranking all roles charts page mod content
+     * factory impl.
+     */
+    public MinistryRankingAllRolesChartsPageModContentFactoryImpl() {
+        super();
+    }
 
-	@Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
-	@Override
-	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-		final VerticalLayout panelContent = createPanelContent();
+    @Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
+    @Override
+    public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+        final VerticalLayout panelContent = createPanelContent();
 
-		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
+        getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
 
-		final String pageId = getPageId(parameters);
+        final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Rankings", "All Roles", "Visual representation of all government roles.");
+        CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+            MinistryRankingViewConstants.ALL_ROLES_TITLE,
+            MinistryRankingViewConstants.ALL_ROLES_DESC);
 
-		final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = getApplicationManager()
-				.getDataContainer(ViewRiksdagenGovermentRoleMember.class);
+        final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = 
+            getApplicationManager().getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
-		final List<ViewRiksdagenGovermentRoleMember> allMembers = govermentRoleMemberDataContainer.getAll();
+        final List<ViewRiksdagenGovermentRoleMember> allMembers = govermentRoleMemberDataContainer.getAll();
 
-		ministryGhantChartManager.createRoleGhant(panelContent, allMembers);
+        ministryGhantChartManager.createRoleGhant(panelContent, allMembers);
 
+        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
+                NAME, parameters, pageId);
 
-		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,
-				NAME, parameters, pageId);
+        return panelContent;
+    }
 
-		return panelContent;
-
-	}
-
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.ALL_GOVERNMENT_ROLE_CHART.toString());
-	}
-
+    @Override
+    public boolean matches(final String page, final String parameters) {
+        return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
+                && parameters.contains(ChartIndicators.ALL_GOVERNMENT_ROLE_CHART.toString());
+    }
 }

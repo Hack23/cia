@@ -60,8 +60,10 @@ public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl exte
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Bodies", "Government Body Headcount", "Provides detailed headcount data for government bodies under ministries.");
-
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+			MinistryRankingViewConstants.GOV_BODIES_TITLE,
+			MinistryRankingViewConstants.GOV_BODIES_HEADCOUNT_TITLE,
+			MinistryRankingViewConstants.GOV_BODIES_HEADCOUNT_DESC);
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent);
 

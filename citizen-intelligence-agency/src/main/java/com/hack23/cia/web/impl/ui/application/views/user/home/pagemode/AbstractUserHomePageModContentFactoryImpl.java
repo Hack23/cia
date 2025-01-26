@@ -28,30 +28,30 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasi
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
- * The Class AbstractPoliticianPageModContentFactoryImpl.
+ * The Class AbstractUserHomePageModContentFactoryImpl.
  */
 abstract class AbstractUserHomePageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
-	/** The Constant NAME. */
-	public static final String NAME = UserViews.USERHOME_VIEW_NAME;
+    /** The Constant NAME. */
+    public static final String NAME = UserViews.USERHOME_VIEW_NAME;
 
-	/**
-	 * Instantiates a new abstract user home page mod content factory impl.
-	 */
-	AbstractUserHomePageModContentFactoryImpl() {
-		super();
-	}
+    /**
+     * Instantiates a new abstract user home page mod content factory impl.
+     */
+    AbstractUserHomePageModContentFactoryImpl() {
+        super();
+    }
 
-	/**
-	 * Gets the active user account.
-	 *
-	 * @return the active user account
-	 */
-	protected final Optional<UserAccount> getActiveUserAccount() {
-		final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
-				.getDataContainer(UserAccount.class);
-		return dataContainer
-				.getAllBy(UserAccount_.userId, UserContextUtil.getUserIdFromSecurityContext()).stream().findFirst();
-	}
+    /**
+     * Gets the active user account.
+     *
+     * @return the active user account
+     */
+    protected final Optional<UserAccount> getActiveUserAccount() {
+        final DataContainer<UserAccount, Long> dataContainer = getApplicationManager()
+                .getDataContainer(UserAccount.class);
+        return dataContainer
+                .getAllBy(UserAccount_.userId, UserContextUtil.getUserIdFromSecurityContext()).stream().findFirst();
+    }
 
 }

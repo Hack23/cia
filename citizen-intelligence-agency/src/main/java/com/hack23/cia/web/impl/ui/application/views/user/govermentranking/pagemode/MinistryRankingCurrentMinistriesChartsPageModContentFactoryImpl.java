@@ -66,7 +66,10 @@ public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryIm
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Rankings", "Current Ministries", "Visual representation of current ministries and their total headcount.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+			MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+			MinistryRankingViewConstants.CURRENT_MINISTRIES_TITLE,
+			MinistryRankingViewConstants.CURRENT_MINISTRIES_DESC);
 
 		final String pageId = getPageId(parameters);
 
@@ -74,8 +77,9 @@ public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryIm
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createMinistryChartTimeSeriesCurrent(),
-				"Current Ministies, by headcount");
+		chartDataManager.createChartPanel(chartLayout,
+            dataSeriesFactory.createMinistryChartTimeSeriesCurrent(),
+            MinistryRankingViewConstants.CHART_LABEL_CURRENT_MINISTRIES);
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);
 

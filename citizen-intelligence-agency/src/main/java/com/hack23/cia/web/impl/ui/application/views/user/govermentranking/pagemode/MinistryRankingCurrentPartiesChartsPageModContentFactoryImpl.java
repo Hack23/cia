@@ -68,12 +68,16 @@ public final class MinistryRankingCurrentPartiesChartsPageModContentFactoryImpl 
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Rankings", "Current Parties", "Visual representation of current parties and their headcount.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+            MinistryRankingViewConstants.CURRENT_PARTIES_TITLE, 
+            MinistryRankingViewConstants.CURRENT_PARTIES_DESC);
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 
 		chartDataManager.createChartPanel(chartLayout,
-				dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(), "Current Parties, headcount");
+				dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),
+				MinistryRankingViewConstants.CHART_LABEL_CURRENT_PARTIES);
 
 		chartLayout.setSizeFull();
 		panelContent.addComponent(chartLayout);

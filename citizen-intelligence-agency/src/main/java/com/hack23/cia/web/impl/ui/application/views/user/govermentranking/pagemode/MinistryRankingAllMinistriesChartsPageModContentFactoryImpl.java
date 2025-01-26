@@ -69,12 +69,17 @@ public final class MinistryRankingAllMinistriesChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Rankings", "All Ministries", "Visual representation of all ministries and their total headcount.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+            MinistryRankingViewConstants.ALL_MINISTRIES_TITLE,
+            MinistryRankingViewConstants.ALL_MINISTRIES_DESC);
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout, dataSeriesFactory.createMinistryChartTimeSeriesAll(), "All");
+		chartDataManager.createChartPanel(chartLayout, 
+            dataSeriesFactory.createMinistryChartTimeSeriesAll(), 
+            MinistryRankingViewConstants.CHART_LABEL_ALL_MINISTRIES);
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);
