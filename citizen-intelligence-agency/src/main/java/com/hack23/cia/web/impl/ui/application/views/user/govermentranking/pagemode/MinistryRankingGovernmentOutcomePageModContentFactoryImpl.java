@@ -58,17 +58,16 @@ public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl ext
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			    "Ministry Ranking - Government Outcomes",
-			    "Evaluating Results",
-			    "Evaluating ministry influence on governance results.");
+			    MinistryRankingViewConstants.GOV_OUTCOMES_TITLE,
+			    MinistryRankingViewConstants.GOV_OUTCOMES_SUBTITLE,
+			    MinistryRankingViewConstants.GOV_OUTCOMES_DESC);
 
 
 		final String pageId = getPageId(parameters);
 
 		governmentOutcomeChartDataManager.createGovernmentOutcomeChart(panelContent);
-
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,
-				parameters, pageId);
+                parameters, pageId);
 
 		return panelContent;
 
@@ -78,5 +77,4 @@ public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl ext
 	public boolean matches(final String page, final String parameters) {
 		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.GOVERNMENT_OUTCOME.toString());
 	}
-
 }
