@@ -27,12 +27,12 @@ public interface PageCommandParliamentRankingConstants {
     /** The command document activity. */
     PageModeMenuCommand COMMAND_DOCUMENT_ACTIVITY = new PageModeMenuCommand(
                      UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.DOCUMENTACTIVITY.toString());
+                     PageMode.CHARTS, ChartIndicators.DOCUMENTACTIVITYBYTYPE.toString());
 
     /** The command decision activity. */
     PageModeMenuCommand COMMAND_DECISION_ACTIVITY = new PageModeMenuCommand(
                      UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.DECISIONACTIVITY.toString());
+                     PageMode.CHARTS, ChartIndicators.DECISIONACTIVITYBYTYPE.toString());
 
     /** The command charts decision flow. */
     PageModeMenuCommand COMMAND_CHARTS_DECISION_FLOW = new PageModeMenuCommand(
