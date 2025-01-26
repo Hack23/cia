@@ -34,7 +34,7 @@ public interface UserHomeViewConstants {
     // Profile Section Labels
     String PROFILE_SECTION_TITLE = "Profile Details";
     String STATUS_SECTION_TITLE = "Status & Statistics";
-    
+
     // Profile Field Labels
     String USERNAME_LABEL = "Username:";
     String EMAIL_LABEL = "Email:";

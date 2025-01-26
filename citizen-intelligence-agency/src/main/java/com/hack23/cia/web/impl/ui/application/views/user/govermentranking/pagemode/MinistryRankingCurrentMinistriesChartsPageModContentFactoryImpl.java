@@ -66,7 +66,7 @@ public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryIm
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 			MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
 			MinistryRankingViewConstants.CURRENT_MINISTRIES_TITLE,
 			MinistryRankingViewConstants.CURRENT_MINISTRIES_DESC);

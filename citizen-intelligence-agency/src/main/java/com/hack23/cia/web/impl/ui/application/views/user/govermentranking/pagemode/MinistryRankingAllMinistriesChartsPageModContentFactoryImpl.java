@@ -69,7 +69,7 @@ public final class MinistryRankingAllMinistriesChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
             MinistryRankingViewConstants.ALL_MINISTRIES_TITLE,
             MinistryRankingViewConstants.ALL_MINISTRIES_DESC);
@@ -77,8 +77,8 @@ public final class MinistryRankingAllMinistriesChartsPageModContentFactoryImpl
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout, 
-            dataSeriesFactory.createMinistryChartTimeSeriesAll(), 
+		chartDataManager.createChartPanel(chartLayout,
+            dataSeriesFactory.createMinistryChartTimeSeriesAll(),
             MinistryRankingViewConstants.CHART_LABEL_ALL_MINISTRIES);
 
 		panelContent.addComponent(chartLayout);

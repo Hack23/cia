@@ -9,7 +9,7 @@ public interface MinistryRankingViewConstants {
     String TITLE_MINISTRY_RANKINGS = "Ministry Rankings";
 
     // Overview Page
-    String OVERVIEW_TITLE = "Ranking Overview";  
+    String OVERVIEW_TITLE = "Ranking Overview";
     String OVERVIEW_DESC = "Evaluate and compare the performance of various ministries.";
 
     // Current Ministries Page

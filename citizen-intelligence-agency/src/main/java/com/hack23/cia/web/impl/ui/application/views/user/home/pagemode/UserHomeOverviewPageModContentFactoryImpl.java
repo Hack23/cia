@@ -122,33 +122,33 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 			// Display key fields from user account in Profile Details
 			final UserAccount account = userAccount.get();
 			profileLayout.addComponent(CardInfoRowUtil.createInfoRow(
-                UserHomeViewConstants.USERNAME_LABEL, 
-                account.getUsername(), 
-                VaadinIcons.USER, 
+                UserHomeViewConstants.USERNAME_LABEL,
+                account.getUsername(),
+                VaadinIcons.USER,
                 UserHomeViewConstants.USERNAME_DESC));
             profileLayout.addComponent(CardInfoRowUtil.createInfoRow(
-                UserHomeViewConstants.EMAIL_LABEL, 
-                account.getEmail(), 
-                VaadinIcons.ENVELOPE_O, 
+                UserHomeViewConstants.EMAIL_LABEL,
+                account.getEmail(),
+                VaadinIcons.ENVELOPE_O,
                 UserHomeViewConstants.EMAIL_DESC));
             profileLayout.addComponent(CardInfoRowUtil.createInfoRow(
-                UserHomeViewConstants.COUNTRY_LABEL, 
-                account.getCountry(), 
-                VaadinIcons.GLOBE, 
+                UserHomeViewConstants.COUNTRY_LABEL,
+                account.getCountry(),
+                VaadinIcons.GLOBE,
                 UserHomeViewConstants.COUNTRY_DESC));
             profileLayout.addComponent(CardInfoRowUtil.createInfoRow(
-                UserHomeViewConstants.CREATED_DATE_LABEL, 
-                String.valueOf(account.getCreatedDate()), 
-                VaadinIcons.CALENDAR, 
+                UserHomeViewConstants.CREATED_DATE_LABEL,
+                String.valueOf(account.getCreatedDate()),
+                VaadinIcons.CALENDAR,
                 UserHomeViewConstants.CREATED_DATE_DESC));
 
 			// Right column: Status & Statistics
 			final VerticalLayout statusLayout = CardInfoRowUtil.createSectionLayout(UserHomeViewConstants.STATUS_SECTION_TITLE);
-            
+
             statusLayout.addComponent(CardInfoRowUtil.createInfoRow(
-                UserHomeViewConstants.USER_TYPE_LABEL, 
-                account.getUserType().toString(), 
-                VaadinIcons.INFO_CIRCLE, 
+                UserHomeViewConstants.USER_TYPE_LABEL,
+                account.getUserType().toString(),
+                VaadinIcons.INFO_CIRCLE,
                 UserHomeViewConstants.USER_TYPE_DESC));
 			statusLayout.addComponent(CardInfoRowUtil.createInfoRow("User Role:", account.getUserRole().toString(), VaadinIcons.USER_CHECK, "Your assigned role in the system"));
 			statusLayout.addComponent(CardInfoRowUtil.createInfoRow("Email Status:", account.getUserEmailStatus().toString(), VaadinIcons.ENVELOPE, "Status of email verification"));

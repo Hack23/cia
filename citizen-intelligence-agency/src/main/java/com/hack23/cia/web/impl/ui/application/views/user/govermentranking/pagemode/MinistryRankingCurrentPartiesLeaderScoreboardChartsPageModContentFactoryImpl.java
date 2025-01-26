@@ -91,7 +91,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
             MinistryRankingViewConstants.LEADER_SCOREBOARD_TITLE,
             MinistryRankingViewConstants.LEADER_SCOREBOARD_DESC);

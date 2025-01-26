@@ -27,7 +27,7 @@ public final class ParliamentRankingMenuItemFactoryImpl extends AbstractMenuItem
     @Override
     public void createParliamentRankingTopics(final MenuItem parliamentMenuItem) {
         parliamentMenuItem.addItem(RANKING_OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
-        		PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_OVERVIEW);
+        		PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_RANKING_OVERVIEW);
         parliamentMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
                 PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }

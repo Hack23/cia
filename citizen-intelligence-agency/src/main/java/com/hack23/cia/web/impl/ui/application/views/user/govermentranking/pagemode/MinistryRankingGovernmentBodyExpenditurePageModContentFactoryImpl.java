@@ -60,7 +60,7 @@ public final class MinistryRankingGovernmentBodyExpenditurePageModContentFactory
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
 			MinistryRankingViewConstants.GOV_BODY_EXP_TITLE,
 			MinistryRankingViewConstants.GOV_BODY_EXP_SUBTITLE,
 			MinistryRankingViewConstants.GOV_BODY_EXP_DESC);

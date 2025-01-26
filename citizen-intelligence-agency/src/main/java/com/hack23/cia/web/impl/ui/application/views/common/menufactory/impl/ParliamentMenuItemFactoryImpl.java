@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -67,19 +66,19 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		createButtonLink(grid, RISK_SUMMARY, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_RISK_SUMMARY, RISK_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid, RULE_VIOLATIONS, VaadinIcons.INSTITUTION, COMMAND_RULE_VIOLATION,
+		createButtonLink(grid, RULE_VIOLATIONS, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_RULE_VIOLATION,
 				RULE_VIOLATIONS_DESCRIPTION);
 
 		createButtonLink(grid, DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,
-			PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY, DOCUMENT_ACTIVITY_DESCRIPTION);
-		createButtonLink(grid, DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION, COMMAND_DECISION_ACTIVITY,
+				PageCommandParliamentRankingConstants.COMMAND_DOCUMENT_ACTIVITY, DOCUMENT_ACTIVITY_DESCRIPTION);
+		createButtonLink(grid, DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_DECISION_ACTIVITY,
 				DECISION_ACTIVITY_DESCRIPTION);
 
 		createButtonLink(grid, DECISION_FLOW, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW, DECISION_FLOW_DESCRIPTION);
 
 		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,
-			PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
+				PageCommandParliamentRankingConstants.PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
 
 	}
 
@@ -120,11 +119,11 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		addItem8.setDescription(RULE_VIOLATIONS_DESCRIPTION);
 
 		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,
-			PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY);
+				PageCommandParliamentRankingConstants.COMMAND_DOCUMENT_ACTIVITY);
 		addItem4.setDescription(DOCUMENT_ACTIVITY_DESCRIPTION);
 
 		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,
-				COMMAND_DECISION_ACTIVITY);
+				PageCommandParliamentRankingConstants.COMMAND_DECISION_ACTIVITY);
 		addItem5.setDescription(DECISION_ACTIVITY_DESCRIPTION);
 
 		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,
@@ -132,7 +131,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);
 
 		charts.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,
-			PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
+				PageCommandParliamentRankingConstants.PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
 	}
 
 }

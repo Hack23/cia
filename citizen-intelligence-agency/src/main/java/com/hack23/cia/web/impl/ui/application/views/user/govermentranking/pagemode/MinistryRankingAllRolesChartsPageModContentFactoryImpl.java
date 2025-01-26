@@ -66,12 +66,12 @@ public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl
 
         final String pageId = getPageId(parameters);
 
-        CardInfoRowUtil.createPageHeader(panel, panelContent, 
+        CardInfoRowUtil.createPageHeader(panel, panelContent,
             MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
             MinistryRankingViewConstants.ALL_ROLES_TITLE,
             MinistryRankingViewConstants.ALL_ROLES_DESC);
 
-        final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = 
+        final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer =
             getApplicationManager().getDataContainer(ViewRiksdagenGovermentRoleMember.class);
 
         final List<ViewRiksdagenGovermentRoleMember> allMembers = govermentRoleMemberDataContainer.getAll();
