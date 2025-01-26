@@ -67,9 +67,6 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "hjid");
 
-	/** The Constant SECURITY_SETTINGS. */
-	private static final String USER_VISITS = "User Visits";
-
 	/** The user home menu item factory. */
 	@Autowired
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
@@ -91,7 +88,10 @@ public final class UserHomeApplicationSessionsPageModContentFactoryImpl
 
 		if (userAccount.isPresent()) {
 			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
-			CardInfoRowUtil.createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::User Visits",USER_VISITS,"All past user visits");
+			CardInfoRowUtil.createPageHeader(panel, panelContent,
+                UserHomeViewConstants.TITLE_PREFIX + UserHomeViewConstants.USER_VISITS_TITLE,
+                UserHomeViewConstants.USER_VISITS_TITLE,
+                UserHomeViewConstants.USER_VISITS_DESC);
 
 			final DataContainer<ApplicationSession, Long> sessionDataContainer = getApplicationManager()
 					.getDataContainer(ApplicationSession.class);

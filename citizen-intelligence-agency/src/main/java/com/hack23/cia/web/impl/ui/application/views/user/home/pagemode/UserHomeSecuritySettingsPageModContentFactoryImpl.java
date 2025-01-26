@@ -56,20 +56,10 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
-	/** The Constant DELETE_ACCOUNT. */
-	private static final String DELETE_ACCOUNT = "Delete Account";
-
+	
 	/** The Constant AS_LIST. */
 	private static final List<String> AS_LIST = Collections.singletonList("userpassword");
-
-	/** The Constant DISABLE_GOOGLE_AUTHENTICATOR. */
-	private static final String DISABLE_GOOGLE_AUTHENTICATOR = "Disable Google Authenticator";
-
-	/** The Constant ENABLE_GOOGLE_AUTHENTICATOR. */
-	private static final String ENABLE_GOOGLE_AUTHENTICATOR = "Enable Google Authenticator";
-
-	/** The Constant SECURITY_SETTINGS. */
-	private static final String SECURITY_SETTINGS = "Security Settings";
+	
 
 	/** The user home menu item factory. */
 	@Autowired
@@ -121,7 +111,10 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		final String pageId = getPageId(parameters);
 
 		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
-		CardInfoRowUtil.createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::Security Settings",SECURITY_SETTINGS,"Manage user security settings");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            UserHomeViewConstants.TITLE_PREFIX + UserHomeViewConstants.SECURITY_SETTINGS_TITLE,
+            UserHomeViewConstants.SECURITY_SETTINGS_TITLE,
+            UserHomeViewConstants.SECURITY_SETTINGS_DESC);
 
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
@@ -166,7 +159,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		request.setUserpassword("");
 		final ClickListener listener = new DisableGoogleAuthenticatorCredentialClickListener(request);
 		getFormFactory().addRequestInputFormFields(formContent, request,
-				DisableGoogleAuthenticatorCredentialRequest.class, AS_LIST, DISABLE_GOOGLE_AUTHENTICATOR, listener);
+				DisableGoogleAuthenticatorCredentialRequest.class, AS_LIST, UserHomeViewConstants.BUTTON_DISABLE_GOOGLE_AUTH, listener);
 
 		return formLayout;
 	}
@@ -193,7 +186,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		request.setUserpassword("");
 		final ClickListener listener = new SetGoogleAuthenticatorCredentialClickListener(request);
 		getFormFactory().addRequestInputFormFields(formContent, request, SetGoogleAuthenticatorCredentialRequest.class,
-				AS_LIST, ENABLE_GOOGLE_AUTHENTICATOR, listener);
+				AS_LIST, UserHomeViewConstants.BUTTON_ENABLE_GOOGLE_AUTH, listener);
 
 		return formLayout;
 	}
@@ -221,7 +214,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 		request.setUserpassword("");
 		final ClickListener listener = new DeleteAccountClickListener(request);
 		getFormFactory().addRequestInputFormFields(formContent, request,
-				DeleteAccountRequest.class, AS_LIST, DELETE_ACCOUNT, listener);
+				DeleteAccountRequest.class, AS_LIST, UserHomeViewConstants.BUTTON_DELETE_ACCOUNT, listener);
 
 		return formLayout;
 	}

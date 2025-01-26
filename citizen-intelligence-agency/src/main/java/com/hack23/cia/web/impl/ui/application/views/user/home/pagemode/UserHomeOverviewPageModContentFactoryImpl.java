@@ -50,12 +50,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
-	/** The Constant LOGOUT. */
-	private static final String LOGOUT = "Logout";
-
-	/** The Constant OVERVIEW. */
-	private static final String OVERVIEW = "Overview";
-
 	/** The user home menu item factory. */
 	@Autowired
 	private UserHomeMenuItemFactory userHomeMenuItemFactory;
@@ -85,13 +79,14 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 		final Optional<UserAccount> userAccount = getActiveUserAccount();
 
 		if (userAccount.isPresent()) {
-
 			userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 
-			CardInfoRowUtil.createPageHeader(panel, panelContent,"CitizenIntelligence Agency::UserHome::Overview",OVERVIEW,"Manage user and security settings");
+			CardInfoRowUtil.createPageHeader(panel, panelContent,
+				UserHomeViewConstants.TITLE_PREFIX + UserHomeViewConstants.OVERVIEW_TITLE,
+				UserHomeViewConstants.OVERVIEW_TITLE,
+				UserHomeViewConstants.OVERVIEW_DESC);
 
-			// Logout button
-			final Button logoutButton = new Button(LOGOUT, VaadinIcons.SIGN_OUT);
+			final Button logoutButton = new Button(UserHomeViewConstants.BUTTON_LOGOUT, VaadinIcons.SIGN_OUT);
 			final LogoutRequest logoutRequest = new LogoutRequest();
 			logoutRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 			logoutButton.addClickListener(new LogoutClickListener(logoutRequest));
