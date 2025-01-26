@@ -23,14 +23,4 @@ public abstract class AbstractAdminTest extends AbstractUITest {
         pageVisit.loginAsAdmin();
     }
 
-    /**
-     * Verify view content.
-     *
-     * @param contentToVerify the content to verify
-     */
-    protected void verifyViewContent(final String... contentToVerify) {
-        for (final String content : contentToVerify) {
-            pageVisit.verifyPageContent(content);
-        }
-    }
 }

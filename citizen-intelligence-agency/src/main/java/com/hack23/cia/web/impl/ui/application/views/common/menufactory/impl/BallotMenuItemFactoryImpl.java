@@ -37,7 +37,7 @@ import com.vaadin.ui.VerticalLayout;
  * overview pages with relevant descriptions and icons.
  */
 @Service
-public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements BallotMenuItemFactory,PageCommandBallotConstants {
+public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements BallotMenuItemFactory {
 
 	/** The Constant CHARTS_TEXT. */
 	private static final String CHARTS_TEXT = "Charts";

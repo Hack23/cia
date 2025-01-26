@@ -23,11 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
@@ -44,52 +40,40 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
-	/**
-	 * Instantiates a new user home menu item factory impl.
-	 */
-	public UserHomeMenuItemFactoryImpl() {
-		super();
-	}
+    @Override 
+    public void createOverviewPage(final VerticalLayout overviewLayout) {
+        final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 
-	@Override
-	public void createOverviewPage(final VerticalLayout overviewLayout) {
-		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
+        createButtonLink(grid, SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
+                COMMAND_USERHOME_SECURITY_SETTINGS,
+                SECURITY_SETTINGS_DESCRIPTION);
 
-		createButtonLink(grid, SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),
-						""),
-				SECURITY_SETTINGS_DESCRIPTION);
+        createButtonLink(grid, USER_VISITS, VaadinIcons.EYE,
+                COMMAND_USERHOME_USER_VISITS,
+                USER_VISITS_DESCRIPTION);
 
-		createButtonLink(grid, USER_VISITS, VaadinIcons.EYE,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString()),
-				USER_VISITS_DESCRIPTION);
+        createButtonLink(grid, USER_EVENTS, VaadinIcons.CALENDAR,
+                COMMAND_USERHOME_USER_EVENTS,
+                USER_EVENTS_DESCRIPTION);
+    }
 
-		createButtonLink(grid, USER_EVENTS, VaadinIcons.CALENDAR,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString()),
-				USER_EVENTS_DESCRIPTION);
+    @Override
+    public void createUserHomeMenuBar(final MenuBar menuBar, final String pageId) {
+        initApplicationMenuBar(menuBar);
 
-	}
+        applicationMenuItemFactory.addRankingMenu(menuBar);
+        final MenuItem accountItem = menuBar.addItem(USERACCOUNT, VaadinIcons.USER, null);
 
-	@Override
-	public void createUserHomeMenuBar(final MenuBar menuBar, final String pageId) {
-		initApplicationMenuBar(menuBar);
+        accountItem.addItem(USER_HOME_OVERVIEW_TEXT, VaadinIcons.USER,
+                COMMAND_USERHOME_OVERVIEW);
 
-		applicationMenuItemFactory.addRankingMenu(menuBar);
-		final MenuItem accountItem = menuBar.addItem(USERACCOUNT, VaadinIcons.USER, null);
+        accountItem.addItem(SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
+                COMMAND_USERHOME_SECURITY_SETTINGS);
 
-		accountItem.addItem(USER_HOME_OVERVIEW_TEXT, VaadinIcons.USER,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, PageMode.OVERVIEW, pageId));
+        accountItem.addItem(USER_VISITS, VaadinIcons.EYE,
+                COMMAND_USERHOME_USER_VISITS); 
 
-		accountItem.addItem(SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.SECURITY_SETTINGS.toString(),
-						pageId));
-
-		accountItem.addItem(USER_VISITS, VaadinIcons.EYE,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_VISITS.toString(), pageId));
-
-		accountItem.addItem(USER_EVENTS, VaadinIcons.CALENDAR,
-				new PageModeMenuCommand(UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString(), pageId));
-
-	}
-
+        accountItem.addItem(USER_EVENTS, VaadinIcons.CALENDAR,
+                COMMAND_USERHOME_USER_EVENTS);
+    }
 }

@@ -57,7 +57,4 @@ public interface PageCommandGovernmentBodyRankingConstants {
             new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
 
-
-    // Remove this line to avoid ambiguity
-    // PageModeMenuCommand COMMAND_PAGEVISITHISTORY = GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY;
 }

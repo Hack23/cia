@@ -762,6 +762,18 @@ public final class UserPageVisit extends Assert {
 	}
 
 	/**
+     * Verify view content.
+     *
+     * @param contentToVerify the content to verify
+     */
+    public void verifyViewContent(final String... contentToVerify) {
+        for (final String content : contentToVerify) {
+            verifyPageContent(content);
+        }
+    }
+
+
+	/**
 	 * Visit main view.
 	 */
 	public void visitMainView() {

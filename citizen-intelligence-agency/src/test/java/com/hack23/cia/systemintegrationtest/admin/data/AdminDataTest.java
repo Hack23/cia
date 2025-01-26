@@ -22,7 +22,7 @@ public final class AdminDataTest extends AbstractAdminTest {
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyDataSummary() throws Exception {
         pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATASUMMARY);
-        verifyViewContent(
+        pageVisit.verifyViewContent(
             AdminViewConstants.ADMIN_DATA_SUMMARY_OVERVIEW,
             AdminViewConstants.DATA_SUMMARY_OVERVIEW
         );
@@ -39,7 +39,7 @@ public final class AdminDataTest extends AbstractAdminTest {
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyDataSummaryAuthor() throws Exception {
         pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AUTHOR_DATASUMMARY);
-        verifyViewContent(
+        pageVisit.verifyViewContent(
             AdminViewConstants.ADMIN_AUTHOR_SUMMARY,
             AdminViewConstants.AUTHOR_OVERVIEW, AdminViewConstants.AUTHOR_DETAILED_SUMMARY
         );
@@ -55,7 +55,7 @@ public final class AdminDataTest extends AbstractAdminTest {
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyApplicationEvents() throws Exception {
         pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS);
-        verifyViewContent(
+        pageVisit.verifyViewContent(
         		AdminViewConstants.ADMIN_APPLICATION_EVENTS, AdminViewConstants.EVENT_DETAILS,
 				AdminViewConstants.EVENT_REVIEW
         );
@@ -70,7 +70,7 @@ public final class AdminDataTest extends AbstractAdminTest {
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyApplicationEventsCharts() throws Exception {
         pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS_CHARTS);
-        verifyViewContent(
+        pageVisit.verifyViewContent(
         		AdminViewConstants.ADMIN_APPLICATION_EVENT_CHARTS, AdminViewConstants.EVENT_ANALYSIS_HEADER, AdminViewConstants.EVENT_ANALYSIS
         );
         pageVisit.validatePage(PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS_CHARTS);
@@ -84,13 +84,13 @@ public final class AdminDataTest extends AbstractAdminTest {
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyApplicationSessions() throws Exception {
         pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION);
-        verifyViewContent(
+        pageVisit.verifyViewContent(
         		 AdminViewConstants.ADMIN_APPLICATION_SESSIONS,
 				 AdminViewConstants.SESSION_DETAILS,
 				 AdminViewConstants.SESSION_OVERVIEW
 		);
         pageVisit.selectFirstGridRow();
-        verifyViewContent(
+        pageVisit.verifyViewContent(
             AdminViewConstants.APPLICATION_SESSION_DETAILS,
             AdminViewConstants.SESSION_TYPE,
             AdminViewConstants.USER_ID,
@@ -107,7 +107,7 @@ public final class AdminDataTest extends AbstractAdminTest {
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifySessionCharts() throws Exception {
         pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_APPLICATION_SESSION_CHARTS);
-        verifyViewContent(
+        pageVisit.verifyViewContent(
             AdminViewConstants.ADMIN_APPLICATION_SESSION_CHARTS,
             AdminViewConstants.SESSION_ANALYSIS
         );

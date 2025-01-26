@@ -37,7 +37,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class ApplicationMenuItemFactoryImpl.
  */
 @Service
-public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements ApplicationMenuItemFactory,PageCommandUserConstants {
+public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements ApplicationMenuItemFactory {
 
     /** The committee ranking menu item factory. */
     @Autowired
