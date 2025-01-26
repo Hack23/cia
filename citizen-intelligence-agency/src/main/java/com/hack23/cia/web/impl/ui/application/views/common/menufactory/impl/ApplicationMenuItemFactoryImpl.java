@@ -120,9 +120,8 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
         		POLITICIAN_RANKING_COMMAND_OVERVIEW);
         politicianRankingMenuItemFactory.createPoliticianRankingTopics(politicianMenuItem);
 
-        final MenuItem documentsMenuItem = rankingsMenuItem.addItem(DOCUMENTS, VaadinIcons.FILE_TABLE,
-                COMMAND_DOCUMENTS);
-        documentsMenuItem.addItem("List all", VaadinIcons.FILE_TABLE, COMMAND_DOCUMENTS);
+        final MenuItem documentsMenuItem = rankingsMenuItem.addItem(DOCUMENTS, VaadinIcons.FILE_TABLE, null);
+        documentsMenuItem.addItem("List all", VaadinIcons.FILE_TABLE, COMMAND_DOCUMENTS_OVERVIEW);
         documentsMenuItem.addItem(SEARCH_DOCUMENTS, VaadinIcons.SEARCH, COMMAND_SEARCH_DOCUMENT);
     }
 
@@ -166,6 +165,6 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
         createButtonLink(grid, SEARCH_DOCUMENTS, VaadinIcons.SEARCH,
         		PageCommandMainViewConstants.COMMAND_SEARCH_DOCUMENT,
             SEARCH_DOCUMENTS_DESCRIPTION);
-        createButtonLink(grid, DOCUMENTS, VaadinIcons.FILE_TABLE, COMMAND_DOCUMENTS, DOCUMENTS_DESCRIPTION);
+        createButtonLink(grid, DOCUMENTS, VaadinIcons.FILE_TABLE, COMMAND_DOCUMENTS_OVERVIEW, DOCUMENTS_DESCRIPTION);
     }
 }

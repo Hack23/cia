@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document.OutputSettings;
 import org.jsoup.safety.Safelist;
@@ -32,9 +31,9 @@ import com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentCont
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DocumentPageMode;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
@@ -110,7 +109,7 @@ public final class DocumentDataPageModContentFactoryImpl extends AbstractDocumen
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, DocumentPageMode.DOCUMENTDATA.toString());
+		return PageCommandDocumentConstants.COMMAND_DOCUMENT_DATA.matches(page, parameters);
 	}
 
 }
