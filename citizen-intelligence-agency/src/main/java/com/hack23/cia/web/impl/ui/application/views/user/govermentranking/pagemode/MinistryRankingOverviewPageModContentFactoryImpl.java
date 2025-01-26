@@ -52,9 +52,9 @@ public final class MinistryRankingOverviewPageModContentFactoryImpl extends Abst
 		final VerticalLayout panelContent = createPanelContent();
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
-            MinistryRankingViewConstants.OVERVIEW_TITLE, 
+            MinistryRankingViewConstants.OVERVIEW_TITLE,
             MinistryRankingViewConstants.OVERVIEW_DESC);
 
 

@@ -28,7 +28,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -37,10 +36,9 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DecisionFlowValueChangeListener;
 import com.hack23.cia.web.widgets.charts.SankeyChart;
 import com.vaadin.ui.ComboBox;
@@ -231,8 +229,6 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
      */
     @Override
     public boolean matches(final String page, final String parameters) {
-        return NAME.equals(page)
-            && StringUtils.contains(parameters, PageMode.CHARTS.toString())
-            && parameters.contains(ChartIndicators.DECISION_FLOW_CHART.toString());
+    	return PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW.matches(page, parameters);
     }
 }

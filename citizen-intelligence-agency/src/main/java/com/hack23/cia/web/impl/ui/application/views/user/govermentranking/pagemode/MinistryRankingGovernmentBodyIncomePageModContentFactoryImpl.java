@@ -60,9 +60,9 @@ public final class MinistryRankingGovernmentBodyIncomePageModContentFactoryImpl 
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             MinistryRankingViewConstants.GOV_BODY_INCOME_TITLE,
-            MinistryRankingViewConstants.GOV_BODY_INCOME_SUBTITLE, 
+            MinistryRankingViewConstants.GOV_BODY_INCOME_SUBTITLE,
             MinistryRankingViewConstants.GOV_BODY_INCOME_DESC);
 
 

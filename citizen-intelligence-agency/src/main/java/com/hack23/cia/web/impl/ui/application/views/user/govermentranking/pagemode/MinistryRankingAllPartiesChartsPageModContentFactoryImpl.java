@@ -69,7 +69,7 @@ public final class MinistryRankingAllPartiesChartsPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
             MinistryRankingViewConstants.ALL_PARTIES_TITLE,
             MinistryRankingViewConstants.ALL_PARTIES_DESC);

@@ -21,11 +21,11 @@ public final class UserParliamentTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyParliamentPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_OVERVIEW);
+        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_RANKING_OVERVIEW);
         pageVisit.verifyViewContent(ParliamentPageTitleConstants.OVERVIEW_TITLE,
             ParliamentPageTitleConstants.OVERVIEW_SUBTITLE,
             ParliamentPageTitleConstants.OVERVIEW_DESC);
-        pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_OVERVIEW);
+        pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_RANKING_OVERVIEW);
     }
 
     /**
@@ -91,11 +91,11 @@ public final class UserParliamentTest extends AbstractUITest {
      */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyParliamentPageVisitHistoryPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.PARLIAMENT_COMMAND_PAGEVISIT_HISTORY);
+        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
         pageVisit.verifyViewContent(ParliamentPageTitleConstants.VISIT_HISTORY_TITLE,
             ParliamentPageTitleConstants.VISIT_HISTORY_SUBTITLE,
             ParliamentPageTitleConstants.VISIT_HISTORY_DESC);
-        pageVisit.validatePage(PageCommandParliamentRankingConstants.PARLIAMENT_COMMAND_PAGEVISIT_HISTORY);
+        pageVisit.validatePage(PageCommandParliamentRankingConstants.PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 
     /**

@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -127,5 +129,11 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	public void menuSelected(final MenuItem selectedItem) {
 		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + pageReference);
 	}
+
+
+	public boolean matches(final String page, final String parameters) {
+		return this.page.equals(page) && StringUtils.contains(parameters, pageReference);
+	}
+
 
 }

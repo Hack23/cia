@@ -55,7 +55,7 @@ public final class MinistryRankingPageVisitHistoryPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
             MinistryRankingViewConstants.PAGE_HISTORY_TITLE,
             MinistryRankingViewConstants.PAGE_HISTORY_DESC);

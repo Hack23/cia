@@ -56,10 +56,10 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends AbstractUserHomePageModContentFactoryImpl {
 
-	
+
 	/** The Constant AS_LIST. */
 	private static final List<String> AS_LIST = Collections.singletonList("userpassword");
-	
+
 
 	/** The user home menu item factory. */
 	@Autowired
