@@ -69,7 +69,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
                 final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
                 createButtonLink(grid, PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,
-                                COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD, DESC_LEADERS_SCOREBOARD);
+                		COMMAND_PARTY_LEADER_SCOREBOARD, DESC_LEADERS_SCOREBOARD);
 
                 createButtonLink(grid, TOTAL_MEMBERS, VaadinIcons.USERS,
                 		PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_DATAGRID, DESC_ALL_PARTIES_ROLES);
@@ -125,7 +125,7 @@ public final class PartyRankingMenuItemFactoryImpl extends AbstractMenuItemFacto
                 partynMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_OVERVIEW);
 
                 partynMenuItem.addItem(PART_LEADERS_SCOREBOARD, VaadinIcons.TROPHY,
-                                COMMAND_CHARTS_CURRENT_PARTIES_LEADER_SCOREBOARD);
+                		COMMAND_PARTY_LEADER_SCOREBOARD);
 
                 // Total members using USERS icon for multiple people
                 final MenuItem listItem = partynMenuItem.addItem(TOTAL_MEMBERS, VaadinIcons.USERS, PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_DATAGRID);
