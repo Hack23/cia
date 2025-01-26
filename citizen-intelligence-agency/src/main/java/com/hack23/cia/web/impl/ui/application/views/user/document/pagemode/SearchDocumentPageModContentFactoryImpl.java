@@ -30,6 +30,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMainViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -118,7 +119,7 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasic
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
+		return PageCommandMainViewConstants.COMMAND_SEARCH_DOCUMENT.matches(page, parameters);
 	}
 
 }

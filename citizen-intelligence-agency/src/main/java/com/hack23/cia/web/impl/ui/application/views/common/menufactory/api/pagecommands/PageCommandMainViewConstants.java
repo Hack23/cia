@@ -50,13 +50,9 @@ public interface PageCommandMainViewConstants {
     PageModeMenuCommand COMMAND_MAIN_DATAGRID = new PageModeMenuCommand(CommonsViews.MAIN_VIEW_NAME,
                      PageMode.DATAGRID);
 
-        /** The command documents. */
-        PageModeMenuCommand COMMAND_DOCUMENTS = new PageModeMenuCommand(
-            CommonsViews.MAIN_VIEW_NAME, "documents");
-
         /** The command search document. */
         PageModeMenuCommand COMMAND_SEARCH_DOCUMENT = new PageModeMenuCommand(
-            CommonsViews.MAIN_VIEW_NAME, "searchdocument");
+            UserViews.SEARCH_DOCUMENT_VIEW_NAME, PageMode.OVERVIEW);
 
 
         /** The command main view. */

@@ -89,7 +89,7 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 
 		applicationMenuItemFactory.addRankingMenu(menuBar);
 		final MenuItem documentsItem = menuBar.addItem(DOCUMENTS, VaadinIcons.FILE_TEXT, null);
-		documentsItem.addItem(LIST_ALL, VaadinIcons.FILE_TEXT, COMMAND_DOCUMENTS);
+		documentsItem.addItem(LIST_ALL, VaadinIcons.FILE_TEXT, COMMAND_DOCUMENTS_OVERVIEW);
 		documentsItem.addItem(SEARCH_DOCUMENTS, VaadinIcons.SEARCH, COMMAND_SEARCH_DOCUMENT);
 
 	}
