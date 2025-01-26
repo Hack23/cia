@@ -40,7 +40,7 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 	@Autowired
 	private ApplicationMenuItemFactory applicationMenuItemFactory;
 
-    @Override 
+    @Override
     public void createOverviewPage(final VerticalLayout overviewLayout) {
         final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
 
@@ -71,7 +71,7 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
                 COMMAND_USERHOME_SECURITY_SETTINGS);
 
         accountItem.addItem(USER_VISITS, VaadinIcons.EYE,
-                COMMAND_USERHOME_USER_VISITS); 
+                COMMAND_USERHOME_USER_VISITS);
 
         accountItem.addItem(USER_EVENTS, VaadinIcons.CALENDAR,
                 COMMAND_USERHOME_USER_EVENTS);

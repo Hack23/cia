@@ -38,6 +38,7 @@ public interface PageCommandPoliticianRankingConstants {
         PageModeMenuCommand POLITICIAN_RANKING_COMMAND_OVERVIEW = new PageModeMenuCommand(
                 UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW);
 
+		/** The politician ranking command pagevisit history. */
 		PageModeMenuCommand POLITICIAN_RANKING_COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(
                 UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
