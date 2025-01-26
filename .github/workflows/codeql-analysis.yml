@@ -88,11 +88,12 @@ jobs:
       uses: github/codeql-action/init@ee117c905ab18f32fa0f66c2fe40ecc8013f3e04 # v3.28.4
       with:
         languages: java
-        dependency-caching: true      
-        # If you wish to specify custom queries, you can do so here or in a config file.
-        # By default, queries listed here will override any specified in a config file. 
-        # Prefix the list here with "+" to use these queries and those in the config file.
-        # queries: ./path/to/local/query, your-org/your-repo/queries@main
+        dependency-caching: true
+        queries: security-extended        # More comprehensive security analysis
+        ram: 6144                        # Optimal for GitHub-hosted Linux runners 
+        upload-database: true            # Enable database upload for debugging
+        cleanup-level: brutal            # Maximum cleanup after analysis
+        wait-for-processing: true        # Ensure analysis completes
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
@@ -140,3 +141,11 @@ jobs:
   
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@ee117c905ab18f32fa0f66c2fe40ecc8013f3e04 # v3.28.4
+      with:
+        ram: 6144                    # Optimal for GitHub Linux runners
+        cleanup-level: brutal        # Aggressive cleanup
+        upload: always               # Always upload SARIF
+        upload-database: true        # Upload DB for debugging
+        wait-for-processing: true    # Ensure analysis completion
+        threads: 2                   # Optimal for GitHub Linux runners
+        category: "java-analysis"    # Custom category for tracking
