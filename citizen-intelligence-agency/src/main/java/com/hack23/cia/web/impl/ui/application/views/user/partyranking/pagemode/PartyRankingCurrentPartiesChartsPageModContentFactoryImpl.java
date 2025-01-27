@@ -69,7 +69,7 @@ public final class PartyRankingCurrentPartiesChartsPageModContentFactoryImpl ext
 		final String pageId = getPageId(parameters);
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
-		
+
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
 		    PartyRankingViewConstants.CURRENT_PARTIES_TITLE,
 		    PartyRankingViewConstants.TITLE_PARTY_RANKINGS,

@@ -15,10 +15,6 @@ public interface PageCommandMinistryRankingConstants {
     PageModeMenuCommand MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(
             UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
-    /** The command ministries link. */
-    PageModeMenuCommand COMMAND_MINISTRIES_LINK = new PageModeMenuCommand(
-            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID);
-
     /** The command ministry ranking overview. */
     PageModeMenuCommand COMMAND_MINISTRY_RANKING_OVERVIEW = new PageModeMenuCommand(
         UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
@@ -41,7 +37,7 @@ public interface PageCommandMinistryRankingConstants {
 
     /** The command role charts. */
     PageModeMenuCommand COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT = new PageModeMenuCommand(
-            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, "ALL_GOVERNMENT_ROLE_GANTT");
+            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALL_GOVERNMENT_ROLE_CHART.toString());
 
     /** The command government outcome. */
     PageModeMenuCommand COMMAND_GOVERNMENT_OUTCOME = new PageModeMenuCommand(
@@ -74,4 +70,9 @@ public interface PageCommandMinistryRankingConstants {
     /** The command charts all parties by headcount. */
     PageModeMenuCommand COMMAND_CHARTS_ALL_PARTIES_BY_HEADCOUNT = new PageModeMenuCommand(
             UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLPARTIESBYHEADCOUNT.toString());
+
+
+    PageModeMenuCommand COMMAND_CHARTS_ALL_PARTIES_BY_DAYS = new PageModeMenuCommand(
+            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLMINISTRIESPARTYBYTOTALDAYS.toString());
+
 }

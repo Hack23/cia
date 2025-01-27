@@ -71,7 +71,7 @@ public final class PartyRankingCurrentGovernmentChartsPageModContentFactoryImpl 
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             PartyRankingViewConstants.CURRENT_GOVERNMENT_TITLE,
             PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
             PartyRankingViewConstants.CURRENT_GOVERNMENT_DESC);

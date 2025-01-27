@@ -129,12 +129,12 @@ public final class PartyRankingDataGridPageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
-		
+
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
 		    PartyRankingViewConstants.DATAGRID_TITLE,
 		    PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
 		    PartyRankingViewConstants.DATAGRID_DESC);
-		    
+
 		final String pageId = getPageId(parameters);
 
 

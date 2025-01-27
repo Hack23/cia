@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagem
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -30,9 +29,8 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.MinistryGhantChartManager;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMinistryRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -86,7 +84,6 @@ public final class MinistryRankingAllRolesChartsPageModContentFactoryImpl
 
     @Override
     public boolean matches(final String page, final String parameters) {
-        return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
-                && parameters.contains(ChartIndicators.ALL_GOVERNMENT_ROLE_CHART.toString());
+    	return PageCommandMinistryRankingConstants.COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT.matches(page, parameters);
     }
 }

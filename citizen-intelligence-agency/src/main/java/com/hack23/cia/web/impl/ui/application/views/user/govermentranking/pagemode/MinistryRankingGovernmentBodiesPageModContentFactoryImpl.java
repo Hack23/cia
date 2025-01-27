@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagemode;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -26,8 +25,8 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMinistryRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -76,10 +75,7 @@ public final class MinistryRankingGovernmentBodiesPageModContentFactoryImpl exte
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());
+		return PageCommandMinistryRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT.matches(page, parameters);
 	}
-
-
-
 
 }

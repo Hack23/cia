@@ -5,7 +5,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -19,12 +18,11 @@ import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMinistryRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.LeaderCardUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PartyLeaderUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -173,7 +171,6 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());	}
-
+		return PageCommandMinistryRankingConstants.COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD.matches(page, parameters);
+	}
 }

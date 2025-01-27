@@ -124,7 +124,7 @@ public final class UserMinistryTest extends AbstractUITest implements PageComman
         pageVisit.visitDirectPage(PageCommandMinistryRankingConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
         pageVisit.verifyViewContent(
             MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
-            MinistryRankingViewConstants.PAGE_HISTORY_TITLE, 
+            MinistryRankingViewConstants.PAGE_HISTORY_TITLE,
             MinistryRankingViewConstants.PAGE_HISTORY_DESC);
         pageVisit.validatePage(PageCommandMinistryRankingConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }

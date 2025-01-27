@@ -58,7 +58,7 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 			PartyRankingViewConstants.OVERVIEW_TITLE,
 			PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
 			PartyRankingViewConstants.OVERVIEW_DESC);
-            
+
 		final String pageId = getPageId(parameters);
 
 
