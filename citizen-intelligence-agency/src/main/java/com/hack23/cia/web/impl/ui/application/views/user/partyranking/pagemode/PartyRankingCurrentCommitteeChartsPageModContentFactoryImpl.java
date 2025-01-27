@@ -70,12 +70,17 @@ public final class PartyRankingCurrentCommitteeChartsPageModContentFactoryImpl e
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Current Committee Charts", "Committee Performance", "Analyze the performance of current committees using various charts.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyRankingViewConstants.CURRENT_COMMITTEE_TITLE,
+			PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+			PartyRankingViewConstants.CURRENT_COMMITTEE_DESC);
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(),"Party Total Active in Committee");
+		chartDataManager.createChartPanel(chartLayout,
+			dataSeriesFactory.createChartTimeSeriesCurrentCommitteeByParty(),
+			PartyRankingViewConstants.CHART_LABEL_CURRENT_COMMITTEE);
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);

@@ -7,6 +7,7 @@ import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentPageTitleConstants;
+import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentViewConstants;
 
 /**
  * The Class UserParliamentTest.
@@ -107,8 +108,54 @@ public final class UserParliamentTest extends AbstractUITest {
     public void verifyDecisionFlowPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW);
         pageVisit.verifyViewContent(ParliamentPageTitleConstants.DECISION_FLOW_TITLE,
-            ParliamentPageTitleConstants.DECISION_FLOW_SUBTITLE,
-            ParliamentPageTitleConstants.DECISION_FLOW_DESC);
+        ParliamentPageTitleConstants.DECISION_FLOW_SUBTITLE,
+        ParliamentPageTitleConstants.DECISION_FLOW_DESC);
         pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW);
     }
+
+        /**
+     * Verify party winner page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyWinnerPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_WINNER);
+        pageVisit.verifyViewContent(
+            ParliamentViewConstants.PARTY_WINNER_TITLE,
+		    ParliamentViewConstants.PARTY_WINNER_SUBTITLE,
+		    ParliamentViewConstants.PARTY_WINNER_DESC);
+        pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_WINNER);
+    }
+
+    /**
+     * Verify party gender page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyGenderPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_GENDER);
+        pageVisit.verifyViewContent(
+            ParliamentPageTitleConstants.PARTY_GENDER_TITLE,
+		    ParliamentPageTitleConstants.PARTY_GENDER_SUBTITLE,
+		    ParliamentPageTitleConstants.PARTY_GENDER_DESC);
+        pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_GENDER);
+    }
+
+    /**
+     * Verify party age page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyAgePage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_AGE);
+        pageVisit.verifyViewContent(
+            ParliamentPageTitleConstants.PARTY_AGE_TITLE,
+            ParliamentPageTitleConstants.PARTY_AGE_SUBTITLE,
+            ParliamentPageTitleConstants.PARTY_AGE_DESC);
+        pageVisit.validatePage(PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_AGE);
+    }
+
 }
