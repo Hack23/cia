@@ -57,11 +57,11 @@ public final class MinistryRankingGovernmentOutcomePageModContentFactoryImpl ext
 		final VerticalLayout panelContent = createPanelContent();
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			    MinistryRankingViewConstants.GOV_OUTCOMES_TITLE,
-			    MinistryRankingViewConstants.GOV_OUTCOMES_SUBTITLE,
-			    MinistryRankingViewConstants.GOV_OUTCOMES_DESC);
 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+		    MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+		    MinistryRankingViewConstants.GOV_OUTCOMES_TITLE,
+		    MinistryRankingViewConstants.GOV_OUTCOMES_DESC);
 
 		final String pageId = getPageId(parameters);
 

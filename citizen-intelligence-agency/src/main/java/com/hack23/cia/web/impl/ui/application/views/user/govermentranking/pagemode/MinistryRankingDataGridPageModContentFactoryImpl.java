@@ -82,7 +82,10 @@ public final class MinistryRankingDataGridPageModContentFactoryImpl
 		final VerticalLayout panelContent = createPanelContent();
 
 		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Ranking Dashboard", "Ministry Rankings", "Compare ministry rankings to assess their assignments, performance, and overall impact.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+		    MinistryRankingViewConstants.DATAGRID_TITLE,
+		    MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+		    MinistryRankingViewConstants.DATAGRID_DESC);
 
 		final String pageId = getPageId(parameters);
 

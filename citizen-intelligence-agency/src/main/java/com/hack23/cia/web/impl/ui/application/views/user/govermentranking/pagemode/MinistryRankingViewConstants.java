@@ -60,6 +60,10 @@ public interface MinistryRankingViewConstants {
     String ALL_ROLES_TITLE = "All Roles";
     String ALL_ROLES_DESC = "Visual representation of all government roles.";
 
+    // Data Grid Page
+    String DATAGRID_TITLE = "Ministry Ranking Dashboard";
+    String DATAGRID_DESC = "Compare ministry rankings to assess their assignments, performance, and overall impact.";
+
     // Chart Labels
     String CHART_LABEL_CURRENT_PARTIES = "Current Parties, headcount";
     String CHART_LABEL_CURRENT_MINISTRIES = "Current Ministries, by headcount";
