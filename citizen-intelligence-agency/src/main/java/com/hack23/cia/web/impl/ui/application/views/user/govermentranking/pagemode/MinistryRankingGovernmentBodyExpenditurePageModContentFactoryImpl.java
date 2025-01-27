@@ -62,7 +62,7 @@ public final class MinistryRankingGovernmentBodyExpenditurePageModContentFactory
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
 			MinistryRankingViewConstants.GOV_BODY_EXP_TITLE,
-			MinistryRankingViewConstants.GOV_BODY_EXP_SUBTITLE,
+			MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
 			MinistryRankingViewConstants.GOV_BODY_EXP_DESC);
 
 

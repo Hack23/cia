@@ -107,6 +107,10 @@ public enum ChartIndicators {
  /** The decisionactivity. */
  DECISIONACTIVITY,
  /** The decisionflow. */
- DECISIONFLOW;
+ DECISIONFLOW,
+ /** The allgovernmentroles. */
+ ALLGOVERNMENTROLES,
+ /** The allpartiesbyheadcount. */
+ ALLPARTIESBYHEADCOUNT;
 
 }

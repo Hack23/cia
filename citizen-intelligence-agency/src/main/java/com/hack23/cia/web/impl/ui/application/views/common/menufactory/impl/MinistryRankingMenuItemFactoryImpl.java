@@ -105,7 +105,7 @@ public final class MinistryRankingMenuItemFactoryImpl extends AbstractMenuItemFa
 		chartByTopic.addItem(GOVERNMENT_ROLES_CHART, VaadinIcons.BAR_CHART, PageCommandMinistryRankingConstants.COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
 
 		ministryMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-				PageCommandMinistryRankingConstants.COMMAND_MINISTRY_RANKING_PAGEVISIT_HISTORY);
+				PageCommandMinistryRankingConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
 
 	}
 
