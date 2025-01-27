@@ -9,10 +9,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.user.partyranking.pagemode.PartyRankingViewConstants;
 
 /**
- * The Class UserPartyTest.
+ * The Class UserPartyRankingTest.
  */
 @Category(IntegrationTest.class)
-public final class UserPartyTest extends AbstractUITest {
+public final class UserPartyRankingTest extends AbstractUITest {
 
     /**
      * Verify party page.

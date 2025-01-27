@@ -18,14 +18,13 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagemode;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMinistryRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -72,7 +71,7 @@ public final class MinistryRankingPageVisitHistoryPageModContentFactoryImpl
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());
+		return PageCommandMinistryRankingConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY.matches(page, parameters);
 	}
 
 }

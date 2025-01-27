@@ -58,7 +58,7 @@ public final class PartyRankingPageVisitHistoryPageModContentFactoryImpl
 
 		final String pageId = getPageId(parameters);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
             PartyRankingViewConstants.PAGE_HISTORY_TITLE,
             PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
             PartyRankingViewConstants.PAGE_HISTORY_DESC);
