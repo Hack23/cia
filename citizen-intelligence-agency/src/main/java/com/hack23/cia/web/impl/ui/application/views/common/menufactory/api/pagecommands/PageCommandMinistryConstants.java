@@ -10,10 +10,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  */
 public interface PageCommandMinistryConstants {
 
-	/** The ministry command charts current by headcount. */
-	PageModeMenuCommand MINISTRY_COMMAND_CHARTS_CURRENT_BY_HEADCOUNT = new PageModeMenuCommand(
-			UserViews.MINISTRY_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTMINISTRIESBYHEADCOUNT.toString());
-
 	/** The ministry command charts all by headcount. */
 	PageModeMenuCommand MINISTRY_COMMAND_CHARTS_ALL_BY_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 			PageMode.CHARTS, ChartIndicators.ALLMINISTRIESBYHEADCOUNT.toString());

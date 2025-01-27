@@ -93,7 +93,7 @@ public final class MinistryRankingAllPartiesChartsPageModContentFactoryImpl
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return PageCommandMinistryRankingConstants.COMMAND_CHARTS_ALL_PARTIES_BY_DAYS.matches(page, parameters);
+		return PageCommandMinistryRankingConstants.COMMAND_CHARTS_ALL_PARTIES_BY_HEADCOUNT.matches(page, parameters);
 	}
 
 }
