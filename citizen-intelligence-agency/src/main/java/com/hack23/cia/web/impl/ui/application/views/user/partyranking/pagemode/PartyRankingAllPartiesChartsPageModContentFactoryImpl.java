@@ -70,12 +70,17 @@ public final class PartyRankingAllPartiesChartsPageModContentFactoryImpl extends
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "All Parties Charts", "Party Performance", "Analyze the performance of all political parties using various charts.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyRankingViewConstants.ALL_PARTIES_TITLE,
+			PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+			PartyRankingViewConstants.ALL_PARTIES_DESC);
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesAll(),"Number of party members having roles in Parliament or Government Since 1983");
+		chartDataManager.createChartPanel(chartLayout,
+			dataSeriesFactory.createPartyChartTimeSeriesAll(),
+			PartyRankingViewConstants.CHART_LABEL_ALL_PARTIES);
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);

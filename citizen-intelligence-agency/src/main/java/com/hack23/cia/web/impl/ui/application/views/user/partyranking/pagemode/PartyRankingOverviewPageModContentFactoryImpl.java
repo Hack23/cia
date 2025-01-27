@@ -54,7 +54,11 @@ public final class PartyRankingOverviewPageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Party Rankings", "Ranking Overview", "Compare and rank political parties based on predefined metrics.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyRankingViewConstants.OVERVIEW_TITLE,
+			PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+			PartyRankingViewConstants.OVERVIEW_DESC);
+            
 		final String pageId = getPageId(parameters);
 
 

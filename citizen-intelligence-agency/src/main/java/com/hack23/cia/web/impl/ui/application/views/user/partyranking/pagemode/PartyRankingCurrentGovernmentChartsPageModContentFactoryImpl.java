@@ -71,12 +71,17 @@ public final class PartyRankingCurrentGovernmentChartsPageModContentFactoryImpl 
 
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Current Government Charts", "Government Performance", "Analyze the performance of the current government using various charts.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+            PartyRankingViewConstants.CURRENT_GOVERNMENT_TITLE,
+            PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+            PartyRankingViewConstants.CURRENT_GOVERNMENT_DESC);
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),"Party Total Active in Government");
+		chartDataManager.createChartPanel(chartLayout,
+            dataSeriesFactory.createChartTimeSeriesCurrentGovernmentByParty(),
+            PartyRankingViewConstants.CHART_LABEL_CURRENT_GOVERNMENT);
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);

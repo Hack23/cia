@@ -68,17 +68,19 @@ public final class PartyRankingCurrentPartiesChartsPageModContentFactoryImpl ext
 
 		final String pageId = getPageId(parameters);
 
-
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
+		
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			    "Party Ranking - Current Parties Charts",
-			    "Current Party Dynamics",
-			    "Current parties: gauging influence and strategic footholds.");
+		    PartyRankingViewConstants.CURRENT_PARTIES_TITLE,
+		    PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+		    PartyRankingViewConstants.CURRENT_PARTIES_DESC);
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
 
-		chartDataManager.createChartPanel(chartLayout,dataSeriesFactory.createPartyChartTimeSeriesCurrent(),"Party Total Active in Parliament");
+		chartDataManager.createChartPanel(chartLayout,
+		    dataSeriesFactory.createPartyChartTimeSeriesCurrent(),
+		    PartyRankingViewConstants.CHART_LABEL_CURRENT_PARTIES);
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);

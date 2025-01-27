@@ -16,22 +16,6 @@ public interface PageCommandPartyRankingConstants {
                      UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,
                      ChartIndicators.CURRENTGOVERMENTPARTIES.toString());
 
-    /** The command charts party age. */
-    PageModeMenuCommand COMMAND_CHARTS_PARTY_AGE = new PageModeMenuCommand(
-                     UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.PARTYAGE.toString());
-
-    /** The command charts party gender. */
-    PageModeMenuCommand COMMAND_CHARTS_PARTY_GENDER = new PageModeMenuCommand(
-                     UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.PARTYGENDER.toString());
-
-    /** The command charts party winner. */
-    PageModeMenuCommand COMMAND_CHARTS_PARTY_WINNER = new PageModeMenuCommand(
-                     UserViews.PARLIAMENT_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.PARTYWINNER.toString());
-
-
     /** The command party leader scoreboard. */
     PageModeMenuCommand COMMAND_PARTY_LEADER_SCOREBOARD = new PageModeMenuCommand(
         UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());

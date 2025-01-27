@@ -58,4 +58,5 @@ public interface PageCommandParliamentRankingConstants {
         PageModeMenuCommand COMMAND_CHARTS_DECISION_ACTIVITY = new PageModeMenuCommand(
             UserViews.PARLIAMENT_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.DECISIONACTIVITYBYTYPE.toString());
 
+
 }

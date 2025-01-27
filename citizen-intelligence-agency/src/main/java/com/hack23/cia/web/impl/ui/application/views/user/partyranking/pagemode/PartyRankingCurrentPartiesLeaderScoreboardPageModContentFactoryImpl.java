@@ -91,8 +91,10 @@ public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFacto
 		final String pageId = getPageId(parameters);
 		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Current Party Leaders Scoreboard", "Leader Performance",
-				"Evaluate the performance of current party leaders including those not in government.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyRankingViewConstants.LEADER_SCOREBOARD_TITLE,
+			PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+			PartyRankingViewConstants.LEADER_SCOREBOARD_DESC);
 
 		final HorizontalLayout chartLayout = new HorizontalLayout();
 		chartLayout.setSizeFull();
