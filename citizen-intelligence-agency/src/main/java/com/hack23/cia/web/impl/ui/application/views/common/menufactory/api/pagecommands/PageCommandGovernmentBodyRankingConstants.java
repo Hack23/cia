@@ -2,6 +2,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.page
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
@@ -9,11 +10,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
  * The Interface PageCommandGovernmentBodyRankingConstants.
  */
 public interface PageCommandGovernmentBodyRankingConstants {
-
-    /** The government body comman overview. */
-    PageModeMenuCommand GOVERNMENT_BODY_COMMAN_OVERVIEW = new PageModeMenuCommand(
-                     UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-                     PageMode.OVERVIEW);
 
     /** The command government body ranking datagrid. */
     PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID = new PageModeMenuCommand(
@@ -26,17 +22,17 @@ public interface PageCommandGovernmentBodyRankingConstants {
     /** The command government bodies headcount. */
     PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_HEADCOUNT = new PageModeMenuCommand(
                      UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.GOVERNMENTBODIESHEADCOUNT.toString());
+                     PageMode.CHARTS, GovernmentBodyPageMode.HEADCOUNT.toString());
 
     /** The command government bodies income. */
     PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_INCOME = new PageModeMenuCommand(
                      UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.GOVERNMENTBODIESINCOME.toString());
+                     PageMode.CHARTS, GovernmentBodyPageMode.INCOME.toString());
 
     /** The command government bodies expenditure. */
     PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_EXPENDITURE = new PageModeMenuCommand(
                      UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
-                     PageMode.CHARTS, ChartIndicators.GOVERNMENTBODIESEXPENDITURE.toString());
+                     PageMode.CHARTS, GovernmentBodyPageMode.EXPENDITURE.toString());
 
     /** The command government outcome. */
     PageModeMenuCommand COMMAND_GOVERNMENT_OUTCOME = new PageModeMenuCommand(
@@ -51,10 +47,6 @@ public interface PageCommandGovernmentBodyRankingConstants {
     /** The government ranking command pagevisit history. */
     PageModeMenuCommand GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(
                      UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
-
-    /** The government body command pagevisit history. */
-    PageModeMenuCommand GOVERNMENT_BODY_COMMAND_PAGEVISIT_HISTORY =
-            new PageModeMenuCommand(UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
 
 }

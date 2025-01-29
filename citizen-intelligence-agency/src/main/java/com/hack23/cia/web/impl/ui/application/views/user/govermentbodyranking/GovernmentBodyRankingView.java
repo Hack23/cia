@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.committee;
+package com.hack23.cia.web.impl.ui.application.views.user.govermentbodyranking;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -29,26 +29,26 @@ import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractRankingV
 import com.vaadin.spring.annotation.SpringView;
 
 /**
- * The Class CommitteeRankingView.
+ * The Class GovernmentBodyRankingView.
  */
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@SpringView(name = CommitteeRankingView.NAME)
-public final class CommitteeRankingView extends AbstractRankingView {
+@SpringView(name = GovernmentBodyRankingView.NAME)
+public final class GovernmentBodyRankingView extends AbstractRankingView {
 
 	/** The Constant NAME. */
-	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
+	public static final String NAME = UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME;
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Instantiates a new committee ranking view.
+	 * Instantiates a new government body ranking view.
 	 *
 	 * @param context
 	 *            the context
 	 */
-	public CommitteeRankingView(final ApplicationContext context) {
+	public GovernmentBodyRankingView(final ApplicationContext context) {
 		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
 	}
 

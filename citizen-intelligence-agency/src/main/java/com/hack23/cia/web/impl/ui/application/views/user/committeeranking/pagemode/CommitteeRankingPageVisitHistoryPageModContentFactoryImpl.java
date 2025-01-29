@@ -16,51 +16,37 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.committeeranking.pagemode;
 
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.ui.HorizontalLayout;
+import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeViewConstants;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryImpl.
+ * The Class CommitteeRankingPageVisitHistoryPageModContentFactoryImpl.
  */
-@Service
-public final class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryImpl
+@Component
+public final class CommitteeRankingPageVisitHistoryPageModContentFactoryImpl
 		extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
 
-	/** The chart data manager. */
-	@Autowired
-	private ChartDataManager chartDataManager;
-
-	/** The data series factory. */
-	@Autowired
-	private CommitteeDataSeriesFactory dataSeriesFactory;
-
 	/**
-	 * Instantiates a new committee ranking current committees charts page mod
-	 * content factory impl.
+	 * Instantiates a new committee ranking page visit history page mod content
+	 * factory impl.
 	 */
-	public CommitteeRankingCurrentCommitteesChartsPageModContentFactoryImpl() {
+	public CommitteeRankingPageVisitHistoryPageModContentFactoryImpl() {
 		super();
 	}
 
@@ -71,21 +57,13 @@ public final class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryI
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			CommitteeViewConstants.CR_CURRENT_TITLE_HEADER,
-			CommitteeViewConstants.CR_CURRENT_TITLE,
-			CommitteeViewConstants.CR_CURRENT_DESCRIPTION);
+			CommitteeViewConstants.CR_VISIT_TITLE_HEADER,
+			CommitteeViewConstants.CR_VISIT_TITLE,
+			CommitteeViewConstants.CR_VISIT_DESCRIPTION);
 
 		final String pageId = getPageId(parameters);
 
-		final HorizontalLayout chartLayout = new HorizontalLayout();
-		chartLayout.setSizeFull();
-
-		chartDataManager.createChartPanel(chartLayout, dataSeriesFactory.createCommitteeChartTimeSeriesCurrent(),
-				"Current Committees");
-
-		panelContent.addComponent(chartLayout);
-		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);
-
+		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER,
 				NAME, parameters, pageId);
@@ -96,8 +74,7 @@ public final class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryI
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.CURRENTCOMMITTEESBYHEADCOUNT.toString());
+		return PageCommandCommitteeRankingConstants.COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY.matches(page, parameters);
 	}
 
 }

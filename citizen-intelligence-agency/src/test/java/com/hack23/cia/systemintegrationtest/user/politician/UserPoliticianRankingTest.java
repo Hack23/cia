@@ -30,6 +30,38 @@ public final class UserPoliticianRankingTest extends AbstractUITest implements P
     }
 
     /**
+     * Verify politician ranking current parties page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPoliticianRankingCurrentPartiesPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_CURRENT_PARTIES);
+        pageVisit.verifyViewContent(PoliticianRankingDescriptionConstants.CURRENT_PARTIES_HEADER,
+			    PoliticianRankingDescriptionConstants.CURRENT_PARTIES_SUBTITLE,
+			    PoliticianRankingDescriptionConstants.CURRENT_PARTIES_DESC);
+        pageVisit.validatePage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_CURRENT_PARTIES);
+    }
+
+    /**
+     * Verify politician ranking all parties page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPoliticianRankingAllPartiesPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.POL_RANK_COMMAND_CHARTS_ALL_PARTIES_BY_HEADCOUNT);
+        pageVisit.verifyViewContent(PoliticianRankingDescriptionConstants.ALL_PARTIES_HEADER,
+			    PoliticianRankingDescriptionConstants.ALL_PARTIES_SUBTITLE,
+			    PoliticianRankingDescriptionConstants.ALL_PARTIES_DESC);
+        pageVisit.validatePage(PageCommandPoliticianRankingConstants.POL_RANK_COMMAND_CHARTS_ALL_PARTIES_BY_HEADCOUNT);
+    }
+
+
+
+
+
+    /**
      * Verify politician ranking overview page.
      *
      * @throws Exception the exception
@@ -43,6 +75,8 @@ public final class UserPoliticianRankingTest extends AbstractUITest implements P
         pageVisit.validatePage(PageCommandPoliticianRankingConstants.COMMAND_POLITICIAN_RANKING_OVERVIEW);
     }
 
+
+
     /**
      * Verify politician ranking indicators page.
      *
@@ -54,55 +88,6 @@ public final class UserPoliticianRankingTest extends AbstractUITest implements P
         pageVisit.validatePage(PageCommandPoliticianRankingConstants.COMMAND_POLITICIAN_RANKING_INDICATORS);
     }
 
-    /**
-     * Verify politician current member ranking page.
-     *
-     * @throws Exception the exception
-     */
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyPoliticianCurrentMemberRankingPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.COMMAND_POLITICIAN_CURRENT_MEMBER_RANKING);
-        pageVisit.verifyViewContent(PoliticianRankingDescriptionConstants.CURRENT_PARTIES_HEADER,
-            PoliticianRankingDescriptionConstants.CURRENT_PARTIES_SUBTITLE,
-            PoliticianRankingDescriptionConstants.CURRENT_PARTIES_DESC);
-        pageVisit.validatePage(PageCommandPoliticianRankingConstants.COMMAND_POLITICIAN_CURRENT_MEMBER_RANKING);
-    }
-
-    /**
-     * Verify politician all member ranking page.
-     *
-     * @throws Exception the exception
-     */
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyPoliticianAllMemberRankingPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.COMMAND_POLITICIAN_ALL_MEMBER_RANKING);
-        pageVisit.verifyViewContent(PoliticianRankingDescriptionConstants.ALL_PARTIES_HEADER,
-            PoliticianRankingDescriptionConstants.ALL_PARTIES_SUBTITLE,
-            PoliticianRankingDescriptionConstants.ALL_PARTIES_DESC);
-        pageVisit.validatePage(PageCommandPoliticianRankingConstants.COMMAND_POLITICIAN_ALL_MEMBER_RANKING);
-    }
-
-    /**
-     * Verify politician ranking command datagrid page.
-     *
-     * @throws Exception the exception
-     */
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyPoliticianRankingCommandDatagridPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_DATAGRID);
-        pageVisit.validatePage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_DATAGRID);
-    }
-
-    /**
-     * Verify politician ranking command overview page.
-     *
-     * @throws Exception the exception
-     */
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyPoliticianRankingCommandOverviewPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_OVERVIEW);
-        pageVisit.validatePage(PageCommandPoliticianRankingConstants.POLITICIAN_RANKING_COMMAND_OVERVIEW);
-    }
 
     /**
      * Verify politician ranking command pagevisit history page.

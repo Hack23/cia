@@ -16,9 +16,8 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.committeeranking.pagemode;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
@@ -26,12 +25,12 @@ import org.springframework.stereotype.Service;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
-import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeViewConstants;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -39,15 +38,14 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class
- * CommitteeRankingCurrentCommitteePartiesChartsPageModContentFactoryImpl.
+ * The Class CommitteeRankingCommitteeByPart	yChartsPageModContentFactoryImpl.
  */
 @Service
-public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFactoryImpl
+public final class CommitteeRankingCommitteeByPartyChartsPageModContentFactoryImpl
 		extends AbstractCommitteeRankingPageModContentFactoryImpl {
 
-	/** The Constant CURRENT_PARTIES_BY_DAYS_SERVED. */
-	private static final String CURRENT_PARTIES_BY_DAYS_SERVED = "Current Parties, total political days served";
+	/** The Constant ALL_PARTIES_TOTAL_DAYS_SERVED. */
+	private static final String ALL_PARTIES_TOTAL_DAYS_SERVED = "All Parties, total days served";
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
@@ -56,15 +54,15 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 	@Autowired
 	private ChartDataManager chartDataManager;
 
-	/** The data series factory 2. */
+	/** The data series factory. */
 	@Autowired
-	private PartyDataSeriesFactory dataSeriesFactory2;
+	private CommitteeDataSeriesFactory dataSeriesFactory;
 
 	/**
-	 * Instantiates a new committee ranking current committee parties charts
-	 * page mod content factory impl.
+	 * Instantiates a new committee ranking committee by party charts page mod
+	 * content factory impl.
 	 */
-	public CommitteeRankingCurrentCommitteePartiesChartsPageModContentFactoryImpl() {
+	public CommitteeRankingCommitteeByPartyChartsPageModContentFactoryImpl() {
 		super();
 	}
 
@@ -75,9 +73,9 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 
 		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			CommitteeViewConstants.CR_CURRENT_PARTY_TITLE_HEADER,
-			CommitteeViewConstants.CR_CURRENT_PARTY_TITLE,
-			CommitteeViewConstants.CR_CURRENT_PARTY_DESCRIPTION);
+			CommitteeViewConstants.CR_PARTY_TITLE_HEADER,
+			CommitteeViewConstants.CR_PARTY_TITLE,
+			CommitteeViewConstants.CR_PARTY_DESCRIPTION);
 
 		final String pageId = getPageId(parameters);
 
@@ -85,7 +83,8 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 		chartLayout.setSizeFull();
 
 		chartDataManager.createChartPanel(chartLayout,
-				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(), CURRENT_PARTIES_BY_DAYS_SERVED);
+				dataSeriesFactory.createChartTimeSeriesTotalDaysServedCommitteeByParty(),
+				ALL_PARTIES_TOTAL_DAYS_SERVED);
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);
@@ -99,8 +98,7 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters, PageMode.CHARTS.toString())
-				&& parameters.contains(ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());
+		return PageCommandCommitteeRankingConstants.COMMAND_CURRENT_COMMITTEES_ALL_PARTIES.matches(page, parameters);
 	}
 
 }

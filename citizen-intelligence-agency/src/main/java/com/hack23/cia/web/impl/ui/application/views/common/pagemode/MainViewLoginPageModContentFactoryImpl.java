@@ -21,7 +21,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -29,9 +28,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMainViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ApplicationLoginListener;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -120,8 +119,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& StringUtils.contains(parameters, ApplicationPageMode.LOGIN.toString());
+		return PageCommandMainViewConstants.COMMAND_LOGIN.matches(page, parameters);
 	}
 
 }

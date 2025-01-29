@@ -8,7 +8,7 @@ import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCountryRankingConstants;
 
 /**
- * The Class UserCountryTest.
+ * The Class UserCommonTest.
  */
 @Category(IntegrationTest.class)
 public final class UserCountryTest extends AbstractUITest {

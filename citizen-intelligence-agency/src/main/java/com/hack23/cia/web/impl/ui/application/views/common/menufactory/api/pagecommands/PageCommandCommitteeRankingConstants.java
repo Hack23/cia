@@ -11,18 +11,31 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 public interface PageCommandCommitteeRankingConstants {
 
 
-    /** The command committees link. */
-    PageModeMenuCommand COMMAND_COMMITTEES_LINK = new PageModeMenuCommand(
-            UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID);
 
+    /** The command committee ranking overview. */
+    PageModeMenuCommand COMMAND_COMMITTEE_RANKING_OVERVIEW = new PageModeMenuCommand(
+                     UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.OVERVIEW);
 
     /** The command committee ranking datagrid. */
     PageModeMenuCommand COMMAND_COMMITTEE_RANKING_DATAGRID = new PageModeMenuCommand(
                      UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.DATAGRID);
 
-    /** The command committee ranking overview. */
-    PageModeMenuCommand COMMAND_COMMITTEE_RANKING_OVERVIEW = new PageModeMenuCommand(
-                     UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The committee ranking command pagevisit history. */
+    PageModeMenuCommand COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(
+                     UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+
+        /** The command current committees by party days served. */
+    PageModeMenuCommand COMMAND_CURRENT_COMMITTEES_BY_PARTY_DAYS_SERVED = new PageModeMenuCommand(
+                     UserViews.COMMITTEE_RANKING_VIEW_NAME,
+                     PageMode.CHARTS, ChartIndicators.CURRENTCOMMITTEESBYPARTYDAYSSERVED.toString());
+
+
+    /** The command current committees by party days served. */
+    PageModeMenuCommand COMMAND_CURRENT_COMMITTEES_ALL_PARTIES = new PageModeMenuCommand(
+                 UserViews.COMMITTEE_RANKING_VIEW_NAME,
+                 PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
 
     /** The command all committees by headcount. */
     PageModeMenuCommand COMMAND_ALL_COMMITTEES_BY_HEADCOUNT = new PageModeMenuCommand(
@@ -34,13 +47,5 @@ public interface PageCommandCommitteeRankingConstants {
                      UserViews.COMMITTEE_RANKING_VIEW_NAME,
                      PageMode.CHARTS, ChartIndicators.CURRENTCOMMITTEESBYHEADCOUNT.toString());
 
-    /** The committee ranking command pagevisit history. */
-    PageModeMenuCommand COMMITTEE_RANKING_COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(
-                     UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
-
-
-    /** The command charts current committees. */
-    PageModeMenuCommand COMMAND_CHARTS_CURRENT_COMMITTEES = new PageModeMenuCommand(
-        UserViews.COMMITTEE_RANKING_VIEW_NAME, PageMode.CHARTS, "CURRENT_COMMITTEES");
 
 }

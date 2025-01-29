@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.govermentbodyranking.pagemode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
