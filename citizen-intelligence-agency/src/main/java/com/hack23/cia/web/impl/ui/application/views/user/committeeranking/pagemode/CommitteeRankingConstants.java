@@ -2,6 +2,41 @@ package com.hack23.cia.web.impl.ui.application.views.user.committeeranking.pagem
 
 /**
  * The Interface CommitteeRankingConstants.
+ *
+ * This interface defines constants used for committee ranking views and page modes
+ * within the Citizen Intelligence Agency web application.
+ *
+ * Key constants:
+ * - CR_OVERVIEW_TITLE_HEADER: Title header for the committee ranking overview.
+ * - CR_OVERVIEW_TITLE: Title for the committee ranking overview.
+ * - CR_OVERVIEW_DESCRIPTION: Description for the committee ranking overview.
+ * - CR_GRID_TITLE_HEADER: Title header for the committee ranking data grid.
+ * - CR_GRID_TITLE: Title for the committee ranking data grid.
+ * - CR_GRID_DESCRIPTION: Description for the committee ranking data grid.
+ * - CR_VISIT_TITLE_HEADER: Title header for the committee ranking visit history.
+ * - CR_VISIT_TITLE: Title for the committee ranking visit history.
+ * - CR_VISIT_DESCRIPTION: Description for the committee ranking visit history.
+ * - CR_ALL_TITLE_HEADER: Title header for the all committees charts.
+ * - CR_ALL_TITLE: Title for the all committees charts.
+ * - CR_ALL_DESCRIPTION: Description for the all committees charts.
+ * - CR_CURRENT_TITLE_HEADER: Title header for the current committees charts.
+ * - CR_CURRENT_TITLE: Title for the current committees charts.
+ * - CR_CURRENT_DESCRIPTION: Description for the current committees charts.
+ * - CR_PARTY_TITLE_HEADER: Title header for the committee by party charts.
+ * - CR_PARTY_TITLE: Title for the committee by party charts.
+ * - CR_PARTY_DESCRIPTION: Description for the committee by party charts.
+ * - CR_CURRENT_PARTY_TITLE_HEADER: Title header for the current committee parties charts.
+ * - CR_CURRENT_PARTY_TITLE: Title for the current committee parties charts.
+ * - CR_CURRENT_PARTY_DESCRIPTION: Description for the current committee parties charts.
+ *
+ * Dependencies and relationships:
+ * - Depends on com.hack23.cia.web.impl.ui.application.views.common.pagemode for PageModeContentFactory.
+ * - Depends on com.hack23.cia.web.impl.ui.application.views.common.viewnames for UserViews and CommitteeRankingPageMode.
+ * - Depends on com.hack23.cia.model.internal.application.data.committee.impl for ViewRiksdagenCommittee and related entities.
+ * - Depends on com.hack23.cia.service.api for data container and application manager services.
+ * - Depends on org.springframework.security.access.annotation for security annotations.
+ * - Depends on org.springframework.stereotype for component annotations.
+ * - Depends on com.vaadin.ui for UI components.
  */
 public interface CommitteeRankingConstants {
 
