@@ -1,4 +1,33 @@
+name-template: '$RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
+categories:
+  - title: '🚀 Features & Enhancements'
+    labels:
+      - 'feature'
+      - 'enhancement'
+  - title: '📊 Data Visualization & Charts'
+    labels:
+      - 'visualization'
+      - 'charts'
+  - title: '🔄 Code Quality & Refactoring'
+    labels:
+      - 'refactor'
+      - 'code-quality'
+  - title: '📦 Dependencies'
+    labels:
+      - 'dependencies'
+  - title: '📝 Documentation & Maintenance'
+    labels:
+      - 'documentation'
+      - 'maintenance'
+change-template: '* $TITLE by @$AUTHOR in #$NUMBER'
 template: |
-  ## What’s Changed
+  # $NEXT_PATCH_VERSION
 
+  ## Highlights
   $CHANGES
+
+  ## Security Compliance
+  [![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://github.com/Hack23/cia/attestations/)
+
+  **Full Changelog**: https://github.com/Hack23/cia/compare/$PREVIOUS_TAG...$NEXT_PATCH_VERSION
