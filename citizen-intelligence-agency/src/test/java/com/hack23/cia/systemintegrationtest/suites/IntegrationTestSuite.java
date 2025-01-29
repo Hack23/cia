@@ -16,6 +16,7 @@ import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
 import com.hack23.cia.systemintegrationtest.ui.WebDriverFactory;
 import com.hack23.cia.systemintegrationtest.user.committee.UserCommitteeRankingTest;
 import com.hack23.cia.systemintegrationtest.user.committee.UserCommitteeTest;
+import com.hack23.cia.systemintegrationtest.user.common.UserCommonTest;
 import com.hack23.cia.systemintegrationtest.user.country.UserCountryTest;
 import com.hack23.cia.systemintegrationtest.user.document.UserDocumentTest;
 import com.hack23.cia.systemintegrationtest.user.governmentbody.UserGovernmentBodyRankingTest;
@@ -32,6 +33,7 @@ import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+	UserCommonTest.class,
     AdminConfigurationTest.class,
     AdminDataTest.class,
     AdminOperationsTest.class,
