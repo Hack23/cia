@@ -25,7 +25,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -51,9 +50,9 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.external.esv.api.EsvApi;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMainViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
@@ -88,9 +87,6 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 	/** The Constant FINANCIAL. */
 	private static final String FINANCIAL = "Financial";
-
-	/** The Constant NAME. */
-	private static final String NAME = CommonsViews.DASHBOARD_VIEW_NAME;
 
 	/** The Constant PAGE_PREFIX. */
 	private static final String PAGE_PREFIX = "#!";
@@ -507,7 +503,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
+		return PageCommandMainViewConstants.COMMAND_MAINVIEW_PAGEVISITHISTORY.matches(page, parameters);
 	}
 
 }

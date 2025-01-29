@@ -14,20 +14,6 @@ import com.hack23.cia.web.impl.ui.application.views.user.partyranking.pagemode.P
 @Category(IntegrationTest.class)
 public final class UserPartyRankingTest extends AbstractUITest {
 
-    /**
-     * Verify party page.
-     *
-     * @throws Exception the exception
-     */
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyPartyPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
-        pageVisit.verifyViewContent(
-            PartyRankingViewConstants.CURRENT_GOVERNMENT_TITLE,
-            PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
-            PartyRankingViewConstants.CURRENT_GOVERNMENT_DESC);
-        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
-    }
 
     /**
      * Verify party ranking page.
@@ -73,4 +59,84 @@ public final class UserPartyRankingTest extends AbstractUITest {
             PartyRankingViewConstants.PAGE_HISTORY_DESC);
         pageVisit.validatePage(PageCommandPartyRankingConstants.PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
+
+    /**
+     * Verify party ranking current gov parties page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyRankingCurrentGovPartiesPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
+        pageVisit.verifyViewContent(
+            PartyRankingViewConstants.CURRENT_GOVERNMENT_TITLE,
+            PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+            PartyRankingViewConstants.CURRENT_GOVERNMENT_DESC);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES);
+    }
+
+
+    /**
+     * Verify party ranking leader scoreboard page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyRankingLeaderScoreboardPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_PARTY_LEADER_SCOREBOARD);
+        pageVisit.verifyViewContent(
+        		PartyRankingViewConstants.LEADER_SCOREBOARD_TITLE,
+    			PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+    			PartyRankingViewConstants.LEADER_SCOREBOARD_DESC);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_PARTY_LEADER_SCOREBOARD);
+    }
+
+
+    /**
+     * Verify party ranking all parties page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyRankingAllPartiesPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_CHARTS_ALL_PARTIES);
+        pageVisit.verifyViewContent(
+        		PartyRankingViewConstants.ALL_PARTIES_TITLE,
+    			PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+    			PartyRankingViewConstants.ALL_PARTIES_DESC);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_CHARTS_ALL_PARTIES);
+    }
+
+
+    /**
+     * Verify party ranking current committees page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyRankingCurrentCommitteesPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_CHARTS_CURRENT_COMMITTEES);
+        pageVisit.verifyViewContent(
+        		PartyRankingViewConstants.CURRENT_COMMITTEE_TITLE,
+    			PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+    			PartyRankingViewConstants.CURRENT_COMMITTEE_DESC);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_CHARTS_CURRENT_COMMITTEES);
+    }
+
+    /**
+     * Verify party ranking current parties page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyRankingCurrentPartiesPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_CHARTS_CURRENT_PARTIES);
+        pageVisit.verifyViewContent(
+        		PartyRankingViewConstants.CURRENT_PARTIES_TITLE,
+    		    PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+    		    PartyRankingViewConstants.CURRENT_PARTIES_DESC);
+        pageVisit.validatePage(PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_CHARTS_CURRENT_PARTIES);
+    }
+
+
 }

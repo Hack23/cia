@@ -16,18 +16,33 @@ import com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagemo
 public final class UserMinistryRankingTest extends AbstractUITest implements PageCommandUserConstants {
 
     /**
-     * Verify ministry page.
+     * Verify ministry ranking ministry by headcount page.
      *
      * @throws Exception the exception
      */
     @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyMinistryPage() throws Exception {
+    public void verifyMinistryRankingMinistryByHeadcountPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryRankingConstants.COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT);
         pageVisit.verifyViewContent(
             MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
             MinistryRankingViewConstants.CURRENT_MINISTRIES_TITLE,
             MinistryRankingViewConstants.CURRENT_MINISTRIES_DESC);
         pageVisit.validatePage(PageCommandMinistryRankingConstants.COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT);
+    }
+
+    /**
+     * Verify ministry ranking gov roles ghant page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyMinistryRankingGovRolesGhantPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryRankingConstants.COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
+        pageVisit.verifyViewContent(
+        		MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+                MinistryRankingViewConstants.ALL_ROLES_TITLE,
+                MinistryRankingViewConstants.ALL_ROLES_DESC);
+        pageVisit.validatePage(PageCommandMinistryRankingConstants.COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT);
     }
 
     /**
@@ -108,6 +123,11 @@ public final class UserMinistryRankingTest extends AbstractUITest implements Pag
         pageVisit.validatePage(PageCommandMinistryRankingConstants.COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT);
     }
 
+    /**
+     * Verify government outcome page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentOutcomePage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryRankingConstants.COMMAND_GOVERNMENT_OUTCOME);
@@ -118,6 +138,11 @@ public final class UserMinistryRankingTest extends AbstractUITest implements Pag
         pageVisit.validatePage(PageCommandMinistryRankingConstants.COMMAND_GOVERNMENT_OUTCOME);
     }
 
+    /**
+     * Verify page visit history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPageVisitHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryRankingConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
@@ -128,6 +153,11 @@ public final class UserMinistryRankingTest extends AbstractUITest implements Pag
         pageVisit.validatePage(PageCommandMinistryRankingConstants.MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 
+    /**
+     * Verify government body income page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyIncomePage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
@@ -138,6 +168,11 @@ public final class UserMinistryRankingTest extends AbstractUITest implements Pag
         pageVisit.validatePage(PageCommandMinistryRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
     }
 
+    /**
+     * Verify government body expenditure page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyExpenditurePage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
@@ -148,6 +183,11 @@ public final class UserMinistryRankingTest extends AbstractUITest implements Pag
         pageVisit.validatePage(PageCommandMinistryRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
     }
 
+    /**
+     * Verify government bodies headcount page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodiesHeadcountPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
@@ -159,6 +199,11 @@ public final class UserMinistryRankingTest extends AbstractUITest implements Pag
         pageVisit.validatePage(PageCommandMinistryRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
     }
 
+    /**
+     * Verify current parties headcount page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyCurrentPartiesHeadcountPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryRankingConstants.COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT);
@@ -169,6 +214,11 @@ public final class UserMinistryRankingTest extends AbstractUITest implements Pag
         pageVisit.validatePage(PageCommandMinistryRankingConstants.COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT);
     }
 
+    /**
+     * Verify all parties page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyAllPartiesPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryRankingConstants.COMMAND_CHARTS_ALL_PARTIES_BY_HEADCOUNT);

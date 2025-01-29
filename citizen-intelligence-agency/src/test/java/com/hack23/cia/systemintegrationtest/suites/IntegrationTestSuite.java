@@ -14,14 +14,18 @@ import com.hack23.cia.systemintegrationtest.admin.operations.AdminOperationsTest
 import com.hack23.cia.systemintegrationtest.admin.security.AdminSecurityTest;
 import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
 import com.hack23.cia.systemintegrationtest.ui.WebDriverFactory;
+import com.hack23.cia.systemintegrationtest.user.committee.UserCommitteeRankingTest;
 import com.hack23.cia.systemintegrationtest.user.committee.UserCommitteeTest;
+import com.hack23.cia.systemintegrationtest.user.common.UserCommonTest;
 import com.hack23.cia.systemintegrationtest.user.country.UserCountryTest;
 import com.hack23.cia.systemintegrationtest.user.document.UserDocumentTest;
+import com.hack23.cia.systemintegrationtest.user.governmentbody.UserGovernmentBodyRankingTest;
 import com.hack23.cia.systemintegrationtest.user.governmentbody.UserGovernmentBodyTest;
 import com.hack23.cia.systemintegrationtest.user.home.UserHomeTest;
 import com.hack23.cia.systemintegrationtest.user.ministry.UserMinistryRankingTest;
 import com.hack23.cia.systemintegrationtest.user.parliament.UserParliamentTest;
 import com.hack23.cia.systemintegrationtest.user.party.UserPartyRankingTest;
+import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianRankingTest;
 import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
 
 /**
@@ -29,6 +33,7 @@ import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
+	UserCommonTest.class,
     AdminConfigurationTest.class,
     AdminDataTest.class,
     AdminOperationsTest.class,
@@ -36,11 +41,14 @@ import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
     UserHomeTest.class,
     UserPartyRankingTest.class,
     UserCommitteeTest.class,
+    UserCommitteeRankingTest.class,
     UserCountryTest.class,
     UserMinistryRankingTest.class,
     UserGovernmentBodyTest.class,
+    UserGovernmentBodyRankingTest.class,
     UserParliamentTest.class,
     UserPoliticianTest.class,
+    UserPoliticianRankingTest.class,
     UserDocumentTest.class
 })
 public class IntegrationTestSuite {

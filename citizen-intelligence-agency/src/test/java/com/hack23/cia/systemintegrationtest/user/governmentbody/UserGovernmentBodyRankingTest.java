@@ -15,6 +15,24 @@ import com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode.
 @Category(IntegrationTest.class)
 public final class UserGovernmentBodyRankingTest extends AbstractUITest implements PageCommandUserConstants {
 
+
+
+
+    /**
+     * Verify government body ranking overview page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyGovernmentBodyRankingOverviewPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
+        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.RANKING_HEADER,
+        GovernmentBodyDescriptionConstants.RANKING_SUBTITLE,
+        GovernmentBodyDescriptionConstants.RANKING_DESC);
+        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
+    }
+
+
     /**
      * Verify government body ranking data grid page.
      *
@@ -30,18 +48,20 @@ public final class UserGovernmentBodyRankingTest extends AbstractUITest implemen
     }
 
     /**
-     * Verify government body ranking overview page.
+     * Verify government body ranking page visit history page.
      *
      * @throws Exception the exception
      */
     @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyGovernmentBodyRankingOverviewPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
-        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.RANKING_HEADER,
-        GovernmentBodyDescriptionConstants.RANKING_SUBTITLE,
-        GovernmentBodyDescriptionConstants.RANKING_DESC);
-        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
+    public void verifyGovernmentBodyRankingPageVisitHistoryPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
+        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.VISIT_HISTORY_HEADER,
+            GovernmentBodyDescriptionConstants.VISIT_HISTORY_SUBTITLE,
+            GovernmentBodyDescriptionConstants.VISIT_HISTORY_DESC);
+        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
+
+
 
     /**
      * Verify government body ranking headcount page.
@@ -85,31 +105,4 @@ public final class UserGovernmentBodyRankingTest extends AbstractUITest implemen
         pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
     }
 
-    /**
-     * Verify government body ranking page visit history page.
-     *
-     * @throws Exception the exception
-     */
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyGovernmentBodyRankingPageVisitHistoryPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
-        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.VISIT_HISTORY_HEADER,
-            GovernmentBodyDescriptionConstants.VISIT_HISTORY_SUBTITLE,
-            GovernmentBodyDescriptionConstants.VISIT_HISTORY_DESC);
-        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
-    }
-
-    /**
-     * Verify government body command overview page.
-     *
-     * @throws Exception the exception
-     */
-    @Test(timeout = DEFAULT_TIMEOUT)
-    public void verifyGovernmentBodyCommandOverviewPage() throws Exception {
-        pageVisit.visitDirectPage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_BODY_COMMAN_OVERVIEW);
-        pageVisit.verifyViewContent(GovernmentBodyDescriptionConstants.RANKING_HEADER,
-            GovernmentBodyDescriptionConstants.RANKING_SUBTITLE,
-            GovernmentBodyDescriptionConstants.RANKING_DESC);
-        pageVisit.validatePage(PageCommandGovernmentBodyRankingConstants.GOVERNMENT_BODY_COMMAN_OVERVIEW);
-    }
 }

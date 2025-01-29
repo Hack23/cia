@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.committeeranking.pagemode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -89,7 +89,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
          */
         @Override
         public void createGovernmentBodyRankingTopics(final MenuBar.MenuItem menuItem) {
-                menuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, GOVERNMENT_BODY_COMMAN_OVERVIEW);
+                menuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
                 menuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID);
                 menuItem.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK,
                 		PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
@@ -101,7 +101,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
                 menuItem.addItem(INCOME, VaadinIcons.MONEY_DEPOSIT, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
                 menuItem.addItem(EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
                 menuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-                                GOVERNMENT_BODY_COMMAND_PAGEVISIT_HISTORY);
+                		GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
         }
 
         /**
@@ -140,6 +140,6 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
                 createButtonLink(grid, EXPENDITURE, VaadinIcons.MONEY_WITHDRAW, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE,
                                 EXPENDITURE_DESCRIPTION);
                 createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-                                GOVERNMENT_BODY_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
+                		GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
         }
 }

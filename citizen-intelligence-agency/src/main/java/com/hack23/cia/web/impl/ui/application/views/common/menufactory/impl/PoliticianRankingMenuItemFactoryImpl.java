@@ -23,11 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
@@ -89,26 +85,7 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
     /** The Constant DESC_PAGE_HISTORY. */
     private static final String DESC_PAGE_HISTORY = "Visit history: tracing engagement over time.";
 
-    /** The Constant COMMAND_ALL_PARTIES. */
-    // Page mode commands
-    private static final PageModeMenuCommand COMMAND_ALL_PARTIES = new PageModeMenuCommand(
-            UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
 
-    /** The Constant COMMAND_CURRENT_PARTIES. */
-    private static final PageModeMenuCommand COMMAND_CURRENT_PARTIES = new PageModeMenuCommand(
-            UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());
-
-    /** The Constant COMMAND_DATAGRID. */
-    private static final PageModeMenuCommand COMMAND_DATAGRID = new PageModeMenuCommand(
-            UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.DATAGRID);
-
-    /** The Constant COMMAND_OVERVIEW. */
-    private static final PageModeMenuCommand COMMAND_OVERVIEW = new PageModeMenuCommand(
-            UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.OVERVIEW);
-
-    /** The Constant COMMAND_PAGEVISITHISTORY. */
-    private static final PageModeMenuCommand COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(
-            UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
     /** The application menu item factory. */
     @Autowired
@@ -133,19 +110,19 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
 
         // Politician experience summary: USER_CLOCK to indicate roles over time
         createButtonLink(grid, POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.USER_CLOCK,
-                COMMAND_DATAGRID, DESC_POLITICAL_EXPERIENCE);
+        		COMMAND_POLITICIAN_RANKING_DATAGRID, DESC_POLITICAL_EXPERIENCE);
 
         // All parties: analyzing roles, use GROUP icon for multiple parties
         createButtonLink(grid, ALL_PARTIES, VaadinIcons.GROUP,
-                COMMAND_ALL_PARTIES, DESC_ALL_PARTIES);
+        		POL_RANK_COMMAND_CHARTS_ALL_PARTIES_BY_HEADCOUNT, DESC_ALL_PARTIES);
 
         // Current parties: similarly GROUP icon for active parties
         createButtonLink(grid, CURRENT_PARTIES, VaadinIcons.GROUP,
-                COMMAND_CURRENT_PARTIES, DESC_CURRENT_PARTIES);
+        		POLITICIAN_RANKING_COMMAND_CURRENT_PARTIES, DESC_CURRENT_PARTIES);
 
         // Page visit history: use HISTORY icon for historical data
         createButtonLink(grid, PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART,
-                COMMAND_PAGEVISITHISTORY, DESC_PAGE_HISTORY);
+        		POLITICIAN_RANKING_COMMAND_PAGEVISIT_HISTORY, DESC_PAGE_HISTORY);
     }
 
     /**
@@ -173,18 +150,18 @@ public final class PoliticianRankingMenuItemFactoryImpl extends AbstractMenuItem
     @Override
     public void createPoliticianRankingTopics(final MenuItem politicianMenuItem) {
         // Overview: DASHBOARD for a general overview panel
-        politicianMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_OVERVIEW);
+        politicianMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_POLITICIAN_RANKING_OVERVIEW);
 
         // Political experience summary: USER_CLOCK indicating experience over time
-        final MenuItem listItem = politicianMenuItem.addItem(POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.USER_CLOCK, COMMAND_DATAGRID);
+        final MenuItem listItem = politicianMenuItem.addItem(POLITICAL_EXPERIENCE_SUMMARY, VaadinIcons.USER_CLOCK, COMMAND_POLITICIAN_RANKING_DATAGRID);
         listItem.setDescription(CURRENT_AND_PAST_ASSIGNMENTS_DESCRIPTION);
 
         // Chart by topic: CHART icon for visual data representation
         final MenuItem chartByTopic = politicianMenuItem.addItem(CHART_BY_TOPIC_TEXT, VaadinIcons.CHART, null);
 
-        chartByTopic.addItem(ALL_PARTIES, VaadinIcons.GROUP, COMMAND_ALL_PARTIES);
-        chartByTopic.addItem(CURRENT_PARTIES, VaadinIcons.GROUP, COMMAND_CURRENT_PARTIES);
+        chartByTopic.addItem(ALL_PARTIES, VaadinIcons.GROUP, POL_RANK_COMMAND_CHARTS_ALL_PARTIES_BY_HEADCOUNT);
+        chartByTopic.addItem(CURRENT_PARTIES, VaadinIcons.GROUP, POLITICIAN_RANKING_COMMAND_CURRENT_PARTIES);
 
-        politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, COMMAND_PAGEVISITHISTORY);
+        politicianMenuItem.addItem(PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CHART, POLITICIAN_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 }
