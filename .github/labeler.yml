@@ -1,0 +1,29 @@
+feature:
+  - 'feat:**'
+  - 'feature:**'
+  
+enhancement:
+  - 'enhance:**'
+  - 'improvement:**'
+
+documentation:
+  - '**/*.md'
+  - '**/package-info.java'
+  - '**/javadoc/**'
+
+dependencies:
+  - '**/pom.xml'
+  - 'build(deps):**'
+
+refactor:
+  - 'refactor:**'
+  - '**/refactor/**'
+
+infrastructure:
+  - '**/config/**'
+  - '**/postgres/**'
+  - '**/.github/**'
+
+css:
+  - '**/*.css'
+  - '**/*.scss'
