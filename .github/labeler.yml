@@ -1,0 +1,133 @@
+# Primary Feature Categories
+feature:
+  - 'feat:**'
+  - 'feature:**'
+  - '**/feature/**'
+  - '**/features/**'
+
+enhancement:
+  - 'enhance:**'
+  - 'improvement:**'
+  - '**/enhancement/**'
+
+# Political Analysis
+political-analysis:
+  - '**/political/**'
+  - '**/analysis/**'
+  - '**/dashboard/**'
+  - '**/scoreboard/**'
+  - '**/riksdagen/**'
+  - '**/parliament/**'
+
+party-data:
+  - '**/party/**'
+  - '**/parties/**'
+  - '**/political-party/**'
+
+committee:
+  - '**/committee/**'
+  - '**/committees/**'
+  - '**/decision/**'
+
+government:
+  - '**/government/**'
+  - '**/ministry/**'
+  - '**/minister/**'
+
+# Analytics & Data
+analytics:
+  - '**/analytics/**'
+  - '**/views/**'
+  - '**/reporting/**'
+  - '**/metrics/**'
+  - '**/statistics/**'
+
+visualization:
+  - '**/charts/**'
+  - '**/visualization/**'
+  - '**/graph/**'
+  - '**/dashboard/**'
+
+database:
+  - '**/db/**'
+  - '**/sql/**'
+  - '**/database/**'
+  - '**/jpa/**'
+  - '**/hibernate/**'
+
+# UI/UX
+ui:
+  - '**/ui/**'
+  - '**/view/**'
+  - '**/form/**'
+  - '**/*.css'
+  - '**/layout/**'
+  - '**/grid/**'
+
+# Infrastructure
+infrastructure:
+  - '**/cloudformation/**'
+  - '**/deploy/**'
+  - '**/*.json'
+  - '**/config/**'
+  - '**/postgres/**'
+  - '**/.github/**'
+
+performance:
+  - '**/performance/**'
+  - '**/optimization/**'
+  - '**/cache/**'
+  - '**/index/**'
+
+# Code Quality
+refactor:
+  - 'refactor:**'
+  - '**/refactor/**'
+  - '**/cleanup/**'
+
+testing:
+  - '**/test/**'
+  - '**/*Test.java'
+  - '**/junit/**'
+  - '**/testing/**'
+
+# Security
+security:
+  - '**/security/**'
+  - '**/auth/**'
+  - '**/authentication/**'
+  - '**/authorization/**'
+  - '**/permission/**'
+  - '**/compliance/**'
+
+# Documentation
+documentation:
+  - '**/*.md'
+  - '**/docs/**'
+  - '**/javadoc/**'
+  - '**/package-info.java'
+  - '**/module-info.java'
+  - '**/documentation/**'
+
+# Dependencies
+dependencies:
+  - 'build(deps):**'
+  - '**/pom.xml'
+  - '**/dependencies/**'
+  - '**/dependency/**'
+
+# Build & CI
+build:
+  - '.github/workflows/**'
+  - '**/Dockerfile'
+  - '**/docker/**'
+  - '**/ci/**'
+  - '**/cd/**'
+  - 'pom.xml'
+
+# Bug Fixes
+bug:
+  - 'fix:**'
+  - 'bug:**'
+  - '**/bugfix/**'
+  - '**/fix/**'
