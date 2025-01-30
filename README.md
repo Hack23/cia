@@ -1,23 +1,42 @@
-# Citizen Intelligence Agency
+# 🔍 Citizen Intelligence Agency
 
-The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence (OSINT) project focusing on political activity in Sweden. By monitoring key political figures and institutions, the platform provides valuable insights into financial performance, risk metrics, and political trends. The dashboard features a ranking system, enabling users to objectively compare politicians based on performance. The initiative is independent and non-partisan, seeking to encourage informed decision-making, enhance transparency in governance, and cultivate an engaged and well-informed citizenry. 
+> An independent, volunteer-driven OSINT platform monitoring Swedish political activity
 
-## Features
-[Features of the CIA Project](https://hack23.com/#features) This document showcases the extensive features, providing detailed screenshots of dashboards, scoreboards, and critical analytics. The focus is on transparency, accountability, and data-driven decision-making in Sweden’s political ecosystem.
+## 🎯 Mission
+The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence (OSINT) project that provides comprehensive analysis of political activities in Sweden. Through advanced monitoring of key political figures and institutions, we deliver:
 
-## About Hack23
+- 📊 Financial performance metrics
+- ⚠️ Risk assessment analytics
+- 📈 Political trend analysis
+- 🏆 Politician ranking system
+- 📉 Performance comparisons
+- 🔍 Transparency insights
 
-- Website: [www.hack23.com](https://www.hack23.com/)
-- LinkedIn: [in/jamessorling](https://www.linkedin.com/in/jamessorling)
+Our initiative remains strictly independent and non-partisan, focused on fostering informed decision-making and enhancing democratic engagement.
 
-## Data Sources
+## ✨ Features
+Explore our [comprehensive feature set](https://hack23.com/#features) including:
+- 📊 Interactive dashboards
+- 🏆 Political scoreboard systems
+- 📈 Critical analytics tools
+- 🔍 Transparency metrics
+- ⚖️ Accountability measures
+- 📱 Data-driven insights
 
-The project relies on open data from various sources, including:
+## 🏢 About Hack23
+- 🌐 **Website**: [www.hack23.com](https://www.hack23.com)
+- 💼 **LinkedIn**: [James Sörling](https://www.linkedin.com/in/jamessorling)
 
-- [Swedish Parliament Open Data](http://data.riksdagen.se/): Offers a wide range of data related to the Swedish Parliament, including members, committees, and documents.
-- [Swedish Election Authority](http://www.val.se/): Provides information on election processes, results, and political parties in Sweden.
-- [World Bank Open Data](http://data.worldbank.org/): Contains global development data, including economic indicators and demographic information.
-- [Swedish National Financial Management Authority (ESV) Public Sector Information (PSI) Data](https://www.esv.se/): Offers data on government finances, economic trends, and public sector operations in Sweden.
+## 📚 Data Sources
+
+Our analysis is powered by authoritative Swedish government and international data sources:
+
+| Source | Description |
+|--------|-------------|
+| 🏛️ [Swedish Parliament Open Data](http://data.riksdagen.se/) | Parliamentary members, committees, and official documents |
+| 🗳️ [Swedish Election Authority](http://www.val.se/) | Election data, political parties, and voting results |
+| 🌍 [World Bank Open Data](http://data.worldbank.org/) | Global economic indicators and demographic data |
+| 💹 [Swedish Financial Management Authority](https://www.esv.se/) | Government finances and economic trends |
 
 ## Badges
 
