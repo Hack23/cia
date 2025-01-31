@@ -30,9 +30,10 @@ import org.eclipse.jetty.servlet.DefaultServlet;
 /**
  * The Class ResourceServlet.
  */
-@WebServlet(urlPatterns = { "/favicon.ico", "/robots.txt", "/sitemap.xml", "*.cache.js",
-		"*.woff", "*.css","/VAADIN/themes/valo/fonts/themeicons-webfont/*","/VAADIN/themes/valo/fonts/vaadin-icons/*","/VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/dcharts/*",
-		"/VAADIN/themes/cia/*","/VAADIN/themes/valo/shared/img/*" }, loadOnStartup = 1, initParams = {
+@WebServlet(urlPatterns = { "/favicon.ico", "/robots.txt", "/sitemap.xml", "*.cache.js", "*.woff", "*.ttf", "*.css",
+"*.gif", "/VAADIN/themes/valo/fonts/themeicons-webfont/*", "/VAADIN/themes/valo/fonts/vaadin-icons/*",
+"/VAADIN/widgetsets/com.hack23.cia.web.widgets.WebWidgetSet/dcharts/*", "/VAADIN/themes/cia/*",
+"/VAADIN/themes/valo/shared/*", "/VAADIN/themes/valo/shared/img/*" }, loadOnStartup = 1, initParams = {
                 @WebInitParam(name = "gzip", value = "true"),
                 @WebInitParam(name = "etags", value = "true"),
                 @WebInitParam(name = "cacheControl", value = "public, max-age=31536000"),
