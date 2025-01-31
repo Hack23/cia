@@ -65,7 +65,7 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractBas
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return PageCommandMainViewConstants.COMMAND_MAINVIEW_OVERVIEW.matches(page, parameters);
+		return PageCommandMainViewConstants.COMMAND_MAINVIEW_OVERVIEW.matchesPage(page,parameters);
 	}
 
 }

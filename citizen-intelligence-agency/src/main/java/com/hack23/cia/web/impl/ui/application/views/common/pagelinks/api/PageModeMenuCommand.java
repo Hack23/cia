@@ -135,5 +135,20 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 		return this.page.equals(page) && StringUtils.contains(parameters, pageReference);
 	}
 
+	public boolean matchesPage(final String page,final String parameters) {
+		return this.page.equals(page) && (getPageId(parameters).isEmpty() || getPageId(parameters).equals(parameters));
+	}
 
+	private String getPageId(final String parameters) {
+		if (parameters != null) {
+			String cleanedString = parameters;
+			if (parameters.contains("[")) {
+				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), "");
+			}
+
+			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length());
+		} else {
+			return "";
+		}
+	}
 }
