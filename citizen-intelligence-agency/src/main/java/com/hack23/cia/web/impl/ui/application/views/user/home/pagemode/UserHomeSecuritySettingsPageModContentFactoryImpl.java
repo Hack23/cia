@@ -34,10 +34,10 @@ import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredenti
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserHomeConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ChangePasswordClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DeleteAccountClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.DisableGoogleAuthenticatorCredentialClickListener;
@@ -222,7 +222,7 @@ public final class UserHomeSecuritySettingsPageModContentFactoryImpl extends Abs
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(UserHomePageMode.SECURITY_SETTINGS.toString());
+		return PageCommandUserHomeConstants.COMMAND_USERHOME_SECURITY_SETTINGS.matches(page, parameters);
 	}
 
 }

@@ -136,7 +136,7 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	}
 
 	public boolean matchesPage(final String page,final String parameters) {
-		return this.page.equals(page) && (getPageId(parameters).isEmpty() || getPageId(parameters).equals(parameters));
+		return this.page.equals(page) && (getPageId(parameters).isEmpty() || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
 	private String getPageId(final String parameters) {

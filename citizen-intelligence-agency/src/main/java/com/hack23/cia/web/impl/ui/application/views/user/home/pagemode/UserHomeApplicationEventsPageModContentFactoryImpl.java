@@ -31,9 +31,9 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserHomeConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserHomePageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -108,7 +108,7 @@ public final class UserHomeApplicationEventsPageModContentFactoryImpl
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(UserHomePageMode.USER_EVENTS.toString());
+		return PageCommandUserHomeConstants.COMMAND_USERHOME_USER_EVENTS.matches(page, parameters);
 	}
 
 }
