@@ -685,7 +685,7 @@
         <plugin>
           <groupId>com.vaadin</groupId>
           <artifactId>vaadin-maven-plugin</artifactId>
-          <version>8.14.3</version>
+          <version>8.27.6</version>
           <dependencies>
             <dependency>
               <groupId>com.google.gwt</groupId>
