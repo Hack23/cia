@@ -26,8 +26,8 @@ jobs:
       actions: read      # Basic read access to actions
       security-events: write  # Needed for SBOM attestation
       statuses: write    # Required for commit statuses updated by actions
-      issues: read       # Needed for release notes generation capability
-      pull-requests: read    # Access for potential PR-related operations
+      issues: write       # Updated to write for release-drafter
+      pull-requests: write    # Updated to write for release-drafter      
       pages: read
       deployments: write
       attestations: write # Required to create and persist attestations
@@ -74,6 +74,7 @@ jobs:
           fulcio.sigstore.dev:443
           packages.microsoft.com:443
           rekor.sigstore.dev:443
+          release-drafter.github.io:443
 
     - name: Checkout repository
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -175,12 +176,31 @@ jobs:
     - name: Copy SBOM attestation for WAR
       run: cp ${{ steps.attestsbom_war.outputs.bundle-path }} citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json.intoto.jsonl
 
+    - name: Draft Release Notes
+      uses: release-drafter/release-drafter@v5
+      with:
+        version: ${{ github.event.inputs.release }}
+        tag: ${{ github.event.inputs.release }}
+        name: Release ${{ github.event.inputs.release }}
+        publish: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Get Release Notes
+      id: release-notes
+      uses: release-drafter/release-drafter@v5
+      with:
+        config-name: release-drafter.yml
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create a GitHub release
       uses: ncipollo/release-action@cdcc88a9acf3ca41c16c37bb7d21b9ad48560d87 # v1.15.0
       with:
         tag: '${{ github.event.inputs.release }}'
         generateReleaseNotes: false
         name: Release ${{ github.event.inputs.release }}
+        body: ${{ steps.release-notes.outputs.body }}
         artifacts: |
           cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb,
           cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.intoto.jsonl,
