@@ -74,4 +74,19 @@ public final class UserCommonTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandMainViewConstants.COMMAND_REGISTER);
     }
 
+    /**
+     * Verify leaderboard page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyLeaderboardPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMainViewConstants.COMMAND_DASHBOARDVIEW_OVERVIEW);
+        pageVisit.verifyViewContent(
+            CommonViewConstants.DASHBOARD_TITLE,
+            CommonViewConstants.DASHBOARD_HEADER,
+            CommonViewConstants.DASHBOARD_DESCRIPTION);
+        pageVisit.validatePage(PageCommandMainViewConstants.COMMAND_DASHBOARDVIEW_OVERVIEW);
+    }
+
 }
