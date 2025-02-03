@@ -54,9 +54,6 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 
-	/** The Constant REGISTER. */
-	private static final String REGISTER = "Register";
-
 	/**
 	 * Instantiates a new main view register page mod content factory impl.
 	 */
@@ -72,7 +69,10 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, content,"Register","Register User","Register new users with essential details.");
+		CardInfoRowUtil.createPageHeader(panel, content,
+            CommonViewConstants.REGISTER_TITLE_HEADER,
+            CommonViewConstants.REGISTER_TITLE,
+            CommonViewConstants.REGISTER_DESCRIPTION);
 
 		final VerticalLayout registerLayout = new VerticalLayout();
 		registerLayout.setSizeFull();
@@ -94,7 +94,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 		final ClickListener reqisterListener = new RegisterUserClickListener(reqisterRequest);
 		getFormFactory().addRequestInputFormFields(formContent, reqisterRequest,
 				RegisterUserRequest.class,
-				AS_LIST, REGISTER,
+				AS_LIST, CommonViewConstants.REGISTER_FORM_TITLE,
 				reqisterListener);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
@@ -103,7 +103,7 @@ public final class MainViewRegisterPageModContentFactoryImpl extends AbstractBas
 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
 		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
-		RowUtil.createRowComponent(grid,registerLayout,"Register a new user");
+		RowUtil.createRowComponent(grid,registerLayout,CommonViewConstants.REGISTER_USER_FORM_TITLE);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);

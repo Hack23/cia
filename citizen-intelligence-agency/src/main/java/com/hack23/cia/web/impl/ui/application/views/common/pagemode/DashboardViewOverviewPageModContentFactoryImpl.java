@@ -134,9 +134,9 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-				"CitizenIntelligence Agency::Dashboard Overview",
-				"Dashboard Overview",
-				"Visualize political activity in Sweden, present key performance indicators and metadata.");
+				CommonViewConstants.DASHBOARD_TITLE,
+				CommonViewConstants.DASHBOARD_HEADER,
+				CommonViewConstants.DASHBOARD_DESCRIPTION);
 
 		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);
 
@@ -268,7 +268,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 * @param row the row
 	 */
 	private void createDashboardPartRiskByType(final ResponsiveRow row) {
-		final VerticalLayout layout = createLayoutWithTitle("Number of risk by each type");
+		final VerticalLayout layout = createLayoutWithTitle(CommonViewConstants.RISK_BY_TYPE_TITLE);
 		final HorizontalLayout horizontalLayout = new HorizontalLayout();
 		Responsive.makeResponsive(horizontalLayout);
 

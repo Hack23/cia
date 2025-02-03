@@ -53,7 +53,10 @@ public final class MainViewOverviewPageModContentFactoryImpl extends AbstractBas
 		final String pageId = getPageId(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent,"Overview","Overview","Visualize political activity in Sweden, present key performance indicators and metadata for the actors on national level.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			CommonViewConstants.OVERVIEW_TITLE_HEADER,
+			CommonViewConstants.OVERVIEW_TITLE,
+			CommonViewConstants.OVERVIEW_DESCRIPTION);
 		getMenuItemFactory().createOverviewPage(panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,

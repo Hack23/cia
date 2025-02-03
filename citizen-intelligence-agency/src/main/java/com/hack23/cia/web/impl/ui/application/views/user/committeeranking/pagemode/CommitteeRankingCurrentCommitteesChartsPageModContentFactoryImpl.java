@@ -28,6 +28,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CommonViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeViewConstants;
@@ -80,7 +81,7 @@ public final class CommitteeRankingCurrentCommitteesChartsPageModContentFactoryI
 		chartLayout.setSizeFull();
 
 		chartDataManager.createChartPanel(chartLayout, dataSeriesFactory.createCommitteeChartTimeSeriesCurrent(),
-				"Current Committees");
+				CommonViewConstants.CHART_CURRENT_COMMITTEES);
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);

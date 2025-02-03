@@ -52,12 +52,6 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 	/** The Constant AS_LIST. */
 	private static final List<String> AS_LIST = Arrays.asList( "email", "otpCode", "userpassword" );
 
-	/** The Constant LOGIN. */
-	private static final String LOGIN = "Login";
-
-	/** The Constant LOGIN_USER. */
-	private static final String LOGIN_USER = "Login user";
-
 	/** The Constant NAME. */
 	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
 
@@ -75,7 +69,10 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 		final String pageId = getPageId(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, content,"Login","Login User","Secure login for agency users.");
+		CardInfoRowUtil.createPageHeader(panel, content,
+			CommonViewConstants.LOGIN_TITLE_HEADER,
+			CommonViewConstants.LOGIN_TITLE,
+			CommonViewConstants.LOGIN_DESCRIPTION);
 
 		final VerticalLayout loginLayout = new VerticalLayout();
 		loginLayout.setSizeFull();
@@ -98,7 +95,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 		final ClickListener loginListener = new ApplicationLoginListener(loginRequest);
 		getFormFactory().addRequestInputFormFields(formContent, loginRequest,
 				LoginRequest.class,
-				AS_LIST, LOGIN,
+				AS_LIST, CommonViewConstants.LOGIN_FORM_TITLE,
 				loginListener);
 
 		final VerticalLayout overviewLayout = new VerticalLayout();
@@ -107,7 +104,7 @@ public final class MainViewLoginPageModContentFactoryImpl extends AbstractBasicP
 		content.setExpandRatio(overviewLayout, ContentRatio.LARGE);
 
 		final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);
-		RowUtil.createRowComponent(grid,loginLayout,LOGIN_USER);
+		RowUtil.createRowComponent(grid,loginLayout,CommonViewConstants.LOGIN_USER_FORM_TITLE);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MAIN_VIEW, ApplicationEventGroup.USER,
 				CommonsViews.MAIN_VIEW_NAME, parameters, pageId);
