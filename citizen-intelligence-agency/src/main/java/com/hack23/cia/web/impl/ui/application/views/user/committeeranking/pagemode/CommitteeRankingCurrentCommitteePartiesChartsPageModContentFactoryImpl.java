@@ -28,6 +28,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.Char
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.PartyDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CommonViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeViewConstants;
@@ -44,9 +45,6 @@ import com.vaadin.ui.VerticalLayout;
 @Service
 public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFactoryImpl
 		extends AbstractCommitteeRankingPageModContentFactoryImpl {
-
-	/** The Constant CURRENT_PARTIES_BY_DAYS_SERVED. */
-	private static final String CURRENT_PARTIES_BY_DAYS_SERVED = "Current Parties, total political days served";
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
@@ -84,7 +82,8 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 		chartLayout.setSizeFull();
 
 		chartDataManager.createChartPanel(chartLayout,
-				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(), CURRENT_PARTIES_BY_DAYS_SERVED);
+				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(), 
+				CommonViewConstants.CHART_CURRENT_PARTIES);
 
 		panelContent.addComponent(chartLayout);
 		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);

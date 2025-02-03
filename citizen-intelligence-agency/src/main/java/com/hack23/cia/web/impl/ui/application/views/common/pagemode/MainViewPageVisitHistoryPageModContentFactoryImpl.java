@@ -55,7 +55,10 @@ public final class MainViewPageVisitHistoryPageModContentFactoryImpl extends Abs
 		final String pageId = getPageId(parameters);
 
 		getMenuItemFactory().createMainPageMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, content,"Page Visits","Page Visits","History of page visits to understand user engagement.");
+		CardInfoRowUtil.createPageHeader(panel, content,
+			CommonViewConstants.VISIT_HISTORY_TITLE_HEADER,
+			CommonViewConstants.VISIT_HISTORY_TITLE,
+			CommonViewConstants.VISIT_HISTORY_DESCRIPTION);
 
 		createPageVisitHistory(NAME,pageId,content);
 
