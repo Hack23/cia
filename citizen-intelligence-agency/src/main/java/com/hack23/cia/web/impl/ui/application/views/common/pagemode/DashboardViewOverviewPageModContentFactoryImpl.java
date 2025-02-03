@@ -503,7 +503,7 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return PageCommandMainViewConstants.COMMAND_MAINVIEW_PAGEVISITHISTORY.matches(page, parameters);
+		return PageCommandMainViewConstants.COMMAND_DASHBOARDVIEW_OVERVIEW.matches(page, parameters);
 	}
 
 }

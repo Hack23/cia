@@ -72,7 +72,7 @@ public final class MainViewPageVisitHistoryPageModContentFactoryImpl extends Abs
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return PageCommandMainViewConstants.COMMAND_DASHBOARDVIEW_OVERVIEW.matches(page, parameters);
+		return PageCommandMainViewConstants.COMMAND_MAINVIEW_PAGEVISITHISTORY.matches(page, parameters);
 	}
 
 }
