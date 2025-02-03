@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.home.pagemode;
 
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -31,9 +30,9 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.service.api.action.application.LogoutRequest;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserHomeConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
@@ -184,8 +183,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
+		return PageCommandUserHomeConstants.COMMAND_USERHOME_OVERVIEW.matchesPage(page, parameters);
 	}
 
 }
