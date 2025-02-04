@@ -177,7 +177,7 @@ jobs:
       run: cp ${{ steps.attestsbom_war.outputs.bundle-path }} citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json.intoto.jsonl
 
     - name: Draft Release Notes
-      uses: release-drafter/release-drafter@v5
+      uses: release-drafter/release-drafter@v6
       with:
         version: ${{ github.event.inputs.release }}
         tag: ${{ github.event.inputs.release }}
@@ -189,7 +189,7 @@ jobs:
 
     - name: Get Release Notes
       id: release-notes
-      uses: release-drafter/release-drafter@v5
+      uses: release-drafter/release-drafter@v6
       with:
         config-name: release-drafter.yml
       env:
