@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.docsearch.pagemode;
 
 import java.util.Collections;
 import java.util.List;

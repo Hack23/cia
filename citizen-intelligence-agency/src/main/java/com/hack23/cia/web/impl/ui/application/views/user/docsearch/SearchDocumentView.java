@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.user.document;
+package com.hack23.cia.web.impl.ui.application.views.user.docsearch;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -29,26 +29,26 @@ import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView
 import com.vaadin.spring.annotation.SpringView;
 
 /**
- * The Class DocumentsView.
+ * The Class PartyView.
  */
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@SpringView(name = DocumentsView.NAME)
-public final class DocumentsView extends AbstractUserView {
+@SpringView(name = SearchDocumentView.NAME)
+public final class SearchDocumentView extends AbstractUserView {
 
 	/** The Constant NAME. */
-	public static final String NAME = UserViews.DOCUMENTS_VIEW_NAME;
+	public static final String NAME = UserViews.SEARCH_DOCUMENT_VIEW_NAME;
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Instantiates a new document view.
+	 * Instantiates a new search document view.
 	 *
 	 * @param context
 	 *            the context
 	 */
-	public DocumentsView(final ApplicationContext context) {
+	public SearchDocumentView(final ApplicationContext context) {
 		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
 
 	}

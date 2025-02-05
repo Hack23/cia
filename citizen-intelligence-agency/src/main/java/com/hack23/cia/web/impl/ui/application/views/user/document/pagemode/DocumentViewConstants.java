@@ -6,7 +6,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 public interface DocumentViewConstants extends
     DocumentGridConstants,
     DocumentFieldConstants,
-    DocumentPageTitleConstants,
-    DocumentsOverviewPageModeConstants {
+    DocumentPageTitleConstants {
     // Interface is now complete through its extensions
 }

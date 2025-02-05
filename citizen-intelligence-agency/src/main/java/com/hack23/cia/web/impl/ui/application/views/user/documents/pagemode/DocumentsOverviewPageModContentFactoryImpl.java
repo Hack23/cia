@@ -1,4 +1,4 @@
-package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.user.documents.pagemode;
 
 import java.util.List;
 
