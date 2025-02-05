@@ -82,7 +82,7 @@ public final class CommitteeRankingCurrentCommitteePartiesChartsPageModContentFa
 		chartLayout.setSizeFull();
 
 		chartDataManager.createChartPanel(chartLayout,
-				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(), 
+				dataSeriesFactory2.createChartTimeSeriesCurrentCommitteeByParty(),
 				CommonViewConstants.CHART_CURRENT_PARTIES);
 
 		panelContent.addComponent(chartLayout);
