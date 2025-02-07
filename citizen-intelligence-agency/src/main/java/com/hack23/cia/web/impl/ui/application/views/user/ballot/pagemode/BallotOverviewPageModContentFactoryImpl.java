@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
@@ -35,9 +34,9 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandBallotConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.icons.VaadinIcons;
@@ -250,9 +249,7 @@ public final class BallotOverviewPageModContentFactoryImpl extends AbstractBallo
 	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		final String pageId = getPageId(parameters);
-		return NAME.equals(page)
-				&& (StringUtils.isEmpty(parameters) || parameters.equals(pageId) || parameters.contains(PageMode.OVERVIEW.toString()));
+		return PageCommandBallotConstants.COMMAND_BALLOT_OVERVIEW.matches(page, parameters);
 	}
 
 }

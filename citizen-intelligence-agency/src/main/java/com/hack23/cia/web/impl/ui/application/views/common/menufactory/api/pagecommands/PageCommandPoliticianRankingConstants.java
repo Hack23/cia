@@ -22,6 +22,7 @@ public interface PageCommandPoliticianRankingConstants {
 	PageModeMenuCommand COMMAND_POLITICIAN_RANKING_INDICATORS = new PageModeMenuCommand(
 			UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.INDICATORS);
 
+	/** The pol rank command charts all parties by headcount. */
 	PageModeMenuCommand POL_RANK_COMMAND_CHARTS_ALL_PARTIES_BY_HEADCOUNT = new PageModeMenuCommand(
 			UserViews.POLITICIAN_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());
 
