@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.GovernmentBodyRankingMenuItemFactory;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -92,7 +91,7 @@ public final class GovernmentBodyRankingMenuItemFactoryImpl extends AbstractMenu
                 menuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD, COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW);
                 menuItem.addItem(GOVERNMENT_BODIES, VaadinIcons.BUILDING_O, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID);
                 menuItem.addItem(GOVERNMENT_BODIES_HEADCOUNT, VaadinIcons.USER_CHECK,
-                		PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
+                PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_HEADCOUNT);
                 menuItem.addItem(GOVERNMENT_BODIES_INCOME, VaadinIcons.MONEY, PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_INCOME);
                 menuItem.addItem(GOVERNMENT_BODIES_EXPENDITURE, VaadinIcons.MONEY_WITHDRAW,
                 		PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE);
