@@ -18,8 +18,4 @@ public interface PageCommandMinistryConstants {
 	PageModeMenuCommand MINISTRY_COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
 			PageMode.PAGEVISITHISTORY);
 
-	/** The command charts allministries by total days. */
-	PageModeMenuCommand COMMAND_CHARTS_ALLMINISTRIES_BY_TOTAL_DAYS = new PageModeMenuCommand(
-			UserViews.MINISTRY_VIEW_NAME, PageMode.CHARTS, "ALLMINISTRIES_BY_TOTAL_DAYS");
-
 }
