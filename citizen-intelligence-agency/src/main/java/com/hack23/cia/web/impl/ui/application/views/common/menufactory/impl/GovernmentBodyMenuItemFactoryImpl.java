@@ -48,16 +48,16 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
         final MenuItem governmentBodyItem = menuBar.addItem(title, VaadinIcons.BUILDING_O, null);
 
         governmentBodyItem.addItem(GOVERNMENT_BODY_OVERVIEW_TEXT, VaadinIcons.FILE_TEXT,
-                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_OVERVIEW);
+                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_OVERVIEW.createItemPageCommand(pageId));
 
         governmentBodyItem.addItem(HEADCOUNT_CHART, VaadinIcons.USER,
-                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_HEADCOUNT);
+                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_HEADCOUNT.createItemPageCommand(pageId));
 
         governmentBodyItem.addItem(INCOME, VaadinIcons.MONEY,
-                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_INCOME);
+                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_INCOME.createItemPageCommand(pageId));
 
         governmentBodyItem.addItem(EXPENDITURE, VaadinIcons.CREDIT_CARD,
-                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_EXPENDITURE);
+                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_EXPENDITURE.createItemPageCommand(pageId));
     }
 
     @Override
@@ -65,15 +65,15 @@ public final class GovernmentBodyMenuItemFactoryImpl extends AbstractMenuItemFac
         final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
         createButtonLink(grid, HEADCOUNT_CHART, VaadinIcons.USER,
-                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_HEADCOUNT,
+                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_HEADCOUNT.createItemPageCommand(pageId),
                 HEADCOUNT_DESCRIPTION);
 
         createButtonLink(grid, INCOME, VaadinIcons.MONEY,
-                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_INCOME,
+                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_INCOME.createItemPageCommand(pageId),
                 INCOME_DESCRIPTION);
 
         createButtonLink(grid, EXPENDITURE, VaadinIcons.CREDIT_CARD,
-                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_EXPENDITURE,
+                PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_EXPENDITURE.createItemPageCommand(pageId),
                 EXPENDITURE_DESCRIPTION);
     }
 }
