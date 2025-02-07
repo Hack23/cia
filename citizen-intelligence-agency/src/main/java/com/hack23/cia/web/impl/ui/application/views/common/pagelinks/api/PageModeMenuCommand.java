@@ -131,15 +131,35 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	}
 
 
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
 	public boolean matches(final String page, final String parameters) {
 		return this.page.equals(page) && StringUtils.contains(parameters, pageReference);
 	}
 
+	/**
+	 * Matches page.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
 	public boolean matchesPage(final String page,final String parameters) {
 		return this.page.equals(page) && (getPageId(parameters).isEmpty() || parameters.contains(PageMode.OVERVIEW.toString()));
 	}
 
-	private String getPageId(final String parameters) {
+	/**
+	 * Gets the page id.
+	 *
+	 * @param parameters the parameters
+	 * @return the page id
+	 */
+	public static String getPageId(final String parameters) {
 		if (parameters != null) {
 			String cleanedString = parameters;
 			if (parameters.contains("[")) {
@@ -151,4 +171,15 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 			return "";
 		}
 	}
+
+	/**
+	 * Creates the item page command.
+	 *
+	 * @param part the part
+	 * @return the page mode menu command
+	 */
+	public PageModeMenuCommand createItemPageCommand(final String part) {
+		return new PageModeMenuCommand(page, pageReference, part);
+	}
+
 }

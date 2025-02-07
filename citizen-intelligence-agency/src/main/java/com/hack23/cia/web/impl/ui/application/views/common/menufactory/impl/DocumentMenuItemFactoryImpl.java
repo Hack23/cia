@@ -55,31 +55,31 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		final MenuItem documentItem = menuBar.addItem(DOCUMENT, VaadinIcons.FILE_TEXT, null);
 
 		documentItem.addItem(DOCUMENT_OVERVIEW_TEXT, VaadinIcons.FILE_TEXT,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_OVERVIEW);
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_OVERVIEW.createItemPageCommand(pageId));
 
 		documentItem.addItem(DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_PROCESS,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY);
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY.createItemPageCommand(pageId));
 
 		documentItem.addItem(PERSON_REFERENCES, VaadinIcons.USER,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_PERSON_REFERENCES);
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_PERSON_REFERENCES.createItemPageCommand(pageId));
 
 		documentItem.addItem(DOCUMENT_DETAILS, VaadinIcons.FILE_TEXT,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_DETAILS);
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DETAILS.createItemPageCommand(pageId));
 
 		documentItem.addItem(DOCUMENT_DATA, VaadinIcons.FILE_TEXT,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_DATA);
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DATA.createItemPageCommand(pageId));
 
 		documentItem.addItem(DOCUMENT_REFERENCES, VaadinIcons.FILE_TREE,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_REFERENCES);
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_REFERENCES.createItemPageCommand(pageId));
 
 		documentItem.addItem(DOCUMENT_DECISION, VaadinIcons.CLIPBOARD_CHECK,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_DECISION);
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DECISION.createItemPageCommand(pageId));
 
 		documentItem.addItem(DOCUMENT_ATTACHEMENTS, VaadinIcons.PAPERCLIP,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_ATTACHMENTS);
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_ATTACHMENTS.createItemPageCommand(pageId));
 
 		documentItem.addItem(DOCUMENT_PAGE_VISIT_HISTORY_TEXT, VaadinIcons.CLOCK,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_PAGEVISIT_HISTORY);
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_PAGEVISIT_HISTORY.createItemPageCommand(pageId));
 
 	}
 
@@ -99,31 +99,31 @@ public final class DocumentMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid, DOCUMENT_ACTIVITY_TEXT, VaadinIcons.FILE_PROCESS,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY,
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY.createItemPageCommand(pageId),
 				DOCUMENT_ACTIVITIES_AND_UPDATES);
 
 		createButtonLink(grid, PERSON_REFERENCES, VaadinIcons.USER,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_PERSON_REFERENCES,
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_PERSON_REFERENCES.createItemPageCommand(pageId),
 				REFERENCES_TO_INDIVIDUALS_IN_THE_DOCUMENT);
 
 		createButtonLink(grid, DOCUMENT_DETAILS, VaadinIcons.FILE_TEXT,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_DETAILS,
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DETAILS.createItemPageCommand(pageId),
 				DETAILED_INFORMATION_ABOUT_THE_DOCUMENT);
 
 		createButtonLink(grid, DOCUMENT_DATA, VaadinIcons.FILE_TEXT,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_DATA,
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DATA.createItemPageCommand(pageId),
 				COMPLETE_DOCUMENT_TEXT_AND_DATA);
 
 		createButtonLink(grid, DOCUMENT_REFERENCES, VaadinIcons.FILE_TREE,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_REFERENCES,
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_REFERENCES.createItemPageCommand(pageId),
 				REFERENCES_CITED_IN_THE_DOCUMENT);
 
 		createButtonLink(grid, DOCUMENT_DECISION, VaadinIcons.CLIPBOARD_CHECK,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_DECISION,
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_DECISION.createItemPageCommand(pageId),
 				DECISIONS_AND_OUTCOMES_RELATED_TO_THE_DOCUMENT);
 
 		createButtonLink(grid, DOCUMENT_ATTACHEMENTS, VaadinIcons.PAPERCLIP,
-				PageCommandDocumentConstants.COMMAND_DOCUMENT_ATTACHMENTS,
+				PageCommandDocumentConstants.COMMAND_DOCUMENT_ATTACHMENTS.createItemPageCommand(pageId),
 				ATTACHMENTS_AND_SUPPLEMENTARY_FILES);
 	}
 

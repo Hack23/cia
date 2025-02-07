@@ -16,11 +16,11 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowU
 import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPageTitleConstants;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
 
 /**
  * The Class DocumentOverviewPageModContentFactoryImpl.
@@ -29,20 +29,18 @@ import com.vaadin.ui.VerticalLayout;
 public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDocumentsPageModContentFactoryImpl {
 
 	/** The Constant COLUMN_ORDER. */
-	private static final String[] COLUMN_ORDER = { "rm", "createdDate", "documentName", "subType", "title", "subTitle", "status" };
-
-	/** The Constant DOCUMENT. */
-	private static final String DOCUMENT = "Document";
+	private static final String[] COLUMN_ORDER = { "rm", "createdDate", "documentName", "subType", "title", "subTitle",
+			"status" };
 
 	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = { "rm", "lang", "noteTitle", "origin", "subType", "note", "subTitle", "status", "label",
-			"id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId", "org",
+	private static final String[] HIDE_COLUMNS = { "rm", "lang", "noteTitle", "origin", "subType", "note", "subTitle",
+			"status", "label", "id", "hit", "madePublicDate", "databaseSource", "domainOrg", "relatedId", "org",
 			"documentType", "docType", "debateName", "tempLabel", "numberValue", "systemDate", "kallId",
-			"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml",
-			"committeeReportUrlXml" };
+			"documentFormat", "documentUrlText", "documentUrlHtml", "documentStatusUrlXml", "committeeReportUrlXml" };
 
 	/** The Constant LISTENER. */
-	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.DOCUMENT_VIEW_NAME, "id",true);
+	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
+			UserViews.DOCUMENT_VIEW_NAME, "id", true);
 
 	/** The paging util. */
 	@Autowired
@@ -61,22 +59,24 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 		final VerticalLayout panelContent = createPanelContent();
 
 		final String pageId = getPageId(parameters);
-		final int pageNr= getPageNr(parameters);
+		final int pageNr = getPageNr(parameters);
 
 		getDocumentMenuItemFactory().createDocumentsMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Documents Overview", "Documents Repository", "Comprehensive repository of Swedish Parliament(Riksdagen) documents.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, DocumentPageTitleConstants.DOCUMENTS_OVERVIEW_TITLE,
+				DocumentPageTitleConstants.DOCUMENTS_OVERVIEW_HEADER,
+				DocumentPageTitleConstants.DOCUMENTS_OVERVIEW_DESC);
 
 		final DataContainer<DocumentElement, String> documentElementDataContainer = getApplicationManager()
 				.getDataContainer(DocumentElement.class);
 
-		final List<DocumentElement> pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);
+		final List<DocumentElement> pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,
+				DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);
 
-		pagingUtil.createPagingControls(panelContent,NAME,pageId, documentElementDataContainer.getSize(), pageNr, DEFAULT_RESULTS_PER_PAGE);
+		pagingUtil.createPagingControls(panelContent, NAME, pageId, documentElementDataContainer.getSize(), pageNr,
+				DEFAULT_RESULTS_PER_PAGE);
 
-		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, DOCUMENT,
-				COLUMN_ORDER,
-				HIDE_COLUMNS,
-				LISTENER, null, null);
+		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, DocumentPageTitleConstants.DOCUMENTS_OVERVIEW_HEADER,
+				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 		panel.setContent(panelContent);
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENTS_VIEW, ApplicationEventGroup.USER, NAME,
@@ -88,7 +88,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return PageCommandDocumentConstants.COMMAND_DOCUMENTS_OVERVIEW.matchesPage(page,parameters);
+		return PageCommandDocumentConstants.COMMAND_DOCUMENTS_OVERVIEW.matchesPage(page, parameters);
 	}
 
 }

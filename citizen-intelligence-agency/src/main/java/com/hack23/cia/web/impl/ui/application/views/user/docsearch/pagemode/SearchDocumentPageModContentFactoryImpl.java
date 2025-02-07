@@ -37,12 +37,12 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl.SearchDocumentResponseHandlerImpl;
+import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPageTitleConstants;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-
 
 /**
  * The Class SearchDocumentPageModContentFactoryImpl.
@@ -51,16 +51,13 @@ import com.vaadin.ui.VerticalLayout;
 public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
 
 	/** The Constant AS_LIST. */
-	private static final List<String> AS_LIST = Collections.singletonList( "searchExpression" );
+	private static final List<String> AS_LIST = Collections.singletonList("searchExpression");
 
 	/** The Constant MAX_RESULT_SIZE. */
 	private static final int MAX_RESULT_SIZE = 100;
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.SEARCH_DOCUMENT_VIEW_NAME;
-
-	/** The Constant SEARCH. */
-	private static final String SEARCH = "Search";
 
 	/** The document menu item factory. */
 	@Autowired
@@ -81,7 +78,8 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasic
 		final String pageId = getPageId(parameters);
 
 		documentMenuItemFactory.createDocumentsMenuBar(menuBar);
-		CardInfoRowUtil.createPageHeader(panel, panelContent,"Search","Document Search","Search and access detailed parliamentary documents.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, DocumentPageTitleConstants.DOC_SEARCH_TITLE,
+				DocumentPageTitleConstants.DOC_SEARCH_HEADER, DocumentPageTitleConstants.DOC_SEARCH_DESC);
 
 		final VerticalLayout searchLayout = new VerticalLayout();
 		searchLayout.setSizeFull();
@@ -105,10 +103,9 @@ public final class SearchDocumentPageModContentFactoryImpl extends AbstractBasic
 		searchRequest.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 		searchRequest.setMaxResults(MAX_RESULT_SIZE);
 		searchRequest.setSearchExpression("");
-		getFormFactory().addRequestInputFormFields(formContent, searchRequest,
-				SearchDocumentRequest.class, AS_LIST, SEARCH,
-				new SearchDocumentClickListener(searchRequest, new SearchDocumentResponseHandlerImpl(getGridFactory(), formPanel,
-						searchresultLayout)));
+		getFormFactory().addRequestInputFormFields(formContent, searchRequest, SearchDocumentRequest.class, AS_LIST,
+				DocumentPageTitleConstants.DOC_SEARCH_TITLE, new SearchDocumentClickListener(searchRequest,
+						new SearchDocumentResponseHandlerImpl(getGridFactory(), formPanel, searchresultLayout)));
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,
 				parameters, pageId);

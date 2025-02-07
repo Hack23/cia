@@ -113,5 +113,24 @@ public interface DocumentPageTitleConstants {
 
     /** The documents desc. */
     String DOCUMENTS_DESC = "Comprehensive repository of Swedish Parliament(Riksdagen) documents.";
+
+	/** The documents overview desc. */
+	String DOCUMENTS_OVERVIEW_DESC = "Comprehensive repository of Swedish Parliament(Riksdagen) documents.";
+
+	/** The documents overview header. */
+	String DOCUMENTS_OVERVIEW_HEADER = "Documents Repository";
+
+	/** The documents overview title. */
+	String DOCUMENTS_OVERVIEW_TITLE = "Documents Overview";
+
+	/** The doc search desc. */
+	String DOC_SEARCH_DESC = "Search and access detailed parliamentary documents.";
+
+	/** The doc search header. */
+	String DOC_SEARCH_HEADER = "Document Search";
+
+	/** The doc search title. */
+	String DOC_SEARCH_TITLE = "Search";
+
 }
 

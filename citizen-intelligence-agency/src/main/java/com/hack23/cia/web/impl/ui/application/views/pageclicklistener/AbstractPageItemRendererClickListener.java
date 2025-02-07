@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 
 import java.util.Set;
 
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.event.selection.SelectionEvent;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
@@ -53,7 +54,7 @@ public abstract class AbstractPageItemRendererClickListener<T> implements PageIt
 
 	@Override
 	public final void click(final RendererClickEvent<T> event) {
-		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId(event.getItem()));
+		UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + PageMode.OVERVIEW.toString() + PAGE_SEPARATOR +  getPageId(event.getItem()));
 	}
 
 
@@ -72,7 +73,7 @@ public abstract class AbstractPageItemRendererClickListener<T> implements PageIt
 		final Set<T> added =event.getAllSelectedItems();
 
 		if (!added.isEmpty()) {
-			UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + getPageId(added.iterator().next()));
+			UI.getCurrent().getNavigator().navigateTo(page + PAGE_SEPARATOR + PageMode.OVERVIEW.toString() + PAGE_SEPARATOR + getPageId(added.iterator().next()));
 
 		}
 	}

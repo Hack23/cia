@@ -214,7 +214,7 @@ public final class DocumentOverviewPageModContentFactoryImpl extends AbstractDoc
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return PageCommandDocumentConstants.COMMAND_DOCUMENT_OVERVIEW.matches(page, parameters);
+		return PageCommandDocumentConstants.COMMAND_DOCUMENT_OVERVIEW.matchesPage(page, parameters);
 	}
 
 }
