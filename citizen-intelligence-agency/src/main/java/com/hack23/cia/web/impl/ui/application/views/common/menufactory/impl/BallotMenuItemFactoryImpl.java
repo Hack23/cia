@@ -66,9 +66,9 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		initApplicationMenuBar(menuBar);
 
 		menuBar.addItem(OVERVIEW_TEXT, VaadinIcons.PIE_CHART,
-				PageCommandBallotConstants.COMMAND_BALLOT_OVERVIEW);
+				PageCommandBallotConstants.COMMAND_BALLOT_OVERVIEW.createItemPageCommand(pageId));
 		menuBar.addItem(CHARTS_TEXT, VaadinIcons.PIE_CHART,
-				PageCommandBallotConstants.COMMAND_BALLOT_CHARTS);
+				PageCommandBallotConstants.COMMAND_BALLOT_CHARTS.createItemPageCommand(pageId));
 	}
 
 	/**
@@ -82,7 +82,7 @@ public final class BallotMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl
 		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);
 
 		createButtonLink(grid, CHARTS_TEXT, VaadinIcons.PIE_CHART,
-				PageCommandBallotConstants.COMMAND_BALLOT_CHARTS, BALLOT_RESULTS_DESCRIPTION);
+				PageCommandBallotConstants.COMMAND_BALLOT_CHARTS.createItemPageCommand(pageId), BALLOT_RESULTS_DESCRIPTION);
 	}
 
 }
