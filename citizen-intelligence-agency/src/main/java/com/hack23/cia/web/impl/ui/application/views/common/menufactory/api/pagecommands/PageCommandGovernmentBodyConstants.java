@@ -27,6 +27,7 @@ public interface PageCommandGovernmentBodyConstants {
                      UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW);
 
 
+     /** The command government body pagevisit. */
      PageModeMenuCommand COMMAND_GOVERNMENT_BODY_PAGEVISIT = new PageModeMenuCommand(
             UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 

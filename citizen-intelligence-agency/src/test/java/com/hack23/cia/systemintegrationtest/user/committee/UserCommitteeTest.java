@@ -6,7 +6,7 @@ import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 
 /**
- * The Class UserCommitteeTest.
+ * The Class UserBallotTest.
  */
 @Category(IntegrationTest.class)
 public final class UserCommitteeTest extends AbstractUITest {

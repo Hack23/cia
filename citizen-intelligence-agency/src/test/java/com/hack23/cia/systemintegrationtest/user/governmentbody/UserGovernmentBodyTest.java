@@ -14,8 +14,14 @@ import com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode.
 @Category(IntegrationTest.class)
 public final class UserGovernmentBodyTest extends AbstractUITest {
 
+    /** The Constant GOV_BODY_ID. */
     private static final String GOV_BODY_ID = "202100-4979";
 
+    /**
+     * Verify government body overview page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyOverviewPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_OVERVIEW.createItemPageCommand(GOV_BODY_ID));
@@ -25,7 +31,12 @@ public final class UserGovernmentBodyTest extends AbstractUITest {
                 GovernmentBodyDescriptionConstants.OVERVIEW_DESC);
         pageVisit.validatePage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_OVERVIEW.createItemPageCommand(GOV_BODY_ID));
     }
-    
+
+    /**
+     * Verify government body headcount page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyHeadcountPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_HEADCOUNT.createItemPageCommand(GOV_BODY_ID));
@@ -36,6 +47,11 @@ public final class UserGovernmentBodyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_HEADCOUNT.createItemPageCommand(GOV_BODY_ID));
     }
 
+    /**
+     * Verify government body income page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyIncomePage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_INCOME.createItemPageCommand(GOV_BODY_ID));
@@ -46,6 +62,11 @@ public final class UserGovernmentBodyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_INCOME.createItemPageCommand(GOV_BODY_ID));
     }
 
+    /**
+     * Verify government body expenditure page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyExpenditurePage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_EXPENDITURE.createItemPageCommand(GOV_BODY_ID));
@@ -56,6 +77,11 @@ public final class UserGovernmentBodyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_EXPENDITURE.createItemPageCommand(GOV_BODY_ID));
     }
 
+    /**
+     * Verify government body page visit page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyGovernmentBodyPageVisitPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_PAGEVISIT.createItemPageCommand(GOV_BODY_ID));

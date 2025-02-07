@@ -48,6 +48,7 @@ public interface PageCommandDocumentConstants {
                 UserViews.DOCUMENT_VIEW_NAME, DocumentPageMode.DOCUMENTREFERENCES.toString());
 
 
+            /** The command documents overview. */
             PageModeMenuCommand COMMAND_DOCUMENTS_OVERVIEW = new PageModeMenuCommand(
                     UserViews.DOCUMENTS_VIEW_NAME, PageMode.OVERVIEW);
 

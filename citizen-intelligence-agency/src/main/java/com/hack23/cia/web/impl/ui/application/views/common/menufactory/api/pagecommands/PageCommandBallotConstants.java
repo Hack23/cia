@@ -13,23 +13,7 @@ public interface PageCommandBallotConstants {
 	PageModeMenuCommand COMMAND_BALLOT_OVERVIEW = new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,
 			PageMode.OVERVIEW);
 
-	/** The command ballot decision summary. */
-	PageModeMenuCommand COMMAND_BALLOT_DECISION_SUMMARY = new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,
-			"decisionsummary");
-
-	/** The command ballot pagevisit history. */
-	PageModeMenuCommand COMMAND_BALLOT_PAGEVISIT_HISTORY = new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,
-			PageMode.PAGEVISITHISTORY);
-
 	/** The command ballot charts. */
 	PageModeMenuCommand COMMAND_BALLOT_CHARTS = new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS);
-
-	/** The command decision summary. */
-	PageModeMenuCommand COMMAND_DECISION_SUMMARY = new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME,
-			"decisionsummary");
-
-	/** The command decision flow. */
-	PageModeMenuCommand COMMAND_DECISION_FLOW = new PageModeMenuCommand(UserViews.BALLOT_VIEW_NAME, PageMode.CHARTS,
-			"DECISION_FLOW");
 
 }
