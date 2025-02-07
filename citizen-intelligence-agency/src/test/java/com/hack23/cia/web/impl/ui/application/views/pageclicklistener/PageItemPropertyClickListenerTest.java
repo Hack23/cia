@@ -28,6 +28,7 @@ import org.mockito.Mockito;
 
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.testfoundation.AbstractUnitTest;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.event.selection.SelectionEvent;
 import com.vaadin.navigator.Navigator;
@@ -68,7 +69,7 @@ public final class PageItemPropertyClickListenerTest extends AbstractUnitTest {
 			 */
 			private static final long serialVersionUID = 1L;});
 
-		Mockito.verify(navigatorMock, times(1)).navigateTo(UserViews.POLITICIAN_VIEW_NAME + "/personId");
+		Mockito.verify(navigatorMock, times(1)).navigateTo(UserViews.POLITICIAN_VIEW_NAME +"/" + PageMode.OVERVIEW.toString() + "/personId");
 	}
 
 	/**

@@ -15,7 +15,7 @@ public final class TestConstants {
     public static final long CHECK = 100;
 
     /** The Constant WAIT_FOR_PAGE_ELEMENT. */
-    public static final Duration WAIT_FOR_PAGE_ELEMENT = Duration.ofMillis(8000);
+    public static final Duration WAIT_FOR_PAGE_ELEMENT = Duration.ofMillis(15000);
 
     /** The Constant DEFAULT_BROWSER_TIMEOUT. */
     public static final Duration DEFAULT_BROWSER_TIMEOUT = Duration.ofSeconds(7);

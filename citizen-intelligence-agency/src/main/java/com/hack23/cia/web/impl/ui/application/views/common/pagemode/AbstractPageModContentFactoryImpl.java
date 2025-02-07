@@ -27,6 +27,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormF
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.vaadin.server.Sizeable.Unit;
 import com.vaadin.ui.HorizontalLayout;
@@ -184,16 +185,7 @@ public abstract class AbstractPageModContentFactoryImpl implements PageModeConte
 	 * @return the page id
 	 */
 	protected static final String getPageId(final String parameters) {
-		if (parameters != null) {
-			String cleanedString = parameters;
-			if (parameters.contains("[")) {
-				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), "");
-			}
-
-			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length());
-		} else {
-			return "";
-		}
+		return PageModeMenuCommand.getPageId(parameters);
 	}
 
 	/**
