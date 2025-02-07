@@ -14,6 +14,7 @@ import com.hack23.cia.systemintegrationtest.admin.operations.AdminOperationsTest
 import com.hack23.cia.systemintegrationtest.admin.security.AdminSecurityTest;
 import com.hack23.cia.systemintegrationtest.ui.UserPageVisit;
 import com.hack23.cia.systemintegrationtest.ui.WebDriverFactory;
+import com.hack23.cia.systemintegrationtest.user.ballot.UserBallotTest;
 import com.hack23.cia.systemintegrationtest.user.committee.UserCommitteeRankingTest;
 import com.hack23.cia.systemintegrationtest.user.committee.UserCommitteeTest;
 import com.hack23.cia.systemintegrationtest.user.common.UserCommonTest;
@@ -53,7 +54,8 @@ import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
     UserPoliticianRankingTest.class,
     UserDocumentTest.class,
     UserDocumentsTest.class,
-    UserDocumentSearchTest.class
+    UserDocumentSearchTest.class,
+    UserBallotTest.class
 })
 public class IntegrationTestSuite {
 
