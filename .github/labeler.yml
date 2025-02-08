@@ -1,171 +1,196 @@
 # Primary Feature Categories
 feature:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - 'feat:**'
-        - 'feature:**'
-        - '**/feature/**'
-        - '**/features/**'
+    - any-glob-to-any-file: 
+      - 'feat/**'
+      - 'feature/**'
+      - '**/feature/**'
+      - '**/features/**'
 
 enhancement:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - 'enhance:**'
-        - 'improvement:**'
-        - '**/enhancement/**'
+    - any-glob-to-any-file: 
+      - 'enhance/**'
+      - 'improvement/**'
+      - '**/enhancement/**'
 
-# Political Analysis
+# Political Analysis Components
 political-analysis:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/political/**'
-        - '**/analysis/**'
-        - '**/dashboard/**'
-        - '**/scoreboard/**'
-        - '**/riksdagen/**'
-        - '**/parliament/**'
+    - any-glob-to-any-file: 
+      - '**/political/**'
+      - '**/analysis/**'
+      - '**/dashboard/**'
+      - '**/scoreboard/**'
+      - '**/riksdagen/**'
+      - '**/parliament/**'
 
 party-data:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/party/**'
-        - '**/parties/**'
-        - '**/political-party/**'
+    - any-glob-to-any-file: 
+      - '**/party/**'
+      - '**/parties/**'
+      - '**/political-party/**'
 
 committee:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/committee/**'
-        - '**/committees/**'
-        - '**/decision/**'
+    - any-glob-to-any-file: 
+      - '**/committee/**'
+      - '**/committees/**'
+      - '**/decision/**'
 
 government:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/government/**'
-        - '**/ministry/**'
-        - '**/minister/**'
+    - any-glob-to-any-file: 
+      - '**/government/**'
+      - '**/ministry/**'
+      - '**/minister/**'
 
 # Analytics & Data
 analytics:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/analytics/**'
-        - '**/views/**'
-        - '**/reporting/**'
-        - '**/metrics/**'
-        - '**/statistics/**'
+    - any-glob-to-any-file: 
+      - '**/analytics/**'
+      - '**/views/**'
+      - '**/reporting/**'
+      - '**/metrics/**'
+      - '**/statistics/**'
 
 visualization:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/charts/**'
-        - '**/visualization/**'
-        - '**/graph/**'
-        - '**/dashboard/**'
+    - any-glob-to-any-file: 
+      - '**/charts/**'
+      - '**/visualization/**'
+      - '**/graph/**'
+      - '**/dashboard/**'
 
 database:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/db/**'
-        - '**/sql/**'
-        - '**/database/**'
-        - '**/jpa/**'
-        - '**/hibernate/**'
+    - any-glob-to-any-file: 
+      - '**/db/**'
+      - '**/sql/**'
+      - '**/database/**'
+      - '**/jpa/**'
+      - '**/hibernate/**'
 
 # UI/UX
 ui:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/ui/**'
-        - '**/view/**'
-        - '**/form/**'
-        - '**/*.css'
-        - '**/layout/**'
-        - '**/grid/**'
+    - any-glob-to-any-file: 
+      - '**/ui/**'
+      - '**/view/**'
+      - '**/form/**'
+      - '**/*.css'
+      - '**/layout/**'
+      - '**/grid/**'
 
 # Infrastructure
 infrastructure:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/cloudformation/**'
-        - '**/deploy/**'
-        - '**/*.json'
-        - '**/config/**'
-        - '**/postgres/**'
-        - '**/.github/**'
+    - any-glob-to-any-file: 
+      - '**/cloudformation/**'
+      - '**/deploy/**'
+      - '**/*.json'
+      - '**/config/**'
+      - '**/postgres/**'
+      - '**/.github/**'
 
 performance:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/performance/**'
-        - '**/optimization/**'
-        - '**/cache/**'
-        - '**/index/**'
+    - any-glob-to-any-file: 
+      - '**/performance/**'
+      - '**/optimization/**'
+      - '**/cache/**'
+      - '**/index/**'
 
 # Code Quality
 refactor:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - 'refactor:**'
-        - '**/refactor/**'
-        - '**/cleanup/**'
+    - any-glob-to-any-file: 
+      - 'refactor/**'
+      - '**/refactor/**'
+      - '**/cleanup/**'
+  - head-branch: 
+      - '^refactor'
+      - 'refactor'
 
 testing:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/test/**'
-        - '**/*Test.java'
-        - '**/junit/**'
-        - '**/testing/**'
+    - any-glob-to-any-file: 
+      - '**/test/**'
+      - '**/*Test.java'
+      - '**/junit/**'
+      - '**/testing/**'
 
 # Security
 security:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/security/**'
-        - '**/auth/**'
-        - '**/authentication/**'
-        - '**/authorization/**'
-        - '**/permission/**'
-        - '**/compliance/**'
+    - any-glob-to-any-file: 
+      - '**/security/**'
+      - '**/auth/**'
+      - '**/authentication/**'
+      - '**/authorization/**'
+      - '**/permission/**'
+      - '**/compliance/**'
 
 # Documentation
 documentation:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '**/*.md'
-        - '**/docs/**'
-        - '**/javadoc/**'
-        - '**/package-info.java'
-        - '**/module-info.java'
-        - '**/documentation/**'
+    - any-glob-to-any-file: 
+      - '**/*.md'
+      - '**/docs/**'
+      - '**/javadoc/**'
+      - '**/package-info.java'
+      - '**/module-info.java'
+      - '**/documentation/**'
 
 # Dependencies
 dependencies:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - 'build(deps):**'
-        - '**/pom.xml'
-        - '**/dependencies/**'
-        - '**/dependency/**'
+    - any-glob-to-any-file: 
+      - 'build(deps)/**'
+      - '**/pom.xml'
+      - '**/dependencies/**'
+      - '**/dependency/**'
 
 # Build & CI
 build:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - '.github/workflows/**'
-        - '**/Dockerfile'
-        - '**/docker/**'
-        - '**/ci/**'
-        - '**/cd/**'
-        - 'pom.xml'
+    - any-glob-to-any-file: 
+      - '.github/workflows/**'
+      - '**/Dockerfile'
+      - '**/docker/**'
+      - '**/ci/**'
+      - '**/cd/**'
+      - 'pom.xml'
 
 # Bug Fixes
 bug:
+- any:
   - changed-files:
-      any-glob-to-any-file:
-        - 'fix:**'
-        - 'bug:**'
-        - '**/bugfix/**'
-        - '**/fix/**'
+    - any-glob-to-any-file: 
+      - 'fix/**'
+      - 'bug/**'
+      - '**/bugfix/**'
+      - '**/fix/**'
+  - head-branch:
+      - '^fix'
+      - 'bug'
