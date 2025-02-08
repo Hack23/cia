@@ -75,11 +75,6 @@ jobs:
         # We must fetch at least the immediate parents so that if this is
         # a pull request then we can checkout the head.
         fetch-depth: 2
-    - name: Labeler
-      uses: actions/labeler@v5
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        configuration-path: .github/labeler.yml        
     - name: Run Checkov action
       id: checkov
       uses: bridgecrewio/checkov-action@abac673d65af73d7e91577b64a313f7e7401bd6e # master
