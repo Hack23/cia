@@ -26,7 +26,7 @@ jobs:
     permissions:
       contents: write        # Required for dependency submission and repository access
       security-events: write # Required for CodeQL, checkov, and dependency submission
-      pull-requests: read   # Needed for PR analysis
+      pull-requests: write   # Needed for PR analysis
       actions: read         # Needed for CodeQL action metadata
     strategy:
       fail-fast: false
@@ -75,6 +75,11 @@ jobs:
         # We must fetch at least the immediate parents so that if this is
         # a pull request then we can checkout the head.
         fetch-depth: 2
+    - name: Labeler
+      uses: actions/labeler@v5
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        configuration-path: .github/labeler.yml        
     - name: Run Checkov action
       id: checkov
       uses: bridgecrewio/checkov-action@abac673d65af73d7e91577b64a313f7e7401bd6e # master
