@@ -27,6 +27,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Party
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text.MenuItemRankingPageVisitHistoryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;

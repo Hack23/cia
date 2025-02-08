@@ -17,7 +17,7 @@ public interface PageCommandMinistryConstants {
 
 	/** The ministry command pagevisithistory. */
 	PageModeMenuCommand MINISTRY_COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-			PageMode.PAGEVISITHISTORY);
+			"visitHistory");
 
 	/** The command ministry overview. */
 	PageModeMenuCommand COMMAND_MINISTRY_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW);
@@ -45,5 +45,8 @@ public interface PageCommandMinistryConstants {
 
 	/** The command ministry document history. */
 	PageModeMenuCommand COMMAND_MINISTRY_DOCUMENT_HISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.DOCUMENTHISTORY.toString());
+
+	/** The command ministry page visit history. */
+	PageModeMenuCommand COMMAND_MINISTRY_PAGEVISIT_HISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, "visitHistory");
 
 }
