@@ -17,7 +17,7 @@ public interface PageCommandMinistryConstants {
 
 	/** The ministry command pagevisithistory. */
 	PageModeMenuCommand MINISTRY_COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,
-			"visitHistory");
+			PageMode.PAGEVISITHISTORY);
 
 	/** The command ministry overview. */
 	PageModeMenuCommand COMMAND_MINISTRY_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW);
