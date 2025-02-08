@@ -75,7 +75,7 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 
 		final MenuItem rolesItem = committeeItem.addItem(ROLES_TEXT, VaadinIcons.GROUP, null);
 
-		rolesItem.addItem(CURRENT_MEMBERS_TEXT, VaadinIcons.USER, 
+		rolesItem.addItem(CURRENT_MEMBERS_TEXT, VaadinIcons.USER,
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_CURRENT_MEMBERS.createItemPageCommand(pageId));
 
 		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.CALENDAR_USER,
@@ -100,10 +100,10 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 		ballotItem.addItem(DECISION_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_PULSE,
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_DECISION_SUMMARY.createItemPageCommand(pageId));
 
-		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_TEXT, 
+		ballotItem.addItem(DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_TEXT,
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_DECISION_TYPE_DAILY_SUMMARY.createItemPageCommand(pageId));
 
-		ballotItem.addItem("Decision flow", VaadinIcons.LINE_CHART, 
+		ballotItem.addItem("Decision flow", VaadinIcons.LINE_CHART,
 				PageCommandCommitteeConstants.COMMAND_CHARTS_DECISION_FLOW.createItemPageCommand(pageId));
 
 		committeeItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CLOCK,
@@ -143,11 +143,11 @@ public final class CommitteeMenuItemFactoryImpl extends AbstractMenuItemFactoryI
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_DECISION_SUMMARY.createItemPageCommand(pageId),
 				DECISION_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid, DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_TEXT, 
+		createButtonLink(grid, DECISION_TYPE_DAILY_SUMMARY_TEXT, VaadinIcons.CLIPBOARD_TEXT,
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_DECISION_TYPE_DAILY_SUMMARY.createItemPageCommand(pageId),
 				DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION);
 
-		createButtonLink(grid, "Decision flow", VaadinIcons.LINE_CHART, 
+		createButtonLink(grid, "Decision flow", VaadinIcons.LINE_CHART,
 				PageCommandCommitteeConstants.COMMAND_CHARTS_DECISION_FLOW.createItemPageCommand(pageId),
 				DECISION_FLOW_DESCRIPTION);
 

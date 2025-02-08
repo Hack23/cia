@@ -31,8 +31,8 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyGhantChartManager;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -87,7 +87,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.ROLEGHANT.toString());
+		return PageCommandPartyConstants.COMMAND_PARTY_ROLE_GHANT.matches(page, parameters);
 	}
 
 }

@@ -18,15 +18,14 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPoliticianConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -71,6 +70,6 @@ public final class PoliticianPageVisitHistoryPageModContentFactoryImpl
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && StringUtils.contains(parameters,PageMode.PAGEVISITHISTORY.toString());
+		return PageCommandPoliticianConstants.COMMAND_POLITICIAN_PAGEVISIT.matches(page, parameters);
 	}
 }

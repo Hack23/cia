@@ -27,8 +27,8 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.ui.Layout;
@@ -108,7 +108,7 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.MEMBERHISTORY.toString());
+		return PageCommandPartyConstants.COMMAND_PARTY_MEMBER_HISTORY.matches(page, parameters);
 	}
 
 }

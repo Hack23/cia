@@ -28,9 +28,9 @@ import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPoliticianConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
@@ -113,7 +113,7 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.ROLESUMMARY.toString());
+		return PageCommandPoliticianConstants.COMMAND_POLITICIAN_ROLE_SUMMARY.matches(page, parameters);
 	}
 
 }

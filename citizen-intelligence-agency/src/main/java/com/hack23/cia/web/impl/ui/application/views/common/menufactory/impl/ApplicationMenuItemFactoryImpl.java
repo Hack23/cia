@@ -25,7 +25,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Party
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.PoliticianRankingMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMainViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyRankingConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPoliticianConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.jarektoro.responsivelayout.ResponsiveRow;
@@ -176,7 +175,7 @@ public final class ApplicationMenuItemFactoryImpl extends AbstractMenuItemFactor
 		createButtonLink(grid, POLITICIAN_RANKING_LINK_TEXT, VaadinIcons.USER, POLITICIAN_RANKING_COMMAND_DATAGRID,
 				POLITICIAN_RANKING_DESCRIPTION);
 		createButtonLink(grid, POLITICIANS_LINK_TEXT, VaadinIcons.USER,
-				PageCommandPoliticianConstants.COMMAND_POLITICIANS_LINK, POLITICIANS_DESCRIPTION);
+				PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_DATAGRID, POLITICIANS_DESCRIPTION);
 		createButtonLink(grid, SEARCH_DOCUMENTS, VaadinIcons.SEARCH,
 				PageCommandMainViewConstants.COMMAND_SEARCH_DOCUMENT, SEARCH_DOCUMENTS_DESCRIPTION);
 		createButtonLink(grid, DOCUMENTS, VaadinIcons.FILE_TABLE, COMMAND_DOCUMENTS_OVERVIEW, DOCUMENTS_DESCRIPTION);

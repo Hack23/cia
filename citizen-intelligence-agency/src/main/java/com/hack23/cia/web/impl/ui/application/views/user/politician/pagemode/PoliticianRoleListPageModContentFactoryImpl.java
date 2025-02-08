@@ -30,8 +30,8 @@ import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPoliticianConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -98,7 +98,7 @@ public final class PoliticianRoleListPageModContentFactoryImpl extends AbstractP
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PoliticianPageMode.ROLELIST.toString());
+		return PageCommandPoliticianConstants.COMMAND_POLITICIAN_ROLE_LIST.matches(page, parameters);
 	}
 
 }

@@ -26,8 +26,8 @@ import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksda
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PoliticianChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPoliticianConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
@@ -76,6 +76,6 @@ public final class PoliticianIndicatorsPageModContentFactoryImpl extends Abstrac
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PageMode.INDICATORS.toString());
+		return PageCommandPoliticianConstants.COMMAND_POLITICIAN_VIEW_INDICATORS.matches(page, parameters);
 	}
 }

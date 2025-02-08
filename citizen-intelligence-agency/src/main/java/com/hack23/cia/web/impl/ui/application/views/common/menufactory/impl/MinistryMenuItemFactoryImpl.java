@@ -69,10 +69,10 @@ public final class MinistryMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
 				PageCommandMinistryConstants.COMMAND_MINISTRY_OVERVIEW.createItemPageCommand(pageId));
 		final MenuItem rolesItem = ministryItem.addItem(ROLES_TEXT, VaadinIcons.GROUP, null);
 
-		rolesItem.addItem(CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP, 
+		rolesItem.addItem(CURRENT_MEMBERS_TEXT, VaadinIcons.GROUP,
 				PageCommandMinistryConstants.COMMAND_MINISTRY_CURRENT_MEMBERS.createItemPageCommand(pageId));
 
-		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.GROUP, 
+		rolesItem.addItem(MEMBER_HISTORY_TEXT, VaadinIcons.GROUP,
 				PageCommandMinistryConstants.COMMAND_MINISTRY_MEMBER_HISTORY.createItemPageCommand(pageId));
 
 		rolesItem.addItem(ROLE_GHANT_TEXT, VaadinIcons.GROUP,

@@ -26,8 +26,8 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -73,7 +73,7 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && parameters.contains(PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString());
+		return PageCommandPartyConstants.COMMAND_PARTY_WON_DAILY_SUMMARY_CHART.matches(page, parameters);
 	}
 
 }
