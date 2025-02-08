@@ -11,11 +11,6 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 public interface PageCommandPoliticianConstants {
 
 
-    /** The command politician view. */
-    PageModeMenuCommand COMMAND_POLITICIAN_VIEW = new PageModeMenuCommand(
-        UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW);
-
-
     /** The command politician pagevisit. */
     PageModeMenuCommand COMMAND_POLITICIAN_PAGEVISIT = new PageModeMenuCommand(
             UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY);

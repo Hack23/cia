@@ -376,6 +376,6 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return PageCommandPoliticianConstants.COMMAND_POLITICIAN_VIEW.matches(page, parameters);
+		return PageCommandPoliticianConstants.COMMAND_POLITICIAN_VIEW_OVERVIEW.matches(page, parameters);
 	}
 }
