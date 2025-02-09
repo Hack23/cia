@@ -17,7 +17,7 @@ public interface PageCommandCommitteeConstants {
 
     /** The command committee role ghant. */
     PageModeMenuCommand COMMAND_COMMITTEE_ROLE_GHANT = new PageModeMenuCommand(
-                     UserViews.COMMITTEE_VIEW_NAME, "roleghant");
+                     UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString());
 
     /** The command committee pagevisit history. */
     PageModeMenuCommand COMMAND_COMMITTEE_PAGEVISIT_HISTORY = new PageModeMenuCommand(

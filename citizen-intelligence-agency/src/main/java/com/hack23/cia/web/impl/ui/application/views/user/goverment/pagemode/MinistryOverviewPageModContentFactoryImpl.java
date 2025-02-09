@@ -20,16 +20,15 @@ package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 
 import java.util.Locale;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMinistryConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
 import com.vaadin.ui.HorizontalLayout;
@@ -236,8 +235,6 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
      */
     @Override
     public boolean matches(final String page, final String parameters) {
-        final String pageId = getPageId(parameters);
-        return NAME.equals(page) && (StringUtils.isEmpty(parameters) || parameters.equals(pageId)
-                || parameters.contains(PageMode.OVERVIEW.toString()));
+    	return PageCommandMinistryConstants.COMMAND_MINISTRY_OVERVIEW.matches(page, parameters);
     }
 }

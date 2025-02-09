@@ -8,7 +8,7 @@
  * - CommitteeCurrentMembersHistoryPageModContentFactoryImpl: Implementation of the committee current members history page mode content factory.
  * - CommitteeDecisionFlowPageModContentFactoryImpl: Implementation of the committee decision flow page mode content factory.
  * - CommitteeDecisionSummaryPageModContentFactoryImpl: Implementation of the committee decision summary page mode content factory.
- * - CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl2: Implementation of the committee decision type daily summary page mode content factory.
+ * - CommitteeDecisionTypeDailySummaryPageModContentFactoryImpl: Implementation of the committee decision type daily summary page mode content factory.
  * - CommitteeDocumentActivityPageModContentFactoryImpl: Implementation of the committee document activity page mode content factory.
  * - CommitteeDocumentHistoryPageModContentFactoryImpl: Implementation of the committee document history page mode content factory.
  * - CommitteeMemberHistoryPageModContentFactoryImpl: Implementation of the committee member history page mode content factory.

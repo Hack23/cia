@@ -47,6 +47,6 @@ public interface PageCommandMinistryConstants {
 	PageModeMenuCommand COMMAND_MINISTRY_DOCUMENT_HISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.DOCUMENTHISTORY.toString());
 
 	/** The command ministry page visit history. */
-	PageModeMenuCommand COMMAND_MINISTRY_PAGEVISIT_HISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, "visitHistory");
+	PageModeMenuCommand COMMAND_MINISTRY_PAGEVISIT_HISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY.toString());
 
 }

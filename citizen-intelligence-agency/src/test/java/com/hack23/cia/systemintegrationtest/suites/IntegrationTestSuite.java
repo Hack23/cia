@@ -26,8 +26,10 @@ import com.hack23.cia.systemintegrationtest.user.governmentbody.UserGovernmentBo
 import com.hack23.cia.systemintegrationtest.user.governmentbody.UserGovernmentBodyTest;
 import com.hack23.cia.systemintegrationtest.user.home.UserHomeTest;
 import com.hack23.cia.systemintegrationtest.user.ministry.UserMinistryRankingTest;
+import com.hack23.cia.systemintegrationtest.user.ministry.UserMinistryTest;
 import com.hack23.cia.systemintegrationtest.user.parliament.UserParliamentTest;
 import com.hack23.cia.systemintegrationtest.user.party.UserPartyRankingTest;
+import com.hack23.cia.systemintegrationtest.user.party.UserPartyTest;
 import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianRankingTest;
 import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
 
@@ -43,10 +45,12 @@ import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
     AdminSecurityTest.class,
     UserHomeTest.class,
     UserPartyRankingTest.class,
+    UserPartyTest.class,
     UserCommitteeTest.class,
     UserCommitteeRankingTest.class,
     UserCountryTest.class,
     UserMinistryRankingTest.class,
+    UserMinistryTest.class,
     UserGovernmentBodyTest.class,
     UserGovernmentBodyRankingTest.class,
     UserParliamentTest.class,
