@@ -37,6 +37,9 @@ public interface PoliticianPageTitleConstants {
     /** The role gantt title. */
     String ROLE_GANTT_TITLE = "Role Gantt Chart";
 
+    /** The page visit title. */
+    String PAGEVISIT_TITLE = "Page Visit History";
+
     /** The overview subtitle. */
     // Subtitles
     String OVERVIEW_SUBTITLE = "Politician Details";
@@ -65,6 +68,9 @@ public interface PoliticianPageTitleConstants {
     /** The gantt subtitle. */
     String GANTT_SUBTITLE = "Role Timeline";
 
+    /** The page visit subtitle. */
+    String PAGEVISIT_SUBTITLE = "Page visit history for politician";
+
     /** The overview desc. */
     // Descriptions
     String OVERVIEW_DESC = "Detailed profiles and activities of politicians.";
@@ -92,4 +98,7 @@ public interface PoliticianPageTitleConstants {
 
     /** The gantt desc. */
     String GANTT_DESC = "Visualize the timeline and duration of roles held by the politician.";
+
+    /** The page visit desc. */
+    String PAGEVISIT_DESC = "Display page visit history for politician";
 }
