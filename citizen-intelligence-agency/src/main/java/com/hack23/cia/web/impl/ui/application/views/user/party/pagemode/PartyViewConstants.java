@@ -7,13 +7,13 @@ public interface PartyViewConstants {
 
     // Overview
     String OVERVIEW_HEADER = "Party Overview";
-    String OVERVIEW_TITLE = "Party Information"; 
-    String OVERVIEW_DESC = "Explore detailed information about political parties";
+    String OVERVIEW_TITLE = "Party Details";
+    String OVERVIEW_DESC = "Explore detailed information about political parties and their activities.";
 
     // Role Ghant
-    String ROLE_GHANT_HEADER = "Role Timeline";
-    String ROLE_GHANT_TITLE = "Party Role Chart";
-    String ROLE_GHANT_DESC = "View party role assignments over time";
+    String ROLE_GHANT_HEADER = "Party Role Ghant";
+    String ROLE_GHANT_TITLE = "Party Ghant Details";
+    String ROLE_GHANT_DESC = "Review the party role ghant history for the selected party.";
 
     // Member History
     String MEMBER_HISTORY_HEADER = "Member History";
@@ -81,7 +81,7 @@ public interface PartyViewConstants {
     String BALLOT_DECISIONS_DESC = "Summary of committee ballot decisions";
 
     // Committee Roles
-    String COMMITTEE_ROLES_HEADER = "Committee Roles"; 
+    String COMMITTEE_ROLES_HEADER = "Committee Roles";
     String COMMITTEE_ROLES_TITLE = "Committee Assignments";
     String COMMITTEE_ROLES_DESC = "Party members' roles in committees";
 
