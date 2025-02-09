@@ -65,14 +65,17 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-		panel.setContent(panelContent);
-
-		final String pageId = getPageId(parameters);
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
+		final String pageId = getPageId(parameters);
 
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Party Overview " + viewRiksdagenParty.getPartyName(),
-				"Party Details", "Explore detailed information about political parties and their activities.");
+
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+		    PartyViewConstants.OVERVIEW_HEADER + " " + viewRiksdagenParty.getPartyName(),
+		    PartyViewConstants.GENERAL_SUBTITLE,
+		    PartyViewConstants.OVERVIEW_DESC);
+
+		panel.setContent(panelContent);
 
 		final Link addPartyPageLink = getPageLinkFactory().addPartyPageLink(viewRiksdagenParty);
 		panelContent.addComponent(addPartyPageLink);
@@ -338,8 +341,6 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	private double calculateActivityRate(long activeMembers, long totalMembers) {
 	    return totalMembers > 0 ? (double) activeMembers * 100 / totalMembers : 0;
 	}
-
-
 
 	/**
 	 * Matches.

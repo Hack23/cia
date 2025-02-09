@@ -90,7 +90,10 @@ public final class PartyVoteHistoryPageModContentFactoryImpl extends AbstractPar
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Vote History " + viewRiksdagenParty.getPartyName(), "Ballots", "Review the voting history for the selected party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            PartyViewConstants.VOTE_HISTORY_HEADER + " " + viewRiksdagenParty.getPartyName(),
+            PartyViewConstants.VOTE_HISTORY_TITLE,
+            PartyViewConstants.VOTE_HISTORY_DESC);
 
 		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
 				ViewRiksdagenVoteDataBallotPartySummary.class,

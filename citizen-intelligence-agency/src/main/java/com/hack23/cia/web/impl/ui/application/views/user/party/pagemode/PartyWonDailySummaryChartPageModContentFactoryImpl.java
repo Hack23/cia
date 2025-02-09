@@ -55,18 +55,19 @@ public final class PartyWonDailySummaryChartPageModContentFactoryImpl extends Ab
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-
-		final String pageId = getPageId(parameters);
-
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
-		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, getPageId(parameters));
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Party Won Daily Summary Chart " + viewRiksdagenParty.getPartyName(), "Daily Summary", "Analyze the daily summary of party wins over time.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            PartyViewConstants.DAILY_WON_HEADER + " " + viewRiksdagenParty.getPartyName(),
+            PartyViewConstants.DAILY_WON_TITLE,
+            PartyViewConstants.DAILY_WON_DESC);
 
-		chartDataManager.createPartyLineChart(panelContent, pageId);
+		chartDataManager.createPartyLineChart(panelContent, getPageId(parameters));
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
-		pageId);
+		getPageId(parameters));
 		return panelContent;
 
 	}

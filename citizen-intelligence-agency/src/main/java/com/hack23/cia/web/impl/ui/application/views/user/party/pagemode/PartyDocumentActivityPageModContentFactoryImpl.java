@@ -54,18 +54,19 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-
-		final String pageId = getPageId(parameters);
-
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
-		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, getPageId(parameters));
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document Activity " + viewRiksdagenParty.getPartyName(), "Document Activity details", "Review the summary of document activity for the selected party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyViewConstants.DOCUMENT_ACTIVITY_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.DOCUMENT_ACTIVITY_SUBTITLE,
+			PartyViewConstants.DOCUMENT_ACTIVITY_DESC);
 
-		documentChartDataManager.createDocumentHistoryPartyChart(panelContent, pageId);
+		documentChartDataManager.createDocumentHistoryPartyChart(panelContent, getPageId(parameters));
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
-		pageId);
+		getPageId(parameters));
 		return panelContent;
 
 	}

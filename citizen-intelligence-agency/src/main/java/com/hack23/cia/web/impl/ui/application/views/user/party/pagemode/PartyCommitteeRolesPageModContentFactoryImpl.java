@@ -46,7 +46,7 @@ public final class PartyCommitteeRolesPageModContentFactoryImpl extends Abstract
 	private static final String[] COLUMN_ORDER = { "roleId", "personId", "firstName", "lastName", "detail",
 			"active", "roleCode", "fromDate", "toDate", "totalDaysServed" };
 	/** The Constant COMMITTEE_ROLES. */
-	private static final String COMMITTEE_ROLES = "CommitteeRoles";
+	private static final String COMMITTEE_ROLES = PartyViewConstants.GRID_LABEL_COMMITTEE_ROLES;
 
 	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "party" };
@@ -73,7 +73,10 @@ public final class PartyCommitteeRolesPageModContentFactoryImpl extends Abstract
 
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Roles " +viewRiksdagenParty.getPartyName(), "Committee Members", "Explore the roles and members of various committees within the party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyViewConstants.COMMITTEE_ROLES_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.ROLES_SUBTITLE,
+			PartyViewConstants.COMMITTEE_ROLES_DESC);
 
 		final DataContainer<ViewRiksdagenCommitteeRoleMember, String> committeeRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);

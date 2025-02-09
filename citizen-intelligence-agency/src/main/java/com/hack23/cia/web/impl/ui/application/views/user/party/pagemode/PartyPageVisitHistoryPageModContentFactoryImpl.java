@@ -49,18 +49,19 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-
-		final String pageId = getPageId(parameters);
-
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
-		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
+		
+		getPartyMenuItemFactory().createPartyMenuBar(menuBar, getPageId(parameters));
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Page Visit History " + viewRiksdagenParty.getPartyName(), "Visit History", "Review the history of page visits for the selected party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyViewConstants.VISIT_HISTORY_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.VISIT_HISTORY_SUBTITLE,
+			PartyViewConstants.VISIT_HISTORY_DESC);
 
-		createPageVisitHistory(NAME, pageId, panelContent);
+		createPageVisitHistory(NAME, getPageId(parameters), panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,
-		pageId);
+		getPageId(parameters));
 		return panelContent;
 
 	}

@@ -8,7 +8,7 @@
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed on an "AS IS" BASIS,
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -56,7 +56,7 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 			UserViews.DOCUMENT_VIEW_NAME, "docId", true);
 
 	/** The Constant MEMBER_DOCUMENT_HISTORY. */
-	private static final String MEMBER_DOCUMENT_HISTORY = "Member Document history";
+	private static final String MEMBER_DOCUMENT_HISTORY = PartyViewConstants.GRID_LABEL_DOCUMENT_HISTORY;
 
 	/**
 	 * Instantiates a new party document history page mod content factory impl.
@@ -69,12 +69,15 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
-
-		final String pageId = getPageId(parameters);
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
+		final String pageId = getPageId(parameters);
+		
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Document History " + viewRiksdagenParty.getPartyName(), "Historical Documents", "Explore the historical documents associated with the party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyViewConstants.DOCUMENT_HISTORY_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.DOCUMENT_HISTORY_TITLE,
+			PartyViewConstants.DOCUMENT_HISTORY_DESC);
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocument.class);

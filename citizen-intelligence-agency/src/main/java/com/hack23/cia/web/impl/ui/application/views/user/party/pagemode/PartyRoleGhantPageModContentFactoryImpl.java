@@ -2,7 +2,7 @@
  * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *   http://www.apache.org/licenses/LICENSE-2.0
@@ -45,7 +45,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
 	/** The Constant ROLE_GHANT. */
-	private static final String ROLE_GHANT = "Role chart";
+	private static final String ROLE_GHANT = PartyViewConstants.GRID_LABEL_ROLE_CHART;
 
 	/** The party ghant chart manager. */
 	@Autowired
@@ -68,7 +68,10 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Party Role Ghant " + viewRiksdagenParty.getPartyName(), "Party Ghant Deatails", "Review the party role ghant history for the selected party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyViewConstants.ROLE_GHANT_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.ROLE_GHANT_TITLE,
+			PartyViewConstants.ROLE_GHANT_DESC);
 		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenParty.getPartyName(), viewRiksdagenParty.getPartyId(), ROLE_GHANT);
 
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()

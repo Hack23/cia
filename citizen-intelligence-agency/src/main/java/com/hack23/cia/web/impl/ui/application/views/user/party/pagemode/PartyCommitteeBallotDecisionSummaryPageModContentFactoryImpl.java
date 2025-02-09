@@ -62,7 +62,7 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 			"partyPercentageAbstain", "partyPercentageMale" };
 
 	/** The Constant COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY. */
-	private static final String COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY = "Committee Ballot Decision Party Summary";
+	private static final String COMMITTEE_BALLOT_DECISION_PARTY_SUMMARY = PartyViewConstants.GRID_LABEL_COMMITTEE_BALLOT_SUMMARY;
 
 	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "embeddedId", BALLOT_ID, "decisionType", "ballotType",
@@ -98,7 +98,10 @@ public final class PartyCommitteeBallotDecisionSummaryPageModContentFactoryImpl
 
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Committee Ballot Decision Summary " + viewRiksdagenParty.getPartyName(), "Ballot Decisions", "Review the summary of committee ballot decisions for the selected party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyViewConstants.BALLOT_DECISIONS_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.BALLOT_DECISIONS_TITLE,
+			PartyViewConstants.BALLOT_DECISIONS_DESC);
 
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionPartySummary, ViewRiksdagenCommitteeBallotDecisionPartyEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPartySummary.class);
