@@ -56,12 +56,7 @@ exclude-labels:
   - 'skip-changelog'
 
 template: |
-  # Release ${{ github.event.inputs.release }}
-  
-  ## Release Information
-  - Version: ${{ github.event.inputs.release }}
-
-  ## Highlights
+  # Highlights
   $CHANGES
 
   ## Political Analysis Enhancements
