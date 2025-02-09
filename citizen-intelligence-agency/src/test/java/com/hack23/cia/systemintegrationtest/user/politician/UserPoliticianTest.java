@@ -101,9 +101,9 @@ public final class UserPoliticianTest extends AbstractUITest {
     public void verifyPoliticianPageVisitHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_PAGEVISIT.createItemPageCommand(POL_ID));
         pageVisit.verifyViewContent(
-            "Page Visit History",
-            "Page visit history for politician",
-            "Display page visit history for politician");
+            PoliticianPageTitleConstants.PAGEVISIT_TITLE,
+            PoliticianPageTitleConstants.PAGEVISIT_SUBTITLE,
+            PoliticianPageTitleConstants.PAGEVISIT_DESC);
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_PAGEVISIT.createItemPageCommand(POL_ID));
     }
 
