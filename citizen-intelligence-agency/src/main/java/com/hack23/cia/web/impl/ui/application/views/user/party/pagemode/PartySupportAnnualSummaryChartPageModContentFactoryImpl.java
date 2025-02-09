@@ -60,7 +60,10 @@ public final class PartySupportAnnualSummaryChartPageModContentFactoryImpl exten
 
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Party Support " + viewRiksdagenParty.getPartyName(), "Party Support Deatails", "Review the party support history for the selected party.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+            PartyViewConstants.SUPPORT_SUMMARY_HEADER,
+            PartyViewConstants.SUPPORT_SUMMARY_TITLE, 
+            PartyViewConstants.SUPPORT_SUMMARY_DESC);
 		chartDataManager.createPartyChart(panelContent,pageId);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,

@@ -59,6 +59,8 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 	/** The Constant POLITICIANS. */
 	private static final String POLITICIANS = "Politicians";
 
+	private static final String MEMBER_HISTORY = PartyViewConstants.GRID_LABEL_MEMBER_HISTORY;
+
 	/**
 	 * Instantiates a new party member history page mod content factory impl.
 	 */
@@ -84,7 +86,10 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Member History " + viewRiksdagenParty.getPartyName(), "Party Members", "Explore the history of party members and their roles.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyViewConstants.MEMBER_HISTORY_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.MEMBER_HISTORY_TITLE,
+			PartyViewConstants.MEMBER_HISTORY_DESC);
 
 		final DataContainer<ViewRiksdagenPartyMember, String> partyMembernDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyMember.class);

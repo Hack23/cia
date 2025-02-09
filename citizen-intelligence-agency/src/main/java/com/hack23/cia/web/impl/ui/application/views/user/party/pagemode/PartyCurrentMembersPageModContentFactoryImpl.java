@@ -66,7 +66,7 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 			UserViews.POLITICIAN_VIEW_NAME, "personId");
 
 	/** The Constant POLITICIANS. */
-	private static final String POLITICIANS = "Politicians";
+	private static final String POLITICIANS = PartyViewConstants.GRID_LABEL_CURRENT_POLITICIANS;
 
 	/**
 	 * Instantiates a new party current members page mod content factory impl.
@@ -85,7 +85,10 @@ public final class PartyCurrentMembersPageModContentFactoryImpl extends Abstract
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Current Members " +viewRiksdagenParty.getPartyName(), "Party Members", "Discover the current members of the party and their roles.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyViewConstants.CURRENT_MEMBERS_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.CURRENT_MEMBERS_TITLE,
+			PartyViewConstants.CURRENT_MEMBERS_DESC);
 
 		final DataContainer<ViewRiksdagenPolitician, String> politicianDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPolitician.class);

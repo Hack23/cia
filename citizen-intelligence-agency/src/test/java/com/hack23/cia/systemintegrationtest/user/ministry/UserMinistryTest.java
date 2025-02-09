@@ -6,27 +6,120 @@ import org.junit.experimental.categories.Category;
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMinistryConstants;
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserConstants;
+import com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryViewConstants;
 
-/**
- * The Class UserMinistryRankingTest.
- */
 @Category(IntegrationTest.class)
-public final class UserMinistryTest extends AbstractUITest implements PageCommandUserConstants {
+public final class UserMinistryTest extends AbstractUITest {
 
+    private static final String MINISTRY_ID = "Finansdepartementet";
 
-	/** The ministry id. */
-	private final String MINISTRY_ID = "Finansdepartementet";
-
-    /**
-     * Verify ministry overview page.
-     *
-     * @throws Exception the exception
-     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyMinistryOverviewPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_OVERVIEW.createItemPageCommand(MINISTRY_ID));
+        pageVisit.verifyViewContent(
+            MinistryViewConstants.OVERVIEW_TITLE,
+            MinistryViewConstants.OVERVIEW_SUBTITLE,
+            MinistryViewConstants.OVERVIEW_DESC);
         pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_OVERVIEW.createItemPageCommand(MINISTRY_ID));
     }
-	
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyMinistryCurrentMembersPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_CURRENT_MEMBERS.createItemPageCommand(MINISTRY_ID));
+        pageVisit.verifyViewContent(
+            MinistryViewConstants.CURRENT_MEMBERS_TITLE,
+            MinistryViewConstants.CURRENT_MEMBERS_SUBTITLE,
+            MinistryViewConstants.CURRENT_MEMBERS_DESC);
+        pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_CURRENT_MEMBERS.createItemPageCommand(MINISTRY_ID));
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyMinistryMemberHistoryPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_MEMBER_HISTORY.createItemPageCommand(MINISTRY_ID));
+        pageVisit.verifyViewContent(
+            MinistryViewConstants.MEMBER_HISTORY_TITLE,
+            MinistryViewConstants.MEMBER_HISTORY_SUBTITLE,
+            MinistryViewConstants.MEMBER_HISTORY_DESC);
+        pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_MEMBER_HISTORY.createItemPageCommand(MINISTRY_ID));
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT) 
+    public void verifyMinistryRoleGhantPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_ROLE_GHANT.createItemPageCommand(MINISTRY_ID));
+        pageVisit.verifyViewContent(
+            MinistryViewConstants.ROLE_GHANT_TITLE,
+            MinistryViewConstants.ROLE_GHANT_SUBTITLE,
+            MinistryViewConstants.ROLE_GHANT_DESC);
+        pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_ROLE_GHANT.createItemPageCommand(MINISTRY_ID));
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyMinistryDocumentHistoryPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_DOCUMENT_HISTORY.createItemPageCommand(MINISTRY_ID));
+        pageVisit.verifyViewContent(
+            MinistryViewConstants.DOCUMENT_HISTORY_TITLE,
+            MinistryViewConstants.DOCUMENT_HISTORY_SUBTITLE,
+            MinistryViewConstants.DOCUMENT_HISTORY_DESC);
+        pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_DOCUMENT_HISTORY.createItemPageCommand(MINISTRY_ID));
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyMinistryDocumentActivityPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_DOCUMENT_ACTIVITY.createItemPageCommand(MINISTRY_ID));
+        pageVisit.verifyViewContent(
+            MinistryViewConstants.DOCUMENT_ACTIVITY_TITLE,
+            MinistryViewConstants.DOCUMENT_ACTIVITY_SUBTITLE,
+            MinistryViewConstants.DOCUMENT_ACTIVITY_DESC);
+        pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_DOCUMENT_ACTIVITY.createItemPageCommand(MINISTRY_ID));
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyMinistryPageVisitHistoryPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_PAGEVISIT_HISTORY.createItemPageCommand(MINISTRY_ID));
+        pageVisit.verifyViewContent(
+            "Ministry Page Visit History",
+            "Page Visit History",
+            "History of page visits for this ministry");
+        pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_PAGEVISIT_HISTORY.createItemPageCommand(MINISTRY_ID));
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyMinistryGovernmentBodiesHeadcountPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_GOVERNMENT_BODIES_HEADCOUNT.createItemPageCommand(MINISTRY_ID));
+        pageVisit.verifyViewContent(
+            MinistryViewConstants.MINISTRY_SERVICE_STATS_TITLE,
+            MinistryViewConstants.HEADCOUNT_SUBTITLE,
+            MinistryViewConstants.HEADCOUNT_DESC);
+        pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_GOVERNMENT_BODIES_HEADCOUNT.createItemPageCommand(MINISTRY_ID));
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyMinistryGovernmentBodiesIncomePage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_GOVERNMENT_BODIES_INCOME.createItemPageCommand(MINISTRY_ID));
+        pageVisit.verifyViewContent(
+            MinistryViewConstants.MINISTRY_SERVICE_STATS_TITLE,
+            MinistryViewConstants.INCOME_SUBTITLE,
+            MinistryViewConstants.INCOME_DESC);
+        pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_GOVERNMENT_BODIES_INCOME.createItemPageCommand(MINISTRY_ID));
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyMinistryGovernmentBodiesExpenditurePage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_GOVERNMENT_BODIES_EXPENDITURE.createItemPageCommand(MINISTRY_ID));
+        pageVisit.verifyViewContent(
+            MinistryViewConstants.EXPENDITURE_TITLE,
+            MinistryViewConstants.EXPENDITURE_SUBTITLE,
+            MinistryViewConstants.EXPENDITURE_DESC);
+        pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_GOVERNMENT_BODIES_EXPENDITURE.createItemPageCommand(MINISTRY_ID));
+    }
+
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyMinistryChartsAllByHeadcountPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandMinistryConstants.MINISTRY_COMMAND_CHARTS_ALL_BY_HEADCOUNT.createItemPageCommand(null));
+        pageVisit.verifyViewContent(
+            MinistryViewConstants.MINISTRY_SERVICE_STATS_TITLE,
+            "Ministry Headcount Comparison", 
+            "Comparative analysis of ministry staff numbers");
+        pageVisit.validatePage(PageCommandMinistryConstants.MINISTRY_COMMAND_CHARTS_ALL_BY_HEADCOUNT.createItemPageCommand(null));
+    }
 }

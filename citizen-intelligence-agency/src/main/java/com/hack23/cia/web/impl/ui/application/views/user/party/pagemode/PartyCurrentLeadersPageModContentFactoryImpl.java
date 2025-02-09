@@ -46,7 +46,7 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 	private static final String[] COLUMN_ORDER = { "roleCode", "roleId", "personId", "firstName",
 			"lastName", "party", "totalDaysServed", "active", "detail", "fromDate", "toDate" };
 	/** The Constant CURRENT_LEADERS. */
-	private static final String CURRENT_LEADERS = "Current Leaders";
+	private static final String CURRENT_LEADERS = PartyViewConstants.GRID_LABEL_CURRENT_LEADERS;
 
 	/** The Constant HIDE_COLUMNS. */
 	private static final String[] HIDE_COLUMNS = { "roleId", "personId", "detail", "active", "party" };
@@ -72,7 +72,10 @@ public final class PartyCurrentLeadersPageModContentFactoryImpl extends Abstract
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Current Leaders " + viewRiksdagenParty.getPartyName(), "Party Leadership", "Meet the current leaders of the party and their roles.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+			PartyViewConstants.CURRENT_LEADERS_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.CURRENT_LEADERS_TITLE,
+			PartyViewConstants.CURRENT_LEADERS_DESC);
 
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);
