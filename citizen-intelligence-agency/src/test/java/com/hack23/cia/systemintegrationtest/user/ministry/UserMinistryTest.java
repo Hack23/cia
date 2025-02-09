@@ -77,9 +77,9 @@ public final class UserMinistryTest extends AbstractUITest {
     public void verifyMinistryPageVisitHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryConstants.COMMAND_MINISTRY_PAGEVISIT_HISTORY.createItemPageCommand(MINISTRY_ID));
         pageVisit.verifyViewContent(
-            "Ministry Page Visit History",
-            "Page Visit History",
-            "History of page visits for this ministry");
+            MinistryViewConstants.PAGEVISIT_TITLE,
+            MinistryViewConstants.PAGEVISIT_SUBTITLE,
+            MinistryViewConstants.PAGEVISIT_DESC);
         pageVisit.validatePage(PageCommandMinistryConstants.COMMAND_MINISTRY_PAGEVISIT_HISTORY.createItemPageCommand(MINISTRY_ID));
     }
 
@@ -117,9 +117,9 @@ public final class UserMinistryTest extends AbstractUITest {
     public void verifyMinistryChartsAllByHeadcountPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandMinistryConstants.MINISTRY_COMMAND_CHARTS_ALL_BY_HEADCOUNT.createItemPageCommand(null));
         pageVisit.verifyViewContent(
-            MinistryViewConstants.MINISTRY_SERVICE_STATS_TITLE,
-            "Ministry Headcount Comparison", 
-            "Comparative analysis of ministry staff numbers");
+            MinistryViewConstants.ALL_MINISTRIES_HEADCOUNT_TITLE,
+            MinistryViewConstants.ALL_MINISTRIES_HEADCOUNT_SUBTITLE,
+            MinistryViewConstants.ALL_MINISTRIES_HEADCOUNT_DESC);
         pageVisit.validatePage(PageCommandMinistryConstants.MINISTRY_COMMAND_CHARTS_ALL_BY_HEADCOUNT.createItemPageCommand(null));
     }
 }

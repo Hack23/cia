@@ -29,10 +29,16 @@ public interface MinistryViewConstants extends
     String EXPENDITURE_TITLE = "Expenditure Analysis";
 
     /** The ministry service stats title. */
-    String MINISTRY_SERVICE_STATS_TITLE = "Service Statistics";
+    String MINISTRY_SERVICE_STATS_TITLE = "Ministry Service Statistics";
 
     /** The ministry document stats title. */
     String MINISTRY_DOCUMENT_STATS_TITLE = "Document Statistics";
+
+    /** The page visit title. */
+    String PAGEVISIT_TITLE = "Ministry Page Visit History";
+
+    /** The all ministries headcount title. */
+    String ALL_MINISTRIES_HEADCOUNT_TITLE = "Ministry Headcount Comparison";
 
     /** The role ghant subtitle. */
     // Subtitles
@@ -47,6 +53,18 @@ public interface MinistryViewConstants extends
     /** The expenditure subtitle. */
     String EXPENDITURE_SUBTITLE = "Government Bodies Expenditure";
 
+    /** The headcount subtitle. */
+    String HEADCOUNT_SUBTITLE = "Government Bodies Headcount";
+
+    /** The income subtitle. */
+    String INCOME_SUBTITLE = "Government Bodies Income";
+
+    /** The page visit subtitle. */
+    String PAGEVISIT_SUBTITLE = "Page Visit History";
+
+    /** The all ministries headcount subtitle. */
+    String ALL_MINISTRIES_HEADCOUNT_SUBTITLE = "Comparative Headcount";
+
     /** The role ghant desc. */
     // Descriptions
     String ROLE_GHANT_DESC = "Visual representation of ministry roles over time.";
@@ -59,6 +77,18 @@ public interface MinistryViewConstants extends
 
     /** The expenditure desc. */
     String EXPENDITURE_DESC = "Analysis of ministry expenditures.";
+
+    /** The headcount desc. */
+    String HEADCOUNT_DESC = "Provides detailed headcount data for government bodies under ministries.";
+
+    /** The income desc. */
+    String INCOME_DESC = "Provides detailed income data for government bodies under ministries.";
+
+    /** The page visit desc. */
+    String PAGEVISIT_DESC = "History of page visits for this ministry";
+
+    /** The all ministries headcount desc. */
+    String ALL_MINISTRIES_HEADCOUNT_DESC = "Comparative analysis of ministry staff numbers";
 
     /** The visit ministry. */
     // Actions
