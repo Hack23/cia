@@ -38,8 +38,7 @@ import com.vaadin.ui.VerticalLayout;
 public final class MinistryPageVisitHistoryPageModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
 
 	/**
-	 * Instantiates a new ministry page visit history page mod content factory
-	 * impl.
+	 * Instantiates a new ministry page visit history page mod content factory impl.
 	 */
 	public MinistryPageVisitHistoryPageModContentFactoryImpl() {
 		super();
@@ -55,7 +54,9 @@ public final class MinistryPageVisitHistoryPageModContentFactoryImpl extends Abs
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Page Visit History " + viewRiksdagenMinistry.getNameId(), "Page Visit History", "Tracks and visualizes the history of page visits for ministries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+				MinistryViewConstants.PAGEVISIT_TITLE + viewRiksdagenMinistry.getNameId(),
+				MinistryViewConstants.PAGEVISIT_SUBTITLE, MinistryViewConstants.PAGEVISIT_DESC);
 
 		createPageVisitHistory(NAME, pageId, panelContent);
 

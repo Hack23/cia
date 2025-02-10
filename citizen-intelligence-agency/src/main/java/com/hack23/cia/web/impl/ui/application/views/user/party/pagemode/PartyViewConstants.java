@@ -92,7 +92,7 @@ public interface PartyViewConstants {
 
     // Grid Labels
     String GRID_LABEL_CURRENT_LEADERS = "Current Leaders";
-    String GRID_LABEL_COMMITTEE_BALLOT_SUMMARY = "Committee Ballot Decision Party Summary"; 
+    String GRID_LABEL_COMMITTEE_BALLOT_SUMMARY = "Committee Ballot Decision Party Summary";
     String GRID_LABEL_ROLE_CHART = "Role chart";
     String GRID_LABEL_DOCUMENT_HISTORY = "Member Document history";
     String GRID_LABEL_CURRENT_POLITICIANS = "Politicians";
@@ -117,7 +117,7 @@ public interface PartyViewConstants {
     String DOCUMENT_HISTORY_SUBTITLE = "Historical Documents";
     String ROLES_SUBTITLE = "Committee and Government Role Details";
 
-    // View Subtitles 
+    // View Subtitles
     String VOTE_HISTORY_SUBTITLE = "Historical Voting Records";
     String CURRENT_MEMBER_SUBTITLE = "Active Party Members";
     String LEADER_HISTORY_SUBTITLE = "Historical Leadership";
@@ -127,7 +127,7 @@ public interface PartyViewConstants {
     String VISIT_HISTORY_SUBTITLE = "Page Visit Analysis";
     String GENERAL_SUBTITLE = "Party Information";
     String ACTIVITY_SUBTITLE = "Activity Summary";
-    
+
     // Chart Labels
     String CHART_SUPPORT_LABEL = "Party Support Trends";
     String CHART_VOTES_LABEL = "Voting Patterns";

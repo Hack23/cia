@@ -6,6 +6,7 @@ import org.junit.experimental.categories.Category;
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPoliticianConstants;
+import com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianDescriptionConstants;
 import com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianPageTitleConstants;
 
 /**
@@ -13,7 +14,7 @@ import com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.Pol
  */
 @Category(IntegrationTest.class)
 public final class UserPoliticianTest extends AbstractUITest {
-	
+
     /** The pol id. */
     private static final String POL_ID = "0222691314314";
 
@@ -102,8 +103,8 @@ public final class UserPoliticianTest extends AbstractUITest {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_PAGEVISIT.createItemPageCommand(POL_ID));
         pageVisit.verifyViewContent(
             PoliticianPageTitleConstants.PAGEVISIT_TITLE,
-            PoliticianPageTitleConstants.PAGEVISIT_SUBTITLE,
-            PoliticianPageTitleConstants.PAGEVISIT_DESC);
+            PoliticianDescriptionConstants.VISIT_TRENDS_TITLE,
+            PoliticianDescriptionConstants.VISIT_HISTORY_DESC);
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_PAGEVISIT.createItemPageCommand(POL_ID));
     }
 

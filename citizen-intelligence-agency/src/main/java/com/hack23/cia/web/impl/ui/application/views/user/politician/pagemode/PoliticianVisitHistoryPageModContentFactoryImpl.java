@@ -36,7 +36,7 @@ public final class PoliticianVisitHistoryPageModContentFactoryImpl extends Abstr
 
         getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-        CardInfoRowUtil.createPageHeader(panel, panelContent,
+        CardInfoRowUtil.createPageHeader(panel, panelContent,PoliticianPageTitleConstants.PAGEVISIT_TITLE +
             PoliticianTitleFormatter.formatTitle(viewRiksdagenPolitician),
             PoliticianDescriptionConstants.VISIT_TRENDS_TITLE,
             PoliticianDescriptionConstants.VISIT_HISTORY_DESC);

@@ -69,7 +69,7 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			PartyViewConstants.ROLE_GHANT_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.ROLE_GHANT_HEADER  + viewRiksdagenParty.getPartyName(),
 			PartyViewConstants.ROLE_GHANT_TITLE,
 			PartyViewConstants.ROLE_GHANT_DESC);
 		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenParty.getPartyName(), viewRiksdagenParty.getPartyId(), ROLE_GHANT);

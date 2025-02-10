@@ -59,8 +59,6 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 	/** The Constant POLITICIANS. */
 	private static final String POLITICIANS = "Politicians";
 
-	private static final String MEMBER_HISTORY = PartyViewConstants.GRID_LABEL_MEMBER_HISTORY;
-
 	/**
 	 * Instantiates a new party member history page mod content factory impl.
 	 */
