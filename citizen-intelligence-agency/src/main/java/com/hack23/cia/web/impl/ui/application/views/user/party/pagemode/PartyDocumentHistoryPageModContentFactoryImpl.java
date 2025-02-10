@@ -71,7 +71,7 @@ public final class PartyDocumentHistoryPageModContentFactoryImpl extends Abstrac
 		final VerticalLayout panelContent = createPanelContent();
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		final String pageId = getPageId(parameters);
-		
+
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,

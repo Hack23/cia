@@ -26,9 +26,9 @@ public final class UserPartyTest extends AbstractUITest {
     public void verifyPartyOverviewPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_OVERVIEW.createItemPageCommand(PARTY_ID));
         pageVisit.verifyViewContent(
-            PartyViewConstants.OVERVIEW_HEADER,
-            PartyViewConstants.OVERVIEW_TITLE,
-            PartyViewConstants.OVERVIEW_DESC);
+        		PartyViewConstants.OVERVIEW_HEADER,
+    		    PartyViewConstants.GENERAL_SUBTITLE,
+    		    PartyViewConstants.OVERVIEW_DESC);
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_OVERVIEW.createItemPageCommand(PARTY_ID));
     }
 
@@ -36,9 +36,9 @@ public final class UserPartyTest extends AbstractUITest {
     public void verifyPartyRoleGhantPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_ROLE_GHANT.createItemPageCommand(PARTY_ID));
         pageVisit.verifyViewContent(
-            PartyViewConstants.ROLE_GHANT_HEADER,
-            PartyViewConstants.ROLE_GHANT_TITLE,
-            PartyViewConstants.ROLE_GHANT_DESC);
+        		PartyViewConstants.ROLE_GHANT_HEADER,
+    			PartyViewConstants.ROLE_GHANT_TITLE,
+    			PartyViewConstants.ROLE_GHANT_DESC);
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_ROLE_GHANT.createItemPageCommand(PARTY_ID));
     }
 
@@ -117,7 +117,7 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_DOCUMENT_ACTIVITY.createItemPageCommand(PARTY_ID));
         pageVisit.verifyViewContent(
             PartyViewConstants.DOCUMENT_ACTIVITY_HEADER,
-            PartyViewConstants.DOCUMENT_ACTIVITY_TITLE,
+            PartyViewConstants.DOCUMENT_ACTIVITY_SUBTITLE,
             PartyViewConstants.DOCUMENT_ACTIVITY_DESC);
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_DOCUMENT_ACTIVITY.createItemPageCommand(PARTY_ID));
     }
@@ -126,9 +126,9 @@ public final class UserPartyTest extends AbstractUITest {
     public void verifyPartyCommitteeRolesPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_COMMITTEE_ROLES.createItemPageCommand(PARTY_ID));
         pageVisit.verifyViewContent(
-            PartyViewConstants.COMMITTEE_ROLES_HEADER,
-            PartyViewConstants.COMMITTEE_ROLES_TITLE,
-            PartyViewConstants.COMMITTEE_ROLES_DESC);
+        		PartyViewConstants.COMMITTEE_ROLES_HEADER,
+    			PartyViewConstants.ROLES_SUBTITLE,
+    			PartyViewConstants.COMMITTEE_ROLES_DESC);
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_COMMITTEE_ROLES.createItemPageCommand(PARTY_ID));
     }
 

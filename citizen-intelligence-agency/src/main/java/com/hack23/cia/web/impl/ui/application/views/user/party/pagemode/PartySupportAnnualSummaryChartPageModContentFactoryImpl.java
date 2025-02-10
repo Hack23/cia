@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartySupportsChartDataManager;
@@ -58,11 +57,10 @@ public final class PartySupportAnnualSummaryChartPageModContentFactoryImpl exten
 
 		final String pageId = getPageId(parameters);
 
-		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, pageId);
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
             PartyViewConstants.SUPPORT_SUMMARY_HEADER,
-            PartyViewConstants.SUPPORT_SUMMARY_TITLE, 
+            PartyViewConstants.SUPPORT_SUMMARY_TITLE,
             PartyViewConstants.SUPPORT_SUMMARY_DESC);
 		chartDataManager.createPartyChart(panelContent,pageId);
 

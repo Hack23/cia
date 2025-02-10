@@ -29,7 +29,7 @@ public interface MinistryViewConstants extends
     String EXPENDITURE_TITLE = "Expenditure Analysis";
 
     /** The ministry service stats title. */
-    String MINISTRY_SERVICE_STATS_TITLE = "Ministry Service Statistics";
+    String MINISTRY_SERVICE_STATS_TITLE = "Government Bodies Income ";
 
     /** The ministry document stats title. */
     String MINISTRY_DOCUMENT_STATS_TITLE = "Document Statistics";
@@ -128,4 +128,8 @@ public interface MinistryViewConstants extends
 
     /** The ministry government bills label. */
     String MINISTRY_GOVERNMENT_BILLS_LABEL = "Government Bills:";
+
+	String INCOME_TITLE = "Government Bodies Income ";
+
+	String HEADCOUNT_TITLE = "Ministry Government Bodies Headcount ";
 }
