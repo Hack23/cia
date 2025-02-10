@@ -50,7 +50,7 @@ public final class PartyPageVisitHistoryPageModContentFactoryImpl extends Abstra
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
-		
+
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, getPageId(parameters));
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,

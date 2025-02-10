@@ -37,7 +37,8 @@ import com.vaadin.ui.VerticalLayout;
  * The Class MinistryGovernmentBodiesHeadcountModContentFactoryImpl.
  */
 @Component
-public final class MinistryGovernmentBodiesHeadcountModContentFactoryImpl extends AbstractMinistryPageModContentFactoryImpl {
+public final class MinistryGovernmentBodiesHeadcountModContentFactoryImpl
+		extends AbstractMinistryPageModContentFactoryImpl {
 
 	/** The government body chart data manager. */
 	@Autowired
@@ -61,7 +62,9 @@ public final class MinistryGovernmentBodiesHeadcountModContentFactoryImpl extend
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Government Bodies Headcount " + viewRiksdagenMinistry.getNameId(), "Government Bodies Headcount", "Provides detailed headcount data for government bodies under ministries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+				MinistryViewConstants.HEADCOUNT_TITLE + viewRiksdagenMinistry.getNameId(),
+				MinistryViewConstants.HEADCOUNT_SUBTITLE, MinistryViewConstants.HEADCOUNT_DESC);
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyHeadcountSummaryChart(panelContent,
 				viewRiksdagenMinistry.getNameId());

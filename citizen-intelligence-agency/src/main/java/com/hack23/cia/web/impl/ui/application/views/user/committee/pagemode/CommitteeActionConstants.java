@@ -11,7 +11,7 @@ public interface CommitteeActionConstants {
 
     /** The dd title header. */
     // Decision Data
-    String DD_TITLE_HEADER = "Daily Committee Decisions ";
+    String DD_TITLE_HEADER = "Daily Committee Decisions";
 
     /** The dd title. */
     String DD_TITLE = "Summary of Decision Types";
@@ -31,7 +31,7 @@ public interface CommitteeActionConstants {
 
     /** The bd title header. */
     // Ballot Decision
-    String BD_TITLE_HEADER = "Committee Ballot Decision Summary  ";
+    String BD_TITLE_HEADER = "Committee Ballot Decision Summary";
 
     /** The bd title. */
     String BD_TITLE = "Ballot Decision Summary";

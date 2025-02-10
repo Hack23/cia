@@ -61,7 +61,7 @@ public final class MinistryGovernmentBodiesIncomeModContentFactoryImpl extends A
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Government Bodies Income " + viewRiksdagenMinistry.getNameId(), "Government Bodies Income", "Provides detailed income data for government bodies under ministries.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, MinistryViewConstants.INCOME_TITLE + viewRiksdagenMinistry.getNameId(), MinistryViewConstants.INCOME_SUBTITLE,  MinistryViewConstants.INCOME_DESC);
 
 		governmentBodyChartDataManager.createMinistryGovernmentBodyIncomeSummaryChart(panelContent,
 				viewRiksdagenMinistry.getNameId());

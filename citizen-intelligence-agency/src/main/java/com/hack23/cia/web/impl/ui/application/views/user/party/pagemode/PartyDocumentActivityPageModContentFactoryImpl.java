@@ -55,11 +55,11 @@ public final class PartyDocumentActivityPageModContentFactoryImpl extends Abstra
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout panelContent = createPanelContent();
 		final ViewRiksdagenParty viewRiksdagenParty = getItem(parameters);
-		
+
 		getPartyMenuItemFactory().createPartyMenuBar(menuBar, getPageId(parameters));
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			PartyViewConstants.DOCUMENT_ACTIVITY_HEADER + " " + viewRiksdagenParty.getPartyName(),
+			PartyViewConstants.DOCUMENT_ACTIVITY_HEADER + viewRiksdagenParty.getPartyName(),
 			PartyViewConstants.DOCUMENT_ACTIVITY_SUBTITLE,
 			PartyViewConstants.DOCUMENT_ACTIVITY_DESC);
 
