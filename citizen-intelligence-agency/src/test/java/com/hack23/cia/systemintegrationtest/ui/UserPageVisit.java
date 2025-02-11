@@ -39,6 +39,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 
 /**
@@ -474,7 +475,7 @@ public final class UserPageVisit extends Assert {
 	 * @param password the password
 	 */
 	public void loginUser(final String username, final String password) {
-		loginUserCheckView(username, password, UserViews.USERHOME_VIEW_NAME);
+		loginUserCheckView(username, password, UserViews.USERHOME_VIEW_NAME + "/" + PageMode.OVERVIEW);
 	}
 
 	/**
@@ -606,7 +607,7 @@ public final class UserPageVisit extends Assert {
 		findButton("Logout");
 
 		if (userView != null) {
-			final String url = systemTestTargetUrl + "#!" + userView;
+			final String url = systemTestTargetUrl + "#!" + userView + "/" + PageMode.OVERVIEW;
 			assertEquals(url, driver.getCurrentUrl());
 		}
 	}

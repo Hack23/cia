@@ -30,6 +30,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLin
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ApplicationPageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.ExternalResource;
@@ -132,7 +133,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	@Override
 	public Link createMainViewPageLink() {
 		final Link pageLink = new Link(MAIN_VIEW_LINK_TEXT, new ExternalResource(
-				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME));
+				LINK_SEPARATOR + CommonsViews.MAIN_VIEW_NAME + PAGE_SEPARATOR + PageMode.OVERVIEW));
 		pageLink.setId(ViewAction.VISIT_MAIN_VIEW.name());
 		pageLink.setIcon(VaadinIcons.STAR);
 		return pageLink;
@@ -175,7 +176,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	@Override
 	public Link createUserHomeViewPageLink() {
 		final Link pageLink = new Link("User account:", new ExternalResource(PAGE_PREFIX
-				+ UserViews.USERHOME_VIEW_NAME));
+				+ UserViews.USERHOME_VIEW_NAME + PAGE_SEPARATOR + PageMode.OVERVIEW));
 			pageLink.setId(ViewAction.VISIT_USER_HOME_VIEW.name());
 			pageLink.setIcon(VaadinIcons.USER);
 			return pageLink;

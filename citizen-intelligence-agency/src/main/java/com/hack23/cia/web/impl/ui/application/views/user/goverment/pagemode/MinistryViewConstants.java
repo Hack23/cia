@@ -6,7 +6,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 public interface MinistryViewConstants extends
     MinistryPageTitleConstants,
     MinistryDescriptionConstants,
-    MinistryGridConstants,
     MinistrySectionConstants,
     MinistryIconConstants,
     MinistryLayoutConstants,

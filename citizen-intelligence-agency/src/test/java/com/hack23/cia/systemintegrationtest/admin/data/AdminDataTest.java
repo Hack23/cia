@@ -60,6 +60,9 @@ public final class AdminDataTest extends AbstractAdminTest {
 				AdminViewConstants.EVENT_REVIEW
         );
         pageVisit.validatePage(PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS);
+		pageVisit.selectFirstGridRow();
+		pageVisit.verifyViewContent(AdminViewConstants.EVENT_GROUP);
+
     }
 
     /**

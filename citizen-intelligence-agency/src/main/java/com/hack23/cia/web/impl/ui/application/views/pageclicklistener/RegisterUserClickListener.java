@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import com.hack23.cia.service.api.action.application.RegisterUserRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -70,7 +71,7 @@ public final class RegisterUserClickListener extends AbstractClickListener imple
 		final ServiceResponse response = getApplicationManager().service(reqisterRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_REGISTER_USER,reqisterRequest.getUsername());
-			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
+			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME +"/" + PageMode.OVERVIEW);
 		} else {
 			showNotification(REGISTER_FAILED,
 					response.getErrorMessage(),

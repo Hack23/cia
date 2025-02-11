@@ -14,19 +14,10 @@ public interface PageCommandCountryRankingConstants {
     PageModeMenuCommand COMMAND_COUNTRY_RANKING_OVERVIEW = new PageModeMenuCommand(
                      UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
 
-    /** The command country ranking pagevisit history. */
-    // Should be: COMMAND_COUNTRY_RANKING_PAGEVISIT_HISTORY for consistency
-    PageModeMenuCommand COMMAND_COUNTRY_RANKING_PAGEVISIT_HISTORY = new PageModeMenuCommand(
-                     UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
 
     /** The command country ranking indicators. */
     PageModeMenuCommand COMMAND_COUNTRY_RANKING_INDICATORS = new PageModeMenuCommand(
                      UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.INDICATORS);
-
-    /** The country ranking command pagevisit history. */
-    PageModeMenuCommand COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY =
-            new PageModeMenuCommand(UserViews.COUNTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
-
 
 
 }

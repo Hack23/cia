@@ -146,6 +146,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
                 cardPanel.setContent(cardContent);
 
                 horizontalLayout.addComponent(cardPanel);
+                horizontalLayout.setExpandRatio(cardPanel, ContentRatio.LARGE_FORM);
 
                 CardInfoRowUtil.createCardHeader(cardContent, AdminViewConstants.LANGUAGE_DETAILS);
 

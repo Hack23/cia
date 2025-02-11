@@ -26,6 +26,8 @@ public final class AdminConfigurationTest extends AbstractAdminTest {
 		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_PORTAL_MANAGEMENT, AdminViewConstants.PORTAL_OVERVIEW,
 				AdminViewConstants.PORTAL_MANAGEMENT_OVERVIEW);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_PORTAL);
+		pageVisit.selectFirstGridRow();
+		pageVisit.verifyViewContent(AdminViewConstants.PORTAL_DETAILS);
 	}
 
 	/**
@@ -39,6 +41,8 @@ public final class AdminConfigurationTest extends AbstractAdminTest {
 		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_COUNTRY_MANAGEMENT, AdminViewConstants.COUNTRY_OVERVIEW,
 				AdminViewConstants.COUNTRY_OVERVIEW_DESCRIPTION);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_COUNTRY);
+		pageVisit.selectFirstGridRow();
+		pageVisit.verifyViewContent("Country Details");
 	}
 
 	/**
@@ -52,6 +56,8 @@ public final class AdminConfigurationTest extends AbstractAdminTest {
 		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_LANGUAGE_MANAGEMENT, AdminViewConstants.LANGUAGE_OVERVIEW,
 				AdminViewConstants.LANGUAGE_ADMINISTRATION);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_LANGUAGE);
+		pageVisit.selectFirstGridRow();
+		pageVisit.verifyViewContent(AdminViewConstants.LANGUAGE_DETAILS);
 	}
 
 	/**
@@ -65,6 +71,8 @@ public final class AdminConfigurationTest extends AbstractAdminTest {
 		pageVisit.verifyViewContent(AdminViewConstants.ADMIN_AGENCY_MANAGEMENT, AdminViewConstants.AGENCY_OVERVIEW_HEADER,
 				AdminViewConstants.AGENCY_OVERVIEW);
 		pageVisit.validatePage(PageCommandAdminConstants.COMMAND_AGENCY);
+		pageVisit.selectFirstGridRow();
+		pageVisit.verifyViewContent("Agency Details");
 	}
 
 	/**

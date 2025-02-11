@@ -122,9 +122,6 @@ public final class CountryMenuItemFactoryImpl extends AbstractMenuItemFactoryImp
 
 		addSourcesAndIndicatorsToMenu(countryIndicators, getTopicIndicatorMap());
 
-		countryIndicators.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.LINE_CHART,
-				COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
-
 	}
 
 	@Override

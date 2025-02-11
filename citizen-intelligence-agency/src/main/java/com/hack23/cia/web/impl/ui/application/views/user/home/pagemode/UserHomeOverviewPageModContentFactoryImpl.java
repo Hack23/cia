@@ -183,7 +183,7 @@ public final class UserHomeOverviewPageModContentFactoryImpl extends AbstractUse
 	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return PageCommandUserHomeConstants.COMMAND_USERHOME_OVERVIEW.matchesPage(page, parameters);
+		return PageCommandUserHomeConstants.COMMAND_USERHOME_OVERVIEW.matches(page, parameters);
 	}
 
 }

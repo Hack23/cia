@@ -23,16 +23,11 @@ public final class CountryRankingMenuItemFactoryImpl extends AbstractMenuItemFac
         createButtonLink(grid, OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
                 COMMAND_COUNTRY_RANKING_OVERVIEW, COUNTRY_RANKING_DESCRIPTION);
 
-        createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-                COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY,
-                RANKING_PAGE_VISIT_DESC);
     }
 
     @Override
     public void createCountryRankingTopics(final MenuItem countryMenuItem) {
         countryMenuItem.addItem(OVERVIEW_TEXT, VaadinIcons.DASHBOARD,
                 COMMAND_COUNTRY_RANKING_OVERVIEW);
-        countryMenuItem.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.CHART,
-                COUNTRY_RANKING_COMMAND_PAGEVISIT_HISTORY);
     }
 }
