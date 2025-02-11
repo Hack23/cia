@@ -44,9 +44,6 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractPartyPageModContentFactoryImpl {
 
-	/** The Constant ROLE_GHANT. */
-	private static final String ROLE_GHANT = PartyViewConstants.GRID_LABEL_ROLE_CHART;
-
 	/** The party ghant chart manager. */
 	@Autowired
 	private PartyGhantChartManager partyGhantChartManager;
@@ -72,7 +69,6 @@ public final class PartyRoleGhantPageModContentFactoryImpl extends AbstractParty
 			PartyViewConstants.ROLE_GHANT_HEADER  + viewRiksdagenParty.getPartyName(),
 			PartyViewConstants.ROLE_GHANT_TITLE,
 			PartyViewConstants.ROLE_GHANT_DESC);
-		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenParty.getPartyName(), viewRiksdagenParty.getPartyId(), ROLE_GHANT);
 
 		final DataContainer<ViewRiksdagenPartyRoleMember, String> partyRoleMemberDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPartyRoleMember.class);

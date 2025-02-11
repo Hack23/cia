@@ -143,17 +143,6 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 	}
 
 	/**
-	 * Matches page.
-	 *
-	 * @param page the page
-	 * @param parameters the parameters
-	 * @return true, if successful
-	 */
-	public boolean matchesPage(final String page,final String parameters) {
-		return this.page.equals(page) && (getPageId(parameters).isEmpty() || parameters.contains(PageMode.OVERVIEW.toString()));
-	}
-
-	/**
 	 * Gets the page id.
 	 *
 	 * @param parameters the parameters

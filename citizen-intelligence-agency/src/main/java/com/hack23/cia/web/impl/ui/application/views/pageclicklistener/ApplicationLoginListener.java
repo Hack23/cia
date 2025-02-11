@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import com.hack23.cia.service.api.action.application.LoginRequest;
 import com.hack23.cia.service.api.action.application.LoginResponse;
 import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
@@ -73,7 +74,7 @@ public final class ApplicationLoginListener extends AbstractClickListener implem
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_LOGIN_REQUEST,loginRequest.getEmail());
 
-			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME);
+			UI.getCurrent().getNavigator().navigateTo(UserViews.USERHOME_VIEW_NAME +"/" + PageMode.OVERVIEW);
 		} else {
 			showNotification(LOGIN_FAILED,
 					response.getErrorMessage(),

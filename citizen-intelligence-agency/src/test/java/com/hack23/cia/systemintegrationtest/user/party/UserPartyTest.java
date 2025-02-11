@@ -161,4 +161,38 @@ public final class UserPartyTest extends AbstractUITest {
             PartyViewConstants.BALLOT_DECISIONS_DESC);
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_BALLOT_DECISION_SUMMARY.createItemPageCommand(PARTY_ID));
     }
+
+
+    /**
+     * Verify party against coalition page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyAgainstCoalitionPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_AGAINST_COALITIONS_SUMMARY.createItemPageCommand(PARTY_ID));
+        pageVisit.verifyViewContent(
+        		 PartyViewConstants.COALITIONS_AGAINST_HEADER,
+                 PartyViewConstants.COALITIONS_AGAINST_TITLE,
+                 PartyViewConstants.COALITIONS_AGAINST_DESC);
+        pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_AGAINST_COALITIONS_SUMMARY.createItemPageCommand(PARTY_ID));
+    }
+
+
+
+    /**
+     * Verify party vote history page.
+     *
+     * @throws Exception the exception
+     */
+    @Test(timeout = DEFAULT_TIMEOUT)
+    public void verifyPartyVoteHistoryPage() throws Exception {
+        pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_VOTE_HISTORY.createItemPageCommand(PARTY_ID));
+        pageVisit.verifyViewContent(
+        		PartyViewConstants.VOTE_HISTORY_HEADER,
+                PartyViewConstants.VOTE_HISTORY_TITLE,
+                PartyViewConstants.VOTE_HISTORY_DESC);
+        pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_VOTE_HISTORY.createItemPageCommand(PARTY_ID));
+    }
+
 }

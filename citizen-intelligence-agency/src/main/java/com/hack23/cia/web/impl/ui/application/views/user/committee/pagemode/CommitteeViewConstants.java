@@ -10,7 +10,6 @@ public interface CommitteeViewConstants extends
     CommitteeSectionConstants,
     CommitteeActionConstants,
     CommitteeGridConstants,
-    CommitteeBallotConstants,
     CommitteeRankingConstants {
     // Interface is now complete through its extensions
 }
