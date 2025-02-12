@@ -6,43 +6,43 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemAdminConstants {
 
     /** The admin text. */
-    String ADMIN_TEXT = "Admin";
+    String ADMIN_TEXT = "System Administration";
 
     /** The agency. */
-    String AGENCY = "Agency";
+    String AGENCY = "Intelligence Analysis";
 
     /** The agent operations text. */
-    String AGENT_OPERATIONS_TEXT = "Agent operations";
+    String AGENT_OPERATIONS_TEXT = "Data Collection Analysis";
 
     /** The application. */
-    String APPLICATION = "Application";
+    String APPLICATION = "Platform Analysis";
 
     /** The application configuration. */
-    String APPLICATION_CONFIGURATION = "System settings";
+    String APPLICATION_CONFIGURATION = "Analysis Settings";
 
     /** The application event. */
-    String APPLICATION_EVENT = "Application Event";
+    String APPLICATION_EVENT = "System Event Analysis";
 
     /** The application event charts. */
-    String APPLICATION_EVENT_CHARTS = "Application Event charts";
+    String APPLICATION_EVENT_CHARTS = "System Performance Analysis";
 
     /** The application session. */
-    String APPLICATION_SESSION = "Application Session";
+    String APPLICATION_SESSION = "User Session Analysis";
 
     /** The application session charts. */
-    String APPLICATION_SESSION_CHARTS = "Active Daily Users";
+    String APPLICATION_SESSION_CHARTS = "Engagement Analysis";
 
     /** The system performance. */
-    String SYSTEM_PERFORMANCE = "System Performance";
+    String SYSTEM_PERFORMANCE = "Platform Performance Analysis";
 
     /** The management. */
-    String MANAGEMENT = "Management";
+    String MANAGEMENT = "System Management";
 
     /** The configuration. */
-    String CONFIGURATION = "Configuration";
+    String CONFIGURATION = "Analysis Settings";
 
     /** The portal. */
-    String PORTAL = "Portal";
+    String PORTAL = "Analytics Portal";
 
     /** The email. */
     String EMAIL = "Email";
@@ -50,13 +50,10 @@ public interface MenuItemAdminConstants {
     /** The language. */
     String LANGUAGE = "Language";
 
+    /** The Constant DATA_AUTHOR_SUMMARY. */
+    String DATA_AUTHOR_SUMMARY = "Data Source Analysis";
 
-        /** The Constant DATA_AUTHOR_SUMMARY. */
-        String DATA_AUTHOR_SUMMARY = "Data author summary";
-
-        /** The Constant DATA_SUMMARY_TEXT. */
-        String DATA_SUMMARY_TEXT = "Data Summary";
-
-
+    /** The Constant DATA_SUMMARY_TEXT. */
+    String DATA_SUMMARY_TEXT = "Data Coverage Analysis";
 
 }

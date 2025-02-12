@@ -7,8 +7,8 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemRankingPageVisitHistoryConstants {
 
     /** The page visit history text. */
-    String PAGE_VISIT_HISTORY_TEXT = "Page Visit History";
+    String PAGE_VISIT_HISTORY_TEXT = "Engagement Analysis";
 
     /** The page visit history description. */
-    String PAGE_VISIT_HISTORY_DESCRIPTION = "View visit history and statistics";
+    String PAGE_VISIT_HISTORY_DESCRIPTION = "Analysis of user interaction patterns and trends";
 }

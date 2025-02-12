@@ -21,23 +21,23 @@ public interface MenuItemPoliticianConstants {
     String POLITICIANS_DESCRIPTION = "All politicians: service and contributions.";
 
     /** The current members text. */
-    String CURRENT_MEMBERS_TEXT = "Current Members";
+    String CURRENT_MEMBERS_TEXT = "Active Representatives";
 
     /** The member history text. */
-    String MEMBER_HISTORY_TEXT = "Member History";
+    String MEMBER_HISTORY_TEXT = "Historical Service Analysis";
 
     /** The current members description. */
-    String CURRENT_MEMBERS_DESCRIPTION = "Current members description";
+    String CURRENT_MEMBERS_DESCRIPTION = "Analysis of current parliamentary composition";
 
     /** The member history description. */
-    String MEMBER_HISTORY_DESCRIPTION = "Member history description";
+    String MEMBER_HISTORY_DESCRIPTION = "Historical analysis of member service patterns";
 
     /** The roles text. */
-    String ROLES_TEXT = "Roles";
+    String ROLES_TEXT = "Position Analysis";
 
     /** The role ghant text. */
-    String ROLE_GHANT_TEXT = "Role Ghant";
+    String ROLE_GHANT_TEXT = "Timeline Analysis";
 
     /** The role ghant description. */
-    String ROLE_GHANT_DESCRIPTION = "Role ghant description";
+    String ROLE_GHANT_DESCRIPTION = "Visual analysis of position tenures and transitions";
 }

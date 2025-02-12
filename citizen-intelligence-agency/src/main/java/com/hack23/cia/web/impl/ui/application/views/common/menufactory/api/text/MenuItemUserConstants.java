@@ -6,40 +6,40 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemUserConstants {
 
     /** The user home. */
-    String USER_HOME = "User Home";
+    String USER_HOME = "Dashboard";
 
     /** The user profile. */
-    String USER_PROFILE = "User Profile";
+    String USER_PROFILE = "My Profile";
 
     /** The user settings. */
-    String USER_SETTINGS = "User Settings";
+    String USER_SETTINGS = "Preferences";
 
     /** The user logout. */
-    String USER_LOGOUT = "User Logout";
+    String USER_LOGOUT = "Sign Out";
 
     /** The user home description. */
-    String USER_HOME_DESCRIPTION = "Navigate to user home page";
+    String USER_HOME_DESCRIPTION = "Access your personalized analytics dashboard";
 
     /** The user profile description. */
-    String USER_PROFILE_DESCRIPTION = "View and edit user profile";
+    String USER_PROFILE_DESCRIPTION = "Manage your analyst profile and credentials";
 
     /** The user settings description. */
-    String USER_SETTINGS_DESCRIPTION = "Adjust user settings";
+    String USER_SETTINGS_DESCRIPTION = "Customize your analysis tools and preferences";
 
     /** The user logout description. */
-    String USER_LOGOUT_DESCRIPTION = "Logout from the application";
+    String USER_LOGOUT_DESCRIPTION = "Securely end your analysis session";
 
     /** The user visits. */
-    String USER_VISITS = "User Visits";
+    String USER_VISITS = "Analysis History";
 
     /** The user events. */
-    String USER_EVENTS = "User Events";
+    String USER_EVENTS = "Activity Log";
 
     /** The user visits description. */
-    String USER_VISITS_DESCRIPTION = "View user visit history";
+    String USER_VISITS_DESCRIPTION = "Track your research and analysis patterns";
 
     /** The user events description. */
-    String USER_EVENTS_DESCRIPTION = "View user event history";
+    String USER_EVENTS_DESCRIPTION = "Monitor your system interactions and alerts";
 
     /** The useraccount. */
     String USERACCOUNT = "Useraccount";
