@@ -38,16 +38,36 @@ public interface DocumentFieldConstants {
     /** The field number value. */
     String FIELD_NUMBER_VALUE = "Number Value:";
 
-    /** Enhanced tooltips with analytical focus */
+    /**  Enhanced tooltips with analytical focus. */
     String TOOLTIP_TITLE = "Primary document classification metric";
+
+    /** The tooltip subtitle. */
     String TOOLTIP_SUBTITLE = "Secondary content classification indicator";
+
+    /** The tooltip organization. */
     String TOOLTIP_ORGANIZATION = "Organizational source distribution metric";
+
+    /** The tooltip doc type. */
     String TOOLTIP_DOC_TYPE = "Document taxonomy classification";
+
+    /** The tooltip status. */
     String TOOLTIP_STATUS = "Processing state indicator metrics";
+
+    /** The tooltip made public. */
     String TOOLTIP_MADE_PUBLIC = "Publication temporal metrics";
+
+    /** The tooltip category. */
     String TOOLTIP_CATEGORY = "Content classification distribution";
+
+    /** The tooltip label. */
     String TOOLTIP_LABEL = "Reference identification metrics";
+
+    /** The tooltip temp label. */
     String TOOLTIP_TEMP_LABEL = "Interim classification identifier";
+
+    /** The tooltip hangar id. */
     String TOOLTIP_HANGAR_ID = "Storage reference analytics";
+
+    /** The tooltip number value. */
     String TOOLTIP_NUMBER_VALUE = "Quantitative reference metrics";
 }

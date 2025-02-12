@@ -25,10 +25,18 @@ public interface PoliticianVoteHistoryConstants {
     /** The nested properties. */
     String[] NESTED_PROPERTIES = { "embeddedId.ballotId", "embeddedId.concern", "embeddedId.issue" };
 
-    /** Analytical context descriptions */
+    /**  Analytical context descriptions. */
     String VOTE_PATTERN_ANALYSIS = "Voting pattern distribution metrics";
+
+    /** The party alignment metrics. */
     String PARTY_ALIGNMENT_METRICS = "Party alignment statistical analysis";
+
+    /** The participation analytics. */
     String PARTICIPATION_ANALYTICS = "Engagement distribution indicators";
+
+    /** The temporal voting patterns. */
     String TEMPORAL_VOTING_PATTERNS = "Longitudinal voting pattern analysis";
+
+    /** The decision impact metrics. */
     String DECISION_IMPACT_METRICS = "Legislative impact assessment metrics";
 }

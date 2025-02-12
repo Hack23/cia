@@ -18,6 +18,11 @@ public final class UserPoliticianTest extends AbstractUITest {
     /** The pol id. */
     private static final String POL_ID = "0222691314314";
 
+    /**
+     * Verify politician overview page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianOverviewPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_VIEW_OVERVIEW.createItemPageCommand(POL_ID));
@@ -28,6 +33,11 @@ public final class UserPoliticianTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_VIEW_OVERVIEW.createItemPageCommand(POL_ID));
     }
 
+    /**
+     * Verify politician document history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianDocumentHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_DOCUMENT_HISTORY.createItemPageCommand(POL_ID));
@@ -38,6 +48,11 @@ public final class UserPoliticianTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_DOCUMENT_HISTORY.createItemPageCommand(POL_ID));
     }
 
+    /**
+     * Verify politician document activity page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianDocumentActivityPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_DOCUMENT_ACTIVITY.createItemPageCommand(POL_ID));
@@ -48,6 +63,11 @@ public final class UserPoliticianTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_DOCUMENT_ACTIVITY.createItemPageCommand(POL_ID));
     }
 
+    /**
+     * Verify politician indicators page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianIndicatorsPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_VIEW_INDICATORS.createItemPageCommand(POL_ID));
@@ -58,6 +78,11 @@ public final class UserPoliticianTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_VIEW_INDICATORS.createItemPageCommand(POL_ID));
     }
 
+    /**
+     * Verify politician vote history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianVoteHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_VOTE_HISTORY.createItemPageCommand(POL_ID));
@@ -68,6 +93,11 @@ public final class UserPoliticianTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_VOTE_HISTORY.createItemPageCommand(POL_ID));
     }
 
+    /**
+     * Verify politician role summary page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianRoleSummaryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_ROLE_SUMMARY.createItemPageCommand(POL_ID));
@@ -78,6 +108,11 @@ public final class UserPoliticianTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_ROLE_SUMMARY.createItemPageCommand(POL_ID));
     }
 
+    /**
+     * Verify politician role list page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianRoleListPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_ROLE_LIST.createItemPageCommand(POL_ID));
@@ -88,6 +123,11 @@ public final class UserPoliticianTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_ROLE_LIST.createItemPageCommand(POL_ID));
     }
 
+    /**
+     * Verify politician role ghant page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianRoleGhantPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_ROLE_GHANT.createItemPageCommand(POL_ID));
@@ -98,6 +138,11 @@ public final class UserPoliticianTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_ROLE_GHANT.createItemPageCommand(POL_ID));
     }
 
+    /**
+     * Verify politician page visit history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianPageVisitHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_PAGEVISIT.createItemPageCommand(POL_ID));
@@ -108,6 +153,11 @@ public final class UserPoliticianTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_PAGEVISIT.createItemPageCommand(POL_ID));
     }
 
+    /**
+     * Verify politician ballot history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPoliticianBallotHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPoliticianConstants.COMMAND_POLITICIAN_BALLOT_HISTORY.createItemPageCommand(POL_ID));

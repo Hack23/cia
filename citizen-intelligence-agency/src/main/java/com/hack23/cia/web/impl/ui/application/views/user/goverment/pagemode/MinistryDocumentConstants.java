@@ -21,8 +21,13 @@ public interface MinistryDocumentConstants {
     String[] HIDE_COLUMNS = { "id", "numberValue", "orderNumber", "tempLabel",
             "personReferenceId", "org", "roleDescription", "label", "subTitle", "docId" };
 
+    /** The document metrics. */
     // Add analytical descriptions
     String DOCUMENT_METRICS = "Statistical Analysis of Document Distribution";
+
+    /** The temporal analysis. */
     String TEMPORAL_ANALYSIS = "Temporal Document Pattern Analysis";
+
+    /** The classification metrics. */
     String CLASSIFICATION_METRICS = "Document Classification Analytics";
 }

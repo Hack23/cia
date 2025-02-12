@@ -32,6 +32,11 @@ public final class UserCommitteeTest extends AbstractUITest {
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_OVERVIEW.createItemPageCommand(COMMITTEE_ID));
 	}
 
+	/**
+	 * Verify committee document history page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCommitteeDocumentHistoryPage() throws Exception {
 		pageVisit.visitDirectPage(
@@ -42,6 +47,11 @@ public final class UserCommitteeTest extends AbstractUITest {
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_DOCUMENT_HISTORY.createItemPageCommand(COMMITTEE_ID));
 	}
 
+	/**
+	 * Verify committee document activity page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCommitteeDocumentActivityPage() throws Exception {
 		pageVisit.visitDirectPage(
@@ -52,6 +62,11 @@ public final class UserCommitteeTest extends AbstractUITest {
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_DOCUMENT_ACTIVITY.createItemPageCommand(COMMITTEE_ID));
 	}
 
+	/**
+	 * Verify committee current members page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCommitteeCurrentMembersPage() throws Exception {
 		pageVisit.visitDirectPage(
@@ -62,6 +77,11 @@ public final class UserCommitteeTest extends AbstractUITest {
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_CURRENT_MEMBERS.createItemPageCommand(COMMITTEE_ID));
 	}
 
+	/**
+	 * Verify committee member history page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCommitteeMemberHistoryPage() throws Exception {
 		pageVisit.visitDirectPage(
@@ -72,6 +92,11 @@ public final class UserCommitteeTest extends AbstractUITest {
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_MEMBER_HISTORY.createItemPageCommand(COMMITTEE_ID));
 	}
 
+	/**
+	 * Verify committee role ghant page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCommitteeRoleGhantPage() throws Exception {
 		pageVisit.visitDirectPage(
@@ -82,6 +107,11 @@ public final class UserCommitteeTest extends AbstractUITest {
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_ROLE_GHANT.createItemPageCommand(COMMITTEE_ID));
 	}
 
+	/**
+	 * Verify committee ballot decision summary page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCommitteeBallotDecisionSummaryPage() throws Exception {
 		pageVisit.visitDirectPage(PageCommandCommitteeConstants.COMMAND_COMMITTEE_BALLOT_DECISION_SUMMARY
@@ -92,6 +122,11 @@ public final class UserCommitteeTest extends AbstractUITest {
 				.createItemPageCommand(COMMITTEE_ID));
 	}
 
+	/**
+	 * Verify committee decision summary page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCommitteeDecisionSummaryPage() throws Exception {
 		pageVisit.visitDirectPage(
@@ -102,6 +137,11 @@ public final class UserCommitteeTest extends AbstractUITest {
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_DECISION_SUMMARY.createItemPageCommand(COMMITTEE_ID));
 	}
 
+	/**
+	 * Verify committee decision type daily summary page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCommitteeDecisionTypeDailySummaryPage() throws Exception {
 		pageVisit.visitDirectPage(PageCommandCommitteeConstants.COMMAND_COMMITTEE_DECISION_TYPE_DAILY_SUMMARY
@@ -113,6 +153,11 @@ public final class UserCommitteeTest extends AbstractUITest {
 				.createItemPageCommand(COMMITTEE_ID));
 	}
 
+	/**
+	 * Verify committee page visit history page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCommitteePageVisitHistoryPage() throws Exception {
 		pageVisit.visitDirectPage(
@@ -123,6 +168,11 @@ public final class UserCommitteeTest extends AbstractUITest {
 				PageCommandCommitteeConstants.COMMAND_COMMITTEE_PAGEVISIT_HISTORY.createItemPageCommand(COMMITTEE_ID));
 	}
 
+	/**
+	 * Verify committee decision flow chart page.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test(timeout = DEFAULT_TIMEOUT)
 	public void verifyCommitteeDecisionFlowChartPage() throws Exception {
 		pageVisit.visitDirectPage(

@@ -24,11 +24,17 @@ public interface PoliticianResourceConstants {
     /** The picture desc format. */
     String PICTURE_DESC_FORMAT = "Picture of %s %s";
 
+    /** The representative desc format. */
     // Enhanced analytical descriptions
     String REPRESENTATIVE_DESC_FORMAT = "Performance metrics for %s %s";
-    
+
+    /** The temporal analysis desc. */
     // Additional analytical context
     String TEMPORAL_ANALYSIS_DESC = "Longitudinal performance analysis";
+
+    /** The distribution analysis desc. */
     String DISTRIBUTION_ANALYSIS_DESC = "Statistical distribution metrics";
+
+    /** The effectiveness metrics desc. */
     String EFFECTIVENESS_METRICS_DESC = "Legislative impact indicators";
 }

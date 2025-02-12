@@ -61,7 +61,7 @@ public final class MinistryDocumentActivityPageModContentFactoryImpl extends Abs
 		final ViewRiksdagenMinistry viewRiksdagenMinistry = getItem(parameters);
 		getMinistryMenuItemFactory().createMinistryMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, "Ministry Documents " + viewRiksdagenMinistry.getNameId(), "Document Activity Overview", "Tracks and visualizes the activity associated with ministry documents.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent, MinistryViewConstants.DOCUMENT_ACTIVITY_TITLE + viewRiksdagenMinistry.getNameId(), MinistryViewConstants.DOCUMENT_ACTIVITY_SUBTITLE, MinistryViewConstants.DOCUMENT_ACTIVITY_DESC);
 
 		chartDataManager.createDocumentHistoryChartByOrg(panelContent, viewRiksdagenMinistry.getNameId());
 
