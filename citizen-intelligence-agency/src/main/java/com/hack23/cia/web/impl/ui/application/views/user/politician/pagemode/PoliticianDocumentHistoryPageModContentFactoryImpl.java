@@ -44,24 +44,23 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 		extends AbstractPoliticianPageModContentFactoryImpl {
 
 	/** The Constant COLUMN_ORDER. */
-	private static final String[] COLUMN_ORDER = { "rm", "madePublicDate", "documentType", "subType",
-			"title", "subTitle", "referenceName", "partyShortCode", "personReferenceId", "roleDescription", "org", "id",
-			"docId", "tempLabel", "label", "numberValue", "orderNumber", "status" };
+	private static final String[] COLUMN_ORDER = { "rm", "madePublicDate", "documentType", "subType", "title",
+			"subTitle", "referenceName", "partyShortCode", "personReferenceId", "roleDescription", "org", "id", "docId",
+			"tempLabel", "label", "numberValue", "orderNumber", "status" };
 
 	/** The Constant DOCUMENTS. */
 	private static final String DOCUMENTS = "Documents";
 
 	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = { "id", "partyShortCode", "personReferenceId",
-			"numberValue", "orderNumber", "tempLabel", "referenceName", "docId", "label", "roleDescription" };
+	private static final String[] HIDE_COLUMNS = { "id", "partyShortCode", "personReferenceId", "numberValue",
+			"orderNumber", "tempLabel", "referenceName", "docId", "label", "roleDescription" };
 
 	/** The Constant LISTENER. */
 	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(
 			UserViews.DOCUMENT_VIEW_NAME, "docId", true);
 
 	/**
-	 * Instantiates a new politician document history page mod content factory
-	 * impl.
+	 * Instantiates a new politician document history page mod content factory impl.
 	 */
 	public PoliticianDocumentHistoryPageModContentFactoryImpl() {
 		super();
@@ -78,7 +77,10 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Document History", "History Overview", "Historical record of documents associated with the politician's roles and activities.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+				PoliticianPageTitleConstants.DOCUMENT_HISTORY_TITLE + viewRiksdagenPolitician.getFirstName() + ' '
+						+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')',
+				PoliticianPageTitleConstants.HISTORY_SUBTITLE, PoliticianPageTitleConstants.DOC_HISTORY_DESC);
 
 		final DataContainer<ViewRiksdagenPoliticianDocument, String> politicianDocumentDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenPoliticianDocument.class);
@@ -90,7 +92,7 @@ public final class PoliticianDocumentHistoryPageModContentFactoryImpl
 				DOCUMENTS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
-		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
+				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 		return panelContent;
 
 	}

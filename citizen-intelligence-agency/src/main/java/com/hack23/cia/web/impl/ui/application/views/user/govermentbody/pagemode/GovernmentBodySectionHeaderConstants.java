@@ -13,9 +13,14 @@ public interface GovernmentBodySectionHeaderConstants {
 
     /** The annual stats. */
     String ANNUAL_STATS = "Temporal Performance Distribution";
-    
+
+    /** The performance metrics. */
     // Add new analytical headers
     String PERFORMANCE_METRICS = "Quantitative Performance Indicators";
+
+    /** The resource analytics. */
     String RESOURCE_ANALYTICS = "Resource Allocation Analysis";
+
+    /** The efficiency metrics. */
     String EFFICIENCY_METRICS = "Operational Efficiency Analytics";
 }

@@ -89,9 +89,9 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-				"Politician Overview " + viewRiksdagenPolitician.getFirstName() + ' '
+				PoliticianPageTitleConstants.OVERVIEW_TITLE + viewRiksdagenPolitician.getFirstName() + ' '
 						+ viewRiksdagenPolitician.getLastName() + " (" + viewRiksdagenPolitician.getParty() + ')',
-				"Politician Details", "Detailed profiles and activities of politicians.");
+						PoliticianPageTitleConstants.OVERVIEW_SUBTITLE, PoliticianPageTitleConstants.OVERVIEW_DESC);
 
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
 				.load(viewRiksdagenPolitician.getPersonId());

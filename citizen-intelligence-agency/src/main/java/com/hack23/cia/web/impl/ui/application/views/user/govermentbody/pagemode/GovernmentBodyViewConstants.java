@@ -11,13 +11,21 @@ public interface GovernmentBodyViewConstants extends
     GovernmentBodySectionConstants,
     GovernmentBodyIconConstants {
 
+    /** The government body view. */
     // View Names with enhanced analytical focus
     String GOVERNMENT_BODY_VIEW = "Organizational Performance Analytics";
+
+    /** The government body ranking view. */
     String GOVERNMENT_BODY_RANKING_VIEW = "Institutional Performance Rankings";
-    
+
+    /** The performance metrics view. */
     // Add new analytical constants
     String PERFORMANCE_METRICS_VIEW = "Performance Distribution Analysis";
+
+    /** The resource allocation view. */
     String RESOURCE_ALLOCATION_VIEW = "Resource Utilization Analytics";
+
+    /** The operational metrics view. */
     String OPERATIONAL_METRICS_VIEW = "Operational Efficiency Metrics";
 
     /** The org number property. */

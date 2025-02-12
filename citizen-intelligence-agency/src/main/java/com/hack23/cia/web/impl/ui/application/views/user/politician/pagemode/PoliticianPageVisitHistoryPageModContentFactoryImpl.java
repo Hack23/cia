@@ -57,13 +57,15 @@ public final class PoliticianPageVisitHistoryPageModContentFactoryImpl
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Page Visit History", "Visit Trends", "Analyze patterns and trends in the politician's page visit history.");
-
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+				PoliticianPageTitleConstants.PAGEVISIT_TITLE + viewRiksdagenPolitician.getFirstName() + ' '
+						+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')',
+				PoliticianDescriptionConstants.VISIT_TRENDS_TITLE, PoliticianDescriptionConstants.VISIT_HISTORY_DESC);
 
 		createPageVisitHistory(NAME, pageId, panelContent);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
-		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
+				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 		return panelContent;
 
 	}

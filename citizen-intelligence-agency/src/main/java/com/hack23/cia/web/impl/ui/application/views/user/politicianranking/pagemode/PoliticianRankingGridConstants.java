@@ -7,7 +7,8 @@ public interface PoliticianRankingGridConstants {
 
     /** The politicians. */
     String POLITICIANS = "Representative Performance Analytics";
-    
+
+    /** The column groups. */
     // Enhanced analytical column groups
     String[] COLUMN_GROUPS = {
         "Representative Metrics",
@@ -16,12 +17,21 @@ public interface PoliticianRankingGridConstants {
         "Position Distribution",
         "Temporal Analysis"
     };
-    
+
+    /** The activity level desc. */
     // Enhanced column descriptions
     String ACTIVITY_LEVEL_DESC = "Quantitative engagement metrics";
+
+    /** The collaboration desc. */
     String COLLABORATION_DESC = "Cross-party interaction patterns";
+
+    /** The document metrics desc. */
     String DOCUMENT_METRICS_DESC = "Legislative output analysis";
+
+    /** The role distribution desc. */
     String ROLE_DISTRIBUTION_DESC = "Position allocation metrics";
+
+    /** The temporal metrics desc. */
     String TEMPORAL_METRICS_DESC = "Time-series performance indicators";
 
     /** The column order. */

@@ -14,6 +14,7 @@ import com.hack23.cia.web.impl.ui.application.views.user.country.pagemode.Countr
 @Category(IntegrationTest.class)
 public final class UserCountryTest extends AbstractUITest {
 
+    /** The Constant INDICATOR_ID. */
     private static final String INDICATOR_ID = "EG.ELC.HYRO.ZS";
 
 
@@ -32,6 +33,11 @@ public final class UserCountryTest extends AbstractUITest {
     }
 
 
+    /**
+     * Verify country indicator page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyCountryIndicatorPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandCountryRankingConstants.COMMAND_COUNTRY_RANKING_INDICATORS.createItemPageCommand(INDICATOR_ID));
