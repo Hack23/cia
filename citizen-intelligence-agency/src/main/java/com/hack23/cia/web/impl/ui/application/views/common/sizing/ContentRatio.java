@@ -19,9 +19,9 @@
 package com.hack23.cia.web.impl.ui.application.views.common.sizing;
 
 /**
- * The Class ContentRatio.
+ * The Interface ContentRatio.
  */
-public final class ContentRatio {
+public interface ContentRatio {
 
 	/** The Constant CHART. */
 	public static final float CHART = 8;
@@ -50,10 +50,4 @@ public final class ContentRatio {
 	/** The Constant SMALL3. */
 	public static final float SMALL3 = 3;
 
-	/**
-	 * Default constructor for ContentRatio.
-	 */
-	public ContentRatio() {
-		// Default constructor
-	}
 }

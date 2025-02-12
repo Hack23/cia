@@ -144,7 +144,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
      * @param layout the layout
      * @param ministry the ministry
      */
-    private void createProfileDetails(VerticalLayout layout, ViewRiksdagenMinistry ministry) {
+    private void createProfileDetails(final VerticalLayout layout, final ViewRiksdagenMinistry ministry) {
         layout.addComponent(CardInfoRowUtil.createInfoRow(
             MinistryFieldConstants.MINISTRY_ID_LABEL,
             ministry.getNameId(),
@@ -172,7 +172,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
      * @param layout the layout
      * @param ministry the ministry
      */
-    private void createServiceStatisticsSection(VerticalLayout layout, ViewRiksdagenMinistry ministry) {
+    private void createServiceStatisticsSection(final VerticalLayout layout, final ViewRiksdagenMinistry ministry) {
         layout.addComponent(CardInfoRowUtil.createInfoRow(
             MinistryStatisticsConstants.TOTAL_ASSIGNMENTS,
             String.valueOf(ministry.getTotalAssignments()),
@@ -199,7 +199,7 @@ public final class MinistryOverviewPageModContentFactoryImpl extends AbstractMin
      * @param layout the layout
      * @param ministry the ministry
      */
-    private void createDocumentStatisticsSection(VerticalLayout layout, ViewRiksdagenMinistry ministry) {
+    private void createDocumentStatisticsSection(final VerticalLayout layout, final ViewRiksdagenMinistry ministry) {
         layout.addComponent(CardInfoRowUtil.createInfoRow(
             MinistryStatisticsConstants.TOTAL_DOCUMENTS,
             String.valueOf(ministry.getTotalDocuments()),

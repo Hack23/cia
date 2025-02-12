@@ -13,7 +13,7 @@ public class GovernmentBodyFieldValueFormatter {
      * @param year the year
      * @return the string
      */
-    public static String formatYear(int year) {
+    public static String formatYear(final int year) {
         return String.format(Locale.ENGLISH, "%d", year);
     }
 
@@ -23,7 +23,7 @@ public class GovernmentBodyFieldValueFormatter {
      * @param count the count
      * @return the string
      */
-    public static String formatCount(int count) {
+    public static String formatCount(final int count) {
         return String.format(Locale.ENGLISH, "%d", count);
     }
 }

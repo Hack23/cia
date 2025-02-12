@@ -19,50 +19,44 @@
 package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 /**
- * The Class AdminViews.
+ * The Interface AdminViews.
  */
-public final class AdminViews {
+public interface AdminViews {
 
 	/** The Constant ADMIN_AGENCY_VIEW_NAME. */
-	public static final String ADMIN_AGENCY_VIEW_NAME = "adminagency";
+	String ADMIN_AGENCY_VIEW_NAME = "adminagency";
 
 	/** The Constant ADMIN_AGENT_OPERATIONVIEW_NAME. */
-	public static final String ADMIN_AGENT_OPERATIONVIEW_NAME = "adminagentoperation";
+	String ADMIN_AGENT_OPERATIONVIEW_NAME = "adminagentoperation";
 
 	/** The Constant ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME. */
-	public static final String ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME = "adminapplicationconfiguration";
+	String ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME = "adminapplicationconfiguration";
 
 	/** The Constant ADMIN_APPLICATIONS_EVENTS_VIEW_NAME. */
-	public static final String ADMIN_APPLICATIONS_EVENTS_VIEW_NAME = "adminapplicationevents";
+	String ADMIN_APPLICATIONS_EVENTS_VIEW_NAME = "adminapplicationevents";
 
 	/** The Constant ADMIN_APPLICATIONS_SESSION_VIEW_NAME. */
-	public static final String ADMIN_APPLICATIONS_SESSION_VIEW_NAME = "adminapplicationsession";
+	String ADMIN_APPLICATIONS_SESSION_VIEW_NAME = "adminapplicationsession";
 
 	/** The Constant ADMIN_COUNTRY_VIEW_NAME. */
-	public static final String ADMIN_COUNTRY_VIEW_NAME = "admincountry";
+	String ADMIN_COUNTRY_VIEW_NAME = "admincountry";
 
 	/** The Constant ADMIN_DATA_SUMMARY_VIEW_NAME. */
-	public static final String ADMIN_DATA_SUMMARY_VIEW_NAME = "admindatasummary";
+	String ADMIN_DATA_SUMMARY_VIEW_NAME = "admindatasummary";
 
 	/** The Constant ADMIN_EMAIL_VIEW_NAME. */
-	public static final String ADMIN_EMAIL_VIEW_NAME = "adminemail";
+	String ADMIN_EMAIL_VIEW_NAME = "adminemail";
 
 	/** The Constant ADMIN_LANGUAGE_VIEW_NAME. */
-	public static final String ADMIN_LANGUAGE_VIEW_NAME = "adminlanguage";
+	String ADMIN_LANGUAGE_VIEW_NAME = "adminlanguage";
 
 	/** The Constant ADMIN_MONITORING_VIEW_NAME. */
-	public static final String ADMIN_MONITORING_VIEW_NAME = "adminmonitoring";
+	String ADMIN_MONITORING_VIEW_NAME = "adminmonitoring";
 
 	/** The Constant ADMIN_PORTAL_VIEW_NAME. */
-	public static final String ADMIN_PORTAL_VIEW_NAME = "adminportal";
+	String ADMIN_PORTAL_VIEW_NAME = "adminportal";
 
 	/** The Constant ADMIN_USERACCOUNT_VIEW_NAME. */
-	public static final String ADMIN_USERACCOUNT_VIEW_NAME = "adminuseraccount";
+	String ADMIN_USERACCOUNT_VIEW_NAME = "adminuseraccount";
 
-	/**
-	 * Default constructor for AdminViews.
-	 */
-	public AdminViews() {
-		// Default constructor
-	}
 }

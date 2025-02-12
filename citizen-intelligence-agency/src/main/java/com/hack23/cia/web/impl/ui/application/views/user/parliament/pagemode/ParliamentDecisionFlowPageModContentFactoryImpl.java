@@ -115,7 +115,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
      * @param panel the panel
      * @param panelContent the panel content
      */
-    private void setupMenuAndHeader(MenuBar menuBar, Panel panel, VerticalLayout panelContent) {
+    private void setupMenuAndHeader(final MenuBar menuBar, final Panel panel, final VerticalLayout panelContent) {
         getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);
         CardInfoRowUtil.createPageHeader(panel, panelContent,
             ParliamentPageTitleConstants.DECISION_FLOW_TITLE,
@@ -129,7 +129,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
      * @param parameters the parameters
      * @return the string
      */
-    private String extractSelectedYear(String parameters) {
+    private String extractSelectedYear(final String parameters) {
         if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
             return parameters.substring(
                 parameters.indexOf('[') + 1,
@@ -160,7 +160,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
      * @param panelContent the panel content
      * @param selectedYear the selected year
      */
-    private void addYearSelector(VerticalLayout panelContent, String selectedYear) {
+    private void addYearSelector(final VerticalLayout panelContent, final String selectedYear) {
         final ComboBox<String> yearSelector = new ComboBox<>(YEAR_SELECTOR_LABEL, createAvailableYears());
         yearSelector.setWidth("200px");
         yearSelector.setEmptySelectionAllowed(false);
@@ -178,8 +178,8 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
      * @param committeeMap the committee map
      * @param selectedYear the selected year
      */
-    private void addDecisionFlowChart(VerticalLayout panelContent,
-            Map<String, List<ViewRiksdagenCommittee>> committeeMap, String selectedYear) {
+    private void addDecisionFlowChart(final VerticalLayout panelContent,
+            final Map<String, List<ViewRiksdagenCommittee>> committeeMap, final String selectedYear) {
         final SankeyChart chart = decisionFlowChartManager.createAllDecisionFlow(committeeMap, selectedYear);
         chart.setWidth("100%");
 
@@ -194,8 +194,8 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
      * @param committeeMap the committee map
      * @param selectedYear the selected year
      */
-    private void addDecisionSummary(VerticalLayout panelContent,
-            Map<String, List<ViewRiksdagenCommittee>> committeeMap, String selectedYear) {
+    private void addDecisionSummary(final VerticalLayout panelContent,
+            final Map<String, List<ViewRiksdagenCommittee>> committeeMap, final String selectedYear) {
         final TextArea summaryArea = decisionFlowChartManager.createCommitteeeDecisionSummary(committeeMap, selectedYear);
         summaryArea.setSizeFull();
         summaryArea.setReadOnly(true);
@@ -210,7 +210,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
      * @param parameters the parameters
      * @param selectedYear the selected year
      */
-    private void recordPageVisit(String parameters, String selectedYear) {
+    private void recordPageVisit(final String parameters, final String selectedYear) {
         getPageActionEventHelper().createPageEvent(
             ViewAction.VISIT_PARLIAMENT_RANKING_VIEW,
             ApplicationEventGroup.USER,

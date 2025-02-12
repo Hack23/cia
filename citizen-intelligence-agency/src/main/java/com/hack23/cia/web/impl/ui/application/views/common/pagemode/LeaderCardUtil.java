@@ -111,9 +111,9 @@ public class LeaderCardUtil {
      * @param partyYears the party years
      * @param parliamentYears the parliament years
      */
-    private void addExperienceRow(VerticalLayout container, int govYears, int partyYears, int parliamentYears) {
+    private void addExperienceRow(final VerticalLayout container, final int govYears, final int partyYears, final int parliamentYears) {
         final HorizontalLayout experienceLayout = CardInfoRowUtil.createStandardRow();
-        experienceLayout.addStyleName(CardInfoRowUtil.LayoutConstants.CARD_EXPERIENCE);
+        experienceLayout.addStyleName(CardInfoRowUtil.CARD_EXPERIENCE);
 
         final Label expIcon = CardInfoRowUtil.createIconLabel(VaadinIcons.USER_CHECK, "Political Experience");
         final Label expLabel = new Label("Experience:");
@@ -123,7 +123,7 @@ public class LeaderCardUtil {
             "Government: %dy, Party: %dy, Parliament: %dy",
             govYears, partyYears, parliamentYears);
         final Label expValue = new Label(expText);
-        expValue.addStyleName(CardInfoRowUtil.LayoutConstants.CARD_INFO_VALUE);
+        expValue.addStyleName(CardInfoRowUtil.CARD_INFO_VALUE);
 
         experienceLayout.addComponents(expIcon, expLabel, expValue);
         container.addComponent(experienceLayout);
@@ -140,9 +140,9 @@ public class LeaderCardUtil {
      * @param experienceSummary the experience summary
      * @return the panel
      */
-    public Panel createBaseballStyleCard(ViewRiksdagenGovermentRoleMember govMember,
-            ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
-            Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+    public Panel createBaseballStyleCard(final ViewRiksdagenGovermentRoleMember govMember,
+            final ViewRiksdagenPolitician politician, final ViewRiksdagenPoliticianBallotSummary ballotSummary, final Map<String, List<GovernmentBodyAnnualSummary>> governmentBodyByMinistry,
+            final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> reportByMinistry, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
         final Panel cardPanel = createBaseCard();
         final VerticalLayout cardContent = createCardContent();
@@ -364,8 +364,8 @@ public class LeaderCardUtil {
      * @param ballotSummary the ballot summary
      * @param experienceSummary the experience summary
      */
-    private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenGovermentRoleMember govMember,
-            ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+    private void addPoliticalRoleMetrics(final VerticalLayout layout, final ViewRiksdagenGovermentRoleMember govMember,
+            final ViewRiksdagenPolitician politician, final ViewRiksdagenPoliticianBallotSummary ballotSummary, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
         layout.addComponent(CardInfoRowUtil.createInfoRow("Current Role:", govMember.getRoleCode(), VaadinIcons.INSTITUTION,
                 "Current position in parliament"));
@@ -396,8 +396,8 @@ public class LeaderCardUtil {
      * @param ballotSummary the ballot summary
      * @param experienceSummary the experience summary
      */
-    private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenPartyRoleMember riksdagenPartyRoleMember, ViewRiksdagenGovermentRoleMember govMember,
-            ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+    private void addPoliticalRoleMetrics(final VerticalLayout layout, final ViewRiksdagenPartyRoleMember riksdagenPartyRoleMember, final ViewRiksdagenGovermentRoleMember govMember,
+            final ViewRiksdagenPolitician politician, final ViewRiksdagenPoliticianBallotSummary ballotSummary, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
         addPartyExperince(layout, riksdagenPartyRoleMember, govMember, politician);
 
@@ -421,8 +421,8 @@ public class LeaderCardUtil {
      * @param govMember the gov member
      * @param politician the politician
      */
-    private void addPartyExperince(VerticalLayout layout, ViewRiksdagenPartyRoleMember riksdagenPartyRoleMember,
-            ViewRiksdagenGovermentRoleMember govMember, ViewRiksdagenPolitician politician) {
+    private void addPartyExperince(final VerticalLayout layout, final ViewRiksdagenPartyRoleMember riksdagenPartyRoleMember,
+            final ViewRiksdagenGovermentRoleMember govMember, final ViewRiksdagenPolitician politician) {
         if (govMember != null) {
             layout.addComponent(CardInfoRowUtil.createInfoRow("Role:", govMember != null ? govMember.getRoleCode() : "N/A", VaadinIcons.INSTITUTION,
                     "Current position in Government"));
@@ -449,7 +449,7 @@ public class LeaderCardUtil {
      * @return the view riksdagen goverment role member
      */
     @SuppressWarnings("unchecked")
-    private ViewRiksdagenGovermentRoleMember findGovernmentRoleForLeader(ViewRiksdagenPolitician leader) {
+    private ViewRiksdagenGovermentRoleMember findGovernmentRoleForLeader(final ViewRiksdagenPolitician leader) {
         final DataContainer<ViewRiksdagenGovermentRoleMember, String> govermentRoleMemberDataContainer = applicationManager
                 .getDataContainer(ViewRiksdagenGovermentRoleMember.class);
         final List<ViewRiksdagenGovermentRoleMember> activeGovMembers = govermentRoleMemberDataContainer.findListByProperty(

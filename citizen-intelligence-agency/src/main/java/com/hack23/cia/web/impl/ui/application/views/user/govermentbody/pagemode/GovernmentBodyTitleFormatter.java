@@ -16,7 +16,7 @@ public class GovernmentBodyTitleFormatter {
      * @param pageTitle the page title
      * @return the string
      */
-    public static String formatTitle(GovernmentBodyAnnualSummary govBody, String pageTitle) {
+    public static String formatTitle(final GovernmentBodyAnnualSummary govBody, final String pageTitle) {
         if (govBody == null) {
             return pageTitle;
         }

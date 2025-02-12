@@ -325,8 +325,8 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 * @param ballotSummary the ballot summary
 	 * @param experienceSummary the experience summary
 	 */
-	private void addPoliticalRoleMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
-			ViewRiksdagenPoliticianBallotSummary ballotSummary, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+	private void addPoliticalRoleMetrics(final VerticalLayout layout, final ViewRiksdagenPolitician politician,
+			final ViewRiksdagenPoliticianBallotSummary ballotSummary, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 
 		layout.addComponent(CardInfoRowUtil.createInfoRow(PoliticianMetricConstants.CURRENT_ROLE,
             ballotSummary.getStatus(), VaadinIcons.INSTITUTION, PoliticianDescriptionConstants.CURRENT_POSITION_DESC));
@@ -351,7 +351,7 @@ public final class PoliticianOverviewPageModContentFactoryImpl extends AbstractP
 	 * @param end the end
 	 * @return the string
 	 */
-	private String calculateServiceYears(Date start, Date end) {
+	private String calculateServiceYears(final Date start, final Date end) {
 		try {
 			if (start == null || end == null) {
 				return "N/A";

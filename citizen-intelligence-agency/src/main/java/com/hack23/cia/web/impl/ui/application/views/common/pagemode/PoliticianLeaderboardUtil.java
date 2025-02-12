@@ -41,8 +41,8 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 * @param layout the layout
 	 * @param experienceSummary the experience summary
 	 */
-	public final void addPoliticalAnalysisComment(VerticalLayout layout,
-			ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+	public final void addPoliticalAnalysisComment(final VerticalLayout layout,
+			final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 		// Split the analysis points and create a bullet list
 		final String[] analysisPoints = experienceSummary.getPoliticalAnalysisComment().split("\\s*\\|\\|\\s*");
 		final StringBuilder analys=new StringBuilder();
@@ -67,7 +67,7 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 * @param layout the layout
 	 * @param experienceSummary the experience summary
 	 */
-	public final void addKnowledgeAreas(VerticalLayout layout, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+	public final void addKnowledgeAreas(final VerticalLayout layout, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 		if (experienceSummary.getKnowledgeAreas() != null && !experienceSummary.getKnowledgeAreas().isEmpty()) {
 		    final String topAreas = buildTopString(
 		        experienceSummary.getKnowledgeAreas(),
@@ -86,7 +86,7 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 * @param layout the layout
 	 * @param experienceSummary the experience summary
 	 */
-	public final void addTopRoles(VerticalLayout layout, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+	public final void addTopRoles(final VerticalLayout layout, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 		if (experienceSummary.getRoles() != null && !experienceSummary.getRoles().isEmpty()) {
 		    final String topRoles = buildTopString(
 		        experienceSummary.getRoles(),
@@ -105,7 +105,7 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 * @param layout the layout
 	 * @param experienceSummary the experience summary
 	 */
-	public final void addExperienceMetrics(VerticalLayout layout, ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+	public final void addExperienceMetrics(final VerticalLayout layout, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 	    if (experienceSummary != null) {
 	        // Career Overview
 	        layout.addComponent(createInfoRow("Career Phase:",
@@ -141,7 +141,7 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 * @param layout the layout
 	 * @param politician the politician
 	 */
-	public final void addLegislativeMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician) {
+	public final void addLegislativeMetrics(final VerticalLayout layout, final ViewRiksdagenPolitician politician) {
 
 		layout.addComponent(createInfoRow("Documents/Year:", String.format(Locale.ENGLISH,"%.1f", politician.getAverageDocsPerYear()),
 				VaadinIcons.FILE_TEXT, "Average documents per year"));
@@ -162,8 +162,8 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 * @param politician the politician
 	 * @param ballotSummary the ballot summary
 	 */
-	public final void addPartyAlignmentMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
-			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+	public final void addPartyAlignmentMetrics(final VerticalLayout layout, final ViewRiksdagenPolitician politician,
+			final ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
 		layout.addComponent(createInfoRow("Party Loyalty:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary != null ? ballotSummary.getLoyaltyRate() : 0.0),
 				VaadinIcons.GROUP, "Party line adherence"));
@@ -185,8 +185,8 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 * @param politician the politician
 	 * @param ballotSummary the ballot summary
 	 */
-	public final void addParliamentaryPerformanceMetrics(VerticalLayout layout, ViewRiksdagenPolitician politician,
-			ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+	public final void addParliamentaryPerformanceMetrics(final VerticalLayout layout, final ViewRiksdagenPolitician politician,
+			final ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
 		layout.addComponent(
 				createInfoRow("Attendance Rate:",
@@ -281,61 +281,15 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 * @param weightFunction the weight function
 	 * @return the string
 	 */
-	private <T> String buildTopString(List<T> items,
-	                                  java.util.function.Function<T, String> nameFunction,
-	                                  java.util.function.Function<T, Long> weightFunction) {
+	private <T> String buildTopString(final List<T> items,
+	                                  final java.util.function.Function<T, String> nameFunction,
+	                                  final java.util.function.Function<T, Long> weightFunction) {
 	    return items.stream()
 	        .filter(i -> nameFunction.apply(i) != null && !"Other".equals(nameFunction.apply(i)))
 	        .sorted((o1, o2) -> weightFunction.apply(o2).compareTo(weightFunction.apply(o1)))
 	        .limit(3)
 	        .map(nameFunction)
 	        .collect(Collectors.joining(", "));
-	}
-
-	/**
-	 * Adds the metrics section.
-	 *
-	 * @param layout the layout
-	 * @param sectionTitle the section title
-	 * @param politician the politician
-	 * @param ballotSummary the ballot summary
-	 * @param metricType the metric type
-	 */
-	@SuppressWarnings("unused")
-	private void addMetricsSection(VerticalLayout layout, String sectionTitle,
-	    ViewRiksdagenPolitician politician, ViewRiksdagenPoliticianBallotSummary ballotSummary,
-	    MetricType metricType) {
-
-	    final VerticalLayout sectionLayout = CardInfoRowUtil.createSectionLayout(sectionTitle);
-
-	    switch(metricType) {
-	        case PARLIAMENTARY:
-	            addParliamentaryPerformanceMetrics(sectionLayout, politician, ballotSummary);
-	            break;
-	        case LEGISLATIVE:
-	            addLegislativeMetrics(sectionLayout, politician);
-	            break;
-	        case PARTY_ALIGNMENT:
-	            addPartyAlignmentMetrics(sectionLayout, politician, ballotSummary);
-	            break;
-	    }
-
-	    layout.addComponent(sectionLayout);
-	}
-
-	/**
-	 * The Enum MetricType.
-	 */
-	private enum MetricType {
-
-    	/** The parliamentary. */
-    	PARLIAMENTARY,
-
-    	/** The legislative. */
-    	LEGISLATIVE,
-
-    	/** The party alignment. */
-    	PARTY_ALIGNMENT
 	}
 
 }

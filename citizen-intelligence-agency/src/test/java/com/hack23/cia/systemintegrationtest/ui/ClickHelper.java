@@ -25,7 +25,7 @@ public class ClickHelper {
 	 * @param driver the driver
 	 * @param helper the helper
 	 */
-	public ClickHelper(WebDriver driver, UserPageVisitHelper helper) {
+	public ClickHelper(final WebDriver driver, final UserPageVisitHelper helper) {
 		this.actions = new Actions(driver);
 		this.helper = helper;
 	}
@@ -35,7 +35,7 @@ public class ClickHelper {
 	 *
 	 * @param element the element
 	 */
-	public void performClick(WebElement element) {
+	public void performClick(final WebElement element) {
 		for (int i = 0; i < 2; i++) {
 			try {
 				actions.pause(TestConstants.CLICK_PAUSE_AFTER).moveToElement(helper.refreshElement(element))
