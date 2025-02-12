@@ -112,7 +112,7 @@ public final class UserPageVisit extends Assert {
      * @param locator the locator
      * @return the web element
      */
-    public WebElement waitForClickable(By locator) {
+    public WebElement waitForClickable(final By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
@@ -136,7 +136,7 @@ public final class UserPageVisit extends Assert {
      * @param text the text
      * @return the web element
      */
-    public WebElement findButtonByText(String text) {
+    public WebElement findButtonByText(final String text) {
         return findButtons().stream()
             .filter(button -> matchesButtonText(button, text))
             .findFirst()
@@ -150,7 +150,7 @@ public final class UserPageVisit extends Assert {
      * @param text the text
      * @return true, if successful
      */
-    private boolean matchesButtonText(WebElement button, String text) {
+    private boolean matchesButtonText(final WebElement button, final String text) {
         final String buttonText = button.getText().trim();
         return text.equalsIgnoreCase(buttonText) || buttonText.endsWith(text);
     }
@@ -564,7 +564,7 @@ public final class UserPageVisit extends Assert {
 	 * @param clickElement the click element
 	 */
 	// The public click methods needed by all the calls
-	public void performClick(WebElement clickElement) {
+	public void performClick(final WebElement clickElement) {
 		assertNotNull(clickElement);
 		clickHelper.performClick(clickElement);
 	}
@@ -712,7 +712,7 @@ public final class UserPageVisit extends Assert {
 	 * @param expectedContent the expected content
 	 * @return the user page visit
 	 */
-	public UserPageVisit verifyPageContent(String expectedContent) {
+	public UserPageVisit verifyPageContent(final String expectedContent) {
 		try {
 			assertTrue("Expected content: " + expectedContent + "\nNot in:\n " + getHtmlBodyAsText(),
 					checkHtmlBodyContainsText(expectedContent));

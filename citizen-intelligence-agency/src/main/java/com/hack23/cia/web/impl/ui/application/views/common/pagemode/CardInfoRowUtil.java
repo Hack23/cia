@@ -16,16 +16,32 @@ import com.vaadin.ui.VerticalLayout;
  */
 public class CardInfoRowUtil {
 
+	/** The Constant CARD_TENURE. */
+	public static final String CARD_TENURE = "card-tenure";
+
+	/** The Constant CARD_EXPERIENCE. */
+	public static final String CARD_EXPERIENCE = "card-experience-section";
+
+	/** The Constant CARD_INFO_VALUE. */
+	public static final String CARD_INFO_VALUE = "card-info-value";
+
+	/** The Constant CARD_INFO_ICON. */
+	public static final String CARD_INFO_ICON = "card-info-icon";
+
+	/** The Constant METRIC_LABEL. */
+	public static final String METRIC_LABEL = "metric-label";
+
 	/**
 	 * Creates the page header.
 	 *
-	 * @param panel the panel
-	 * @param panelContent the panel content
-	 * @param header the header
-	 * @param pageHeader the page header
+	 * @param panel           the panel
+	 * @param panelContent    the panel content
+	 * @param header          the header
+	 * @param pageHeader      the page header
 	 * @param pageDescription the page description
 	 */
-	public static final void createPageHeader(final Panel panel, final VerticalLayout panelContent, final String header, final String pageHeader, final String pageDescription) {
+	public static final void createPageHeader(final Panel panel, final VerticalLayout panelContent, final String header,
+			final String pageHeader, final String pageDescription) {
 		panel.setCaption(header);
 		LabelFactory.createHeader2Label(panelContent, pageHeader);
 		final Label descriptionLabel = new Label(pageDescription);
@@ -33,22 +49,22 @@ public class CardInfoRowUtil {
 		Responsive.makeResponsive(descriptionLabel);
 		descriptionLabel.setWidth(100, Unit.PERCENTAGE);
 		panelContent.addComponent(descriptionLabel);
-		panelContent.setExpandRatio(descriptionLabel,ContentRatio.SMALL);
+		panelContent.setExpandRatio(descriptionLabel, ContentRatio.SMALL);
 	}
 
 	/**
 	 * Adds an info row to the parent layout if value is not null or empty.
 	 *
-	 * @param parent the parent layout
+	 * @param parent  the parent layout
 	 * @param caption the caption
-	 * @param value the value
-	 * @param icon the icon
+	 * @param value   the value
+	 * @param icon    the icon
 	 */
 	public static final void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value,
-	        final VaadinIcons icon) {
-	    if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
-	        parent.addComponent(CardInfoRowUtil.createInfoRow(caption, value, icon));
-	    }
+			final VaadinIcons icon) {
+		if (value != null && !value.trim().isEmpty() && !"null".equalsIgnoreCase(value)) {
+			parent.addComponent(CardInfoRowUtil.createInfoRow(caption, value, icon));
+		}
 	}
 
 	/**
@@ -59,8 +75,9 @@ public class CardInfoRowUtil {
 	 * @param icon    a VaadinIcons icon
 	 * @return a HorizontalLayout representing the info row
 	 */
-	public static final HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon) {
-		return CardInfoRowUtil.createInfoRow(caption,value,icon,null);
+	public static final HorizontalLayout createInfoRow(final String caption, final String value,
+			final VaadinIcons icon) {
+		return CardInfoRowUtil.createInfoRow(caption, value, icon, null);
 	}
 
 	/**
@@ -72,7 +89,7 @@ public class CardInfoRowUtil {
 	 * @param tooltip optional tooltip to provide more info
 	 * @return a HorizontalLayout representing the info row
 	 */
-	public static final HorizontalLayout createInfoRow(final String caption, final String value, VaadinIcons icon,
+	public static final HorizontalLayout createInfoRow(final String caption, final String value, final VaadinIcons icon,
 			final String tooltip) {
 		final HorizontalLayout layout = new HorizontalLayout();
 		layout.setSpacing(true);
@@ -107,36 +124,36 @@ public class CardInfoRowUtil {
 	 * @param title the section title
 	 * @return the vertical layout configured for the section
 	 */
-	public static VerticalLayout createSectionLayout(String title) {
-	    final VerticalLayout layout = new VerticalLayout();
-	    layout.setSpacing(true);
-	    layout.setMargin(true);
-	    layout.addStyleName("card-details-column");
-	    layout.setWidth("100%");
+	public static VerticalLayout createSectionLayout(final String title) {
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setSpacing(true);
+		layout.setMargin(true);
+		layout.addStyleName("card-details-column");
+		layout.setWidth("100%");
 
-	    final Label header = new Label(title);
-	    header.addStyleName("card-section-title");
-	    layout.addComponent(header);
+		final Label header = new Label(title);
+		header.addStyleName("card-section-title");
+		layout.addComponent(header);
 
-	    // Add some vertical padding after the header
-	    final Label padding = new Label();
-	    padding.setHeight("10px");
-	    layout.addComponent(padding);
+		// Add some vertical padding after the header
+		final Label padding = new Label();
+		padding.setHeight("10px");
+		layout.addComponent(padding);
 
-	    return layout;
+		return layout;
 	}
 
 	/**
 	 * Creates the metric row.
 	 *
-	 * @param icon the icon
+	 * @param icon          the icon
 	 * @param linkComponent the link component
-	 * @param description the description
-	 * @param valueText the value text
+	 * @param description   the description
+	 * @param valueText     the value text
 	 * @return the horizontal layout
 	 */
-	public static final HorizontalLayout createMetricRow(VaadinIcons icon, com.vaadin.ui.Component linkComponent,
-			String description, String valueText) {
+	public static final HorizontalLayout createMetricRow(final VaadinIcons icon,
+			final com.vaadin.ui.Component linkComponent, final String description, final String valueText) {
 		final HorizontalLayout layout = new HorizontalLayout();
 		layout.setSpacing(true);
 		layout.addStyleName("metric-label");
@@ -165,7 +182,7 @@ public class CardInfoRowUtil {
 	 * Creates the card header.
 	 *
 	 * @param cardContent the card content
-	 * @param titleText the title text
+	 * @param titleText   the title text
 	 */
 	public static final void createCardHeader(final VerticalLayout cardContent, final String titleText) {
 		// Card Header
@@ -194,32 +211,11 @@ public class CardInfoRowUtil {
 	 * @return the vertical layout configured for the stats container
 	 */
 	public static final VerticalLayout createStatsContainer() {
-	    final VerticalLayout layout = new VerticalLayout();
-	    layout.setSpacing(false);
-	    layout.addStyleName("card-stats-container");
-	    layout.setWidth("100%");
-	    return layout;
-	}
-
-	/**
-	 * The Class LayoutConstants.
-	 */
-	public static final class LayoutConstants {
-
-    	/** The Constant CARD_TENURE. */
-    	public static final String CARD_TENURE = "card-tenure";
-
-    	/** The Constant CARD_EXPERIENCE. */
-    	public static final String CARD_EXPERIENCE = "card-experience-section";
-
-    	/** The Constant CARD_INFO_VALUE. */
-    	public static final String CARD_INFO_VALUE = "card-info-value";
-
-    	/** The Constant CARD_INFO_ICON. */
-    	public static final String CARD_INFO_ICON = "card-info-icon";
-
-    	/** The Constant METRIC_LABEL. */
-    	public static final String METRIC_LABEL = "metric-label";
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setSpacing(false);
+		layout.addStyleName("card-stats-container");
+		layout.setWidth("100%");
+		return layout;
 	}
 
 	/**
@@ -228,26 +224,26 @@ public class CardInfoRowUtil {
 	 * @return the horizontal layout
 	 */
 	public static HorizontalLayout createStandardRow() {
-	    final HorizontalLayout layout = new HorizontalLayout();
-	    layout.setSpacing(true);
-	    layout.setWidthUndefined();
-	    return layout;
+		final HorizontalLayout layout = new HorizontalLayout();
+		layout.setSpacing(true);
+		layout.setWidthUndefined();
+		return layout;
 	}
 
 	/**
 	 * Creates the icon label.
 	 *
-	 * @param icon the icon
+	 * @param icon    the icon
 	 * @param tooltip the tooltip
 	 * @return the label
 	 */
-	public static Label createIconLabel(VaadinIcons icon, String tooltip) {
-	    final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
-	    iconLabel.addStyleName(LayoutConstants.CARD_INFO_ICON);
-	    if (tooltip != null) {
-	        iconLabel.setDescription(tooltip);
-	    }
-	    return iconLabel;
+	public static Label createIconLabel(final VaadinIcons icon, final String tooltip) {
+		final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);
+		iconLabel.addStyleName(CARD_INFO_ICON);
+		if (tooltip != null) {
+			iconLabel.setDescription(tooltip);
+		}
+		return iconLabel;
 	}
 
 }

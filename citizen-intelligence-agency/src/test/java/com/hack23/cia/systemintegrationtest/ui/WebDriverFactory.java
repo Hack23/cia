@@ -53,7 +53,7 @@ public class WebDriverFactory {
      *
      * @param driver the driver
      */
-    private static void configureDriver(WebDriver driver) {
+    private static void configureDriver(final WebDriver driver) {
         driver.manage().timeouts().pageLoadTimeout(TestConstants.DEFAULT_BROWSER_TIMEOUT);
         driver.manage().timeouts().scriptTimeout(TestConstants.DEFAULT_BROWSER_TIMEOUT);
     }

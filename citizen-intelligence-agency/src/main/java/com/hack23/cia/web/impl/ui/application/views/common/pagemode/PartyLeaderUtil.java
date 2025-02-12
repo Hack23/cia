@@ -30,7 +30,7 @@ public final class PartyLeaderUtil {
      * @param personId the person id
      * @return true, if the person is a party leader
      */
-    public static boolean isPartyLeader(ApplicationManager applicationManager, String personId) {
+    public static boolean isPartyLeader(final ApplicationManager applicationManager, final String personId) {
         return getActiveRoles(applicationManager, personId).stream()
                 .anyMatch(PartyLeaderUtil::isPartyLeaderRole);
     }
@@ -42,7 +42,7 @@ public final class PartyLeaderUtil {
      * @param personId the person id
      * @return the party leader role, or null if not found
      */
-    public static ViewRiksdagenPartyRoleMember getPartyLeaderRole(ApplicationManager applicationManager, String personId) {
+    public static ViewRiksdagenPartyRoleMember getPartyLeaderRole(final ApplicationManager applicationManager, final String personId) {
         return getActiveRoles(applicationManager, personId).stream()
                 .filter(PartyLeaderUtil::isPartyLeaderRole)
                 .findFirst()
@@ -56,7 +56,7 @@ public final class PartyLeaderUtil {
      * @param personIds the person ids
      * @return a map of person ids to boolean indicating if they are party leaders
      */
-    public static Map<String, Boolean> computePartyLeaders(ApplicationManager applicationManager, Iterable<String> personIds) {
+    public static Map<String, Boolean> computePartyLeaders(final ApplicationManager applicationManager, final Iterable<String> personIds) {
         final Map<String, Boolean> result = new HashMap<>();
         for (final String personId : personIds) {
             result.put(personId, isPartyLeader(applicationManager, personId));
@@ -72,7 +72,7 @@ public final class PartyLeaderUtil {
      * @return the active roles
      */
     @SuppressWarnings("unchecked")
-    private static List<ViewRiksdagenPartyRoleMember> getActiveRoles(ApplicationManager applicationManager, String personId) {
+    private static List<ViewRiksdagenPartyRoleMember> getActiveRoles(final ApplicationManager applicationManager, final String personId) {
         return applicationManager.getDataContainer(ViewRiksdagenPartyRoleMember.class)
                 .findListByProperty(
                     new Object[] { personId, Boolean.TRUE },
@@ -87,7 +87,7 @@ public final class PartyLeaderUtil {
      * @param role the role
      * @return true, if is party leader role
      */
-    private static boolean isPartyLeaderRole(ViewRiksdagenPartyRoleMember role) {
+    private static boolean isPartyLeaderRole(final ViewRiksdagenPartyRoleMember role) {
         return role.getRoleCode() != null && ROLE_CODE_PARTILEDARE.equalsIgnoreCase(role.getRoleCode().trim());
     }
 }

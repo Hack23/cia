@@ -23,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class AbstractAdminSystemPageModContentFactoryImpl.
@@ -74,16 +73,4 @@ public abstract class AbstractAdminSystemPageModContentFactoryImpl extends Abstr
 		return layout;
 	}
 
-	/**
-	 * Creates a consistent VerticalLayout for panel content.
-	 *
-	 * @return the vertical layout
-	 */
-	protected VerticalLayout createVerticalLayout() {
-		final VerticalLayout layout = new VerticalLayout();
-		layout.setSizeFull();
-		layout.setMargin(true);
-		layout.setSpacing(true);
-		return layout;
-	}
 }

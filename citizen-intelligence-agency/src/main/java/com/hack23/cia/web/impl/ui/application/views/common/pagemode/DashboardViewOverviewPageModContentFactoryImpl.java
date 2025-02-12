@@ -330,8 +330,8 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 * @param spendingBillionSek the spending billion sek
 	 * @param resultBillionSek the result billion sek
 	 */
-	private void addIncomeSpending(final VerticalLayout layout, String orgId, String linkTitle,
-			int incomeBillionSek, int spendingBillionSek, int resultBillionSek) {
+	private void addIncomeSpending(final VerticalLayout layout, final String orgId, final String linkTitle,
+			final int incomeBillionSek, final int spendingBillionSek, final int resultBillionSek) {
 
 		addGovernmentBodyLink(layout, orgId, linkTitle);
 
@@ -360,8 +360,8 @@ public final class DashboardViewOverviewPageModContentFactoryImpl extends Abstra
 	 * @param linkTitle the link title
 	 * @param spendingMSek the spending M sek
 	 */
-	private void addParliamentIncomeSpending(final VerticalLayout layout, String orgId, String linkTitle,
-			int spendingMSek) {
+	private void addParliamentIncomeSpending(final VerticalLayout layout, final String orgId, final String linkTitle,
+			final int spendingMSek) {
 
 		addGovernmentBodyLink(layout, orgId, linkTitle);
 

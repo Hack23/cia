@@ -95,7 +95,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
      * @param year the year
      * @param value the value
      */
-    private static void addDataPoint(DataSeries dataSeries, Integer year, Number value) {
+    private static void addDataPoint(final DataSeries dataSeries, final Integer year, final Number value) {
         if (dataSeries == null || year == null || value == null) {
             return;
         }
@@ -115,8 +115,8 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
      * @param dataSeries the data series
      * @param series the series
      */
-    private void addChartToLayout(AbstractOrderedLayout layout, String label,
-                                  DataSeries dataSeries, Series series) {
+    private void addChartToLayout(final AbstractOrderedLayout layout, final String label,
+                                  final DataSeries dataSeries, final Series series) {
         Objects.requireNonNull(layout, "Layout cannot be null");
         Objects.requireNonNull(label, "Label cannot be null");
 
@@ -136,8 +136,8 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
      * @param series the series
      * @param groupedData the grouped data
      */
-    private void buildAnnualOutcomeDataSeriesByField(DataSeries dataSeries, Series series,
-            Map<String, List<GovernmentBodyAnnualOutcomeSummary>> groupedData) {
+    private void buildAnnualOutcomeDataSeriesByField(final DataSeries dataSeries, final Series series,
+            final Map<String, List<GovernmentBodyAnnualOutcomeSummary>> groupedData) {
         Optional.ofNullable(groupedData)
             .ifPresent(data -> data.entrySet().stream()
                 .filter(entry -> entry.getValue() != null && !entry.getValue().isEmpty())
@@ -176,9 +176,9 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
      * @param yearlyData the yearly data
      * @param label the label
      */
-    private void buildHeadcountDataSeries(DataSeries dataSeries, Series series,
-                                          Map<Integer, List<GovernmentBodyAnnualSummary>> yearlyData,
-                                          String label) {
+    private void buildHeadcountDataSeries(final DataSeries dataSeries, final Series series,
+                                          final Map<Integer, List<GovernmentBodyAnnualSummary>> yearlyData,
+                                          final String label) {
     	Optional.ofNullable(yearlyData)
         .ifPresent(data -> {
             series.addSeries(new XYseries().setLabel(label));
@@ -203,7 +203,7 @@ public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataM
      * @param field the field
      * @param chartLabel the chart label
      */
-    private void createMinistryFieldSummary(AbstractOrderedLayout layout, String field, String chartLabel) {
+    private void createMinistryFieldSummary(final AbstractOrderedLayout layout, final String field, final String chartLabel) {
         Objects.requireNonNull(layout, "Layout cannot be null");
         Objects.requireNonNull(field, "Field cannot be null");
         Objects.requireNonNull(chartLabel, "Chart label cannot be null");

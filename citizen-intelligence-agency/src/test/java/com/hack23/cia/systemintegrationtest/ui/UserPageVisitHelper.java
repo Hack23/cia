@@ -46,7 +46,7 @@ public class UserPageVisitHelper {
      *
      * @param driver the driver
      */
-    UserPageVisitHelper(WebDriver driver) {
+    UserPageVisitHelper(final WebDriver driver) {
         this.driver = driver;
     }
 
@@ -80,7 +80,7 @@ public class UserPageVisitHelper {
      * @param element the element
      * @return the web element
      */
-    public WebElement refreshElement(WebElement element) {
+    public WebElement refreshElement(final WebElement element) {
         return StaleElementUtils.refreshElement(element, driver);
     }
 
@@ -89,7 +89,7 @@ public class UserPageVisitHelper {
      *
      * @param e the e
      */
-    public void handleInterruptedException(InterruptedException e) {
+    public void handleInterruptedException(final InterruptedException e) {
         Thread.currentThread().interrupt();
         throw new RuntimeException("Operation interrupted", e);
     }
@@ -100,7 +100,7 @@ public class UserPageVisitHelper {
      * @param element the element
      * @return the expected condition
      */
-    public ExpectedCondition<Boolean> elementIsStale(WebElement element) {
+    public ExpectedCondition<Boolean> elementIsStale(final WebElement element) {
         return ExpectedConditions.stalenessOf(element);
     }
 
@@ -245,7 +245,7 @@ public class UserPageVisitHelper {
 	 *
 	 * @param element the element
 	 */
-	public void waitForClickable(WebElement element) {
+	public void waitForClickable(final WebElement element) {
 		final WebDriverWait wait = new WebDriverWait(driver, TestConstants.WAIT_FOR_PAGE_ELEMENT,DEFAULT_WAIT);
 		wait.until(ExpectedConditions.elementToBeClickable(StaleElementUtils.refreshElement(element,driver)));
 

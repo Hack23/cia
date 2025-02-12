@@ -35,16 +35,16 @@ import com.vaadin.ui.Link;
 public final class PagingUtilImpl implements PagingUtil {
 
 	/** The first page. */
-	private static final String FIRST_PAGE = "first page";
+	public static final String FIRST_PAGE = "first page";
 
 	/** The last page. */
-	private static final String LAST_PAGE = "last page";
+	public static final String LAST_PAGE = "last page";
 
 	/** The limit for displaying start end links. */
 	private static final int LIMIT_FOR_DISPLAYING_START_END_LINKS = 5;
 
 	/** The next page. */
-	private static final String NEXT_PAGE = "next page";
+	public static final String NEXT_PAGE = "next page";
 
 	/** The page header. */
 	private static final String PAGE_HEADER = "Page: ";
@@ -59,7 +59,7 @@ public final class PagingUtilImpl implements PagingUtil {
 	private static final String PAGES_TOTAL_RESULTS = " pages. Total results:";
 
 	/** The previous page. */
-	private static final String PREVIOUS_PAGE = "previous page";
+	public static final String PREVIOUS_PAGE = "previous page";
 
 	/** The results per page. */
 	private static final String RESULTS_PER_PAGE = " results per page:";

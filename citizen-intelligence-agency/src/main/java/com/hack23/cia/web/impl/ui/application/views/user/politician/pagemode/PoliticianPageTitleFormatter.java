@@ -16,7 +16,7 @@ public class PoliticianPageTitleFormatter {
      * @param pageTitle the page title
      * @return the string
      */
-    public static String formatTitle(ViewRiksdagenPolitician politician, String pageTitle) {
+    public static String formatTitle(final ViewRiksdagenPolitician politician, final String pageTitle) {
         return String.format(Locale.ENGLISH, PoliticianPageTitleConstants.PAGE_TITLE_FORMAT,
             politician.getFirstName(),
             politician.getLastName(),

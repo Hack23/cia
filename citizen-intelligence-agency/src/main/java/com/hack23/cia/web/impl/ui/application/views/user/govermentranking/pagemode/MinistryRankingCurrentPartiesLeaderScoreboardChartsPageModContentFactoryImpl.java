@@ -147,7 +147,7 @@ public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModCon
 	 * @param isPartyLeader the is party leader
 	 * @return the role priority
 	 */
-	private int getRolePriority(String role, boolean isPartyLeader) {
+	private int getRolePriority(final String role, final boolean isPartyLeader) {
 		final String roleNormalized = role.toLowerCase(Locale.ROOT).trim();
 		if ("statsminister".equals(roleNormalized)) {
 			return 1;

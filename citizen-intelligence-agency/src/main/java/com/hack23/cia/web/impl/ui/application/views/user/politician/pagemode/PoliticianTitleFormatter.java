@@ -13,7 +13,7 @@ public class PoliticianTitleFormatter {
      * @param politician the politician
      * @return the string
      */
-    public static String formatTitle(ViewRiksdagenPolitician politician) {
+    public static String formatTitle(final ViewRiksdagenPolitician politician) {
         return politician.getFirstName() + ' ' +
                politician.getLastName() + '(' +
                politician.getParty() + ')';

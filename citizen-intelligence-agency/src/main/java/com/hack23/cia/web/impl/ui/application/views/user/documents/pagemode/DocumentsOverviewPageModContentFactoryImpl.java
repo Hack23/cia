@@ -14,6 +14,7 @@ import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPageTitleConstants;
@@ -72,7 +73,7 @@ public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDo
 		final List<DocumentElement> pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,
 				DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);
 
-		pagingUtil.createPagingControls(panelContent, NAME, pageId, documentElementDataContainer.getSize(), pageNr,
+		pagingUtil.createPagingControls(panelContent, NAME + "/" + PageMode.OVERVIEW, pageId, documentElementDataContainer.getSize(), pageNr,
 				DEFAULT_RESULTS_PER_PAGE);
 
 		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, DocumentPageTitleConstants.DOCUMENTS_OVERVIEW_HEADER,

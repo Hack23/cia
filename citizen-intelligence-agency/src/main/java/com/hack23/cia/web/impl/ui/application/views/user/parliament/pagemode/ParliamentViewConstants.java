@@ -5,7 +5,6 @@ package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
  */
 public interface ParliamentViewConstants extends
     ParliamentPageTitleConstants,
-    ParliamentChartConstants,
-    ParliamentRiskConstants {
+    ParliamentChartConstants {
     // Interface is complete through its extensions
 }

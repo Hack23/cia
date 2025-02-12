@@ -19,20 +19,14 @@
 package com.hack23.cia.web.impl.ui.application.views.common.viewnames;
 
 /**
- * The Class CommonsViews.
+ * The Interface CommonsViews.
  */
-public final class CommonsViews {
+public interface CommonsViews {
 
 	/** The Constant MAIN_VIEW_NAME. */
-	public static final String MAIN_VIEW_NAME = "main";
+	String MAIN_VIEW_NAME = "main";
 
 	/** The Constant DASHBOARD_VIEW_NAME. */
-	public static final String DASHBOARD_VIEW_NAME = "dashboard";
+	String DASHBOARD_VIEW_NAME = "dashboard";
 
-	/**
-	 * Default constructor for CommonsViews.
-	 */
-	public CommonsViews() {
-		// Default constructor
-	}
 }

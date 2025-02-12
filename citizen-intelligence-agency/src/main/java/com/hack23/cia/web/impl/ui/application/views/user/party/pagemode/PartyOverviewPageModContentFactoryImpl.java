@@ -156,9 +156,9 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	 * @param summary the summary
 	 */
 	// 1. Political Influence & Position
-	private void addPoliticalInfluenceMetrics(VerticalLayout layout,
-	        ViewRiksdagenParty party,
-	        ViewRiksdagenPartySummary summary) {
+	private void addPoliticalInfluenceMetrics(final VerticalLayout layout,
+	        final ViewRiksdagenParty party,
+	        final ViewRiksdagenPartySummary summary) {
 
 	    if (summary != null) {
 	        // Government Influence
@@ -199,9 +199,9 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	 * @param summary the summary
 	 */
 	// 2. Parliamentary Engagement
-	private void addParliamentaryEngagementMetrics(VerticalLayout layout,
-	        ViewRiksdagenParty party,
-	        ViewRiksdagenPartySummary summary) {
+	private void addParliamentaryEngagementMetrics(final VerticalLayout layout,
+	        final ViewRiksdagenParty party,
+	        final ViewRiksdagenPartySummary summary) {
 
 	    if (summary != null) {
 	        // Active Participation
@@ -237,9 +237,9 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	 * @param summary the summary
 	 */
 	// 3. Legislative Impact
-	private void addLegislativeImpactMetrics(VerticalLayout layout,
-	        ViewRiksdagenParty party,
-	        ViewRiksdagenPartySummary summary) {
+	private void addLegislativeImpactMetrics(final VerticalLayout layout,
+	        final ViewRiksdagenParty party,
+	        final ViewRiksdagenPartySummary summary) {
 
 	    if (summary != null) {
 	        // Legislative Production
@@ -280,9 +280,9 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	 * @param summary the summary
 	 */
 	// 4. Member Performance
-	private void addMemberPerformanceMetrics(VerticalLayout layout,
-	        ViewRiksdagenParty party,
-	        ViewRiksdagenPartySummary summary) {
+	private void addMemberPerformanceMetrics(final VerticalLayout layout,
+	        final ViewRiksdagenParty party,
+	        final ViewRiksdagenPartySummary summary) {
 
 	    if (summary != null) {
 	        // Activity Distribution
@@ -326,7 +326,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	 * @return the int
 	 */
 	// Helper method for calculating percentages
-	private int calculatePercentage(long value, long total) {
+	private int calculatePercentage(final long value, final long total) {
 	    return total > 0 ? Math.round((float) value * 100 / total) : 0;
 	}
 
@@ -338,7 +338,7 @@ public final class PartyOverviewPageModContentFactoryImpl extends AbstractPartyP
 	 * @return the double
 	 */
 	// Helper method for calculating activity rates
-	private double calculateActivityRate(long activeMembers, long totalMembers) {
+	private double calculateActivityRate(final long activeMembers, final long totalMembers) {
 	    return totalMembers > 0 ? (double) activeMembers * 100 / totalMembers : 0;
 	}
 

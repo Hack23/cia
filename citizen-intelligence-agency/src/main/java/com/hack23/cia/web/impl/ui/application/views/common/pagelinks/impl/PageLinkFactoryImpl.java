@@ -78,7 +78,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	public Link addCommitteePageLink(final ViewRiksdagenCommittee data) {
 		final Link pageLink = new Link(COMMITTEE
 				+ data.getEmbeddedId().getDetail(), new ExternalResource(PAGE_PREFIX
-						+ UserViews.COMMITTEE_VIEW_NAME + PAGE_SEPARATOR + data.getEmbeddedId().getOrgCode()));
+						+ UserViews.COMMITTEE_VIEW_NAME + PageMode.OVERVIEW + PAGE_SEPARATOR + PAGE_SEPARATOR + data.getEmbeddedId().getOrgCode()));
 		pageLink.setId(ViewAction.VISIT_COMMITTEE_VIEW.name() + PAGE_SEPARATOR
 				+ data.getEmbeddedId().getOrgCode());
 		pageLink.setIcon(VaadinIcons.GROUP);
@@ -88,7 +88,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	@Override
 	public Link addMinistryPageLink(final ViewRiksdagenMinistry data) {
 		final Link pageLink = new Link(MINISTRY + data.getNameId(),
-				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR
+				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + PageMode.OVERVIEW + PAGE_SEPARATOR
 						+ data.getNameId()));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
 				+ data.getNameId());
@@ -99,7 +99,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	@Override
 	public Link addPartyPageLink(final ViewRiksdagenParty data) {
 		final Link pageLink = new Link(PARTY + data.getPartyName(),
-				new ExternalResource(PAGE_PREFIX + UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR
+				new ExternalResource(PAGE_PREFIX + UserViews.PARTY_VIEW_NAME + PAGE_SEPARATOR + PageMode.OVERVIEW + PAGE_SEPARATOR
 						+ data.getPartyId()));
 		pageLink.setId(ViewAction.VISIT_PARTY_VIEW.name() + PAGE_SEPARATOR
 				+ data.getPartyId());
@@ -144,7 +144,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(POLITICIAN
 				+ personData.getFirstName() + ' '
 				+ personData.getLastName(), new ExternalResource(PAGE_PREFIX
-						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getId()));
+						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + PageMode.OVERVIEW + PAGE_SEPARATOR + personData.getId()));
 		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR
 				+ personData.getId());
 		pageLink.setIcon(VaadinIcons.BUG);
@@ -156,7 +156,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 		final Link pageLink = new Link(POLITICIAN
 				+ personData.getFirstName() + ' '
 				+ personData.getLastName(), new ExternalResource(PAGE_PREFIX
-						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + personData.getPersonId()));
+						+ UserViews.POLITICIAN_VIEW_NAME + PAGE_SEPARATOR + PageMode.OVERVIEW + PAGE_SEPARATOR + personData.getPersonId()));
 		pageLink.setId(ViewAction.VISIT_POLITICIAN_VIEW.name() + PAGE_SEPARATOR
 				+ personData.getPersonId());
 		pageLink.setIcon(VaadinIcons.BUG);
@@ -183,9 +183,9 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 	@Override
-	public Link addMinistryPageLink(String name) {
+	public Link addMinistryPageLink(final String name) {
 		final Link pageLink = new Link(MINISTRY + name,
-				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR
+				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + PageMode.OVERVIEW + PAGE_SEPARATOR
 						+ name));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
 				+ name);
@@ -194,7 +194,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 	@Override
-	public Link addMinistryGovermentBodiesPageLink(String name) {
+	public Link addMinistryGovermentBodiesPageLink(final String name) {
 		final Link pageLink = new Link("Government bodies:",
 				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString() + PAGE_SEPARATOR +  name));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
@@ -204,7 +204,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 	@Override
-	public Link addMinistryGovermentBodiesHeadcountPageLink(String name) {
+	public Link addMinistryGovermentBodiesHeadcountPageLink(final String name) {
 		final Link pageLink = new Link("Headcount:",
 				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString() + PAGE_SEPARATOR +  name));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
@@ -214,7 +214,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 	@Override
-	public Link addMinistryGovermentBodiesIncomePageLink(String name) {
+	public Link addMinistryGovermentBodiesIncomePageLink(final String name) {
 		final Link pageLink = new Link("Income(B SEK):" ,
 				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString() + PAGE_SEPARATOR +  name));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
@@ -224,7 +224,7 @@ public final class PageLinkFactoryImpl implements PageLinkFactory {
 	}
 
 	@Override
-	public Link addMinistrGovermentBodiesSpendingPageLink(String name) {
+	public Link addMinistrGovermentBodiesSpendingPageLink(final String name) {
 		final Link pageLink = new Link("Spending(B SEK):",
 				new ExternalResource(PAGE_PREFIX + UserViews.MINISTRY_VIEW_NAME + PAGE_SEPARATOR + MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString() + PAGE_SEPARATOR +  name));
 		pageLink.setId(ViewAction.VISIT_MINISTRY_VIEW.name() + PAGE_SEPARATOR
