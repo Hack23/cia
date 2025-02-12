@@ -13,7 +13,7 @@ public interface GovernmentBodyDescriptionConstants {
     String OVERVIEW_SUBTITLE = "Government Details";
 
     /** The overview desc. */
-    String OVERVIEW_DESC = "Explore detailed information about government bodies and their functions.";
+    String OVERVIEW_DESC = "Quantitative analysis of governmental organizational metrics and operational indicators";
 
     /** The ranking header. */
     // Rankings
@@ -23,7 +23,7 @@ public interface GovernmentBodyDescriptionConstants {
     String RANKING_SUBTITLE = "Ranking Overview";
 
     /** The ranking desc. */
-    String RANKING_DESC = "Analyze and rank government bodies based on predefined metrics.";
+    String RANKING_DESC = "Statistical analysis of organizational performance distribution patterns";
 
     /** The expenditure header. */
     // Data Pages
@@ -33,7 +33,7 @@ public interface GovernmentBodyDescriptionConstants {
     String EXPENDITURE_SUBTITLE = "Expenditure Details";
 
     /** The expenditure desc. */
-    String EXPENDITURE_DESC = "Explore detailed expenditure information for government bodies.";
+    String EXPENDITURE_DESC = "Multi-dimensional analysis of resource allocation patterns and fiscal metrics";
 
     /** The income header. */
     String INCOME_HEADER = "Government Body Income";
@@ -42,7 +42,7 @@ public interface GovernmentBodyDescriptionConstants {
     String INCOME_SUBTITLE = "Income Details";
 
     /** The income desc. */
-    String INCOME_DESC = "Explore detailed income information for government bodies.";
+    String INCOME_DESC = "Comprehensive analysis of revenue stream patterns and financial indicators";
 
     /** The headcount header. */
     String HEADCOUNT_HEADER = "Government Body Headcount";
@@ -51,7 +51,7 @@ public interface GovernmentBodyDescriptionConstants {
     String HEADCOUNT_SUBTITLE = "Headcount Details";
 
     /** The headcount desc. */
-    String HEADCOUNT_DESC = "Explore detailed headcount information for government bodies.";
+    String HEADCOUNT_DESC = "Statistical analysis of workforce distribution and composition metrics";
 
     /** The visit history header. */
     // Visit History
@@ -61,5 +61,5 @@ public interface GovernmentBodyDescriptionConstants {
     String VISIT_HISTORY_SUBTITLE = "Visit History";
 
     /** The visit history desc. */
-    String VISIT_HISTORY_DESC = "Track page visit history and engagement patterns.";
+    String VISIT_HISTORY_DESC = "Longitudinal analysis of stakeholder engagement patterns";
 }

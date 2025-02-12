@@ -34,4 +34,22 @@ public interface CountryIndicatorConstants {
 
     /** The section header style. */
     String SECTION_HEADER_STYLE = "section-header";
+
+    // Analytical Indicator Descriptions
+    String ECONOMIC_INDICATORS = "Economic Performance Metrics";
+    String ECONOMIC_DESCRIPTION = "Quantitative analysis of economic performance indicators";
+    
+    String SOCIAL_INDICATORS = "Social Development Analytics";
+    String SOCIAL_DESCRIPTION = "Statistical analysis of social development patterns";
+    
+    String ENVIRONMENTAL_INDICATORS = "Environmental Performance Metrics";
+    String ENVIRONMENTAL_DESCRIPTION = "Quantitative assessment of environmental indicators";
+    
+    String GOVERNANCE_INDICATORS = "Governance Effectiveness Metrics";
+    String GOVERNANCE_DESCRIPTION = "Analysis of institutional performance patterns";
+    
+    /** World Indicators View Constants */
+    String INDICATOR_TITLE = "Global Performance Analytics";
+    String INDICATOR_SUBTITLE = "World Development Metrics";
+    String INDICATOR_DESC = "Multi-dimensional analysis of global development indicators and performance metrics";
 }

@@ -38,36 +38,16 @@ public interface DocumentFieldConstants {
     /** The field number value. */
     String FIELD_NUMBER_VALUE = "Number Value:";
 
-    /** The tooltip title. */
-    String TOOLTIP_TITLE = "Main title of the document";
-
-    /** The tooltip subtitle. */
-    String TOOLTIP_SUBTITLE = "Subtitle or complementary title";
-
-    /** The tooltip organization. */
-    String TOOLTIP_ORGANIZATION = "Originating organization or entity";
-
-    /** The tooltip doc type. */
-    String TOOLTIP_DOC_TYPE = "Type of the document";
-
-    /** The tooltip status. */
-    String TOOLTIP_STATUS = "Current status of the document";
-
-    /** The tooltip made public. */
-    String TOOLTIP_MADE_PUBLIC = "Date when the document was made public";
-
-    /** The tooltip category. */
-    String TOOLTIP_CATEGORY = "Category of this document";
-
-    /** The tooltip label. */
-    String TOOLTIP_LABEL = "Short identifying label";
-
-    /** The tooltip temp label. */
-    String TOOLTIP_TEMP_LABEL = "Temporary label or note";
-
-    /** The tooltip hangar id. */
-    String TOOLTIP_HANGAR_ID = "Storage or reference ID";
-
-    /** The tooltip number value. */
-    String TOOLTIP_NUMBER_VALUE = "Numeric value associated with the document";
+    /** Enhanced tooltips with analytical focus */
+    String TOOLTIP_TITLE = "Primary document classification metric";
+    String TOOLTIP_SUBTITLE = "Secondary content classification indicator";
+    String TOOLTIP_ORGANIZATION = "Organizational source distribution metric";
+    String TOOLTIP_DOC_TYPE = "Document taxonomy classification";
+    String TOOLTIP_STATUS = "Processing state indicator metrics";
+    String TOOLTIP_MADE_PUBLIC = "Publication temporal metrics";
+    String TOOLTIP_CATEGORY = "Content classification distribution";
+    String TOOLTIP_LABEL = "Reference identification metrics";
+    String TOOLTIP_TEMP_LABEL = "Interim classification identifier";
+    String TOOLTIP_HANGAR_ID = "Storage reference analytics";
+    String TOOLTIP_NUMBER_VALUE = "Quantitative reference metrics";
 }

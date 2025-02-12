@@ -9,14 +9,14 @@ public interface GovernmentBodyCardConstants {
     String STYLE_GOVERNMENT_BODY_CARD = "government-body-card";
 
     /** The organization profile. */
-    // Section Headers
-    String ORGANIZATION_PROFILE = "Organization Profile";
+    // Enhanced Section Headers
+    String ORGANIZATION_PROFILE = "Organizational Performance Metrics";
 
     /** The annual statistics. */
-    String ANNUAL_STATISTICS = "Annual Statistics";
+    String ANNUAL_STATISTICS = "Annual Statistical Analysis";
 
     /** The body information. */
-    String BODY_INFORMATION = "Government Body Information";
+    String BODY_INFORMATION = "Entity Performance Indicators";
 
     /** The name label. */
     // Data Labels
@@ -41,21 +41,21 @@ public interface GovernmentBodyCardConstants {
     String ANNUAL_HEAD_COUNT_LABEL = "Annual Work Head Count:";
 
     /** The name desc. */
-    // Descriptions
-    String NAME_DESC = "Government body name";
+    // Enhanced Descriptions
+    String NAME_DESC = "Primary organizational identifier metrics";
 
     /** The ministry desc. */
-    String MINISTRY_DESC = "Ministry overseeing the body";
+    String MINISTRY_DESC = "Hierarchical oversight classification";
 
     /** The org number desc. */
-    String ORG_NUMBER_DESC = "Official organization number";
+    String ORG_NUMBER_DESC = "Organizational reference analytics";
 
     /** The year desc. */
-    String YEAR_DESC = "The reporting year";
+    String YEAR_DESC = "Temporal analysis period";
 
     /** The head count desc. */
-    String HEAD_COUNT_DESC = "Total number of staff members";
+    String HEAD_COUNT_DESC = "Workforce distribution metrics";
 
     /** The annual head desc. */
-    String ANNUAL_HEAD_DESC = "Annual average number of full-time equivalents";
+    String ANNUAL_HEAD_DESC = "Full-time equivalent distribution analysis";
 }

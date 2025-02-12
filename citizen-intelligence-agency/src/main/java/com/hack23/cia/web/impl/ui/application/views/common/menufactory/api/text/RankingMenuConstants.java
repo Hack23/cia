@@ -6,20 +6,20 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface RankingMenuConstants {
 
     /** The ranking overview text. */
-    String RANKING_OVERVIEW_TEXT = "Overview";
+    String RANKING_OVERVIEW_TEXT = "Performance Metrics";
 
     /** The ranking overview desc. */
-    String RANKING_OVERVIEW_DESC = "View ranking overview";
+    String RANKING_OVERVIEW_DESC = "Quantitative analysis of comparative performance metrics";
 
     /** The ranking page visit text. */
-    String RANKING_PAGE_VISIT_TEXT = "Page Visit History";
+    String RANKING_PAGE_VISIT_TEXT = "Engagement Patterns";
 
     /** The ranking page visit desc. */
-    String RANKING_PAGE_VISIT_DESC = "View page visit statistics";
+    String RANKING_PAGE_VISIT_DESC = "Statistical analysis of engagement distribution patterns";
 
     /** The ranking datagrid text. */
-    String RANKING_DATAGRID_TEXT = "Data Grid";
+    String RANKING_DATAGRID_TEXT = "Detailed Analysis";
 
     /** The ranking datagrid desc. */
-    String RANKING_DATAGRID_DESC = "View detailed data grid";
+    String RANKING_DATAGRID_DESC = "Multi-dimensional analysis of performance indicators";
 }

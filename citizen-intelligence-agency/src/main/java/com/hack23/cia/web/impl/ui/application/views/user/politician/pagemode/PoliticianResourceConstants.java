@@ -16,11 +16,19 @@ public interface PoliticianResourceConstants {
 
     /** The current position desc. */
     // Link tooltips and descriptions
-    String CURRENT_POSITION_DESC = "Current position in parliament";
+    String CURRENT_POSITION_DESC = "Current performance metrics position";
 
     /** The electoral district desc. */
-    String ELECTORAL_DISTRICT_DESC = "Electoral district";
+    String ELECTORAL_DISTRICT_DESC = "Regional representation analytics";
 
     /** The picture desc format. */
     String PICTURE_DESC_FORMAT = "Picture of %s %s";
+
+    // Enhanced analytical descriptions
+    String REPRESENTATIVE_DESC_FORMAT = "Performance metrics for %s %s";
+    
+    // Additional analytical context
+    String TEMPORAL_ANALYSIS_DESC = "Longitudinal performance analysis";
+    String DISTRIBUTION_ANALYSIS_DESC = "Statistical distribution metrics";
+    String EFFECTIVENESS_METRICS_DESC = "Legislative impact indicators";
 }

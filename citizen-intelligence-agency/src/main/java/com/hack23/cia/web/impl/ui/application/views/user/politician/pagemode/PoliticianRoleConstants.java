@@ -17,40 +17,40 @@ public interface PoliticianRoleConstants {
     String[] ROLE_HIDE_COLUMNS = { "hjid", "intressentId", "orderNumber", "orgCode" };
 
     /** The committee experience. */
-    // Experience Labels
-    String COMMITTEE_EXPERIENCE = "Committee experience:";
+    // Experience Labels with analytical focus
+    String COMMITTEE_EXPERIENCE = "Committee Effectiveness Metrics:";
 
     /** The eu experience. */
-    String EU_EXPERIENCE = "EU experience:";
+    String EU_EXPERIENCE = "EU Engagement Analytics:";
 
     /** The government experience. */
-    String GOVERNMENT_EXPERIENCE = "Government experience:";
+    String GOVERNMENT_EXPERIENCE = "Executive Performance Metrics:";
 
     /** The parliament experience. */
-    String PARLIAMENT_EXPERIENCE = "Parliament experience:";
+    String PARLIAMENT_EXPERIENCE = "Legislative Impact Analysis:";
 
     /** The party experience. */
-    String PARTY_EXPERIENCE = "Party experience:";
+    String PARTY_EXPERIENCE = "Party Influence Metrics:";
 
     /** The speaker experience. */
-    String SPEAKER_EXPERIENCE = "Speaker experience:";
+    String SPEAKER_EXPERIENCE = "Parliamentary Leadership Analytics:";
 
     /** The total assignments. */
-    String TOTAL_ASSIGNMENTS = "Total Assignments:";
+    String TOTAL_ASSIGNMENTS = "Cumulative Role Distribution:";
 
     /** The section role influence. */
-    // Section Headers
-    String SECTION_ROLE_INFLUENCE = "Political Role & Influence";
+    // Section Headers with metrics focus
+    String SECTION_ROLE_INFLUENCE = "Position Impact Analytics";
 
     /** The section experience. */
-    String SECTION_EXPERIENCE = "Experience & Expertise";
+    String SECTION_EXPERIENCE = "Competency Distribution Metrics";
 
     /** The section performance. */
-    String SECTION_PERFORMANCE = "Parliamentary Performance";
+    String SECTION_PERFORMANCE = "Legislative Performance Analysis";
 
     /** The section legislative. */
-    String SECTION_LEGISLATIVE = "Legislative Impact";
+    String SECTION_LEGISLATIVE = "Policy Impact Metrics";
 
     /** The section party alignment. */
-    String SECTION_PARTY_ALIGNMENT = "Party Alignment & Cooperation";
+    String SECTION_PARTY_ALIGNMENT = "Political Alignment Analytics";
 }

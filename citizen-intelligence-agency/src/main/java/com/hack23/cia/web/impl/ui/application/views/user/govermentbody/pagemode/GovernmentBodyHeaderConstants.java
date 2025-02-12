@@ -41,37 +41,37 @@ public interface GovernmentBodyHeaderConstants {
 
     /** The name desc. */
     // Field Descriptions
-    String NAME_DESC = "Government body name";
+    String NAME_DESC = "Primary organizational identifier metrics";
 
     /** The id desc. */
-    String ID_DESC = "Unique government body identifier";
+    String ID_DESC = "Unique entity reference identifier";
 
     /** The ministry desc. */
-    String MINISTRY_DESC = "Ministry overseeing the body";
+    String MINISTRY_DESC = "Hierarchical oversight classification";
 
     /** The org number desc. */
-    String ORG_NUMBER_DESC = "Official organization number";
+    String ORG_NUMBER_DESC = "Organizational reference metrics";
 
     /** The m code desc. */
-    String M_CODE_DESC = "Internal M code identifier";
+    String M_CODE_DESC = "Internal classification identifier";
 
     /** The vat desc. */
-    String VAT_DESC = "VAT number";
+    String VAT_DESC = "Fiscal reference indicator";
 
     /** The year desc. */
-    String YEAR_DESC = "The reporting year";
+    String YEAR_DESC = "Temporal analysis period";
 
     /** The head count desc. */
-    String HEAD_COUNT_DESC = "Total number of staff members";
+    String HEAD_COUNT_DESC = "Workforce distribution metrics";
 
     /** The annual headcount desc. */
-    String ANNUAL_HEADCOUNT_DESC = "Annual average number of full-time equivalents";
+    String ANNUAL_HEADCOUNT_DESC = "Annual workforce capacity analytics";
 
     /** The annual head desc. */
-    String ANNUAL_HEAD_DESC = "Annual number of employees in full-time equivalents";
+    String ANNUAL_HEAD_DESC = "Full-time equivalent distribution metrics";
 
     /** The consecutive number desc. */
-    String CONSECUTIVE_NUMBER_DESC = "Internal consecutive reference number";
+    String CONSECUTIVE_NUMBER_DESC = "Sequential reference analytics";
 
     /** The comment desc. */
     String COMMENT_DESC = "Additional remarks or notes";

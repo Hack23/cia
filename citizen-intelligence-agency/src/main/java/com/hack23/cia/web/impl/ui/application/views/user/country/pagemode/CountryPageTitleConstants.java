@@ -5,23 +5,15 @@ package com.hack23.cia.web.impl.ui.application.views.user.country.pagemode;
  */
 public interface CountryPageTitleConstants {
 
-    /** The ranking overview title. */
-    // Rankings Overview
-    String RANKING_OVERVIEW_TITLE = "Country Rankings";
-
-    /** The ranking overview subtitle. */
-    String RANKING_OVERVIEW_SUBTITLE = "Ranking Overview";
-
-    /** The ranking overview desc. */
-    String RANKING_OVERVIEW_DESC = "Visualize and compare country-level political or economic indicators.";
-
-    /** The indicator title. */
-    // Indicators
-    String INDICATOR_TITLE = "Country Indicator";
-
-    /** The indicator subtitle. */
-    String INDICATOR_SUBTITLE = "Country Indicator";
-
-    /** The indicator desc. */
-    String INDICATOR_DESC = "Compare key performance indicators across multiple countries.";
+    String OVERVIEW_TITLE = "Country Performance Analytics";
+    String OVERVIEW_DESCRIPTION = "Comprehensive analysis of national performance metrics";
+    
+    String INDICATORS_TITLE = "Statistical Indicators";
+    String INDICATORS_DESCRIPTION = "Quantitative analysis of national development metrics";
+    
+    String RANKING_TITLE = "Performance Rankings";
+    String RANKING_DESCRIPTION = "Multi-dimensional analysis of comparative national metrics";
+    
+    String VISIT_HISTORY_TITLE = "Engagement Analytics";
+    String VISIT_HISTORY_DESCRIPTION = "Statistical analysis of country data engagement patterns";
 }

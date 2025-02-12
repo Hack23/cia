@@ -30,22 +30,22 @@ public interface MenuItemConstants extends
 
     /** The dashboard. */
     // Core navigation constants
-    String DASHBOARD = "Dashboard";
+    String DASHBOARD = "Political Analysis Dashboard";
 
     /** The main. */
-    String MAIN = "Main";
+    String MAIN = "Main Analysis Portal";
 
     /** The start text. */
-    String START_TEXT = "Start";
+    String START_TEXT = "Analysis Home";
 
     /** The ranking text. */
-    String RANKING_TEXT = "Ranking";
+    String RANKING_TEXT = "Performance Analysis";
 
     /** The by topic. */
-    String BY_TOPIC = "By Topic";
+    String BY_TOPIC = "Thematic Analysis";
 
     /** The list all. */
-    String LIST_ALL = "List All";
+    String LIST_ALL = "Complete Dataset";
 
     /** The login. */
     // Security related constants
@@ -113,29 +113,26 @@ public interface MenuItemConstants extends
     /** The Constant ALL_COMMITTEES_TOTAL_MEMBERS. */
     String ALL_COMMITTEES_TOTAL_MEMBERS = "All committees, total members";
 
-    /** The Constant CHART_BY_TOPIC_TEXT. */
-    String CHART_BY_TOPIC_TEXT = "Chart by topic";
-
     /** The Constant CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS. */
-    String CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS = "Current and past member, polticial days";
+    String CURRENT_AND_PAST_MEMBER_AND_SUMMARY_OF_POLTICIAL_DAYS = "Political Service Analysis";
 
     /** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT. */
-    String CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT = "Current committees, current members";
+    String CURRENT_COMMITTEES_CURRENT_MEMBERS_TEXT = "Active Committee Analysis";
 
     /** The Constant CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS. */
-    String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS = "Current parties in committees";
+    String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_CURRENT_ASSIGNMENTS = "Committee Party Analysis";
 
     /**
      * The Constant
      * CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES.
      */
-    String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "Current parties,days served";
+    String CURRENT_PARTIES_ACTIVE_IN_COMMITTEES_TOTAL_DAYS_SERVED_IN_COMMITTEES = "Committee Service Analysis";
 
     /** The Constant POLITICAL_WORK_SUMMARY_TEXT. */
-    String POLITICAL_WORK_SUMMARY_TEXT = "Political Work Summary";
+    String POLITICAL_WORK_SUMMARY_TEXT = "Legislative Performance Analysis";
 
     /** The Constant POLITICAL_WORK_SUMMARY_DESCRIPTION. */
-    String POLITICAL_WORK_SUMMARY_DESCRIPTION = "Scoreboard over current member size, political days served and total assignments";
+    String POLITICAL_WORK_SUMMARY_DESCRIPTION = "Analysis of parliamentary activity and effectiveness";
 
     /** The Constant CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION. */
     String CURRENT_COMMITTEES_CURRENT_MEMBERS_DESCRIPTION = "Chart over current committees and member size";
@@ -156,16 +153,16 @@ public interface MenuItemConstants extends
     String ALL_COMMITTEES_TOTAL_MEMBERS_DESCRIPTION = "Chart over all committees and member size";
 
     /** The Constant DOCUMENT_ACTIVITY_TEXT. */
-    String DOCUMENT_ACTIVITY_TEXT = "Document Activity";
+    String DOCUMENT_ACTIVITY_TEXT = "Legislative Document Analysis";
 
     /** The Constant DOCUMENT_ACTIVITY_DESCRIPTION. */
-    String DOCUMENT_ACTIVITY_DESCRIPTION = "View document activity.";
+    String DOCUMENT_ACTIVITY_DESCRIPTION = "Analysis of legislative documentation patterns";
 
     /** The Constant SECURITY_SETTING_TEXT. */
-    String SECURITY_SETTING_TEXT = "Security Settings";
+    String SECURITY_SETTING_TEXT = "Security Configuration";
 
     /** The Constant SECURITY_SETTINGS_DESCRIPTION. */
-    String SECURITY_SETTINGS_DESCRIPTION = "View and update security settings.";
+    String SECURITY_SETTINGS_DESCRIPTION = "Manage analysis platform security settings";
 
     /** The Constant USER_VISITS. */
     String USER_VISITS = "User Visits";
@@ -192,28 +189,28 @@ public interface MenuItemConstants extends
     String DECISION_TYPE_DAILY_SUMMARY_TEXT = "Decision Type Daily Summary";
 
     /** The Constant CURRENT_MEMBERS_DESCRIPTION. */
-    String CURRENT_MEMBERS_DESCRIPTION = "Current members description";
+    String CURRENT_MEMBERS_DESCRIPTION = "Analysis of current parliamentary membership";
 
     /** The Constant MEMBER_HISTORY_DESCRIPTION. */
-    String MEMBER_HISTORY_DESCRIPTION = "Member history description";
+    String MEMBER_HISTORY_DESCRIPTION = "Analysis of historical membership patterns";
 
     /** The Constant ROLE_GHANT_DESCRIPTION. */
-    String ROLE_GHANT_DESCRIPTION = "Role ghant description";
+    String ROLE_GHANT_DESCRIPTION = "Analysis of role transitions and tenure";
 
     /** The Constant DOCUMENT_HISTORY_DESCRIPTION. */
-    String DOCUMENT_HISTORY_DESCRIPTION = "Document history description";
+    String DOCUMENT_HISTORY_DESCRIPTION = "Analysis of document lifecycle and changes";
 
     /** The Constant BALLOT_DECISION_SUMMARY_DESCRIPTION. */
-    String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Ballot decision summary description";
+    String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Analysis of voting patterns and outcomes";
 
     /** The Constant DECISION_SUMMARY_DESCRIPTION. */
-    String DECISION_SUMMARY_DESCRIPTION = "Decision summary description";
+    String DECISION_SUMMARY_DESCRIPTION = "Analysis of legislative decision patterns";
 
     /** The Constant DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION. */
-    String DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION = "Decision type daily summary description";
+    String DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION = "Analysis of daily legislative activities";
 
     /** The Constant DECISION_FLOW_DESCRIPTION. */
-    String DECISION_FLOW_DESCRIPTION = "Decision flow description";
+    String DECISION_FLOW_DESCRIPTION = "Analysis of legislative decision processes";
 
     /** The Constant COUNTRY_RANKING_TEXT. */
     String COUNTRY_RANKING_TEXT = "Country Ranking";
@@ -255,25 +252,25 @@ public interface MenuItemConstants extends
     String DOCUMENT_ATTACHEMENTS = "Document Attachments";
 
     /** The Constant DOCUMENT_ACTIVITIES_AND_UPDATES. */
-    String DOCUMENT_ACTIVITIES_AND_UPDATES = "Document activities and updates";
+    String DOCUMENT_ACTIVITIES_AND_UPDATES = "Legislative Activity Analysis";
 
     /** The Constant REFERENCES_TO_INDIVIDUALS_IN_THE_DOCUMENT. */
-    String REFERENCES_TO_INDIVIDUALS_IN_THE_DOCUMENT = "References to individuals in the document";
+    String REFERENCES_TO_INDIVIDUALS_IN_THE_DOCUMENT = "Political Actor References";
 
     /** The Constant DETAILED_INFORMATION_ABOUT_THE_DOCUMENT. */
-    String DETAILED_INFORMATION_ABOUT_THE_DOCUMENT = "Detailed information about the document";
+    String DETAILED_INFORMATION_ABOUT_THE_DOCUMENT = "Document Analysis Details";
 
     /** The Constant COMPLETE_DOCUMENT_TEXT_AND_DATA. */
-    String COMPLETE_DOCUMENT_TEXT_AND_DATA = "Complete document text and data";
+    String COMPLETE_DOCUMENT_TEXT_AND_DATA = "Full Legislative Content";
 
     /** The Constant REFERENCES_CITED_IN_THE_DOCUMENT. */
-    String REFERENCES_CITED_IN_THE_DOCUMENT = "References cited in the document";
+    String REFERENCES_CITED_IN_THE_DOCUMENT = "Citation Analysis";
 
     /** The Constant DECISIONS_AND_OUTCOMES_RELATED_TO_THE_DOCUMENT. */
-    String DECISIONS_AND_OUTCOMES_RELATED_TO_THE_DOCUMENT = "Decisions and outcomes related to the document";
+    String DECISIONS_AND_OUTCOMES_RELATED_TO_THE_DOCUMENT = "Legislative Outcome Analysis";
 
     /** The Constant ATTACHMENTS_AND_SUPPLEMENTARY_FILES. */
-    String ATTACHMENTS_AND_SUPPLEMENTARY_FILES = "Attachments and supplementary files";
+    String ATTACHMENTS_AND_SUPPLEMENTARY_FILES = "Supporting Documentation";
 
     /** The Constant GOVERNMENT_BODY_OVERVIEW_TEXT. */
     String GOVERNMENT_BODY_OVERVIEW_TEXT = "Government Body Overview";
@@ -435,13 +432,13 @@ public interface MenuItemConstants extends
     String GOVERNMENT_OUTCOME = "Government Outcome";
 
     /** The Constant GOVERNMENT_OUTCOME_DESCRIPTION. */
-    String GOVERNMENT_OUTCOME_DESCRIPTION = "Government outcome description";
+    String GOVERNMENT_OUTCOME_DESCRIPTION = "Analysis of policy implementation results";
 
     /** The Constant GOVERNMENT_ROLES_CHART. */
     String GOVERNMENT_ROLES_CHART = "Government Roles Chart";
 
     /** The Constant GOVERNMENT_ROLES_CHART_DESCRIPTION. */
-    String GOVERNMENT_ROLES_CHART_DESCRIPTION = "Government roles chart description";
+    String GOVERNMENT_ROLES_CHART_DESCRIPTION = "Analysis of governance structure distribution";
 
     /** The Constant CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT. */
     String CURRENT_MINISTRIES_CURRENT_MEMBERS_TEXT = "Current Ministries, Current Members";
@@ -459,31 +456,31 @@ public interface MenuItemConstants extends
     String PARTY_WINNER = "Party Winner";
 
     /** The Constant PARTY_WINNER_DESCRIPTION. */
-    String PARTY_WINNER_DESCRIPTION = "Party winner description";
+    String PARTY_WINNER_DESCRIPTION = "Analysis of party legislative success rates";
 
     /** The Constant PARTY_GENDER. */
     String PARTY_GENDER = "Party Gender";
 
     /** The Constant PARTY_GENDER_DESCRIPTION. */
-    String PARTY_GENDER_DESCRIPTION = "Party gender description";
+    String PARTY_GENDER_DESCRIPTION = "Analysis of party gender representation";
 
     /** The Constant PARTY_AGE. */
     String PARTY_AGE = "Party Age";
 
     /** The Constant PARTY_AGE_DESCRIPTION. */
-    String PARTY_AGE_DESCRIPTION = "Party age description";
+    String PARTY_AGE_DESCRIPTION = "Analysis of party age demographics";
 
     /** The Constant RISK_SUMMARY. */
     String RISK_SUMMARY = "Risk Summary";
 
     /** The Constant RISK_SUMMARY_DESCRIPTION. */
-    String RISK_SUMMARY_DESCRIPTION = "Risk summary description";
+    String RISK_SUMMARY_DESCRIPTION = "Analysis of governance risk factors";
 
     /** The Constant RULE_VIOLATIONS. */
     String RULE_VIOLATIONS = "Rule Violations";
 
     /** The Constant RULE_VIOLATIONS_DESCRIPTION. */
-    String RULE_VIOLATIONS_DESCRIPTION = "Rule violations description";
+    String RULE_VIOLATIONS_DESCRIPTION = "Analysis of procedural compliance issues";
 
     /** The Constant DOCUMENT_ACTIVITY_BY_TYPE. */
     String DOCUMENT_ACTIVITY_BY_TYPE = "Document Activity by Type";
@@ -507,24 +504,24 @@ public interface MenuItemConstants extends
     String CURRENT_LEADERS = "Current Leaders";
 
     /** The Constant CURRENT_LEADERS_DESCRIPTION. */
-    String CURRENT_LEADERS_DESCRIPTION = "Current leaders description";
+    String CURRENT_LEADERS_DESCRIPTION = "Analysis of current leadership effectiveness";
 
     /** The Constant LEADER_HISTORY. */
     String LEADER_HISTORY = "Leader History";
 
     /** The Constant LEADER_HISTORY_DESCRIPTION. */
-    String LEADER_HISTORY_DESCRIPTION = "Leader history description";
+    String LEADER_HISTORY_DESCRIPTION = "Analysis of leadership tenure patterns";
 
     /** The Constant GOVERMENT_ROLES. */
     String GOVERMENT_ROLES = "Government Roles";
 
     /** The Constant GOVERMENT_ROLES_DESCRIPTION. */
-    String GOVERMENT_ROLES_DESCRIPTION = "Government roles description";
+    String GOVERMENT_ROLES_DESCRIPTION = "Analysis of governmental role distribution";
 
     /** The Constant COMMITTEE_ROLES. */
     String COMMITTEE_ROLES = "Committee Roles";
 
     /** The Constant COMMITTEE_ROLES_DESCRIPTION. */
-    String COMMITTEE_ROLES_DESCRIPTION = "Committee roles description";
+    String COMMITTEE_ROLES_DESCRIPTION = "Analysis of committee role assignments";
 
 }

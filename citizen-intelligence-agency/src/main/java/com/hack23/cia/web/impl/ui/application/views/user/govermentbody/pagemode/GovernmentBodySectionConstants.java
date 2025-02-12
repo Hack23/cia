@@ -7,25 +7,25 @@ public interface GovernmentBodySectionConstants {
 
     /** The body info. */
     // Section Headers
-    String BODY_INFO = "Government Body Information";
+    String BODY_INFO = "Organizational Metrics Analysis";
 
     /** The org profile. */
-    String ORG_PROFILE = "Organization Profile";
+    String ORG_PROFILE = "Institutional Performance Indicators";
 
     /** The annual stats. */
-    String ANNUAL_STATS = "Annual Statistics";
+    String ANNUAL_STATS = "Annual Statistical Analysis";
 
     /** The performance. */
-    String PERFORMANCE = "Performance Metrics";
+    String PERFORMANCE = "Performance Distribution Analytics";
 
     /** The expenditure. */
-    String EXPENDITURE = "Expenditure Details";
+    String EXPENDITURE = "Resource Allocation Analysis";
 
     /** The income. */
-    String INCOME = "Income Details";
+    String INCOME = "Revenue Stream Analytics";
 
     /** The headcount. */
-    String HEADCOUNT = "Headcount Overview";
+    String HEADCOUNT = "Workforce Distribution Metrics";
 
     /** The style government body card. */
     // Styles

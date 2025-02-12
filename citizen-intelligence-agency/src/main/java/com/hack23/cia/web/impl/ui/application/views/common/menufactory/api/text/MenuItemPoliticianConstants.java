@@ -15,29 +15,29 @@ public interface MenuItemPoliticianConstants {
     String POLITICIANS_LINK_TEXT = "Politicians";
 
     /** The politician ranking description. */
-    String POLITICIAN_RANKING_DESCRIPTION = "Politicians: individual impact.";
+    String POLITICIAN_RANKING_DESCRIPTION = "Quantitative analysis of individual legislative impact metrics";
 
     /** The politicians description. */
-    String POLITICIANS_DESCRIPTION = "All politicians: service and contributions.";
+    String POLITICIANS_DESCRIPTION = "Comprehensive analysis of parliamentary contribution metrics";
 
     /** The current members text. */
-    String CURRENT_MEMBERS_TEXT = "Current Members";
+    String CURRENT_MEMBERS_TEXT = "Active Representatives";
 
     /** The member history text. */
-    String MEMBER_HISTORY_TEXT = "Member History";
+    String MEMBER_HISTORY_TEXT = "Historical Service Analysis";
 
     /** The current members description. */
-    String CURRENT_MEMBERS_DESCRIPTION = "Current members description";
+    String CURRENT_MEMBERS_DESCRIPTION = "Statistical analysis of active parliamentary composition";
 
     /** The member history description. */
-    String MEMBER_HISTORY_DESCRIPTION = "Member history description";
+    String MEMBER_HISTORY_DESCRIPTION = "Longitudinal analysis of legislative service patterns";
 
     /** The roles text. */
-    String ROLES_TEXT = "Roles";
+    String ROLES_TEXT = "Position Analysis";
 
     /** The role ghant text. */
-    String ROLE_GHANT_TEXT = "Role Ghant";
+    String ROLE_GHANT_TEXT = "Timeline Analysis";
 
     /** The role ghant description. */
-    String ROLE_GHANT_DESCRIPTION = "Role ghant description";
+    String ROLE_GHANT_DESCRIPTION = "Temporal analysis of position distribution patterns";
 }

@@ -6,26 +6,26 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemStatisticsConstants {
 
     /** The headcount. */
-    String HEADCOUNT = "Headcount";
+    String HEADCOUNT = "Parliamentary Demographics Analysis";
 
     /** The headcount chart. */
-    String HEADCOUNT_CHART = "Headcount Chart";
+    String HEADCOUNT_CHART = "Representation Distribution Metrics";
 
     /** The headcount description. */
-    String HEADCOUNT_DESCRIPTION = "Headcount description";
+    String HEADCOUNT_DESCRIPTION = "Quantitative analysis of parliamentary composition metrics";
 
     /** The income. */
-    String INCOME = "Income";
+    String INCOME = "Resource Allocation Analytics";
 
     /** The income description. */
-    String INCOME_DESCRIPTION = "Income description";
+    String INCOME_DESCRIPTION = "Statistical analysis of parliamentary funding distribution";
 
     /** The expenditure. */
-    String EXPENDITURE = "Expenditure";
+    String EXPENDITURE = "Resource Utilization Metrics";
 
     /** The expenditure description. */
-    String EXPENDITURE_DESCRIPTION = "Expenditure description";
+    String EXPENDITURE_DESCRIPTION = "Quantitative assessment of parliamentary expenditure patterns";
 
     /** The total members. */
-    String TOTAL_MEMBERS = "Total members";
+    String TOTAL_MEMBERS = "Parliamentary Composition Metrics";
 }

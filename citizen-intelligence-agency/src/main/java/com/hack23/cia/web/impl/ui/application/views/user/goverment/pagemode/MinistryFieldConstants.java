@@ -32,26 +32,26 @@ public interface MinistryFieldConstants {
 
     /** The ministry id desc. */
     // Field Descriptions
-    String MINISTRY_ID_DESC = "Ministry identifier";
+    String MINISTRY_ID_DESC = "Unique ministerial entity identifier";
 
     /** The status desc. */
-    String STATUS_DESC = "Current ministry status";
+    String STATUS_DESC = "Current operational status metrics";
 
     /** The members desc. */
-    String MEMBERS_DESC = "Number of current ministry members";
+    String MEMBERS_DESC = "Statistical distribution of active positions";
 
     /** The activity desc. */
-    String ACTIVITY_DESC = "Ministry's current activity level";
+    String ACTIVITY_DESC = "Quantitative engagement level metrics";
 
     /** The assignments desc. */
-    String ASSIGNMENTS_DESC = "Total number of assignments";
+    String ASSIGNMENTS_DESC = "Aggregate position allocation metrics";
 
     /** The first date desc. */
-    String FIRST_DATE_DESC = "Date of first ministry assignment";
+    String FIRST_DATE_DESC = "Initial temporal reference point";
 
     /** The last date desc. */
-    String LAST_DATE_DESC = "Date of most recent assignment";
+    String LAST_DATE_DESC = "Terminal temporal reference point";
 
     /** The days desc. */
-    String DAYS_DESC = "Total days of ministry service";
+    String DAYS_DESC = "Cumulative operational duration metrics";
 }

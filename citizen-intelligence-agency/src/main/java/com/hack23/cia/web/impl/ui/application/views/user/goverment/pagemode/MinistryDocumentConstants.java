@@ -6,7 +6,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode;
 public interface MinistryDocumentConstants {
 
     /** The documents. */
-    String DOCUMENTS = "Documents";
+    String DOCUMENTS = "Document Analytics";
 
     /** The doc id. */
     String DOC_ID = "docId";
@@ -20,4 +20,9 @@ public interface MinistryDocumentConstants {
     /** The hide columns. */
     String[] HIDE_COLUMNS = { "id", "numberValue", "orderNumber", "tempLabel",
             "personReferenceId", "org", "roleDescription", "label", "subTitle", "docId" };
+
+    // Add analytical descriptions
+    String DOCUMENT_METRICS = "Statistical Analysis of Document Distribution";
+    String TEMPORAL_ANALYSIS = "Temporal Document Pattern Analysis";
+    String CLASSIFICATION_METRICS = "Document Classification Analytics";
 }

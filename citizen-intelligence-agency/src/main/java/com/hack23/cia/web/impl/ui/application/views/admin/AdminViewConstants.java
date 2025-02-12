@@ -6,7 +6,7 @@ package com.hack23.cia.web.impl.ui.application.views.admin;
 public interface AdminViewConstants {
 
     /** The Constant ADMIN_AGENT_OPERATION_OVERVIEW. */
-    String ADMIN_AGENT_OPERATION_OVERVIEW = "High-level overview of administrative agent operations.";
+    String ADMIN_AGENT_OPERATION_OVERVIEW = "Analytics dashboard for agent operational performance metrics.";
 
     /** The Constant ADMIN_AGENT_OPERATION. */
     String ADMIN_AGENT_OPERATION = "Manages core tasks for administrative agent operations.";
@@ -99,7 +99,7 @@ public interface AdminViewConstants {
     String ADMIN_APPLICATION_SESSION = "Administrative perspective on application sessions.";
 
     /** The Constant APPLICATION_SESSION_OVERVIEW. */
-    String APPLICATION_SESSION_OVERVIEW = "Global overview of active and historical sessions.";
+    String APPLICATION_SESSION_OVERVIEW = "Analysis of session metrics and engagement patterns.";
 
     /** The Constant APPLICATION_SESSION_DESCRIPTION. */
     String APPLICATION_SESSION_DESCRIPTION = "Manage and analyze sessions at a detailed level.";
@@ -228,10 +228,10 @@ public interface AdminViewConstants {
     String GOOGLE_MAP_API_KEY = "API key for Google Maps integration.";
 
     /** The Constant EMAIL_OVERVIEW. */
-    String EMAIL_OVERVIEW = "General overview of email utilities and usage.";
+    String EMAIL_OVERVIEW = "Communication systems performance and usage pattern analysis.";
 
     /** The Constant ADMIN_MONITORING. */
-    String ADMIN_MONITORING = "Access to administration and system monitoring dashboards.";
+    String ADMIN_MONITORING = "Comprehensive system performance and compliance monitoring analytics.";
 
     /** The Constant MONITORING_CONTEXT_PATH. */
     String MONITORING_CONTEXT_PATH = "./monitoring";
@@ -243,7 +243,7 @@ public interface AdminViewConstants {
     String ADMIN_AGENT_OPERATION_DEPLOY_WORLD_BUTTON = "Initiates agent deployment worldwide.";
 
     /** The Constant ADMIN_AGENT_OPERATION_DEPLOY_DESC. */
-    String ADMIN_AGENT_OPERATION_DEPLOY_DESC = "Starts OSINT gathering for the specified region.";
+    String ADMIN_AGENT_OPERATION_DEPLOY_DESC = "Initiates regional intelligence gathering and analysis operations.";
 
     /** The Constant ACCESS_DENIED. */
     String ACCESS_DENIED = "Access denied:";

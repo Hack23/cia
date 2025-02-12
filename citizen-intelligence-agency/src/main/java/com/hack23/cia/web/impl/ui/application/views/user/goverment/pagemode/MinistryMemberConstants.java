@@ -14,11 +14,11 @@ public interface MinistryMemberConstants {
     String[] MEMBER_HIDE_COLUMNS = { "roleId", "personId", "detail" };
 
     /** The member history. */
-    // Grid Names
-    String MEMBER_HISTORY = "Member History";
-
-    /** The current members. */
-    String CURRENT_MEMBERS = "Current Members";
+    // Grid Names with analytical focus
+    String MEMBER_HISTORY = "Membership Pattern Analysis";
+    String CURRENT_MEMBERS = "Active Membership Distribution";
+    String TEMPORAL_METRICS = "Temporal Distribution Analysis";
+    String POSITION_ANALYTICS = "Position Distribution Metrics";
 
     /** The person id. */
     // Properties

@@ -6,29 +6,29 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemDecisionConstants {
 
     /** The decision flow. */
-    String DECISION_FLOW = "Decision Flow";
+    String DECISION_FLOW = "Legislative Process Analysis";
 
     /** The decision activity by type. */
-    String DECISION_ACTIVITY_BY_TYPE = "Decision Activity by Type";
+    String DECISION_ACTIVITY_BY_TYPE = "Legislative Activity Analysis";
 
     /** The decision activity description. */
-    String DECISION_ACTIVITY_DESCRIPTION = "Decision activity description";
+    String DECISION_ACTIVITY_DESCRIPTION = "Analysis of legislative voting patterns and trends";
 
     /** The decision flow description. */
-    String DECISION_FLOW_DESCRIPTION = "Decision flow description";
+    String DECISION_FLOW_DESCRIPTION = "Analysis of legislative decision pathways";
 
     /** The decision summary text. */
-    String DECISION_SUMMARY_TEXT = "Decision Summary";
+    String DECISION_SUMMARY_TEXT = "Decision Pattern Analysis";
 
     /** The decision summary description. */
-    String DECISION_SUMMARY_DESCRIPTION = "Decision summary description";
+    String DECISION_SUMMARY_DESCRIPTION = "Analysis of key legislative outcomes";
 
     /** The decision type daily summary text. */
-    String DECISION_TYPE_DAILY_SUMMARY_TEXT = "Decision Type Daily Summary";
+    String DECISION_TYPE_DAILY_SUMMARY_TEXT = "Daily Decision Analysis";
 
     /** The decision type daily summary description. */
-    String DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION = "Decision type daily summary description";
+    String DECISION_TYPE_DAILY_SUMMARY_DESCRIPTION = "Analysis of daily legislative patterns";
 
     /** The ballot decision summary description. */
-    String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Ballot decision summary description";
+    String BALLOT_DECISION_SUMMARY_DESCRIPTION = "Analysis of voting patterns and coalition behaviors";
 }

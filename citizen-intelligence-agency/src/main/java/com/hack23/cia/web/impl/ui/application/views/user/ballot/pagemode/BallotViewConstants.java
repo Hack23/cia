@@ -10,20 +10,20 @@ public interface BallotViewConstants {
     String OVERVIEW_MAIN_TITLE_PREFIX = "Ballot Overview ";
 
     /** The overview page description. */
-    String OVERVIEW_PAGE_DESCRIPTION = "Explore and analyze ballot results and voting statistics.";
+    String OVERVIEW_PAGE_DESCRIPTION = "Quantitative analysis of ballot outcomes and voting pattern metrics";
 
     /** The overview card ballot info. */
-    String OVERVIEW_CARD_BALLOT_INFO = "Ballot Information";
+    String OVERVIEW_CARD_BALLOT_INFO = "Ballot Statistical Overview";
 
     /** The overview card ballot profile. */
-    String OVERVIEW_CARD_BALLOT_PROFILE = "Ballot Profile";
+    String OVERVIEW_CARD_BALLOT_PROFILE = "Ballot Performance Metrics";
 
     /** The overview card voting stats. */
-    String OVERVIEW_CARD_VOTING_STATS = "Voting Statistics";
+    String OVERVIEW_CARD_VOTING_STATS = "Voting Distribution Analytics";
 
     /** The grid party ballot summary. */
     // Grid constants
-    String GRID_PARTY_BALLOT_SUMMARY = "Party Ballot Summary";
+    String GRID_PARTY_BALLOT_SUMMARY = "Party Performance Analysis";
 
     /** The grid embedded id party. */
     String GRID_EMBEDDED_ID_PARTY = "embeddedId.party";
@@ -88,5 +88,5 @@ public interface BallotViewConstants {
     String CHARTS_SUBTITLE = "Ballot Trends and Visualizations";
 
     /** The charts description. */
-    String CHARTS_DESCRIPTION = "Provides insights into election trends by visualizing ballot data, assisting in strategic decision-making and voter engagement analysis.";
+    String CHARTS_DESCRIPTION = "Statistical visualization of electoral patterns and voting behavior analytics";
 }

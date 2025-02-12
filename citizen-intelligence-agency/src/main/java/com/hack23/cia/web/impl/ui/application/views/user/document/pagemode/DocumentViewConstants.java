@@ -6,5 +6,8 @@ package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
 public interface DocumentViewConstants extends
     DocumentFieldConstants,
     DocumentPageTitleConstants {
-    // Interface is now complete through its extensions
+    /** Additional analytical context */
+    String DOCUMENT_ANALYSIS_CONTEXT = "Statistical analysis of document metrics and patterns";
+    String TEMPORAL_ANALYSIS_CONTEXT = "Longitudinal analysis of document processing patterns";
+    String DISTRIBUTION_ANALYSIS_CONTEXT = "Quantitative assessment of document distribution metrics";
 }
