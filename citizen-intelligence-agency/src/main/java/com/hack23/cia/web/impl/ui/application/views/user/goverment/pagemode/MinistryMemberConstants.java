@@ -16,8 +16,14 @@ public interface MinistryMemberConstants {
     /** The member history. */
     // Grid Names with analytical focus
     String MEMBER_HISTORY = "Membership Pattern Analysis";
+
+    /** The current members. */
     String CURRENT_MEMBERS = "Active Membership Distribution";
+
+    /** The temporal metrics. */
     String TEMPORAL_METRICS = "Temporal Distribution Analysis";
+
+    /** The position analytics. */
     String POSITION_ANALYTICS = "Position Distribution Metrics";
 
     /** The person id. */

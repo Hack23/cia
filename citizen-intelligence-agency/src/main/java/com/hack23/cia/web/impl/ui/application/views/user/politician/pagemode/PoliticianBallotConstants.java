@@ -30,14 +30,29 @@ public interface PoliticianBallotConstants {
 
     /** Analytical ballot tracking metrics. */
     String BALLOT_HEADER = "Legislative Decision Analytics";
+
+    /** The ballot summary. */
     String BALLOT_SUMMARY = "Voting Pattern Distribution";
+
+    /** The ballot decision metrics. */
     String BALLOT_DECISION_METRICS = "Decision Outcome Analysis";
+
+    /** The vote distribution. */
     String VOTE_DISTRIBUTION = "Vote Distribution Analytics";
+
+    /** The coalition alignment. */
     String COALITION_ALIGNMENT = "Coalition Alignment Metrics";
+
+    /** The party cohesion. */
     String PARTY_COHESION = "Party Cohesion Analysis";
-    
+
+    /** The participation metrics. */
     // Grid analytics labels
     String PARTICIPATION_METRICS = "Participation Distribution Analysis";
+
+    /** The voting pattern metrics. */
     String VOTING_PATTERN_METRICS = "Voting Behavior Analytics";
+
+    /** The decision impact metrics. */
     String DECISION_IMPACT_METRICS = "Legislative Impact Assessment";
 }

@@ -14,6 +14,7 @@ import com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode.BallotV
 @Category(IntegrationTest.class)
 public final class UserBallotTest extends AbstractUITest {
 
+	/** The Constant BALLOT_ID_NO_DEC. */
 	private static final String BALLOT_ID_NO_DEC = "6459ABCF-ABDB-4511-87B8-C7CC09737090";
 	/** The Constant BALLOT_ID. */
 	private static final String BALLOT_ID = "2782DA9D-A6D1-4925-B1AC-2520A82A9BA8";

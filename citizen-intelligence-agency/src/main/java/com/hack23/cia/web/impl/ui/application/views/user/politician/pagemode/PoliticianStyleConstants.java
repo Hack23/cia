@@ -16,10 +16,17 @@ public interface PoliticianStyleConstants {
 
     /** The card title. */
     String CARD_TITLE = "analytics-header";
-    
+
+    /** The metrics container. */
     // Additional analytical styles
     String METRICS_CONTAINER = "metrics-container";
+
+    /** The analytics grid. */
     String ANALYTICS_GRID = "analytics-grid";
+
+    /** The distribution chart. */
     String DISTRIBUTION_CHART = "distribution-chart";
+
+    /** The temporal chart. */
     String TEMPORAL_CHART = "temporal-analysis-chart";
 }

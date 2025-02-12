@@ -32,6 +32,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_OVERVIEW.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party role ghant page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyRoleGhantPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_ROLE_GHANT.createItemPageCommand(PARTY_ID));
@@ -42,6 +47,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_ROLE_GHANT.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party member history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyMemberHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_MEMBER_HISTORY.createItemPageCommand(PARTY_ID));
@@ -52,6 +62,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_MEMBER_HISTORY.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party page visit history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyPageVisitHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_PAGE_VISIT_HISTORY.createItemPageCommand(PARTY_ID));
@@ -62,6 +77,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_PAGE_VISIT_HISTORY.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party support summary page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartySupportSummaryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_SUPPORT_SUMMARY.createItemPageCommand(PARTY_ID));
@@ -72,6 +92,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_SUPPORT_SUMMARY.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party current leaders page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyCurrentLeadersPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_CURRENT_LEADERS.createItemPageCommand(PARTY_ID));
@@ -82,6 +107,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_CURRENT_LEADERS.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party leader history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyLeaderHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_LEADER_HISTORY.createItemPageCommand(PARTY_ID));
@@ -92,6 +122,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_LEADER_HISTORY.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party current members page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyCurrentMembersPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_CURRENT_MEMBERS.createItemPageCommand(PARTY_ID));
@@ -102,6 +137,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_CURRENT_MEMBERS.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party document history page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyDocumentHistoryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_DOCUMENT_HISTORY.createItemPageCommand(PARTY_ID));
@@ -112,6 +152,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_DOCUMENT_HISTORY.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party document activity page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyDocumentActivityPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_DOCUMENT_ACTIVITY.createItemPageCommand(PARTY_ID));
@@ -122,6 +167,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_DOCUMENT_ACTIVITY.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party committee roles page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyCommitteeRolesPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_COMMITTEE_ROLES.createItemPageCommand(PARTY_ID));
@@ -132,6 +182,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_COMMITTEE_ROLES.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party government roles page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyGovernmentRolesPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_GOVERNMENT_ROLES.createItemPageCommand(PARTY_ID));
@@ -142,6 +197,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_GOVERNMENT_ROLES.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party won daily summary chart page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyWonDailySummaryChartPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_WON_DAILY_SUMMARY_CHART.createItemPageCommand(PARTY_ID));
@@ -152,6 +212,11 @@ public final class UserPartyTest extends AbstractUITest {
         pageVisit.validatePage(PageCommandPartyConstants.COMMAND_PARTY_WON_DAILY_SUMMARY_CHART.createItemPageCommand(PARTY_ID));
     }
 
+    /**
+     * Verify party ballot decision summary page.
+     *
+     * @throws Exception the exception
+     */
     @Test(timeout = DEFAULT_TIMEOUT)
     public void verifyPartyBallotDecisionSummaryPage() throws Exception {
         pageVisit.visitDirectPage(PageCommandPartyConstants.COMMAND_PARTY_BALLOT_DECISION_SUMMARY.createItemPageCommand(PARTY_ID));

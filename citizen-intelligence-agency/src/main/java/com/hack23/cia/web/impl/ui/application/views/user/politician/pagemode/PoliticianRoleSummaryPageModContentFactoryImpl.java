@@ -60,7 +60,10 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 		final ViewRiksdagenPolitician viewRiksdagenPolitician = getItem(parameters);
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
-		CardInfoRowUtil.createPageHeader(panel, panelContent, viewRiksdagenPolitician.getFirstName() + ' ' + viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')' + " Role Summary", "Summary Overview", "Summarize the key roles and responsibilities of the politician.");
+		CardInfoRowUtil.createPageHeader(panel, panelContent,
+				PoliticianPageTitleConstants.ROLE_SUMMARY_TITLE + viewRiksdagenPolitician.getFirstName() + ' '
+						+ viewRiksdagenPolitician.getLastName() + '(' + viewRiksdagenPolitician.getParty() + ')',
+				PoliticianPageTitleConstants.SUMMARY_SUBTITLE, PoliticianPageTitleConstants.ROLE_SUMMARY_DESC);
 
 		final PersonData personData = getApplicationManager().getDataContainer(PersonData.class)
 				.load(viewRiksdagenPolitician.getPersonId());
@@ -70,7 +73,7 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 		createRoleSummary(panelContent, assignmentList, viewRiksdagenPolitician);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
-		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
+				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 		return panelContent;
 
 	}
@@ -79,8 +82,8 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 	 * Creates the role summary.
 	 *
 	 * @param roleSummaryLayoutTabsheet the role summary layout tabsheet
-	 * @param assignmentList the assignment list
-	 * @param viewRiksdagenPolitician the view riksdagen politician
+	 * @param assignmentList            the assignment list
+	 * @param viewRiksdagenPolitician   the view riksdagen politician
 	 */
 	private static void createRoleSummary(final VerticalLayout roleSummaryLayoutTabsheet,
 			final List<AssignmentData> assignmentList, final ViewRiksdagenPolitician viewRiksdagenPolitician) {
@@ -93,17 +96,16 @@ public final class PoliticianRoleSummaryPageModContentFactoryImpl extends Abstra
 		if (viewRiksdagenPolitician != null) {
 			layout.addComponent(new Label(PoliticianViewConstants.GOVERNMENT_EXPERIENCE
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedGovernment())));
-			layout.addComponent(new Label(
-					PoliticianViewConstants.SPEAKER_EXPERIENCE
+			layout.addComponent(new Label(PoliticianViewConstants.SPEAKER_EXPERIENCE
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedSpeaker())));
 			layout.addComponent(new Label(PoliticianViewConstants.COMMITTEE_EXPERIENCE
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedCommittee())));
-			layout.addComponent(
-					new Label(PoliticianViewConstants.EU_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));
+			layout.addComponent(new Label(PoliticianViewConstants.EU_EXPERIENCE
+					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedEu())));
 			layout.addComponent(new Label(PoliticianViewConstants.PARLIAMENT_EXPERIENCE
 					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParliament())));
-			layout.addComponent(new Label(
-					PoliticianViewConstants.PARTY_EXPERIENCE + convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));
+			layout.addComponent(new Label(PoliticianViewConstants.PARTY_EXPERIENCE
+					+ convertToYearsString(viewRiksdagenPolitician.getTotalDaysServedParty())));
 		}
 
 		roleSummaryLayoutTabsheet.addComponent(layout);

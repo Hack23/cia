@@ -128,7 +128,9 @@ public interface MinistryViewConstants extends
     /** The ministry government bills label. */
     String MINISTRY_GOVERNMENT_BILLS_LABEL = "Government Bills:";
 
+	/** The income title. */
 	String INCOME_TITLE = "Government Bodies Income ";
 
+	/** The headcount title. */
 	String HEADCOUNT_TITLE = "Ministry Government Bodies Headcount ";
 }

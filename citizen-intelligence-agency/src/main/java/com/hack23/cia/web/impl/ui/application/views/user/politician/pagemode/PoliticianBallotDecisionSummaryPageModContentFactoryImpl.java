@@ -71,9 +71,9 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			PoliticianTitleFormatter.formatTitle(viewRiksdagenPolitician) + " Ballot Decision Summary",
-			"Decision Summary Overview",
-			"Summarize and analyze the politician's voting decisions on various ballots.");
+				PoliticianPageTitleConstants.BALLOT_SUMMARY_TITLE
+						+ PoliticianTitleFormatter.formatTitle(viewRiksdagenPolitician),
+				PoliticianPageTitleConstants.BALLOT_SUBTITLE, PoliticianPageTitleConstants.BALLOT_DESC);
 
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()
 				.getDataContainer(ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class);
@@ -88,12 +88,12 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 
 		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent,
 				ViewRiksdagenCommitteeBallotDecisionPoliticianSummary.class, decisionPartySummaryList,
-				PoliticianBallotConstants.COMMITTEE_BALLOT_DECISION_SUMMARY, PoliticianBallotConstants.NESTED_PROPERTIES, PoliticianBallotConstants.COLUMN_ORDER, PoliticianBallotConstants.HIDE_COLUMNS, LISTENER,
-				PoliticianBallotConstants.BALLOT_ID, null);
-
+				PoliticianBallotConstants.COMMITTEE_BALLOT_DECISION_SUMMARY,
+				PoliticianBallotConstants.NESTED_PROPERTIES, PoliticianBallotConstants.COLUMN_ORDER,
+				PoliticianBallotConstants.HIDE_COLUMNS, LISTENER, PoliticianBallotConstants.BALLOT_ID, null);
 
 		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_POLITICIAN_VIEW, ApplicationEventGroup.USER,
-		UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
+				UserViews.POLITICIAN_VIEW_NAME, parameters, pageId);
 
 		return panelContent;
 
