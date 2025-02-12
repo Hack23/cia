@@ -15,4 +15,14 @@ public interface PoliticianRankingConstants {
 
     /** The chart type all. */
     String CHART_TYPE_ALL = "All";
+    
+    /** Analytics context constants */
+    String CURRENT_METRICS = "Current Performance Distribution";
+    String HISTORICAL_METRICS = "Longitudinal Performance Analysis";
+    String COMPARATIVE_METRICS = "Cross-sectional Analytics";
+    
+    /** Analysis type indicators */
+    String DISTRIBUTION_ANALYSIS = "Distribution Metrics";
+    String TEMPORAL_ANALYSIS = "Time-series Analytics";
+    String PERFORMANCE_ANALYSIS = "Effectiveness Metrics";
 }

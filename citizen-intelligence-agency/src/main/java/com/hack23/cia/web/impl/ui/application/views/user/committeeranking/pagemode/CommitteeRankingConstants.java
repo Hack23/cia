@@ -48,7 +48,7 @@ public interface CommitteeRankingConstants {
     String CR_OVERVIEW_TITLE = "Ranking Details";
 
     /** The cr overview description. */
-    String CR_OVERVIEW_DESCRIPTION = "Analyze and compare rankings of parliamentary committees based on performance.";
+    String CR_OVERVIEW_DESCRIPTION = "Quantitative analysis of committee performance metrics and effectiveness indicators";
 
     /** The cr grid title header. */
     // Committee Ranking Data Grid
@@ -58,7 +58,7 @@ public interface CommitteeRankingConstants {
     String CR_GRID_TITLE = "Committee Rankings";
 
     /** The cr grid description. */
-    String CR_GRID_DESCRIPTION = "Analyze committee rankings with a focus on membership, performance, and activity metrics.";
+    String CR_GRID_DESCRIPTION = "Multi-dimensional analysis of committee performance patterns and participation metrics";
 
     /** The cr visit title header. */
     // Committee Ranking Visit History
@@ -68,7 +68,7 @@ public interface CommitteeRankingConstants {
     String CR_VISIT_TITLE = "Page Visit History";
 
     /** The cr visit description. */
-    String CR_VISIT_DESCRIPTION = "Tracks and visualizes the history of page visits for committee rankings.";
+    String CR_VISIT_DESCRIPTION = "Statistical analysis of committee page engagement patterns";
 
     /** The cr all title header. */
     // All Committees Charts
@@ -78,7 +78,7 @@ public interface CommitteeRankingConstants {
     String CR_ALL_TITLE = "Ranking of All Committees";
 
     /** The cr all description. */
-    String CR_ALL_DESCRIPTION = "Provides comparative rankings for committees based on performance or metrics.";
+    String CR_ALL_DESCRIPTION = "Comparative analysis of historical committee performance metrics";
 
     /** The cr current title header. */
     // Current Committees Charts
@@ -88,7 +88,7 @@ public interface CommitteeRankingConstants {
     String CR_CURRENT_TITLE = "Current Committees";
 
     /** The cr current description. */
-    String CR_CURRENT_DESCRIPTION = "Provides comparative rankings for committees based on performance or metrics.";
+    String CR_CURRENT_DESCRIPTION = "Statistical assessment of active committee effectiveness metrics";
 
     /** The cr party title header. */
     // Committee by Party Charts
@@ -98,7 +98,7 @@ public interface CommitteeRankingConstants {
     String CR_PARTY_TITLE = "Committee by Party Charts Overview";
 
     /** The cr party description. */
-    String CR_PARTY_DESCRIPTION = "Provides comparative rankings for committees based on performance or metrics.";
+    String CR_PARTY_DESCRIPTION = "Cross-sectional analysis of party-committee performance patterns";
 
     /** The cr current party title header. */
     // Current Committee Parties Charts
@@ -108,5 +108,5 @@ public interface CommitteeRankingConstants {
     String CR_CURRENT_PARTY_TITLE = "Current Committee Parties Charts Overview";
 
     /** The cr current party description. */
-    String CR_CURRENT_PARTY_DESCRIPTION = "Provides comparative rankings for committees based on performance or metrics.";
+    String CR_CURRENT_PARTY_DESCRIPTION = "Quantitative evaluation of current party-committee interaction metrics";
 }

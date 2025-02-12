@@ -13,7 +13,7 @@ public interface DocumentPageTitleConstants {
     String ACTIVITY_SUBTITLE = "Activity Overview";
 
     /** The activity desc. */
-    String ACTIVITY_DESC = "Analyze document activities, including modifications, approvals, and related events.";
+    String ACTIVITY_DESC = "Quantitative analysis of document workflow metrics and procedural patterns";
 
     /** The overview title. */
     // Overview
@@ -23,7 +23,7 @@ public interface DocumentPageTitleConstants {
     String OVERVIEW_SUBTITLE = "Document Details";
 
     /** The overview desc. */
-    String OVERVIEW_DESC = "Access and explore official documents and reports.";
+    String OVERVIEW_DESC = "Statistical analysis of official documentation metrics";
 
     /** The overview section doc info. */
     String OVERVIEW_SECTION_DOC_INFO = "Document Information";
@@ -42,7 +42,7 @@ public interface DocumentPageTitleConstants {
     String DETAILS_SUBTITLE = "Details Overview";
 
     /** The details desc. */
-    String DETAILS_DESC = "Comprehensive details about the document, including key attributes and content.";
+    String DETAILS_DESC = "Comprehensive analysis of document attributes and content metrics";
 
     /** The references title. */
     // References
@@ -52,7 +52,7 @@ public interface DocumentPageTitleConstants {
     String REFERENCES_SUBTITLE = "References Overview";
 
     /** The references desc. */
-    String REFERENCES_DESC = "Analyze and review references within the document, including cross-references.";
+    String REFERENCES_DESC = "Cross-reference analysis and citation pattern metrics";
 
     /** The person references title. */
     // Person References
@@ -62,7 +62,7 @@ public interface DocumentPageTitleConstants {
     String PERSON_REFERENCES_SUBTITLE = "Person References";
 
     /** The person references desc. */
-    String PERSON_REFERENCES_DESC = "Identify and explore references to individuals within the document.";
+    String PERSON_REFERENCES_DESC = "Statistical analysis of stakeholder references and mentions";
 
     /** The visit history title. */
     // Visit History
@@ -72,7 +72,7 @@ public interface DocumentPageTitleConstants {
     String VISIT_HISTORY_SUBTITLE = "Engagement Insights";
 
     /** The visit history desc. */
-    String VISIT_HISTORY_DESC = "Tracking how interest in policy materials evolves.";
+    String VISIT_HISTORY_DESC = "Quantitative analysis of document engagement patterns";
 
     /** The data title. */
     // Data
@@ -82,7 +82,7 @@ public interface DocumentPageTitleConstants {
     String DATA_SUBTITLE = "Data Overview";
 
     /** The data desc. */
-    String DATA_DESC = "Detailed view of the document's core data and metadata.";
+    String DATA_DESC = "Multi-dimensional analysis of document metadata patterns";
 
     /** The decision title. */
     // Decision
@@ -92,7 +92,7 @@ public interface DocumentPageTitleConstants {
     String DECISION_SUBTITLE = "Decision Overview";
 
     /** The decision desc. */
-    String DECISION_DESC = "Review decisions made regarding the document and their implications.";
+    String DECISION_DESC = "Statistical analysis of document-related decision outcomes";
 
     /** The attachments title. */
     // Attachments
@@ -102,7 +102,7 @@ public interface DocumentPageTitleConstants {
     String ATTACHMENTS_SUBTITLE = "Attachments Overview";
 
     /** The attachments desc. */
-    String ATTACHMENTS_DESC = "Explore and manage attachments associated with the document.";
+    String ATTACHMENTS_DESC = "Quantitative assessment of supplementary documentation patterns";
 
     /** The documents title. */
     // Documents Overview
@@ -112,10 +112,10 @@ public interface DocumentPageTitleConstants {
     String DOCUMENTS_SUBTITLE = "Documents Repository";
 
     /** The documents desc. */
-    String DOCUMENTS_DESC = "Comprehensive repository of Swedish Parliament(Riksdagen) documents.";
+    String DOCUMENTS_DESC = "Comprehensive analysis of parliamentary documentation metrics";
 
 	/** The documents overview desc. */
-	String DOCUMENTS_OVERVIEW_DESC = "Comprehensive repository of Swedish Parliament(Riksdagen) documents.";
+	String DOCUMENTS_OVERVIEW_DESC = "Statistical overview of parliamentary document distribution patterns";
 
 	/** The documents overview header. */
 	String DOCUMENTS_OVERVIEW_HEADER = "Documents Repository";
@@ -124,7 +124,7 @@ public interface DocumentPageTitleConstants {
 	String DOCUMENTS_OVERVIEW_TITLE = "Documents Overview";
 
 	/** The doc search desc. */
-	String DOC_SEARCH_DESC = "Search and access detailed parliamentary documents.";
+	String DOC_SEARCH_DESC = "Advanced analytics for parliamentary document retrieval";
 
 	/** The doc search header. */
 	String DOC_SEARCH_HEADER = "Document Search";

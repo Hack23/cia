@@ -27,10 +27,10 @@ public interface MenuItemPartyConstants {
     String PARTIES_LINK_TEXT = "Political Parties";
 
     /** The party ranking description. */
-    String PARTY_RANKING_DESCRIPTION = "Analysis of party legislative effectiveness";
+    String PARTY_RANKING_DESCRIPTION = "Quantitative assessment of legislative performance metrics";
 
     /** The parties description. */
-    String PARTIES_DESCRIPTION = "Analysis of party policy positions and strategies";
+    String PARTIES_DESCRIPTION = "Statistical analysis of party policy effectiveness metrics";
     // String constants
 
 
@@ -41,15 +41,15 @@ public interface MenuItemPartyConstants {
     String VOTE_HISTORY = "Voting Pattern Analysis";
 
     /** The Constant ROLE_CHART_PARTY_LEADERS_DESCRIPTION. */
-    String ROLE_CHART_PARTY_LEADERS_DESCRIPTION = "Analysis of leadership influence patterns";
+    String ROLE_CHART_PARTY_LEADERS_DESCRIPTION = "Quantitative evaluation of leadership effectiveness patterns";
 
     /** The Constant PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION. */
-    String PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION = "Analysis of legislative success trends";
+    String PARTY_WON_DAILY_SUMMARY_CHART_DESCRIPTION = "Time-series analysis of legislative success metrics";
 
     /** The Constant PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION. */
-    String PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION = "Analysis of opposition voting behavior";
+    String PARTY_AGAINST_COALATIONS_SUMMARY_DESCRIPTION = "Statistical analysis of opposition voting metrics";
 
     /** The Constant PARTY_SUPPORT_SUMMARY_DESCRIPTION. */
-    String PARTY_SUPPORT_SUMMARY_DESCRIPTION = "Analysis of party alignment patterns";
+    String PARTY_SUPPORT_SUMMARY_DESCRIPTION = "Quantitative assessment of inter-party alignment patterns";
 
 }

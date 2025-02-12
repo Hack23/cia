@@ -13,7 +13,7 @@ public interface ParliamentPageTitleConstants {
     String OVERVIEW_SUBTITLE = "Parliament Details";
 
     /** The overview desc. */
-    String OVERVIEW_DESC = "Insights into parliamentary structure, members, and activities.";
+    String OVERVIEW_DESC = "Quantitative analysis of parliamentary performance metrics and institutional indicators";
 
     /** The party winner title. */
     // Charts
@@ -23,7 +23,7 @@ public interface ParliamentPageTitleConstants {
     String PARTY_WINNER_SUBTITLE = "Prevailing Forces";
 
     /** The party winner desc. */
-    String PARTY_WINNER_DESC = "Identifying parties prevailing in legislative contests.";
+    String PARTY_WINNER_DESC = "Statistical analysis of legislative success patterns and voting distributions";
 
     /** The party gender title. */
     String PARTY_GENDER_TITLE = "Parliament - Party Gender Analysis";
@@ -32,7 +32,7 @@ public interface ParliamentPageTitleConstants {
     String PARTY_GENDER_SUBTITLE = "Representation Patterns";
 
     /** The party gender desc. */
-    String PARTY_GENDER_DESC = "Assessing representation and inclusive leadership patterns.";
+    String PARTY_GENDER_DESC = "Multi-dimensional analysis of representational distribution metrics";
 
     /** The party age title. */
     String PARTY_AGE_TITLE = "Parliament - Party Age Dynamics";
@@ -41,7 +41,7 @@ public interface ParliamentPageTitleConstants {
     String PARTY_AGE_SUBTITLE = "Generational Shifts";
 
     /** The party age desc. */
-    String PARTY_AGE_DESC = "Examining generational shifts influencing governance.";
+    String PARTY_AGE_DESC = "Demographic distribution analysis of parliamentary composition";
 
     /** The doc activity title. */
     String DOC_ACTIVITY_TITLE = "Parliament - Document Activity by Type";
@@ -50,7 +50,7 @@ public interface ParliamentPageTitleConstants {
     String DOC_ACTIVITY_SUBTITLE = "Information Dynamics";
 
     /** The doc activity desc. */
-    String DOC_ACTIVITY_DESC = "Uncovering how information shapes legislative agendas.";
+    String DOC_ACTIVITY_DESC = "Statistical analysis of legislative documentation patterns";
 
     /** The decision activity title. */
     String DECISION_ACTIVITY_TITLE = "Parliament - Decision Activity by Type";
@@ -59,7 +59,7 @@ public interface ParliamentPageTitleConstants {
     String DECISION_ACTIVITY_SUBTITLE = "Policy Priorities";
 
     /** The decision activity desc. */
-    String DECISION_ACTIVITY_DESC = "Comparing legislative outputs to reveal policy priorities.";
+    String DECISION_ACTIVITY_DESC = "Quantitative assessment of policy implementation metrics";
 
     /** The rule violations title. */
     String RULE_VIOLATIONS_TITLE = "Parliament - Rule Violations";
@@ -68,7 +68,7 @@ public interface ParliamentPageTitleConstants {
     String RULE_VIOLATIONS_SUBTITLE = "Procedural Oversight";
 
     /** The rule violations desc. */
-    String RULE_VIOLATIONS_DESC = "Highlighting procedural breaches and oversight challenges.";
+    String RULE_VIOLATIONS_DESC = "Statistical analysis of procedural compliance patterns";
 
     /** The risk assessment title. */
     String RISK_ASSESSMENT_TITLE = "Parliament - Risk Assessment";
@@ -77,7 +77,7 @@ public interface ParliamentPageTitleConstants {
     String RISK_ASSESSMENT_SUBTITLE = "Identifying Vulnerabilities";
 
     /** The risk assessment desc. */
-    String RISK_ASSESSMENT_DESC = "Identifying institutional vulnerabilities and threats.";
+    String RISK_ASSESSMENT_DESC = "Multi-dimensional analysis of institutional risk indicators";
 
     /** The decision flow title. */
     // Decision Flow
@@ -87,7 +87,7 @@ public interface ParliamentPageTitleConstants {
     String DECISION_FLOW_SUBTITLE = "Legislative Pipelines";
 
     /** The decision flow desc. */
-    String DECISION_FLOW_DESC = "Mapping legislative pipelines shaping national policies";
+    String DECISION_FLOW_DESC = "Process efficiency analysis of legislative workflows";
 
     /** The visit history title. */
     // Visit History
@@ -97,5 +97,5 @@ public interface ParliamentPageTitleConstants {
     String VISIT_HISTORY_SUBTITLE = "Engagement Over Time";
 
     /** The visit history desc. */
-    String VISIT_HISTORY_DESC = "Tracing shifts in engagement with legislative proceedings.";
+    String VISIT_HISTORY_DESC = "Longitudinal analysis of stakeholder engagement patterns";
 }

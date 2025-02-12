@@ -13,7 +13,7 @@ public interface PoliticianRankingDescriptionConstants {
     String RANKING_SUBTITLE = "Ranking Overview";
 
     /** The ranking desc. */
-    String RANKING_DESC = "Evaluate and rank politicians based on performance and influence.";
+    String RANKING_DESC = "Quantitative analysis of legislative performance metrics and influence indicators";
 
     /** The performance header. */
     // Performance View
@@ -23,7 +23,7 @@ public interface PoliticianRankingDescriptionConstants {
     String PERFORMANCE_SUBTITLE = "Performance Rankings";
 
     /** The performance desc. */
-    String PERFORMANCE_DESC = "Review rankings of politicians based on tenure, contributions, and performance metrics.";
+    String PERFORMANCE_DESC = "Multi-dimensional analysis of parliamentary effectiveness metrics";
 
     /** The current parties header. */
     // Charts - Current Parties
@@ -33,7 +33,7 @@ public interface PoliticianRankingDescriptionConstants {
     String CURRENT_PARTIES_SUBTITLE = "Current Political Landscape";
 
     /** The current parties desc. */
-    String CURRENT_PARTIES_DESC = "Current parties: assessing dynamic political landscapes.";
+    String CURRENT_PARTIES_DESC = "Statistical analysis of current political distribution patterns";
 
     /** The all parties header. */
     // Charts - All Parties
@@ -43,7 +43,7 @@ public interface PoliticianRankingDescriptionConstants {
     String ALL_PARTIES_SUBTITLE = "Cross-Party Influence";
 
     /** The all parties desc. */
-    String ALL_PARTIES_DESC = "All parties: mapping politician influence across coalitions.";
+    String ALL_PARTIES_DESC = "Longitudinal analysis of cross-party influence metrics";
 
     /** The visit history header. */
     // Visit History
@@ -53,5 +53,5 @@ public interface PoliticianRankingDescriptionConstants {
     String VISIT_HISTORY_SUBTITLE = "Engagement Trends";
 
     /** The visit history desc. */
-    String VISIT_HISTORY_DESC = "Viewing interest trends to understand shifting political focus.";
+    String VISIT_HISTORY_DESC = "Temporal analysis of stakeholder engagement patterns";
 }

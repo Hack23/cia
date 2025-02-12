@@ -22,4 +22,10 @@ public interface MinistryLayoutConstants {
 
     /** The ministry card style. */
     String MINISTRY_CARD_STYLE = "ministry-overview-card";
+
+    /** Enhanced analytical style names */
+    String METRICS_CARD_STYLE = "metrics-analysis-card";
+    String DISTRIBUTION_CARD_STYLE = "distribution-analysis-card";
+    String TEMPORAL_CARD_STYLE = "temporal-analysis-card";
+    String ANALYTICS_GRID_STYLE = "analytics-grid";
 }

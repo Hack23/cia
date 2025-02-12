@@ -18,13 +18,13 @@ public interface MenuItemUserConstants {
     String USER_LOGOUT = "Sign Out";
 
     /** The user home description. */
-    String USER_HOME_DESCRIPTION = "Access your personalized analytics dashboard";
+    String USER_HOME_DESCRIPTION = "Access comprehensive analytical metrics dashboard";
 
     /** The user profile description. */
-    String USER_PROFILE_DESCRIPTION = "Manage your analyst profile and credentials";
+    String USER_PROFILE_DESCRIPTION = "Configure analysis parameters and credentials";
 
     /** The user settings description. */
-    String USER_SETTINGS_DESCRIPTION = "Customize your analysis tools and preferences";
+    String USER_SETTINGS_DESCRIPTION = "Optimize analytical tools and measurement preferences";
 
     /** The user logout description. */
     String USER_LOGOUT_DESCRIPTION = "Securely end your analysis session";
@@ -36,10 +36,10 @@ public interface MenuItemUserConstants {
     String USER_EVENTS = "Activity Log";
 
     /** The user visits description. */
-    String USER_VISITS_DESCRIPTION = "Track your research and analysis patterns";
+    String USER_VISITS_DESCRIPTION = "Statistical analysis of research patterns and trends";
 
     /** The user events description. */
-    String USER_EVENTS_DESCRIPTION = "Monitor your system interactions and alerts";
+    String USER_EVENTS_DESCRIPTION = "Quantitative tracking of system interaction metrics";
 
     /** The useraccount. */
     String USERACCOUNT = "Useraccount";

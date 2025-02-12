@@ -13,7 +13,7 @@ public interface CommitteePageTitleConstants {
     String RG_TITLE = "Role Timeline";
 
     /** The rg description. */
-    String RG_DESCRIPTION = "Visualize the timeline and duration of roles within the committee, highlighting key assignments and transitions.";
+    String RG_DESCRIPTION = "Temporal analysis of role distribution and leadership transitions";
 
     /** The ov title header. */
     // Overview
@@ -23,7 +23,7 @@ public interface CommitteePageTitleConstants {
     String OV_TITLE = "Committee Details";
 
     /** The ov description. */
-    String OV_DESCRIPTION = "Detailed insights into parliamentary committees and their activities.";
+    String OV_DESCRIPTION = "Comprehensive analytics of committee performance metrics";
 
     /** The mh title header. */
     // Member History
@@ -33,7 +33,7 @@ public interface CommitteePageTitleConstants {
     String MH_TITLE = "Committee Member Participation History";
 
     /** The mh description. */
-    String MH_DESCRIPTION = "Analyzes and presents participation trends for committee members.";
+    String MH_DESCRIPTION = "Statistical analysis of member participation patterns and trends";
 
     /** The dh title header. */
     // Document History
@@ -43,7 +43,7 @@ public interface CommitteePageTitleConstants {
     String DH_TITLE = "Committee Document History";
 
     /** The dh description. */
-    String DH_DESCRIPTION = "Displays the historical progression of documents managed by committees.";
+    String DH_DESCRIPTION = "Quantitative assessment of document processing metrics";
 
     /** The cm title header. */
     // Current Members
@@ -53,7 +53,7 @@ public interface CommitteePageTitleConstants {
     String CM_TITLE = "Current Members History";
 
     /** The cm description. */
-    String CM_DESCRIPTION = "Tracks and presents historical data about committee members' participation.";
+    String CM_DESCRIPTION = "Performance analytics of current committee composition";
 
     /** The df title header. */
     // Decision Flow
@@ -63,7 +63,7 @@ public interface CommitteePageTitleConstants {
     String DF_TITLE = "Decision Flow";
 
     /** The df description. */
-    String DF_DESCRIPTION = "Analyze decision-making processes within committees.";
+    String DF_DESCRIPTION = "Statistical analysis of decision-making patterns and outcomes";
 
     /** The da title header. */
     // Document Activity
@@ -73,7 +73,7 @@ public interface CommitteePageTitleConstants {
     String DA_TITLE = "Document Activity Overview";
 
     /** The da description. */
-    String DA_DESCRIPTION = "Tracks and visualizes the activity associated with committee documents.";
+    String DA_DESCRIPTION = "Metrics analysis of document processing efficiency";
 
     /** The pv title header. */
     // Page Visit History
@@ -83,5 +83,5 @@ public interface CommitteePageTitleConstants {
     String PV_TITLE = "Page Visit History for Committees";
 
     /** The pv description. */
-    String PV_DESCRIPTION = "Tracks user interaction with committee pages for analytical purposes.";
+    String PV_DESCRIPTION = "Engagement analytics of committee page interaction patterns";
 }

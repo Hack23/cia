@@ -6,7 +6,23 @@ package com.hack23.cia.web.impl.ui.application.views.user.politicianranking.page
 public interface PoliticianRankingGridConstants {
 
     /** The politicians. */
-    String POLITICIANS = "Politicians";
+    String POLITICIANS = "Representative Performance Analytics";
+    
+    // Enhanced analytical column groups
+    String[] COLUMN_GROUPS = {
+        "Representative Metrics",
+        "Performance Indicators",
+        "Legislative Analytics",
+        "Position Distribution",
+        "Temporal Analysis"
+    };
+    
+    // Enhanced column descriptions
+    String ACTIVITY_LEVEL_DESC = "Quantitative engagement metrics";
+    String COLLABORATION_DESC = "Cross-party interaction patterns";
+    String DOCUMENT_METRICS_DESC = "Legislative output analysis";
+    String ROLE_DISTRIBUTION_DESC = "Position allocation metrics";
+    String TEMPORAL_METRICS_DESC = "Time-series performance indicators";
 
     /** The column order. */
     String[] COLUMN_ORDER = {

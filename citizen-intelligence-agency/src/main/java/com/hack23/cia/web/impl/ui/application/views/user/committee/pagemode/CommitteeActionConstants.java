@@ -17,7 +17,7 @@ public interface CommitteeActionConstants {
     String DD_TITLE = "Summary of Decision Types";
 
     /** The dd description. */
-    String DD_DESCRIPTION = "Displays a summary of daily committee decision-making activity.";
+    String DD_DESCRIPTION = "Temporal analysis of committee decision-making patterns";
 
     /** The ds title header. */
     // Decision Summary
@@ -27,7 +27,7 @@ public interface CommitteeActionConstants {
     String DS_TITLE = "Decision Summary";
 
     /** The ds description. */
-    String DS_DESCRIPTION = "Overview of decisions made by the committee.";
+    String DS_DESCRIPTION = "Quantitative assessment of decision outcomes and trends";
 
     /** The bd title header. */
     // Ballot Decision
@@ -37,5 +37,5 @@ public interface CommitteeActionConstants {
     String BD_TITLE = "Ballot Decision Summary";
 
     /** The bd description. */
-    String BD_DESCRIPTION = "Summary of ballot decisions made by the specified committee.";
+    String BD_DESCRIPTION = "Statistical analysis of ballot distribution and voting patterns";
 }
