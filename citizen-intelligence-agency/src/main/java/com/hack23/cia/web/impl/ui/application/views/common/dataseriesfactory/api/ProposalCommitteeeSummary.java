@@ -23,153 +23,33 @@ import java.util.Locale;
 /**
  * The Class ProposalCommitteeeSummary.
  */
-public final class ProposalCommitteeeSummary {
+public record ProposalCommitteeeSummary(
+        String org,
+        String docType,
+        String decision,
+        String hangarId,
+        String wording,
+        String wording2,
+        String decisionType
+) {
+    /**
+     * Compact constructor for ProposalCommitteeeSummary.
+     * Validates and normalizes the input data.
+     */
+    public ProposalCommitteeeSummary {
+        org = org.trim().toUpperCase(Locale.ENGLISH);
+        docType = docType.toUpperCase(Locale.ENGLISH);
+        decision = decision.replace("=", "").replace(",", "").trim().toUpperCase(Locale.ENGLISH);
+    }
 
-	/** The decision. */
-	private final String decision;
-
-	/** The doc type. */
-	private final String docType;
-
-	/** The hangar id. */
-	private final String hangarId;
-
-	/** The org. */
-	private final String org;
-
-    /** The wording. */
-    private String wording;
-
-    /** The wording 2. */
-    private String wording2;
-
-    /** The decision type. */
-    private String decisionType;
-
-
-	/**
-	 * Instantiates a new proposal committeee summary.
-	 *
-	 * @param org the org
-	 * @param docType the doc type
-	 * @param decision the decision
-	 * @param hangarId the hangar id
-	 * @param wording the wording
-	 * @param wording2 the wording 2
-	 * @param decisionType the decision type
-	 */
-	public ProposalCommitteeeSummary(final String org, final String docType, final String decision, final String hangarId, final String wording, final String wording2, final String decisionType) {
-		super();
-		this.org = org.trim().toUpperCase(Locale.ENGLISH);
-		this.docType = docType.toUpperCase(Locale.ENGLISH);
-		this.decision = decision.replace("=", "").replace(",", "").trim().toUpperCase(Locale.ENGLISH);
-		this.hangarId = hangarId;
-		this.wording = wording;
-		this.wording2 = wording2;
-		this.decisionType = decisionType;
-	}
-
-	/**
-	 * Gets the decision.
-	 *
-	 * @return the decision
-	 */
-	public String getDecision() {
-		return decision;
-	}
-
-	/**
-	 * Gets the doc type.
-	 *
-	 * @return the doc type
-	 */
-	public String getDocType() {
-		return docType;
-	}
-
-	/**
-	 * Gets the hangar id.
-	 *
-	 * @return the hangar id
-	 */
-	public String getHangarId() {
-		return hangarId;
-	}
-
-	/**
-	 * Gets the org.
-	 *
-	 * @return the org
-	 */
-	public String getOrg() {
-		return org;
-	}
-
-
-
-
-	/**
-	 * Gets the wording.
-	 *
-	 * @return the wording
-	 */
-	public String getWording() {
-		return wording;
-	}
-
-	/**
-	 * Sets the wording.
-	 *
-	 * @param wording the new wording
-	 */
-	public void setWording(final String wording) {
-		this.wording = wording;
-	}
-
-	/**
-	 * Gets the wording 2.
-	 *
-	 * @return the wording 2
-	 */
-	public String getWording2() {
-		return wording2;
-	}
-
-	/**
-	 * Sets the wording 2.
-	 *
-	 * @param wording2 the new wording 2
-	 */
-	public void setWording2(final String wording2) {
-		this.wording2 = wording2;
-	}
-
-	/**
-	 * Gets the decision type.
-	 *
-	 * @return the decision type
-	 */
-	public String getDecisionType() {
-		return decisionType;
-	}
-
-	/**
-	 * Sets the decision type.
-	 *
-	 * @param decisionType the new decision type
-	 */
-	public void setDecisionType(final String decisionType) {
-		this.decisionType = decisionType;
-	}
-
-	/**
-	 * To string.
-	 *
-	 * @return the string
-	 */
-	@Override
-	public String toString() {
-		return String.format(Locale.ENGLISH,"ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]", org,
-				docType, decision, hangarId);
-	}
+    /**
+     * Override toString to maintain the same format as the original class.
+     *
+     * @return the string representation
+     */
+    @Override
+    public String toString() {
+        return String.format(Locale.ENGLISH, "ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]",
+                org, docType, decision, hangarId);
+    }
 }
