@@ -66,7 +66,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
                 .stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.groupingBy(
-                    ProposalCommitteeeSummary::getOrg,
+                    ProposalCommitteeeSummary::org,
                     Collectors.mapping(
                         Function.identity(),
                         Collectors.toList()
@@ -228,13 +228,13 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
             .flatMap(Collection::stream)
             .filter(Objects::nonNull)
             .collect(Collectors.groupingBy(
-                ProposalCommitteeeSummary::getDocType,
+                ProposalCommitteeeSummary::docType,
                 Collectors.collectingAndThen(
                     Collectors.toList(),
                     docProposals -> {
-                        if (!docProposals.get(0).getDocType().isEmpty()) {
+                        if (!docProposals.get(0).docType().isEmpty()) {
                             sankeyChart.addDataRow(
-                                docProposals.get(0).getDocType(),
+                                docProposals.get(0).docType(),
                                 committeeName,
                                 docProposals.size()
                             );
@@ -261,7 +261,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         final String committeeName = committee.getEmbeddedId().getDetail();
 
         proposals.stream()
-            .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision))
+            .collect(Collectors.groupingBy(ProposalCommitteeeSummary::decision))
             .forEach((decision, decisionProposals) -> {
                 if (!decision.isEmpty()) {
                     sankeyChart.addDataRow(committeeName, decision, decisionProposals.size());
@@ -284,14 +284,14 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
             .flatMap(Collection::stream)
             .filter(Objects::nonNull)
             .collect(Collectors.groupingBy(
-                ProposalCommitteeeSummary::getDocType,
+                ProposalCommitteeeSummary::docType,
                 Collectors.collectingAndThen(
                     Collectors.toList(),
                     docTypeProposals -> {
-                        if (!docTypeProposals.get(0).getDocType().isEmpty()) {
+                        if (!docTypeProposals.get(0).docType().isEmpty()) {
                             addDecisionRowsForDocType(
                                 sankeyChart,
-                                docTypeProposals.get(0).getDocType(),
+                                docTypeProposals.get(0).docType(),
                                 docTypeProposals
                             );
                         }
@@ -314,7 +314,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
             final List<ProposalCommitteeeSummary> proposals) {
 
         proposals.stream()
-            .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision))
+            .collect(Collectors.groupingBy(ProposalCommitteeeSummary::decision))
             .forEach((decision, decisionProposals) -> {
                 if (!decision.isEmpty()) {
                     sankeyChart.addDataRow(docType, decision, decisionProposals.size());
@@ -343,11 +343,11 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
         proposals.stream()
             .filter(Objects::nonNull)
             .collect(Collectors.groupingBy(
-                ProposalCommitteeeSummary::getDocType,
+                ProposalCommitteeeSummary::docType,
                 Collectors.collectingAndThen(
                     Collectors.toList(),
                     docProposals -> {
-                        addSummaryEntry(builder, docProposals.get(0).getDocType(), docProposals);
+                        addSummaryEntry(builder, docProposals.get(0).docType(), docProposals);
                         return docProposals;
                     }
                 )
@@ -373,7 +373,7 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
                .append(" -> ");
 
         docTypeList.stream()
-            .collect(Collectors.groupingBy(ProposalCommitteeeSummary::getDecision))
+            .collect(Collectors.groupingBy(ProposalCommitteeeSummary::decision))
             .forEach((decision, decisionProposals) ->
                 addDecisionDetails(builder, decision, decisionProposals));
 
@@ -403,11 +403,11 @@ public final class DecisionFlowChartManagerImpl implements DecisionFlowChartMana
                 .filter(Objects::nonNull)
                 .forEach(summary ->
                     builder.append("\n    ")
-                          .append(summary.getDecision())
+                          .append(summary.decision())
                           .append(':')
-                          .append(summary.getWording())
+                          .append(summary.wording())
                           .append(' ')
-                          .append(summary.getWording2())
+                          .append(summary.wording2())
                           .append(' '));
         }
     }
