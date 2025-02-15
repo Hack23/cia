@@ -217,6 +217,6 @@ open module com.hack23.cia.web {
 	requires transitive com.hack23.cia.model.external.val.landstingvalkrets.impl;
 	requires transitive com.hack23.cia.model.external.riksdagen.votering.impl;
 	requires transitive com.hack23.cia.model.external.worldbank.countries.impl;
-	requires commons.beanutils;
+	requires org.apache.commons.beanutils;
 	requires static org.eclipse.jetty.jmx;
 }
