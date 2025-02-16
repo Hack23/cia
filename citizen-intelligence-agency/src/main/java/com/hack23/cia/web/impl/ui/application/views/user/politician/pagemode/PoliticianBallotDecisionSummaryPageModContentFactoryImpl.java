@@ -72,7 +72,7 @@ public final class PoliticianBallotDecisionSummaryPageModContentFactoryImpl
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
 				PoliticianPageTitleConstants.BALLOT_SUMMARY_TITLE
-						+ PoliticianTitleFormatter.formatTitle(viewRiksdagenPolitician),
+						+ formatTitle(viewRiksdagenPolitician),
 				PoliticianPageTitleConstants.BALLOT_SUBTITLE, PoliticianPageTitleConstants.BALLOT_DESC);
 
 		final DataContainer<ViewRiksdagenCommitteeBallotDecisionPoliticianSummary, ViewRiksdagenCommitteeBallotDecisionPoliticianEmbeddedId> committeeBallotDecisionPartyDataContainer = getApplicationManager()

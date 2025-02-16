@@ -25,5 +25,21 @@ public final class UserDocumentSearchTest extends AbstractUITest {
 		pageVisit.verifyViewContent(DocumentPageTitleConstants.DOC_SEARCH_TITLE,
 				DocumentPageTitleConstants.DOC_SEARCH_HEADER, DocumentPageTitleConstants.DOC_SEARCH_DESC);
 		pageVisit.validatePage(PageCommandMainViewConstants.COMMAND_SEARCH_DOCUMENT);
+		pageVisit.searchDocument("cannabis");
 	}
+
+	/**
+	 * Verify search document many answers page.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test(timeout = DEFAULT_TIMEOUT)
+	public void verifySearchDocumentManyAnswersPage() throws Exception {
+		pageVisit.visitDirectPage(PageCommandMainViewConstants.COMMAND_SEARCH_DOCUMENT);
+		pageVisit.verifyViewContent(DocumentPageTitleConstants.DOC_SEARCH_TITLE,
+				DocumentPageTitleConstants.DOC_SEARCH_HEADER, DocumentPageTitleConstants.DOC_SEARCH_DESC);
+		pageVisit.validatePage(PageCommandMainViewConstants.COMMAND_SEARCH_DOCUMENT);
+		pageVisit.searchDocument("säkerhet");
+	}
+
 }

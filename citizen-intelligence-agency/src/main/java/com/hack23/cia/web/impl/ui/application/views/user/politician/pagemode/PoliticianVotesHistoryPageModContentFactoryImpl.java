@@ -70,7 +70,7 @@ public final class PoliticianVotesHistoryPageModContentFactoryImpl extends Abstr
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-            PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician, PoliticianPageTitleConstants.VOTES_HISTORY_TITLE),
+            formatTitle(viewRiksdagenPolitician, PoliticianPageTitleConstants.VOTES_HISTORY_TITLE),
             PoliticianPageTitleConstants.VOTES_SUBTITLE,
             PoliticianPageTitleConstants.VOTES_DESC);
 

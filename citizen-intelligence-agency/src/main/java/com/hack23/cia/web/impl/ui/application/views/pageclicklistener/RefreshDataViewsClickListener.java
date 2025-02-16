@@ -30,8 +30,10 @@ import com.vaadin.ui.Notification;
  */
 public final class RefreshDataViewsClickListener extends AbstractClickListener implements ClickListener {
 
+	public static final String REFRESH_DESC = "refresh desc";
+
 	/** The Constant REFRESH_VIEWS_STARTED. */
-	private static final String REFRESH_VIEWS_STARTED = "Refresh Views Started";
+	public static final String REFRESH_VIEWS_STARTED = "Refresh Views Started";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -52,6 +54,6 @@ public final class RefreshDataViewsClickListener extends AbstractClickListener i
 	@Override
 	public void buttonClick(final ClickEvent event) {
 		getApplicationManager().asyncService(serviceRequest);
-		showNotification(REFRESH_VIEWS_STARTED, "desc", Notification.Type.HUMANIZED_MESSAGE);
+		showNotification(REFRESH_VIEWS_STARTED, REFRESH_DESC, Notification.Type.HUMANIZED_MESSAGE);
 	}
 }

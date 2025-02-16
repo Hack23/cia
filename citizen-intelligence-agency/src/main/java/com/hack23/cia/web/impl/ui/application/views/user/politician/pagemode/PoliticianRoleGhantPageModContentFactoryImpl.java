@@ -66,7 +66,7 @@ public final class PoliticianRoleGhantPageModContentFactoryImpl extends Abstract
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician, PoliticianPageTitleConstants.ROLE_GANTT_TITLE),
+			formatTitle(viewRiksdagenPolitician, PoliticianPageTitleConstants.ROLE_GANTT_TITLE),
 			PoliticianPageTitleConstants.GANTT_SUBTITLE,
 			PoliticianPageTitleConstants.GANTT_DESC);
 

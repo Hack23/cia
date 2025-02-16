@@ -68,7 +68,7 @@ public final class GovernmentBodyExpenditurePageModContentFactoryImpl extends Ab
 				getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,governmentBodyAnnualSummary.getName());
 
 				CardInfoRowUtil.createPageHeader(panel, panelContent,
-					GovernmentBodyTitleFormatter.formatTitle(governmentBodyAnnualSummary,
+					formatTitle(governmentBodyAnnualSummary,
 						GovernmentBodyDescriptionConstants.EXPENDITURE_HEADER),
 					GovernmentBodyDescriptionConstants.EXPENDITURE_SUBTITLE,
 					GovernmentBodyDescriptionConstants.EXPENDITURE_DESC);

@@ -53,37 +53,37 @@ import com.vaadin.ui.VerticalLayout;
 public final class DataSummaryOverviewPageModContentFactoryImpl extends AbstractDataSummaryPageModContentFactoryImpl {
 
 	/** The Constant ADMIN_DATA_SUMMARY. */
-	private static final String ADMIN_DATA_SUMMARY = "Admin Data Summary";
+	public static final String ADMIN_DATA_SUMMARY = "Admin Data Summary";
 
 	/** The Constant COLUMN_ORDER. */
-	private static final String[] COLUMN_ORDER = { "dataType", "dataSize" };
+	public static final String[] COLUMN_ORDER = { "dataType", "dataSize" };
 
 	/** The Constant HIDE_COLUMNS. */
-	private static final String[] HIDE_COLUMNS = { "id" };
+	public static final String[] HIDE_COLUMNS = { "id" };
 
 	/** The Constant NAME. */
 	public static final String NAME = AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME;
 
 	/** The Constant REFRESH_ALL_VIEWS. */
-	private static final String REFRESH_ALL_VIEWS = "Refresh all views";
+	public static final String REFRESH_ALL_VIEWS = "Refresh all views";
 
 	/** The Constant REFRESH_VIEWS. */
-	private static final String REFRESH_VIEWS = "Refresh Views";
+	public static final String REFRESH_VIEWS = "Refresh Views";
 
 	/** The Constant REMOVE_APPLICATION_HISTORY. */
-	private static final String REMOVE_APPLICATION_HISTORY = "Remove Application History";
+	public static final String REMOVE_APPLICATION_HISTORY = "Remove Application History";
 
 	/** The Constant REMOVE_DOCUMENTS. */
-	private static final String REMOVE_DOCUMENTS = "Remove Documents";
+	public static final String REMOVE_DOCUMENTS = "Remove Documents";
 
 	/** The Constant REMOVE_POLITICIANS. */
-	private static final String REMOVE_POLITICIANS = "Remove Politicians";
+	public static final String REMOVE_POLITICIANS = "Remove Politicians";
 
 	/** The Constant UPDATE_DOCUMENT_SEARCH_INDEX. */
-	private static final String UPDATE_DOCUMENT_SEARCH_INDEX = "Update document search index";
+	public static final String UPDATE_DOCUMENT_SEARCH_INDEX = "Update document search index";
 
 	/** The Constant UPDATE_SEARCH_INDEX. */
-	private static final String UPDATE_SEARCH_INDEX = "Update Search Index";
+	public static final String UPDATE_SEARCH_INDEX = "Update Search Index";
 
 	/**
 	 * Instantiates a new data summary overview page mod content factory impl.

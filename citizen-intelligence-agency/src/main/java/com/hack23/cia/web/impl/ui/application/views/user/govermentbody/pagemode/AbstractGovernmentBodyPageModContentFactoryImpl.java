@@ -19,6 +19,7 @@
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -66,6 +67,40 @@ abstract class AbstractGovernmentBodyPageModContentFactoryImpl extends AbstractI
 	protected List<GovernmentBodyAnnualSummary> getItem(final String parameters) {
 		final Map<String, List<GovernmentBodyAnnualSummary>> map = esvApi.getData().get(2024).stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getOrgNumber));
 		return map.get(getPageId(parameters));
+	}
+
+    /**
+     * Format year.
+     *
+     * @param year the year
+     * @return the string
+     */
+    public static String formatYear(final int year) {
+        return String.format(Locale.ENGLISH, "%d", year);
+    }
+
+    /**
+     * Format count.
+     *
+     * @param count the count
+     * @return the string
+     */
+    public static String formatCount(final int count) {
+        return String.format(Locale.ENGLISH, "%d", count);
+    }
+
+	/**
+	 * Format title.
+	 *
+	 * @param govBody the gov body
+	 * @param pageTitle the page title
+	 * @return the string
+	 */
+	public static String formatTitle(final GovernmentBodyAnnualSummary govBody, final String pageTitle) {
+	    if (govBody == null) {
+	        return pageTitle;
+	    }
+	    return String.format(Locale.ENGLISH, "%s %s", pageTitle, govBody.getName());
 	}
 
 }

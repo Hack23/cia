@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.model.external.riksdagen.person.impl.PersonData;
@@ -72,6 +74,32 @@ abstract class AbstractPoliticianPageModContentFactoryImpl extends AbstractItemP
 		} else {
 			return null;
 		}
+	}
+
+    /**
+     * Format title.
+     *
+     * @param politician the politician
+     * @param pageTitle the page title
+     * @return the string
+     */
+    public static String formatTitle(final ViewRiksdagenPolitician politician, final String pageTitle) {
+        return String.format(Locale.ENGLISH, PoliticianPageTitleConstants.PAGE_TITLE_FORMAT,
+            politician.getFirstName(),
+            politician.getLastName(),
+            politician.getParty()) + " " + pageTitle;
+    }
+
+	/**
+	 * Format title.
+	 *
+	 * @param politician the politician
+	 * @return the string
+	 */
+	public static String formatTitle(final ViewRiksdagenPolitician politician) {
+	    return politician.getFirstName() + ' ' +
+	           politician.getLastName() + '(' +
+	           politician.getParty() + ')';
 	}
 
 

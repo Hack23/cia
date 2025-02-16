@@ -42,14 +42,4 @@ public record ProposalCommitteeeSummary(
         decision = decision.replace("=", "").replace(",", "").trim().toUpperCase(Locale.ENGLISH);
     }
 
-    /**
-     * Override toString to maintain the same format as the original class.
-     *
-     * @return the string representation
-     */
-    @Override
-    public String toString() {
-        return String.format(Locale.ENGLISH, "ProposalCommitteeeSummary [org=%s, docType=%s, decision=%s, hangarId=%s]",
-                org, docType, decision, hangarId);
-    }
 }

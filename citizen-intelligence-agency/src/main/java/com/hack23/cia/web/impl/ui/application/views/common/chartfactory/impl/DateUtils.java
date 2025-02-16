@@ -1,6 +1,5 @@
 package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -31,18 +30,6 @@ public final class DateUtils {
     public static String formatDate(final Date date) {
         final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH);
         return simpleDateFormat.format(date);
-    }
-
-    /**
-     * Parses the date.
-     *
-     * @param dateString the date string
-     * @return the date
-     * @throws ParseException the parse exception
-     */
-    public static Date parseDate(final String dateString) throws ParseException {
-        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH);
-        return simpleDateFormat.parse(dateString);
     }
 
     /**

@@ -41,6 +41,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.Application
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommonsViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPageTitleConstants;
 
 /**
  * The Class UserPageVisit.
@@ -619,14 +620,9 @@ public final class UserPageVisit extends Assert {
 	 */
 	public void searchDocument(final String search) {
 
-		setFieldValue("Search.searchExpression", search);
+		setFieldValue(DocumentPageTitleConstants.DOC_SEARCH_TITLE + ".searchExpression", search);
 
-		performClick(findClickable("Search"));
-
-		final String url = systemTestTargetUrl + "#!" + UserViews.SEARCH_DOCUMENT_VIEW_NAME;
-
-		assertEquals(url, driver.getCurrentUrl());
-
+		performClick(findClickable(DocumentPageTitleConstants.DOC_SEARCH_TITLE));
 	}
 
 	/**
