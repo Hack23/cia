@@ -2,11 +2,14 @@ package com.hack23.cia.systemintegrationtest.admin.data;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.openqa.selenium.WebElement;
 
 import com.hack23.cia.systemintegrationtest.admin.AbstractAdminTest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode.DataSummaryOverviewPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
 
 /**
  * The Class AdminDataTest.
@@ -28,6 +31,11 @@ public final class AdminDataTest extends AbstractAdminTest {
         );
         pageVisit.validatePage(PageCommandAdminConstants.COMMAND_DATASUMMARY);
 
+    	final WebElement refreshViewsButton = pageVisit.findButton(DataSummaryOverviewPageModContentFactoryImpl.REFRESH_VIEWS);
+		assertNotNull(DataSummaryOverviewPageModContentFactoryImpl.REFRESH_VIEWS,refreshViewsButton);
+
+		pageVisit.performClickAction(refreshViewsButton);
+		pageVisit.checkNotificationMessage(RefreshDataViewsClickListener.REFRESH_VIEWS_STARTED);
     }
 
 

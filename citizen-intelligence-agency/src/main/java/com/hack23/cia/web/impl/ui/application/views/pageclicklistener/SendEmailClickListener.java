@@ -35,20 +35,22 @@ import com.vaadin.ui.Notification;
  */
 public class SendEmailClickListener extends AbstractClickListener implements ClickListener {
 
+	public static final String EMAIL_DESC = "email desc";
+
 	/** The Constant EMAIL_SENT. */
-	private static final String EMAIL_SENT = "Email Sent";
+	public static final String EMAIL_SENT = "Email Sent";
 
 	/** The Constant LOG_MSG_SEND_EMAIL. */
-	private static final String LOG_MSG_SEND_EMAIL = "SendEmail {}";
+	public static final String LOG_MSG_SEND_EMAIL = "SendEmail {}";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailClickListener.class);
 
 	/** The Constant SEND_EMAIL_FAILEDFAILED. */
-	private static final String SEND_EMAIL_FAILEDFAILED = "Send email failed";
+	public static final String SEND_EMAIL_FAILEDFAILED = "Send email failed";
 
 	/** The Constant SEND_EMAIL_FAILURE. */
-	private static final String SEND_EMAIL_FAILURE = "SendEmail {} failure";
+	public static final String SEND_EMAIL_FAILURE = "SendEmail {} failure";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -71,7 +73,7 @@ public class SendEmailClickListener extends AbstractClickListener implements Cli
 		final ServiceResponse response = getApplicationManager().service(sendEmailRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG_SEND_EMAIL,sendEmailRequest.getEmail());
-			showNotification(EMAIL_SENT, "desc", Notification.Type.HUMANIZED_MESSAGE);
+			showNotification(EMAIL_SENT, EMAIL_DESC, Notification.Type.HUMANIZED_MESSAGE);
 		} else {
 			showNotification(SEND_EMAIL_FAILEDFAILED,
 	                  response.getErrorMessage(),

@@ -35,20 +35,22 @@ import com.vaadin.ui.Notification;
  */
 public class ManageUserAccountClickListener extends AbstractClickListener implements ClickListener {
 
+	public static final String MANAGE_USER_ACCOUNT_DESC = "manage user account desc";
+
 	/** The Constant LOG_MSG_SEND_EMAIL. */
-	private static final String LOG_MSG = "Operation {}";
+	public static final String LOG_MSG = "Operation {}";
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ManageUserAccountClickListener.class);
 
 	/** The Constant EMAIL_SENT. */
-	private static final String OPERATION_COMPLETED = "Operation completed";
+	public static final String OPERATION_COMPLETED = "Operation completed";
 
 	/** The Constant SEND_EMAIL_FAILEDFAILED. */
-	private static final String OPERATION_FAILED = "Operation failed";
+	public static final String OPERATION_FAILED = "Operation failed";
 
 	/** The Constant SEND_EMAIL_FAILURE. */
-	private static final String OPERATION_FAILURE = "Operation {} failure";
+	public static final String OPERATION_FAILURE = "Operation {} failure";
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -71,7 +73,7 @@ public class ManageUserAccountClickListener extends AbstractClickListener implem
 		final ServiceResponse response = getApplicationManager().service(manageUserAccountRequest);
 		if (ServiceResult.SUCCESS == response.getResult()) {
 			LOGGER.info(LOG_MSG,manageUserAccountRequest.getUserAcountId());
-			showNotification(OPERATION_COMPLETED, "desc", Notification.Type.HUMANIZED_MESSAGE);
+			showNotification(OPERATION_COMPLETED, MANAGE_USER_ACCOUNT_DESC, Notification.Type.HUMANIZED_MESSAGE);
 		} else {
 			showNotification(OPERATION_FAILED,
 	                  response.getErrorMessage(),
