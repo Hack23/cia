@@ -63,7 +63,7 @@ public final class PoliticianDocumentActivityPageModContentFactoryImpl
 		getPoliticianMenuItemFactory().createPoliticianMenuBar(menuBar, pageId);
 
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-            PoliticianPageTitleFormatter.formatTitle(viewRiksdagenPolitician,
+            formatTitle(viewRiksdagenPolitician,
                 PoliticianPageTitleConstants.DOCUMENT_ACTIVITY_TITLE),
             PoliticianPageTitleConstants.ACTIVITY_SUBTITLE,
             PoliticianPageTitleConstants.DOC_ACTIVITY_DESC);

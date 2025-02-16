@@ -84,7 +84,7 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 */
 	private void createPageHeader(final Panel panel, final VerticalLayout panelContent, final GovernmentBodyAnnualSummary govBody) {
 		CardInfoRowUtil.createPageHeader(panel, panelContent,
-			GovernmentBodyTitleFormatter.formatTitle(govBody, GovernmentBodyDescriptionConstants.OVERVIEW_HEADER),
+			formatTitle(govBody, GovernmentBodyDescriptionConstants.OVERVIEW_HEADER),
 			GovernmentBodyDescriptionConstants.OVERVIEW_SUBTITLE,
 			GovernmentBodyDescriptionConstants.OVERVIEW_DESC);
 	}
@@ -239,15 +239,15 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	private void addStatsDetails(final VerticalLayout statsLayout, final GovernmentBodyAnnualSummary govBody) {
         statsLayout.addComponents(
             createStatsInfoRow(GovernmentBodyHeaderConstants.YEAR_FIELD,
-                GovernmentBodyFieldValueFormatter.formatYear(govBody.getYear()),
+                formatYear(govBody.getYear()),
                 GovernmentBodyIconConstants.CALENDAR_ICON,
                 GovernmentBodyHeaderConstants.YEAR_DESC),
             createStatsInfoRow(GovernmentBodyHeaderConstants.HEAD_COUNT_FIELD,
-                GovernmentBodyFieldValueFormatter.formatCount(govBody.getHeadCount()),
+                formatCount(govBody.getHeadCount()),
                 GovernmentBodyIconConstants.GROUP_ICON,
                 GovernmentBodyHeaderConstants.HEAD_COUNT_DESC),
             createStatsInfoRow(GovernmentBodyHeaderConstants.ANNUAL_HEADCOUNT_FIELD,
-                GovernmentBodyFieldValueFormatter.formatCount(govBody.getAnnualWorkHeadCount()),
+                formatCount(govBody.getAnnualWorkHeadCount()),
                 GovernmentBodyIconConstants.USER_CHECK_ICON,
                 GovernmentBodyHeaderConstants.ANNUAL_HEAD_DESC)
         );
