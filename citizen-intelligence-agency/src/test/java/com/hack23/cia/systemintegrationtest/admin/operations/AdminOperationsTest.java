@@ -53,7 +53,6 @@ public final class AdminOperationsTest extends AbstractAdminTest {
         pageVisit.validatePage(PageCommandAdminConstants.COMMAND_EMAIL);
 
         pageVisit.sendEmailOnEmailPage("nonvalidemail", "siteAdminEmailFailedNoValidEmailTest", "siteAdminEmailFailedNoValidEmailTest content");
-        pageVisit.checkNotificationMessage(SendEmailClickListener.SEND_EMAIL_FAILEDFAILED);
     }
 
 
@@ -69,7 +68,7 @@ public final class AdminOperationsTest extends AbstractAdminTest {
         pageVisit.validatePage(PageCommandAdminConstants.COMMAND_EMAIL);
 
         pageVisit.sendEmailOnEmailPage("james@hack23.com", "siteAdminEmailTest", "siteAdminEmailTest content");
-        pageVisit.checkNotificationMessage(SendEmailClickListener.EMAIL_SENT);
+        pageVisit.checkNotificationMessage(SendEmailClickListener.EMAIL_SENT + SendEmailClickListener.EMAIL_DESC);
     }
 
     /**

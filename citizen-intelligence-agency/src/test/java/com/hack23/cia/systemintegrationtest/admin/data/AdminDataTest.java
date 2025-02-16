@@ -35,7 +35,7 @@ public final class AdminDataTest extends AbstractAdminTest {
 		assertNotNull(DataSummaryOverviewPageModContentFactoryImpl.REFRESH_VIEWS,refreshViewsButton);
 
 		pageVisit.performClickAction(refreshViewsButton);
-		pageVisit.checkNotificationMessage(RefreshDataViewsClickListener.REFRESH_VIEWS_STARTED);
+		pageVisit.checkNotificationMessage(RefreshDataViewsClickListener.REFRESH_VIEWS_STARTED + RefreshDataViewsClickListener.REFRESH_DESC);
     }
 
 
