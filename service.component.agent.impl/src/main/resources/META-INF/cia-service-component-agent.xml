@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.3.2.xsd
+		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
 		http://www.springframework.org/schema/jms  http://www.springframework.org/schema/jms/spring-jms.xsd">
 
 	<context:component-scan base-package="com.hack23.cia.service.component.agent.impl" />
@@ -274,5 +274,3 @@
 	</bean>
 
 </beans>
-
-
