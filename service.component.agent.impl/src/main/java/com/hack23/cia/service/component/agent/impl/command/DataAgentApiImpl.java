@@ -45,12 +45,12 @@ final class DataAgentApiImpl implements DataAgentApi {
 
 	/** The riksdagen api destination. */
 	@Autowired
-	@Qualifier("riksdagenApiAgentWorkQueue")
+	@Qualifier("RiksdagenApiAgentWorkQueue")
 	private Destination riksdagenApiDestination;
 
 	/** The world bank api destination. */
 	@Autowired
-	@Qualifier("worldbankApiAgentWorkQueue")
+	@Qualifier("WorldbankApiAgentWorkQueue")
 	private Destination worldBankApiDestination;
 
 	/**
