@@ -6,7 +6,6 @@
 
 		<persistence-enabled>true</persistence-enabled>
 
-
 		<acceptors>
 			<acceptor name="in-vm">vm://0</acceptor>
 		</acceptors>
@@ -53,14 +52,6 @@
 				</anycast>
 			</address>
 		</addresses>
-
-		<transaction>
-			<jta-enabled>true</jta-enabled>
-		</transaction>
-
-		<shutdown>
-			<timeout>60</timeout>
-		</shutdown>
 
 	</core>
 
