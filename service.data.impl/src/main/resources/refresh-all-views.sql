@@ -25,6 +25,7 @@ REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_org_summary;
 REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_summary;
 REFRESH MATERIALIZED VIEW view_riksdagen_party_document_daily_summary;
 REFRESH MATERIALIZED VIEW view_riksdagen_politician_document_daily_summary;
+REFRESH MATERIALIZED VIEW view_riksdagen_politician_document_summary;
 
 #Analyse views
 COPY (
