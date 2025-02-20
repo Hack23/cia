@@ -88,6 +88,8 @@ final class ViewDataManagerImpl implements ViewDataManager {
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_party_document_daily_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document_daily_summary");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document_summary");
+		
 	}
 
 }
