@@ -26,6 +26,7 @@ import com.hack23.cia.model.internal.application.data.impl.DataAgentTarget;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -97,6 +98,11 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
 		return content;
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+		return PageCommandAdminConstants.COMMAND_AGENT_OPERATION.matches(page, parameters);
 	}
 
 }

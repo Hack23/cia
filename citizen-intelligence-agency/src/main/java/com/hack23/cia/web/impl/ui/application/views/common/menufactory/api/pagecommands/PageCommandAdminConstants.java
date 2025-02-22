@@ -26,7 +26,7 @@ public interface PageCommandAdminConstants extends MenuItemConstants {
 
        /** The Constant COMMAND_APPLICATION_EVENTS. */
        PageModeMenuCommand COMMAND_APPLICATION_EVENTS = new PageModeMenuCommand(
-                     AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, "");
+                     AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.OVERVIEW);
 
        /** The Constant COMMAND_APPLICATION_EVENTS_CHARTS. */
        PageModeMenuCommand COMMAND_APPLICATION_EVENTS_CHARTS = new PageModeMenuCommand(
@@ -34,7 +34,7 @@ public interface PageCommandAdminConstants extends MenuItemConstants {
 
        /** The Constant COMMAND_APPLICATION_SESSION. */
        PageModeMenuCommand COMMAND_APPLICATION_SESSION = new PageModeMenuCommand(
-                     AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, "");
+                     AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.OVERVIEW);
 
        /** The Constant COMMAND_APPLICATION_SESSION_CHARTS. */
        PageModeMenuCommand COMMAND_APPLICATION_SESSION_CHARTS = new PageModeMenuCommand(
@@ -49,7 +49,7 @@ public interface PageCommandAdminConstants extends MenuItemConstants {
 
        /** The Constant COMMAND_DATASUMMARY. */
        PageModeMenuCommand COMMAND_DATASUMMARY = new PageModeMenuCommand(
-                     AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, "");
+                     AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, PageMode.OVERVIEW);
 
        /** The Constant COMMAND_EMAIL. */
        PageModeMenuCommand COMMAND_EMAIL = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,
