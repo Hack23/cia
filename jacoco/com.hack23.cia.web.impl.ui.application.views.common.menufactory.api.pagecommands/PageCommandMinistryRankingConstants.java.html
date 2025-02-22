@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageCommandMinistryRankingConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands</a> &gt; <span class="el_source">PageCommandMinistryRankingConstants.java</span></div><h1>PageCommandMinistryRankingConstants.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands;
+
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+
+/**
+ * The Interface PageCommandMinistryRankingConstants.
+ */
+public interface PageCommandMinistryRankingConstants {
+
+    /** The ministry ranking command pagevisit history. */
+<span class="fc" id="L15">    PageModeMenuCommand MINISTRY_RANKING_COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(</span>
+            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+    /** The command ministry ranking overview. */
+<span class="fc" id="L19">    PageModeMenuCommand COMMAND_MINISTRY_RANKING_OVERVIEW = new PageModeMenuCommand(</span>
+        UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The command ministry ranking datagrid. */
+<span class="fc" id="L23">    PageModeMenuCommand COMMAND_MINISTRY_RANKING_DATAGRID = new PageModeMenuCommand(</span>
+        UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+    /** The command ministry ranking charts. */
+<span class="fc" id="L27">    PageModeMenuCommand COMMAND_MINISTRY_RANKING_CHARTS = new PageModeMenuCommand(</span>
+        UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS);
+
+    /** The command charts all ministries by headcount. */
+<span class="fc" id="L31">    PageModeMenuCommand COMMAND_CHARTS_ALL_MINISTRIES_BY_HEADCOUNT = new PageModeMenuCommand(</span>
+<span class="fc" id="L32">            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLMINISTRIESBYHEADCOUNT.toString());</span>
+
+    /** The command role charts. */
+<span class="fc" id="L35">    PageModeMenuCommand COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT = new PageModeMenuCommand(</span>
+<span class="fc" id="L36">            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALL_GOVERNMENT_ROLE_CHART.toString());</span>
+
+    /** The command government outcome. */
+<span class="fc" id="L39">    PageModeMenuCommand COMMAND_GOVERNMENT_OUTCOME = new PageModeMenuCommand(</span>
+<span class="fc" id="L40">            UserViews.MINISTRY_RANKING_VIEW_NAME, MinistryPageMode.GOVERNMENT_OUTCOME.toString());</span>
+
+    /** The command government bodies income. */
+<span class="fc" id="L43">    PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_INCOME = new PageModeMenuCommand(</span>
+<span class="fc" id="L44">            UserViews.MINISTRY_RANKING_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString());</span>
+
+    /** The command government bodies expenditure. */
+<span class="fc" id="L47">    PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_EXPENDITURE = new PageModeMenuCommand(</span>
+<span class="fc" id="L48">            UserViews.MINISTRY_RANKING_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString());</span>
+
+    /** The command government bodies headcount. */
+<span class="fc" id="L51">    PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_HEADCOUNT = new PageModeMenuCommand(</span>
+<span class="fc" id="L52">            UserViews.MINISTRY_RANKING_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());</span>
+
+    /** The command charts current parties by headcount. */
+<span class="fc" id="L55">    PageModeMenuCommand COMMAND_CHARTS_CURRENT_PARTIES_BY_HEADCOUNT = new PageModeMenuCommand(</span>
+<span class="fc" id="L56">            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTIESBYHEADCOUNT.toString());</span>
+
+    /** The command charts current ministries leader scoreboard. */
+<span class="fc" id="L59">    PageModeMenuCommand COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD = new PageModeMenuCommand(</span>
+<span class="fc" id="L60">            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTMINISTRIESLEADERSCORECARD.toString());</span>
+
+    /** The command charts current ministries by headcount. */
+<span class="fc" id="L63">    PageModeMenuCommand COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT = new PageModeMenuCommand(</span>
+<span class="fc" id="L64">            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTMINISTRIESBYHEADCOUNT.toString());</span>
+
+    /** The command charts all parties by headcount. */
+<span class="fc" id="L67">    PageModeMenuCommand COMMAND_CHARTS_ALL_PARTIES_BY_HEADCOUNT = new PageModeMenuCommand(</span>
+<span class="fc" id="L68">            UserViews.MINISTRY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLPARTIESBYHEADCOUNT.toString());</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

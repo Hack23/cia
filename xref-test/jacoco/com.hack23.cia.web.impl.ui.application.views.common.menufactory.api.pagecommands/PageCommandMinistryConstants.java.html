@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageCommandMinistryConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands</a> &gt; <span class="el_source">PageCommandMinistryConstants.java</span></div><h1>PageCommandMinistryConstants.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands;
+
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.MinistryPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+
+/**
+ * The Interface PageCommandMinistryConstants.
+ */
+public interface PageCommandMinistryConstants {
+
+	/** The ministry command pagevisithistory. */
+<span class="fc" id="L14">	PageModeMenuCommand MINISTRY_COMMAND_PAGEVISITHISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME,</span>
+			PageMode.PAGEVISITHISTORY);
+
+	/** The command ministry overview. */
+<span class="fc" id="L18">	PageModeMenuCommand COMMAND_MINISTRY_OVERVIEW = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.OVERVIEW);</span>
+
+	/** The command ministry current members. */
+<span class="fc" id="L21">	PageModeMenuCommand COMMAND_MINISTRY_CURRENT_MEMBERS = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.CURRENTMEMBERS.toString());</span>
+
+	/** The command ministry member history. */
+<span class="fc" id="L24">	PageModeMenuCommand COMMAND_MINISTRY_MEMBER_HISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.MEMBERHISTORY.toString());</span>
+
+	/** The command ministry role ghant. */
+<span class="fc" id="L27">	PageModeMenuCommand COMMAND_MINISTRY_ROLE_GHANT = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.ROLEGHANT.toString());</span>
+
+	/** The command ministry government bodies headcount. */
+<span class="fc" id="L30">	PageModeMenuCommand COMMAND_MINISTRY_GOVERNMENT_BODIES_HEADCOUNT = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_HEADCOUNT.toString());</span>
+
+	/** The command ministry government bodies income. */
+<span class="fc" id="L33">	PageModeMenuCommand COMMAND_MINISTRY_GOVERNMENT_BODIES_INCOME = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_INCOME.toString());</span>
+
+	/** The command ministry government bodies expenditure. */
+<span class="fc" id="L36">	PageModeMenuCommand COMMAND_MINISTRY_GOVERNMENT_BODIES_EXPENDITURE = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.GOVERNMENT_BODIES_EXPENDITURE.toString());</span>
+
+	/** The command ministry document activity. */
+<span class="fc" id="L39">	PageModeMenuCommand COMMAND_MINISTRY_DOCUMENT_ACTIVITY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.DOCUMENTACTIVITY.toString());</span>
+
+	/** The command ministry document history. */
+<span class="fc" id="L42">	PageModeMenuCommand COMMAND_MINISTRY_DOCUMENT_HISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, MinistryPageMode.DOCUMENTHISTORY.toString());</span>
+
+	/** The command ministry page visit history. */
+<span class="fc" id="L45">	PageModeMenuCommand COMMAND_MINISTRY_PAGEVISIT_HISTORY = new PageModeMenuCommand(UserViews.MINISTRY_VIEW_NAME, PageMode.PAGEVISITHISTORY.toString());</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

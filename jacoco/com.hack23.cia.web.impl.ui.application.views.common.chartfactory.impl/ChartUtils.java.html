@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChartUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">ChartUtils.java</span></div><h1>ChartUtils.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.util.Optional;
+
+import org.dussan.vaadin.dcharts.DCharts;
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.server.Page;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.ui.AbstractOrderedLayout;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Panel;
+
+/**
+ * The Class ChartUtils.
+ */
+public final class ChartUtils {
+
+    /** The Constant CHART_BOTTOM_MARGIN_SIZE. */
+    private static final int CHART_BOTTOM_MARGIN_SIZE = 2;
+
+    /** The Constant CHART_LEFT_MARGIN. */
+    private static final int CHART_LEFT_MARGIN = 2;
+
+    /**  The Constant CHART_RIGHT_MARGIN = 2;. */
+    private static final int CHART_RIGHT_MARGIN = 2;
+
+    /** The Constant CHART_TOP_MARGIN_SIZE. */
+    private static final int CHART_TOP_MARGIN_SIZE = 2;
+
+    /** The Constant CHART_WIDTH_REDUCTION. */
+    private static final int CHART_WIDTH_REDUCTION = 50;
+
+    /** The Constant HEIGHT_PERCENTAGE_FULL_PAGE. */
+    private static final double HEIGHT_PERCENTAGE_FULL_PAGE = 0.8;
+
+    /** The Constant HEIGHT_PERCETAGE_HALF_PAGE. */
+    private static final double HEIGHT_PERCETAGE_HALF_PAGE = 0.5;
+
+    /** The Constant MINIMUM_CHART_HEIGHT_FULL_PAGE. */
+    private static final int MINIMUM_CHART_HEIGHT_FULL_PAGE = 400;
+
+    /** The Constant MINIMUM_CHART_WIDTH. */
+    private static final int MINIMUM_CHART_WIDTH = 600;
+
+    /** The Constant NINIMUM_CHART_HEIGHT_HALF_PAGE. */
+    private static final int NINIMUM_CHART_HEIGHT_HALF_PAGE = 200;
+
+    /**
+     * Instantiates a new chart utils.
+     */
+    private ChartUtils() {
+        // Utility class
+    }
+
+    /**
+     * Gets the chart window height.
+     *
+     * @param isFullPage the is full page
+     * @return the chart window height
+     */
+    public static int getChartWindowHeight(final boolean isFullPage) {
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (isFullPage) {</span>
+<span class="fc" id="L67">            return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCENTAGE_FULL_PAGE), MINIMUM_CHART_HEIGHT_FULL_PAGE);</span>
+        } else {
+<span class="fc" id="L69">            return Math.max((int) (Page.getCurrent().getBrowserWindowHeight() * HEIGHT_PERCETAGE_HALF_PAGE), NINIMUM_CHART_HEIGHT_HALF_PAGE);</span>
+        }
+    }
+
+    /**
+     * Gets the chart window width.
+     *
+     * @return the chart window width
+     */
+    public static int getChartWindowWidth() {
+<span class="fc" id="L79">        return Math.max(Page.getCurrent().getBrowserWindowWidth() - CHART_WIDTH_REDUCTION, MINIMUM_CHART_WIDTH);</span>
+    }
+
+    /**
+     * Adds the chart.
+     *
+     * @param layout the layout
+     * @param caption the caption
+     * @param chart the chart
+     * @param isFullPage the is full page
+     */
+    public static void addChart(final AbstractOrderedLayout layout, final String caption, final DCharts chart, final boolean isFullPage) {
+<span class="fc" id="L91">        final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+
+<span class="fc" id="L93">        final int browserWindowWidth = getChartWindowWidth();</span>
+<span class="fc" id="L94">        final int browserWindowHeight = getChartWindowHeight(isFullPage);</span>
+
+<span class="fc" id="L96">        horizontalLayout.setWidth(browserWindowWidth, Unit.PIXELS);</span>
+<span class="fc" id="L97">        horizontalLayout.setHeight(browserWindowHeight, Unit.PIXELS);</span>
+<span class="fc" id="L98">        horizontalLayout.setMargin(true);</span>
+<span class="fc" id="L99">        horizontalLayout.setSpacing(false);</span>
+<span class="fc" id="L100">        horizontalLayout.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
+
+<span class="fc" id="L102">        final Panel formPanel = new Panel();</span>
+<span class="fc" id="L103">        formPanel.setSizeFull();</span>
+<span class="fc" id="L104">        formPanel.setContent(horizontalLayout);</span>
+<span class="fc" id="L105">        formPanel.setCaption(caption);</span>
+
+<span class="fc" id="L107">        layout.addComponent(formPanel);</span>
+<span class="fc" id="L108">        layout.setExpandRatio(formPanel, ContentRatio.LARGE);</span>
+
+<span class="fc" id="L110">        chart.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L111">        chart.setHeight(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L112">        chart.setMarginRight(CHART_RIGHT_MARGIN);</span>
+<span class="fc" id="L113">        chart.setMarginLeft(CHART_LEFT_MARGIN);</span>
+<span class="fc" id="L114">        chart.setMarginBottom(CHART_BOTTOM_MARGIN_SIZE);</span>
+<span class="fc" id="L115">        chart.setMarginTop(CHART_TOP_MARGIN_SIZE);</span>
+
+<span class="fc" id="L117">        horizontalLayout.addComponent(chart);</span>
+<span class="fc" id="L118">        chart.setCaption(caption);</span>
+<span class="fc" id="L119">    }</span>
+
+    /**
+     * Gets the party name.
+     *
+     * @param applicationManager the application manager
+     * @param partySummary the party summary
+     * @return the party name
+     */
+    public static String getPartyName(final ApplicationManager applicationManager, final String partySummary) {
+<span class="fc" id="L129">        final DataContainer&lt;ViewRiksdagenParty, String&gt; partyDataContainer = applicationManager.getDataContainer(ViewRiksdagenParty.class);</span>
+<span class="fc" id="L130">        final ViewRiksdagenParty party = partyDataContainer.load(partySummary);</span>
+<span class="fc" id="L131">        return Optional.ofNullable(party).map(ViewRiksdagenParty::getPartyName).orElse(null);</span>
+    }
+
+    /**
+     * Gets the role color.
+     *
+     * @param roleCode the role code
+     * @param role1 the role 1
+     * @param role2 the role 2
+     * @return the role color
+     */
+    public static String getRoleColor(final String roleCode, final String role1, final String role2) {
+<span class="fc bfc" id="L143" title="All 2 branches covered.">        if (roleCode.equalsIgnoreCase(role1)) {</span>
+<span class="fc" id="L144">            return &quot;red&quot;;</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        } else if (roleCode.equalsIgnoreCase(role2)) {</span>
+<span class="fc" id="L146">            return &quot;blue&quot;;</span>
+        } else {
+<span class="fc" id="L148">            return &quot;green&quot;;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

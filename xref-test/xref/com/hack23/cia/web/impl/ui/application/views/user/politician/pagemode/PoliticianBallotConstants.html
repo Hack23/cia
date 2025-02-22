@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>PoliticianBallotConstants xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../../../../../../apidocs/com/hack23/cia/web/impl/ui/application/views/user/politician/pagemode/PoliticianBallotConstants.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> * The Interface PoliticianBallotConstants.</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">interface</strong> <a name="PoliticianBallotConstants" href="../../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/user/politician/pagemode/PoliticianBallotConstants.html#PoliticianBallotConstants">PoliticianBallotConstants</a> {
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>       <em class="jxr_javadoccomment">/** The ballot id. */</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>       String BALLOT_ID = <span class="jxr_string">"ballotId"</span>;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>      <em class="jxr_javadoccomment">/** The column order. */</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>      String[] COLUMN_ORDER = { <span class="jxr_string">"voteDate"</span>, <span class="jxr_string">"rm"</span>, <span class="jxr_string">"org"</span>, <span class="jxr_string">"committeeReport"</span>, <span class="jxr_string">"title"</span>,
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>              <span class="jxr_string">"subTitle"</span>, <span class="jxr_string">"winner"</span>, <span class="jxr_string">"embeddedId.concern"</span>, <span class="jxr_string">"embeddedId.issue"</span>, <span class="jxr_string">"vote"</span>, <span class="jxr_string">"won"</span>, <span class="jxr_string">"rebel"</span>, <span class="jxr_string">"noWinner"</span>,
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>              <span class="jxr_string">"approved"</span>, <span class="jxr_string">"partyApproved"</span>, <span class="jxr_string">"againstProposalNumber"</span>, <span class="jxr_string">"againstProposalParties"</span>, <span class="jxr_string">"totalVotes"</span>,
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>              <span class="jxr_string">"partyTotalVotes"</span>, <span class="jxr_string">"yesVotes"</span>, <span class="jxr_string">"partyYesVotes"</span>, <span class="jxr_string">"noVotes"</span>, <span class="jxr_string">"partyNoVotes"</span>, <span class="jxr_string">"partyAbstainVotes"</span>,
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>              <span class="jxr_string">"abstainVotes"</span>, <span class="jxr_string">"partyAbsentVotes"</span>, <span class="jxr_string">"absentVotes"</span>, <span class="jxr_string">"bornYear"</span>, <span class="jxr_string">"partyAvgBornYear"</span>, <span class="jxr_string">"avgBornYear"</span>,
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>              <span class="jxr_string">"ballotType"</span>, <span class="jxr_string">"decisionType"</span>, <span class="jxr_string">"ballotId"</span> };
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>      <em class="jxr_javadoccomment">/** The hide columns. */</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>      String[] HIDE_COLUMNS = { <span class="jxr_string">"label"</span>, <span class="jxr_string">"endNumber"</span>, <span class="jxr_string">"publicDate"</span>, <span class="jxr_string">"createdDate"</span>,
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>              <span class="jxr_string">"embeddedId"</span>, <span class="jxr_string">"partyNoWinner"</span>, <span class="jxr_string">"partyPercentageYes"</span>, <span class="jxr_string">"partyPercentageNo"</span>, <span class="jxr_string">"partyPercentageAbsent"</span>,
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>              <span class="jxr_string">"partyPercentageAbstain"</span>, <span class="jxr_string">"percentageYes"</span>, <span class="jxr_string">"percentageNo"</span>, <span class="jxr_string">"percentageAbsent"</span>, <span class="jxr_string">"percentageAbstain"</span>,
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>              <span class="jxr_string">"firstName"</span>, <span class="jxr_string">"lastName"</span>, <span class="jxr_string">"party"</span>, <span class="jxr_string">"ballotId"</span>, <span class="jxr_string">"decisionType"</span>, <span class="jxr_string">"ballotType"</span>, <span class="jxr_string">"againstProposalNumber"</span> };
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>      <em class="jxr_javadoccomment">/** The nested properties. */</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>      String[] NESTED_PROPERTIES = { <span class="jxr_string">"embeddedId.concern"</span>, <span class="jxr_string">"embeddedId.issue"</span> };
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <em class="jxr_javadoccomment">/** The committee ballot decision summary. */</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      String COMMITTEE_BALLOT_DECISION_SUMMARY = <span class="jxr_string">"Committee Ballot Decision Summary"</span>;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>      <em class="jxr_javadoccomment">/** Analytical ballot tracking metrics. */</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>      String BALLOT_HEADER = <span class="jxr_string">"Legislative Decision Analytics"</span>;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <em class="jxr_javadoccomment">/** The ballot summary. */</em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      String BALLOT_SUMMARY = <span class="jxr_string">"Voting Pattern Distribution"</span>;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      <em class="jxr_javadoccomment">/** The ballot decision metrics. */</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>      String BALLOT_DECISION_METRICS = <span class="jxr_string">"Decision Outcome Analysis"</span>;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      <em class="jxr_javadoccomment">/** The vote distribution. */</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>      String VOTE_DISTRIBUTION = <span class="jxr_string">"Vote Distribution Analytics"</span>;
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <em class="jxr_javadoccomment">/** The coalition alignment. */</em>
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>      String COALITION_ALIGNMENT = <span class="jxr_string">"Coalition Alignment Metrics"</span>;
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>      <em class="jxr_javadoccomment">/** The party cohesion. */</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>      String PARTY_COHESION = <span class="jxr_string">"Party Cohesion Analysis"</span>;
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      <em class="jxr_javadoccomment">/** The participation metrics. */</em>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>      <em class="jxr_comment">// Grid analytics labels</em>
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      String PARTICIPATION_METRICS = <span class="jxr_string">"Participation Distribution Analysis"</span>;
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>      <em class="jxr_javadoccomment">/** The voting pattern metrics. */</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>      String VOTING_PATTERN_METRICS = <span class="jxr_string">"Voting Behavior Analytics"</span>;
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>      <em class="jxr_javadoccomment">/** The decision impact metrics. */</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>      String DECISION_IMPACT_METRICS = <span class="jxr_string">"Legislative Impact Assessment"</span>;
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  }
+</pre>
+<hr/>
+<div id="footer">© 2008–2025 <a href="http://www.hack23.com">www.hack23.com</a></div>
+</body>
+</html>

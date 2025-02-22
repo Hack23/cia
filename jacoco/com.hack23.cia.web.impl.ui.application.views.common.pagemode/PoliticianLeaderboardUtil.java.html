@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianLeaderboardUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagemode</a> &gt; <span class="el_source">PoliticianLeaderboardUtil.java</span></div><h1>PoliticianLeaderboardUtil.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
+
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class PoliticianLeaderboardUtil.
+ */
+@Service
+public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
+
+	/** The page link factory. */
+	@Autowired
+	public PageLinkFactory pageLinkFactory;
+
+	/**
+	 * Instantiates a new politician leaderboard util.
+	 */
+<span class="fc" id="L35">	public PoliticianLeaderboardUtil() {</span>
+<span class="fc" id="L36">	}</span>
+
+	/**
+	 * Adds the political analysis comment.
+	 *
+	 * @param layout the layout
+	 * @param experienceSummary the experience summary
+	 */
+	public final void addPoliticalAnalysisComment(final VerticalLayout layout,
+			final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+		// Split the analysis points and create a bullet list
+<span class="fc" id="L47">		final String[] analysisPoints = experienceSummary.getPoliticalAnalysisComment().split(&quot;\\s*\\|\\|\\s*&quot;);</span>
+<span class="fc" id="L48">		final StringBuilder analys=new StringBuilder();</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">		for (final String point : analysisPoints) {</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">		    if (StringUtils.isNotBlank(point)) {</span>
+<span class="fc" id="L51">		    	analys.append(&quot; • &quot;).append(point);</span>
+		    }
+		   }
+
+		// Political Analysis Comment
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">		if (StringUtils.isNotBlank(experienceSummary.getPoliticalAnalysisComment())) {</span>
+<span class="fc" id="L57">		    layout.addComponent(createInfoRow(&quot;Analysis:&quot;,</span>
+<span class="fc" id="L58">		    		analys.toString(),</span>
+		        VaadinIcons.COMMENT,
+		        &quot;Political career analysis&quot;));
+		}
+<span class="fc" id="L62">	}</span>
+
+	/**
+	 * Adds the knowledge areas.
+	 *
+	 * @param layout the layout
+	 * @param experienceSummary the experience summary
+	 */
+	public final void addKnowledgeAreas(final VerticalLayout layout, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+<span class="pc bpc" id="L71" title="2 of 4 branches missed.">		if (experienceSummary.getKnowledgeAreas() != null &amp;&amp; !experienceSummary.getKnowledgeAreas().isEmpty()) {</span>
+<span class="fc" id="L72">		    final String topAreas = buildTopString(</span>
+<span class="fc" id="L73">		        experienceSummary.getKnowledgeAreas(),</span>
+<span class="fc" id="L74">		        ka -&gt; ka.getArea(),</span>
+<span class="fc" id="L75">		        ka -&gt; ka.getWeightedExp()</span>
+		    );
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">		    if (!topAreas.isEmpty()) {</span>
+<span class="fc" id="L78">		        layout.addComponent(createInfoRow(&quot;Top Knowledge Areas:&quot;, topAreas, VaadinIcons.BOOK, &quot;Key expertise&quot;));</span>
+		    }
+		}
+<span class="fc" id="L81">	}</span>
+
+	/**
+	 * Adds the top roles.
+	 *
+	 * @param layout the layout
+	 * @param experienceSummary the experience summary
+	 */
+	public final void addTopRoles(final VerticalLayout layout, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+<span class="pc bpc" id="L90" title="2 of 4 branches missed.">		if (experienceSummary.getRoles() != null &amp;&amp; !experienceSummary.getRoles().isEmpty()) {</span>
+<span class="fc" id="L91">		    final String topRoles = buildTopString(</span>
+<span class="fc" id="L92">		        experienceSummary.getRoles(),</span>
+<span class="fc" id="L93">		        role -&gt; role.getRole(),</span>
+<span class="fc" id="L94">		        role -&gt; role.getWeightedExp()</span>
+		    );
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">		    if (!topRoles.isEmpty()) {</span>
+<span class="fc" id="L97">		        layout.addComponent(createInfoRow(&quot;Top Roles:&quot;, topRoles, VaadinIcons.STAR, &quot;Most significant roles&quot;)); // Changed from CROWN to STAR</span>
+		    }
+		}
+<span class="fc" id="L100">	}</span>
+
+	/**
+	 * Adds the experience metrics.
+	 *
+	 * @param layout the layout
+	 * @param experienceSummary the experience summary
+	 */
+	public final void addExperienceMetrics(final VerticalLayout layout, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+<span class="pc bpc" id="L109" title="1 of 2 branches missed.">	    if (experienceSummary != null) {</span>
+	        // Career Overview
+<span class="fc" id="L111">	        layout.addComponent(createInfoRow(&quot;Career Phase:&quot;,</span>
+<span class="fc" id="L112">	            experienceSummary.getCareerPhase().toString().replace(&quot;_&quot;, &quot; &quot;),</span>
+	            VaadinIcons.CALENDAR_CLOCK,
+	            &quot;Current career stage&quot;));
+
+	        // Experience Level
+<span class="fc" id="L117">	        layout.addComponent(createInfoRow(&quot;Experience Level:&quot;,</span>
+<span class="fc" id="L118">	            experienceSummary.getExperienceLevel().toString().replace(&quot;_&quot;, &quot; &quot;),</span>
+	            VaadinIcons.CHART_TIMELINE,
+	            &quot;Overall political experience classification&quot;));
+
+	        // Leadership Profile
+<span class="fc" id="L123">	        layout.addComponent(createInfoRow(&quot;Leadership Role:&quot;,</span>
+<span class="fc" id="L124">	            experienceSummary.getLeadershipProfile().toString().replace(&quot;_&quot;, &quot; &quot;),</span>
+	            VaadinIcons.USER_STAR,
+	            &quot;Leadership experience level&quot;));
+
+	        // Specialization
+<span class="fc" id="L129">	        layout.addComponent(createInfoRow(&quot;Expertise:&quot;,</span>
+<span class="fc" id="L130">	            experienceSummary.getSpecializationLevel().toString().replace(&quot;_&quot;, &quot; &quot;),</span>
+	            VaadinIcons.SPECIALIST,
+	            &quot;Area of specialization&quot;));
+
+
+ 	    }
+<span class="fc" id="L136">	}</span>
+
+	/**
+	 * Adds the legislative metrics.
+	 *
+	 * @param layout the layout
+	 * @param politician the politician
+	 */
+	public final void addLegislativeMetrics(final VerticalLayout layout, final ViewRiksdagenPolitician politician) {
+
+<span class="fc" id="L146">		layout.addComponent(createInfoRow(&quot;Documents/Year:&quot;, String.format(Locale.ENGLISH,&quot;%.1f&quot;, politician.getAverageDocsPerYear()),</span>
+				VaadinIcons.FILE_TEXT, &quot;Average documents per year&quot;));
+<span class="fc" id="L148">		layout.addComponent(createInfoRow(&quot;Individual Motions:&quot;, String.valueOf(politician.getIndividualMotions()),</span>
+				VaadinIcons.USER, &quot;Personal motions submitted&quot;));
+<span class="fc" id="L150">		layout.addComponent(createInfoRow(&quot;Party Motions:&quot;, String.valueOf(politician.getPartyMotions()),</span>
+				VaadinIcons.GROUP, &quot;Party-based motions&quot;));
+<span class="fc" id="L152">		layout.addComponent(createInfoRow(&quot;Committee Motions:&quot;, String.valueOf(politician.getCommitteeMotions()),</span>
+				VaadinIcons.GROUP, &quot;Committee-based motions&quot;));
+<span class="fc" id="L154">		layout.addComponent(createInfoRow(&quot;Document Impact:&quot;, politician.getDocActivityProfile(), VaadinIcons.CHART_3D,</span>
+				&quot;Legislative influence assessment&quot;));
+<span class="fc" id="L156">	}</span>
+
+	/**
+	 * Adds the party alignment metrics.
+	 *
+	 * @param layout the layout
+	 * @param politician the politician
+	 * @param ballotSummary the ballot summary
+	 */
+	public final void addPartyAlignmentMetrics(final VerticalLayout layout, final ViewRiksdagenPolitician politician,
+			final ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">		layout.addComponent(createInfoRow(&quot;Party Loyalty:&quot;, String.format(Locale.ENGLISH,&quot;%.1f%%&quot;, ballotSummary != null ? ballotSummary.getLoyaltyRate() : 0.0),</span>
+				VaadinIcons.GROUP, &quot;Party line adherence&quot;));
+<span class="pc bpc" id="L170" title="1 of 2 branches missed.">		layout.addComponent(createInfoRow(&quot;Independence Rate:&quot;, String.format(Locale.ENGLISH,&quot;%.1f%%&quot;, ballotSummary != null ? ballotSummary.getRebelRate() : 0.0),</span>
+				VaadinIcons.RANDOM, &quot;Votes against party line&quot;));
+<span class="fc" id="L172">		layout.addComponent(createInfoRow(&quot;Cross-Party Collaboration:&quot;,</span>
+<span class="fc" id="L173">				String.format(Locale.ENGLISH,&quot;%.1f%%&quot;, politician.getCollaborationPercentage()), VaadinIcons.CONNECT,</span>
+				&quot;Inter-party cooperation&quot;));
+<span class="fc" id="L175">		layout.addComponent(createInfoRow(&quot;Multi-Party Motions:&quot;, String.valueOf(politician.getMultiPartyMotions()),</span>
+				VaadinIcons.USERS, &quot;Cross-party legislative initiatives&quot;));
+<span class="fc" id="L177">	}</span>
+
+
+
+	/**
+	 * Adds the parliamentary performance metrics.
+	 *
+	 * @param layout the layout
+	 * @param politician the politician
+	 * @param ballotSummary the ballot summary
+	 */
+	public final void addParliamentaryPerformanceMetrics(final VerticalLayout layout, final ViewRiksdagenPolitician politician,
+			final ViewRiksdagenPoliticianBallotSummary ballotSummary) {
+
+<span class="fc" id="L191">		layout.addComponent(</span>
+<span class="fc" id="L192">				createInfoRow(&quot;Attendance Rate:&quot;,</span>
+<span class="pc bpc" id="L193" title="1 of 2 branches missed.">						String.format(Locale.ENGLISH, &quot;%.1f%%&quot;, 100 - (ballotSummary != null ? ballotSummary.getAbsenceRate() : 0.0)),</span>
+						VaadinIcons.USER_CHECK, &quot;Session attendance rate&quot;));
+<span class="fc" id="L195">		layout.addComponent(createInfoRow(&quot;Voting Success:&quot;,</span>
+<span class="pc bpc" id="L196" title="1 of 2 branches missed.">				String.format(Locale.ENGLISH, &quot;%.1f%%&quot;, ballotSummary != null ? ballotSummary.getSuccessRate() : 0.0),</span>
+				VaadinIcons.TROPHY, &quot;Votes on winning side&quot;));
+<span class="fc" id="L198">		layout.addComponent(createInfoRow(&quot;Activity Level:&quot;, politician.getDocActivityLevel(), VaadinIcons.CHART_LINE,</span>
+				&quot;Overall engagement level&quot;));
+<span class="fc" id="L200">		layout.addComponent(createInfoRow(&quot;Analysis Comment:&quot;,</span>
+<span class="pc bpc" id="L201" title="1 of 2 branches missed.">				String.valueOf(ballotSummary != null ? ballotSummary.getAnalysisComment() : 0), VaadinIcons.USER_CARD,</span>
+				&quot;Analysis Comment&quot;));
+<span class="fc" id="L203">	}</span>
+
+	/**
+	 * Adds the ministry role summary.
+	 *
+	 * @param cardLayout the card layout
+	 * @param govMember the gov member
+	 * @param governmentBodyByMinistry the government body by ministry
+	 * @param reportByMinistry the report by ministry
+	 */
+	public final void addMinistryRoleSummary(final VerticalLayout cardLayout,
+			final ViewRiksdagenGovermentRoleMember govMember,
+			final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyByMinistry,
+			final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry) {
+
+<span class="fc" id="L218">		cardLayout.addComponent(pageLinkFactory.addMinistryPageLink(govMember.getDetail()));</span>
+
+<span class="fc" id="L220">		final List&lt;GovernmentBodyAnnualSummary&gt; ministryBodies = governmentBodyByMinistry.get(govMember.getDetail());</span>
+<span class="pc bpc" id="L221" title="2 of 4 branches missed.">		if (ministryBodies == null || ministryBodies.isEmpty()) {</span>
+<span class="nc" id="L222">			return;</span>
+		}
+
+<span class="fc" id="L225">		final int totalHeadCount = ministryBodies.stream().mapToInt(GovernmentBodyAnnualSummary::getAnnualWorkHeadCount)</span>
+<span class="fc" id="L226">				.sum();</span>
+<span class="fc" id="L227">		final int bodyCount = ministryBodies.size();</span>
+
+<span class="fc" id="L229">		cardLayout.addComponent(createMetricRow(VaadinIcons.GROUP,</span>
+<span class="fc" id="L230">				pageLinkFactory.addMinistryGovermentBodiesPageLink(govMember.getDetail()),</span>
+<span class="fc" id="L231">				&quot;Number of government bodies&quot;, String.valueOf(bodyCount)));</span>
+
+<span class="fc" id="L233">		cardLayout.addComponent(createMetricRow(VaadinIcons.USER,</span>
+<span class="fc" id="L234">				pageLinkFactory.addMinistryGovermentBodiesHeadcountPageLink(govMember.getDetail()),</span>
+<span class="fc" id="L235">				&quot;Total headcount of government bodies&quot;, String.valueOf(totalHeadCount)));</span>
+
+<span class="fc" id="L237">		final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; outcomeSummaries = reportByMinistry.get(govMember.getDetail());</span>
+<span class="fc" id="L238">		double currentYearIncome = 0;</span>
+<span class="fc" id="L239">		double currentYearSpending = 0;</span>
+<span class="fc" id="L240">		final int CURRENT_YEAR = 2024;</span>
+<span class="fc" id="L241">		final String INKOMSTTITELGRUPPSNAMN = &quot;Inkomsttitelgruppsnamn&quot;;</span>
+<span class="fc" id="L242">		final String EXPENDITURE_GROUP_NAME = &quot;Utgiftsområdesnamn&quot;;</span>
+
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">		if (outcomeSummaries != null) {</span>
+<span class="fc" id="L245">			final Map&lt;Integer, Double&gt; annualIncome = outcomeSummaries.stream()</span>
+<span class="fc bfc" id="L246" title="All 2 branches covered.">					.filter(t -&gt; t.getDescriptionFields().get(INKOMSTTITELGRUPPSNAMN) != null)</span>
+<span class="fc" id="L247">					.collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,</span>
+<span class="fc" id="L248">							Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));</span>
+
+<span class="fc" id="L250">			final Map&lt;Integer, Double&gt; annualSpending = outcomeSummaries.stream()</span>
+<span class="fc bfc" id="L251" title="All 2 branches covered.">					.filter(t -&gt; t.getDescriptionFields().get(EXPENDITURE_GROUP_NAME) != null)</span>
+<span class="fc" id="L252">					.collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getYear,</span>
+<span class="fc" id="L253">							Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)));</span>
+
+<span class="pc bpc" id="L255" title="1 of 2 branches missed.">			if (annualIncome.get(CURRENT_YEAR) != null) {</span>
+<span class="fc" id="L256">				currentYearIncome = annualIncome.get(CURRENT_YEAR) / 1000;</span>
+			}
+
+<span class="pc bpc" id="L259" title="1 of 2 branches missed.">			if (annualSpending.get(CURRENT_YEAR) != null) {</span>
+<span class="fc" id="L260">				currentYearSpending = annualSpending.get(CURRENT_YEAR) / 1000;</span>
+			}
+		}
+
+<span class="fc" id="L264">		final String incomeStr = String.format(Locale.ENGLISH, &quot;%.2f B SEK&quot;, currentYearIncome);</span>
+<span class="fc" id="L265">		cardLayout.addComponent(createMetricRow(VaadinIcons.ARROW_UP,</span>
+<span class="fc" id="L266">				pageLinkFactory.addMinistryGovermentBodiesIncomePageLink(govMember.getDetail()),</span>
+				&quot;Yearly Income (B SEK)&quot;, incomeStr));
+
+<span class="fc" id="L269">		final String spendingStr = String.format(Locale.ENGLISH, &quot;%.2f B SEK&quot;, currentYearSpending);</span>
+<span class="fc" id="L270">		cardLayout.addComponent(createMetricRow(VaadinIcons.ARROW_DOWN,</span>
+<span class="fc" id="L271">				pageLinkFactory.addMinistrGovermentBodiesSpendingPageLink(govMember.getDetail()),</span>
+				&quot;Yearly Spending (B SEK)&quot;, spendingStr));
+<span class="fc" id="L273">	}</span>
+
+	/**
+	 * Builds the top string.
+	 *
+	 * @param &lt;T&gt; the generic type
+	 * @param items the items
+	 * @param nameFunction the name function
+	 * @param weightFunction the weight function
+	 * @return the string
+	 */
+	private &lt;T&gt; String buildTopString(final List&lt;T&gt; items,
+	                                  final java.util.function.Function&lt;T, String&gt; nameFunction,
+	                                  final java.util.function.Function&lt;T, Long&gt; weightFunction) {
+<span class="fc" id="L287">	    return items.stream()</span>
+<span class="pc bpc" id="L288" title="2 of 4 branches missed.">	        .filter(i -&gt; nameFunction.apply(i) != null &amp;&amp; !&quot;Other&quot;.equals(nameFunction.apply(i)))</span>
+<span class="fc" id="L289">	        .sorted((o1, o2) -&gt; weightFunction.apply(o2).compareTo(weightFunction.apply(o1)))</span>
+<span class="fc" id="L290">	        .limit(3)</span>
+<span class="fc" id="L291">	        .map(nameFunction)</span>
+<span class="fc" id="L292">	        .collect(Collectors.joining(&quot;, &quot;));</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

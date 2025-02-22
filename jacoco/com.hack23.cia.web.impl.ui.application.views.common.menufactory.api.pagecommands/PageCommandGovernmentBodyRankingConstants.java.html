@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageCommandGovernmentBodyRankingConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands</a> &gt; <span class="el_source">PageCommandGovernmentBodyRankingConstants.java</span></div><h1>PageCommandGovernmentBodyRankingConstants.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands;
+
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+
+/**
+ * The Interface PageCommandGovernmentBodyRankingConstants.
+ */
+public interface PageCommandGovernmentBodyRankingConstants {
+
+    /** The command government body ranking datagrid. */
+<span class="fc" id="L15">    PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_DATAGRID = new PageModeMenuCommand(</span>
+                     UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+    /** The command government body ranking overview. */
+<span class="fc" id="L19">    PageModeMenuCommand COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW = new PageModeMenuCommand(</span>
+                     UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The command government bodies headcount. */
+<span class="fc" id="L23">    PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_HEADCOUNT = new PageModeMenuCommand(</span>
+                     UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+<span class="fc" id="L25">                     PageMode.CHARTS, GovernmentBodyPageMode.HEADCOUNT.toString());</span>
+
+    /** The command government bodies income. */
+<span class="fc" id="L28">    PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_INCOME = new PageModeMenuCommand(</span>
+                     UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+<span class="fc" id="L30">                     PageMode.CHARTS, GovernmentBodyPageMode.INCOME.toString());</span>
+
+    /** The command government bodies expenditure. */
+<span class="fc" id="L33">    PageModeMenuCommand COMMAND_GOVERNMENT_BODIES_EXPENDITURE = new PageModeMenuCommand(</span>
+                     UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+<span class="fc" id="L35">                     PageMode.CHARTS, GovernmentBodyPageMode.EXPENDITURE.toString());</span>
+
+    /** The command government outcome. */
+<span class="fc" id="L38">    PageModeMenuCommand COMMAND_GOVERNMENT_OUTCOME = new PageModeMenuCommand(</span>
+                     UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+<span class="fc" id="L40">                     PageMode.CHARTS, ChartIndicators.GOVERNMENTOUTCOME.toString());</span>
+
+    /** The command charts all government role gantt. */
+<span class="fc" id="L43">    PageModeMenuCommand COMMAND_CHARTS_ALL_GOVERNMENT_ROLE_GANTT = new PageModeMenuCommand(</span>
+                     UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME,
+<span class="fc" id="L45">                     PageMode.CHARTS, ChartIndicators.ALLGOVERNMENTROLEGANTT.toString());</span>
+
+    /** The government ranking command pagevisit history. */
+<span class="fc" id="L48">    PageModeMenuCommand GOVERNMENT_RANKING_COMMAND_PAGEVISIT_HISTORY = new PageModeMenuCommand(</span>
+                     UserViews.GOVERNMENT_BODY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

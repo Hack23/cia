@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageCommandGovernmentBodyConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands</a> &gt; <span class="el_source">PageCommandGovernmentBodyConstants.java</span></div><h1>PageCommandGovernmentBodyConstants.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands;
+
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.GovernmentBodyPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+
+/**
+ * The Interface PageCommandGovernmentBodyConstants.
+ */
+public interface PageCommandGovernmentBodyConstants {
+
+    /** The government body command expenditure. */
+<span class="fc" id="L14">    PageModeMenuCommand COMMAND_GOVERNMENT_BODY_EXPENDITURE = new PageModeMenuCommand(</span>
+<span class="fc" id="L15">                     UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.EXPENDITURE.toString());</span>
+
+    /** The government body command headcount. */
+<span class="fc" id="L18">    PageModeMenuCommand COMMAND_GOVERNMENT_BODY_HEADCOUNT = new PageModeMenuCommand(</span>
+<span class="fc" id="L19">                     UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.HEADCOUNT.toString());</span>
+
+    /** The government body command income. */
+<span class="fc" id="L22">    PageModeMenuCommand COMMAND_GOVERNMENT_BODY_INCOME = new PageModeMenuCommand(</span>
+<span class="fc" id="L23">                     UserViews.GOVERNMENT_BODY_VIEW_NAME, GovernmentBodyPageMode.INCOME.toString());</span>
+
+    /** The government body command overview. */
+<span class="fc" id="L26">    PageModeMenuCommand COMMAND_GOVERNMENT_BODY_OVERVIEW = new PageModeMenuCommand(</span>
+                     UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.OVERVIEW);
+
+
+     /** The command government body pagevisit. */
+<span class="fc" id="L31">     PageModeMenuCommand COMMAND_GOVERNMENT_BODY_PAGEVISIT = new PageModeMenuCommand(</span>
+            UserViews.GOVERNMENT_BODY_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageCommandPartyConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands</a> &gt; <span class="el_source">PageCommandPartyConstants.java</span></div><h1>PageCommandPartyConstants.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands;
+
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PartyPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+
+/**
+ * The Interface PageCommandPartyConstants.
+ */
+public interface PageCommandPartyConstants {
+
+    /** The command party overview. */
+<span class="fc" id="L14">    PageModeMenuCommand COMMAND_PARTY_OVERVIEW = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.OVERVIEW);</span>
+
+    /** The command party current leaders. */
+<span class="fc" id="L17">    PageModeMenuCommand COMMAND_PARTY_CURRENT_LEADERS = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTLEADERS.toString());</span>
+
+    /** The command party leader history. */
+<span class="fc" id="L20">    PageModeMenuCommand COMMAND_PARTY_LEADER_HISTORY = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.LEADERHISTORY.toString());</span>
+
+    /** The command party current members. */
+<span class="fc" id="L23">    PageModeMenuCommand COMMAND_PARTY_CURRENT_MEMBERS = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.CURRENTMEMBERS.toString());</span>
+
+    /** The command party member history. */
+<span class="fc" id="L26">    PageModeMenuCommand COMMAND_PARTY_MEMBER_HISTORY = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.MEMBERHISTORY.toString());</span>
+
+    /** The command party government roles. */
+<span class="fc" id="L29">    PageModeMenuCommand COMMAND_PARTY_GOVERNMENT_ROLES = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.GOVERNMENTROLES.toString());</span>
+
+    /** The command party committee roles. */
+<span class="fc" id="L32">    PageModeMenuCommand COMMAND_PARTY_COMMITTEE_ROLES = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEROLES.toString());</span>
+
+    /** The command party role ghant. */
+<span class="fc" id="L35">    PageModeMenuCommand COMMAND_PARTY_ROLE_GHANT = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.ROLEGHANT.toString());</span>
+
+    /** The command party document activity. */
+<span class="fc" id="L38">    PageModeMenuCommand COMMAND_PARTY_DOCUMENT_ACTIVITY = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTACTIVITY.toString());</span>
+
+    /** The command party document history. */
+<span class="fc" id="L41">    PageModeMenuCommand COMMAND_PARTY_DOCUMENT_HISTORY = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.DOCUMENTHISTORY.toString());</span>
+
+    /** The command party vote history. */
+<span class="fc" id="L44">    PageModeMenuCommand COMMAND_PARTY_VOTE_HISTORY = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.VOTEHISTORY.toString());</span>
+
+    /** The command party ballot decision summary. */
+<span class="fc" id="L47">    PageModeMenuCommand COMMAND_PARTY_BALLOT_DECISION_SUMMARY = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.COMMITTEEBALLOTDECISIONSUMMARY.toString());</span>
+
+    /** The command party won daily summary chart. */
+<span class="fc" id="L50">    PageModeMenuCommand COMMAND_PARTY_WON_DAILY_SUMMARY_CHART = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.PARTYWONDAILYSUMMARYCHART.toString());</span>
+
+    /** The command party against coalitions summary. */
+<span class="fc" id="L53">    PageModeMenuCommand COMMAND_PARTY_AGAINST_COALITIONS_SUMMARY = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.PARTYAGAINSTCOALATIONSSUMMARY.toString());</span>
+
+    /** The command party support summary. */
+<span class="fc" id="L56">    PageModeMenuCommand COMMAND_PARTY_SUPPORT_SUMMARY = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PartyPageMode.PARTYSUPPORTSUMMARY.toString());</span>
+
+    /** The command party page visit history. */
+<span class="fc" id="L59">    PageModeMenuCommand COMMAND_PARTY_PAGE_VISIT_HISTORY = new PageModeMenuCommand(UserViews.PARTY_VIEW_NAME, PageMode.PAGEVISITHISTORY);</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

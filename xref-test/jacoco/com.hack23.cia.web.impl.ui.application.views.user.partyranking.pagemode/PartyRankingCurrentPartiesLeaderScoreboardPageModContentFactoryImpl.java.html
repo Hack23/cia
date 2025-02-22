@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyRankingCurrentPartiesLeaderScoreboardPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.partyranking.pagemode</a> &gt; <span class="el_source">PartyRankingCurrentPartiesLeaderScoreboardPageModContentFactoryImpl.java</span></div><h1>PartyRankingCurrentPartiesLeaderScoreboardPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *  $Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.web.impl.ui.application.views.user.partyranking.pagemode;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.LeaderCardUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PartyLeaderUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFactoryImpl.
+ */
+@Service
+public final class PartyRankingCurrentPartiesLeaderScoreboardPageModContentFactoryImpl
+		extends AbstractPartyRankingPageModContentFactoryImpl {
+
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.PARTY_RANKING_VIEW_NAME;
+
+	/** The esv api. */
+	// Adding EsvApi to fetch ministry-related data
+	@Autowired
+	private EsvApi esvApi;
+
+	/** The leader card util. */
+	@Autowired
+	private LeaderCardUtil leaderCardUtil;
+
+	/**
+	 * Instantiates a new party ranking current parties leader scoreboard page mod content factory impl.
+	 */
+	public PartyRankingCurrentPartiesLeaderScoreboardPageModContentFactoryImpl() {
+<span class="fc" id="L74">		super();</span>
+<span class="fc" id="L75">	}</span>
+
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L88">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L89">		panel.setContent(panelContent);</span>
+
+<span class="fc" id="L91">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L92">		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);</span>
+
+<span class="fc" id="L94">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+			PartyRankingViewConstants.LEADER_SCOREBOARD_TITLE,
+			PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+			PartyRankingViewConstants.LEADER_SCOREBOARD_DESC);
+
+<span class="fc" id="L99">		final HorizontalLayout chartLayout = new HorizontalLayout();</span>
+<span class="fc" id="L100">		chartLayout.setSizeFull();</span>
+<span class="fc" id="L101">		panelContent.addComponent(chartLayout);</span>
+<span class="fc" id="L102">		panelContent.setExpandRatio(chartLayout, ContentRatio.LARGE_FORM);</span>
+
+<span class="fc" id="L104">		final VerticalLayout wrapper = new VerticalLayout();</span>
+<span class="fc" id="L105">		wrapper.setSizeFull();</span>
+<span class="fc" id="L106">		chartLayout.addComponent(wrapper);</span>
+
+<span class="fc" id="L108">		final ResponsiveRow row = RowUtil.createGridLayout(wrapper);</span>
+<span class="fc" id="L109">		row.setSizeFull();</span>
+
+<span class="fc" id="L111">		final Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; politicianMap = leaderCardUtil.loadActivePoliticiansByPersonId();</span>
+<span class="fc" id="L112">		final Map&lt;String, Boolean&gt; partyLeaderMap = PartyLeaderUtil.computePartyLeaders(getApplicationManager(), politicianMap.keySet());</span>
+
+
+<span class="fc" id="L115">		final List&lt;ViewRiksdagenPolitician&gt; partyLeaders = politicianMap.values().stream()</span>
+<span class="fc" id="L116">		        .flatMap(List::stream) // Flatten the list of politicians</span>
+<span class="fc" id="L117">		        .filter(p -&gt; partyLeaderMap.getOrDefault(p.getPersonId(), false)) // Filter using the flattened stream</span>
+<span class="fc" id="L118">		        .collect(Collectors.toList());</span>
+
+		// Sort: in government first, then alphabetical by last name
+<span class="fc" id="L121">		partyLeaders.sort((a, b) -&gt; {</span>
+<span class="fc" id="L122">			final boolean aInGov = a.isActiveGovernment();</span>
+<span class="fc" id="L123">			final boolean bInGov = b.isActiveGovernment();</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">			if (aInGov == bInGov) {</span>
+<span class="fc" id="L125">				return a.getLastName().compareToIgnoreCase(b.getLastName());</span>
+			}
+			// government first
+<span class="pc bpc" id="L128" title="2 of 4 branches missed.">			return Boolean.compare(!aInGov, !bInGov);</span>
+		});
+
+		// Load ESV data for ministries
+<span class="fc" id="L132">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; dataMap = esvApi.getData();</span>
+<span class="fc" id="L133">		final int CURRENT_YEAR = 2024;</span>
+<span class="fc" id="L134">		final List&lt;GovernmentBodyAnnualSummary&gt; currentYearGovernmentBodies = dataMap.get(CURRENT_YEAR);</span>
+<span class="fc" id="L135">		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyByMinistry = currentYearGovernmentBodies</span>
+<span class="fc" id="L136">				.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));</span>
+
+<span class="fc" id="L138">		final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry = esvApi</span>
+<span class="fc" id="L139">				.getGovernmentBodyReportByMinistry();</span>
+
+<span class="fc bfc" id="L141" title="All 2 branches covered.">		for (final ViewRiksdagenPolitician leader : partyLeaders) {</span>
+<span class="fc" id="L142">			final ViewRiksdagenPoliticianBallotSummary ballotSummary = getApplicationManager()</span>
+<span class="fc" id="L143">					.getDataContainer(ViewRiksdagenPoliticianBallotSummary.class).load(leader.getPersonId());</span>
+<span class="fc" id="L144">		    final ViewRiksdagenPoliticianExperienceSummary experienceSummary = getApplicationManager().getDataContainer(ViewRiksdagenPoliticianExperienceSummary.class).load(leader.getPersonId());</span>
+
+<span class="fc" id="L146">			final Panel cardPanel = leaderCardUtil.createLeaderCard(leader, ballotSummary, governmentBodyByMinistry, reportByMinistry, experienceSummary);</span>
+<span class="fc" id="L147">			row.addColumn().withDisplayRules(12, 6, 4, 4).withComponent(cardPanel);</span>
+<span class="fc" id="L148">		}</span>
+
+<span class="fc" id="L150">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="fc" id="L153">		return panelContent;</span>
+	}
+
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L165">		return PageCommandPartyRankingConstants.COMMAND_PARTY_LEADER_SCOREBOARD.matches(page, parameters);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

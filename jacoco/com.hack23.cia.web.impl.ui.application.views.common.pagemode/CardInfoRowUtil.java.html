@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CardInfoRowUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagemode</a> &gt; <span class="el_source">CardInfoRowUtil.java</span></div><h1>CardInfoRowUtil.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
+
+import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.Responsive;
+import com.vaadin.server.Sizeable.Unit;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class CardInfoRowUtil.
+ */
+<span class="fc" id="L17">public class CardInfoRowUtil {</span>
+
+	/** The Constant CARD_TENURE. */
+	public static final String CARD_TENURE = &quot;card-tenure&quot;;
+
+	/** The Constant CARD_EXPERIENCE. */
+	public static final String CARD_EXPERIENCE = &quot;card-experience-section&quot;;
+
+	/** The Constant CARD_INFO_VALUE. */
+	public static final String CARD_INFO_VALUE = &quot;card-info-value&quot;;
+
+	/** The Constant CARD_INFO_ICON. */
+	public static final String CARD_INFO_ICON = &quot;card-info-icon&quot;;
+
+	/** The Constant METRIC_LABEL. */
+	public static final String METRIC_LABEL = &quot;metric-label&quot;;
+
+	/**
+	 * Creates the page header.
+	 *
+	 * @param panel           the panel
+	 * @param panelContent    the panel content
+	 * @param header          the header
+	 * @param pageHeader      the page header
+	 * @param pageDescription the page description
+	 */
+	public static final void createPageHeader(final Panel panel, final VerticalLayout panelContent, final String header,
+			final String pageHeader, final String pageDescription) {
+<span class="fc" id="L45">		panel.setCaption(header);</span>
+<span class="fc" id="L46">		LabelFactory.createHeader2Label(panelContent, pageHeader);</span>
+<span class="fc" id="L47">		final Label descriptionLabel = new Label(pageDescription);</span>
+<span class="fc" id="L48">		descriptionLabel.addStyleName(&quot;itembox&quot;);</span>
+<span class="fc" id="L49">		Responsive.makeResponsive(descriptionLabel);</span>
+<span class="fc" id="L50">		descriptionLabel.setWidth(100, Unit.PERCENTAGE);</span>
+<span class="fc" id="L51">		panelContent.addComponent(descriptionLabel);</span>
+<span class="fc" id="L52">		panelContent.setExpandRatio(descriptionLabel, ContentRatio.SMALL);</span>
+<span class="fc" id="L53">	}</span>
+
+	/**
+	 * Adds an info row to the parent layout if value is not null or empty.
+	 *
+	 * @param parent  the parent layout
+	 * @param caption the caption
+	 * @param value   the value
+	 * @param icon    the icon
+	 */
+	public static final void addInfoRowIfNotNull(final VerticalLayout parent, final String caption, final String value,
+			final VaadinIcons icon) {
+<span class="fc bfc" id="L65" title="All 6 branches covered.">		if (value != null &amp;&amp; !value.trim().isEmpty() &amp;&amp; !&quot;null&quot;.equalsIgnoreCase(value)) {</span>
+<span class="fc" id="L66">			parent.addComponent(CardInfoRowUtil.createInfoRow(caption, value, icon));</span>
+		}
+<span class="fc" id="L68">	}</span>
+
+	/**
+	 * Creates a simple info row (caption and value) with optional icon.
+	 *
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon
+	 * @return a HorizontalLayout representing the info row
+	 */
+	public static final HorizontalLayout createInfoRow(final String caption, final String value,
+			final VaadinIcons icon) {
+<span class="fc" id="L80">		return CardInfoRowUtil.createInfoRow(caption, value, icon, null);</span>
+	}
+
+	/**
+	 * Creates a row displaying a caption and value, with optional icon and tooltip.
+	 *
+	 * @param caption the field caption
+	 * @param value   the field value
+	 * @param icon    a VaadinIcons icon for better visual cue
+	 * @param tooltip optional tooltip to provide more info
+	 * @return a HorizontalLayout representing the info row
+	 */
+	public static final HorizontalLayout createInfoRow(final String caption, final String value, final VaadinIcons icon,
+			final String tooltip) {
+<span class="fc" id="L94">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L95">		layout.setSpacing(true);</span>
+<span class="fc" id="L96">		layout.addStyleName(&quot;metric-label&quot;);</span>
+<span class="fc" id="L97">		layout.setWidthUndefined();</span>
+
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">		if (icon != null) {</span>
+<span class="fc" id="L100">			final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L101">			iconLabel.addStyleName(&quot;card-info-icon&quot;);</span>
+<span class="pc bpc" id="L102" title="1 of 4 branches missed.">			if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L103">				iconLabel.setDescription(tooltip);</span>
+			}
+<span class="fc" id="L105">			layout.addComponent(iconLabel);</span>
+		}
+
+<span class="fc" id="L108">		final Label captionLabel = new Label(caption);</span>
+<span class="fc" id="L109">		captionLabel.addStyleName(&quot;card-info-caption&quot;);</span>
+<span class="pc bpc" id="L110" title="1 of 4 branches missed.">		if (tooltip != null &amp;&amp; !tooltip.isEmpty()) {</span>
+<span class="fc" id="L111">			captionLabel.setDescription(tooltip);</span>
+		}
+
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">		final Label valueLabel = new Label(value != null ? value : &quot;&quot;);</span>
+<span class="fc" id="L115">		valueLabel.addStyleName(&quot;card-info-value&quot;);</span>
+
+<span class="fc" id="L117">		layout.addComponents(captionLabel, valueLabel);</span>
+<span class="fc" id="L118">		return layout;</span>
+	}
+
+	/**
+	 * Creates a section layout with a title and consistent styling.
+	 *
+	 * @param title the section title
+	 * @return the vertical layout configured for the section
+	 */
+	public static VerticalLayout createSectionLayout(final String title) {
+<span class="fc" id="L128">		final VerticalLayout layout = new VerticalLayout();</span>
+<span class="fc" id="L129">		layout.setSpacing(true);</span>
+<span class="fc" id="L130">		layout.setMargin(true);</span>
+<span class="fc" id="L131">		layout.addStyleName(&quot;card-details-column&quot;);</span>
+<span class="fc" id="L132">		layout.setWidth(&quot;100%&quot;);</span>
+
+<span class="fc" id="L134">		final Label header = new Label(title);</span>
+<span class="fc" id="L135">		header.addStyleName(&quot;card-section-title&quot;);</span>
+<span class="fc" id="L136">		layout.addComponent(header);</span>
+
+		// Add some vertical padding after the header
+<span class="fc" id="L139">		final Label padding = new Label();</span>
+<span class="fc" id="L140">		padding.setHeight(&quot;10px&quot;);</span>
+<span class="fc" id="L141">		layout.addComponent(padding);</span>
+
+<span class="fc" id="L143">		return layout;</span>
+	}
+
+	/**
+	 * Creates the metric row.
+	 *
+	 * @param icon          the icon
+	 * @param linkComponent the link component
+	 * @param description   the description
+	 * @param valueText     the value text
+	 * @return the horizontal layout
+	 */
+	public static final HorizontalLayout createMetricRow(final VaadinIcons icon,
+			final com.vaadin.ui.Component linkComponent, final String description, final String valueText) {
+<span class="fc" id="L157">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L158">		layout.setSpacing(true);</span>
+<span class="fc" id="L159">		layout.addStyleName(&quot;metric-label&quot;);</span>
+<span class="fc" id="L160">		layout.setWidthUndefined();</span>
+
+<span class="fc" id="L162">		final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L163">		iconLabel.setDescription(description);</span>
+
+		// Value displayed outside of the link
+<span class="fc" id="L166">		Label valueLabel = null;</span>
+<span class="pc bpc" id="L167" title="2 of 4 branches missed.">		if (valueText != null &amp;&amp; !valueText.isEmpty()) {</span>
+<span class="fc" id="L168">			valueLabel = new Label(valueText);</span>
+<span class="fc" id="L169">			valueLabel.addStyleName(&quot;metric-value&quot;);</span>
+		}
+
+<span class="fc" id="L172">		layout.addComponent(iconLabel);</span>
+<span class="fc" id="L173">		layout.addComponent(linkComponent);</span>
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">		if (valueLabel != null) {</span>
+<span class="fc" id="L175">			layout.addComponent(valueLabel);</span>
+		}
+
+<span class="fc" id="L178">		return layout;</span>
+	}
+
+	/**
+	 * Creates the card header.
+	 *
+	 * @param cardContent the card content
+	 * @param titleText   the title text
+	 */
+	public static final void createCardHeader(final VerticalLayout cardContent, final String titleText) {
+		// Card Header
+<span class="fc" id="L189">		final HorizontalLayout headerLayout = new HorizontalLayout();</span>
+<span class="fc" id="L190">		headerLayout.setSpacing(true);</span>
+<span class="fc" id="L191">		headerLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L192">		headerLayout.addStyleName(&quot;card-header-section&quot;);</span>
+
+<span class="fc" id="L194">		final Label titleLabel = new Label(titleText, ContentMode.HTML);</span>
+<span class="fc" id="L195">		titleLabel.addStyleName(&quot;card-title&quot;);</span>
+<span class="fc" id="L196">		titleLabel.setWidthUndefined();</span>
+<span class="fc" id="L197">		headerLayout.addComponent(titleLabel);</span>
+
+<span class="fc" id="L199">		cardContent.addComponent(headerLayout);</span>
+
+		// Divider line
+<span class="fc" id="L202">		final Label divider = new Label(&quot;&lt;hr/&gt;&quot;, ContentMode.HTML);</span>
+<span class="fc" id="L203">		divider.addStyleName(&quot;card-divider&quot;);</span>
+<span class="fc" id="L204">		divider.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L205">		cardContent.addComponent(divider);</span>
+<span class="fc" id="L206">	}</span>
+
+	/**
+	 * Creates a standard stats container.
+	 *
+	 * @return the vertical layout configured for the stats container
+	 */
+	public static final VerticalLayout createStatsContainer() {
+<span class="fc" id="L214">		final VerticalLayout layout = new VerticalLayout();</span>
+<span class="fc" id="L215">		layout.setSpacing(false);</span>
+<span class="fc" id="L216">		layout.addStyleName(&quot;card-stats-container&quot;);</span>
+<span class="fc" id="L217">		layout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L218">		return layout;</span>
+	}
+
+	/**
+	 * Creates the standard row.
+	 *
+	 * @return the horizontal layout
+	 */
+	public static HorizontalLayout createStandardRow() {
+<span class="fc" id="L227">		final HorizontalLayout layout = new HorizontalLayout();</span>
+<span class="fc" id="L228">		layout.setSpacing(true);</span>
+<span class="fc" id="L229">		layout.setWidthUndefined();</span>
+<span class="fc" id="L230">		return layout;</span>
+	}
+
+	/**
+	 * Creates the icon label.
+	 *
+	 * @param icon    the icon
+	 * @param tooltip the tooltip
+	 * @return the label
+	 */
+	public static Label createIconLabel(final VaadinIcons icon, final String tooltip) {
+<span class="fc" id="L241">		final Label iconLabel = new Label(icon.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L242">		iconLabel.addStyleName(CARD_INFO_ICON);</span>
+<span class="pc bpc" id="L243" title="1 of 2 branches missed.">		if (tooltip != null) {</span>
+<span class="fc" id="L244">			iconLabel.setDescription(tooltip);</span>
+		}
+<span class="fc" id="L246">		return iconLabel;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

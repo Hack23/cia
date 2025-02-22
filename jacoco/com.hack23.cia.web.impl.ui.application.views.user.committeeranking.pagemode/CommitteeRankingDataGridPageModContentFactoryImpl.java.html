@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitteeRankingDataGridPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.committeeranking.pagemode</a> &gt; <span class="el_source">CommitteeRankingDataGridPageModContentFactoryImpl.java</span></div><h1>CommitteeRankingDataGridPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.committeeranking.pagemode;
+
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeViewConstants;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+
+/**
+ * The Class CommitteeRankingDataGridPageModContentFactoryImpl.
+ */
+@Service
+public final class CommitteeRankingDataGridPageModContentFactoryImpl extends AbstractCommitteeRankingPageModContentFactoryImpl {
+
+	/** The Constant COLUMN_ORDER. */
+<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = {</span>
+		    &quot;embeddedId.detail&quot;,
+		    &quot;embeddedId&quot;,
+		    &quot;currentMemberSize&quot;,
+		    &quot;currentLeadershipPositions&quot;,
+		    &quot;currentSubstitutePositions&quot;,
+		    &quot;currentRegularMembers&quot;,
+		    &quot;activityLevel&quot;,
+		    &quot;totalCommitteeMotions&quot;,
+		    &quot;avgDocumentsPerMember&quot;,
+		    &quot;documentsLastYear&quot;,
+		    &quot;totalDocuments&quot;,
+		    &quot;totalAssignments&quot;,
+		    &quot;firstAssignmentDate&quot;,
+		    &quot;lastAssignmentDate&quot;,
+		    &quot;totalDaysServed&quot;,
+		    &quot;totalLeadershipPositions&quot;,
+		    &quot;totalSubstitutePositions&quot;
+		};
+
+	/** The Constant HIDE_COLUMNS. */
+<span class="fc" id="L68">	private static final String[] HIDE_COLUMNS = {</span>
+		    &quot;active&quot;,
+		    &quot;embeddedId&quot;,
+		    &quot;totalFollowUpMotions&quot;
+		};
+
+	/** The Constant COMMITTEES. */
+	private static final String COMMITTEES = &quot;Committees&quot;;
+
+	/** The Constant LISTENER. */
+<span class="fc" id="L78">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.COMMITTEE_VIEW_NAME, &quot;embeddedId.orgCode&quot;);</span>
+
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.COMMITTEE_RANKING_VIEW_NAME;
+
+	/** The Constant NESTED_PROPERTIES. */
+<span class="fc" id="L84">	private static final String[] NESTED_PROPERTIES = {&quot;embeddedId.detail&quot;};</span>
+
+
+	/**
+	 * Instantiates a new committee ranking data grid page mod content factory
+	 * impl.
+	 */
+	public CommitteeRankingDataGridPageModContentFactoryImpl() {
+<span class="fc" id="L92">		super();</span>
+<span class="fc" id="L93">	}</span>
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L98">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L100">		getCommitteeRankingMenuItemFactory().createCommitteeeRankingMenuBar(menuBar);</span>
+<span class="fc" id="L101">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+			CommitteeViewConstants.CR_GRID_TITLE_HEADER,
+			CommitteeViewConstants.CR_GRID_TITLE,
+			CommitteeViewConstants.CR_GRID_DESCRIPTION);
+
+<span class="fc" id="L106">		final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L108">		final DataContainer&lt;ViewRiksdagenCommittee, String&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L109">				.getDataContainer(ViewRiksdagenCommittee.class);</span>
+
+
+<span class="fc" id="L112">		getGridFactory().createBasicBeanItemNestedPropertiesGrid(panelContent, ViewRiksdagenCommittee.class, dataContainer.getAllOrderBy(ViewRiksdagenCommittee_.currentMemberSize),</span>
+				COMMITTEES, NESTED_PROPERTIES,
+				COLUMN_ORDER, HIDE_COLUMNS,
+				LISTENER, null, null);
+
+<span class="fc" id="L117">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="fc" id="L120">		return panelContent;</span>
+
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L126">		return PageCommandCommitteeRankingConstants.COMMAND_COMMITTEE_RANKING_DATAGRID.matches(page, parameters);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

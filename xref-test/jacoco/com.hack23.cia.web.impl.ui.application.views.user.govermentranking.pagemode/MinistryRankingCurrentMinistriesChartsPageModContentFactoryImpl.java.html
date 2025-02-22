@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagemode</a> &gt; <span class="el_source">MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl.java</span></div><h1>MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagemode;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.MinistryDataSeriesFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMinistryRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl.
+ */
+@Service
+public final class MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
+
+	/** The chart data manager. */
+	@Autowired
+	private ChartDataManager chartDataManager;
+
+	/** The data series factory. */
+	@Autowired
+	private MinistryDataSeriesFactory dataSeriesFactory;
+
+	/**
+	 * Instantiates a new ministry ranking current ministries charts page mod
+	 * content factory impl.
+	 */
+	public MinistryRankingCurrentMinistriesChartsPageModContentFactoryImpl() {
+<span class="fc" id="L57">		super();</span>
+<span class="fc" id="L58">	}</span>
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L63">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L65">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+
+<span class="fc" id="L67">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+			MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+			MinistryRankingViewConstants.CURRENT_MINISTRIES_TITLE,
+			MinistryRankingViewConstants.CURRENT_MINISTRIES_DESC);
+
+<span class="fc" id="L72">		final String pageId = getPageId(parameters);</span>
+
+
+<span class="fc" id="L75">		final HorizontalLayout chartLayout = new HorizontalLayout();</span>
+<span class="fc" id="L76">		chartLayout.setSizeFull();</span>
+
+<span class="fc" id="L78">		chartDataManager.createChartPanel(chartLayout,</span>
+<span class="fc" id="L79">            dataSeriesFactory.createMinistryChartTimeSeriesCurrent(),</span>
+            MinistryRankingViewConstants.CHART_LABEL_CURRENT_MINISTRIES);
+<span class="fc" id="L81">		panelContent.addComponent(chartLayout);</span>
+<span class="fc" id="L82">		panelContent.setExpandRatio(chartLayout,ContentRatio.LARGE_FORM);</span>
+
+
+<span class="fc" id="L85">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="fc" id="L88">		return panelContent;</span>
+
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L94">		return PageCommandMinistryRankingConstants.COMMAND_CHARTS_CURRENT_MINISTRIES_BY_HEADCOUNT.matches(page, parameters);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

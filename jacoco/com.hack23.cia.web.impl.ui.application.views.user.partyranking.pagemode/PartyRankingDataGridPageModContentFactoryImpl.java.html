@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartyRankingDataGridPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.partyranking.pagemode</a> &gt; <span class="el_source">PartyRankingDataGridPageModContentFactoryImpl.java</span></div><h1>PartyRankingDataGridPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.partyranking.pagemode;
+
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+
+/**
+ * The Class PartyRankingDataGridPageModContentFactoryImpl.
+ */
+@Service
+public final class PartyRankingDataGridPageModContentFactoryImpl extends AbstractPartyRankingPageModContentFactoryImpl {
+
+	/** The Constant COLUMN_ORDER. */
+	/** The Constant COLUMN_ORDER. */
+<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = {</span>
+	    &quot;party&quot;,                          // Party name
+	    &quot;currentlyActiveMembers&quot;,         // Current active members
+	    &quot;totalDocumentsLastYear&quot;,         // Recent activity
+	    &quot;avgDocumentsLastYear&quot;,           // Recent productivity per member
+	    &quot;totalDocuments&quot;,                 // Historical volume
+	    &quot;avgDocumentsPerMember&quot;,         // Overall productivity
+	    &quot;veryHighActivityMembers&quot;,       // Member activity distribution
+	    &quot;highActivityMembers&quot;,
+	    &quot;mediumActivityMembers&quot;,
+	    &quot;lowActivityMembers&quot;,
+	    &quot;totalPartyMotions&quot;,             // Motion types distribution
+	    &quot;totalCommitteeMotions&quot;,
+	    &quot;totalIndividualMotions&quot;,
+	    &quot;totalCollaborativeMotions&quot;,
+	    &quot;partyFocusedMembers&quot;,          // Member focus distribution
+	    &quot;committeeFocusedMembers&quot;,
+	    &quot;individualFocusedMembers&quot;,
+	    &quot;currentAssignments&quot;,            // Current positions
+	    &quot;currentMinistryAssignments&quot;,
+	    &quot;currentCommitteeAssignments&quot;,
+	    &quot;currentCommitteeLeadershipAssignments&quot;
+	};
+
+	/** The Constant HIDE_COLUMNS. */
+<span class="fc" id="L72">	private static final String[] HIDE_COLUMNS = {</span>
+	    &quot;active&quot;,
+	    &quot;activeParliament&quot;,
+	    &quot;activeGovernment&quot;,
+	    &quot;activeCommittee&quot;,
+	    &quot;activeEu&quot;,
+	    &quot;activeParty&quot;,
+	    &quot;activeSpeaker&quot;,
+	    &quot;totalDaysServedParliament&quot;,
+	    &quot;totalDaysServedCommittee&quot;,
+	    &quot;totalDaysServedGovernment&quot;,
+	    &quot;totalDaysServedEu&quot;,
+	    &quot;totalDaysServedParty&quot;,
+	    &quot;totalDaysServedSpeaker&quot;,
+	    &quot;totalDaysServedCommitteeLeadership&quot;,
+	    &quot;totalDaysServedCommitteeSubstitute&quot;,
+	    &quot;totalActiveEu&quot;,
+	    &quot;currentCommitteeSubstituteAssignments&quot;,
+	    &quot;totalCommitteeSubstituteAssignments&quot;,
+	    &quot;currentSpeakerAssignments&quot;,
+	    &quot;totalSpeakerAssignments&quot;,
+	    &quot;totalFollowUpMotions&quot;,          // Can be accessed in detailed view
+	    &quot;firstAssignmentDate&quot;,           // Less relevant for activity focus
+	    &quot;lastAssignmentDate&quot;,
+	    &quot;totalPartyAssignments&quot;,
+	    &quot;totalMinistryAssignments&quot;,
+	    &quot;totalCommitteeAssignments&quot;,
+	    &quot;totalCommitteeLeadershipAssignments&quot;
+	};
+	/** The Constant LISTENER. */
+<span class="fc" id="L102">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(UserViews.PARTY_VIEW_NAME, &quot;party&quot;);</span>
+
+	/** The Constant NAME. */
+	public static final String NAME = UserViews.PARTY_RANKING_VIEW_NAME;
+
+	/** The Constant PARTIES. */
+	private static final String PARTIES = &quot;Parties&quot;;
+
+	/**
+	 * Instantiates a new party ranking data grid page mod content factory impl.
+	 */
+	public PartyRankingDataGridPageModContentFactoryImpl() {
+<span class="fc" id="L114">		super();</span>
+<span class="fc" id="L115">	}</span>
+
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
+	@SuppressWarnings(&quot;unchecked&quot;)
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L129">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L131">		getPartyRankingMenuItemFactory().createPartyRankingMenuBar(menuBar);</span>
+
+<span class="fc" id="L133">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+		    PartyRankingViewConstants.DATAGRID_TITLE,
+		    PartyRankingViewConstants.TITLE_PARTY_RANKINGS,
+		    PartyRankingViewConstants.DATAGRID_DESC);
+
+<span class="fc" id="L138">		final String pageId = getPageId(parameters);</span>
+
+
+<span class="fc" id="L141">		final DataContainer&lt;ViewRiksdagenPartySummary, String&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L142">				.getDataContainer(ViewRiksdagenPartySummary.class);</span>
+
+<span class="fc" id="L144">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartySummary.class, dataContainer.findListByProperty(</span>
+				new Object[] { Boolean.TRUE }, ViewRiksdagenPartySummary_.active),
+				PARTIES,
+				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+
+
+
+<span class="fc" id="L151">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+				NAME, parameters, pageId);
+
+<span class="fc" id="L154">		return panelContent;</span>
+
+	}
+
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L167">		return PageCommandPartyRankingConstants.COMMAND_PARTY_RANKING_DATAGRID.matches(page, parameters);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LeaderCardUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.pagemode</a> &gt; <span class="el_source">LeaderCardUtil.java</span></div><h1>LeaderCardUtil.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
+
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember_;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician_;
+import com.hack23.cia.service.api.ApplicationManager;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.server.ExternalResource;
+import com.vaadin.server.Responsive;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class LeaderCardUtil.
+ */
+@Component
+<span class="fc" id="L39">public class LeaderCardUtil {</span>
+
+    /** The application manager. */
+    @Autowired
+    private ApplicationManager applicationManager;
+
+    /** The politician leaderboard util. */
+    @Autowired
+    private PoliticianLeaderboardUtil politicianLeaderboardUtil;
+
+	/** The page link factory. */
+	@Autowired
+	public PageLinkFactory pageLinkFactory;
+
+    /**
+     * Load active government role members.
+     *
+     * @return the list
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public List&lt;ViewRiksdagenGovermentRoleMember&gt; loadActiveGovernmentRoleMembers() {
+<span class="fc" id="L60">        final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = applicationManager</span>
+<span class="fc" id="L61">                .getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
+<span class="fc" id="L62">        return govermentRoleMemberDataContainer.findListByProperty(new Object[] { Boolean.TRUE },</span>
+                ViewRiksdagenGovermentRoleMember_.active);
+    }
+
+    /**
+     * Load active politicians by person id.
+     *
+     * @return the map
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; loadActivePoliticiansByPersonId() {
+<span class="fc" id="L73">        final DataContainer&lt;ViewRiksdagenPolitician, String&gt; politicianDataContainer = applicationManager</span>
+<span class="fc" id="L74">                .getDataContainer(ViewRiksdagenPolitician.class);</span>
+<span class="fc" id="L75">        final List&lt;ViewRiksdagenPolitician&gt; activePoliticians = politicianDataContainer</span>
+<span class="fc" id="L76">                .findListByProperty(new Object[] { Boolean.TRUE }, ViewRiksdagenPolitician_.active);</span>
+<span class="fc" id="L77">        return activePoliticians.stream().collect(Collectors.groupingBy(ViewRiksdagenPolitician::getPersonId));</span>
+    }
+
+    /**
+     * Creates the base card.
+     *
+     * @return the panel
+     */
+    private Panel createBaseCard() {
+<span class="fc" id="L86">        final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L87">        cardPanel.addStyleName(&quot;leader-baseball-card&quot;);</span>
+<span class="fc" id="L88">        cardPanel.setSizeFull();</span>
+<span class="fc" id="L89">        Responsive.makeResponsive(cardPanel);</span>
+<span class="fc" id="L90">        return cardPanel;</span>
+    }
+
+    /**
+     * Creates the card content.
+     *
+     * @return the vertical layout
+     */
+    private VerticalLayout createCardContent() {
+<span class="fc" id="L99">        final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L100">        cardContent.setMargin(true);</span>
+<span class="fc" id="L101">        cardContent.setSpacing(true);</span>
+<span class="fc" id="L102">        cardContent.setSizeFull();</span>
+<span class="fc" id="L103">        return cardContent;</span>
+    }
+
+    /**
+     * Adds the experience row.
+     *
+     * @param container the container
+     * @param govYears the gov years
+     * @param partyYears the party years
+     * @param parliamentYears the parliament years
+     */
+    private void addExperienceRow(final VerticalLayout container, final int govYears, final int partyYears, final int parliamentYears) {
+<span class="fc" id="L115">        final HorizontalLayout experienceLayout = CardInfoRowUtil.createStandardRow();</span>
+<span class="fc" id="L116">        experienceLayout.addStyleName(CardInfoRowUtil.CARD_EXPERIENCE);</span>
+
+<span class="fc" id="L118">        final Label expIcon = CardInfoRowUtil.createIconLabel(VaadinIcons.USER_CHECK, &quot;Political Experience&quot;);</span>
+<span class="fc" id="L119">        final Label expLabel = new Label(&quot;Experience:&quot;);</span>
+<span class="fc" id="L120">        expLabel.addStyleName(&quot;card-experience-text&quot;);</span>
+
+<span class="fc" id="L122">        final String expText = String.format(Locale.ENGLISH,</span>
+            &quot;Government: %dy, Party: %dy, Parliament: %dy&quot;,
+<span class="fc" id="L124">            govYears, partyYears, parliamentYears);</span>
+<span class="fc" id="L125">        final Label expValue = new Label(expText);</span>
+<span class="fc" id="L126">        expValue.addStyleName(CardInfoRowUtil.CARD_INFO_VALUE);</span>
+
+<span class="fc" id="L128">        experienceLayout.addComponents(expIcon, expLabel, expValue);</span>
+<span class="fc" id="L129">        container.addComponent(experienceLayout);</span>
+<span class="fc" id="L130">    }</span>
+
+    /**
+     * Creates the baseball style card.
+     *
+     * @param govMember the gov member
+     * @param politician the politician
+     * @param ballotSummary the ballot summary
+     * @param governmentBodyByMinistry the government body by ministry
+     * @param reportByMinistry the report by ministry
+     * @param experienceSummary the experience summary
+     * @return the panel
+     */
+    public Panel createBaseballStyleCard(final ViewRiksdagenGovermentRoleMember govMember,
+            final ViewRiksdagenPolitician politician, final ViewRiksdagenPoliticianBallotSummary ballotSummary, final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyByMinistry,
+            final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+
+<span class="fc" id="L147">        final Panel cardPanel = createBaseCard();</span>
+<span class="fc" id="L148">        final VerticalLayout cardContent = createCardContent();</span>
+<span class="fc" id="L149">        cardPanel.setContent(cardContent);</span>
+
+<span class="fc" id="L151">        CardInfoRowUtil.createCardHeader(cardContent,govMember.getRoleCode() + &quot; &quot; + govMember.getFirstName() + &quot; &quot; + govMember.getLastName()</span>
+<span class="fc" id="L152">            + &quot; (&quot; + govMember.getParty() + &quot;)&quot;);</span>
+<span class="fc" id="L153">        cardContent.addComponent(pageLinkFactory.createPoliticianPageLink(politician));</span>
+
+<span class="fc" id="L155">        final Link pageLink = new Link(&quot;Party &quot; + politician.getParty(),</span>
+<span class="fc" id="L156">                new ExternalResource(&quot;#!&quot; + UserViews.PARTY_VIEW_NAME + &quot;/&quot; + politician.getParty()));</span>
+<span class="fc" id="L157">        pageLink.setId(ViewAction.VISIT_PARTY_VIEW.name() + &quot;/&quot; + politician.getParty());</span>
+<span class="fc" id="L158">        pageLink.setIcon(VaadinIcons.GROUP);</span>
+
+<span class="fc" id="L160">        cardContent.addComponent(pageLink);</span>
+
+<span class="fc" id="L162">        final boolean isPartyLeader = PartyLeaderUtil.isPartyLeader(applicationManager, politician.getPersonId());</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        if (isPartyLeader) {</span>
+<span class="fc" id="L164">            final ViewRiksdagenPartyRoleMember leaderRole = PartyLeaderUtil.getPartyLeaderRole(applicationManager, politician.getPersonId());</span>
+<span class="pc bpc" id="L165" title="1 of 2 branches missed.">            if (leaderRole != null) {</span>
+<span class="fc" id="L166">                final Label subHeader = new Label(</span>
+<span class="fc" id="L167">                        &quot;Partiledare (&quot; + govMember.getParty() + &quot;) since &quot; + leaderRole.getFromDate());</span>
+<span class="fc" id="L168">                subHeader.addStyleName(&quot;card-subtitle&quot;);</span>
+<span class="fc" id="L169">                cardContent.addComponent(subHeader);</span>
+            }
+        }
+
+        // After creating the divider following the header/subtitle
+        // We create a vertical layout to hold Tenure and Experience on separate rows
+<span class="fc" id="L175">        final VerticalLayout statsContainer = CardInfoRowUtil.createStatsContainer();</span>
+
+        // Tenure Row
+<span class="fc" id="L178">        final HorizontalLayout tenureLayout = new HorizontalLayout();</span>
+<span class="fc" id="L179">        tenureLayout.setSpacing(true);</span>
+<span class="fc" id="L180">        tenureLayout.addStyleName(&quot;card-tenure&quot;);</span>
+<span class="fc" id="L181">        final Label tenureIcon = new Label(VaadinIcons.CLOCK.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L182">        tenureIcon.setDescription(&quot;Tenure in days&quot;);</span>
+
+<span class="fc" id="L184">        final Label tenureLabel = new Label(&quot;Tenure:&quot;);</span>
+<span class="fc" id="L185">        tenureLabel.addStyleName(&quot;card-tenure-text&quot;);</span>
+
+<span class="fc" id="L187">        final Label tenureValue = new Label(govMember.getTotalDaysServed() + &quot; days&quot;);</span>
+<span class="fc" id="L188">        tenureValue.addStyleName(&quot;card-tenure-value&quot;);</span>
+
+<span class="fc" id="L190">        tenureLayout.addComponents(tenureIcon, tenureLabel, tenureValue);</span>
+<span class="fc" id="L191">        statsContainer.addComponent(tenureLayout);</span>
+
+        // Experience Row
+<span class="fc" id="L194">        final int govYears = (int) (politician.getTotalDaysServedGovernment() / 365);</span>
+<span class="fc" id="L195">        final int partyYears = (int) (politician.getTotalDaysServedParty() / 365);</span>
+<span class="fc" id="L196">        final int parliamentYears = (int) (politician.getTotalDaysServedParliament() / 365);</span>
+<span class="fc" id="L197">        addExperienceRow(statsContainer, govYears, partyYears, parliamentYears);</span>
+
+        // Add the statsContainer to the cardContent
+<span class="fc" id="L200">        cardContent.addComponent(statsContainer);</span>
+
+        // Create grid for the four sections
+<span class="fc" id="L203">        final HorizontalLayout sectionsGrid = new HorizontalLayout();</span>
+<span class="fc" id="L204">        sectionsGrid.setSpacing(true);</span>
+<span class="fc" id="L205">        sectionsGrid.setWidth(&quot;100%&quot;);</span>
+
+        // Add the four main sections
+<span class="fc" id="L208">        final VerticalLayout politicalRoleLayout = CardInfoRowUtil.createSectionLayout(&quot;Political Role &amp; Influence&quot;);</span>
+<span class="fc" id="L209">        addPoliticalRoleMetrics(politicalRoleLayout, govMember, politician, ballotSummary, experienceSummary);</span>
+<span class="fc" id="L210">        sectionsGrid.addComponent(politicalRoleLayout);</span>
+
+<span class="fc" id="L212">        final VerticalLayout performanceLayout = CardInfoRowUtil.createSectionLayout(&quot;Parliamentary Performance&quot;);</span>
+<span class="fc" id="L213">        politicianLeaderboardUtil.addParliamentaryPerformanceMetrics(performanceLayout, politician, ballotSummary);</span>
+<span class="fc" id="L214">        sectionsGrid.addComponent(performanceLayout);</span>
+
+<span class="fc" id="L216">        cardContent.addComponent(sectionsGrid);</span>
+
+<span class="fc" id="L218">        final HorizontalLayout sections2Grid = new HorizontalLayout();</span>
+<span class="fc" id="L219">        sections2Grid.setSpacing(true);</span>
+<span class="fc" id="L220">        sections2Grid.setWidth(&quot;100%&quot;);</span>
+
+<span class="fc" id="L222">        final VerticalLayout legislativeLayout = CardInfoRowUtil.createSectionLayout(&quot;Legislative Activity&quot;);</span>
+<span class="fc" id="L223">        politicianLeaderboardUtil.addLegislativeMetrics(legislativeLayout, politician);</span>
+<span class="fc" id="L224">        sections2Grid.addComponent(legislativeLayout);</span>
+
+<span class="fc" id="L226">        final VerticalLayout alignmentLayout = CardInfoRowUtil.createSectionLayout(&quot;Party Alignment&quot;);</span>
+<span class="fc" id="L227">        politicianLeaderboardUtil.addPartyAlignmentMetrics(alignmentLayout, politician, ballotSummary);</span>
+<span class="fc" id="L228">        sections2Grid.addComponent(alignmentLayout);</span>
+<span class="fc" id="L229">        cardContent.addComponent(sections2Grid);</span>
+
+<span class="fc" id="L231">        politicianLeaderboardUtil.addMinistryRoleSummary(cardContent, govMember, governmentBodyByMinistry, reportByMinistry);</span>
+
+<span class="fc" id="L233">        return cardPanel;</span>
+    }
+
+    /**
+     * Creates the leader card.
+     *
+     * @param leader the leader
+     * @param ballotSummary the ballot summary
+     * @param governmentBodyByMinistry the government body by ministry
+     * @param reportByMinistry the report by ministry
+     * @param experienceSummary the experience summary
+     * @return the panel
+     */
+    public Panel createLeaderCard(final ViewRiksdagenPolitician leader, final ViewRiksdagenPoliticianBallotSummary ballotSummary,
+            final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyByMinistry,
+            final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+
+<span class="fc" id="L250">        final Panel cardPanel = createBaseCard();</span>
+<span class="fc" id="L251">        final VerticalLayout cardContent = createCardContent();</span>
+<span class="fc" id="L252">        cardPanel.setContent(cardContent);</span>
+
+<span class="fc" id="L254">        CardInfoRowUtil.createCardHeader(cardContent,&quot;Partiledare &quot; + leader.getFirstName() + &quot; &quot; + leader.getLastName() + &quot; (&quot;</span>
+<span class="fc" id="L255">                + leader.getParty() + &quot;)&quot;);</span>
+
+        // Politician detail link
+<span class="fc" id="L258">        cardContent.addComponent(pageLinkFactory.createPoliticianPageLink(leader));</span>
+
+        // Party link
+<span class="fc" id="L261">        final Link partyLink = new Link(&quot;Party &quot; + leader.getParty(),</span>
+<span class="fc" id="L262">                new ExternalResource(&quot;#!&quot; + UserViews.PARTY_VIEW_NAME + &quot;/&quot; + leader.getParty()));</span>
+<span class="fc" id="L263">        partyLink.setIcon(VaadinIcons.GROUP);</span>
+<span class="fc" id="L264">        cardContent.addComponent(partyLink);</span>
+
+<span class="fc" id="L266">        final boolean isPartyLeader = PartyLeaderUtil.isPartyLeader(applicationManager, leader.getPersonId());</span>
+<span class="pc bpc" id="L267" title="1 of 2 branches missed.">        if (isPartyLeader) {</span>
+<span class="fc" id="L268">            final ViewRiksdagenPartyRoleMember leaderRole = PartyLeaderUtil.getPartyLeaderRole(applicationManager, leader.getPersonId());</span>
+<span class="pc bpc" id="L269" title="1 of 2 branches missed.">            if (leaderRole != null) {</span>
+<span class="fc" id="L270">                final Label subHeader = new Label(&quot;Partiledare (&quot; + leader.getParty() + &quot;) since &quot; + leaderRole.getFromDate());</span>
+<span class="fc" id="L271">                subHeader.addStyleName(&quot;card-subtitle&quot;);</span>
+<span class="fc" id="L272">                cardContent.addComponent(subHeader);</span>
+            }
+        }
+
+        // Government or not
+<span class="fc" id="L277">        ViewRiksdagenGovermentRoleMember govMember = null;</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">        if (leader.isActiveGovernment()) {</span>
+<span class="fc" id="L279">            final Label govLabel = new Label(&quot;Currently in Government&quot;);</span>
+<span class="fc" id="L280">            govLabel.addStyleName(&quot;card-subtitle&quot;);</span>
+<span class="fc" id="L281">            cardContent.addComponent(govLabel);</span>
+
+            // Add ministry summary if we can identify their ministry
+            // The ministry detail is stored in the same structure as the ministry snippet:
+            // We need to find which ministry they belong to
+            // In the ministry snippet, &quot;govMember.getDetail()&quot; gives ministry detail key.
+            // Here we only have leader, not govMember. We must find a corresponding approach:
+
+            // Let's assume we can identify the leader's ministry from active government roles data:
+            // we do similar approach: load active government role members and find the one matching this leader
+<span class="fc" id="L291">            final ViewRiksdagenPolitician pol = leader; // same as leader</span>
+<span class="fc" id="L292">            govMember = findGovernmentRoleForLeader(pol);</span>
+<span class="pc bpc" id="L293" title="1 of 2 branches missed.">            if (govMember != null) {</span>
+<span class="fc" id="L294">                politicianLeaderboardUtil.addMinistryRoleSummary(cardContent, govMember, governmentBodyByMinistry, reportByMinistry);</span>
+            }
+
+<span class="fc" id="L297">        } else {</span>
+<span class="fc" id="L298">            final Label nonGovLabel = new Label(&quot;Not in Government&quot;);</span>
+<span class="fc" id="L299">            nonGovLabel.addStyleName(&quot;card-subtitle-nongov&quot;);</span>
+<span class="fc" id="L300">            cardContent.addComponent(nonGovLabel);</span>
+        }
+
+        // Tenure and Experience rows
+<span class="fc" id="L304">        final VerticalLayout statsContainer = CardInfoRowUtil.createStatsContainer();</span>
+
+        // Tenure (assuming leader might have totalDaysServed property)
+<span class="fc" id="L307">        final Label tenureIcon = new Label(VaadinIcons.CLOCK.getHtml(), ContentMode.HTML);</span>
+<span class="fc" id="L308">        tenureIcon.setDescription(&quot;Total Tenure&quot;);</span>
+<span class="fc" id="L309">        final Label tenureLabel = new Label(&quot;Tenure:&quot;);</span>
+<span class="fc" id="L310">        tenureLabel.addStyleName(&quot;card-tenure-text&quot;);</span>
+<span class="fc" id="L311">        final Label tenureValue = new Label(leader.getTotalDaysServedParty() + &quot; days&quot;);</span>
+<span class="fc" id="L312">        tenureValue.addStyleName(&quot;card-tenure-value&quot;);</span>
+<span class="fc" id="L313">        final HorizontalLayout tenureLayout = new HorizontalLayout(tenureIcon, tenureLabel, tenureValue);</span>
+<span class="fc" id="L314">        tenureLayout.setSpacing(true);</span>
+<span class="fc" id="L315">        tenureLayout.addStyleName(&quot;card-tenure&quot;);</span>
+<span class="fc" id="L316">        statsContainer.addComponent(tenureLayout);</span>
+
+        // Experience
+<span class="fc" id="L319">        final int govYears = (int) (leader.getTotalDaysServedGovernment() / 365);</span>
+<span class="fc" id="L320">        final int partyYears = (int) (leader.getTotalDaysServedParty() / 365);</span>
+<span class="fc" id="L321">        final int parliamentYears = (int) (leader.getTotalDaysServedParliament() / 365);</span>
+<span class="fc" id="L322">        addExperienceRow(statsContainer, govYears, partyYears, parliamentYears);</span>
+
+<span class="fc" id="L324">        cardContent.addComponent(statsContainer);</span>
+
+        // Create grid for the four sections
+<span class="fc" id="L327">        final HorizontalLayout sectionsGrid = new HorizontalLayout();</span>
+<span class="fc" id="L328">        sectionsGrid.setSpacing(true);</span>
+<span class="fc" id="L329">        sectionsGrid.setWidth(&quot;100%&quot;);</span>
+
+        // Add the four main sections
+<span class="fc" id="L332">        final VerticalLayout politicalRoleLayout = CardInfoRowUtil.createSectionLayout(&quot;Political Role &amp; Influence&quot;);</span>
+<span class="fc" id="L333">        addPoliticalRoleMetrics(politicalRoleLayout, PartyLeaderUtil.getPartyLeaderRole(applicationManager, leader.getPersonId()), govMember, leader, ballotSummary,experienceSummary);</span>
+<span class="fc" id="L334">        sectionsGrid.addComponent(politicalRoleLayout);</span>
+
+<span class="fc" id="L336">        final VerticalLayout performanceLayout = CardInfoRowUtil.createSectionLayout(&quot;Parliamentary Performance&quot;);</span>
+<span class="fc" id="L337">        politicianLeaderboardUtil.addParliamentaryPerformanceMetrics(performanceLayout, leader, ballotSummary);</span>
+<span class="fc" id="L338">        sectionsGrid.addComponent(performanceLayout);</span>
+
+<span class="fc" id="L340">        cardContent.addComponent(sectionsGrid);</span>
+
+<span class="fc" id="L342">        final HorizontalLayout sections2Grid = new HorizontalLayout();</span>
+<span class="fc" id="L343">        sections2Grid.setSpacing(true);</span>
+<span class="fc" id="L344">        sections2Grid.setWidth(&quot;100%&quot;);</span>
+
+<span class="fc" id="L346">        final VerticalLayout legislativeLayout = CardInfoRowUtil.createSectionLayout(&quot;Legislative Activity&quot;);</span>
+<span class="fc" id="L347">        politicianLeaderboardUtil.addLegislativeMetrics(legislativeLayout, leader);</span>
+<span class="fc" id="L348">        sections2Grid.addComponent(legislativeLayout);</span>
+
+<span class="fc" id="L350">        final VerticalLayout alignmentLayout = CardInfoRowUtil.createSectionLayout(&quot;Party Alignment&quot;);</span>
+<span class="fc" id="L351">        politicianLeaderboardUtil.addPartyAlignmentMetrics(alignmentLayout, leader, ballotSummary);</span>
+<span class="fc" id="L352">        sections2Grid.addComponent(alignmentLayout);</span>
+<span class="fc" id="L353">        cardContent.addComponent(sections2Grid);</span>
+
+<span class="fc" id="L355">        return cardPanel;</span>
+    }
+
+    /**
+     * Adds the political role metrics.
+     *
+     * @param layout the layout
+     * @param govMember the gov member
+     * @param politician the politician
+     * @param ballotSummary the ballot summary
+     * @param experienceSummary the experience summary
+     */
+    private void addPoliticalRoleMetrics(final VerticalLayout layout, final ViewRiksdagenGovermentRoleMember govMember,
+            final ViewRiksdagenPolitician politician, final ViewRiksdagenPoliticianBallotSummary ballotSummary, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+
+<span class="fc" id="L370">        layout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Current Role:&quot;, govMember.getRoleCode(), VaadinIcons.INSTITUTION,</span>
+                &quot;Current position in parliament&quot;));
+<span class="fc" id="L372">        layout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Career Length:&quot;,</span>
+<span class="fc" id="L373">                String.format(Locale.ENGLISH,&quot;%,d days&quot;, govMember.getTotalDaysServed()),</span>
+                VaadinIcons.TIMER, &quot;Years in parliament&quot;));
+<span class="fc" id="L375">        layout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Total Propositions:&quot;,</span>
+<span class="fc" id="L376">                String.format(Locale.ENGLISH,&quot;%,d&quot;, govMember.getTotalPropositions()),</span>
+                VaadinIcons.GROUP, &quot;Total Propositions&quot;));
+<span class="fc" id="L378">        layout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Total Government Bills:&quot;,</span>
+<span class="fc" id="L379">                String.format(Locale.ENGLISH,&quot;%,d&quot;, govMember.getTotalGovernmentBills()),</span>
+                VaadinIcons.GROUP, &quot;Total Government Bills&quot;));
+
+<span class="fc" id="L382">        politicianLeaderboardUtil.addTopRoles(layout, experienceSummary);</span>
+<span class="fc" id="L383">        politicianLeaderboardUtil.addKnowledgeAreas(layout, experienceSummary);</span>
+<span class="fc" id="L384">        politicianLeaderboardUtil.addExperienceMetrics(layout,experienceSummary);</span>
+<span class="fc" id="L385">        politicianLeaderboardUtil.addPoliticalAnalysisComment(layout, experienceSummary);</span>
+
+<span class="fc" id="L387">    }</span>
+
+    /**
+     * Adds the political role metrics.
+     *
+     * @param layout the layout
+     * @param riksdagenPartyRoleMember the riksdagen party role member
+     * @param govMember the gov member
+     * @param politician the politician
+     * @param ballotSummary the ballot summary
+     * @param experienceSummary the experience summary
+     */
+    private void addPoliticalRoleMetrics(final VerticalLayout layout, final ViewRiksdagenPartyRoleMember riksdagenPartyRoleMember, final ViewRiksdagenGovermentRoleMember govMember,
+            final ViewRiksdagenPolitician politician, final ViewRiksdagenPoliticianBallotSummary ballotSummary, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
+
+<span class="fc" id="L402">        addPartyExperince(layout, riksdagenPartyRoleMember, govMember, politician);</span>
+
+        // Top Roles
+<span class="fc" id="L405">        politicianLeaderboardUtil.addTopRoles(layout, experienceSummary);</span>
+
+        // Top Knowledge Areas
+<span class="fc" id="L408">        politicianLeaderboardUtil.addKnowledgeAreas(layout, experienceSummary);</span>
+
+<span class="fc" id="L410">        politicianLeaderboardUtil.addExperienceMetrics(layout,experienceSummary);</span>
+
+<span class="fc" id="L412">        politicianLeaderboardUtil.addPoliticalAnalysisComment(layout, experienceSummary);</span>
+
+<span class="fc" id="L414">    }</span>
+
+    /**
+     * Adds the party experince.
+     *
+     * @param layout the layout
+     * @param riksdagenPartyRoleMember the riksdagen party role member
+     * @param govMember the gov member
+     * @param politician the politician
+     */
+    private void addPartyExperince(final VerticalLayout layout, final ViewRiksdagenPartyRoleMember riksdagenPartyRoleMember,
+            final ViewRiksdagenGovermentRoleMember govMember, final ViewRiksdagenPolitician politician) {
+<span class="fc bfc" id="L426" title="All 2 branches covered.">        if (govMember != null) {</span>
+<span class="pc bpc" id="L427" title="1 of 2 branches missed.">            layout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Role:&quot;, govMember != null ? govMember.getRoleCode() : &quot;N/A&quot;, VaadinIcons.INSTITUTION,</span>
+                    &quot;Current position in Government&quot;));
+<span class="fc" id="L429">            layout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Career Length Government:&quot;,</span>
+<span class="pc bpc" id="L430" title="1 of 2 branches missed.">                    String.format(Locale.ENGLISH,&quot;%,d days&quot;, govMember != null ? govMember.getTotalDaysServed() : 0),</span>
+                    VaadinIcons.TIMER, &quot;Years in Government&quot;));
+        } else {
+<span class="fc" id="L433">            layout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Career Length Parlimanet:&quot;,</span>
+<span class="pc bpc" id="L434" title="1 of 2 branches missed.">                    String.format(Locale.ENGLISH,&quot;%,d days&quot;, politician != null ? politician.getTotalDaysServedParliament() : 0),</span>
+                    VaadinIcons.TIMER, &quot;Years in Parlimanet&quot;));
+        }
+
+<span class="pc bpc" id="L438" title="1 of 2 branches missed.">        layout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Current Party Role:&quot;, riksdagenPartyRoleMember != null ? riksdagenPartyRoleMember.getRoleCode() : &quot;N/A&quot;, VaadinIcons.INSTITUTION,</span>
+                &quot;Current position in Party&quot;));
+<span class="fc" id="L440">        layout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Career Length Party Leader:&quot;,</span>
+<span class="pc bpc" id="L441" title="1 of 2 branches missed.">                String.format(Locale.ENGLISH,&quot;%,d days&quot;, riksdagenPartyRoleMember != null ? riksdagenPartyRoleMember.getTotalDaysServed() : 0),</span>
+                VaadinIcons.TIMER, &quot;Years as Party Leader&quot;));
+<span class="fc" id="L443">    }</span>
+
+    /**
+     * Find government role for leader.
+     *
+     * @param leader the leader
+     * @return the view riksdagen goverment role member
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    private ViewRiksdagenGovermentRoleMember findGovernmentRoleForLeader(final ViewRiksdagenPolitician leader) {
+<span class="fc" id="L453">        final DataContainer&lt;ViewRiksdagenGovermentRoleMember, String&gt; govermentRoleMemberDataContainer = applicationManager</span>
+<span class="fc" id="L454">                .getDataContainer(ViewRiksdagenGovermentRoleMember.class);</span>
+<span class="fc" id="L455">        final List&lt;ViewRiksdagenGovermentRoleMember&gt; activeGovMembers = govermentRoleMemberDataContainer.findListByProperty(</span>
+                new Object[] { Boolean.TRUE }, ViewRiksdagenGovermentRoleMember_.active);
+
+<span class="fc" id="L458">        return activeGovMembers.stream()</span>
+<span class="fc" id="L459">                .filter(govMember -&gt; govMember.getPersonId().equals(leader.getPersonId()))</span>
+<span class="fc" id="L460">                .findFirst().orElse(null);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

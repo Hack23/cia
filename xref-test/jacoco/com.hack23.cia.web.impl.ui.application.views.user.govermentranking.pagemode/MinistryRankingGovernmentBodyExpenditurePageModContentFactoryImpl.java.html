@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagemode</a> &gt; <span class="el_source">MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl.java</span></div><h1>MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagemode;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.GovernmentBodyChartDataManager;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMinistryRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class GovernmentBodyRankingExpenditurePageModContentFactoryImpl.
+ */
+@Component
+public final class MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl extends AbstractMinistryRankingPageModContentFactoryImpl {
+
+	/** The government body chart data manager. */
+	@Autowired
+	private GovernmentBodyChartDataManager governmentBodyChartDataManager;
+
+	/**
+	 * Instantiates a new government body ranking expenditure page mod content
+	 * factory impl.
+	 */
+	public MinistryRankingGovernmentBodyExpenditurePageModContentFactoryImpl() {
+<span class="fc" id="L50">		super();</span>
+<span class="fc" id="L51">	}</span>
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L56">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L58">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+
+<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L62">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+			MinistryRankingViewConstants.GOV_BODY_EXP_TITLE,
+			MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+			MinistryRankingViewConstants.GOV_BODY_EXP_DESC);
+
+
+<span class="fc" id="L68">		governmentBodyChartDataManager.createMinistryGovernmentBodyExpenditureSummaryChart(panelContent);</span>
+
+<span class="fc" id="L70">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="fc" id="L73">		return panelContent;</span>
+
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L79">		return PageCommandMinistryRankingConstants.COMMAND_GOVERNMENT_BODIES_EXPENDITURE.matches(page, parameters);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

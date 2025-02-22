@@ -1,1 +1,1 @@
-/usr/lib/jvm/java-11-openjdk-amd64/bin/javadoc @options @argfile
+/usr/lib/jvm/jdk-21/bin/javadoc -J-Duser.language= -J-Duser.country= @options @argfile

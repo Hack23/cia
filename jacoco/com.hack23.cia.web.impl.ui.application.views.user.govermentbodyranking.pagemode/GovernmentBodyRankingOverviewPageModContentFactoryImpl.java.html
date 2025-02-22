@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentBodyRankingOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.govermentbodyranking.pagemode</a> &gt; <span class="el_source">GovernmentBodyRankingOverviewPageModContentFactoryImpl.java</span></div><h1>GovernmentBodyRankingOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.user.govermentbodyranking.pagemode;
+
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode.GovernmentBodyDescriptionConstants;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class GovernmentBodyRankingOverviewPageModContentFactoryImpl.
+ */
+@Component
+public final class GovernmentBodyRankingOverviewPageModContentFactoryImpl extends AbstractGovernmentBodyRankingPageModContentFactoryImpl {
+
+
+	/**
+	 * Instantiates a new government body ranking overview page mod content factory
+	 * impl.
+	 */
+	public GovernmentBodyRankingOverviewPageModContentFactoryImpl() {
+<span class="fc" id="L46">		super();</span>
+<span class="fc" id="L47">	}</span>
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L52">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L53">        final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L55">        createMenuBar(menuBar);</span>
+<span class="fc" id="L56">        createHeader(panel, panelContent);</span>
+<span class="fc" id="L57">        createOverviewContent(panelContent);</span>
+
+<span class="fc" id="L59">        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_RANKING_VIEW,</span>
+            ApplicationEventGroup.USER, NAME, parameters, pageId);
+
+<span class="fc" id="L62">        return panelContent;</span>
+	}
+
+    /**
+     * Creates the menu bar.
+     *
+     * @param menuBar the menu bar
+     */
+    private void createMenuBar(final MenuBar menuBar) {
+<span class="fc" id="L71">        getGovernmentBodyRankingMenuItemFactory().createGovernmentBodyRankingMenuBar(menuBar);</span>
+<span class="fc" id="L72">    }</span>
+
+    /**
+     * Creates the header.
+     *
+     * @param panel the panel
+     * @param panelContent the panel content
+     */
+    private void createHeader(final Panel panel, final VerticalLayout panelContent) {
+<span class="fc" id="L81">        CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+            GovernmentBodyDescriptionConstants.RANKING_HEADER,
+            GovernmentBodyDescriptionConstants.RANKING_SUBTITLE,
+            GovernmentBodyDescriptionConstants.RANKING_DESC);
+<span class="fc" id="L85">    }</span>
+
+    /**
+     * Creates the overview content.
+     *
+     * @param panelContent the panel content
+     */
+    private void createOverviewContent(final VerticalLayout panelContent) {
+<span class="fc" id="L93">        getGovernmentBodyRankingMenuItemFactory().createOverviewPage(panelContent);</span>
+<span class="fc" id="L94">    }</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L98">		return PageCommandGovernmentBodyRankingConstants.COMMAND_GOVERNMENT_BODY_RANKING_OVERVIEW.matches(page, parameters);</span>
+	}
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

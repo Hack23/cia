@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagemode</a> &gt; <span class="el_source">MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</span></div><h1>MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagemode;
+
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Service;
+
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMinistryRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.LeaderCardUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PartyLeaderUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl.
+ */
+@Service
+public final class MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl
+		extends AbstractMinistryRankingPageModContentFactoryImpl {
+
+	/** The Constant DISPLAY_SIZE_LG_DEVICE. */
+	private static final int DISPLAY_SIZE_LG_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_MD_DEVICE. */
+	private static final int DISPLAY_SIZE_MD_DEVICE = 4;
+
+	/** The Constant DISPLAY_SIZE_XS_DEVICE. */
+	private static final int DISPLAY_SIZE_XS_DEVICE = 12;
+
+	/** The Constant DISPLAYS_SIZE_XM_DEVICE. */
+	private static final int DISPLAYS_SIZE_XM_DEVICE = 6;
+
+	/** The Constant CURRENT_YEAR. */
+	private static final int CURRENT_YEAR = 2024;
+
+	/** The esv api. */
+	private final EsvApi esvApi;
+
+	/** The leader card util. */
+	@Autowired
+	private LeaderCardUtil leaderCardUtil;
+
+	/**
+	 * Instantiates a new ministry ranking current parties leader scoreboard charts page mod content factory impl.
+	 *
+	 * @param esvApi the esv api
+	 */
+	public MinistryRankingCurrentPartiesLeaderScoreboardChartsPageModContentFactoryImpl(final EsvApi esvApi) {
+<span class="fc" id="L67">		super();</span>
+<span class="fc" id="L68">		this.esvApi = esvApi;</span>
+<span class="fc" id="L69">	}</span>
+
+	/**
+	 * Creates the content.
+	 *
+	 * @param parameters the parameters
+	 * @param menuBar the menu bar
+	 * @param panel the panel
+	 * @return the layout
+	 */
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L82">		panel.setSizeFull();</span>
+
+<span class="fc" id="L84">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L85">		panelContent.setSizeFull();</span>
+<span class="fc" id="L86">		panel.setContent(panelContent);</span>
+
+<span class="fc" id="L88">		getMinistryRankingMenuItemFactory().createMinistryRankingMenuBar(menuBar);</span>
+
+<span class="fc" id="L90">		final String pageId = getPageId(parameters);</span>
+
+<span class="fc" id="L92">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+            MinistryRankingViewConstants.TITLE_MINISTRY_RANKINGS,
+            MinistryRankingViewConstants.LEADER_SCOREBOARD_TITLE,
+            MinistryRankingViewConstants.LEADER_SCOREBOARD_DESC);
+
+<span class="fc" id="L97">		final ResponsiveRow row = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L98">		row.setSizeFull();</span>
+
+<span class="fc" id="L100">		final List&lt;ViewRiksdagenGovermentRoleMember&gt; activeGovMembers = leaderCardUtil.loadActiveGovernmentRoleMembers();</span>
+<span class="fc" id="L101">		final Map&lt;String, List&lt;ViewRiksdagenPolitician&gt;&gt; activePoliticianMap = leaderCardUtil.loadActivePoliticiansByPersonId();</span>
+
+<span class="fc" id="L103">		final Map&lt;String, Boolean&gt; partyLeaderMap = PartyLeaderUtil.computePartyLeaders( getApplicationManager() ,activePoliticianMap.keySet());</span>
+
+		// Sort roles
+<span class="fc" id="L106">		activeGovMembers.sort((a, b) -&gt; {</span>
+<span class="fc" id="L107">			final boolean aLeader = partyLeaderMap.getOrDefault(a.getPersonId(), false);</span>
+<span class="fc" id="L108">			final boolean bLeader = partyLeaderMap.getOrDefault(b.getPersonId(), false);</span>
+<span class="fc" id="L109">			final int aPriority = getRolePriority(a.getRoleCode(), aLeader);</span>
+<span class="fc" id="L110">			final int bPriority = getRolePriority(b.getRoleCode(), bLeader);</span>
+<span class="fc" id="L111">			return Integer.compare(aPriority, bPriority);</span>
+		});
+
+<span class="fc" id="L114">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; dataMap = esvApi.getData();</span>
+<span class="fc" id="L115">		final List&lt;GovernmentBodyAnnualSummary&gt; currentYearGovernmentBodies = dataMap.get(CURRENT_YEAR);</span>
+<span class="fc" id="L116">		final Map&lt;String, List&lt;GovernmentBodyAnnualSummary&gt;&gt; governmentBodyByMinistry = currentYearGovernmentBodies</span>
+<span class="fc" id="L117">				.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualSummary::getMinistry));</span>
+
+<span class="fc" id="L119">		final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; reportByMinistry = esvApi</span>
+<span class="fc" id="L120">				.getGovernmentBodyReportByMinistry();</span>
+
+<span class="fc bfc" id="L122" title="All 2 branches covered.">		for (final ViewRiksdagenGovermentRoleMember govMember : activeGovMembers) {</span>
+<span class="fc" id="L123">			final ViewRiksdagenPolitician politician = activePoliticianMap.get(govMember.getPersonId()).get(0);</span>
+<span class="fc" id="L124">			final ViewRiksdagenPoliticianBallotSummary ballotSummary = getApplicationManager()</span>
+<span class="fc" id="L125">					.getDataContainer(ViewRiksdagenPoliticianBallotSummary.class).load(govMember.getPersonId());</span>
+<span class="fc" id="L126">		    final ViewRiksdagenPoliticianExperienceSummary experienceSummary = getApplicationManager().getDataContainer(ViewRiksdagenPoliticianExperienceSummary.class).load(govMember.getPersonId());</span>
+
+
+<span class="fc" id="L129">			final Panel cardPanel = leaderCardUtil.createBaseballStyleCard(govMember, politician, ballotSummary, governmentBodyByMinistry,</span>
+					reportByMinistry,experienceSummary);
+
+			// Responsive column rules
+<span class="fc" id="L133">			row.addColumn().withDisplayRules(DISPLAY_SIZE_XS_DEVICE, DISPLAYS_SIZE_XM_DEVICE, DISPLAY_SIZE_MD_DEVICE,</span>
+<span class="fc" id="L134">					DISPLAY_SIZE_LG_DEVICE).withComponent(cardPanel);</span>
+<span class="fc" id="L135">		}</span>
+
+<span class="fc" id="L137">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_MINISTRY_RANKING_VIEW, ApplicationEventGroup.USER,</span>
+				NAME, parameters, pageId);
+
+<span class="fc" id="L140">		return panelContent;</span>
+	}
+
+	/**
+	 * Gets the role priority.
+	 *
+	 * @param role the role
+	 * @param isPartyLeader the is party leader
+	 * @return the role priority
+	 */
+	private int getRolePriority(final String role, final boolean isPartyLeader) {
+<span class="fc" id="L151">		final String roleNormalized = role.toLowerCase(Locale.ROOT).trim();</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">		if (&quot;statsminister&quot;.equals(roleNormalized)) {</span>
+<span class="fc" id="L153">			return 1;</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">		} else if (isPartyLeader) {</span>
+<span class="fc" id="L155">			return 2;</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">		} else if (roleNormalized.endsWith(&quot;minister&quot;)) {</span>
+<span class="fc" id="L157">			return 3;</span>
+<span class="pc bpc" id="L158" title="1 of 2 branches missed.">		} else if (&quot;statsråd&quot;.equalsIgnoreCase(roleNormalized)) {</span>
+<span class="fc" id="L159">			return 4;</span>
+		} else {
+<span class="nc" id="L161">			return 5;</span>
+		}
+	}
+
+	/**
+	 * Matches.
+	 *
+	 * @param page the page
+	 * @param parameters the parameters
+	 * @return true, if successful
+	 */
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L174">		return PageCommandMinistryRankingConstants.COMMAND_CHARTS_CURRENT_MINISTRIES_LEADER_SCOREBOARD.matches(page, parameters);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

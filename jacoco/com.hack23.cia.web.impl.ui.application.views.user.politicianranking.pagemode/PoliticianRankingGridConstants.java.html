@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PoliticianRankingGridConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.politicianranking.pagemode</a> &gt; <span class="el_source">PoliticianRankingGridConstants.java</span></div><h1>PoliticianRankingGridConstants.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.user.politicianranking.pagemode;
+
+/**
+ * The Interface PoliticianRankingGridConstants.
+ */
+public interface PoliticianRankingGridConstants {
+
+    /** The politicians. */
+    String POLITICIANS = &quot;Representative Performance Analytics&quot;;
+
+    /** The column groups. */
+    // Enhanced analytical column groups
+<span class="fc" id="L13">    String[] COLUMN_GROUPS = {</span>
+        &quot;Representative Metrics&quot;,
+        &quot;Performance Indicators&quot;,
+        &quot;Legislative Analytics&quot;,
+        &quot;Position Distribution&quot;,
+        &quot;Temporal Analysis&quot;
+    };
+
+    /** The activity level desc. */
+    // Enhanced column descriptions
+    String ACTIVITY_LEVEL_DESC = &quot;Quantitative engagement metrics&quot;;
+
+    /** The collaboration desc. */
+    String COLLABORATION_DESC = &quot;Cross-party interaction patterns&quot;;
+
+    /** The document metrics desc. */
+    String DOCUMENT_METRICS_DESC = &quot;Legislative output analysis&quot;;
+
+    /** The role distribution desc. */
+    String ROLE_DISTRIBUTION_DESC = &quot;Position allocation metrics&quot;;
+
+    /** The temporal metrics desc. */
+    String TEMPORAL_METRICS_DESC = &quot;Time-series performance indicators&quot;;
+
+    /** The column order. */
+<span class="fc" id="L38">    String[] COLUMN_ORDER = {</span>
+        // Basic Information
+        &quot;personId&quot;, &quot;firstName&quot;, &quot;lastName&quot;, &quot;party&quot;, &quot;gender&quot;,
+        // Current Activity &amp; Performance
+        &quot;documentsLastYear&quot;, &quot;averageDocsPerYear&quot;, &quot;docActivityLevel&quot;,
+        &quot;docActivityProfile&quot;, &quot;collaborationPercentage&quot;,
+        // Document Breakdown
+        &quot;totalDocuments&quot;, &quot;individualMotions&quot;, &quot;partyMotions&quot;,
+        &quot;committeeMotions&quot;, &quot;multiPartyMotions&quot;,
+        // Current Roles
+        &quot;currentAssignments&quot;, &quot;currentMinistryAssignments&quot;,
+        &quot;currentCommitteeAssignments&quot;, &quot;currentCommitteeLeadershipAssignments&quot;,
+        // Historical Performance
+        &quot;documentYearsActive&quot;, &quot;totalDaysServed&quot;, &quot;totalCommitteeAssignments&quot;,
+        &quot;totalMinistryAssignments&quot;,
+        // Dates for Context
+        &quot;firstAssignmentDate&quot;, &quot;lastAssignmentDate&quot;, &quot;firstDocumentDate&quot;,
+        &quot;lastDocumentDate&quot;
+    };
+
+    /** The hide columns. */
+<span class="fc" id="L59">    String[] HIDE_COLUMNS = {</span>
+        // Hidden IDs and Boolean Flags
+        &quot;personId&quot;, &quot;active&quot;, &quot;activeEu&quot;, &quot;activeGovernment&quot;, &quot;activeCommittee&quot;,
+        &quot;activeParliament&quot;, &quot;activeParty&quot;, &quot;activeSpeaker&quot;, &quot;bornYear&quot;,
+        // Hidden Detail Metrics
+        &quot;followUpMotions&quot;, &quot;totalDaysServedParliament&quot;, &quot;totalDaysServedCommittee&quot;,
+        &quot;totalDaysServedGovernment&quot;, &quot;totalDaysServedEu&quot;, &quot;totalDaysServedSpeaker&quot;,
+        &quot;totalDaysServedParty&quot;, &quot;totalDaysServedCommitteeSubstitute&quot;,
+        &quot;totalDaysServedCommitteeLeadership&quot;,
+        // Hidden Assignment Details
+        &quot;totalPartyAssignments&quot;, &quot;totalSpeakerAssignments&quot;, &quot;currentPartyAssignments&quot;,
+        &quot;currentSpeakerAssignments&quot;, &quot;totalCommitteeSubstituteAssignments&quot;,
+        &quot;currentCommitteeSubstituteAssignments&quot;,
+        // Hidden Technical Fields
+        &quot;documentTypes&quot;, &quot;documentTypesString&quot;
+    };
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

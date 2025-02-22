@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageCommandAdminConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands</a> &gt; <span class="el_source">PageCommandAdminConstants.java</span></div><h1>PageCommandAdminConstants.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands;
+
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text.MenuItemConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummaryPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+
+
+/**
+ * The Interface MenuItemConstants.
+ */
+public interface PageCommandAdminConstants extends MenuItemConstants {
+
+
+       /** The Constant COMMAND_AGENCY. */
+<span class="fc" id="L17">       PageModeMenuCommand COMMAND_AGENCY = new PageModeMenuCommand(AdminViews.ADMIN_AGENCY_VIEW_NAME, &quot;&quot;);</span>
+
+       /** The Constant COMMAND_AGENT_OPERATION. */
+<span class="fc" id="L20">       PageModeMenuCommand COMMAND_AGENT_OPERATION = new PageModeMenuCommand(</span>
+                     AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME, &quot;&quot;);
+
+       /** The Constant COMMAND_APPLICATION_CONFIGURATION. */
+<span class="fc" id="L24">       PageModeMenuCommand COMMAND_APPLICATION_CONFIGURATION = new PageModeMenuCommand(</span>
+                     AdminViews.ADMIN_APPLICATIONS_CONFIGURATION_VIEW_NAME, &quot;&quot;);
+
+       /** The Constant COMMAND_APPLICATION_EVENTS. */
+<span class="fc" id="L28">       PageModeMenuCommand COMMAND_APPLICATION_EVENTS = new PageModeMenuCommand(</span>
+                     AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.OVERVIEW);
+
+       /** The Constant COMMAND_APPLICATION_EVENTS_CHARTS. */
+<span class="fc" id="L32">       PageModeMenuCommand COMMAND_APPLICATION_EVENTS_CHARTS = new PageModeMenuCommand(</span>
+                     AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, PageMode.CHARTS);
+
+       /** The Constant COMMAND_APPLICATION_SESSION. */
+<span class="fc" id="L36">       PageModeMenuCommand COMMAND_APPLICATION_SESSION = new PageModeMenuCommand(</span>
+                     AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.OVERVIEW);
+
+       /** The Constant COMMAND_APPLICATION_SESSION_CHARTS. */
+<span class="fc" id="L40">       PageModeMenuCommand COMMAND_APPLICATION_SESSION_CHARTS = new PageModeMenuCommand(</span>
+                     AdminViews.ADMIN_APPLICATIONS_SESSION_VIEW_NAME, PageMode.CHARTS);
+
+       /** The Constant COMMAND_AUTHOR_DATASUMMARY. */
+<span class="fc" id="L44">       PageModeMenuCommand COMMAND_AUTHOR_DATASUMMARY = new PageModeMenuCommand(</span>
+<span class="fc" id="L45">                     AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, DataSummaryPageMode.AUTHORS.toString());</span>
+
+       /** The Constant COMMAND_COUNTRY. */
+<span class="fc" id="L48">       PageModeMenuCommand COMMAND_COUNTRY = new PageModeMenuCommand(AdminViews.ADMIN_COUNTRY_VIEW_NAME, &quot;&quot;);</span>
+
+       /** The Constant COMMAND_DATASUMMARY. */
+<span class="fc" id="L51">       PageModeMenuCommand COMMAND_DATASUMMARY = new PageModeMenuCommand(</span>
+                     AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME, PageMode.OVERVIEW);
+
+       /** The Constant COMMAND_EMAIL. */
+<span class="fc" id="L55">       PageModeMenuCommand COMMAND_EMAIL = new PageModeMenuCommand(AdminViews.ADMIN_EMAIL_VIEW_NAME,</span>
+                     &quot;&quot;);
+
+       /** The Constant COMMAND_LANGUAGE. */
+<span class="fc" id="L59">       PageModeMenuCommand COMMAND_LANGUAGE = new PageModeMenuCommand(AdminViews.ADMIN_LANGUAGE_VIEW_NAME,</span>
+                     &quot;&quot;);
+
+
+       /** The Constant COMMAND_MONITORING. */
+<span class="fc" id="L64">       PageModeMenuCommand COMMAND_MONITORING = new PageModeMenuCommand(AdminViews.ADMIN_MONITORING_VIEW_NAME,</span>
+                     &quot;&quot;);
+
+       /** The Constant COMMAND_PORTAL. */
+<span class="fc" id="L68">       PageModeMenuCommand COMMAND_PORTAL = new PageModeMenuCommand(AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;&quot;);</span>
+
+       /** The Constant COMMAND_USERACCOUNT. */
+<span class="fc" id="L71">       PageModeMenuCommand COMMAND_USERACCOUNT = new PageModeMenuCommand(AdminViews.ADMIN_USERACCOUNT_VIEW_NAME,</span>
+                     &quot;&quot;);
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageCommandCommitteeConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands</a> &gt; <span class="el_source">PageCommandCommitteeConstants.java</span></div><h1>PageCommandCommitteeConstants.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands;
+
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.CommitteePageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+
+/**
+ * The Interface PageCommandCommitteeConstants.
+ */
+public interface PageCommandCommitteeConstants {
+
+    /** The command committee overview. */
+<span class="fc" id="L15">    PageModeMenuCommand COMMAND_COMMITTEE_OVERVIEW = new PageModeMenuCommand(</span>
+                     UserViews.COMMITTEE_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The command committee role ghant. */
+<span class="fc" id="L19">    PageModeMenuCommand COMMAND_COMMITTEE_ROLE_GHANT = new PageModeMenuCommand(</span>
+<span class="fc" id="L20">                     UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.ROLEGHANT.toString());</span>
+
+    /** The command committee pagevisit history. */
+<span class="fc" id="L23">    PageModeMenuCommand COMMAND_COMMITTEE_PAGEVISIT_HISTORY = new PageModeMenuCommand(</span>
+                     UserViews.COMMITTEE_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+    /** The command charts decision flow. */
+<span class="fc" id="L27">    PageModeMenuCommand COMMAND_CHARTS_DECISION_FLOW = new PageModeMenuCommand(</span>
+            UserViews.COMMITTEE_VIEW_NAME, PageMode.CHARTS,
+<span class="fc" id="L29">            ChartIndicators.DECISION_FLOW_CHART.toString());</span>
+
+    /** The command committee current members. */
+<span class="fc" id="L32">    PageModeMenuCommand COMMAND_COMMITTEE_CURRENT_MEMBERS = new PageModeMenuCommand(</span>
+<span class="fc" id="L33">            UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.CURRENT_MEMBERS.toString());</span>
+
+    /** The command committee member history. */
+<span class="fc" id="L36">    PageModeMenuCommand COMMAND_COMMITTEE_MEMBER_HISTORY = new PageModeMenuCommand(</span>
+<span class="fc" id="L37">            UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.MEMBERHISTORY.toString());</span>
+
+    /** The command committee document activity. */
+<span class="fc" id="L40">    PageModeMenuCommand COMMAND_COMMITTEE_DOCUMENT_ACTIVITY = new PageModeMenuCommand(</span>
+<span class="fc" id="L41">            UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DOCUMENTACTIVITY.toString());</span>
+
+    /** The command committee document history. */
+<span class="fc" id="L44">    PageModeMenuCommand COMMAND_COMMITTEE_DOCUMENT_HISTORY = new PageModeMenuCommand(</span>
+<span class="fc" id="L45">            UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DOCUMENT_HISTORY.toString());</span>
+
+    /** The command committee ballot decision summary. */
+<span class="fc" id="L48">    PageModeMenuCommand COMMAND_COMMITTEE_BALLOT_DECISION_SUMMARY = new PageModeMenuCommand(</span>
+<span class="fc" id="L49">            UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.BALLOTDECISIONSUMMARY.toString());</span>
+
+    /** The command committee decision summary. */
+<span class="fc" id="L52">    PageModeMenuCommand COMMAND_COMMITTEE_DECISION_SUMMARY = new PageModeMenuCommand(</span>
+<span class="fc" id="L53">            UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONSUMMARY.toString());</span>
+
+    /** The command committee decision type daily summary. */
+<span class="fc" id="L56">    PageModeMenuCommand COMMAND_COMMITTEE_DECISION_TYPE_DAILY_SUMMARY = new PageModeMenuCommand(</span>
+<span class="fc" id="L57">            UserViews.COMMITTEE_VIEW_NAME, CommitteePageMode.DECISIONTYPEDAILYSUMMARY.toString());</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

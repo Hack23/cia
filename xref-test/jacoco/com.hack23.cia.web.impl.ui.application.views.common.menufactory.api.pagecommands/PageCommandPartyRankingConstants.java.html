@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageCommandPartyRankingConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands</a> &gt; <span class="el_source">PageCommandPartyRankingConstants.java</span></div><h1>PageCommandPartyRankingConstants.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands;
+
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.ChartIndicators;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+
+/**
+ * The Interface PageCommandPartyRankingConstants.
+ */
+public interface PageCommandPartyRankingConstants {
+
+    /** The command party ranking overview. */
+<span class="fc" id="L14">    PageModeMenuCommand COMMAND_PARTY_RANKING_OVERVIEW = new PageModeMenuCommand(</span>
+        UserViews.PARTY_RANKING_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The command party ranking datagrid. */
+<span class="fc" id="L18">    PageModeMenuCommand COMMAND_PARTY_RANKING_DATAGRID = new PageModeMenuCommand(</span>
+    		UserViews.PARTY_RANKING_VIEW_NAME, PageMode.DATAGRID);
+
+
+    /** The party ranking command pagevisit history. */
+<span class="fc" id="L23">    PageModeMenuCommand PARTY_RANKING_COMMAND_PAGEVISIT_HISTORY =</span>
+            new PageModeMenuCommand(UserViews.PARTY_RANKING_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+    /** The command charts current government parties. */
+<span class="fc" id="L27">    PageModeMenuCommand COMMAND_CHARTS_CURRENT_GOVERNMENT_PARTIES = new PageModeMenuCommand(</span>
+                     UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,
+<span class="fc" id="L29">                     ChartIndicators.CURRENTGOVERMENTPARTIES.toString());</span>
+
+    /** The command party leader scoreboard. */
+<span class="fc" id="L32">    PageModeMenuCommand COMMAND_PARTY_LEADER_SCOREBOARD = new PageModeMenuCommand(</span>
+<span class="fc" id="L33">        UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTYLEADERSCORECARD.toString());</span>
+
+
+    /** The command party ranking charts all parties. */
+<span class="fc" id="L37">    PageModeMenuCommand COMMAND_PARTY_RANKING_CHARTS_ALL_PARTIES = new PageModeMenuCommand(</span>
+<span class="fc" id="L38">        UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.ALLPARTIES.toString());</span>
+
+
+    /** The command party ranking charts current committees. */
+<span class="fc" id="L42">    PageModeMenuCommand COMMAND_PARTY_RANKING_CHARTS_CURRENT_COMMITTEES = new PageModeMenuCommand(</span>
+<span class="fc" id="L43">            UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS,ChartIndicators.CURRENTCOMMITTEES.toString());</span>
+
+    /** The command party ranking charts current parties. */
+<span class="fc" id="L46">    PageModeMenuCommand COMMAND_PARTY_RANKING_CHARTS_CURRENT_PARTIES = new PageModeMenuCommand(</span>
+<span class="fc" id="L47">        UserViews.PARTY_RANKING_VIEW_NAME, PageMode.CHARTS, ChartIndicators.CURRENTPARTIES.toString());</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

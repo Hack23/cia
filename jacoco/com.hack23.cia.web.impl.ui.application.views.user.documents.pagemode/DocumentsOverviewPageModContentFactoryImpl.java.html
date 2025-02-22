@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentsOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.user.documents.pagemode</a> &gt; <span class="el_source">DocumentsOverviewPageModContentFactoryImpl.java</span></div><h1>DocumentsOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.user.documents.pagemode;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement;
+import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement_;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.api.DataContainer;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
+import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPageTitleConstants;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class DocumentOverviewPageModContentFactoryImpl.
+ */
+@Component
+public final class DocumentsOverviewPageModContentFactoryImpl extends AbstractDocumentsPageModContentFactoryImpl {
+
+	/** The Constant COLUMN_ORDER. */
+<span class="fc" id="L33">	private static final String[] COLUMN_ORDER = { &quot;rm&quot;, &quot;createdDate&quot;, &quot;documentName&quot;, &quot;subType&quot;, &quot;title&quot;, &quot;subTitle&quot;,</span>
+			&quot;status&quot; };
+
+	/** The Constant HIDE_COLUMNS. */
+<span class="fc" id="L37">	private static final String[] HIDE_COLUMNS = { &quot;rm&quot;, &quot;lang&quot;, &quot;noteTitle&quot;, &quot;origin&quot;, &quot;subType&quot;, &quot;note&quot;, &quot;subTitle&quot;,</span>
+			&quot;status&quot;, &quot;label&quot;, &quot;id&quot;, &quot;hit&quot;, &quot;madePublicDate&quot;, &quot;databaseSource&quot;, &quot;domainOrg&quot;, &quot;relatedId&quot;, &quot;org&quot;,
+			&quot;documentType&quot;, &quot;docType&quot;, &quot;debateName&quot;, &quot;tempLabel&quot;, &quot;numberValue&quot;, &quot;systemDate&quot;, &quot;kallId&quot;,
+			&quot;documentFormat&quot;, &quot;documentUrlText&quot;, &quot;documentUrlHtml&quot;, &quot;documentStatusUrlXml&quot;, &quot;committeeReportUrlXml&quot; };
+
+	/** The Constant LISTENER. */
+<span class="fc" id="L43">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+			UserViews.DOCUMENT_VIEW_NAME, &quot;id&quot;, true);
+
+	/** The paging util. */
+	@Autowired
+	private PagingUtil pagingUtil;
+
+	/**
+	 * Instantiates a new documents overview page mod content factory impl.
+	 */
+	public DocumentsOverviewPageModContentFactoryImpl() {
+<span class="fc" id="L54">		super();</span>
+<span class="fc" id="L55">	}</span>
+
+	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="fc" id="L60">		final VerticalLayout panelContent = createPanelContent();</span>
+
+<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L63">		final int pageNr = getPageNr(parameters);</span>
+
+<span class="fc" id="L65">		getDocumentMenuItemFactory().createDocumentsMenuBar(menuBar);</span>
+<span class="fc" id="L66">		CardInfoRowUtil.createPageHeader(panel, panelContent, DocumentPageTitleConstants.DOCUMENTS_OVERVIEW_TITLE,</span>
+				DocumentPageTitleConstants.DOCUMENTS_OVERVIEW_HEADER,
+				DocumentPageTitleConstants.DOCUMENTS_OVERVIEW_DESC);
+
+<span class="fc" id="L70">		final DataContainer&lt;DocumentElement, String&gt; documentElementDataContainer = getApplicationManager()</span>
+<span class="fc" id="L71">				.getDataContainer(DocumentElement.class);</span>
+
+<span class="fc" id="L73">		final List&lt;DocumentElement&gt; pageOrderBy = documentElementDataContainer.getPageOrderBy(pageNr,</span>
+				DEFAULT_RESULTS_PER_PAGE, DocumentElement_.createdDate);
+
+<span class="fc" id="L76">		pagingUtil.createPagingControls(panelContent, NAME + &quot;/&quot; + PageMode.OVERVIEW, pageId, documentElementDataContainer.getSize(), pageNr,</span>
+				DEFAULT_RESULTS_PER_PAGE);
+
+<span class="fc" id="L79">		getGridFactory().createBasicBeanItemGrid(panelContent, DocumentElement.class, pageOrderBy, DocumentPageTitleConstants.DOCUMENTS_OVERVIEW_HEADER,</span>
+				COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
+
+<span class="fc" id="L82">		panel.setContent(panelContent);</span>
+<span class="fc" id="L83">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENTS_VIEW, ApplicationEventGroup.USER, NAME,</span>
+				parameters, pageId);
+
+<span class="fc" id="L86">		return panelContent;</span>
+
+	}
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L92">		return PageCommandDocumentConstants.COMMAND_DOCUMENTS_OVERVIEW.matches(page, parameters);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

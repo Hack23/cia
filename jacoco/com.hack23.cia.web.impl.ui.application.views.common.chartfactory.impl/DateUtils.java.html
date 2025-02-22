@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DateUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl</a> &gt; <span class="el_source">DateUtils.java</span></div><h1>DateUtils.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import org.joda.time.DateTime;
+
+/**
+ * The Class DateUtils.
+ */
+public final class DateUtils {
+
+    /** The Constant DATE_FORMAT. */
+    private static final String DATE_FORMAT = &quot;dd-MMM-yyyy&quot;;
+
+    /**
+     * Instantiates a new date utils.
+     */
+    private DateUtils() {
+        // Utility class
+    }
+
+    /**
+     * Format date.
+     *
+     * @param date the date
+     * @return the string
+     */
+    public static String formatDate(final Date date) {
+<span class="fc" id="L31">        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH);</span>
+<span class="fc" id="L32">        return simpleDateFormat.format(date);</span>
+    }
+
+    /**
+     * Strip dates after current date.
+     *
+     * @param toDate the to date
+     * @return the date
+     */
+    public static Date stripDatesAfterCurrentDate(final Date toDate) {
+<span class="fc" id="L42">        final DateTime currentTime = new DateTime();</span>
+
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (currentTime.isBefore(toDate.getTime())) {</span>
+<span class="fc" id="L45">            return currentTime.plusDays(1).toDate();</span>
+        } else {
+<span class="fc" id="L47">            return toDate;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PageCommandPoliticianConstants.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands</a> &gt; <span class="el_source">PageCommandPoliticianConstants.java</span></div><h1>PageCommandPoliticianConstants.java</h1><pre class="source lang-java linenums">package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands;
+
+import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode; // updated import
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PoliticianPageMode;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
+
+/**
+ * The Interface PageCommandPoliticianConstants.
+ */
+public interface PageCommandPoliticianConstants {
+
+
+    /** The command politician pagevisit. */
+<span class="fc" id="L15">    PageModeMenuCommand COMMAND_POLITICIAN_PAGEVISIT = new PageModeMenuCommand(</span>
+            UserViews.POLITICIAN_VIEW_NAME, PageMode.PAGEVISITHISTORY);
+
+
+    /** The command politician ballot history. */
+<span class="fc" id="L20">    PageModeMenuCommand COMMAND_POLITICIAN_BALLOT_HISTORY = new PageModeMenuCommand(</span>
+<span class="fc" id="L21">        UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.BALLOTDECISIONSUMMARY.toString());</span>
+
+    /** The command politician document history. */
+<span class="fc" id="L24">    PageModeMenuCommand COMMAND_POLITICIAN_DOCUMENT_HISTORY = new PageModeMenuCommand(</span>
+<span class="fc" id="L25">        UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.DOCUMENTHISTORY.toString());</span>
+
+    /** The command politician document activity. */
+<span class="fc" id="L28">    PageModeMenuCommand COMMAND_POLITICIAN_DOCUMENT_ACTIVITY = new PageModeMenuCommand(</span>
+<span class="fc" id="L29">            UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.DOCUMENTACTIVITY.toString());</span>
+
+
+    /** The command politician view overview. */
+<span class="fc" id="L33">    PageModeMenuCommand COMMAND_POLITICIAN_VIEW_OVERVIEW = new PageModeMenuCommand(</span>
+            UserViews.POLITICIAN_VIEW_NAME, PageMode.OVERVIEW);
+
+    /** The command politician view indicators. */
+<span class="fc" id="L37">    PageModeMenuCommand COMMAND_POLITICIAN_VIEW_INDICATORS = new PageModeMenuCommand(</span>
+            UserViews.POLITICIAN_VIEW_NAME, PageMode.INDICATORS);
+
+
+    /** The command politician vote history. */
+<span class="fc" id="L42">    PageModeMenuCommand COMMAND_POLITICIAN_VOTE_HISTORY = new PageModeMenuCommand(</span>
+<span class="fc" id="L43">            UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.VOTEHISTORY.toString());</span>
+
+
+    /** The command politician role summary. */
+<span class="fc" id="L47">    PageModeMenuCommand COMMAND_POLITICIAN_ROLE_SUMMARY = new PageModeMenuCommand(</span>
+<span class="fc" id="L48">            UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.ROLESUMMARY.toString());</span>
+
+    /** The command politician role list. */
+<span class="fc" id="L51">    PageModeMenuCommand COMMAND_POLITICIAN_ROLE_LIST = new PageModeMenuCommand(</span>
+<span class="fc" id="L52">            UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.ROLELIST.toString());</span>
+
+    /** The command politician role ghant. */
+<span class="fc" id="L55">    PageModeMenuCommand COMMAND_POLITICIAN_ROLE_GHANT = new PageModeMenuCommand(</span>
+<span class="fc" id="L56">            UserViews.POLITICIAN_VIEW_NAME, PoliticianPageMode.ROLEGHANT.toString());</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
