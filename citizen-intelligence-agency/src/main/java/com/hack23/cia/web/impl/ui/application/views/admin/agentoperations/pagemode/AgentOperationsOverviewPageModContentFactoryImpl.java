@@ -99,9 +99,4 @@ public final class AgentOperationsOverviewPageModContentFactoryImpl
 		return content;
 	}
 
-	@Override
-	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page);
-	}
-
 }

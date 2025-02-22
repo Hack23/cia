@@ -29,9 +29,9 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
@@ -155,7 +155,7 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));
+		return PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS.matches(page, parameters);
 	}
 
 }

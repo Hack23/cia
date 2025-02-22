@@ -24,9 +24,9 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;
@@ -71,7 +71,7 @@ public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return parameters != null && NAME.equals(page) && parameters.contains(PageMode.CHARTS.toString());
+		return PageCommandAdminConstants.COMMAND_APPLICATION_SESSION_CHARTS.matches(page, parameters);
 	}
 
 }

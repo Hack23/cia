@@ -39,11 +39,6 @@ import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 	UserCommonTest.class,
-    AdminConfigurationTest.class,
-    AdminDataTest.class,
-    AdminOperationsTest.class,
-    AdminSecurityTest.class,
-    UserHomeTest.class,
     UserPartyRankingTest.class,
     UserPartyTest.class,
     UserCommitteeTest.class,
@@ -59,7 +54,12 @@ import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianTest;
     UserDocumentTest.class,
     UserDocumentsTest.class,
     UserDocumentSearchTest.class,
-    UserBallotTest.class
+    UserBallotTest.class,
+    UserHomeTest.class,
+    AdminConfigurationTest.class,
+    AdminDataTest.class,
+    AdminOperationsTest.class,
+    AdminSecurityTest.class
 })
 public class IntegrationTestSuite {
 
