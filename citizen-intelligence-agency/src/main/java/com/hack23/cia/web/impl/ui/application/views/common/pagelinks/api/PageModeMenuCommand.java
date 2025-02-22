@@ -155,7 +155,7 @@ public final class PageModeMenuCommand implements Command, ClickListener {
 				cleanedString = cleanedString.replace(cleanedString.substring(cleanedString.indexOf('[') , cleanedString.lastIndexOf(']')+1), "");
 			}
 
-			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length());
+			return cleanedString.substring(cleanedString.lastIndexOf('/') + "/".length()).replace(PageMode.OVERVIEW.toString(),"");
 		} else {
 			return "";
 		}
