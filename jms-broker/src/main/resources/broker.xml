@@ -5,6 +5,33 @@
 	<core xmlns="urn:activemq:core">
 
 		<persistence-enabled>true</persistence-enabled>
+		<!-- Shutdown settings -->
+		<graceful-shutdown-enabled>true</graceful-shutdown-enabled>
+		<graceful-shutdown-timeout>5000</graceful-shutdown-timeout>
+
+		<!-- Journal settings -->
+		<journal-directory>data/journal</journal-directory>
+		<create-journal-dir>true</create-journal-dir>
+		<journal-type>ASYNCIO</journal-type>
+		<journal-file-size>10485760</journal-file-size>
+		<journal-min-files>2</journal-min-files>
+		<journal-pool-files>10</journal-pool-files>
+		<journal-buffer-timeout>100000</journal-buffer-timeout>
+		<journal-buffer-size>501760</journal-buffer-size>
+		<journal-sync-transactional>false</journal-sync-transactional>
+		<journal-sync-non-transactional>false</journal-sync-non-transactional>
+		<journal-compact-percentage>30</journal-compact-percentage>
+		<journal-compact-min-files>10</journal-compact-min-files>
+
+		<!-- Resource limits -->
+		<global-max-size>104857600</global-max-size>
+		<max-disk-usage>90</max-disk-usage>
+		<disk-scan-period>5000</disk-scan-period>
+
+		<!-- Critical Analysis -->
+		<critical-analyzer>true</critical-analyzer>
+		<critical-analyzer-timeout>120000</critical-analyzer-timeout>
+		<critical-analyzer-check-period>60000</critical-analyzer-check-period>
 
 		<acceptors>
 			<acceptor name="in-vm">vm://0</acceptor>
@@ -26,13 +53,12 @@
 		<address-settings>
 			<address-setting match="#">
 				<dead-letter-address>DLQ</dead-letter-address>
-				<max-delivery-attempts>3</max-delivery-attempts>
 				<expiry-address>ExpiryQueue</expiry-address>
+				<max-delivery-attempts>1</max-delivery-attempts>
 				<redelivery-delay>0</redelivery-delay>
-				<max-size-bytes>-1</max-size-bytes>
-				<message-counter-history-day-limit>10
-				</message-counter-history-day-limit>
+				<max-size-bytes>104857600</max-size-bytes>
 				<address-full-policy>PAGE</address-full-policy>
+				<message-counter-history-day-limit>10</message-counter-history-day-limit>
 				<auto-create-queues>true</auto-create-queues>
 				<auto-create-addresses>true</auto-create-addresses>
 				<auto-create-jms-queues>true</auto-create-jms-queues>
