@@ -18,7 +18,6 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -29,11 +28,11 @@ import com.hack23.cia.service.api.action.admin.RefreshDataViewsRequest;
 import com.hack23.cia.service.api.action.admin.RemoveDataRequest;
 import com.hack23.cia.service.api.action.admin.UpdateSearchIndexRequest;
 import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RemoveDataClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateSearchIndexClickListener;
@@ -169,8 +168,7 @@ public final class DataSummaryOverviewPageModContentFactoryImpl extends Abstract
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page)
-				&& (StringUtils.isEmpty(parameters) || parameters.contains(PageMode.OVERVIEW.toString()));
+		return PageCommandAdminConstants.COMMAND_DATASUMMARY.matches(page, parameters);
 	}
 
 }

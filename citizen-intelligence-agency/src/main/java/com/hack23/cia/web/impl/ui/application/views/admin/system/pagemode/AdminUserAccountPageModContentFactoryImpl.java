@@ -33,6 +33,7 @@ import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -177,7 +178,7 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
 
     @Override
     public boolean matches(final String page, final String parameters) {
-        return NAME.equals(page) && (parameters == null || !parameters.contains("CHARTS"));
+    	return PageCommandAdminConstants.COMMAND_USERACCOUNT.matches(page, parameters);
     }
 
 }

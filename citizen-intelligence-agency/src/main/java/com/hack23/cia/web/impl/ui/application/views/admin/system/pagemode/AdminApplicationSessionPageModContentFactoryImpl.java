@@ -31,11 +31,11 @@ import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentSize;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
-import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
@@ -240,7 +240,7 @@ public final class AdminApplicationSessionPageModContentFactoryImpl extends Abst
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-		return NAME.equals(page) && (parameters == null || !parameters.contains(PageMode.CHARTS.toString()));
+		return PageCommandAdminConstants.COMMAND_APPLICATION_SESSION.matches(page, parameters);
 	}
 
 }

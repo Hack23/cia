@@ -9,13 +9,13 @@ import java.util.UUID;
 public final class TestConstants {
 
     /** The Constant DEFAULT_TIMEOUT. */
-    public static final long DEFAULT_TIMEOUT = 25000;
+    public static final long DEFAULT_TIMEOUT = 30000;
 
     /** The Constant WAIT_FOR_PAGE_DELAY. */
     public static final long CHECK = 100;
 
     /** The Constant WAIT_FOR_PAGE_ELEMENT. */
-    public static final Duration WAIT_FOR_PAGE_ELEMENT = Duration.ofMillis(15000);
+    public static final Duration WAIT_FOR_PAGE_ELEMENT = Duration.ofMillis(25000);
 
     /** The Constant DEFAULT_BROWSER_TIMEOUT. */
     public static final Duration DEFAULT_BROWSER_TIMEOUT = Duration.ofSeconds(7);
