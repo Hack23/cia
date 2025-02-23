@@ -6,13 +6,13 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemLeadershipConstants {
 
     /** The current leaders. */
-    String CURRENT_LEADERS = "Leadership Analysis";
+    String CURRENT_LEADERS = "Leadership Metrics";
 
     /** The current leaders description. */
-    String CURRENT_LEADERS_DESCRIPTION = "Analysis of current political leadership dynamics";
+    String CURRENT_LEADERS_DESCRIPTION = "Analysis of current political leadership metrics";
 
     /** The leader history. */
-    String LEADER_HISTORY = "Leadership Tenure Analysis";
+    String LEADER_HISTORY = "Leadership Tenure Metrics";
 
     /** The leader history description. */
     String LEADER_HISTORY_DESCRIPTION = "Historical analysis of leadership patterns";

@@ -6,13 +6,13 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemCountryConstants {
 
     /** The country. */
-    String COUNTRY = "National Analysis";
+    String COUNTRY = "National Metrics";
 
     /** The country ranking text. */
-    String COUNTRY_RANKING_TEXT = "Governance Performance";
+    String COUNTRY_RANKING_TEXT = "Governance Metrics";
 
     /** The country overview text. */
-    String COUNTRY_OVERVIEW_TEXT = "National Overview";
+    String COUNTRY_OVERVIEW_TEXT = "National Metrics Overview";
 
     /** The country indicators sweden. */
     String COUNTRY_INDICATORS_SWEDEN = "Swedish Governance Metrics";

@@ -6,13 +6,13 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemGovernmentConstants {
 
     /** The government body ranking. */
-    String GOVERNMENT_BODY_RANKING = "Government Body Ranking";
+    String GOVERNMENT_BODY_RANKING = "Government Body Metrics";
 
     /** The government bodies. */
-    String GOVERNMENT_BODIES = "Government Bodies";
+    String GOVERNMENT_BODIES = "Government Bodies Metrics";
 
     /** The government outcome. */
-    String GOVERNMENT_OUTCOME = "Policy Outcomes";
+    String GOVERNMENT_OUTCOME = "Policy Outcomes Metrics";
 
     /** The government roles chart. */
     String GOVERNMENT_ROLES_CHART = "Governance Structure Analysis";

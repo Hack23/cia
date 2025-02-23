@@ -6,13 +6,13 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemDocumentConstants {
 
     /** The document. */
-    String DOCUMENT = "Legislative Document";
+    String DOCUMENT = "Legislative Document Metrics";
 
     /** The documents. */
-    String DOCUMENTS = "Policy Archive";
+    String DOCUMENTS = "Policy Archive Metrics";
 
     /** The document details. */
-    String DOCUMENT_DETAILS = "Document Analysis";
+    String DOCUMENT_DETAILS = "Document Metrics Analysis";
 
     /** The document data. */
     String DOCUMENT_DATA = "Legislative Data";

@@ -7,13 +7,13 @@ public interface MenuItemCommitteeConstants {
 
     /** The committee ranking text. */
     // Base committee labels
-    String COMMITTEE_RANKING_TEXT = "Committee Impact Analysis";
+    String COMMITTEE_RANKING_TEXT = "Committee Impact Metrics";
 
     /** The committee roles. */
-    String COMMITTEE_ROLES = "Committee Power Structure";
+    String COMMITTEE_ROLES = "Committee Power Metrics";
 
     /** The committees link text. */
-    String COMMITTEES_LINK_TEXT = "Legislative Committees";
+    String COMMITTEES_LINK_TEXT = "Legislative Committees Analysis";
 
     /** The committee ranking description. */
     // Committee descriptions

@@ -6,13 +6,13 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemPartyConstants {
 
     /** The party won daily summary chart. */
-    String PARTY_WON_DAILY_SUMMARY_CHART = "Legislative Success Analysis";
+    String PARTY_WON_DAILY_SUMMARY_CHART = "Legislative Success Metrics";
 
     /** The party winner. */
-    String PARTY_WINNER = "Party Success Analysis";
+    String PARTY_WINNER = "Party Success Metrics";
 
     /** The party gender. */
-    String PARTY_GENDER = "Gender Composition Analysis";
+    String PARTY_GENDER = "Gender Metrics Analysis";
 
     /** The party age. */
     String PARTY_AGE = "Demographic Analysis";

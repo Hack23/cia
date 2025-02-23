@@ -6,16 +6,16 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemAdminConstants {
 
     /** The admin text. */
-    String ADMIN_TEXT = "System Administration";
+    String ADMIN_TEXT = "System Administration Analysis";
 
     /** The agency. */
     String AGENCY = "Intelligence Analysis";
 
     /** The agent operations text. */
-    String AGENT_OPERATIONS_TEXT = "Data Collection Analysis";
+    String AGENT_OPERATIONS_TEXT = "Data Collection Metrics";
 
     /** The application. */
-    String APPLICATION = "Platform Analysis";
+    String APPLICATION = "Platform Metrics";
 
     /** The application configuration. */
     String APPLICATION_CONFIGURATION = "Analysis Settings";

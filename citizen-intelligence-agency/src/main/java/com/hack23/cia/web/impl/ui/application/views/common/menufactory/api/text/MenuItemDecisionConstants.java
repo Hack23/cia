@@ -6,13 +6,13 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemDecisionConstants {
 
     /** The decision flow. */
-    String DECISION_FLOW = "Legislative Process Analysis";
+    String DECISION_FLOW = "Legislative Metrics Analysis";
 
     /** The decision activity by type. */
-    String DECISION_ACTIVITY_BY_TYPE = "Legislative Activity Analysis";
+    String DECISION_ACTIVITY_BY_TYPE = "Legislative Activity Metrics";
 
     /** The decision activity description. */
-    String DECISION_ACTIVITY_DESCRIPTION = "Analysis of legislative voting patterns and trends";
+    String DECISION_ACTIVITY_DESCRIPTION = "Analysis of legislative metrics patterns and trends";
 
     /** The decision flow description. */
     String DECISION_FLOW_DESCRIPTION = "Analysis of legislative decision pathways";
