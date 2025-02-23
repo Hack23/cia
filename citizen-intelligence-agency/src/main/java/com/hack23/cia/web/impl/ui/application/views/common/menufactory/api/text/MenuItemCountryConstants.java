@@ -24,5 +24,5 @@ public interface MenuItemCountryConstants {
     String COUNTRY_RANKING_DESCRIPTION = "Analysis of national governance effectiveness";
 
     /** The sweden dashboard. */
-    String SWEDEN_DASHBOARD = "National Analytics Dashboard";
+    String SWEDEN_DASHBOARD = "National Analysis Dashboard";
 }

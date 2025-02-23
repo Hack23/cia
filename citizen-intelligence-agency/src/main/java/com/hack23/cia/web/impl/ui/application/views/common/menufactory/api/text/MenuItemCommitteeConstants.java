@@ -13,7 +13,7 @@ public interface MenuItemCommitteeConstants {
     String COMMITTEE_ROLES = "Committee Power Metrics";
 
     /** The committees link text. */
-    String COMMITTEES_LINK_TEXT = "Legislative Committees Analysis";
+    String COMMITTEES_LINK_TEXT = "Committee Analysis";
 
     /** The committee ranking description. */
     // Committee descriptions

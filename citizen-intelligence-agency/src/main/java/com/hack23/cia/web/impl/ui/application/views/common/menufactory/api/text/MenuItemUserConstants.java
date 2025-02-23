@@ -6,7 +6,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemUserConstants {
 
     /** The user home. */
-    String USER_HOME = "Dashboard";
+    String USER_HOME = "User Analysis Dashboard";
 
     /** The user profile. */
     String USER_PROFILE = "My Profile";

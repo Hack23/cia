@@ -36,7 +36,7 @@ public interface MenuItemAdminConstants {
     String SYSTEM_PERFORMANCE = "Platform Performance Analysis";
 
     /** The management. */
-    String MANAGEMENT = "System Management";
+    String MANAGEMENT = "System Administration";
 
     /** The configuration. */
     String CONFIGURATION = "Analysis Settings";
