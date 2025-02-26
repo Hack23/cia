@@ -6,13 +6,13 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemParliamentConstants {
 
     /** The parliament ranking text. */
-    String PARLIAMENT_RANKING_TEXT = "Legislative Performance Analysis";
+    String PARLIAMENT_RANKING_TEXT = "Legislative Metrics Analysis";
 
     /** The parliament ranking link text. */
-    String PARLIAMENT_RANKING_LINK_TEXT = "Parliamentary Analysis";
+    String PARLIAMENT_RANKING_LINK_TEXT = "Parliamentary Metrics Analysis";
 
     /** The parliament ranking description. */
-    String PARLIAMENT_RANKING_DESCRIPTION = "Analysis of legislative effectiveness and policy impact";
+    String PARLIAMENT_RANKING_DESCRIPTION = "Analysis of legislative metrics and policy impact";
 
     /** The swedish parliament indicators. */
     String SWEDISH_PARLIAMENT_INDICATORS = "Parliamentary Effectiveness Analytics";

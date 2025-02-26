@@ -6,16 +6,16 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemMinistryConstants {
 
     /** The ministries link text. */
-    String MINISTRIES_LINK_TEXT = "Executive Departments";
+    String MINISTRIES_LINK_TEXT = "Executive Departments Metrics";
 
     /** The ministry ranking. */
-    String MINISTRY_RANKING = "Ministry Impact Analysis";
+    String MINISTRY_RANKING = "Ministry Impact Metrics";
 
     /** The ministry ranking link text. */
     String MINISTRY_RANKING_LINK_TEXT = MINISTRY_RANKING;
 
     /** The ministry ranking description. */
-    String MINISTRY_RANKING_DESCRIPTION = "Analysis of ministerial policy influence and outcomes";
+    String MINISTRY_RANKING_DESCRIPTION = "Analysis of ministerial policy metrics and outcomes";
 
     /** The ministries description. */
     String MINISTRIES_DESCRIPTION = "Assessment of executive branch structure and authority";
