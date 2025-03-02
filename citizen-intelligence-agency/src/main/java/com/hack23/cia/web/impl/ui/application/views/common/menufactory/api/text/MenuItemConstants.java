@@ -33,10 +33,10 @@ public interface MenuItemConstants extends
     String DASHBOARD = "Political Analysis Dashboard";
 
     /** The main. */
-    String MAIN = "Main Analysis Portal";
+    String MAIN = "Core Analysis Portal";
 
     /** The start text. */
-    String START_TEXT = "Analysis Home";
+    String START_TEXT = "Analysis Portal Home";
 
     /** The ranking text. */
     String RANKING_TEXT = "Performance Analysis";

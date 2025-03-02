@@ -12,10 +12,10 @@ public interface MenuItemAdminConstants {
     String AGENCY = "Intelligence Analysis";
 
     /** The agent operations text. */
-    String AGENT_OPERATIONS_TEXT = "Data Collection Analysis";
+    String AGENT_OPERATIONS_TEXT = "Data Collection Metrics";
 
     /** The application. */
-    String APPLICATION = "Platform Analysis";
+    String APPLICATION = "Platform Metrics";
 
     /** The application configuration. */
     String APPLICATION_CONFIGURATION = "Analysis Settings";
@@ -36,7 +36,7 @@ public interface MenuItemAdminConstants {
     String SYSTEM_PERFORMANCE = "Platform Performance Analysis";
 
     /** The management. */
-    String MANAGEMENT = "System Management";
+    String MANAGEMENT = "System Administration";
 
     /** The configuration. */
     String CONFIGURATION = "Analysis Settings";
