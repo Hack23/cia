@@ -6,14 +6,14 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemPageVisitConstants {
 
     /** The page visit history text. */
-    String PAGE_VISIT_HISTORY_TEXT = "Engagement Analysis";
+    String PAGE_VISIT_HISTORY_TEXT = "Engagement Metrics Analysis";
 
     /** The desc page visit history. */
-    String DESC_PAGE_VISIT_HISTORY = "Analysis of stakeholder engagement patterns";
+    String DESC_PAGE_VISIT_HISTORY = "Analysis of stakeholder engagement metrics patterns";
 
     /** The ministry page visit history text. */
     // Ministry related
-    String MINISTRY_PAGE_VISIT_HISTORY_TEXT = "Ministry Engagement Analysis";
+    String MINISTRY_PAGE_VISIT_HISTORY_TEXT = "Ministry Engagement Metrics Analysis";
 
     /** The ministry page visit history description. */
     String MINISTRY_PAGE_VISIT_HISTORY_DESCRIPTION = "Analysis of ministry content interactions";
