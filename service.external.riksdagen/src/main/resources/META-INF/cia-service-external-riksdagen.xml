@@ -24,9 +24,9 @@
                 <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
             </map>
         </property>
-        <property name="validationEventHandler">
+<!--         <property name="validationEventHandler">
             <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
-        </property>
+        </property> -->
         <property name="supportDtd" value="false" />
         <property name="processExternalEntities" value="false" />
     </bean>
@@ -44,9 +44,9 @@
                 <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
             </map>
         </property>
-        <property name="validationEventHandler">
+<!--         <property name="validationEventHandler">
             <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
-        </property>
+        </property> -->
         <property name="supportDtd" value="false" />
         <property name="processExternalEntities" value="false" />
     </bean>
@@ -62,9 +62,9 @@
                 <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
             </map>
         </property>
-        <property name="validationEventHandler">
+<!--         <property name="validationEventHandler">
             <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
-        </property>
+        </property> -->
         <property name="supportDtd" value="false" />
         <property name="processExternalEntities" value="false" />
     </bean>
@@ -81,9 +81,9 @@
                 <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
             </map>
         </property>
-        <property name="validationEventHandler">
+<!--         <property name="validationEventHandler">
             <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
-        </property>
+        </property> -->
         <property name="supportDtd" value="false" />
         <property name="processExternalEntities" value="false" />
     </bean>
@@ -101,9 +101,9 @@
                 <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
             </map>
         </property>
-        <property name="validationEventHandler">
+<!--         <property name="validationEventHandler">
             <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
-        </property>
+        </property> -->
         <property name="supportDtd" value="false" />
         <property name="processExternalEntities" value="false" />
     </bean>
@@ -119,9 +119,9 @@
                 <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
             </map>
         </property>
-        <property name="validationEventHandler">
+<!--         <property name="validationEventHandler">
             <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
-        </property>
+        </property> -->
         <property name="supportDtd" value="false" />
         <property name="processExternalEntities" value="false" />
     </bean>
@@ -138,9 +138,9 @@
                 <entry key="javax.xml.bind.context.isNamespaceAware" value="false"/>
             </map>
         </property>
-        <property name="validationEventHandler">
+<!--         <property name="validationEventHandler">
             <bean class="com.hack23.cia.service.external.riksdagen.impl.LenientValidationEventHandler"/>
-        </property>
+        </property> -->
         <property name="supportDtd" value="false" />
         <property name="processExternalEntities" value="false" />
     </bean>
