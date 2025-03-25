@@ -6,13 +6,13 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemNavigationConstants {
 
     /** The dashboard. */
-    String DASHBOARD = "Analysis Dashboard";
+    String DASHBOARD = "Analysis Metrics Dashboard";
 
     /** The main. */
-    String MAIN = "Core Analysis";
+    String MAIN = "Core Metrics Analysis";
 
     /** The start text. */
-    String START_TEXT = "Analysis Portal";
+    String START_TEXT = "Metrics Analysis Portal";
 
     /** The overview text. */
     String OVERVIEW_TEXT = "Analysis Overview";

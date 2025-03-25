@@ -6,7 +6,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text
 public interface MenuItemPoliticianConstants {
 
     /** The politician ranking. */
-    String POLITICIAN_RANKING = "Politician Ranking";
+    String POLITICIAN_RANKING = "Politician Metrics";
 
     /** The politician ranking link text. */
     String POLITICIAN_RANKING_LINK_TEXT = POLITICIAN_RANKING;
@@ -15,10 +15,10 @@ public interface MenuItemPoliticianConstants {
     String POLITICIANS_LINK_TEXT = "Politicians";
 
     /** The politician ranking description. */
-    String POLITICIAN_RANKING_DESCRIPTION = "Quantitative analysis of individual legislative impact metrics";
+    String POLITICIAN_RANKING_DESCRIPTION = "Quantitative analysis of individual legislative metrics";
 
     /** The politicians description. */
-    String POLITICIANS_DESCRIPTION = "Comprehensive analysis of parliamentary contribution metrics";
+    String POLITICIANS_DESCRIPTION = "Comprehensive analysis of parliamentary metrics";
 
     /** The current members text. */
     String CURRENT_MEMBERS_TEXT = "Active Representatives";
