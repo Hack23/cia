@@ -62,8 +62,8 @@ Our analysis is powered by authoritative Swedish government and international da
 
 [![JDK-21](https://img.shields.io/badge/jdk-21-green.svg)]
 [![JDK-22](https://img.shields.io/badge/jdk-22-orange.svg)]
-[![JDK-23](https://img.shields.io/badge/jdk-23-green.svg)]
-
+[![JDK-23](https://img.shields.io/badge/jdk-23-orange.svg)]
+[![JDK-24](https://img.shields.io/badge/jdk-24-green.svg)]
 
 ## Resources
 
