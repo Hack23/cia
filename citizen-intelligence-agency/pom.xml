@@ -206,7 +206,7 @@
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>2.12.1</version>
+      <version>2.13.0</version>
       <exclusions>
         <exclusion>
           <groupId>com.google.errorprone</groupId>
@@ -654,7 +654,7 @@
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-context</artifactId>
-      <version>1.71.0</version>
+      <version>1.72.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>

@@ -84,7 +84,7 @@
     <cia.project.versions.spring.security>5.8.16</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.18</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.782</cia.project.versions.aws>
-    <cia.project.versions.aspectj>1.9.23</cia.project.versions.aspectj>
+    <cia.project.versions.aspectj>1.9.24</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.30.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>7.8.0</cia.project.versions.javers>
     <cia.project.versions.narayana>5.13.1.Final</cia.project.versions.narayana>
@@ -93,7 +93,7 @@
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.17.0</cia.project.versions.commonslang3>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
-    <cia.project.versions.commons.text>1.13.0</cia.project.versions.commons.text>
+    <cia.project.versions.commons.text>1.13.1</cia.project.versions.commons.text>
     <cia.project.versions.commons.codec>1.18.0</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.79</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.17</cia.project.versions.slf4j>
@@ -216,7 +216,7 @@
       <dependency>
         <groupId>io.projectreactor</groupId>
         <artifactId>reactor-core</artifactId>
-        <version>3.7.4</version>
+        <version>3.7.5</version>
       </dependency>
       <dependency>
         <groupId>com.sun.istack</groupId>
