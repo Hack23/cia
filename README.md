@@ -15,13 +15,15 @@ The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence 
 Our initiative remains strictly independent and non-partisan, focused on fostering informed decision-making and enhancing democratic engagement.
 
 ## ✨ Features
-Explore our [comprehensive feature set](https://hack23.com/#features) including:
+Explore our [comprehensive feature set](https://hack23.com/cia-features.html) including:
 - 📊 Interactive dashboards
 - 🏆 Political scoreboard systems
 - 📈 Critical analytics tools
 - 🔍 Transparency metrics
 - ⚖️ Accountability measures
 - 📱 Data-driven insights
+
+For a conceptual view of our system architecture and components, see our [Architecture Documentation](ARCHITECTURE.md) and [System Mindmaps](MINDMAP.md).
 
 ## 🏢 About Hack23
 - 🌐 **Website**: [www.hack23.com](https://www.hack23.com)
@@ -37,6 +39,8 @@ Our analysis is powered by authoritative Swedish government and international da
 | 🗳️ [Swedish Election Authority](http://www.val.se/) | Election data, political parties, and voting results |
 | 🌍 [World Bank Open Data](http://data.worldbank.org/) | Global economic indicators and demographic data |
 | 💹 [Swedish Financial Management Authority](https://www.esv.se/) | Government finances and economic trends |
+
+For more details on our data integration approach, see the [Data Integration Documentation](DATA_INTEGRATION.md).
 
 ## Badges
 
@@ -65,16 +69,19 @@ Our analysis is powered by authoritative Swedish government and international da
 [![JDK-23](https://img.shields.io/badge/jdk-23-orange.svg)]
 [![JDK-24](https://img.shields.io/badge/jdk-24-green.svg)]
 
+For details on our technology lifecycle management, see the [End-of-Life Strategy](End-of-Life-Strategy.md).
+
 ## Resources
 
-- [Project Documentation](http://hack23.github.io/cia/)
-- [Features of the CIA Project](https://hack23.com/#features) This document showcases the extensive features, providing detailed screenshots of dashboards, scoreboards, and critical analytics. The focus is on transparency, accountability, and data-driven decision-making in Sweden’s political ecosystem.
-- [Project Architecture](http://hack23.github.io/cia/architecture.html) - Delve into the architecture of the Citizen Intelligence Agency. This overview provides a look at the enterprise context, system context, system containers, web application components, deployment strategy, and AWS account structure of the project.
-- [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Explore our Entity Model which provides a detailed look at the entities in our system and their relationships. This page is particularly useful for understanding the data structure of our project.
-- [Api docs](https://hack23.github.io/cia/apidocs/index.html) - Access the API documentation for the Citizen Intelligence Agency project. This documentation provides a detailed view of the various packages within the system, helping developers understand and work with the project's API.
-- [FinancialSecurityPlan.md](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) - This financial plan provides a structured and cost-efficient deployment for your application infrastructure in the AWS eu-west-1 (Ireland) region. It integrates key components of scalability, security, and resilience to support critical workloads while maintaining budgetary control
-- [End-of-Life-Strategy.md](https://github.com/Hack23/cia/blob/master/End-of-Life-Strategy.md) Project End-of-Life (EOL) Strategy
-
+- [Project Documentation](http://hack23.github.io/cia/) - Comprehensive technical documentation
+- [Features of the CIA Project](https://hack23.com/cia-features.html) - Detailed feature showcase with screenshots
+- [Project Architecture](ARCHITECTURE.md) ([View Portal](http://hack23.github.io/cia/architecture.html)) - Detailed C4 model architecture
+- [System Mindmaps](MINDMAP.md) ([View Portal](http://hack23.github.io/cia/mindmap.html)) - Conceptual overview and component relationships
+- [Future Vision](FUTURE_MINDMAP.md) ([View Portal](http://hack23.github.io/cia/future-mindmap.html)) - Roadmap for AI-enhanced capabilities
+- [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Detailed database entity documentation
+- [API Documentation](https://hack23.github.io/cia/apidocs/index.html) - Comprehensive API reference
+- [Financial Security Plan](FinancialSecurityPlan.md) ([View Portal](https://hack23.github.io/cia/financial-security-plan.html)) - AWS deployment and security implementation
+- [End-of-Life Strategy](End-of-Life-Strategy.md) ([View Portal](https://hack23.github.io/cia/end-of-life-strategy.html)) - Technology maintenance planning
 
 ## Reporting Security Issues
 
@@ -83,22 +90,9 @@ Please follow the instructions in our [SECURITY.md](https://github.com/Hack23/ci
 
 ## Project Technology Stack Overview
 
-This document provides a high-level overview of the key technologies used within the **Citizen Intelligence Agency (CIA)** project. Each technology plays a vital role in supporting CIA’s goals for data analysis, security, and scalability within the political intelligence domain.
+This document provides a high-level overview of the key technologies used within the **Citizen Intelligence Agency (CIA)** project. Each technology plays a vital role in supporting CIA's goals for data analysis, security, and scalability within the political intelligence domain.
 
-| **Category**              | **Technologies**                                                                                                                                                   |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Core Framework**        | [Spring Framework](https://spring.io/projects/spring-framework)                                                                                                   |
-| **Security**              | [Spring Security](https://spring.io/projects/spring-security), [Bouncy Castle](https://www.bouncycastle.org/)                                                     |
-| **Data Access**           | [Hibernate](https://hibernate.org/orm/), [JPA](https://jakarta.ee/specifications/persistence/), [PostgreSQL](https://www.postgresql.org/), [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html) |
-| **Transaction Management**| [Narayana](https://narayana.io/) (Integrated with Spring `JpaTransactionManager`)                                           |
-| **Data Auditing**         | [Javers](https://javers.org/)                                                                                                                                     |
-| **Business Rules Engine** | [Drools](https://www.drools.org/)                                                                                                                                 |
-| **Messaging**             | [ActiveMQ Artemis](https://activemq.apache.org/components/artemis/), [Spring JMS](https://spring.io/projects/spring-framework)                                    |
-| **Web/UI Layer**          | [Vaadin](https://vaadin.com/), [Vaadin Sass Compiler](http://vaadin.com/), [Vaadin Themes](https://vaadin.com/)                                                  |
-| **Monitoring**            | [JavaMelody](https://github.com/javamelody/javamelody), [AWS SDK for CloudWatch](https://aws.amazon.com/cloudwatch/)                                              |
-| **Testing**               | [JUnit](https://junit.org/), [Mockito](https://site.mockito.org/), [Spring Test](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html), [Selenium WebDriver](https://www.selenium.dev/documentation/en/webdriver/) |
-| **Utilities**             | [Apache Commons](https://commons.apache.org/), [Google Guava](https://guava.dev/), [SLF4J](http://www.slf4j.org/), [Logback](https://logback.qos.ch/), [Jackson](https://github.com/FasterXML/jackson) |
-| **Build & Dependency Management** | [Maven](https://maven.apache.org/)                                                                                                                           |
+For more detailed technical implementation, see the [Architecture Documentation](ARCHITECTURE.md) and [End-of-Life Strategy](End-of-Life-Strategy.md).
 
 ## Stack Summary
 
@@ -120,6 +114,8 @@ This stack comprises:
 ## AWS Services Stack Overview
 
 This document provides a comprehensive summary of the AWS services utilized in the **Citizen Intelligence Agency (CIA)** project infrastructure, as defined by its CloudFormation template. These services work together to ensure a secure, resilient, and scalable deployment environment.
+
+For detailed security implementation, see the [Financial Security Plan](FinancialSecurityPlan.md).
 
 | **Category**                  | **AWS Services**                                                                                                                                                                                                                       | **NIST CSF Function, Category & Subcategory**                                                                                                                                                                                                                                     | **ISO 27001:2022 Control & Link**                                                                                                                                                                                                                                                                                            |
 |-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -157,7 +153,7 @@ This document provides a comprehensive summary of the AWS services utilized in t
 
 The Citizen Intelligence Agency (CIA) project can be deployed on AWS using the provided CloudFormation stack file. This file is located in the `cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json` folder.
 
-You can find the CloudFormation stack file [here](cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
+You can find the CloudFormation stack file [here](cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json) and view it in the [Portal](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
 
 ### Launching the CloudFormation Stack
 
@@ -192,6 +188,7 @@ To launch the CloudFormation stack, follow these steps:
 - ![Cloudformation stack Diagram](cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.png)
 - ![Package overview diagram](https://hack23.github.io/cia/apidocs/package-dependencies.svg)
 
+For conceptual diagrams of the system architecture, see our [System Mindmaps](MINDMAP.md).
 
 # Installing Debian/Ubuntu package
 
@@ -400,3 +397,16 @@ Vår [dashboard](https://github.com/Hack23/cia/blob/master/dashboard_sv.md) erbj
 ## AI and Data Visualization
 
 This project is powered by advanced AI technologies like OpenAI for data processing and analysis. We use AI to process and analyze a large amount of data from various open sources such as the Swedish Parliament, Swedish Election Authority, World Bank, and the Swedish National Financial Management Authority. The analyzed data is then represented visually through data visualization tools like Daigram.
+
+For our future vision incorporating more advanced AI capabilities, see our [Future Architecture Vision](FUTURE_MINDMAP.md).
+
+## Key Documentation Links
+
+- [Architecture Documentation](ARCHITECTURE.md) - C4 model architecture 
+- [System Mindmaps](MINDMAP.md) - Conceptual overview and relationships
+- [Future Vision](FUTURE_MINDMAP.md) - AI-enhanced capabilities roadmap
+- [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Database entity documentation
+- [API Documentation](https://hack23.github.io/cia/apidocs/index.html) - API reference
+- [Financial Security Plan](FinancialSecurityPlan.md) - AWS deployment and security
+- [End-of-Life Strategy](End-of-Life-Strategy.md) - Technology maintenance planning
+- [CIA Features](https://hack23.com/cia-features.html) - Detailed feature showcase
