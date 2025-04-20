@@ -239,6 +239,183 @@ mindmap
         Correlation Studies
 ```
 
+## 📋 Political Analytics Frameworks
+
+**🧮 Analysis Focus:** Shows the analytical frameworks used for evaluating political entities. This structure is derived from the constant patterns in the system.
+
+```mermaid
+mindmap
+  root((Political<br/>Analytics<br/>Frameworks))
+    🏆 Politician Performance Metrics
+      Experience Analysis
+        Role Duration Metrics
+        Position Classification
+        Committee Experience
+        Leadership Positions
+      Activity Metrics
+        Ballot Participation Rate
+        Document Production Volume
+        Committee Attendance
+        Parliamentary Speeches
+      Effectiveness Indicators
+        Legislative Impact Score
+        Policy Influence Index
+        Agenda Success Rate
+        Cross-Party Collaboration
+      Consistency Metrics
+        Party Alignment Score
+        Promise-to-Action Ratio
+        Voting Consistency
+        Public Statement Alignment
+    📊 Party Performance Analysis
+      Voting Cohesion
+        Internal Voting Alignment
+        Discipline Metrics
+        Faction Identification
+        Leadership Influence
+      Legislative Effectiveness
+        Bill Success Rate
+        Amendment Adoption Rate
+        Policy Implementation
+        Opposition Effectiveness
+      Representation Metrics
+        Demographic Representation
+        Geographic Distribution
+        Constituent Alignment
+        Issue Position Mapping
+      Coalition Dynamics
+        Alliance Stability
+        Negotiation Outcomes
+        Power Distribution
+        Compromise Patterns
+    🏛️ Government Body Analytics
+      Organizational Structure
+        Hierarchical Analysis
+        Position Distribution
+        Departmental Organization
+        Functional Mapping
+      Resource Allocation
+        Budget Utilization
+        Workforce Distribution
+        Operational Efficiency
+        Cost-per-Output Analysis
+      Performance Assessment
+        Output Metrics
+        Goal Achievement Rate
+        Timeline Adherence
+        Quality Indicators
+      Oversight Mechanisms
+        Accountability Structures
+        Transparency Measures
+        Compliance Metrics
+        Regulatory Framework
+```
+
+## 📊 Distribution Analysis Framework
+
+**📈 Distribution Focus:** Illustrates how distribution analysis is applied across political entities to understand patterns and allocations.
+
+```mermaid
+mindmap
+  root((Distribution<br/>Analysis<br/>Framework))
+    🏢 Position Distribution
+      Parliamentary Representation
+        Party Distribution
+        Committee Representation
+        Leadership Positions
+        Specialized Roles
+      Government Body Structure
+        Organizational Hierarchy
+        Department Distribution
+        Functional Allocation
+        Authority Distribution
+      Geographical Representation
+        Regional Distribution
+        Constituency Coverage
+        Urban-Rural Balance
+        Demographic Mapping
+    💰 Resource Distribution
+      Budget Allocation
+        Ministry Budget Shares
+        Program Funding Distribution
+        Investment Patterns
+        Operational vs. Strategic Spending
+      Workforce Distribution
+        Staffing Allocation
+        Expertise Distribution
+        Seniority Patterns
+        Role Classification Distribution
+      Time Resource Allocation
+        Parliamentary Session Time
+        Committee Time Distribution
+        Agenda Item Allocation
+        Deliberation Time Patterns
+    🗳️ Decision Distribution
+      Voting Outcomes
+        Result Distribution
+        Vote Margin Analysis
+        Consensus vs. Division Patterns
+        Abstention Distribution
+      Policy Impact
+        Beneficiary Distribution
+        Regulatory Burden Distribution
+        Implementation Distribution
+        Outcome Dispersion
+      Influence Patterns
+        Decision-maker Distribution
+        Power Concentration Analysis
+        Veto Point Distribution
+        Initiative Source Patterns
+```
+
+## 🧩 Analytical Dimensions Framework
+
+**🔍 Dimensions Focus:** Shows the multidimensional nature of political analysis within the system.
+
+```mermaid
+flowchart TD
+    A[Political Data] --> B[Analytical Dimensions]
+    
+    B --> C1[Temporal Analysis]
+    B --> C2[Comparative Analysis]
+    B --> C3[Distribution Analysis]
+    B --> C4[Performance Analysis]
+    B --> C5[Relationship Analysis]
+    
+    C1 --> D1[Historical Trends]
+    C1 --> D2[Time Series Comparison]
+    C1 --> D3[Period Performance]
+    C1 --> D4[Longitudinal Studies]
+    
+    C2 --> D5[Cross-Entity Comparison]
+    C2 --> D6[Benchmark Analysis]
+    C2 --> D7[Peer Group Evaluation]
+    C2 --> D8[International Comparison]
+    
+    C3 --> D9[Position Distribution]
+    C3 --> D10[Resource Allocation]
+    C3 --> D11[Vote Distribution]
+    C3 --> D12[Geographic Distribution]
+    
+    C4 --> D13[Effectiveness Metrics]
+    C4 --> D14[Efficiency Indicators]
+    C4 --> D15[Impact Assessment]
+    C4 --> D16[Output Evaluation]
+    
+    C5 --> D17[Network Analysis]
+    C5 --> D18[Collaboration Patterns]
+    C5 --> D19[Influence Mapping]
+    C5 --> D20[Dependency Analysis]
+    
+    classDef dimension fill:#bbdefb,stroke:#333,stroke-width:1px,color:black
+    classDef category fill:#a0c8e0,stroke:#333,stroke-width:1px,color:black
+    classDef metric fill:#c8e6c9,stroke:#333,stroke-width:1px,color:black
+    
+    class A,B dimension
+    class C1,C2,C3,C4,C5 category
+    class D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,D11,D12,D13,D14,D15,D16,D17,D18,D19,D20 metric
+```
+
 ## 🖥️ CIA Technical Component Map
 
 This flowchart visualizes the relationship between components in the system architecture. For a more formal C4 architecture model, see the [Architecture documentation](ARCHITECTURE.md).
@@ -325,6 +502,8 @@ These features align with the [CIA platform features](https://hack23.com/cia-fea
 | 🏢 Committee Activity        | Parliament API, Committee Records              | Monitor committee productivity              | Activity metrics and timeline visualization    |
 | 👥 Political Relationships   | Parliament API, Committee Assignments, Voting Records | Map political networks                  | Network graph visualization and correlation   |
 | 🔍 Search & Discovery        | All Data Sources                                | Enable research and exploration             | Advanced search with entity relationship display |
+| 📊 Distribution Analysis     | Parliament API, Government Body Data           | Analyze position and resource distribution  | Statistical distribution visualization         |
+| 📋 Performance Metrics       | All Data Sources                                | Evaluate effectiveness and efficiency       | Multi-dimensional scoring and benchmarking    |
 
 ## 🔄 Data Integration Flow
 
@@ -393,6 +572,7 @@ The color scheme used in these mindmaps follows these conventions:
 | External Systems       | #d1c4e9 (Light Purple) | External data sources and APIs          |
 | Services               | #ffecb3 (Light Yellow) | Business services and processing        |
 | User Interface         | #ffccbc (Light Orange) | User-facing components and features     |
+| Analytical Dimensions  | #e1bee7 (Light Purple) | Analytical frameworks and methodologies |
 
 This color scheme provides visual consistency across the architecture documentation while making it easy to distinguish between different types of components in the system.
 
