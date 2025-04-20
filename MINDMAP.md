@@ -6,21 +6,25 @@ This document provides a conceptual overview of the Citizen Intelligence Agency 
 
 <div class="documentation-map">
 
-| Document                                  | Type    | Focus           | Description                                                          | Documentation Link                                                                 |
-| ----------------------------------------- | ------- | --------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| **[Current Architecture](ARCHITECTURE.md)**  | Core    | 🏛️ Architecture | C4 model showing current system containers, components, and dynamics | [View in Portal](https://hack23.github.io/cia/architecture.html)                   |
-| **[Entity Model](ENTITY_MODEL.md)**         | Current | 📊 Data         | Detailed look at system entities and their relationships             | [View in Portal](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) |
-| **[API Documentation](API_DOCS.md)**        | Current | 🔌 API          | Comprehensive API documentation for system integration               | [View in Portal](https://hack23.github.io/cia/apidocs/index.html)                  |
-| **[AWS Infrastructure](AWS_INFRASTRUCTURE.md)** | Current | ☁️ Cloud   | CloudFormation stack diagram and AWS service configurations          | [View in Portal](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json) |
-| **[Module Dependencies](MODULE_DEPS.md)**   | Current | 📦 Dependencies | Overview of project modules and their dependencies                   | [View in Portal](https://hack23.github.io/cia/project-info.html)                 |
-| **[Security Architecture](SECURITY_ARCHITECTURE.md)** | Current | 🔒 Security | Security model, authentication and authorization                 | [View in Portal](https://hack23.github.io/cia/security-architecture.html)          |
-| **[UI Component Framework](UI_COMPONENTS.md)** | Current | 🖼️ UI      | UI component structure and visualization patterns                    | [View in Portal](https://hack23.github.io/cia/ui-components.html)                 |
-| **[Data Integration](DATA_INTEGRATION.md)** | Current | 🔄 Integration | External data sources and integration strategies                     | [View in Portal](https://hack23.github.io/cia/data-integration.html)              |
-| **[Future Mindmaps](FUTURE_MINDMAP.md)**    | Future  | 🧠 Concept     | Future capability evolution                                          | [View in Portal](https://hack23.github.io/cia/future-mindmap.html)               |
-| **[End-of-Life Strategy](End-of-Life-Strategy.md)** | Current | 📅 Lifecycle | Maintenance and EOL planning for current technology stack         | [View in Portal](https://hack23.github.io/cia/end-of-life-strategy.html)          |
-| **[Financial Security Plan](FinancialSecurityPlan.md)** | Current | 💰 Security | Cost breakdown and AWS security implementation                  | [View in Portal](https://hack23.github.io/cia/financial-security-plan.html)       |
-| **[README](README.md)**                     | Core    | 📘 Overview    | Project introduction, features, and quick links                     | [View in Portal](https://hack23.github.io/cia/)                                   |
-| **[CIA Features](https://hack23.com/cia-features.html)** | External | 🚀 Features | Comprehensive overview of all CIA platform features           | [View on hack23.com](https://hack23.com/cia-features.html)                       |
+| Document                                            | Focus           | Description                               | Documentation Link                                                              |
+| --------------------------------------------------- | --------------- | ----------------------------------------- | ------------------------------------------------------------------------------- |
+| **[Architecture](ARCHITECTURE.md)**                 | 🏛️ Architecture | C4 model showing current system structure | [View Source](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md)         |
+| **[Future Architecture](FUTURE_ARCHITECTURE.md)**   | 🏛️ Architecture | C4 model showing future system structure | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_ARCHITECTURE.md)         |
+| **[Mindmaps](MINDMAP.md)**                          | 🧠 Concept      | Current system component relationships    | [View Source](https://github.com/Hack23/cia/blob/master/MINDMAP.md)             |
+| **[Future Mindmaps](FUTURE_MINDMAP.md)**            | 🧠 Concept      | Future capability evolution               | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_MINDMAP.md)      |
+| **[SWOT Analysis](SWOT.md)**                        | 💼 Business     | Current strategic assessment              | [View Source](https://github.com/Hack23/cia/blob/master/SWOT.md)                |
+| **[Future SWOT Analysis](FUTURE_SWOT.md)**          | 💼 Business     | Future strategic opportunities            | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_SWOT.md)         |
+| **[Data Model](DATA_MODEL.md)**                     | 📊 Data         | Current data structures and relationships | [View Source](https://github.com/Hack23/cia/blob/master/DATA_MODEL.md)          |
+| **[Future Data Model](FUTURE_DATA_MODEL.md)**       | 📊 Data         | Enhanced political data architecture      | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_DATA_MODEL.md)   |
+| **[Flowcharts](FLOWCHART.md)**                      | 🔄 Process      | Current data processing workflows         | [View Source](https://github.com/Hack23/cia/blob/master/FLOWCHART.md)           |
+| **[Future Flowcharts](FUTURE_FLOWCHART.md)**        | 🔄 Process      | Enhanced AI-driven workflows              | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_FLOWCHART.md)    |
+| **[State Diagrams](STATEDIAGRAM.md)**               | 🔄 Behavior     | Current system state transitions          | [View Source](https://github.com/Hack23/cia/blob/master/STATEDIAGRAM.md)        |
+| **[Future State Diagrams](FUTURE_STATEDIAGRAM.md)** | 🔄 Behavior     | Enhanced adaptive state transitions       | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_STATEDIAGRAM.md) |
+| **[CI/CD Workflows](WORKFLOWS.md)**                 | 🔧 DevOps       | Current automation processes              | [View Source](https://github.com/Hack23/cia/blob/master/WORKFLOWS.md)           |
+| **[Future Workflows](FUTURE_WORKFLOWS.md)**         | 🔧 DevOps       | Enhanced CI/CD with ML                    | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_WORKFLOWS.md)    |
+| **[End-of-Life Strategy](End-of-Life-Strategy.md)** | 📅 Lifecycle    | Maintenance and EOL planning              | [View Source](https://github.com/Hack23/cia/blob/master/End-of-Life-Strategy.md) |
+| **[Financial Security Plan](FinancialSecurityPlan.md)** | 💰 Security | Cost and security implementation          | [View Source](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) |
+| **[CIA Features](https://hack23.com/cia-features.html)** | 🚀 Features | Platform features overview                | [View on hack23.com](https://hack23.com/cia-features.html)                     |
 
 </div>
 
