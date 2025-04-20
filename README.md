@@ -167,6 +167,9 @@ The Citizen Intelligence Agency can be deployed on AWS using our provided CloudF
 4. Acknowledge IAM resource creation and launch the stack
 5. Access the application via the URL in the stack outputs
 
+#### CloudFormation Stack Diagram
+![Cloudformation stack Diagram](cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.png)
+
 ### Debian/Ubuntu Installation
 
 For local or self-hosted deployment on Debian/Ubuntu 24.4+:
@@ -176,17 +179,155 @@ For local or self-hosted deployment on Debian/Ubuntu 24.4+:
    sudo apt-get install openjdk-21-jdk postgresql-16 postgresql-contrib postgresql-16-pgaudit
    ```
 
-2. Configure PostgreSQL (see detailed [configuration guide](#postgresql-16-configuration-guide))
+2. Configure PostgreSQL as detailed below.
 
-3. Install the Debian package:
+## PostgreSQL 16 Configuration Guide
+
+A step-by-step guide to configure PostgreSQL 16 with SSL, prepared transactions, and required extensions.
+
+### 1. Enable Prepared Transactions and Required Extensions
+
+1. **Edit** `/etc/postgresql/16/main/postgresql.conf` and add or update the following lines:
+   ```ini
+   max_prepared_transactions = 100
+   shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'
+   pgaudit.log = ddl
+   pg_stat_statements.track = all
+   pg_stat_statements.max = 10000
+   ```
+2. **Save and close** the file.
+
+### 2. Update `pg_hba.conf` for IPv6 Loopback Access
+
+1. **Edit** `/etc/postgresql/16/main/pg_hba.conf` and add the following line:
+   ```ini
+   host all all ::1/128 md5
+   ```
+2. **Save and close** the file.
+
+### 3. Generate SSL Certificates and Keys
+
+1. Generate a secure random passphrase:
+   ```bash
+   openssl rand -base64 48 > passphrase.txt
+   ```
+
+2. Create a passphrase-protected private key:
+   ```bash
+   openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
+   ```
+
+3. Remove the passphrase protection from the private key:
+   ```bash
+   openssl rsa -passin file:passphrase.txt -in server.pass.key -out server.key
+   rm server.pass.key
+   ```
+
+4. Create a Certificate Signing Request (CSR):
+   ```bash
+   openssl req -new -key server.key -out server.csr \
+       -subj "/C=UK/ST=Postgresqll/L=Docker/O=Hack23/OU=demo/CN=127.0.0.1"
+   ```
+
+5. Self-sign the certificate (valid for 10 years / 3650 days):
+   ```bash
+   openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
+   ```
+
+6. Clean up temporary files:
+   ```bash
+   rm passphrase.txt
+   rm server.csr
+   ```
+
+### 4. Deploy the SSL Certificate and Key for PostgreSQL
+
+1. Copy the new certificate and key into the PostgreSQL data directory:
+   ```bash
+   cp server.crt /var/lib/postgresql/16/main/server.crt
+   cp server.key /var/lib/postgresql/16/main/server.key
+   rm server.key
+   ```
+
+2. Secure the certificate and key:
+   ```bash
+   chmod 700 /var/lib/postgresql/16/main/server.key
+   chmod 700 /var/lib/postgresql/16/main/server.crt
+   chown -R postgres:postgres /var/lib/postgresql/16/main/
+   ```
+
+3. Enable SSL in PostgreSQL by adding the following lines to
+   `/etc/postgresql/16/main/postgresql.conf`:
+   ```bash
+   echo "ssl_cert_file = '/var/lib/postgresql/16/main/server.crt'" \
+       >> /etc/postgresql/16/main/postgresql.conf
+   echo "ssl_key_file = '/var/lib/postgresql/16/main/server.key'" \
+       >> /etc/postgresql/16/main/postgresql.conf
+   ```
+
+### 5. Provide SSL Certificate to the `cia` User
+
+1. Create a `.postgresql` directory for the `cia` user:
+   ```bash
+   mkdir -p /opt/cia/.postgresql
+   ```
+
+2. Copy the server certificate into this directory:
+   ```bash
+   cp server.crt /opt/cia/.postgresql/root.crt
+   chmod 700 /opt/cia/.postgresql/root.crt
+   chown -R cia:cia /opt/cia/.postgresql/root.crt
+   ```
+
+3. Remove the server certificate from the current directory (if desired):
+   ```bash
+   rm server.crt
+   ```
+
+### Final Steps
+
+1. **Restart PostgreSQL** to apply all changes:
+   ```bash
+   systemctl restart postgresql
+   ```
+
+2. Verify that PostgreSQL is running with SSL by checking the logs or using an SSL-enabled client.
+
+3. Confirm that prepared transactions and required extensions are enabled:
+   ```sql
+   SHOW max_prepared_transactions;
+   \dx
+   ```
+
+4. Confirm the new IPv6 entry in `pg_hba.conf` is functioning as expected by connecting via `psql` over `::1`.
+
+## Database Setup
+
+Create an empty database:
+
+Below instructions set the default username/password and database name used for development. We recommend using custom credentials and updating the configuration at `/opt/cia/webapps/cia/WEB-INF/database.properties` to define your own username/password and database name.
+
+```bash
+$ sudo su - postgres
+$ psql
+postgres=# CREATE USER eris WITH password 'discord';
+postgres=# CREATE DATABASE cia_dev;
+postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
+```
+
+## Install CIA Debian Package
+
+1. Download the CIA Debian package:
    ```bash
    wget https://github.com/Hack23/cia/releases/download/2025.1.2/cia-dist-deb-2025.1.2.all.deb
+   ```
+
+2. Install the Debian package:
+   ```bash
    sudo dpkg -i cia-dist-deb-2025.1.2.all.deb
    ```
 
-4. Access at [https://localhost:28443/cia/](https://localhost:28443/cia/)
-
-For complete installation details, see our [Installation Guide](INSTALLATION.md).
+3. Access the server at [https://localhost:28443/cia/](https://localhost:28443/cia/).
 
 ## 📊 Political Dashboards
 
@@ -210,3 +351,4 @@ For our future vision incorporating more advanced AI capabilities, see our [Futu
 - [Financial Security Plan](FinancialSecurityPlan.md) - AWS deployment and security
 - [End-of-Life Strategy](End-of-Life-Strategy.md) - Technology maintenance planning
 - [CIA Features](https://hack23.com/cia-features.html) - Detailed feature showcase
+- [Package Overview Diagram](https://hack23.github.io/cia/apidocs/package-dependencies.svg) - Visual code package dependencies
