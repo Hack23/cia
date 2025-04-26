@@ -1,5 +1,8 @@
 # 🛡️ Citizen Intelligence Agency Security Architecture
 
+**Document Date:** 2025-04-26 09:03:33 UTC  
+**Last Updated By:** pethers
+
 This document outlines the comprehensive security architecture of the Citizen Intelligence Agency platform, detailing how we protect our systems and data through multiple security layers.
 
 ## 📑 Table of Contents
@@ -14,12 +17,18 @@ This document outlines the comprehensive security architecture of the Citizen In
 - [🏗️ High Availability Design](#-high-availability-design)
 - [💾 Data Protection](#-data-protection)
 - [☁️ AWS Security Infrastructure](#-aws-security-infrastructure)
-- [📈 Monitoring & Compliance](#-monitoring--compliance)
+- [🔰 AWS Foundational Security Best Practices](#-aws-foundational-security-best-practices)
+- [🕵️ Threat Detection & Investigation](#-threat-detection--investigation)
+- [🔎 Vulnerability Management](#-vulnerability-management)
+- [⚡ Resilience & Operational Readiness](#-resilience--operational-readiness)
+- [📋 Configuration & Compliance Management](#-configuration--compliance-management)
+- [📊 Monitoring & Analytics](#-monitoring--analytics)
 - [🤖 Automated Security Operations](#-automated-security-operations)
 - [🔒 Application Security](#-application-security)
-- [📋 Compliance Framework](#-compliance-framework)
+- [📜 Compliance Framework](#-compliance-framework)
 - [🛡️ Defense-in-Depth Strategy](#-defense-in-depth-strategy)
 - [🔄 Security Operations](#-security-operations)
+- [💰 Security Investment](#-security-investment)
 - [📝 Conclusion](#-conclusion)
 
 ## 🔐 Security Documentation Map
@@ -618,49 +627,545 @@ graph TD
 - **🕵️ GuardDuty**: Continuous threat detection with machine learning
 - **📈 Security Hub**: Unified security and compliance management
 
-## 📊 Monitoring & Compliance
+## 🔰 AWS Foundational Security Best Practices
 
-Our comprehensive monitoring system provides real-time visibility and rapid response capabilities.
+Our security architecture aligns with AWS Foundational Security Best Practices (FSBP) controls to ensure a robust security posture.
 
 ```mermaid
 flowchart TD
-    subgraph "Security Monitoring Ecosystem"
-        A[📊 Log Sources] --> B[📈 CloudWatch]
-        B --> C[🔍 Analysis]
-        C --> D[⚡ Response]
+    subgraph "AWS FSBP Framework"
+        A[🏗️ Foundational<br>Controls] --> B[⚙️ Config]
+        A --> C[📊 Security Hub]
         
-        A --> E[⚙️ Application]
-        A --> F[🔌 Network]
-        A --> G[🔑 API Activity]
+        D[🔍 Threat Detection] --> E[🕵️ GuardDuty]
+        D --> F[🔎 Inspector]
+        D --> G[🔍 Detective]
         
-        C --> H[🕵️ GuardDuty]
-        C --> I[📋 Security Hub]
-        C --> J[🔎 Inspector]
+        H[🔒 Data Protection] --> I[🔑 KMS]
+        H --> J[🔐 Secrets Manager]
         
-        D --> K[🚨 Alerts]
-        D --> L[🤖 Auto-Remediation]
-        D --> M[👥 Incident Response]
+        K[👥 Identity & Access] --> L[👤 IAM]
+        K --> M[🔑 Access Analyzer]
+        
+        N[⚠️ Incident Response] --> O[📊 CloudWatch]
+        N --> P[🔌 EventBridge]
     end
     
-    style A,B,C,D fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
-    style E,F,G fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
-    style H,I,J fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
-    style K,L,M fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style A,D,H,K,N fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B,C,E,F,G,I,J,L,M,O,P fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
     classDef default font-weight:bold
 ```
 
-### Monitoring Components
+### FSBP Controls Implementation
 
-- **📊 Centralized Logging**: CloudWatch for application, VPC Flow, and CloudTrail logs
-- **🕵️ Threat Intelligence**: GuardDuty for anomaly detection and threat identification
-- **🔎 Vulnerability Management**: Inspector for automated assessment
-- **📋 Compliance Dashboard**: Security Hub for standards adherence
-- **🚨 Alert Pipeline**: SNS-based notifications with severity classifications
-- **🤖 Automated Response**: EventBridge rules for common security events
+Our system implements the following AWS Foundational Security Best Practices controls:
+
+#### 1. Foundational Services
+- **Config.1**: AWS Config enabled for continuous monitoring of resource configurations
+- **SecurityHub.1**: Security Hub enabled to aggregate security findings
+
+#### 2. Threat Detection
+- **GuardDuty.1**: GuardDuty enabled for intelligent threat detection
+- **GuardDuty.5**: EKS Audit Log Monitoring for Kubernetes security
+- **GuardDuty.6**: Lambda Protection for serverless security
+- **GuardDuty.7**: EKS Runtime Monitoring for container security
+- **GuardDuty.8**: Malware Protection for EC2 instances
+- **GuardDuty.9**: RDS Protection for database security
+- **GuardDuty.10**: S3 Protection for object storage security
+
+#### 3. Vulnerability Management
+- **Inspector.1**: Amazon Inspector enabled for vulnerability assessment
+- **Inspector.2**: ECR scanning for container image security
+- **Inspector.3**: Lambda code scanning for serverless vulnerabilities
+- **Inspector.4**: Lambda standard scanning for runtime protection
+
+#### 4. Identity and Access Management
+- **IAM.1-8**: IAM best practices including password policies, MFA, and least privilege
+
+#### 5. Data Protection
+- **KMS.1-4**: Encryption key management best practices
+- **S3.1-13**: S3 bucket security best practices
+
+### Key Benefits
+
+- **🔒 Comprehensive Coverage**: All critical security areas addressed
+- **📊 Continuous Assessment**: Automated evaluation against security standards
+- **🔄 Automated Remediation**: Self-healing for common security issues
+- **📈 Security Scoring**: Clear visibility into security posture
+
+## 🕵️ Threat Detection & Investigation
+
+Our threat detection and investigation capabilities combine multiple AWS security services to identify, analyze, and remediate security threats.
+
+```mermaid
+flowchart TD
+    subgraph "Threat Detection & Investigation"
+        A[🔍 Threat<br>Detection] --> B[🕵️ GuardDuty]
+        A --> C[🔎 Inspector]
+        
+        B --> D[⚠️ Findings]
+        C --> D
+        
+        D --> E[📊 Security Hub]
+        E --> F[🔎 Detective]
+        
+        F --> G[🔍 Root Cause<br>Analysis]
+        F --> H[🕸️ Entity<br>Relationships]
+        F --> I[⏱️ Timeline<br>Analysis]
+        
+        G & H & I --> J[👥 Security<br>Team]
+        J --> K[⚡ Incident<br>Response]
+    end
+    
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B,C fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style D,E fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style F fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style G,H,I fill:#00E676,stroke:#00C853,stroke-width:2px,color:black,font-weight:bold
+    style J fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style K fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
+```
+
+### GuardDuty Enhanced Capabilities
+
+Amazon GuardDuty provides intelligent threat detection across multiple AWS services:
+
+1. **🔍 Machine Learning-Based Detection**:
+   - Analyzes CloudTrail, VPC Flow Logs, and DNS logs
+   - Identifies suspicious activity using ML models
+   - Detects reconnaissance, unauthorized access, and data exfiltration
+
+2. **🔰 Service-Specific Protection**:
+   - **EKS Protection**: Monitors Kubernetes audit and runtime logs for threats
+   - **Lambda Protection**: Identifies suspicious serverless function activity
+   - **RDS Protection**: Detects database threats and anomalous access
+   - **S3 Protection**: Monitors for suspicious object storage activity
+   - **EC2 Malware Protection**: Scans for malware on EC2 instances
+
+3. **🚨 Managed Threat Detection**:
+   - Regularly updated threat intelligence
+   - Detection of the latest attack techniques
+   - Minimal false positives through tuned ML models
+
+### Amazon Detective
+
+Amazon Detective provides powerful investigation capabilities for security incidents:
+
+1. **🔎 Root Cause Analysis**:
+   - Automatically collects and processes log data
+   - Builds a unified, interactive view of resource behaviors
+   - Visualizes relationships between AWS resources, IP addresses, and IAM principals
+
+2. **⏱️ Timeline Analysis**:
+   - Historical view of security events
+   - Context-rich visualization of activity
+   - Time-sequence analysis for understanding attack progression
+
+3. **🔍 Entity Relationship Mapping**:
+   - Interactive graph models for visual investigation
+   - Connection between resources, users, roles, and IP addresses
+   - Identification of lateral movement and privilege escalation
+
+4. **📊 Behavioral Analytics**:
+   - Baseline resource behaviors over time
+   - Detection of anomalous behaviors
+   - Statistical analysis to reduce false positives
+
+### Key Benefits
+
+- **🔄 Continuous Monitoring**: 24/7 automated threat detection
+- **🔎 Deep Visibility**: Comprehensive view across all AWS services
+- **⚡ Rapid Investigation**: Streamlined security incident analysis
+- **🔍 Context-Rich Insights**: Detailed information for informed decisions
+- **🚨 Proactive Alerts**: Early warning of potential security threats
+
+## 🔎 Vulnerability Management
+
+Our vulnerability management program combines Amazon Inspector with additional security practices to identify and remediate vulnerabilities across the infrastructure.
+
+```mermaid
+flowchart TD
+    subgraph "Vulnerability Management System"
+        A[🔎 Vulnerability<br>Sources] --> B[🔍 Amazon<br>Inspector]
+        A --> C[🛠️ Security<br>Scanners]
+        A --> D[📊 Security<br>Hub]
+        
+        B --> E[🔍 EC2<br>Vulnerabilities]
+        B --> F[🔍 Container<br>Vulnerabilities]
+        B --> G[🔍 Lambda<br>Vulnerabilities]
+        
+        E & F & G --> H[📋 Vulnerability<br>Database]
+        H --> I[🔄 Prioritization<br>Engine]
+        
+        I --> J[🚨 Critical]
+        I --> K[⚠️ High]
+        I --> L[📝 Medium]
+        I --> M[ℹ️ Low]
+        
+        J & K --> N[🔧 Immediate<br>Remediation]
+        L --> O[🗓️ Scheduled<br>Remediation]
+        
+        N & O --> P[⚙️ Patch<br>Management]
+        P --> Q[✅ Verification]
+        Q --> R[📊 Compliance<br>Reports]
+    end
+    
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B,C,D fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style E,F,G fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style H,I fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style J,K fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style L,M fill:#00E676,stroke:#00C853,stroke-width:2px,color:black,font-weight:bold
+    style N,O,P,Q,R fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
+```
+
+### Amazon Inspector Capabilities
+
+Amazon Inspector provides comprehensive vulnerability assessment:
+
+1. **🔍 EC2 Instance Scanning**:
+   - Network accessibility assessment
+   - Operating system vulnerability assessment
+   - Agent-based and agentless scanning options
+
+2. **📦 Container Image Scanning**:
+   - ECR image scanning for vulnerabilities
+   - Detection of insecure container configurations
+   - Integration with CI/CD pipelines for shift-left security
+
+3. **λ Lambda Function Scanning**:
+   - **Code Scanning**: Analyzes function code for vulnerabilities
+   - **Standard Scanning**: Evaluates execution environment
+   - **Runtime Monitoring**: Detects issues during execution
+
+4. **📊 Vulnerability Intelligence**:
+   - CVE database integration
+   - Exploit availability assessment
+   - Risk scoring based on severity and exploitability
+
+### Vulnerability Remediation Process
+
+Our structured approach to vulnerability management includes:
+
+1. **🔄 Continuous Scanning**:
+   - Automated scanning on a defined schedule
+   - Event-triggered scans for new deployments
+   - Continuous monitoring for newly discovered vulnerabilities
+
+2. **📝 Risk-Based Prioritization**:
+   - CVSS score evaluation
+   - Exploitability assessment
+   - Asset criticality consideration
+   - Data sensitivity impact
+
+3. **🔧 Remediation Workflow**:
+   - Critical vulnerabilities addressed within 24 hours
+   - High vulnerabilities addressed within 7 days
+   - Medium vulnerabilities addressed within 30 days
+   - Low vulnerabilities addressed within 90 days
+
+4. **✅ Verification and Reporting**:
+   - Post-remediation validation scans
+   - Regular compliance reporting
+   - Trend analysis for vulnerability reduction
+   - Executive dashboards for security posture
+
+### Key Benefits
+
+- **🔍 Comprehensive Coverage**: All computing resources protected
+- **🔄 Continuous Assessment**: Regular and event-driven scanning
+- **📊 Risk-Based Approach**: Focus on the most critical vulnerabilities
+- **⚙️ Automated Remediation**: Streamlined patching and mitigation
+- **📝 Compliance Documentation**: Evidence for regulatory requirements
+
+## ⚡ Resilience & Operational Readiness
+
+Our resilience and operational readiness strategy ensures the system can withstand disruptions and recover quickly from incidents.
+
+```mermaid
+flowchart TD
+    subgraph "Resilience & Operational Readiness"
+        A[🏗️ AWS Resilience<br>Hub] --> B[📊 Resilience<br>Assessment]
+        B --> C[🔍 Resilience<br>Score]
+        
+        C --> D[📝 Recovery Time<br>Objective]
+        C --> E[📝 Recovery Point<br>Objective]
+        
+        F[🔄 Resilience<br>Testing] --> G[🧪 Chaos<br>Engineering]
+        F --> H[🔄 Failover<br>Testing]
+        F --> I[🚨 DR<br>Exercises]
+        
+        J[⚡ Incident<br>Response] --> K[📑 Runbooks]
+        J --> L[👥 Response<br>Teams]
+        J --> M[🔄 Automated<br>Recovery]
+        
+        N[📊 Business<br>Continuity] --> O[🔄 Multi-AZ<br>Architecture]
+        N --> P[🌐 Multi-Region<br>Strategy]
+        N --> Q[📋 Recovery<br>Plans]
+    end
+    
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B,C fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style D,E fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style F,J,N fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style G,H,I,K,L,M,O,P,Q fill:#00E676,stroke:#00C853,stroke-width:2px,color:black,font-weight:bold
+    classDef default font-weight:bold
+```
+
+### AWS Resilience Hub
+
+AWS Resilience Hub provides a comprehensive framework for assessing and improving resilience:
+
+1. **📊 Resilience Assessment**:
+   - Continuous evaluation of application resilience
+   - Identification of resilience gaps
+   - Recommendations for improving recovery capabilities
+
+2. **⏱️ Recovery Objectives**:
+   - Recovery Time Objective (RTO) validation
+   - Recovery Point Objective (RPO) validation
+   - Alignment with business requirements
+
+3. **🔄 Automated Testing**:
+   - Scheduled resilience test execution
+   - Validation of recovery procedures
+   - Verification of resilience configurations
+
+4. **📋 Compliance Tracking**:
+   - Documentation of resilience capabilities
+   - Evidence for compliance requirements
+   - Detailed resilience reporting
+
+### Resilience Testing Strategy
+
+Our resilience testing program includes:
+
+1. **🧪 Chaos Engineering**:
+   - Controlled fault injection
+   - Component failure simulation
+   - Network disruption testing
+   - Latency and error introduction
+
+2. **🔄 Failover Testing**:
+   - Database failover drills
+   - Redundant component verification
+   - Zone and region failover exercises
+   - Load balancer fail-open testing
+
+3. **🚨 Disaster Recovery Exercises**:
+   - Full DR scenario simulations
+   - Recovery procedure validation
+   - Cross-region recovery testing
+   - Recovery time measurement
+
+### Business Continuity Features
+
+Our architecture includes multiple business continuity capabilities:
+
+1. **🔄 Multi-AZ Architecture**:
+   - Resources distributed across availability zones
+   - Automatic failover for critical components
+   - Zone-independent operation capability
+
+2. **🌐 Multi-Region Strategy**:
+   - Cross-region data replication
+   - Regional disaster recovery plans
+   - Global data residency compliance
+
+3. **⚡ Automated Recovery**:
+   - Self-healing infrastructure
+   - Auto scaling for workload recovery
+   - Automated instance replacement
+   - Database point-in-time recovery
+
+### Key Benefits
+
+- **⚡ Improved Recovery**: Faster response to disruptions
+- **🔍 Comprehensive Assessment**: Clear visibility into resilience posture
+- **🔄 Validated Procedures**: Tested recovery mechanisms
+- **📝 Documented Capabilities**: Evidence for auditors and stakeholders
+- **🚨 Proactive Improvement**: Continuous enhancement of resilience
+
+## 📋 Configuration & Compliance Management
+
+Our configuration and compliance management system ensures that all resources maintain secure configurations and adhere to regulatory requirements.
+
+```mermaid
+flowchart TD
+    subgraph "Configuration & Compliance Management"
+        A[⚙️ AWS Config] --> B[📝 Resource<br>Inventory]
+        A --> C[📊 Configuration<br>History]
+        A --> D[🔍 Compliance<br>Rules]
+        
+        D --> E[📋 AWS Managed<br>Rules]
+        D --> F[📝 Custom<br>Rules]
+        
+        E & F --> G[🔍 Continuous<br>Evaluation]
+        G --> H[⚠️ Non-Compliant<br>Resources]
+        H --> I[🔄 Auto<br>Remediation]
+        
+        J[🏛️ Compliance<br>Frameworks] --> K[📊 NIST CSF]
+        J --> L[📊 ISO 27001]
+        J --> M[📊 CIS Benchmarks]
+        
+        K & L & M --> N[📑 Compliance<br>Reporting]
+        N --> O[👁️ Executive<br>Dashboard]
+        N --> P[📋 Audit<br>Evidence]
+    end
+    
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B,C,D fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style E,F fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style G,H,I fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style J,K,L,M fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style N,O,P fill:#00E676,stroke:#00C853,stroke-width:2px,color:black,font-weight:bold
+    classDef default font-weight:bold
+```
+
+### AWS Config Capabilities
+
+AWS Config provides comprehensive configuration management:
+
+1. **📝 Resource Inventory**:
+   - Detailed inventory of all AWS resources
+   - Configuration details and relationships
+   - Historical configuration tracking
+
+2. **📊 Configuration Recording**:
+   - Continuous configuration state capture
+   - Configuration change history
+   - Point-in-time configuration views
+
+3. **🔍 Compliance Evaluation**:
+   - Built-in rule library for common controls
+   - Custom rule development for specific requirements
+   - Automated evaluation and notification
+
+4. **🔄 Configuration Remediation**:
+   - Automated remediation actions
+   - Integration with AWS Systems Manager
+   - Compliance status tracking and reporting
+
+### Compliance Framework Integration
+
+Our system maps to multiple compliance frameworks:
+
+1. **🏛️ NIST Cybersecurity Framework (CSF)**:
+   - Identify, Protect, Detect, Respond, Recover functions
+   - Control mapping for all CSF categories
+   - Evidence collection for CSF compliance
+
+2. **🔒 ISO 27001**:
+   - Control implementation for all relevant domains
+   - Documentation for certification requirements
+   - Continuous monitoring for control effectiveness
+
+3. **🛡️ CIS Benchmarks**:
+   - Implementation of CIS AWS Foundations Benchmark
+   - Operating system-level CIS compliance
+   - Database configuration security benchmarks
+
+### Key Benefits
+
+- **🔍 Complete Visibility**: Comprehensive view of resource configurations
+- **📝 Historical Tracking**: Configuration changes over time
+- **🔄 Automated Compliance**: Continuous evaluation against requirements
+- **⚡ Rapid Remediation**: Automated fixing of compliance issues
+- **📊 Evidence Collection**: Documentation for audits and assessments
+
+## 📊 Monitoring & Analytics
+
+Our comprehensive monitoring and analytics system provides real-time visibility into security status and enables rapid response to incidents.
+
+```mermaid
+flowchart TD
+    subgraph "Security Monitoring & Analytics"
+        A[📊 Log Sources] --> B[📈 CloudWatch]
+        A --> C[🔍 VPC Flow Logs]
+        A --> D[🔑 CloudTrail]
+        A --> E[📋 Application Logs]
+        
+        B & C & D & E --> F[🔍 Security Lake]
+        F --> G[📊 Normalized<br>OCSF Format]
+        
+        G --> H[🔎 Security<br>Analytics]
+        H --> I[🚨 Real-time<br>Alerting]
+        H --> J[🔍 Threat<br>Hunting]
+        H --> K[📊 Trend<br>Analysis]
+        
+        L[📑 Reporting] --> M[📈 Executive<br>Dashboards]
+        L --> N[📝 Compliance<br>Reports]
+        L --> O[🔎 Incident<br>Analysis]
+    end
+    
+    style A,B,C,D,E fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style F,G fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style H,I,J,K fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style L,M,N,O fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
+```
+
+### AWS Security Lake
+
+AWS Security Lake provides centralized security log management:
+
+1. **📊 Centralized Collection**:
+   - Automatic gathering of logs from AWS services
+   - Collection from on-premises sources
+   - Third-party integration for comprehensive visibility
+
+2. **🔄 OCSF Normalization**:
+   - Open Cybersecurity Schema Framework (OCSF) standardization
+   - Consistent format for all security data
+   - Simplified analysis across diverse sources
+
+3. **📋 Long-term Storage**:
+   - Cost-effective retention of security data
+   - Lifecycle management for compliance requirements
+   - Data sovereignty controls for regulatory compliance
+
+4. **🔍 Advanced Analytics**:
+   - Built-in query capabilities for investigation
+   - Integration with analytics services
+   - Third-party SIEM integration options
+
+### Security Analytics Capabilities
+
+Our security analytics platform provides:
+
+1. **🚨 Real-time Detection**:
+   - Continuous monitoring for security events
+   - Pattern matching for known threats
+   - Anomaly detection for unknown threats
+
+2. **🔍 Threat Hunting**:
+   - Interactive query capabilities
+   - Advanced visualization for pattern discovery
+   - Hypothesis testing for threat identification
+
+3. **📈 Trend Analysis**:
+   - Historical security data analysis
+   - Identification of emerging threats
+   - Risk prediction based on historical patterns
+
+4. **📊 Security Metrics**:
+   - Key performance indicators for security
+   - Security posture visualization
+   - Improvement tracking over time
+
+### Key Benefits
+
+- **👁️ Unified Visibility**: Comprehensive view across all environments
+- **⚡ Rapid Detection**: Quick identification of security issues
+- **🔎 Deep Analysis**: Advanced tools for security investigation
+- **📋 Simplified Compliance**: Streamlined reporting for audits
+- **📊 Strategic Insights**: Data-driven security decision making
 
 ## 🤖 Automated Security Operations
 
-Our automated security maintenance system ensures continuous protection.
+Our automated security maintenance system ensures continuous protection through programmatic security operations.
 
 ```mermaid
 flowchart TD
@@ -777,7 +1282,7 @@ Each secured method enforces specific role requirements:
 - **🔒 Security Headers**: CSP, HSTS, X-Content-Type-Options, and Referrer-Policy
 - **🛑 Input Validation**: Both client and server-side validation
 
-## 📋 Compliance Framework
+## 📜 Compliance Framework
 
 Our security architecture aligns with key compliance frameworks.
 
@@ -805,123 +1310,3 @@ graph TD
     style I,J,K,L fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
     classDef default font-weight:bold
 ```
-
-### NIST Cybersecurity Framework Mapping
-
-| Function | Category | Implementation |
-|----------|----------|----------------|
-| **Identify (ID)** | Asset Management (ID.AM) | AWS Config for resource inventory |
-| | Risk Assessment (ID.RA) | Security Hub risk scoring |
-| **Protect (PR)** | Identity Management (PR.AC) | IAM, Spring Security, MFA |
-| | Data Security (PR.DS) | Encryption at rest and in transit |
-| | Protective Technology (PR.PT) | WAF, Security Groups, Network ACLs |
-| **Detect (DE)** | Anomalies and Events (DE.AE) | CloudWatch, GuardDuty |
-| | Security Monitoring (DE.CM) | VPC Flow Logs, CloudTrail |
-| **Respond (RS)** | Response Planning (RS.RP) | SNS alerting, Security Hub |
-| | Analysis (RS.AN) | Detective, Security Hub |
-| **Recover (RC)** | Recovery Planning (RC.RP) | AWS Backup, Multi-AZ deployment |
-| | Improvements (RC.IM) | Automated remediations |
-
-### Framework Alignment
-
-- **🔍 NIST Cybersecurity Framework**: Complete implementation of all core functions
-- **🔐 ISO 27001 Controls**: Alignment with key control domains
-- **📊 Security Hub Standards**: Automated compliance verification
-- **📝 Documentation**: Comprehensive policy and procedure documentation
-
-## 🛡️ Defense-in-Depth Strategy
-
-Our security architecture implements multiple protective layers to create a comprehensive defense.
-
-```mermaid
-graph LR
-    A[👤 User<br>Request] --> B[🌐 DNS]
-    B --> C[🧱 WAF]
-    C --> D[🔒 Network]
-    D --> E[💻 Host]
-    E --> F[⚙️ Application]
-    F --> G[💾 Data]
-    
-    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
-    style B fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
-    style C fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
-    style D fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
-    style E fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
-    style F fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
-    style G fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
-    classDef default font-weight:bold
-```
-
-### Security Layers
-
-Each layer provides distinct security controls:
-
-- **🌐 DNS Security**: Route 53 with DNSSEC and query logging
-- **🧱 WAF Protection**: Rule-based filtering for OWASP Top 10 vulnerabilities
-- **🔒 Network Security**: Segmentation, ACLs, and encryption
-- **💻 Host Security**: Hardened AMIs, encryption, and patch management
-- **⚙️ Application Security**: Authentication, authorization, and input validation
-- **💾 Data Security**: Encryption, access controls, and integrity verification
-
-## 🔄 Security Operations
-
-Our continuous security operations ensure the environment remains protected.
-
-```mermaid
-flowchart TD
-    subgraph "Security Operations Cycle"
-        A[🔍 Assess] --> B[🛡️ Protect]
-        B --> C[👁️ Monitor]
-        C --> D[⚡ Respond]
-        D --> A
-        
-        E[🤖 Automation] -.-> A & B & C & D
-    end
-    
-    A --> F[🔎 Vulnerability<br>Scans]
-    A --> G[📋 Compliance<br>Checks]
-    
-    B --> H[🛠️ Patching]
-    B --> I[🔐 Hardening]
-    
-    C --> J[🔍 Threat<br>Detection]
-    C --> K[📊 Log<br>Analysis]
-    
-    D --> L[🚨 Incident<br>Response]
-    D --> M[🔄 Recovery]
-    
-    style A,B,C,D fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
-    style E fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
-    style F,G fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
-    style H,I fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
-    style J,K fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
-    style L,M fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
-    classDef default font-weight:bold
-```
-
-### Operations Components
-
-- **🔍 Security Assessment**: Regular vulnerability scans and penetration tests
-- **🛡️ Protection Controls**: Continuous hardening and configuration management
-- **👁️ Monitoring**: Real-time detection of security events
-- **⚡ Incident Response**: Structured process for security incidents
-- **🤖 Automation**: Programmatic security operations across the lifecycle
-
-## 📝 Conclusion
-
-The Citizen Intelligence Agency employs a comprehensive, defense-in-depth security architecture that spans from application-level controls to infrastructure security. By implementing multiple layers of protection with high availability designs, we ensure the confidentiality, integrity, and availability of sensitive political data.
-
-### Key Security Highlights
-
-- 🔐 Multi-factor authentication with sophisticated brute force protection
-- 🛡️ AWS WAF and Shield protection against web-based attacks
-- 🔒 Comprehensive encryption for data at rest and in transit
-- 🌐 Redundant multi-AZ architecture with NAT Gateways for resilience
-- 🔌 VPC Endpoints for secure AWS service access
-- 👁️ Continuous monitoring with GuardDuty, Inspector, and Security Hub
-- 📜 Complete data integrity with Javers versioning and author attribution
-- 📊 Comprehensive session tracking and user action auditing with ApplicationSession and ApplicationActionEvent
-- 🔍 Detailed security event monitoring with multiple event types
-- 🤖 Automated security operations with Systems Manager
-
-For detailed implementation costs and specific AWS security services, refer to the [Financial Security Plan](FinancialSecurityPlan.md).
