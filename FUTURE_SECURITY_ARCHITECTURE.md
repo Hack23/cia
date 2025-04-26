@@ -2,10 +2,6 @@
 
 > A comprehensive security architecture leveraging cutting-edge AWS security services and zero trust principles for protecting political intelligence data.
 
-**Document Date:** 2025-04-26 07:20:04 UTC  
-**Author:** pethers  
-**Classification:** Internal Only
-
 ## 📚 Table of Contents
 
 - [Executive Overview](#-executive-overview)
