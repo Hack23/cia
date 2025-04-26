@@ -39,7 +39,7 @@ flowchart TD
         O -->|No| P[Access denied]
         O -->|Yes| Q[Access granted]
         
-        Q -->|@Secured annotation| R[Method-level security]
+        Q -->|"@Secured annotation"| R[Method-level security]
         R -->|Role check| S{Has role?}
         S -->|No| T[Throw SecurityException]
         S -->|Yes| U[Execute method]
