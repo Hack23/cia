@@ -1,8 +1,5 @@
 # 🛡️ Citizen Intelligence Agency Security Architecture
 
-**Document Date:** 2025-04-26 08:45:38 UTC  
-**Last Updated By:** pethers
-
 This document outlines the comprehensive security architecture of the Citizen Intelligence Agency platform, detailing how we protect our systems and data through multiple security layers.
 
 ## 📑 Table of Contents
