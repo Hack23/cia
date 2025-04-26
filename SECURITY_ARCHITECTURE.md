@@ -17,6 +17,18 @@ This diagram illustrates the multi-layered authentication and authorization proc
 
 ```mermaid
 flowchart TD
+    %% Title and metadata
+    classDef titleClass fill:#f9f9f9,stroke:#333,stroke-width:1px
+    class title titleClass
+    
+    %% Node styling classes
+    classDef userNode fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1,font-weight:bold
+    classDef serviceNode fill:#bbdefb,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+    classDef decisionNode fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,color:#664d00,font-weight:bold
+    classDef successNode fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20
+    classDef errorNode fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#7f0000
+    classDef securityNode fill:#d1c4e9,stroke:#4527a0,stroke-width:2px,color:#311b92
+    
     subgraph "Authentication Layer"
         A[User] -->|1. Provides credentials| B(LoginService)
         B -->|2. Validate credentials| C{Valid?}
@@ -45,15 +57,17 @@ flowchart TD
         S -->|Yes| U[Execute method]
     end
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style K fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style M fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style N fill:#ffecb3,stroke:#333,stroke-width:1px
-    style R fill:#ffecb3,stroke:#333,stroke-width:1px
-    style T fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style U fill:#c8e6c9,stroke:#333,stroke-width:1px
+    %% Add metadata note
+    note["Last updated: 2025-04-26 06:45:29 UTC<br>Updated by: pethers"]
+    
+    %% Apply styling classes
+    class A userNode
+    class B,H,N,R serviceNode
+    class C,E,I,O,S decisionNode
+    class K,M,Q,U successNode
+    class D,F,G,J,P,T errorNode
+    class L securityNode
+    class note titleClass
 ```
 
 ### Authentication Components
