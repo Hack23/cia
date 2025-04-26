@@ -1,6 +1,6 @@
-# 🔐 Citizen Intelligence Agency Security Architecture
+# 🛡️ Citizen Intelligence Agency Security Architecture
 
-This document outlines the comprehensive security architecture of the Citizen Intelligence Agency platform, detailing the authentication mechanisms, network security, data protection, AWS infrastructure security, compliance frameworks, and DevSecOps practices.
+This document outlines the comprehensive security architecture of the Citizen Intelligence Agency platform, detailing the authentication mechanisms, network security, data protection, AWS infrastructure, and compliance measures that safeguard the system and its data.
 
 ## 📚 Security Documentation Map
 
@@ -18,6 +18,12 @@ This diagram illustrates the multi-layered authentication and authorization proc
 
 ```mermaid
 flowchart TD
+    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
+    classDef service fill:#a0c8e0,stroke:#333,stroke-width:1px
+    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    classDef error fill:#ffcdd2,stroke:#333,stroke-width:1px
+    classDef success fill:#c8e6c9,stroke:#333,stroke-width:1px
+    
     subgraph "Authentication Layer"
         A[User] -->|1. Provides credentials| B(LoginService)
         B -->|2. Validate credentials| C{Valid?}
@@ -46,18 +52,14 @@ flowchart TD
         S -->|Yes| U[Execute method]
     end
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style K fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style M fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style N fill:#ffecb3,stroke:#333,stroke-width:1px
-    style R fill:#ffecb3,stroke:#333,stroke-width:1px
-    style T fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style U fill:#c8e6c9,stroke:#333,stroke-width:1px
+    class A user
+    class B,L service
+    class D,E,F,G,J,P,T error
+    class K,M,Q,U success
+    class N,O,R,S,H,I,C security
 ```
 
-### Authentication Components
+### 🔐 Authentication Components
 
 1. **Login Service**: Processes user authentication requests and validates credentials
    - Implements password validation with BCryptPasswordEncoder
@@ -91,6 +93,13 @@ This diagram illustrates our comprehensive data integrity and auditing system, w
 
 ```mermaid
 flowchart TD
+    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
+    classDef service fill:#a0c8e0,stroke:#333,stroke-width:1px
+    classDef database fill:#d1c4e9,stroke:#333,stroke-width:1px
+    classDef audit fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    classDef event fill:#ffcdd2,stroke:#333,stroke-width:1px
+    classDef data fill:#c8e6c9,stroke:#333,stroke-width:1px
+    
     subgraph "Data Modification Flow"
         A[User] -->|Authenticated Action| B[Service Layer]
         B -->|Request| C[Data Access Layer]
@@ -129,17 +138,15 @@ flowchart TD
         AA -->|Persist| AB[Event Database]
     end
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B,C fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D,P,AB fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style E,F,O,AA fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style G fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style H,I,J,K,L,M,N fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style Q,R,S,T fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style U,V,W,X,Y,Z fill:#c8e6c9,stroke:#333,stroke-width:1px
+    class A user
+    class B,C service
+    class D,P,AB database
+    class E,F,O,AA,G audit
+    class H,I,J,K,L,M,N,U,V,W,X,Y,Z data
+    class Q,R,S,T event
 ```
 
-### Data Versioning with Javers
+### 📊 Data Versioning with Javers
 
 Our system uses Javers to provide comprehensive audit trails and data versioning capabilities:
 
@@ -207,7 +214,7 @@ Our system uses Javers to provide comprehensive audit trails and data versioning
    }
    ```
 
-### User Activity Tracking
+### 📋 User Activity Tracking
 
 The system maintains comprehensive records of all user activities through session and event tracking:
 
@@ -253,7 +260,7 @@ The system maintains comprehensive records of all user activities through sessio
    - Data manipulation events (create/update/delete)
    - System events (startup/shutdown)
 
-### Security Event Monitoring
+### 🔍 Security Event Monitoring
 
 The platform implements comprehensive monitoring of security-related events:
 
@@ -304,7 +311,7 @@ The platform implements comprehensive monitoring of security-related events:
      - Detailed error messages
      - Required vs. actual permissions (for authorization failures)
 
-### Data Integrity Controls
+### 🛡️ Data Integrity Controls
 
 Our data integrity controls ensure the reliability and trustworthiness of stored information:
 
@@ -337,12 +344,17 @@ Our data integrity controls ensure the reliability and trustworthiness of stored
    - Custom validators for complex business rules
    - Pre-persistence validation in service layer
 
-## 🔒 Network Security Architecture
+## 🌐 Network Security Architecture
 
 This diagram shows how network security is implemented across multiple layers, from AWS WAF through VPC security to the application layer.
 
 ```mermaid
 graph TD
+    classDef internet fill:#bbdefb,stroke:#333,stroke-width:1px
+    classDef firewall fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    classDef network fill:#a0c8e0,stroke:#333,stroke-width:1px
+    classDef database fill:#d1c4e9,stroke:#333,stroke-width:1px
+    
     subgraph "Internet Layer"
         A[Internet] -->|HTTPS only| B[AWS WAF]
         B -->|Rule filtering| C[Application Load Balancer]
@@ -365,20 +377,13 @@ graph TD
         J -->|Allow 5432 only| K[RDS PostgreSQL]
     end
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style C fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style E fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style F fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style G fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style H fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style I fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style J fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style K fill:#d1c4e9,stroke:#333,stroke-width:1px
+    class A internet
+    class B,D,F,G,I,J firewall
+    class C,E,H network
+    class K database
 ```
 
-### Network Security Components
+### 🔒 Network Security Components
 
 1. **AWS WAF (Web Application Firewall)**: Protects against common web exploits
    - AWS Managed Rules for known attack patterns
@@ -409,12 +414,18 @@ graph TD
    - HTTPS enforcement with HTTP-to-HTTPS redirection
    - Security headers including HSTS, CSP, and X-Frame-Options
 
-## 🛡️ Data Protection Architecture
+## 💾 Data Protection Architecture
 
 This diagram illustrates how data is protected throughout its lifecycle, including encryption, access controls, and secure storage mechanisms.
 
 ```mermaid
 flowchart TD
+    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
+    classDef network fill:#a0c8e0,stroke:#333,stroke-width:1px
+    classDef database fill:#d1c4e9,stroke:#333,stroke-width:1px
+    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    classDef storage fill:#c8e6c9,stroke:#333,stroke-width:1px
+    
     subgraph "Data in Transit"
         A[User Browser] <-->|TLS 1.3| B[Load Balancer]
         B <-->|TLS 1.2+| C[Application Server]
@@ -444,21 +455,14 @@ flowchart TD
         L -->|Updates| K
     end
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style C fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style E fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style F fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style G fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style H fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style I fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style J fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style K fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style L fill:#a0c8e0,stroke:#333,stroke-width:1px
+    class A user
+    class B,C,L network
+    class D database
+    class E,F,G,J,K security
+    class H,I storage
 ```
 
-### Data Protection Components
+### 🔐 Data Protection Components
 
 1. **Encryption in Transit**: Secure data transmission
    - TLS 1.3 for client-to-load-balancer communication
@@ -494,12 +498,17 @@ flowchart TD
      - At least one special character
      - No whitespace characters
 
-## 🌐 AWS Security Infrastructure
+## ☁️ AWS Security Infrastructure
 
 This diagram shows the multi-layered AWS security infrastructure protecting the application.
 
 ```mermaid
 graph TD
+    classDef internet fill:#bbdefb,stroke:#333,stroke-width:1px
+    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    classDef network fill:#a0c8e0,stroke:#333,stroke-width:1px
+    classDef monitoring fill:#c8e6c9,stroke:#333,stroke-width:1px
+    
     subgraph "Edge Security"
         A[Internet] -->|HTTPS| B[AWS Shield]
         B -->|DDoS Protection| C[AWS WAF]
@@ -533,28 +542,13 @@ graph TD
         S[Inspector] -->|Vulnerabilities| Q
     end
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style C fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style D fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style E fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style F fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style G fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style H fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style I fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style J fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style K fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style L fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style M fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style N fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style O fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style P fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style Q fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style R fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style S fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    class A internet
+    class B,C,G,H,J,L,P,Q,R,S security
+    class D,E,F,I,K network
+    class M,N,O monitoring
 ```
 
-### AWS Security Components
+### 🛡️ AWS Security Components
 
 1. **Edge Protection**: Defense against internet-based attacks
    - AWS Shield for DDoS protection
@@ -600,6 +594,12 @@ This diagram illustrates how security events are monitored, detected, and respon
 
 ```mermaid
 flowchart TD
+    classDef logs fill:#c8e6c9,stroke:#333,stroke-width:1px
+    classDef service fill:#a0c8e0,stroke:#333,stroke-width:1px
+    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    classDef data fill:#d1c4e9,stroke:#333,stroke-width:1px
+    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
+    
     subgraph "Event Sources"
         A1[Application Logs] -->|Stream| B[CloudWatch Logs]
         A2[VPC Flow Logs] -->|Stream| B
@@ -632,28 +632,14 @@ flowchart TD
         N -->|Automatic fix| P[Security Controls]
     end
     
-    style A1 fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style A2 fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style A3 fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style A4 fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style B fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style C fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style E fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style F fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style G fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style H fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style I fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style J fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style K fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style L fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style M fill:#bbdefb,stroke:#333,stroke-width:1px
-    style N fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style O fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style P fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    class A1,A2,A3,A4,H logs
+    class B,C,D,G,J,N service
+    class E,F,I,O,P security
+    class K,L data
+    class M user
 ```
 
-### Monitoring Components
+### 📈 Monitoring Components
 
 1. **Logging and Monitoring**: Comprehensive visibility
    - CloudWatch Logs for application logs
@@ -717,7 +703,7 @@ Key security headers implemented:
 - **Referrer Policy**: Controls HTTP referrer information
 - **Feature Policy**: Restricts browser feature usage
 
-### Authentication Protections
+### 🛡️ Authentication Protections
 
 The system implements multiple layers of authentication protection:
 
@@ -760,7 +746,7 @@ The system implements multiple layers of authentication protection:
    userAccount.setUserpassword(passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()));
    ```
 
-### AWS Security Implementation
+### ⚙️ AWS Security Implementation
 
 AWS infrastructure security as defined in CloudFormation:
 
@@ -823,7 +809,7 @@ AWS infrastructure security as defined in CloudFormation:
    }
    ```
 
-## 🏛️ Security Compliance Architecture
+## 📜 Security Compliance Architecture
 
 The CIA platform is designed to comply with major security frameworks:
 
@@ -861,6 +847,9 @@ The security architecture follows the defense-in-depth principle with multiple l
 
 ```mermaid
 graph TD
+    classDef layer fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
+    
     A[User Request] -->|Layer 1| B[DNS Security]
     B -->|Layer 2| C[WAF Protection]
     C -->|Layer 3| D[Network Security]
@@ -868,16 +857,11 @@ graph TD
     E -->|Layer 5| F[Application Security]
     F -->|Layer 6| G[Data Security]
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style C fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style D fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style E fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style F fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style G fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    class A user
+    class B,C,D,E,F,G layer
 ```
 
-### Security Layer Details
+### 🔒 Security Layer Details
 
 1. **DNS Security Layer**
    - Route 53 with DNSSEC support
@@ -934,6 +918,12 @@ graph TD
 
 ```mermaid
 graph TD
+    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
+    classDef network fill:#a0c8e0,stroke:#333,stroke-width:1px
+    classDef data fill:#d1c4e9,stroke:#333,stroke-width:1px
+    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    classDef process fill:#c8e6c9,stroke:#333,stroke-width:1px
+    
     A[User Credentials] -->|Encrypted TLS| B[Load Balancer]
     B -->|Encrypted TLS| C[Application Server]
     C -->|Bcrypt| D[Password Hash]
@@ -943,13 +933,11 @@ graph TD
     G -->|Decrypt| C
     C -->|Encrypted TLS| E
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style C fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style E fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style F fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style G fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    class A user
+    class B,C network
+    class D,E data
+    class F process
+    class G security
 ```
 
 ## 🔄 Security Operations and Maintenance
@@ -958,6 +946,12 @@ graph TD
 
 ```mermaid
 graph LR
+    classDef event fill:#bbdefb,stroke:#333,stroke-width:1px
+    classDef service fill:#a0c8e0,stroke:#333,stroke-width:1px
+    classDef data fill:#d1c4e9,stroke:#333,stroke-width:1px
+    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
+    classDef process fill:#c8e6c9,stroke:#333,stroke-width:1px
+    
     A[Security Patch Released] -->|Detection| B[AWS Inspector]
     B -->|Identification| C[Patch Needs]
     C -->|Scheduling| D[Maintenance Window]
@@ -965,13 +959,10 @@ graph LR
     E -->|Verification| F[Compliance Check]
     F -->|Documentation| G[Patch History]
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style C fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style D fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style E fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    style F fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style G fill:#d1c4e9,stroke:#333,stroke-width:1px
+    class A event
+    class B,D,E service
+    class C,G data
+    class F process
 ```
 
 ### Automated Security Processes
@@ -1021,7 +1012,7 @@ graph LR
 
 ## 📝 Conclusion
 
-The Citizen Intelligence Agency employs a comprehensive, defense-in-depth security architecture that spans from application-level controls to infrastructure security. By implementing multiple layers of protection—including network security, data encryption, identity management, continuous monitoring, and robust data versioning and integrity controls—the system achieves a robust security posture aligned with industry best practices and compliance frameworks.
+The Citizen Intelligence Agency employs a comprehensive, defense-in-depth security architecture that spans from application-level controls to infrastructure security. By implementing multiple layers of protection, we ensure the confidentiality, integrity, and availability of sensitive political data.
 
 Key security highlights include:
 
