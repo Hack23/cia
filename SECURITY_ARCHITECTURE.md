@@ -1,1088 +1,813 @@
 # 🛡️ Citizen Intelligence Agency Security Architecture
 
-This document outlines the comprehensive security architecture of the Citizen Intelligence Agency platform, detailing the authentication mechanisms, network security, data protection, AWS infrastructure, and compliance measures that safeguard the system and its data.
+**Document Date:** 2025-04-26 08:45:38 UTC  
+**Last Updated By:** pethers
+
+This document outlines the comprehensive security architecture of the Citizen Intelligence Agency platform, detailing how we protect our systems and data through multiple security layers.
 
 ## 📑 Table of Contents
 
-- [Security Documentation Map](#-security-documentation-map)
-- [Authentication and Authorization Architecture](#-authentication-and-authorization-architecture)
-- [Data Integrity & Auditing Architecture](#-data-integrity--auditing-architecture)
-- [Network Security Architecture](#-network-security-architecture)
-- [VPC Endpoints Security](#-vpc-endpoints-security)
-- [High Availability Security Architecture](#-high-availability-security-architecture)
-- [Data Protection Architecture](#-data-protection-architecture)
-- [AWS Security Infrastructure](#-aws-security-infrastructure)
-- [Monitoring and Compliance Architecture](#-monitoring-and-compliance-architecture)
-- [Enhanced Automated Security Operations](#-enhanced-automated-security-operations)
-- [Application Security Controls](#-application-security-controls)
-- [Security Compliance Architecture](#-security-compliance-architecture)
-- [Defense-in-Depth Strategy](#-defense-in-depth-strategy)
-- [Security Threat Modeling](#-security-threat-modeling)
-- [Security Operations and Maintenance](#-security-operations-and-maintenance)
-- [Security Architecture Best Practices](#-security-architecture-best-practices)
-- [Conclusion](#-conclusion)
+- [🔐 Security Documentation Map](#-security-documentation-map)
+- [🔑 Authentication Architecture](#-authentication-architecture)
+- [📜 Data Integrity & Auditing](#-data-integrity--auditing)
+- [📊 Session & Action Tracking](#-session--action-tracking)
+- [🔍 Security Event Monitoring](#-security-event-monitoring)
+- [🌐 Network Security](#-network-security)
+- [🔌 VPC Endpoints Security](#-vpc-endpoints-security)
+- [🏗️ High Availability Design](#-high-availability-design)
+- [💾 Data Protection](#-data-protection)
+- [☁️ AWS Security Infrastructure](#-aws-security-infrastructure)
+- [📈 Monitoring & Compliance](#-monitoring--compliance)
+- [🤖 Automated Security Operations](#-automated-security-operations)
+- [🔒 Application Security](#-application-security)
+- [📋 Compliance Framework](#-compliance-framework)
+- [🛡️ Defense-in-Depth Strategy](#-defense-in-depth-strategy)
+- [🔄 Security Operations](#-security-operations)
+- [📝 Conclusion](#-conclusion)
 
-## 📚 Security Documentation Map
+## 🔐 Security Documentation Map
 
 | Document | Focus | Description |
 |----------|-------|-------------|
-| [Security Architecture](SECURITY_ARCHITECTURE.md) | 🔐 Security | Complete security overview |
-| [Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md) | 🔐 Security | Future security overview |
-| [Financial Security Plan](FinancialSecurityPlan.md) | 💰 Cost/Security | AWS security implementation costs |
+| [Security Architecture](SECURITY_ARCHITECTURE.md) | 🛡️ Security | Complete security overview |
+| [Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md) | 🚀 Vision | Future security roadmap |
+| [Financial Security Plan](FinancialSecurityPlan.md) | 💰 Cost | AWS security implementation costs |
 | [Architecture](ARCHITECTURE.md) | 🏛️ Structure | Overall system architecture |
 | [End-of-Life Strategy](End-of-Life-Strategy.md) | 📅 Lifecycle | Security patching and updates |
 
-## 🔑 Authentication and Authorization Architecture
+## 🔑 Authentication Architecture
 
-This diagram illustrates the multi-layered authentication and authorization process, including the MFA (Multi-Factor Authentication) flow, login blocking mechanisms, and role-based access control.
-
-```mermaid
-flowchart TD
-    subgraph "Authentication Layer"
-        A[User] -->|1. Provides credentials| B(LoginService)
-        B -->|2. Validate credentials| C{Valid?}
-        C -->|No| D[LoginBlockedAccess]
-        D -->|Check block status| E{Blocked?}
-        E -->|Yes| F[Return blocked error]
-        E -->|No| G[Return authentication error]
-        C -->|Yes| H[Check MFA]
-        H -->|Validate OTP| I{Valid OTP?}
-        I -->|No| J[Return MFA error]
-        I -->|Yes| K[Authentication successful]
-        
-        K -->|Create session| L[SecurityContextHolder]
-        L -->|Store authentication| M[User session established]
-    end
-
-    subgraph "Authorization Layer"
-        M -->|Access secured resource| N[Spring Security Filter]
-        N -->|Check authorities| O{Authorized?}
-        O -->|No| P[Access denied]
-        O -->|Yes| Q[Access granted]
-        
-        Q -->|Secured annotation| R[Method-level security]
-        R -->|Role check| S{Has role?}
-        S -->|No| T[Throw SecurityException]
-        S -->|Yes| U[Execute method]
-    end
-    
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style C fill:#ffd54f,stroke:#333,stroke-width:2px
-    style D fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style E fill:#ffd54f,stroke:#333,stroke-width:2px
-    style F fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style G fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style H fill:#ffd54f,stroke:#333,stroke-width:2px
-    style I fill:#ffd54f,stroke:#333,stroke-width:2px
-    style J fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style K fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style L fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style M fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style N fill:#ffd54f,stroke:#333,stroke-width:2px
-    style O fill:#ffd54f,stroke:#333,stroke-width:2px
-    style P fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style Q fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style R fill:#ffd54f,stroke:#333,stroke-width:2px
-    style S fill:#ffd54f,stroke:#333,stroke-width:2px
-    style T fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style U fill:#c8e6c9,stroke:#333,stroke-width:1px
-```
-
-### 🔐 Authentication Components
-
-1. **Login Service**: Processes user authentication requests and validates credentials
-   - Implements password validation with BCryptPasswordEncoder
-   - Supports MFA with Google Authenticator
-   - Enforces account lockout after failed attempts
-
-2. **Login Blocking**: Prevents brute force attacks through multiple protection mechanisms
-   - IP-based blocking after excessive failures
-   - Session-based tracking 
-   - User account-based blocking
-   - Configurable thresholds via application configuration
-
-3. **Role-Based Security**: Three primary security roles
-   - `ROLE_ANONYMOUS`: Unauthenticated users with limited access
-   - `ROLE_USER`: Standard authenticated users
-   - `ROLE_ADMIN`: Administrative users with extended privileges
-
-4. **Method-Level Security**: `@Secured` annotations protecting service methods
-   - Example: `@Secured({ "ROLE_USER", "ROLE_ADMIN" })` for user operations
-   - Example: `@Secured({ "ROLE_ADMIN" })` for administrative functions
-   - Example: `@Secured({ "ROLE_ANONYMOUS" })` for public endpoints
-
-5. **Logout Handling**: Secure session termination
-   - Invalidates authentication token
-   - Creates audit log entry
-   - Returns to anonymous context
-
-## 📜 Data Integrity & Auditing Architecture
-
-This diagram illustrates our comprehensive data integrity and auditing system, which ensures complete traceability, ownership attribution, and immutable history for all data changes.
+Our multi-layered authentication and authorization process includes MFA, login blocking, and role-based access control.
 
 ```mermaid
 flowchart TD
-    subgraph "Data Modification Flow"
-        A[User] -->|Authenticated Action| B[Service Layer]
-        B -->|Request| C[Data Access Layer]
-        C -->|Persist| D[(Database)]
+    subgraph "Authentication Flow"
+        direction TB
+        A[👤 User] -->|"1️⃣ Login Request"| B[🔐 Authentication Service]
+        B -->|"2️⃣ Validate"| C{✓ Valid?}
+        
+        C -->|"❌ No"| D[🚫 Login Blocking]
+        D -->|"Check Status"| E{🔍 Blocked?}
+        E -->|"✓ Yes"| F[⛔ Access Denied]
+        E -->|"❌ No"| G[⚠️ Auth Error]
+        
+        C -->|"✓ Yes"| H[🔢 MFA Verification]
+        H -->|"Validate Code"| I{✓ Valid?}
+        I -->|"❌ No"| J[⚠️ MFA Error]
+        I -->|"✓ Yes"| K[✅ Authentication Success]
+        
+        K -->|"Create"| L[🔑 Security Context]
+        L -->|"Establish"| M[👤 User Session]
+        M -->|"Log"| N[📊 Session Tracking]
+    end
+
+    subgraph "Authorization Flow"
+        direction TB
+        M -->|"1️⃣ Request Resource"| O[🛡️ Security Filter]
+        O -->|"2️⃣ Check Permission"| P{✓ Authorized?}
+        P -->|"❌ No"| Q[⛔ Access Denied]
+        P -->|"✓ Yes"| R[✅ Access Granted]
+        
+        R -->|"Method Access"| S[🔒 Security Annotation]
+        S -->|"Role Check"| T{✓ Has Role?}
+        T -->|"❌ No"| U[⚠️ Security Exception]
+        T -->|"✓ Yes"| V[✅ Execute Method]
+        
+        Q & U -->|"Log"| W[📝 Auth Event]
     end
     
-    subgraph "Javers Auditing"
-        C --> E[Javers AOP Aspect]
-        E -->|Intercept| F[Author Extraction]
-        F -->|Current User| G[Security Context]
-        
-        E -->|Capture| H[Change Metadata]
-        H --> I[Changed Entity]
-        H --> J[Changed Properties]
-        H --> K[Old Values]
-        H --> L[New Values]
-        H --> M[Author]
-        H --> N[Timestamp]
-        
-        H -->|Store| O[Javers Repository]
-        O -->|Persist| P[(Audit Database)]
-    end
-    
-    subgraph "Security Event Tracking"
-        Q[Authentication Events] --> R[Auth Success/Failure]
-        S[Authorization Events] --> T[Access Allowed/Denied]
-        
-        R & T --> U[ApplicationActionEvent]
-        U --> V[User ID]
-        U --> W[Session ID]
-        U --> X[IP Information]
-        U --> Y[Event Type]
-        U --> Z[Timestamp]
-        
-        U -->|Store| AA[Event Repository]
-        AA -->|Persist| AB[(Event Database)]
-    end
-    
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B,C fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D,P,AB fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style E,F,O,AA fill:#ffd54f,stroke:#333,stroke-width:2px
-    style G fill:#ffd54f,stroke:#333,stroke-width:2px
-    style H,I,J,K,L,M,N fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style Q,R,S,T fill:#ffcdd2,stroke:#333,stroke-width:1px
-    style U,V,W,X,Y,Z fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B,L,O fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style C,E,I,P,T fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style D,G,J,Q,U fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style F fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style H,S fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style K,M,R,V fill:#00E676,stroke:#00C853,stroke-width:2px,color:black,font-weight:bold
+    style N,W fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
 ```
 
-### 📊 Data Versioning with Javers
+### Key Components
+
+- **🔐 Multi-Factor Authentication**: Google Authenticator OTP integration
+- **🚫 Brute Force Protection**: IP, session, and user-based blocking with configurable thresholds
+- **👥 Role-Based Access**: Three security tiers (Anonymous, User, Admin)
+- **🔒 Method-Level Security**: `@Secured` annotations for fine-grained control
+- **📤 Secure Logout**: Complete session invalidation with audit logging
+
+### Login Blocking Protection
+
+The system implements sophisticated login blocking mechanisms:
+
+```java
+private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP = 
+    "Max failed login attempts recent hour per ip";
+private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_SESSION = 
+    "Max failed login attempts recent hour per session";
+private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_USER = 
+    "Max failed login attempts recent hour per user";
+```
+
+These thresholds can be configured via the application's administrative interface to adjust security posture based on threat conditions.
+
+## 📜 Data Integrity & Auditing
+
+Our auditing system provides comprehensive traceability and data integrity protection through Javers versioning.
+
+```mermaid
+flowchart TD
+    subgraph "Javers Data Auditing"
+        direction TB
+        A[👤 User] -->|"Action"| B[⚙️ Service Layer]
+        B -->|"Persist"| C[(💾 Database)]
+        
+        B -.->|"Intercept"| D[📝 Javers AOP]
+        D -->|"Extract"| E[👤 Author Context]
+        D -->|"Capture"| F[📊 Change Metadata]
+        
+        F -->|"Record"| G[📋 Entity Changes]
+        F -->|"Record"| H[📋 Property Changes]
+        F -->|"Record"| I[📋 Value Diff]
+        
+        G & H & I -->|"Store"| J[(📜 Audit Database)]
+        
+        K[🔍 Audit Queries] -->|"Access"| J
+        K -->|"Return"| L[👁️ Change History]
+        K -->|"Return"| M[📊 Author Activity]
+        K -->|"Return"| N[⏱️ Timeline View]
+    end
+    
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style C,J fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style D,E,K fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style F,G,H,I fill:#00E676,stroke:#00C853,stroke-width:2px,color:black,font-weight:bold
+    style L,M,N fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
+```
+
+### Javers Audit Components
+
+- **📝 AOP Interception**: Transparent capture of all data changes
+- **👤 Author Tracking**: Every change attributed to the authenticated user
+- **📊 Complete Change History**: Entity, property, and value-level auditing
+- **📋 Property-Level Tracking**: Detailed before/after snapshots for all changes
+- **⏱️ Temporal Data Access**: Historical view of data at any point in time
+
+### Javers Implementation
 
 Our system uses Javers to provide comprehensive audit trails and data versioning capabilities:
 
-1. **Change Tracking**: Every modification to domain objects is automatically captured
-   - Entity creation, updates, and deletions
-   - Property-level change detection
-   - Before/after value comparisons
-   - Complete audit trail of who changed what and when
+```java
+@Bean
+public Javers getJavers(final PlatformTransactionManager txManager) {
+    final JaversSqlRepository sqlRepository = SqlRepositoryBuilder.sqlRepository()
+            .withConnectionProvider(new ConnectionProvider() {
+                @Override
+                public Connection getConnection() {
+                    final SharedSessionContractImplementor session = 
+                        entityManager.unwrap(SharedSessionContractImplementor.class);
+                    return session.connection();
+                }
+            }).withDialect(DialectName.POSTGRES).build();
 
-2. **Author Attribution**: Every change is attributed to a specific user
-   ```java
-   @Bean
-   public AuthorProvider authorProvider() {
-       return () -> {
-           final SecurityContext context = SecurityContextHolder.getContext();
-           if (context != null && context.getAuthentication() != null) {
-               return context.getAuthentication().getPrincipal().toString();
-           } else {
-               return "system";
-           }
-       };
-   }
-   ```
+    return TransactionalJpaJaversBuilder.javers().withTxManager(txManager)
+            .withObjectAccessHook(new HibernateUnproxyObjectAccessHook())
+            .registerJaversRepository(sqlRepository)
+            .withMappingStyle(MappingStyle.BEAN).build();
+}
+```
 
-3. **JPA Integration**: Seamlessly works with our Hibernate/JPA persistence layer
-   ```java
-   @Bean
-   public Javers getJavers(final PlatformTransactionManager txManager) {
-       final JaversSqlRepository sqlRepository = SqlRepositoryBuilder.sqlRepository()
-               .withConnectionProvider(new ConnectionProvider() {
-                   @Override
-                   public Connection getConnection() {
-                       final SharedSessionContractImplementor session = 
-                           entityManager.unwrap(SharedSessionContractImplementor.class);
-                       return session.connection();
-                   }
-               }).withDialect(DialectName.POSTGRES).build();
+The author attribution system ensures every change is linked to the user who made it:
 
-       return TransactionalJpaJaversBuilder.javers().withTxManager(txManager)
-               .withObjectAccessHook(new HibernateUnproxyObjectAccessHook())
-               .registerJaversRepository(sqlRepository)
-               .withMappingStyle(MappingStyle.BEAN).build();
-   }
-   ```
+```java
+@Bean
+public AuthorProvider authorProvider() {
+    return () -> {
+        final SecurityContext context = SecurityContextHolder.getContext();
+        if (context != null && context.getAuthentication() != null) {
+            return context.getAuthentication().getPrincipal().toString();
+        } else {
+            return "system";
+        }
+    };
+}
+```
 
-4. **AOP-Based Auditing**: Transparent interception of data operations
-   ```java
-   @Bean
-   public JaversAuditableAspect javersAuditableAspect(final Javers javers, 
-           final AuthorProvider authorProvider,
-           final CommitPropertiesProvider commitPropertiesProvider) {
-       return new JaversAuditableAspect(javers, authorProvider, commitPropertiesProvider);
-   }
-   ```
+## 📊 Session & Action Tracking
 
-5. **Audit Analysis**: Author-based activity reporting and summaries
-   ```java
-   public class ViewAuditAuthorSummary implements ModelObject {
-       protected long id;
-       protected String author;
-       protected long changes;
-       protected Date firstDate;
-       protected Date lastDate;
-       // Methods omitted for brevity
-   }
-   ```
+Our comprehensive user activity tracking system records all user sessions and actions for security monitoring and audit purposes.
 
-### 📋 User Activity Tracking
+```mermaid
+flowchart TD
+    subgraph "User Activity Tracking"
+        direction TB
+        A[👤 User] -->|"Login"| B[🔑 Authentication]
+        B -->|"Create"| C[📝 ApplicationSession]
+        
+        A -->|"Interact"| D[🖱️ Page/Component]
+        D -->|"Generate"| E[📊 ApplicationActionEvent]
+        E -->|"Associated with"| C
+        
+        C -->|"Contains"| F[📋 Session Metadata]
+        F -->|"Records"| G[👤 User Identifier]
+        F -->|"Records"| H[🌐 IP Information]
+        F -->|"Records"| I[🌍 Browser/OS]
+        F -->|"Records"| J[⏰ Time Data]
+        
+        E -->|"Contains"| K[📋 Action Metadata]
+        K -->|"Records"| L[🔍 Operation Type]
+        K -->|"Records"| M[📄 Page/Element]
+        K -->|"Records"| N[⚙️ Action Details]
+        K -->|"Records"| O[⏱️ Timestamp]
+        
+        C & E -->|"Store"| P[(💾 Tracking Database)]
+        P -->|"Security Analysis"| Q[🔍 Security Alerts]
+        P -->|"Pattern Analysis"| R[📊 Usage Analytics]
+    end
+    
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style C,E fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style D fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style F,K fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style G,H,I,J,L,M,N,O fill:#00E676,stroke:#00C853,stroke-width:2px,color:black,font-weight:bold
+    style P fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style Q,R fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
+```
 
-The system maintains comprehensive records of all user activities through session and event tracking:
+### ApplicationSession Tracking
 
-1. **Application Sessions**: Tracks complete user sessions
-   ```java
-   public class ApplicationSession implements ModelObject {
-       protected String sessionId;
-       protected String userId;
-       protected String ipInformation;
-       protected String userAgentInformation;
-       protected String operatingSystem;
-       protected String screenSize;
-       protected String timeZone;
-       protected ApplicationSessionType sessionType;
-       protected List<ApplicationActionEvent> events;
-       protected Date createdDate;
-       protected Date destroyedDate;
-       // Methods omitted for brevity
-   }
-   ```
+Every user session is tracked with comprehensive metadata:
 
-2. **Application Action Events**: Records specific user actions
-   ```java
-   public class ApplicationActionEvent implements ModelObject {
-       protected ApplicationOperationType applicationOperation;
-       protected ApplicationEventGroup eventGroup;
-       protected String sessionId;
-       protected String userId;
-       protected String page;
-       protected String pageMode;
-       protected String elementId;
-       protected String actionName;
-       protected String errorMessage;
-       protected String applicationMessage;
-       protected Date createdDate;
-       // Methods omitted for brevity
-   }
-   ```
+```java
+public class ApplicationSession implements ModelObject {
+    protected String sessionId;
+    protected String userId;
+    protected String ipInformation;
+    protected String userAgentInformation;
+    protected String operatingSystem;
+    protected String screenSize;
+    protected String timeZone;
+    protected ApplicationSessionType sessionType;
+    protected List<ApplicationActionEvent> events;
+    protected Date createdDate;
+    protected Date destroyedDate;
+}
+```
 
-3. **Event Categories**:
-   - Authentication events (login success/failure)
-   - Authorization events (access allowed/denied)
-   - Data manipulation events (create/update/delete)
-   - System events (startup/shutdown)
+Key session tracking features:
+- **🔑 Unique Session Identification**: Each session receives a unique ID
+- **👤 User Attribution**: All sessions linked to authenticated or anonymous users
+- **📡 Network Context**: IP address and location information
+- **💻 Device Information**: Browser, OS, and screen characteristics
+- **⏰ Temporal Tracking**: Complete session lifecycle timestamps
+- **🔄 Session Type Classification**: Different session types for various contexts
 
-### 🔍 Security Event Monitoring
+### ApplicationActionEvent Tracking
 
-The platform implements comprehensive monitoring of security-related events:
+Every user interaction with the system is recorded as an ApplicationActionEvent:
 
-1. **Authentication Failure Tracking**:
-   - Records all failed login attempts with context
-   ```java
-   private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP = 
-       "Max failed login attempts recent hour per ip";
-   private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_SESSION = 
-       "Max failed login attempts recent hour per session";
-   private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_USER = 
-       "Max failed login attempts recent hour per user";
-   ```
+```java
+public class ApplicationActionEvent implements ModelObject {
+    protected ApplicationOperationType applicationOperation;
+    protected ApplicationEventGroup eventGroup;
+    protected String sessionId;
+    protected String userId;
+    protected String page;
+    protected String pageMode;
+    protected String elementId;
+    protected String actionName;
+    protected String errorMessage;
+    protected String applicationMessage;
+    protected Date createdDate;
+}
+```
 
-2. **Authorization Failure Monitoring**:
-   ```java
-   public class AuthorizationFailureEventListener 
-           implements ApplicationListener<AuthorizationFailureEvent> {
-       private static final String ACCESS_DENIED = "Access Denied";
-       private static final String ERROR_MESSAGE_FORMAT = 
-           "SECURITY:Url:{0} , Method{1} ,{2}{3}{4}{5} source:{6}";
-       
-       @Override
-       public void onApplicationEvent(final AuthorizationFailureEvent authorizationFailureEvent) {
-           // Event handling logic
-           serviceRequest.setEventGroup(ApplicationEventGroup.APPLICATION);
-           serviceRequest.setApplicationOperation(ApplicationOperationType.AUTHORIZATION);
-           serviceRequest.setUserId(UserContextUtil.getUserIdFromSecurityContext());
-           serviceRequest.setErrorMessage(MessageFormat.format(ERROR_MESSAGE_FORMAT, 
-               requestUrl, methodInfo, AUTHORITIES, authorities, 
-               REQUIRED_AUTHORITIES, configAttributes, 
-               authorizationFailureEvent.getSource()));
-           serviceRequest.setApplicationMessage(ACCESS_DENIED);
-           
-           applicationManager.service(serviceRequest);
-       }
-   }
-   ```
+Key action tracking features:
+- **🔄 Operation Categorization**: Events classified by operation type
+- **📊 Event Grouping**: Logical grouping of related events
+- **🔗 Session Association**: Every event linked to its parent session
+- **📱 UI Context**: Page, component, and element identification
+- **🔍 Action Details**: Complete description of user action
+- **⚠️ Error Tracking**: Any errors associated with the action
+- **⏱️ Precise Timing**: Exact timestamp of each action
 
-3. **Comprehensive Event Auditing**:
-   - Every security event recorded with:
-     - User identity (if available)
-     - Session identifier
-     - IP address and user agent
-     - Event timestamp
-     - Operation type
-     - Success/failure indication
-     - Detailed error messages
-     - Required vs. actual permissions (for authorization failures)
+## 🔍 Security Event Monitoring
 
-### 🛡️ Data Integrity Controls
+Our security event monitoring system captures, analyzes, and responds to security-related events throughout the application.
 
-Our data integrity controls ensure the reliability and trustworthiness of stored information:
+```mermaid
+flowchart TD
+    subgraph "Security Event Monitoring"
+        direction TB
+        A[🔓 Authentication<br>Events] --> B[🔑 Login Success]
+        A --> C[⚠️ Login Failure]
+        
+        D[🛡️ Authorization<br>Events] --> E[✅ Access Granted]
+        D --> F[⛔ Access Denied]
+        
+        G[⚙️ System<br>Events] --> H[🚀 Startup]
+        G --> I[🛑 Shutdown]
+        G --> J[⚠️ Error]
+        
+        B & C & E & F & H & I & J -->|"Generate"| K[📝 ApplicationActionEvent]
+        
+        K -->|"Contains"| L[📋 Event Metadata]
+        L -->|"Records"| M[🔍 Event Type]
+        L -->|"Records"| N[👤 User ID]
+        L -->|"Records"| O[🔗 Session ID]
+        L -->|"Records"| P[🌐 IP Information]
+        L -->|"Records"| Q[⏱️ Timestamp]
+        
+        K -->|"Analyzed by"| R[🚨 Security Rules]
+        R -->|"May Trigger"| S[⚡ Security Alert]
+        S -->|"If Critical"| T[👥 Admin Notification]
+        
+        K -->|"Store"| U[(💾 Event Database)]
+        U -->|"Security Analysis"| V[📊 Security Dashboard]
+        U -->|"Compliance"| W[📋 Audit Reports]
+    end
+    
+    style A,D,G fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B,E,H fill:#00E676,stroke:#00C853,stroke-width:2px,color:black,font-weight:bold
+    style C,F,I,J fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style K fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style L,R fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style M,N,O,P,Q fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style S,T fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style U fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style V,W fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
+```
 
-1. **Entity Versioning**: All entities maintain version information
-   ```java
-   @Version
-   @Column(name = "MODEL_OBJECT_VERSION")
-   public int getModelObjectVersion() {
-       return modelObjectVersion;
-   }
-   ```
+### Security Event Types
 
-2. **Optimistic Locking**: Prevents concurrent modification conflicts
-   - Hibernate `@Version` annotation for optimistic locking
-   - Automatic detection of concurrent modifications
-   - Appropriate error handling for version conflicts
+Our system monitors several categories of security events:
 
-3. **Immutable Audit Trail**: Guaranteed integrity of audit records
-   - Audit records cannot be modified once created
-   - Complete historical record maintained permanently
-   - JaversSQL repository with proper permissions
+1. **🔓 Authentication Events**
+   - Login success/failure
+   - Password changes
+   - MFA enrollments/verifications
+   - Account lockouts
 
-4. **Database Constraints**: Structural integrity enforcement
-   - Referential integrity through foreign key constraints
-   - Check constraints for data validation
-   - Unique constraints for entity identity
+2. **🛡️ Authorization Events**
+   - Access granted/denied to resources
+   - Permission changes
+   - Role assignments
+   - Privilege escalations
 
-5. **Data Validation**: Application-level input validation
-   - Bean Validation (JSR-380) constraints
-   - Custom validators for complex business rules
-   - Pre-persistence validation in service layer
+3. **🔐 Data Security Events**
+   - Sensitive data access
+   - Unusual data operations
+   - Large data retrievals
+   - Encryption operations
 
-## 🌐 Network Security Architecture
+4. **⚙️ System Events**
+   - Application startup/shutdown
+   - Configuration changes
+   - System errors
+   - Integration failures
 
-This diagram shows how network security is implemented across multiple layers, from AWS WAF through VPC security to the application layer, including NAT Gateways for secured outbound connectivity.
+### Event Monitoring Implementation
+
+The system uses event listeners to capture security events:
+
+```java
+public class AuthorizationFailureEventListener 
+        implements ApplicationListener<AuthorizationFailureEvent> {
+    private static final String ACCESS_DENIED = "Access Denied";
+    private static final String ERROR_MESSAGE_FORMAT = 
+        "SECURITY:Url:{0} , Method{1} ,{2}{3}{4}{5} source:{6}";
+    
+    @Override
+    public void onApplicationEvent(final AuthorizationFailureEvent authorizationFailureEvent) {
+        // Event handling logic
+        serviceRequest.setEventGroup(ApplicationEventGroup.APPLICATION);
+        serviceRequest.setApplicationOperation(ApplicationOperationType.AUTHORIZATION);
+        serviceRequest.setUserId(UserContextUtil.getUserIdFromSecurityContext());
+        serviceRequest.setErrorMessage(MessageFormat.format(ERROR_MESSAGE_FORMAT, 
+            requestUrl, methodInfo, AUTHORITIES, authorities, 
+            REQUIRED_AUTHORITIES, configAttributes, 
+            authorizationFailureEvent.getSource()));
+        serviceRequest.setApplicationMessage(ACCESS_DENIED);
+        
+        applicationManager.service(serviceRequest);
+    }
+}
+```
+
+### Authentication Failure Tracking
+
+The system implements thresholds for detecting authentication attacks:
+
+```java
+private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP = 
+    "Max failed login attempts recent hour per ip";
+private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_SESSION = 
+    "Max failed login attempts recent hour per session";
+private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_USER = 
+    "Max failed login attempts recent hour per user";
+```
+
+## 🌐 Network Security
+
+Our defense-in-depth network architecture implements multiple security layers.
 
 ```mermaid
 graph TD
-    subgraph "Internet Layer"
-        A[Internet] -->|HTTPS only| B[AWS WAF]
-        B -->|Rule filtering| C[Application Load Balancer]
+    subgraph "Multi-Layer Network Security"
+        A[🌐 Internet] -->|"HTTPS Only"| B[🛡️ AWS WAF]
+        B -->|"Filtered Traffic"| C[⚖️ Load Balancer]
+        
+        subgraph "Security Zones"
+            C -->|"Public Zone"| D[🌐 Public Subnets]
+            D -->|"NAT Gateway"| E[🔒 Private App Subnets]
+            E -->|"DB Traffic"| F[🔐 Private DB Subnets]
+        end
+        
+        G[☁️ VPC Endpoints] -.->|"Private AWS Access"| E
     end
     
-    subgraph "Public Network Layer"
-        C -->|Port 443 only| D[Public Network ACL]
-        D -->|Filtered traffic| E[Public Subnets]
-        E -->|Outbound| F[NAT Gateways]
-    end
+    D -->|"Host"| H[🔍 Bastion]
+    E -->|"Host"| I[🖥️ EC2 Instances]
+    F -->|"Host"| J[(💾 RDS Database)]
     
-    subgraph "Application Layer"
-        F -->|Secured Outbound| G[Private App Network ACL]
-        G -->|Filtered traffic| H[WebServer Security Group]
-        H -->|Allow 8443 only| I[EC2 Application Servers]
-    end
-    
-    subgraph "Data Layer"
-        I -->|Port 5432| J[Private Network ACL]
-        J -->|Filtered traffic| K[Database Security Group]
-        K -->|Allow 5432 only| L[(RDS PostgreSQL)]
-    end
-    
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#ffd54f,stroke:#333,stroke-width:2px
-    style C fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D fill:#ffd54f,stroke:#333,stroke-width:2px
-    style E fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style F fill:#ff9800,stroke:#e65100,stroke-width:2px
-    style G fill:#ffd54f,stroke:#333,stroke-width:2px
-    style H fill:#ffd54f,stroke:#333,stroke-width:2px
-    style I fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style J fill:#ffd54f,stroke:#333,stroke-width:2px
-    style K fill:#ffd54f,stroke:#333,stroke-width:2px
-    style L fill:#d1c4e9,stroke:#333,stroke-width:1px
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style C fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style D fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style E fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style F fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style G fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style H fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style I fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style J fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
 ```
 
-### 🔒 Network Security Components
+### Key Components
 
-1. **AWS WAF (Web Application Firewall)**: Protects against common web exploits
-   - AWS Managed Rules for known attack patterns
-   - IP reputation filtering
-   - Rate limiting and bot control
-   - Protection against SQL injection and XSS
-
-2. **Network Isolation**: VPC design with clear separation of concerns
-   - Public subnets for load balancers only
-   - Private application subnets for EC2 instances
-   - Private database subnets for data storage
-   - Controlled traffic flow between layers
-
-3. **NAT Gateways**: Secure outbound connectivity for private resources
-   - Deployed in each availability zone for redundancy
-   - Allows private instances to access the internet for updates and patches
-   - Prevents direct inbound access to private instances
-   - Highly available managed service with automatic failover
-
-4. **Network ACLs**: Stateless packet filtering at subnet level
-   - Inbound/outbound rules limiting traffic by port and source/destination
-   - Explicit deny rules for RDP (port 3389)
-   - Public subnet limited to HTTPS (443)
-   - Private app subnets limited to application traffic
-   - Private database subnets limited to PostgreSQL (5432)
-
-5. **Security Groups**: Stateful instance-level firewall
-   - Load balancer security group: Allow 443 inbound, 8443 outbound
-   - Web server security group: Allow 8443 inbound from load balancer only
-   - Database security group: Allow 5432 inbound from application servers only
-
-6. **TLS Encryption**: Secure communication throughout
-   - Certificate Manager for public certificates
-   - HTTPS enforcement with HTTP-to-HTTPS redirection
-   - Security headers including HSTS, CSP, and X-Frame-Options
-
-7. **VPC Flow Logs**: Network traffic monitoring and analysis
-   - Captures all network traffic flowing through the VPC
-   - Stored in CloudWatch Logs for security analysis
-   - Used for threat detection and compliance auditing
-   - Custom IAM roles with least-privilege permissions
+- **🛡️ AWS WAF**: Guards against OWASP Top 10 vulnerabilities
+- **🌐 Network Segmentation**: Three isolated security zones with controlled traffic flow
+- **🚪 NAT Gateways**: Secure outbound connectivity for private resources
+- **🔥 Security Groups & NACLs**: Layered stateful and stateless filtering
+- **📊 VPC Flow Logs**: Comprehensive traffic monitoring and anomaly detection
+- **🔒 TLS Everywhere**: End-to-end encryption for all network traffic
 
 ## 🔌 VPC Endpoints Security
 
-This diagram illustrates how VPC Endpoints provide secure, private connectivity to AWS services without traversing the public internet, enhancing both security and performance.
+VPC Endpoints provide secure, private access to AWS services without internet exposure.
 
 ```mermaid
 flowchart LR
-    subgraph "Private Connectivity to AWS Services"
-        A[Private Subnets] --> B[VPC Endpoints]
+    subgraph "Private AWS Access"
+        A[🔒 Private Subnets] --> B[🔌 VPC Endpoints]
         
-        B --> C[S3 Gateway Endpoint]
-        B --> D[SSM Endpoint]
-        B --> E[Secrets Manager Endpoint]
-        B --> F[CloudWatch Endpoint]
-        B --> G[KMS Endpoint]
+        B --> C[S3]
+        B --> D[Secrets<br>Manager]
+        B --> E[Systems<br>Manager]
+        B --> F[CloudWatch]
+        B --> G[KMS]
         
-        C --> H[S3]
-        D --> I[Systems Manager]
-        E --> J[Secrets Manager]
-        F --> K[CloudWatch]
-        G --> L[KMS]
+        H[🚪 Interface<br>Endpoints] -.-> B
+        I[🔄 Gateway<br>Endpoints] -.-> B
     end
     
-    style A fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style B fill:#ffd54f,stroke:#333,stroke-width:2px
-    style C,D,E,F,G fill:#ffd54f,stroke:#333,stroke-width:2px
-    style H,I,J,K,L fill:#d1c4e9,stroke:#333,stroke-width:1px
+    style A fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style B fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style C,D,E,F,G fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style H,I fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
 ```
 
-### 🔐 VPC Endpoint Security Benefits
+### Security Benefits
 
-1. **Private AWS Service Access**: Services accessed directly through AWS private network
-   - Traffic never traverses the public internet
-   - Enhanced security posture with reduced attack surface
-   - Lower latency for AWS service requests
+- **🔒 Private Connectivity**: Services accessed through AWS private network
+- **🌐 No Internet Exposure**: Traffic never traverses the public internet
+- **⚡ Performance**: Lower latency for AWS service requests
+- **📄 Fine-Grained Control**: Endpoint policies restrict actions and resources
+- **🔍 Audit Trail**: Complete logging of all endpoint activity
 
-2. **Gateway Endpoints**:
-   - S3 endpoint for secure access to artifact storage and logs
-   - DynamoDB endpoint for NoSQL database access
-   - Regional endpoint policies restrict access to specific resources
+## 🏗️ High Availability Design
 
-3. **Interface Endpoints**:
-   - Systems Manager endpoints allow secure instance management without internet access
-   - Secrets Manager endpoint provides secure credentials retrieval
-   - CloudWatch endpoint for secure log and metric delivery
-   - KMS endpoint for encryption operations
-
-4. **Security Controls**:
-   - Endpoint policies restrict what actions can be performed
-   - Endpoint security groups control which instances can access endpoints
-   - Private DNS resolution ensures standard AWS service hostnames work properly
-
-5. **Compliance Benefits**:
-   - Meets data locality requirements by keeping traffic within AWS network
-   - Enables complete removal of internet gateways in highly secure environments
-   - Provides detailed audit logs of service access
-
-## 🏗️ High Availability Security Architecture
-
-This diagram shows the multi-AZ security architecture designed for resilience against infrastructure failures while maintaining security boundaries.
+Our multi-AZ architecture ensures both security and resilience against infrastructure failures.
 
 ```mermaid
 graph TD
-    subgraph "Multi-AZ Security Architecture"
-        subgraph "Availability Zone 1"
-            A1[Public Subnet] --> B1[NAT Gateway]
-            B1 --> C1[Private App Subnet]
-            C1 --> D1[Private DB Subnet]
-            
-            C1 -.-> E1[EC2 Instances]
-            D1 -.-> F1[RDS Instance]
-        end
-        
-        subgraph "Availability Zone 2"
-            A2[Public Subnet] --> B2[NAT Gateway]
-            B2 --> C2[Private App Subnet]
-            C2 --> D2[Private DB Subnet]
-            
-            C2 -.-> E2[EC2 Instances]
-            D2 -.-> F2[RDS Standby]
-        end
-        
-        subgraph "Availability Zone 3"
-            A3[Public Subnet] --> B3[NAT Gateway]
-            B3 --> C3[Private App Subnet]
-            C3 --> D3[Private DB Subnet]
-            
-            C3 -.-> E3[EC2 Instances]
-            D3 -.-> F3[RDS Replica]
-        end
-        
-        ALB[Application Load Balancer] --> A1 & A2 & A3
-        Internet[Internet] --> ALB
-        
-        VPC1[VPC Endpoints] --> C1 & C2 & C3
-        AWS[AWS Services] -.-> VPC1
+    A[⚖️ Load Balancer] --> B[🌐 Public Subnets]
+    
+    subgraph "Availability Zone A"
+        B --> |"Zone A"| C[🚪 NAT<br>Gateway A]
+        C --> D[🔒 Private<br>App A]
+        D --> E[🔐 Private<br>DB A]
+        E --> F[(💾 Primary<br>DB)]
     end
     
-    style A1,A2,A3 fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B1,B2,B3 fill:#ff9800,stroke:#e65100,stroke-width:2px
-    style C1,C2,C3,D1,D2,D3 fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style E1,E2,E3,F1,F2,F3 fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style ALB fill:#ffd54f,stroke:#333,stroke-width:2px
-    style Internet fill:#bbdefb,stroke:#333,stroke-width:1px
-    style VPC1 fill:#ffd54f,stroke:#333,stroke-width:2px
-    style AWS fill:#d1c4e9,stroke:#333,stroke-width:1px
+    subgraph "Availability Zone B"
+        B --> |"Zone B"| G[🚪 NAT<br>Gateway B]
+        G --> H[🔒 Private<br>App B]
+        H --> I[🔐 Private<br>DB B]
+        I --> J[(💾 Standby<br>DB)]
+    end
+    
+    subgraph "Availability Zone C"
+        B --> |"Zone C"| K[🚪 NAT<br>Gateway C]
+        K --> L[🔒 Private<br>App C]
+        L --> M[🔐 Private<br>DB C]
+        M --> N[(💾 Read<br>Replica)]
+    end
+    
+    style A fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style B fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style C,G,K fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style D,H,L fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style E,I,M fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style F,J,N fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
 ```
 
-### 🔄 High Availability Security Features
+### Resilience Features
 
-1. **Multi-AZ Network Architecture**:
-   - Multiple isolated availability zones for resilience
-   - Security boundaries maintained across failure domains
-   - Each AZ contains complete set of public, private app, and private database subnets
-   - Network ACLs and security groups consistently applied across zones
+- **⚖️ Multi-AZ Load Balancing**: Traffic distribution across three availability zones
+- **🚪 Redundant NAT Gateways**: One per AZ for fault-tolerant outbound connectivity
+- **📊 Security Consistency**: Identical security controls across all zones
+- **💾 Database Redundancy**: Multi-AZ deployment with automatic failover
+- **⚡ Automatic Recovery**: Self-healing infrastructure with health checks
 
-2. **Redundant Security Components**:
-   - NAT Gateways deployed in each public subnet
-   - Automatic failover if an AZ becomes unavailable
-   - Multiple EC2 instances distributed across availability zones
-   - Security groups and network ACLs consistently applied
+## 💾 Data Protection
 
-3. **Database Redundancy**:
-   - Multi-AZ RDS deployment with automatic failover
-   - Primary instance in first AZ with standby in second AZ
-   - Read replicas for increased availability and performance
-   - Encrypted storage and transit across all instances
-
-4. **Load Balancing**:
-   - Application Load Balancer distributed across all AZs
-   - Health checks to detect and replace unhealthy instances
-   - SSL/TLS termination with AWS Certificate Manager
-   - Security groups restrict traffic to authorized sources
-
-5. **Disaster Recovery**:
-   - Cross-AZ resilience for infrastructure failures
-   - Automated failover for database instances
-   - Auto-scaling to replace failed application servers
-   - Configuration and state management through Systems Manager
-
-## 💾 Data Protection Architecture
-
-This diagram illustrates how data is protected throughout its lifecycle, including encryption, access controls, and secure storage mechanisms.
+Our comprehensive data protection strategy secures data throughout its lifecycle.
 
 ```mermaid
 flowchart TD
-    subgraph "Data in Transit"
-        A[User Browser] <-->|TLS 1.3| B[Load Balancer]
-        B <-->|TLS 1.2+| C[Application Server]
-        C <-->|TLS 1.2+| D[(RDS Database)]
+    subgraph "Data Protection Strategy"
+        A[👤 User] <-->|"🔒 TLS 1.3"| B[⚖️ Load Balancer]
+        B <-->|"🔒 TLS 1.2+"| C[🖥️ Application]
+        C <-->|"🔒 TLS 1.2+"| D[(💾 Database)]
+        
+        E[🗝️ Secrets<br>Manager] -->|"Secure Credentials"| C
+        F[🔑 KMS] -->|"Encryption Keys"| G[🔐 Encrypted<br>Storage]
+        
+        G --> D
+        G --> H[📦 S3 Buckets]
+        G --> I[💿 EBS Volumes]
+        
+        J[🔄 Automatic<br>Rotation] -->|"Update"| E
     end
     
-    subgraph "Data at Rest"
-        D -->|Store| E[Encrypted DB Volumes]
-        E -->|KMS Keys| F[AWS KMS]
-        
-        C -->|Store| G[Encrypted EBS Volumes]
-        G -->|KMS Keys| F
-        
-        C -->|Log| H[CloudWatch Logs]
-        H -->|Encryption| F
-        
-        C -->|Backup| I[S3 Buckets]
-        I -->|Server-side encryption| F
-    end
-    
-    subgraph "Secret Management"
-        J[AWS Secrets Manager] -->|Provide| K[Database Credentials]
-        K -->|Accessed by| C
-        K -->|Used for| D
-        
-        J -->|Automatic rotation| L[Password Rotation Lambda]
-        L -->|Updates| K
-    end
-    
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B,C,L fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style E,F,G,J,K fill:#ffd54f,stroke:#333,stroke-width:2px
-    style H,I fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style C fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style D fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style E,F fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style G fill:#00E676,stroke:#00C853,stroke-width:2px,color:black,font-weight:bold
+    style H,I fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style J fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
 ```
 
-### 🔐 Data Protection Components
+### Protection Mechanisms
 
-1. **Encryption in Transit**: Secure data transmission
-   - TLS 1.3 for client-to-load-balancer communication
-   - TLS 1.2+ for internal service communications
-   - SSL policy: ELBSecurityPolicy-TLS13-1-2-2021-06
-   - Certificate management through AWS Certificate Manager
-
-2. **Encryption at Rest**: Protection of stored data
-   - EBS encryption for EC2 instance volumes
-   - RDS encryption with AWS KMS
-   - S3 bucket encryption for logs and artifacts
-   - Encrypted PostgreSQL connections
-
-3. **Secret Management**: Secure credential handling
-   - AWS Secrets Manager for database credentials
-   - Automatic credential rotation
-   - Limited IAM access to secrets
-   - No hardcoded secrets in application code
-
-4. **S3 Bucket Security**: Comprehensive protection for object storage
-   - Server-side encryption using KMS
-   - Bucket policies preventing public access
-   - Versioning enabled for data integrity
-   - Lifecycle policies for secure data retention
-   - Access logging for audit trail
-
-5. **Data Access Control**: Least privilege principles
-   - Role-based access in application
-   - IAM policies for AWS resource access
-   - Limited database access through security groups
-   - Application-level data access authorization
-
-6. **Password Security**: Strong password policies
-   - BCrypt password hashing with unique salts
-   - Password complexity requirements:
-     - Minimum 8 characters, maximum 64 characters
-     - At least one uppercase letter
-     - At least one lowercase letter
-     - At least one number
-     - At least one special character
-     - No whitespace characters
+- **🔒 End-to-End Encryption**: TLS for all communications
+- **🔐 Data-at-Rest Encryption**: KMS encryption for databases, EBS volumes, and S3
+- **🗝️ Secrets Management**: Secure credential storage with automated rotation
+- **📦 S3 Security**: Server-side encryption, versioning, and access controls
+- **🔑 Key Management**: Automatic key rotation and strict access controls
 
 ## ☁️ AWS Security Infrastructure
 
-This diagram shows the multi-layered AWS security infrastructure protecting the application.
+Our AWS security infrastructure provides comprehensive protection at all levels.
 
 ```mermaid
 graph TD
-    subgraph "Edge Security"
-        A[Internet] -->|HTTPS| B[AWS Shield]
-        B -->|DDoS Protection| C[AWS WAF]
-        C -->|Web Security Rules| D[Route 53]
-        D -->|DNS| E[CloudFront]
+    subgraph "Defense Layers"
+        A[🌐 Internet] --> B[🛡️ Edge Security]
+        B --> C[🔒 Network Security]
+        C --> D[👤 Identity Security]
+        D --> E[👁️ Monitoring & Detection]
     end
     
-    subgraph "Network Security"
-        E -->|HTTPS| F[VPC]
-        F -->|Traffic Control| G[Network ACLs]
-        G -->|Stateless filtering| H[Security Groups]
-        H -->|Stateful filtering| I[EC2 Instances]
-    end
+    B --> F[🔰 Shield]
+    B --> G[🧱 WAF]
     
-    subgraph "Identity & Access Management"
-        J[IAM Roles] -->|Grant permissions| I
-        J -->|Service permissions| K[AWS Services]
-        L[IAM Policies] -->|Define permissions| J
-    end
+    C --> H[🕸️ VPC]
+    C --> I[🚧 Security Groups]
+    C --> J[🔍 Network ACLs]
     
-    subgraph "Monitoring & Detection"
-        I -->|Logs| M[CloudWatch Logs]
-        I -->|Metrics| N[CloudWatch]
-        F -->|Flow Logs| O[VPC Flow Logs]
-        
-        M -->|Analyze| P[GuardDuty]
-        O -->|Analyze| P
-        
-        P -->|Detect threats| Q[Security Hub]
-        R[Config] -->|Compliance| Q
-        S[Inspector] -->|Vulnerabilities| Q
-    end
+    D --> K[👥 IAM]
+    D --> L[🎭 Roles]
+    D --> M[📜 Policies]
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B,C,G,H,J,L,P,Q,R,S fill:#ffd54f,stroke:#333,stroke-width:2px
-    style D,E,F,I,K fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style M,N,O fill:#c8e6c9,stroke:#333,stroke-width:1px
+    E --> N[🕵️ GuardDuty]
+    E --> O[📊 CloudTrail]
+    E --> P[📈 Security Hub]
+    
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B,C,D,E fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style F,G fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style H,I,J fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style K,L,M fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style N,O,P fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
 ```
 
-### 🛡️ AWS Security Components
+### Core AWS Security Services
 
-1. **Edge Protection**: Defense against internet-based attacks
-   - AWS Shield for DDoS protection
-   - AWS WAF with managed rule sets:
-     - AWSManagedRulesAmazonIpReputationList
-     - AWSManagedRulesAnonymousIpList
-     - AWSManagedRulesCommonRuleSet
-     - AWSManagedRulesKnownBadInputsRuleSet
-     - AWSManagedRulesLinuxRuleSet
-     - AWSManagedRulesUnixRuleSet
-   - Route 53 for secure DNS management
-   - Certificate Manager for TLS certificates
+- **🔰 AWS Shield**: DDoS protection at network and transport layers
+- **🧱 AWS WAF**: Web application firewall with managed rule sets
+- **🕸️ VPC Design**: Isolated network segments with controlled traffic flow
+- **👥 IAM Framework**: Least-privilege access model with role-based permissions
+- **🕵️ GuardDuty**: Continuous threat detection with machine learning
+- **📈 Security Hub**: Unified security and compliance management
 
-2. **Network Security**: Layered defense within AWS
-   - VPC with public/private subnet isolation
-   - Network ACLs for subnet-level filtering
-   - Security Groups for instance-level access control
-   - VPC Endpoints for secure AWS service access
-   - VPC Flow Logs for traffic monitoring
+## 📊 Monitoring & Compliance
 
-3. **Identity and Access Management**:
-   - IAM roles with least privilege principle
-   - Role-based access for EC2 instances
-   - Service roles for AWS service integration
-   - Secure parameter and secret access
-
-4. **Threat Detection and Monitoring**:
-   - GuardDuty for continuous threat detection
-   - AWS Config for compliance monitoring
-   - Inspector for vulnerability assessment
-   - Security Hub for security posture management
-   - CloudWatch for monitoring and alerting
-
-5. **Hardened Infrastructure**:
-   - Encrypted EBS volumes
-   - IMDSv2 required for all EC2 instances
-   - Security patch management
-   - Automatic software updates
-
-## 📊 Monitoring and Compliance Architecture
-
-This diagram illustrates how security events are monitored, detected, and responded to across the system.
+Our comprehensive monitoring system provides real-time visibility and rapid response capabilities.
 
 ```mermaid
 flowchart TD
-    subgraph "Event Sources"
-        A1[Application Logs] -->|Stream| B[CloudWatch Logs]
-        A2[VPC Flow Logs] -->|Stream| B
-        A3[ALB Access Logs] -->|Store| C[S3 Buckets]
-        A4[AWS API Calls] -->|Record| D[CloudTrail]
-    end
-    
-    subgraph "Detection & Analysis"
-        B -->|Process| E[CloudWatch Alarms]
-        C -->|Analyze| F[GuardDuty]
-        D -->|Analyze| F
+    subgraph "Security Monitoring Ecosystem"
+        A[📊 Log Sources] --> B[📈 CloudWatch]
+        B --> C[🔍 Analysis]
+        C --> D[⚡ Response]
         
-        E -->|Trigger| G[SNS Notifications]
-        F -->|Generate| H[Security Findings]
-    end
-    
-    subgraph "Aggregation & Visualization"
-        H -->|Collect| I[Security Hub]
-        E -->|Display| J[CloudWatch Dashboards]
+        A --> E[⚙️ Application]
+        A --> F[🔌 Network]
+        A --> G[🔑 API Activity]
         
-        I -->|Compliance status| K[NIST CSF Compliance]
-        I -->|Security score| L[Security Posture]
-    end
-    
-    subgraph "Response & Remediation"
-        G -->|Alert| M[Admin Notification]
-        I -->|Trigger| N[Auto Remediation]
+        C --> H[🕵️ GuardDuty]
+        C --> I[📋 Security Hub]
+        C --> J[🔎 Inspector]
         
-        M -->|Manual action| O[Incident Response]
-        N -->|Automatic fix| P[Security Controls]
+        D --> K[🚨 Alerts]
+        D --> L[🤖 Auto-Remediation]
+        D --> M[👥 Incident Response]
     end
     
-    style A1,A2,A3,A4,H fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style B,C,D,G,J,N fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style E,F,I,O,P fill:#ffd54f,stroke:#333,stroke-width:2px
-    style K,L fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style M fill:#bbdefb,stroke:#333,stroke-width:1px
+    style A,B,C,D fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style E,F,G fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style H,I,J fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style K,L,M fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
 ```
 
-### 📈 Monitoring Components
+### Monitoring Components
 
-1. **Logging and Monitoring**: Comprehensive visibility
-   - CloudWatch Logs for application logs
-   - VPC Flow Logs for network traffic
-   - CloudTrail for API activity
-   - ALB access logs for request tracking
-   - Custom application event logging
+- **📊 Centralized Logging**: CloudWatch for application, VPC Flow, and CloudTrail logs
+- **🕵️ Threat Intelligence**: GuardDuty for anomaly detection and threat identification
+- **🔎 Vulnerability Management**: Inspector for automated assessment
+- **📋 Compliance Dashboard**: Security Hub for standards adherence
+- **🚨 Alert Pipeline**: SNS-based notifications with severity classifications
+- **🤖 Automated Response**: EventBridge rules for common security events
 
-2. **Security Event Detection**:
-   - CloudWatch Alarms for threshold-based alerts
-   - GuardDuty for threat detection
-   - AWS Config for compliance checking
-   - Security Hub for finding aggregation
+## 🤖 Automated Security Operations
 
-3. **Compliance Framework Integration**:
-   - NIST Cybersecurity Framework controls
-   - ISO 27001 alignment
-   - Automated compliance checking
-   - Security posture dashboards
-
-4. **Application Security Monitoring**:
-   - Login attempt monitoring
-   - User activity tracking
-   - Session management
-   - API request logging
-   - Error tracking and analysis
-
-5. **Alerting and Response**:
-   - SNS notifications for security events
-   - Automated remediation for common issues
-   - Incident response procedures
-   - Security control feedback loop
-
-## 🤖 Enhanced Automated Security Operations
-
-This diagram shows the automated security maintenance system that keeps the infrastructure patched and secure.
+Our automated security maintenance system ensures continuous protection.
 
 ```mermaid
 flowchart TD
     subgraph "Automated Security Maintenance"
-        A[Hourly Maintenance Window] --> B{Target Selection}
-        B -->|Tag-based selection| C[EC2 Instances]
+        A[⏱️ Maintenance<br>Window] --> B[🔄 Automated<br>Operations]
         
-        A --> D[Patch Baseline Scan]
-        A --> E[Patch Baseline Install]
+        B --> C[🔍 Security<br>Scanning]
+        B --> D[🛠️ Patch<br>Management]
+        B --> E[🔄 Agent<br>Updates]
+        B --> F[📊 Inventory<br>Collection]
         
-        D & E --> F[S3 Output]
-        F --> G[Audit Records]
+        C --> G[📝 Findings]
+        D --> H[📊 Compliance<br>Status]
         
-        H[SSM Agent Updater] --> I[Weekly Updates]
-        I --> C
-        
-        J[Inventory Collector] --> K[Hourly Inventory]
-        K --> C
-        K --> L[Drift Detection]
+        G & H --> I[📦 S3 Artifact<br>Storage]
     end
     
-    style A fill:#ffd54f,stroke:#333,stroke-width:2px
-    style B fill:#ffd54f,stroke:#333,stroke-width:2px
-    style C fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D,E fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style F,G fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style H,I,J,K fill:#ffd54f,stroke:#333,stroke-width:2px
-    style L fill:#ffcdd2,stroke:#333,stroke-width:1px
+    style A fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style B fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style C,D,E,F fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style G,H fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style I fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
 ```
 
-### 🔄 Automated Security Operations Components
+### AWS Systems Manager Maintenance Window
 
-1. **Systems Manager Patch Management**:
-   - Scheduled maintenance windows for regular patching
-   - Tag-based targeting of instances for updates
-   - Automatic scanning and installation of security patches
-   - Detailed logs and reports of patch operations
-   - S3 storage of patch results for audit purposes
+The CloudFormation template defines a comprehensive maintenance window for automated security operations:
 
-2. **SSM Agent Updates**:
-   - Automatic updating of Systems Manager agents
-   - Weekly schedule to ensure latest security capabilities
-   - Tag-based selection of instances to update
-   - Output logging for compliance verification
-
-3. **Resource Inventory**:
-   - Hourly collection of software inventory
-   - Application, OS, and patch level tracking
-   - Configuration drift detection
-   - Encrypted storage of inventory data
-   - Integration with compliance frameworks
-
-4. **Automated Artifact Management**:
-   - Secure S3 bucket with server-side encryption
-   - Public access blocking for security artifacts
-   - HTTPS-only access enforcement
-   - Lifecycle policies for secure retention
-   - Bucket policies restricting access to authorized services
-
-5. **Security Role Separation**:
-   - Dedicated service roles with least privilege
-   - Specific IAM permissions for each automation component
-   - Policy enforcement through resource tags
-   - Comprehensive logging of role usage
-
-## 🔐 Application Security Controls
-
-### Spring Security Configuration
-
-The application uses Spring Security for authentication, authorization, and web security controls:
-
-```xml
-<http use-expressions="false">
-    <csrf disabled="true" />
-    <form-login />
-    <anonymous />
-    <logout />
-    <headers>
-        <frame-options policy="SAMEORIGIN" />
-        <hsts include-subdomains="true" max-age-seconds="31536000" />
-        <referrer-policy policy="no-referrer"/>
-        <header name="Feature-Policy" value="geolocation 'none'; camera 'none'; microphone 'none'"/>
-        <content-security-policy policy-directives="default-src 'unsafe-inline' 'self'; connect-src 'unsafe-inline' 'unsafe-eval' 'self' wss:; script-src 'unsafe-inline' 'unsafe-eval' 'self' https://w[...]
-        <content-type-options/>
-    </headers>
-</http>
+```json
+"MaintenanceWindow": {
+    "Type": "AWS::SSM::MaintenanceWindow",
+    "Properties": {
+        "Description": "Daily Maintenance Window",
+        "AllowUnassociatedTargets": false,
+        "Cutoff": 0,
+        "Schedule": "rate(1 hour)",
+        "Duration": 1,
+        "Name": "hourly-patching"
+    }
+}
 ```
 
-Key security headers implemented:
-- **HSTS** (HTTP Strict Transport Security): Ensures browser only connects via HTTPS
-- **Content Security Policy**: Restricts resource loading to specific trusted sources
-- **X-Content-Type-Options**: Prevents MIME type sniffing
-- **Referrer Policy**: Controls HTTP referrer information
-- **Feature Policy**: Restricts browser feature usage
+This configuration ensures regular, automated security maintenance:
+- Hourly execution schedule
+- Defined maintenance window
+- Controlled target selection via tags
+- Automated output logging
 
-### 🛡️ Authentication Protections
+### Automation Components
 
-The system implements multiple layers of authentication protection:
+- **⏱️ Scheduled Maintenance**: Regular security operations on defined schedules
+- **🛠️ Patch Management**: Automated security patch deployment and validation
+- **🔄 Agent Updates**: SSM agent and security tool updates
+- **📊 Inventory Tracking**: Software and configuration monitoring
+- **🔍 Compliance Verification**: Automated checks against security baselines
 
-1. **Login Attempt Limiting**: 
-   ```java
-   private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_IP = "Max failed login attempts recent hour per ip";
-   private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_SESSION = "Max failed login attempts recent hour per session";
-   private static final String MAX_FAILED_LOGIN_ATTEMPTS_RECENT_HOUR_PER_USER = "Max failed login attempts recent hour per user";
-   ```
+## 🔒 Application Security
 
-2. **Password Validation**:
-   ```java
-   private final PasswordValidator passwordValidator = new PasswordValidator(new LengthRule(8, 64),
-        new CharacterRule(EnglishCharacterData.UpperCase, 1), new CharacterRule(EnglishCharacterData.LowerCase, 1),
-        new CharacterRule(EnglishCharacterData.Digit, 1), new CharacterRule(EnglishCharacterData.Special, 1),
-        new WhitespaceRule());
-   ```
+Our application implements robust security controls at the code level.
 
-3. **Multi-Factor Authentication**:
-   ```java
-   private static boolean verifyOtp(final LoginRequest serviceRequest, final String authKey) {
-       boolean authorizedOtp = true;
-       if (authKey != null) {
-           final GoogleAuthenticator gAuth = new GoogleAuthenticator();
-           if (!StringUtils.isBlank(serviceRequest.getOtpCode())
-                   && StringUtils.isNumeric(serviceRequest.getOtpCode())) {
-               authorizedOtp = gAuth.authorize(authKey,
-                       Integer.parseInt(serviceRequest.getOtpCode()));
-           } else {
-               authorizedOtp = false;
-           }
-       }
-       return authorizedOtp;
-   }
-   ```
+```mermaid
+flowchart LR
+    subgraph "Application Security Controls"
+        A[🛡️ Spring<br>Security] --> B[🔐 Authentication]
+        A --> C[🔑 Authorization]
+        A --> D[🔒 Headers]
+        A --> E[🛑 Input<br>Validation]
+        
+        B --> F[👤 MFA]
+        B --> G[🚫 Brute Force<br>Protection]
+        
+        C --> H[🎭 Role-Based<br>Access]
+        C --> I[📝 Method<br>Security]
+        
+        D --> J[🔐 Content<br>Security]
+        D --> K[📌 HSTS]
+    end
+    
+    style A fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style B,C,D,E fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style F,G fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style H,I fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style J,K fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
+```
 
-4. **Secure Password Storage**:
-   ```java
-   private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-   userAccount.setUserpassword(passwordEncoder.encode(userAccount.getUserId() + ".uuid" + serviceRequest.getUserpassword()));
-   ```
+### Method-Level Security Implementation
 
-### ⚙️ AWS Security Implementation
+The application implements `@Secured` annotations for fine-grained access control:
 
-AWS infrastructure security as defined in CloudFormation:
+```java
+@Secured({ "ROLE_USER", "ROLE_ADMIN" })
+public DataContainer<UserAccount> getUserAccountByEmail(ServiceRequest serviceRequest) {
+    // Implementation details...
+}
 
-1. **VPC Security Architecture**:
-   - Public subnets for load balancers
-   - Private subnets for application and database
-   - Network ACLs and security groups for traffic control
+@Secured({ "ROLE_ADMIN" })
+public ServiceResponse updateApplicationConfiguration(ServiceRequest serviceRequest) {
+    // Implementation details...
+}
+```
 
-2. **Security Groups**:
-   ```json
-   "WebServerSecurityGroup": {
-       "Type": "AWS::EC2::SecurityGroup",
-       "Properties": {
-           "GroupDescription": "Allow access from load balancer and bastion as well as outbound HTTP and HTTPS traffic",
-           "SecurityGroupIngress": [
-               {
-                   "Description": "Loadbalancer inbound access",
-                   "IpProtocol": "tcp",
-                   "FromPort": "8443",
-                   "ToPort": "8443",
-                   "SourceSecurityGroupId": {"Ref": "PublicLoadBalancerSecurityGroup"}
-               }
-           ]
-       }
-   }
-   ```
+Each secured method enforces specific role requirements:
+- `ROLE_ANONYMOUS`: Unauthenticated access (limited functionality)
+- `ROLE_USER`: Standard authenticated user access
+- `ROLE_ADMIN`: Administrative privileges for sensitive operations
 
-3. **WAF Implementation**:
-   ```json
-   "BasicSecurityACL": {
-       "Type": "AWS::WAFv2::WebACL",
-       "Properties": {
-           "Name": "BasicSecurityACL",
-           "Scope": "REGIONAL",
-           "Rules": [
-               {
-                   "Name": "RuleWithAWSManagedRulesAmazonIpReputationList",
-                   "Priority": 0,
-                   "Statement": {
-                       "ManagedRuleGroupStatement": {
-                           "VendorName": "AWS",
-                           "Name": "AWSManagedRulesAmazonIpReputationList"
-                       }
-                   }
-               }
-           ]
-       }
-   }
-   ```
+### Application Security Features
 
-4. **Database Encryption**:
-   ```json
-   "Database": {
-       "Type": "AWS::RDS::DBInstance",
-       "Properties": {
-           "StorageEncrypted": "true",
-           "KmsKeyId": {"Ref": "DBEncryptionKmsAlias"},
-           "EnableCloudwatchLogsExports": ["postgresql", "upgrade"]
-       }
-   }
-   ```
+- **🛡️ Spring Security Framework**: Enterprise-grade security integration
+- **🔐 Authentication**: Multi-factor and password-based with BCrypt hashing
+- **🔑 Role-Based Access Control**: Fine-grained authorization with method annotations
+- **🔒 Security Headers**: CSP, HSTS, X-Content-Type-Options, and Referrer-Policy
+- **🛑 Input Validation**: Both client and server-side validation
 
-5. **S3 Bucket Security**:
-   ```json
-   "ArtifactBucket": {
-       "Type": "AWS::S3::Bucket",
-       "DependsOn": "LogsBucket",
-       "DeletionPolicy": "Retain",
-       "Properties": {
-           "AccessControl": "Private",
-           "BucketEncryption": {
-               "ServerSideEncryptionConfiguration": [
-                   {
-                       "ServerSideEncryptionByDefault": {
-                           "KMSMasterKeyID": {
-                               "Ref": "ArtifactBucketEncryptionKey"
-                           },
-                           "SSEAlgorithm": "aws:kms"
-                       }
-                   }
-               ]
-           },
-           "VersioningConfiguration": {
-               "Status": "Enabled"
-           },
-           "PublicAccessBlockConfiguration": {
-               "BlockPublicAcls": true,
-               "BlockPublicPolicy": true,
-               "IgnorePublicAcls": true,
-               "RestrictPublicBuckets": true
-           }
-       }
-   }
-   ```
+## 📋 Compliance Framework
 
-## 📜 Security Compliance Architecture
+Our security architecture aligns with key compliance frameworks.
 
-The CIA platform is designed to comply with major security frameworks:
+```mermaid
+graph TD
+    subgraph "Compliance Integration"
+        A[🏛️ Compliance<br>Framework] --> B[🔍 NIST CSF]
+        A --> C[🔐 ISO 27001]
+        
+        B --> D[👁️ Identify]
+        B --> E[🛡️ Protect]
+        B --> F[🔎 Detect]
+        B --> G[⚡ Respond]
+        B --> H[🔄 Recover]
+        
+        C --> I[👥 Access<br>Control]
+        C --> J[🔒 Cryptography]
+        C --> K[⚙️ Operations]
+        C --> L[📡 Communications]
+    end
+    
+    style A fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style B,C fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style D,E,F,G,H fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style I,J,K,L fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    classDef default font-weight:bold
+```
 
 ### NIST Cybersecurity Framework Mapping
 
@@ -1100,190 +825,96 @@ The CIA platform is designed to comply with major security frameworks:
 | **Recover (RC)** | Recovery Planning (RC.RP) | AWS Backup, Multi-AZ deployment |
 | | Improvements (RC.IM) | Automated remediations |
 
-### ISO 27001 Control Alignment
+### Framework Alignment
 
-| Control ID | Description | Implementation |
-|------------|-------------|----------------|
-| A.5 | Information security policies | Documentation, compliance checks |
-| A.9 | Access control | IAM, Spring Security |
-| A.10 | Cryptography | KMS, TLS, password hashing |
-| A.12 | Operations security | Patching, monitoring |
-| A.13 | Communications security | Network security, encryption |
-| A.14 | System acquisition and development | Secure SDLC |
-| A.18 | Compliance | Security Hub, Config Rules |
+- **🔍 NIST Cybersecurity Framework**: Complete implementation of all core functions
+- **🔐 ISO 27001 Controls**: Alignment with key control domains
+- **📊 Security Hub Standards**: Automated compliance verification
+- **📝 Documentation**: Comprehensive policy and procedure documentation
 
 ## 🛡️ Defense-in-Depth Strategy
 
-The security architecture follows the defense-in-depth principle with multiple layers of protection:
-
-```mermaid
-graph TD
-    A[User Request] -->|Layer 1| B[DNS Security]
-    B -->|Layer 2| C[WAF Protection]
-    C -->|Layer 3| D[Network Security]
-    D -->|Layer 4| E[Host Security]
-    E -->|Layer 5| F[Application Security]
-    F -->|Layer 6| G[Data Security]
-    
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B fill:#ffd54f,stroke:#333,stroke-width:2px
-    style C fill:#ffd54f,stroke:#333,stroke-width:2px
-    style D fill:#ffd54f,stroke:#333,stroke-width:2px
-    style E fill:#ffd54f,stroke:#333,stroke-width:2px
-    style F fill:#ffd54f,stroke:#333,stroke-width:2px
-    style G fill:#ffd54f,stroke:#333,stroke-width:2px
-```
-
-### 🔒 Security Layer Details
-
-1. **DNS Security Layer**
-   - Route 53 with DNSSEC support
-   - DNS query logging
-   - Monitoring for DNS poisoning attempts
-
-2. **WAF Protection Layer**
-   - Rate limiting
-   - IP reputation filtering
-   - SQL injection and XSS protection
-   - Bot control
-
-3. **Network Security Layer**
-   - VPC isolation
-   - Network ACLs
-   - Security Groups
-   - Flow logging and monitoring
-   - NAT Gateways for secure outbound connectivity
-   - VPC Endpoints for AWS service access
-
-4. **Host Security Layer**
-   - Hardened AMIs
-   - Instance encryption
-   - Systems Manager patching
-   - IMDSv2 enforcement
-   - Host-based monitoring
-
-5. **Application Security Layer**
-   - Spring Security framework
-   - Authentication and authorization controls
-   - Input validation
-   - Session management
-   - Security headers
-
-6. **Data Security Layer**
-   - Encryption at rest
-   - Encryption in transit
-   - Access controls
-   - Secrets management
-   - Data loss prevention
-
-## 📈 Security Threat Modeling
-
-### STRIDE Threat Analysis
-
-| Threat Type | Controls |
-|-------------|----------|
-| **Spoofing** | Authentication, MFA, secure session management |
-| **Tampering** | Encryption, integrity checks, WAF rules |
-| **Repudiation** | Comprehensive logging, audit trails, CloudTrail |
-| **Information Disclosure** | Encryption, access control, data classification |
-| **Denial of Service** | WAF rate limiting, auto scaling, DDoS protection |
-| **Elevation of Privilege** | Least privilege, role separation, input validation |
-
-### Critical Data Flow Protection
-
-```mermaid
-graph TD
-    A[User Credentials] -->|Encrypted TLS| B[Load Balancer]
-    B -->|Encrypted TLS| C[Application Server]
-    C -->|Bcrypt| D[Password Hash]
-    D -->|Store| E[(Database)]
-    
-    F[Database Credentials] -->|Encrypted| G[Secrets Manager]
-    G -->|Decrypt| C
-    C -->|Encrypted TLS| E
-    
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B,C fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style D,E fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style F fill:#c8e6c9,stroke:#333,stroke-width:1px
-    style G fill:#ffd54f,stroke:#333,stroke-width:2px
-```
-
-## 🔄 Security Operations and Maintenance
-
-### Security Update Lifecycle
+Our security architecture implements multiple protective layers to create a comprehensive defense.
 
 ```mermaid
 graph LR
-    A[Security Patch Released] -->|Detection| B[AWS Inspector]
-    B -->|Identification| C[Patch Needs]
-    C -->|Scheduling| D[Maintenance Window]
-    D -->|Deployment| E[SSM Patch Manager]
-    E -->|Verification| F[Compliance Check]
-    F -->|Documentation| G[Patch History]
+    A[👤 User<br>Request] --> B[🌐 DNS]
+    B --> C[🧱 WAF]
+    C --> D[🔒 Network]
+    D --> E[💻 Host]
+    E --> F[⚙️ Application]
+    F --> G[💾 Data]
     
-    style A fill:#bbdefb,stroke:#333,stroke-width:1px
-    style B,D,E fill:#a0c8e0,stroke:#333,stroke-width:1px
-    style C,G fill:#d1c4e9,stroke:#333,stroke-width:1px
-    style F fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style C fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style D fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style E fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style F fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style G fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
 ```
 
-### Automated Security Processes
+### Security Layers
 
-1. **Automated Security Assessments**:
-   - Daily vulnerability scans
-   - Weekly compliance checks
-   - Monthly penetration tests
+Each layer provides distinct security controls:
 
-2. **Continuous Monitoring**:
-   - Real-time threat detection
-   - Behavior analysis
-   - Anomaly detection
+- **🌐 DNS Security**: Route 53 with DNSSEC and query logging
+- **🧱 WAF Protection**: Rule-based filtering for OWASP Top 10 vulnerabilities
+- **🔒 Network Security**: Segmentation, ACLs, and encryption
+- **💻 Host Security**: Hardened AMIs, encryption, and patch management
+- **⚙️ Application Security**: Authentication, authorization, and input validation
+- **💾 Data Security**: Encryption, access controls, and integrity verification
 
-3. **Automatic Remediation**:
-   - Self-healing infrastructure
-   - Automatic patching
-   - Configuration correction
+## 🔄 Security Operations
 
-## 🌟 Security Architecture Best Practices
+Our continuous security operations ensure the environment remains protected.
 
-### Implemented Security Principles
+```mermaid
+flowchart TD
+    subgraph "Security Operations Cycle"
+        A[🔍 Assess] --> B[🛡️ Protect]
+        B --> C[👁️ Monitor]
+        C --> D[⚡ Respond]
+        D --> A
+        
+        E[🤖 Automation] -.-> A & B & C & D
+    end
+    
+    A --> F[🔎 Vulnerability<br>Scans]
+    A --> G[📋 Compliance<br>Checks]
+    
+    B --> H[🛠️ Patching]
+    B --> I[🔐 Hardening]
+    
+    C --> J[🔍 Threat<br>Detection]
+    C --> K[📊 Log<br>Analysis]
+    
+    D --> L[🚨 Incident<br>Response]
+    D --> M[🔄 Recovery]
+    
+    style A,B,C,D fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style E fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
+    style F,G fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style H,I fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style J,K fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    style L,M fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
+```
 
-1. **Zero Trust Architecture**
-   - "Never trust, always verify" approach
-   - Network segmentation
-   - Least privilege access
-   - Continuous validation
+### Operations Components
 
-2. **Secure by Design**
-   - Security integrated from project inception
-   - Regular threat modeling
-   - Security requirements as first-class constraints
-   - Defensive programming practices
-
-3. **Security Automation**
-   - Automated security testing
-   - Compliance as code
-   - Infrastructure as code security checks
-   - Continuous security monitoring
-
-4. **Shift-Left Security**
-   - Security integrated into CI/CD pipeline
-   - Early vulnerability detection
-   - Developer security training
-   - Security gates in deployment process
-
-5. **High Availability Security**
-   - Multi-AZ deployments for all security components
-   - Resilient network architecture
-   - Redundant NAT Gateways
-   - Database failover capabilities
+- **🔍 Security Assessment**: Regular vulnerability scans and penetration tests
+- **🛡️ Protection Controls**: Continuous hardening and configuration management
+- **👁️ Monitoring**: Real-time detection of security events
+- **⚡ Incident Response**: Structured process for security incidents
+- **🤖 Automation**: Programmatic security operations across the lifecycle
 
 ## 📝 Conclusion
 
 The Citizen Intelligence Agency employs a comprehensive, defense-in-depth security architecture that spans from application-level controls to infrastructure security. By implementing multiple layers of protection with high availability designs, we ensure the confidentiality, integrity, and availability of sensitive political data.
 
-Key security highlights include:
+### Key Security Highlights
 
 - 🔐 Multi-factor authentication with sophisticated brute force protection
 - 🛡️ AWS WAF and Shield protection against web-based attacks
@@ -1292,8 +923,8 @@ Key security highlights include:
 - 🔌 VPC Endpoints for secure AWS service access
 - 👁️ Continuous monitoring with GuardDuty, Inspector, and Security Hub
 - 📜 Complete data integrity with Javers versioning and author attribution
-- 🔍 Comprehensive user activity and security event tracking
-- 📋 NIST CSF and ISO 27001 compliance alignment
+- 📊 Comprehensive session tracking and user action auditing with ApplicationSession and ApplicationActionEvent
+- 🔍 Detailed security event monitoring with multiple event types
 - 🤖 Automated security operations with Systems Manager
 
 For detailed implementation costs and specific AWS security services, refer to the [Financial Security Plan](FinancialSecurityPlan.md).
