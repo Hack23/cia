@@ -2,6 +2,26 @@
 
 This document outlines the comprehensive security architecture of the Citizen Intelligence Agency platform, detailing the authentication mechanisms, network security, data protection, AWS infrastructure, and compliance measures that safeguard the system and its data.
 
+## 📑 Table of Contents
+
+- [Security Documentation Map](#-security-documentation-map)
+- [Authentication and Authorization Architecture](#-authentication-and-authorization-architecture)
+- [Data Integrity & Auditing Architecture](#-data-integrity--auditing-architecture)
+- [Network Security Architecture](#-network-security-architecture)
+- [VPC Endpoints Security](#-vpc-endpoints-security)
+- [High Availability Security Architecture](#-high-availability-security-architecture)
+- [Data Protection Architecture](#-data-protection-architecture)
+- [AWS Security Infrastructure](#-aws-security-infrastructure)
+- [Monitoring and Compliance Architecture](#-monitoring-and-compliance-architecture)
+- [Enhanced Automated Security Operations](#-enhanced-automated-security-operations)
+- [Application Security Controls](#-application-security-controls)
+- [Security Compliance Architecture](#-security-compliance-architecture)
+- [Defense-in-Depth Strategy](#-defense-in-depth-strategy)
+- [Security Threat Modeling](#-security-threat-modeling)
+- [Security Operations and Maintenance](#-security-operations-and-maintenance)
+- [Security Architecture Best Practices](#-security-architecture-best-practices)
+- [Conclusion](#-conclusion)
+
 ## 📚 Security Documentation Map
 
 | Document | Focus | Description |
@@ -18,12 +38,6 @@ This diagram illustrates the multi-layered authentication and authorization proc
 
 ```mermaid
 flowchart TD
-    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
-    classDef service fill:#a0c8e0,stroke:#333,stroke-width:1px
-    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    classDef error fill:#ffcdd2,stroke:#333,stroke-width:1px
-    classDef success fill:#c8e6c9,stroke:#333,stroke-width:1px
-    
     subgraph "Authentication Layer"
         A[User] -->|1. Provides credentials| B(LoginService)
         B -->|2. Validate credentials| C{Valid?}
@@ -46,17 +60,33 @@ flowchart TD
         O -->|No| P[Access denied]
         O -->|Yes| Q[Access granted]
         
-        Q -->|@Secured annotation| R[Method-level security]
+        Q -->|Secured annotation| R[Method-level security]
         R -->|Role check| S{Has role?}
         S -->|No| T[Throw SecurityException]
         S -->|Yes| U[Execute method]
     end
     
-    class A user
-    class B,L service
-    class D,E,F,G,J,P,T error
-    class K,M,Q,U success
-    class N,O,R,S,H,I,C security
+    style A fill:#bbdefb,stroke:#333,stroke-width:1px
+    style B fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style C fill:#ffd54f,stroke:#333,stroke-width:2px
+    style D fill:#ffcdd2,stroke:#333,stroke-width:1px
+    style E fill:#ffd54f,stroke:#333,stroke-width:2px
+    style F fill:#ffcdd2,stroke:#333,stroke-width:1px
+    style G fill:#ffcdd2,stroke:#333,stroke-width:1px
+    style H fill:#ffd54f,stroke:#333,stroke-width:2px
+    style I fill:#ffd54f,stroke:#333,stroke-width:2px
+    style J fill:#ffcdd2,stroke:#333,stroke-width:1px
+    style K fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style L fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style M fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style N fill:#ffd54f,stroke:#333,stroke-width:2px
+    style O fill:#ffd54f,stroke:#333,stroke-width:2px
+    style P fill:#ffcdd2,stroke:#333,stroke-width:1px
+    style Q fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style R fill:#ffd54f,stroke:#333,stroke-width:2px
+    style S fill:#ffd54f,stroke:#333,stroke-width:2px
+    style T fill:#ffcdd2,stroke:#333,stroke-width:1px
+    style U fill:#c8e6c9,stroke:#333,stroke-width:1px
 ```
 
 ### 🔐 Authentication Components
@@ -93,13 +123,6 @@ This diagram illustrates our comprehensive data integrity and auditing system, w
 
 ```mermaid
 flowchart TD
-    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
-    classDef service fill:#a0c8e0,stroke:#333,stroke-width:1px
-    classDef database fill:#d1c4e9,stroke:#333,stroke-width:1px
-    classDef audit fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    classDef event fill:#ffcdd2,stroke:#333,stroke-width:1px
-    classDef data fill:#c8e6c9,stroke:#333,stroke-width:1px
-    
     subgraph "Data Modification Flow"
         A[User] -->|Authenticated Action| B[Service Layer]
         B -->|Request| C[Data Access Layer]
@@ -120,7 +143,7 @@ flowchart TD
         H --> N[Timestamp]
         
         H -->|Store| O[Javers Repository]
-        O -->|Persist| P[Audit Database]
+        O -->|Persist| P[(Audit Database)]
     end
     
     subgraph "Security Event Tracking"
@@ -135,15 +158,17 @@ flowchart TD
         U --> Z[Timestamp]
         
         U -->|Store| AA[Event Repository]
-        AA -->|Persist| AB[Event Database]
+        AA -->|Persist| AB[(Event Database)]
     end
     
-    class A user
-    class B,C service
-    class D,P,AB database
-    class E,F,O,AA,G audit
-    class H,I,J,K,L,M,N,U,V,W,X,Y,Z data
-    class Q,R,S,T event
+    style A fill:#bbdefb,stroke:#333,stroke-width:1px
+    style B,C fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style D,P,AB fill:#d1c4e9,stroke:#333,stroke-width:1px
+    style E,F,O,AA fill:#ffd54f,stroke:#333,stroke-width:2px
+    style G fill:#ffd54f,stroke:#333,stroke-width:2px
+    style H,I,J,K,L,M,N fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style Q,R,S,T fill:#ffcdd2,stroke:#333,stroke-width:1px
+    style U,V,W,X,Y,Z fill:#c8e6c9,stroke:#333,stroke-width:1px
 ```
 
 ### 📊 Data Versioning with Javers
@@ -346,15 +371,10 @@ Our data integrity controls ensure the reliability and trustworthiness of stored
 
 ## 🌐 Network Security Architecture
 
-This diagram shows how network security is implemented across multiple layers, from AWS WAF through VPC security to the application layer.
+This diagram shows how network security is implemented across multiple layers, from AWS WAF through VPC security to the application layer, including NAT Gateways for secured outbound connectivity.
 
 ```mermaid
 graph TD
-    classDef internet fill:#bbdefb,stroke:#333,stroke-width:1px
-    classDef firewall fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    classDef network fill:#a0c8e0,stroke:#333,stroke-width:1px
-    classDef database fill:#d1c4e9,stroke:#333,stroke-width:1px
-    
     subgraph "Internet Layer"
         A[Internet] -->|HTTPS only| B[AWS WAF]
         B -->|Rule filtering| C[Application Load Balancer]
@@ -363,24 +383,33 @@ graph TD
     subgraph "Public Network Layer"
         C -->|Port 443 only| D[Public Network ACL]
         D -->|Filtered traffic| E[Public Subnets]
+        E -->|Outbound| F[NAT Gateways]
     end
     
     subgraph "Application Layer"
-        E -->|Port 8443| F[Private App Network ACL]
-        F -->|Filtered traffic| G[WebServer Security Group]
-        G -->|Allow 8443 only| H[EC2 Application Servers]
+        F -->|Secured Outbound| G[Private App Network ACL]
+        G -->|Filtered traffic| H[WebServer Security Group]
+        H -->|Allow 8443 only| I[EC2 Application Servers]
     end
     
     subgraph "Data Layer"
-        H -->|Port 5432| I[Private Network ACL]
-        I -->|Filtered traffic| J[Database Security Group]
-        J -->|Allow 5432 only| K[RDS PostgreSQL]
+        I -->|Port 5432| J[Private Network ACL]
+        J -->|Filtered traffic| K[Database Security Group]
+        K -->|Allow 5432 only| L[(RDS PostgreSQL)]
     end
     
-    class A internet
-    class B,D,F,G,I,J firewall
-    class C,E,H network
-    class K database
+    style A fill:#bbdefb,stroke:#333,stroke-width:1px
+    style B fill:#ffd54f,stroke:#333,stroke-width:2px
+    style C fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style D fill:#ffd54f,stroke:#333,stroke-width:2px
+    style E fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style F fill:#ff9800,stroke:#e65100,stroke-width:2px
+    style G fill:#ffd54f,stroke:#333,stroke-width:2px
+    style H fill:#ffd54f,stroke:#333,stroke-width:2px
+    style I fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style J fill:#ffd54f,stroke:#333,stroke-width:2px
+    style K fill:#ffd54f,stroke:#333,stroke-width:2px
+    style L fill:#d1c4e9,stroke:#333,stroke-width:1px
 ```
 
 ### 🔒 Network Security Components
@@ -397,22 +426,173 @@ graph TD
    - Private database subnets for data storage
    - Controlled traffic flow between layers
 
-3. **Network ACLs**: Stateless packet filtering at subnet level
+3. **NAT Gateways**: Secure outbound connectivity for private resources
+   - Deployed in each availability zone for redundancy
+   - Allows private instances to access the internet for updates and patches
+   - Prevents direct inbound access to private instances
+   - Highly available managed service with automatic failover
+
+4. **Network ACLs**: Stateless packet filtering at subnet level
    - Inbound/outbound rules limiting traffic by port and source/destination
    - Explicit deny rules for RDP (port 3389)
    - Public subnet limited to HTTPS (443)
    - Private app subnets limited to application traffic
    - Private database subnets limited to PostgreSQL (5432)
 
-4. **Security Groups**: Stateful instance-level firewall
+5. **Security Groups**: Stateful instance-level firewall
    - Load balancer security group: Allow 443 inbound, 8443 outbound
    - Web server security group: Allow 8443 inbound from load balancer only
    - Database security group: Allow 5432 inbound from application servers only
 
-5. **TLS Encryption**: Secure communication throughout
+6. **TLS Encryption**: Secure communication throughout
    - Certificate Manager for public certificates
    - HTTPS enforcement with HTTP-to-HTTPS redirection
    - Security headers including HSTS, CSP, and X-Frame-Options
+
+7. **VPC Flow Logs**: Network traffic monitoring and analysis
+   - Captures all network traffic flowing through the VPC
+   - Stored in CloudWatch Logs for security analysis
+   - Used for threat detection and compliance auditing
+   - Custom IAM roles with least-privilege permissions
+
+## 🔌 VPC Endpoints Security
+
+This diagram illustrates how VPC Endpoints provide secure, private connectivity to AWS services without traversing the public internet, enhancing both security and performance.
+
+```mermaid
+flowchart LR
+    subgraph "Private Connectivity to AWS Services"
+        A[Private Subnets] --> B[VPC Endpoints]
+        
+        B --> C[S3 Gateway Endpoint]
+        B --> D[SSM Endpoint]
+        B --> E[Secrets Manager Endpoint]
+        B --> F[CloudWatch Endpoint]
+        B --> G[KMS Endpoint]
+        
+        C --> H[S3]
+        D --> I[Systems Manager]
+        E --> J[Secrets Manager]
+        F --> K[CloudWatch]
+        G --> L[KMS]
+    end
+    
+    style A fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style B fill:#ffd54f,stroke:#333,stroke-width:2px
+    style C,D,E,F,G fill:#ffd54f,stroke:#333,stroke-width:2px
+    style H,I,J,K,L fill:#d1c4e9,stroke:#333,stroke-width:1px
+```
+
+### 🔐 VPC Endpoint Security Benefits
+
+1. **Private AWS Service Access**: Services accessed directly through AWS private network
+   - Traffic never traverses the public internet
+   - Enhanced security posture with reduced attack surface
+   - Lower latency for AWS service requests
+
+2. **Gateway Endpoints**:
+   - S3 endpoint for secure access to artifact storage and logs
+   - DynamoDB endpoint for NoSQL database access
+   - Regional endpoint policies restrict access to specific resources
+
+3. **Interface Endpoints**:
+   - Systems Manager endpoints allow secure instance management without internet access
+   - Secrets Manager endpoint provides secure credentials retrieval
+   - CloudWatch endpoint for secure log and metric delivery
+   - KMS endpoint for encryption operations
+
+4. **Security Controls**:
+   - Endpoint policies restrict what actions can be performed
+   - Endpoint security groups control which instances can access endpoints
+   - Private DNS resolution ensures standard AWS service hostnames work properly
+
+5. **Compliance Benefits**:
+   - Meets data locality requirements by keeping traffic within AWS network
+   - Enables complete removal of internet gateways in highly secure environments
+   - Provides detailed audit logs of service access
+
+## 🏗️ High Availability Security Architecture
+
+This diagram shows the multi-AZ security architecture designed for resilience against infrastructure failures while maintaining security boundaries.
+
+```mermaid
+graph TD
+    subgraph "Multi-AZ Security Architecture"
+        subgraph "Availability Zone 1"
+            A1[Public Subnet] --> B1[NAT Gateway]
+            B1 --> C1[Private App Subnet]
+            C1 --> D1[Private DB Subnet]
+            
+            C1 -.-> E1[EC2 Instances]
+            D1 -.-> F1[RDS Instance]
+        end
+        
+        subgraph "Availability Zone 2"
+            A2[Public Subnet] --> B2[NAT Gateway]
+            B2 --> C2[Private App Subnet]
+            C2 --> D2[Private DB Subnet]
+            
+            C2 -.-> E2[EC2 Instances]
+            D2 -.-> F2[RDS Standby]
+        end
+        
+        subgraph "Availability Zone 3"
+            A3[Public Subnet] --> B3[NAT Gateway]
+            B3 --> C3[Private App Subnet]
+            C3 --> D3[Private DB Subnet]
+            
+            C3 -.-> E3[EC2 Instances]
+            D3 -.-> F3[RDS Replica]
+        end
+        
+        ALB[Application Load Balancer] --> A1 & A2 & A3
+        Internet[Internet] --> ALB
+        
+        VPC1[VPC Endpoints] --> C1 & C2 & C3
+        AWS[AWS Services] -.-> VPC1
+    end
+    
+    style A1,A2,A3 fill:#bbdefb,stroke:#333,stroke-width:1px
+    style B1,B2,B3 fill:#ff9800,stroke:#e65100,stroke-width:2px
+    style C1,C2,C3,D1,D2,D3 fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style E1,E2,E3,F1,F2,F3 fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style ALB fill:#ffd54f,stroke:#333,stroke-width:2px
+    style Internet fill:#bbdefb,stroke:#333,stroke-width:1px
+    style VPC1 fill:#ffd54f,stroke:#333,stroke-width:2px
+    style AWS fill:#d1c4e9,stroke:#333,stroke-width:1px
+```
+
+### 🔄 High Availability Security Features
+
+1. **Multi-AZ Network Architecture**:
+   - Multiple isolated availability zones for resilience
+   - Security boundaries maintained across failure domains
+   - Each AZ contains complete set of public, private app, and private database subnets
+   - Network ACLs and security groups consistently applied across zones
+
+2. **Redundant Security Components**:
+   - NAT Gateways deployed in each public subnet
+   - Automatic failover if an AZ becomes unavailable
+   - Multiple EC2 instances distributed across availability zones
+   - Security groups and network ACLs consistently applied
+
+3. **Database Redundancy**:
+   - Multi-AZ RDS deployment with automatic failover
+   - Primary instance in first AZ with standby in second AZ
+   - Read replicas for increased availability and performance
+   - Encrypted storage and transit across all instances
+
+4. **Load Balancing**:
+   - Application Load Balancer distributed across all AZs
+   - Health checks to detect and replace unhealthy instances
+   - SSL/TLS termination with AWS Certificate Manager
+   - Security groups restrict traffic to authorized sources
+
+5. **Disaster Recovery**:
+   - Cross-AZ resilience for infrastructure failures
+   - Automated failover for database instances
+   - Auto-scaling to replace failed application servers
+   - Configuration and state management through Systems Manager
 
 ## 💾 Data Protection Architecture
 
@@ -420,16 +600,10 @@ This diagram illustrates how data is protected throughout its lifecycle, includi
 
 ```mermaid
 flowchart TD
-    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
-    classDef network fill:#a0c8e0,stroke:#333,stroke-width:1px
-    classDef database fill:#d1c4e9,stroke:#333,stroke-width:1px
-    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    classDef storage fill:#c8e6c9,stroke:#333,stroke-width:1px
-    
     subgraph "Data in Transit"
         A[User Browser] <-->|TLS 1.3| B[Load Balancer]
         B <-->|TLS 1.2+| C[Application Server]
-        C <-->|TLS 1.2+| D[RDS Database]
+        C <-->|TLS 1.2+| D[(RDS Database)]
     end
     
     subgraph "Data at Rest"
@@ -455,11 +629,11 @@ flowchart TD
         L -->|Updates| K
     end
     
-    class A user
-    class B,C,L network
-    class D database
-    class E,F,G,J,K security
-    class H,I storage
+    style A fill:#bbdefb,stroke:#333,stroke-width:1px
+    style B,C,L fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style D fill:#d1c4e9,stroke:#333,stroke-width:1px
+    style E,F,G,J,K fill:#ffd54f,stroke:#333,stroke-width:2px
+    style H,I fill:#c8e6c9,stroke:#333,stroke-width:1px
 ```
 
 ### 🔐 Data Protection Components
@@ -482,13 +656,20 @@ flowchart TD
    - Limited IAM access to secrets
    - No hardcoded secrets in application code
 
-4. **Data Access Control**: Least privilege principles
+4. **S3 Bucket Security**: Comprehensive protection for object storage
+   - Server-side encryption using KMS
+   - Bucket policies preventing public access
+   - Versioning enabled for data integrity
+   - Lifecycle policies for secure data retention
+   - Access logging for audit trail
+
+5. **Data Access Control**: Least privilege principles
    - Role-based access in application
    - IAM policies for AWS resource access
    - Limited database access through security groups
    - Application-level data access authorization
 
-5. **Password Security**: Strong password policies
+6. **Password Security**: Strong password policies
    - BCrypt password hashing with unique salts
    - Password complexity requirements:
      - Minimum 8 characters, maximum 64 characters
@@ -504,11 +685,6 @@ This diagram shows the multi-layered AWS security infrastructure protecting the 
 
 ```mermaid
 graph TD
-    classDef internet fill:#bbdefb,stroke:#333,stroke-width:1px
-    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    classDef network fill:#a0c8e0,stroke:#333,stroke-width:1px
-    classDef monitoring fill:#c8e6c9,stroke:#333,stroke-width:1px
-    
     subgraph "Edge Security"
         A[Internet] -->|HTTPS| B[AWS Shield]
         B -->|DDoS Protection| C[AWS WAF]
@@ -542,10 +718,10 @@ graph TD
         S[Inspector] -->|Vulnerabilities| Q
     end
     
-    class A internet
-    class B,C,G,H,J,L,P,Q,R,S security
-    class D,E,F,I,K network
-    class M,N,O monitoring
+    style A fill:#bbdefb,stroke:#333,stroke-width:1px
+    style B,C,G,H,J,L,P,Q,R,S fill:#ffd54f,stroke:#333,stroke-width:2px
+    style D,E,F,I,K fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style M,N,O fill:#c8e6c9,stroke:#333,stroke-width:1px
 ```
 
 ### 🛡️ AWS Security Components
@@ -594,12 +770,6 @@ This diagram illustrates how security events are monitored, detected, and respon
 
 ```mermaid
 flowchart TD
-    classDef logs fill:#c8e6c9,stroke:#333,stroke-width:1px
-    classDef service fill:#a0c8e0,stroke:#333,stroke-width:1px
-    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    classDef data fill:#d1c4e9,stroke:#333,stroke-width:1px
-    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
-    
     subgraph "Event Sources"
         A1[Application Logs] -->|Stream| B[CloudWatch Logs]
         A2[VPC Flow Logs] -->|Stream| B
@@ -632,11 +802,11 @@ flowchart TD
         N -->|Automatic fix| P[Security Controls]
     end
     
-    class A1,A2,A3,A4,H logs
-    class B,C,D,G,J,N service
-    class E,F,I,O,P security
-    class K,L data
-    class M user
+    style A1,A2,A3,A4,H fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style B,C,D,G,J,N fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style E,F,I,O,P fill:#ffd54f,stroke:#333,stroke-width:2px
+    style K,L fill:#d1c4e9,stroke:#333,stroke-width:1px
+    style M fill:#bbdefb,stroke:#333,stroke-width:1px
 ```
 
 ### 📈 Monitoring Components
@@ -672,6 +842,74 @@ flowchart TD
    - Automated remediation for common issues
    - Incident response procedures
    - Security control feedback loop
+
+## 🤖 Enhanced Automated Security Operations
+
+This diagram shows the automated security maintenance system that keeps the infrastructure patched and secure.
+
+```mermaid
+flowchart TD
+    subgraph "Automated Security Maintenance"
+        A[Hourly Maintenance Window] --> B{Target Selection}
+        B -->|Tag-based selection| C[EC2 Instances]
+        
+        A --> D[Patch Baseline Scan]
+        A --> E[Patch Baseline Install]
+        
+        D & E --> F[S3 Output]
+        F --> G[Audit Records]
+        
+        H[SSM Agent Updater] --> I[Weekly Updates]
+        I --> C
+        
+        J[Inventory Collector] --> K[Hourly Inventory]
+        K --> C
+        K --> L[Drift Detection]
+    end
+    
+    style A fill:#ffd54f,stroke:#333,stroke-width:2px
+    style B fill:#ffd54f,stroke:#333,stroke-width:2px
+    style C fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style D,E fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style F,G fill:#d1c4e9,stroke:#333,stroke-width:1px
+    style H,I,J,K fill:#ffd54f,stroke:#333,stroke-width:2px
+    style L fill:#ffcdd2,stroke:#333,stroke-width:1px
+```
+
+### 🔄 Automated Security Operations Components
+
+1. **Systems Manager Patch Management**:
+   - Scheduled maintenance windows for regular patching
+   - Tag-based targeting of instances for updates
+   - Automatic scanning and installation of security patches
+   - Detailed logs and reports of patch operations
+   - S3 storage of patch results for audit purposes
+
+2. **SSM Agent Updates**:
+   - Automatic updating of Systems Manager agents
+   - Weekly schedule to ensure latest security capabilities
+   - Tag-based selection of instances to update
+   - Output logging for compliance verification
+
+3. **Resource Inventory**:
+   - Hourly collection of software inventory
+   - Application, OS, and patch level tracking
+   - Configuration drift detection
+   - Encrypted storage of inventory data
+   - Integration with compliance frameworks
+
+4. **Automated Artifact Management**:
+   - Secure S3 bucket with server-side encryption
+   - Public access blocking for security artifacts
+   - HTTPS-only access enforcement
+   - Lifecycle policies for secure retention
+   - Bucket policies restricting access to authorized services
+
+5. **Security Role Separation**:
+   - Dedicated service roles with least privilege
+   - Specific IAM permissions for each automation component
+   - Policy enforcement through resource tags
+   - Comprehensive logging of role usage
 
 ## 🔐 Application Security Controls
 
@@ -809,6 +1047,39 @@ AWS infrastructure security as defined in CloudFormation:
    }
    ```
 
+5. **S3 Bucket Security**:
+   ```json
+   "ArtifactBucket": {
+       "Type": "AWS::S3::Bucket",
+       "DependsOn": "LogsBucket",
+       "DeletionPolicy": "Retain",
+       "Properties": {
+           "AccessControl": "Private",
+           "BucketEncryption": {
+               "ServerSideEncryptionConfiguration": [
+                   {
+                       "ServerSideEncryptionByDefault": {
+                           "KMSMasterKeyID": {
+                               "Ref": "ArtifactBucketEncryptionKey"
+                           },
+                           "SSEAlgorithm": "aws:kms"
+                       }
+                   }
+               ]
+           },
+           "VersioningConfiguration": {
+               "Status": "Enabled"
+           },
+           "PublicAccessBlockConfiguration": {
+               "BlockPublicAcls": true,
+               "BlockPublicPolicy": true,
+               "IgnorePublicAcls": true,
+               "RestrictPublicBuckets": true
+           }
+       }
+   }
+   ```
+
 ## 📜 Security Compliance Architecture
 
 The CIA platform is designed to comply with major security frameworks:
@@ -847,9 +1118,6 @@ The security architecture follows the defense-in-depth principle with multiple l
 
 ```mermaid
 graph TD
-    classDef layer fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
-    
     A[User Request] -->|Layer 1| B[DNS Security]
     B -->|Layer 2| C[WAF Protection]
     C -->|Layer 3| D[Network Security]
@@ -857,8 +1125,13 @@ graph TD
     E -->|Layer 5| F[Application Security]
     F -->|Layer 6| G[Data Security]
     
-    class A user
-    class B,C,D,E,F,G layer
+    style A fill:#bbdefb,stroke:#333,stroke-width:1px
+    style B fill:#ffd54f,stroke:#333,stroke-width:2px
+    style C fill:#ffd54f,stroke:#333,stroke-width:2px
+    style D fill:#ffd54f,stroke:#333,stroke-width:2px
+    style E fill:#ffd54f,stroke:#333,stroke-width:2px
+    style F fill:#ffd54f,stroke:#333,stroke-width:2px
+    style G fill:#ffd54f,stroke:#333,stroke-width:2px
 ```
 
 ### 🔒 Security Layer Details
@@ -879,6 +1152,8 @@ graph TD
    - Network ACLs
    - Security Groups
    - Flow logging and monitoring
+   - NAT Gateways for secure outbound connectivity
+   - VPC Endpoints for AWS service access
 
 4. **Host Security Layer**
    - Hardened AMIs
@@ -918,26 +1193,20 @@ graph TD
 
 ```mermaid
 graph TD
-    classDef user fill:#bbdefb,stroke:#333,stroke-width:1px
-    classDef network fill:#a0c8e0,stroke:#333,stroke-width:1px
-    classDef data fill:#d1c4e9,stroke:#333,stroke-width:1px
-    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    classDef process fill:#c8e6c9,stroke:#333,stroke-width:1px
-    
     A[User Credentials] -->|Encrypted TLS| B[Load Balancer]
     B -->|Encrypted TLS| C[Application Server]
     C -->|Bcrypt| D[Password Hash]
-    D -->|Store| E[Database]
+    D -->|Store| E[(Database)]
     
     F[Database Credentials] -->|Encrypted| G[Secrets Manager]
     G -->|Decrypt| C
     C -->|Encrypted TLS| E
     
-    class A user
-    class B,C network
-    class D,E data
-    class F process
-    class G security
+    style A fill:#bbdefb,stroke:#333,stroke-width:1px
+    style B,C fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style D,E fill:#d1c4e9,stroke:#333,stroke-width:1px
+    style F fill:#c8e6c9,stroke:#333,stroke-width:1px
+    style G fill:#ffd54f,stroke:#333,stroke-width:2px
 ```
 
 ## 🔄 Security Operations and Maintenance
@@ -946,12 +1215,6 @@ graph TD
 
 ```mermaid
 graph LR
-    classDef event fill:#bbdefb,stroke:#333,stroke-width:1px
-    classDef service fill:#a0c8e0,stroke:#333,stroke-width:1px
-    classDef data fill:#d1c4e9,stroke:#333,stroke-width:1px
-    classDef security fill:#ffecb3,stroke:#333,stroke-width:1px,color:black
-    classDef process fill:#c8e6c9,stroke:#333,stroke-width:1px
-    
     A[Security Patch Released] -->|Detection| B[AWS Inspector]
     B -->|Identification| C[Patch Needs]
     C -->|Scheduling| D[Maintenance Window]
@@ -959,10 +1222,10 @@ graph LR
     E -->|Verification| F[Compliance Check]
     F -->|Documentation| G[Patch History]
     
-    class A event
-    class B,D,E service
-    class C,G data
-    class F process
+    style A fill:#bbdefb,stroke:#333,stroke-width:1px
+    style B,D,E fill:#a0c8e0,stroke:#333,stroke-width:1px
+    style C,G fill:#d1c4e9,stroke:#333,stroke-width:1px
+    style F fill:#c8e6c9,stroke:#333,stroke-width:1px
 ```
 
 ### Automated Security Processes
@@ -1010,18 +1273,27 @@ graph LR
    - Developer security training
    - Security gates in deployment process
 
+5. **High Availability Security**
+   - Multi-AZ deployments for all security components
+   - Resilient network architecture
+   - Redundant NAT Gateways
+   - Database failover capabilities
+
 ## 📝 Conclusion
 
-The Citizen Intelligence Agency employs a comprehensive, defense-in-depth security architecture that spans from application-level controls to infrastructure security. By implementing multiple layers of protection, we ensure the confidentiality, integrity, and availability of sensitive political data.
+The Citizen Intelligence Agency employs a comprehensive, defense-in-depth security architecture that spans from application-level controls to infrastructure security. By implementing multiple layers of protection with high availability designs, we ensure the confidentiality, integrity, and availability of sensitive political data.
 
 Key security highlights include:
 
 - 🔐 Multi-factor authentication with sophisticated brute force protection
 - 🛡️ AWS WAF and Shield protection against web-based attacks
 - 🔒 Comprehensive encryption for data at rest and in transit
+- 🌐 Redundant multi-AZ architecture with NAT Gateways for resilience
+- 🔌 VPC Endpoints for secure AWS service access
 - 👁️ Continuous monitoring with GuardDuty, Inspector, and Security Hub
 - 📜 Complete data integrity with Javers versioning and author attribution
 - 🔍 Comprehensive user activity and security event tracking
 - 📋 NIST CSF and ISO 27001 compliance alignment
+- 🤖 Automated security operations with Systems Manager
 
 For detailed implementation costs and specific AWS security services, refer to the [Financial Security Plan](FinancialSecurityPlan.md).
