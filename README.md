@@ -92,6 +92,8 @@ For details on our technology lifecycle management, see the [End-of-Life Strateg
 | --------------------------------------------------- | --------------- | ----------------------------------------- | ------------------------------------------------------------------------------- |
 | **[Architecture](ARCHITECTURE.md)**                 | 🏛️ Architecture | C4 model showing current system structure | [View Source](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md)         |
 | **[Future Architecture](FUTURE_ARCHITECTURE.md)**   | 🏛️ Architecture | C4 model showing future system structure | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_ARCHITECTURE.md)         |
+| **[Security Architecture](SECURITY_ARCHITECTURE.md)** | 🔐 Security     | Security architecture                     | [View Source](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md)         |
+| **[Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md)** | 🔐 Security     | Future Security architecture  | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md)         |
 | **[Mindmaps](MINDMAP.md)**                          | 🧠 Concept      | Current system component relationships    | [View Source](https://github.com/Hack23/cia/blob/master/MINDMAP.md)             |
 | **[Future Mindmaps](FUTURE_MINDMAP.md)**            | 🧠 Concept      | Future capability evolution               | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_MINDMAP.md)      |
 | **[SWOT Analysis](SWOT.md)**                        | 💼 Business     | Current strategic assessment              | [View Source](https://github.com/Hack23/cia/blob/master/SWOT.md)                |
