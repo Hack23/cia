@@ -48,6 +48,11 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>failureaccess</artifactId>
+        <version>1.0.3</version>
+    </dependency>
+    <dependency>
       <groupId>jakarta.activation</groupId>
       <artifactId>jakarta.activation-api</artifactId>
       <version>${cia.project.versions.jakarta.activation}</version>
