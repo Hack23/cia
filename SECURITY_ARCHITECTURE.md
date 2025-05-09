@@ -1374,10 +1374,6 @@ Based on the security implementation described throughout this document, our inv
 
 For detailed cost breakdowns of the AWS security implementation, refer to the [Financial Security Plan](FinancialSecurityPlan.md) referenced in our Security Documentation Map.
 
-
-## 🏛️ AWS Well-Architected Alignment
-
-```markdown
 ## 🏛️ AWS Well-Architected Alignment
 
 Our security architecture aligns with the AWS Well-Architected Framework pillars, ensuring that security best practices are implemented across all aspects of the system.
