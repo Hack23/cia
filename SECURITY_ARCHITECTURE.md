@@ -1307,3 +1307,98 @@ graph TD
     style I,J,K,L fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
     classDef default font-weight:bold
 ```
+
+## 🛡️ Defense-in-Depth Strategy
+
+Our defense-in-depth strategy coordinates the multiple security layers already implemented throughout the Citizen Intelligence Agency platform to create overlapping protection mechanisms.
+
+### Strategic Implementation
+
+The defense-in-depth approach manifests through several implemented layers of protection:
+
+1. **Identity Security Layer**: The documented MFA with Google Authenticator, login blocking protection, and role-based access control create the first line of defense.
+
+2. **Application Security Layer**: Our implemented Spring Security framework with method-level `@Secured` annotations provides protection at the code level.
+
+3. **Data Security Layer**: The Javers auditing system, combined with encryption via KMS and end-to-end TLS create a comprehensive data protection layer.
+
+4. **Network Security Layer**: Our AWS WAF implementation, three-zone network segmentation, and VPC Endpoints establish network boundaries and traffic filtering.
+
+5. **Infrastructure Security Layer**: Multi-AZ architecture, AWS security services, and automated security maintenance via AWS Systems Manager provide foundational protection.
+
+6. **Monitoring & Detection Layer**: The implemented ApplicationSession tracking, security event listeners, GuardDuty, and Inspector provide visibility across all layers.
+
+This integration of multiple security controls means that a compromise of any single layer will not lead to a complete security failure, as additional protective measures exist at each level of the technology stack.
+
+
+## 🔄 Security Operations
+
+Our security operations framework orchestrates the ongoing management of the security controls implemented throughout our architecture.
+
+### Operational Functions
+
+The security operations activities leverage our implemented systems:
+
+1. **Continuous Monitoring**: Using the implemented security event monitoring system and ApplicationActionEvent tracking to maintain visibility into security-relevant activities.
+
+2. **Threat Detection & Response**: Operationalizing the implemented GuardDuty service with its machine learning capabilities and multiple AWS service protections.
+
+3. **Vulnerability Management**: Operating the Amazon Inspector implementation to identify and remediate vulnerabilities across EC2, container images, and Lambda functions.
+
+4. **Configuration Management**: Utilizing AWS Config to ensure secure configurations are maintained and compliance rules are enforced.
+
+5. **Automated Security Maintenance**: Executing regular security operations through the implemented AWS Systems Manager Maintenance Windows, which run on the documented hourly schedule.
+
+6. **Log Management & Analysis**: Leveraging Security Lake's OCSF standardization for security data analysis across the environment.
+
+These operational activities ensure that the security controls documented throughout this architecture remain effective on an ongoing basis.
+
+
+## 💰 Security Investment
+
+Our security investment approach focuses on the maintenance and optimization of the implemented security controls documented in this architecture.
+
+### Investment Priorities
+
+Based on the security implementation described throughout this document, our investment focuses on:
+
+1. **AWS Security Services**: Funding the AWS security services already implemented including WAF, GuardDuty with its enhanced capabilities, Inspector, Security Hub, Detective, Config, and Security Lake.
+
+2. **High Availability Infrastructure**: Supporting the multi-AZ architecture with redundant components as documented in the High Availability Design section.
+
+3. **Authentication & Authorization**: Maintaining the implemented multi-factor authentication system and role-based access control framework.
+
+4. **Operational Security**: Supporting the automated security operations through the implemented maintenance window and security event monitoring.
+
+5. **Compliance Management**: Resources for maintaining the implemented compliance controls mapped to NIST CSF, ISO 27001, and CIS Benchmarks.
+
+For detailed cost breakdowns of the AWS security implementation, refer to the [Financial Security Plan](FinancialSecurityPlan.md) referenced in our Security Documentation Map.
+
+
+## 📝 Conclusion
+
+The Citizen Intelligence Agency security architecture establishes a comprehensive security framework through the implementation of multiple protective layers and controls.
+
+### Security Foundation
+
+The implemented security architecture includes:
+
+1. **Strong Authentication**: Multi-factor authentication and sophisticated login blocking mechanisms
+
+2. **Detailed Auditing**: Comprehensive data change tracking via Javers and user activity monitoring
+
+3. **Network Protection**: Multi-layer network security with AWS WAF and segmentation
+
+4. **Data Security**: End-to-end encryption and secure data storage
+
+5. **Threat Detection**: GuardDuty implementation with extended protection capabilities
+
+6. **Vulnerability Management**: Amazon Inspector scanning across multiple resource types
+
+7. **Automated Operations**: Systems Manager maintenance windows for consistent security
+
+8. **Resilient Design**: Multi-AZ architecture for security and availability
+
+This implemented security foundation positions the Citizen Intelligence Agency platform to fulfill its mission of providing transparency and political data analysis while maintaining appropriate protection for sensitive information.
+
+For information on future security enhancements, refer to the [Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md) document.
