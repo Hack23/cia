@@ -1375,6 +1375,127 @@ Based on the security implementation described throughout this document, our inv
 For detailed cost breakdowns of the AWS security implementation, refer to the [Financial Security Plan](FinancialSecurityPlan.md) referenced in our Security Documentation Map.
 
 
+## 🏛️ AWS Well-Architected Alignment
+
+```markdown
+## 🏛️ AWS Well-Architected Alignment
+
+Our security architecture aligns with the AWS Well-Architected Framework pillars, ensuring that security best practices are implemented across all aspects of the system.
+
+```mermaid
+flowchart TD
+    subgraph "AWS Well-Architected Framework"
+        A[🏛️ Well-Architected<br>Framework] 
+        
+        A --> B[🔒 Security]
+        A --> C[💪 Reliability]
+        A --> D[⚙️ Operational<br>Excellence]
+        A --> E[🚀 Performance<br>Efficiency]
+        A --> F[💰 Cost<br>Optimization]
+        A --> G[♻️ Sustainability]
+        
+        B --> B1[🔐 Identity & Access<br>Management]
+        B --> B2[🔍 Detection<br>Controls]
+        B --> B3[🛡️ Infrastructure<br>Protection]
+        B --> B4[📊 Data<br>Protection]
+        B --> B5[⚡ Incident<br>Response]
+        
+        B1 --> H1[🔑 MFA & RBAC]
+        B1 --> H2[👥 IAM Best<br>Practices]
+        
+        B2 --> I1[🕵️ GuardDuty]
+        B2 --> I2[📊 Security Hub]
+        B2 --> I3[📝 Application<br>Action Tracking]
+        
+        B3 --> J1[🧱 WAF]
+        B3 --> J2[🌐 Network<br>Segmentation]
+        B3 --> J3[🔌 VPC<br>Endpoints]
+        
+        B4 --> K1[🔐 Encryption]
+        B4 --> K2[📜 Javers<br>Auditing]
+        B4 --> K3[🗝️ Secrets<br>Manager]
+        
+        B5 --> L1[🔎 Detective]
+        B5 --> L2[⚙️ Automated<br>Remediation]
+        
+        C --> C1[🏗️ Multi-AZ<br>Architecture]
+        C --> C2[📊 AWS<br>Resilience Hub]
+        
+        D --> D1[🤖 Automated<br>Security Ops]
+        D --> D2[📋 Config<br>Management]
+        
+        E --> E1[🔌 Private<br>Endpoints]
+        E --> E2[🔄 Service<br>Optimizations]
+        
+        F --> F1[🔍 Right-Sized<br>Controls]
+        
+        G --> G1[♻️ Resource<br>Efficiency]
+    end
+    
+    style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
+    style B,C,D,E,F,G fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
+    style B1,B2,B3,B4,B5,C1,C2,D1,D2,E1,E2,F1,G1 fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
+    style H1,H2,I1,I2,I3,J1,J2,J3,K1,K2,K3,L1,L2 fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
+    classDef default font-weight:bold
+```
+
+### Security Pillar Implementation
+
+Our security architecture most directly addresses the AWS Security pillar through:
+
+1. **🔐 Identity & Access Management**
+   - Multi-factor authentication with Google Authenticator
+   - Role-based access control with three security tiers
+   - Method-level security with `@Secured` annotations
+   - IAM best practices (IAM.1-8) as documented in AWS Foundational Security Best Practices
+
+2. **🔍 Detection Controls**
+   - GuardDuty with enhanced capabilities for EKS, Lambda, RDS, S3, and EC2
+   - Security Hub for centralized security findings
+   - ApplicationSession and ApplicationActionEvent tracking
+   - Security event monitoring with event listeners
+
+3. **🛡️ Infrastructure Protection**
+   - AWS WAF implementation against OWASP Top 10
+   - Three-zone network segmentation (public, private app, private DB)
+   - VPC Endpoints for private AWS service access
+   - Security Groups and NACLs for traffic filtering
+
+4. **📊 Data Protection**
+   - End-to-end encryption with TLS
+   - KMS encryption for data at rest
+   - Secrets Manager with automated rotation
+   - Javers auditing for data integrity
+
+5. **⚡ Incident Response**
+   - Amazon Detective for investigation capabilities
+   - Automated remediation through AWS Systems Manager
+
+### Cross-Pillar Security Benefits
+
+Our security architecture also supports other Well-Architected pillars:
+
+1. **💪 Reliability**
+   - Multi-AZ architecture enhances both security and availability
+   - AWS Resilience Hub assessments and testing
+
+2. **⚙️ Operational Excellence**
+   - Automated security operations through maintenance windows
+   - Configuration management with AWS Config
+
+3. **🚀 Performance Efficiency**
+   - VPC Endpoints improve security while enhancing performance
+   - Security controls designed to minimize performance impact
+
+4. **💰 Cost Optimization**
+   - Risk-based approach to security ensures appropriate investment levels
+   - Automated operations reduce security maintenance costs
+
+5. **♻️ Sustainability**
+   - Efficient security resource usage through automation
+   - Right-sized security controls designed for minimal resource consumption
+
+
 ## 📝 Conclusion
 
 The Citizen Intelligence Agency security architecture establishes a comprehensive security framework through the implementation of multiple protective layers and controls.
