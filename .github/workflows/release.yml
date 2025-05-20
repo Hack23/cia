@@ -213,6 +213,6 @@ jobs:
           cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
 
     - name: Submit Dependency Release
-      uses: advanced-security/maven-dependency-submission-action@aeab9f885293af501bae8bdfe88c589528ea5e25
+      uses: advanced-security/maven-dependency-submission-action@fe8d4d650a4b66508612d0683ce4726d51dfe6ac
       with:
         skip-maven-install: true  # Skip Maven install since build is already done
