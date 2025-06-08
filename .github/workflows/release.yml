@@ -108,13 +108,13 @@ jobs:
       run: sudo dpkg-reconfigure -f noninteractive tzdata 
 
     - name: Download Maven
-      run: wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
+      run: wget https://dlcdn.apache.org/maven/maven-3/3.9.10/binaries/apache-maven-3.9.10-bin.tar.gz
 
     - name: Unpack Maven
-      run: tar xzvf apache-maven-3.9.9-bin.tar.gz
+      run: tar xzvf apache-maven-3.9.10-bin.tar.gz
 
     - name: Set Maven
-      run: mv apache-maven-3.9.9 maven
+      run: mv apache-maven-3.9.10 maven
 
     - name: Set Version for release
       run: maven/bin/mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit	
