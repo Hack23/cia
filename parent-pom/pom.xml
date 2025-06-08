@@ -870,6 +870,11 @@
           <groupId>com.stratio.mojo.unix</groupId>
           <artifactId>unix-maven-plugin</artifactId>
           <version>1.2.0</version>
+          <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version>3.5.0</version>
+          </dependency>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
