@@ -129,23 +129,17 @@ jobs:
     - name: Build with Maven
       run: maven/bin/mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false
 
-    - name: Generate artifact attestation
-      uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
-      id: attest
-      with:
-        subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
-        bundle-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.intoto.jsonl'
-
+    # Generate artifact attestation for DEB package
     - name: Generate artifact attestation for deb package
       uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
       id: attest_deb
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
-        bundle-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.intoto.jsonl'
 
     - name: Copy artifact attestation for deb package
       run: cp ${{ steps.attest_deb.outputs.bundle-path }} cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.intoto.jsonl
 
+    # Generate SBOM attestation for DEB package
     - name: Generate SBOM attestation for deb package
       id: attestsbom_deb
       uses: actions/attest-sbom@bd218ad0dbcb3e146bd073d1d9c6d78e08aa8a0b # v2.4.0
@@ -156,16 +150,17 @@ jobs:
     - name: Copy SBOM attestation for deb package
       run: cp ${{ steps.attestsbom_deb.outputs.bundle-path }} cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json.intoto.jsonl
 
+    # Generate artifact attestation for WAR
     - name: Generate artifact attestation for WAR
       uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
       id: attest_war
       with:
         subject-path: 'citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war'
-        bundle-path: 'citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war.intoto.jsonl'
 
     - name: Copy artifact attestation for WAR
       run: cp ${{ steps.attest_war.outputs.bundle-path }} citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war.intoto.jsonl
 
+    # Generate SBOM attestation for WAR
     - name: Generate SBOM attestation for WAR
       id: attestsbom_war
       uses: actions/attest-sbom@bd218ad0dbcb3e146bd073d1d9c6d78e08aa8a0b # v2.4.0
