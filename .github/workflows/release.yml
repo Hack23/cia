@@ -70,6 +70,7 @@ jobs:
           www.bridgecrew.cloud:443
           docs.github.com:433
           dlcdn.apache.org:443
+          archive.apache.org:443          
           esm.ubuntu.com:443
           fulcio.sigstore.dev:443
           packages.microsoft.com:443
