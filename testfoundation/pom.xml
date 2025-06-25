@@ -189,17 +189,17 @@
     <dependency>
       <groupId>org.junit.vintage</groupId>
       <artifactId>junit-vintage-engine</artifactId>
-      <version>5.13.0</version>
+      <version>5.13.2</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.13.0</version>
+      <version>5.13.2</version>
     </dependency>
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-launcher</artifactId>
-      <version>1.13.0</version>
+      <version>1.13.2</version>
     </dependency>
     <dependency>
       <groupId>org.xmlunit</groupId>
