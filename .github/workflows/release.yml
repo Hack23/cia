@@ -108,17 +108,13 @@ jobs:
     - name: Update tzdata
       run: sudo dpkg-reconfigure -f noninteractive tzdata 
 
-    - name: Download Maven
-      run: wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.9/apache-maven-3.9.9-bin.tar.gz
-
-    - name: Unpack Maven
-      run: tar xzvf apache-maven-3.9.9-bin.tar.gz
-
-    - name: Set Maven
-      run: mv apache-maven-3.9.9 maven
+    - name: Set up Maven
+      uses: stCarolas/setup-maven@v5
+      with:
+        maven-version: 3.9.9
 
     - name: Set Version for release
-      run: maven/bin/mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit	
+      run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit	
 
     - uses: stefanzweifel/git-auto-commit-action@778341af668090896ca464160c2def5d1d1a3eb0 # v6.0.1
       with:
@@ -128,7 +124,7 @@ jobs:
         create_branch: true
 
     - name: Build with Maven
-      run: maven/bin/mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false
+      run: mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false
 
     # Generate artifact attestation for DEB package
     - name: Generate artifact attestation for deb package
