@@ -35,7 +35,7 @@ jobs:
 
     steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863 # v2.12.1
+      uses: step-security/harden-runner@6c439dc8bdf85cadbbce9ed30d1c7b959517bc49 # v2.12.2
       with:
         egress-policy: audit
         allowed-endpoints: >
@@ -122,17 +122,13 @@ jobs:
     - name: Install buildtools
       run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget
 
-    - name: Download Maven
-      run: wget https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
-
-    - name: Unpack Maven
-      run: tar xzvf apache-maven-3.9.9-bin.tar.gz
-
-    - name: Set Maven
-      run: mv apache-maven-3.9.9 maven
-      
+    - name: Set up Maven
+      uses: stCarolas/setup-maven@v5
+      with:
+        maven-version: 3.9.9
+        
     - name: Build with Maven
-      run: maven/bin/mvn -B clean install --file pom.xml -Prelease-site,all-modules -Dmaven.test.skip=true 
+      run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -Dmaven.test.skip=true 
 
     - name: Submit Dependency Snapshot
       uses: advanced-security/maven-dependency-submission-action@b275d12641ac2d2108b2cbb7598b154ad2f2cee8
