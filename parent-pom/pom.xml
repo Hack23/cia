@@ -145,7 +145,7 @@
     <cia.project.versions.jackson>2.19.2</cia.project.versions.jackson>
     <cia.project.versions.netty>4.2.3.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.2</cia.project.versions.xerces>
-    <cia.project.versions.commons.compress>1.27.1</cia.project.versions.commons.compress>
+    <cia.project.versions.commons.compress>1.28.0</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.25</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
