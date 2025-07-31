@@ -207,5 +207,3 @@ jobs:
 
     - name: Submit Dependency Release
       uses: advanced-security/maven-dependency-submission-action@b275d12641ac2d2108b2cbb7598b154ad2f2cee8
-      with:
-        skip-maven-install: true  # Skip Maven install since build is already done
