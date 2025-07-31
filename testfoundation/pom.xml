@@ -484,7 +484,7 @@
     <dependency>
       <groupId>org.htmlunit</groupId>
       <artifactId>htmlunit</artifactId>
-      <version>4.13.0</version>
+      <version>4.14.0</version>
       <exclusions>
         <exclusion>
           <groupId>commons-codec</groupId>
