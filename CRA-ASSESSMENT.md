@@ -14,7 +14,7 @@
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Effective-{{DATE}}-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2025-08-22-success?style=for-the-badge" alt="Effective Date"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Review-Quarterly-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
@@ -399,7 +399,7 @@ CRA assessment updated only when changes constitute "substantial modification" u
 **🏷️ Product Version:** {{CURRENT_VERSION}}
 **📦 CRA Technical Documentation:** This assessment + [Latest Release](https://github.com/Hack23/cia/releases/latest)
 **🛡️ Security Attestations:** [GitHub Attestations](https://github.com/Hack23/cia/attestations)
-**📊 Assessment Status:** ![CRA Status](https://img.shields.io/badge/CRA_Self_Assessment-{{STATUS}}-{{COLOR}})
+**📊 Assessment Status:** ![CRA Status](https://img.shields.io/badge/CRA_Self_Assessment-EVIDENCE_DOCUMENTED-blue)
 ```
 
 ---
