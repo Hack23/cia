@@ -14,12 +14,12 @@
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Effective-2025-08-22-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2025-08-23-success?style=for-the-badge" alt="Effective Date"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Review-Quarterly-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
-**Document Owner:** CEO | **Version:** 1.0 | **Last Updated:** 2025-08-22  
-**Review Cycle:** Quarterly | **Next Review:** 2025-11-22
+**Document Owner:** CEO | **Version:** 1.1 | **Last Updated:** 2025-08-23  
+**Review Cycle:** Quarterly | **Next Review:** 2025-11-23
 
 ---
 
@@ -50,6 +50,37 @@ Copy this entire template into `CRA-ASSESSMENT.md` in your project root. Replace
 **Evidence Integration:** All evidence (SBOM, provenance, test reports) stored in GitHub release artifacts and repository documentation. Assessment references current project state and links to immutable evidence.
 
 **CRA Regulation Alignment:** This template supports CRA Annex V technical documentation requirements and Annex I essential requirements for cybersecurity through systematic self-assessment.
+
+### 📚 **Reference Implementations**
+
+The following Hack23 AB projects demonstrate completed CRA assessments using this template:
+
+| 🚀 **Project** | 📦 **Product Type** | 🏷️ **CRA Classification** | 📋 **Assessment Status** | 🔗 **Reference Link** |
+|---------------|-------------------|------------------------|------------------------|---------------------|
+| **🕵️ CIA (Citizen Intelligence Agency)** | Political transparency platform | Standard (Non-commercial OSS) | ✅ Complete | [📄 CRA Assessment](https://github.com/Hack23/cia/blob/master/CRA-ASSESSMENT.md) |
+| **⚫ Black Trigram** | Security analysis toolkit | Standard (Internal/OSS) | ✅ Complete | [📄 CRA Assessment](https://github.com/Hack23/blacktrigram/blob/main/CRA-ASSESSMENT.md) |
+| **🛡️ CIA Compliance Manager** | Compliance automation tool | Standard (Commercial) | ✅ Complete | [📄 CRA Assessment](https://github.com/Hack23/cia-compliance-manager/blob/main/CRA-ASSESSMENT.md) |
+
+### 🎯 **Implementation Examples**
+
+**📝 Common Template Usage Patterns:**
+- **🔍 Classification:** Each reference shows different market categories and CIA classification levels
+- **🛡️ Security Controls:** Demonstrates technical documentation across various product types
+- **📊 Evidence Links:** Examples of GitHub release attestations and ISMS policy integration
+- **⚖️ Risk Assessment:** Different risk profiles for transparency, security, and compliance tools
+
+**🔗 Evidence Repository Structure:**
+All reference implementations follow the standardized evidence pattern:
+- **📦 GitHub Releases:** SBOM, SLSA attestations, and provenance documentation
+- **🛡️ Security Policies:** Direct links to ISMS framework policies and procedures  
+- **📊 Compliance Badges:** OpenSSF Scorecard, CII Best Practices, and FOSSA license compliance
+- **🚨 Vulnerability Disclosure:** Standardized `SECURITY.md` and coordinated disclosure processes
+
+**💡 Usage Tips:**
+1. **Start with Classification:** Use reference implementations with similar CIA levels as templates
+2. **Evidence Alignment:** Follow the GitHub attestations pattern from existing assessments
+3. **Risk Context:** Adapt risk assessments based on similar product complexity
+4. **ISMS Integration:** Reference implementations show policy linkage patterns for different product types
 
 ---
 
@@ -467,6 +498,6 @@ CRA assessment updated only when changes constitute "substantial modification" u
 **Approved by:** James Pether Sörling, CEO  
 **Distribution:** Public  
 **Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels)  
-**Effective Date:** 2025-08-22  
+**Effective Date:** 2025-08-23  
 **CRA Alignment:** Template supports CRA Annex V technical documentation and self-assessment requirements
 **ISMS Integration:** Comprehensive alignment with public ISMS framework for operational excellence
