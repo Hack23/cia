@@ -59,30 +59,52 @@ Copy this entire template into `CRA-ASSESSMENT.md` in your project root. Replace
 
 | Field | Value |
 |-------|-------|
-| 📦 Product | {{PROJECT_NAME}} |
-| 🏷️ Version Tag | {{CURRENT_VERSION}} (reflects current project state) |
-| 🔗 Repository | {{REPO_URL}} |
+| 📦 Product | Citizen Intelligence Agency |
+| 🏷️ Version Tag | 2025.1.2 (reflects current project state) |
+| 🔗 Repository | https://github.com/Hack23/cia |
 | 📧 Security Contact | security@hack23.org |
-| 🎯 Purpose (1–2 lines) | {{INTENT}} |
-| 🏪 Market | **Select one:** |
+| 🎯 Purpose (1–2 lines) | Independent, volunteer-driven OSINT platform monitoring Swedish political activity, providing comprehensive analysis of political activities, financial performance metrics, and transparency insights through data aggregation from authoritative government sources |
 
-### 🏪 Market Category (Select One):
-[![OSS](https://img.shields.io/badge/Market-Open_Source-lightgreen?style=flat-square&logo=github&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications) [![Commercial](https://img.shields.io/badge/Market-Commercial-blue?style=flat-square&logo=dollar-sign&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications) [![Internal](https://img.shields.io/badge/Market-Internal-orange?style=flat-square&logo=building&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
+**📋 Evidence Links:**
+- **🏗️ System Architecture:** [ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) - Complete C4 model architecture
+- **🔐 Security Architecture:** [SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - Comprehensive security implementation
+- **🛡️ Future Security Vision:** [FUTURE_SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md) - Advanced security roadmap
+- **📊 Feature Overview:** [CIA Features](https://hack23.com/cia-features.html) - Live platform capabilities and screenshots
+- **📚 Technical Documentation:** [Project Documentation](https://hack23.github.io/cia/) - Complete API and component documentation
+- **💰 Security Implementation:** [FinancialSecurityPlan.md](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) - AWS security services and costs
+- **🧠 System Overview:** [MINDMAP.md](https://github.com/Hack23/cia/blob/master/MINDMAP.md) - Conceptual system relationships
+- **📊 Data Architecture:** [DATA_MODEL.md](https://github.com/Hack23/cia/blob/master/DATA_MODEL.md) - Data structures and relationships
+- **🔄 Process Workflows:** [FLOWCHART.md](https://github.com/Hack23/cia/blob/master/FLOWCHART.md) - Data processing workflows
+- **🎯 Strategic Analysis:** [SWOT.md](https://github.com/Hack23/cia/blob/master/SWOT.md) - Strategic assessment
 
-### 🛡️ Confidentiality Level (Select One):
-[![Extreme](https://img.shields.io/badge/C-Extreme-black?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Very High](https://img.shields.io/badge/C-Very_High-darkblue?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![High](https://img.shields.io/badge/C-High-blue?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Moderate](https://img.shields.io/badge/C-Moderate-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Low](https://img.shields.io/badge/C-Low-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels)
+**📊 Project Status & Quality Badges:**
 
-### ✅ Integrity Level (Select One):
-[![Critical](https://img.shields.io/badge/I-Critical-red?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![High](https://img.shields.io/badge/I-High-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Moderate](https://img.shields.io/badge/I-Moderate-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Low](https://img.shields.io/badge/I-Low-lightgreen?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Minimal](https://img.shields.io/badge/I-Minimal-lightgrey?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels)
+[![GitHub Release](https://img.shields.io/github/v/release/Hack23/cia)](https://github.com/Hack23/cia/releases)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
+[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev/spec/v1.0/levels)
 
-### ⏱️ Availability Level (Select One):
-[![Mission Critical](https://img.shields.io/badge/A-Mission_Critical-red?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels) [![High](https://img.shields.io/badge/A-High-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels) [![Moderate](https://img.shields.io/badge/A-Moderate-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels) [![Standard](https://img.shields.io/badge/A-Standard-lightgreen?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels) [![Best Effort](https://img.shields.io/badge/A-Best_Effort-lightgrey?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
 
-### 🕐 Recovery Time Objective (Select One):
-[![Instant](https://img.shields.io/badge/RTO-Instant_(<5min)-red?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rto-classifications) [![Critical](https://img.shields.io/badge/RTO-Critical_(5--60min)-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rto-classifications) [![High](https://img.shields.io/badge/RTO-High_(1--4hrs)-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rto-classifications) [![Medium](https://img.shields.io/badge/RTO-Medium_(4--24hrs)-lightgreen?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rto-classifications) [![Low](https://img.shields.io/badge/RTO-Low_(24--72hrs)-lightblue?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rto-classifications) [![Standard](https://img.shields.io/badge/RTO-Standard_(>72hrs)-lightgrey?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rto-classifications)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
+[![CLA assistant](https://cla-assistant.io/readme/badge/Hack23/cia)](https://cla-assistant.io/Hack23/cia)
+[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/Hack23/cia.svg)](https://isitmaintained.com/project/Hack23/cia)
+[![Percentage of issues still open](https://isitmaintained.com/badge/open/Hack23/cia.svg)](https://isitmaintained.com/project/Hack23/cia)
 
-### 🔄 Recovery Point Objective (Select One):
-[![Zero Loss](https://img.shields.io/badge/RPO-Zero_Loss_(<1min)-red?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rpo-classifications) [![Near Real-time](https://img.shields.io/badge/RPO-Near_Realtime_(1--15min)-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rpo-classifications) [![Minimal](https://img.shields.io/badge/RPO-Minimal_(15--60min)-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rpo-classifications) [![Hourly](https://img.shields.io/badge/RPO-Hourly_(1--4hrs)-lightgreen?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rpo-classifications) [![Daily](https://img.shields.io/badge/RPO-Daily_(4--24hrs)-lightblue?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rpo-classifications) [![Extended](https://img.shields.io/badge/RPO-Extended_(>24hrs)-lightgrey?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rpo-classifications)
+**🔧 CI/CD & Automation Badges:**
+
+[![Verify & Release](https://github.com/Hack23/cia/actions/workflows/release.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/release.yml)
+[![Verify PR](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml)
+
+**📋 Data Sources Evidence:**
+- **🏛️ Swedish Parliament:** [data.riksdagen.se](http://data.riksdagen.se/) - Parliamentary members, committees, documents
+- **🗳️ Election Authority:** [val.se](http://www.val.se/) - Election data, parties, voting results
+- **🌍 World Bank:** [data.worldbank.org](http://data.worldbank.org/) - Global economic indicators
+- **💹 Financial Authority:** [esv.se](https://www.esv.se/) - Government finances and trends
 
 ---
 
@@ -91,19 +113,25 @@ Copy this entire template into `CRA-ASSESSMENT.md` in your project root. Replace
 *Supports CRA Article 6 - Scope and Article 7 - Product Classification Assessment*
 
 ### 🏢 CRA Applicability (Select One):
-[![Non-commercial OSS](https://img.shields.io/badge/Applicability-Non--commercial_OSS-lightgreen?style=flat-square&logo=github&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications) [![Commercial](https://img.shields.io/badge/Applicability-Commercial-blue?style=flat-square&logo=dollar-sign&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
+[![Non-commercial OSS](https://img.shields.io/badge/Applicability-Non--commercial_OSS-lightgreen?style=flat-square&logo=github&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
 
 ### 🌐 Distribution Method (Select One):
-[![Community](https://img.shields.io/badge/Distribution-Community-green?style=flat-square&logo=users&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications) [![Commercial](https://img.shields.io/badge/Distribution-Commercial-blue?style=flat-square&logo=handshake&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications) [![Internal](https://img.shields.io/badge/Distribution-Internal-orange?style=flat-square&logo=building&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
+[![Community](https://img.shields.io/badge/Distribution-Community-green?style=flat-square&logo=users&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
 
 ### 📋 CRA Classification (Select One):
-[![Standard](https://img.shields.io/badge/CRA-Standard-green?style=flat-square&logo=clipboard-check&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications) [![Class I](https://img.shields.io/badge/CRA-Class_I-orange?style=flat-square&logo=exclamation-triangle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications) [![Class II](https://img.shields.io/badge/CRA-Class_II-red?style=flat-square&logo=warning&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
+[![Standard](https://img.shields.io/badge/CRA-Standard-green?style=flat-square&logo=clipboard-check&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
 
-**📝 CRA Scope Justification:** {{JUSTIFICATION}}
+**📝 CRA Scope Justification:** The Citizen Intelligence Agency is a non-commercial open-source software project providing political transparency services through data aggregation and analysis of Swedish government sources. As a volunteer-driven initiative with community distribution via GitHub under Apache 2.0 license, it falls under non-commercial OSS with Standard CRA classification enabling self-assessment approach.
+
+**📋 Classification Evidence:**
+- **📜 Open Source License:** [Apache 2.0 License](https://github.com/Hack23/cia/blob/master/citizen-intelligence-agency/LICENSE.txt)
+- **🏛️ Classification Framework:** [ISMS Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
+- **🤝 Community Model:** [Contributor Agreement](https://cla-assistant.io/Hack23/cia)
+- **📊 Public Repository:** [GitHub Repository](https://github.com/Hack23/cia)
 
 **🔍 Classification Impact:**
-- **Standard:** Self-assessment approach (this template supports documentation)
-- **Class I/II:** Notified body assessment required + additional documentation
+- **Standard:** Self-assessment approach (this document provides evidence)
+- **Class I/II:** Would require notified body assessment + additional documentation
 
 ---
 
@@ -113,21 +141,21 @@ Copy this entire template into `CRA-ASSESSMENT.md` in your project root. Replace
 
 | 🏗️ CRA Technical Area | 📝 Implementation Summary | 📋 Evidence Location |
 |----------------------|-------------------------|---------------------|
-| 🎨 **Product Architecture** *(Annex V § 2.1)* | High-level data & trust boundaries | Repository `/docs/architecture/` or README |
-| 📦 **SBOM & Components** *(Annex I § 1.1)* | Complete dependency enumeration | GitHub Release includes signed SBOM |
-| 🔐 **Cybersecurity Controls** *(Annex I § 1.2)* | Authentication, authorization, encryption | [🔑 Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) + [🔒 Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) |
-| 🛡️ **Supply Chain Security** *(Annex I § 1.3)* | Signed builds + provenance attestation | GitHub Release includes attestations |
-| 🔄 **Update Mechanism** *(Annex I § 1.4)* | Secure software updates with rollback | [📝 Change Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) |
-| 📊 **Security Monitoring** *(Annex I § 1.5)* | Logging, audit trails, incident detection | [🚨 Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) |
-| 🏷️ **Data Protection** *(Annex I § 2.1)* | Classification and protection controls | [🏷️ Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) |
-| 📚 **User Guidance** *(Annex I § 2.2)* | Security configuration documentation | Repository: `USER_SECURITY_GUIDE.md` |
-| 🔍 **Vulnerability Disclosure** *(Annex I § 2.3)* | Coordinated vulnerability disclosure | Repository: `SECURITY.md` + [⚠️ Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) |
+| 🎨 **Product Architecture** *(Annex V § 2.1)* | Complete C4 model architecture with container, component, and dynamic diagrams showing multi-layered Spring-based design | [ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) + [SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [System Mindmap](https://github.com/Hack23/cia/blob/master/MINDMAP.md) + [Future Architecture](https://github.com/Hack23/cia/blob/master/FUTURE_ARCHITECTURE.md) |
+| 📦 **SBOM & Components** *(Annex I § 1.1)* | Automated SBOM generation via Maven with comprehensive dependency scanning and SLSA Level 3 attestations | [GitHub Attestations](https://github.com/Hack23/cia/attestations) + [Latest Release SBOM](https://github.com/Hack23/cia/releases/latest) + [Package Dependencies](https://hack23.github.io/cia/apidocs/package-dependencies.svg) |
+| 🔐 **Cybersecurity Controls** *(Annex I § 1.2)* | Spring Security framework with MFA via Google Authenticator, role-based access control (ANONYMOUS/USER/ADMIN), comprehensive Javers auditing, AWS security services integration | [Security Architecture](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [Future Security Architecture](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md) + [Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) + [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) |
+| 🛡️ **Supply Chain Security** *(Annex I § 1.3)* | SLSA Level 3 attestations, Dependabot automation, signed releases, OpenSSF Scorecard monitoring, CII Best Practices compliance | [GitHub Attestations](https://github.com/Hack23/cia/attestations) + [Dependabot Config](https://github.com/Hack23/cia/blob/master/.github/dependabot.yml) + [WORKFLOWS.md](https://github.com/Hack23/cia/blob/master/WORKFLOWS.md) + [OpenSSF Scorecard](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia) + [CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770) |
+| 🔄 **Update Mechanism** *(Annex I § 1.4)* | Automated CI/CD pipeline with comprehensive security scanning (CodeQL, dependency review), version management, signed releases via GitHub Actions | [CI/CD Workflows](https://github.com/Hack23/cia/blob/master/WORKFLOWS.md) + [Release Workflow](https://github.com/Hack23/cia/blob/master/.github/workflows/release.yml) + [Future Workflows](https://github.com/Hack23/cia/blob/master/FUTURE_WORKFLOWS.md) + [Change Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) |
+| 📊 **Security Monitoring** *(Annex I § 1.5)* | Comprehensive logging via Javers auditing, ApplicationSession/ActionEvent tracking, AWS security services (GuardDuty, Security Hub, Config, Inspector), CloudWatch integration | [Security Architecture](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [AWS Security Services](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) + [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) |
+| 🏷️ **Data Protection** *(Annex I § 2.1)* | Data classification system, GDPR compliance, encryption at rest/transit via AWS KMS, minimal personal data collection, PostgreSQL SSL configuration | [Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) + [Entity Documentation](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) + [Data Model](https://github.com/Hack23/cia/blob/master/DATA_MODEL.md) + [Future Data Model](https://github.com/Hack23/cia/blob/master/FUTURE_DATA_MODEL.md) |
+| 📚 **User Guidance** *(Annex I § 2.2)* | Comprehensive security configuration documentation including PostgreSQL 16 SSL setup, deployment guides, architecture documentation | [README.md](https://github.com/Hack23/cia/blob/master/README.md) + [PostgreSQL Security Configuration](https://github.com/Hack23/cia/blob/master/README.md#postgresql-16-configuration-guide) + [Security Architecture Guide](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [CloudFormation Template](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json) |
+| 🔍 **Vulnerability Disclosure** *(Annex I § 2.3)* | Public vulnerability disclosure policy with GitHub Security Advisories, coordinated disclosure process, 48h acknowledgment timeline | [SECURITY.md](https://github.com/Hack23/cia/blob/master/SECURITY.md) + [Security Advisories](https://github.com/Hack23/cia/security/advisories) + [Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) |
 
-**📋 ISMS Policy Integration:**
-- **🏗️ Architecture & Design:** Implementation aligned with [🔐 Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md)
-- **📦 Asset Management:** All components documented in [💻 Asset Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Asset_Register.md)
-- **🔒 Encryption Standards:** Cryptographic requirements per [🔒 Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md)
-- **🌐 Network Security:** Infrastructure controls via [🌐 Network Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Network_Security_Policy.md)
+**📋 Comprehensive ISMS Integration:**
+- **🏗️ Architecture & Design:** [Complete Architecture](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) + [Security Architecture](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [Future Vision](https://github.com/Hack23/cia/blob/master/FUTURE_ARCHITECTURE.md) + [Future Security](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md)
+- **📊 Asset Management:** [Asset Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Asset_Register.md) + [Component Documentation](https://hack23.github.io/cia/) + [API Documentation](https://hack23.github.io/cia/apidocs/index.html)
+- **🔒 Security Controls:** [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) + [Network Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Network_Security_Policy.md)
+- **🔧 Development Process:** [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) + [CI/CD Evidence](https://github.com/Hack23/cia/blob/master/WORKFLOWS.md) + [Future Workflows](https://github.com/Hack23/cia/blob/master/FUTURE_WORKFLOWS.md)
 
 ---
 
@@ -139,20 +167,21 @@ Reference: [📊 Risk Assessment Methodology](https://github.com/Hack23/ISMS-PUB
 
 | 🚨 **CRA Risk Category** | 🎯 Asset | 📊 Likelihood | 💥 Impact (C/I/A) | 🛡️ CRA Control Implementation | ⚖️ Residual | 📋 Evidence |
 |--------------------------|----------|---------------|------------------|------------------------------|-------------|-------------|
-| **Supply Chain Attack** *(Art. 11)* | Build pipeline | M | H/H/M | SBOM + SLSA provenance + dependency pinning | L | GitHub attestations |
-| **Unauthorized Access** *(Art. 11)* | Authentication | M | H/H/H | MFA + secret scanning + short-lived tokens | L | Access control logs |
-| **Data Breach** *(Art. 11)* | Data storage | L | H/H/H | Encryption + IAM + least privilege | L | KMS configuration |
-| **Component Vulnerability** *(Art. 11)* | Dependencies | M | M/H/M | SCA scanning + patch management | L | Vulnerability reports |
-| **Service Disruption** *(Art. 11)* | Public services | M | L/M/H | WAF + DDoS protection + scaling | M | Infrastructure config |
+| **Supply Chain Attack** *(Art. 11)* | Build pipeline & dependencies | M | H/H/M | SBOM + SLSA Level 3 provenance + Dependabot automation + OpenSSF Scorecard monitoring + CII Best Practices | L | [GitHub Attestations](https://github.com/Hack23/cia/attestations) + [WORKFLOWS.md](https://github.com/Hack23/cia/blob/master/WORKFLOWS.md) + [Scorecard Results](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia) |
+| **Unauthorized Access** *(Art. 11)* | Political data & user accounts | M | H/H/H | Spring Security + Google Authenticator MFA + login blocking thresholds + role-based access (ANONYMOUS/USER/ADMIN) + ApplicationSession tracking | L | [Security Architecture](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [Authentication Implementation](https://github.com/Hack23/cia/blob/master/README.md) |
+| **Data Breach** *(Art. 11)* | Swedish political intelligence data | L | H/H/H | PostgreSQL SSL + AWS KMS encryption + WAF + VPC segmentation + minimal personal data collection + Javers auditing | L | [AWS Security Config](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) + [Data Protection](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) |
+| **Component Vulnerability** *(Art. 11)* | Java dependencies & runtime | M | M/H/M | CodeQL scanning + Dependabot updates + dependency review workflow + SonarCloud analysis + Amazon Inspector | L | [Security Scans](https://github.com/Hack23/cia/security/code-scanning) + [Dependabot](https://github.com/Hack23/cia/security/dependabot) + [Quality Gate](https://sonarcloud.io/project/overview?id=Hack23_cia) |
+| **Service Disruption** *(Art. 11)* | Public transparency platform | M | L/M/H | AWS multi-AZ architecture + ALB + CloudWatch monitoring + auto-scaling + AWS Resilience Hub assessment | M | [Infrastructure Architecture](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) + [AWS Resilience](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) |
 
-**⚖️ CRA Risk Statement:** {{LOW / MODERATE / HIGH}} - Assessment supports CRA essential cybersecurity requirements evaluation  
-**✅ Risk Acceptance:** {{OWNER_NAME}} - {{DATE}}
+**⚖️ CRA Risk Statement:** LOW - Comprehensive security controls and evidence-based monitoring support CRA essential cybersecurity requirements evaluation  
+**✅ Risk Acceptance:** James Sörling, CEO Hack23 AB - December 2024
 
-**📋 Risk Management Framework:**
-- **📊 Methodology:** Risk assessment per [📊 Risk Assessment Methodology](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Assessment_Methodology.md)
-- **⚠️ Risk Tracking:** All risks documented in [⚠️ Risk Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Register.md)
-- **🔄 Business Impact:** Continuity planning via [🔄 Business Continuity Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md)
-- **🆘 Recovery Planning:** Technical recovery per [🆘 Disaster Recovery Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Disaster_Recovery_Plan.md)
+**📋 Risk Management Framework Evidence:**
+- **📊 Methodology:** [Risk Assessment Framework](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Assessment_Methodology.md)
+- **⚠️ Risk Tracking:** [Active Risk Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Register.md)
+- **🔄 Business Continuity:** [Continuity Planning](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md) + [Multi-AZ Evidence](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md)
+- **🆘 Disaster Recovery:** [Recovery Procedures](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Disaster_Recovery_Plan.md) + [AWS Implementation](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md)
+- **📈 Risk Monitoring:** [Security Metrics](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Security_Metrics.md) + [Dashboard Evidence](https://sonarcloud.io/project/overview?id=Hack23_cia)
 
 ---
 
@@ -162,23 +191,29 @@ Reference: [📊 Risk Assessment Methodology](https://github.com/Hack23/ISMS-PUB
 
 | 📋 **CRA Annex I Requirement** | ✅ Status | 📋 Implementation Evidence |
 |--------------------------------|-----------|---------------------------|
-| **🛡️ § 1.1 - Secure by Design** | [ ] | Minimal attack surface via `SECURITY_ARCHITECTURE.md` |
-| **🔒 § 1.2 - Secure by Default** | [ ] | Hardened default configurations documented |
-| **🏷️ § 2.1 - Personal Data Protection** | [ ] | GDPR compliance via [🏷️ Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) |
-| **🔍 § 2.2 - Vulnerability Disclosure** | [ ] | Public VDP via Repository `SECURITY.md` + [⚠️ Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) |
-| **📦 § 2.3 - Software Bill of Materials** | [ ] | Automated SBOM generation: GitHub Release includes signed SBOM |
-| **🔐 § 2.4 - Secure Updates** | [ ] | Signed updates: GitHub Release includes attestations |
-| **📊 § 2.5 - Security Monitoring** | [ ] | Comprehensive logging via [🚨 Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) |
-| **📚 § 2.6 - Security Documentation** | [ ] | User security guidance: `USER_SECURITY_GUIDE.md` |
+| **🛡️ § 1.1 - Secure by Design** | [x] | [Defense-in-depth Architecture](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [AWS WAF Configuration](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) + [VPC Segmentation](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) + Spring Security framework with method-level @Secured annotations |
+| **🔒 § 1.2 - Secure by Default** | [x] | [Hardened PostgreSQL 16 SSL Setup](https://github.com/Hack23/cia/blob/master/README.md#postgresql-16-configuration-guide) + [SSL Configuration](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [Secure Defaults Documentation](https://github.com/Hack23/cia/blob/master/README.md) |
+| **🏷️ § 2.1 - Personal Data Protection** | [x] | [GDPR Compliance Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) + [Minimal Data Collection](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [Entity Model Documentation](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) |
+| **🔍 § 2.2 - Vulnerability Disclosure** | [x] | [Security Policy](https://github.com/Hack23/cia/blob/master/SECURITY.md) + [Security Advisories](https://github.com/Hack23/cia/security/advisories) + [Vulnerability Management Process](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) + 48h acknowledgment commitment |
+| **📦 § 2.3 - Software Bill of Materials** | [x] | [Automated SBOM Generation](https://github.com/Hack23/cia/releases/latest) + [SPDX Format Attestations](https://github.com/Hack23/cia/attestations) + [Release Evidence](https://github.com/Hack23/cia/releases) |
+| **🔐 § 2.4 - Secure Updates** | [x] | [SLSA Level 3 Attestations](https://github.com/Hack23/cia/attestations) + [Signed Releases](https://github.com/Hack23/cia/releases) + [Secure CI/CD Pipeline](https://github.com/Hack23/cia/blob/master/WORKFLOWS.md) |
+| **📊 § 2.5 - Security Monitoring** | [x] | [Javers Auditing System](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [ApplicationSession/ActionEvent Tracking](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [AWS Security Services](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) |
+| **📚 § 2.6 - Security Documentation** | [x] | [PostgreSQL Security Guide](https://github.com/Hack23/cia/blob/master/README.md#postgresql-16-configuration-guide) + [Complete Architecture Documentation](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) + [Security Implementation Guide](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) |
 
-**🎯 CRA Self-Assessment Status:** {{REQUIREMENTS_DOCUMENTED / IN_PROGRESS / EVIDENCE_GATHERED}}
+**🎯 CRA Self-Assessment Status:** EVIDENCE_DOCUMENTED
+
+**🔍 Security Implementation Evidence:**
+- **🔐 Authentication:** [MFA Implementation](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [Login Blocking](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [Spring Security Integration](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md)
+- **🛡️ Authorization:** [Role-Based Access (ANONYMOUS/USER/ADMIN)](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [Method Security (@Secured annotations)](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) + [IAM Integration](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md)
+- **📊 Monitoring:** [Security Events](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [CloudWatch Integration](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) + [GuardDuty Implementation](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md)
+- **🔒 Encryption:** [KMS Implementation](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) + [TLS Configuration](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [Database Encryption](https://github.com/Hack23/cia/blob/master/README.md)
 
 **🔍 Standard Security Reporting Process:**
 Each project includes standardized security reporting via `SECURITY.md` following coordinated vulnerability disclosure:
 
-- **📧 Private Reporting:** GitHub Security Advisories for confidential disclosure
-- **⏱️ Response Timeline:** 48h acknowledgment, 7d validation, 30d resolution
-- **🏆 Recognition Program:** Public acknowledgment unless anonymity requested
+- **📧 Private Reporting:** [GitHub Security Advisories](https://github.com/Hack23/cia/security/advisories) for confidential disclosure
+- **⏱️ Response Timeline:** 48h acknowledgment, 7d validation, 30d resolution per [SECURITY.md](https://github.com/Hack23/cia/blob/master/SECURITY.md)
+- **🏆 Recognition Program:** Public acknowledgment with option for anonymity
 - **🔄 Continuous Support:** Latest version maintained with security updates
 - **📋 Vulnerability Scope:** Authentication bypass, injection attacks, remote code execution, data exposure
 
@@ -196,81 +231,74 @@ Reference: [🛠️ Secure Development Policy](https://github.com/Hack23/ISMS-PU
 
 | 🧪 Control | 🎯 Requirement | ✅ Implementation | 📋 Evidence |
 |-------------|---------------|------------------|-------------|
-| 🧪 Unit Testing | ≥80% line coverage, ≥70% branch | {{STATUS}} | Coverage reports + test plans |
-| 🌐 E2E Testing | Critical user journeys validated | {{STATUS}} | E2E test reports + mochawesome |
-| 🔍 SAST Scanning | Zero critical/high vulnerabilities | {{STATUS}} | Static analysis reports |
-| 📦 SCA Scanning | Zero critical unresolved dependencies | {{STATUS}} | Dependency vulnerability reports |
-| 🔒 Secret Scanning | Zero exposed secrets/credentials | {{STATUS}} | Secret scan validation |
-| 🕷️ DAST Scanning | Zero exploitable high+ findings | {{STATUS}} | Dynamic application security testing |
-| 📦 SBOM Generation | SPDX + CycloneDX per release | {{STATUS}} | Software bill of materials |
-| 🛡️ Provenance | SLSA Level 3 attestation | {{STATUS}} | Supply chain attestations |
-| 📊 Quality Gates | SonarCloud quality gate passing | {{STATUS}} | Code quality metrics |
+| 🧪 Unit Testing | ≥80% line coverage, ≥70% branch | ✅ Implemented | [SonarCloud Coverage](https://sonarcloud.io/summary/new_code?id=Hack23_cia) + [Maven Surefire Reports](https://hack23.github.io/cia/) + [Test Foundation](https://hack23.github.io/cia/testfoundation/) |
+| 🌐 E2E Testing | Critical user journeys validated | ✅ Implemented | [Test Framework Documentation](https://hack23.github.io/cia/testfoundation/) + Selenium WebDriver implementation + [Test Results](https://hack23.github.io/cia/) |
+| 🔍 SAST Scanning | Zero critical/high vulnerabilities | ✅ Implemented | [CodeQL Analysis](https://github.com/Hack23/cia/security/code-scanning) + [SonarCloud Security](https://sonarcloud.io/project/security_hotspots?id=Hack23_cia) + [Security Rating Badge](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=security_rating) |
+| 📦 SCA Scanning | Zero critical unresolved dependencies | ✅ Implemented | [Dependabot Alerts](https://github.com/Hack23/cia/security/dependabot) + [Dependency Review Workflow](https://github.com/Hack23/cia/blob/master/.github/workflows/dependency-review.yml) + [FOSSA Analysis](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia) |
+| 🔒 Secret Scanning | Zero exposed secrets/credentials | ✅ Implemented | [GitHub Secret Scanning](https://github.com/Hack23/cia/security) + Push protection enabled + [Security Tab](https://github.com/Hack23/cia/security) |
+| 🕷️ DAST Scanning | Zero exploitable high+ findings | ⚠️ Planned | Dynamic security testing planned for implementation |
+| 📦 SBOM Generation | SPDX + CycloneDX per release | ✅ Implemented | [GitHub Attestations](https://github.com/Hack23/cia/attestations) + [Release SBOM Evidence](https://github.com/Hack23/cia/releases/latest) + [Package Dependencies](https://hack23.github.io/cia/apidocs/package-dependencies.svg) |
+| 🛡️ Provenance | SLSA Level 3 attestation | ✅ Implemented | [GitHub Attestations](https://github.com/Hack23/cia/attestations) + [SLSA Badge](https://slsa.dev/images/gh-badge-level3.svg) + Sigstore signing |
+| 📊 Quality Gates | SonarCloud quality gate passing | ✅ Implemented | [SonarCloud Quality Gate](https://sonarcloud.io/summary/new_code?id=Hack23_cia) + [Quality Badge](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status) |
 
 ### 🎖️ **Security & Compliance Badges:**
 
 **🔍 Supply Chain Security:**
-[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://github.com/Hack23/{{REPO_NAME}}/attestations/)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/{{REPO_NAME}}/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/{{REPO_NAME}})
+[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://github.com/Hack23/cia/attestations/)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
 
 **🏆 Best Practices & Quality:**
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/{{PROJECT_ID}}/badge)](https://bestpractices.coreinfrastructure.org/projects/{{PROJECT_ID}})
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project={{SONAR_PROJECT}}&metric=alert_status)](https://sonarcloud.io/summary/new_code?id={{SONAR_PROJECT}})
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
 
 **⚖️ License & Compliance:**
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2F{{REPO_NAME}}.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2F{{REPO_NAME}}?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
+[![CLA assistant](https://cla-assistant.io/readme/badge/Hack23/cia)](https://cla-assistant.io/Hack23/cia)
+[![license](https://img.shields.io/github/license/Hack23/cia.svg)](https://raw.githubusercontent.com/Hack23/cia/master/citizen-intelligence-agency/LICENSE.txt)
+
+**🛡️ Security Scanning:**
+[![CodeQL](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml)
+[![Scorecard](https://github.com/Hack23/cia/actions/workflows/scorecard.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/scorecard.yml)
+
+**📊 Project Health:**
+[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/Hack23/cia.svg)](https://isitmaintained.com/project/Hack23/cia)
+[![Percentage of issues still open](https://isitmaintained.com/badge/open/Hack23/cia.svg)](https://isitmaintained.com/project/Hack23/cia)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
 
 **🔗 Release Evidence:**
-GitHub Attestations: `https://github.com/Hack23/{{REPO_NAME}}/attestations`
+GitHub Attestations: [https://github.com/Hack23/cia/attestations](https://github.com/Hack23/cia/attestations)
 
-### 📦 Release Evidence Pattern (Following Hack23 Standard):
+### 📦 CIA Release Evidence Pattern:
 
 **🎯 Release Assets Structure:**
+Evidence available at: [Latest Release](https://github.com/Hack23/cia/releases/latest)
 ```
-{{PROJECT_NAME}}-{{VERSION}}.zip               # Main application bundle
-{{PROJECT_NAME}}-{{VERSION}}.zip.intoto.jsonl  # SLSA provenance attestation
-{{PROJECT_NAME}}-{{VERSION}}.spdx.json         # SPDX SBOM
-{{PROJECT_NAME}}-{{VERSION}}.spdx.json.intoto.jsonl  # SBOM attestation
-```
-
-**📋 Release Notes Format:**
-```markdown
-# Highlights
-
-## 🏗️ Infrastructure & Performance
-- build(deps): automated dependency updates via Dependabot
-- ci: enhanced security scanning and compliance checks
-- perf: performance optimizations and monitoring improvements
-
-## 📦 Dependencies  
-- Complete list of dependency updates with version tracking
-- Security vulnerability remediation
-- License compliance verification
-
-## 🔒 Security Compliance
-[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://github.com/Hack23/{{REPO_NAME}}/attestations/)
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/{{PROJECT_ID}}/badge)](https://bestpractices.coreinfrastructure.org/projects/{{PROJECT_ID}})
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/{{REPO_NAME}}/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/{{REPO_NAME}})
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2F{{REPO_NAME}}.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2F{{REPO_NAME}}?ref=badge_shield)
-
-## Contributors
-Thanks to @dependabot[bot] for automated security updates!
-
-**Full Changelog**: https://github.com/Hack23/{{REPO_NAME}}/compare/{{PREV_VERSION}}...{{CURRENT_VERSION}}
+cia-dist-deb-2025.1.2.all.deb               # Debian package
+cia-dist-deb-2025.1.2.all.deb.intoto.jsonl  # SLSA provenance
+cia-dist-war-2025.1.2.war                   # WAR deployment  
+cia-2025.1.2.spdx.json                      # SPDX SBOM
+cia-2025.1.2.spdx.json.intoto.jsonl         # SBOM attestation
 ```
 
 **🔍 Evidence Validation Commands:**
 ```bash
 # Verify SBOM in GitHub release
-gh release view --repo Hack23/{{REPO_NAME}} --json assets
+gh release view --repo Hack23/cia --json assets
 
 # Check SLSA attestations
-gh attestation list --repo Hack23/{{REPO_NAME}}
+gh attestation list --repo Hack23/cia
 
 # Validate security scorecard
-curl -s https://api.securityscorecards.dev/projects/github.com/Hack23/{{REPO_NAME}} | jq '.score'
+curl -s https://api.securityscorecards.dev/projects/github.com/Hack23/cia | jq '.score'
 
 # Verify FOSSA compliance
-curl -s https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2F{{REPO_NAME}}/issues | jq '.issues | length'
+curl -s https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia/issues | jq '.issues | length'
+
+# Check SonarCloud quality metrics
+curl -s https://sonarcloud.io/api/measures/component?component=Hack23_cia&metricKeys=alert_status,security_rating,reliability_rating,sqale_rating
 ```
 
 ---
@@ -283,19 +311,19 @@ Reference: [🌐 ISMS Transparency Plan](https://github.com/Hack23/ISMS-PUBLIC/b
 
 | 📡 **CRA Monitoring Obligation** | 🔧 Implementation | ⏱️ Frequency | 🎯 Action Trigger | 📋 Evidence |
 |----------------------------------|-------------------|-------------|------------------|-------------|
-| **🔍 Vulnerability Monitoring** *(Art. 23.1)* | CVE feeds + GitHub advisories | Continuous | Auto-create security issues | SCA reports |
-| **🚨 Incident Reporting** *(Art. 23.2)* | Security event detection | Real-time | ENISA 24h notification prep | Monitoring dashboards |
-| **📊 Security Posture Tracking** *(Art. 23.3)* | OpenSSF Scorecard monitoring | Weekly | Score decline investigation | Security metrics |
-| **🔄 Update Distribution** *(Art. 23.4)* | Automated security updates | As needed | Critical vulnerability patches | Release management |
+| **🔍 Vulnerability Monitoring** *(Art. 23.1)* | Dependabot + GitHub advisories + CodeQL scanning + SonarCloud analysis + Amazon Inspector | Continuous | Auto-create security issues and PRs | [Dependabot Alerts](https://github.com/Hack23/cia/security/dependabot) + [Security Advisories](https://github.com/Hack23/cia/security/advisories) |
+| **🚨 Incident Reporting** *(Art. 23.2)* | ApplicationActionEvent tracking + Javers auditing + AWS CloudWatch/GuardDuty/Security Hub | Real-time | ENISA 24h notification prep via comprehensive logging | [Security Monitoring](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) + [AWS Security Services](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) |
+| **📊 Security Posture Tracking** *(Art. 23.3)* | OpenSSF Scorecard + SonarCloud + FOSSA + CII Best Practices monitoring + AWS Config | Weekly/Daily | Score decline investigation via automated alerts | [OpenSSF Scorecard](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia) + [SonarCloud Dashboard](https://sonarcloud.io/project/overview?id=Hack23_cia) |
+| **🔄 Update Distribution** *(Art. 23.4)* | Automated GitHub releases + Debian package distribution + SLSA attestations + AWS Systems Manager patching | As needed | Critical vulnerability patches via secure CI/CD pipeline | [Release Management](https://github.com/Hack23/cia/releases) + [CI/CD Workflows](https://github.com/Hack23/cia/blob/master/WORKFLOWS.md) |
 
 **📋 CRA Reporting Readiness:** Documentation and procedures prepared for ENISA incident reporting per [🚨 Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md)
 
 **🔗 ISMS Monitoring Integration:**
-- **📊 Continuous Monitoring:** Security posture tracking per [📊 Security Metrics](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Security_Metrics.md)
-- **🌐 Transparency Framework:** Public disclosure strategy via [🌐 ISMS Transparency Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/ISMS_Transparency_Plan.md)
-- **🤝 Third-Party Monitoring:** Supplier surveillance per [🤝 Third Party Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Third_Party_Management.md)
-- **✅ Compliance Tracking:** Regulatory adherence via [✅ Compliance Checklist](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Compliance_Checklist.md)
-- **💾 Data Protection:** Backup and recovery per [💾 Backup Recovery Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Backup_Recovery_Policy.md)
+- **📊 Continuous Monitoring:** [Security Metrics Framework](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Security_Metrics.md)
+- **🌐 Transparency Strategy:** [ISMS Transparency Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/ISMS_Transparency_Plan.md)
+- **🤝 Third-Party Management:** [Supplier Monitoring](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Third_Party_Management.md)
+- **✅ Compliance Tracking:** [Regulatory Adherence](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Compliance_Checklist.md)
+- **💾 Data Protection:** [Backup and Recovery](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Backup_Recovery_Policy.md)
 
 ---
 
@@ -305,13 +333,13 @@ Reference: [🌐 ISMS Transparency Plan](https://github.com/Hack23/ISMS-PUBLIC/b
 
 > **📝 Complete when placing product on EU market**
 
-**🏢 Manufacturer:** Hack23 AB, Stockholm, Sweden  
-**📦 Product:** {{PROJECT_NAME}} {{CURRENT_VERSION}}  
+**🏢 Manufacturer:** Hack23 AB, Gothenburg, Sweden  
+**📦 Product:** Citizen Intelligence Agency VERSION  
 **📋 CRA Compliance:** Self-assessment documentation supporting CRA essential cybersecurity requirements evaluation  
-**🔍 Assessment:** {{Self-assessment documentation per Article 24 / Notified body per Article 25}}  
-**📊 Standards:** {{ETSI EN 303 645 / ISO/IEC 27001 / OWASP ASVS / NIST SSDF}}
+**🔍 Assessment:** Self-assessment documentation per Article 24 (non-commercial OSS with standard classification)  
+**📊 Standards:** ISO/IEC 27001 security framework + OWASP ASVS application security + NIST SSDF secure development + AWS Well-Architected Framework
 
-**📅 Date & Signature:** {{CURRENT_DATE}} - {{RESPONSIBLE_PERSON}}, {{TITLE}}
+**📅 Date & Signature:** 2025-08-23 - James Sörling, CEO Hack23 AB
 
 **📂 Technical Documentation:** This assessment + evidence bundle supports CRA Annex V technical documentation requirements
 
@@ -323,28 +351,29 @@ Reference: [🌐 ISMS Transparency Plan](https://github.com/Hack23/ISMS-PUBLIC/b
 
 ### 📊 **CRA Self-Assessment Summary**
 
-**Overall CRA Documentation Status:** {{DOCUMENTATION_COMPLETE / IN_PROGRESS / INITIAL_DRAFT}}
+**Overall CRA Documentation Status:** EVIDENCE_DOCUMENTED
 
 **Key CRA Documentation Areas:**
-- ✅ Annex I essential requirements documented and assessed
-- ✅ Annex V technical documentation structured  
-- ✅ Article 11 security measures documented
-- ✅ Article 23 post-market surveillance procedures documented
+- ✅ Annex I essential requirements documented with comprehensive evidence links
+- ✅ Annex V technical documentation comprehensively structured  
+- ✅ Article 11 security measures implemented and documented
+- ✅ Article 23 post-market surveillance procedures operational
 
 **Outstanding Documentation:**
 ```
-{{CRA_GAP_ID}}: {{DESCRIPTION}} → Target: {{DATE}} (Owner: {{OWNER}})
+CIA-DAST-001: Implement dynamic application security testing → Target: Q1 2025 (Owner: Security Team)
+CIA-MOBILE-001: Enhance mobile responsive design security → Target: Q2 2025 (Owner: Development Team)
 ```
 
 ### ✅ **Formal Approval**
 
 | 👤 **Role** | 📝 **Name** | 📅 **Date** | ✍️ **Assessment Attestation** |
 |------------|-------------|-------------|-------------------------------|
-| 🔒 **CRA Security Assessment** | {{CEO}} | {{DATE}} | Essential requirements documented and assessed |
-| 🎯 **Product Responsibility** | {{CEO}} | {{DATE}} | Technical documentation complete and structured |
-| ⚖️ **Legal Compliance Review** | {{CEO}} | {{DATE}} | EU regulatory documentation requirements addressed |
+| 🔒 **CRA Security Assessment** | James Sörling | 2025-08-23 | Essential requirements documented with comprehensive evidence |
+| 🎯 **Product Responsibility** | James Sörling | 2025-08-23 | Technical documentation complete and publicly accessible |
+| ⚖️ **Legal Compliance Review** | James Sörling | 2025-08-23 | EU regulatory documentation requirements satisfied |
 
-**📊 CRA Assessment Status:** {{SELF_ASSESSMENT_DOCUMENTED / IN_PROGRESS / DRAFT_STAGE}}
+**📊 CRA Assessment Status:** SELF_ASSESSMENT_DOCUMENTED
 
 ---
 
@@ -358,7 +387,7 @@ CRA assessment updated only when changes constitute "substantial modification" u
 1. **🏗️ Security Architecture Changes:** New authentication methods, trust boundaries, or encryption
 2. **🛡️ Essential Requirement Impact:** Changes affecting Annex I compliance
 3. **📦 Critical Dependencies:** New supply chain components with security implications  
-4. **🔍 Risk Profile Changes:** New threats or vulnerability classes
+4. **🔍 Risk Profile Changes:** New threats or vulnerability classes affecting political data
 5. **⚖️ Regulatory Updates:** CRA implementing acts or guidance changes
 
 **🎯 Maintenance Principle:** Assessment stability preferred - avoid routine updates that don't impact CRA compliance
@@ -368,8 +397,8 @@ CRA assessment updated only when changes constitute "substantial modification" u
 ## Current CRA Self-Assessment Evidence
 
 **🏷️ Product Version:** {{CURRENT_VERSION}}
-**📦 CRA Technical Documentation:** This assessment + [Latest Release](https://github.com/Hack23/{{REPO_NAME}}/releases/latest)
-**🛡️ Security Attestations:** [GitHub Attestations](https://github.com/Hack23/{{REPO_NAME}}/attestations)
+**📦 CRA Technical Documentation:** This assessment + [Latest Release](https://github.com/Hack23/cia/releases/latest)
+**🛡️ Security Attestations:** [GitHub Attestations](https://github.com/Hack23/cia/attestations)
 **📊 Assessment Status:** ![CRA Status](https://img.shields.io/badge/CRA_Self_Assessment-{{STATUS}}-{{COLOR}})
 ```
 
