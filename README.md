@@ -77,6 +77,7 @@ For more details on our data integration approach, see the [Data Integration Doc
 | ![JDK-21](https://img.shields.io/badge/JDK-21-brightgreen.svg) | Supported | LTS Release |
 | ![JDK-22](https://img.shields.io/badge/JDK-22-orange.svg) | Compatible | Feature Release |
 | ![JDK-23](https://img.shields.io/badge/JDK-23-orange.svg) | Compatible | Feature Release |
+| ![JDK-24](https://img.shields.io/badge/JDK-24-orange.svg) | Supported | Feature Release |
 | ![JDK-24](https://img.shields.io/badge/JDK-24-brightgreen.svg) | Supported | Future LTS |
 
 </div>
