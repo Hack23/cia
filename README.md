@@ -29,6 +29,50 @@ For a conceptual view of our system architecture and components, see our [Archit
 - 🌐 **Website**: [www.hack23.com](https://www.hack23.com)
 - 💼 **LinkedIn**: [James Sörling](https://www.linkedin.com/in/jamessorling)
 
+## 🔐 Commitment to Transparency and Security
+
+At Hack23 AB, we believe that true security comes through transparency and demonstrable practices. Our Information Security Management System (ISMS) is publicly available, showcasing our commitment to security excellence and organizational transparency.
+
+<table>
+  <tr>
+    <td width="50%">
+      <div align="center">
+        <h3>📋 Public ISMS Repository</h3>
+        <p>Complete Information Security Management System documentation</p>
+        <a href="https://github.com/Hack23/ISMS-PUBLIC">
+          <img src="https://img.shields.io/badge/ISMS-PUBLIC-0066CC?style=for-the-badge&logo=github&logoColor=white" alt="ISMS Public Repository">
+        </a>
+      </div>
+    </td>
+    <td width="50%">
+      <div align="center">
+        <h3>🔒 Information Security Policy</h3>
+        <p>Enterprise-grade security framework and governance</p>
+        <a href="https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md">
+          <img src="https://img.shields.io/badge/Security-Policy-DC143C?style=for-the-badge&logo=shield&logoColor=white" alt="Information Security Policy">
+        </a>
+      </div>
+    </td>
+  </tr>
+</table>
+
+### 🏆 Security Through Transparency
+
+Our approach to cybersecurity consulting is built on a foundation of transparent practices:
+
+- **🔍 Open Documentation**: Complete ISMS framework available for review
+- **📋 Policy Transparency**: Detailed security policies and procedures publicly accessible  
+- **🎯 Demonstrable Expertise**: Our own security implementation serves as a live demonstration
+- **🔄 Continuous Improvement**: Public documentation enables community feedback and enhancement
+
+<div align="center">
+  <p><em>"Our commitment to transparency extends to our security practices - demonstrating that true security comes from robust processes, continuous improvement, and a culture where security considerations are integrated into every business decision."</em></p>
+  <p><strong>— James Pether Sörling, CEO/Founder</strong></p>
+</div>
+
+---
+
+
 ## 📚 Data Sources
 
 Our analysis is powered by authoritative Swedish government and international data sources:
