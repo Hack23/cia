@@ -268,7 +268,7 @@ Reference: [🛠️ Secure Development Policy](https://github.com/Hack23/ISMS-PU
 | 🔍 SAST Scanning | Zero critical/high vulnerabilities | ✅ Implemented | [CodeQL Analysis](https://github.com/Hack23/cia/security/code-scanning) + [SonarCloud Security](https://sonarcloud.io/project/security_hotspots?id=Hack23_cia) + [Security Rating Badge](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=security_rating) |
 | 📦 SCA Scanning | Zero critical unresolved dependencies | ✅ Implemented | [Dependabot Alerts](https://github.com/Hack23/cia/security/dependabot) + [Dependency Review Workflow](https://github.com/Hack23/cia/blob/master/.github/workflows/dependency-review.yml) + [FOSSA Analysis](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia) |
 | 🔒 Secret Scanning | Zero exposed secrets/credentials | ✅ Implemented | [GitHub Secret Scanning](https://github.com/Hack23/cia/security) + Push protection enabled + [Security Tab](https://github.com/Hack23/cia/security) |
-| 🕷️ DAST Scanning | Zero exploitable high+ findings | ✅ Implemented | [![ZAP Scan](https://github.com/Hack23/cia-compliance-manager/actions/workflows/zap-scan.yml/badge.svg)](https://github.com/Hack23/cia-compliance-manager/actions/workflows/zap-scan.yml) |
+| 🕷️ DAST Scanning | Zero exploitable high+ findings | ✅ Implemented | [![ZAP Scan](https://github.com/Hack23/cia/actions/workflows/zap-scan.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/zap-scan.yml) |
 | 📦 SBOM Generation | SPDX + CycloneDX per release | ✅ Implemented | [GitHub Attestations](https://github.com/Hack23/cia/attestations) + [Release SBOM Evidence](https://github.com/Hack23/cia/releases/latest) + [Package Dependencies](https://hack23.github.io/cia/apidocs/package-dependencies.svg) |
 | 🛡️ Provenance | SLSA Level 3 attestation | ✅ Implemented | [GitHub Attestations](https://github.com/Hack23/cia/attestations) + [SLSA Badge](https://slsa.dev/images/gh-badge-level3.svg) + Sigstore signing |
 | 📊 Quality Gates | SonarCloud quality gate passing | ✅ Implemented | [SonarCloud Quality Gate](https://sonarcloud.io/summary/new_code?id=Hack23_cia) + [Quality Badge](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status) |
@@ -294,7 +294,7 @@ Reference: [🛠️ Secure Development Policy](https://github.com/Hack23/ISMS-PU
 **🛡️ Security Scanning:**
 [![CodeQL](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml)
 [![Scorecard](https://github.com/Hack23/cia/actions/workflows/scorecard.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/scorecard.yml)
-[![ZAP Scan](https://github.com/Hack23/cia-compliance-manager/actions/workflows/zap-scan.yml/badge.svg)](https://github.com/Hack23/cia-compliance-manager/actions/workflows/zap-scan.yml)
+[![ZAP Scan](https://github.com/Hack23/cia/actions/workflows/zap-scan.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/zap-scan.yml)
 
 **📊 Project Health:**
 [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/Hack23/cia.svg)](https://isitmaintained.com/project/Hack23/cia)
