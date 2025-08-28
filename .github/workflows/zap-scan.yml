@@ -1,0 +1,34 @@
+name: ZAP Security Scan
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL to scan (default is the GitHub Pages site)"
+        required: true
+        default: "https://hack23.github.io/cia-compliance-manager/"
+
+# Restrict permissions to minimum required
+permissions:
+  contents: read
+  issues: write # Required if you want ZAP to create GitHub issues for vulnerabilities
+
+jobs:
+  zap_scan:
+    name: ZAP Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
+        with:
+          egress-policy: audit
+
+      - name: ZAP Scan
+        uses: zaproxy/action-full-scan@75ee1686750ab1511a73b26b77a2aedd295053ed # v0.12.0
+        with:
+          token: ${{ github.token }}
+          docker_name: "ghcr.io/zaproxy/zaproxy:stable"
+          target: ${{ github.event.inputs.url }}
+          # Uncomment and configure additional ZAP options as needed
+          # rules_file_name: '.zap/rules.tsv'
+          # cmd_options: '-a'
