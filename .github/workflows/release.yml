@@ -129,7 +129,7 @@ jobs:
 
     # Generate artifact attestation for DEB package
     - name: Generate artifact attestation for deb package
-      uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+      uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
       id: attest_deb
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
@@ -150,7 +150,7 @@ jobs:
 
     # Generate artifact attestation for WAR
     - name: Generate artifact attestation for WAR
-      uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+      uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
       id: attest_war
       with:
         subject-path: 'citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war'
