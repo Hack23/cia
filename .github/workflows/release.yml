@@ -188,7 +188,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create a GitHub release
-      uses: ncipollo/release-action@1c89adf39833729d8f85a31ccbc451b078733c80 # v1.19.1
+      uses: ncipollo/release-action@98d25d4189e9b6cee19b8635b1ea5cc39c158a41 # v1.19.2
       with:
         tag: '${{ github.event.inputs.release }}'
         generateReleaseNotes: false
