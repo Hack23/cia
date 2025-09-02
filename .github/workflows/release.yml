@@ -192,6 +192,7 @@ jobs:
       with:
         tag: '${{ github.event.inputs.release }}'
         generateReleaseNotes: false
+        immutableCreate: true
         name: Release ${{ github.event.inputs.release }}
         body: ${{ steps.release-notes.outputs.body }}
         artifacts: |
