@@ -10,6 +10,7 @@ This document outlines the comprehensive security architecture of the Citizen In
 | [Financial Security Plan](FinancialSecurityPlan.md) | 💰 Cost/Security | AWS security implementation costs |
 | [Architecture](ARCHITECTURE.md) | 🏛️ Structure | Overall system architecture |
 | [End-of-Life Strategy](End-of-Life-Strategy.md) | 📅 Lifecycle | Security patching and updates |
+| [Threat Model](THREAT_MODEL.md) | 🛡️ Security | STRIDE/MITRE threat analysis baseline |
 
 ## 🔑 Authentication and Authorization Architecture
 

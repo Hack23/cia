@@ -92,4 +92,5 @@ For a conceptual overview of how these components interact, see the [System Mind
 - [Future Architecture Vision](FUTURE_MINDMAP.md) - Long-term roadmap
 - [CIA Features](https://hack23.com/cia-features.html) - Feature showcase with screenshots
 - [Project Documentation](https://hack23.github.io/cia/) - Comprehensive developer resources
+- [Threat Model](THREAT_MODEL.md) - Lifecycle risk and residual threat alignment
 
