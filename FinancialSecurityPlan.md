@@ -193,3 +193,4 @@ For more details on AWS deployment, see the [AWS Infrastructure](AWS_INFRASTRUCT
 - [Security Architecture](SECURITY_ARCHITECTURE.md) - Security model details
 - [README](README.md) - Project overview and quick links
 - [CIA Features](https://hack23.com/cia-features.html) - Feature showcase with screenshots
+- [Threat Model](THREAT_MODEL.md) - Risk-driven justification for selected security services

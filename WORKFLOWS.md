@@ -25,6 +25,7 @@ This document details the continuous integration and deployment workflows used i
 | **[End-of-Life Strategy](End-of-Life-Strategy.md)** | 📅 Lifecycle    | Maintenance and EOL planning              | [View Source](https://github.com/Hack23/cia/blob/master/End-of-Life-Strategy.md) |
 | **[Financial Security Plan](FinancialSecurityPlan.md)** | 💰 Security | Cost and security implementation          | [View Source](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) |
 | **[CIA Features](https://hack23.com/cia-features.html)** | 🚀 Features | Platform features overview                | [View on hack23.com](https://hack23.com/cia-features.html)                     |
+| **[Threat Model](THREAT_MODEL.md)**                 | 🛡️ Security     | Threat analysis informing pipeline gates  | [View Source](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md)        |
 
 </div>
 
