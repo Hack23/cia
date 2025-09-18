@@ -82,7 +82,7 @@
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
-      <version>1.19.1</version>
+      <version>1.21.2</version>
     </dependency>
     <dependency>
       <groupId>javax.annotation</groupId>
@@ -102,12 +102,12 @@
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
-      <version>4.30.2</version>
+      <version>4.32.1</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jdt</groupId>
       <artifactId>ecj</artifactId>
-      <version>3.41.0</version>
+      <version>3.43.0</version>
     </dependency>
     <dependency>
       <groupId>org.quartz-scheduler</groupId>

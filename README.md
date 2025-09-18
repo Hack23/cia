@@ -29,6 +29,50 @@ For a conceptual view of our system architecture and components, see our [Archit
 - 🌐 **Website**: [www.hack23.com](https://www.hack23.com)
 - 💼 **LinkedIn**: [James Sörling](https://www.linkedin.com/in/jamessorling)
 
+## 🔐 Commitment to Transparency and Security
+
+At Hack23 AB, we believe that true security comes through transparency and demonstrable practices. Our Information Security Management System (ISMS) is publicly available, showcasing our commitment to security excellence and organizational transparency.
+
+<table>
+  <tr>
+    <td width="50%">
+      <div align="center">
+        <h3>📋 Public ISMS Repository</h3>
+        <p>Complete Information Security Management System documentation</p>
+        <a href="https://github.com/Hack23/ISMS-PUBLIC">
+          <img src="https://img.shields.io/badge/ISMS-PUBLIC-0066CC?style=for-the-badge&logo=github&logoColor=white" alt="ISMS Public Repository">
+        </a>
+      </div>
+    </td>
+    <td width="50%">
+      <div align="center">
+        <h3>🔒 Information Security Policy</h3>
+        <p>Enterprise-grade security framework and governance</p>
+        <a href="https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md">
+          <img src="https://img.shields.io/badge/Security-Policy-DC143C?style=for-the-badge&logo=shield&logoColor=white" alt="Information Security Policy">
+        </a>
+      </div>
+    </td>
+  </tr>
+</table>
+
+### 🏆 Security Through Transparency
+
+Our approach to cybersecurity consulting is built on a foundation of transparent practices:
+
+- **🔍 Open Documentation**: Complete ISMS framework available for review
+- **📋 Policy Transparency**: Detailed security policies and procedures publicly accessible  
+- **🎯 Demonstrable Expertise**: Our own security implementation serves as a live demonstration
+- **🔄 Continuous Improvement**: Public documentation enables community feedback and enhancement
+
+<div align="center">
+  <p><em>"Our commitment to transparency extends to our security practices - demonstrating that true security comes from robust processes, continuous improvement, and a culture where security considerations are integrated into every business decision."</em></p>
+  <p><strong>— James Pether Sörling, CEO/Founder</strong></p>
+</div>
+
+---
+
+
 ## 📚 Data Sources
 
 Our analysis is powered by authoritative Swedish government and international data sources:
@@ -77,6 +121,7 @@ For more details on our data integration approach, see the [Data Integration Doc
 | ![JDK-21](https://img.shields.io/badge/JDK-21-brightgreen.svg) | Supported | LTS Release |
 | ![JDK-22](https://img.shields.io/badge/JDK-22-orange.svg) | Compatible | Feature Release |
 | ![JDK-23](https://img.shields.io/badge/JDK-23-orange.svg) | Compatible | Feature Release |
+| ![JDK-24](https://img.shields.io/badge/JDK-24-orange.svg) | Supported | Feature Release |
 | ![JDK-24](https://img.shields.io/badge/JDK-24-brightgreen.svg) | Supported | Future LTS |
 
 </div>
@@ -92,6 +137,8 @@ For details on our technology lifecycle management, see the [End-of-Life Strateg
 | --------------------------------------------------- | --------------- | ----------------------------------------- | ------------------------------------------------------------------------------- |
 | **[Architecture](ARCHITECTURE.md)**                 | 🏛️ Architecture | C4 model showing current system structure | [View Source](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md)         |
 | **[Future Architecture](FUTURE_ARCHITECTURE.md)**   | 🏛️ Architecture | C4 model showing future system structure | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_ARCHITECTURE.md)         |
+| **[Security Architecture](SECURITY_ARCHITECTURE.md)** | 🔐 Security     | Security architecture                     | [View Source](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md)         |
+| **[Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md)** | 🔐 Security     | Future Security architecture  | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md)         |
 | **[Mindmaps](MINDMAP.md)**                          | 🧠 Concept      | Current system component relationships    | [View Source](https://github.com/Hack23/cia/blob/master/MINDMAP.md)             |
 | **[Future Mindmaps](FUTURE_MINDMAP.md)**            | 🧠 Concept      | Future capability evolution               | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_MINDMAP.md)      |
 | **[SWOT Analysis](SWOT.md)**                        | 💼 Business     | Current strategic assessment              | [View Source](https://github.com/Hack23/cia/blob/master/SWOT.md)                |
@@ -386,6 +433,47 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
 This project is powered by advanced AI technologies for data processing and analysis. We integrate data from various open sources and visualize findings through modern data visualization tools.
 
 For our future vision incorporating more advanced AI capabilities, see our [Future Architecture Vision](FUTURE_MINDMAP.md).
+
+## 🏛️ Citizen Intelligence Agency Project Classification
+
+### 🎯 Project Classification
+[![Project Type](https://img.shields.io/badge/Type-Data_Analytics-orange?style=for-the-badge&logo=chart-line&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
+[![Process Type](https://img.shields.io/badge/Process-Operations-brown?style=for-the-badge&logo=cogs&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
+
+### 🔒 Security Classification
+[![Confidentiality](https://img.shields.io/badge/Confidentiality-Public-lightgrey?style=for-the-badge&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels)
+[![Integrity](https://img.shields.io/badge/Integrity-High-orange?style=for-the-badge&logo=check-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels)
+[![Availability](https://img.shields.io/badge/Availability-Moderate-yellow?style=for-the-badge&logo=server&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)
+
+### ⏱️ Business Continuity
+[![RTO](https://img.shields.io/badge/RTO-High_(1--4hrs)-yellow?style=for-the-badge&logo=clock&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rto-classifications)
+[![RPO](https://img.shields.io/badge/RPO-Hourly_(1--4hrs)-lightgreen?style=for-the-badge&logo=database&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rpo-classifications)
+
+### 💰 Business Impact Analysis Matrix
+
+| Impact Category | Financial | Operational | Reputational | Regulatory |
+|-----------------|-----------|-------------|--------------|------------|
+| **🔒 Confidentiality** | [![Negligible - No impact](https://img.shields.io/badge/Negligible-No_impact-lightgrey?style=for-the-badge&logo=dollar-sign&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#financial-impact-levels) | [![Negligible - No impact](https://img.shields.io/badge/Negligible-No_impact-lightgrey?style=for-the-badge&logo=exclamation-triangle&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#operational-impact-levels) | [![Low - Limited visibility](https://img.shields.io/badge/Low-Limited_visibility-lightgreen?style=for-the-badge&logo=newspaper&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#reputational-impact-levels) | [![Low - Warnings](https://img.shields.io/badge/Low-Warnings-lightgreen?style=for-the-badge&logo=gavel&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#regulatory-impact-levels) |
+| **✅ Integrity** | [![Negligible - No impact](https://img.shields.io/badge/Negligible-No_impact-lightgrey?style=for-the-badge&logo=dollar-sign&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#financial-impact-levels) | [![High - Major degradation](https://img.shields.io/badge/High-Major_degradation-orange?style=for-the-badge&logo=trending-down&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#operational-impact-levels) | [![High - National coverage](https://img.shields.io/badge/High-National_coverage-orange?style=for-the-badge&logo=newspaper&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#reputational-impact-levels) | [![Moderate - Minor penalties](https://img.shields.io/badge/Moderate-Minor_penalties-yellow?style=for-the-badge&logo=gavel&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#regulatory-impact-levels) |
+| **⏱️ Availability** | [![Negligible - No impact](https://img.shields.io/badge/Negligible-No_impact-lightgrey?style=for-the-badge&logo=dollar-sign&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#financial-impact-levels) | [![High - Major degradation](https://img.shields.io/badge/High-Major_degradation-orange?style=for-the-badge&logo=stop-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#operational-impact-levels) | [![Low - Limited visibility](https://img.shields.io/badge/Low-Limited_visibility-lightgreen?style=for-the-badge&logo=newspaper&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#reputational-impact-levels) | [![Low - Warnings](https://img.shields.io/badge/Low-Warnings-lightgreen?style=for-the-badge&logo=gavel&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#regulatory-impact-levels) |
+
+### 🛡️ Security Investment Returns
+[![ROI Level](https://img.shields.io/badge/ROI-Moderate-yellow?style=for-the-badge&logo=chart-line&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#security-investment-returns)
+[![Risk Mitigation](https://img.shields.io/badge/Risk_Mitigation-55%25_Reduction-yellow?style=for-the-badge&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#security-investment-returns)
+[![Breach Prevention](https://img.shields.io/badge/Breach_Prevention-$5K_Savings-yellow?style=for-the-badge&logo=lock&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#security-investment-returns)
+
+### 🎯 Competitive Differentiation
+[![Market Position](https://img.shields.io/badge/Position-Market_Leader-purple?style=for-the-badge&logo=crown&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#competitive-differentiation)
+[![Customer Trust](https://img.shields.io/badge/Trust-Premium_scores-purple?style=for-the-badge&logo=handshake&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#competitive-differentiation)
+[![Regulatory Access](https://img.shields.io/badge/Access-Full_access-purple?style=for-the-badge&logo=key&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#competitive-differentiation)
+
+### 📈 Porter's Five Forces Strategic Impact
+[![Buyer Power](https://img.shields.io/badge/Buyer_Power-Minimal-success?style=flat-square&logo=users&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#porters-five-forces)
+[![Supplier Power](https://img.shields.io/badge/Supplier_Power-Minimal-success?style=flat-square&logo=handshake&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#porters-five-forces)
+[![Entry Barriers](https://img.shields.io/badge/Entry_Barriers-Very_High-red?style=flat-square&logo=shield-alt&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#porters-five-forces)
+[![Substitute Threat](https://img.shields.io/badge/Substitute_Threat-Minimal-success?style=flat-square&logo=shield&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#porters-five-forces)
+[![Rivalry](https://img.shields.io/badge/Rivalry-Dominant_Advantage-darkblue?style=flat-square&logo=trophy&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#porters-five-forces)
+
 
 ## 🔗 Key Documentation Links
 

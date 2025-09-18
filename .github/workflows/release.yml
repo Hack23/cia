@@ -36,7 +36,7 @@ jobs:
 
     steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@c6295a65d1254861815972266d5933fd6e532bdf # v2.11.1
+      uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
       with:
         egress-policy: block
         allowed-endpoints: >
@@ -70,19 +70,21 @@ jobs:
           www.bridgecrew.cloud:443
           docs.github.com:433
           dlcdn.apache.org:443
+          archive.apache.org:443          
           esm.ubuntu.com:443
           fulcio.sigstore.dev:443
           packages.microsoft.com:443
           rekor.sigstore.dev:443
           release-drafter.github.io:443
+          release-assets.githubusercontent.com:443
 
     - name: Checkout repository
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       with:
         fetch-depth: 2
 
     - name: Set up JDK 21
-      uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+      uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
       with:
         distribution: 'temurin'
         java-version: '21-ea'
@@ -107,19 +109,15 @@ jobs:
     - name: Update tzdata
       run: sudo dpkg-reconfigure -f noninteractive tzdata 
 
-    - name: Download Maven
-      run: wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
-
-    - name: Unpack Maven
-      run: tar xzvf apache-maven-3.9.9-bin.tar.gz
-
-    - name: Set Maven
-      run: mv apache-maven-3.9.9 maven
+    - name: Set up Maven
+      uses: stCarolas/setup-maven@v5
+      with:
+        maven-version: 3.9.9
 
     - name: Set Version for release
-      run: maven/bin/mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit	
+      run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit	
 
-    - uses: stefanzweifel/git-auto-commit-action@e348103e9026cc0eee72ae06630dbe30c8bf7a79 # v5.1.0
+    - uses: stefanzweifel/git-auto-commit-action@778341af668090896ca464160c2def5d1d1a3eb0 # v6.0.1
       with:
         commit_message: Automated Release ${{ github.event.inputs.release }}
         branch: release-${{ github.event.inputs.release }}
@@ -127,28 +125,22 @@ jobs:
         create_branch: true
 
     - name: Build with Maven
-      run: maven/bin/mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false
+      run: mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false
 
-    - name: Generate artifact attestation
-      uses: actions/attest-build-provenance@c074443f1aee8d4aeeae555aebba3282517141b2 # v2.2.3
-      id: attest
-      with:
-        subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
-        bundle-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.intoto.jsonl'
-
+    # Generate artifact attestation for DEB package
     - name: Generate artifact attestation for deb package
-      uses: actions/attest-build-provenance@c074443f1aee8d4aeeae555aebba3282517141b2 # v2.2.3
+      uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
       id: attest_deb
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
-        bundle-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.intoto.jsonl'
 
     - name: Copy artifact attestation for deb package
       run: cp ${{ steps.attest_deb.outputs.bundle-path }} cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.intoto.jsonl
 
+    # Generate SBOM attestation for DEB package
     - name: Generate SBOM attestation for deb package
       id: attestsbom_deb
-      uses: actions/attest-sbom@115c3be05ff3974bcbd596578934b3f9ce39bf68 # v2.2.0
+      uses: actions/attest-sbom@4651f806c01d8637787e274ac3bdf724ef169f34 # v3.0.0
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
         sbom-path: 'cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json'
@@ -156,19 +148,20 @@ jobs:
     - name: Copy SBOM attestation for deb package
       run: cp ${{ steps.attestsbom_deb.outputs.bundle-path }} cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json.intoto.jsonl
 
+    # Generate artifact attestation for WAR
     - name: Generate artifact attestation for WAR
-      uses: actions/attest-build-provenance@c074443f1aee8d4aeeae555aebba3282517141b2 # v2.2.3
+      uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
       id: attest_war
       with:
         subject-path: 'citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war'
-        bundle-path: 'citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war.intoto.jsonl'
 
     - name: Copy artifact attestation for WAR
       run: cp ${{ steps.attest_war.outputs.bundle-path }} citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war.intoto.jsonl
 
+    # Generate SBOM attestation for WAR
     - name: Generate SBOM attestation for WAR
       id: attestsbom_war
-      uses: actions/attest-sbom@115c3be05ff3974bcbd596578934b3f9ce39bf68 # v2.2.0
+      uses: actions/attest-sbom@4651f806c01d8637787e274ac3bdf724ef169f34 # v3.0.0
       with:
         subject-path: 'citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war'
         sbom-path: 'citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json'
@@ -195,10 +188,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create a GitHub release
-      uses: ncipollo/release-action@440c8c1cb0ed28b9f43e4d1d670870f059653174 # v1.16.0
+      uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1.20.0
       with:
         tag: '${{ github.event.inputs.release }}'
         generateReleaseNotes: false
+        immutableCreate: true
         name: Release ${{ github.event.inputs.release }}
         body: ${{ steps.release-notes.outputs.body }}
         artifacts: |
@@ -213,6 +207,4 @@ jobs:
           cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
 
     - name: Submit Dependency Release
-      uses: advanced-security/maven-dependency-submission-action@aeab9f885293af501bae8bdfe88c589528ea5e25
-      with:
-        skip-maven-install: true  # Skip Maven install since build is already done
+      uses: advanced-security/maven-dependency-submission-action@b275d12641ac2d2108b2cbb7598b154ad2f2cee8

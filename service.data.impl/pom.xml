@@ -48,6 +48,11 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>failureaccess</artifactId>
+      <version>1.0.3</version>
+    </dependency>
+    <dependency>
       <groupId>jakarta.activation</groupId>
       <artifactId>jakarta.activation-api</artifactId>
       <version>${cia.project.versions.jakarta.activation}</version>
@@ -344,7 +349,7 @@
     <dependency>
       <groupId>io.github.classgraph</groupId>
       <artifactId>classgraph</artifactId>
-      <version>4.8.179</version>
+      <version>4.8.181</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
@@ -369,12 +374,12 @@
     <dependency>
       <groupId>org.checkerframework</groupId>
       <artifactId>checker-qual</artifactId>
-      <version>3.49.2</version>
+      <version>3.51.0</version>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>2.13.0</version>
+      <version>2.13.2</version>
       <exclusions>
         <exclusion>
           <groupId>com.google.errorprone</groupId>
@@ -464,12 +469,12 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-text</artifactId>
-      <version>1.13.1</version>
+      <version>1.14.0</version>
     </dependency>
     <dependency>
       <groupId>org.yaml</groupId>
       <artifactId>snakeyaml</artifactId>
-      <version>2.4</version>
+      <version>2.5</version>
     </dependency>
     <dependency>
       <groupId>commons-beanutils</groupId>
@@ -577,7 +582,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-collections4</artifactId>
-      <version>4.4</version>
+      <version>4.5.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.poi</groupId>
@@ -746,7 +751,7 @@
     <dependency>
       <groupId>org.ehcache</groupId>
       <artifactId>ehcache</artifactId>
-      <version>3.10.8</version>
+      <version>3.11.1</version>
       <exclusions>
         <exclusion>
           <groupId>org.glassfish.jaxb</groupId>
