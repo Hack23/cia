@@ -770,7 +770,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>6.2.0</version>
+      <version>6.3.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
