@@ -9,7 +9,7 @@ on:
 permissions: read-all
 
 env:
-  javaVersion: java21
+  javaVersion: java25
 
 jobs:
   release:
@@ -83,11 +83,11 @@ jobs:
       with:
         fetch-depth: 2
 
-    - name: Set up JDK 21
+    - name: Set up JDK 25
       uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
       with:
         distribution: 'temurin'
-        java-version: '21-ea'
+        java-version: '25'
         java-package: 'jdk'  # Explicitly specify JDK package
         check-latest: true   # Always get latest patch version
         cache: 'maven'
@@ -207,4 +207,4 @@ jobs:
           cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
 
     - name: Submit Dependency Release
-      uses: advanced-security/maven-dependency-submission-action@b275d12641ac2d2108b2cbb7598b154ad2f2cee8
+      uses: advanced-security/maven-dependency-submission-action@b275d12641ac2d2508b2cbb7598b154ad2f2cee8
