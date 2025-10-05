@@ -113,7 +113,7 @@ jobs:
       uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
       with:
         distribution: 'temurin'
-        java-version: '21'
+        java-version: '25'
         cache: 'maven'
 
     - name: APT update
@@ -125,7 +125,7 @@ jobs:
     - name: Set up Maven
       uses: stCarolas/setup-maven@d6af6abeda15e98926a57b5aa970a96bb37f97d1 # v5
       with:
-        maven-version: 3.9.9
+        maven-version: 3.9.10
         
     - name: Build with Maven
       run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -Dmaven.test.skip=true 
