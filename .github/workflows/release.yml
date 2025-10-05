@@ -87,7 +87,7 @@ jobs:
       uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
       with:
         distribution: 'temurin'
-        java-version: '21-ea'
+        java-version: '25'
         java-package: 'jdk'  # Explicitly specify JDK package
         check-latest: true   # Always get latest patch version
         cache: 'maven'
@@ -112,7 +112,7 @@ jobs:
     - name: Set up Maven
       uses: stCarolas/setup-maven@v5
       with:
-        maven-version: 3.9.9
+        maven-version: 3.9.10
 
     - name: Set Version for release
       run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit	
