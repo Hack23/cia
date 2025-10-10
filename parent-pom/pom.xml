@@ -681,7 +681,7 @@
       <dependency>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-core</artifactId>
-        <version>5.0.0</version>
+        <version>5.0.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -1113,7 +1113,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.6.1</version>
+          <version>3.6.2</version>
           <dependencies>
             <dependency>
               <groupId>org.codehaus.mojo</groupId>
@@ -1125,7 +1125,7 @@
         <plugin>
           <groupId>org.liquibase</groupId>
           <artifactId>liquibase-maven-plugin</artifactId>
-          <version>5.0.0</version>
+          <version>5.0.1			</version>
         </plugin>
         <plugin>
           <groupId>de.thetaphi</groupId>
