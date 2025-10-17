@@ -206,5 +206,5 @@ jobs:
           citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json,
           cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
 
-    - name: Submit Dependency Release
-      uses: advanced-security/maven-dependency-submission-action@b275d12641ac2d2508b2cbb7598b154ad2f2cee8
+#    - name: Submit Dependency Release
+#      uses: advanced-security/maven-dependency-submission-action@b275d12641ac2d2508b2cbb7598b154ad2f2cee8
