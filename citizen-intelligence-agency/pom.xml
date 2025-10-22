@@ -27,7 +27,7 @@
     </site>
   </distributionManagement>
   <properties>
-    <cia.project.versions.selenium>4.36.0</cia.project.versions.selenium>
+    <cia.project.versions.selenium>4.37.0</cia.project.versions.selenium>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -714,7 +714,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit3-driver</artifactId>
-      <version>4.36.0</version>
+      <version>4.36.1</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
