@@ -56,7 +56,7 @@ cia/
 1. **Copyright Header**: All Java files must include the Apache License 2.0 header:
 ```java
 /*
- * Copyright 2010 -2025 James Pether Sörling
+ * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -376,5 +376,5 @@ All code contributions must be compatible with the Apache License 2.0. Ensure co
 
 ---
 
-*Last Updated: 2025*
+*Last Updated: November 2025*
 *For questions or clarifications, refer to CONTRIBUTING.md or open an issue.*
