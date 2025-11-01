@@ -124,7 +124,7 @@ mvn dependency-check:check
 2. Verify the build succeeds: `mvn clean install`
 3. Check for code quality issues
 4. Update relevant documentation if needed
-5. Follow the [PR template](pull_request_template.md)
+5. Follow the PR template at `.github/pull_request_template.md`
 
 ### PR Description Requirements
 - Clearly describe what the PR changes and why
