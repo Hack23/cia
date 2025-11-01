@@ -16,7 +16,7 @@ The Citizen Intelligence Agency (CIA) is a volunteer-driven, open-source intelli
 
 ### Prerequisites
 - Java 25 JDK
-- Maven 3.9.1 or later
+- Maven 3.9.9 or later
 - PostgreSQL (for full integration testing)
 
 ### Build Commands
@@ -124,7 +124,7 @@ mvn dependency-check:check
 2. Verify the build succeeds: `mvn clean install`
 3. Check for code quality issues
 4. Update relevant documentation if needed
-5. Follow the [PR template](../PULL_REQUEST_TEMPLATE.md)
+5. Follow the [PR template](pull_request_template.md)
 
 ### PR Description Requirements
 - Clearly describe what the PR changes and why
