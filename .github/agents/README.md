@@ -1,89 +1,79 @@
-# Specialized Agent Profiles
+# Custom Agent Profiles
 
-This directory contains specialized agent profiles for GitHub Copilot's coding agent, designed to provide domain-specific expertise for the Citizen Intelligence Agency project.
+This directory contains custom agent profiles for GitHub Copilot, designed to provide domain-specific expertise for the Citizen Intelligence Agency project.
 
 ## Overview
 
-Each agent profile is a specialized persona with deep expertise in a specific domain. When working on tasks related to that domain, GitHub Copilot can leverage these profiles to provide more informed and contextual assistance.
+Each agent profile is a Markdown file with YAML frontmatter that defines specialized expertise. When working on tasks related to a specific domain, GitHub Copilot can leverage these profiles to provide more informed and contextual assistance.
 
 ## Available Agents
 
 ### 1. [Stack Specialist](stack-specialist.md)
-**Expertise**: Java, Spring Framework, Vaadin, Hibernate/JPA, PostgreSQL, Maven, Testing
+**Expertise**: Java 25, Spring Framework, Vaadin, Hibernate/JPA, PostgreSQL, Maven, Testing
 
 Focus on technical architecture, framework usage, and implementation details for the Java-based stack.
 
-**Use for**:
-- Architecture decisions and design patterns
-- Spring configuration and best practices
-- JPA/Hibernate entity design and query optimization
-- Vaadin UI component development
-- Database design and optimization
-- Testing strategies
-- Build system configuration
-- Technical troubleshooting
+**Use for**: Architecture decisions, Spring configuration, JPA/Hibernate optimization, Vaadin UI development, database design, testing strategies, build system configuration, technical troubleshooting
 
 ### 2. [UI Enhancement Specialist](ui-enhancement-specialist.md)
 **Expertise**: Vaadin Framework, Data Visualization, UI/UX Design, Responsive Design, Accessibility
 
 Focus on creating exceptional user experiences for political data visualization and transparency.
 
-**Use for**:
-- UI/UX design improvements
-- Vaadin component development and theming
-- Data visualization (charts, dashboards, KPIs)
-- Responsive design and mobile optimization
-- Accessibility (WCAG compliance)
-- User experience optimization
-- Performance optimization for UI
-- Frontend best practices
+**Use for**: UI/UX design improvements, Vaadin component development, data visualization (charts, dashboards), responsive design, accessibility (WCAG compliance), performance optimization for UI
 
 ### 3. [Business Development Specialist](business-development-specialist.md)
 **Expertise**: Strategic Planning, Partnership Development, Revenue Models, Market Expansion
 
 Focus on growing the platform's reach, sustainability, and impact.
 
-**Use for**:
-- Strategic planning and business analysis
-- Partnership opportunities and development
-- Revenue model design
-- Market expansion strategies
-- Competitive analysis
-- Customer segmentation
-- Go-to-market strategy
-- Financial planning and projections
+**Use for**: Strategic planning, partnership development, revenue model design, market expansion strategies, competitive analysis, customer segmentation, go-to-market strategy
 
-### 4. [Political Analyst / Intelligence Operative](political-analyst.md)
+### 4. [Political Analyst](political-analyst.md)
 **Expertise**: Political Science, OSINT, Intelligence Analysis, Behavioral Analysis, Swedish Politics
 
 Focus on political intelligence, data analysis, and maintaining analytical rigor while respecting ethical boundaries.
 
-**Use for**:
-- Political data analysis and interpretation
-- Intelligence analysis methodologies
-- Pattern recognition in political behavior
-- Predictive analytics for political outcomes
-- OSINT techniques and source evaluation
-- Swedish political system expertise
-- Risk assessment and trend analysis
-- Ethical considerations in political analysis
+**Use for**: Political data analysis, intelligence analysis methodologies, pattern recognition, predictive analytics, OSINT techniques, Swedish political system expertise, risk assessment
 
 ### 5. [Marketing Specialist](marketing-specialist.md)
 **Expertise**: Digital Marketing, Content Strategy, Community Building, Brand Positioning
 
 Focus on building awareness, engagement, and adoption while maintaining political neutrality.
 
-**Use for**:
-- Marketing strategy and campaigns
-- Content creation and SEO
-- Social media strategy
-- Public relations and media outreach
-- Community building and engagement
-- Brand development and positioning
-- Growth hacking and acquisition
-- Analytics and optimization
+**Use for**: Marketing strategy, content creation and SEO, social media strategy, public relations, community building, brand development, growth hacking, analytics
 
-## How to Use These Profiles
+## Agent Profile Format
+
+Each agent profile follows the GitHub Copilot custom agent format:
+
+```markdown
+---
+name: agent-name
+description: Brief description of the agent's expertise and focus
+tools: ["tool1", "tool2", "tool3"]
+---
+
+Agent prompt content goes here...
+```
+
+### YAML Frontmatter Properties
+
+- **name**: Unique identifier for the agent (kebab-case)
+- **description**: Brief explanation of what the agent does and its specific capabilities
+- **tools**: Optional list of tools the agent can use. Omit to grant access to all available tools.
+
+### Agent Prompt
+
+Below the YAML frontmatter, define the agent's behavior, expertise, and instructions. This should include:
+- Core expertise areas
+- Responsibilities
+- Best practices
+- Key principles
+- Resources
+- Example patterns or code where relevant
+
+## Using These Profiles
 
 ### For Developers
 When working on specific aspects of the project:
@@ -104,19 +94,6 @@ These profiles serve as context for AI-assisted development:
 2. Understand the project's approach and standards
 3. Follow the guidelines and best practices
 4. Ask questions when the profile doesn't cover your specific case
-
-## Profile Structure
-
-Each profile follows a consistent structure:
-
-1. **Role Overview**: High-level description of the specialist's role
-2. **Core Expertise Areas**: Detailed breakdown of knowledge domains
-3. **Project-Specific Knowledge**: CIA-specific context and considerations
-4. **Responsibilities**: Key duties and focus areas
-5. **Best Practices**: Guidelines and recommendations
-6. **Common Tasks**: Examples of typical work in this specialty
-7. **Resources**: Internal and external documentation
-8. **Key Reminders**: Critical points to always remember
 
 ## Maintaining These Profiles
 
@@ -143,13 +120,13 @@ Each profile follows a consistent structure:
 
 These agent profiles complement and reference the main project documentation:
 
-- [Architecture](../../../ARCHITECTURE.md) - System design and structure
-- [SWOT Analysis](../../../SWOT.md) - Strategic context
-- [Tech Stack](../../../techstack.md) - Technology inventory
-- [Security Architecture](../../../SECURITY_ARCHITECTURE.md) - Security design
-- [Data Model](../../../DATA_MODEL.md) - Entity relationships
-- [End-of-Life Strategy](../../../End-of-Life-Strategy.md) - Technology lifecycle
-- [Financial Security Plan](../../../FinancialSecurityPlan.md) - AWS and security costs
+- [Architecture](../../ARCHITECTURE.md) - System design and structure
+- [SWOT Analysis](../../SWOT.md) - Strategic context
+- [Tech Stack](../../techstack.md) - Technology inventory
+- [Security Architecture](../../SECURITY_ARCHITECTURE.md) - Security design
+- [Data Model](../../DATA_MODEL.md) - Entity relationships
+- [End-of-Life Strategy](../../End-of-Life-Strategy.md) - Technology lifecycle
+- [Financial Security Plan](../../FinancialSecurityPlan.md) - AWS and security costs
 
 ## Philosophy
 
@@ -196,6 +173,45 @@ If you have questions about:
 - **Using these profiles**: Open a discussion in GitHub Discussions
 - **Updating profiles**: Comment on relevant issues or PRs
 - **Creating new profiles**: Propose in an issue with justification
+
+## Examples from GitHub Documentation
+
+### Testing Specialist Example
+```markdown
+---
+name: test-specialist
+description: Focuses on test coverage, quality, and testing best practices without modifying production code
+---
+
+You are a testing specialist focused on improving code quality through comprehensive testing. Your responsibilities:
+
+- Analyze existing tests and identify coverage gaps
+- Write unit tests, integration tests, and end-to-end tests following best practices
+- Review test quality and suggest improvements for maintainability
+- Ensure tests are isolated, deterministic, and well-documented
+- Focus only on test files and avoid modifying production code unless specifically requested
+
+Always include clear test descriptions and use appropriate testing patterns for the language and framework.
+```
+
+### Implementation Planner Example
+```markdown
+---
+name: implementation-planner
+description: Creates detailed implementation plans and technical specifications in markdown format
+tools: ["read", "search", "edit"]
+---
+
+You are a technical planning specialist focused on creating comprehensive implementation plans. Your responsibilities:
+
+- Analyze requirements and break them down into actionable tasks
+- Create detailed technical specifications and architecture documentation
+- Generate implementation plans with clear steps, dependencies, and timelines
+- Document API designs, data models, and system interactions
+- Create markdown files with structured plans that development teams can follow
+
+Always structure your plans with clear headings, task breakdowns, and acceptance criteria.
+```
 
 ---
 
