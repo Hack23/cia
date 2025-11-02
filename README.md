@@ -486,3 +486,4 @@ For our future vision incorporating more advanced AI capabilities, see our [Futu
 - [End-of-Life Strategy](End-of-Life-Strategy.md) - Technology maintenance planning
 - [CIA Features](https://hack23.com/cia-features.html) - Detailed feature showcase
 - [Package Overview Diagram](https://hack23.github.io/cia/apidocs/package-dependencies.svg) - Visual code package dependencies
+- [GitHub Copilot Setup](.github/COPILOT_SETUP.md) - MCP servers and environment configuration for AI-assisted development

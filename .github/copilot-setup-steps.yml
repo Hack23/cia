@@ -1,0 +1,261 @@
+# GitHub Copilot Setup Steps Configuration
+# This file configures the development environment for Copilot agents
+# based on the Citizen Intelligence Agency project's technology stack.
+
+# Environment preparation steps run before Copilot agents start working
+# These steps ensure the agent has all necessary tools and dependencies
+
+steps:
+  # Update package manager
+  - name: Update APT package lists
+    run: sudo apt-get update -qq
+    description: Update package manager to ensure latest package information
+
+  # Install Java Development Kit (Java 25)
+  - name: Set up JDK 25
+    uses: actions/setup-java@v5
+    with:
+      distribution: 'temurin'
+      java-version: '25'
+      java-package: 'jdk'
+      check-latest: true
+      cache: 'maven'
+      architecture: 'x64'
+    description: Install Java 25 JDK for building and running the application
+
+  # Install Maven build tool
+  - name: Set up Maven
+    uses: stCarolas/setup-maven@v5
+    with:
+      maven-version: 3.9.9
+    description: Install Maven 3.9.9+ for building the multi-module project
+
+  # Install essential build tools
+  - name: Install build tools and dependencies
+    run: |
+      sudo apt-get install -y \
+        graphviz \
+        build-essential \
+        fakeroot \
+        devscripts \
+        debhelper \
+        dh-make \
+        wget \
+        postgresql-client
+    description: Install graphviz for documentation generation, build tools for Debian packaging, and PostgreSQL client
+
+  # Configure Swedish timezone (project-specific requirement)
+  - name: Configure Swedish timezone
+    run: |
+      sudo rm -f /etc/localtime
+      sudo ln -s /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
+      sudo dpkg-reconfigure -f noninteractive tzdata
+    description: Set Swedish timezone for date/time operations
+
+  # Cache Maven dependencies to speed up builds
+  - name: Cache Maven dependencies
+    uses: actions/cache@v4
+    with:
+      path: ~/.m2/repository
+      key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+      restore-keys: |
+        maven-${{ runner.os }}-
+    description: Cache Maven dependencies to improve build performance
+
+  # Verify installation
+  - name: Verify environment setup
+    run: |
+      echo "Java version:"
+      java -version
+      echo ""
+      echo "Maven version:"
+      mvn --version
+      echo ""
+      echo "Graphviz version:"
+      dot -V
+      echo ""
+      echo "PostgreSQL client version:"
+      psql --version
+      echo ""
+      echo "Current timezone:"
+      timedatectl
+    description: Display versions of installed tools to verify setup
+
+# Model Context Protocol (MCP) servers configuration
+# These servers provide additional context and capabilities to Copilot
+
+mcp_servers:
+  # GitHub MCP Server - For repository operations, issues, PRs, workflows
+  github:
+    description: "Provides access to GitHub API for repository operations, issues, pull requests, and GitHub Actions workflows"
+    capabilities:
+      - "Search code across repositories"
+      - "Read and analyze issues and pull requests"
+      - "Access workflow runs and job logs"
+      - "Navigate repository structure"
+      - "Read file contents and commits"
+    config:
+      # GitHub token is automatically provided by GitHub Actions
+      authentication: github-token
+
+  # File System MCP Server - For code navigation and analysis
+  filesystem:
+    description: "Provides access to project files and directory structure"
+    capabilities:
+      - "Navigate project directory structure"
+      - "Read and analyze source code files"
+      - "Search for patterns in code"
+      - "Access configuration files"
+    config:
+      root_path: "."
+      allowed_extensions:
+        - ".java"
+        - ".xml"
+        - ".properties"
+        - ".yml"
+        - ".yaml"
+        - ".md"
+        - ".sql"
+        - ".json"
+
+  # Maven MCP Server - For build and dependency management (conceptual)
+  maven:
+    description: "Provides context about Maven project structure and dependencies"
+    capabilities:
+      - "Parse POM files for dependency information"
+      - "Understand module structure"
+      - "Analyze build configuration"
+      - "Check for dependency conflicts"
+    config:
+      pom_file: "pom.xml"
+      modules_enabled: true
+
+  # Spring Framework MCP Server - For Spring-specific context (conceptual)
+  spring:
+    description: "Provides context about Spring Framework components and configuration"
+    capabilities:
+      - "Understand Spring bean definitions"
+      - "Analyze dependency injection patterns"
+      - "Parse Spring configuration files"
+      - "Identify Spring Security configurations"
+    config:
+      spring_version: "5.x"
+      frameworks:
+        - "spring-mvc"
+        - "spring-security"
+        - "spring-data-jpa"
+        - "spring-integration"
+
+  # Database MCP Server - For PostgreSQL schema and queries (conceptual)
+  database:
+    description: "Provides context about database schema and SQL queries"
+    capabilities:
+      - "Understand database schema from Liquibase changelogs"
+      - "Analyze JPA entity relationships"
+      - "Validate SQL queries"
+      - "Check for N+1 query problems"
+    config:
+      database_type: "postgresql"
+      schema_sources:
+        - "service.data.impl/src/main/resources/db-changelog.xml"
+      entity_packages:
+        - "com.hack23.cia.model"
+
+# Project-specific context for Copilot
+project_context:
+  name: "Citizen Intelligence Agency"
+  type: "Java Web Application"
+  architecture: "Multi-module Maven project with layered architecture"
+  
+  technology_stack:
+    language: "Java 25"
+    build_tool: "Maven 3.9.9+"
+    frameworks:
+      - "Spring Framework 5.x (MVC, Security, Data, Integration)"
+      - "Vaadin 8 (Server-side UI)"
+      - "Hibernate/JPA (ORM)"
+      - "Drools (Business Rules Engine)"
+    databases:
+      - "PostgreSQL 16"
+    messaging:
+      - "ActiveMQ Artemis (JMS)"
+    testing:
+      - "JUnit 5"
+      - "Mockito"
+      - "Selenium WebDriver"
+    security:
+      - "Spring Security"
+      - "Bouncy Castle"
+    monitoring:
+      - "JavaMelody"
+      - "SLF4J/Logback"
+  
+  key_modules:
+    - name: "citizen-intelligence-agency"
+      description: "Main web application"
+    - name: "service.*"
+      description: "Service layer modules"
+    - name: "model.*"
+      description: "Data model modules (internal and external)"
+    - name: "testfoundation"
+      description: "Testing utilities"
+  
+  coding_standards:
+    - "Use Java 25 features where appropriate"
+    - "Follow Spring best practices for dependency injection"
+    - "Use JPA annotations properly for entity relationships"
+    - "Write unit tests for all new functionality"
+    - "Maintain code coverage above existing levels"
+    - "Follow OWASP security best practices"
+  
+  build_commands:
+    clean_install: "mvn clean install"
+    test: "mvn test"
+    build_without_tests: "mvn clean install -DskipTests"
+    site: "mvn site"
+    coverage: "mvn clean test jacoco:report"
+  
+  important_files:
+    - ".github/copilot-instructions.md"
+    - "README.md"
+    - "ARCHITECTURE.md"
+    - "SECURITY.md"
+    - "CONTRIBUTING.md"
+    - "pom.xml"
+
+# Reference workflows for setup guidance
+reference_workflows:
+  - name: "release.yml"
+    path: ".github/workflows/release.yml"
+    description: "Main CI/CD pipeline with complete build setup"
+    key_steps:
+      - "Java 25 setup with Temurin distribution"
+      - "Maven 3.9.9 installation"
+      - "Build tools installation (graphviz, build-essential, etc.)"
+      - "Swedish timezone configuration"
+      - "Multi-module Maven build with release profile"
+  
+  - name: "codeql-analysis.yml"
+    path: ".github/workflows/codeql-analysis.yml"
+    description: "Security scanning with CodeQL"
+    key_steps:
+      - "CodeQL initialization for Java"
+      - "Security vulnerability scanning"
+  
+  - name: "dependency-review.yml"
+    path: ".github/workflows/dependency-review.yml"
+    description: "Dependency security checks"
+    key_steps:
+      - "Dependency vulnerability scanning"
+      - "License compliance checking"
+
+# Notes for Copilot agents
+copilot_notes:
+  - "This is a mature, security-conscious project with strong testing and quality standards"
+  - "Prioritize code quality, security, and maintainability over rapid development"
+  - "Always run tests after making changes: mvn test"
+  - "Use existing code patterns and conventions in the project"
+  - "Consider security implications of all changes"
+  - "Update documentation for significant changes"
+  - "The project integrates with several external APIs (Swedish Parliament, World Bank, etc.)"
+  - "Handle API errors gracefully and implement retry logic for transient failures"

@@ -1,0 +1,126 @@
+name: Example Copilot Setup Usage
+
+# This is an example workflow demonstrating how to use the Copilot setup configuration
+# It shows the recommended environment setup based on copilot-setup-steps.yml
+
+on:
+  workflow_dispatch:
+  # Uncomment to enable on push/pull_request
+  # push:
+  #   branches: [ master, develop ]
+  # pull_request:
+  #   branches: [ master ]
+
+permissions: read-all
+
+env:
+  # Environment variables from copilot-setup-steps.yml
+  TZ: Europe/Stockholm
+  MAVEN_OPTS: -Xmx2048m
+
+jobs:
+  setup-and-build:
+    name: Setup Environment and Build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      # Java 25 setup (from copilot-setup-steps.yml)
+      - name: Set up JDK 25
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+          java-package: 'jdk'
+          check-latest: true
+          cache: 'maven'
+          architecture: 'x64'
+
+      # Maven setup (from copilot-setup-steps.yml)
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.9
+
+      # Update APT (from copilot-setup-steps.yml)
+      - name: Update APT package lists
+        run: sudo apt-get update -qq
+
+      # Install build tools (from copilot-setup-steps.yml)
+      - name: Install build tools and dependencies
+        run: |
+          sudo apt-get install -y \
+            graphviz \
+            build-essential \
+            fakeroot \
+            devscripts \
+            debhelper \
+            dh-make \
+            wget \
+            postgresql-client
+
+      # Configure timezone (from copilot-setup-steps.yml)
+      - name: Configure Swedish timezone
+        run: |
+          sudo rm -f /etc/localtime
+          sudo ln -s /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
+          sudo dpkg-reconfigure -f noninteractive tzdata
+
+      # Verify environment setup
+      - name: Verify environment setup
+        run: |
+          echo "=== Java version ==="
+          java -version
+          echo ""
+          echo "=== Maven version ==="
+          mvn --version
+          echo ""
+          echo "=== Graphviz version ==="
+          dot -V
+          echo ""
+          echo "=== PostgreSQL client version ==="
+          psql --version
+          echo ""
+          echo "=== Current timezone ==="
+          timedatectl
+          echo ""
+          echo "=== Environment variables ==="
+          echo "TZ=$TZ"
+          echo "MAVEN_OPTS=$MAVEN_OPTS"
+
+      # Example: Build the project
+      - name: Build with Maven
+        run: |
+          echo "Building project..."
+          # Uncomment to actually build:
+          # mvn clean compile -DskipTests
+        continue-on-error: true
+
+      # Example: Run tests
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          # Uncomment to actually run tests:
+          # mvn test
+        continue-on-error: true
+
+      # Example: Generate coverage report
+      - name: Generate coverage report
+        run: |
+          echo "Generating coverage report..."
+          # Uncomment to actually generate coverage:
+          # mvn clean test jacoco:report
+        continue-on-error: true
+
+      # Summary
+      - name: Setup Summary
+        run: |
+          echo "✓ Environment setup completed successfully"
+          echo "✓ All required tools are installed and verified"
+          echo "✓ Ready for Copilot agents to work"
