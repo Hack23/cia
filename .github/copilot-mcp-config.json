@@ -1,0 +1,278 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/mcp-config.json",
+  "description": "Model Context Protocol configuration for Citizen Intelligence Agency project",
+  "version": "1.0.0",
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "description": "GitHub integration for repository operations, issues, PRs, and workflows",
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "capabilities": [
+        "repository.read",
+        "issues.read",
+        "pulls.read",
+        "workflows.read",
+        "code.search"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/runner/work/cia/cia"],
+      "description": "File system access for code navigation and analysis",
+      "capabilities": [
+        "files.read",
+        "files.list",
+        "files.search"
+      ]
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "description": "PostgreSQL database integration (when available)",
+      "env": {
+        "POSTGRES_HOST": "${POSTGRES_HOST:-localhost}",
+        "POSTGRES_PORT": "${POSTGRES_PORT:-5432}",
+        "POSTGRES_DB": "${POSTGRES_DB:-cia}",
+        "POSTGRES_USER": "${POSTGRES_USER:-postgres}",
+        "POSTGRES_PASSWORD": "${POSTGRES_PASSWORD}"
+      },
+      "capabilities": [
+        "database.query",
+        "schema.read"
+      ],
+      "optional": true,
+      "notes": "Only available when PostgreSQL is configured"
+    },
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git"],
+      "description": "Git operations for version control",
+      "capabilities": [
+        "git.log",
+        "git.diff",
+        "git.status",
+        "git.branches"
+      ]
+    }
+  },
+  "projectContext": {
+    "name": "Citizen Intelligence Agency",
+    "type": "java-web-application",
+    "primaryLanguage": "java",
+    "buildSystem": "maven",
+    "frameworks": [
+      "spring-framework",
+      "spring-mvc",
+      "spring-security",
+      "spring-data-jpa",
+      "vaadin",
+      "hibernate",
+      "drools"
+    ],
+    "databases": ["postgresql"],
+    "architecture": "multi-module-maven",
+    "testingFrameworks": ["junit5", "mockito", "selenium"],
+    "securityTools": ["spring-security", "owasp-dependency-check", "codeql"]
+  },
+  "environmentSetup": {
+    "requiredTools": [
+      {
+        "name": "java",
+        "version": "25",
+        "distribution": "temurin",
+        "description": "Java Development Kit"
+      },
+      {
+        "name": "maven",
+        "version": "3.9.9",
+        "description": "Build automation tool"
+      },
+      {
+        "name": "graphviz",
+        "description": "Graph visualization for documentation"
+      },
+      {
+        "name": "postgresql-client",
+        "description": "PostgreSQL client tools"
+      }
+    ],
+    "optionalTools": [
+      {
+        "name": "docker",
+        "description": "Container runtime for integration testing"
+      }
+    ],
+    "environmentVariables": {
+      "TZ": "Europe/Stockholm",
+      "MAVEN_OPTS": "-Xmx2048m",
+      "JAVA_HOME": "/usr/lib/jvm/temurin-25-jdk-amd64"
+    }
+  },
+  "codeNavigation": {
+    "sourceDirectories": [
+      "citizen-intelligence-agency/src/main/java",
+      "service.*/src/main/java",
+      "model.*/src/main/java"
+    ],
+    "testDirectories": [
+      "citizen-intelligence-agency/src/test/java",
+      "service.*/src/test/java",
+      "model.*/src/test/java",
+      "testfoundation/src/main/java"
+    ],
+    "configurationFiles": [
+      "pom.xml",
+      "**/pom.xml",
+      "**/*.properties",
+      "**/*.xml",
+      "**/*.yml",
+      "**/*.yaml"
+    ],
+    "documentationFiles": [
+      "README.md",
+      "ARCHITECTURE.md",
+      "SECURITY.md",
+      "CONTRIBUTING.md",
+      "CODE_OF_CONDUCT.md",
+      "*.md"
+    ]
+  },
+  "buildCommands": {
+    "clean": "mvn clean",
+    "compile": "mvn compile",
+    "test": "mvn test",
+    "install": "mvn install",
+    "package": "mvn package",
+    "site": "mvn site",
+    "cleanInstall": "mvn clean install",
+    "skipTests": "mvn clean install -DskipTests",
+    "coverage": "mvn clean test jacoco:report",
+    "dependencyCheck": "mvn dependency-check:check",
+    "releaseProfile": "mvn clean install -Prelease-site,all-modules"
+  },
+  "qualityTools": {
+    "codeAnalysis": [
+      "sonarcloud",
+      "codeql"
+    ],
+    "securityScanning": [
+      "owasp-dependency-check",
+      "codeql",
+      "zap-scan"
+    ],
+    "testCoverage": [
+      "jacoco"
+    ]
+  },
+  "externalApis": [
+    {
+      "name": "Swedish Parliament (Riksdagen) API",
+      "purpose": "Parliamentary data integration",
+      "modules": ["service.external.riksdagen"]
+    },
+    {
+      "name": "Swedish Election Authority API",
+      "purpose": "Election and party data",
+      "modules": ["service.external.val"]
+    },
+    {
+      "name": "World Bank Open Data API",
+      "purpose": "Economic indicators",
+      "modules": ["service.external.worldbank"]
+    },
+    {
+      "name": "Swedish Financial Management Authority API",
+      "purpose": "Government finances",
+      "modules": ["service.external.esv"]
+    }
+  ],
+  "codingStandards": {
+    "language": {
+      "version": "java-25",
+      "features": ["records", "pattern-matching", "switch-expressions", "text-blocks"]
+    },
+    "styleGuidelines": [
+      "Use meaningful variable and method names",
+      "Add JavaDoc for public APIs",
+      "Avoid comments unless necessary for complex logic",
+      "Keep methods focused and concise",
+      "Follow existing code formatting"
+    ],
+    "springConventions": [
+      "Use constructor injection for dependencies",
+      "Annotate services with @Service",
+      "Annotate repositories with @Repository",
+      "Annotate controllers with @Controller",
+      "Use @Transactional for database operations"
+    ],
+    "jpaGuidelines": [
+      "Entity classes in model.* packages",
+      "Use proper JPA annotations",
+      "Define relationships with appropriate fetch types",
+      "Avoid N+1 query problems"
+    ],
+    "securityRules": [
+      "Never commit secrets or credentials",
+      "Validate all user inputs",
+      "Use parameterized queries",
+      "Sanitize data before rendering",
+      "Follow principle of least privilege"
+    ],
+    "testingRequirements": [
+      "Write unit tests for all new functionality",
+      "Maintain test coverage above existing levels",
+      "Place tests in src/test/java",
+      "Follow existing test patterns",
+      "Use JUnit 5 and Mockito"
+    ]
+  },
+  "references": {
+    "workflows": [
+      {
+        "name": "release.yml",
+        "path": ".github/workflows/release.yml",
+        "purpose": "Main CI/CD pipeline"
+      },
+      {
+        "name": "codeql-analysis.yml",
+        "path": ".github/workflows/codeql-analysis.yml",
+        "purpose": "Security scanning"
+      },
+      {
+        "name": "dependency-review.yml",
+        "path": ".github/workflows/dependency-review.yml",
+        "purpose": "Dependency security"
+      },
+      {
+        "name": "zap-scan.yml",
+        "path": ".github/workflows/zap-scan.yml",
+        "purpose": "OWASP ZAP security testing"
+      }
+    ],
+    "documentation": [
+      {
+        "file": ".github/copilot-instructions.md",
+        "purpose": "Copilot agent instructions"
+      },
+      {
+        "file": "ARCHITECTURE.md",
+        "purpose": "System architecture documentation"
+      },
+      {
+        "file": "SECURITY.md",
+        "purpose": "Security policy and reporting"
+      }
+    ]
+  },
+  "notes": [
+    "This is a mature, security-conscious project with strong testing standards",
+    "Prioritize code quality, security, and maintainability",
+    "Always run tests after making changes",
+    "Use existing code patterns and conventions",
+    "Consider security implications of all changes",
+    "Handle external API errors gracefully with retry logic"
+  ]
+}
