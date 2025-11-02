@@ -9,6 +9,13 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    groups:
+      junit:
+        patterns:
+          - "junit*"
+      artemis:
+        patterns:
+          - "org.apache.activemq:artemis-*"
 
 
   - package-ecosystem: github-actions
