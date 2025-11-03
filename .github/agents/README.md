@@ -29,7 +29,7 @@ Focus on growing the platform's reach, sustainability, and impact.
 
 **Use for**: Strategic planning, partnership development, revenue model design, market expansion strategies, competitive analysis, customer segmentation, go-to-market strategy
 
-### 4. [Political Analyst](political-analyst.md)
+### 4. [Intelligence Operative](intelligence-operative.md)
 **Expertise**: Political Science, OSINT, Intelligence Analysis, Behavioral Analysis, Swedish Politics
 
 Focus on political intelligence, data analysis, and maintaining analytical rigor while respecting ethical boundaries.
