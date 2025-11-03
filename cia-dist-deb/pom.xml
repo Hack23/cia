@@ -242,15 +242,15 @@
             </copyFile>
           </assembly>
         </configuration>
- <dependencies>
-    <!-- Must override this dependency, even though not declared (see MNG-6965) -->
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-utils</artifactId>
-      <version>3.0.24</version>
-    </dependency>
-  </dependencies>
-  
+        <dependencies>
+          <!-- Must override this dependency, even though not declared (see MNG-6965) -->
+          <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version>3.0.24</version>
+          </dependency>
+        </dependencies>
+
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
