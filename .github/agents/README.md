@@ -59,9 +59,17 @@ Agent prompt content goes here...
 
 ### YAML Frontmatter Properties
 
-- **name**: Unique identifier for the agent (kebab-case)
-- **description**: Brief explanation of what the agent does and its specific capabilities
-- **tools**: Optional list of tools the agent can use. Omit to grant access to all available tools.
+- **name**: Unique identifier for the agent (lowercase with hyphens, e.g., `stack-specialist`)
+- **description**: Brief explanation of what the agent does and its specific capabilities (maximum 200 characters)
+- **tools**: Array of tool aliases the agent can use. Available tools:
+  - `"view"` - Read file contents
+  - `"edit"` - Modify file contents  
+  - `"create"` - Create new files
+  - `"bash"` - Execute shell commands
+  - `"search_code"` - Search codebase
+  - `"web"` - Web search (if enabled)
+  - `"custom-agent"` - Invoke other custom agents
+  - `"todo"` - Task management (if enabled)
 
 ### Agent Prompt
 
@@ -181,6 +189,7 @@ If you have questions about:
 ---
 name: test-specialist
 description: Focuses on test coverage, quality, and testing best practices without modifying production code
+tools: ["view", "edit", "create", "bash", "search_code"]
 ---
 
 You are a testing specialist focused on improving code quality through comprehensive testing. Your responsibilities:
@@ -199,7 +208,7 @@ Always include clear test descriptions and use appropriate testing patterns for 
 ---
 name: implementation-planner
 description: Creates detailed implementation plans and technical specifications in markdown format
-tools: ["read", "search", "edit"]
+tools: ["view", "search_code", "edit", "create"]
 ---
 
 You are a technical planning specialist focused on creating comprehensive implementation plans. Your responsibilities:
