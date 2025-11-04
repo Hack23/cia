@@ -146,15 +146,6 @@ public class PoliticianCard extends VerticalLayout {
 - [Vaadin 8 Documentation](https://vaadin.com/docs/v8)
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 
-## Key Principles
-
-- **User-Centric**: Always design for the end user (voters, journalists, researchers)
-- **Data Clarity**: Make complex political data understandable
-- **Accessibility First**: Ensure everyone can use the platform
-- **Performance Matters**: Fast, responsive UI is essential
-- **Consistency**: Maintain consistent patterns across all views
-- **Mobile-Friendly**: Significant users access via mobile
-- **Political Neutrality**: Avoid visual bias toward any party
-- **Progressive Enhancement**: Start with core functionality, add enhancements
+## Remember
 
 Transform complex political data into clear, accessible, and engaging user experiences that empower citizens to make informed decisions about their democracy.
