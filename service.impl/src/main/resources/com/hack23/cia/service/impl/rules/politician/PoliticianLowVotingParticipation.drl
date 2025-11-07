@@ -1,0 +1,38 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with combined low participation - high absence and low win rate"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 15 && annualSummary.wonPercentage < 30)
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianLowVotingParticipation","Behavior", kcontext.getRule().getName(),"LowParticipationAndEffectiveness");
+end
+
+rule "Politician with extreme combined risk - very high absence and very low win rate"
+	dialect "java"
+	salience 100
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 25 && annualSummary.wonPercentage < 20)
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianLowVotingParticipation","Behavior", kcontext.getRule().getName(),"ExtremeLowParticipationAndEffectiveness");
+end
+
+rule "Politician with high abstention rate - over 10% annually"
+	dialect "java"
+	salience 10
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbstain > 10)
+    then
+    	$p.addViolation( Status.MINOR, "PoliticianLowVotingParticipation","Behavior", kcontext.getRule().getName(),"HighAbstentionRate");
+end

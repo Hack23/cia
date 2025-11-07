@@ -1,0 +1,38 @@
+package com.hack23.cia.service.impl.rules.party
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck
+
+rule "Party with consistently high absenteeism - 20% or more annually"
+	dialect "java"
+	salience 100
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && annualSummary != null && annualSummary.partyPercentageAbsent >= 20)
+    then
+    	$p.addViolation( Status.CRITICAL, "PartyHighAbsenteeism","Behavior", kcontext.getRule().getName(),"ChronicAbsenteeism");
+end
+
+rule "Party with high monthly absenteeism - 20% or more"
+	dialect "java"
+	salience 50
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && monthlySummary != null && monthlySummary.partyPercentageAbsent >= 20)
+    then
+    	$p.addViolation( Status.MAJOR, "PartyHighAbsenteeism","Behavior", kcontext.getRule().getName(),"HighMonthlyAbsenteeism");
+end
+
+rule "Party with concerning daily absenteeism - 25% or more"
+	dialect "java"
+	salience 10
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && dailySummary != null && dailySummary.partyPercentageAbsent >= 25)
+    then
+    	$p.addViolation( Status.MINOR, "PartyHighAbsenteeism","Behavior", kcontext.getRule().getName(),"HighDailyAbsenteeism");
+end
