@@ -1,0 +1,36 @@
+package com.hack23.cia.service.impl.rules.committee
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.CommitteeComplianceCheckImpl
+
+rule "Committee with few committee motions"
+	dialect "java"
+	salience 10
+    when
+        // Threshold: Fewer than 5 committee motions indicates low legislative initiative
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions < 5 && committee.totalCommitteeMotions > 0)
+    then
+    	$p.addViolation( Status.MINOR, "CommitteeInactivity","Behavior", kcontext.getRule().getName(),"FewCommitteeMotions");
+end
+
+rule "Committee with no committee motions"
+	dialect "java"
+	salience 50
+    when
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions == 0)
+    then
+    	$p.addViolation( Status.MAJOR, "CommitteeInactivity","Behavior", kcontext.getRule().getName(),"NoCommitteeMotions");
+end
+
+rule "Committee with no follow-up motions"
+	dialect "java"
+	salience 100
+    when
+        // Follow-up motions indicate ongoing policy engagement
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalFollowUpMotions == 0 && committee.totalCommitteeMotions > 10)
+    then
+    	$p.addViolation( Status.CRITICAL, "CommitteeInactivity","Behavior", kcontext.getRule().getName(),"NoFollowUpEngagement");
+end

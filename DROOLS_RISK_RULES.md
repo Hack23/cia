@@ -302,3 +302,186 @@ Potential areas for expansion:
 4. **Economic Impact**: Correlate political behavior with economic outcomes
 5. **Regional Analysis**: Track regional representation effectiveness
 6. **Committee Specialization**: Assess expertise development in committees
+
+---
+
+## Ministry Risk Rules (Added 2025-11-07)
+
+### 10. MinistryLowProductivity.drl
+**Purpose**: Tracks ministry-level legislative and document productivity.
+
+**Rules**:
+- **Low document productivity last year - below 10** (MINOR, salience 10)
+  - Condition: `documentsLastYear < 10 && > 0`
+  - Category: Behavior
+  - Resource Tag: LowDocumentOutput
+
+- **No documents last year** (MAJOR, salience 50)
+  - Condition: `documentsLastYear == 0`
+  - Category: Behavior
+  - Resource Tag: NoDocumentOutput
+
+- **Very low average documents per member - below 3** (CRITICAL, salience 100)
+  - Condition: `currentMemberSize > 0 && avgDocumentsPerMember < 3`
+  - Category: Behavior
+  - Resource Tag: ChronicallyLowProductivity
+
+**Intelligence Value**: Identifies ministries that are not actively producing legislative documents, indicating potential government ineffectiveness or lack of policy initiative.
+
+---
+
+### 11. MinistryInactiveLegislation.drl
+**Purpose**: Monitors ministry legislative output - government bills and propositions.
+
+**Rules**:
+- **Few government bills - below 2** (MINOR, salience 10)
+  - Condition: `totalGovernmentBills < 2 && > 0`
+  - Category: Behavior
+  - Resource Tag: FewGovernmentBills
+
+- **No government bills** (MAJOR, salience 50)
+  - Condition: `totalGovernmentBills == 0`
+  - Category: Behavior
+  - Resource Tag: NoGovernmentBills
+
+- **No propositions** (CRITICAL, salience 100)
+  - Condition: `totalPropositions == 0`
+  - Category: Behavior
+  - Resource Tag: NoPropositions
+
+**Intelligence Value**: Tracks government legislative initiative, identifying ministries that are not fulfilling their legislative mandate to propose new laws and policies.
+
+---
+
+### 12. MinistryUnderstaffed.drl
+**Purpose**: Detects ministries with insufficient staffing levels.
+
+**Rules**:
+- **Small member size - fewer than 3** (MINOR, salience 10)
+  - Condition: `currentMemberSize > 0 && < 3`
+  - Category: Structure
+  - Resource Tag: SmallTeam
+
+- **Single member - critically understaffed** (MAJOR, salience 50)
+  - Condition: `currentMemberSize == 1`
+  - Category: Structure
+  - Resource Tag: SingleMember
+
+- **No members - vacant ministry** (CRITICAL, salience 100)
+  - Condition: `currentMemberSize == 0`
+  - Category: Structure
+  - Resource Tag: VacantMinistry
+
+**Intelligence Value**: Identifies organizational capacity issues that may prevent ministries from effectively executing their mandate, indicating potential government dysfunction.
+
+---
+
+## Committee Risk Rules (Added 2025-11-07)
+
+### 13. CommitteeLowProductivity.drl
+**Purpose**: Tracks committee-level legislative and document productivity.
+
+**Rules**:
+- **Low document productivity last year - below 20** (MINOR, salience 10)
+  - Condition: `documentsLastYear < 20 && > 0`
+  - Category: Behavior
+  - Resource Tag: LowDocumentOutput
+
+- **No documents last year** (MAJOR, salience 50)
+  - Condition: `documentsLastYear == 0`
+  - Category: Behavior
+  - Resource Tag: NoDocumentOutput
+
+- **Very low average documents per member - below 2** (CRITICAL, salience 100)
+  - Condition: `currentMemberSize > 0 && avgDocumentsPerMember < 2`
+  - Category: Behavior
+  - Resource Tag: ChronicallyLowProductivity
+
+**Intelligence Value**: Identifies underperforming committees that are not actively contributing to the legislative process through detailed policy work and proposals.
+
+---
+
+### 14. CommitteeLeadershipVacancy.drl
+**Purpose**: Detects committees with leadership and staffing deficiencies.
+
+**Rules**:
+- **No leadership positions** (MINOR, salience 10)
+  - Condition: `currentMemberSize > 0 && currentLeadershipPositions == 0`
+  - Category: Structure
+  - Resource Tag: NoLeadership
+
+- **Leadership but few members - below 5** (MAJOR, salience 50)
+  - Condition: `currentLeadershipPositions > 0 && currentMemberSize < 5`
+  - Category: Structure
+  - Resource Tag: Understaffed
+
+- **No regular members** (CRITICAL, salience 100)
+  - Condition: `currentRegularMembers == 0`
+  - Category: Structure
+  - Resource Tag: NoRegularMembers
+
+**Intelligence Value**: Tracks committee organizational health, identifying structural problems that may prevent committees from functioning effectively.
+
+---
+
+### 15. CommitteeInactivity.drl
+**Purpose**: Monitors committee engagement through motions and follow-up activity.
+
+**Rules**:
+- **Few committee motions - below 5** (MINOR, salience 10)
+  - Condition: `totalCommitteeMotions < 5 && > 0`
+  - Category: Behavior
+  - Resource Tag: FewCommitteeMotions
+
+- **No committee motions** (MAJOR, salience 50)
+  - Condition: `totalCommitteeMotions == 0`
+  - Category: Behavior
+  - Resource Tag: NoCommitteeMotions
+
+- **No follow-up motions despite activity** (CRITICAL, salience 100)
+  - Condition: `totalFollowUpMotions == 0 && totalCommitteeMotions > 10`
+  - Category: Behavior
+  - Resource Tag: NoFollowUpEngagement
+
+**Intelligence Value**: Identifies committees that lack sustained policy engagement, indicating lack of accountability or follow-through on legislative initiatives.
+
+---
+
+## Updated Data Sources
+
+### Ministry Data
+- `ViewRiksdagenMinistry`: Ministry profile and productivity data
+  - totalDocuments, documentsLastYear, avgDocumentsPerMember
+  - totalPropositions, totalGovernmentBills
+  - currentMemberSize, totalDaysServed, activityLevel
+
+### Committee Data
+- `ViewRiksdagenCommittee`: Committee profile and activity data
+  - totalDocuments, documentsLastYear, avgDocumentsPerMember
+  - totalCommitteeMotions, totalFollowUpMotions
+  - currentMemberSize, currentRegularMembers
+  - totalLeadershipPositions, currentLeadershipPositions
+  - totalSubstitutePositions, currentSubstitutePositions, activityLevel
+
+---
+
+## Updated Statistics
+
+**Total Rules**: 35 (up from 29)
+- **Politician Rules**: 20 files
+- **Party Rules**: 6 files
+- **Ministry Rules**: 3 files (NEW)
+- **Committee Rules**: 3 files (NEW)
+- **Other Rules**: 3 files (application/user)
+
+**Coverage**: ~85% of available database views utilized for risk assessment
+- Politician analysis: ✓ Complete
+- Party analysis: ✓ Complete
+- Ministry analysis: ✓ Complete (NEW)
+- Committee analysis: ✓ Complete (NEW)
+- Coalition analysis: Partial (future enhancement)
+- Weekly trends: Not implemented (future enhancement)
+
+**New Compliance Check Implementations**: 
+- MinistryComplianceCheckImpl (NEW)
+- CommitteeComplianceCheckImpl (NEW)

@@ -1,0 +1,36 @@
+package com.hack23.cia.service.impl.rules.committee
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.CommitteeComplianceCheckImpl
+
+rule "Committee with low document productivity last year"
+	dialect "java"
+	salience 10
+    when
+        // Threshold: Less than 20 docs/year represents low committee output
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.documentsLastYear < 20 && committee.documentsLastYear > 0)
+    then
+    	$p.addViolation( Status.MINOR, "CommitteeLowProductivity","Behavior", kcontext.getRule().getName(),"LowDocumentOutput");
+end
+
+rule "Committee with no documents last year"
+	dialect "java"
+	salience 50
+    when
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.documentsLastYear == 0)
+    then
+    	$p.addViolation( Status.MAJOR, "CommitteeLowProductivity","Behavior", kcontext.getRule().getName(),"NoDocumentOutput");
+end
+
+rule "Committee with very low average documents per member"
+	dialect "java"
+	salience 100
+    when
+        // Threshold: Less than 2 docs per member indicates systematically low productivity
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.currentMemberSize > 0 && committee.avgDocumentsPerMember < 2)
+    then
+    	$p.addViolation( Status.CRITICAL, "CommitteeLowProductivity","Behavior", kcontext.getRule().getName(),"ChronicallyLowProductivity");
+end

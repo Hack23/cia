@@ -1,0 +1,36 @@
+package com.hack23.cia.service.impl.rules.ministry
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.MinistryComplianceCheckImpl
+
+rule "Ministry with low document productivity last year"
+	dialect "java"
+	salience 10
+    when
+        // Threshold: 10 docs/year represents minimal ministry output
+        $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear < 10 && ministry.documentsLastYear > 0)
+    then
+    	$p.addViolation( Status.MINOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"LowDocumentOutput");
+end
+
+rule "Ministry with no documents last year"
+	dialect "java"
+	salience 50
+    when
+        $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear == 0)
+    then
+    	$p.addViolation( Status.MAJOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"NoDocumentOutput");
+end
+
+rule "Ministry with very low average documents per member"
+	dialect "java"
+	salience 100
+    when
+        // Threshold: Less than 3 docs per member indicates systematically low productivity
+        $p : MinistryComplianceCheckImpl(ministry.active && ministry.currentMemberSize > 0 && ministry.avgDocumentsPerMember < 3)
+    then
+    	$p.addViolation( Status.CRITICAL, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"ChronicallyLowProductivity");
+end
