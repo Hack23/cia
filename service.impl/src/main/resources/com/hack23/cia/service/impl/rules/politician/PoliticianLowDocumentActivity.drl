@@ -1,0 +1,34 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with very low document activity last year"
+	dialect "java"
+	salience 10
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.documentsLastYear < 5 && politician.documentsLastYear > 0)
+    then
+    	$p.addViolation( Status.MINOR, "PoliticianLowDocumentActivity","Behavior", kcontext.getRule().getName(),"LowProductivity");
+end
+
+rule "Politician with no documents last year"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.documentsLastYear == 0)
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianLowDocumentActivity","Behavior", kcontext.getRule().getName(),"NoProductivity");
+end
+
+rule "Politician with very low average document activity"
+	dialect "java"
+	salience 100
+    when
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.documentYearsActive > 2 && politician.averageDocsPerYear < 3)
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianLowDocumentActivity","Behavior", kcontext.getRule().getName(),"ChronicallyLowProductivity");
+end

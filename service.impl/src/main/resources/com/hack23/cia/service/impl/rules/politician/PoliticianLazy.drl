@@ -32,7 +32,16 @@ rule "We have a lazy politician, absent more than 20 % of ballots last year"
 	dialect "java"
 	salience 100
     when
-        $p : PoliticianComplianceCheckImpl( politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 20)
+        $p : PoliticianComplianceCheckImpl( politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 20 && annualSummary.politicianPercentageAbsent < 30)
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianLazy","Behavior", kcontext.getRule().getName(),"NA");
+end
+
+rule "We have an extremely lazy politician, absent more than 30 % of ballots last year"
+	dialect "java"
+	salience 150
+    when
+        $p : PoliticianComplianceCheckImpl( politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 30)
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianLazy","Behavior", kcontext.getRule().getName(),"ExtremeAbsenteeism");
 end

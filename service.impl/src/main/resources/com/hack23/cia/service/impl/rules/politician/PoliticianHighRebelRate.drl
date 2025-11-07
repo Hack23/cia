@@ -1,0 +1,38 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with high rebel rate - 5-10% annually"
+	dialect "java"
+	salience 10
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 5 && annualSummary.rebelPercentage < 10)
+    then
+    	$p.addViolation( Status.MINOR, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"FrequentRebelVoting");
+end
+
+rule "Politician with very high rebel rate - 10-20% annually"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 10 && annualSummary.rebelPercentage < 20)
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"VeryHighRebelVoting");
+end
+
+rule "Politician with extreme rebel rate - 20%+ annually"
+	dialect "java"
+	salience 100
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 20)
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"ExtremeRebelVoting");
+end

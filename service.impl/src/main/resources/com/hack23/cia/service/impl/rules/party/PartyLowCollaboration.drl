@@ -1,0 +1,47 @@
+package com.hack23.cia.service.impl.rules.party
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck
+
+rule "Party with low average collaboration percentage - below 15%"
+	dialect "java"
+	salience 10
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 15 && party.avgCollaborationPercentage >= 10)
+    then
+    	$p.addViolation( Status.MINOR, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"LowCrossPartyEngagement");
+end
+
+rule "Party with very low average collaboration percentage - below 10%"
+	dialect "java"
+	salience 50
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 10 && party.avgCollaborationPercentage > 0)
+    then
+    	$p.addViolation( Status.MAJOR, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"VeryLowCrossPartyEngagement");
+end
+
+rule "Party with no highly collaborative members"
+	dialect "java"
+	salience 100
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.currentlyActiveMembers > 5 && party.highlyCollaborativeMembers == 0)
+    then
+    	$p.addViolation( Status.CRITICAL, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"NoCollaborativeMembers");
+end
+
+rule "Party with low collaborative motions ratio"
+	dialect "java"
+	salience 10
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.totalDocuments > 50 && party.totalCollaborativeMotions < (party.totalDocuments * 0.05))
+    then
+    	$p.addViolation( Status.MINOR, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"FewCollaborativeMotions");
+end

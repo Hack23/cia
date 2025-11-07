@@ -1,0 +1,38 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician rarely wins votes - below 30% win rate annually"
+	dialect "java"
+	salience 10
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.wonPercentage < 30)
+    then
+    	$p.addViolation( Status.MINOR, "PoliticianIneffectiveVoting","Behavior", kcontext.getRule().getName(),"LowWinRate");
+end
+
+rule "Politician rarely wins votes - below 20% win rate annually"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.wonPercentage < 20)
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianIneffectiveVoting","Behavior", kcontext.getRule().getName(),"VeryLowWinRate");
+end
+
+rule "Politician rarely wins votes - below 10% win rate annually"
+	dialect "java"
+	salience 100
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.wonPercentage < 10)
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianIneffectiveVoting","Behavior", kcontext.getRule().getName(),"CriticallyLowWinRate");
+end
