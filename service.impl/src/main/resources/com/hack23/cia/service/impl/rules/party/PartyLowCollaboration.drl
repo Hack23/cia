@@ -41,6 +41,7 @@ rule "Party with low collaborative motions ratio"
 	dialect "java"
 	salience 10
     when
+        // Threshold: 50 total documents minimum sample, 5% collaborative is baseline expectation
         $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.totalDocuments > 50 && party.totalCollaborativeMotions < (party.totalDocuments * 0.05))
     then
     	$p.addViolation( Status.MINOR, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"FewCollaborativeMotions");

@@ -28,6 +28,7 @@ rule "Politician with very low average document activity"
 	dialect "java"
 	salience 100
     when
+        // Threshold: 3 docs/year represents minimal legislative engagement over multiple years
         $p : PoliticianComplianceCheckImpl(politician.active && politician.documentYearsActive > 2 && politician.averageDocsPerYear < 3)
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianLowDocumentActivity","Behavior", kcontext.getRule().getName(),"ChronicallyLowProductivity");

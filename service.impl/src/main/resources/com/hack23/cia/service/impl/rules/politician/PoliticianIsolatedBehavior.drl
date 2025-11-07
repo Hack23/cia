@@ -28,6 +28,7 @@ rule "Politician with no multi-party collaboration"
 	dialect "java"
 	salience 100
     when
+        // Threshold: 20 documents provides sufficient sample size for collaboration analysis
         $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDocuments > 20 && politician.multiPartyMotions == 0)
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianIsolatedBehavior","Behavior", kcontext.getRule().getName(),"NoMultiPartyCollaboration");
