@@ -102,7 +102,7 @@ SELECT
     ROUND(volatility_4quarter::NUMERIC, 4) AS volatility,
     
     -- Acceleration: rate of change of momentum
-    ROUND((momentum - LAG(momentum, 1) OVER (PARTITION BY party ORDER BY year, quarter))::NUMERIC, 4) AS acceleration,
+    ROUND((COALESCE(momentum, 0) - COALESCE(LAG(momentum, 1) OVER (PARTITION BY party ORDER BY year, quarter), 0))::NUMERIC, 4) AS acceleration,
     
     -- Trend classification
     CASE
@@ -290,6 +290,15 @@ party_majority_vote AS (
     FROM party_consensus
     WHERE rank = 1
 ),
+party_vote_counts AS (
+    SELECT
+        embedded_id_ballot_id,
+        party,
+        COUNT(*) AS total_party_votes
+    FROM vote_data
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '1 year'
+    GROUP BY embedded_id_ballot_id, party
+),
 individual_vs_party AS (
     SELECT
         vd.embedded_id_intressent_id AS person_id,
@@ -307,13 +316,9 @@ individual_vs_party AS (
             ELSE 'OTHER'
         END AS alignment_status,
         CASE
-            WHEN pmv.consensus_count >= (SELECT COUNT(*) FROM vote_data vd2 
-                WHERE vd2.embedded_id_ballot_id = vd.embedded_id_ballot_id 
-                    AND vd2.party = vd.party) * 0.9
+            WHEN pmv.consensus_count >= pvc.total_party_votes * 0.9
                 THEN 'UNANIMOUS'
-            WHEN pmv.consensus_count >= (SELECT COUNT(*) FROM vote_data vd2 
-                WHERE vd2.embedded_id_ballot_id = vd.embedded_id_ballot_id 
-                    AND vd2.party = vd.party) * 0.75
+            WHEN pmv.consensus_count >= pvc.total_party_votes * 0.75
                 THEN 'STRONG_MAJORITY'
             ELSE 'SPLIT'
         END AS party_cohesion
@@ -321,6 +326,9 @@ individual_vs_party AS (
     INNER JOIN party_majority_vote pmv 
         ON vd.embedded_id_ballot_id = pmv.embedded_id_ballot_id
         AND vd.party = pmv.party
+    INNER JOIN party_vote_counts pvc
+        ON vd.embedded_id_ballot_id = pvc.embedded_id_ballot_id
+        AND vd.party = pvc.party
     WHERE vd.vote IN ('Ja', 'Nej', 'Avstår')
         AND vd.vote_date >= CURRENT_DATE - INTERVAL '1 year'
 )
@@ -478,6 +486,13 @@ broker_score AS (
         MAX(parties_connected) AS cross_party_connections
     FROM cross_party_bridges
     GROUP BY person_id
+),
+influence_max_values AS (
+    SELECT
+        MAX(dc.connection_count) AS max_connections,
+        MAX(dc.connection_count) + MAX(COALESCE(bs.cross_party_connections, 0)) * 10 AS max_influence_denominator
+    FROM degree_centrality dc
+    LEFT JOIN broker_score bs ON dc.person_id = bs.person_id
 )
 SELECT
     pd.id AS person_id,
@@ -491,7 +506,7 @@ SELECT
     -- Normalized degree centrality (0-1 scale, relative to max in dataset)
     ROUND(
         CAST(COALESCE(dc.connection_count, 0) AS FLOAT) / 
-        NULLIF((SELECT MAX(connection_count) FROM degree_centrality), 0),
+        NULLIF(imv.max_connections, 0),
         4
     ) AS normalized_centrality,
     
@@ -516,10 +531,7 @@ SELECT
     ROUND(
         (COALESCE(dc.connection_count, 0) * 1.0 + 
          COALESCE(bs.cross_party_connections, 0) * 10.0) / 
-        NULLIF((SELECT MAX(connection_count) + 
-                MAX(COALESCE(bs2.cross_party_connections, 0)) * 10 
-                FROM degree_centrality dc2 
-                LEFT JOIN broker_score bs2 ON dc2.person_id = bs2.person_id), 0),
+        NULLIF(imv.max_influence_denominator, 0),
         4
     ) AS influence_score,
     
@@ -537,6 +549,7 @@ SELECT
     END AS influence_assessment
 
 FROM person_data pd
+CROSS JOIN influence_max_values imv
 LEFT JOIN degree_centrality dc ON dc.person_id = pd.id
 LEFT JOIN broker_score bs ON bs.person_id = pd.id
 WHERE pd.status = 'active'  -- Focus on currently active politicians
@@ -733,68 +746,117 @@ ORDER BY resilience_score DESC, crisis_definitive_votes DESC;
     
     <createView viewName="view_riksdagen_intelligence_dashboard">
         <![CDATA[
+WITH momentum_data AS (
+    SELECT
+        party,
+        trend_direction,
+        stability_classification
+    FROM view_riksdagen_party_momentum_analysis
+),
+coalition_data AS (
+    SELECT
+        coalition_likelihood,
+        bloc_relationship
+    FROM view_riksdagen_coalition_alignment_matrix
+),
+anomaly_data AS (
+    SELECT
+        defection_risk_assessment,
+        discipline_classification
+    FROM view_riksdagen_voting_anomaly_detection
+),
+influence_data AS (
+    SELECT
+        broker_classification,
+        connectivity_level
+    FROM view_riksdagen_politician_influence_metrics
+),
+resilience_data AS (
+    SELECT
+        resilience_classification
+    FROM view_riksdagen_crisis_resilience_indicators
+),
+vote_stats AS (
+    SELECT
+        MAX(vote_date) AS latest_vote_data,
+        COUNT(DISTINCT embedded_id_ballot_id) FILTER (WHERE vote_date >= CURRENT_DATE - INTERVAL '30 days') AS ballots_last_30_days
+    FROM vote_data
+),
+aggregated_counts AS (
+    SELECT
+        -- Temporal indicators
+        COUNT(DISTINCT md.party) FILTER (WHERE md.trend_direction IN ('STRONG_POSITIVE', 'POSITIVE')) AS parties_gaining_momentum,
+        COUNT(DISTINCT md.party) FILTER (WHERE md.trend_direction IN ('STRONG_NEGATIVE', 'NEGATIVE')) AS parties_losing_momentum,
+        COUNT(DISTINCT md.party) FILTER (WHERE md.stability_classification IN ('VOLATILE', 'HIGHLY_VOLATILE')) AS volatile_parties,
+        
+        -- Coalition indicators
+        COUNT(cd.*) FILTER (WHERE cd.coalition_likelihood = 'VERY_HIGH') AS high_probability_coalitions,
+        COUNT(cd.*) FILTER (WHERE cd.bloc_relationship = 'CROSS_BLOC' AND cd.coalition_likelihood IN ('HIGH', 'VERY_HIGH')) AS cross_bloc_alliances,
+        
+        -- Risk indicators
+        COUNT(ad.*) FILTER (WHERE ad.defection_risk_assessment = 'HIGH_DEFECTION_RISK') AS high_defection_risks,
+        COUNT(ad.*) FILTER (WHERE ad.discipline_classification = 'LOW_DISCIPLINE') AS low_discipline_politicians,
+        
+        -- Influence indicators
+        COUNT(id.*) FILTER (WHERE id.broker_classification IN ('STRONG_BROKER', 'MODERATE_BROKER')) AS power_brokers,
+        COUNT(id.*) FILTER (WHERE id.connectivity_level = 'HIGHLY_CONNECTED') AS highly_connected_politicians,
+        
+        -- Resilience indicators
+        COUNT(rd.*) FILTER (WHERE rd.resilience_classification = 'HIGHLY_RESILIENT') AS crisis_ready_politicians,
+        COUNT(rd.*) FILTER (WHERE rd.resilience_classification = 'LOW_RESILIENCE') AS low_resilience_politicians
+    FROM momentum_data md
+    FULL OUTER JOIN coalition_data cd ON TRUE
+    FULL OUTER JOIN anomaly_data ad ON TRUE
+    FULL OUTER JOIN influence_data id ON TRUE
+    FULL OUTER JOIN resilience_data rd ON TRUE
+)
 SELECT
     -- Temporal indicators
-    (SELECT COUNT(DISTINCT party) FROM view_riksdagen_party_momentum_analysis 
-     WHERE trend_direction IN ('STRONG_POSITIVE', 'POSITIVE')) AS parties_gaining_momentum,
-    (SELECT COUNT(DISTINCT party) FROM view_riksdagen_party_momentum_analysis 
-     WHERE trend_direction IN ('STRONG_NEGATIVE', 'NEGATIVE')) AS parties_losing_momentum,
-    (SELECT COUNT(DISTINCT party) FROM view_riksdagen_party_momentum_analysis 
-     WHERE stability_classification IN ('VOLATILE', 'HIGHLY_VOLATILE')) AS volatile_parties,
+    ac.parties_gaining_momentum,
+    ac.parties_losing_momentum,
+    ac.volatile_parties,
     
     -- Coalition indicators
-    (SELECT COUNT(*) FROM view_riksdagen_coalition_alignment_matrix 
-     WHERE coalition_likelihood = 'VERY_HIGH') AS high_probability_coalitions,
-    (SELECT COUNT(*) FROM view_riksdagen_coalition_alignment_matrix 
-     WHERE bloc_relationship = 'CROSS_BLOC' AND coalition_likelihood IN ('HIGH', 'VERY_HIGH')) 
-     AS cross_bloc_alliances,
+    ac.high_probability_coalitions,
+    ac.cross_bloc_alliances,
     
     -- Risk indicators
-    (SELECT COUNT(*) FROM view_riksdagen_voting_anomaly_detection 
-     WHERE defection_risk_assessment = 'HIGH_DEFECTION_RISK') AS high_defection_risks,
-    (SELECT COUNT(*) FROM view_riksdagen_voting_anomaly_detection 
-     WHERE discipline_classification = 'LOW_DISCIPLINE') AS low_discipline_politicians,
+    ac.high_defection_risks,
+    ac.low_discipline_politicians,
     
     -- Influence indicators
-    (SELECT COUNT(*) FROM view_riksdagen_politician_influence_metrics 
-     WHERE broker_classification IN ('STRONG_BROKER', 'MODERATE_BROKER')) AS power_brokers,
-    (SELECT COUNT(*) FROM view_riksdagen_politician_influence_metrics 
-     WHERE connectivity_level = 'HIGHLY_CONNECTED') AS highly_connected_politicians,
+    ac.power_brokers,
+    ac.highly_connected_politicians,
     
     -- Resilience indicators
-    (SELECT COUNT(*) FROM view_riksdagen_crisis_resilience_indicators 
-     WHERE resilience_classification = 'HIGHLY_RESILIENT') AS crisis_ready_politicians,
-    (SELECT COUNT(*) FROM view_riksdagen_crisis_resilience_indicators 
-     WHERE resilience_classification = 'LOW_RESILIENCE') AS low_resilience_politicians,
+    ac.crisis_ready_politicians,
+    ac.low_resilience_politicians,
     
     -- Overall assessment flags
     CASE
-        WHEN (SELECT COUNT(*) FROM view_riksdagen_voting_anomaly_detection 
-              WHERE defection_risk_assessment = 'HIGH_DEFECTION_RISK') >= 5
+        WHEN ac.high_defection_risks >= 5
             THEN 'HIGH_POLITICAL_INSTABILITY_RISK'
-        WHEN (SELECT COUNT(DISTINCT party) FROM view_riksdagen_party_momentum_analysis 
-              WHERE stability_classification IN ('VOLATILE', 'HIGHLY_VOLATILE')) >= 3
+        WHEN ac.volatile_parties >= 3
             THEN 'MODERATE_POLITICAL_INSTABILITY_RISK'
         ELSE 'STABLE_POLITICAL_ENVIRONMENT'
     END AS stability_assessment,
     
     CASE
-        WHEN (SELECT COUNT(*) FROM view_riksdagen_coalition_alignment_matrix 
-              WHERE bloc_relationship = 'CROSS_BLOC' AND coalition_likelihood = 'VERY_HIGH') >= 2
+        WHEN ac.cross_bloc_alliances >= 2
             THEN 'POTENTIAL_REALIGNMENT_DETECTED'
-        WHEN (SELECT COUNT(*) FROM view_riksdagen_coalition_alignment_matrix 
-              WHERE coalition_likelihood = 'VERY_HIGH') >= 5
+        WHEN ac.high_probability_coalitions >= 5
             THEN 'STABLE_COALITION_PATTERNS'
         ELSE 'UNCERTAIN_COALITION_LANDSCAPE'
     END AS coalition_assessment,
     
     -- Data freshness
-    (SELECT MAX(vote_date) FROM vote_data) AS latest_vote_data,
-    (SELECT COUNT(DISTINCT embedded_id_ballot_id) FROM vote_data 
-     WHERE vote_date >= CURRENT_DATE - INTERVAL '30 days') AS ballots_last_30_days,
+    vs.latest_vote_data,
+    vs.ballots_last_30_days,
     
     -- Intelligence report timestamp
-    CURRENT_TIMESTAMP AS intelligence_report_timestamp;
+    CURRENT_TIMESTAMP AS intelligence_report_timestamp
+FROM aggregated_counts ac
+CROSS JOIN vote_stats vs;
         ]]>
     </createView>
 </changeSet>
