@@ -456,7 +456,7 @@ graph LR
 | **Vulnerability Scans** | Daily (automated) | DevSecOps | Automated tickets |
 | **Incident Reviews** | Post-Incident | Security Team | Lessons learned |
 | **ISMS Policy Review** | Quarterly | CEO | Updated policies |
-| **Risk Assessment** | Bi-Annually | Security Team | Updated threat model |
+| **Risk Assessment** | Biannually | Security Team | Updated threat model |
 | **Compliance Audit** | Annually | External Auditor | Audit report |
 
 ---
@@ -497,7 +497,7 @@ graph LR
 
 | 🌐 Framework | 🔗 Reference Link |
 |-------------|------------------|
-| **ISO 27001:2022** | [ISO Standard](https://www.iso.org/standard/27001) |
+| **ISO 27001:2022** | [ISO Standard](https://www.iso.org/standard/82875.html) |
 | **NIST CSF 2.0** | [NIST Framework](https://www.nist.gov/cyberframework) |
 | **CIS Controls v8.1** | [CIS Controls](https://www.cisecurity.org/controls/) |
 | **EU Cyber Resilience Act** | [CRA Regulation](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act) |
@@ -528,7 +528,7 @@ This document fulfills all requirements from [Issue #7778](https://github.com/Ha
 **Effective Date:** 2025-11-10 | **Review Date:** 2026-02-10
 
 **Compliance Frameworks:**
-- [![ISO 27001](https://img.shields.io/badge/ISO-27001:2022-0066CC?style=flat-square)](https://www.iso.org/standard/27001)
+- [![ISO 27001](https://img.shields.io/badge/ISO-27001:2022-0066CC?style=flat-square)](https://www.iso.org/standard/82875.html)
 - [![NIST CSF](https://img.shields.io/badge/NIST-CSF_2.0-0A3161?style=flat-square)](https://www.nist.gov/cyberframework)
 - [![CIS Controls](https://img.shields.io/badge/CIS-Controls_v8.1-00539F?style=flat-square)](https://www.cisecurity.org/controls/)
 - [![EU CRA](https://img.shields.io/badge/EU-CRA_Compliant-003399?style=flat-square)](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act)
