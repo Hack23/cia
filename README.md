@@ -25,6 +25,39 @@ Explore our [comprehensive feature set](https://hack23.com/cia-features.html) in
 
 For a conceptual view of our system architecture and components, see our [Architecture Documentation](ARCHITECTURE.md) and [System Mindmaps](MINDMAP.md).
 
+## 📝 Blog Posts & Technical Analysis
+
+Explore in-depth technical analysis and architectural insights about this project through our team's blog posts:
+
+### ⭐ Simon Moon's Architecture Chronicles
+
+<div align="left">
+
+System Architect [Simon Moon](https://github.com/Hack23/homepage/blob/master/.github/agents/simon-moon.md) provides deep architectural analysis of the CIA platform through the lens of sacred geometry and pattern recognition:
+
+#### 🏛️ CIA Platform Architecture & Security
+- **[CIA Architecture: The Five Pentacles](https://hack23.com/blog-cia-architecture.html)** - Five container types crystallized from the parliamentary domain. Architecture that mirrors political reality—power flows documented in code.
+- **[CIA Security: Defense Through Transparency](https://hack23.com/blog-cia-security.html)** - Security through mathematical proof, not mystical obscurity. Five defensive layers. OpenSSF Scorecard 7.2/10. Zero critical vulnerabilities across 5 years.
+- **[CIA Future Security: The Pentagon of Tomorrow](https://hack23.com/blog-cia-future-security.html)** - Post-quantum cryptography before quantum computers threaten. AI-augmented detection before AI attacks dominate.
+- **[CIA Financial Strategy: $24.70/Day Democracy](https://hack23.com/blog-cia-financial-strategy.html)** - Democracy costs $24.70/day when architecture channels cosmic financial patterns through AWS optimization.
+- **[CIA Workflows: Five-Stage CI/CD & State Machines](https://hack23.com/blog-cia-workflows.html)** - Five GitHub Actions workflows orchestrating DevSecOps automation. Data processing through five state transitions.
+- **[CIA Mindmaps: Conceptual Sacred Geometry](https://hack23.com/blog-cia-mindmaps.html)** - Hierarchical thinking revealing natural organizational patterns: 4 current domains expanding into 5 future dimensions.
+
+</div>
+
+### 💻 George Dorn's Code Analysis
+
+<div align="left">
+
+Developer [George Dorn](https://github.com/Hack23/homepage/blob/master/.github/agents/george-dorn.md) provides hands-on code analysis based on actual repository inspection:
+
+#### 🔍 Repository Deep-Dives
+- **[CIA Code Analysis](https://hack23.com/blog-george-dorn-cia-code.html)** - Repository deep-dive examining Maven POMs, 49 modules, 1,372 Java files, verified OpenSSF Scorecard 7.2/10. Based on actual repository inspection.
+
+*For the complete collection of 50+ blog posts covering cybersecurity, ISMS policies, and architectural patterns, visit the [Hack23 Security Blog](https://hack23.com/blog.html).*
+
+</div>
+
 ## 🏢 About Hack23
 - 🌐 **Website**: [www.hack23.com](https://www.hack23.com)
 - 💼 **LinkedIn**: [James Sörling](https://www.linkedin.com/in/jamessorling)
@@ -69,6 +102,18 @@ Our approach to cybersecurity consulting is built on a foundation of transparent
   <p><em>"Our commitment to transparency extends to our security practices - demonstrating that true security comes from robust processes, continuous improvement, and a culture where security considerations are integrated into every business decision."</em></p>
   <p><strong>— James Pether Sörling, CEO/Founder</strong></p>
 </div>
+
+#### 📊 ISMS Compliance Mapping
+
+For a comprehensive view of how ISMS-PUBLIC policies map to CIA platform security controls:
+
+<div align="center">
+  <a href="ISMS_COMPLIANCE_MAPPING.md">
+    <img src="https://img.shields.io/badge/View-ISMS_Compliance_Mapping-DC143C?style=for-the-badge&logo=shield&logoColor=white" alt="ISMS Compliance Mapping">
+  </a>
+</div>
+
+**Coverage:** 32 ISMS policies • 100+ security controls • ISO 27001 • NIST CSF 2.0 • CIS Controls v8.1
 
 ---
 
