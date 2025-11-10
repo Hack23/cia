@@ -33,6 +33,7 @@ This document outlines the comprehensive security architecture of the Citizen In
 | Document | Focus | Description |
 |----------|-------|-------------|
 | [Security Architecture](SECURITY_ARCHITECTURE.md) | 🛡️ Security | Complete security overview |
+| [ISMS Compliance Mapping](ISMS_COMPLIANCE_MAPPING.md) | 🔐 ISMS | Comprehensive ISMS-PUBLIC policy mapping |
 | [Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md) | 🚀 Vision | Future security roadmap |
 | [Financial Security Plan](FinancialSecurityPlan.md) | 💰 Cost | AWS security implementation costs |
 | [Architecture](ARCHITECTURE.md) | 🏛️ Structure | Overall system architecture |

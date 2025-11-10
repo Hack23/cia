@@ -70,6 +70,18 @@ Our approach to cybersecurity consulting is built on a foundation of transparent
   <p><strong>— James Pether Sörling, CEO/Founder</strong></p>
 </div>
 
+#### 📊 ISMS Compliance Mapping
+
+For a comprehensive view of how ISMS-PUBLIC policies map to CIA platform security controls:
+
+<div align="center">
+  <a href="ISMS_COMPLIANCE_MAPPING.md">
+    <img src="https://img.shields.io/badge/View-ISMS_Compliance_Mapping-DC143C?style=for-the-badge&logo=shield&logoColor=white" alt="ISMS Compliance Mapping">
+  </a>
+</div>
+
+**Coverage:** 32 ISMS policies • 100+ security controls • ISO 27001 • NIST CSF 2.0 • CIS Controls v8.1
+
 ---
 
 
