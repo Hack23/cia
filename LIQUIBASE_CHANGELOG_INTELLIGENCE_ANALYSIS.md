@@ -83,7 +83,7 @@ Foundation provides essential data collection infrastructure for OSINT operation
 CREATE VIEW view_riksdagen_committee
 -- Tracks committee assignments by organization code
 
-CREATE VIEW view_riksdagen_goverment  
+CREATE VIEW view_riksdagen_government  
 -- Identifies government ministerial positions
 
 CREATE VIEW view_riksdagen_politician
