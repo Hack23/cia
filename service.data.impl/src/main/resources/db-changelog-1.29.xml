@@ -8,7 +8,7 @@
 <!-- 
   Intelligence Operations Enhancement Package v1.29
   Author: Intelligence Operations Analyst
-  Date: 2025-11-09
+  Date: 2025-11-11
   
   This changelog implements strategic intelligence views based on comprehensive
   analysis of the platform's OSINT and political intelligence capabilities.
@@ -19,6 +19,20 @@
   3. Political Risk Indicators - Anomaly detection
   4. Network Influence Metrics - Basic centrality measures
   5. Crisis & Resilience Tracking - Performance under pressure
+  
+  Time Window Strategy:
+  - 2-year window (Coalition Alignment): Captures medium-term coalition patterns while
+    remaining relevant to current political landscape. Coalitions form over time and 
+    require stable patterns to be meaningful.
+  - 1-year window (Anomaly Detection, Crisis Resilience): Recent behavior is most 
+    indicative of current political risks and performance under pressure. Focuses on 
+    immediate threats and current behavioral patterns.
+  - Historical window (Momentum Analysis): Uses data from 2010+ to establish long-term
+    trends while quarterly aggregation provides granularity.
+  
+  Note: CURRENT_DATE-based filters ensure views always reflect most recent data, though
+  this means results will evolve over time. For reproducible historical analysis, these
+  filters can be replaced with fixed dates.
 -->
 
 <!-- ========================================================================= -->
@@ -26,7 +40,7 @@
 <!-- Intelligence Value: HIGH - Early warning indicators                       -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-ops" id="intops-2025110901-temporal-momentum" failOnError="true">
+<changeSet author="intelligence-ops" id="intops-2025111101-temporal-momentum" failOnError="true">
     <comment>
         Temporal Momentum Analysis View
         
@@ -106,28 +120,28 @@ SELECT
     
     -- Trend classification
     CASE
-        WHEN momentum > 0.05 THEN 'STRONG_POSITIVE'
-        WHEN momentum > 0.02 THEN 'POSITIVE'
-        WHEN momentum > -0.02 THEN 'STABLE'
-        WHEN momentum > -0.05 THEN 'NEGATIVE'
+        WHEN COALESCE(momentum, 0) > 0.05 THEN 'STRONG_POSITIVE'
+        WHEN COALESCE(momentum, 0) > 0.02 THEN 'POSITIVE'
+        WHEN COALESCE(momentum, 0) > -0.02 THEN 'STABLE'
+        WHEN COALESCE(momentum, 0) > -0.05 THEN 'NEGATIVE'
         ELSE 'STRONG_NEGATIVE'
     END AS trend_direction,
     
     -- Stability classification
     CASE
-        WHEN volatility_4quarter < 0.02 THEN 'VERY_STABLE'
-        WHEN volatility_4quarter < 0.05 THEN 'STABLE'
-        WHEN volatility_4quarter < 0.10 THEN 'MODERATE'
-        WHEN volatility_4quarter < 0.15 THEN 'VOLATILE'
+        WHEN COALESCE(volatility_4quarter, 0) < 0.02 THEN 'VERY_STABLE'
+        WHEN COALESCE(volatility_4quarter, 0) < 0.05 THEN 'STABLE'
+        WHEN COALESCE(volatility_4quarter, 0) < 0.10 THEN 'MODERATE'
+        WHEN COALESCE(volatility_4quarter, 0) < 0.15 THEN 'VOLATILE'
         ELSE 'HIGHLY_VOLATILE'
     END AS stability_classification,
     
     -- Intelligence assessment
     CASE
-        WHEN momentum > 0 AND volatility_4quarter < 0.05 THEN 'SUSTAINED_GROWTH'
-        WHEN momentum > 0 AND volatility_4quarter >= 0.05 THEN 'UNSTABLE_GROWTH'
-        WHEN momentum < 0 AND volatility_4quarter < 0.05 THEN 'STEADY_DECLINE'
-        WHEN momentum < 0 AND volatility_4quarter >= 0.05 THEN 'VOLATILE_DECLINE'
+        WHEN COALESCE(momentum, 0) > 0 AND COALESCE(volatility_4quarter, 0) < 0.05 THEN 'SUSTAINED_GROWTH'
+        WHEN COALESCE(momentum, 0) > 0 AND COALESCE(volatility_4quarter, 0) >= 0.05 THEN 'UNSTABLE_GROWTH'
+        WHEN COALESCE(momentum, 0) < 0 AND COALESCE(volatility_4quarter, 0) < 0.05 THEN 'STEADY_DECLINE'
+        WHEN COALESCE(momentum, 0) < 0 AND COALESCE(volatility_4quarter, 0) >= 0.05 THEN 'VOLATILE_DECLINE'
         ELSE 'STABLE'
     END AS intelligence_assessment
     
@@ -143,7 +157,7 @@ ORDER BY party, year DESC, quarter DESC;
 <!-- Intelligence Value: VERY HIGH - Coalition formation prediction            -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-ops" id="intops-2025110902-coalition-alignment" failOnError="true">
+<changeSet author="intelligence-ops" id="intops-2025111102-coalition-alignment" failOnError="true">
     <comment>
         Coalition Voting Alignment Matrix
         
@@ -250,7 +264,7 @@ ORDER BY alignment_rate DESC, shared_votes DESC;
 <!-- Intelligence Value: HIGH - Risk assessment and unusual behavior detection -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-ops" id="intops-2025110903-anomaly-detection" failOnError="true">
+<changeSet author="intelligence-ops" id="intops-2025111103-anomaly-detection" failOnError="true">
     <comment>
         Political Anomaly Detection View
         
@@ -404,7 +418,7 @@ ORDER BY rebellion_rate DESC, unanimous_deviations DESC;
 <!-- Intelligence Value: VERY HIGH - Power structure mapping                   -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-ops" id="intops-2025110904-influence-metrics" failOnError="true">
+<changeSet author="intelligence-ops" id="intops-2025111104-influence-metrics" failOnError="true">
     <comment>
         Politician Influence Network Metrics
         
@@ -564,7 +578,7 @@ ORDER BY influence_score DESC, network_connections DESC;
 <!-- Intelligence Value: MEDIUM-HIGH - Leadership assessment under pressure    -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-ops" id="intops-2025110905-crisis-resilience" failOnError="true">
+<changeSet author="intelligence-ops" id="intops-2025111105-crisis-resilience" failOnError="true">
     <comment>
         Political Crisis Resilience Indicators
         
@@ -734,7 +748,7 @@ ORDER BY resilience_score DESC, crisis_definitive_votes DESC;
 <!-- Intelligence Value: VERY HIGH - Executive-level intelligence briefing     -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-ops" id="intops-2025110906-intelligence-dashboard" failOnError="true">
+<changeSet author="intelligence-ops" id="intops-2025111106-intelligence-dashboard" failOnError="true">
     <comment>
         Intelligence Operations Summary Dashboard
         

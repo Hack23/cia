@@ -249,7 +249,7 @@ Essential for quality assurance but not primary intelligence.
 CREATE VIEW view_riksdagen_party_ballot_support_annual_summary
 -- Annual party voting support trends
 
-CREATE VIEW view_riksdagen_party_coalation_against_annual_summary
+CREATE VIEW view_riksdagen_party_coalition_against_annual_summary
 -- Coalition opposition patterns
 ```
 
