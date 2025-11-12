@@ -1,0 +1,66 @@
+package com.hack23.cia.service.impl.rules.committee
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.CommitteeComplianceCheckImpl
+
+rule "Committee with chronic stagnation - very low average documents per member"
+	dialect "java"
+	salience 100
+    when
+        $p : CommitteeComplianceCheckImpl(
+            committee.active && 
+            committee.currentMemberSize > 0 && 
+            committee.avgDocumentsPerMember < 1.5 &&
+            committee.documentsLastYear > 0
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "CommitteeStagnation","Behavior", kcontext.getRule().getName(),"ChronicLowProductivityPerMember");
+end
+
+rule "Committee with declining output - current year significantly below historical"
+	dialect "java"
+	salience 75
+    when
+        $p : CommitteeComplianceCheckImpl(
+            committee.active && 
+            committee.totalDocuments > 0 &&
+            committee.documentsLastYear > 0 &&
+            committee.avgDocumentsPerMember > 0 &&
+            committee.avgDocumentsPerMember < 3 &&
+            committee.documentsLastYear < (committee.totalDocuments / 5)
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "CommitteeStagnation","Behavior", kcontext.getRule().getName(),"SignificantOutputDecline");
+end
+
+rule "Committee with minimal recent activity - few documents despite active status"
+	dialect "java"
+	salience 50
+    when
+        $p : CommitteeComplianceCheckImpl(
+            committee.active && 
+            committee.currentMemberSize >= 10 &&
+            committee.documentsLastYear > 0 &&
+            committee.documentsLastYear < 15
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "CommitteeStagnation","Behavior", kcontext.getRule().getName(),"MinimalActivityDespiteSize");
+end
+
+rule "Committee with combined risk - low total output and low per-member productivity"
+	dialect "java"
+	salience 125
+    when
+        $p : CommitteeComplianceCheckImpl(
+            committee.active && 
+            committee.currentMemberSize > 0 && 
+            committee.documentsLastYear < 18 &&
+            committee.documentsLastYear > 0 &&
+            committee.avgDocumentsPerMember < 1.8
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "CommitteeStagnation","Behavior", kcontext.getRule().getName(),"CombinedLowProductivity");
+end

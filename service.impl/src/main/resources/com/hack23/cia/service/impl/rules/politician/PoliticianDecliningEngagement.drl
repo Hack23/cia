@@ -1,0 +1,71 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with declining engagement - monthly absence worse than annual"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            monthlySummary != null && 
+            monthlySummary.politicianPercentageAbsent > annualSummary.politicianPercentageAbsent + 10 &&
+            annualSummary.politicianPercentageAbsent >= 10
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianDecliningEngagement","Behavior", kcontext.getRule().getName(),"WorseningAbsenteeism");
+end
+
+rule "Politician with declining effectiveness - monthly win rate much lower than annual"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            monthlySummary != null && 
+            monthlySummary.wonPercentage < annualSummary.wonPercentage - 15 &&
+            monthlySummary.wonPercentage < 35
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianDecliningEngagement","Behavior", kcontext.getRule().getName(),"DecreasingEffectiveness");
+end
+
+rule "Politician showing disengagement pattern - high recent absence and abstention"
+	dialect "java"
+	salience 100
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            monthlySummary != null && 
+            monthlySummary.politicianPercentageAbsent >= 15 &&
+            monthlySummary.politicianPercentageAbstain >= 8
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianDecliningEngagement","Behavior", kcontext.getRule().getName(),"DisengagementPattern");
+end
+
+rule "Politician with increasing rebel behavior - monthly rebel rate exceeds annual significantly"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            politician.party != "-" &&
+            annualSummary != null && 
+            monthlySummary != null && 
+            monthlySummary.rebelPercentage > annualSummary.rebelPercentage + 5 &&
+            monthlySummary.rebelPercentage >= 8
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianDecliningEngagement","Behavior", kcontext.getRule().getName(),"EscalatingRebelBehavior");
+end

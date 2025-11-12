@@ -1,0 +1,75 @@
+package com.hack23.cia.service.impl.rules.party
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck
+
+rule "Party with combined low effectiveness and high absence"
+	dialect "java"
+	salience 100
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            annualSummary != null &&
+            annualSummary.partyWonPercentage < 25 &&
+            annualSummary.partyPercentageAbsent >= 18
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PartyCombinedRisk","Behavior", kcontext.getRule().getName(),"LowEffectivenessHighAbsence");
+end
+
+rule "Party with low win rate and low document productivity"
+	dialect "java"
+	salience 75
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            annualSummary != null &&
+            party.currentlyActiveMembers > 0 &&
+            annualSummary.partyWonPercentage < 32 &&
+            party.avgDocumentsLastYear < 6 &&
+            party.avgDocumentsLastYear > 0
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PartyCombinedRisk","Behavior", kcontext.getRule().getName(),"LowWinRateLowProductivity");
+end
+
+rule "Party with triple risk - low effectiveness, high absence, low productivity"
+	dialect "java"
+	salience 150
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            annualSummary != null &&
+            party.currentlyActiveMembers > 0 &&
+            annualSummary.partyWonPercentage < 28 &&
+            annualSummary.partyPercentageAbsent >= 16 &&
+            party.avgDocumentsLastYear < 5
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PartyCombinedRisk","Behavior", kcontext.getRule().getName(),"TripleRiskProfile");
+end
+
+rule "Party with high abstention indicating indecision"
+	dialect "java"
+	salience 50
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            annualSummary != null &&
+            annualSummary.partyPercentageAbstain >= 6 &&
+            annualSummary.partyWonPercentage < 40
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PartyCombinedRisk","Behavior", kcontext.getRule().getName(),"HighAbstentionLowEffectiveness");
+end

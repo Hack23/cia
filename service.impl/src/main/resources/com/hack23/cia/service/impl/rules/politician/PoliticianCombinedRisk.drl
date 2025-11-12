@@ -1,0 +1,86 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with combined high risk - low effectiveness and high absence"
+	dialect "java"
+	salience 100
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            annualSummary.wonPercentage < 25 &&
+            annualSummary.politicianPercentageAbsent >= 20
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianCombinedRisk","Behavior", kcontext.getRule().getName(),"HighRiskLowEffectivenessHighAbsence");
+end
+
+rule "Politician with combined risk - rebel behavior and low effectiveness"
+	dialect "java"
+	salience 75
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            politician.party != "-" &&
+            annualSummary != null && 
+            annualSummary.rebelPercentage >= 15 &&
+            annualSummary.wonPercentage < 30
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianCombinedRisk","Behavior", kcontext.getRule().getName(),"RebelWithLowEffectiveness");
+end
+
+rule "Politician with triple risk - high absence, low effectiveness, and high rebel rate"
+	dialect "java"
+	salience 150
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            politician.party != "-" &&
+            annualSummary != null && 
+            annualSummary.politicianPercentageAbsent >= 18 &&
+            annualSummary.wonPercentage < 25 &&
+            annualSummary.rebelPercentage >= 12
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianCombinedRisk","Behavior", kcontext.getRule().getName(),"TripleHighRiskProfile");
+end
+
+rule "Politician with inconsistent behavior - high rebel rate but high presence"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            politician.party != "-" &&
+            annualSummary != null && 
+            annualSummary.rebelPercentage >= 12 &&
+            annualSummary.politicianPercentageAbsent < 8 &&
+            annualSummary.totalVotes > 50
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianCombinedRisk","Behavior", kcontext.getRule().getName(),"ConsistentRebelPresence");
+end
+
+rule "Politician with combined absence and abstention risk"
+	dialect "java"
+	salience 75
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            annualSummary.politicianPercentageAbsent >= 12 &&
+            annualSummary.politicianPercentageAbstain >= 8
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianCombinedRisk","Behavior", kcontext.getRule().getName(),"HighAbsenceAndAbstention");
+end
