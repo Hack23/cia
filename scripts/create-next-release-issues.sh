@@ -14,7 +14,11 @@
 set -e
 
 REPO="Hack23/cia"
-ISSUE_DIR="/tmp"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ISSUE_DIR="${ISSUE_DIR:-$SCRIPT_DIR/issue-templates}"
+
+# Counter for successfully created issues
+CREATED_COUNT=0
 
 # Check if gh CLI is available
 if ! command -v gh &> /dev/null; then
@@ -38,80 +42,95 @@ echo ""
 
 # Issue 1: Jetty 12 Upgrade
 echo "[1/5] Creating: Upgrade to Jetty 12 for Extended Support Until 2028"
-if [ -f "$ISSUE_DIR/issue1.md" ]; then
+if [ -f "$ISSUE_DIR/issue1-jetty-upgrade.md" ]; then
     ISSUE1_URL=$(gh issue create \
         --repo "$REPO" \
         --title "Upgrade to Jetty 12 for Extended Support Until 2028" \
-        --body-file "$ISSUE_DIR/issue1.md" \
+        --body-file "$ISSUE_DIR/issue1-jetty-upgrade.md" \
         --label "enhancement,infrastructure,dependencies")
     echo "✓ Created: $ISSUE1_URL"
+    ((CREATED_COUNT++))
 else
-    echo "✗ File not found: $ISSUE_DIR/issue1.md"
+    echo "✗ File not found: $ISSUE_DIR/issue1-jetty-upgrade.md"
+    ISSUE1_URL="[NOT CREATED]"
 fi
 echo ""
 sleep 2
 
 # Issue 2: Drools Test Coverage
 echo "[2/5] Creating: Enhance Test Coverage for Drools Risk Assessment Rules"
-if [ -f "$ISSUE_DIR/issue2.md" ]; then
+if [ -f "$ISSUE_DIR/issue2-drools-tests.md" ]; then
     ISSUE2_URL=$(gh issue create \
         --repo "$REPO" \
         --title "Enhance Test Coverage for Drools Risk Assessment Rules" \
-        --body-file "$ISSUE_DIR/issue2.md" \
+        --body-file "$ISSUE_DIR/issue2-drools-tests.md" \
         --label "testing,enhancement,political-analysis,analytics")
     echo "✓ Created: $ISSUE2_URL"
+    ((CREATED_COUNT++))
 else
-    echo "✗ File not found: $ISSUE_DIR/issue2.md"
+    echo "✗ File not found: $ISSUE_DIR/issue2-drools-tests.md"
+    ISSUE2_URL="[NOT CREATED]"
 fi
 echo ""
 sleep 2
 
 # Issue 3: PostgreSQL Documentation
 echo "[3/5] Creating: Update and Validate PostgreSQL 16 Configuration Documentation"
-if [ -f "$ISSUE_DIR/issue3.md" ]; then
+if [ -f "$ISSUE_DIR/issue3-postgresql-docs.md" ]; then
     ISSUE3_URL=$(gh issue create \
         --repo "$REPO" \
         --title "Update and Validate PostgreSQL 16 Configuration Documentation" \
-        --body-file "$ISSUE_DIR/issue3.md" \
+        --body-file "$ISSUE_DIR/issue3-postgresql-docs.md" \
         --label "documentation,database,enhancement")
     echo "✓ Created: $ISSUE3_URL"
+    ((CREATED_COUNT++))
 else
-    echo "✗ File not found: $ISSUE_DIR/issue3.md"
+    echo "✗ File not found: $ISSUE_DIR/issue3-postgresql-docs.md"
+    ISSUE3_URL="[NOT CREATED]"
 fi
 echo ""
 sleep 2
 
 # Issue 4: Security Audit
 echo "[4/5] Creating: Pre-Release Security Dependency Audit and Updates"
-if [ -f "$ISSUE_DIR/issue4.md" ]; then
+if [ -f "$ISSUE_DIR/issue4-security-audit.md" ]; then
     ISSUE4_URL=$(gh issue create \
         --repo "$REPO" \
         --title "Pre-Release Security Dependency Audit and Updates" \
-        --body-file "$ISSUE_DIR/issue4.md" \
+        --body-file "$ISSUE_DIR/issue4-security-audit.md" \
         --label "security,dependencies,enhancement")
     echo "✓ Created: $ISSUE4_URL"
+    ((CREATED_COUNT++))
 else
-    echo "✗ File not found: $ISSUE_DIR/issue4.md"
+    echo "✗ File not found: $ISSUE_DIR/issue4-security-audit.md"
+    ISSUE4_URL="[NOT CREATED]"
 fi
 echo ""
 sleep 2
 
 # Issue 5: Performance Optimization
 echo "[5/5] Creating: Database Query Performance Optimization"
-if [ -f "$ISSUE_DIR/issue5.md" ]; then
+if [ -f "$ISSUE_DIR/issue5-performance.md" ]; then
     ISSUE5_URL=$(gh issue create \
         --repo "$REPO" \
         --title "Database Query Performance Optimization" \
-        --body-file "$ISSUE_DIR/issue5.md" \
+        --body-file "$ISSUE_DIR/issue5-performance.md" \
         --label "performance,database,enhancement")
     echo "✓ Created: $ISSUE5_URL"
+    ((CREATED_COUNT++))
 else
-    echo "✗ File not found: $ISSUE_DIR/issue5.md"
+    echo "✗ File not found: $ISSUE_DIR/issue5-performance.md"
+    ISSUE5_URL="[NOT CREATED]"
 fi
 echo ""
 
 echo "================================================"
-echo "Summary: All 5 Issues Created Successfully!"
+if [ $CREATED_COUNT -eq 5 ]; then
+    echo "Summary: All 5 Issues Created Successfully!"
+else
+    echo "Summary: $CREATED_COUNT out of 5 Issues Created"
+    echo "Note: Some issue template files were not found"
+fi
 echo "================================================"
 echo ""
 echo "Issue URLs:"

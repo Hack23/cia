@@ -14,7 +14,7 @@ Based on comprehensive analysis of the repository, architecture documentation, S
 
 ## 📁 Files in This Directory
 
-- **Issue Specifications**: `/tmp/issue{1-5}.md` - Complete issue descriptions
+- **Issue Templates**: `scripts/issue-templates/*.md` - Complete issue descriptions
 - **Creation Script**: `scripts/create-next-release-issues.sh` - Automated issue creation
 - **Summary Document**: `NEXT_RELEASE_PRIORITIES.md` - Analysis and priorities
 - **This Guide**: `scripts/README.md` - Instructions
@@ -25,16 +25,16 @@ Based on comprehensive analysis of the repository, architecture documentation, S
 
 1. **Review Issue Specifications**
    ```bash
-   cat /tmp/issue1.md  # Jetty 12 upgrade
-   cat /tmp/issue2.md  # Drools test coverage
-   cat /tmp/issue3.md  # PostgreSQL docs
-   cat /tmp/issue4.md  # Security audit
-   cat /tmp/issue5.md  # Performance optimization
+   cat scripts/issue-templates/issue1-jetty-upgrade.md
+   cat scripts/issue-templates/issue2-drools-tests.md
+   cat scripts/issue-templates/issue3-postgresql-docs.md
+   cat scripts/issue-templates/issue4-security-audit.md
+   cat scripts/issue-templates/issue5-performance.md
    ```
 
 2. **Create Issues via GitHub Web Interface**
    - Go to https://github.com/Hack23/cia/issues/new
-   - Copy content from `/tmp/issueX.md`
+   - Copy content from `scripts/issue-templates/issueX-*.md`
    - Add appropriate labels (specified in each issue)
    - Submit
 
@@ -51,7 +51,7 @@ Based on comprehensive analysis of the repository, architecture documentation, S
 
 2. **Run Creation Script**
    ```bash
-   cd /home/runner/work/cia/cia
+   cd "$(git rev-parse --show-toplevel)"
    ./scripts/create-next-release-issues.sh
    ```
 
@@ -67,35 +67,35 @@ Based on comprehensive analysis of the repository, architecture documentation, S
 - **Effort**: Medium (1-2 days)
 - **Labels**: `enhancement`, `infrastructure`, `dependencies`
 - **Impact**: Extends platform support lifecycle by 2 years
-- **File**: `/tmp/issue1.md`
+- **File**: `scripts/issue-templates/issue1-jetty-upgrade.md`
 
 ### Issue #2: Enhance Drools Test Coverage
 - **Priority**: High (Score: 17)
 - **Effort**: Small (4-8 hours)
 - **Labels**: `testing`, `enhancement`, `political-analysis`, `analytics`
 - **Impact**: Quality assurance for critical analytics features
-- **File**: `/tmp/issue2.md`
+- **File**: `scripts/issue-templates/issue2-drools-tests.md`
 
 ### Issue #3: PostgreSQL 16 Documentation
 - **Priority**: Medium (Score: 13)
 - **Effort**: Small (2-4 hours)
 - **Labels**: `documentation`, `database`, `enhancement`
 - **Impact**: Improved deployment experience
-- **File**: `/tmp/issue3.md`
+- **File**: `scripts/issue-templates/issue3-postgresql-docs.md`
 
 ### Issue #4: Security Dependency Audit
 - **Priority**: High (Score: 17)
 - **Effort**: Small (2-4 hours)
 - **Labels**: `security`, `dependencies`, `enhancement`
 - **Impact**: Maintains security posture
-- **File**: `/tmp/issue4.md`
+- **File**: `scripts/issue-templates/issue4-security-audit.md`
 
 ### Issue #5: Database Performance Optimization
 - **Priority**: Medium (Score: 13)
 - **Effort**: Medium (1-2 days)
 - **Labels**: `performance`, `database`, `enhancement`, `optimization`
 - **Impact**: Improved user experience
-- **File**: `/tmp/issue5.md`
+- **File**: `scripts/issue-templates/issue5-performance.md`
 
 ## 🎯 Priority Scoring
 

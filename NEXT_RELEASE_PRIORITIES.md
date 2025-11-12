@@ -43,7 +43,7 @@ According to the End-of-Life Strategy, Jetty 10 reaches EOL in 2026. Jetty 12 su
 `enhancement`, `infrastructure`, `dependencies`
 
 ### Full Specification
-See: `/tmp/issue1.md`
+See: [scripts/issue-templates/issue1-jetty-upgrade.md](scripts/issue-templates/issue1-jetty-upgrade.md)
 
 ---
 
@@ -71,7 +71,7 @@ The project recently introduced comprehensive risk assessment rules for politica
 `testing`, `enhancement`, `political-analysis`, `analytics`
 
 ### Full Specification
-See: `/tmp/issue2.md`
+See: [scripts/issue-templates/issue2-drools-tests.md](scripts/issue-templates/issue2-drools-tests.md)
 
 ---
 
@@ -98,7 +98,7 @@ The README.md references PostgreSQL 16 with detailed configuration instructions 
 `documentation`, `database`, `enhancement`
 
 ### Full Specification
-See: `/tmp/issue3.md`
+See: [scripts/issue-templates/issue3-postgresql-docs.md](scripts/issue-templates/issue3-postgresql-docs.md)
 
 ---
 
@@ -132,7 +132,7 @@ The CIA project maintains high security standards (OpenSSF Scorecard 7.2/10). As
 `security`, `dependencies`, `enhancement`
 
 ### Full Specification
-See: `/tmp/issue4.md`
+See: [scripts/issue-templates/issue4-security-audit.md](scripts/issue-templates/issue4-security-audit.md)
 
 ---
 
@@ -166,7 +166,7 @@ The CIA platform processes large datasets of political information. As the datab
 `performance`, `database`, `enhancement`, `optimization`
 
 ### Full Specification
-See: `/tmp/issue5.md`
+See: [scripts/issue-templates/issue5-performance.md](scripts/issue-templates/issue5-performance.md)
 
 ---
 
@@ -196,9 +196,9 @@ These can be worked on in parallel by different contributors as they have minima
 
 To create these issues in GitHub:
 
-1. Copy issue specifications from `/tmp/issue{1-5}.md`
-2. Use GitHub web interface or API to create issues
-3. Apply appropriate labels as specified
+1. Review issue specifications in `scripts/issue-templates/`
+2. Use the automated script (`./scripts/create-next-release-issues.sh`) or create manually via GitHub web interface
+3. Apply appropriate labels as specified in each template
 4. Link issues to "Next Release" milestone
 5. Assign to appropriate team members based on expertise
 
