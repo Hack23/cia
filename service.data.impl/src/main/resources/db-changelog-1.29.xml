@@ -372,15 +372,15 @@ SELECT
     
     -- Party discipline score (higher is more disciplined)
     ROUND(
-        CAST(SUM(CASE WHEN ivp.alignment_status = 'ALIGNED' THEN 1 ELSE 0 END) AS FLOAT) / 
-        NULLIF(COUNT(*), 0), 
+        (CAST(SUM(CASE WHEN ivp.alignment_status = 'ALIGNED' THEN 1 ELSE 0 END) AS FLOAT) / 
+        NULLIF(COUNT(*), 0))::NUMERIC, 
         4
     ) AS party_discipline_score,
     
     -- Rebellion rate
     ROUND(
-        CAST(SUM(CASE WHEN ivp.alignment_status = 'OPPOSED' THEN 1 ELSE 0 END) AS FLOAT) / 
-        NULLIF(COUNT(*), 0), 
+        (CAST(SUM(CASE WHEN ivp.alignment_status = 'OPPOSED' THEN 1 ELSE 0 END) AS FLOAT) / 
+        NULLIF(COUNT(*), 0))::NUMERIC, 
         4
     ) AS rebellion_rate,
     
@@ -533,8 +533,8 @@ SELECT
     
     -- Normalized degree centrality (0-1 scale, relative to max in dataset)
     ROUND(
-        CAST(COALESCE(dc.connection_count, 0) AS FLOAT) / 
-        NULLIF(imv.max_connections, 0),
+        (CAST(COALESCE(dc.connection_count, 0) AS FLOAT) / 
+        NULLIF(imv.max_connections, 0))::NUMERIC,
         4
     ) AS normalized_centrality,
     
@@ -706,16 +706,16 @@ SELECT
     
     -- Party discipline under pressure
     ROUND(
-        CAST(COALESCE(pdc.aligned_crisis_votes, 0) AS FLOAT) / 
-        NULLIF(COALESCE(pdc.party_votes, 0), 0),
+        (CAST(COALESCE(pdc.aligned_crisis_votes, 0) AS FLOAT) / 
+        NULLIF(COALESCE(pdc.party_votes, 0), 0))::NUMERIC,
         4
     ) AS crisis_party_discipline,
     
     -- Resilience score (lower absence increase + maintained discipline = higher resilience)
     ROUND(
-        (1.0 - COALESCE(cv.crisis_absence_rate, 0)) * 0.6 +
+        ((1.0 - COALESCE(cv.crisis_absence_rate, 0)) * 0.6 +
         (CAST(COALESCE(pdc.aligned_crisis_votes, 0) AS FLOAT) / 
-         NULLIF(COALESCE(pdc.party_votes, 0), 0)) * 0.4,
+         NULLIF(COALESCE(pdc.party_votes, 0), 0)) * 0.4)::NUMERIC,
         4
     ) AS resilience_score,
     
