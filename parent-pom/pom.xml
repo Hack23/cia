@@ -108,7 +108,7 @@
     <cia.project.versions.hibernate.jpa2>1.0.2.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.2.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.validator>6.2.5.Final</cia.project.versions.hibernate.validator>
-    <cia.project.versions.bytebuddy>1.17.8</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.18.0</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>2.4.240</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.7.8</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
@@ -452,7 +452,7 @@
       <dependency>
         <groupId>io.smallrye</groupId>
         <artifactId>jandex</artifactId>
-        <version>3.5.1</version>
+        <version>3.5.2</version>
       </dependency>
       <dependency>
         <groupId>org.hibernate.validator</groupId>
