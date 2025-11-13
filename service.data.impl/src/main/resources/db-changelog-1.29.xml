@@ -102,6 +102,22 @@ momentum_calc AS (
             ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
         ) AS volatility_4quarter
     FROM quarterly_support
+),
+acceleration_calc AS (
+    SELECT
+        party,
+        year,
+        quarter,
+        ballots_participated,
+        participation_rate,
+        prev_quarter_rate,
+        momentum,
+        ma_4quarter,
+        volatility_4quarter,
+        
+        -- Acceleration: rate of change of momentum (calculated in CTE to avoid window function in final SELECT)
+        COALESCE(momentum, 0) - COALESCE(LAG(momentum, 1) OVER (PARTITION BY party ORDER BY year, quarter), 0) AS acceleration
+    FROM momentum_calc
 )
 SELECT
     party,
@@ -114,9 +130,7 @@ SELECT
     ROUND(momentum::NUMERIC, 4) AS momentum,
     ROUND(ma_4quarter::NUMERIC, 4) AS moving_avg_4q,
     ROUND(volatility_4quarter::NUMERIC, 4) AS volatility,
-    
-    -- Acceleration: rate of change of momentum
-    ROUND((COALESCE(momentum, 0) - COALESCE(LAG(momentum, 1) OVER (PARTITION BY party ORDER BY year, quarter), 0))::NUMERIC, 4) AS acceleration,
+    ROUND(acceleration::NUMERIC, 4) AS acceleration,
     
     -- Trend classification
     CASE
@@ -145,7 +159,7 @@ SELECT
         ELSE 'STABLE'
     END AS intelligence_assessment
     
-FROM momentum_calc
+FROM acceleration_calc
 WHERE ballots_participated >= 5  -- Filter out periods with minimal activity
 ORDER BY party, year DESC, quarter DESC;
         ]]>
