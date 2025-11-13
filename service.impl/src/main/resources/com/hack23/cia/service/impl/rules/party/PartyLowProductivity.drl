@@ -1,0 +1,71 @@
+package com.hack23.cia.service.impl.rules.party
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck
+
+rule "Party with low member productivity - very low average documents per member"
+	dialect "java"
+	salience 75
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            party.currentlyActiveMembers > 5 &&
+            party.avgDocumentsLastYear < 4 &&
+            party.avgDocumentsLastYear > 0
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PartyLowProductivity","Behavior", kcontext.getRule().getName(),"LowAverageProductivity");
+end
+
+rule "Party with minimal legislative activity - few documents total"
+	dialect "java"
+	salience 50
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            party.currentlyActiveMembers >= 10 &&
+            party.totalDocuments > 0 &&
+            party.totalDocuments < 50
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PartyLowProductivity","Behavior", kcontext.getRule().getName(),"MinimalLegislativeActivity");
+end
+
+rule "Party showing organizational weakness - low productivity despite size"
+	dialect "java"
+	salience 100
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            party.currentlyActiveMembers >= 15 &&
+            party.avgDocumentsLastYear < 3 &&
+            party.documentsLastYear > 0
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PartyLowProductivity","Behavior", kcontext.getRule().getName(),"OrganizationalWeakness");
+end
+
+rule "Party with zero recent legislative output"
+	dialect "java"
+	salience 125
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            party.currentlyActiveMembers > 0 &&
+            party.documentsLastYear == 0 &&
+            party.totalDocuments > 0
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PartyLowProductivity","Behavior", kcontext.getRule().getName(),"NoRecentLegislativeOutput");
+end

@@ -1,0 +1,66 @@
+package com.hack23.cia.service.impl.rules.ministry
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.MinistryComplianceCheckImpl
+
+rule "Ministry with chronic stagnation - very low average documents per member"
+	dialect "java"
+	salience 100
+    when
+        $p : MinistryComplianceCheckImpl(
+            ministry.active && 
+            ministry.currentMemberSize > 0 && 
+            ministry.avgDocumentsPerMember < 2 &&
+            ministry.documentsLastYear > 0
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "MinistryStagnation","Behavior", kcontext.getRule().getName(),"ChronicLowProductivityPerMember");
+end
+
+rule "Ministry with declining output - current year significantly below historical"
+	dialect "java"
+	salience 75
+    when
+        $p : MinistryComplianceCheckImpl(
+            ministry.active && 
+            ministry.totalDocuments > 0 &&
+            ministry.documentsLastYear > 0 &&
+            ministry.avgDocumentsPerMember > 0 &&
+            ministry.avgDocumentsPerMember < 4 &&
+            ministry.documentsLastYear < (ministry.totalDocuments / 4)
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "MinistryStagnation","Behavior", kcontext.getRule().getName(),"SignificantOutputDecline");
+end
+
+rule "Ministry with minimal activity - very low output for an active ministry"
+	dialect "java"
+	salience 50
+    when
+        $p : MinistryComplianceCheckImpl(
+            ministry.active && 
+            ministry.currentMemberSize >= 3 &&
+            ministry.documentsLastYear > 0 &&
+            ministry.documentsLastYear < 8
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "MinistryStagnation","Behavior", kcontext.getRule().getName(),"MinimalOutputForActiveMinistry");
+end
+
+rule "Ministry with combined risk - low total and low per-member productivity"
+	dialect "java"
+	salience 125
+    when
+        $p : MinistryComplianceCheckImpl(
+            ministry.active && 
+            ministry.currentMemberSize > 0 && 
+            ministry.documentsLastYear < 12 &&
+            ministry.documentsLastYear > 0 &&
+            ministry.avgDocumentsPerMember < 2.5
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "MinistryStagnation","Behavior", kcontext.getRule().getName(),"CombinedLowProductivity");
+end

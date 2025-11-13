@@ -1,0 +1,78 @@
+package com.hack23.cia.service.impl.rules.party
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck
+
+rule "Party showing inconsistent voting - high daily abstention variance"
+	dialect "java"
+	salience 50
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            dailySummary != null &&
+            annualSummary != null &&
+            dailySummary.partyPercentageAbstain >= 8 &&
+            annualSummary.partyPercentageAbstain >= 4
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PartyInconsistentBehavior","Behavior", kcontext.getRule().getName(),"HighAbstentionVariance");
+end
+
+rule "Party with erratic performance - significant daily/monthly effectiveness gaps"
+	dialect "java"
+	salience 75
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            dailySummary != null &&
+            monthlySummary != null &&
+            annualSummary != null &&
+            dailySummary.partyWonPercentage < monthlySummary.partyWonPercentage - 20 &&
+            monthlySummary.partyWonPercentage < annualSummary.partyWonPercentage - 12
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PartyInconsistentBehavior","Behavior", kcontext.getRule().getName(),"ErraticEffectiveness");
+end
+
+rule "Party showing discipline problems - high absence variation"
+	dialect "java"
+	salience 60
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            dailySummary != null &&
+            monthlySummary != null &&
+            dailySummary.partyPercentageAbsent >= 18 &&
+            monthlySummary.partyPercentageAbsent >= 12 &&
+            monthlySummary.partyPercentageAbsent < dailySummary.partyPercentageAbsent - 5
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PartyInconsistentBehavior","Behavior", kcontext.getRule().getName(),"DisciplineProblems");
+end
+
+rule "Party with unstable coalition behavior - recent performance drop"
+	dialect "java"
+	salience 100
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            monthlySummary != null &&
+            annualSummary != null &&
+            monthlySummary.partyWonPercentage < 25 &&
+            annualSummary.partyWonPercentage >= 35 &&
+            monthlySummary.partyPercentageAbsent >= 14
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PartyInconsistentBehavior","Behavior", kcontext.getRule().getName(),"UnstableCoalitionBehavior");
+end
