@@ -1,0 +1,68 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician with concerning abstention pattern - frequently abstaining"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            annualSummary.politicianPercentageAbstain >= 6 &&
+            annualSummary.politicianPercentageAbstain < 10
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianAbstentionPattern","Behavior", kcontext.getRule().getName(),"FrequentAbstention");
+end
+
+rule "Politician with critical abstention pattern - very high abstention rate"
+	dialect "java"
+	salience 100
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            annualSummary.politicianPercentageAbstain >= 10
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianAbstentionPattern","Behavior", kcontext.getRule().getName(),"ExcessiveAbstention");
+end
+
+rule "Politician with strategic abstention - high abstention but high presence"
+	dialect "java"
+	salience 75
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            annualSummary.politicianPercentageAbstain >= 8 &&
+            annualSummary.politicianPercentageAbsent < 10 &&
+            annualSummary.totalVotes > 50
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianAbstentionPattern","Behavior", kcontext.getRule().getName(),"StrategicAbstentionPresent");
+end
+
+rule "Politician showing indecision - high abstention combined with moderate effectiveness"
+	dialect "java"
+	salience 60
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            annualSummary.politicianPercentageAbstain >= 7 &&
+            annualSummary.wonPercentage >= 25 &&
+            annualSummary.wonPercentage < 40
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianAbstentionPattern","Behavior", kcontext.getRule().getName(),"IndecisiveBehavior");
+end

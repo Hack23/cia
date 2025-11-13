@@ -1,0 +1,84 @@
+package com.hack23.cia.service.impl.rules.politician
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly
+
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
+
+rule "Politician showing minimal parliamentary engagement - low voting participation"
+	dialect "java"
+	salience 75
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            annualSummary.totalVotes < 100 &&
+            annualSummary.totalVotes > 0 &&
+            annualSummary.politicianPercentageAbsent >= 15
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianLowEngagement","Behavior", kcontext.getRule().getName(),"MinimalParliamentaryEngagement");
+end
+
+rule "Politician with critically low engagement - very few votes cast"
+	dialect "java"
+	salience 100
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            annualSummary.totalVotes < 50 &&
+            annualSummary.totalVotes > 0
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianLowEngagement","Behavior", kcontext.getRule().getName(),"CriticallyLowVoteCount");
+end
+
+rule "Politician showing avoidance pattern - high combined absence and abstention"
+	dialect "java"
+	salience 90
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            (annualSummary.politicianPercentageAbsent + annualSummary.politicianPercentageAbstain) >= 25 &&
+            annualSummary.politicianPercentageAbsent >= 12
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianLowEngagement","Behavior", kcontext.getRule().getName(),"AvoidancePattern");
+end
+
+rule "Politician with low impact - present but ineffective"
+	dialect "java"
+	salience 60
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            annualSummary.totalVotes >= 100 &&
+            annualSummary.politicianPercentageAbsent < 12 &&
+            annualSummary.wonPercentage < 22
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianLowEngagement","Behavior", kcontext.getRule().getName(),"PresentButIneffective");
+end
+
+rule "Politician with marginal participation - barely active"
+	dialect "java"
+	salience 50
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            monthlySummary != null && 
+            monthlySummary.totalVotes > 0 &&
+            monthlySummary.totalVotes < 10 &&
+            monthlySummary.politicianPercentageAbsent >= 30
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianLowEngagement","Behavior", kcontext.getRule().getName(),"MarginalMonthlyParticipation");
+end

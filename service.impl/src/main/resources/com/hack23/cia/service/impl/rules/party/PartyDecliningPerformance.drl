@@ -1,0 +1,76 @@
+package com.hack23.cia.service.impl.rules.party
+
+import org.kie.api.runtime.KieRuntime
+
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
+import com.hack23.cia.service.api.action.kpi.ComplianceCheck
+
+rule "Party with declining performance - monthly win rate significantly lower than annual"
+	dialect "java"
+	salience 50
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            annualSummary != null && 
+            monthlySummary != null &&
+            monthlySummary.partyWonPercentage < annualSummary.partyWonPercentage - 12 &&
+            monthlySummary.partyWonPercentage < 45
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PartyDecliningPerformance","Behavior", kcontext.getRule().getName(),"DecreasingWinRate");
+end
+
+rule "Party with worsening absenteeism - monthly absence exceeds annual by 8%+"
+	dialect "java"
+	salience 50
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            annualSummary != null && 
+            monthlySummary != null &&
+            monthlySummary.partyPercentageAbsent > annualSummary.partyPercentageAbsent + 8 &&
+            annualSummary.partyPercentageAbsent >= 8
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PartyDecliningPerformance","Behavior", kcontext.getRule().getName(),"WorseningAbsenteeism");
+end
+
+rule "Party showing disorganization - high daily and monthly absence variation"
+	dialect "java"
+	salience 75
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            dailySummary != null && 
+            monthlySummary != null &&
+            dailySummary.partyPercentageAbsent >= 20 &&
+            monthlySummary.partyPercentageAbsent >= 12
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PartyDecliningPerformance","Behavior", kcontext.getRule().getName(),"InconsistentAttendance");
+end
+
+rule "Party with critical combined decline - effectiveness and participation dropping"
+	dialect "java"
+	salience 100
+    when
+        $p : PartyComplianceCheckImpl(
+            party.activeParliament && 
+            party.party != "-" && 
+            annualSummary != null && 
+            monthlySummary != null &&
+            monthlySummary.partyWonPercentage < 30 &&
+            monthlySummary.partyPercentageAbsent >= 15 &&
+            annualSummary.partyWonPercentage < 40
+        )
+    then
+    	$p.addViolation( Status.CRITICAL, "PartyDecliningPerformance","Behavior", kcontext.getRule().getName(),"CriticalCombinedDecline");
+end
