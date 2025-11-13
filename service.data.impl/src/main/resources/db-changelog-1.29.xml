@@ -557,9 +557,9 @@ SELECT
     
     -- Combined influence score (connections + broker role)
     ROUND(
-        (COALESCE(dc.connection_count, 0) * 1.0 + 
+        ((COALESCE(dc.connection_count, 0) * 1.0 + 
          COALESCE(bs.cross_party_connections, 0) * 10.0) / 
-        NULLIF(imv.max_influence_denominator, 0),
+        NULLIF(imv.max_influence_denominator, 0))::NUMERIC,
         4
     ) AS influence_score,
     
