@@ -117,6 +117,63 @@ For a comprehensive view of how ISMS-PUBLIC policies map to CIA platform securit
 
 ---
 
+## 🛡️ Security & Compliance Evidence
+
+Our commitment to security transparency is demonstrated through publicly verifiable evidence:
+
+### 🔒 Supply Chain Security
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
+[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://github.com/Hack23/cia/attestations)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
+
+**Evidence:**
+- **OpenSSF Scorecard**: [Full Supply Chain Analysis](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
+- **SLSA Attestations**: [Build Provenance & SBOM](https://github.com/Hack23/cia/attestations)
+- **CII Best Practices**: [Open Source Security Maturity](https://bestpractices.coreinfrastructure.org/projects/770)
+
+### 🔍 Security Scanning
+[![CodeQL](https://github.com/Hack23/cia/workflows/CodeQL/badge.svg)](https://github.com/Hack23/cia/security/code-scanning)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+
+**Evidence:**
+- **CodeQL Scanning**: [Security Code Analysis Results](https://github.com/Hack23/cia/security/code-scanning)
+- **SonarCloud Security**: [Vulnerability Dashboard](https://sonarcloud.io/project/security_hotspots?id=Hack23_cia)
+- **Dependabot**: [Dependency Vulnerability Alerts](https://github.com/Hack23/cia/security/dependabot)
+
+### ✅ Quality Gates
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+
+**Evidence:**
+- **Quality Gate**: [SonarCloud Quality Dashboard](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+- **Code Metrics**: [Technical Debt & Maintainability](https://sonarcloud.io/component_measures?id=Hack23_cia&metric=sqale_index)
+
+### 📋 License Compliance
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
+[![License](https://img.shields.io/github/license/Hack23/cia.svg)](https://github.com/Hack23/cia/blob/master/LICENSE.txt)
+
+**Evidence:**
+- **FOSSA Analysis**: [License Compliance Report](https://app.fossa.com/projects/git%2Bgithub.com%2FHack23%2Fcia)
+- **License**: [Apache License 2.0](https://github.com/Hack23/cia/blob/master/LICENSE.txt)
+
+### 🎯 Security Architecture Documentation
+[![Threat Model](https://img.shields.io/badge/Threat_Model-Public_Documentation-blue?style=flat-square&logo=github&logoColor=white)](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md)
+[![Security Architecture](https://img.shields.io/badge/Security_Architecture-Documented-green?style=flat-square&logo=architecture&logoColor=white)](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md)
+[![CRA Assessment](https://img.shields.io/badge/CRA-Self_Assessment_Complete-green?style=flat-square&logo=european-union&logoColor=white)](https://github.com/Hack23/cia/blob/master/CRA-ASSESSMENT.md)
+
+**Evidence:**
+- **Threat Model**: [STRIDE Analysis & Attack Trees](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md)
+- **Security Architecture**: [Defense-in-Depth Design](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md)
+- **CRA Assessment**: [EU Cyber Resilience Act Compliance](https://github.com/Hack23/cia/blob/master/CRA-ASSESSMENT.md)
+
+---
+
+**🔍 Transparency Commitment**: All security evidence is publicly accessible for stakeholder verification. We believe security through transparency builds trust and demonstrates our commitment to cybersecurity excellence.
+
+---
+
 
 ## 📚 Data Sources
 
@@ -136,25 +193,17 @@ For more details on our data integration approach, see the [Data Integration Doc
 <div align="center">
 
 [![GitHub Release](https://img.shields.io/github/v/release/Hack23/cia)](https://github.com/Hack23/cia/releases)
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
-[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev/spec/v1.0/levels)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Hack23/cia)
 
 [![Verify & Release](https://github.com/Hack23/cia/actions/workflows/release.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/release.yml)
 [![Verify PR](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
-
 [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/Hack23/cia.svg)](https://isitmaintained.com/project/Hack23/cia "Average time to resolve an issue")
 [![Percentage of issues still open](https://isitmaintained.com/badge/open/Hack23/cia.svg)](https://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
-[![license](https://img.shields.io/github/license/Hack23/cia.svg)](https://raw.githubusercontent.com/Hack23/cia/master/citizen-intelligence-agency/LICENSE.txt)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
 [![CLA assistant](https://cla-assistant.io/readme/badge/Hack23/cia)](https://cla-assistant.io/Hack23/cia)
+
+**For comprehensive security and compliance evidence, see [🛡️ Security & Compliance Evidence](#️-security--compliance-evidence) section above.**
 
 </div>
 
