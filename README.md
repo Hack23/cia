@@ -151,11 +151,11 @@ Our commitment to security transparency is demonstrated through publicly verifia
 - **Code Metrics**: [Technical Debt & Maintainability](https://sonarcloud.io/component_measures?id=Hack23_cia&metric=sqale_index)
 
 ### 📋 License Compliance
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
 [![License](https://img.shields.io/github/license/Hack23/cia.svg)](https://github.com/Hack23/cia/blob/master/LICENSE.txt)
 
 **Evidence:**
-- **FOSSA Analysis**: [License Compliance Report](https://app.fossa.com/projects/git%2Bgithub.com%2FHack23%2Fcia)
+- **FOSSA Analysis**: [License Compliance Report](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia)
 - **License**: [Apache License 2.0](https://github.com/Hack23/cia/blob/master/LICENSE.txt)
 
 ### 🎯 Security Architecture Documentation
@@ -203,7 +203,7 @@ For more details on our data integration approach, see the [Data Integration Doc
 [![Percentage of issues still open](https://isitmaintained.com/badge/open/Hack23/cia.svg)](https://isitmaintained.com/project/Hack23/cia "Percentage of issues still open")
 [![CLA assistant](https://cla-assistant.io/readme/badge/Hack23/cia)](https://cla-assistant.io/Hack23/cia)
 
-**For comprehensive security and compliance evidence, see [🛡️ Security & Compliance Evidence](#️-security--compliance-evidence) section above.**
+**For comprehensive security and compliance evidence, see [Security & Compliance Evidence](#security--compliance-evidence) section above.**
 
 </div>
 
