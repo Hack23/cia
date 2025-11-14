@@ -151,26 +151,42 @@ jobs:
       - name: Validate app startup and database connection
         run: |
           cd citizen-intelligence-agency
+          
           # Start the application in background with a timeout
-          timeout 180 ant start &
+          echo "Starting application..."
+          timeout 180 ant start > /tmp/app-startup.log 2>&1 &
           APP_PID=$!
           
           echo "Application starting with PID: $APP_PID"
           
-          # Wait for application to start (check logs or port)
-          for i in {1..60}; do
+          # Wait for application to start and apply database changelogs
+          MAX_WAIT=60
+          for i in $(seq 1 $MAX_WAIT); do
             if sudo -u postgres psql -d cia_dev -c "SELECT COUNT(*) FROM databasechangelog;" > /dev/null 2>&1; then
-              echo "Database changelogs verified successfully"
+              echo "✓ Database changelogs verified successfully"
+              CHANGELOG_COUNT=$(sudo -u postgres psql -d cia_dev -t -c "SELECT COUNT(*) FROM databasechangelog;")
+              echo "  Found $CHANGELOG_COUNT changelog entries"
               break
             fi
-            echo "Waiting for application to initialize... ($i/60)"
+            echo "Waiting for application to initialize and apply changelogs... ($i/$MAX_WAIT)"
             sleep 3
           done
           
-          # Check if database changelogs were applied
-          echo "Checking database changelog entries..."
-          sudo -u postgres psql -d cia_dev -c "SELECT COUNT(*) FROM databasechangelog;" || echo "Database changelog check completed"
+          # Check if we successfully verified the changelogs
+          if sudo -u postgres psql -d cia_dev -c "SELECT COUNT(*) FROM databasechangelog;" > /dev/null 2>&1; then
+            echo "✓ Application startup validation successful"
+          else
+            echo "⚠ Database changelog table not created yet - check logs"
+            echo "Application logs:"
+            tail -50 /tmp/app-startup.log || echo "No logs available"
+          fi
           
-          # Stop the application
-          kill $APP_PID 2>/dev/null || echo "Application already stopped"
+          # Stop the application gracefully
+          if kill -0 $APP_PID 2>/dev/null; then
+            echo "Stopping application (PID: $APP_PID)..."
+            kill $APP_PID 2>/dev/null || true
+            sleep 2
+            kill -9 $APP_PID 2>/dev/null || true
+          fi
+          
           wait $APP_PID 2>/dev/null || echo "Application validation completed"
