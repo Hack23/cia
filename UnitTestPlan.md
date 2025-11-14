@@ -158,10 +158,10 @@ The project uses JaCoCo Maven Plugin for comprehensive coverage reporting:
 
 | Metric | Count | Details |
 |--------|-------|---------|
-| **Total Maven Modules** | 49 | Multi-module Maven project |
+| **Total Maven Modules** | 48 | Multi-module Maven project |
 | **Java Source Files** | 1,153 | Production code files |
 | **Test Files** | 207 | Test classes (*Test.java) |
-| **Test-to-Code Ratio** | 13.4% | 207 tests / 1,551 total files |
+| **Test-to-Code Ratio** | 17.9% | 207 tests / 1,153 source files |
 | **Lines of Code** | 100,000+ | As reported by SonarCloud |
 
 ### Coverage Goals & Thresholds
@@ -186,7 +186,7 @@ Coverage thresholds are **enforced** through:
 
 ## 🗂️ Module Testing Approach
 
-The CIA project consists of **49 Maven modules** organized into logical categories:
+The CIA project consists of **48 Maven modules** organized into logical categories:
 
 ### 1. **Model Modules** (23 modules)
 
@@ -226,7 +226,7 @@ API integration models for external Swedish government services:
 
 **Testing Strategy for Models:**
 - ✅ Entity validation tests
-- ✅ JAXB marshalling/unmarshalling roundtrip tests
+- ✅ JAXB marshaling/unmarshaling roundtrip tests
 - ✅ JPA entity mapping verification
 - ✅ Equals/hashCode contract validation
 - ✅ Serialization compatibility tests
@@ -236,8 +236,8 @@ API integration models for external Swedish government services:
 @Test
 public void testRoundtripSerialization() {
     DocumentData original = createTestData();
-    String xml = marshall(original);
-    DocumentData deserialized = unmarshall(xml);
+    String xml = marshal(original);
+    DocumentData deserialized = unmarshal(xml);
     assertEquals(original, deserialized);
 }
 ```
@@ -280,7 +280,7 @@ public class ServiceIntegrationTest {
     @Autowired
     private UserService userService;
     
-    @MockBean
+    @Mock
     private ExternalApiClient apiClient;
     
     @Test
@@ -293,7 +293,7 @@ public class ServiceIntegrationTest {
 }
 ```
 
-### 3. **Web Application Module**
+### 3. **Web Application Modules (2 modules)**
 
 - `citizen-intelligence-agency` - Main Vaadin web application
 - `web-widgets` - Reusable UI components
