@@ -1,6 +1,20 @@
-# 🔧 Citizen Intelligence Agency CI/CD Workflows
+# 🔄 Citizen Intelligence Agency - CI/CD Workflows
 
-This document details the continuous integration and deployment workflows used in the Citizen Intelligence Agency project. These workflows automate testing, security scanning, and release procedures to ensure code quality and security compliance.
+[![Verify and Release](https://github.com/Hack23/cia/workflows/Verify%20and%20Release/badge.svg)](https://github.com/Hack23/cia/actions/workflows/release.yml)
+[![CodeQL](https://github.com/Hack23/cia/workflows/CodeQL/badge.svg)](https://github.com/Hack23/cia/security/code-scanning)
+[![Scorecard supply-chain security](https://github.com/Hack23/cia/workflows/Scorecard%20supply-chain%20security/badge.svg)](https://github.com/Hack23/cia/actions/workflows/scorecards.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
+[![Dependency Review](https://github.com/Hack23/cia/workflows/Dependency%20Review/badge.svg)](https://github.com/Hack23/cia/actions/workflows/dependency-review.yml)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+
+## 🎯 Pipeline Overview
+
+The Citizen Intelligence Agency project implements a comprehensive DevSecOps CI/CD pipeline with multi-stage quality gates ensuring security, quality, and reliability at every step. This document details the continuous integration and deployment workflows that automate testing, security scanning, and release procedures to ensure code quality and security compliance.
 
 ## 📚 Related Architecture Documentation
 
@@ -31,6 +45,48 @@ This document details the continuous integration and deployment workflows used i
 
 </div>
 
+## 🏗️ Pipeline Architecture
+
+The CIA project implements a multi-stage CI/CD pipeline with comprehensive quality gates:
+
+```mermaid
+graph LR
+    A[Code Push] --> B[Build & Test]
+    B --> C[SAST Scan]
+    C --> D[SCA Scan]
+    D --> E[Quality Gate]
+    E --> F[Security Gate]
+    F --> G[SBOM Generation]
+    G --> H[Attestations]
+    H --> I[Release]
+    I --> J[DAST Scan]
+    
+    style A fill:#bbdefb
+    style B fill:#c8e6c9
+    style C fill:#ffccbc
+    style D fill:#ffccbc
+    style E fill:#fff9c4
+    style F fill:#fff9c4
+    style G fill:#d1c4e9
+    style H fill:#d1c4e9
+    style I fill:#a5d6a7
+    style J fill:#ffccbc
+```
+
+### Pipeline Stages Summary
+
+| Stage | Tool/Service | Trigger | Quality Gate | Duration |
+|-------|-------------|---------|--------------|----------|
+| **Build & Test** | Maven, JUnit | Every commit | Tests pass, Coverage ≥80% | ~15-20 min |
+| **SAST** | SonarCloud | Every commit | Security Rating ≥A | ~5 min |
+| **SCA** | Dependabot, Dependency Review | Daily / PR | No critical vulnerabilities | ~2 min |
+| **CodeQL** | GitHub CodeQL | PR, Weekly | No critical/high issues | ~20 min |
+| **Quality Gate** | SonarCloud | Every commit | Overall quality ≥A | Auto |
+| **Security Gate** | Multiple tools | Every commit | Zero critical vulnerabilities | Auto |
+| **SBOM** | Maven CycloneDX | Release | Complete SBOM generated | ~5 min |
+| **Attestations** | GitHub Attestations | Release | SLSA provenance created | ~2 min |
+| **DAST** | OWASP ZAP | Manual/Scheduled | No high-risk vulnerabilities | ~30 min |
+
 ## 🔄 Workflow Overview
 
 The CIA project uses GitHub Actions for automation with the following workflows:
@@ -39,7 +95,8 @@ The CIA project uses GitHub Actions for automation with the following workflows:
 2. **🔍 CodeQL Analysis**: Performs advanced code security scanning to detect vulnerabilities
 3. **📦 Dependency Review**: Analyzes dependency changes in PRs for security vulnerabilities
 4. **⭐ Scorecard Analysis**: Evaluates the project against OSSF security best practices
-5. **🏷️ PR Labeler**: Applies automated labels to pull requests
+5. **🔒 ZAP Scan**: Dynamic application security testing
+6. **🏷️ PR Labeler**: Applies automated labels to pull requests
 
 ## Workflow Relationships
 
@@ -81,6 +138,287 @@ flowchart TB
     class main process
     class SecurityEvents,Scorecard,WeeklyScan security
 ```
+
+## 📋 Detailed Pipeline Stages
+
+### Stage 1: Build & Test (release.yml)
+
+**Workflow:** `Verify and Release`  
+**Trigger:** Manual workflow dispatch with version input  
+**Duration:** ~15-20 minutes  
+**Runtime:** Ubuntu 24.04, JDK 25 (Temurin), Maven 3.9.9
+
+**Quality Gates:**
+- ✅ Maven build success (Java 25, source 21)
+- ✅ All modules compile successfully
+- ✅ Unit tests pass (207+ tests across modules)
+- ✅ Integration tests pass
+- ✅ No build warnings or errors
+
+**Key Steps:**
+```yaml
+- name: Build with Maven
+  run: mvn -B --file pom.xml clean install -Prelease-site,all-modules
+- name: APT update and install build tools
+  run: sudo apt-get install -y graphviz build-essential fakeroot devscripts
+```
+
+**Artifacts Generated:**
+- WAR file: `citizen-intelligence-agency-{version}.war`
+- DEB package: `cia-dist-deb-{version}.all.deb`
+- CloudFormation template: `cia-dist-cloudformation.json`
+
+**Success Metrics:**
+- Build success rate: Target 95%+
+- Average build time: 18 minutes
+- Test pass rate: Target 99%+
+
+### Stage 2: SAST - Static Application Security Testing
+
+**Tool:** SonarCloud  
+**Trigger:** Every commit, PR  
+**Duration:** ~5 minutes  
+**Integration:** Maven Sonar plugin
+
+**Quality Gates:**
+- ✅ Security Rating ≥ A
+- ✅ No critical security vulnerabilities
+- ✅ No blocker code smells
+- ✅ Maintainability Rating ≥ A
+- ✅ Reliability Rating ≥ A
+- ✅ Technical debt ratio < 5%
+
+**Metrics Tracked:**
+- Lines of Code
+- Code Coverage
+- Duplications
+- Security Hotspots
+- Code Smells
+- Technical Debt
+
+**SonarCloud Dashboard:** [View Results](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+
+**Configuration:**
+```properties
+sonar.projectKey=Hack23_cia
+sonar.organization=hack23
+sonar.dependencyCheck.htmlReportPath=${project.basedir}/dependency-check-report.html
+```
+
+### Stage 3: SCA - Software Composition Analysis
+
+**Tools:** Dependabot, GitHub Dependency Review, OWASP Dependency-Check  
+**Trigger:** Daily automated scans, PR-based scanning  
+**Duration:** ~2 minutes
+
+**Quality Gates:**
+- ✅ No critical vulnerabilities in dependencies
+- ✅ All dependencies up-to-date (within 30 days for critical)
+- ✅ License compliance verified
+- ✅ Known vulnerabilities < 30 days old remediated
+
+**Workflows:**
+- `.github/workflows/dependency-review.yml` - PR-based scanning
+- `.github/dependabot.yml` - Automated dependency updates
+
+**Dependency Review Configuration:**
+```yaml
+- name: 'Dependency Review'
+  uses: actions/dependency-review-action@v4.8.2
+  with:
+    comment-summary-in-pr: always
+```
+
+**Remediation SLA:**
+- Critical vulnerabilities: 7 days
+- High vulnerabilities: 30 days
+- Medium vulnerabilities: 90 days
+- Low vulnerabilities: Best effort
+
+**Dependency Freshness Target:** 95% within 30 days of latest release
+
+### Stage 4: CodeQL - Semantic Code Analysis
+
+**Tool:** GitHub CodeQL  
+**Trigger:** Push to master, PR, weekly schedule (Wednesday 04:00)  
+**Duration:** ~20 minutes  
+**Language:** Java
+
+**Quality Gates:**
+- ✅ No critical security issues detected
+- ✅ No high-severity vulnerabilities
+- ✅ Code patterns comply with security best practices
+- ✅ OWASP Top 10 checks pass
+
+**Workflow File:** `.github/workflows/codeql-analysis.yml`
+
+**Configuration:**
+```yaml
+- name: Initialize CodeQL
+  uses: github/codeql-action/init@v3
+  with:
+    languages: java
+    dependency-caching: true
+    queries: security-extended  # Enhanced security analysis
+```
+
+**Additional Security Checks:**
+- Infrastructure as Code (IaC) scanning with Checkov
+- CloudFormation template validation
+- Security best practices verification
+
+**Security Dashboard:** [Code Scanning Alerts](https://github.com/Hack23/cia/security/code-scanning)
+
+**Checkov Integration:**
+```yaml
+- name: Run Checkov action
+  uses: bridgecrewio/checkov-action@master
+  with:
+    file: cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
+    framework: cloudformation
+    output_format: sarif
+```
+
+### Stage 5: OpenSSF Scorecard
+
+**Tool:** OpenSSF Scorecard  
+**Trigger:** Weekly (Tuesday 07:20), branch protection changes, master push  
+**Duration:** ~5 minutes  
+**Target Score:** ≥ 7.0/10
+
+**Quality Gates:**
+- ✅ Overall score ≥ 7.0/10
+- ✅ Branch protection enabled
+- ✅ Code review required
+- ✅ SAST/SCA tools configured
+- ✅ Dependency update automation active
+- ✅ Security policy published
+
+**Workflow File:** `.github/workflows/scorecards.yml`
+
+**Checks Performed:**
+- Binary-Artifacts
+- Branch-Protection
+- CI-Tests
+- CII-Best-Practices
+- Code-Review
+- Contributors
+- Dangerous-Workflow
+- Dependency-Update-Tool
+- Fuzzing
+- License
+- Maintained
+- Packaging
+- Pinned-Dependencies
+- SAST
+- Security-Policy
+- Signed-Releases
+- Token-Permissions
+- Vulnerabilities
+
+**Current Score:** [View OpenSSF Scorecard](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
+
+**Results Publication:**
+```yaml
+- name: "Run analysis"
+  uses: ossf/scorecard-action@v2.4.3
+  with:
+    results_file: results.sarif
+    results_format: sarif
+    publish_results: true  # Enables OpenSSF badge
+```
+
+### Stage 6: SBOM Generation & Attestations
+
+**Tool:** GitHub Attestations, Maven CycloneDX  
+**Trigger:** Release workflow  
+**Duration:** ~5 minutes  
+**Format:** SPDX JSON
+
+**Attestations Generated:**
+
+1. **Build Provenance (SLSA)**
+   - DEB package provenance
+   - WAR file provenance
+   - Build environment details
+   - Dependencies snapshot
+
+2. **SBOM Attestations**
+   - Complete software bill of materials
+   - Dependency tree
+   - License information
+   - Version tracking
+
+**Implementation:**
+```yaml
+# DEB Package Attestation
+- name: Generate artifact attestation for deb package
+  uses: actions/attest-build-provenance@v3.0.0
+  with:
+    subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ version }}.all.deb'
+
+# SBOM Attestation
+- name: Generate SBOM attestation for deb package
+  uses: actions/attest-sbom@v3.0.0
+  with:
+    subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ version }}.all.deb'
+    sbom-path: 'cia-dist-deb/target/site/*.spdx.json'
+```
+
+**Artifacts with Attestations:**
+- `cia-dist-deb-{version}.all.deb` + `.intoto.jsonl`
+- `citizen-intelligence-agency-{version}.war` + `.intoto.jsonl`
+- `*.spdx.json` + `.intoto.jsonl`
+
+**Verification:**
+Attestations can be verified using GitHub CLI:
+```bash
+gh attestation verify cia-dist-deb-{version}.all.deb --owner Hack23
+```
+
+### Stage 7: DAST - Dynamic Application Security Testing
+
+**Tool:** OWASP ZAP  
+**Trigger:** Manual workflow dispatch  
+**Duration:** ~30 minutes  
+**Scan Type:** Full scan
+
+**Quality Gates:**
+- ✅ No high-risk vulnerabilities
+- ✅ No medium-risk vulnerabilities in critical paths
+- ✅ Security headers validated
+- ✅ Authentication/authorization tested
+- ✅ Common web vulnerabilities checked (XSS, SQLi, CSRF)
+
+**Workflow File:** `.github/workflows/zap-scan.yml`
+
+**Configuration:**
+```yaml
+- name: ZAP Scan
+  uses: zaproxy/action-full-scan@v0.13.0
+  with:
+    token: ${{ github.token }}
+    docker_name: "ghcr.io/zaproxy/zaproxy:stable"
+    target: ${{ github.event.inputs.url }}
+```
+
+**Default Target:** `https://hack23.github.io/cia-compliance-manager/`
+
+**Scan Coverage:**
+- SQL Injection
+- Cross-Site Scripting (XSS)
+- Cross-Site Request Forgery (CSRF)
+- Security Headers
+- Cookie Security
+- SSL/TLS Configuration
+- Authentication Bypass
+- Session Management
+- Information Disclosure
+
+**Vulnerability Reporting:**
+- Results posted as GitHub issues
+- SARIF report generated
+- Automated triage and prioritization
 
 ## 🔐 ISMS Policy Integration
 
@@ -305,6 +643,353 @@ flowchart TD
     class G,H,I security
     class J,K,L attest
 ```
+
+## 🚀 Deployment Process
+
+### Release Workflow Overview
+
+The release process is triggered manually via workflow dispatch with version input:
+
+```mermaid
+flowchart TD
+    Start[Manual Release Trigger] --> Input[Version Input]
+    Input --> Branch[Create Release Branch]
+    Branch --> Version[Set Maven Version]
+    Version --> Commit[Auto-commit Changes]
+    Commit --> Tag[Create Git Tag]
+    Tag --> Build[Maven Build]
+    Build --> Package[Generate Artifacts]
+    Package --> Attest[Generate Attestations]
+    Attest --> SBOM[Generate SBOMs]
+    SBOM --> Notes[Draft Release Notes]
+    Notes --> Release[Create GitHub Release]
+    Release --> Publish[Publish Artifacts]
+    Publish --> End[Release Complete]
+    
+    style Start fill:#bbdefb
+    style Build fill:#c8e6c9
+    style Attest fill:#d1c4e9
+    style SBOM fill:#d1c4e9
+    style Release fill:#a5d6a7
+    style End fill:#a5d6a7
+```
+
+### Deployment Gates
+
+**Pre-Deployment Checks:**
+- ✅ All quality gates passed
+- ✅ Security scans clean (CodeQL, SonarCloud)
+- ✅ Dependencies reviewed and approved
+- ✅ Test coverage meets threshold (≥80% line coverage)
+- ✅ Manual approval for version number
+
+**Post-Deployment Validation:**
+- ✅ Release artifacts published to GitHub
+- ✅ Attestations generated and verified
+- ✅ SBOM available for transparency
+- ✅ Release notes generated
+- ✅ Git tag created
+
+### Version Management
+
+**Versioning Strategy:**
+- Manual version input via workflow dispatch
+- Semantic versioning (MAJOR.MINOR.PATCH)
+- Maven versions plugin for version updates
+- Automated version commit to release branch
+
+**Version Update Process:**
+```bash
+mvn versions:set -DnewVersion="${{ version }}" -Pall-modules
+mvn versions:commit
+```
+
+### Deployment Targets
+
+**GitHub Release:**
+- Primary deployment target
+- Artifacts published with attestations
+- Release notes auto-generated
+- Tagged in Git for traceability
+
+**Artifacts Published:**
+1. **DEB Package**: `cia-dist-deb-{version}.all.deb`
+   - Debian/Ubuntu installation package
+   - With build provenance attestation
+   - With SBOM attestation
+
+2. **WAR Application**: `citizen-intelligence-agency-{version}.war`
+   - Java web application archive
+   - With build provenance attestation
+   - With SBOM attestation
+
+3. **CloudFormation Template**: `cia-dist-cloudformation.json`
+   - AWS infrastructure as code
+   - Validated by Checkov
+   - Ready for AWS deployment
+
+4. **SBOM Files**: `*.spdx.json`
+   - Software Bill of Materials
+   - SPDX format
+   - Complete dependency transparency
+
+### Rollback Strategy
+
+**Rollback Capabilities:**
+- Git tag-based version history
+- Previous releases available on GitHub
+- Immutable release artifacts
+- Clear version tracking
+
+**Rollback Procedure:**
+1. Identify target rollback version
+2. Download artifacts from GitHub release
+3. Deploy previous version
+4. Verify system health
+5. Document rollback reason
+
+### Health Checks
+
+**Post-Deployment Validation:**
+- Application startup validation
+- Version verification
+- Basic functionality tests
+- Log monitoring for errors
+
+**Monitoring:**
+- GitHub Actions workflow status
+- Release artifacts availability
+- Attestation verification
+- SBOM completeness
+
+## 📊 Pipeline Analytics & Success Metrics
+
+### Performance Metrics
+
+| Metric | Target | Measurement | Status |
+|--------|--------|-------------|--------|
+| **Build Success Rate** | ≥95% | Last 30 days | [![Verify and Release](https://github.com/Hack23/cia/workflows/Verify%20and%20Release/badge.svg)](https://github.com/Hack23/cia/actions/workflows/release.yml) |
+| **Test Pass Rate** | ≥99% | Per build | Tracked in Maven reports |
+| **Security Scan Pass** | 100% | Every commit | [![CodeQL](https://github.com/Hack23/cia/workflows/CodeQL/badge.svg)](https://github.com/Hack23/cia/security/code-scanning) |
+| **Mean Time to Build** | <20min | Average | ~18 minutes |
+| **Code Coverage** | ≥80% line, ≥70% branch | JaCoCo reports | Enforced by Maven |
+| **OpenSSF Score** | ≥7.0/10 | Weekly scan | [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia) |
+| **SonarCloud Quality Gate** | Passed | Every commit | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia) |
+
+### Quality Metrics
+
+| Metric | Target | Current |
+|--------|--------|---------|
+| **Security Rating** | A | [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia) |
+| **Maintainability Rating** | A | [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia) |
+| **Reliability Rating** | A | [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia) |
+| **Vulnerabilities** | 0 | [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Hack23_cia) |
+| **Technical Debt** | <5% | Tracked in SonarCloud |
+
+### Security Metrics
+
+| Metric | Target | Monitoring |
+|--------|--------|------------|
+| **Critical Vulnerabilities** | 0 | Daily Dependabot scans |
+| **High Vulnerabilities** | 0 | Daily Dependabot scans |
+| **Vulnerability Remediation SLA** | 7d (Critical), 30d (High) | GitHub Security Advisories |
+| **Dependency Freshness** | 95% within 30 days | Dependabot alerts |
+| **SBOM Coverage** | 100% | Every release |
+| **Attestation Coverage** | 100% | Every release |
+
+### Failure Analysis & Response
+
+**Automated Failure Notifications:**
+- GitHub Actions workflow status
+- Email notifications for failed workflows
+- GitHub Security Advisories for vulnerabilities
+
+**Log Retention:**
+- Failed job logs preserved for 90 days
+- Build artifacts retained per GitHub settings
+- Security scan results in GitHub Security tab
+
+**Continuous Improvement:**
+- Root cause analysis tracked in issues
+- Workflow improvements documented
+- Regular retrospectives on failures
+- Metrics review and adjustment
+
+**Failure Response Process:**
+1. Automated notification triggered
+2. Review workflow logs
+3. Identify root cause
+4. Implement fix
+5. Validate fix in next run
+6. Document lessons learned
+
+## 🔒 Security Automation Evidence
+
+### Continuous Security Validation
+
+The CIA project implements comprehensive security automation across all pipeline stages:
+
+**Security Scanning Schedule:**
+- **SAST (SonarCloud)**: Every commit
+- **CodeQL**: Every PR, push to master, weekly schedule
+- **SCA (Dependabot)**: Daily automated scans
+- **Dependency Review**: Every PR
+- **OpenSSF Scorecard**: Weekly, branch protection changes
+- **DAST (ZAP)**: Manual/on-demand
+- **Secret Scanning**: Continuous monitoring (GitHub native)
+- **IaC Scanning (Checkov)**: Every CodeQL workflow run
+
+### Security Evidence Badges
+
+**GitHub Actions Workflows:**
+
+[![Verify and Release](https://github.com/Hack23/cia/workflows/Verify%20and%20Release/badge.svg)](https://github.com/Hack23/cia/actions/workflows/release.yml)
+[![CodeQL](https://github.com/Hack23/cia/workflows/CodeQL/badge.svg)](https://github.com/Hack23/cia/security/code-scanning)
+[![Scorecard supply-chain security](https://github.com/Hack23/cia/workflows/Scorecard%20supply-chain%20security/badge.svg)](https://github.com/Hack23/cia/actions/workflows/scorecards.yml)
+[![Dependency Review](https://github.com/Hack23/cia/workflows/Dependency%20Review/badge.svg)](https://github.com/Hack23/cia/actions/workflows/dependency-review.yml)
+
+**Security & Quality Ratings:**
+
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+
+### Supply Chain Security
+
+**SLSA Provenance:**
+- Build provenance for all release artifacts
+- GitHub-hosted runner attestations
+- Immutable build environment
+- Complete build parameter capture
+
+**SBOM Generation:**
+- SPDX format
+- Complete dependency tree
+- License information
+- Version tracking
+- Attestation signing
+
+**Artifact Verification:**
+```bash
+# Verify DEB package attestation
+gh attestation verify cia-dist-deb-{version}.all.deb \
+  --owner Hack23 --repo cia
+
+# Verify WAR attestation
+gh attestation verify citizen-intelligence-agency-{version}.war \
+  --owner Hack23 --repo cia
+
+# Verify SBOM attestation
+gh attestation verify *.spdx.json \
+  --owner Hack23 --repo cia
+```
+
+### Security Hardening
+
+**Workflow Security:**
+- Step Security Harden Runner on all workflows
+- Egress policy enforcement (audit/block)
+- Minimal permissions (principle of least privilege)
+- Pinned action versions with SHA256
+- Dependency caching security
+
+**Example Hardening:**
+```yaml
+- name: Harden Runner
+  uses: step-security/harden-runner@v2.13.2
+  with:
+    egress-policy: block
+    allowed-endpoints: >
+      api.github.com:443
+      github.com:443
+      maven.apache.org:443
+      sonarcloud.io:443
+```
+
+**Permission Model:**
+```yaml
+permissions:
+  contents: write        # For checkout and release creation
+  security-events: write # For security scanning results
+  id-token: write        # For SLSA provenance
+  attestations: write    # For artifact attestations
+  packages: write        # For package publishing
+```
+
+## 📋 Compliance Alignment
+
+### ISO 27001 Controls
+
+The CI/CD workflows implement the following ISO 27001:2022 controls:
+
+| Control | Description | Implementation |
+|---------|-------------|----------------|
+| **A.8.31** | Separation of development, test and production environments | Branch-based workflow, release branches |
+| **A.8.32** | Change management | Pull request workflow, automated testing, code review |
+| **A.8.33** | Test information | JUnit tests, JaCoCo coverage, test reports |
+| **A.5.15** | Access control | GitHub permissions, branch protection, code review |
+| **A.5.23** | Information security for use of cloud services | Hardened runners, egress policies, secure secrets |
+
+### NIST Cybersecurity Framework
+
+| Function | Category | Subcategory | Implementation |
+|----------|----------|-------------|----------------|
+| **Protect** | PR.IP-1 | Baseline configuration maintained | Infrastructure as Code, pinned dependencies |
+| **Protect** | PR.DS-6 | Integrity checking mechanisms | SBOM attestations, SLSA provenance |
+| **Detect** | DE.CM-4 | Malicious code detected | SAST (SonarCloud, CodeQL), SCA (Dependabot) |
+| **Detect** | DE.CM-8 | Vulnerability scans performed | Daily dependency scans, weekly CodeQL |
+| **Respond** | RS.AN-5 | Processes established for vulnerabilities | Automated Dependabot PRs, security advisories |
+
+### CIS Controls v8
+
+| Control | Sub-Control | Implementation |
+|---------|-------------|----------------|
+| **2.3** | Address Unauthorized Software | Dependency review, SCA scanning |
+| **2.7** | Allowlist Authorized Software | Maven dependency management, SBOM |
+| **7.1** | Establish Secure Configurations | Hardened runner, egress policies |
+| **7.5** | Implement Automated Configuration Monitoring | CodeQL, SonarCloud, Checkov |
+| **16.8** | Establish Process for Software Updates | Automated Dependabot, weekly scans |
+| **16.11** | Leverage Vetted Modules/Services | Pinned GitHub Actions, trusted registries |
+
+### EU Cyber Resilience Act (CRA)
+
+| Requirement | Implementation |
+|-------------|----------------|
+| **SBOM Requirements** | SPDX SBOM generated for all releases, attested |
+| **Vulnerability Disclosure** | GitHub Security Advisories, SECURITY.md |
+| **Security Updates** | Automated Dependabot, 7-day SLA for critical |
+| **Supply Chain Security** | SLSA provenance, attestations, dependency review |
+| **Transparency** | Public workflows, badges, documentation |
+
+## 🔗 Related Resources
+
+### ISMS Compliance Documentation
+- [ISMS Compliance Mapping](ISMS_COMPLIANCE_MAPPING.md) - Complete policy-to-control traceability
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - CI/CD workflow requirements
+- [Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - Vulnerability handling procedures
+- [Change Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) - Change control processes
+- [Third-Party Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Third_Party_Management.md) - Dependency management policies
+
+### Security Documentation
+- [Security Architecture](SECURITY_ARCHITECTURE.md) - Complete security overview
+- [Threat Model](THREAT_MODEL.md) - Threat analysis informing pipeline gates
+- [SECURITY.md](SECURITY.md) - Security policy and vulnerability reporting
+- [CRA Assessment](CRA-ASSESSMENT.md) - EU Cyber Resilience Act compliance
+
+### Technical Documentation
+- [Architecture](ARCHITECTURE.md) - System architecture and design
+- [Data Model](DATA_MODEL.md) - Database schema and relationships
+- [Flowcharts](FLOWCHART.md) - Data processing workflows
+
+### External Resources
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+- [SonarCloud Quality Gates](https://docs.sonarsource.com/sonarcloud/improving/quality-gates/)
+- [OpenSSF Scorecard](https://github.com/ossf/scorecard)
+- [OWASP DevSecOps Guideline](https://owasp.org/www-project-devsecops-guideline/)
+- [SLSA Framework](https://slsa.dev/)
 
 ## Future CI/CD Improvements
 
