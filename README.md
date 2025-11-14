@@ -14,6 +14,16 @@ The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence 
 
 Our initiative remains strictly independent and non-partisan, focused on fostering informed decision-making and enhancing democratic engagement.
 
+## 📊 Quality Metrics
+
+[![Unit Test Coverage](https://img.shields.io/badge/Unit%20Test%20Coverage-JaCoCo%20Results-brightgreen?style=flat-square&logo=java)](https://hack23.github.io/cia/jacoco/)
+[![Code Coverage](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+
+**Coverage Policy:** Per [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md), we maintain minimum 80% line coverage and 70% branch coverage across all modules.
+
 ## ✨ Features
 Explore our [comprehensive feature set](https://hack23.com/cia-features.html) including:
 - 📊 Interactive dashboards
