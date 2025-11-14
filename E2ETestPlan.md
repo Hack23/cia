@@ -1,6 +1,6 @@
 # 🌐 Citizen Intelligence Agency - End-to-End Test Plan
 
-[![E2E Tests](https://img.shields.io/badge/E2E%20Tests-46%20Test%20Classes-brightgreen?style=flat-square&logo=java)](https://github.com/Hack23/cia/tree/master/citizen-intelligence-agency/src/test)
+[![E2E Tests](https://img.shields.io/badge/E2E%20Tests-22%20Test%20Classes-brightgreen?style=flat-square&logo=java)](https://github.com/Hack23/cia/tree/master/citizen-intelligence-agency/src/test)
 [![Integration Tests](https://img.shields.io/badge/Integration-Selenium%20WebDriver-success?style=flat-square&logo=selenium&logoColor=white)](https://github.com/Hack23/cia/tree/master/citizen-intelligence-agency/src/test/java/com/hack23/cia/systemintegrationtest)
 [![Test Framework](https://img.shields.io/badge/Framework-Spring%20Test%20%2B%20JUnit-blue?style=flat-square&logo=spring&logoColor=white)](https://docs.spring.io/spring-framework/reference/testing/integration.html)
 [![Coverage](https://img.shields.io/badge/Coverage-JaCoCo-orange?style=flat-square&logo=java)](https://hack23.github.io/cia/jacoco/)
@@ -40,7 +40,7 @@ Tests are organized by user role and functional area:
 
 ```
 citizen-intelligence-agency/src/test/java/com/hack23/cia/systemintegrationtest/
-├── admin/                      # Administrator functionality tests (5 test classes)
+├── admin/                      # Administrator functionality tests (4 test classes)
 │   ├── configuration/          # System configuration tests
 │   ├── data/                   # Data management tests
 │   ├── operations/             # Administrative operations tests
@@ -65,7 +65,7 @@ citizen-intelligence-agency/src/test/java/com/hack23/cia/systemintegrationtest/
     └── TestConstants.java      # Test configuration constants
 ```
 
-**Total Test Suite:** 46 test classes covering all critical user journeys
+**Total Test Suite:** 22 test classes in IntegrationTestSuite (18 user + 4 admin) covering all critical user journeys
 
 ## 📋 Critical User Journeys
 
@@ -96,7 +96,7 @@ public void siteLoginUserChangePasswordFailureTest() throws Exception
 public void siteLoginUserDisableGoogleAuthenticatorFailureTest() throws Exception
 ```
 
-**Test Coverage**: 9 test scenarios covering authentication and account security
+**Test Coverage**: 16 test scenarios covering authentication and account security
 
 ### 2. Dashboard Navigation & User Home
 
@@ -653,11 +653,12 @@ mvn test -Dtest=UserHomeTest
 | **Government Bodies** | 4 | 9+ scenarios | ✅ 100% |
 | **Voting Records** | 1 | 6+ scenarios | ✅ 100% |
 | **Parliament & Country** | 2 | 6+ scenarios | ✅ 100% |
-| **Admin Functions** | 5 | 8+ scenarios | ✅ 100% |
+| **Admin Functions** | 4 | 8+ scenarios | ✅ 100% |
 | **Common Functionality** | 1 | 5+ scenarios | ✅ 100% |
 
 **Overall E2E Test Coverage**: 
-- **Total Test Classes**: 46
+- **Total Test Classes in IntegrationTestSuite**: 22 (18 user + 4 admin)
+- **Total Test Files in Repository**: 46 (includes unit tests across all modules)
 - **Total Test Scenarios**: 80+ individual test methods
 - **Critical Path Coverage**: 100% of identified user journeys
 - **Code Coverage (via JaCoCo)**: Available at https://hack23.github.io/cia/jacoco/
@@ -665,8 +666,8 @@ mvn test -Dtest=UserHomeTest
 ### Coverage Metrics
 
 **Integration Test Categories**:
-- **UI Integration Tests**: 41 test classes covering all user-facing pages
-- **Admin Integration Tests**: 5 test classes covering administrative functions
+- **UI Integration Tests**: 18 test classes covering all user-facing pages
+- **Admin Integration Tests**: 4 test classes covering administrative functions
 - **Unit Tests**: 100+ unit test classes across service and model modules
 
 **Test Execution Statistics**:
