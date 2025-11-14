@@ -49,7 +49,7 @@ rule "Party showing organizational weakness - low productivity despite size"
             party.party != "-" && 
             party.currentlyActiveMembers >= 15 &&
             party.avgDocumentsLastYear < 3 &&
-            party.documentsLastYear > 0
+            party.totalDocumentsLastYear > 0
         )
     then
     	$p.addViolation( Status.CRITICAL, "PartyLowProductivity","Behavior", kcontext.getRule().getName(),"OrganizationalWeakness");
@@ -63,7 +63,7 @@ rule "Party with zero recent legislative output"
             party.activeParliament && 
             party.party != "-" && 
             party.currentlyActiveMembers > 0 &&
-            party.documentsLastYear == 0 &&
+            party.totalDocumentsLastYear == 0 &&
             party.totalDocuments > 0
         )
     then
