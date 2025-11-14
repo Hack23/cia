@@ -471,7 +471,7 @@ flowchart TD
 **16. 🚪 PoliticianLeftPartyStillHoldingPositions.drl** - Transition accountability  
 **17. 🎯 PoliticianPartyRebel.drl** - Rebel behavior flagging  
 **18. 📊 PoliticianBusySchedule.drl** - High activity level identification  
-**19. 🏛️ PoliticanCommitteeLeadership.drl** - Committee leadership tracking  
+**19. 🏛️ PoliticianCommitteeLeadership.drl** - Committee leadership tracking  
 **20. 📋 PoliticianCommitteeInfluence.drl** - Committee influence assessment  
 **21. 🔄 PoliticianCommiteeSubstitute.drl** - Substitute role monitoring  
 **22. 🎓 PoliticianMinisterWithoutParliamentExperience.drl** - Government appointment analysis  
