@@ -195,7 +195,7 @@ jobs:
         maven-version: 3.9.9
 
     - name: Set Version for release
-      run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit	
+      run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit
 
     - uses: stefanzweifel/git-auto-commit-action@28e16e81777b558cc906c8750092100bbb34c5e3 # v7.0.0
       with:
