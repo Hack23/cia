@@ -52,8 +52,8 @@ The CIA project implements a multi-stage CI/CD pipeline with comprehensive quali
 ```mermaid
 graph LR
     A[Code Push] --> B[Build & Test]
-    B --> C[SAST Scan]
-    C --> D[SCA Scan]
+    B --> C[SCA Scan]
+    C --> D[CodeQL Scan]
     D --> E[Quality Gate]
     E --> F[Security Gate]
     F --> G[SBOM Generation]
@@ -77,11 +77,10 @@ graph LR
 
 | Stage | Tool/Service | Trigger | Quality Gate | Duration |
 |-------|-------------|---------|--------------|----------|
-| **Build & Test** | Maven, JUnit | Every commit | Tests pass, Coverage ≥80% | ~15-20 min |
-| **SAST** | SonarCloud | Every commit | Security Rating ≥A | ~5 min |
+| **Build & Test** | Maven, JUnit | Manual workflow dispatch | Tests pass, Coverage ≥80% | ~15-20 min |
 | **SCA** | Dependabot, Dependency Review | Daily / PR | No critical vulnerabilities | ~2 min |
-| **CodeQL** | GitHub CodeQL | PR, Weekly | No critical/high issues | ~20 min |
-| **Quality Gate** | SonarCloud | Every commit | Overall quality ≥A | Auto |
+| **CodeQL** | GitHub CodeQL | PR, Push to master, Weekly | No critical/high issues | ~20 min |
+| **Quality Gate** | Multiple tools | Every commit | Overall quality ≥A | Auto |
 | **Security Gate** | Multiple tools | Every commit | Zero critical vulnerabilities | Auto |
 | **SBOM** | Maven CycloneDX | Release | Complete SBOM generated | ~5 min |
 | **Attestations** | GitHub Attestations | Release | SLSA provenance created | ~2 min |
@@ -173,39 +172,7 @@ flowchart TB
 - Average build time: 18 minutes
 - Test pass rate: Target 99%+
 
-### Stage 2: SAST - Static Application Security Testing
-
-**Tool:** SonarCloud  
-**Trigger:** Every commit, PR  
-**Duration:** ~5 minutes  
-**Integration:** Maven Sonar plugin
-
-**Quality Gates:**
-- ✅ Security Rating ≥ A
-- ✅ No critical security vulnerabilities
-- ✅ No blocker code smells
-- ✅ Maintainability Rating ≥ A
-- ✅ Reliability Rating ≥ A
-- ✅ Technical debt ratio < 5%
-
-**Metrics Tracked:**
-- Lines of Code
-- Code Coverage
-- Duplications
-- Security Hotspots
-- Code Smells
-- Technical Debt
-
-**SonarCloud Dashboard:** [View Results](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
-
-**Configuration:**
-```properties
-sonar.projectKey=Hack23_cia
-sonar.organization=hack23
-sonar.dependencyCheck.htmlReportPath=${project.basedir}/dependency-check-report.html
-```
-
-### Stage 3: SCA - Software Composition Analysis
+### Stage 2: SCA - Software Composition Analysis
 
 **Tools:** Dependabot, GitHub Dependency Review, OWASP Dependency-Check  
 **Trigger:** Daily automated scans, PR-based scanning  
@@ -237,7 +204,7 @@ sonar.dependencyCheck.htmlReportPath=${project.basedir}/dependency-check-report.
 
 **Dependency Freshness Target:** 95% within 30 days of latest release
 
-### Stage 4: CodeQL - Semantic Code Analysis
+### Stage 3: CodeQL - Semantic Code Analysis
 
 **Tool:** GitHub CodeQL  
 **Trigger:** Push to master, PR, weekly schedule (Wednesday 04:00)  
@@ -279,7 +246,7 @@ sonar.dependencyCheck.htmlReportPath=${project.basedir}/dependency-check-report.
     output_format: sarif
 ```
 
-### Stage 5: OpenSSF Scorecard
+### Stage 4: OpenSSF Scorecard
 
 **Tool:** OpenSSF Scorecard  
 **Trigger:** Weekly (Tuesday 07:20), branch protection changes, master push  
@@ -328,7 +295,7 @@ sonar.dependencyCheck.htmlReportPath=${project.basedir}/dependency-check-report.
     publish_results: true  # Enables OpenSSF badge
 ```
 
-### Stage 6: SBOM Generation & Attestations
+### Stage 5: SBOM Generation & Attestations
 
 **Tool:** GitHub Attestations, Maven CycloneDX  
 **Trigger:** Release workflow  
@@ -355,13 +322,13 @@ sonar.dependencyCheck.htmlReportPath=${project.basedir}/dependency-check-report.
 - name: Generate artifact attestation for deb package
   uses: actions/attest-build-provenance@v3.0.0
   with:
-    subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ version }}.all.deb'
+    subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
 
 # SBOM Attestation
 - name: Generate SBOM attestation for deb package
   uses: actions/attest-sbom@v3.0.0
   with:
-    subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ version }}.all.deb'
+    subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
     sbom-path: 'cia-dist-deb/target/site/*.spdx.json'
 ```
 
@@ -376,7 +343,7 @@ Attestations can be verified using GitHub CLI:
 gh attestation verify cia-dist-deb-{version}.all.deb --owner Hack23
 ```
 
-### Stage 7: DAST - Dynamic Application Security Testing
+### Stage 6: DAST - Dynamic Application Security Testing
 
 **Tool:** OWASP ZAP  
 **Trigger:** Manual workflow dispatch  
@@ -678,7 +645,7 @@ flowchart TD
 
 **Pre-Deployment Checks:**
 - ✅ All quality gates passed
-- ✅ Security scans clean (CodeQL, SonarCloud)
+- ✅ Security scans clean (CodeQL)
 - ✅ Dependencies reviewed and approved
 - ✅ Test coverage meets threshold (≥80% line coverage)
 - ✅ Manual approval for version number
@@ -700,7 +667,7 @@ flowchart TD
 
 **Version Update Process:**
 ```bash
-mvn versions:set -DnewVersion="${{ version }}" -Pall-modules
+mvn versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules
 mvn versions:commit
 ```
 
@@ -830,9 +797,8 @@ mvn versions:commit
 The CIA project implements comprehensive security automation across all pipeline stages:
 
 **Security Scanning Schedule:**
-- **SAST (SonarCloud)**: Every commit
-- **CodeQL**: Every PR, push to master, weekly schedule
 - **SCA (Dependabot)**: Daily automated scans
+- **CodeQL**: Every PR, push to master, weekly schedule
 - **Dependency Review**: Every PR
 - **OpenSSF Scorecard**: Weekly, branch protection changes
 - **DAST (ZAP)**: Manual/on-demand
