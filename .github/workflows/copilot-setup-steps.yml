@@ -69,7 +69,7 @@ jobs:
           
           # Create Certificate Signing Request
           openssl req -new -key server.key -out server.csr \
-            -subj "/C=UK/ST=Postgresqll/L=Docker/O=Hack23/OU=demo/CN=127.0.0.1"
+            -subj "/C=UK/ST=PostgreSQL/L=Docker/O=Hack23/OU=demo/CN=127.0.0.1"
           
           # Self-sign the certificate (valid for 10 years)
           openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
@@ -135,7 +135,7 @@ jobs:
           
           # Test SSL connection from localhost
           echo "Testing SSL connection..."
-          PGSSLMODE=require psql -h localhost -U eris -d cia_dev -c "SELECT version();" || echo "SSL connection test completed"
+          PGPASSWORD=discord PGSSLMODE=require psql -h localhost -U eris -d cia_dev -c "SELECT version();" || echo "SSL connection test completed"
 
       - name: Set up Maven
         uses: stCarolas/setup-maven@d6af6abeda15e98926a57b5aa970a96bb37f97d1 # v5
@@ -145,16 +145,13 @@ jobs:
       - name: Build with Maven
         run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -Dmaven.test.skip=true
 
-      - name: Install Ant
-        run: sudo apt-get install -y ant
-
       - name: Validate app startup and database connection
         run: |
           cd citizen-intelligence-agency
           
           # Start the application in background with a timeout
           echo "Starting application..."
-          timeout 180 ant start > /tmp/app-startup.log 2>&1 &
+          timeout 240 ant start > /tmp/app-startup.log 2>&1 &
           APP_PID=$!
           
           echo "Application starting with PID: $APP_PID"

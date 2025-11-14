@@ -151,7 +151,7 @@ jobs:
         
         # Create Certificate Signing Request
         openssl req -new -key server.key -out server.csr \
-          -subj "/C=UK/ST=Postgresqll/L=Docker/O=Hack23/OU=demo/CN=127.0.0.1"
+          -subj "/C=UK/ST=PostgreSQL/L=Docker/O=Hack23/OU=demo/CN=127.0.0.1"
         
         # Self-sign the certificate (valid for 10 years)
         openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
