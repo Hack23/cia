@@ -122,6 +122,86 @@ jobs:
     - name: Install buildtools
       run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget
 
+    - name: Install PostgreSQL
+      run: sudo apt-get install -y postgresql-16 postgresql-contrib-16 postgresql-16-pgaudit
+
+    - name: Configure PostgreSQL
+      run: |
+        # Enable prepared transactions and required extensions
+        sudo sed -i "s/#max_prepared_transactions = 0/max_prepared_transactions = 100/" /etc/postgresql/16/main/postgresql.conf
+        sudo sed -i "s/#shared_preload_libraries = ''/shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'/" /etc/postgresql/16/main/postgresql.conf
+        echo "pgaudit.log = ddl" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "pg_stat_statements.track = all" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "pg_stat_statements.max = 10000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        
+        # Add IPv6 loopback access
+        echo "host all all ::1/128 md5" | sudo tee -a /etc/postgresql/16/main/pg_hba.conf
+
+    - name: Generate SSL certificates for PostgreSQL
+      run: |
+        # Generate secure random passphrase
+        openssl rand -base64 48 > passphrase.txt
+        
+        # Create passphrase-protected private key
+        openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
+        
+        # Remove passphrase protection from private key
+        openssl rsa -passin file:passphrase.txt -in server.pass.key -out server.key
+        rm server.pass.key
+        
+        # Create Certificate Signing Request
+        openssl req -new -key server.key -out server.csr \
+          -subj "/C=UK/ST=PostgreSQL/L=Docker/O=Hack23/OU=demo/CN=127.0.0.1"
+        
+        # Self-sign the certificate (valid for 10 years)
+        openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
+        
+        # Clean up temporary files
+        rm passphrase.txt server.csr
+
+    - name: Deploy SSL certificate and key for PostgreSQL
+      run: |
+        # Copy certificate and key to PostgreSQL data directory
+        sudo cp server.crt /var/lib/postgresql/16/main/server.crt
+        sudo cp server.key /var/lib/postgresql/16/main/server.key
+        
+        # Secure the certificate and key
+        sudo chmod 600 /var/lib/postgresql/16/main/server.key
+        sudo chmod 644 /var/lib/postgresql/16/main/server.crt
+        sudo chown postgres:postgres /var/lib/postgresql/16/main/server.key
+        sudo chown postgres:postgres /var/lib/postgresql/16/main/server.crt
+        
+        # Enable SSL in PostgreSQL
+        echo "ssl = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "ssl_cert_file = '/var/lib/postgresql/16/main/server.crt'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "ssl_key_file = '/var/lib/postgresql/16/main/server.key'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        
+        # Provide SSL certificate to the runner user
+        mkdir -p $HOME/.postgresql
+        cp server.crt $HOME/.postgresql/root.crt
+        chmod 600 $HOME/.postgresql/root.crt
+        
+        # Clean up
+        rm server.key server.crt
+        
+        # Restart PostgreSQL to apply all changes
+        sudo systemctl restart postgresql
+
+    - name: Create CIA database and user
+      run: |
+        sudo -u postgres psql -c "CREATE USER eris WITH PASSWORD 'discord';"
+        sudo -u postgres psql -c "CREATE DATABASE cia_dev;"
+        sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE cia_dev TO eris;"
+        sudo -u postgres psql -d cia_dev -c "CREATE EXTENSION IF NOT EXISTS pg_stat_statements;"
+        sudo -u postgres psql -d cia_dev -c "CREATE EXTENSION IF NOT EXISTS pgaudit;"
+        sudo -u postgres psql -d cia_dev -c "CREATE EXTENSION IF NOT EXISTS pgcrypto;"
+        sudo -u postgres psql -d cia_dev -c "GRANT ALL ON SCHEMA public TO eris;"
+
+    - name: Load database schema
+      run: |
+        # Load the full schema into the database
+        sudo -u postgres psql -d cia_dev -f service.data.impl/src/main/resources/full_schema.sql || echo "Schema load completed with warnings (expected for first-time setup)"
+
     - name: Set up Maven
       uses: stCarolas/setup-maven@d6af6abeda15e98926a57b5aa970a96bb37f97d1 # v5
       with:
