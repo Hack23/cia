@@ -79,6 +79,9 @@
     <sonar.zaproxy.htmlReportPath></sonar.zaproxy.htmlReportPath>
     <sonar.zaproxy.reportPath></sonar.zaproxy.reportPath>
     <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+    <jacoco.skip.check>false</jacoco.skip.check>
+    <jacoco.check.lineRatio>0.80</jacoco.check.lineRatio>
+    <jacoco.check.branchRatio>0.70</jacoco.check.branchRatio>
     <root.dir>file:///${basedir}/../</root.dir>
     <cia.project.versions.spring>5.3.39.hack23java25</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.8.16</cia.project.versions.spring.security>
@@ -1253,6 +1256,7 @@
             </goals>
             <phase>verify</phase>
             <configuration>
+              <skip>${jacoco.skip.check}</skip>
               <rules>
                 <rule>
                   <element>BUNDLE</element>
@@ -1260,12 +1264,12 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.80</minimum>
+                      <minimum>${jacoco.check.lineRatio}</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.70</minimum>
+                      <minimum>${jacoco.check.branchRatio}</minimum>
                     </limit>
                   </limits>
                 </rule>
