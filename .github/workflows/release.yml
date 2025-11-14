@@ -127,6 +127,34 @@ jobs:
     - name: Build with Maven
       run: mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false
 
+    - name: Run Tests with Coverage
+      run: mvn -B --file pom.xml verify jacoco:report jacoco:report-aggregate -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -DfailIfNoTests=false
+
+    - name: Check Coverage Thresholds
+      run: mvn -B --file pom.xml jacoco:check -Prelease-site,all-modules
+      continue-on-error: false
+
+    - name: Upload Coverage to SonarCloud
+      if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/release-')
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        mvn -B --file pom.xml sonar:sonar \
+          -Dsonar.projectKey=Hack23_cia \
+          -Dsonar.organization=hack23 \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco-aggregate/jacoco.xml
+
+    - name: Deploy Coverage to GitHub Pages
+      uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4.0.0
+      if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/release-')
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./parent-pom/target/site/jacoco-aggregate
+        destination_dir: jacoco
+        keep_files: true
+
     # Generate artifact attestation for DEB package
     - name: Generate artifact attestation for deb package
       uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
