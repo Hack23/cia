@@ -927,7 +927,7 @@ WITH risk_calculations AS (
         COALESCE(vps_annual.total_votes, 0) AS annual_vote_count,
         
         -- Document Activity
-        COUNT(DISTINCT dd.id) FILTER (WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year') AS documents_last_year,
+        COUNT(DISTINCT vpd.id) AS documents_last_year,
         
         -- Risk Score Calculation (0-100 scale) - Higher score = higher risk
         (
@@ -945,7 +945,7 @@ WITH risk_calculations AS (
             
             -- Low productivity component (0-10 points)
             (CASE 
-                WHEN COUNT(DISTINCT dd.id) FILTER (WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year') < 5 
+                WHEN COUNT(DISTINCT vpd.id) < 5 
                 THEN 10 
                 ELSE 0 
             END)
@@ -959,8 +959,9 @@ WITH risk_calculations AS (
     LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_annual vps_annual
         ON vps_annual.embedded_id_intressent_id = p.id
         AND vps_annual.embedded_id_vote_date = date_trunc('year', CURRENT_DATE - INTERVAL '1 year')
-    LEFT JOIN document_person_reference_da_0 dprd ON dprd.person_reference_id = p.id
-    LEFT JOIN document_data dd ON dd.id = dprd.hjid
+    LEFT JOIN view_riksdagen_politician_document vpd 
+        ON vpd.person_reference_id = p.id 
+        AND vpd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
     
     WHERE p.status = 'active'
     
@@ -1129,15 +1130,15 @@ party_voting_annual AS (
 ),
 party_documents AS (
     SELECT
-        party,
-        COUNT(DISTINCT dd.id) AS documents_produced,
-        COUNT(DISTINCT dd.id) FILTER (WHERE dd.document_type = 'Motion') AS motions_produced,
-        COUNT(DISTINCT dd.id) FILTER (WHERE dd.document_type = 'Proposition') AS propositions_produced
+        p.party,
+        COUNT(DISTINCT vpd.id) AS documents_produced,
+        COUNT(DISTINCT vpd.id) FILTER (WHERE vpd.document_type = 'Motion') AS motions_produced,
+        COUNT(DISTINCT vpd.id) FILTER (WHERE vpd.document_type = 'Proposition') AS propositions_produced
     FROM person_data p
-    INNER JOIN document_person_reference_da_0 dprd ON dprd.person_reference_id = p.id
-    INNER JOIN document_data dd ON dd.id = dprd.hjid
-    WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
-        AND p.party IS NOT NULL
+    INNER JOIN view_riksdagen_politician_document vpd 
+        ON vpd.person_reference_id = p.id
+        AND vpd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
+    WHERE p.party IS NOT NULL
     GROUP BY p.party
 ),
 party_government_roles AS (
@@ -1155,7 +1156,7 @@ performance_calculations AS (
     SELECT
         pp.short_code AS party,
         pp.party_name,
-        pp.reg_date AS registration_date,
+        pp.registered_date AS registration_date,
         pmc.active_members,
         pmc.inactive_members,
         pv.total_violations,
