@@ -888,7 +888,7 @@ CROSS JOIN vote_stats vs;
         
         Intelligence Purpose:
         - Aggregate all risk indicators for each politician
-        - Provide comprehensive risk score based on rule violations
+        - Provide comprehensive risk score based on rule violations, attendance (absence rates), voting effectiveness (win rates), rebel rates, and document productivity
         - Enable rapid risk assessment and prioritization
         - Support Drools rules integration with risk metrics
         
@@ -901,36 +901,35 @@ CROSS JOIN vote_stats vs;
     
     <createView viewName="view_politician_risk_summary" replaceIfExists="true">
         <![CDATA[
-SELECT
-    p.id AS person_id,
-    p.first_name,
-    p.last_name,
-    p.party,
-    p.status,
-    
-    -- Rule Violation Metrics
-    COUNT(DISTINCT rv.id) FILTER (WHERE rv.resource_type = 'POLITICIAN') AS total_violations,
-    MAX(rv.detected_date) AS latest_violation_date,
-    
-    -- Violation Breakdown by Severity/Group
-    COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'ABSENTEEISM') AS absenteeism_violations,
-    COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'EFFECTIVENESS') AS effectiveness_violations,
-    COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'DISCIPLINE') AS discipline_violations,
-    COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'PRODUCTIVITY') AS productivity_violations,
-    COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'COLLABORATION') AS collaboration_violations,
-    
-    -- Current Performance Metrics (last year)
-    COALESCE(vps_annual.absent_percentage, 0) AS annual_absence_rate,
-    COALESCE(vps_annual.won_percentage, 0) AS annual_win_rate,
-    COALESCE(vps_annual.rebel_percentage, 0) AS annual_rebel_rate,
-    COALESCE(vps_annual.total_votes, 0) AS annual_vote_count,
-    
-    -- Document Activity
-    COUNT(DISTINCT dd.id) FILTER (WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year') AS documents_last_year,
-    
-    -- Risk Score Calculation (0-100 scale)
-    -- Higher score = higher risk
-    ROUND(
+WITH risk_calculations AS (
+    SELECT
+        p.id AS person_id,
+        p.first_name,
+        p.last_name,
+        p.party,
+        p.status,
+        
+        -- Rule Violation Metrics
+        COUNT(DISTINCT rv.id) AS total_violations,
+        MAX(rv.detected_date) AS latest_violation_date,
+        
+        -- Violation Breakdown by Severity/Group
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'ABSENTEEISM') AS absenteeism_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'EFFECTIVENESS') AS effectiveness_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'DISCIPLINE') AS discipline_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'PRODUCTIVITY') AS productivity_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'COLLABORATION') AS collaboration_violations,
+        
+        -- Current Performance Metrics (last year)
+        COALESCE(vps_annual.absent_percentage, 0) AS annual_absence_rate,
+        COALESCE(vps_annual.won_percentage, 0) AS annual_win_rate,
+        COALESCE(vps_annual.rebel_percentage, 0) AS annual_rebel_rate,
+        COALESCE(vps_annual.total_votes, 0) AS annual_vote_count,
+        
+        -- Document Activity
+        COUNT(DISTINCT dd.id) FILTER (WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year') AS documents_last_year,
+        
+        -- Risk Score Calculation (0-100 scale) - Higher score = higher risk
         (
             -- Violation component (0-40 points)
             LEAST(COUNT(DISTINCT rv.id) * 2, 40) +
@@ -950,76 +949,78 @@ SELECT
                 THEN 10 
                 ELSE 0 
             END)
-        )::NUMERIC, 
-        2
-    ) AS risk_score,
+        ) AS calculated_risk_score
+        
+    FROM person_data p
+    LEFT JOIN rule_violation rv 
+        ON rv.reference_id = p.id 
+        AND rv.resource_type = 'POLITICIAN'
+        AND rv.status = 'ACTIVE'
+    LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_annual vps_annual
+        ON vps_annual.embedded_id_intressent_id = p.id
+        AND vps_annual.embedded_id_vote_year = EXTRACT(YEAR FROM CURRENT_DATE - INTERVAL '1 year')
+    LEFT JOIN document_person_reference_da_0 dprd ON dprd.person_reference_id = p.id
+    LEFT JOIN document_data dd ON dd.id = dprd.hjid
+    
+    WHERE p.status = 'active'
+    
+    GROUP BY 
+        p.id, p.first_name, p.last_name, p.party, p.status,
+        vps_annual.absent_percentage,
+        vps_annual.won_percentage,
+        vps_annual.rebel_percentage,
+        vps_annual.total_votes
+)
+SELECT
+    person_id,
+    first_name,
+    last_name,
+    party,
+    status,
+    total_violations,
+    latest_violation_date,
+    absenteeism_violations,
+    effectiveness_violations,
+    discipline_violations,
+    productivity_violations,
+    collaboration_violations,
+    annual_absence_rate,
+    annual_win_rate,
+    annual_rebel_rate,
+    annual_vote_count,
+    documents_last_year,
+    
+    ROUND(calculated_risk_score::NUMERIC, 2) AS risk_score,
     
     -- Risk Classification
     CASE
-        WHEN (
-            LEAST(COUNT(DISTINCT rv.id) * 2, 40) +
-            (COALESCE(vps_annual.absent_percentage, 0) * 20 / 100.0) +
-            ((100 - COALESCE(vps_annual.won_percentage, 50)) * 20 / 100.0) +
-            (COALESCE(vps_annual.rebel_percentage, 0) * 10 / 100.0) +
-            (CASE WHEN COUNT(DISTINCT dd.id) FILTER (WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year') < 5 THEN 10 ELSE 0 END)
-        ) >= 70 THEN 'CRITICAL'
-        WHEN (
-            LEAST(COUNT(DISTINCT rv.id) * 2, 40) +
-            (COALESCE(vps_annual.absent_percentage, 0) * 20 / 100.0) +
-            ((100 - COALESCE(vps_annual.won_percentage, 50)) * 20 / 100.0) +
-            (COALESCE(vps_annual.rebel_percentage, 0) * 10 / 100.0) +
-            (CASE WHEN COUNT(DISTINCT dd.id) FILTER (WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year') < 5 THEN 10 ELSE 0 END)
-        ) >= 50 THEN 'HIGH'
-        WHEN (
-            LEAST(COUNT(DISTINCT rv.id) * 2, 40) +
-            (COALESCE(vps_annual.absent_percentage, 0) * 20 / 100.0) +
-            ((100 - COALESCE(vps_annual.won_percentage, 50)) * 20 / 100.0) +
-            (COALESCE(vps_annual.rebel_percentage, 0) * 10 / 100.0) +
-            (CASE WHEN COUNT(DISTINCT dd.id) FILTER (WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year') < 5 THEN 10 ELSE 0 END)
-        ) >= 30 THEN 'MEDIUM'
+        WHEN calculated_risk_score >= 70 THEN 'CRITICAL'
+        WHEN calculated_risk_score >= 50 THEN 'HIGH'
+        WHEN calculated_risk_score >= 30 THEN 'MEDIUM'
         ELSE 'LOW'
     END AS risk_level,
     
     -- Intelligence Assessment
     CASE
-        WHEN COUNT(DISTINCT rv.id) >= 5 AND COALESCE(vps_annual.absent_percentage, 0) >= 20
+        WHEN total_violations >= 5 AND annual_absence_rate >= 20
             THEN 'Chronic accountability failure - multiple violations with high absenteeism'
-        WHEN COUNT(DISTINCT rv.id) >= 5
+        WHEN total_violations >= 5
             THEN 'Multiple rule violations detected - requires investigation'
-        WHEN COALESCE(vps_annual.absent_percentage, 0) >= 25
+        WHEN annual_absence_rate >= 25
             THEN 'Severe absenteeism - constituent representation failure'
-        WHEN COALESCE(vps_annual.won_percentage, 0) < 20
+        WHEN annual_win_rate < 20
             THEN 'Critically low effectiveness - marginalized in policy process'
-        WHEN COALESCE(vps_annual.rebel_percentage, 0) >= 15
+        WHEN annual_rebel_rate >= 15
             THEN 'High rebel rate - party discipline breakdown'
-        WHEN COUNT(DISTINCT dd.id) FILTER (WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year') < 3
+        WHEN documents_last_year < 3
             THEN 'Minimal legislative activity - lack of policy initiative'
         ELSE 'Standard performance - no significant risk indicators'
     END AS risk_assessment,
     
     -- Days since last violation
-    EXTRACT(DAY FROM (CURRENT_DATE - MAX(rv.detected_date)))::INTEGER AS days_since_last_violation
+    COALESCE(EXTRACT(DAY FROM (CURRENT_DATE - latest_violation_date))::INTEGER, NULL) AS days_since_last_violation
 
-FROM person_data p
-LEFT JOIN rule_violation rv 
-    ON rv.reference_id = p.id 
-    AND rv.resource_type = 'POLITICIAN'
-    AND rv.status = 'ACTIVE'
-LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_annual vps_annual
-    ON vps_annual.embedded_id_intressent_id = p.id
-    AND vps_annual.embedded_id_vote_year = EXTRACT(YEAR FROM CURRENT_DATE - INTERVAL '1 year')
-LEFT JOIN document_person_reference_data dprd ON dprd.person_reference_id = p.id
-LEFT JOIN document_data dd ON dd.id = dprd.hjid
-
-WHERE p.status = 'active'
-
-GROUP BY 
-    p.id, p.first_name, p.last_name, p.party, p.status,
-    vps_annual.absent_percentage,
-    vps_annual.won_percentage,
-    vps_annual.rebel_percentage,
-    vps_annual.total_votes
-
+FROM risk_calculations
 ORDER BY risk_score DESC, total_violations DESC;
         ]]>
     </createView>
@@ -1039,6 +1040,11 @@ ORDER BY risk_score DESC, total_violations DESC;
     </comment>
     
     <sql>
+        -- NOTE: The following indexes assume that rule_violation.reference_id and person_data.id
+        -- are of the same type (e.g., VARCHAR/TEXT) and store person IDs in the same format.
+        -- This ensures that the join in the risk summary view (rv.reference_id = p.id) is valid
+        -- and that the index will be used efficiently. If the schema changes, verify this assumption.
+        
         CREATE INDEX IF NOT EXISTS idx_rule_violation_resource 
         ON rule_violation(reference_id, resource_type, status) 
         WHERE resource_type = 'POLITICIAN';
@@ -1127,7 +1133,7 @@ party_documents AS (
         COUNT(DISTINCT dd.id) FILTER (WHERE dd.document_type = 'Motion') AS motions_produced,
         COUNT(DISTINCT dd.id) FILTER (WHERE dd.document_type = 'Proposition') AS propositions_produced
     FROM person_data p
-    INNER JOIN document_person_reference_data dprd ON dprd.person_reference_id = p.id
+    INNER JOIN document_person_reference_da_0 dprd ON dprd.person_reference_id = p.id
     INNER JOIN document_data dd ON dd.id = dprd.hjid
     WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
         AND p.party IS NOT NULL
@@ -1143,50 +1149,29 @@ party_government_roles AS (
     WHERE ad.to_date IS NULL OR ad.to_date >= CURRENT_DATE
         AND p.party IS NOT NULL
     GROUP BY p.party
-)
-SELECT
-    pp.short_code AS party,
-    pp.party_name,
-    pp.reg_date AS registration_date,
-    
-    -- Membership Metrics
-    COALESCE(pmc.active_members, 0) AS active_members,
-    COALESCE(pmc.inactive_members, 0) AS inactive_members,
-    
-    -- Rule Violation Metrics
-    COALESCE(pv.total_violations, 0) AS total_violations,
-    COALESCE(pv.members_with_violations, 0) AS members_with_violations,
-    CASE 
-        WHEN COALESCE(pmc.active_members, 0) > 0 
-        THEN ROUND((COALESCE(pv.members_with_violations, 0)::NUMERIC / pmc.active_members) * 100, 2)
-        ELSE 0 
-    END AS violation_rate_percentage,
-    pv.latest_violation AS latest_member_violation,
-    
-    -- Voting Performance (Annual)
-    COALESCE(pva.total_party_votes, 0) AS total_votes_last_year,
-    ROUND(COALESCE(pva.avg_absence_rate, 0)::NUMERIC, 2) AS avg_absence_rate,
-    ROUND(COALESCE(pva.avg_win_rate, 0)::NUMERIC, 2) AS avg_win_rate,
-    ROUND(COALESCE(pva.avg_rebel_rate, 0)::NUMERIC, 2) AS avg_rebel_rate,
-    ROUND(COALESCE(pva.avg_participation_rate, 0)::NUMERIC, 2) AS avg_participation_rate,
-    
-    -- Legislative Productivity
-    COALESCE(pd.documents_produced, 0) AS documents_last_year,
-    COALESCE(pd.motions_produced, 0) AS motions_last_year,
-    COALESCE(pd.propositions_produced, 0) AS propositions_last_year,
-    CASE 
-        WHEN COALESCE(pmc.active_members, 0) > 0 
-        THEN ROUND(COALESCE(pd.documents_produced, 0)::NUMERIC / pmc.active_members, 2)
-        ELSE 0 
-    END AS docs_per_member,
-    
-    -- Government Participation
-    COALESCE(pgr.ministers_count, 0) AS current_ministers,
-    COALESCE(pgr.committee_chairs_count, 0) AS current_committee_chairs,
-    
-    -- Performance Score (0-100 scale)
-    -- Higher score = better performance
-    ROUND(
+),
+performance_calculations AS (
+    SELECT
+        pp.short_code AS party,
+        pp.party_name,
+        pp.reg_date AS registration_date,
+        pmc.active_members,
+        pmc.inactive_members,
+        pv.total_violations,
+        pv.members_with_violations,
+        pv.latest_violation,
+        pva.total_party_votes,
+        pva.avg_absence_rate,
+        pva.avg_win_rate,
+        pva.avg_rebel_rate,
+        pva.avg_participation_rate,
+        pd.documents_produced,
+        pd.motions_produced,
+        pd.propositions_produced,
+        pgr.ministers_count,
+        pgr.committee_chairs_count,
+        
+        -- Performance Score Calculation (0-100 scale)
         (
             -- Participation component (0-25 points)
             (COALESCE(pva.avg_participation_rate, 0) * 25 / 100.0) +
@@ -1204,67 +1189,85 @@ SELECT
             
             -- Violation penalty (0-15 points deduction)
             (15 - LEAST(COALESCE(pv.total_violations, 0) * 0.5, 15))
-        )::NUMERIC,
-        2
-    ) AS performance_score,
+        ) AS calculated_performance_score
+        
+    FROM sweden_political_party pp
+    LEFT JOIN party_member_counts pmc ON pmc.party = pp.short_code
+    LEFT JOIN party_violations pv ON pv.party = pp.short_code
+    LEFT JOIN party_voting_annual pva ON pva.party = pp.short_code
+    LEFT JOIN party_documents pd ON pd.party = pp.short_code
+    LEFT JOIN party_government_roles pgr ON pgr.party = pp.short_code
+    WHERE pp.short_code IS NOT NULL
+)
+SELECT
+    party,
+    party_name,
+    registration_date,
+    
+    -- Membership Metrics
+    COALESCE(active_members, 0) AS active_members,
+    COALESCE(inactive_members, 0) AS inactive_members,
+    
+    -- Rule Violation Metrics
+    COALESCE(total_violations, 0) AS total_violations,
+    COALESCE(members_with_violations, 0) AS members_with_violations,
+    CASE 
+        WHEN COALESCE(active_members, 0) > 0 
+        THEN ROUND((COALESCE(members_with_violations, 0)::NUMERIC / active_members) * 100, 2)
+        ELSE 0 
+    END AS violation_rate_percentage,
+    latest_violation AS latest_member_violation,
+    
+    -- Voting Performance (Annual)
+    COALESCE(total_party_votes, 0) AS total_votes_last_year,
+    ROUND(COALESCE(avg_absence_rate, 0)::NUMERIC, 2) AS avg_absence_rate,
+    ROUND(COALESCE(avg_win_rate, 0)::NUMERIC, 2) AS avg_win_rate,
+    ROUND(COALESCE(avg_rebel_rate, 0)::NUMERIC, 2) AS avg_rebel_rate,
+    ROUND(COALESCE(avg_participation_rate, 0)::NUMERIC, 2) AS avg_participation_rate,
+    
+    -- Legislative Productivity
+    COALESCE(documents_produced, 0) AS documents_last_year,
+    COALESCE(motions_produced, 0) AS motions_last_year,
+    COALESCE(propositions_produced, 0) AS propositions_last_year,
+    CASE 
+        WHEN COALESCE(active_members, 0) > 0 
+        THEN ROUND(COALESCE(documents_produced, 0)::NUMERIC / active_members, 2)
+        ELSE 0 
+    END AS docs_per_member,
+    
+    -- Government Participation
+    COALESCE(ministers_count, 0) AS current_ministers,
+    COALESCE(committee_chairs_count, 0) AS current_committee_chairs,
+    
+    -- Performance Score
+    ROUND(calculated_performance_score::NUMERIC, 2) AS performance_score,
     
     -- Performance Classification
     CASE
-        WHEN (
-            (COALESCE(pva.avg_participation_rate, 0) * 25 / 100.0) +
-            (COALESCE(pva.avg_win_rate, 0) * 25 / 100.0) +
-            ((100 - COALESCE(pva.avg_rebel_rate, 0)) * 20 / 100.0) +
-            (LEAST(CASE WHEN COALESCE(pmc.active_members, 0) > 0 
-                   THEN COALESCE(pd.documents_produced, 0)::NUMERIC / pmc.active_members 
-                   ELSE 0 END * 3, 15)) +
-            (15 - LEAST(COALESCE(pv.total_violations, 0) * 0.5, 15))
-        ) >= 75 THEN 'EXCELLENT'
-        WHEN (
-            (COALESCE(pva.avg_participation_rate, 0) * 25 / 100.0) +
-            (COALESCE(pva.avg_win_rate, 0) * 25 / 100.0) +
-            ((100 - COALESCE(pva.avg_rebel_rate, 0)) * 20 / 100.0) +
-            (LEAST(CASE WHEN COALESCE(pmc.active_members, 0) > 0 
-                   THEN COALESCE(pd.documents_produced, 0)::NUMERIC / pmc.active_members 
-                   ELSE 0 END * 3, 15)) +
-            (15 - LEAST(COALESCE(pv.total_violations, 0) * 0.5, 15))
-        ) >= 60 THEN 'GOOD'
-        WHEN (
-            (COALESCE(pva.avg_participation_rate, 0) * 25 / 100.0) +
-            (COALESCE(pva.avg_win_rate, 0) * 25 / 100.0) +
-            ((100 - COALESCE(pva.avg_rebel_rate, 0)) * 20 / 100.0) +
-            (LEAST(CASE WHEN COALESCE(pmc.active_members, 0) > 0 
-                   THEN COALESCE(pd.documents_produced, 0)::NUMERIC / pmc.active_members 
-                   ELSE 0 END * 3, 15)) +
-            (15 - LEAST(COALESCE(pv.total_violations, 0) * 0.5, 15))
-        ) >= 40 THEN 'AVERAGE'
+        WHEN calculated_performance_score >= 75 THEN 'EXCELLENT'
+        WHEN calculated_performance_score >= 60 THEN 'GOOD'
+        WHEN calculated_performance_score >= 40 THEN 'AVERAGE'
         ELSE 'BELOW_AVERAGE'
     END AS performance_level,
     
     -- Strengths and Weaknesses Assessment
     CONCAT_WS(' | ',
-        CASE WHEN COALESCE(pva.avg_participation_rate, 0) >= 85 THEN 'High participation' END,
-        CASE WHEN COALESCE(pva.avg_win_rate, 0) >= 60 THEN 'Effective voting' END,
-        CASE WHEN COALESCE(pva.avg_rebel_rate, 0) <= 5 THEN 'Strong discipline' END,
-        CASE WHEN COALESCE(pd.documents_produced, 0) >= 50 THEN 'High productivity' END,
-        CASE WHEN COALESCE(pgr.ministers_count, 0) >= 1 THEN 'Government representation' END
+        CASE WHEN COALESCE(avg_participation_rate, 0) >= 85 THEN 'High participation' END,
+        CASE WHEN COALESCE(avg_win_rate, 0) >= 60 THEN 'Effective voting' END,
+        CASE WHEN COALESCE(avg_rebel_rate, 0) <= 5 THEN 'Strong discipline' END,
+        CASE WHEN COALESCE(documents_produced, 0) >= 50 THEN 'High productivity' END,
+        CASE WHEN COALESCE(ministers_count, 0) >= 1 THEN 'Government representation' END
     ) AS strengths,
     
     CONCAT_WS(' | ',
-        CASE WHEN COALESCE(pva.avg_absence_rate, 0) >= 15 THEN 'High absenteeism' END,
-        CASE WHEN COALESCE(pva.avg_win_rate, 0) < 30 THEN 'Low effectiveness' END,
-        CASE WHEN COALESCE(pva.avg_rebel_rate, 0) >= 15 THEN 'Discipline issues' END,
-        CASE WHEN COALESCE(pd.documents_produced, 0) < 10 THEN 'Low productivity' END,
-        CASE WHEN COALESCE(pv.total_violations, 0) >= 10 THEN 'Multiple violations' END
+        CASE WHEN COALESCE(avg_absence_rate, 0) >= 15 THEN 'High absenteeism' END,
+        CASE WHEN COALESCE(avg_win_rate, 0) < 30 THEN 'Low effectiveness' END,
+        CASE WHEN COALESCE(avg_rebel_rate, 0) >= 15 THEN 'Discipline issues' END,
+        CASE WHEN COALESCE(documents_produced, 0) < 10 THEN 'Low productivity' END,
+        CASE WHEN COALESCE(total_violations, 0) >= 10 THEN 'Multiple violations' END
     ) AS weaknesses
 
-FROM sweden_political_party pp
-LEFT JOIN party_member_counts pmc ON pmc.party = pp.short_code
-LEFT JOIN party_violations pv ON pv.party = pp.short_code
-LEFT JOIN party_voting_annual pva ON pva.party = pp.short_code
-LEFT JOIN party_documents pd ON pd.party = pp.short_code
-LEFT JOIN party_government_roles pgr ON pgr.party = pp.short_code
-
-WHERE pp.short_code IS NOT NULL
+FROM performance_calculations
 
 ORDER BY performance_score DESC, active_members DESC;
         ]]>
@@ -1348,59 +1351,29 @@ committee_ballots AS (
     FROM view_riksdagen_committee_ballot_decision_summary
     WHERE embedded_id_ballot_date >= CURRENT_DATE - INTERVAL '1 year'
     GROUP BY org_code
-)
-SELECT
-    cm.committee_code,
-    cm.committee_name,
-    
-    -- Membership Metrics
-    cm.total_members,
-    cm.chairs_count,
-    cm.vice_chairs_count,
-    cm.regular_members,
-    cm.substitutes,
-    
-    -- Structural Health Assessment
-    CASE
-        WHEN cm.chairs_count = 0 THEN 'NO_LEADERSHIP'
-        WHEN cm.total_members < 10 THEN 'UNDERSTAFFED'
-        WHEN cm.total_members >= 15 THEN 'WELL_STAFFED'
-        ELSE 'ADEQUATE_STAFFING'
-    END AS staffing_status,
-    
-    -- Decision Making Metrics
-    COALESCE(cd.total_decisions, 0) AS total_decisions_all_time,
-    COALESCE(cd.decisions_last_year, 0) AS decisions_last_year,
-    COALESCE(cd.decisions_last_month, 0) AS decisions_last_month,
-    cd.latest_decision_date,
-    EXTRACT(DAY FROM (CURRENT_DATE - cd.latest_decision_date))::INTEGER AS days_since_last_decision,
-    
-    -- Document Production Metrics
-    COALESCE(cdoc.total_documents, 0) AS total_documents,
-    COALESCE(cdoc.documents_last_year, 0) AS documents_last_year,
-    COALESCE(cdoc.motions, 0) AS motions_count,
-    COALESCE(cdoc.propositions, 0) AS propositions_count,
-    COALESCE(cdoc.reports, 0) AS reports_count,
-    
-    -- Productivity per Member
-    CASE 
-        WHEN cm.total_members > 0 
-        THEN ROUND(COALESCE(cd.decisions_last_year, 0)::NUMERIC / cm.total_members, 2)
-        ELSE 0 
-    END AS decisions_per_member,
-    
-    CASE 
-        WHEN cm.total_members > 0 
-        THEN ROUND(COALESCE(cdoc.documents_last_year, 0)::NUMERIC / cm.total_members, 2)
-        ELSE 0 
-    END AS documents_per_member,
-    
-    -- Ballot Decision Metrics
-    COALESCE(cb.total_ballots_decided, 0) AS ballots_decided_last_year,
-    ROUND(COALESCE(cb.avg_yes_percentage, 0)::NUMERIC, 2) AS avg_approval_rate,
-    
-    -- Productivity Score (0-100 scale)
-    ROUND(
+),
+productivity_calculations AS (
+    SELECT
+        cm.committee_code,
+        cm.committee_name,
+        cm.total_members,
+        cm.chairs_count,
+        cm.vice_chairs_count,
+        cm.regular_members,
+        cm.substitutes,
+        cd.total_decisions,
+        cd.decisions_last_year,
+        cd.decisions_last_month,
+        cd.latest_decision_date,
+        cdoc.total_documents,
+        cdoc.documents_last_year,
+        cdoc.motions,
+        cdoc.propositions,
+        cdoc.reports,
+        cb.total_ballots_decided,
+        cb.avg_yes_percentage,
+        
+        -- Productivity Score Calculation (0-100 scale)
         (
             -- Decision volume component (0-30 points)
             (LEAST(COALESCE(cd.decisions_last_year, 0) / 20.0, 1.0) * 30) +
@@ -1430,103 +1403,96 @@ SELECT
                 THEN (COALESCE(cd.decisions_last_year, 0)::NUMERIC / cm.total_members) / 2.0
                 ELSE 0 END, 1.0
             ) * 10)
-        )::NUMERIC,
-        2
-    ) AS productivity_score,
+        ) AS calculated_productivity_score
+        
+    FROM committee_membership cm
+    LEFT JOIN committee_decisions cd ON cd.committee_code = cm.committee_code
+    LEFT JOIN committee_documents cdoc ON cdoc.committee_code = cm.committee_code
+    LEFT JOIN committee_ballots cb ON cb.committee_code = cm.committee_code
+)
+SELECT
+    committee_code,
+    committee_name,
+    
+    -- Membership Metrics
+    total_members,
+    chairs_count,
+    vice_chairs_count,
+    regular_members,
+    substitutes,
+    
+    -- Structural Health Assessment
+    CASE
+        WHEN chairs_count = 0 THEN 'NO_LEADERSHIP'
+        WHEN total_members < 10 THEN 'UNDERSTAFFED'
+        WHEN total_members >= 15 THEN 'WELL_STAFFED'
+        ELSE 'ADEQUATE_STAFFING'
+    END AS staffing_status,
+    
+    -- Decision Making Metrics
+    COALESCE(total_decisions, 0) AS total_decisions_all_time,
+    COALESCE(decisions_last_year, 0) AS decisions_last_year,
+    COALESCE(decisions_last_month, 0) AS decisions_last_month,
+    latest_decision_date,
+    COALESCE(EXTRACT(DAY FROM (CURRENT_DATE - latest_decision_date))::INTEGER, -1) AS days_since_last_decision,
+    
+    -- Document Production Metrics
+    COALESCE(total_documents, 0) AS total_documents,
+    COALESCE(documents_last_year, 0) AS documents_last_year,
+    COALESCE(motions, 0) AS motions_count,
+    COALESCE(propositions, 0) AS propositions_count,
+    COALESCE(reports, 0) AS reports_count,
+    
+    -- Productivity per Member
+    CASE 
+        WHEN total_members > 0 
+        THEN ROUND(COALESCE(decisions_last_year, 0)::NUMERIC / total_members, 2)
+        ELSE 0 
+    END AS decisions_per_member,
+    
+    CASE 
+        WHEN total_members > 0 
+        THEN ROUND(COALESCE(documents_last_year, 0)::NUMERIC / total_members, 2)
+        ELSE 0 
+    END AS documents_per_member,
+    
+    -- Ballot Decision Metrics
+    COALESCE(total_ballots_decided, 0) AS ballots_decided_last_year,
+    ROUND(COALESCE(avg_yes_percentage, 0)::NUMERIC, 2) AS avg_approval_rate,
+    
+    -- Productivity Score
+    ROUND(calculated_productivity_score::NUMERIC, 2) AS productivity_score,
     
     -- Productivity Classification
     CASE
-        WHEN (
-            (LEAST(COALESCE(cd.decisions_last_year, 0) / 20.0, 1.0) * 30) +
-            (LEAST(COALESCE(cdoc.documents_last_year, 0) / 30.0, 1.0) * 25) +
-            (CASE 
-                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '1 month' THEN 20
-                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '3 months' THEN 15
-                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '6 months' THEN 10
-                ELSE 0 
-            END) +
-            (CASE 
-                WHEN cm.chairs_count > 0 AND cm.total_members >= 10 THEN 15
-                WHEN cm.chairs_count > 0 AND cm.total_members >= 5 THEN 10
-                WHEN cm.total_members >= 5 THEN 5
-                ELSE 0 
-            END) +
-            (LEAST(
-                CASE WHEN cm.total_members > 0 
-                THEN (COALESCE(cd.decisions_last_year, 0)::NUMERIC / cm.total_members) / 2.0
-                ELSE 0 END, 1.0
-            ) * 10)
-        ) >= 70 THEN 'HIGHLY_PRODUCTIVE'
-        WHEN (
-            (LEAST(COALESCE(cd.decisions_last_year, 0) / 20.0, 1.0) * 30) +
-            (LEAST(COALESCE(cdoc.documents_last_year, 0) / 30.0, 1.0) * 25) +
-            (CASE 
-                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '1 month' THEN 20
-                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '3 months' THEN 15
-                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '6 months' THEN 10
-                ELSE 0 
-            END) +
-            (CASE 
-                WHEN cm.chairs_count > 0 AND cm.total_members >= 10 THEN 15
-                WHEN cm.chairs_count > 0 AND cm.total_members >= 5 THEN 10
-                WHEN cm.total_members >= 5 THEN 5
-                ELSE 0 
-            END) +
-            (LEAST(
-                CASE WHEN cm.total_members > 0 
-                THEN (COALESCE(cd.decisions_last_year, 0)::NUMERIC / cm.total_members) / 2.0
-                ELSE 0 END, 1.0
-            ) * 10)
-        ) >= 50 THEN 'PRODUCTIVE'
-        WHEN (
-            (LEAST(COALESCE(cd.decisions_last_year, 0) / 20.0, 1.0) * 30) +
-            (LEAST(COALESCE(cdoc.documents_last_year, 0) / 30.0, 1.0) * 25) +
-            (CASE 
-                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '1 month' THEN 20
-                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '3 months' THEN 15
-                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '6 months' THEN 10
-                ELSE 0 
-            END) +
-            (CASE 
-                WHEN cm.chairs_count > 0 AND cm.total_members >= 10 THEN 15
-                WHEN cm.chairs_count > 0 AND cm.total_members >= 5 THEN 10
-                WHEN cm.total_members >= 5 THEN 5
-                ELSE 0 
-            END) +
-            (LEAST(
-                CASE WHEN cm.total_members > 0 
-                THEN (COALESCE(cd.decisions_last_year, 0)::NUMERIC / cm.total_members) / 2.0
-                ELSE 0 END, 1.0
-            ) * 10)
-        ) >= 30 THEN 'BELOW_AVERAGE'
+        WHEN calculated_productivity_score >= 70 THEN 'HIGHLY_PRODUCTIVE'
+        WHEN calculated_productivity_score >= 50 THEN 'PRODUCTIVE'
+        WHEN calculated_productivity_score >= 30 THEN 'BELOW_AVERAGE'
         ELSE 'INACTIVE'
     END AS productivity_level,
     
     -- Performance Issues Identification
     CONCAT_WS(' | ',
-        CASE WHEN cm.chairs_count = 0 THEN 'Missing leadership' END,
-        CASE WHEN cm.total_members < 10 THEN 'Understaffed' END,
-        CASE WHEN COALESCE(cd.decisions_last_year, 0) < 10 THEN 'Low decision output' END,
-        CASE WHEN COALESCE(cdoc.documents_last_year, 0) < 5 THEN 'Low document production' END,
-        CASE WHEN cd.latest_decision_date < CURRENT_DATE - INTERVAL '3 months' THEN 'Stagnant activity' END
+        CASE WHEN chairs_count = 0 THEN 'Missing leadership' END,
+        CASE WHEN total_members < 10 THEN 'Understaffed' END,
+        CASE WHEN COALESCE(decisions_last_year, 0) < 10 THEN 'Low decision output' END,
+        CASE WHEN COALESCE(documents_last_year, 0) < 5 THEN 'Low document production' END,
+        CASE WHEN latest_decision_date IS NOT NULL AND latest_decision_date < CURRENT_DATE - INTERVAL '3 months' THEN 'Stagnant activity' END
     ) AS performance_concerns,
     
     -- Recommendations
     CASE
-        WHEN cm.chairs_count = 0 THEN 'Appoint committee leadership immediately'
-        WHEN cm.total_members < 10 AND COALESCE(cd.decisions_last_year, 0) < 10 
+        WHEN chairs_count = 0 THEN 'Appoint committee leadership immediately'
+        WHEN total_members < 10 AND COALESCE(decisions_last_year, 0) < 10 
             THEN 'Increase staffing and provide resources'
-        WHEN COALESCE(cd.decisions_last_year, 0) < 10 
+        WHEN COALESCE(decisions_last_year, 0) < 10 
             THEN 'Review committee mandate and workload'
-        WHEN cd.latest_decision_date < CURRENT_DATE - INTERVAL '3 months' 
+        WHEN latest_decision_date IS NOT NULL AND latest_decision_date < CURRENT_DATE - INTERVAL '3 months' 
             THEN 'Investigate inactivity causes'
         ELSE 'Maintain current operations'
     END AS recommendation
 
-FROM committee_membership cm
-LEFT JOIN committee_decisions cd ON cd.committee_code = cm.committee_code
-LEFT JOIN committee_documents cdoc ON cdoc.committee_code = cm.committee_code
-LEFT JOIN committee_ballots cb ON cb.committee_code = cm.committee_code
+FROM productivity_calculations
 
 ORDER BY productivity_score DESC, decisions_last_year DESC;
         ]]>
