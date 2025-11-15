@@ -921,7 +921,7 @@ WITH risk_calculations AS (
         COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'COLLABORATION') AS collaboration_violations,
         
         -- Current Performance Metrics (last year)
-        COALESCE(vps_annual.absent_percentage, 0) AS annual_absence_rate,
+        COALESCE(vps_annual.avg_percentage_absent, 0) AS annual_absence_rate,
         COALESCE(vps_annual.won_percentage, 0) AS annual_win_rate,
         COALESCE(vps_annual.rebel_percentage, 0) AS annual_rebel_rate,
         COALESCE(vps_annual.total_votes, 0) AS annual_vote_count,
@@ -935,7 +935,7 @@ WITH risk_calculations AS (
             LEAST(COUNT(DISTINCT rv.id) * 2, 40) +
             
             -- Absence component (0-20 points)
-            (COALESCE(vps_annual.absent_percentage, 0) * 20 / 100.0) +
+            (COALESCE(vps_annual.avg_percentage_absent, 0) * 20 / 100.0) +
             
             -- Ineffectiveness component (0-20 points)
             ((100 - COALESCE(vps_annual.won_percentage, 50)) * 20 / 100.0) +
@@ -958,7 +958,7 @@ WITH risk_calculations AS (
         AND rv.status = 'ACTIVE'
     LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_annual vps_annual
         ON vps_annual.embedded_id_intressent_id = p.id
-        AND vps_annual.embedded_id_vote_year = EXTRACT(YEAR FROM CURRENT_DATE - INTERVAL '1 year')
+        AND vps_annual.embedded_id_vote_date = date_trunc('year', CURRENT_DATE - INTERVAL '1 year')
     LEFT JOIN document_person_reference_da_0 dprd ON dprd.person_reference_id = p.id
     LEFT JOIN document_data dd ON dd.id = dprd.hjid
     
@@ -966,7 +966,7 @@ WITH risk_calculations AS (
     
     GROUP BY 
         p.id, p.first_name, p.last_name, p.party, p.status,
-        vps_annual.absent_percentage,
+        vps_annual.avg_percentage_absent,
         vps_annual.won_percentage,
         vps_annual.rebel_percentage,
         vps_annual.total_votes
@@ -1117,12 +1117,13 @@ party_voting_annual AS (
     SELECT
         party,
         SUM(total_votes) AS total_party_votes,
-        AVG(absent_percentage) AS avg_absence_rate,
+        AVG(avg_percentage_absent) AS avg_absence_rate,
         AVG(won_percentage) AS avg_win_rate,
         AVG(rebel_percentage) AS avg_rebel_rate,
-        AVG(participation_percentage) AS avg_participation_rate
+        AVG(100 - avg_percentage_absent) AS avg_participation_rate
     FROM view_riksdagen_vote_data_ballot_politician_summary_annual
-    WHERE embedded_id_vote_year = EXTRACT(YEAR FROM CURRENT_DATE - INTERVAL '1 year')
+    WHERE embedded_id_vote_date >= date_trunc('year', CURRENT_DATE - INTERVAL '1 year')
+        AND embedded_id_vote_date < date_trunc('year', CURRENT_DATE)
         AND party IS NOT NULL
     GROUP BY party
 ),
@@ -1304,8 +1305,8 @@ ORDER BY performance_score DESC, active_members DESC;
         <![CDATA[
 WITH committee_membership AS (
     SELECT
-        rc.org_code AS committee_code,
-        rc.name AS committee_name,
+        rc.embedded_id_org_code AS committee_code,
+        rc.embedded_id_detail AS committee_name,
         COUNT(DISTINCT ad.intressent_id) AS total_members,
         COUNT(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code = 'Ordförande') AS chairs_count,
         COUNT(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code = 'Vice ordförande') AS vice_chairs_count,
@@ -1313,44 +1314,43 @@ WITH committee_membership AS (
         COUNT(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code ILIKE '%suppleant%' OR ad.role_code ILIKE '%ersättare%') AS substitutes
     FROM view_riksdagen_committee rc
     LEFT JOIN assignment_data ad 
-        ON ad.org_code = rc.org_code
+        ON ad.org_code = rc.embedded_id_org_code
         AND ad.assignment_type IN ('uppdrag', 'Riksdagsorgan')
         AND (ad.to_date IS NULL OR ad.to_date >= CURRENT_DATE)
-    GROUP BY rc.org_code, rc.name
+    GROUP BY rc.embedded_id_org_code, rc.embedded_id_detail
 ),
 committee_decisions AS (
     SELECT
-        org_code AS committee_code,
-        COUNT(DISTINCT id) AS total_decisions,
-        COUNT(DISTINCT id) FILTER (WHERE made_public_date >= CURRENT_DATE - INTERVAL '1 year') AS decisions_last_year,
-        COUNT(DISTINCT id) FILTER (WHERE made_public_date >= CURRENT_DATE - INTERVAL '1 month') AS decisions_last_month,
-        MAX(made_public_date) AS latest_decision_date,
-        MIN(made_public_date) FILTER (WHERE made_public_date >= CURRENT_DATE - INTERVAL '1 year') AS first_decision_last_year
+        org AS committee_code,
+        COUNT(DISTINCT embedded_id_id) AS total_decisions,
+        COUNT(DISTINCT embedded_id_id) FILTER (WHERE public_date >= CURRENT_DATE - INTERVAL '1 year') AS decisions_last_year,
+        COUNT(DISTINCT embedded_id_id) FILTER (WHERE public_date >= CURRENT_DATE - INTERVAL '1 month') AS decisions_last_month,
+        MAX(public_date) AS latest_decision_date,
+        MIN(public_date) FILTER (WHERE public_date >= CURRENT_DATE - INTERVAL '1 year') AS first_decision_last_year
     FROM view_riksdagen_committee_decisions
-    GROUP BY org_code
+    GROUP BY org
 ),
 committee_documents AS (
     SELECT
-        cdd.org_code AS committee_code,
-        COUNT(DISTINCT dd.id) AS total_documents,
-        COUNT(DISTINCT dd.id) FILTER (WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year') AS documents_last_year,
-        COUNT(DISTINCT dd.id) FILTER (WHERE dd.document_type = 'Motion') AS motions,
-        COUNT(DISTINCT dd.id) FILTER (WHERE dd.document_type = 'Proposition') AS propositions,
-        COUNT(DISTINCT dd.id) FILTER (WHERE dd.document_type = 'Betänkande') AS reports
+        UPPER(cdd.org) AS committee_code,
+        COUNT(DISTINCT cdd.id) AS total_documents,
+        COUNT(DISTINCT cdd.id) FILTER (WHERE cdd.public_date >= CURRENT_DATE - INTERVAL '1 year') AS documents_last_year,
+        COUNT(DISTINCT cdd.id) FILTER (WHERE cdd.sub_type = 'mot') AS motions,
+        COUNT(DISTINCT cdd.id) FILTER (WHERE cdd.sub_type = 'prop') AS propositions,
+        COUNT(DISTINCT cdd.id) FILTER (WHERE cdd.label LIKE '%bet%') AS reports
     FROM committee_document_data cdd
-    INNER JOIN document_data dd ON dd.id = cdd.document_id
-    WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '2 years'
-    GROUP BY cdd.org_code
+    WHERE cdd.public_date >= CURRENT_DATE - INTERVAL '2 years'
+    GROUP BY UPPER(cdd.org)
 ),
 committee_ballots AS (
     SELECT
-        org_code AS committee_code,
-        COUNT(DISTINCT embedded_id_ballot_id) AS total_ballots_decided,
-        AVG(ballot_percentage_yes) AS avg_yes_percentage,
-        AVG(ballot_percentage_no) AS avg_no_percentage
+        org AS committee_code,
+        COUNT(DISTINCT ballot_id) AS total_ballots_decided,
+        AVG(percentage_yes) AS avg_yes_percentage,
+        AVG(percentage_no) AS avg_no_percentage
     FROM view_riksdagen_committee_ballot_decision_summary
-    WHERE embedded_id_ballot_date >= CURRENT_DATE - INTERVAL '1 year'
-    GROUP BY org_code
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '1 year'
+    GROUP BY org
 ),
 productivity_calculations AS (
     SELECT
