@@ -2,7 +2,6 @@
 -- PostgreSQL database dump
 --
 
-\restrict SYt0CLkxJHaPQ8HauPym5KFWoZrcLJbUEkqbMJ1taKQZZGodTVFSBUXhWV1icom
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -6437,7 +6436,7 @@ CREATE VIEW public.view_riksdagen_coalition_alignment_matrix AS
             vd.vote_date,
             EXTRACT(year FROM vd.vote_date) AS vote_year
            FROM public.vote_data vd
-          WHERE ((vd.vote_date >= (CURRENT_DATE - '2 years'::interval)) AND ((vd.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[])) AND (vd.party IS NOT NULL))
+          WHERE ((vd.vote_date >= (CURRENT_DATE - '2 years'::interval)) AND ((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND (vd.party IS NOT NULL))
         ), alignment_calc AS (
          SELECT p1.party AS party_1,
             p2.party AS party_2,
@@ -6477,9 +6476,9 @@ CREATE VIEW public.view_riksdagen_coalition_alignment_matrix AS
             ELSE 'VERY_LOW'::text
         END AS coalition_likelihood,
         CASE
-            WHEN (((party_1)::text = ANY ((ARRAY['S'::character varying, 'V'::character varying, 'MP'::character varying])::text[])) AND ((party_2)::text = ANY ((ARRAY['S'::character varying, 'V'::character varying, 'MP'::character varying])::text[]))) THEN 'LEFT_BLOC_INTERNAL'::text
-            WHEN (((party_1)::text = ANY ((ARRAY['M'::character varying, 'KD'::character varying, 'L'::character varying, 'C'::character varying])::text[])) AND ((party_2)::text = ANY ((ARRAY['M'::character varying, 'KD'::character varying, 'L'::character varying, 'C'::character varying])::text[]))) THEN 'RIGHT_BLOC_INTERNAL'::text
-            WHEN ((((party_1)::text = ANY ((ARRAY['S'::character varying, 'V'::character varying, 'MP'::character varying])::text[])) AND ((party_2)::text = ANY ((ARRAY['M'::character varying, 'KD'::character varying, 'L'::character varying, 'C'::character varying])::text[]))) OR (((party_1)::text = ANY ((ARRAY['M'::character varying, 'KD'::character varying, 'L'::character varying, 'C'::character varying])::text[])) AND ((party_2)::text = ANY ((ARRAY['S'::character varying, 'V'::character varying, 'MP'::character varying])::text[])))) THEN 'CROSS_BLOC'::text
+            WHEN (((party_1)::text = ANY (ARRAY[('S'::character varying)::text, ('V'::character varying)::text, ('MP'::character varying)::text])) AND ((party_2)::text = ANY (ARRAY[('S'::character varying)::text, ('V'::character varying)::text, ('MP'::character varying)::text]))) THEN 'LEFT_BLOC_INTERNAL'::text
+            WHEN (((party_1)::text = ANY (ARRAY[('M'::character varying)::text, ('KD'::character varying)::text, ('L'::character varying)::text, ('C'::character varying)::text])) AND ((party_2)::text = ANY (ARRAY[('M'::character varying)::text, ('KD'::character varying)::text, ('L'::character varying)::text, ('C'::character varying)::text]))) THEN 'RIGHT_BLOC_INTERNAL'::text
+            WHEN ((((party_1)::text = ANY (ARRAY[('S'::character varying)::text, ('V'::character varying)::text, ('MP'::character varying)::text])) AND ((party_2)::text = ANY (ARRAY[('M'::character varying)::text, ('KD'::character varying)::text, ('L'::character varying)::text, ('C'::character varying)::text]))) OR (((party_1)::text = ANY (ARRAY[('M'::character varying)::text, ('KD'::character varying)::text, ('L'::character varying)::text, ('C'::character varying)::text])) AND ((party_2)::text = ANY (ARRAY[('S'::character varying)::text, ('V'::character varying)::text, ('MP'::character varying)::text])))) THEN 'CROSS_BLOC'::text
             WHEN (((party_1)::text = 'SD'::text) OR ((party_2)::text = 'SD'::text)) THEN 'SWEDEN_DEMOCRATS_RELATED'::text
             ELSE 'OTHER'::text
         END AS bloc_relationship,
@@ -7024,7 +7023,7 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
             count(*) AS crisis_votes,
             sum(
                 CASE
-                    WHEN ((vd.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[])) THEN 1
+                    WHEN ((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) THEN 1
                     ELSE 0
                 END) AS crisis_definitive_votes,
             sum(
@@ -7072,9 +7071,9 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
                     count(*) AS vote_count,
                     row_number() OVER (PARTITION BY vote_data.embedded_id_ballot_id, vote_data.party ORDER BY (count(*)) DESC) AS rank
                    FROM public.vote_data
-                  WHERE ((vote_data.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[]))
+                  WHERE ((vote_data.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text]))
                   GROUP BY vote_data.embedded_id_ballot_id, vote_data.party, vote_data.vote) majority ON ((((majority.embedded_id_ballot_id)::text = (vd.embedded_id_ballot_id)::text) AND ((majority.party)::text = (vd.party)::text) AND (majority.rank = 1))))
-          WHERE ((vd.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[]))
+          WHERE ((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text]))
           GROUP BY vd.embedded_id_intressent_id
         )
  SELECT pd.id AS person_id,
@@ -7407,7 +7406,7 @@ CREATE VIEW public.view_riksdagen_politician_influence_metrics AS
                 END))::double precision / (NULLIF(count(*), 0))::double precision) AS alignment_rate
            FROM (public.vote_data v1
              JOIN public.vote_data v2 ON ((((v1.embedded_id_ballot_id)::text = (v2.embedded_id_ballot_id)::text) AND ((v1.embedded_id_intressent_id)::text < (v2.embedded_id_intressent_id)::text))))
-          WHERE ((v1.vote_date >= (CURRENT_DATE - '1 year'::interval)) AND ((v1.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[])) AND ((v2.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[])))
+          WHERE ((v1.vote_date >= (CURRENT_DATE - '1 year'::interval)) AND ((v1.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND ((v2.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])))
           GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
          HAVING (count(*) >= 20)
         ), network_connections AS (
@@ -7499,7 +7498,7 @@ CREATE VIEW public.view_riksdagen_voting_anomaly_detection AS
             count(*) AS vote_count,
             row_number() OVER (PARTITION BY vote_data.embedded_id_ballot_id, vote_data.party ORDER BY (count(*)) DESC) AS rank
            FROM public.vote_data
-          WHERE (((vote_data.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying, 'Avstår'::character varying])::text[])) AND (vote_data.party IS NOT NULL) AND (vote_data.vote_date >= (CURRENT_DATE - '1 year'::interval)))
+          WHERE (((vote_data.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text, ('Avstår'::character varying)::text])) AND (vote_data.party IS NOT NULL) AND (vote_data.vote_date >= (CURRENT_DATE - '1 year'::interval)))
           GROUP BY vote_data.embedded_id_ballot_id, vote_data.party, vote_data.vote
         ), party_majority_vote AS (
          SELECT party_consensus.embedded_id_ballot_id,
@@ -7525,8 +7524,8 @@ CREATE VIEW public.view_riksdagen_voting_anomaly_detection AS
             vd.vote_date,
                 CASE
                     WHEN ((vd.vote)::text = (pmv.party_consensus_vote)::text) THEN 'ALIGNED'::text
-                    WHEN (((vd.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[])) AND ((pmv.party_consensus_vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[])) AND ((vd.vote)::text <> (pmv.party_consensus_vote)::text)) THEN 'OPPOSED'::text
-                    WHEN (((vd.vote)::text = 'Avstår'::text) AND ((pmv.party_consensus_vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[]))) THEN 'ABSTAINED'::text
+                    WHEN (((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND ((pmv.party_consensus_vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND ((vd.vote)::text <> (pmv.party_consensus_vote)::text)) THEN 'OPPOSED'::text
+                    WHEN (((vd.vote)::text = 'Avstår'::text) AND ((pmv.party_consensus_vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text]))) THEN 'ABSTAINED'::text
                     ELSE 'OTHER'::text
                 END AS alignment_status,
                 CASE
@@ -7537,7 +7536,7 @@ CREATE VIEW public.view_riksdagen_voting_anomaly_detection AS
            FROM ((public.vote_data vd
              JOIN party_majority_vote pmv ON ((((vd.embedded_id_ballot_id)::text = (pmv.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pmv.party)::text))))
              JOIN party_vote_counts pvc ON ((((vd.embedded_id_ballot_id)::text = (pvc.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pvc.party)::text))))
-          WHERE (((vd.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying, 'Avstår'::character varying])::text[])) AND (vd.vote_date >= (CURRENT_DATE - '1 year'::interval)))
+          WHERE (((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text, ('Avstår'::character varying)::text])) AND (vd.vote_date >= (CURRENT_DATE - '1 year'::interval)))
         )
  SELECT ivp.person_id,
     pd.first_name,
@@ -11468,13 +11467,11 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict SYt0CLkxJHaPQ8HauPym5KFWoZrcLJbUEkqbMJ1taKQZZGodTVFSBUXhWV1icom
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict O4ZSyhRAkiffSpBcyq9iycdE2uofJnyYLVoL6uxAXTmBbs6bLar403kVfWTRA4y
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -11872,5 +11869,4 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict O4ZSyhRAkiffSpBcyq9iycdE2uofJnyYLVoL6uxAXTmBbs6bLar403kVfWTRA4y
 
