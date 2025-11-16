@@ -1,6 +1,6 @@
 # 🎖️ MITRE ATT&CK Coverage Summary
 
-**Generated:** 2025-11-16 09:05:15 UTC
+**Generated:** 2025-11-16 09:11:56 UTC
 
 ## 📊 Overall Coverage
 

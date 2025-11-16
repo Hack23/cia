@@ -2,7 +2,7 @@
   "total_techniques": 703,
   "covered_techniques": 17,
   "coverage_percentage": 2.42,
-  "timestamp": "2025-11-16T09:05:15.832086+00:00",
+  "timestamp": "2025-11-16T09:11:56.931475+00:00",
   "tactics": {
     "initial-access": {
       "name": "Initial Access",
