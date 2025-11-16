@@ -19,7 +19,6 @@
 package com.hack23.cia.service.impl.rules;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -134,8 +133,8 @@ public final class RiskRulesIntegrationTest extends AbstractServiceFunctionalInt
 			}
 		}
 
-		// Note: May be 0 if no politician data meets violation thresholds in test database
-		assertTrue("Politician violations count should be non-negative", politicianViolations >= 0);
+		// Note: Politician violations may be 0 if no politician data meets violation thresholds in test database.
+		// No assertion needed: zero violations is an acceptable outcome.
 	}
 
 	/**
@@ -170,8 +169,8 @@ public final class RiskRulesIntegrationTest extends AbstractServiceFunctionalInt
 			}
 		}
 
-		// Note: May be 0 if no party data meets violation thresholds in test database
-		assertTrue("Party violations should be >= 0", partyViolations >= 0);
+		// Note: Party violations may be 0 if no party data meets violation thresholds in test database.
+		// No assertion needed: zero violations is an acceptable outcome.
 	}
 
 	/**
@@ -280,10 +279,8 @@ public final class RiskRulesIntegrationTest extends AbstractServiceFunctionalInt
 		final List<RuleViolation> secondRunViolations = ruleViolationDAO.getAll();
 		final int secondRunCount = secondRunViolations.size();
 
-		// Verify behavior: both runs should produce same or similar number of violations
-		// (may vary slightly if time-dependent rules change between runs)
-		assertTrue("First and second run counts should be non-negative", 
-				firstRunCount >= 0 && secondRunCount >= 0);
+		// Verify that both runs produce the same number of violations
+		assertEquals("Second run should produce same violation count as first run", firstRunCount, secondRunCount);
 
 		// Verify all violations have fresh timestamps if violations exist
 		if (!secondRunViolations.isEmpty()) {
@@ -336,10 +333,8 @@ public final class RiskRulesIntegrationTest extends AbstractServiceFunctionalInt
 			}
 		}
 
-		// Verify counts are non-negative (basic sanity check)
-		assertTrue("All resource type counts should be non-negative", 
-				politicianCount >= 0 && partyCount >= 0 && 
-				committeeCount >= 0 && ministryCount >= 0);
+		// Note: All resource type counts are always non-negative since they are only incremented.
+		// Empty results (zero counts) are acceptable depending on database content.
 		
 		// Note: Actual violation counts depend on database content
 		// Politician violations are most common if data exists

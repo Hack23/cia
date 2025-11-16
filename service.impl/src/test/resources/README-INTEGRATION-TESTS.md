@@ -188,10 +188,10 @@ Current coverage:
 
 ## References
 
-- [DROOLS_RISK_RULES.md](../../../DROOLS_RISK_RULES.md) - Rule specifications
-- [DROOLS_TEST_COVERAGE.md](../../DROOLS_TEST_COVERAGE.md) - Unit test coverage
-- [DATA_MODEL.md](../../../DATA_MODEL.md) - Database schema documentation
-- [ARCHITECTURE.md](../../../ARCHITECTURE.md) - System architecture
+- [DROOLS_RISK_RULES.md](../../../../DROOLS_RISK_RULES.md) - Rule specifications
+- [DROOLS_TEST_COVERAGE.md](../../../DROOLS_TEST_COVERAGE.md) - Unit test coverage
+- [DATA_MODEL.md](../../../../DATA_MODEL.md) - Database schema documentation
+- [ARCHITECTURE.md](../../../../ARCHITECTURE.md) - System architecture
 
 ## Next Steps
 
