@@ -6352,6 +6352,113 @@ CREATE VIEW public.view_party_performance_metrics AS
 
 
 --
+-- Name: view_politician_behavioral_trends; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_politician_behavioral_trends AS
+ WITH monthly_voting_data AS (
+         SELECT view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_intressent_id AS person_id,
+            date_trunc('month'::text, (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date)::timestamp with time zone) AS period_start,
+            max(view_riksdagen_vote_data_ballot_politician_summary_daily.first_name) AS first_name,
+            max(view_riksdagen_vote_data_ballot_politician_summary_daily.last_name) AS last_name,
+            max(view_riksdagen_vote_data_ballot_politician_summary_daily.party) AS party,
+            sum(view_riksdagen_vote_data_ballot_politician_summary_daily.number_ballots) AS total_ballots,
+            sum(view_riksdagen_vote_data_ballot_politician_summary_daily.total_votes) AS total_votes,
+            round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.avg_percentage_absent), 2) AS avg_absence_rate,
+            round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.avg_percentage_yes), 2) AS avg_yes_rate,
+            round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.avg_percentage_no), 2) AS avg_no_rate,
+            round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.avg_percentage_abstain), 2) AS avg_abstain_rate,
+            round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.won_percentage), 2) AS avg_win_rate,
+            round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.rebel_percentage), 2) AS avg_rebel_rate
+           FROM public.view_riksdagen_vote_data_ballot_politician_summary_daily
+          WHERE (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date >= (CURRENT_DATE - '3 years'::interval))
+          GROUP BY view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_intressent_id, (date_trunc('month'::text, (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date)::timestamp with time zone))
+        ), violation_counts AS (
+         SELECT rule_violation.reference_id AS person_id,
+            date_trunc('month'::text, rule_violation.detected_date) AS period_start,
+            count(*) AS violation_count,
+            count(DISTINCT rule_violation.rule_group) AS violation_types,
+            max(rule_violation.detected_date) AS latest_violation_date
+           FROM public.rule_violation
+          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = 'ACTIVE'::text) AND (rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)))
+          GROUP BY rule_violation.reference_id, (date_trunc('month'::text, rule_violation.detected_date))
+        ), trend_calculations AS (
+         SELECT mvd.person_id,
+            mvd.period_start,
+            mvd.first_name,
+            mvd.last_name,
+            mvd.party,
+            mvd.total_ballots,
+            mvd.total_votes,
+            mvd.avg_absence_rate,
+            mvd.avg_yes_rate,
+            mvd.avg_no_rate,
+            mvd.avg_abstain_rate,
+            mvd.avg_win_rate,
+            mvd.avg_rebel_rate,
+            COALESCE(vc.violation_count, (0)::bigint) AS violation_count,
+            COALESCE(vc.violation_types, (0)::bigint) AS violation_types,
+            lag(mvd.avg_absence_rate, 1) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start) AS prev_absence_rate,
+            lag(mvd.avg_win_rate, 1) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start) AS prev_win_rate,
+            lag(mvd.avg_rebel_rate, 1) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start) AS prev_rebel_rate,
+            round(avg(mvd.avg_absence_rate) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS ma_3month_absence,
+            round(avg(mvd.avg_win_rate) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS ma_3month_win_rate,
+            round(avg(mvd.avg_rebel_rate) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS ma_3month_rebel_rate
+           FROM (monthly_voting_data mvd
+             LEFT JOIN violation_counts vc ON ((((mvd.person_id)::text = (vc.person_id)::text) AND (mvd.period_start = vc.period_start))))
+        )
+ SELECT person_id,
+    period_start,
+    (((period_start + '1 mon'::interval) - '1 day'::interval))::date AS period_end,
+    first_name,
+    last_name,
+    party,
+    total_ballots,
+    total_votes,
+    avg_absence_rate,
+    avg_yes_rate,
+    avg_no_rate,
+    avg_abstain_rate,
+    avg_win_rate,
+    avg_rebel_rate,
+    violation_count,
+    violation_types,
+    round((avg_absence_rate - prev_absence_rate), 2) AS absence_trend,
+    round((avg_win_rate - prev_win_rate), 2) AS win_rate_trend,
+    round((avg_rebel_rate - prev_rebel_rate), 2) AS rebel_rate_trend,
+    ma_3month_absence,
+    ma_3month_win_rate,
+    ma_3month_rebel_rate,
+        CASE
+            WHEN (avg_absence_rate >= (30)::numeric) THEN 'HIGH_ABSENTEEISM'::text
+            WHEN (avg_absence_rate >= (15)::numeric) THEN 'MODERATE_ABSENTEEISM'::text
+            WHEN (avg_absence_rate >= (5)::numeric) THEN 'LOW_ABSENTEEISM'::text
+            ELSE 'EXCELLENT_ATTENDANCE'::text
+        END AS attendance_status,
+        CASE
+            WHEN (avg_win_rate >= (80)::numeric) THEN 'HIGHLY_EFFECTIVE'::text
+            WHEN (avg_win_rate >= (60)::numeric) THEN 'EFFECTIVE'::text
+            WHEN (avg_win_rate >= (40)::numeric) THEN 'MODERATELY_EFFECTIVE'::text
+            ELSE 'LOW_EFFECTIVENESS'::text
+        END AS effectiveness_status,
+        CASE
+            WHEN (avg_rebel_rate >= (20)::numeric) THEN 'HIGH_INDEPENDENCE'::text
+            WHEN (avg_rebel_rate >= (10)::numeric) THEN 'MODERATE_INDEPENDENCE'::text
+            WHEN (avg_rebel_rate >= (5)::numeric) THEN 'LOW_INDEPENDENCE'::text
+            ELSE 'PARTY_LOYAL'::text
+        END AS discipline_status,
+        CASE
+            WHEN ((avg_absence_rate >= (30)::numeric) OR (avg_rebel_rate >= (20)::numeric) OR (violation_count >= 3)) THEN 'ELEVATED_RISK'::text
+            WHEN ((avg_absence_rate >= (15)::numeric) OR (avg_rebel_rate >= (10)::numeric) OR (violation_count >= 1)) THEN 'MODERATE_RISK'::text
+            WHEN ((avg_win_rate >= (70)::numeric) AND (avg_absence_rate < (10)::numeric)) THEN 'HIGH_PERFORMER'::text
+            ELSE 'STANDARD_BEHAVIOR'::text
+        END AS behavioral_assessment
+   FROM trend_calculations
+  WHERE (total_ballots >= (5)::numeric)
+  ORDER BY person_id, period_start DESC;
+
+
+--
 -- Name: view_politician_risk_summary; Type: VIEW; Schema: public; Owner: -
 --
 
