@@ -1,0 +1,71 @@
+[
+  {
+    "control": "AWS WAF",
+    "mitigation": "M1050: Exploit Protection",
+    "techniques": [
+      "T1190"
+    ],
+    "description": "Web Application Firewall protecting public endpoints"
+  },
+  {
+    "control": "Multi-Factor Authentication",
+    "mitigation": "M1032: Multi-factor Authentication",
+    "techniques": [
+      "T1078",
+      "T1110"
+    ],
+    "description": "MFA for admin and privileged user accounts"
+  },
+  {
+    "control": "AWS CloudTrail",
+    "mitigation": "M1047: Audit",
+    "techniques": [
+      "T1098"
+    ],
+    "description": "Immutable audit logging of all AWS API calls"
+  },
+  {
+    "control": "VPC Security Groups",
+    "mitigation": "M1030: Network Segmentation",
+    "techniques": [
+      "T1041"
+    ],
+    "description": "Network-level access controls and segmentation"
+  },
+  {
+    "control": "Spring Security",
+    "mitigation": "M1035: Limit Access to Resource Over Network",
+    "techniques": [
+      "T1068",
+      "T1078"
+    ],
+    "description": "Application-layer authentication and authorization"
+  },
+  {
+    "control": "AWS GuardDuty",
+    "mitigation": "M1047: Audit",
+    "techniques": [
+      "T1190",
+      "T1078"
+    ],
+    "description": "Threat detection and continuous monitoring"
+  },
+  {
+    "control": "Input Validation",
+    "mitigation": "M1021: Restrict Web-Based Content",
+    "techniques": [
+      "T1190",
+      "T1059",
+      "T1565"
+    ],
+    "description": "Comprehensive input sanitization and validation"
+  },
+  {
+    "control": "AWS KMS Encryption",
+    "mitigation": "M1041: Encrypt Sensitive Information",
+    "techniques": [
+      "T1041"
+    ],
+    "description": "Data encryption at rest using AWS KMS"
+  }
+]

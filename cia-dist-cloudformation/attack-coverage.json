@@ -1,0 +1,122 @@
+{
+  "total_techniques": 703,
+  "covered_techniques": 17,
+  "coverage_percentage": 2.42,
+  "timestamp": "2025-11-16T09:05:15.832086+00:00",
+  "tactics": {
+    "initial-access": {
+      "name": "Initial Access",
+      "total": 22,
+      "covered": 4,
+      "percentage": 18.18,
+      "techniques": [
+        "T1078",
+        "T1190",
+        "T1195",
+        "T1566"
+      ]
+    },
+    "execution": {
+      "name": "Execution",
+      "total": 51,
+      "covered": 1,
+      "percentage": 1.96,
+      "techniques": [
+        "T1059"
+      ]
+    },
+    "persistence": {
+      "name": "Persistence",
+      "total": 130,
+      "covered": 2,
+      "percentage": 1.54,
+      "techniques": [
+        "T1078",
+        "T1098"
+      ]
+    },
+    "privilege-escalation": {
+      "name": "Privilege Escalation",
+      "total": 111,
+      "covered": 4,
+      "percentage": 3.6,
+      "techniques": [
+        "T1068",
+        "T1078",
+        "T1098",
+        "T1611"
+      ]
+    },
+    "defense-evasion": {
+      "name": "Defense Evasion",
+      "total": 218,
+      "covered": 2,
+      "percentage": 0.92,
+      "techniques": [
+        "T1027",
+        "T1078"
+      ]
+    },
+    "credential-access": {
+      "name": "Credential Access",
+      "total": 67,
+      "covered": 1,
+      "percentage": 1.49,
+      "techniques": [
+        "T1110"
+      ]
+    },
+    "discovery": {
+      "name": "Discovery",
+      "total": 49,
+      "covered": 1,
+      "percentage": 2.04,
+      "techniques": [
+        "T1083"
+      ]
+    },
+    "lateral-movement": {
+      "name": "Lateral Movement",
+      "total": 25,
+      "covered": 0,
+      "percentage": 0.0,
+      "techniques": []
+    },
+    "collection": {
+      "name": "Collection",
+      "total": 41,
+      "covered": 0,
+      "percentage": 0.0,
+      "techniques": []
+    },
+    "command-and-control": {
+      "name": "Command and Control",
+      "total": 47,
+      "covered": 0,
+      "percentage": 0.0,
+      "techniques": []
+    },
+    "exfiltration": {
+      "name": "Exfiltration",
+      "total": 19,
+      "covered": 1,
+      "percentage": 5.26,
+      "techniques": [
+        "T1041"
+      ]
+    },
+    "impact": {
+      "name": "Impact",
+      "total": 33,
+      "covered": 5,
+      "percentage": 15.15,
+      "techniques": [
+        "T1485",
+        "T1486",
+        "T1491",
+        "T1499",
+        "T1565"
+      ]
+    }
+  }
+}

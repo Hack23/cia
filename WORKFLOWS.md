@@ -5,6 +5,7 @@
 [![Scorecard supply-chain security](https://github.com/Hack23/cia/workflows/Scorecard%20supply-chain%20security/badge.svg)](https://github.com/Hack23/cia/actions/workflows/scorecards.yml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
 [![Dependency Review](https://github.com/Hack23/cia/workflows/Dependency%20Review/badge.svg)](https://github.com/Hack23/cia/actions/workflows/dependency-review.yml)
+[![MITRE ATT&CK Mapping](https://github.com/Hack23/cia/workflows/MITRE%20ATT%26CK%20Mapping%20Validation/badge.svg)](https://github.com/Hack23/cia/actions/workflows/attack-mapping-validation.yml)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
@@ -85,6 +86,7 @@ graph LR
 | **SBOM** | Maven CycloneDX | Release | Complete SBOM generated | ~5 min |
 | **Attestations** | GitHub Attestations | Release | SLSA provenance created | ~2 min |
 | **DAST** | OWASP ZAP | Manual/Scheduled | No high-risk vulnerabilities | ~30 min |
+| **ATT&CK Mapping** | MITRE ATT&CK Framework | Monthly/On-Demand | Coverage ≥2% threshold | ~5 min |
 
 ## 🔄 Workflow Overview
 
@@ -95,7 +97,8 @@ The CIA project uses GitHub Actions for automation with the following workflows:
 3. **📦 Dependency Review**: Analyzes dependency changes in PRs for security vulnerabilities
 4. **⭐ Scorecard Analysis**: Evaluates the project against OSSF security best practices
 5. **🔒 ZAP Scan**: Dynamic application security testing
-6. **🏷️ PR Labeler**: Applies automated labels to pull requests
+6. **🎖️ MITRE ATT&CK Mapping**: Automated threat intelligence coverage analysis and validation
+7. **🏷️ PR Labeler**: Applies automated labels to pull requests
 
 ## Workflow Relationships
 
@@ -118,11 +121,21 @@ flowchart TB
         GenerateSBOM --> Attestations[Create Attestations]
         Attestations --> CreateRelease[Create GitHub Release]
     end
+    
+    subgraph "Threat Intelligence"
+        direction TB
+        ThreatUpdate[THREAT_MODEL.md Update] --> AttackAnalysis[ATT&CK Coverage Analysis]
+        MonthlySchedule[Monthly Schedule] --> AttackAnalysis
+        AttackAnalysis --> NavigatorLayer[Generate Navigator Layer]
+        NavigatorLayer --> KEVIntegration[CISA KEV Integration]
+        KEVIntegration --> ThreatArtifacts[Coverage Artifacts]
+    end
 
     PR -.-> |"approved & merged"| main[Main Branch]
     main --> Scorecard[Scorecard Analysis]
     main --> WeeklyScan[Weekly CodeQL Scan]
     main -.-> |"tag created or manual trigger"| Release
+    main -.-> |"monthly or on-demand"| MonthlySchedule
 
     %% Color styling for visual clarity
     classDef integration fill:#a0c8e0,stroke:#333,stroke-width:1.5px,color:black
@@ -130,12 +143,13 @@ flowchart TB
     classDef process fill:#c8e6c9,stroke:#333,stroke-width:1.5px,color:black
     classDef trigger fill:#bbdefb,stroke:#333,stroke-width:1.5px,color:black
     classDef security fill:#ffccbc,stroke:#333,stroke-width:1.5px,color:black
-    classDef audit fill:#ffecb3,stroke:#333,stroke-width:1.5px,color:black
+    classDef threat fill:#d1c4e9,stroke:#333,stroke-width:1.5px,color:black
 
     class PR,CodeQLScan,DependencyReview,Labeler integration
     class Release,BuildTest,SetVersion,BuildPackage,GenerateSBOM,Attestations,CreateRelease deployment
     class main process
     class SecurityEvents,Scorecard,WeeklyScan security
+    class ThreatUpdate,MonthlySchedule,AttackAnalysis,NavigatorLayer,KEVIntegration,ThreatArtifacts threat
 ```
 
 ## 📋 Detailed Pipeline Stages
@@ -387,6 +401,172 @@ gh attestation verify cia-dist-deb-{version}.all.deb --owner Hack23
 - SARIF report generated
 - Automated triage and prioritization
 
+### Stage 7: MITRE ATT&CK Mapping Validation
+
+**Tool:** MITRE ATT&CK Framework + CISA KEV Catalog  
+**Trigger:** Monthly schedule (1st of month), Manual dispatch, or THREAT_MODEL.md changes  
+**Duration:** ~5 minutes  
+**Analysis Type:** Threat intelligence coverage analysis
+
+**Quality Gates:**
+- ✅ Coverage threshold validation (≥2% for CIA platform)
+- ✅ ATT&CK Navigator layer generation
+- ✅ Security control to mitigation mapping
+- ✅ New technique detection and alerting
+- ✅ CISA KEV integration for actively exploited vulnerabilities
+
+**Workflow File:** `.github/workflows/attack-mapping-validation.yml`
+
+**Configuration:**
+```yaml
+on:
+  push:
+    paths:
+      - 'THREAT_MODEL.md'
+      - 'SECURITY_ARCHITECTURE.md'
+  schedule:
+    - cron: '0 0 1 * *'  # Monthly on 1st at midnight UTC
+  workflow_dispatch:
+```
+
+**Automation Script:** `.github/scripts/generate-attack-coverage.py`
+
+**Key Features:**
+
+1. **Automated Technique Extraction**
+   - Parses THREAT_MODEL.md for ATT&CK technique IDs (T####)
+   - Validates against latest MITRE ATT&CK Enterprise framework
+   - Generates coverage statistics by tactic
+
+2. **Coverage Analysis**
+   ```python
+   # Coverage metrics generated
+   - Total techniques in framework: 703
+   - Covered techniques in threat model: 17
+   - Overall coverage percentage: 2.4%
+   - Coverage by tactic (12 tactics)
+   - Highest coverage: Initial Access (18.2%), Impact (15.2%)
+   ```
+
+3. **ATT&CK Navigator Integration**
+   - Generates JSON layer for Navigator visualization
+   - Color-coded heat map of covered techniques
+   - Interactive exploration at: [mitre-attack.github.io/attack-navigator](https://mitre-attack.github.io/attack-navigator/)
+   - Direct link: [CIA Platform Coverage](https://mitre-attack.github.io/attack-navigator/#layerURL=https://raw.githubusercontent.com/Hack23/cia/master/cia-dist-cloudformation/attack-navigator-layer.json)
+
+4. **Security Control Mapping**
+   - Maps CIA security controls to ATT&CK mitigations
+   - Links techniques to specific security implementations
+   - Validates mitigation effectiveness
+
+   | Control | Mitigation | Techniques |
+   |---------|-----------|------------|
+   | AWS WAF | M1050: Exploit Protection | T1190 |
+   | MFA | M1032: Multi-factor Authentication | T1078, T1110 |
+   | CloudTrail | M1047: Audit | T1098 |
+   | VPC Security Groups | M1030: Network Segmentation | T1041 |
+   | Spring Security | M1035: Limit Access | T1068, T1078 |
+
+5. **CISA KEV Integration**
+   - Fetches CISA Known Exploited Vulnerabilities catalog
+   - Correlates with covered techniques
+   - Prioritizes actively exploited attack vectors
+   - Quarterly integration updates
+
+6. **Continuous Monitoring**
+   - Monthly ATT&CK framework version checks
+   - Automated detection of new techniques
+   - GitHub issue creation for new technique review
+   - Coverage trend tracking over time
+
+**Artifacts Generated:**
+
+| File | Description | Location |
+|------|-------------|----------|
+| `attack-coverage.json` | Coverage metrics and statistics | `cia-dist-cloudformation/` |
+| `attack-navigator-layer.json` | Navigator visualization layer | `cia-dist-cloudformation/` |
+| `coverage-summary.md` | Human-readable coverage report | `cia-dist-cloudformation/` |
+| `control-mappings.json` | Security control to mitigation mapping | `cia-dist-cloudformation/` |
+| `cisa-kev-summary.json` | CISA KEV catalog integration | `cia-dist-cloudformation/` |
+| `baseline-techniques.txt` | Technique baseline for change detection | `cia-dist-cloudformation/` |
+
+**Coverage Rationale for CIA Platform:**
+
+The 2.4% overall coverage is intentional and appropriate for the CIA civic transparency platform:
+
+- **High Coverage Areas:**
+  - Initial Access (18.2%): Primary attack vector for public web applications
+  - Impact (15.2%): Data integrity critical for political transparency
+  
+- **Low/Zero Coverage Areas:**
+  - Lateral Movement (0%): Single-tier application architecture
+  - Command and Control (0%): Limited internal network exposure
+  - Collection (0%): Public data platform with minimal sensitive collection
+
+**Alert Thresholds:**
+- Coverage below 2%: Warning (indicates potential gap)
+- New techniques detected: Issue created automatically
+- Framework updates available: Monthly notification
+
+**Policy Alignment:**
+- ✅ [Threat Modeling Policy](https://github.com/Hack23/ISMS/blob/main/Threat_Modeling.md) - MITRE ATT&CK integration
+- ✅ [Secure Development Policy](https://github.com/Hack23/ISMS/blob/main/Secure_Development_Policy.md) - Automated threat intelligence
+- ✅ ISO 27001 A.12.6.1 - Technical vulnerability management
+- ✅ NIST CSF DE.CM-4 - Continuous threat monitoring
+
+**Monthly Workflow Execution:**
+
+```mermaid
+flowchart TD
+    Trigger[Scheduled: 1st of Month] --> Fetch[Fetch Latest ATT&CK]
+    Fetch --> Extract[Extract Techniques from THREAT_MODEL.md]
+    Extract --> Compare[Compare with Framework]
+    Compare --> NewTech{New Techniques?}
+    
+    NewTech -->|Yes| CreateIssue[Create GitHub Issue]
+    NewTech -->|No| Continue[Continue Analysis]
+    
+    CreateIssue --> Continue
+    Continue --> Generate[Generate Coverage Analysis]
+    Generate --> Validate[Validate Thresholds]
+    Validate --> Navigator[Generate Navigator Layer]
+    Navigator --> KEV[Integrate CISA KEV]
+    KEV --> Commit[Commit Updated Artifacts]
+    Commit --> Summary[Publish Summary]
+    
+    style Trigger fill:#bbdefb
+    style Fetch fill:#c8e6c9
+    style NewTech fill:#fff9c4
+    style CreateIssue fill:#ffccbc
+    style Navigator fill:#d1c4e9
+    style Summary fill:#a5d6a7
+```
+
+**Example Output:**
+
+```
+======================================================================
+🎖️  MITRE ATT&CK Coverage Analysis - Citizen Intelligence Agency
+======================================================================
+
+🔍 Extracting ATT&CK techniques from THREAT_MODEL.md...
+✅ Found 17 unique ATT&CK techniques
+📥 Fetching latest MITRE ATT&CK Enterprise framework...
+✅ Loaded 703 ATT&CK techniques from framework
+📊 Generating coverage matrix...
+✅ Coverage: 2.4% (17/703 techniques)
+🗺️  Generating ATT&CK Navigator layer...
+✅ Generated Navigator layer with 17 techniques
+🔍 Checking CISA Known Exploited Vulnerabilities (KEV)...
+✅ CISA KEV catalog contains 1234 vulnerabilities
+🛡️  Generating security control mappings...
+✅ Generated 8 control mappings
+
+======================================================================
+✅ ATT&CK Coverage Analysis Complete!
+======================================================================
+```
+
 ## 🔐 ISMS Policy Integration
 
 The CI/CD workflows implement security controls aligned with Hack23 AB's [ISMS-PUBLIC framework](https://github.com/Hack23/ISMS-PUBLIC). See the [ISMS Compliance Mapping](ISMS_COMPLIANCE_MAPPING.md) for complete policy-to-control traceability.
@@ -397,6 +577,7 @@ The CI/CD workflows implement security controls aligned with Hack23 AB's [ISMS-P
 |---------------|---------------------------|-----------|
 | [**Secure Development Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) | CodeQL SAST scanning, Dependency Review SCA, SBOM generation | [CodeQL workflow](.github/workflows/codeql-analysis.yml) |
 | [**Vulnerability Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) | Dependabot automated patching, Weekly security scans, OSSF Scorecard | [Scorecard workflow](.github/workflows/scorecards.yml) |
+| [**Threat Modeling Policy**](https://github.com/Hack23/ISMS/blob/main/Threat_Modeling.md) | MITRE ATT&CK coverage analysis, Monthly framework updates, CISA KEV integration | [ATT&CK Mapping workflow](.github/workflows/attack-mapping-validation.yml) |
 | [**Change Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) | PR workflow with automated checks, Version control, Automated testing | [Release workflow](.github/workflows/release.yml) |
 | [**Third-Party Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Third_Party_Management.md) | Dependency review on PRs, SBOM attestations, Supply chain security | [Dependency Review workflow](.github/workflows/dependency-review.yml) |
 | [**Security Metrics**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Security_Metrics.md) | OpenSSF Scorecard monitoring, Test coverage reporting, Build metrics | Automated dashboards |
