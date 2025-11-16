@@ -534,7 +534,7 @@ aws securityhub get-findings \
 - [SWOT Analysis](../../SWOT.md)
 - [Threat Model](../../THREAT_MODEL.md)
 - [Data Model](../../DATA_MODEL.md)
-- [ISMS Documentation](../../isms/)
+- [ISMS Documentation](https://github.com/Hack23/ISMS-PUBLIC)
 - [GitHub Issues](https://github.com/Hack23/cia/issues)
 - [AWS CloudWatch Console](https://console.aws.amazon.com/cloudwatch/)
 
