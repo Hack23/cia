@@ -702,11 +702,14 @@ WITH committee_documents AS (
 ),
 committee_info AS (
     SELECT DISTINCT
-        org_code AS committee_code,
-        org AS committee_name,
-        detail AS committee_category
+        embedded_id_org_code AS committee_code,
+        embedded_id_detail AS committee_name,
+        CASE
+            WHEN embedded_id_org_code LIKE '%U' THEN 'Committee'
+            ELSE 'Other'
+        END AS committee_category
     FROM view_riksdagen_committee
-    WHERE org_code IS NOT NULL
+    WHERE embedded_id_org_code IS NOT NULL
 ),
 productivity_benchmarks AS (
     SELECT
@@ -741,11 +744,11 @@ productivity_analysis AS (
         LAG(cd.active_members, 1) OVER (PARTITION BY cd.committee_code ORDER BY cd.period_start) AS prev_members,
         
         -- 4-quarter moving average
-        ROUND(AVG(cd.total_documents) OVER (
+        ROUND(CAST(AVG(cd.total_documents) OVER (
             PARTITION BY cd.committee_code 
             ORDER BY cd.period_start 
             ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
-        ), 2) AS ma_4quarter_documents
+        ) AS NUMERIC), 2) AS ma_4quarter_documents
         
     FROM committee_documents cd
     LEFT JOIN committee_info ci ON cd.committee_code = ci.committee_code
@@ -757,8 +760,8 @@ SELECT
     committee_category,
     period_start,
     (period_start + INTERVAL '3 months' - INTERVAL '1 day')::DATE AS period_end,
-    EXTRACT(YEAR FROM period_start) AS year,
-    EXTRACT(QUARTER FROM period_start) AS quarter,
+    EXTRACT(YEAR FROM period_start::TIMESTAMP) AS year,
+    EXTRACT(QUARTER FROM period_start::TIMESTAMP) AS quarter,
     total_documents,
     committee_reports,
     motions_handled,
@@ -779,14 +782,14 @@ SELECT
     ma_4quarter_documents,
     
     -- Benchmarking
-    ROUND(avg_documents_per_committee, 2) AS period_avg_documents,
-    ROUND(median_documents, 2) AS period_median_documents,
+    ROUND(CAST(avg_documents_per_committee AS NUMERIC), 2) AS period_avg_documents,
+    ROUND(CAST(median_documents AS NUMERIC), 2) AS period_median_documents,
     max_documents AS period_max_documents,
     min_documents AS period_min_documents,
     
-    ROUND(total_documents - avg_documents_per_committee, 2) AS vs_average,
+    ROUND(CAST(total_documents - avg_documents_per_committee AS NUMERIC), 2) AS vs_average,
     ROUND(
-        ((CAST(total_documents AS NUMERIC) / NULLIF(avg_documents_per_committee, 0)) - 1) * 100, 2
+        ((CAST(total_documents AS NUMERIC) / NULLIF(CAST(avg_documents_per_committee AS NUMERIC), 0)) - 1) * 100, 2
     ) AS vs_average_pct,
     
     -- Performance classification
@@ -823,7 +826,7 @@ SELECT
     
     first_document_date,
     last_document_date,
-    EXTRACT(DAY FROM (last_document_date - first_document_date)) AS activity_span_days
+    (last_document_date - first_document_date)::INTEGER AS activity_span_days
     
 FROM productivity_analysis
 WHERE committee_code IS NOT NULL

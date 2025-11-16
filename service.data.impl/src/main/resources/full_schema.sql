@@ -5506,17 +5506,6 @@ CREATE VIEW public.view_audit_data_summary AS
 
 
 --
--- Name: view_document_data_committee_report_url; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_document_data_committee_report_url AS
- SELECT id,
-    committee_report_url_xml
-   FROM public.document_data
-  WHERE (committee_report_url_xml IS NOT NULL);
-
-
---
 -- Name: view_riksdagen_politician_document; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
@@ -5580,6 +5569,128 @@ CREATE MATERIALIZED VIEW public.view_riksdagen_politician_document AS
              LEFT JOIN ( SELECT document_person_reference_co_0.hjid AS person_id_ref
                    FROM (public.document_status_container
                      LEFT JOIN public.document_person_reference_co_0 ON ((document_status_container.hjid = document_person_reference_co_0.hjid)))) e2 ON ((document_person_reference_da_0.document_person_reference_li_1 = e2.person_id_ref)))) e4 ON ((e3.document_person_reference_co_1 = e4.document_person_reference_li_1)))
+  WITH NO DATA;
+
+
+--
+-- Name: view_riksdagen_committee; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_committee AS
+ SELECT convert_from((a.detail)::bytea, 'UTF8'::name) AS embedded_id_detail,
+    a.org_code AS embedded_id_org_code,
+    count(a.org_code) AS total_assignments,
+    min(a.from_date) AS first_assignment_date,
+    max(a.to_date) AS last_assignment_date,
+    sum(
+        CASE
+            WHEN (COALESCE(a.to_date, CURRENT_DATE) >= CURRENT_DATE) THEN 1
+            ELSE 0
+        END) AS current_member_size,
+        CASE
+            WHEN (max(a.to_date) >= CURRENT_DATE) THEN true
+            ELSE false
+        END AS active,
+    sum(
+        CASE
+            WHEN ((a.status)::text !~~ 'Ledig%'::text) THEN (
+            CASE
+                WHEN (COALESCE(a.to_date, CURRENT_DATE) >= CURRENT_DATE) THEN CURRENT_DATE
+                ELSE COALESCE(a.to_date, CURRENT_DATE)
+            END -
+            CASE
+                WHEN (a.from_date >= CURRENT_DATE) THEN CURRENT_DATE
+                ELSE a.from_date
+            END)
+            ELSE 0
+        END) AS total_days_served,
+    sum(
+        CASE
+            WHEN (((a.role_code)::text ~~* '%ordförande%'::text) OR ((a.role_code)::text ~~* '%vice ordförande%'::text)) THEN 1
+            ELSE 0
+        END) AS total_leadership_positions,
+    sum(
+        CASE
+            WHEN ((((a.role_code)::text ~~* '%ordförande%'::text) OR ((a.role_code)::text ~~* '%vice ordförande%'::text)) AND (COALESCE(a.to_date, CURRENT_DATE) >= CURRENT_DATE)) THEN 1
+            ELSE 0
+        END) AS current_leadership_positions,
+    sum(
+        CASE
+            WHEN (((a.role_code)::text ~~* '%suppleant%'::text) OR ((a.role_code)::text ~~* '%ersättare%'::text)) THEN 1
+            ELSE 0
+        END) AS total_substitute_positions,
+    sum(
+        CASE
+            WHEN ((((a.role_code)::text ~~* '%suppleant%'::text) OR ((a.role_code)::text ~~* '%ersättare%'::text)) AND (COALESCE(a.to_date, CURRENT_DATE) >= CURRENT_DATE)) THEN 1
+            ELSE 0
+        END) AS current_substitute_positions,
+    sum(
+        CASE
+            WHEN ((NOT ((a.role_code)::text ~~* ANY (ARRAY['%ordförande%'::text, '%vice ordförande%'::text, '%suppleant%'::text, '%ersättare%'::text]))) AND (COALESCE(a.to_date, CURRENT_DATE) >= CURRENT_DATE)) THEN 1
+            ELSE 0
+        END) AS current_regular_members,
+    COALESCE(doc_stats.total_documents, (0)::bigint) AS total_documents,
+    COALESCE(doc_stats.documents_last_year, (0)::bigint) AS documents_last_year,
+    COALESCE(doc_stats.avg_documents_per_member, (0)::numeric) AS avg_documents_per_member,
+    COALESCE(doc_stats.total_committee_motions, (0)::bigint) AS total_committee_motions,
+    COALESCE(doc_stats.total_follow_up_motions, (0)::bigint) AS total_follow_up_motions,
+        CASE
+            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 200) THEN 'Very High'::text
+            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 100) THEN 'High'::text
+            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 50) THEN 'Medium'::text
+            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 0) THEN 'Low'::text
+            ELSE 'Inactive'::text
+        END AS activity_level
+   FROM (public.assignment_data a
+     LEFT JOIN ( SELECT view_riksdagen_politician_document.org AS committee_org_code,
+            count(*) AS total_documents,
+            count(
+                CASE
+                    WHEN (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '1 year'::interval)) THEN 1
+                    ELSE NULL::integer
+                END) AS documents_last_year,
+            round(((count(*))::numeric / (NULLIF(count(DISTINCT view_riksdagen_politician_document.person_reference_id), 0))::numeric), 1) AS avg_documents_per_member,
+            count(
+                CASE
+                    WHEN (((view_riksdagen_politician_document.document_type)::text = 'mot'::text) AND ((view_riksdagen_politician_document.sub_type)::text = 'Kommittémotion'::text)) THEN 1
+                    ELSE NULL::integer
+                END) AS total_committee_motions,
+            count(
+                CASE
+                    WHEN (((view_riksdagen_politician_document.document_type)::text = 'mot'::text) AND ((view_riksdagen_politician_document.sub_type)::text = 'Följdmotion'::text)) THEN 1
+                    ELSE NULL::integer
+                END) AS total_follow_up_motions
+           FROM public.view_riksdagen_politician_document
+          WHERE (view_riksdagen_politician_document.org IS NOT NULL)
+          GROUP BY view_riksdagen_politician_document.org) doc_stats ON (((doc_stats.committee_org_code)::text = (a.org_code)::text)))
+  WHERE ((a.org_code IS NOT NULL) AND ((a.assignment_type)::text = 'uppdrag'::text))
+  GROUP BY a.detail, a.org_code, doc_stats.total_documents, doc_stats.documents_last_year, doc_stats.avg_documents_per_member, doc_stats.total_committee_motions, doc_stats.total_follow_up_motions;
+
+
+--
+-- Name: view_riksdagen_committee_decisions; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW public.view_riksdagen_committee_decisions AS
+ SELECT cd.id AS embedded_id_id,
+    cd.title,
+    cpd.header,
+    cd.hangar_id AS embedded_id_hangar_id,
+    cd.label AS committee_report,
+    cd.rm,
+    cd.end_number,
+    cpd.issue_number AS embedded_id_issue_nummer,
+    upper((cd.org)::text) AS org,
+    cd.created_date,
+    cd.public_date,
+    cd.committee_proposal_url_xml,
+    cpd.decision_type,
+    cpd.ballot_id,
+    cpd.against_proposal_parties,
+    cpd.against_proposal_number,
+    cpd.winner
+   FROM (public.committee_proposal_data cpd
+     LEFT JOIN public.committee_document_data cd ON ((((cd.label)::text = (cpd.committee_report)::text) AND ((cpd.rm)::text = (cd.rm)::text))))
   WITH NO DATA;
 
 
@@ -5834,6 +5945,335 @@ CREATE MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_summary AS
 --
 
 COMMENT ON MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_summary IS 'Contains aggregated voting data per ballot. Updated through refresh_riksdagen_views()';
+
+
+--
+-- Name: view_riksdagen_committee_ballot_decision_summary; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW public.view_riksdagen_committee_ballot_decision_summary AS
+ SELECT d.embedded_id_id,
+    s.embedded_id_issue,
+    d.embedded_id_hangar_id,
+    d.committee_report,
+    d.rm,
+    d.title,
+    d.header AS sub_title,
+    d.end_number,
+    upper(d.org) AS org,
+    d.created_date,
+    d.public_date,
+    d.ballot_id,
+    d.decision_type,
+    d.against_proposal_parties,
+    d.against_proposal_number,
+    d.winner,
+    s.embedded_id_concern,
+    s.ballot_type,
+    s.label,
+    s.vote_date,
+    s.avg_born_year,
+    s.total_votes,
+    s.yes_votes,
+    s.no_votes,
+    s.abstain_votes,
+    s.absent_votes,
+    s.approved,
+    s.no_winner,
+    s.percentage_yes,
+    s.percentage_no,
+    s.percentage_absent,
+    s.percentage_abstain,
+    s.percentage_male
+   FROM (public.view_riksdagen_committee_decisions d
+     LEFT JOIN public.view_riksdagen_vote_data_ballot_summary s ON ((((d.ballot_id)::text = (s.embedded_id_ballot_id)::text) AND ((d.rm)::text = s.rm) AND ((d.embedded_id_issue_nummer)::text = (s.embedded_id_issue)::text))))
+  WHERE (((d.decision_type)::text = 'röstning'::text) AND (d.ballot_id IS NOT NULL) AND (s.embedded_id_ballot_id IS NOT NULL))
+  WITH NO DATA;
+
+
+--
+-- Name: view_committee_productivity; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_committee_productivity AS
+ WITH committee_membership AS (
+         SELECT rc.embedded_id_org_code AS committee_code,
+            rc.embedded_id_detail AS committee_name,
+            count(DISTINCT ad.intressent_id) AS total_members,
+            count(DISTINCT ad.intressent_id) FILTER (WHERE ((ad.role_code)::text = 'Ordförande'::text)) AS chairs_count,
+            count(DISTINCT ad.intressent_id) FILTER (WHERE ((ad.role_code)::text = 'Vice ordförande'::text)) AS vice_chairs_count,
+            count(DISTINCT ad.intressent_id) FILTER (WHERE ((ad.role_code)::text = 'Ledamot'::text)) AS regular_members,
+            count(DISTINCT ad.intressent_id) FILTER (WHERE (((ad.role_code)::text ~~* '%suppleant%'::text) OR ((ad.role_code)::text ~~* '%ersättare%'::text))) AS substitutes
+           FROM (public.view_riksdagen_committee rc
+             LEFT JOIN public.assignment_data ad ON ((((ad.org_code)::text = (rc.embedded_id_org_code)::text) AND ((ad.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((ad.to_date IS NULL) OR (ad.to_date >= CURRENT_DATE)))))
+          GROUP BY rc.embedded_id_org_code, rc.embedded_id_detail
+        ), committee_decisions AS (
+         SELECT view_riksdagen_committee_decisions.org AS committee_code,
+            count(DISTINCT view_riksdagen_committee_decisions.embedded_id_id) AS total_decisions,
+            count(DISTINCT view_riksdagen_committee_decisions.embedded_id_id) FILTER (WHERE (view_riksdagen_committee_decisions.public_date >= (CURRENT_DATE - '1 year'::interval))) AS decisions_last_year,
+            count(DISTINCT view_riksdagen_committee_decisions.embedded_id_id) FILTER (WHERE (view_riksdagen_committee_decisions.public_date >= (CURRENT_DATE - '1 mon'::interval))) AS decisions_last_month,
+            max(view_riksdagen_committee_decisions.public_date) AS latest_decision_date,
+            min(view_riksdagen_committee_decisions.public_date) FILTER (WHERE (view_riksdagen_committee_decisions.public_date >= (CURRENT_DATE - '1 year'::interval))) AS first_decision_last_year
+           FROM public.view_riksdagen_committee_decisions
+          GROUP BY view_riksdagen_committee_decisions.org
+        ), committee_documents AS (
+         SELECT upper((cdd.org)::text) AS committee_code,
+            count(DISTINCT cdd.id) AS total_documents,
+            count(DISTINCT cdd.id) FILTER (WHERE (cdd.public_date >= (CURRENT_DATE - '1 year'::interval))) AS documents_last_year,
+            count(DISTINCT cdd.id) FILTER (WHERE ((cdd.sub_type)::text = 'mot'::text)) AS motions,
+            count(DISTINCT cdd.id) FILTER (WHERE ((cdd.sub_type)::text = 'prop'::text)) AS propositions,
+            count(DISTINCT cdd.id) FILTER (WHERE ((cdd.label)::text ~~ '%bet%'::text)) AS reports
+           FROM public.committee_document_data cdd
+          WHERE (cdd.public_date >= (CURRENT_DATE - '2 years'::interval))
+          GROUP BY (upper((cdd.org)::text))
+        ), committee_ballots AS (
+         SELECT view_riksdagen_committee_ballot_decision_summary.org AS committee_code,
+            count(DISTINCT view_riksdagen_committee_ballot_decision_summary.ballot_id) AS total_ballots_decided,
+            avg(view_riksdagen_committee_ballot_decision_summary.percentage_yes) AS avg_yes_percentage,
+            avg(view_riksdagen_committee_ballot_decision_summary.percentage_no) AS avg_no_percentage
+           FROM public.view_riksdagen_committee_ballot_decision_summary
+          WHERE (view_riksdagen_committee_ballot_decision_summary.vote_date >= (CURRENT_DATE - '1 year'::interval))
+          GROUP BY view_riksdagen_committee_ballot_decision_summary.org
+        ), productivity_calculations AS (
+         SELECT cm.committee_code,
+            cm.committee_name,
+            cm.total_members,
+            cm.chairs_count,
+            cm.vice_chairs_count,
+            cm.regular_members,
+            cm.substitutes,
+            cd.total_decisions,
+            cd.decisions_last_year,
+            cd.decisions_last_month,
+            cd.latest_decision_date,
+            cdoc.total_documents,
+            cdoc.documents_last_year,
+            cdoc.motions,
+            cdoc.propositions,
+            cdoc.reports,
+            cb.total_ballots_decided,
+            cb.avg_yes_percentage,
+            (((((LEAST(((COALESCE(cd.decisions_last_year, (0)::bigint))::numeric / 20.0), 1.0) * (30)::numeric) + (LEAST(((COALESCE(cdoc.documents_last_year, (0)::bigint))::numeric / 30.0), 1.0) * (25)::numeric)) + (
+                CASE
+                    WHEN (cd.latest_decision_date >= (CURRENT_DATE - '1 mon'::interval)) THEN 20
+                    WHEN (cd.latest_decision_date >= (CURRENT_DATE - '3 mons'::interval)) THEN 15
+                    WHEN (cd.latest_decision_date >= (CURRENT_DATE - '6 mons'::interval)) THEN 10
+                    ELSE 0
+                END)::numeric) + (
+                CASE
+                    WHEN ((cm.chairs_count > 0) AND (cm.total_members >= 10)) THEN 15
+                    WHEN ((cm.chairs_count > 0) AND (cm.total_members >= 5)) THEN 10
+                    WHEN (cm.total_members >= 5) THEN 5
+                    ELSE 0
+                END)::numeric) + (LEAST(
+                CASE
+                    WHEN (cm.total_members > 0) THEN (((COALESCE(cd.decisions_last_year, (0)::bigint))::numeric / (cm.total_members)::numeric) / 2.0)
+                    ELSE (0)::numeric
+                END, 1.0) * (10)::numeric)) AS calculated_productivity_score
+           FROM (((committee_membership cm
+             LEFT JOIN committee_decisions cd ON ((cd.committee_code = (cm.committee_code)::text)))
+             LEFT JOIN committee_documents cdoc ON ((cdoc.committee_code = (cm.committee_code)::text)))
+             LEFT JOIN committee_ballots cb ON ((cb.committee_code = (cm.committee_code)::text)))
+        )
+ SELECT committee_code,
+    committee_name,
+    total_members,
+    chairs_count,
+    vice_chairs_count,
+    regular_members,
+    substitutes,
+        CASE
+            WHEN (chairs_count = 0) THEN 'NO_LEADERSHIP'::text
+            WHEN (total_members < 10) THEN 'UNDERSTAFFED'::text
+            WHEN (total_members >= 15) THEN 'WELL_STAFFED'::text
+            ELSE 'ADEQUATE_STAFFING'::text
+        END AS staffing_status,
+    COALESCE(total_decisions, (0)::bigint) AS total_decisions_all_time,
+    COALESCE(decisions_last_year, (0)::bigint) AS decisions_last_year,
+    COALESCE(decisions_last_month, (0)::bigint) AS decisions_last_month,
+    latest_decision_date,
+    COALESCE((CURRENT_DATE - latest_decision_date), '-1'::integer) AS days_since_last_decision,
+    COALESCE(total_documents, (0)::bigint) AS total_documents,
+    COALESCE(documents_last_year, (0)::bigint) AS documents_last_year,
+    COALESCE(motions, (0)::bigint) AS motions_count,
+    COALESCE(propositions, (0)::bigint) AS propositions_count,
+    COALESCE(reports, (0)::bigint) AS reports_count,
+        CASE
+            WHEN (total_members > 0) THEN round(((COALESCE(decisions_last_year, (0)::bigint))::numeric / (total_members)::numeric), 2)
+            ELSE (0)::numeric
+        END AS decisions_per_member,
+        CASE
+            WHEN (total_members > 0) THEN round(((COALESCE(documents_last_year, (0)::bigint))::numeric / (total_members)::numeric), 2)
+            ELSE (0)::numeric
+        END AS documents_per_member,
+    COALESCE(total_ballots_decided, (0)::bigint) AS ballots_decided_last_year,
+    round(COALESCE(avg_yes_percentage, (0)::numeric), 2) AS avg_approval_rate,
+    round(calculated_productivity_score, 2) AS productivity_score,
+        CASE
+            WHEN (calculated_productivity_score >= (70)::numeric) THEN 'HIGHLY_PRODUCTIVE'::text
+            WHEN (calculated_productivity_score >= (50)::numeric) THEN 'PRODUCTIVE'::text
+            WHEN (calculated_productivity_score >= (30)::numeric) THEN 'BELOW_AVERAGE'::text
+            ELSE 'INACTIVE'::text
+        END AS productivity_level,
+    concat_ws(' | '::text,
+        CASE
+            WHEN (chairs_count = 0) THEN 'Missing leadership'::text
+            ELSE NULL::text
+        END,
+        CASE
+            WHEN (total_members < 10) THEN 'Understaffed'::text
+            ELSE NULL::text
+        END,
+        CASE
+            WHEN (COALESCE(decisions_last_year, (0)::bigint) < 10) THEN 'Low decision output'::text
+            ELSE NULL::text
+        END,
+        CASE
+            WHEN (COALESCE(documents_last_year, (0)::bigint) < 5) THEN 'Low document production'::text
+            ELSE NULL::text
+        END,
+        CASE
+            WHEN ((latest_decision_date IS NOT NULL) AND (latest_decision_date < (CURRENT_DATE - '3 mons'::interval))) THEN 'Stagnant activity'::text
+            ELSE NULL::text
+        END) AS performance_concerns,
+        CASE
+            WHEN (chairs_count = 0) THEN 'Appoint committee leadership immediately'::text
+            WHEN ((total_members < 10) AND (COALESCE(decisions_last_year, (0)::bigint) < 10)) THEN 'Increase staffing and provide resources'::text
+            WHEN (COALESCE(decisions_last_year, (0)::bigint) < 10) THEN 'Review committee mandate and workload'::text
+            WHEN ((latest_decision_date IS NOT NULL) AND (latest_decision_date < (CURRENT_DATE - '3 mons'::interval))) THEN 'Investigate inactivity causes'::text
+            ELSE 'Maintain current operations'::text
+        END AS recommendation
+   FROM productivity_calculations
+  ORDER BY (round(calculated_productivity_score, 2)) DESC, COALESCE(decisions_last_year, (0)::bigint) DESC;
+
+
+--
+-- Name: view_committee_productivity_matrix; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_committee_productivity_matrix AS
+ WITH committee_documents AS (
+         SELECT view_riksdagen_politician_document.org AS committee_code,
+            date_trunc('quarter'::text, (view_riksdagen_politician_document.made_public_date)::timestamp with time zone) AS period_start,
+            count(*) AS total_documents,
+            count(DISTINCT
+                CASE
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'Utskottsbetänkande'::text) THEN view_riksdagen_politician_document.doc_id
+                    ELSE NULL::character varying
+                END) AS committee_reports,
+            count(DISTINCT
+                CASE
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'Motion'::text) THEN view_riksdagen_politician_document.doc_id
+                    ELSE NULL::character varying
+                END) AS motions_handled,
+            count(DISTINCT view_riksdagen_politician_document.person_reference_id) AS active_members,
+            min(view_riksdagen_politician_document.made_public_date) AS first_document_date,
+            max(view_riksdagen_politician_document.made_public_date) AS last_document_date
+           FROM public.view_riksdagen_politician_document
+          WHERE ((view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_politician_document.org IS NOT NULL) AND ((view_riksdagen_politician_document.org)::text ~~ '%U'::text))
+          GROUP BY view_riksdagen_politician_document.org, (date_trunc('quarter'::text, (view_riksdagen_politician_document.made_public_date)::timestamp with time zone))
+        ), committee_info AS (
+         SELECT DISTINCT view_riksdagen_committee.embedded_id_org_code AS committee_code,
+            view_riksdagen_committee.embedded_id_detail AS committee_name,
+                CASE
+                    WHEN ((view_riksdagen_committee.embedded_id_org_code)::text ~~ '%U'::text) THEN 'Committee'::text
+                    ELSE 'Other'::text
+                END AS committee_category
+           FROM public.view_riksdagen_committee
+          WHERE (view_riksdagen_committee.embedded_id_org_code IS NOT NULL)
+        ), productivity_benchmarks AS (
+         SELECT committee_documents.period_start,
+            avg(committee_documents.total_documents) AS avg_documents_per_committee,
+            stddev(committee_documents.total_documents) AS stddev_documents,
+            max(committee_documents.total_documents) AS max_documents,
+            min(committee_documents.total_documents) AS min_documents,
+            percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((committee_documents.total_documents)::double precision)) AS median_documents
+           FROM committee_documents
+          GROUP BY committee_documents.period_start
+        ), productivity_analysis AS (
+         SELECT cd.committee_code,
+            ci.committee_name,
+            ci.committee_category,
+            cd.period_start,
+            cd.total_documents,
+            cd.committee_reports,
+            cd.motions_handled,
+            cd.active_members,
+            cd.first_document_date,
+            cd.last_document_date,
+            pb.avg_documents_per_committee,
+            pb.median_documents,
+            pb.max_documents,
+            pb.min_documents,
+            lag(cd.total_documents, 1) OVER (PARTITION BY cd.committee_code ORDER BY cd.period_start) AS prev_documents,
+            lag(cd.active_members, 1) OVER (PARTITION BY cd.committee_code ORDER BY cd.period_start) AS prev_members,
+            round(avg(cd.total_documents) OVER (PARTITION BY cd.committee_code ORDER BY cd.period_start ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), 2) AS ma_4quarter_documents
+           FROM ((committee_documents cd
+             LEFT JOIN committee_info ci ON (((cd.committee_code)::text = (ci.committee_code)::text)))
+             LEFT JOIN productivity_benchmarks pb ON ((cd.period_start = pb.period_start)))
+        )
+ SELECT committee_code,
+    committee_name,
+    committee_category,
+    period_start,
+    (((period_start + '3 mons'::interval) - '1 day'::interval))::date AS period_end,
+    EXTRACT(year FROM (period_start)::timestamp without time zone) AS year,
+    EXTRACT(quarter FROM (period_start)::timestamp without time zone) AS quarter,
+    total_documents,
+    committee_reports,
+    motions_handled,
+    active_members,
+    round(((total_documents)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS documents_per_member,
+    round(((committee_reports)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS reports_per_member,
+    (total_documents - COALESCE(prev_documents, total_documents)) AS document_change,
+    round(((((total_documents - COALESCE(prev_documents, total_documents)))::numeric / (NULLIF(prev_documents, 0))::numeric) * (100)::numeric), 2) AS document_change_pct,
+    ma_4quarter_documents,
+    round(avg_documents_per_committee, 2) AS period_avg_documents,
+    round((median_documents)::numeric, 2) AS period_median_documents,
+    max_documents AS period_max_documents,
+    min_documents AS period_min_documents,
+    round(((total_documents)::numeric - avg_documents_per_committee), 2) AS vs_average,
+    round(((((total_documents)::numeric / NULLIF(avg_documents_per_committee, (0)::numeric)) - (1)::numeric) * (100)::numeric), 2) AS vs_average_pct,
+        CASE
+            WHEN ((total_documents)::numeric >= (avg_documents_per_committee * 1.5)) THEN 'HIGHLY_PRODUCTIVE'::text
+            WHEN ((total_documents)::numeric >= (avg_documents_per_committee * 1.2)) THEN 'ABOVE_AVERAGE'::text
+            WHEN ((total_documents)::numeric >= (avg_documents_per_committee * 0.8)) THEN 'AVERAGE'::text
+            WHEN ((total_documents)::numeric >= (avg_documents_per_committee * 0.5)) THEN 'BELOW_AVERAGE'::text
+            ELSE 'UNDERPERFORMING'::text
+        END AS productivity_level,
+        CASE
+            WHEN ((total_documents - COALESCE(prev_documents, total_documents)) >= 10) THEN 'STRONG_INCREASE'::text
+            WHEN ((total_documents - COALESCE(prev_documents, total_documents)) >= 5) THEN 'MODERATE_INCREASE'::text
+            WHEN ((total_documents - COALESCE(prev_documents, total_documents)) > 0) THEN 'SLIGHT_INCREASE'::text
+            WHEN ((total_documents - COALESCE(prev_documents, total_documents)) <= '-10'::integer) THEN 'STRONG_DECREASE'::text
+            WHEN ((total_documents - COALESCE(prev_documents, total_documents)) <= '-5'::integer) THEN 'MODERATE_DECREASE'::text
+            WHEN ((total_documents - COALESCE(prev_documents, total_documents)) < 0) THEN 'SLIGHT_DECREASE'::text
+            ELSE 'STABLE'::text
+        END AS productivity_trend,
+        CASE
+            WHEN (((total_documents)::numeric >= (avg_documents_per_committee * 1.5)) AND (active_members >= 10)) THEN 'Exceptional committee productivity and engagement'::text
+            WHEN ((total_documents)::numeric >= (avg_documents_per_committee * 1.2)) THEN 'Above-average committee performance'::text
+            WHEN ((total_documents)::numeric < (avg_documents_per_committee * 0.5)) THEN 'Committee productivity concerns - investigation recommended'::text
+            WHEN ((total_documents - COALESCE(prev_documents, total_documents)) <= '-10'::integer) THEN 'Significant productivity decline detected'::text
+            ELSE 'Standard committee operations'::text
+        END AS productivity_assessment,
+    first_document_date,
+    last_document_date,
+    (last_document_date - first_document_date) AS activity_span_days
+   FROM productivity_analysis
+  WHERE (committee_code IS NOT NULL)
+  ORDER BY period_start DESC, total_documents DESC;
+
+
+--
+-- Name: view_document_data_committee_report_url; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_document_data_committee_report_url AS
+ SELECT id,
+    committee_report_url_xml
+   FROM public.document_data
+  WHERE (committee_report_url_xml IS NOT NULL);
 
 
 --
@@ -6129,6 +6569,117 @@ CREATE MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_politician_summa
    FROM public.view_riksdagen_vote_data_ballot_politician_summary
   GROUP BY embedded_id_intressent_id, vote_date
   WITH NO DATA;
+
+
+--
+-- Name: view_party_effectiveness_trends; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_party_effectiveness_trends AS
+ WITH quarterly_party_voting AS (
+         SELECT view_riksdagen_vote_data_ballot_politician_summary_daily.party,
+            date_trunc('quarter'::text, (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date)::timestamp with time zone) AS period_start,
+            count(DISTINCT view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_intressent_id) AS active_members,
+            sum(view_riksdagen_vote_data_ballot_politician_summary_daily.number_ballots) AS total_ballots,
+            sum(view_riksdagen_vote_data_ballot_politician_summary_daily.total_votes) AS total_votes,
+            round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.avg_percentage_absent), 2) AS avg_absence_rate,
+            round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.won_percentage), 2) AS avg_win_rate,
+            round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.rebel_percentage), 2) AS avg_rebel_rate,
+            round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.avg_percentage_yes), 2) AS avg_yes_rate
+           FROM public.view_riksdagen_vote_data_ballot_politician_summary_daily
+          WHERE ((view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date >= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_vote_data_ballot_politician_summary_daily.party IS NOT NULL))
+          GROUP BY view_riksdagen_vote_data_ballot_politician_summary_daily.party, (date_trunc('quarter'::text, (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date)::timestamp with time zone))
+        ), party_documents AS (
+         SELECT view_riksdagen_politician_document.party_short_code AS party,
+            date_trunc('quarter'::text, (view_riksdagen_politician_document.made_public_date)::timestamp with time zone) AS period_start,
+            count(*) AS documents_produced,
+            count(DISTINCT
+                CASE
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'Motion'::text) THEN view_riksdagen_politician_document.doc_id
+                    ELSE NULL::character varying
+                END) AS motions_count,
+            count(DISTINCT view_riksdagen_politician_document.person_reference_id) AS active_document_authors
+           FROM public.view_riksdagen_politician_document
+          WHERE ((view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_politician_document.party_short_code IS NOT NULL))
+          GROUP BY view_riksdagen_politician_document.party_short_code, (date_trunc('quarter'::text, (view_riksdagen_politician_document.made_public_date)::timestamp with time zone))
+        ), party_violations AS (
+         SELECT pd.party,
+            date_trunc('quarter'::text, rv.detected_date) AS period_start,
+            count(DISTINCT rv.id) AS violation_count,
+            count(DISTINCT rv.reference_id) AS members_with_violations
+           FROM (public.rule_violation rv
+             JOIN public.person_data pd ON (((rv.reference_id)::text = (pd.id)::text)))
+          WHERE (((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = 'ACTIVE'::text) AND (rv.detected_date >= (CURRENT_DATE - '3 years'::interval)) AND (pd.party IS NOT NULL))
+          GROUP BY pd.party, (date_trunc('quarter'::text, rv.detected_date))
+        ), trend_analysis AS (
+         SELECT qpv.party,
+            qpv.period_start,
+            qpv.active_members,
+            qpv.total_ballots,
+            qpv.total_votes,
+            qpv.avg_absence_rate,
+            qpv.avg_win_rate,
+            qpv.avg_rebel_rate,
+            qpv.avg_yes_rate,
+            COALESCE(pds.documents_produced, (0)::bigint) AS documents_produced,
+            COALESCE(pds.motions_count, (0)::bigint) AS motions_count,
+            COALESCE(pds.active_document_authors, (0)::bigint) AS active_document_authors,
+            COALESCE(pvs.violation_count, (0)::bigint) AS violation_count,
+            COALESCE(pvs.members_with_violations, (0)::bigint) AS members_with_violations,
+            lag(qpv.avg_win_rate, 1) OVER (PARTITION BY qpv.party ORDER BY qpv.period_start) AS prev_win_rate,
+            lag(qpv.avg_absence_rate, 1) OVER (PARTITION BY qpv.party ORDER BY qpv.period_start) AS prev_absence_rate,
+            lag(qpv.active_members, 1) OVER (PARTITION BY qpv.party ORDER BY qpv.period_start) AS prev_members,
+            round(avg(qpv.avg_win_rate) OVER (PARTITION BY qpv.party ORDER BY qpv.period_start ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), 2) AS ma_4quarter_win_rate,
+            round(avg(qpv.avg_absence_rate) OVER (PARTITION BY qpv.party ORDER BY qpv.period_start ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), 2) AS ma_4quarter_absence
+           FROM ((quarterly_party_voting qpv
+             LEFT JOIN party_documents pds ON (((qpv.party = (pds.party)::text) AND (qpv.period_start = pds.period_start))))
+             LEFT JOIN party_violations pvs ON (((qpv.party = (pvs.party)::text) AND (qpv.period_start = pvs.period_start))))
+        )
+ SELECT party,
+    period_start,
+    (((period_start + '3 mons'::interval) - '1 day'::interval))::date AS period_end,
+    EXTRACT(year FROM period_start) AS year,
+    EXTRACT(quarter FROM period_start) AS quarter,
+    active_members,
+    total_ballots,
+    total_votes,
+    avg_absence_rate,
+    avg_win_rate,
+    avg_rebel_rate,
+    avg_yes_rate,
+    documents_produced,
+    motions_count,
+    active_document_authors,
+    violation_count,
+    members_with_violations,
+    round((avg_win_rate - prev_win_rate), 2) AS win_rate_trend,
+    round((avg_absence_rate - prev_absence_rate), 2) AS absence_trend,
+    (active_members - prev_members) AS member_change,
+    ma_4quarter_win_rate,
+    ma_4quarter_absence,
+    round(((documents_produced)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS docs_per_member,
+    round((total_votes / (NULLIF(active_members, 0))::numeric), 2) AS votes_per_member,
+    round(((violation_count)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS violations_per_member,
+        CASE
+            WHEN ((avg_win_rate >= (75)::numeric) AND (avg_absence_rate < (10)::numeric)) THEN 'HIGH_PERFORMANCE'::text
+            WHEN ((avg_win_rate >= (60)::numeric) AND (avg_absence_rate < (15)::numeric)) THEN 'GOOD_PERFORMANCE'::text
+            WHEN ((avg_win_rate >= (45)::numeric) OR (avg_absence_rate < (20)::numeric)) THEN 'MODERATE_PERFORMANCE'::text
+            ELSE 'LOW_PERFORMANCE'::text
+        END AS performance_level,
+        CASE
+            WHEN (documents_produced >= 50) THEN 'HIGHLY_PRODUCTIVE'::text
+            WHEN (documents_produced >= 20) THEN 'PRODUCTIVE'::text
+            WHEN (documents_produced >= 10) THEN 'MODERATELY_PRODUCTIVE'::text
+            ELSE 'LOW_PRODUCTIVITY'::text
+        END AS productivity_level,
+        CASE
+            WHEN ((avg_win_rate >= (70)::numeric) AND (avg_absence_rate < (12)::numeric) AND (violation_count <= 2)) THEN 'Strong organizational effectiveness'::text
+            WHEN ((avg_win_rate >= (55)::numeric) AND (avg_absence_rate < (18)::numeric)) THEN 'Solid party performance'::text
+            WHEN ((avg_absence_rate >= (20)::numeric) OR (violation_count >= 5)) THEN 'Performance concerns detected'::text
+            ELSE 'Standard party operations'::text
+        END AS effectiveness_assessment
+   FROM trend_analysis
+  ORDER BY party, period_start DESC;
 
 
 --
@@ -6605,128 +7156,6 @@ CREATE VIEW public.view_riksdagen_coalition_alignment_matrix AS
 
 
 --
--- Name: view_riksdagen_committee; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_committee AS
- SELECT convert_from((a.detail)::bytea, 'UTF8'::name) AS embedded_id_detail,
-    a.org_code AS embedded_id_org_code,
-    count(a.org_code) AS total_assignments,
-    min(a.from_date) AS first_assignment_date,
-    max(a.to_date) AS last_assignment_date,
-    sum(
-        CASE
-            WHEN (COALESCE(a.to_date, CURRENT_DATE) >= CURRENT_DATE) THEN 1
-            ELSE 0
-        END) AS current_member_size,
-        CASE
-            WHEN (max(a.to_date) >= CURRENT_DATE) THEN true
-            ELSE false
-        END AS active,
-    sum(
-        CASE
-            WHEN ((a.status)::text !~~ 'Ledig%'::text) THEN (
-            CASE
-                WHEN (COALESCE(a.to_date, CURRENT_DATE) >= CURRENT_DATE) THEN CURRENT_DATE
-                ELSE COALESCE(a.to_date, CURRENT_DATE)
-            END -
-            CASE
-                WHEN (a.from_date >= CURRENT_DATE) THEN CURRENT_DATE
-                ELSE a.from_date
-            END)
-            ELSE 0
-        END) AS total_days_served,
-    sum(
-        CASE
-            WHEN (((a.role_code)::text ~~* '%ordförande%'::text) OR ((a.role_code)::text ~~* '%vice ordförande%'::text)) THEN 1
-            ELSE 0
-        END) AS total_leadership_positions,
-    sum(
-        CASE
-            WHEN ((((a.role_code)::text ~~* '%ordförande%'::text) OR ((a.role_code)::text ~~* '%vice ordförande%'::text)) AND (COALESCE(a.to_date, CURRENT_DATE) >= CURRENT_DATE)) THEN 1
-            ELSE 0
-        END) AS current_leadership_positions,
-    sum(
-        CASE
-            WHEN (((a.role_code)::text ~~* '%suppleant%'::text) OR ((a.role_code)::text ~~* '%ersättare%'::text)) THEN 1
-            ELSE 0
-        END) AS total_substitute_positions,
-    sum(
-        CASE
-            WHEN ((((a.role_code)::text ~~* '%suppleant%'::text) OR ((a.role_code)::text ~~* '%ersättare%'::text)) AND (COALESCE(a.to_date, CURRENT_DATE) >= CURRENT_DATE)) THEN 1
-            ELSE 0
-        END) AS current_substitute_positions,
-    sum(
-        CASE
-            WHEN ((NOT ((a.role_code)::text ~~* ANY (ARRAY['%ordförande%'::text, '%vice ordförande%'::text, '%suppleant%'::text, '%ersättare%'::text]))) AND (COALESCE(a.to_date, CURRENT_DATE) >= CURRENT_DATE)) THEN 1
-            ELSE 0
-        END) AS current_regular_members,
-    COALESCE(doc_stats.total_documents, (0)::bigint) AS total_documents,
-    COALESCE(doc_stats.documents_last_year, (0)::bigint) AS documents_last_year,
-    COALESCE(doc_stats.avg_documents_per_member, (0)::numeric) AS avg_documents_per_member,
-    COALESCE(doc_stats.total_committee_motions, (0)::bigint) AS total_committee_motions,
-    COALESCE(doc_stats.total_follow_up_motions, (0)::bigint) AS total_follow_up_motions,
-        CASE
-            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 200) THEN 'Very High'::text
-            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 100) THEN 'High'::text
-            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 50) THEN 'Medium'::text
-            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 0) THEN 'Low'::text
-            ELSE 'Inactive'::text
-        END AS activity_level
-   FROM (public.assignment_data a
-     LEFT JOIN ( SELECT view_riksdagen_politician_document.org AS committee_org_code,
-            count(*) AS total_documents,
-            count(
-                CASE
-                    WHEN (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '1 year'::interval)) THEN 1
-                    ELSE NULL::integer
-                END) AS documents_last_year,
-            round(((count(*))::numeric / (NULLIF(count(DISTINCT view_riksdagen_politician_document.person_reference_id), 0))::numeric), 1) AS avg_documents_per_member,
-            count(
-                CASE
-                    WHEN (((view_riksdagen_politician_document.document_type)::text = 'mot'::text) AND ((view_riksdagen_politician_document.sub_type)::text = 'Kommittémotion'::text)) THEN 1
-                    ELSE NULL::integer
-                END) AS total_committee_motions,
-            count(
-                CASE
-                    WHEN (((view_riksdagen_politician_document.document_type)::text = 'mot'::text) AND ((view_riksdagen_politician_document.sub_type)::text = 'Följdmotion'::text)) THEN 1
-                    ELSE NULL::integer
-                END) AS total_follow_up_motions
-           FROM public.view_riksdagen_politician_document
-          WHERE (view_riksdagen_politician_document.org IS NOT NULL)
-          GROUP BY view_riksdagen_politician_document.org) doc_stats ON (((doc_stats.committee_org_code)::text = (a.org_code)::text)))
-  WHERE ((a.org_code IS NOT NULL) AND ((a.assignment_type)::text = 'uppdrag'::text))
-  GROUP BY a.detail, a.org_code, doc_stats.total_documents, doc_stats.documents_last_year, doc_stats.avg_documents_per_member, doc_stats.total_committee_motions, doc_stats.total_follow_up_motions;
-
-
---
--- Name: view_riksdagen_committee_decisions; Type: MATERIALIZED VIEW; Schema: public; Owner: -
---
-
-CREATE MATERIALIZED VIEW public.view_riksdagen_committee_decisions AS
- SELECT cd.id AS embedded_id_id,
-    cd.title,
-    cpd.header,
-    cd.hangar_id AS embedded_id_hangar_id,
-    cd.label AS committee_report,
-    cd.rm,
-    cd.end_number,
-    cpd.issue_number AS embedded_id_issue_nummer,
-    upper((cd.org)::text) AS org,
-    cd.created_date,
-    cd.public_date,
-    cd.committee_proposal_url_xml,
-    cpd.decision_type,
-    cpd.ballot_id,
-    cpd.against_proposal_parties,
-    cpd.against_proposal_number,
-    cpd.winner
-   FROM (public.committee_proposal_data cpd
-     LEFT JOIN public.committee_document_data cd ON ((((cd.label)::text = (cpd.committee_report)::text) AND ((cpd.rm)::text = (cd.rm)::text))))
-  WITH NO DATA;
-
-
---
 -- Name: view_riksdagen_committee_ballot_decision_party_summary; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
@@ -6846,50 +7275,6 @@ CREATE MATERIALIZED VIEW public.view_riksdagen_committee_ballot_decision_politic
    FROM (public.view_riksdagen_committee_decisions d
      LEFT JOIN public.view_riksdagen_vote_data_ballot_politician_summary p ON ((((d.ballot_id)::text = (p.embedded_id_ballot_id)::text) AND ((d.rm)::text = p.rm) AND ((d.embedded_id_issue_nummer)::text = (p.embedded_id_issue)::text))))
   WHERE (((d.decision_type)::text = 'röstning'::text) AND (d.ballot_id IS NOT NULL) AND (p.embedded_id_ballot_id IS NOT NULL))
-  WITH NO DATA;
-
-
---
--- Name: view_riksdagen_committee_ballot_decision_summary; Type: MATERIALIZED VIEW; Schema: public; Owner: -
---
-
-CREATE MATERIALIZED VIEW public.view_riksdagen_committee_ballot_decision_summary AS
- SELECT d.embedded_id_id,
-    s.embedded_id_issue,
-    d.embedded_id_hangar_id,
-    d.committee_report,
-    d.rm,
-    d.title,
-    d.header AS sub_title,
-    d.end_number,
-    upper(d.org) AS org,
-    d.created_date,
-    d.public_date,
-    d.ballot_id,
-    d.decision_type,
-    d.against_proposal_parties,
-    d.against_proposal_number,
-    d.winner,
-    s.embedded_id_concern,
-    s.ballot_type,
-    s.label,
-    s.vote_date,
-    s.avg_born_year,
-    s.total_votes,
-    s.yes_votes,
-    s.no_votes,
-    s.abstain_votes,
-    s.absent_votes,
-    s.approved,
-    s.no_winner,
-    s.percentage_yes,
-    s.percentage_no,
-    s.percentage_absent,
-    s.percentage_abstain,
-    s.percentage_male
-   FROM (public.view_riksdagen_committee_decisions d
-     LEFT JOIN public.view_riksdagen_vote_data_ballot_summary s ON ((((d.ballot_id)::text = (s.embedded_id_ballot_id)::text) AND ((d.rm)::text = s.rm) AND ((d.embedded_id_issue_nummer)::text = (s.embedded_id_issue)::text))))
-  WHERE (((d.decision_type)::text = 'röstning'::text) AND (d.ballot_id IS NOT NULL) AND (s.embedded_id_ballot_id IS NOT NULL))
   WITH NO DATA;
 
 
@@ -9629,6 +10014,123 @@ COMMENT ON MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_summary_week
 
 
 --
+-- Name: view_risk_score_evolution; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_risk_score_evolution AS
+ WITH monthly_risk_base AS (
+         SELECT p.id AS person_id,
+            p.first_name,
+            p.last_name,
+            p.party,
+            date_trunc('month'::text, (vd.embedded_id_vote_date)::timestamp with time zone) AS assessment_period,
+            round(avg(vd.avg_percentage_absent), 2) AS absence_rate,
+            round(avg(vd.won_percentage), 2) AS win_rate,
+            round(avg(vd.rebel_percentage), 2) AS rebel_rate,
+            sum(vd.number_ballots) AS ballot_count,
+            count(DISTINCT vpd.id) AS document_count
+           FROM ((public.person_data p
+             JOIN public.view_riksdagen_vote_data_ballot_politician_summary_daily vd ON ((((p.id)::text = (vd.embedded_id_intressent_id)::text) AND (vd.embedded_id_vote_date >= (CURRENT_DATE - '3 years'::interval)))))
+             LEFT JOIN public.view_riksdagen_politician_document vpd ON ((((p.id)::text = (vpd.person_reference_id)::text) AND (vpd.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (date_trunc('month'::text, (vpd.made_public_date)::timestamp with time zone) = date_trunc('month'::text, (vd.embedded_id_vote_date)::timestamp with time zone)))))
+          WHERE ((p.status)::text = 'active'::text)
+          GROUP BY p.id, p.first_name, p.last_name, p.party, (date_trunc('month'::text, (vd.embedded_id_vote_date)::timestamp with time zone))
+        ), monthly_violations AS (
+         SELECT rule_violation.reference_id AS person_id,
+            date_trunc('month'::text, rule_violation.detected_date) AS assessment_period,
+            count(*) AS violation_count,
+            count(DISTINCT rule_violation.rule_group) AS violation_categories,
+            string_agg(DISTINCT (rule_violation.rule_group)::text, ', '::text ORDER BY (rule_violation.rule_group)::text) AS violation_types
+           FROM public.rule_violation
+          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = 'ACTIVE'::text) AND (rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)))
+          GROUP BY rule_violation.reference_id, (date_trunc('month'::text, rule_violation.detected_date))
+        ), risk_calculations AS (
+         SELECT mrb.person_id,
+            mrb.first_name,
+            mrb.last_name,
+            mrb.party,
+            mrb.assessment_period,
+            mrb.absence_rate,
+            mrb.win_rate,
+            mrb.rebel_rate,
+            mrb.ballot_count,
+            mrb.document_count,
+            COALESCE(mv.violation_count, (0)::bigint) AS violation_count,
+            COALESCE(mv.violation_categories, (0)::bigint) AS violation_categories,
+            COALESCE(mv.violation_types, ''::text) AS violation_types,
+            round((((((LEAST((COALESCE(mv.violation_count, (0)::bigint) * 2), (40)::bigint))::numeric + ((COALESCE(mrb.absence_rate, (0)::numeric) * (20)::numeric) / 100.0)) + ((((100)::numeric - COALESCE(mrb.win_rate, (50)::numeric)) * (20)::numeric) / 100.0)) + ((COALESCE(mrb.rebel_rate, (0)::numeric) * (10)::numeric) / 100.0)) + (
+                CASE
+                    WHEN (mrb.document_count < 5) THEN 10
+                    ELSE 0
+                END)::numeric), 2) AS calculated_risk_score,
+            lag(round((((((LEAST((COALESCE(mv.violation_count, (0)::bigint) * 2), (40)::bigint))::numeric + ((COALESCE(mrb.absence_rate, (0)::numeric) * (20)::numeric) / 100.0)) + ((((100)::numeric - COALESCE(mrb.win_rate, (50)::numeric)) * (20)::numeric) / 100.0)) + ((COALESCE(mrb.rebel_rate, (0)::numeric) * (10)::numeric) / 100.0)) + (
+                CASE
+                    WHEN (mrb.document_count < 5) THEN 10
+                    ELSE 0
+                END)::numeric), 2), 1) OVER (PARTITION BY mrb.person_id ORDER BY mrb.assessment_period) AS prev_risk_score
+           FROM (monthly_risk_base mrb
+             LEFT JOIN monthly_violations mv ON ((((mrb.person_id)::text = (mv.person_id)::text) AND (mrb.assessment_period = mv.assessment_period))))
+          WHERE (mrb.ballot_count >= (5)::numeric)
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    party,
+    assessment_period,
+    (((assessment_period + '1 mon'::interval) - '1 day'::interval))::date AS assessment_period_end,
+    absence_rate,
+    win_rate,
+    rebel_rate,
+    ballot_count,
+    document_count,
+    violation_count,
+    violation_categories,
+    violation_types,
+    calculated_risk_score AS risk_score,
+    prev_risk_score,
+    round((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)), 2) AS risk_score_change,
+        CASE
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (10)::numeric) THEN 'SIGNIFICANT_INCREASE'::text
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (5)::numeric) THEN 'MODERATE_INCREASE'::text
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) > (0)::numeric) THEN 'SLIGHT_INCREASE'::text
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) <= ('-10'::integer)::numeric) THEN 'SIGNIFICANT_DECREASE'::text
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) <= ('-5'::integer)::numeric) THEN 'MODERATE_DECREASE'::text
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) < (0)::numeric) THEN 'SLIGHT_DECREASE'::text
+            ELSE 'STABLE'::text
+        END AS risk_trend,
+        CASE
+            WHEN (calculated_risk_score >= (70)::numeric) THEN 'CRITICAL'::text
+            WHEN (calculated_risk_score >= (50)::numeric) THEN 'HIGH'::text
+            WHEN (calculated_risk_score >= (30)::numeric) THEN 'MODERATE'::text
+            WHEN (calculated_risk_score >= (15)::numeric) THEN 'LOW'::text
+            ELSE 'MINIMAL'::text
+        END AS risk_severity,
+        CASE
+            WHEN (COALESCE(prev_risk_score, (0)::numeric) > (0)::numeric) THEN
+            CASE
+                WHEN ((prev_risk_score < (30)::numeric) AND (calculated_risk_score >= (30)::numeric)) THEN 'ESCALATION_TO_MODERATE'::text
+                WHEN ((prev_risk_score < (50)::numeric) AND (calculated_risk_score >= (50)::numeric)) THEN 'ESCALATION_TO_HIGH'::text
+                WHEN ((prev_risk_score < (70)::numeric) AND (calculated_risk_score >= (70)::numeric)) THEN 'ESCALATION_TO_CRITICAL'::text
+                WHEN ((prev_risk_score >= (70)::numeric) AND (calculated_risk_score < (70)::numeric)) THEN 'DEESCALATION_FROM_CRITICAL'::text
+                WHEN ((prev_risk_score >= (50)::numeric) AND (calculated_risk_score < (50)::numeric)) THEN 'DEESCALATION_FROM_HIGH'::text
+                WHEN ((prev_risk_score >= (30)::numeric) AND (calculated_risk_score < (30)::numeric)) THEN 'DEESCALATION_FROM_MODERATE'::text
+                ELSE 'NO_SEVERITY_TRANSITION'::text
+            END
+            ELSE 'INITIAL_ASSESSMENT'::text
+        END AS severity_transition,
+        CASE
+            WHEN (calculated_risk_score >= (70)::numeric) THEN 'CRITICAL: Immediate attention required'::text
+            WHEN ((calculated_risk_score >= (50)::numeric) AND ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (5)::numeric)) THEN 'HIGH RISK: Escalating trend detected'::text
+            WHEN (calculated_risk_score >= (50)::numeric) THEN 'HIGH RISK: Monitor closely'::text
+            WHEN ((calculated_risk_score >= (30)::numeric) AND ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (10)::numeric)) THEN 'MODERATE RISK: Rapid escalation warning'::text
+            WHEN (calculated_risk_score >= (30)::numeric) THEN 'MODERATE RISK: Standard monitoring'::text
+            WHEN ((prev_risk_score >= (50)::numeric) AND (calculated_risk_score < (30)::numeric)) THEN 'IMPROVING: Effective risk mitigation'::text
+            ELSE 'LOW RISK: Normal operations'::text
+        END AS risk_assessment
+   FROM risk_calculations
+  ORDER BY person_id, assessment_period DESC;
+
+
+--
 -- Name: world_bank_data; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10776,6 +11278,13 @@ CREATE INDEX idx_politician_annual_id ON public.view_riksdagen_vote_data_ballot_
 
 
 --
+-- Name: idx_politician_document_date_org; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_politician_document_date_org ON public.view_riksdagen_politician_document USING btree (made_public_date DESC, org, party_short_code);
+
+
+--
 -- Name: idx_politician_monthly_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10986,6 +11495,13 @@ CREATE INDEX idx_rpd_person_ref_id ON public.view_riksdagen_politician_document 
 
 
 --
+-- Name: idx_rule_violation_date_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_rule_violation_date_resource ON public.rule_violation USING btree (detected_date DESC, reference_id, resource_type) WHERE ((status)::text = 'ACTIVE'::text);
+
+
+--
 -- Name: idx_rule_violation_detected_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11025,6 +11541,13 @@ CREATE INDEX idx_vote_data_party ON public.vote_data USING btree (party);
 --
 
 CREATE INDEX idx_vote_data_votes ON public.vote_data USING btree (vote);
+
+
+--
+-- Name: idx_vote_summary_daily_date_person; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_vote_summary_daily_date_person ON public.view_riksdagen_vote_data_ballot_politician_summary_daily USING btree (embedded_id_vote_date DESC, embedded_id_intressent_id);
 
 
 --
@@ -11960,6 +12483,13 @@ vote-data-324	pether	db-changelog-1.25.xml	2025-01-26 19:44:30.457196	336	EXECUT
 1414872417007-330	pether (generated)	db-changelog-1.24.xml	2025-01-26 19:44:30.072031	322	EXECUTED	9:5dbf93e01244ac5381aab449179bfee3	createIndex indexName=application_action_event_created_date_idx, tableName=application_action_event; createIndex indexName=application_action_event_sessionid_idx, tableName=application_action_event; createIndex indexName=application_action_event_e...		\N	4.31.0	\N	\N	7917063103
 1414872417007-265-document-summary-views	pether	db-changelog-1.24.xml	2025-01-26 19:44:30.311937	330	EXECUTED	9:acc9a8db7b3db0cd2dcb3ce083a989a7	sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; createView viewName=view_riksdagen_party_document_summary; createIndex indexName=idx_rpd_person_ref_id, tableName=view_riksdagen_politician_document; createIndex indexName=idx_rpd_doc_type_sub...		\N	4.31.0	\N	\N	7917063103
 1414872417007-204	pether	db-changelog-1.24.xml	2025-01-26 19:44:30.37339	332	EXECUTED	9:69f5c89bfe631122c51b8dfe35022fa1	dropView viewName=view_riksdagen_committee_parliament_member_proposal; dropView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee_parliament_member_proposal; createIndex i...		\N	4.31.0	\N	\N	7917063103
+intops-2025111109-committee-productivity	intelligence-operative	db-changelog-1.29.xml	2025-11-16 01:16:29.467156	362	EXECUTED	9:e9a0dd593d407533c4959eae10d1b42c	createView viewName=view_committee_productivity	Committee Productivity View\n        \n        Intelligence Purpose:\n        - Track committee legislative output\n        - Measure committee effectiveness\n        - Identify underperforming committees\n        - Support resource allocation decisions...	\N	5.0.1	\N	\N	3255787021
+osint-2025111500-refresh-materialized-views	intelligence-operative	db-changelog-1.30.xml	2025-11-16 01:16:29.507286	363	EXECUTED	9:28eb73f089cc2b312024e56b87d7dd82	sql	Refresh Materialized Views for v1.30 Dependencies\n        \n        Purpose:\n        - Populate materialized views required by v1.30 OSINT views\n        - Ensure data availability for temporal analysis queries\n        - Execute in dependency order ...	\N	5.0.1	\N	\N	3255787021
+osint-2025111501-politician-behavioral-trends	intelligence-operative	db-changelog-1.30.xml	2025-11-16 01:16:49.145332	364	EXECUTED	9:5d1ec1f15e980de2297f9a1ab18db6c6	createView viewName=view_politician_behavioral_trends	Politician Behavioral Trends View\n        \n        Intelligence Purpose:\n        - Track time-series behavioral patterns for each politician\n        - Monitor absence rates, voting effectiveness, party discipline\n        - Identify behavioral chan...	\N	5.0.1	\N	\N	3255806608
+osint-2025111502-party-effectiveness-trends	intelligence-operative	db-changelog-1.30.xml	2025-11-16 01:16:49.165611	365	EXECUTED	9:e90b3cc562a26253599e50803c2ea928	createView viewName=view_party_effectiveness_trends	Party Effectiveness Trends View\n        \n        Intelligence Purpose:\n        - Monitor party-level performance metrics over time\n        - Track win rates, productivity, and collaboration patterns\n        - Identify organizational strengths and ...	\N	5.0.1	\N	\N	3255806608
+osint-2025111503-risk-score-evolution	intelligence-operative	db-changelog-1.30.xml	2025-11-16 01:16:49.186531	366	EXECUTED	9:ec6554f6fd6a4de381f8a97d46bd5663	createView viewName=view_risk_score_evolution	Risk Score Evolution View\n        \n        Intelligence Purpose:\n        - Track historical changes in politician risk scores\n        - Monitor severity transitions (escalation/de-escalation)\n        - Identify risk patterns and triggers\n        -...	\N	5.0.1	\N	\N	3255806608
+osint-2025111504-committee-productivity-matrix	intelligence-operative	db-changelog-1.30.xml	2025-11-16 01:21:59.738227	367	EXECUTED	9:07244f5572e4a6fe02140b2ee16c586f	createView viewName=view_committee_productivity_matrix	Committee Productivity Matrix View\n        \n        Intelligence Purpose:\n        - Monitor committee output and effectiveness by period\n        - Benchmark committee performance against historical data\n        - Identify productive vs. underperfo...	\N	5.0.1	\N	\N	3256114825
+osint-2025111505-performance-indexes	intelligence-operative	db-changelog-1.30.xml	2025-11-16 01:23:10.249747	368	EXECUTED	9:e98bc86dc1435e8492ffaa48d97db931	sql	Performance Indexes for OSINT Intelligence Queries\n        \n        These indexes optimize the most common temporal queries used in\n        intelligence analysis and dashboard operations.	\N	5.0.1	\N	\N	3256187647
 \.
 
 
