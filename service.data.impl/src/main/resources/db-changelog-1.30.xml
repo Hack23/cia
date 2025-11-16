@@ -29,6 +29,85 @@
 -->
 
 <!-- ========================================================================= -->
+<!-- 0. REFRESH MATERIALIZED VIEWS                                             -->
+<!-- Ensure materialized views are populated before creating dependent views   -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="osint-2025111500-refresh-materialized-views" failOnError="false">
+    <comment>
+        Refresh Materialized Views for v1.30 Dependencies
+        
+        Purpose:
+        - Populate materialized views required by v1.30 OSINT views
+        - Ensure data availability for temporal analysis queries
+        - Execute in dependency order to handle view chains
+        
+        Note: failOnError=false because views may not exist in fresh installations
+        or may already be populated. This is safe to run multiple times.
+    </comment>
+    
+    <sql>
+        -- Refresh materialized views in dependency order
+        -- These views are required by the v1.30 OSINT performance tracking views
+        -- Uses DO blocks with error handling to gracefully handle missing or unpopulated views
+        
+        -- 1. Base ballot summary (no dependencies)
+        DO $$
+        BEGIN
+            REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary;
+            RAISE NOTICE 'Refreshed view_riksdagen_vote_data_ballot_summary';
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Skipped view_riksdagen_vote_data_ballot_summary: %', SQLERRM;
+        END $$;
+        
+        -- 2. Party summary (depends on ballot_summary)
+        DO $$
+        BEGIN
+            REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary;
+            RAISE NOTICE 'Refreshed view_riksdagen_vote_data_ballot_party_summary';
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Skipped view_riksdagen_vote_data_ballot_party_summary: %', SQLERRM;
+        END $$;
+        
+        -- 3. Politician summary (depends on ballot_summary)
+        DO $$
+        BEGIN
+            REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary;
+            RAISE NOTICE 'Refreshed view_riksdagen_vote_data_ballot_politician_summary';
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Skipped view_riksdagen_vote_data_ballot_politician_summary: %', SQLERRM;
+        END $$;
+        
+        -- 4. Daily politician summary (depends on politician_summary)
+        DO $$
+        BEGIN
+            REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_daily;
+            RAISE NOTICE 'Refreshed view_riksdagen_vote_data_ballot_politician_summary_daily';
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Skipped view_riksdagen_vote_data_ballot_politician_summary_daily: %', SQLERRM;
+        END $$;
+        
+        -- 5. Annual politician summary (depends on daily)
+        DO $$
+        BEGIN
+            REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_annual;
+            RAISE NOTICE 'Refreshed view_riksdagen_vote_data_ballot_politician_summary_annual';
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Skipped view_riksdagen_vote_data_ballot_politician_summary_annual: %', SQLERRM;
+        END $$;
+        
+        -- 6. Politician document view
+        DO $$
+        BEGIN
+            REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;
+            RAISE NOTICE 'Refreshed view_riksdagen_politician_document';
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Skipped view_riksdagen_politician_document: %', SQLERRM;
+        END $$;
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
 <!-- 1. POLITICIAN BEHAVIORAL TRENDS VIEW                                      -->
 <!-- Intelligence Value: VERY HIGH - Individual behavioral pattern analysis    -->
 <!-- ========================================================================= -->
