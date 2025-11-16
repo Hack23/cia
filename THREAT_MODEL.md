@@ -248,6 +248,75 @@ Following [MITRE ATT&CK-Driven Analysis](https://github.com/Hack23/ISMS-PUBLIC/b
 | **📤 Exfiltration** | Exfil Over HTTPS | [T1041](https://attack.mitre.org/techniques/T1041/) | Bulk data export via APIs | Query limits, audit logging | Data volume monitoring, unusual access patterns |
 | **💥 Impact** | Data Manipulation | [T1565](https://attack.mitre.org/techniques/T1565/) | Rankings/doc count tampering | Integrity validation jobs, checksums | Data integrity monitoring, change detection |
 
+### **📊 ATT&CK Coverage Analysis**
+
+[![ATT&CK Coverage](https://img.shields.io/badge/ATT%26CK_Coverage-2.4%25-yellow?style=for-the-badge)](https://mitre-attack.github.io/attack-navigator/)
+[![Covered Techniques](https://img.shields.io/badge/Techniques-17%2F703-orange?style=for-the-badge)](https://attack.mitre.org/)
+
+**Comprehensive Coverage Tracking:** This threat model provides systematic coverage analysis of MITRE ATT&CK techniques, identifying which tactics and techniques are relevant to the CIA platform's threat landscape.
+
+#### **🎯 Coverage Heat Map by Tactic**
+
+| Tactic | Covered Techniques | Total Techniques | Coverage % | Status |
+|--------|-------------------|------------------|------------|--------|
+| **🔍 Initial Access** | 4 | 22 | 18.2% | [![High Priority](https://img.shields.io/badge/Priority-High-red?style=flat-square)](https://attack.mitre.org/tactics/TA0001/) |
+| **💥 Impact** | 5 | 33 | 15.2% | [![High Priority](https://img.shields.io/badge/Priority-High-red?style=flat-square)](https://attack.mitre.org/tactics/TA0040/) |
+| **📤 Exfiltration** | 1 | 19 | 5.3% | [![Medium Priority](https://img.shields.io/badge/Priority-Medium-yellow?style=flat-square)](https://attack.mitre.org/tactics/TA0010/) |
+| **⬆️ Privilege Escalation** | 4 | 111 | 3.6% | [![Medium Priority](https://img.shields.io/badge/Priority-Medium-yellow?style=flat-square)](https://attack.mitre.org/tactics/TA0004/) |
+| **⚡ Execution** | 1 | 51 | 2.0% | [![Low Priority](https://img.shields.io/badge/Priority-Low-green?style=flat-square)](https://attack.mitre.org/tactics/TA0002/) |
+| **🔍 Discovery** | 1 | 49 | 2.0% | [![Low Priority](https://img.shields.io/badge/Priority-Low-green?style=flat-square)](https://attack.mitre.org/tactics/TA0007/) |
+| **🔄 Persistence** | 2 | 130 | 1.5% | [![Low Priority](https://img.shields.io/badge/Priority-Low-green?style=flat-square)](https://attack.mitre.org/tactics/TA0003/) |
+| **🔑 Credential Access** | 1 | 67 | 1.5% | [![Low Priority](https://img.shields.io/badge/Priority-Low-green?style=flat-square)](https://attack.mitre.org/tactics/TA0006/) |
+| **🎭 Defense Evasion** | 2 | 218 | 0.9% | [![Low Priority](https://img.shields.io/badge/Priority-Low-green?style=flat-square)](https://attack.mitre.org/tactics/TA0005/) |
+| **🔀 Lateral Movement** | 0 | 25 | 0.0% | [![Not Applicable](https://img.shields.io/badge/Status-N%2FA-lightgrey?style=flat-square)](https://attack.mitre.org/tactics/TA0008/) |
+| **📦 Collection** | 0 | 41 | 0.0% | [![Not Applicable](https://img.shields.io/badge/Status-N%2FA-lightgrey?style=flat-square)](https://attack.mitre.org/tactics/TA0009/) |
+| **📡 Command and Control** | 0 | 47 | 0.0% | [![Not Applicable](https://img.shields.io/badge/Status-N%2FA-lightgrey?style=flat-square)](https://attack.mitre.org/tactics/TA0011/) |
+
+**Coverage Rationale:** The CIA platform's 2.4% overall coverage reflects focused threat modeling for a civic transparency application with limited attack surface. Higher coverage in Initial Access (18.2%) and Impact (15.2%) aligns with primary threat vectors for public-facing platforms and data integrity concerns.
+
+#### **🛡️ Security Control to ATT&CK Mitigation Mapping**
+
+Comprehensive security controls are mapped to specific ATT&CK mitigations and techniques:
+
+| Security Control | ATT&CK Mitigation | Techniques Mitigated | Implementation Status |
+|-----------------|-------------------|---------------------|----------------------|
+| **AWS WAF** | [M1050: Exploit Protection](https://attack.mitre.org/mitigations/M1050/) | [T1190](https://attack.mitre.org/techniques/T1190/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#aws-waf) |
+| **Multi-Factor Authentication** | [M1032: Multi-factor Authentication](https://attack.mitre.org/mitigations/M1032/) | [T1078](https://attack.mitre.org/techniques/T1078/), [T1110](https://attack.mitre.org/techniques/T1110/) | [![Planned](https://img.shields.io/badge/Status-Planned-yellow?style=flat-square)](FUTURE_SECURITY_ARCHITECTURE.md#mfa) |
+| **AWS CloudTrail** | [M1047: Audit](https://attack.mitre.org/mitigations/M1047/) | [T1098](https://attack.mitre.org/techniques/T1098/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#audit-logging) |
+| **VPC Security Groups** | [M1030: Network Segmentation](https://attack.mitre.org/mitigations/M1030/) | [T1041](https://attack.mitre.org/techniques/T1041/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#network-security) |
+| **Spring Security** | [M1035: Limit Access](https://attack.mitre.org/mitigations/M1035/) | [T1068](https://attack.mitre.org/techniques/T1068/), [T1078](https://attack.mitre.org/techniques/T1078/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#authentication) |
+| **AWS GuardDuty** | [M1047: Audit](https://attack.mitre.org/mitigations/M1047/) | [T1190](https://attack.mitre.org/techniques/T1190/), [T1078](https://attack.mitre.org/techniques/T1078/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#threat-detection) |
+| **Input Validation** | [M1021: Restrict Web Content](https://attack.mitre.org/mitigations/M1021/) | [T1190](https://attack.mitre.org/techniques/T1190/), [T1059](https://attack.mitre.org/techniques/T1059/), [T1565](https://attack.mitre.org/techniques/T1565/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#input-validation) |
+| **AWS KMS Encryption** | [M1041: Encrypt Sensitive Information](https://attack.mitre.org/mitigations/M1041/) | [T1041](https://attack.mitre.org/techniques/T1041/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#data-encryption) |
+
+#### **🗺️ ATT&CK Navigator Visualization**
+
+The MITRE ATT&CK Navigator provides interactive visualization of threat coverage. The CIA platform's coverage can be explored using the official [ATT&CK Navigator tool](https://mitre-attack.github.io/attack-navigator/).
+
+**Navigator Benefits:**
+- ✅ Visual heat map of covered techniques across all tactics
+- ✅ Technique-by-technique coverage details
+- ✅ Control mapping and mitigation strategies
+- ✅ Priority assessment for threat coverage expansion
+
+#### **📈 Coverage Enhancement Strategy**
+
+**Current Focus:** Initial Access and Impact tactics (highest risk for civic transparency)
+
+**Expansion Priorities:**
+1. **High Priority:** Expand Discovery and Collection coverage (data protection)
+2. **Medium Priority:** Enhance Defense Evasion techniques (detection capabilities)
+3. **Low Priority:** C2 and Lateral Movement (limited internal network)
+
+**Not Applicable:** Lateral Movement, C2, and Collection tactics have 0% coverage as CIA platform architecture (single-tier web application with isolated database) minimizes these attack vectors.
+
+#### **🔗 Related Resources**
+
+- 📚 [MITRE ATT&CK Enterprise Matrix](https://attack.mitre.org/matrices/enterprise/)
+- 🗺️ [ATT&CK Navigator Tool](https://mitre-attack.github.io/attack-navigator/)
+- 📋 [CISA Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
+- 🎯 [Hack23 Threat Modeling Policy](https://github.com/Hack23/ISMS/blob/main/Threat_Modeling.md#mitre-attck-integration)
+
 ### **🌳 Attack Tree Analysis**
 
 ```mermaid
