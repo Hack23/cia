@@ -12,12 +12,14 @@ Each agent profile is a Markdown file with YAML frontmatter that defines special
 graph TB
     CIA[Citizen Intelligence Agency]
     
+    CIA --> Task[📋 Task Agent]
     CIA --> Stack[🛠️ Stack Specialist]
     CIA --> UI[🎨 UI Enhancement Specialist]
     CIA --> Biz[💰 Business Development Specialist]
     CIA --> Intel[🔍 Intelligence Operative]
     CIA --> Market[📢 Marketing Specialist]
     
+    Task --> PM[Product Management<br/>Quality, ISMS, GitHub Issues]
     Stack --> Tech[Technical Architecture<br/>Java, Spring, Vaadin]
     UI --> UX[User Experience<br/>Data Visualization]
     Biz --> Growth[Strategic Growth<br/>Partnerships, Revenue]
@@ -25,11 +27,13 @@ graph TB
     Market --> Brand[Brand & Community<br/>Digital Marketing]
     
     style CIA fill:#1565C0,stroke:#1565C0,stroke-width:3px,color:#fff
+    style Task fill:#8D6E63,stroke:#8D6E63,stroke-width:2px,color:#fff
     style Stack fill:#455A64,stroke:#455A64,stroke-width:2px,color:#fff
     style UI fill:#7B1FA2,stroke:#7B1FA2,stroke-width:2px,color:#fff
     style Biz fill:#2E7D32,stroke:#2E7D32,stroke-width:2px,color:#fff
     style Intel fill:#C62828,stroke:#C62828,stroke-width:2px,color:#fff
     style Market fill:#FF6F00,stroke:#FF6F00,stroke-width:2px,color:#fff
+    style PM fill:#9E9E9E,stroke:#9E9E9E,stroke-width:1px,color:#000
     style Tech fill:#9E9E9E,stroke:#9E9E9E,stroke-width:1px,color:#000
     style UX fill:#9E9E9E,stroke:#9E9E9E,stroke-width:1px,color:#000
     style Growth fill:#9E9E9E,stroke:#9E9E9E,stroke-width:1px,color:#000
@@ -38,6 +42,22 @@ graph TB
 ```
 
 ## 🤖 Available Agents
+
+### 📋 Task Agent
+**File**: [task-agent.md](task-agent.md)  
+**Expertise**: Product Management, Quality Assurance, GitHub Operations, ISMS Compliance, AWS Monitoring, Playwright Testing
+
+Expert in continuous product improvement across quality, UI/UX, security, and ISMS compliance. Creates actionable GitHub issues and coordinates with specialized agents using AWS, Playwright, and GitHub MCP integrations.
+
+**Use Cases**:
+- 📊 Product quality monitoring and issue identification
+- 🎯 GitHub issue creation with proper categorization and assignment
+- 🔍 UI/UX testing with Playwright (screenshots, accessibility)
+- 🔐 ISMS compliance tracking (ISO 27001, NIST CSF, CIS Controls)
+- ☁️ AWS monitoring via CloudWatch and cost optimization
+- 🤝 Agent coordination and task delegation
+- 📈 Quality metrics and KPI tracking
+- 🛡️ Security vulnerability management
 
 ### 🛠️ Stack Specialist
 **File**: [stack-specialist.md](stack-specialist.md)  
@@ -344,6 +364,7 @@ flowchart TD
     Type -->|Business| Biz[💰 Business Development Specialist]
     Type -->|Analysis/Data| Intel[🔍 Intelligence Operative]
     Type -->|Marketing/Content| Market[📢 Marketing Specialist]
+    Type -->|Product/Quality/Issues| Task[📋 Task Agent]
     
     Tech -->|Backend/Database| Stack[🛠️ Stack Specialist]
     Tech -->|Frontend/Components| UI
@@ -353,6 +374,7 @@ flowchart TD
     style Start fill:#1565C0,stroke:#1565C0,stroke-width:2px,color:#fff
     style Type fill:#7B1FA2,stroke:#7B1FA2,stroke-width:2px,color:#fff
     style Tech fill:#7B1FA2,stroke:#7B1FA2,stroke-width:2px,color:#fff
+    style Task fill:#8D6E63,stroke:#8D6E63,stroke-width:2px,color:#fff
     style Stack fill:#455A64,stroke:#455A64,stroke-width:2px,color:#fff
     style UI fill:#7B1FA2,stroke:#7B1FA2,stroke-width:2px,color:#fff
     style Biz fill:#2E7D32,stroke:#2E7D32,stroke-width:2px,color:#fff
