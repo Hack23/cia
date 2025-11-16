@@ -252,9 +252,8 @@ Following [MITRE ATT&CK-Driven Analysis](https://github.com/Hack23/ISMS-PUBLIC/b
 
 [![ATT&CK Coverage](https://img.shields.io/badge/ATT%26CK_Coverage-2.4%25-yellow?style=for-the-badge)](https://mitre-attack.github.io/attack-navigator/)
 [![Covered Techniques](https://img.shields.io/badge/Techniques-17%2F703-orange?style=for-the-badge)](https://attack.mitre.org/)
-[![Automation](https://img.shields.io/badge/Automation-GitHub_Actions-success?style=for-the-badge)](.github/workflows/attack-mapping-validation.yml)
 
-**Automated Coverage Tracking:** This threat model integrates continuous ATT&CK technique coverage analysis through automated GitHub Actions workflows. Coverage metrics are updated monthly to track emerging threats and framework updates.
+**Comprehensive Coverage Tracking:** This threat model provides systematic coverage analysis of MITRE ATT&CK techniques, identifying which tactics and techniques are relevant to the CIA platform's threat landscape.
 
 #### **🎯 Coverage Heat Map by Tactic**
 
@@ -292,36 +291,13 @@ Comprehensive security controls are mapped to specific ATT&CK mitigations and te
 
 #### **🗺️ ATT&CK Navigator Visualization**
 
-Interactive threat coverage visualization is available through the MITRE ATT&CK Navigator:
+The MITRE ATT&CK Navigator provides interactive visualization of threat coverage. The CIA platform's coverage can be explored using the official [ATT&CK Navigator tool](https://mitre-attack.github.io/attack-navigator/).
 
-**📊 [View Interactive Coverage Heat Map](https://mitre-attack.github.io/attack-navigator/#layerURL=https://raw.githubusercontent.com/Hack23/cia/master/cia-dist-cloudformation/attack-navigator-layer.json)**
-
-The Navigator layer provides:
+**Navigator Benefits:**
 - ✅ Visual heat map of covered techniques across all tactics
 - ✅ Technique-by-technique coverage details
 - ✅ Control mapping and mitigation strategies
 - ✅ Priority assessment for threat coverage expansion
-
-#### **🔄 Continuous Threat Intelligence Integration**
-
-**Automated Updates:** ATT&CK coverage is continuously monitored through:
-
-1. **Monthly Framework Updates** (1st of each month)
-   - Automated detection of new techniques
-   - Coverage gap analysis
-   - Issue creation for review
-
-2. **On-Demand Analysis** (triggered by threat model changes)
-   - Automatic regeneration on THREAT_MODEL.md updates
-   - Coverage validation in CI/CD pipeline
-   - Artifact generation for Navigator visualization
-
-3. **CISA KEV Integration** (Known Exploited Vulnerabilities)
-   - Quarterly integration with CISA KEV catalog
-   - Prioritization of actively exploited techniques
-   - Enhanced threat intelligence for decision-making
-
-**Workflow:** [`.github/workflows/attack-mapping-validation.yml`](.github/workflows/attack-mapping-validation.yml)
 
 #### **📈 Coverage Enhancement Strategy**
 
@@ -340,7 +316,6 @@ The Navigator layer provides:
 - 🗺️ [ATT&CK Navigator Tool](https://mitre-attack.github.io/attack-navigator/)
 - 📋 [CISA Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
 - 🎯 [Hack23 Threat Modeling Policy](https://github.com/Hack23/ISMS/blob/main/Threat_Modeling.md#mitre-attck-integration)
-- ⚙️ [ATT&CK Coverage Automation Script](.github/scripts/generate-attack-coverage.py)
 
 ### **🌳 Attack Tree Analysis**
 
