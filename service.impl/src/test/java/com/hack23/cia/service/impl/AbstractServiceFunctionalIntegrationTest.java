@@ -59,8 +59,7 @@ import com.hack23.cia.testfoundation.AbstractFunctionalIntegrationTest;
 		"classpath:META-INF/cia-service-external-riksdagen.xml",
 		"classpath:META-INF/cia-service-external-worldbank.xml",
 		"classpath:META-INF/cia-service-external-val.xml",
-		"classpath:/META-INF/cia-test-context.xml",
-		"classpath:/META-INF/application-context-test-override.xml" })
+"classpath:/META-INF/cia-test-context.xml" })
 public abstract class AbstractServiceFunctionalIntegrationTest extends AbstractFunctionalIntegrationTest {
 
 	/** The Constant EXPECT_A_RESULT. */
