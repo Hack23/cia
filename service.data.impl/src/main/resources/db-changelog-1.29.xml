@@ -1435,7 +1435,7 @@ SELECT
     COALESCE(decisions_last_year, 0) AS decisions_last_year,
     COALESCE(decisions_last_month, 0) AS decisions_last_month,
     latest_decision_date,
-    COALESCE(EXTRACT(DAY FROM (CURRENT_DATE - latest_decision_date))::INTEGER, -1) AS days_since_last_decision,
+    COALESCE((CURRENT_DATE - latest_decision_date)::INTEGER, -1) AS days_since_last_decision,
     
     -- Document Production Metrics
     COALESCE(total_documents, 0) AS total_documents,
