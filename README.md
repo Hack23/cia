@@ -39,6 +39,22 @@ For a conceptual view of our system architecture and components, see our [Archit
 
 Explore in-depth technical analysis and architectural insights about this project through our team's blog posts:
 
+### 🤖 GitHub Copilot Custom Agents
+
+<div align="left">
+
+We maintain a collection of [custom GitHub Copilot agents](.github/agents/) specialized for different aspects of the project:
+- 📋 **[Task Agent](.github/agents/task-agent.md)** - Product quality, GitHub issue management, ISMS compliance
+- 🛠️ **[Stack Specialist](.github/agents/stack-specialist.md)** - Java, Spring, Vaadin, PostgreSQL expertise
+- 🎨 **[UI Enhancement Specialist](.github/agents/ui-enhancement-specialist.md)** - Vaadin, accessibility, data visualization
+- 🔍 **[Intelligence Operative](.github/agents/intelligence-operative.md)** - Political analysis, OSINT methodologies
+- 💰 **[Business Development Specialist](.github/agents/business-development-specialist.md)** - Strategic planning, partnerships
+- 📢 **[Marketing Specialist](.github/agents/marketing-specialist.md)** - Digital marketing, content strategy
+
+See the [agents README](.github/agents/README.md) for detailed information on using these specialized profiles.
+
+</div>
+
 ### ⭐ Simon Moon's Architecture Chronicles
 
 <div align="left">
