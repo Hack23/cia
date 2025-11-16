@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Override xADataSource with SSL disabled for testing -->
+	<bean id="xADataSource" class="com.hack23.cia.service.data.impl.util.SecretPGXADataSource" depends-on="secretCredentialsManager">
+		<constructor-arg index="0" ref="secretCredentialsManager"/>
+		<property name="user" value="#{ secretCredentialsManager.username }" />
+		<property name="password" value="#{ secretCredentialsManager.password }" />
+		<property name="serverName" value="${database.hostname}" />
+		<property name="portNumber" value="${database.port}" />
+		<property name="databaseName" value="${database.name}" />
+		<property name="ssl" value="false" />
+	</bean>
+
+</beans>
