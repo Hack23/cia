@@ -525,13 +525,15 @@ This document fulfills all requirements from [Issue #7778](https://github.com/Ha
 **Distribution:** Public - Available to all stakeholders, auditors, clients, and community  
 **Classification:** [![Public](https://img.shields.io/badge/Classification-PUBLIC-lightgrey?style=for-the-badge&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
 
-**Effective Date:** 2025-11-10 | **Review Date:** 2026-02-10
+---
 
-**Compliance Frameworks:**
-- [![ISO 27001](https://img.shields.io/badge/ISO-27001:2022-0066CC?style=flat-square)](https://www.iso.org/standard/82875.html)
-- [![NIST CSF](https://img.shields.io/badge/NIST-CSF_2.0-0A3161?style=flat-square)](https://www.nist.gov/cyberframework)
-- [![CIS Controls](https://img.shields.io/badge/CIS-Controls_v8.1-00539F?style=flat-square)](https://www.cisecurity.org/controls/)
-- [![EU CRA](https://img.shields.io/badge/EU-CRA_Compliant-003399?style=flat-square)](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act)
+**📋 Document Control:**  
+**✅ Approved by:** James Pether Sörling, CEO - Hack23 AB  
+**📤 Distribution:** Public  
+**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels)  
+**📅 Effective Date:** 2025-11-10  
+**⏰ Next Review:** 2026-02-10  
+**🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![EU CRA](https://img.shields.io/badge/EU-CRA_Compliant-003399?style=flat-square)](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act)
 
 ---
 
