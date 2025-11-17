@@ -110,6 +110,9 @@
 
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary</class>
+		
+		<!-- V1.30 OSINT Performance Tracking Views -->
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewPartyEffectivenessTrends</class>
 
 
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
@@ -119,8 +122,6 @@
 		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewPoliticianBehavioralTrends</class>
 		<!-- TODO: Add remaining v1.30 view entities:
-		     - ViewPartyEffectivenessTrends (party.impl package)
-		     - ViewRiskScoreEvolution (rules.impl package)
 		     - ViewCommitteeProductivityMatrix (committee.impl package)
 		-->
 		
@@ -166,6 +167,9 @@
 
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation</class>
+		
+		<!-- V1.30 OSINT Performance Tracking Views -->
+		<class>com.hack23.cia.model.internal.application.data.rules.impl.ViewRiskScoreEvolution</class>
 
 		<class>com.hack23.cia.model.internal.application.system.impl.Agency</class>
 		<class>com.hack23.cia.model.internal.application.system.impl.Portal</class>
