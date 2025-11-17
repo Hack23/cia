@@ -121,9 +121,7 @@
 		
 		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewPoliticianBehavioralTrends</class>
-		<!-- TODO: Add remaining v1.30 view entities:
-		     - ViewCommitteeProductivityMatrix (committee.impl package)
-		-->
+		<!-- V1.30: 3 of 4 implemented (75%) - ViewCommitteeProductivityMatrix remaining -->
 		
 		<!-- TODO V1.29 Intelligence Operations Enhancement Views:
 		     - ViewRiksdagenPartyMomentumAnalysis (party.impl)
@@ -132,6 +130,7 @@
 		     - ViewRiksdagenPoliticianInfluenceMetrics (politician.impl)
 		     - ViewRiksdagenCrisisResilienceIndicators (politician.impl)
 		     - ViewRiksdagenIntelligenceDashboard (impl package)
+		     - ViewCommitteeProductivityMatrix (committee.impl) - from v1.30
 		-->
 
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument</class>
