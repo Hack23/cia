@@ -595,15 +595,62 @@ For our future vision incorporating more advanced AI capabilities, see our [Futu
 [![Rivalry](https://img.shields.io/badge/Rivalry-Dominant_Advantage-darkblue?style=flat-square&logo=trophy&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#porters-five-forces)
 
 
-## 🔗 Key Documentation Links
+## 📚 Related Documents
 
-- [Architecture Documentation](ARCHITECTURE.md) - C4 model architecture 
-- [System Mindmaps](MINDMAP.md) - Conceptual overview and relationships
-- [Future Vision](FUTURE_MINDMAP.md) - AI-enhanced capabilities roadmap
-- [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Database entity documentation
-- [API Documentation](https://hack23.github.io/cia/apidocs/index.html) - API reference
-- [Financial Security Plan](FinancialSecurityPlan.md) - AWS deployment and security
-- [End-of-Life Strategy](End-of-Life-Strategy.md) - Technology maintenance planning
-- [CIA Features](https://hack23.com/cia-features.html) - Detailed feature showcase
-- [Package Overview Diagram](https://hack23.github.io/cia/apidocs/package-dependencies.svg) - Visual code package dependencies
-- [GitHub Copilot Instructions](.github/copilot-instructions.md) - Repository-specific instructions for AI-assisted development
+### 🏛️ Architecture & Design
+- [🏗️ Architecture Documentation](ARCHITECTURE.md) - C4 model system architecture
+- [🧠 System Mindmaps](MINDMAP.md) - Conceptual overview and component relationships
+- [🚀 Future Architecture Vision](FUTURE_MINDMAP.md) - AI-enhanced capabilities roadmap
+- [📊 Data Model](DATA_MODEL.md) - Database schema and entity relationships
+- [🗄️ Entity Model Documentation](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Detailed database entity reference
+- [📋 API Documentation](https://hack23.github.io/cia/apidocs/index.html) - Complete API reference
+- [📦 Package Dependencies](https://hack23.github.io/cia/apidocs/package-dependencies.svg) - Visual code package structure
+
+### 🛡️ Security & Compliance
+- [🔐 Security Architecture](SECURITY_ARCHITECTURE.md) - Defense-in-depth security implementation
+- [🚀 Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md) - Advanced security capabilities roadmap
+- [🎯 Threat Model](THREAT_MODEL.md) - STRIDE/MITRE ATT&CK threat analysis
+- [🔐 ISMS Compliance Mapping](ISMS_COMPLIANCE_MAPPING.md) - Complete ISMS-PUBLIC policy integration
+- [💰 Financial Security Plan](FinancialSecurityPlan.md) - AWS security deployment and costs
+- [📋 CRA Assessment](CRA-ASSESSMENT.md) - EU Cyber Resilience Act compliance
+- [🔒 Security Policy](SECURITY.md) - Vulnerability disclosure and security reporting
+
+### 🔄 Operations & Development
+- [⚡ Workflows](WORKFLOWS.md) - CI/CD pipelines and DevSecOps automation
+- [📅 End-of-Life Strategy](End-of-Life-Strategy.md) - Technology maintenance and lifecycle planning
+- [🧪 Unit Test Plan](UnitTestPlan.md) - Testing strategy and coverage requirements
+- [🌐 E2E Test Plan](E2ETestPlan.md) - End-to-end testing documentation
+- [🤝 Contributing Guidelines](CONTRIBUTING.md) - Development contribution guide
+- [📜 Code of Conduct](CODE_OF_CONDUCT.md) - Community standards and expectations
+
+### 🎨 Features & Dashboards
+- [✨ CIA Features Showcase](https://hack23.com/cia-features.html) - Comprehensive feature demonstrations
+- [📊 Political Dashboard (English)](dashboard.md) - Swedish political analytics
+- [📊 Politisk Dashboard (Svenska)](dashboard_sv.md) - Svensk politisk analys
+
+### 🤖 AI & Development Tools
+- [🤖 GitHub Copilot Instructions](.github/copilot-instructions.md) - AI-assisted development guidelines
+- [👥 Custom Copilot Agents](.github/agents/README.md) - Specialized AI agents for different project aspects
+
+### 📋 ISMS-PUBLIC Policy Framework
+*These policies from Hack23 AB's public ISMS govern this project's security and development practices:*
+
+- [🛠️ Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - SDLC security requirements (80% coverage minimum)
+- [🔐 Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Overall security governance framework
+- [🏷️ Classification Framework](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) - Data classification and business impact analysis
+- [🎯 Threat Modeling Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Threat_Modeling.md) - STRIDE framework and threat analysis methodology
+- [🔍 Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - Security testing and remediation processes
+- [🚨 Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Security incident handling procedures
+- [🌐 Network Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Network_Security_Policy.md) - Network protection and segmentation
+- [🔑 Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - Identity and access management
+- [🔒 Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - Encryption standards and key management
+- [💾 Backup & Recovery Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Backup_Recovery_Policy.md) - Data protection and recovery procedures
+
+For complete ISMS framework, visit: [![ISMS-PUBLIC](https://img.shields.io/badge/ISMS-PUBLIC-0066CC?style=flat-square&logo=github&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC)
+
+---
+
+**📋 Project Classification:**  
+**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: High](https://img.shields.io/badge/I-High-orange?style=flat-square&logo=check-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Moderate](https://img.shields.io/badge/A-Moderate-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
+**📊 Project Type:** Data Analytics Platform (OSINT) | **⚙️ Process Type:** Operations  
+**🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![AWS Well-Architected](https://img.shields.io/badge/AWS-Well_Architected-orange?style=flat-square&logo=amazon-aws&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
