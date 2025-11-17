@@ -61,7 +61,17 @@
     
     <createView viewName="view_ministry_effectiveness_trends">
         <![CDATA[
-WITH ministry_quarterly_metrics AS (
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        SUBSTRING(org_code FROM 1 FOR position('departement' IN org_code) + 10) AS short_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+        AND org_code LIKE '%departement%'
+),
+ministry_quarterly_metrics AS (
     SELECT
         m.org_code,
         m.short_code,
@@ -72,7 +82,7 @@ WITH ministry_quarterly_metrics AS (
         COUNT(DISTINCT CASE WHEN doc.document_type = 'ds' THEN doc.id END) AS government_bills,
         COUNT(DISTINCT CASE WHEN doc.document_type IN ('prop', 'ds') THEN doc.id END) AS legislative_documents,
         COUNT(DISTINCT doc.person_reference_id) AS active_members
-    FROM view_riksdagen_ministry m
+    FROM ministry_base m
     LEFT JOIN view_riksdagen_politician_document doc 
         ON doc.org = m.org_code
         AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
@@ -227,7 +237,17 @@ ORDER BY org_code, period_start DESC;
     
     <createView viewName="view_ministry_productivity_matrix">
         <![CDATA[
-WITH ministry_annual_metrics AS (
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        SUBSTRING(org_code FROM 1 FOR position('departement' IN org_code) + 10) AS short_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+        AND org_code LIKE '%departement%'
+),
+ministry_annual_metrics AS (
     SELECT
         m.org_code,
         m.short_code,
@@ -239,7 +259,7 @@ WITH ministry_annual_metrics AS (
         COUNT(DISTINCT doc.person_reference_id) AS active_members,
         MIN(doc.made_public_date) AS first_document_date,
         MAX(doc.made_public_date) AS last_document_date
-    FROM view_riksdagen_ministry m
+    FROM ministry_base m
     LEFT JOIN view_riksdagen_politician_document doc 
         ON doc.org = m.org_code
         AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
@@ -393,7 +413,17 @@ ORDER BY year DESC, documents_produced DESC;
     
     <createView viewName="view_ministry_risk_evolution">
         <![CDATA[
-WITH quarterly_ministry_base AS (
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        SUBSTRING(org_code FROM 1 FOR position('departement' IN org_code) + 10) AS short_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+        AND org_code LIKE '%departement%'
+),
+quarterly_ministry_base AS (
     SELECT
         m.org_code,
         m.short_code,
@@ -409,7 +439,7 @@ WITH quarterly_ministry_base AS (
         MIN(doc.made_public_date) AS first_activity,
         MAX(doc.made_public_date) AS last_activity
         
-    FROM view_riksdagen_ministry m
+    FROM ministry_base m
     LEFT JOIN view_riksdagen_politician_document doc 
         ON doc.org = m.org_code
         AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
