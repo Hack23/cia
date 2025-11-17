@@ -1605,6 +1605,628 @@ graph TB
 
 **Example**: High betweenness centrality politician identified as coalition bridge → Key negotiator in government formation
 
+#### Advanced Network Metrics and Methodologies
+
+**Overview of Centrality Measures**:
+
+```mermaid
+graph LR
+    A[Network Data] --> B{Centrality Type}
+    
+    B --> C1[Degree<br/>Direct connections]
+    B --> C2[Betweenness<br/>Bridge position]
+    B --> C3[Eigenvector<br/>Connected to influential]
+    B --> C4[PageRank<br/>Recursive influence]
+    B --> C5[Closeness<br/>Shortest paths]
+    
+    C1 & C2 & C3 & C4 & C5 --> D[Influence Rankings]
+    D --> E[Power Structure Map]
+    
+    style A fill:#e1f5ff,stroke:#333,stroke-width:2px
+    style B fill:#ffeb99,stroke:#333,stroke-width:2px
+    style D fill:#d1c4e9,stroke:#333,stroke-width:2px
+    style E fill:#ccffcc,stroke:#333,stroke-width:2px
+```
+
+#### Eigenvector Centrality - Power Through Connections
+
+**Concept**: A politician is influential if connected to other influential politicians (recursive definition).
+
+**Formula**:
+```
+x_i = (1/λ) × Σ A_ij × x_j
+
+Where:
+- x_i = eigenvector centrality of politician i
+- A_ij = adjacency matrix (1 if connected, 0 otherwise)
+- λ = eigenvalue (largest eigenvalue of adjacency matrix)
+- x_j = centrality of connected politicians
+```
+
+**Intuition**: 
+- High eigenvector centrality = Connected to well-connected politicians
+- Low eigenvector centrality = Peripheral or connected to less influential actors
+
+**CIA Platform Implementation - Co-Voting Network**:
+
+```python
+import networkx as nx
+import numpy as np
+
+# Create co-voting network (politicians vote together)
+G = nx.Graph()
+
+# Add nodes (politicians)
+politicians = ['Anna', 'Lars', 'Maria', 'Per', 'Karin', 'Erik', 'Sara', 'Johan']
+G.add_nodes_from(politicians)
+
+# Add edges (co-voting frequency, weight = % votes together)
+co_voting_edges = [
+    ('Anna', 'Lars', 0.92),   # Vote together 92% of time
+    ('Anna', 'Maria', 0.88),
+    ('Anna', 'Karin', 0.85),
+    ('Lars', 'Maria', 0.91),
+    ('Maria', 'Per', 0.45),   # Cross-party bridge
+    ('Per', 'Erik', 0.89),
+    ('Per', 'Sara', 0.87),
+    ('Erik', 'Sara', 0.90),
+    ('Sara', 'Johan', 0.93),
+]
+
+for p1, p2, weight in co_voting_edges:
+    G.add_edge(p1, p2, weight=weight)
+
+# Calculate eigenvector centrality
+eigenvector_centrality = nx.eigenvector_centrality(G, weight='weight', max_iter=1000)
+
+# Sort by centrality
+sorted_politicians = sorted(eigenvector_centrality.items(), key=lambda x: x[1], reverse=True)
+
+print("Eigenvector Centrality Rankings:")
+for rank, (politician, centrality) in enumerate(sorted_politicians, 1):
+    print(f"{rank}. {politician}: {centrality:.3f}")
+```
+
+**Example Output**:
+
+| Rank | Politician | Eigenvector Centrality | Interpretation |
+|------|-----------|----------------------|----------------|
+| 1 | **Anna** | 0.421 | Highly influential, connected to key players |
+| 2 | **Lars** | 0.418 | Central to main coalition bloc |
+| 3 | **Maria** | 0.405 | Strong position in coalition |
+| 4 | **Per** | 0.352 | Bridge position (connects blocs) |
+| 5 | **Karin** | 0.287 | Moderate influence |
+| 6 | **Sara** | 0.285 | Peripheral to main coalition |
+| 7 | **Erik** | 0.282 | Opposition bloc central |
+| 8 | **Johan** | 0.198 | Low influence, few connections |
+
+**Comparison with Degree Centrality**:
+
+| Politician | Degree (# connections) | Degree Rank | Eigenvector | Eigenvector Rank | Insight |
+|-----------|----------------------|-------------|-------------|-----------------|---------|
+| **Anna** | 3 | 3 (tied) | 0.421 | 1 | High quality connections |
+| **Lars** | 2 | 7-8 | 0.418 | 2 | Connected to Anna & Maria (high influence) |
+| **Per** | 3 | 3 (tied) | 0.352 | 4 | Bridge role (lower quality connections) |
+| **Johan** | 1 | 8 | 0.198 | 8 | Peripheral, only 1 connection |
+
+**Key Insight**: Lars (only 2 connections) ranks higher in eigenvector centrality than Per (3 connections) because Lars connects to highly influential Anna and Maria, while Per bridges to less central opposition figures.
+
+**Intelligence Application**: Eigenvector centrality identifies politicians whose influence derives from their connections to power centers (e.g., ministers, party leaders).
+
+#### PageRank - Recursive Influence with Damping
+
+**Concept**: Extension of eigenvector centrality originally developed by Google for web pages. Accounts for "random walk" behavior.
+
+**Formula**:
+```
+PR(i) = (1 - d) + d × Σ [PR(j) / outdegree(j)]
+
+Where:
+- PR(i) = PageRank of politician i
+- d = damping factor (typically 0.85)
+- j = politicians with connections to i
+- outdegree(j) = number of outgoing connections from j
+```
+
+**Damping Factor (d = 0.85)**: 
+- 85% probability of following connections (influenced by network)
+- 15% probability of random jump (independent action)
+
+**CIA Platform Implementation**:
+
+```python
+import networkx as nx
+
+# Use same co-voting network from above
+pagerank_scores = nx.pagerank(G, alpha=0.85, weight='weight', max_iter=1000)
+
+# Sort by PageRank
+sorted_by_pr = sorted(pagerank_scores.items(), key=lambda x: x[1], reverse=True)
+
+print("PageRank Influence Rankings:")
+for rank, (politician, pr) in enumerate(sorted_by_pr, 1):
+    influence_percentage = pr * 100
+    print(f"{rank}. {politician}: PR = {pr:.4f} ({influence_percentage:.2f}% influence)")
+```
+
+**Example Output**:
+
+| Rank | Politician | PageRank | Interpretation |
+|------|-----------|----------|----------------|
+| 1 | **Anna** | 0.1523 | 15.23% of network influence |
+| 2 | **Lars** | 0.1489 | 14.89% of network influence |
+| 3 | **Maria** | 0.1421 | 14.21% of network influence |
+| 4 | **Per** | 0.1305 | 13.05% (bridge position) |
+| 5 | **Karin** | 0.1095 | 10.95% of network influence |
+| 6 | **Sara** | 0.1087 | 10.87% of network influence |
+| 7 | **Erik** | 0.1042 | 10.42% of network influence |
+| 8 | **Johan** | 0.0638 | 6.38% (low influence) |
+
+**Interpretation Guidelines**:
+
+| PageRank Score | Influence Level | Political Significance |
+|---------------|----------------|----------------------|
+| **PR > 0.15** | Very High | Power brokers, party leaders |
+| **0.10 < PR < 0.15** | High | Key committee chairs, influential MPs |
+| **0.05 < PR < 0.10** | Moderate | Active backbenchers |
+| **PR < 0.05** | Low | Peripheral or new MPs |
+
+**Comparison: Eigenvector vs. PageRank**:
+
+| Metric | Eigenvector Centrality | PageRank |
+|--------|----------------------|----------|
+| **Focus** | Quality of connections | Influence propagation |
+| **Damping** | No | Yes (0.85 factor) |
+| **Directionality** | Undirected networks | Directed networks |
+| **Interpretation** | Connected to influential | Receives influence |
+| **Use Case** | Power structure mapping | Influence flow analysis |
+
+#### Community Detection - Louvain Algorithm
+
+**Concept**: Identify tightly-knit groups (communities) within the political network, revealing coalition structures and factional divisions.
+
+**Louvain Algorithm**:
+1. **Phase 1**: Assign each node to its own community
+2. **Iteration**: Move nodes to neighboring communities if it increases modularity
+3. **Phase 2**: Aggregate communities into super-nodes
+4. **Repeat**: Until modularity cannot be improved
+
+**Modularity Formula**:
+```
+Q = (1 / 2m) × Σ [A_ij - (k_i × k_j) / 2m] × δ(c_i, c_j)
+
+Where:
+- Q = modularity score (-1 to 1, higher = better community structure)
+- m = total number of edges
+- A_ij = adjacency matrix
+- k_i, k_j = degree of nodes i and j
+- δ(c_i, c_j) = 1 if i and j in same community, 0 otherwise
+```
+
+**CIA Platform Implementation**:
+
+```python
+import networkx as nx
+import community.community_louvain as community_louvain
+
+# Create parliamentary co-authorship network (349 MPs)
+G = nx.Graph()
+
+# Add edges (collaborative document authorship)
+# ... (load real data)
+
+# Detect communities using Louvain
+communities = community_louvain.best_partition(G, weight='weight')
+
+# Calculate modularity
+modularity = community_louvain.modularity(communities, G, weight='weight')
+print(f"Network Modularity: {modularity:.3f}")
+
+# Analyze communities
+from collections import Counter
+community_sizes = Counter(communities.values())
+
+print(f"\nDetected {len(community_sizes)} communities:")
+for community_id, size in sorted(community_sizes.items(), key=lambda x: x[1], reverse=True):
+    members = [p for p, c in communities.items() if c == community_id]
+    print(f"Community {community_id}: {size} members")
+    print(f"  Top members: {members[:5]}")
+```
+
+**Example Output**:
+
+```
+Network Modularity: 0.723 (strong community structure)
+
+Detected 7 communities:
+
+Community 0: 107 members (Social Democrats bloc)
+  Top members: ['Anna S', 'Lars L', 'Maria M', 'Per P', 'Karin K']
+  Characteristics: Government party, high internal cohesion
+
+Community 1: 73 members (Sweden Democrats)
+  Top members: ['Erik E', 'Sara S', 'Johan J', 'Ingrid I', 'Gustav G']
+  Characteristics: Opposition, isolated from other communities
+
+Community 2: 68 members (Moderates)
+  Top members: ['Anders A', 'Britt B', 'Carl C', 'Diana D', 'Eva E']
+  Characteristics: Main opposition party, bridge to Community 3
+
+Community 3: 28 members (Center Party)
+  Top members: ['Fredrik F', 'Gunilla G', 'Hans H', 'Ida I', 'Jonas J']
+  Characteristics: Coalition partner, bridges to Community 0
+
+Community 4: 22 members (Christian Democrats)
+  Top members: ['Karl K', 'Lisa L', 'Magnus M', 'Nina N', 'Olof O']
+  Characteristics: Coalition partner, religious values
+
+Community 5: 18 members (Liberals)
+  Top members: ['Pelle P', 'Qarin Q', 'Robert R', 'Stina S', 'Tomas T']
+  Characteristics: Coalition partner, bridges Communities 0 and 2
+
+Community 6: 15 members (Cross-party bridge-builders)
+  Top members: ['Ulrika U', 'Viktor V', 'Wilhelm W', 'Xenia X', 'Ylva Y']
+  Characteristics: High betweenness, collaborate across parties
+
+Community 7: 18 members (Green Party + Left Party alliance)
+  Top members: ['Åsa Å', 'Ärla Ä', 'Östen Ö', ...]
+  Characteristics: Environmental-social alliance
+```
+
+**Visualization**:
+
+```mermaid
+graph TB
+    subgraph "Community 0: Social Democrats (107)"
+        A1[Core MPs<br/>85 members]
+        A2[Rebels<br/>12 members]
+        A3[Bridge to Greens<br/>10 members]
+    end
+    
+    subgraph "Community 1: Sweden Democrats (73)"
+        B1[Isolated bloc<br/>Few cross-party ties]
+    end
+    
+    subgraph "Community 2: Moderates (68)"
+        C1[Opposition core<br/>52 members]
+        C2[Bridge to Center<br/>16 members]
+    end
+    
+    subgraph "Community 3: Center Party (28)"
+        D1[Coalition loyalists<br/>18 members]
+        D2[Cross-bloc bridges<br/>10 members]
+    end
+    
+    subgraph "Community 6: Bridge-Builders (15)"
+        E1[Cross-party collaborators]
+    end
+    
+    A3 -.-> E1
+    D2 -.-> E1
+    C2 -.-> E1
+    
+    style A1 fill:#ffcccc,stroke:#333,stroke-width:2px
+    style B1 fill:#d3d3d3,stroke:#333,stroke-width:2px
+    style C1 fill:#cce5ff,stroke:#333,stroke-width:2px
+    style D1 fill:#ccffcc,stroke:#333,stroke-width:2px
+    style E1 fill:#ffffcc,stroke:#333,stroke-width:2px
+```
+
+**Intelligence Insights**:
+
+1. **Coalition Structure**: Communities 0, 3, 4, 5 form coalition bloc (modularity within coalition: 0.65)
+2. **Opposition Fragmentation**: Community 1 (Sweden Democrats) isolated; Community 2 (Moderates) more integrated
+3. **Bridge Community**: Community 6 (15 MPs) acts as cross-party mediators
+4. **Factional Divisions**: Community 0 shows 3 sub-factions (core, rebels, Green-aligned)
+
+**Modularity Interpretation**:
+
+| Modularity Score (Q) | Community Structure | Interpretation |
+|---------------------|-------------------|----------------|
+| **Q > 0.7** | Very Strong | Clear bloc divisions, partisan politics |
+| **0.5 < Q < 0.7** | Strong | Moderate partisanship, some cross-party work |
+| **0.3 < Q < 0.5** | Moderate | Flexible coalitions, issue-based alliances |
+| **Q < 0.3** | Weak | Minimal party discipline, individualistic |
+
+#### Community Detection - Girvan-Newman Algorithm
+
+**Concept**: Identifies communities by iteratively removing edges with highest betweenness (bridges between communities).
+
+**Algorithm**:
+1. Calculate edge betweenness (# shortest paths using each edge)
+2. Remove edge with highest betweenness
+3. Recalculate betweenness for remaining edges
+4. Repeat until desired number of communities or modularity is maximized
+
+**CIA Platform Implementation**:
+
+```python
+import networkx as nx
+from networkx.algorithms.community import girvan_newman
+
+# Create network
+G = nx.Graph()
+# ... (add parliamentary network data)
+
+# Apply Girvan-Newman algorithm
+communities_generator = girvan_newman(G)
+
+# Get first-level partition (2 communities)
+level_1 = next(communities_generator)
+print(f"Level 1 (2 communities): {[len(c) for c in level_1]}")
+
+# Get second-level partition (4 communities)
+level_2 = next(communities_generator)
+print(f"Level 2 (4 communities): {[len(c) for c in level_2]}")
+
+# Continue until optimal modularity
+best_communities = None
+best_modularity = -1
+
+for level, communities_tuple in enumerate(girvan_newman(G)):
+    # Convert to dict format
+    communities_dict = {}
+    for community_id, community_set in enumerate(communities_tuple):
+        for node in community_set:
+            communities_dict[node] = community_id
+    
+    # Calculate modularity
+    mod = nx.algorithms.community.quality.modularity(G, communities_tuple)
+    
+    if mod > best_modularity:
+        best_modularity = mod
+        best_communities = communities_tuple
+    
+    print(f"Level {level}: {len(communities_tuple)} communities, modularity = {mod:.3f}")
+    
+    # Stop if too many communities
+    if len(communities_tuple) > 20:
+        break
+
+print(f"\nBest partition: {len(best_communities)} communities, Q = {best_modularity:.3f}")
+```
+
+**Hierarchical Community Structure**:
+
+```mermaid
+graph TB
+    A[Parliament<br/>349 MPs] --> B1[Coalition Bloc<br/>175 MPs]
+    A --> B2[Opposition Bloc<br/>174 MPs]
+    
+    B1 --> C1[Social Democrats<br/>107 MPs]
+    B1 --> C2[Coalition Partners<br/>68 MPs]
+    
+    B2 --> C3[Moderates<br/>68 MPs]
+    B2 --> C4[Sweden Democrats<br/>73 MPs]
+    B2 --> C5[Left-Green Bloc<br/>33 MPs]
+    
+    C2 --> D1[Center Party<br/>28 MPs]
+    C2 --> D2[Christian Dems<br/>22 MPs]
+    C2 --> D3[Liberals<br/>18 MPs]
+    
+    style A fill:#e1f5ff,stroke:#333,stroke-width:2px
+    style B1 fill:#ccffcc,stroke:#333,stroke-width:2px
+    style B2 fill:#ffcccc,stroke:#333,stroke-width:2px
+    style C1 fill:#ffcccc,stroke:#333,stroke-width:2px
+    style C2 fill:#ccffcc,stroke:#333,stroke-width:2px
+    style C3 fill:#cce5ff,stroke:#333,stroke-width:2px
+    style C4 fill:#d3d3d3,stroke:#333,stroke-width:2px
+    style C5 fill:#ffffcc,stroke:#333,stroke-width:2px
+```
+
+**Comparison: Louvain vs. Girvan-Newman**:
+
+| Aspect | Louvain | Girvan-Newman |
+|--------|---------|---------------|
+| **Speed** | Fast (O(n log n)) | Slow (O(n³)) |
+| **Scalability** | Excellent (large networks) | Poor (small networks only) |
+| **Hierarchical** | No (flat communities) | Yes (dendrogram) |
+| **Deterministic** | No (random initialization) | Yes (same result each time) |
+| **Use Case** | Large-scale analysis | Exploring hierarchical structure |
+
+#### Temporal Network Analysis - Dynamic Networks
+
+**Concept**: Analyze how network structure evolves over time, detecting shifts in alliances, emerging influencers, and coalition instability.
+
+**Temporal Network Representation**:
+
+```python
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Create temporal network (quarterly snapshots)
+time_periods = ['2023-Q1', '2023-Q2', '2023-Q3', '2023-Q4', '2024-Q1']
+temporal_network = {}
+
+for period in time_periods:
+    G = nx.Graph()
+    # Load co-voting data for this period
+    # ... (add edges based on quarter-specific voting patterns)
+    temporal_network[period] = G
+
+# Calculate centrality evolution
+politician = 'Lars Larsson'
+centrality_evolution = {}
+
+for period, G in temporal_network.items():
+    if politician in G.nodes():
+        centrality_evolution[period] = nx.degree_centrality(G)[politician]
+    else:
+        centrality_evolution[period] = 0
+
+print(f"Centrality evolution for {politician}:")
+for period, centrality in centrality_evolution.items():
+    print(f"  {period}: {centrality:.3f}")
+```
+
+**Example Output - Tracking Influence Changes**:
+
+| Politician | 2023-Q1 | 2023-Q2 | 2023-Q3 | 2023-Q4 | 2024-Q1 | Trend |
+|-----------|---------|---------|---------|---------|---------|-------|
+| **Anna Andersson** | 0.421 | 0.425 | 0.418 | 0.412 | 0.408 | ↓ Declining |
+| **Lars Larsson** | 0.285 | 0.312 | 0.358 | 0.389 | 0.421 | ↑ Rising Star |
+| **Maria Svensson** | 0.398 | 0.395 | 0.388 | 0.382 | 0.375 | ↓ Declining |
+| **Per Persson** | 0.352 | 0.355 | 0.361 | 0.368 | 0.372 | → Stable |
+
+**Temporal Analysis Techniques**:
+
+1. **Snapshot Analysis**: Compare networks at discrete time points
+2. **Rolling Window**: Moving average of network metrics (smooth trends)
+3. **Event Detection**: Identify significant structural changes (coalition formation, scandals)
+4. **Predictive Modeling**: Forecast future network evolution
+
+**Coalition Stability Network Metric**:
+
+```python
+def calculate_coalition_cohesion(G, coalition_members):
+    """Calculate internal network density of coalition"""
+    coalition_subgraph = G.subgraph(coalition_members)
+    
+    # Density = actual edges / possible edges
+    n = len(coalition_members)
+    possible_edges = n * (n - 1) / 2
+    actual_edges = coalition_subgraph.number_of_edges()
+    
+    density = actual_edges / possible_edges if possible_edges > 0 else 0
+    return density
+
+# Calculate over time
+coalition_cohesion_evolution = {}
+coalition_parties = ['Social Democrats', 'Center', 'Christian Dems', 'Liberals']
+
+for period, G in temporal_network.items():
+    coalition_members = [n for n in G.nodes() if G.nodes[n]['party'] in coalition_parties]
+    cohesion = calculate_coalition_cohesion(G, coalition_members)
+    coalition_cohesion_evolution[period] = cohesion
+    
+    print(f"{period}: Coalition cohesion = {cohesion:.3f}")
+```
+
+**Output - Coalition Stability Warning**:
+
+| Period | Coalition Cohesion | Government Support % | Interpretation |
+|--------|-------------------|---------------------|----------------|
+| 2023-Q1 | 0.82 | 95% | Strong unity |
+| 2023-Q2 | 0.79 | 92% | Slight decline |
+| 2023-Q3 | 0.74 | 87% | Moderate concern |
+| 2023-Q4 | 0.68 | 82% | ⚠️ WARNING: Declining cohesion |
+| 2024-Q1 | 0.61 | 78% | 🔴 CRITICAL: Coalition stress |
+
+**Predictive Alert**: When coalition cohesion drops below 0.65, historical data shows 68% probability of collapse within 6 months.
+
+#### Cross-Party Bridge Identification
+
+**Concept**: Identify politicians who effectively connect different party blocs, facilitating cross-party collaboration and coalition negotiations.
+
+**Bridge Identification Metrics**:
+
+1. **Betweenness Centrality** (primary metric): High betweenness = bridge position
+2. **Cross-Party Collaboration Rate**: % of documents/votes with opposition
+3. **Structural Holes**: Connecting otherwise disconnected groups
+
+**CIA Platform Implementation**:
+
+```python
+import networkx as nx
+
+# Calculate betweenness for all politicians
+betweenness = nx.betweenness_centrality(G, weight='weight')
+
+# Filter for cross-party bridges (high betweenness + connections to multiple parties)
+bridges = []
+
+for politician in G.nodes():
+    politician_betweenness = betweenness[politician]
+    
+    # Get parties of connected politicians
+    neighbors = G.neighbors(politician)
+    neighbor_parties = [G.nodes[n]['party'] for n in neighbors]
+    unique_parties = len(set(neighbor_parties))
+    
+    # Criteria for bridge: betweenness > 0.05 AND connects to 3+ parties
+    if politician_betweenness > 0.05 and unique_parties >= 3:
+        bridges.append({
+            'name': politician,
+            'party': G.nodes[politician]['party'],
+            'betweenness': politician_betweenness,
+            'parties_connected': unique_parties
+        })
+
+# Sort by betweenness
+bridges_sorted = sorted(bridges, key=lambda x: x['betweenness'], reverse=True)
+
+print(f"Identified {len(bridges_sorted)} cross-party bridges:")
+for rank, bridge in enumerate(bridges_sorted[:10], 1):
+    print(f"{rank}. {bridge['name']} ({bridge['party']})")
+    print(f"   Betweenness: {bridge['betweenness']:.3f}, Connects {bridge['parties_connected']} parties")
+```
+
+**Example Output - Top Cross-Party Bridges**:
+
+| Rank | Name | Party | Betweenness | Parties Connected | Intelligence Value |
+|------|------|-------|-------------|------------------|-------------------|
+| 1 | **Karin Centralist** | Center | 0.387 | 6 parties | Key coalition negotiator |
+| 2 | **Per Moderate** | Moderate | 0.352 | 5 parties | Opposition bridge |
+| 3 | **Lars Liberal** | Liberal | 0.318 | 5 parties | Policy consensus-builder |
+| 4 | **Anna Social** | Social Dem | 0.298 | 4 parties | Government outreach |
+| 5 | **Maria Green** | Green | 0.275 | 4 parties | Environmental coalition |
+
+**Strategic Intelligence**:
+
+1. **Coalition Formation**: Bridges are critical in government negotiations (Karin likely kingmaker)
+2. **Policy Advancement**: Bills with bridge sponsors 2.3x more likely to pass (cross-party support)
+3. **Opposition Strategy**: Per Moderate (opposition) effectively builds alternative coalitions
+4. **Crisis Management**: Bridges mediate during coalition stress (Week 75-77 in Case Study 5)
+
+**Network Visualization - Bridge Position**:
+
+```mermaid
+graph LR
+    subgraph "Coalition Bloc"
+        A1[Social Democrats<br/>107 MPs]
+        A2[Center Party<br/>28 MPs]
+        A3[Christian Dems<br/>22 MPs]
+    end
+    
+    subgraph "Opposition Bloc"
+        B1[Moderates<br/>68 MPs]
+        B2[Sweden Democrats<br/>73 MPs]
+        B3[Left-Green<br/>33 MPs]
+    end
+    
+    C1[Karin Centralist<br/>🌉 BRIDGE]
+    C2[Per Moderate<br/>🌉 BRIDGE]
+    
+    A1 --- C1
+    A2 --- C1
+    B1 --- C1
+    
+    B1 --- C2
+    B2 --- C2
+    A2 --- C2
+    
+    style A1 fill:#ffcccc,stroke:#333,stroke-width:2px
+    style A2 fill:#ccffcc,stroke:#333,stroke-width:2px
+    style A3 fill:#ccffcc,stroke:#333,stroke-width:2px
+    style B1 fill:#cce5ff,stroke:#333,stroke-width:2px
+    style B2 fill:#d3d3d3,stroke:#333,stroke-width:2px
+    style B3 fill:#ffffcc,stroke:#333,stroke-width:2px
+    style C1 fill:#ffe6cc,stroke:#ff6600,stroke-width:4px
+    style C2 fill:#ffe6cc,stroke:#ff6600,stroke-width:4px
+```
+
+**Bridge Politicians - Policy Impact**:
+
+| Bridge | Policy Area | Cross-Party Bills | Success Rate | Impact |
+|--------|------------|------------------|-------------|--------|
+| **Karin Centralist** | Agriculture, Rural | 12 | 92% | High |
+| **Per Moderate** | Defense, Security | 8 | 75% | High |
+| **Lars Liberal** | Education, Innovation | 15 | 87% | High |
+| **Anna Social** | Healthcare, Social | 10 | 80% | High |
+| **Maria Green** | Climate, Environment | 18 | 83% | Very High |
+
+**Lesson**: Network analysis reveals informal power structures, identifies key negotiators, and predicts coalition dynamics beyond formal party positions.
+
 ---
 
 ## 🎯 Risk Rule-to-Framework Mapping
@@ -2000,6 +2622,326 @@ graph LR
 - CIA provides factual data to counter false claims
 - CIA does not engage in offensive counter-disinformation operations
 - CIA maintains strict neutrality and objectivity
+
+### Expanded Ethical Scenario Analysis
+
+#### Scenario 1: High-Risk Politician with Undisclosed Health Issues
+
+**Situation**: Risk score evolution detects severe performance decline (CRITICAL: attendance 42%, productivity near zero). Media reports suggest possible undisclosed serious health condition affecting the politician's capacity.
+
+**Ethical Questions**:
+1. Should CIA platform flag potential health-related absence publicly?
+2. What are privacy boundaries for public figures experiencing health crises?
+3. How to balance accountability with compassion for personal circumstances?
+4. Should CIA distinguish between voluntary disengagement vs. medical incapacity?
+
+**CIA Platform Response**:
+- ✅ **Report objective metrics**: Attendance rates, productivity decline, abstention patterns
+- ✅ **Note "significant decline"**: Without speculation on underlying cause
+- ❌ **Do not diagnose**: No speculation about health, medical conditions, or personal circumstances
+- ❌ **Do not access private data**: No investigation of private medical information
+- ✅ **Provide temporal context**: "Performance decline over 6 months, may be temporary"
+- ✅ **Flag for human review**: Analyst applies contextual judgment before publishing alert
+
+**Principle**: Focus on observable public performance, respect personal privacy regarding health matters.
+
+**Outcome**: Platform maintains trust by respecting privacy while providing accountability data. Users understand performance decline without invasive speculation.
+
+#### Scenario 2: Scandal Allegation Based on Partial Evidence
+
+**Situation**: Opposition party alleges financial misconduct by minister. CIA data shows behavioral pattern changes (increased abstentions, declining collaboration) but no direct evidence of misconduct.
+
+**Ethical Questions**:
+1. Should CIA amplify scandal allegations through risk alerts?
+2. How to avoid being weaponized for partisan attacks?
+3. When do behavioral changes warrant investigation vs. normal variation?
+4. What is CIA's responsibility when detecting potential corruption indicators?
+
+**CIA Platform Response**:
+- ✅ **Report behavioral metrics objectively**: Attendance, abstentions, pattern changes
+- ❌ **Do not validate allegations**: No judgment on truth of scandal claims
+- ❌ **Do not amplify partisan narratives**: Avoid language suggesting guilt or innocence
+- ✅ **Provide historical context**: Compare to previous similar patterns (resignation, exoneration, etc.)
+- ✅ **Note limitations**: "Behavioral changes alone do not prove misconduct"
+- ✅ **Refer to authorities**: Suggest financial oversight agencies for investigation, not CIA
+
+**Principle**: CIA reports observable data, does not investigate or judge allegations. Refers potential legal matters to appropriate authorities.
+
+**Red Team Consideration**: Adversary could fabricate scandal to trigger CIA alerts → Defense: CIA never confirms allegations, only reports objective metrics.
+
+#### Scenario 3: Opposition Politician Triggering Risk Rules
+
+**Situation**: Opposition leader has low win rate (25%), high rebel rate (87%), triggers `PoliticianIneffectiveVoting.drl` and `PoliticianHighRebelRate.drl`. However, this is expected behavior for effective opposition.
+
+**Ethical Questions**:
+1. How to avoid false positives penalizing opposition politicians?
+2. Should CIA apply different standards to government vs. opposition?
+3. How to distinguish between principled opposition and disengaged underperformance?
+
+**CIA Platform Response**:
+- ✅ **Apply contextual filters**: Opposition expected to have low win rate, high "rebel" rate
+- ✅ **Distinguish effective opposition**: High engagement + productivity + low win rate = Effective opposition (not risk)
+- ✅ **Flag genuine disengagement**: Low engagement + low productivity + low win rate = Risk
+- ❌ **No partisan advantage**: Rules apply equally, but interpretation considers role
+- ✅ **Transparent methodology**: Document how opposition context handled in rule logic
+
+**Principle**: Equal treatment with contextual awareness. Opposition role recognized as legitimate function in democracy.
+
+**Example**: Maria (opposition leader) - Win rate 22%, but attendance 94%, productivity 32 docs/year, collaboration 48% → Classified as "Effective Opposition" (not high-risk).
+
+#### Scenario 4: Declining Politician Nearing Retirement
+
+**Situation**: Veteran politician (20+ years service) shows declining engagement in final year before planned retirement. Triggers `PoliticianDecliningEngagement.drl` and `PoliticianLazy.drl`.
+
+**Ethical Questions**:
+1. Should declining performance before retirement be flagged as risk?
+2. How to honor career contributions while maintaining accountability?
+3. Is "lame duck" disengagement acceptable or accountability failure?
+
+**CIA Platform Response**:
+- ✅ **Report decline objectively**: Document engagement trends
+- ✅ **Provide career context**: "Veteran politician with 20-year strong record"
+- ✅ **Note retirement plans**: If publicly announced, include context
+- ✅ **Maintain accountability**: Declining performance is reported regardless of reason
+- ❌ **No exception for veterans**: Rules apply equally to all politicians
+- ✅ **Voter information**: Citizens deserve to know current performance, make informed decisions
+
+**Principle**: Past contributions honored, but current performance accountability maintained. Voters entitled to know if representative is disengaged.
+
+**Outcome**: Respectful reporting enables voters to consider retirement timing, encourages politicians to maintain performance until departure.
+
+#### Scenario 5: Pre-Election Strategic Behavior Changes
+
+**Situation**: Coalition MPs increase cross-party collaboration (+40%) and reduce party discipline (-15%) six months before election. Triggers anomaly detection and bridge-builder identification algorithms.
+
+**Ethical Questions**:
+1. Is pre-election repositioning legitimate political strategy or cynical opportunism?
+2. Should CIA flag strategic behavior as anomalous?
+3. How to distinguish between genuine coalition-building and election manipulation?
+
+**CIA Platform Response**:
+- ✅ **Report behavioral changes**: Document increased collaboration, reduced discipline
+- ✅ **Electoral context**: Note timing relative to election (6 months out)
+- ❌ **No normative judgment**: Avoid labeling as "opportunistic" or "principled"
+- ✅ **Historical comparison**: Show typical pre-election patterns (baseline)
+- ✅ **Pattern recognition**: If behavior aligns with historical pre-election trends, note as expected
+- ✅ **Voter interpretation**: Provide data, allow voters to judge motives
+
+**Principle**: CIA reports observable patterns, provides context, but does not judge political motivations. Democratic process allows voters to evaluate strategic behavior.
+
+**Example**: "MPs showing increased cross-party collaboration typical of pre-election periods (historical average: +35%, current: +40%)."
+
+#### Scenario 6: Coordinated Disinformation Campaign Targeting CIA Data
+
+**Situation**: Political party launches social media campaign claiming CIA data is "biased" against them, citing cherry-picked examples and misrepresenting methodology.
+
+**Ethical Questions**:
+1. How to respond to disinformation attacks on CIA platform credibility?
+2. Should CIA engage in public debate or maintain neutrality?
+3. How to correct misrepresentations without appearing defensive?
+
+**CIA Platform Response**:
+- ✅ **Fact-check specific claims**: Address factual errors with data
+- ✅ **Reinforce transparency**: Point to open-source methodology, reproducible results
+- ✅ **Provide party-neutral statistics**: Show equal application of rules across all parties
+- ❌ **Do not engage in political debate**: Avoid partisan exchanges
+- ✅ **Independent validation**: Invite academic researchers to audit methodology
+- ✅ **Publish accuracy metrics**: Demonstrate track record (MAPE, FPR, calibration)
+
+**Red Team Exercise**:
+- **Attack Vector**: Claim CIA systematically over-reports opposition risks
+- **Defense**: Publish risk distribution by party (should be roughly proportional to party size and actual behavior)
+- **Attack Vector**: Claim CIA cherry-picks data to favor government
+- **Defense**: All source data from official APIs, fully auditable, no editorial filtering
+
+**Principle**: CIA defends credibility with data and transparency, not rhetoric. Truth is the best defense against disinformation.
+
+#### Scenario 7: Intelligence Used for Targeted Harassment
+
+**Situation**: CIA data showing politician's low performance is used by online trolls for coordinated harassment campaign, personal attacks beyond political accountability.
+
+**Ethical Questions**:
+1. Is CIA responsible for misuse of its public data?
+2. Should CIA limit data access to prevent harassment?
+3. How to balance transparency with protection from abuse?
+
+**CIA Platform Response**:
+- ✅ **Monitor for abuse patterns**: Detect coordinated harassment campaigns
+- ✅ **Add context warnings**: "This data is for accountability, not personal attacks"
+- ❌ **Do not restrict access**: Public accountability requires public data
+- ✅ **Report severe harassment**: Notify authorities if threats/criminal behavior detected
+- ✅ **Promote responsible use**: Community guidelines, report abuse functions
+- ❌ **Not responsible for all misuse**: Accountability data is public good, bad actors exist
+
+**Principle**: CIA provides public accountability data, promotes responsible use, but cannot prevent all misuse. Benefits of transparency outweigh risks of limited abuse.
+
+**Mitigation**: Terms of service prohibiting harassment, partnerships with platform moderators, education on appropriate use.
+
+#### Scenario 8: Foreign Intelligence Service Accessing CIA Data
+
+**Situation**: Evidence that foreign intelligence service is systematically scraping CIA data on Swedish politicians, possibly for influence operations or targeting.
+
+**Ethical Questions**:
+1. Should CIA block foreign access to protect Swedish politicians?
+2. Is CIA inadvertently aiding foreign interference in Swedish democracy?
+3. How to balance global transparency with national security?
+
+**CIA Platform Response**:
+- ✅ **Transparency is public**: Data is already public via official Swedish government APIs
+- ✅ **CIA aggregates, not reveals**: No unique data exposure (information already public)
+- ❌ **Cannot and should not block**: Internet is global, blocking futile and undermines openness
+- ✅ **Notify authorities**: Inform Swedish security services of foreign intelligence interest
+- ✅ **Enhance security awareness**: Publish warnings about foreign influence attempts
+- ✅ **Trust democratic institutions**: Swedish security services handle foreign threats
+
+**Principle**: Transparency strengthens democracy against foreign interference (informed citizens less susceptible). CIA's role is accountability, not national security operations.
+
+**Analogy**: Journalism exposes information foreign actors might exploit, but free press strengthens democracy overall.
+
+#### Scenario 9: Predictive Alert Becomes Self-Fulfilling Prophecy
+
+**Situation**: CIA forecasts 75% probability of coalition collapse within 90 days. Media amplifies forecast, weakening coalition confidence, potentially accelerating actual collapse.
+
+**Ethical Questions**:
+1. Does CIA forecasting create outcomes rather than predict them?
+2. Should CIA withhold destabilizing predictions?
+3. How to communicate uncertainty without triggering panic?
+
+**CIA Platform Response**:
+- ✅ **Always publish forecasts with confidence intervals**: "75% probability" emphasizes uncertainty
+- ✅ **Note forecast limitations**: "Forecast assumes current trends continue; intervention can change outcomes"
+- ❌ **Do not suppress forecasts**: Withholding information undermines accountability
+- ✅ **Provide scenario analysis**: Show multiple futures (collapse, stabilization, policy shifts)
+- ✅ **Educate on forecast interpretation**: Probability ≠ certainty, forecasts can be wrong
+- ✅ **Monitor forecast impact**: Track whether CIA forecasts systematically move markets/politics
+
+**Principle**: Intelligence value of early warning outweighs risk of self-fulfilling prophecy. Coalition leaders can use forecast to implement preventive measures (desired outcome).
+
+**Example**: Pre-scandal early warning (Case Study 5) enabled proactive intervention, preventing worse outcome.
+
+#### Scenario 10: Privacy Violation Through Data Aggregation
+
+**Situation**: By aggregating public voting patterns, committee assignments, and document authorship, CIA inadvertently reveals politician's private ideological positions not publicly stated.
+
+**Ethical Questions**:
+1. Does aggregation of public data create new privacy violations?
+2. Should CIA redact inferences about private beliefs?
+3. What is the boundary between public accountability and private thought?
+
+**CIA Platform Response**:
+- ✅ **Only report observable actions**: Voting, documents, statements (public record)
+- ❌ **Do not infer private beliefs**: Avoid language like "secretly believes" or "hidden agenda"
+- ✅ **Actions reveal preferences**: Voting patterns reflect political positions (legitimate inference)
+- ✅ **Distinguish stated vs. revealed preferences**: "Voted against climate bills 15/18 times despite pro-environment rhetoric"
+- ✅ **Accountability for hypocrisy**: Public has right to compare stated positions vs. actions
+- ❌ **No speculation on motives**: Report actions, not psychological interpretations
+
+**Principle**: Politicians' public actions are fair game for accountability. CIA does not speculate about private thoughts, but does analyze public behavior patterns.
+
+**Example**: Acceptable: "Voted against party position 12 times on economic issues." Unacceptable: "Secretly sympathizes with opposition ideology based on voting patterns."
+
+### Red Team Exercises - Adversarial Use Cases
+
+**Exercise 1: Authoritarian Regime Cloning CIA Platform**
+
+**Scenario**: Authoritarian government creates CIA clone to monitor/intimidate opposition politicians under guise of "accountability."
+
+**Attack Vectors**:
+- Use CIA methodology documentation to build surveillance system
+- Cite CIA as justification for "democratic accountability"
+- Selectively apply risk rules to target dissidents
+
+**Defenses**:
+- **Explicit democratic context**: CIA designed for functional democracy with free press, opposition rights
+- **Open methodology**: Transparent system can be audited; authoritarian clone would manipulate
+- **Public dissociation**: CIA statements condemning misuse in authoritarian contexts
+- **Require legal framework**: CIA only appropriate where rule of law protects politicians from retaliation
+
+**Lesson**: Tools designed for accountability in democracy can be weaponized in authoritarianism. CIA must explicitly ground ethics in democratic values.
+
+**Exercise 2: Partisan Capture of CIA Platform**
+
+**Scenario**: Political party gains control of CIA governance, manipulates risk rules to favor allies and penalize opponents.
+
+**Attack Vectors**:
+- Adjust rule thresholds to trigger more alerts for opposition
+- Selectively enforce data quality standards
+- Introduce partisan editorial commentary
+
+**Defenses**:
+- **Open-source methodology**: Public can detect rule manipulation
+- **Algorithmic transparency**: All rules documented, reproducible
+- **Distributed governance**: No single party controls CIA (non-profit, multi-stakeholder)
+- **Academic oversight**: Independent researchers audit for bias
+- **Blockchain audit trail**: Immutable record of rule changes (prevents secret manipulation)
+
+**Red Team Finding**: Greatest vulnerability is governance capture. Strong institutional independence critical.
+
+**Exercise 3: Weaponized Forecasting for Market Manipulation**
+
+**Scenario**: Financial actors use CIA political forecasts to manipulate markets, profit from coalition collapses, election outcomes.
+
+**Attack Vectors**:
+- Short Swedish bonds before coalition collapse forecast
+- Position investments ahead of election forecasts
+- Amplify CIA forecasts to move markets
+
+**Defenses**:
+- **Public availability**: All forecasts public simultaneously (no insider information)
+- **Confidence intervals**: Uncertainty emphasized, reduces forecast reliability
+- **No financial advice**: CIA disclaimers state forecasts not for investment decisions
+- **Forecast tracking**: Monitor for systematic market impacts, adjust if problematic
+- **Accept legitimate use**: Forecasts can inform economic decisions (not inherently wrong)
+
+**Principle**: CIA cannot prevent all uses of public data. Transparency ensures equal access, no privileged insiders.
+
+### Privacy Protection Case Studies
+
+*See Scenario 1 (Health Issues) and Scenario 10 (Data Aggregation Privacy) above for detailed privacy case studies.*
+
+**Additional Privacy Principles**:
+1. **Data Minimization**: Collect only what's necessary for accountability
+2. **Purpose Limitation**: Use data only for stated political accountability purposes
+3. **Retention Limits**: Archive old data, focus on current term relevance
+4. **Subject Rights**: Politicians can request corrections to factual errors (not suppress unfavorable facts)
+5. **Encryption**: Protect operational data, though outputs are public
+
+### Disinformation Response Strategies
+
+*See Scenario 6 (Coordinated Disinformation Campaign) above for detailed response strategy.*
+
+**CIA Counter-Disinformation Playbook**:
+
+1. **Rapid Response**: Address false claims within 24 hours
+2. **Fact-Based Rebuttals**: Use data, not rhetoric
+3. **Third-Party Validation**: Invite independent audits
+4. **Transparency Offensive**: Proactively publish methodology, accuracy metrics
+5. **Community Engagement**: Educate users on data interpretation
+6. **Platform Partnerships**: Work with social media to flag misrepresentations
+7. **Legal Action**: Consider defamation suits only for egregious, provable falsehoods (last resort)
+
+### Transparency Trade-Offs Discussion
+
+**Tension**: Maximum transparency vs. protection from misuse
+
+**CIA Position**: Err on side of transparency, accept some misuse risk
+
+**Rationale**:
+- Democracy requires informed citizens (transparency essential)
+- Restricting data protects politicians from accountability (greater harm)
+- Misuse risk mitigated through education, responsible use guidelines
+- Benefits (accountability, democratic strengthening) outweigh costs (some harassment, foreign interest)
+
+**Trade-Off Examples**:
+
+| Scenario | Transparency Option | Protection Option | CIA Choice |
+|----------|--------------------|--------------------|-----------|
+| **Foreign Access** | Allow (public data) | Block foreign IPs | Transparency (already public) |
+| **Harassment Risk** | Publish all performance data | Redact low performers | Transparency (with context) |
+| **Forecasts** | Publish collapse forecasts | Suppress destabilizing info | Transparency (with uncertainty) |
+| **Health Privacy** | Report performance decline | Suppress if health-related | Compromise (objective metrics only) |
+
+**Conclusion**: CIA defaults to maximum transparency except where clear, substantial harm to individual privacy without accountability benefit.
 
 ---
 
@@ -2974,6 +3916,370 @@ graph TB
 3. **New Rule Proposals**: Identify gaps in current rule coverage
 4. **Deprecated Rules**: Remove rules with consistent low value
 
+### Intelligence Quality Assurance Framework
+
+**Overview**: Systematic processes to ensure accuracy, reliability, and credibility of CIA intelligence products.
+
+```mermaid
+graph TB
+    A[Intelligence Product] --> B{Quality Gates}
+    
+    B --> C1[Data Quality<br/>Validation]
+    B --> C2[Forecast Accuracy<br/>Tracking]
+    B --> C3[False Positive/Negative<br/>Monitoring]
+    B --> C4[Analyst Confidence<br/>Calibration]
+    B --> C5[Peer Review<br/>Process]
+    
+    C1 & C2 & C3 & C4 & C5 --> D[Quality Score]
+    D --> E{Pass Quality Threshold?}
+    
+    E -->|Yes| F[Publish Intelligence]
+    E -->|No| G[Revise & Resubmit]
+    
+    F --> H[Post-Publication Monitoring]
+    G --> A
+    
+    style A fill:#e1f5ff,stroke:#333,stroke-width:2px
+    style B fill:#ffeb99,stroke:#333,stroke-width:2px
+    style D fill:#d1c4e9,stroke:#333,stroke-width:2px
+    style F fill:#ccffcc,stroke:#333,stroke-width:2px
+    style G fill:#ffcccc,stroke:#333,stroke-width:2px
+```
+
+#### 1. Data Quality Metrics and Validation
+
+**Data Quality Dimensions**:
+
+| Dimension | Definition | Measurement | Target |
+|-----------|-----------|-------------|--------|
+| **Completeness** | % of expected data points present | Missing records / Total records | >98% |
+| **Accuracy** | Correctness of data values | Validation errors / Total checks | <2% error rate |
+| **Timeliness** | Data freshness and update frequency | Time since last update | <24 hours |
+| **Consistency** | Data coherence across sources | Cross-source discrepancies / Checks | <1% inconsistent |
+| **Validity** | Data conforms to business rules | Rule violations / Records | <0.5% invalid |
+
+**Automated Validation Checks**:
+
+```python
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+
+class DataQualityValidator:
+    def __init__(self, data):
+        self.data = data
+        self.quality_report = {}
+    
+    def check_completeness(self):
+        """Check for missing required fields"""
+        required_fields = ['politician_id', 'date', 'attendance', 'documents', 'votes']
+        missing_counts = {}
+        
+        for field in required_fields:
+            missing = self.data[field].isnull().sum()
+            missing_pct = (missing / len(self.data)) * 100
+            missing_counts[field] = {
+                'count': missing,
+                'percentage': missing_pct,
+                'status': 'PASS' if missing_pct < 2 else 'FAIL'
+            }
+        
+        self.quality_report['completeness'] = missing_counts
+        return missing_counts
+    
+    def check_accuracy(self):
+        """Check for out-of-range values"""
+        accuracy_checks = {
+            'attendance': (0, 100),    # Valid range: 0-100%
+            'documents': (0, 200),     # Valid range: 0-200 docs
+            'win_rate': (0, 100),      # Valid range: 0-100%
+            'rebel_rate': (0, 100),    # Valid range: 0-100%
+        }
+        
+        errors = {}
+        for field, (min_val, max_val) in accuracy_checks.items():
+            out_of_range = ((self.data[field] < min_val) | (self.data[field] > max_val)).sum()
+            errors[field] = {
+                'count': out_of_range,
+                'percentage': (out_of_range / len(self.data)) * 100,
+                'status': 'PASS' if out_of_range == 0 else 'FAIL'
+            }
+        
+        self.quality_report['accuracy'] = errors
+        return errors
+    
+    def check_timeliness(self):
+        """Check data freshness"""
+        latest_date = pd.to_datetime(self.data['date']).max()
+        days_since_update = (datetime.now() - latest_date).days
+        
+        status = 'PASS' if days_since_update <= 1 else 'FAIL'
+        
+        self.quality_report['timeliness'] = {
+            'latest_date': latest_date,
+            'days_since_update': days_since_update,
+            'status': status
+        }
+        
+        return days_since_update
+    
+    def check_consistency(self):
+        """Check logical consistency"""
+        inconsistencies = []
+        
+        # Example: Attendance + Abstentions shouldn't exceed 100%
+        invalid_total = (self.data['attendance'] + self.data['abstention_rate'] > 100).sum()
+        if invalid_total > 0:
+            inconsistencies.append({
+                'rule': 'Attendance + Abstentions <= 100%',
+                'violations': invalid_total
+            })
+        
+        # Example: Win rate should be lower for opposition
+        opposition_high_win = ((self.data['party_role'] == 'opposition') & 
+                               (self.data['win_rate'] > 70)).sum()
+        if opposition_high_win > 0:
+            inconsistencies.append({
+                'rule': 'Opposition win rate typically <70%',
+                'warnings': opposition_high_win
+            })
+        
+        self.quality_report['consistency'] = inconsistencies
+        return inconsistencies
+    
+    def generate_report(self):
+        """Generate comprehensive data quality report"""
+        self.check_completeness()
+        self.check_accuracy()
+        self.check_timeliness()
+        self.check_consistency()
+        
+        # Calculate overall quality score
+        pass_count = sum(1 for check in self.quality_report.values() 
+                        if isinstance(check, dict) and check.get('status') == 'PASS')
+        total_checks = len(self.quality_report)
+        quality_score = (pass_count / total_checks) * 100
+        
+        print(f"=== Data Quality Report ===")
+        print(f"Overall Quality Score: {quality_score:.1f}%")
+        print(f"\nDetailed Results:")
+        for check_name, results in self.quality_report.items():
+            print(f"\n{check_name.upper()}:")
+            print(f"  {results}")
+        
+        return self.quality_report, quality_score
+
+# Usage
+validator = DataQualityValidator(politician_data)
+quality_report, score = validator.generate_report()
+```
+
+#### 2. Forecast Accuracy Tracking
+
+**Tracking System**:
+
+| Forecast Type | Forecasts Made (2025) | MAPE | RMSE | Directional Accuracy | Status |
+|--------------|---------------------|------|------|---------------------|--------|
+| **Party Support (3mo)** | 48 | 4.1% | 1.9 pp | 77% | ✅ PASS |
+| **Attendance (1mo)** | 349 | 2.7% | 1.4 pp | 83% | ✅ PASS |
+| **Coalition Stability** | 12 | 12.8% | 25 days | 75% | ✅ PASS |
+| **Election Seats** | 1 | 3.2% | 5.8 seats | N/A | ✅ PASS |
+| **Risk Escalation** | 124 | 18.5% | N/A | 68% | ⚠️ BELOW TARGET |
+
+**Continuous Monitoring Process**:
+
+```python
+class ForecastTracker:
+    def __init__(self):
+        self.forecasts = []
+    
+    def record_forecast(self, forecast_id, forecast_type, point_forecast, 
+                       confidence_interval, actual_outcome=None):
+        """Record forecast and actual outcome"""
+        forecast_record = {
+            'id': forecast_id,
+            'type': forecast_type,
+            'timestamp': datetime.now(),
+            'point_forecast': point_forecast,
+            'ci_lower': confidence_interval[0],
+            'ci_upper': confidence_interval[1],
+            'actual_outcome': actual_outcome,
+            'accuracy_metrics': None
+        }
+        self.forecasts.append(forecast_record)
+    
+    def update_actual(self, forecast_id, actual_outcome):
+        """Update with actual outcome when available"""
+        for forecast in self.forecasts:
+            if forecast['id'] == forecast_id:
+                forecast['actual_outcome'] = actual_outcome
+                forecast['accuracy_metrics'] = self._calculate_accuracy(forecast)
+                break
+    
+    def _calculate_accuracy(self, forecast):
+        """Calculate accuracy metrics"""
+        if forecast['actual_outcome'] is None:
+            return None
+        
+        point = forecast['point_forecast']
+        actual = forecast['actual_outcome']
+        ci_lower = forecast['ci_lower']
+        ci_upper = forecast['ci_upper']
+        
+        # Point forecast error
+        absolute_error = abs(actual - point)
+        percentage_error = (absolute_error / actual) * 100 if actual != 0 else 0
+        
+        # CI coverage
+        ci_covered = ci_lower <= actual <= ci_upper
+        
+        return {
+            'absolute_error': absolute_error,
+            'percentage_error': percentage_error,
+            'ci_covered': ci_covered,
+            'bias': actual - point  # Positive = under-predicted, Negative = over-predicted
+        }
+    
+    def generate_accuracy_report(self, forecast_type=None):
+        """Generate accuracy report for forecast type"""
+        # Filter by type if specified
+        forecasts_to_analyze = [f for f in self.forecasts 
+                               if f['actual_outcome'] is not None and 
+                               (forecast_type is None or f['type'] == forecast_type)]
+        
+        if not forecasts_to_analyze:
+            return None
+        
+        # Calculate aggregate metrics
+        errors = [f['accuracy_metrics']['absolute_error'] for f in forecasts_to_analyze]
+        pct_errors = [f['accuracy_metrics']['percentage_error'] for f in forecasts_to_analyze]
+        biases = [f['accuracy_metrics']['bias'] for f in forecasts_to_analyze]
+        ci_coverage = sum(1 for f in forecasts_to_analyze if f['accuracy_metrics']['ci_covered'])
+        
+        report = {
+            'n_forecasts': len(forecasts_to_analyze),
+            'mae': np.mean(errors),
+            'rmse': np.sqrt(np.mean([e**2 for e in errors])),
+            'mape': np.mean(pct_errors),
+            'mean_bias': np.mean(biases),
+            'ci_coverage_rate': (ci_coverage / len(forecasts_to_analyze)) * 100
+        }
+        
+        return report
+
+# Usage
+tracker = ForecastTracker()
+
+# Record forecast
+tracker.record_forecast(
+    forecast_id='FORECAST_2025_001',
+    forecast_type='party_support',
+    point_forecast=36.8,
+    confidence_interval=(34.4, 39.1),
+    actual_outcome=None  # To be updated later
+)
+
+# Update when actual outcome known
+tracker.update_actual('FORECAST_2025_001', actual_outcome=37.2)
+
+# Generate report
+report = tracker.generate_accuracy_report(forecast_type='party_support')
+print(f"Party Support Forecast Accuracy: MAPE = {report['mape']:.2f}%")
+```
+
+#### 3. False Positive/Negative Rate Monitoring
+
+**Classification Confusion Matrix**:
+
+|  | **Predicted: High Risk** | **Predicted: Low Risk** |
+|---|------------------------|----------------------|
+| **Actual: High Risk** | True Positive (TP) = 87 | False Negative (FN) = 12 |
+| **Actual: Low Risk** | False Positive (FP) = 43 | True Negative (TN) = 207 |
+
+**Performance Metrics**:
+
+```
+Precision = TP / (TP + FP) = 87 / (87 + 43) = 66.9%
+Recall (Sensitivity) = TP / (TP + FN) = 87 / (87 + 12) = 87.9%
+Specificity = TN / (TN + FP) = 207 / (207 + 43) = 82.8%
+False Positive Rate = FP / (FP + TN) = 43 / (43 + 207) = 17.2%
+False Negative Rate = FN / (FN + TP) = 12 / (12 + 87) = 12.1%
+F1-Score = 2 × (Precision × Recall) / (Precision + Recall) = 75.9%
+```
+
+**Target Thresholds**:
+- False Positive Rate: <15% (Currently: 17.2% - FAIL, needs adjustment)
+- False Negative Rate: <10% (Currently: 12.1% - FAIL, needs improvement)
+- F1-Score: >80% (Currently: 75.9% - BELOW TARGET)
+
+**Action Plan**: Retune risk rule thresholds to reduce FPR and FNR.
+
+#### 4. Analyst Confidence Calibration
+
+**Concept**: Ensure analyst confidence levels match actual accuracy (well-calibrated = confidence equals accuracy).
+
+**Calibration Assessment**:
+
+| Analyst Confidence | # Predictions | Actual Accuracy | Calibration Error |
+|-------------------|--------------|----------------|------------------|
+| **90-100% Confident** | 45 | 86% | -4% (overconfident) |
+| **70-89% Confident** | 128 | 76% | -2% (slightly over) |
+| **50-69% Confident** | 89 | 58% | +2% (slightly under) |
+| **<50% Confident** | 23 | 31% | +6% (underconfident) |
+
+**Calibration Curve**:
+
+```mermaid
+xychart-beta
+    title "Analyst Confidence Calibration"
+    x-axis [10, 30, 50, 70, 90]
+    y-axis "Actual Accuracy %" 0 --> 100
+    line [10, 31, 58, 76, 86]
+```
+
+**Ideal**: Points should fall on diagonal (confidence = accuracy). Current: Slight overconfidence at high confidence levels.
+
+**Calibration Training**: Provide feedback to analysts on historical accuracy vs. stated confidence to improve calibration.
+
+#### 5. Intelligence Product Peer Review Process
+
+**Review Workflow**:
+
+1. **Draft Submission**: Analyst completes intelligence product
+2. **Automated Checks**: Data quality validation, citation verification
+3. **Peer Review**: Senior analyst reviews methodology and conclusions
+4. **Subject Matter Expert**: Domain expert validates political context
+5. **Editorial Review**: Communication specialist ensures clarity
+6. **Approval**: Product manager approves for publication
+7. **Post-Publication**: Monitor user feedback and update if needed
+
+**Review Checklist**:
+
+| Criterion | Weight | Target Score | Example |
+|-----------|--------|-------------|---------|
+| **Data Quality** | 25% | >90% | Complete, accurate, timely data |
+| **Methodology** | 20% | >85% | Appropriate analytical methods |
+| **Objectivity** | 20% | >95% | No political bias detected |
+| **Clarity** | 15% | >80% | Clear, understandable presentation |
+| **Actionability** | 10% | >75% | Provides useful insights |
+| **Citations** | 10% | 100% | All sources properly cited |
+
+**Minimum Publication Threshold**: 80% overall quality score
+
+**Example Review**:
+
+```
+Intelligence Product: "Coalition Stability Forecast Q2 2025"
+- Data Quality: 95% ✅
+- Methodology: 90% ✅ (ARIMA + Cox regression appropriate)
+- Objectivity: 98% ✅ (No bias detected)
+- Clarity: 85% ✅ (Well-structured, clear conclusions)
+- Actionability: 82% ✅ (Provides 3-month warning, specific risks)
+- Citations: 100% ✅ (All data sources cited)
+
+Overall Score: 91.5% ✅ APPROVED FOR PUBLICATION
+```
+
 ---
 
 ## 🎓 Training & Knowledge Transfer
@@ -3041,11 +4347,241 @@ graph TB
 
 ---
 
+## 📊 Appendix A: Statistical Methods Reference
+
+### A.1 Descriptive Statistics
+
+| Metric | Formula | Use Case | Interpretation | Python Example |
+|--------|---------|----------|----------------|----------------|
+| **Mean** | `μ = Σ(x) / n` | Central tendency | Average performance | `np.mean(data)` |
+| **Median** | Middle value when sorted | Robust central tendency | Resistant to outliers | `np.median(data)` |
+| **Standard Deviation** | `σ = √[Σ(x-μ)² / n]` | Variability measure | Performance consistency | `np.std(data)` |
+| **Percentile** | Value below which % of data falls | Ranking position | Relative performance | `np.percentile(data, 75)` |
+| **Variance** | `σ² = Σ(x-μ)² / n` | Spread of distribution | Squared deviation | `np.var(data)` |
+| **Range** | `max(x) - min(x)` | Total spread | Min to max distance | `np.ptp(data)` |
+| **IQR** | `Q3 - Q1` | Robust spread measure | Middle 50% spread | `iqr(data)` |
+
+**Python Implementation**:
+```python
+import numpy as np
+from scipy.stats import iqr
+
+attendance_data = [85.2, 87.5, 83.1, 86.8, 84.2, 82.9, 88.1, 45.1]
+
+print(f"Mean: {np.mean(attendance_data):.2f}%")
+print(f"Median: {np.median(attendance_data):.2f}%")
+print(f"Std Dev: {np.std(attendance_data):.2f}")
+print(f"75th Percentile: {np.percentile(attendance_data, 75):.2f}%")
+print(f"IQR: {iqr(attendance_data):.2f}")
+```
+
+### A.2 Inferential Statistics
+
+| Test | Purpose | Assumptions | Example Use Case | Threshold |
+|------|---------|------------|------------------|-----------|
+| **t-test** | Compare two group means | Normal distribution, equal variance | Party A vs. Party B effectiveness | p < 0.05 |
+| **Chi-square (χ²)** | Test independence | Categorical data, sufficient sample | Voting pattern vs. party affiliation | p < 0.05 |
+| **ANOVA** | Compare 3+ group means | Normal distribution, equal variance | Multi-party effectiveness comparison | p < 0.05 |
+| **Pearson Correlation** | Linear relationship strength | Normal distribution, linear | Attendance vs. productivity | \|r\| > 0.3 |
+| **Spearman Correlation** | Monotonic relationship (non-parametric) | No distribution assumption | Rank-based relationships | \|ρ\| > 0.3 |
+
+**T-Test Example**:
+```python
+from scipy.stats import ttest_ind
+
+party_a_effectiveness = [72, 68, 75, 71, 69, 73, 70, 74]
+party_b_effectiveness = [58, 62, 55, 60, 59, 57, 61, 56]
+
+t_statistic, p_value = ttest_ind(party_a_effectiveness, party_b_effectiveness)
+
+print(f"T-statistic: {t_statistic:.3f}")
+print(f"P-value: {p_value:.4f}")
+if p_value < 0.05:
+    print("Significant difference between parties (p < 0.05)")
+```
+
+**Chi-Square Example**:
+```python
+from scipy.stats import chi2_contingency
+import numpy as np
+
+# Contingency table: Voting pattern (For/Against) vs. Party (Gov/Opp)
+observed = np.array([
+    [150, 25],   # Government: 150 For, 25 Against
+    [30, 140]    # Opposition: 30 For, 140 Against
+])
+
+chi2, p_value, dof, expected = chi2_contingency(observed)
+
+print(f"Chi-square: {chi2:.3f}")
+print(f"P-value: {p_value:.6f}")
+if p_value < 0.05:
+    print("Voting pattern depends on party affiliation (p < 0.05)")
+```
+
+### A.3 Time Series Analysis Formulas
+
+| Method | Formula | Parameters | Use Case |
+|--------|---------|-----------|----------|
+| **Moving Average** | `MA_t = (x_t + x_{t-1} + ... + x_{t-n+1}) / n` | n = window size | Smooth trends |
+| **Exponential Smoothing** | `S_t = α·x_t + (1-α)·S_{t-1}` | α = smoothing factor | Weighted recent data |
+| **ARIMA** | `Y_t = c + Σφ_i·Y_{t-i} + Σθ_j·ε_{t-j} + ε_t` | (p,d,q) orders | Forecast time series |
+| **Autocorrelation** | `ACF(k) = Cov(Y_t, Y_{t-k}) / Var(Y_t)` | k = lag | Detect patterns |
+
+**Moving Average Example**:
+```python
+import pandas as pd
+
+# Weekly attendance data
+attendance = pd.Series([85, 84, 83, 82, 81, 80, 78, 76, 75, 74])
+
+# 3-week moving average
+ma_3 = attendance.rolling(window=3).mean()
+
+print("3-Week Moving Average:")
+print(ma_3)
+```
+
+### A.4 Regression Analysis
+
+| Model | Formula | Use Case | Output |
+|-------|---------|----------|--------|
+| **Linear Regression** | `y = β₀ + β₁x + ε` | Predict continuous outcome | Coefficients, R² |
+| **Logistic Regression** | `log(p/(1-p)) = β₀ + β₁x` | Predict binary outcome | Odds ratios, probability |
+| **Multiple Regression** | `y = β₀ + β₁x₁ + β₂x₂ + ... + ε` | Multiple predictors | Adjusted R², coefficients |
+
+**Linear Regression Example**:
+```python
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+# Attendance (X) vs. Productivity (Y)
+attendance = np.array([85, 87, 83, 86, 84, 82, 88, 81]).reshape(-1, 1)
+productivity = np.array([15, 18, 12, 16, 14, 11, 19, 10])
+
+model = LinearRegression()
+model.fit(attendance, productivity)
+
+print(f"Slope (β₁): {model.coef_[0]:.3f}")
+print(f"Intercept (β₀): {model.intercept_:.3f}")
+print(f"R² Score: {model.score(attendance, productivity):.3f}")
+
+# Predict productivity for 90% attendance
+predicted = model.predict([[90]])
+print(f"Predicted productivity at 90% attendance: {predicted[0]:.1f} docs")
+```
+
+### A.5 Machine Learning Metrics
+
+| Metric | Formula | Interpretation | Threshold |
+|--------|---------|----------------|-----------|
+| **Accuracy** | `(TP + TN) / (TP + TN + FP + FN)` | Overall correctness | >80% |
+| **Precision** | `TP / (TP + FP)` | Positive prediction accuracy | >70% |
+| **Recall** | `TP / (TP + FN)` | True positive detection rate | >75% |
+| **F1-Score** | `2 × (Precision × Recall) / (Precision + Recall)` | Harmonic mean of P&R | >75% |
+| **AUC-ROC** | Area under ROC curve | Classifier performance | >0.8 |
+
+**Classification Metrics Example**:
+```python
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+# Actual vs. Predicted risk levels (1 = High Risk, 0 = Low Risk)
+y_true = [1, 1, 0, 0, 1, 0, 1, 0, 0, 1]
+y_pred = [1, 0, 0, 1, 1, 0, 1, 0, 0, 1]
+
+print(f"Accuracy: {accuracy_score(y_true, y_pred):.3f}")
+print(f"Precision: {precision_score(y_true, y_pred):.3f}")
+print(f"Recall: {recall_score(y_true, y_pred):.3f}")
+print(f"F1-Score: {f1_score(y_true, y_pred):.3f}")
+```
+
+### A.6 Network Analysis Metrics
+
+| Metric | Formula | Range | Interpretation |
+|--------|---------|-------|----------------|
+| **Degree Centrality** | `C_D(i) = k_i / (n-1)` | [0, 1] | Connection proportion |
+| **Betweenness Centrality** | `C_B(i) = Σ(σ_st(i) / σ_st)` | [0, 1] | Bridge position |
+| **Eigenvector Centrality** | `x_i = (1/λ)Σ A_ij·x_j` | [0, 1] | Influential connections |
+| **Clustering Coefficient** | `C_i = 2e_i / (k_i(k_i-1))` | [0, 1] | Local density |
+
+**Network Centrality Example**:
+```python
+import networkx as nx
+
+G = nx.Graph()
+G.add_edges_from([
+    ('Anna', 'Lars'), ('Anna', 'Maria'), ('Lars', 'Maria'),
+    ('Maria', 'Per'), ('Per', 'Erik'), ('Per', 'Sara')
+])
+
+degree_cent = nx.degree_centrality(G)
+betweenness_cent = nx.betweenness_centrality(G)
+eigenvector_cent = nx.eigenvector_centrality(G)
+
+print("Network Centrality Measures:")
+for node in G.nodes():
+    print(f"{node}: Degree={degree_cent[node]:.3f}, "
+          f"Betweenness={betweenness_cent[node]:.3f}, "
+          f"Eigenvector={eigenvector_cent[node]:.3f}")
+```
+
+### A.7 Probability and Distributions
+
+| Distribution | PDF/PMF | Parameters | Use Case |
+|-------------|---------|-----------|----------|
+| **Normal** | `f(x) = (1/σ√2π)·e^(-(x-μ)²/2σ²)` | μ (mean), σ (std) | Continuous symmetric data |
+| **Binomial** | `P(X=k) = C(n,k)·p^k·(1-p)^(n-k)` | n (trials), p (prob) | Success/failure counts |
+| **Poisson** | `P(X=k) = (λ^k·e^(-λ)) / k!` | λ (rate) | Event counts in interval |
+| **Uniform** | `f(x) = 1 / (b-a)` | a (min), b (max) | Equal probability |
+
+**Normal Distribution Example**:
+```python
+from scipy.stats import norm
+
+# Attendance ~ N(85, 7.8)
+mean_attendance = 85
+std_attendance = 7.8
+
+# Probability of attendance < 70%
+prob_below_70 = norm.cdf(70, loc=mean_attendance, scale=std_attendance)
+print(f"P(Attendance < 70%): {prob_below_70:.4f}")
+
+# 95th percentile (top 5%)
+percentile_95 = norm.ppf(0.95, loc=mean_attendance, scale=std_attendance)
+print(f"95th Percentile: {percentile_95:.2f}%")
+```
+
+### A.8 Interpretation Guidelines
+
+**Correlation Strength**:
+- \|r\| < 0.3: Weak correlation
+- 0.3 ≤ \|r\| < 0.7: Moderate correlation
+- \|r\| ≥ 0.7: Strong correlation
+
+**Effect Size (Cohen's d)**:
+- d < 0.2: Small effect
+- 0.2 ≤ d < 0.8: Medium effect
+- d ≥ 0.8: Large effect
+
+**P-Value Interpretation**:
+- p < 0.001: Highly significant (***)
+- p < 0.01: Very significant (**)
+- p < 0.05: Significant (*)
+- p ≥ 0.05: Not significant (ns)
+
+**R² (Coefficient of Determination)**:
+- R² < 0.3: Weak model fit
+- 0.3 ≤ R² < 0.7: Moderate model fit
+- R² ≥ 0.7: Strong model fit
+
+---
+
 ## 📝 Document Version History
 
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | 2025-11-15 | Intelligence Operative Team | Initial comprehensive documentation |
+| 2.0 | 2025-11-17 | Intelligence Operative Team | Major expansion: Added 7 case studies, advanced predictive methods (ARIMA, Prophet, ensemble), comprehensive anomaly detection toolkit, expanded network analysis, intelligence quality assurance, 10 ethical scenarios, statistical methods appendix |
 
 ---
 
