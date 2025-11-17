@@ -115,7 +115,23 @@
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary</class>
+		
+		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewPoliticianBehavioralTrends</class>
+		<!-- TODO: Add remaining v1.30 view entities:
+		     - ViewPartyEffectivenessTrends (party.impl package)
+		     - ViewRiskScoreEvolution (rules.impl package)
+		     - ViewCommitteeProductivityMatrix (committee.impl package)
+		-->
+		
+		<!-- TODO V1.29 Intelligence Operations Enhancement Views:
+		     - ViewRiksdagenPartyMomentumAnalysis (party.impl)
+		     - ViewRiksdagenCoalitionAlignmentMatrix (party.impl)
+		     - ViewRiksdagenVotingAnomalyDetection (politician.impl)
+		     - ViewRiksdagenPoliticianInfluenceMetrics (politician.impl)
+		     - ViewRiksdagenCrisisResilienceIndicators (politician.impl)
+		     - ViewRiksdagenIntelligenceDashboard (impl package)
+		-->
 
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary</class>
