@@ -210,12 +210,12 @@ For a conceptual overview of the security architecture, see the [Security Archit
 
 These **FSBP-aligned controls** ensure the CIA project maintains robust security for financial operations, proactively addresses vulnerabilities, and aligns with industry best practices.
 
-For more details on AWS deployment, see the [AWS Infrastructure](AWS_INFRASTRUCTURE.md) documentation and [CloudFormation template](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
+For more details on AWS deployment, see [README.md - AWS Services Stack](README.md#-aws-services-stack) and [CloudFormation template](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
 
 ## Related Documentation
 
 - [Architecture Documentation](ARCHITECTURE.md) - System architecture overview
-- [AWS Infrastructure](AWS_INFRASTRUCTURE.md) - CloudFormation and AWS deployment details
+- [AWS Services Stack](README.md#-aws-services-stack) - CloudFormation and AWS deployment details
 - [End-of-Life Strategy](End-of-Life-Strategy.md) - Technology maintenance planning
 - [Security Architecture](SECURITY_ARCHITECTURE.md) - Security model details
 - [README](README.md) - Project overview and quick links

@@ -212,8 +212,6 @@ Our analysis is powered by authoritative Swedish government and international da
 | 🌍 [World Bank Open Data](http://data.worldbank.org/) | Global economic indicators and demographic data |
 | 💹 [Swedish Financial Management Authority](https://www.esv.se/) | Government finances and economic trends |
 
-For more details on our data integration approach, see the [Data Integration Documentation](DATA_INTEGRATION.md).
-
 ## 🏆 Project Status
 
 <div align="center">
@@ -608,4 +606,4 @@ For our future vision incorporating more advanced AI capabilities, see our [Futu
 - [End-of-Life Strategy](End-of-Life-Strategy.md) - Technology maintenance planning
 - [CIA Features](https://hack23.com/cia-features.html) - Detailed feature showcase
 - [Package Overview Diagram](https://hack23.github.io/cia/apidocs/package-dependencies.svg) - Visual code package dependencies
-- [GitHub Copilot Setup](.github/COPILOT_SETUP.md) - MCP servers and environment configuration for AI-assisted development
+- [GitHub Copilot Instructions](.github/copilot-instructions.md) - Repository-specific instructions for AI-assisted development

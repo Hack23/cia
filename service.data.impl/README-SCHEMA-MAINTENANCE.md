@@ -164,4 +164,4 @@ If the changelog is empty:
 
 - [PostgreSQL pg_dump Documentation](https://www.postgresql.org/docs/16/app-pgdump.html)
 - [Liquibase Documentation](https://docs.liquibase.com/)
-- [CIA Architecture Documentation](../../ARCHITECTURE.md)
+- [CIA Architecture Documentation](../ARCHITECTURE.md)
