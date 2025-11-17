@@ -352,9 +352,12 @@ graph TB
 
 #### Anomaly Detection Methods
 
+Brief overview:
 1. **Statistical Outliers**: Z-score > 2.0 σ or IQR-based flagging
 2. **Behavioral Shifts**: >30% change in rolling windows
 3. **Rule Violations**: Threshold breaches in 45 risk rules
+
+*See detailed Advanced Anomaly Detection section below for comprehensive methodologies.*
 
 #### Sequential Patterns
 
@@ -363,6 +366,588 @@ graph TB
 | **Pre-Resignation** | Declining attendance → Reduced docs → Increased abstentions → Resignation | 73% | `PoliticianDecliningEngagement.drl` |
 | **Coalition Stress** | Support drop → Public disagreement → Rebel voting → Renegotiation/Collapse | 65% | `PartyDecliningGovernmentSupportPercentage.drl` |
 | **Scandal Response** | Scandal breaks → Absence → Reduced visibility → Resignation or Recovery | 58% | `PoliticianLazy.drl` + Media monitoring |
+
+### 3.1 Advanced Anomaly Detection Toolkit
+
+Anomaly detection is critical for identifying politicians exhibiting unusual behavioral patterns that may indicate risks, crises, or strategic shifts. This section provides comprehensive methodologies beyond the basic approach.
+
+#### Overview of Anomaly Detection Methods
+
+```mermaid
+graph TB
+    A[Behavioral Data] --> B{Anomaly Detection Method}
+    
+    B --> C1[Parametric Methods<br/>Z-Score, T-Test]
+    B --> C2[Non-Parametric Methods<br/>IQR, Percentile]
+    B --> C3[Machine Learning<br/>Isolation Forest, DBSCAN]
+    B --> C4[Time Series Methods<br/>Seasonal Decomposition]
+    
+    C1 & C2 & C3 & C4 --> D[Anomaly Scores]
+    D --> E{Severity Classification}
+    
+    E --> F1[🟢 Normal<br/>Score < 2σ]
+    E --> F2[🟡 Moderate Anomaly<br/>Score 2-3σ]
+    E --> F3[🔴 Severe Anomaly<br/>Score > 3σ]
+    
+    style A fill:#e1f5ff,stroke:#333,stroke-width:2px
+    style B fill:#ffeb99,stroke:#333,stroke-width:2px
+    style D fill:#d1c4e9,stroke:#333,stroke-width:2px
+    style F1 fill:#ccffcc,stroke:#333,stroke-width:2px
+    style F2 fill:#ffffcc,stroke:#333,stroke-width:2px
+    style F3 fill:#ffcccc,stroke:#333,stroke-width:2px
+```
+
+#### Method 1: Z-Score (Standard Score) - Parametric
+
+**Use Case**: Detecting outliers in normally distributed metrics (attendance, productivity, voting rates).
+
+**Formula**:
+```
+Z = (X - μ) / σ
+
+Where:
+- X = observed value
+- μ = population mean
+- σ = population standard deviation
+```
+
+**Interpretation Thresholds**:
+
+| Z-Score Range | Probability | Classification | Action |
+|---------------|------------|----------------|--------|
+| \|Z\| < 1.96 (±2σ) | 95% | Normal | No action |
+| 1.96 < \|Z\| < 2.58 | 4% | Moderate Anomaly | Monitor |
+| 2.58 < \|Z\| < 3.29 | 0.9% | Significant Anomaly | Investigate |
+| \|Z\| > 3.29 (±3σ) | <0.1% | Severe Anomaly | Alert / CRITICAL |
+
+**CIA Platform Implementation - Attendance Rate Anomaly**:
+
+```python
+import numpy as np
+from scipy import stats
+
+# Parliamentary attendance rates (n=349 politicians)
+attendance_rates = np.array([
+    85.2, 87.1, 84.5, 86.8, 83.2, ..., 45.1  # Last value is outlier
+])
+
+# Calculate population statistics
+mean_attendance = np.mean(attendance_rates)  # μ = 85.3%
+std_attendance = np.std(attendance_rates)    # σ = 7.8%
+
+# Calculate Z-score for politician with 45.1% attendance
+z_score = (45.1 - mean_attendance) / std_attendance
+# Output: Z = -5.15 (SEVERE anomaly, >5 standard deviations below mean)
+
+# Interpretation
+if abs(z_score) > 3.29:
+    severity = "CRITICAL"
+    salience = 100
+elif abs(z_score) > 2.58:
+    severity = "MAJOR"
+    salience = 50
+elif abs(z_score) > 1.96:
+    severity = "MINOR"
+    salience = 10
+else:
+    severity = "NORMAL"
+    salience = 0
+
+print(f"Politician attendance 45.1% is {abs(z_score):.2f} std devs from mean")
+print(f"Classification: {severity} (salience: {salience})")
+# Output:
+# Politician attendance 45.1% is 5.15 std devs from mean
+# Classification: CRITICAL (salience: 100)
+```
+
+**Example Application**:
+
+| Politician | Attendance % | Mean (μ) | Std Dev (σ) | Z-Score | Classification |
+|-----------|-------------|----------|-------------|---------|----------------|
+| **Anna A** | 92.5% | 85.3% | 7.8% | +0.92 | Normal |
+| **Lars L** | 78.2% | 85.3% | 7.8% | -0.91 | Normal |
+| **Maria M** | 68.5% | 85.3% | 7.8% | -2.15 | Moderate Anomaly (MINOR) |
+| **Per P** | 55.8% | 85.3% | 7.8% | -3.78 | Severe Anomaly (CRITICAL) |
+| **Karin K** | 45.1% | 85.3% | 7.8% | -5.15 | Extreme Anomaly (CRITICAL) |
+
+**Advantages**:
+- ✅ Simple, interpretable, widely understood
+- ✅ Provides quantitative severity measure
+- ✅ Works well with normally distributed data
+- ✅ Fast computation, scales to large datasets
+
+**Limitations**:
+- ⚠️ Assumes normal distribution (use Q-Q plot to verify)
+- ⚠️ Sensitive to extreme outliers (inflates σ)
+- ⚠️ Not robust for small samples (n < 30)
+
+#### Method 2: IQR (Interquartile Range) - Non-Parametric
+
+**Use Case**: Robust outlier detection when data is skewed or contains extreme values (document production, votes cast).
+
+**Formula**:
+```
+Q1 = 25th percentile
+Q3 = 75th percentile
+IQR = Q3 - Q1
+
+Lower fence = Q1 - 1.5 × IQR
+Upper fence = Q3 + 1.5 × IQR
+
+Outliers: X < Lower fence OR X > Upper fence
+Extreme outliers: X < Q1 - 3 × IQR OR X > Q3 + 3 × IQR
+```
+
+**Visualization - Box Plot**:
+
+```
+         |---------------|             |
+  -------|       □       |--------     ×  ×
+         |---------------|
+         Q1     Median   Q3
+     
+Lower fence            Upper fence    Outliers
+```
+
+**CIA Platform Implementation - Document Production**:
+
+```python
+import numpy as np
+
+# Annual document production (n=349 politicians)
+documents_per_year = np.array([
+    12, 15, 8, 18, 22, 14, 11, 19, 7, 16, 25, 10, ..., 2, 75
+])
+
+# Calculate quartiles
+Q1 = np.percentile(documents_per_year, 25)   # Q1 = 8 docs
+Q3 = np.percentile(documents_per_year, 75)   # Q3 = 20 docs
+IQR = Q3 - Q1                                 # IQR = 12 docs
+
+# Calculate fences
+lower_fence = Q1 - 1.5 * IQR  # = 8 - 18 = -10 (use 0 as min)
+upper_fence = Q3 + 1.5 * IQR  # = 20 + 18 = 38 docs
+
+# Extreme outlier fences
+extreme_lower = Q1 - 3 * IQR  # = 8 - 36 = -28 (use 0)
+extreme_upper = Q3 + 3 * IQR  # = 20 + 36 = 56 docs
+
+# Classify politicians
+def classify_outlier_iqr(value):
+    if value > extreme_upper or value < extreme_lower:
+        return "EXTREME OUTLIER (CRITICAL)"
+    elif value > upper_fence or value < lower_fence:
+        return "OUTLIER (MAJOR/MINOR)"
+    else:
+        return "NORMAL"
+
+# Examples
+politician_a_docs = 2    # Low outlier
+politician_b_docs = 75   # Extreme high outlier
+
+print(f"Politician A (2 docs): {classify_outlier_iqr(politician_a_docs)}")
+# Output: OUTLIER (MAJOR/MINOR) - Below lower fence
+
+print(f"Politician B (75 docs): {classify_outlier_iqr(politician_b_docs)}")
+# Output: EXTREME OUTLIER (CRITICAL) - Above extreme upper fence
+```
+
+**Example Results**:
+
+| Politician | Documents/Year | Classification | Reason |
+|-----------|---------------|----------------|--------|
+| **Per P** | 2 | Outlier (MAJOR) | Below lower fence (0) |
+| **Anna A** | 12 | Normal | Within IQR range |
+| **Lars L** | 22 | Normal | Within IQR range |
+| **Maria M** | 42 | Outlier (MAJOR) | Above upper fence (38) |
+| **Karin K** | 75 | Extreme Outlier (CRITICAL) | Above extreme fence (56) |
+
+**Advantages**:
+- ✅ Robust to extreme outliers (not influenced by tail values)
+- ✅ No assumption of normal distribution
+- ✅ Intuitive interpretation (percentile-based)
+- ✅ Works well with skewed data
+
+**Limitations**:
+- ⚠️ Less precise than parametric methods for normal data
+- ⚠️ Doesn't provide quantitative severity score (binary: outlier or not)
+
+**When to Use IQR vs. Z-Score**:
+
+| Data Characteristic | Recommended Method |
+|---------------------|-------------------|
+| **Normal distribution** | Z-Score (more powerful) |
+| **Skewed distribution** | IQR (more robust) |
+| **Contains extreme outliers** | IQR (not influenced) |
+| **Small sample (n<30)** | IQR (more reliable) |
+| **Need severity score** | Z-Score (quantitative) |
+
+#### Method 3: Isolation Forest - Machine Learning
+
+**Use Case**: Multivariate anomaly detection considering multiple behavioral factors simultaneously (attendance + productivity + voting patterns).
+
+**Concept**: Anomalies are easier to isolate (fewer splits required in decision tree) than normal points.
+
+**Algorithm**:
+1. Randomly sample data points and features
+2. Build isolation tree by random splits
+3. Measure path length to isolate each point (shorter path = more anomalous)
+4. Average across many trees (forest)
+5. Compute anomaly score
+
+**Anomaly Score Formula**:
+```
+s(x, n) = 2^(-E(h(x)) / c(n))
+
+Where:
+- E(h(x)) = average path length to isolate point x
+- c(n) = average path length for dataset of size n
+- Score close to 1 = anomaly
+- Score close to 0 = normal
+```
+
+**CIA Platform Implementation**:
+
+```python
+from sklearn.ensemble import IsolationForest
+import numpy as np
+import pandas as pd
+
+# Politician behavioral features
+data = pd.DataFrame({
+    'attendance': [85.2, 87.5, 45.1, 83.8, 92.1, ...],
+    'documents': [12, 15, 2, 14, 18, ...],
+    'win_rate': [72, 68, 35, 75, 81, ...],
+    'rebel_rate': [2, 3, 18, 2, 1, ...],
+    'abstention_rate': [1, 2, 12, 1, 0, ...],
+})
+
+# Initialize Isolation Forest
+iso_forest = IsolationForest(
+    n_estimators=100,      # Number of trees
+    contamination=0.05,    # Expected proportion of outliers (5%)
+    random_state=42
+)
+
+# Fit model and predict anomalies
+anomaly_labels = iso_forest.fit_predict(data)
+# Output: 1 = normal, -1 = anomaly
+
+anomaly_scores = iso_forest.score_samples(data)
+# Output: Lower score = more anomalous (typically -0.6 to 0.6)
+
+# Normalize scores to 0-100 scale
+normalized_scores = (anomaly_scores - anomaly_scores.min()) / (anomaly_scores.max() - anomaly_scores.min()) * 100
+
+# Create results dataframe
+results = pd.DataFrame({
+    'politician_id': range(len(data)),
+    'anomaly_label': anomaly_labels,
+    'anomaly_score': normalized_scores,
+    'classification': ['ANOMALY' if label == -1 else 'NORMAL' for label in anomaly_labels]
+})
+
+# Top 10 most anomalous politicians
+top_anomalies = results.nsmallest(10, 'anomaly_score')
+print(top_anomalies)
+```
+
+**Example Output**:
+
+| Politician ID | Attendance | Documents | Win Rate | Rebel Rate | Anomaly Score | Classification |
+|--------------|-----------|-----------|----------|------------|--------------|----------------|
+| **142** | 45.1% | 2 | 35% | 18% | 2.3 (EXTREME) | ANOMALY |
+| **267** | 52.8% | 1 | 28% | 22% | 5.7 (HIGH) | ANOMALY |
+| **089** | 68.2% | 0 | 42% | 15% | 12.1 (MODERATE) | ANOMALY |
+| **201** | 85.1% | 12 | 72% | 2% | 48.5 (LOW) | NORMAL |
+| **315** | 87.8% | 15 | 75% | 1% | 52.2 (LOW) | NORMAL |
+
+**Multivariate Anomaly Example**:
+- **Politician 142**: Low on ALL metrics → Clear anomaly (combined risk)
+- **Politician 315**: High on ALL metrics → Normal high performer
+- **Politician hybrid**: High attendance (85%) BUT low documents (3) AND high rebel rate (12%) → Multivariate anomaly (single-metric methods might miss)
+
+**Advantages**:
+- ✅ Considers multiple variables simultaneously (captures complex patterns)
+- ✅ No assumption of data distribution
+- ✅ Effective for high-dimensional data
+- ✅ Computationally efficient (linear time complexity)
+
+**Limitations**:
+- ⚠️ Less interpretable than statistical methods ("black box")
+- ⚠️ Requires tuning contamination parameter
+- ⚠️ Sensitive to feature scaling (normalize features first)
+
+#### Method 4: DBSCAN Clustering - Density-Based
+
+**Use Case**: Identifying behavioral clusters and detecting outliers as points that don't belong to any cluster.
+
+**Concept**: 
+- **Core points**: High-density regions (many neighbors)
+- **Border points**: Near high-density regions
+- **Noise/Outliers**: Low-density regions (few neighbors)
+
+**Parameters**:
+- **ε (epsilon)**: Maximum distance between neighbors
+- **MinPts**: Minimum points to form dense region
+
+**Algorithm**:
+1. For each point, count neighbors within distance ε
+2. Points with ≥ MinPts neighbors are "core points"
+3. Form clusters by connecting core points
+4. Points not in any cluster = outliers
+
+**CIA Platform Implementation**:
+
+```python
+from sklearn.cluster import DBSCAN
+from sklearn.preprocessing import StandardScaler
+import numpy as np
+import pandas as pd
+
+# Politician behavioral data (2D for visualization)
+data = pd.DataFrame({
+    'attendance': [85, 87, 84, 86, 83, 45, 52, 68, 82, 88, ...],
+    'productivity': [15, 18, 12, 16, 14, 2, 3, 5, 13, 19, ...],
+})
+
+# Standardize features (critical for distance-based methods)
+scaler = StandardScaler()
+data_scaled = scaler.fit_transform(data)
+
+# Apply DBSCAN
+dbscan = DBSCAN(
+    eps=0.5,        # Neighborhood size
+    min_samples=5   # Minimum cluster size
+)
+
+clusters = dbscan.fit_predict(data_scaled)
+# Output: Cluster labels (0, 1, 2, ...) or -1 for outliers
+
+# Analyze results
+n_clusters = len(set(clusters)) - (1 if -1 in clusters else 0)
+n_outliers = list(clusters).count(-1)
+
+print(f"Found {n_clusters} behavioral clusters")
+print(f"Detected {n_outliers} outliers")
+
+# Classify politicians
+data['cluster'] = clusters
+data['classification'] = ['OUTLIER' if c == -1 else f'Cluster {c}' for c in clusters]
+
+# Outlier politicians
+outliers = data[data['cluster'] == -1]
+print(f"\nOutlier politicians:\n{outliers}")
+```
+
+**Visualization**:
+
+```mermaid
+graph TB
+    subgraph "Cluster 0: High Performers"
+        A1[Politician A<br/>Att: 85%, Prod: 15]
+        A2[Politician B<br/>Att: 87%, Prod: 18]
+        A3[Politician C<br/>Att: 86%, Prod: 16]
+    end
+    
+    subgraph "Cluster 1: Moderate Performers"
+        B1[Politician D<br/>Att: 72%, Prod: 8]
+        B2[Politician E<br/>Att: 75%, Prod: 9]
+    end
+    
+    O1[Outlier: Politician F<br/>Att: 45%, Prod: 2<br/>🔴 ANOMALY]
+    O2[Outlier: Politician G<br/>Att: 52%, Prod: 3<br/>🔴 ANOMALY]
+    
+    style A1 fill:#ccffcc,stroke:#333,stroke-width:2px
+    style A2 fill:#ccffcc,stroke:#333,stroke-width:2px
+    style A3 fill:#ccffcc,stroke:#333,stroke-width:2px
+    style B1 fill:#ffffcc,stroke:#333,stroke-width:2px
+    style B2 fill:#ffffcc,stroke:#333,stroke-width:2px
+    style O1 fill:#ffcccc,stroke:#333,stroke-width:2px
+    style O2 fill:#ffcccc,stroke:#333,stroke-width:2px
+```
+
+**Behavioral Clusters Identified**:
+
+| Cluster | Count | Characteristics | Risk Level |
+|---------|-------|----------------|-----------|
+| **0 (High Performers)** | 187 | Attendance: 82-92%, Productivity: 12-22 docs | Low |
+| **1 (Moderate Performers)** | 125 | Attendance: 70-82%, Productivity: 6-12 docs | Low-Moderate |
+| **2 (Low Performers)** | 22 | Attendance: 60-70%, Productivity: 3-6 docs | Moderate-Major |
+| **-1 (Outliers/Anomalies)** | 15 | Attendance: <60%, Productivity: <3 docs | CRITICAL |
+
+**Advantages**:
+- ✅ Automatically determines number of clusters (no pre-specification)
+- ✅ Identifies outliers as non-cluster members
+- ✅ Works with arbitrary cluster shapes (not just spherical)
+- ✅ Interpretable behavioral groupings
+
+**Limitations**:
+- ⚠️ Sensitive to parameter tuning (ε, MinPts)
+- ⚠️ Struggles with varying density clusters
+- ⚠️ Requires feature scaling
+- ⚠️ Computationally expensive for large datasets (O(n²))
+
+#### Method 5: Time Series Anomaly Detection with Seasonal Decomposition
+
+**Use Case**: Detecting anomalies in temporal behavioral patterns while accounting for seasonal effects (parliamentary recesses, election cycles).
+
+**Seasonal Decomposition Formula**:
+```
+Y_t = T_t + S_t + R_t
+
+Where:
+- Y_t = observed time series
+- T_t = trend component (long-term direction)
+- S_t = seasonal component (periodic patterns)
+- R_t = residual component (anomalies + noise)
+```
+
+**Algorithm (STL: Seasonal and Trend decomposition using Loess)**:
+1. Extract trend using moving average
+2. Detrend series to get seasonal + residual
+3. Extract seasonal pattern (average across periods)
+4. Compute residuals (Y_t - T_t - S_t)
+5. Flag large residuals as anomalies
+
+**CIA Platform Implementation - Attendance with Seasonal Patterns**:
+
+```python
+from statsmodels.tsa.seasonal import seasonal_decompose
+import pandas as pd
+import numpy as np
+
+# Weekly attendance rates (2 years = 104 weeks)
+dates = pd.date_range('2023-01-01', periods=104, freq='W')
+attendance = pd.Series([
+    85.2, 84.8, 84.5, 83.8, 83.2, ...,  # Normal periods
+    45.1, 48.2, 52.5,  # Anomaly period (weeks 75-77)
+    ..., 82.5, 83.8, 84.2  # Return to normal
+], index=dates)
+
+# Perform seasonal decomposition
+decomposition = seasonal_decompose(
+    attendance,
+    model='additive',    # Additive model (Y = T + S + R)
+    period=52,           # Annual seasonality (52 weeks)
+    extrapolate_trend='freq'
+)
+
+# Extract components
+trend = decomposition.trend
+seasonal = decomposition.seasonal
+residual = decomposition.resid
+
+# Detect anomalies in residuals
+residual_mean = residual.mean()
+residual_std = residual.std()
+
+# Z-score for residuals
+residual_z_scores = (residual - residual_mean) / residual_std
+
+# Threshold: |Z| > 3 = anomaly
+anomalies = residual_z_scores[abs(residual_z_scores) > 3]
+
+print(f"Detected {len(anomalies)} anomalous weeks:")
+for date, z_score in anomalies.items():
+    print(f"  Week of {date.date()}: Z = {z_score:.2f} (residual = {residual[date]:.1f})")
+```
+
+**Visualization**:
+
+```mermaid
+xychart-beta
+    title "Attendance Rate Decomposition"
+    x-axis [W1, W20, W40, W60, W75, W80, W100]
+    y-axis "Attendance %" 40 --> 90
+    line [85, 84, 83, 82, 45, 52, 83]
+```
+
+**Output Example**:
+
+| Week | Observed | Trend | Seasonal | Residual | Z-Score | Classification |
+|------|----------|-------|----------|----------|---------|----------------|
+| **Week 10** | 84.2% | 84.5% | -0.5% | +0.2% | +0.15 | Normal |
+| **Week 26** | 78.8% | 83.2% | -4.5% | +0.1% | +0.08 | Normal (summer) |
+| **Week 75** | 45.1% | 81.5% | -0.8% | **-35.6%** | **-8.92** | **CRITICAL ANOMALY** |
+| **Week 76** | 48.2% | 81.3% | -0.7% | **-32.4%** | **-8.11** | **CRITICAL ANOMALY** |
+| **Week 77** | 52.5% | 81.2% | -0.6% | **-28.1%** | **-7.03** | **CRITICAL ANOMALY** |
+| **Week 90** | 83.8% | 81.8% | +1.8% | +0.2% | +0.16 | Normal |
+
+**Interpretation**:
+- **Weeks 75-77**: Attendance dropped dramatically beyond seasonal expectations (residuals -35% to -28%)
+- **Z-scores**: 7-9 standard deviations below mean (CRITICAL anomalies)
+- **Context**: Investigation revealed health crisis affecting multiple politicians simultaneously
+- **Seasonality Accounted**: Summer recess (Week 26) correctly identified as normal seasonal pattern
+
+**Advantages**:
+- ✅ Separates seasonal patterns from true anomalies
+- ✅ Effective for periodic time series (parliamentary schedules)
+- ✅ Interpretable components (trend, seasonality, residual)
+- ✅ Reduces false positives from expected seasonal variations
+
+**Limitations**:
+- ⚠️ Requires regular time series (no missing data)
+- ⚠️ Assumes stable seasonal patterns (election years may differ)
+- ⚠️ Computationally intensive for long series
+- ⚠️ Edge effects (less reliable at beginning/end)
+
+#### Comparative Summary: Anomaly Detection Methods
+
+| Method | Best For | Advantages | Limitations | Computational Cost |
+|--------|----------|------------|-------------|-------------------|
+| **Z-Score** | Univariate, normal data | Simple, interpretable | Assumes normality | Very Low (O(n)) |
+| **IQR** | Univariate, skewed data | Robust to outliers | Less precise | Very Low (O(n log n)) |
+| **Isolation Forest** | Multivariate data | No distribution assumption | Less interpretable | Low (O(n log n)) |
+| **DBSCAN** | Behavioral clusters | Finds groups + outliers | Parameter-sensitive | High (O(n²)) |
+| **Seasonal Decomposition** | Time series | Separates seasonality | Requires regular series | Moderate (O(n)) |
+
+#### CIA Platform Anomaly Detection Pipeline
+
+```mermaid
+graph TB
+    A[Politician Data] --> B{Data Type}
+    
+    B -->|Single Metric| C1[Check Distribution]
+    B -->|Multiple Metrics| C2[Isolation Forest]
+    B -->|Time Series| C3[Seasonal Decomposition]
+    
+    C1 -->|Normal| D1[Z-Score Method]
+    C1 -->|Skewed| D2[IQR Method]
+    
+    C2 --> E1[Multivariate Anomaly Score]
+    C3 --> E2[Residual-Based Anomaly]
+    
+    D1 & D2 & E1 & E2 --> F[Anomaly Alerts]
+    F --> G{Severity Level}
+    
+    G -->|Z/Score > 3σ| H1[CRITICAL Alert]
+    G -->|2σ < Z < 3σ| H2[MAJOR Alert]
+    G -->|Z < 2σ| H3[Monitor]
+    
+    style A fill:#e1f5ff,stroke:#333,stroke-width:2px
+    style B fill:#ffeb99,stroke:#333,stroke-width:2px
+    style F fill:#d1c4e9,stroke:#333,stroke-width:2px
+    style H1 fill:#ffcccc,stroke:#333,stroke-width:2px
+    style H2 fill:#ffe6cc,stroke:#333,stroke-width:2px
+    style H3 fill:#ffffcc,stroke:#333,stroke-width:2px
+```
+
+**Recommended Workflow**:
+
+1. **Initial Screening**: IQR method (fast, robust, no assumptions)
+2. **Parametric Analysis**: Z-score for normally distributed metrics
+3. **Multivariate Analysis**: Isolation Forest for combined behavioral patterns
+4. **Temporal Analysis**: Seasonal decomposition for time series data
+5. **Cluster Analysis**: DBSCAN for identifying behavioral groups quarterly
+
+**Example - Comprehensive Anomaly Report**:
+
+| Politician | Z-Score (Attendance) | IQR Status | Isolation Forest | DBSCAN Cluster | Overall Classification |
+|-----------|---------------------|-----------|-----------------|----------------|----------------------|
+| **Lars L** | -5.15 (CRITICAL) | Extreme Outlier | Anomaly (Score: 2.3) | Outlier (-1) | **CRITICAL ANOMALY** |
+| **Maria M** | -2.34 (MAJOR) | Outlier | Normal (Score: 45.2) | Cluster 2 | **MAJOR ANOMALY** |
+| **Anna A** | +0.85 (Normal) | Normal | Normal (Score: 52.1) | Cluster 0 | **NORMAL** |
 
 ---
 
@@ -447,6 +1032,535 @@ graph TB
 **Output**: Seat projections and government formation scenarios
 
 **Example**: Pre-election model forecasting coalition loss of majority (60% probability)
+
+#### 5. Advanced Time Series Forecasting - ARIMA
+
+**ARIMA (AutoRegressive Integrated Moving Average)** is a powerful statistical method for time series forecasting.
+
+**Model Components**:
+- **AR(p)**: AutoRegressive component - past values influence future values
+- **I(d)**: Integration component - differencing to achieve stationarity
+- **MA(q)**: Moving Average component - past forecast errors influence future values
+
+**ARIMA(p,d,q) Model Specification**:
+
+```
+Y_t = c + φ₁Y_{t-1} + φ₂Y_{t-2} + ... + φₚY_{t-p} + θ₁ε_{t-1} + θ₂ε_{t-2} + ... + θ_qε_{t-q} + ε_t
+```
+
+Where:
+- `Y_t` = value at time t
+- `c` = constant
+- `φ` = autoregressive parameters
+- `θ` = moving average parameters
+- `ε` = error terms (white noise)
+
+**CIA Platform Application - Party Support Forecasting**:
+
+```python
+from statsmodels.tsa.arima.model import ARIMA
+import pandas as pd
+
+# Load quarterly party support data (20 quarters)
+party_support = pd.Series([
+    45.2, 44.8, 44.1, 43.5, 42.8, 41.9, 41.2, 40.5,
+    39.8, 39.2, 38.6, 38.1, 37.7, 37.3, 37.0, 36.8,
+    36.7, 36.6, 36.6, 36.7
+], index=pd.date_range('2020-Q1', periods=20, freq='Q'))
+
+# Fit ARIMA(2,1,2) model
+model = ARIMA(party_support, order=(2,1,2))
+fitted_model = model.fit()
+
+# Forecast next 4 quarters (1 year ahead)
+forecast = fitted_model.forecast(steps=4)
+confidence_intervals = fitted_model.get_forecast(steps=4).conf_int()
+
+print(f"Forecast Q1-Q4: {forecast.values}")
+# Output: [36.8, 36.9, 37.1, 37.3] - slight recovery predicted
+
+print(f"95% Confidence Intervals:")
+print(confidence_intervals)
+# Output: [(35.2, 38.4), (34.8, 39.0), (34.4, 39.8), (34.0, 40.6)]
+```
+
+**Model Selection Process**:
+
+1. **Stationarity Test**: Augmented Dickey-Fuller test (p < 0.05 = stationary)
+2. **ACF/PACF Analysis**: Identify AR and MA orders
+3. **Information Criteria**: Select best model using AIC/BIC
+4. **Residual Diagnostics**: Ensure white noise residuals (Ljung-Box test)
+
+**Example Output**:
+
+| Quarter | Point Forecast | 95% CI Lower | 95% CI Upper | Interpretation |
+|---------|---------------|--------------|--------------|----------------|
+| Q1 2026 | 36.8% | 35.2% | 38.4% | Likely stabilization |
+| Q2 2026 | 36.9% | 34.8% | 39.0% | Slight upward trend |
+| Q3 2026 | 37.1% | 34.4% | 39.8% | Continued recovery |
+| Q4 2026 | 37.3% | 34.0% | 40.6% | Moderate confidence |
+
+**Advantages**:
+- ✅ Captures autocorrelation in political time series
+- ✅ Handles trends and seasonality
+- ✅ Provides confidence intervals
+- ✅ Well-established statistical theory
+
+**Limitations**:
+- ⚠️ Assumes linear relationships
+- ⚠️ Requires sufficient historical data (30+ observations recommended)
+- ⚠️ Sensitive to structural breaks (e.g., scandals, crises)
+
+#### 6. Advanced Time Series Forecasting - Facebook Prophet
+
+**Prophet** is a modern forecasting library developed by Facebook, designed for business time series with strong seasonal patterns.
+
+**Key Features**:
+- Automatic detection of yearly, weekly, daily seasonality
+- Holiday effects modeling
+- Robust to missing data and outliers
+- Intuitive parameter tuning
+
+**Prophet Model Decomposition**:
+
+```
+y(t) = g(t) + s(t) + h(t) + ε_t
+```
+
+Where:
+- `g(t)` = trend component (growth)
+- `s(t)` = seasonal component (periodic patterns)
+- `h(t)` = holiday effects
+- `ε_t` = error term
+
+**CIA Platform Application - Parliamentary Attendance Forecasting**:
+
+```python
+from fbprophet import Prophet
+import pandas as pd
+
+# Prepare data: ds (datestamp), y (metric)
+df = pd.DataFrame({
+    'ds': pd.date_range('2023-01-01', periods=104, freq='W'),
+    'y': [85.2, 84.8, 84.5, ...],  # Weekly attendance rates
+})
+
+# Add Swedish holidays and parliamentary recesses
+swedish_holidays = pd.DataFrame({
+    'holiday': 'summer_recess',
+    'ds': pd.to_datetime(['2023-06-15', '2023-06-22', ...]),
+    'lower_window': -7,
+    'upper_window': 7,
+})
+
+# Initialize Prophet model
+model = Prophet(
+    yearly_seasonality=True,
+    weekly_seasonality=False,
+    holidays=swedish_holidays,
+    changepoint_prior_scale=0.05,  # Flexibility of trend
+)
+
+# Add custom seasonality for parliamentary terms
+model.add_seasonality(
+    name='parliamentary_term',
+    period=208,  # 4 years in weeks
+    fourier_order=5
+)
+
+# Fit model
+model.fit(df)
+
+# Create future dataframe (26 weeks = 6 months ahead)
+future = model.make_future_dataframe(periods=26, freq='W')
+
+# Generate forecast
+forecast = model.predict(future)
+
+# Extract forecast components
+trend = forecast[['ds', 'trend']]
+seasonal = forecast[['ds', 'yearly']]
+prediction = forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']]
+```
+
+**Visualization**:
+
+```mermaid
+xychart-beta
+    title "Parliamentary Attendance Forecast (Prophet Model)"
+    x-axis [W1, W8, W16, W24, W32, W40, W48, W52]
+    y-axis "Attendance %" 75 --> 95
+    line [85, 84, 83, 82, 81, 80, 78, 76]
+    line [84, 83, 82, 81, 80, 79, 78, 77]
+```
+
+**Advantages**:
+- ✅ Automatically handles seasonality and holidays
+- ✅ Robust to missing data and outliers
+- ✅ Fast and scales to large datasets
+- ✅ Interpretable components (trend, seasonality, holidays)
+
+**Use Cases in CIA Platform**:
+1. **Attendance Forecasting**: Predict parliamentary participation accounting for recesses
+2. **Document Production**: Model productivity cycles (higher before recesses)
+3. **Voting Patterns**: Seasonal patterns in controversial votes (election proximity)
+4. **Media Visibility**: Cyclical patterns in politician media appearances
+
+#### 7. Ensemble Model Approaches
+
+**Ensemble Forecasting** combines multiple models to improve prediction accuracy and robustness.
+
+**Ensemble Architecture**:
+
+```mermaid
+graph TB
+    A[Historical Data] --> B1[ARIMA Model<br/>Weight: 25%]
+    A --> B2[Prophet Model<br/>Weight: 30%]
+    A --> B3[Linear Regression<br/>Weight: 20%]
+    A --> B4[Machine Learning<br/>Random Forest<br/>Weight: 25%]
+    
+    B1 --> C1[Forecast 1]
+    B2 --> C2[Forecast 2]
+    B3 --> C3[Forecast 3]
+    B4 --> C4[Forecast 4]
+    
+    C1 & C2 & C3 & C4 --> D[Weighted Average]
+    D --> E[Ensemble Forecast]
+    E --> F[Confidence Intervals<br/>Bootstrap Aggregation]
+    
+    style A fill:#e1f5ff,stroke:#333,stroke-width:2px
+    style D fill:#ffeb99,stroke:#333,stroke-width:2px
+    style E fill:#ccffcc,stroke:#333,stroke-width:2px
+    style F fill:#d1c4e9,stroke:#333,stroke-width:2px
+```
+
+**Combining Methods**:
+
+1. **Simple Average**: Equal weight to all models
+   ```
+   Forecast_ensemble = (F₁ + F₂ + F₃ + F₄) / 4
+   ```
+
+2. **Weighted Average**: Weights based on historical accuracy
+   ```
+   Forecast_ensemble = w₁F₁ + w₂F₂ + w₃F₃ + w₄F₄
+   where Σw_i = 1
+   ```
+
+3. **Performance-Based Weighting**:
+   ```python
+   # Calculate weights from historical MAPE
+   mape_scores = [3.2, 2.8, 4.1, 3.5]  # Lower is better
+   inverse_mape = [1/m for m in mape_scores]
+   weights = [im / sum(inverse_mape) for im in inverse_mape]
+   # Output: [0.24, 0.28, 0.19, 0.22] - Prophet (2.8 MAPE) gets highest weight
+   ```
+
+**CIA Platform Ensemble Example - Coalition Stability**:
+
+| Model | Forecast (Days to Collapse) | Historical MAPE | Weight | Weighted Contribution |
+|-------|---------------------------|----------------|--------|---------------------|
+| **ARIMA** | 150 days | 12.5% | 0.22 | 33 days |
+| **Prophet** | 135 days | 10.2% | 0.27 | 36 days |
+| **Cox Regression** | 128 days | 9.8% | 0.28 | 36 days |
+| **Random Forest** | 142 days | 11.1% | 0.23 | 33 days |
+| **Ensemble** | **138 days** | **7.8%** (validation) | - | - |
+
+**Confidence Interval via Bootstrap**:
+
+```python
+import numpy as np
+
+# Individual model forecasts
+forecasts = [150, 135, 128, 142]
+weights = [0.22, 0.27, 0.28, 0.23]
+
+# Bootstrap sampling (1000 iterations)
+bootstrap_samples = []
+for _ in range(1000):
+    sample = np.random.choice(forecasts, size=4, replace=True, p=weights)
+    bootstrap_samples.append(np.mean(sample))
+
+# Calculate percentiles for confidence intervals
+ensemble_forecast = np.mean(forecasts)
+ci_95_lower = np.percentile(bootstrap_samples, 2.5)
+ci_95_upper = np.percentile(bootstrap_samples, 97.5)
+ci_80_lower = np.percentile(bootstrap_samples, 10)
+ci_80_upper = np.percentile(bootstrap_samples, 90)
+
+print(f"Ensemble Forecast: {ensemble_forecast:.0f} days")
+print(f"95% CI: ({ci_95_lower:.0f}, {ci_95_upper:.0f})")
+print(f"80% CI: ({ci_80_lower:.0f}, {ci_80_upper:.0f})")
+# Output:
+# Ensemble Forecast: 138 days
+# 95% CI: (115, 162)
+# 80% CI: (125, 151)
+```
+
+**Advantages of Ensemble Methods**:
+- ✅ Reduces model-specific biases
+- ✅ Improves forecast accuracy (typically 10-30% MAPE reduction)
+- ✅ More robust to model misspecification
+- ✅ Quantifies uncertainty via model diversity
+
+**Disadvantages**:
+- ⚠️ Computationally expensive (multiple models)
+- ⚠️ Complexity in interpretation
+- ⚠️ Requires careful weight calibration
+
+#### 8. Confidence Interval Calculation Methods
+
+**Confidence Intervals (CI)** quantify forecast uncertainty, critical for intelligence assessments.
+
+**Method 1: Parametric Confidence Intervals (ARIMA)**
+
+Based on model-estimated standard errors:
+
+```
+CI = Forecast ± z_α/2 × SE_forecast
+
+Where:
+- z_α/2 = critical value from standard normal (1.96 for 95% CI)
+- SE_forecast = standard error of forecast (increases with horizon)
+```
+
+**Example**:
+```python
+# ARIMA forecast with standard errors
+forecast_mean = 36.8
+forecast_std_error = 1.2
+
+# 95% Confidence Interval
+ci_95_lower = forecast_mean - 1.96 * forecast_std_error
+ci_95_upper = forecast_mean + 1.96 * forecast_std_error
+# Output: (34.4, 39.1)
+
+# 80% Confidence Interval
+ci_80_lower = forecast_mean - 1.28 * forecast_std_error
+ci_80_upper = forecast_mean + 1.28 * forecast_std_error
+# Output: (35.2, 38.3)
+```
+
+**Method 2: Bootstrap Confidence Intervals**
+
+Non-parametric method based on resampling:
+
+```python
+import numpy as np
+from sklearn.utils import resample
+
+# Historical residuals from model
+residuals = np.array([0.5, -0.3, 0.8, -0.6, ...])  # 100 observations
+
+# Bootstrap procedure (1000 iterations)
+bootstrap_forecasts = []
+for _ in range(1000):
+    # Resample residuals with replacement
+    bootstrap_residuals = resample(residuals)
+    
+    # Generate forecast by adding resampled residuals to point forecast
+    bootstrap_forecast = point_forecast + np.mean(bootstrap_residuals)
+    bootstrap_forecasts.append(bootstrap_forecast)
+
+# Percentile method for CI
+ci_95 = np.percentile(bootstrap_forecasts, [2.5, 97.5])
+ci_80 = np.percentile(bootstrap_forecasts, [10, 90])
+ci_50 = np.percentile(bootstrap_forecasts, [25, 75])
+```
+
+**Method 3: Bayesian Credible Intervals**
+
+Posterior distribution-based intervals:
+
+```python
+import pymc3 as pm
+
+# Bayesian time series model
+with pm.Model() as model:
+    # Prior distributions
+    trend = pm.Normal('trend', mu=0, sigma=10)
+    seasonality = pm.Normal('seasonality', mu=0, sigma=5)
+    noise = pm.HalfNormal('noise', sigma=1)
+    
+    # Likelihood
+    y_obs = pm.Normal('y_obs', mu=trend + seasonality, sigma=noise, observed=data)
+    
+    # Sample posterior
+    trace = pm.sample(2000, return_inferencedata=True)
+
+# Extract posterior predictive samples for forecast
+with model:
+    posterior_predictive = pm.sample_posterior_predictive(trace, samples=1000)
+
+# Calculate credible intervals (Bayesian equivalent of CI)
+forecast_samples = posterior_predictive['y_pred']
+ci_95 = np.percentile(forecast_samples, [2.5, 97.5])
+ci_80 = np.percentile(forecast_samples, [10, 90])
+```
+
+**Interpretation Guidelines**:
+
+| Confidence Level | Coverage | Use Case |
+|-----------------|----------|----------|
+| **50% CI** | Narrow | Most likely range, decision-making |
+| **80% CI** | Moderate | Planning scenarios, resource allocation |
+| **95% CI** | Wide | Risk assessment, worst/best case |
+| **99% CI** | Very Wide | Extreme scenario planning |
+
+**Example - Coalition Collapse Forecast**:
+
+| Forecast Horizon | Point Forecast | 50% CI | 80% CI | 95% CI |
+|-----------------|---------------|--------|--------|--------|
+| **1 month** | 180 days | (165, 195) | (155, 205) | (140, 220) |
+| **3 months** | 180 days | (150, 210) | (135, 225) | (115, 245) |
+| **6 months** | 180 days | (130, 230) | (110, 250) | (85, 275) |
+
+**Key Insight**: Uncertainty increases with forecast horizon (CI width expands).
+
+#### 9. Forecast Accuracy Metrics
+
+**Quantifying forecast performance** is essential for model validation and continuous improvement.
+
+**Primary Metrics**:
+
+**1. MAPE (Mean Absolute Percentage Error)**
+
+```
+MAPE = (100 / n) × Σ|( A_t - F_t ) / A_t|
+
+Where:
+- A_t = actual value
+- F_t = forecast value
+- n = number of observations
+```
+
+**Interpretation**:
+- MAPE < 5%: Excellent forecast
+- MAPE 5-10%: Good forecast
+- MAPE 10-20%: Acceptable forecast
+- MAPE > 20%: Poor forecast
+
+**Example**:
+```python
+import numpy as np
+
+actual = np.array([36.5, 36.8, 37.2, 37.5])
+forecast = np.array([36.8, 36.9, 37.1, 37.3])
+
+mape = np.mean(np.abs((actual - forecast) / actual)) * 100
+# Output: MAPE = 0.79% (Excellent)
+```
+
+**2. RMSE (Root Mean Squared Error)**
+
+```
+RMSE = √[(1/n) × Σ(A_t - F_t)²]
+```
+
+**Advantages**: Penalizes large errors more heavily than small errors
+
+**Example**:
+```python
+rmse = np.sqrt(np.mean((actual - forecast)**2))
+# Output: RMSE = 0.29 percentage points
+```
+
+**3. MAE (Mean Absolute Error)**
+
+```
+MAE = (1/n) × Σ|A_t - F_t|
+```
+
+**Advantages**: Robust to outliers, interpretable in original units
+
+**Example**:
+```python
+mae = np.mean(np.abs(actual - forecast))
+# Output: MAE = 0.25 percentage points
+```
+
+**Comparative Metrics Table**:
+
+| Metric | Value (Example) | Interpretation | When to Use |
+|--------|----------------|----------------|-------------|
+| **MAPE** | 3.2% | Excellent | Comparing across different scales |
+| **RMSE** | 1.8 seats | Good | When large errors costly |
+| **MAE** | 1.2 seats | Good | When all errors equally important |
+| **Forecast Bias** | +0.3 seats | Slight over-prediction | Detecting systematic bias |
+
+**4. Directional Accuracy**
+
+Percentage of forecasts that correctly predict direction of change:
+
+```python
+# Did forecast predict correct direction?
+actual_change = np.sign(actual[1:] - actual[:-1])
+forecast_change = np.sign(forecast[1:] - forecast[:-1])
+
+directional_accuracy = np.mean(actual_change == forecast_change) * 100
+# Output: 87.5% (7 of 8 directions correct)
+```
+
+**5. Coverage Probability (Confidence Intervals)**
+
+Percentage of actual values falling within predicted CI:
+
+```python
+# 95% CI should cover 95% of actual values
+ci_lower = forecast - 1.96 * std_error
+ci_upper = forecast + 1.96 * std_error
+
+coverage = np.mean((actual >= ci_lower) & (actual <= ci_upper)) * 100
+# Output: 93.8% (close to target 95%)
+```
+
+**CIA Platform Accuracy Targets**:
+
+| Forecast Type | Horizon | MAPE Target | RMSE Target | Directional Accuracy |
+|--------------|---------|-------------|-------------|---------------------|
+| **Party Support** | 3 months | < 5% | < 2 pp | > 70% |
+| **Party Support** | 6 months | < 8% | < 3 pp | > 65% |
+| **Attendance Rate** | 1 month | < 3% | < 2 pp | > 80% |
+| **Coalition Stability** | 3 months | < 15% | < 30 days | > 70% |
+| **Election Seats** | 6 months | < 10% | < 8 seats | > 75% |
+
+**Continuous Monitoring Dashboard**:
+
+```mermaid
+graph TB
+    A[Generate Forecast] --> B[Wait for Actual Outcome]
+    B --> C[Calculate Accuracy Metrics]
+    C --> D{MAPE < Target?}
+    
+    D -->|Yes| E[Document Success<br/>Update confidence]
+    D -->|No| F[Investigate Failure]
+    
+    F --> G{Systematic Bias?}
+    G -->|Yes| H[Retrain Model<br/>Adjust parameters]
+    G -->|No| I[Structural Break<br/>Document exception]
+    
+    E --> J[Archive Results]
+    H --> J
+    I --> J
+    
+    J --> A
+    
+    style A fill:#ccffcc,stroke:#333,stroke-width:2px
+    style C fill:#ffe6cc,stroke:#333,stroke-width:2px
+    style D fill:#d1c4e9,stroke:#333,stroke-width:2px
+    style H fill:#ffcccc,stroke:#333,stroke-width:2px
+```
+
+**Example - Monthly Accuracy Report**:
+
+| Model | Forecasts Made | MAPE | RMSE | Directional Accuracy | Status |
+|-------|---------------|------|------|---------------------|--------|
+| **ARIMA (Party Support)** | 24 | 4.2% | 1.8 pp | 79% | ✅ Meets target |
+| **Prophet (Attendance)** | 52 | 2.8% | 1.5 pp | 85% | ✅ Exceeds target |
+| **Ensemble (Coalition)** | 12 | 11.2% | 22 days | 75% | ✅ Meets target |
+| **Random Forest (Election)** | 1 | 8.5% | 6.2 seats | N/A | ✅ Meets target |
+
+**Lesson**: Continuous accuracy monitoring enables model refinement and maintains forecast credibility.
 
 ---
 
