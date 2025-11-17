@@ -34,8 +34,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import org.hibernate.annotations.Immutable;
-
 /**
  * JPA entity for view_politician_behavioral_trends database view.
  * 
@@ -50,7 +48,6 @@ import org.hibernate.annotations.Immutable;
  * Classification: Automated risk assessment and performance categorization
  */
 @Entity(name = "ViewPoliticianBehavioralTrends")
-@Immutable
 @Table(name = "view_politician_behavioral_trends")
 public class ViewPoliticianBehavioralTrends implements Serializable {
 
