@@ -74,7 +74,7 @@ C4Context
 
 ## 🏛️ C4 Container Diagram
 
-This diagram reveals the modular construction of the application with distinct containers for the web application, service layer, data access, and external data integration. See the [AWS Infrastructure](AWS_INFRASTRUCTURE.md) for cloud deployment details and [Financial Security Plan](FinancialSecurityPlan.md) for security implementation.
+This diagram reveals the modular construction of the application with distinct containers for the web application, service layer, data access, and external data integration. See [README.md - AWS Services Stack](README.md#aws-services-stack) for cloud deployment details and [Financial Security Plan](FinancialSecurityPlan.md) for security implementation.
 
 ```mermaid
 C4Container
