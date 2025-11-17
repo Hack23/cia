@@ -20,7 +20,7 @@ For the current feature set that will be maintained under this strategy, see the
 - **EOL for Jetty 10**: Scheduled for **2026** ([endoflife.date](https://endoflife.date/eclipse-jetty)).
 - **Potential Move to Jetty 12**: Jetty 12 supports both `javax.servlet` and Jakarta namespaces and has an EOL of **2028**. Migrating to Jetty 12 would allow the CIA project to remain compatible with future JVMs while avoiding an architectural transition to Jakarta.
 
-See [README.md - Deployment Options](README.md#-deployment-options) for deployment considerations.
+See [README.md - Deployment Options](README.md#deployment-options) for deployment considerations.
 
 ---
 
@@ -69,7 +69,7 @@ The ongoing maintenance strategy aligns with Hack23 AB's [ISMS-PUBLIC framework]
 - **Current UI Strategy**: Continue using **Vaadin 8** to avoid the costs and major structural changes of migrating to Vaadin 10+.
 - **Licensing Note**: Vaadin 8 reached EOL for open-source use, so commercial support is available but optional.
 
-For UI component details, see [README.md - Technology Stack](README.md#-project-technology-stack).
+For UI component details, see [README.md - Technology Stack](README.md#project-technology-stack).
 
 ---
 
