@@ -14,9 +14,9 @@ This document maps JPA entity classes to their corresponding database views and 
 
 | Category | Total Views | Implemented | Pending | Coverage |
 |----------|-------------|-------------|---------|----------|
-| V1.30 OSINT Performance Tracking | 4 | 1 | 3 | 25% |
+| V1.30 OSINT Performance Tracking | 4 | 3 | 1 | 75% |
 | V1.29 Intelligence Operations | 6 | 0 | 6 | 0% |
-| **TOTAL NEW VIEWS** | **10** | **1** | **9** | **10%** |
+| **TOTAL NEW VIEWS** | **10** | **3** | **7** | **30%** |
 
 ---
 
@@ -36,6 +36,37 @@ This document maps JPA entity classes to their corresponding database views and 
   - Trend indicators: absence_trend, win_rate_trend, rebel_rate_trend
   - Moving averages: 3-month MA for smoothed trend analysis
   - Classifications: attendance_status, effectiveness_status, discipline_status, behavioral_assessment
+
+### 2. ViewPartyEffectivenessTrends
+- **Package**: `com.hack23.cia.model.internal.application.data.party.impl`
+- **Database View**: `view_party_effectiveness_trends`
+- **Liquibase Version**: v1.30
+- **Primary Key**: Composite (party + period_start)
+- **Columns**: 30 fields
+- **Risk Rules Supported**: Pa-01 through Pa-10 (All party-level rules)
+- **Intelligence Purpose**: Monitor party-level performance metrics over time, track win rates, productivity, and collaboration patterns
+- **Status**: ✅ COMPLETE
+- **Key Metrics**:
+  - Performance: avg_win_rate, avg_absence_rate, avg_rebel_rate, avg_yes_rate
+  - Productivity: documents_produced, motions_count, active_document_authors, votes_per_member
+  - Trend indicators: win_rate_trend, absence_trend, member_change
+  - Moving averages: ma_4quarter_win_rate, ma_4quarter_absence
+  - Classifications: performance_level, productivity_level, effectiveness_assessment
+
+### 3. ViewRiskScoreEvolution
+- **Package**: `com.hack23.cia.model.internal.application.data.rules.impl`
+- **Database View**: `view_risk_score_evolution`
+- **Liquibase Version**: v1.30
+- **Primary Key**: Composite (person_id + assessment_period)
+- **Columns**: 21 fields
+- **Risk Rules Supported**: All 45 rules (cross-cutting risk assessment)
+- **Intelligence Purpose**: Track temporal evolution of risk scores with severity classification and trend analysis
+- **Status**: ✅ COMPLETE
+- **Key Metrics**:
+  - Risk metrics: risk_score, prev_risk_score, risk_score_change
+  - Contributing factors: absence_rate, win_rate, rebel_rate, violation_count, violation_categories
+  - Classifications: risk_severity, risk_trend, severity_transition
+  - Assessment: risk_assessment (CRITICAL, HIGH, MODERATE, LOW, MINIMAL)
 
 ---
 
@@ -86,7 +117,7 @@ This document maps JPA entity classes to their corresponding database views and 
   - Trend indicators: document_change, document_change_pct, ma_4quarter_documents
   - Benchmarking: vs_average, vs_average_pct, period_median_documents
   - Classifications: productivity_level, productivity_trend, productivity_assessment
-- **Status**: 🔶 PENDING - Entity class needs to be created
+- **Status**: 🔶 IN PROGRESS - Entity class being created
 
 ---
 
