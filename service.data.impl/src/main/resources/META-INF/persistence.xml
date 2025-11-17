@@ -113,6 +113,10 @@
 		
 		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewPartyEffectivenessTrends</class>
+		
+		<!-- V1.29 Intelligence Operations Enhancement Views -->
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMomentumAnalysis</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrix</class>
 
 
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
@@ -121,16 +125,11 @@
 		
 		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewPoliticianBehavioralTrends</class>
-		<!-- V1.30: 3 of 4 implemented (75%) -->
-		<!-- TODO: ViewCommitteeProductivityMatrix (committee.impl, 28 columns, C-01 to C-04) -->
 		
-		<!-- TODO V1.29 Intelligence Operations Enhancement Views (5 remaining):
-		     - ViewRiksdagenPartyMomentumAnalysis (party.impl, 14 columns)
-		     - ViewRiksdagenCoalitionAlignmentMatrix (party.impl, 12 columns)
-		     - ViewRiksdagenVotingAnomalyDetection (politician.impl, 13 columns)
-		     - ViewRiksdagenPoliticianInfluenceMetrics (politician.impl, 10 columns)
-		     - ViewRiksdagenCrisisResilienceIndicators (politician.impl, 13 columns)
-		-->
+		<!-- V1.29 Intelligence Operations Enhancement Views -->
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenVotingAnomalyDetection</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianInfluenceMetrics</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenCrisisResilienceIndicators</class>
 
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary</class>
@@ -162,6 +161,9 @@
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions</class>
+		
+		<!-- V1.30 OSINT Performance Tracking Views -->
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewCommitteeProductivityMatrix</class>
 
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation</class>
