@@ -315,7 +315,7 @@ The MITRE ATT&CK Navigator provides interactive visualization of threat coverage
 - 📚 [MITRE ATT&CK Enterprise Matrix](https://attack.mitre.org/matrices/enterprise/)
 - 🗺️ [ATT&CK Navigator Tool](https://mitre-attack.github.io/attack-navigator/)
 - 📋 [CISA Known Exploited Vulnerabilities](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
-- 🎯 [Hack23 Threat Modeling Policy](https://github.com/Hack23/ISMS/blob/main/Threat_Modeling.md#mitre-attck-integration)
+- 🎯 [Hack23 Threat Modeling Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Threat_Modeling.md#mitre-attck-integration)
 
 ### **🌳 Attack Tree Analysis**
 
