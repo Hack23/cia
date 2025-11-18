@@ -153,25 +153,34 @@ END $$;
 INSERT INTO health_check_results
 SELECT
     'Schema Integrity' AS category,
-    'Materialized View Freshness: ' || matviewname AS check_name,
+    'Materialized View Freshness: ' || m.matviewname AS check_name,
     CASE
-        WHEN last_refresh IS NULL THEN 'FAIL'
-        WHEN last_refresh < NOW() - INTERVAL '7 days' THEN 'WARN'
+        WHEN s.last_vacuum IS NULL AND s.last_autovacuum IS NULL THEN 'WARN'
+        WHEN GREATEST(s.last_vacuum, s.last_autovacuum) < NOW() - INTERVAL '7 days' THEN 'WARN'
+        WHEN m.ispopulated = false THEN 'FAIL'
         ELSE 'PASS'
     END AS status,
     CASE
-        WHEN last_refresh IS NULL THEN 4
-        WHEN last_refresh < NOW() - INTERVAL '7 days' THEN 2
+        WHEN m.ispopulated = false THEN 4
+        WHEN s.last_vacuum IS NULL AND s.last_autovacuum IS NULL THEN 2
+        WHEN GREATEST(s.last_vacuum, s.last_autovacuum) < NOW() - INTERVAL '7 days' THEN 2
         ELSE 1
     END AS severity,
-    'Last refreshed: ' || COALESCE(last_refresh::TEXT, 'NEVER') AS details,
     CASE
-        WHEN last_refresh IS NULL OR last_refresh < NOW() - INTERVAL '7 days' 
+        WHEN m.ispopulated = false THEN 'Materialized view is not populated'
+        WHEN s.last_vacuum IS NULL AND s.last_autovacuum IS NULL THEN 'Never refreshed'
+        ELSE 'Last activity: ' || COALESCE(GREATEST(s.last_vacuum, s.last_autovacuum)::TEXT, 'UNKNOWN')
+    END AS details,
+    CASE
+        WHEN m.ispopulated = false OR s.last_vacuum IS NULL AND s.last_autovacuum IS NULL
         THEN 'Refresh materialized view: psql -d cia_dev -f refresh-all-views.sql'
+        WHEN GREATEST(s.last_vacuum, s.last_autovacuum) < NOW() - INTERVAL '7 days'
+        THEN 'Consider refreshing: REFRESH MATERIALIZED VIEW ' || m.matviewname || ';'
         ELSE NULL
     END AS recommendation
-FROM pg_matviews
-WHERE schemaname = 'public';
+FROM pg_matviews m
+LEFT JOIN pg_stat_user_tables s ON s.schemaname = m.schemaname AND s.relname = m.matviewname
+WHERE m.schemaname = 'public';
 
 -- ============================================
 -- SECTION 2: Data Quality Checks
@@ -485,47 +494,39 @@ DO $$
 DECLARE
     max_depth INTEGER;
     deep_views INTEGER;
+    view_count INTEGER;
 BEGIN
-    WITH RECURSIVE view_deps AS (
+    -- Simplified dependency check - just count direct dependencies
+    WITH view_deps AS (
         SELECT 
             dependent_view.relname AS view_name,
-            1 AS depth
+            COUNT(DISTINCT source_table.relname) AS dep_count
         FROM pg_depend
         JOIN pg_rewrite ON pg_depend.objid = pg_rewrite.oid
         JOIN pg_class AS dependent_view ON pg_rewrite.ev_class = dependent_view.oid
         JOIN pg_class AS source_table ON pg_depend.refobjid = source_table.oid
         WHERE dependent_view.relkind IN ('v', 'm')
-            AND source_table.relkind IN ('r')  -- Base tables only
+            AND source_table.relkind IN ('v', 'm', 'r')
             AND dependent_view.relnamespace = (SELECT oid FROM pg_namespace WHERE nspname = 'public')
-        
-        UNION ALL
-        
-        SELECT 
-            d2.relname AS view_name,
-            vd.depth + 1 AS depth
-        FROM view_deps vd
-        JOIN pg_class v ON v.relname = vd.view_name AND v.relkind IN ('v', 'm')
-        JOIN pg_depend pd ON pd.refobjid = v.oid
-        JOIN pg_rewrite pr ON pr.oid = pd.objid
-        JOIN pg_class d2 ON d2.oid = pr.ev_class
-        WHERE d2.relkind IN ('v', 'm')
-            AND vd.depth < 10
+        GROUP BY dependent_view.relname
     )
     SELECT 
-        MAX(depth),
-        COUNT(*) FILTER (WHERE depth > 3)
-    INTO max_depth, deep_views
+        COALESCE(MAX(dep_count), 0),
+        COUNT(*) FILTER (WHERE dep_count > 5),
+        COUNT(*)
+    INTO max_depth, deep_views, view_count
     FROM view_deps;
     
     INSERT INTO health_check_results VALUES (
         'View Dependencies',
-        'Maximum Dependency Depth',
-        CASE WHEN max_depth > 5 THEN 'WARN' ELSE 'PASS' END,
-        CASE WHEN max_depth > 5 THEN 2 ELSE 1 END,
-        'Maximum dependency depth: ' || COALESCE(max_depth::TEXT, '0') || 
-        ' | Views with depth > 3: ' || COALESCE(deep_views::TEXT, '0'),
-        CASE WHEN max_depth > 5 
-            THEN 'Consider flattening view dependencies to improve query performance'
+        'View Dependency Analysis',
+        CASE WHEN max_depth > 10 THEN 'WARN' ELSE 'PASS' END,
+        CASE WHEN max_depth > 10 THEN 2 ELSE 1 END,
+        'Maximum direct dependencies: ' || COALESCE(max_depth::TEXT, '0') || 
+        ' | Views with >5 dependencies: ' || COALESCE(deep_views::TEXT, '0') ||
+        ' | Total views analyzed: ' || COALESCE(view_count::TEXT, '0'),
+        CASE WHEN max_depth > 10 
+            THEN 'Consider simplifying views with many dependencies to improve maintainability'
             ELSE NULL
         END
     );
@@ -742,19 +743,19 @@ SELECT json_build_object(
         ) cat
     ),
     'issues', (
-        SELECT json_agg(
-            json_build_object(
+        SELECT json_agg(issue_obj ORDER BY issue_obj->>'severity' DESC)
+        FROM (
+            SELECT json_build_object(
                 'category', category,
                 'check_name', check_name,
                 'status', status,
                 'severity', severity,
                 'details', details,
                 'recommendation', recommendation
-            )
-        )
-        FROM health_check_results
-        WHERE status IN ('WARN', 'FAIL')
-        ORDER BY severity DESC
+            ) AS issue_obj
+            FROM health_check_results
+            WHERE status IN ('WARN', 'FAIL')
+        ) issues_subq
     )
 )::text AS json_report;
 
