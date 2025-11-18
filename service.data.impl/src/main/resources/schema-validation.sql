@@ -263,9 +263,9 @@ BEGIN
     ) INTO has_column;
     
     IF has_column THEN
-        EXECUTE 'SELECT * FROM view_riksdagen_vote_data_ballot_politician_summary_daily ORDER BY vote_date DESC LIMIT 5';
+        EXECUTE format('SELECT * FROM %I ORDER BY vote_date DESC LIMIT 5', 'view_riksdagen_vote_data_ballot_politician_summary_daily');
     ELSE
-        EXECUTE 'SELECT * FROM view_riksdagen_vote_data_ballot_politician_summary_daily LIMIT 5';
+        EXECUTE format('SELECT * FROM %I LIMIT 5', 'view_riksdagen_vote_data_ballot_politician_summary_daily');
     END IF;
 EXCEPTION WHEN OTHERS THEN
     RAISE NOTICE 'Could not query view: %', SQLERRM;
@@ -478,7 +478,7 @@ COPY (
       ORDER BY matviewname
     )
   )::text
-) TO '/tmp/schema_report.json';
+) TO '/path/to/schema_report.json';
 */
 
 -- ===========================================================================
@@ -532,7 +532,7 @@ COPY (
   WHERE schemaname = 'public'
   
   ORDER BY object_type, object_name
-) TO '/tmp/schema_inventory.csv' WITH (FORMAT CSV, HEADER);
+) TO '/path/to/schema_inventory.csv' WITH (FORMAT CSV, HEADER);
 */
 
 -- ===========================================================================

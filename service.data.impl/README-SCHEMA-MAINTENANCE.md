@@ -402,7 +402,7 @@ Add schema validation to CI/CD pipeline:
     echo "Schema validation passed"
 
 - name: Upload Schema Report
-  uses: actions/upload-artifact@v3
+  uses: actions/upload-artifact@v4
   with:
     name: schema-validation-report
     path: schema_validation_report.txt
