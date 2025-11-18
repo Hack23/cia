@@ -860,7 +860,7 @@ psql -U postgres -d cia_dev -c "SELECT version();"
 Some warnings may be expected based on your environment:
 
 - **Empty application event views**: Normal for new installations
-- **Unstale materialized views**: May be intentional if data hasn't changed
+- **Stale materialized views**: May be intentional if data hasn't changed
 - **Missing pg_stat_statements**: Optional extension for performance monitoring
 
 Update the script to skip checks that don't apply to your environment.

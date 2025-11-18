@@ -95,10 +95,10 @@
 \echo '=== EXTRACTING VIEW SAMPLE DATA       ==='
 \echo '=========================================='
 
--- Note: Due to PostgreSQL limitations, we cannot dynamically generate
--- \copy commands inside DO blocks. The view extraction logic below
--- identifies which views have data. Actual extraction of all views
--- needs to be done with a shell script wrapper.
+-- Note: This section only analyzes views to identify which have data.
+-- To extract samples from all views, use the shell script wrapper which
+-- can dynamically generate and execute \copy commands for each view.
+-- Below we extract only key intelligence views manually.
 
 DO $$
 DECLARE
@@ -143,7 +143,7 @@ BEGIN
     RAISE NOTICE '  Empty views: %', empty_count;
     RAISE NOTICE '  Errors: %', error_count;
     RAISE NOTICE '';
-    RAISE NOTICE 'Use the shell wrapper script to extract all view samples automatically.';
+    RAISE NOTICE 'Manual extraction of additional views can be done using \copy commands.';
 END $$;
 
 -- Extract specific key views with detailed data

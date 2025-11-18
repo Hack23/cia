@@ -747,7 +747,7 @@ SELECT json_build_object(
         ) cat
     ),
     'issues', (
-        SELECT json_agg(issue_obj ORDER BY (issue_obj->>'severity')::INTEGER DESC)
+        SELECT json_agg(issue_obj)
         FROM (
             SELECT json_build_object(
                 'category', category,
@@ -759,6 +759,7 @@ SELECT json_build_object(
             ) AS issue_obj
             FROM health_check_results
             WHERE status IN ('WARN', 'FAIL')
+            ORDER BY severity DESC
         ) issues_subq
     )
 )::text AS json_report;

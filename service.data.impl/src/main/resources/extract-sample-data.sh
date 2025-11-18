@@ -48,7 +48,11 @@ echo "=================================================="
 echo ""
 echo "Files generated in: $OUTPUT_DIR"
 echo ""
-ls -lh table_*_sample.csv view_*_sample.csv *.csv 2>/dev/null | head -20
+if compgen -G "table_*_sample.csv" > /dev/null || compgen -G "view_*_sample.csv" > /dev/null || compgen -G "*.csv" > /dev/null; then
+    ls -lh table_*_sample.csv view_*_sample.csv *.csv 2>/dev/null | head -20
+else
+    echo "  No CSV files found"
+fi
 echo ""
 echo "Total CSV files: $(ls -1 *.csv 2>/dev/null | wc -l)"
 echo ""
