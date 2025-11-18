@@ -874,11 +874,322 @@ The health check script queries system catalogs and may perform COUNT(*) operati
 - Consider running on a read replica
 - Adjust check frequency based on database size
 
+## Sample Data Extraction
+
+### Overview
+
+The `extract-sample-data.sql` script extracts sample data from tables and views for:
+- Debugging empty views
+- Creating test data fixtures
+- Understanding data relationships
+- Documenting actual data values
+- Reproducing issues in development environments
+
+**Key Features:**
+- Extracts 10 rows from each table (configurable)
+- Focuses on columns used in views
+- Exports to CSV format with headers
+- Generates metadata manifest
+- Creates column mapping for views
+- Easy to version control and share
+
+### Running Sample Data Extraction
+
+#### Quick Start
+
+```bash
+cd /path/to/cia/repository
+
+# Extract to current directory
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/extract-sample-data.sql
+
+# Or use the shell wrapper
+./service.data.impl/src/main/resources/extract-sample-data.sh
+
+# Extract to specific directory
+./service.data.impl/src/main/resources/extract-sample-data.sh /tmp/sample_data
+
+# Extract from different database
+./service.data.impl/src/main/resources/extract-sample-data.sh /tmp/sample_data cia_prod
+```
+
+#### Generated Files
+
+The script creates multiple CSV files:
+
+**Table Samples:**
+- `table_person_data_sample.csv` - Person information
+- `table_assignment_data_sample.csv` - Political assignments
+- `table_document_data_sample.csv` - Documents
+- `table_ballot_data_sample.csv` - Voting ballots
+- `table_vote_data_sample.csv` - Individual votes
+- `table_sweden_political_party_sample.csv` - Party information
+- Additional tables as configured
+
+**View Samples:**
+- `view_riksdagen_politician_sample.csv` - Politician aggregated data
+- `view_riksdagen_party_sample.csv` - Party aggregated data
+- `view_riksdagen_vote_data_ballot_summary_sample.csv` - Vote summaries
+- All other views with data
+
+**Metadata Files:**
+- `sample_data_manifest.csv` - List of all extracted files with sizes
+- `view_column_mapping.csv` - Shows which columns are used in which views
+
+### Use Cases
+
+#### 1. Debugging Empty Views
+
+When a view returns no data, use sample data to understand dependencies:
+
+```bash
+# Extract sample data
+./extract-sample-data.sh /tmp/debug
+
+# Check which tables the view depends on
+cat /tmp/debug/view_column_mapping.csv | grep "problem_view"
+
+# Check if those tables have data
+cat /tmp/debug/table_*_sample.csv
+
+# Compare with TROUBLESHOOTING_EMPTY_VIEWS.md
+```
+
+#### 2. Creating Test Fixtures
+
+```bash
+# Extract sample data from production
+./extract-sample-data.sh /tmp/prod_sample cia_prod
+
+# Load into test database
+cd /tmp/prod_sample
+for file in table_*_sample.csv; do
+    table_name=$(echo $file | sed 's/table_//' | sed 's/_sample.csv//')
+    psql -U postgres -d cia_test -c "\copy $table_name FROM '$file' WITH CSV HEADER;"
+done
+```
+
+#### 3. Understanding Data Relationships
+
+```bash
+# Extract sample data
+./extract-sample-data.sh /tmp/analysis
+
+# Analyze relationships
+# Open CSV files in spreadsheet to see actual data values
+# Compare person_id in person_data with assignment_data
+# Verify foreign key relationships with actual data
+```
+
+#### 4. Documentation with Real Examples
+
+```bash
+# Extract current sample data
+./extract-sample-data.sh docs/sample_data
+
+# Commit to repository for documentation
+git add docs/sample_data/*.csv
+git commit -m "docs: Update sample data for view documentation"
+
+# Reference in documentation
+# "Example person_id: 0000000000 (from table_person_data_sample.csv)"
+```
+
+### Customizing Sample Size
+
+Edit `extract-sample-data.sql` to change the sample size:
+
+```sql
+-- At the top of the script
+\set SAMPLE_SIZE 10  -- Change to desired number of rows
+
+-- Or modify individual LIMIT clauses
+\copy (SELECT * FROM person_data LIMIT 20) TO 'table_person_data_sample.csv' WITH CSV HEADER;
+```
+
+### Reloading Sample Data
+
+To import sample data back into a database:
+
+```bash
+# Load specific table
+psql -U postgres -d cia_test -c "\copy person_data FROM 'table_person_data_sample.csv' WITH CSV HEADER;"
+
+# Load all tables (bash script)
+for file in table_*_sample.csv; do
+    table_name=$(echo $file | sed 's/table_//' | sed 's/_sample.csv//')
+    echo "Loading $table_name..."
+    psql -U postgres -d cia_test -c "\copy $table_name FROM '$file' WITH CSV HEADER;"
+done
+
+# Refresh materialized views after loading
+psql -U postgres -d cia_test -f service.data.impl/src/main/resources/refresh-all-views.sql
+```
+
+### Version Control Considerations
+
+**Recommended Approach:**
+
+```bash
+# Create sample_data directory
+mkdir -p service.data.impl/src/main/resources/sample_data
+
+# Extract to this directory
+./extract-sample-data.sh service.data.impl/src/main/resources/sample_data
+
+# Add to version control (selective)
+git add service.data.impl/src/main/resources/sample_data/*.csv
+
+# Or add to .gitignore if data is sensitive
+echo "service.data.impl/src/main/resources/sample_data/*.csv" >> .gitignore
+```
+
+**Data Sensitivity:**
+- Review CSV files before committing to ensure no sensitive data
+- Consider anonymizing data: `person_id`, names, etc.
+- Use `.gitignore` for sensitive production data
+- Commit anonymized samples for development/testing
+
+### Automation
+
+#### Daily Sample Data Backup
+
+```bash
+#!/bin/bash
+# daily-sample-extract.sh
+
+BACKUP_DIR="/var/backups/cia/sample_data"
+DATE=$(date +%Y%m%d)
+OUTPUT_DIR="$BACKUP_DIR/$DATE"
+
+mkdir -p "$OUTPUT_DIR"
+
+# Extract sample data
+/path/to/extract-sample-data.sh "$OUTPUT_DIR"
+
+# Compress
+cd "$BACKUP_DIR"
+tar -czf "sample_data_$DATE.tar.gz" "$DATE"
+rm -rf "$DATE"
+
+# Keep last 30 days
+find "$BACKUP_DIR" -name "sample_data_*.tar.gz" -mtime +30 -delete
+
+echo "Sample data backup completed: sample_data_$DATE.tar.gz"
+```
+
+#### CI/CD Integration
+
+```yaml
+# In .github/workflows/verify-and-release.yml
+- name: Extract Sample Data for Testing
+  run: |
+    ./service.data.impl/src/main/resources/extract-sample-data.sh /tmp/test_data
+    
+    # Verify key files were created
+    test -f /tmp/test_data/table_person_data_sample.csv
+    test -f /tmp/test_data/view_riksdagen_politician_sample.csv
+    
+    echo "Sample data extracted successfully"
+
+- name: Upload Sample Data Artifact
+  uses: actions/upload-artifact@v5
+  with:
+    name: sample-data
+    path: /tmp/test_data/*.csv
+```
+
+### Troubleshooting
+
+#### Empty Output Files
+
+If CSV files are empty or missing:
+
+```bash
+# Check if tables have data
+psql -U postgres -d cia_dev -c "SELECT COUNT(*) FROM person_data;"
+
+# Check view data
+psql -U postgres -d cia_dev -c "SELECT COUNT(*) FROM view_riksdagen_politician;"
+
+# Run with verbose output
+psql -U postgres -d cia_dev -a -f extract-sample-data.sql
+
+# See TROUBLESHOOTING_EMPTY_VIEWS.md for view-specific issues
+```
+
+#### Permission Errors
+
+```bash
+# Ensure output directory is writable
+chmod 755 /output/directory
+
+# Ensure PostgreSQL user has read access
+psql -U postgres -d cia_dev -c "\du"
+
+# Check table permissions
+psql -U postgres -d cia_dev -c "\dp person_data"
+```
+
+#### Large CSV Files
+
+If sample files are too large:
+
+```bash
+# Reduce LIMIT in SQL script
+sed -i 's/LIMIT 10/LIMIT 5/g' extract-sample-data.sql
+
+# Or extract specific tables only
+psql -U postgres -d cia_dev -c "\copy (SELECT * FROM person_data LIMIT 5) TO 'person_sample.csv' WITH CSV HEADER;"
+```
+
+### Best Practices
+
+1. **Regular Extraction**: Extract sample data weekly for up-to-date examples
+2. **Anonymize Production Data**: Remove or hash sensitive information before committing
+3. **Document Data Values**: Use actual values in documentation (from samples)
+4. **Test with Samples**: Use sample data for unit tests and integration tests
+5. **Version Control**: Commit representative samples for development team
+6. **Combine with Health Check**: Run extraction after health check passes
+7. **Automate Updates**: Schedule regular extraction in CI/CD pipeline
+
+### Integration with Other Tools
+
+**With Health Check:**
+```bash
+# Run health check first
+psql -U postgres -d cia_dev -f schema-health-check.sql > health_check.txt
+
+# If health score is acceptable, extract samples
+HEALTH_SCORE=$(grep "HEALTH SCORE:" health_check.txt | sed -n 's/.*HEALTH SCORE: \([0-9][0-9]*\).*/\1/p' | head -1)
+
+if [ "$HEALTH_SCORE" -ge 60 ]; then
+    ./extract-sample-data.sh /tmp/samples
+    echo "Sample data extracted successfully"
+else
+    echo "Health check failed. Fix issues before extracting sample data."
+fi
+```
+
+**With Schema Validation:**
+```bash
+# Validate schema first
+psql -U postgres -d cia_dev -f schema-validation.sql
+
+# Then extract samples
+./extract-sample-data.sh /tmp/samples
+
+# Compare counts
+echo "Validation shows X tables, extraction created Y CSV files"
+```
+
 ## Related Files
 
 - `service.data.impl/src/main/resources/full_schema.sql` - The complete schema file
 - `service.data.impl/src/main/resources/schema-validation.sql` - Schema validation and statistics script
 - `service.data.impl/src/main/resources/schema-health-check.sql` - Database health check script
+- `service.data.impl/src/main/resources/extract-sample-data.sql` - Sample data extraction script
+- `service.data.impl/src/main/resources/extract-sample-data.sh` - Shell wrapper for data extraction
 - `service.data.impl/src/main/resources/refresh-all-views.sql` - Materialized view refresh script
 - `service.data.impl/src/main/resources/db-changelog*.xml` - Liquibase migration files
 - `.github/workflows/copilot-setup-steps.yml` - CI/CD database setup
