@@ -172,7 +172,7 @@ SELECT
         ELSE 'Last activity: ' || COALESCE(GREATEST(s.last_vacuum, s.last_autovacuum)::TEXT, 'UNKNOWN')
     END AS details,
     CASE
-        WHEN m.ispopulated = false OR s.last_vacuum IS NULL AND s.last_autovacuum IS NULL
+        WHEN m.ispopulated = false OR (s.last_vacuum IS NULL AND s.last_autovacuum IS NULL)
         THEN 'Refresh materialized view: psql -d cia_dev -f refresh-all-views.sql'
         WHEN GREATEST(s.last_vacuum, s.last_autovacuum) < NOW() - INTERVAL '7 days'
         THEN 'Consider refreshing: REFRESH MATERIALIZED VIEW ' || m.matviewname || ';'
@@ -380,18 +380,22 @@ FROM (
     WHERE tc.constraint_type = 'FOREIGN KEY'
         AND tc.table_schema = 'public'
 ) fk
-LEFT JOIN (
-    SELECT 
-        schemaname,
-        tablename,
-        indexname,
-        indexdef
-    FROM pg_indexes
-    WHERE schemaname = 'public'
-) idx 
-    ON idx.schemaname = fk.table_schema 
-    AND idx.tablename = fk.table_name
-    AND idx.indexdef LIKE '%' || fk.column_name || '%';
+LEFT JOIN LATERAL (
+    SELECT
+        ci.relname AS indexname
+    FROM pg_class ct
+    JOIN pg_namespace ns ON ns.oid = ct.relnamespace
+    JOIN pg_index i ON i.indrelid = ct.oid
+    JOIN pg_class ci ON ci.oid = i.indexrelid
+    JOIN pg_attribute a ON a.attrelid = ct.oid AND a.attname = fk.column_name
+    WHERE ns.nspname = fk.table_schema
+      AND ct.relname = fk.table_name
+      AND i.indisvalid
+      AND i.indisready
+      AND i.indisprimary = false
+      AND i.indkey[0] = a.attnum
+    LIMIT 1
+) idx ON TRUE;
 
 -- Check 3.2: Large tables without recent vacuum
 \echo 'Checking table maintenance...'
@@ -410,10 +414,10 @@ SELECT
         ELSE 1
     END AS severity,
     'Last vacuum: ' || COALESCE(last_vacuum::TEXT, 'NEVER') || 
-    ' | Size: ' || pg_size_pretty(pg_total_relation_size(schemaname||'.'||relname)) AS details,
+    ' | Size: ' || pg_size_pretty(pg_total_relation_size(relid)) AS details,
     CASE 
         WHEN last_vacuum IS NULL OR last_vacuum < NOW() - INTERVAL '30 days'
-        THEN 'VACUUM ANALYZE ' || schemaname || '.' || relname || ';'
+        THEN 'VACUUM ANALYZE ' || quote_ident(schemaname) || '.' || quote_ident(relname) || ';'
         ELSE NULL
     END AS recommendation
 FROM pg_stat_user_tables

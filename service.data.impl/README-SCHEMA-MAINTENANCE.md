@@ -634,8 +634,11 @@ LEFT JOIN person_data p ON c.person_id = p.person_id
 WHERE c.person_id IS NOT NULL AND p.person_id IS NULL;
 
 -- Clean up (use with caution)
-DELETE FROM assignment_data 
-WHERE person_id NOT IN (SELECT person_id FROM person_data);
+DELETE FROM assignment_data
+WHERE NOT EXISTS (
+    SELECT 1 FROM person_data p
+    WHERE p.person_id = assignment_data.person_id
+);
 
 -- Or add missing parent records
 INSERT INTO person_data (person_id, ...) VALUES (...);
@@ -686,12 +689,24 @@ VACUUM ANALYZE table_name;
 
 -- Heavy cleanup (locks table - use during maintenance window)
 VACUUM FULL table_name;
+```
 
--- Or rebuild table
-CREATE TABLE table_name_new AS SELECT * FROM table_name;
+> **WARNING:** Manual table rebuilding is complex and error-prone. It can easily lead to data loss, missing indexes, or broken constraints if not done with extreme care. Use `VACUUM FULL` unless you have a specific requirement that cannot be met otherwise.
+>
+> If you must rebuild a table manually, use a transaction and ensure all indexes, constraints, triggers, and permissions are recreated. Example:
+
+```sql
+BEGIN;
+-- Create new table with structure, including indexes and constraints
+CREATE TABLE table_name_new (LIKE table_name INCLUDING ALL);
+-- Copy data
+INSERT INTO table_name_new SELECT * FROM table_name;
+-- Verify row count matches
+-- DROP and RENAME within same transaction
 DROP TABLE table_name;
 ALTER TABLE table_name_new RENAME TO table_name;
--- Recreate indexes and constraints
+COMMIT;
+-- Recreate any dependent objects (triggers, permissions, etc.) as needed
 ```
 
 ### Automation
@@ -717,7 +732,7 @@ echo "Running CIA database health check at $DATE"
 psql -U postgres -d cia_dev -f /path/to/service.data.impl/src/main/resources/schema-health-check.sql > "$REPORT_FILE" 2>&1
 
 # Extract health score
-HEALTH_SCORE=$(grep "HEALTH SCORE:" "$REPORT_FILE" | grep -oP '\d+' | head -1)
+HEALTH_SCORE=$(grep "HEALTH SCORE:" "$REPORT_FILE" | sed -n 's/.*HEALTH SCORE: \([0-9][0-9]*\).*/\1/p' | head -1)
 
 echo "Health check completed. Score: $HEALTH_SCORE/100"
 
@@ -742,8 +757,8 @@ Make executable and add to crontab:
 ```bash
 chmod +x /usr/local/bin/cia-daily-health-check.sh
 
-# Run daily at 2 AM
-echo "0 2 * * * /usr/local/bin/cia-daily-health-check.sh" | crontab -
+# Run daily at 2 AM (append to existing crontab safely)
+(crontab -l 2>/dev/null; echo "0 2 * * * /usr/local/bin/cia-daily-health-check.sh") | crontab -
 ```
 
 #### Integration with CI/CD
@@ -756,7 +771,7 @@ Add to `.github/workflows/verify-and-release.yml`:
     psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-health-check.sql > health_check.txt 2>&1
     
     # Extract health score
-    HEALTH_SCORE=$(grep "HEALTH SCORE:" health_check.txt | grep -oP '\d+' | head -1)
+    HEALTH_SCORE=$(grep "HEALTH SCORE:" health_check.txt | sed -n 's/.*HEALTH SCORE: \([0-9][0-9]*\).*/\1/p' | head -1)
     echo "Database Health Score: $HEALTH_SCORE/100"
     
     # Fail if score below threshold
@@ -785,7 +800,7 @@ Export metrics for monitoring systems:
 # File: export-health-metrics.sh
 
 # Run health check and extract JSON
-JSON=$(psql -U postgres -d cia_dev -t -A -f schema-health-check.sql | grep '{"timestamp"' | head -1)
+JSON=$(psql -U postgres -d cia_dev -t -A -f service.data.impl/src/main/resources/schema-health-check.sql | grep '{"timestamp"' | head -1)
 
 # Extract metrics
 HEALTH_SCORE=$(echo "$JSON" | jq -r '.health_score')
