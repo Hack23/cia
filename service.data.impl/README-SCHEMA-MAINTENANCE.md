@@ -512,9 +512,9 @@ psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-healt
 #### Generate JSON Report for Automation
 
 ```bash
-# Extract JSON report
-psql -U postgres -d cia_dev -t -A -f service.data.impl/src/main/resources/schema-health-check.sql | \
-  grep -A 1000 '{"timestamp"' | grep -B 1000 '}\s*$' | head -1 > health_check.json
+# Generate JSON report (extract JSON output from script)
+psql -U postgres -d cia_dev -t -A -f service.data.impl/src/main/resources/schema-health-check.sql 2>/dev/null | \
+  grep '{"timestamp"' > health_check.json
 
 # Pretty print JSON
 cat health_check.json | python3 -m json.tool

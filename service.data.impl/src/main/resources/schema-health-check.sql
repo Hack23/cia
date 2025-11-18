@@ -743,7 +743,7 @@ SELECT json_build_object(
         ) cat
     ),
     'issues', (
-        SELECT json_agg(issue_obj ORDER BY issue_obj->>'severity' DESC)
+        SELECT json_agg(issue_obj ORDER BY (issue_obj->>'severity')::INTEGER DESC)
         FROM (
             SELECT json_build_object(
                 'category', category,
