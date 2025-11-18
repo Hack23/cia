@@ -18,7 +18,7 @@ Below is a breakdown of daily, monthly, and annual cash flows for better financi
 
 This financial plan provides a structured and cost-efficient deployment for your application infrastructure in the **AWS eu-west-1 (Ireland)** region. It integrates key components of scalability, security, and resilience to support critical workloads while maintaining budgetary control.
 
-For detailed deployment architecture, see the [AWS Infrastructure documentation](AWS_INFRASTRUCTURE.md).
+For detailed deployment architecture, see [README.md - AWS Services Stack](README.md#aws-services-stack) and [README.md - Deployment Options](README.md#deployment-options).
 
 #### Core Highlights
 1. **Scalability & Resilience:** Single EC2 instance optimized for performance and costs, with an optional High Availability (HA) solution for redundancy.
@@ -149,7 +149,7 @@ The security services implement controls aligned with Hack23 AB's [ISMS-PUBLIC f
 
 This financial plan balances scalability, cost-efficiency, and cybersecurity. The inclusion of EC2 and RDS costs complements the robust AWS security services. Optional HA ensures resilience for critical workloads requiring robust uptime guarantees while leveraging AWS security services for proactive threat detection and compliance monitoring.
 
-For more details on AWS deployment, see the [AWS Infrastructure](AWS_INFRASTRUCTURE.md) documentation and [CloudFormation template](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
+For more details on AWS deployment, see [README.md - AWS Services Stack](README.md#aws-services-stack) and [CloudFormation template](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
 
 ## Security Controls
 
@@ -210,12 +210,12 @@ For a conceptual overview of the security architecture, see the [Security Archit
 
 These **FSBP-aligned controls** ensure the CIA project maintains robust security for financial operations, proactively addresses vulnerabilities, and aligns with industry best practices.
 
-For more details on AWS deployment, see the [AWS Infrastructure](AWS_INFRASTRUCTURE.md) documentation and [CloudFormation template](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
+For more details on AWS deployment, see [README.md - AWS Services Stack](README.md#aws-services-stack) and [CloudFormation template](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
 
 ## Related Documentation
 
 - [Architecture Documentation](ARCHITECTURE.md) - System architecture overview
-- [AWS Infrastructure](AWS_INFRASTRUCTURE.md) - CloudFormation and AWS deployment details
+- [AWS Services Stack](README.md#aws-services-stack) - CloudFormation and AWS deployment details
 - [End-of-Life Strategy](End-of-Life-Strategy.md) - Technology maintenance planning
 - [Security Architecture](SECURITY_ARCHITECTURE.md) - Security model details
 - [README](README.md) - Project overview and quick links

@@ -2,6 +2,7 @@
 -- PostgreSQL database dump
 --
 
+\restrict Mp8HMNLJz37LdPf1uiK5OUlmMqVOgnfM79Elv0n4uVH1cbMKSFaUTG2AFYtDFSd
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -6005,7 +6006,7 @@ CREATE VIEW public.view_committee_productivity AS
             count(DISTINCT ad.intressent_id) FILTER (WHERE ((ad.role_code)::text = 'Ledamot'::text)) AS regular_members,
             count(DISTINCT ad.intressent_id) FILTER (WHERE (((ad.role_code)::text ~~* '%suppleant%'::text) OR ((ad.role_code)::text ~~* '%ersättare%'::text))) AS substitutes
            FROM (public.view_riksdagen_committee rc
-             LEFT JOIN public.assignment_data ad ON ((((ad.org_code)::text = (rc.embedded_id_org_code)::text) AND ((ad.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((ad.to_date IS NULL) OR (ad.to_date >= CURRENT_DATE)))))
+             LEFT JOIN public.assignment_data ad ON ((((ad.org_code)::text = (rc.embedded_id_org_code)::text) AND ((ad.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((ad.to_date IS NULL) OR (ad.to_date >= CURRENT_DATE)))))
           GROUP BY rc.embedded_id_org_code, rc.embedded_id_detail
         ), committee_decisions AS (
          SELECT view_riksdagen_committee_decisions.org AS committee_code,
@@ -6274,6 +6275,402 @@ CREATE VIEW public.view_document_data_committee_report_url AS
     committee_report_url_xml
    FROM public.document_data
   WHERE (committee_report_url_xml IS NOT NULL);
+
+
+--
+-- Name: view_ministry_effectiveness_trends; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_ministry_effectiveness_trends AS
+ WITH ministry_base AS (
+         SELECT DISTINCT assignment_data.org_code,
+            SUBSTRING(assignment_data.org_code FROM 1 FOR (POSITION(('departement'::text) IN (assignment_data.org_code)) + 10)) AS short_code,
+            assignment_data.detail AS name
+           FROM public.assignment_data
+          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL) AND ((assignment_data.org_code)::text ~~ '%departement%'::text))
+        ), ministry_quarterly_metrics AS (
+         SELECT m.org_code,
+            m.short_code,
+            m.name,
+            date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone) AS period_start,
+            count(DISTINCT doc.id) AS documents_produced,
+            count(DISTINCT
+                CASE
+                    WHEN ((doc.document_type)::text = 'prop'::text) THEN doc.id
+                    ELSE NULL::bigint
+                END) AS propositions,
+            count(DISTINCT
+                CASE
+                    WHEN ((doc.document_type)::text = 'ds'::text) THEN doc.id
+                    ELSE NULL::bigint
+                END) AS government_bills,
+            count(DISTINCT
+                CASE
+                    WHEN ((doc.document_type)::text = ANY ((ARRAY['prop'::character varying, 'ds'::character varying])::text[])) THEN doc.id
+                    ELSE NULL::bigint
+                END) AS legislative_documents,
+            count(DISTINCT doc.person_reference_id) AS active_members
+           FROM (ministry_base m
+             LEFT JOIN public.view_riksdagen_politician_document doc ON ((((doc.org)::text = (m.org_code)::text) AND (doc.made_public_date >= (CURRENT_DATE - '3 years'::interval)))))
+          GROUP BY m.org_code, m.short_code, m.name, (date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone))
+        ), trend_calculations AS (
+         SELECT ministry_quarterly_metrics.org_code,
+            ministry_quarterly_metrics.short_code,
+            ministry_quarterly_metrics.name,
+            ministry_quarterly_metrics.period_start,
+            ministry_quarterly_metrics.documents_produced,
+            ministry_quarterly_metrics.propositions,
+            ministry_quarterly_metrics.government_bills,
+            ministry_quarterly_metrics.legislative_documents,
+            ministry_quarterly_metrics.active_members,
+            lag(ministry_quarterly_metrics.documents_produced, 1) OVER (PARTITION BY ministry_quarterly_metrics.org_code ORDER BY ministry_quarterly_metrics.period_start) AS prev_documents,
+            lag(ministry_quarterly_metrics.active_members, 1) OVER (PARTITION BY ministry_quarterly_metrics.org_code ORDER BY ministry_quarterly_metrics.period_start) AS prev_members,
+            lag(ministry_quarterly_metrics.legislative_documents, 1) OVER (PARTITION BY ministry_quarterly_metrics.org_code ORDER BY ministry_quarterly_metrics.period_start) AS prev_legislative,
+            round(avg(ministry_quarterly_metrics.documents_produced) OVER (PARTITION BY ministry_quarterly_metrics.org_code ORDER BY ministry_quarterly_metrics.period_start ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), 2) AS ma_4quarter_documents,
+            round(avg(ministry_quarterly_metrics.legislative_documents) OVER (PARTITION BY ministry_quarterly_metrics.org_code ORDER BY ministry_quarterly_metrics.period_start ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), 2) AS ma_4quarter_legislative,
+            round(avg((ministry_quarterly_metrics.active_members)::numeric) OVER (PARTITION BY ministry_quarterly_metrics.org_code ORDER BY ministry_quarterly_metrics.period_start ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), 2) AS ma_4quarter_members
+           FROM ministry_quarterly_metrics
+          WHERE (ministry_quarterly_metrics.period_start IS NOT NULL)
+        )
+ SELECT org_code,
+    short_code,
+    name,
+    period_start,
+    (((period_start + '3 mons'::interval) - '1 day'::interval))::date AS period_end,
+    EXTRACT(year FROM period_start) AS year,
+    EXTRACT(quarter FROM period_start) AS quarter,
+    documents_produced,
+    propositions,
+    government_bills,
+    legislative_documents,
+    active_members,
+    (documents_produced - COALESCE(prev_documents, documents_produced)) AS document_change,
+    (active_members - COALESCE(prev_members, active_members)) AS member_change,
+    (legislative_documents - COALESCE(prev_legislative, legislative_documents)) AS legislative_change,
+    ma_4quarter_documents,
+    ma_4quarter_legislative,
+    ma_4quarter_members,
+    round(((documents_produced)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS documents_per_member,
+    round(((legislative_documents)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS legislative_per_member,
+        CASE
+            WHEN (documents_produced >= 50) THEN 'HIGHLY_PRODUCTIVE'::text
+            WHEN (documents_produced >= 30) THEN 'PRODUCTIVE'::text
+            WHEN (documents_produced >= 15) THEN 'MODERATE'::text
+            ELSE 'LOW_PRODUCTIVITY'::text
+        END AS productivity_level,
+        CASE
+            WHEN (legislative_documents = 0) THEN 'INACTIVE_LEGISLATION'::text
+            WHEN (legislative_documents >= 10) THEN 'HIGH_LEGISLATIVE_OUTPUT'::text
+            WHEN (legislative_documents >= 5) THEN 'MODERATE_LEGISLATIVE_OUTPUT'::text
+            ELSE 'LOW_LEGISLATIVE_OUTPUT'::text
+        END AS legislative_status,
+        CASE
+            WHEN (active_members = 0) THEN 'NO_ACTIVE_STAFF'::text
+            WHEN (active_members = 1) THEN 'CRITICALLY_UNDERSTAFFED'::text
+            WHEN (active_members <= 3) THEN 'UNDERSTAFFED'::text
+            WHEN (active_members <= 10) THEN 'ADEQUATELY_STAFFED'::text
+            ELSE 'WELL_STAFFED'::text
+        END AS staffing_status,
+        CASE
+            WHEN ((ma_4quarter_documents < (10)::numeric) AND ((documents_produced - COALESCE(prev_documents, documents_produced)) <= '-5'::integer)) THEN 'SEVERE_DECLINE'::text
+            WHEN ((ma_4quarter_documents < (20)::numeric) AND ((documents_produced - COALESCE(prev_documents, documents_produced)) <= '-3'::integer)) THEN 'MODERATE_DECLINE'::text
+            WHEN ((documents_produced - COALESCE(prev_documents, documents_produced)) < 0) THEN 'SLIGHT_DECLINE'::text
+            WHEN ((documents_produced - COALESCE(prev_documents, documents_produced)) > 0) THEN 'IMPROVING'::text
+            ELSE 'STABLE'::text
+        END AS stagnation_indicator,
+        CASE
+            WHEN ((documents_produced >= 50) AND (active_members >= 10) AND (legislative_documents >= 10)) THEN 'Exceptional ministry performance - high output and capacity'::text
+            WHEN ((documents_produced >= 30) AND (active_members >= 5)) THEN 'Strong ministry effectiveness'::text
+            WHEN ((documents_produced < 15) OR (active_members <= 3) OR (legislative_documents = 0)) THEN 'Ministry performance concerns - investigation recommended'::text
+            WHEN ((ma_4quarter_documents < (20)::numeric) AND ((documents_produced - COALESCE(prev_documents, documents_produced)) <= '-5'::integer)) THEN 'Significant ministry decline detected - intervention needed'::text
+            ELSE 'Standard ministry operations'::text
+        END AS effectiveness_assessment
+   FROM trend_calculations
+  ORDER BY org_code, period_start DESC;
+
+
+--
+-- Name: view_ministry_productivity_matrix; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_ministry_productivity_matrix AS
+ WITH ministry_base AS (
+         SELECT DISTINCT assignment_data.org_code,
+            SUBSTRING(assignment_data.org_code FROM 1 FOR (POSITION(('departement'::text) IN (assignment_data.org_code)) + 10)) AS short_code,
+            assignment_data.detail AS name
+           FROM public.assignment_data
+          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL) AND ((assignment_data.org_code)::text ~~ '%departement%'::text))
+        ), ministry_annual_metrics AS (
+         SELECT m.org_code,
+            m.short_code,
+            m.name,
+            EXTRACT(year FROM doc.made_public_date) AS year,
+            count(DISTINCT doc.id) AS documents_produced,
+            count(DISTINCT
+                CASE
+                    WHEN ((doc.document_type)::text = 'prop'::text) THEN doc.id
+                    ELSE NULL::bigint
+                END) AS propositions,
+            count(DISTINCT
+                CASE
+                    WHEN ((doc.document_type)::text = 'ds'::text) THEN doc.id
+                    ELSE NULL::bigint
+                END) AS government_bills,
+            count(DISTINCT doc.person_reference_id) AS active_members,
+            min(doc.made_public_date) AS first_document_date,
+            max(doc.made_public_date) AS last_document_date
+           FROM (ministry_base m
+             LEFT JOIN public.view_riksdagen_politician_document doc ON ((((doc.org)::text = (m.org_code)::text) AND (doc.made_public_date >= (CURRENT_DATE - '3 years'::interval)))))
+          GROUP BY m.org_code, m.short_code, m.name, (EXTRACT(year FROM doc.made_public_date))
+        ), annual_benchmarks AS (
+         SELECT ministry_annual_metrics.year,
+            avg(ministry_annual_metrics.documents_produced) AS avg_documents_per_ministry,
+            stddev(ministry_annual_metrics.documents_produced) AS stddev_documents,
+            max(ministry_annual_metrics.documents_produced) AS max_documents,
+            min(ministry_annual_metrics.documents_produced) AS min_documents,
+            percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((ministry_annual_metrics.documents_produced)::double precision)) AS median_documents
+           FROM ministry_annual_metrics
+          WHERE (ministry_annual_metrics.year IS NOT NULL)
+          GROUP BY ministry_annual_metrics.year
+        ), productivity_analysis AS (
+         SELECT mam.org_code,
+            mam.short_code,
+            mam.name,
+            mam.year,
+            mam.documents_produced,
+            mam.propositions,
+            mam.government_bills,
+            mam.active_members,
+            mam.first_document_date,
+            mam.last_document_date,
+            ab.avg_documents_per_ministry,
+            ab.median_documents,
+            ab.max_documents,
+            ab.min_documents,
+            lag(mam.documents_produced, 1) OVER (PARTITION BY mam.org_code ORDER BY mam.year) AS prev_year_documents,
+            lag(mam.active_members, 1) OVER (PARTITION BY mam.org_code ORDER BY mam.year) AS prev_year_members
+           FROM (ministry_annual_metrics mam
+             LEFT JOIN annual_benchmarks ab ON ((mam.year = ab.year)))
+          WHERE (mam.year IS NOT NULL)
+        )
+ SELECT org_code,
+    short_code,
+    name,
+    year,
+    documents_produced,
+    propositions,
+    government_bills,
+    active_members,
+    round(((documents_produced)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS documents_per_member,
+    round(((propositions)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS propositions_per_member,
+    round(((government_bills)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS bills_per_member,
+    (documents_produced - COALESCE(prev_year_documents, documents_produced)) AS yoy_document_change,
+    round(((((documents_produced - COALESCE(prev_year_documents, documents_produced)))::numeric / (NULLIF(prev_year_documents, 0))::numeric) * (100)::numeric), 2) AS yoy_document_change_pct,
+    round(avg_documents_per_ministry, 2) AS year_avg_documents,
+    round((median_documents)::numeric, 2) AS year_median_documents,
+    max_documents AS year_max_documents,
+    min_documents AS year_min_documents,
+    round(((documents_produced)::numeric - avg_documents_per_ministry), 2) AS vs_average,
+    round(((((documents_produced)::numeric / NULLIF(avg_documents_per_ministry, (0)::numeric)) - (1)::numeric) * (100)::numeric), 2) AS vs_average_pct,
+        CASE
+            WHEN ((documents_produced)::numeric >= (avg_documents_per_ministry * 1.5)) THEN 'TOP_PERFORMER'::text
+            WHEN ((documents_produced)::numeric >= (avg_documents_per_ministry * 1.2)) THEN 'ABOVE_AVERAGE'::text
+            WHEN ((documents_produced)::numeric >= (avg_documents_per_ministry * 0.8)) THEN 'AVERAGE'::text
+            WHEN ((documents_produced)::numeric >= (avg_documents_per_ministry * 0.5)) THEN 'BELOW_AVERAGE'::text
+            ELSE 'UNDERPERFORMING'::text
+        END AS performance_classification,
+        CASE
+            WHEN ((documents_produced - COALESCE(prev_year_documents, documents_produced)) >= 20) THEN 'STRONG_GROWTH'::text
+            WHEN ((documents_produced - COALESCE(prev_year_documents, documents_produced)) >= 10) THEN 'MODERATE_GROWTH'::text
+            WHEN ((documents_produced - COALESCE(prev_year_documents, documents_produced)) > 0) THEN 'SLIGHT_GROWTH'::text
+            WHEN ((documents_produced - COALESCE(prev_year_documents, documents_produced)) <= '-20'::integer) THEN 'STRONG_DECLINE'::text
+            WHEN ((documents_produced - COALESCE(prev_year_documents, documents_produced)) <= '-10'::integer) THEN 'MODERATE_DECLINE'::text
+            WHEN ((documents_produced - COALESCE(prev_year_documents, documents_produced)) < 0) THEN 'SLIGHT_DECLINE'::text
+            ELSE 'STABLE'::text
+        END AS trend_classification,
+        CASE
+            WHEN (((documents_produced)::numeric >= (avg_documents_per_ministry * 1.5)) AND (active_members >= 8)) THEN 'Exceptional productivity - model ministry'::text
+            WHEN ((documents_produced)::numeric >= (avg_documents_per_ministry * 1.2)) THEN 'Above-average ministry performance'::text
+            WHEN ((documents_produced)::numeric < (avg_documents_per_ministry * 0.5)) THEN 'Critically low productivity - requires intervention'::text
+            WHEN ((documents_produced - COALESCE(prev_year_documents, documents_produced)) <= '-20'::integer) THEN 'Severe productivity decline - investigate causes'::text
+            ELSE 'Standard ministry productivity'::text
+        END AS productivity_assessment,
+    first_document_date,
+    last_document_date,
+        CASE
+            WHEN ((first_document_date IS NOT NULL) AND (last_document_date IS NOT NULL)) THEN (last_document_date - first_document_date)
+            ELSE 0
+        END AS activity_span_days
+   FROM productivity_analysis
+  WHERE (org_code IS NOT NULL)
+  ORDER BY year DESC, documents_produced DESC;
+
+
+--
+-- Name: view_ministry_risk_evolution; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_ministry_risk_evolution AS
+ WITH ministry_base AS (
+         SELECT DISTINCT assignment_data.org_code,
+            SUBSTRING(assignment_data.org_code FROM 1 FOR (POSITION(('departement'::text) IN (assignment_data.org_code)) + 10)) AS short_code,
+            assignment_data.detail AS name
+           FROM public.assignment_data
+          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL) AND ((assignment_data.org_code)::text ~~ '%departement%'::text))
+        ), quarterly_ministry_base AS (
+         SELECT m.org_code,
+            m.short_code,
+            m.name,
+            date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone) AS assessment_period,
+            count(DISTINCT doc.id) AS document_count,
+            count(DISTINCT
+                CASE
+                    WHEN ((doc.document_type)::text = ANY ((ARRAY['prop'::character varying, 'ds'::character varying])::text[])) THEN doc.id
+                    ELSE NULL::bigint
+                END) AS legislative_count,
+            count(DISTINCT doc.person_reference_id) AS active_members,
+            min(doc.made_public_date) AS first_activity,
+            max(doc.made_public_date) AS last_activity
+           FROM (ministry_base m
+             LEFT JOIN public.view_riksdagen_politician_document doc ON ((((doc.org)::text = (m.org_code)::text) AND (doc.made_public_date >= (CURRENT_DATE - '3 years'::interval)))))
+          GROUP BY m.org_code, m.short_code, m.name, (date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone))
+        ), risk_calculations AS (
+         SELECT quarterly_ministry_base.org_code,
+            quarterly_ministry_base.short_code,
+            quarterly_ministry_base.name,
+            quarterly_ministry_base.assessment_period,
+            quarterly_ministry_base.document_count,
+            quarterly_ministry_base.legislative_count,
+            quarterly_ministry_base.active_members,
+            quarterly_ministry_base.first_activity,
+            quarterly_ministry_base.last_activity,
+            round(((((
+                CASE
+                    WHEN (quarterly_ministry_base.document_count = 0) THEN 30
+                    WHEN (quarterly_ministry_base.document_count < 10) THEN 20
+                    WHEN (quarterly_ministry_base.document_count < 20) THEN 10
+                    ELSE 0
+                END +
+                CASE
+                    WHEN (quarterly_ministry_base.legislative_count = 0) THEN 25
+                    WHEN (quarterly_ministry_base.legislative_count < 3) THEN 15
+                    WHEN (quarterly_ministry_base.legislative_count < 5) THEN 5
+                    ELSE 0
+                END) +
+                CASE
+                    WHEN (quarterly_ministry_base.active_members = 0) THEN 25
+                    WHEN (quarterly_ministry_base.active_members = 1) THEN 20
+                    WHEN (quarterly_ministry_base.active_members <= 3) THEN 10
+                    ELSE 0
+                END) +
+                CASE
+                    WHEN ((quarterly_ministry_base.document_count = 0) AND (quarterly_ministry_base.legislative_count = 0)) THEN 20
+                    WHEN (quarterly_ministry_base.document_count < 5) THEN 10
+                    ELSE 0
+                END))::numeric, 2) AS calculated_risk_score,
+            lag(round(((((
+                CASE
+                    WHEN (quarterly_ministry_base.document_count = 0) THEN 30
+                    WHEN (quarterly_ministry_base.document_count < 10) THEN 20
+                    WHEN (quarterly_ministry_base.document_count < 20) THEN 10
+                    ELSE 0
+                END +
+                CASE
+                    WHEN (quarterly_ministry_base.legislative_count = 0) THEN 25
+                    WHEN (quarterly_ministry_base.legislative_count < 3) THEN 15
+                    WHEN (quarterly_ministry_base.legislative_count < 5) THEN 5
+                    ELSE 0
+                END) +
+                CASE
+                    WHEN (quarterly_ministry_base.active_members = 0) THEN 25
+                    WHEN (quarterly_ministry_base.active_members = 1) THEN 20
+                    WHEN (quarterly_ministry_base.active_members <= 3) THEN 10
+                    ELSE 0
+                END) +
+                CASE
+                    WHEN ((quarterly_ministry_base.document_count = 0) AND (quarterly_ministry_base.legislative_count = 0)) THEN 20
+                    WHEN (quarterly_ministry_base.document_count < 5) THEN 10
+                    ELSE 0
+                END))::numeric, 2), 1) OVER (PARTITION BY quarterly_ministry_base.org_code ORDER BY quarterly_ministry_base.assessment_period) AS prev_risk_score
+           FROM quarterly_ministry_base
+          WHERE (quarterly_ministry_base.assessment_period IS NOT NULL)
+        )
+ SELECT org_code,
+    short_code,
+    name,
+    assessment_period,
+    (((assessment_period + '3 mons'::interval) - '1 day'::interval))::date AS assessment_period_end,
+    EXTRACT(year FROM assessment_period) AS year,
+    EXTRACT(quarter FROM assessment_period) AS quarter,
+    document_count,
+    legislative_count,
+    active_members,
+    calculated_risk_score AS risk_score,
+    prev_risk_score,
+    round((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)), 2) AS risk_score_change,
+        CASE
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (20)::numeric) THEN 'SIGNIFICANT_INCREASE'::text
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (10)::numeric) THEN 'MODERATE_INCREASE'::text
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) > (0)::numeric) THEN 'SLIGHT_INCREASE'::text
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) <= ('-20'::integer)::numeric) THEN 'SIGNIFICANT_DECREASE'::text
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) <= ('-10'::integer)::numeric) THEN 'MODERATE_DECREASE'::text
+            WHEN ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) < (0)::numeric) THEN 'SLIGHT_DECREASE'::text
+            ELSE 'STABLE'::text
+        END AS risk_trend,
+        CASE
+            WHEN (calculated_risk_score >= (70)::numeric) THEN 'CRITICAL'::text
+            WHEN (calculated_risk_score >= (50)::numeric) THEN 'HIGH'::text
+            WHEN (calculated_risk_score >= (30)::numeric) THEN 'MODERATE'::text
+            WHEN (calculated_risk_score >= (15)::numeric) THEN 'LOW'::text
+            ELSE 'MINIMAL'::text
+        END AS risk_severity,
+        CASE
+            WHEN (COALESCE(prev_risk_score, (0)::numeric) > (0)::numeric) THEN
+            CASE
+                WHEN ((prev_risk_score < (30)::numeric) AND (calculated_risk_score >= (30)::numeric)) THEN 'ESCALATION_TO_MODERATE'::text
+                WHEN ((prev_risk_score < (50)::numeric) AND (calculated_risk_score >= (50)::numeric)) THEN 'ESCALATION_TO_HIGH'::text
+                WHEN ((prev_risk_score < (70)::numeric) AND (calculated_risk_score >= (70)::numeric)) THEN 'ESCALATION_TO_CRITICAL'::text
+                WHEN ((prev_risk_score >= (70)::numeric) AND (calculated_risk_score < (70)::numeric)) THEN 'DEESCALATION_FROM_CRITICAL'::text
+                WHEN ((prev_risk_score >= (50)::numeric) AND (calculated_risk_score < (50)::numeric)) THEN 'DEESCALATION_FROM_HIGH'::text
+                WHEN ((prev_risk_score >= (30)::numeric) AND (calculated_risk_score < (30)::numeric)) THEN 'DEESCALATION_FROM_MODERATE'::text
+                ELSE 'NO_SEVERITY_TRANSITION'::text
+            END
+            ELSE 'INITIAL_ASSESSMENT'::text
+        END AS severity_transition,
+        CASE
+            WHEN (document_count < 10) THEN true
+            ELSE false
+        END AS has_low_productivity_risk,
+        CASE
+            WHEN (legislative_count = 0) THEN true
+            ELSE false
+        END AS has_inactive_legislation_risk,
+        CASE
+            WHEN (active_members <= 3) THEN true
+            ELSE false
+        END AS has_understaffing_risk,
+        CASE
+            WHEN (document_count < 5) THEN true
+            ELSE false
+        END AS has_stagnation_risk,
+        CASE
+            WHEN (calculated_risk_score >= (70)::numeric) THEN 'CRITICAL: Ministry failure - immediate government intervention required'::text
+            WHEN ((calculated_risk_score >= (50)::numeric) AND ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (10)::numeric)) THEN 'HIGH RISK: Escalating ministry dysfunction - cabinet reshuffle likely'::text
+            WHEN (calculated_risk_score >= (50)::numeric) THEN 'HIGH RISK: Sustained ministry underperformance - monitor closely'::text
+            WHEN ((calculated_risk_score >= (30)::numeric) AND ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (15)::numeric)) THEN 'MODERATE RISK: Rapid ministry decline - early intervention needed'::text
+            WHEN (calculated_risk_score >= (30)::numeric) THEN 'MODERATE RISK: Ministry effectiveness concerns'::text
+            WHEN ((prev_risk_score >= (50)::numeric) AND (calculated_risk_score < (30)::numeric)) THEN 'IMPROVING: Effective ministry turnaround achieved'::text
+            ELSE 'LOW RISK: Ministry functioning normally'::text
+        END AS risk_assessment,
+    first_activity,
+    last_activity,
+        CASE
+            WHEN ((first_activity IS NOT NULL) AND (last_activity IS NOT NULL)) THEN (last_activity - first_activity)
+            ELSE 0
+        END AS activity_span_days
+   FROM risk_calculations
+  WHERE (org_code IS NOT NULL)
+  ORDER BY org_code, assessment_period DESC;
 
 
 --
@@ -11103,6 +11500,13 @@ CREATE INDEX idx_assignment_data_assignment_type ON public.assignment_data USING
 
 
 --
+-- Name: idx_assignment_data_ministry_dates; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_assignment_data_ministry_dates ON public.assignment_data USING btree (org_code, role_code, from_date DESC, to_date DESC) WHERE ((assignment_type)::text = 'Departement'::text);
+
+
+--
 -- Name: idx_assignment_data_org_code; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11194,6 +11598,13 @@ CREATE INDEX idx_decision_type_org_composite ON public.view_riksdagen_committee_
 
 
 --
+-- Name: idx_document_data_ministry_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_document_data_ministry_date ON public.document_data USING btree (org, made_public_date DESC) WHERE ((org IS NOT NULL) AND ((org)::text ~~ '%departement%'::text));
+
+
+--
 -- Name: idx_monthly_date_party; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11282,6 +11693,13 @@ CREATE INDEX idx_politician_annual_id ON public.view_riksdagen_vote_data_ballot_
 --
 
 CREATE INDEX idx_politician_document_date_org ON public.view_riksdagen_politician_document USING btree (made_public_date DESC, org, party_short_code);
+
+
+--
+-- Name: idx_politician_document_ministry; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_politician_document_ministry ON public.view_riksdagen_politician_document USING btree (org, made_public_date DESC, document_type) WHERE (org IS NOT NULL);
 
 
 --
@@ -12097,11 +12515,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
+\unrestrict Mp8HMNLJz37LdPf1uiK5OUlmMqVOgnfM79Elv0n4uVH1cbMKSFaUTG2AFYtDFSd
 
 --
 -- PostgreSQL database dump
 --
 
+\restrict 2vwwm3BwKk7wR5nclUCFyHpemHYt9lL50n5PM5YzRTJ3hTXgHbbKeRhzlQNuHSg
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -12490,6 +12910,10 @@ osint-2025111502-party-effectiveness-trends	intelligence-operative	db-changelog-
 osint-2025111503-risk-score-evolution	intelligence-operative	db-changelog-1.30.xml	2025-11-16 01:16:49.186531	366	EXECUTED	9:ec6554f6fd6a4de381f8a97d46bd5663	createView viewName=view_risk_score_evolution	Risk Score Evolution View\n        \n        Intelligence Purpose:\n        - Track historical changes in politician risk scores\n        - Monitor severity transitions (escalation/de-escalation)\n        - Identify risk patterns and triggers\n        -...	\N	5.0.1	\N	\N	3255806608
 osint-2025111504-committee-productivity-matrix	intelligence-operative	db-changelog-1.30.xml	2025-11-16 01:21:59.738227	367	EXECUTED	9:07244f5572e4a6fe02140b2ee16c586f	createView viewName=view_committee_productivity_matrix	Committee Productivity Matrix View\n        \n        Intelligence Purpose:\n        - Monitor committee output and effectiveness by period\n        - Benchmark committee performance against historical data\n        - Identify productive vs. underperfo...	\N	5.0.1	\N	\N	3256114825
 osint-2025111505-performance-indexes	intelligence-operative	db-changelog-1.30.xml	2025-11-16 01:23:10.249747	368	EXECUTED	9:e98bc86dc1435e8492ffaa48d97db931	sql	Performance Indexes for OSINT Intelligence Queries\n        \n        These indexes optimize the most common temporal queries used in\n        intelligence analysis and dashboard operations.	\N	5.0.1	\N	\N	3256187647
+ministry-2025111701-effectiveness-trends	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:35:56.518014	369	EXECUTED	9:427996676625f2b8dce8395553aa0b77	createView viewName=view_ministry_effectiveness_trends	Ministry Effectiveness Trends View\n        \n        Intelligence Purpose:\n        - Track ministry-level performance metrics over time\n        - Monitor document production, legislative output, and staffing\n        - Identify productive vs. underp...	\N	5.0.1	\N	\N	3422554304
+ministry-2025111702-productivity-matrix	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:35:56.565277	370	EXECUTED	9:179ccaf2df5469f386c4f0586073cea7	createView viewName=view_ministry_productivity_matrix	Ministry Productivity Matrix View\n        \n        Intelligence Purpose:\n        - Benchmark ministry performance against peers\n        - Identify most and least productive ministries\n        - Normalize metrics for fair comparison\n        - Suppo...	\N	5.0.1	\N	\N	3422554304
+ministry-2025111703-risk-evolution	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:35:56.587222	371	EXECUTED	9:1a81b471095b1d7cb4d9c78e3393bb93	createView viewName=view_ministry_risk_evolution	Ministry Risk Evolution View\n        \n        Intelligence Purpose:\n        - Track historical changes in ministry risk scores\n        - Monitor risk severity transitions for ministries\n        - Identify risk patterns and triggers at ministry lev...	\N	5.0.1	\N	\N	3422554304
+ministry-2025111704-performance-indexes	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:36:28.762583	372	EXECUTED	9:5186a2215528e93478d78b12fc23941b	sql	Performance Indexes for Ministry Intelligence Queries\n        \n        These indexes optimize the most common temporal queries used in\n        ministry intelligence analysis and government effectiveness dashboards.	\N	5.0.1	\N	\N	3422586448
 \.
 
 
@@ -12506,4 +12930,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
+\unrestrict 2vwwm3BwKk7wR5nclUCFyHpemHYt9lL50n5PM5YzRTJ3hTXgHbbKeRhzlQNuHSg
 

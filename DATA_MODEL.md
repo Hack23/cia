@@ -761,4 +761,4 @@ For more detailed information on specific entities, please refer to the [Entity 
 - [Entity Model Documentation](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Detailed entity documentation
 - [Future Vision](FUTURE_MINDMAP.md) - Roadmap for AI-enhanced capabilities
 - [MINDMAP Documentation](MINDMAP.md) - Conceptual overview of system components
-- [AWS Infrastructure](AWS_INFRASTRUCTURE.md) - Cloud deployment architecture
+- [AWS Services Stack](README.md#aws-services-stack) - Cloud deployment architecture

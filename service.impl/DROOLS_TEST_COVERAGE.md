@@ -302,8 +302,8 @@ mvn test -Dtest=DroolsRulesValidationTest#testAllRulesCompileSuccessfully
 
 ## References
 
-- [RISK_RULES_INTOP_OSINT.md](../../../RISK_RULES_INTOP_OSINT.md) - Risk rules intelligence documentation
-- [DROOLS_RISK_RULES.md](../../../DROOLS_RISK_RULES.md) - Drools rules technical documentation
+- [RISK_RULES_INTOP_OSINT.md](../RISK_RULES_INTOP_OSINT.md) - Risk rules intelligence documentation
+- [DROOLS_RISK_RULES.md](../DROOLS_RISK_RULES.md) - Drools rules technical documentation
 - [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - 80% line, 70% branch coverage targets
 - [Drools Documentation](https://www.drools.org/) - Drools rules engine reference
 

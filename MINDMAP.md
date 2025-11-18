@@ -148,7 +148,7 @@ mindmap
 
 **🏛️ Political Focus:** Shows the relationships between different political entities tracked in the system. See the [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) for database implementation details.
 
-**🔗 Integration Focus:** Illustrates how data flows from various sources into the CIA platform. See [Data Integration](DATA_INTEGRATION.md) for more details on the integration strategies.
+**🔗 Integration Focus:** Illustrates how data flows from various sources into the CIA platform. See [README.md - Data Sources](README.md#data-sources) for more details on the integration strategies.
 
 ```mermaid
 mindmap

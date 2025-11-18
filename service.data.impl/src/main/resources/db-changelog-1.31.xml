@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Ministry Intelligence Tracking Views v1.31
+  Author: Political Analyst & Intelligence Operative
+  Date: 2025-11-17
+  
+  This changelog completes the 45 risk rule coverage by implementing ministry-level
+  intelligence tracking views, achieving 100% coverage of all RISK_RULES_INTOP_OSINT.md
+  requirements.
+  
+  Intelligence Frameworks Supported:
+  1. Ministry Effectiveness - Quarterly aggregation with 3-year window
+  2. Ministry Productivity - Document production benchmarking
+  3. Ministry Risk Evolution - Temporal risk tracking for ministries
+  
+  Ministry Rules Covered:
+  - MinistryLowProductivity (M-01): documents_produced metric
+  - MinistryInactiveLegislation (M-02): propositions + government_bills counts
+  - MinistryUnderstaffed (M-03): active_members tracking
+  - MinistryStagnation (M-04): Moving averages for trend detection
+  
+  Time Window Strategy:
+  - Quarterly aggregation: Strategic-level executive analysis
+  - 3-year historical window: Balances government cycle with pattern detection
+  - Moving averages: Trend smoothing for decline detection
+-->
+
+<!-- ========================================================================= -->
+<!-- 1. MINISTRY EFFECTIVENESS TRENDS VIEW                                    -->
+<!-- Intelligence Value: VERY HIGH - Government executive monitoring           -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="ministry-2025111701-effectiveness-trends" failOnError="true">
+    <comment>
+        Ministry Effectiveness Trends View
+        
+        Intelligence Purpose:
+        - Track ministry-level performance metrics over time
+        - Monitor document production, legislative output, and staffing
+        - Identify productive vs. underperforming ministries
+        - Support government effectiveness assessment
+        
+        Use Cases:
+        - Ministry performance benchmarking
+        - Government capacity assessment
+        - Executive accountability monitoring
+        - Cabinet effectiveness tracking
+        
+        RISK_RULES_INTOP_OSINT.md Support:
+        - Rule M-01 (MinistryLowProductivity): documents_produced metric
+        - Rule M-02 (MinistryInactiveLegislation): propositions + government_bills
+        - Rule M-03 (MinistryUnderstaffed): active_members tracking
+        - Rule M-04 (MinistryStagnation): Moving averages for trend detection
+    </comment>
+    
+    <createView viewName="view_ministry_effectiveness_trends">
+        <![CDATA[
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        SUBSTRING(org_code FROM 1 FOR position('departement' IN org_code) + 10) AS short_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+        AND org_code LIKE '%departement%'
+),
+ministry_quarterly_metrics AS (
+    SELECT
+        m.org_code,
+        m.short_code,
+        m.name,
+        DATE_TRUNC('quarter', doc.made_public_date) AS period_start,
+        COUNT(DISTINCT doc.id) AS documents_produced,
+        COUNT(DISTINCT CASE WHEN doc.document_type = 'prop' THEN doc.id END) AS propositions,
+        COUNT(DISTINCT CASE WHEN doc.document_type = 'ds' THEN doc.id END) AS government_bills,
+        COUNT(DISTINCT CASE WHEN doc.document_type IN ('prop', 'ds') THEN doc.id END) AS legislative_documents,
+        COUNT(DISTINCT doc.person_reference_id) AS active_members
+    FROM ministry_base m
+    LEFT JOIN view_riksdagen_politician_document doc 
+        ON doc.org = m.org_code
+        AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY m.org_code, m.short_code, m.name, DATE_TRUNC('quarter', doc.made_public_date)
+),
+trend_calculations AS (
+    SELECT
+        org_code,
+        short_code,
+        name,
+        period_start,
+        documents_produced,
+        propositions,
+        government_bills,
+        legislative_documents,
+        active_members,
+        
+        -- Previous period values for trend calculation
+        LAG(documents_produced, 1) OVER (PARTITION BY org_code ORDER BY period_start) AS prev_documents,
+        LAG(active_members, 1) OVER (PARTITION BY org_code ORDER BY period_start) AS prev_members,
+        LAG(legislative_documents, 1) OVER (PARTITION BY org_code ORDER BY period_start) AS prev_legislative,
+        
+        -- 4-quarter moving averages for smoothing
+        ROUND(AVG(documents_produced) OVER (
+            PARTITION BY org_code 
+            ORDER BY period_start 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ), 2) AS ma_4quarter_documents,
+        
+        ROUND(AVG(legislative_documents) OVER (
+            PARTITION BY org_code 
+            ORDER BY period_start 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ), 2) AS ma_4quarter_legislative,
+        
+        ROUND(AVG(CAST(active_members AS NUMERIC)) OVER (
+            PARTITION BY org_code 
+            ORDER BY period_start 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ), 2) AS ma_4quarter_members
+    FROM ministry_quarterly_metrics
+    WHERE period_start IS NOT NULL
+)
+SELECT
+    org_code,
+    short_code,
+    name,
+    period_start,
+    (period_start + INTERVAL '3 months' - INTERVAL '1 day')::DATE AS period_end,
+    EXTRACT(YEAR FROM period_start) AS year,
+    EXTRACT(QUARTER FROM period_start) AS quarter,
+    documents_produced,
+    propositions,
+    government_bills,
+    legislative_documents,
+    active_members,
+    
+    -- Trend indicators (change from previous period)
+    documents_produced - COALESCE(prev_documents, documents_produced) AS document_change,
+    active_members - COALESCE(prev_members, active_members) AS member_change,
+    legislative_documents - COALESCE(prev_legislative, legislative_documents) AS legislative_change,
+    
+    -- Moving averages for smoothed trends
+    ma_4quarter_documents,
+    ma_4quarter_legislative,
+    ma_4quarter_members,
+    
+    -- Productivity metrics
+    ROUND(CAST(documents_produced AS NUMERIC) / NULLIF(active_members, 0), 2) AS documents_per_member,
+    ROUND(CAST(legislative_documents AS NUMERIC) / NULLIF(active_members, 0), 2) AS legislative_per_member,
+    
+    -- Productivity classification (Rule M-01: MinistryLowProductivity)
+    CASE
+        WHEN documents_produced >= 50 THEN 'HIGHLY_PRODUCTIVE'
+        WHEN documents_produced >= 30 THEN 'PRODUCTIVE'
+        WHEN documents_produced >= 15 THEN 'MODERATE'
+        ELSE 'LOW_PRODUCTIVITY'
+    END AS productivity_level,
+    
+    -- Legislative activity status (Rule M-02: MinistryInactiveLegislation)
+    CASE
+        WHEN legislative_documents = 0 THEN 'INACTIVE_LEGISLATION'
+        WHEN legislative_documents >= 10 THEN 'HIGH_LEGISLATIVE_OUTPUT'
+        WHEN legislative_documents >= 5 THEN 'MODERATE_LEGISLATIVE_OUTPUT'
+        ELSE 'LOW_LEGISLATIVE_OUTPUT'
+    END AS legislative_status,
+    
+    -- Staffing status (Rule M-03: MinistryUnderstaffed)
+    CASE
+        WHEN active_members = 0 THEN 'NO_ACTIVE_STAFF'
+        WHEN active_members = 1 THEN 'CRITICALLY_UNDERSTAFFED'
+        WHEN active_members <= 3 THEN 'UNDERSTAFFED'
+        WHEN active_members <= 10 THEN 'ADEQUATELY_STAFFED'
+        ELSE 'WELL_STAFFED'
+    END AS staffing_status,
+    
+    -- Stagnation detection (Rule M-04: MinistryStagnation)
+    CASE
+        WHEN ma_4quarter_documents < 10 AND documents_produced - COALESCE(prev_documents, documents_produced) <= -5
+            THEN 'SEVERE_DECLINE'
+        WHEN ma_4quarter_documents < 20 AND documents_produced - COALESCE(prev_documents, documents_produced) <= -3
+            THEN 'MODERATE_DECLINE'
+        WHEN documents_produced - COALESCE(prev_documents, documents_produced) < 0
+            THEN 'SLIGHT_DECLINE'
+        WHEN documents_produced - COALESCE(prev_documents, documents_produced) > 0
+            THEN 'IMPROVING'
+        ELSE 'STABLE'
+    END AS stagnation_indicator,
+    
+    -- Intelligence assessment
+    CASE
+        WHEN documents_produced >= 50 AND active_members >= 10 AND legislative_documents >= 10
+            THEN 'Exceptional ministry performance - high output and capacity'
+        WHEN documents_produced >= 30 AND active_members >= 5
+            THEN 'Strong ministry effectiveness'
+        WHEN documents_produced < 15 OR active_members <= 3 OR legislative_documents = 0
+            THEN 'Ministry performance concerns - investigation recommended'
+        WHEN ma_4quarter_documents < 20 AND documents_produced - COALESCE(prev_documents, documents_produced) <= -5
+            THEN 'Significant ministry decline detected - intervention needed'
+        ELSE 'Standard ministry operations'
+    END AS effectiveness_assessment
+    
+FROM trend_calculations
+ORDER BY org_code, period_start DESC;
+        ]]>
+    </createView>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 2. MINISTRY PRODUCTIVITY MATRIX VIEW                                      -->
+<!-- Intelligence Value: HIGH - Comparative ministry benchmarking              -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="ministry-2025111702-productivity-matrix" failOnError="true">
+    <comment>
+        Ministry Productivity Matrix View
+        
+        Intelligence Purpose:
+        - Benchmark ministry performance against peers
+        - Identify most and least productive ministries
+        - Normalize metrics for fair comparison
+        - Support resource allocation decisions
+        
+        Use Cases:
+        - Cross-ministry performance comparison
+        - Government effectiveness assessment
+        - Budget justification analysis
+        - Coalition cabinet evaluation
+        
+        Supports comparative analysis required by ministry risk rules
+    </comment>
+    
+    <createView viewName="view_ministry_productivity_matrix">
+        <![CDATA[
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        SUBSTRING(org_code FROM 1 FOR position('departement' IN org_code) + 10) AS short_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+        AND org_code LIKE '%departement%'
+),
+ministry_annual_metrics AS (
+    SELECT
+        m.org_code,
+        m.short_code,
+        m.name,
+        EXTRACT(YEAR FROM doc.made_public_date) AS year,
+        COUNT(DISTINCT doc.id) AS documents_produced,
+        COUNT(DISTINCT CASE WHEN doc.document_type = 'prop' THEN doc.id END) AS propositions,
+        COUNT(DISTINCT CASE WHEN doc.document_type = 'ds' THEN doc.id END) AS government_bills,
+        COUNT(DISTINCT doc.person_reference_id) AS active_members,
+        MIN(doc.made_public_date) AS first_document_date,
+        MAX(doc.made_public_date) AS last_document_date
+    FROM ministry_base m
+    LEFT JOIN view_riksdagen_politician_document doc 
+        ON doc.org = m.org_code
+        AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY m.org_code, m.short_code, m.name, EXTRACT(YEAR FROM doc.made_public_date)
+),
+annual_benchmarks AS (
+    SELECT
+        year,
+        AVG(documents_produced) AS avg_documents_per_ministry,
+        STDDEV(documents_produced) AS stddev_documents,
+        MAX(documents_produced) AS max_documents,
+        MIN(documents_produced) AS min_documents,
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY documents_produced) AS median_documents
+    FROM ministry_annual_metrics
+    WHERE year IS NOT NULL
+    GROUP BY year
+),
+productivity_analysis AS (
+    SELECT
+        mam.org_code,
+        mam.short_code,
+        mam.name,
+        mam.year,
+        mam.documents_produced,
+        mam.propositions,
+        mam.government_bills,
+        mam.active_members,
+        mam.first_document_date,
+        mam.last_document_date,
+        ab.avg_documents_per_ministry,
+        ab.median_documents,
+        ab.max_documents,
+        ab.min_documents,
+        
+        -- Previous year for trend
+        LAG(mam.documents_produced, 1) OVER (PARTITION BY mam.org_code ORDER BY mam.year) AS prev_year_documents,
+        LAG(mam.active_members, 1) OVER (PARTITION BY mam.org_code ORDER BY mam.year) AS prev_year_members
+        
+    FROM ministry_annual_metrics mam
+    LEFT JOIN annual_benchmarks ab ON mam.year = ab.year
+    WHERE mam.year IS NOT NULL
+)
+SELECT
+    org_code,
+    short_code,
+    name,
+    year,
+    documents_produced,
+    propositions,
+    government_bills,
+    active_members,
+    
+    -- Productivity metrics (normalized)
+    ROUND(CAST(documents_produced AS NUMERIC) / NULLIF(active_members, 0), 2) AS documents_per_member,
+    ROUND(CAST(propositions AS NUMERIC) / NULLIF(active_members, 0), 2) AS propositions_per_member,
+    ROUND(CAST(government_bills AS NUMERIC) / NULLIF(active_members, 0), 2) AS bills_per_member,
+    
+    -- Year-over-year change
+    documents_produced - COALESCE(prev_year_documents, documents_produced) AS yoy_document_change,
+    ROUND(
+        (CAST(documents_produced - COALESCE(prev_year_documents, documents_produced) AS NUMERIC) / 
+        NULLIF(prev_year_documents, 0)) * 100, 2
+    ) AS yoy_document_change_pct,
+    
+    -- Benchmarking
+    ROUND(CAST(avg_documents_per_ministry AS NUMERIC), 2) AS year_avg_documents,
+    ROUND(CAST(median_documents AS NUMERIC), 2) AS year_median_documents,
+    max_documents AS year_max_documents,
+    min_documents AS year_min_documents,
+    
+    ROUND(CAST(documents_produced - avg_documents_per_ministry AS NUMERIC), 2) AS vs_average,
+    ROUND(
+        ((CAST(documents_produced AS NUMERIC) / NULLIF(CAST(avg_documents_per_ministry AS NUMERIC), 0)) - 1) * 100, 2
+    ) AS vs_average_pct,
+    
+    -- Performance classification
+    CASE
+        WHEN documents_produced >= avg_documents_per_ministry * 1.5 THEN 'TOP_PERFORMER'
+        WHEN documents_produced >= avg_documents_per_ministry * 1.2 THEN 'ABOVE_AVERAGE'
+        WHEN documents_produced >= avg_documents_per_ministry * 0.8 THEN 'AVERAGE'
+        WHEN documents_produced >= avg_documents_per_ministry * 0.5 THEN 'BELOW_AVERAGE'
+        ELSE 'UNDERPERFORMING'
+    END AS performance_classification,
+    
+    -- Trend classification
+    CASE
+        WHEN documents_produced - COALESCE(prev_year_documents, documents_produced) >= 20 THEN 'STRONG_GROWTH'
+        WHEN documents_produced - COALESCE(prev_year_documents, documents_produced) >= 10 THEN 'MODERATE_GROWTH'
+        WHEN documents_produced - COALESCE(prev_year_documents, documents_produced) > 0 THEN 'SLIGHT_GROWTH'
+        WHEN documents_produced - COALESCE(prev_year_documents, documents_produced) <= -20 THEN 'STRONG_DECLINE'
+        WHEN documents_produced - COALESCE(prev_year_documents, documents_produced) <= -10 THEN 'MODERATE_DECLINE'
+        WHEN documents_produced - COALESCE(prev_year_documents, documents_produced) < 0 THEN 'SLIGHT_DECLINE'
+        ELSE 'STABLE'
+    END AS trend_classification,
+    
+    -- Intelligence assessment
+    CASE
+        WHEN documents_produced >= avg_documents_per_ministry * 1.5 AND active_members >= 8
+            THEN 'Exceptional productivity - model ministry'
+        WHEN documents_produced >= avg_documents_per_ministry * 1.2
+            THEN 'Above-average ministry performance'
+        WHEN documents_produced < avg_documents_per_ministry * 0.5
+            THEN 'Critically low productivity - requires intervention'
+        WHEN documents_produced - COALESCE(prev_year_documents, documents_produced) <= -20
+            THEN 'Severe productivity decline - investigate causes'
+        ELSE 'Standard ministry productivity'
+    END AS productivity_assessment,
+    
+    first_document_date,
+    last_document_date,
+    CASE 
+        WHEN first_document_date IS NOT NULL AND last_document_date IS NOT NULL 
+        THEN (last_document_date - first_document_date)::INTEGER 
+        ELSE 0 
+    END AS activity_span_days
+    
+FROM productivity_analysis
+WHERE org_code IS NOT NULL
+ORDER BY year DESC, documents_produced DESC;
+        ]]>
+    </createView>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 3. MINISTRY RISK EVOLUTION VIEW                                           -->
+<!-- Intelligence Value: CRITICAL - Ministry-level risk tracking               -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="ministry-2025111703-risk-evolution" failOnError="true">
+    <comment>
+        Ministry Risk Evolution View
+        
+        Intelligence Purpose:
+        - Track historical changes in ministry risk scores
+        - Monitor risk severity transitions for ministries
+        - Identify risk patterns and triggers at ministry level
+        - Support predictive risk modeling for government effectiveness
+        
+        Use Cases:
+        - Early warning of ministry dysfunction
+        - Cabinet reshuffle prediction
+        - Government effectiveness forecasting
+        - Electoral risk assessment for governing parties
+        
+        RISK_RULES_INTOP_OSINT.md Support:
+        - Rule M-04 (MinistryStagnation): Comprehensive decline detection
+        - All ministry rules: Integrated risk scoring
+        - Temporal Analysis: Ministry risk time-series
+        - Predictive Intelligence: Government stability forecasting
+    </comment>
+    
+    <createView viewName="view_ministry_risk_evolution">
+        <![CDATA[
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        SUBSTRING(org_code FROM 1 FOR position('departement' IN org_code) + 10) AS short_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+        AND org_code LIKE '%departement%'
+),
+quarterly_ministry_base AS (
+    SELECT
+        m.org_code,
+        m.short_code,
+        m.name,
+        DATE_TRUNC('quarter', doc.made_public_date) AS assessment_period,
+        
+        -- Productivity metrics
+        COUNT(DISTINCT doc.id) AS document_count,
+        COUNT(DISTINCT CASE WHEN doc.document_type IN ('prop', 'ds') THEN doc.id END) AS legislative_count,
+        COUNT(DISTINCT doc.person_reference_id) AS active_members,
+        
+        -- Activity span
+        MIN(doc.made_public_date) AS first_activity,
+        MAX(doc.made_public_date) AS last_activity
+        
+    FROM ministry_base m
+    LEFT JOIN view_riksdagen_politician_document doc 
+        ON doc.org = m.org_code
+        AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY m.org_code, m.short_code, m.name, DATE_TRUNC('quarter', doc.made_public_date)
+),
+risk_calculations AS (
+    SELECT
+        org_code,
+        short_code,
+        name,
+        assessment_period,
+        document_count,
+        legislative_count,
+        active_members,
+        first_activity,
+        last_activity,
+        
+        -- Calculate ministry risk score
+        ROUND(
+            -- Low productivity penalty (0-30 points) - Rule M-01
+            CASE
+                WHEN document_count = 0 THEN 30
+                WHEN document_count < 10 THEN 20
+                WHEN document_count < 20 THEN 10
+                ELSE 0
+            END +
+            -- Inactive legislation penalty (0-25 points) - Rule M-02
+            CASE
+                WHEN legislative_count = 0 THEN 25
+                WHEN legislative_count < 3 THEN 15
+                WHEN legislative_count < 5 THEN 5
+                ELSE 0
+            END +
+            -- Understaffed penalty (0-25 points) - Rule M-03
+            CASE
+                WHEN active_members = 0 THEN 25
+                WHEN active_members = 1 THEN 20
+                WHEN active_members <= 3 THEN 10
+                ELSE 0
+            END +
+            -- Stagnation penalty (0-20 points) - Rule M-04
+            CASE
+                WHEN document_count = 0 AND legislative_count = 0 THEN 20
+                WHEN document_count < 5 THEN 10
+                ELSE 0
+            END
+        , 2) AS calculated_risk_score,
+        
+        -- Previous period values for trend
+        LAG(
+            ROUND(
+                CASE WHEN document_count = 0 THEN 30 WHEN document_count < 10 THEN 20 WHEN document_count < 20 THEN 10 ELSE 0 END +
+                CASE WHEN legislative_count = 0 THEN 25 WHEN legislative_count < 3 THEN 15 WHEN legislative_count < 5 THEN 5 ELSE 0 END +
+                CASE WHEN active_members = 0 THEN 25 WHEN active_members = 1 THEN 20 WHEN active_members <= 3 THEN 10 ELSE 0 END +
+                CASE WHEN document_count = 0 AND legislative_count = 0 THEN 20 WHEN document_count < 5 THEN 10 ELSE 0 END
+            , 2)
+        , 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_risk_score
+        
+    FROM quarterly_ministry_base
+    WHERE assessment_period IS NOT NULL
+)
+SELECT
+    org_code,
+    short_code,
+    name,
+    assessment_period,
+    (assessment_period + INTERVAL '3 months' - INTERVAL '1 day')::DATE AS assessment_period_end,
+    EXTRACT(YEAR FROM assessment_period) AS year,
+    EXTRACT(QUARTER FROM assessment_period) AS quarter,
+    document_count,
+    legislative_count,
+    active_members,
+    calculated_risk_score AS risk_score,
+    prev_risk_score,
+    
+    -- Risk change metrics
+    ROUND(calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score), 2) AS risk_score_change,
+    
+    CASE
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) >= 20 
+            THEN 'SIGNIFICANT_INCREASE'
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) >= 10 
+            THEN 'MODERATE_INCREASE'
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) > 0 
+            THEN 'SLIGHT_INCREASE'
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) <= -20 
+            THEN 'SIGNIFICANT_DECREASE'
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) <= -10 
+            THEN 'MODERATE_DECREASE'
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) < 0 
+            THEN 'SLIGHT_DECREASE'
+        ELSE 'STABLE'
+    END AS risk_trend,
+    
+    -- Severity classification
+    CASE
+        WHEN calculated_risk_score >= 70 THEN 'CRITICAL'
+        WHEN calculated_risk_score >= 50 THEN 'HIGH'
+        WHEN calculated_risk_score >= 30 THEN 'MODERATE'
+        WHEN calculated_risk_score >= 15 THEN 'LOW'
+        ELSE 'MINIMAL'
+    END AS risk_severity,
+    
+    -- Severity transition tracking
+    CASE
+        WHEN COALESCE(prev_risk_score, 0) > 0 THEN
+            CASE
+                WHEN prev_risk_score < 30 AND calculated_risk_score >= 30 THEN 'ESCALATION_TO_MODERATE'
+                WHEN prev_risk_score < 50 AND calculated_risk_score >= 50 THEN 'ESCALATION_TO_HIGH'
+                WHEN prev_risk_score < 70 AND calculated_risk_score >= 70 THEN 'ESCALATION_TO_CRITICAL'
+                WHEN prev_risk_score >= 70 AND calculated_risk_score < 70 THEN 'DEESCALATION_FROM_CRITICAL'
+                WHEN prev_risk_score >= 50 AND calculated_risk_score < 50 THEN 'DEESCALATION_FROM_HIGH'
+                WHEN prev_risk_score >= 30 AND calculated_risk_score < 30 THEN 'DEESCALATION_FROM_MODERATE'
+                ELSE 'NO_SEVERITY_TRANSITION'
+            END
+        ELSE 'INITIAL_ASSESSMENT'
+    END AS severity_transition,
+    
+    -- Contributing risk factors
+    CASE WHEN document_count < 10 THEN TRUE ELSE FALSE END AS has_low_productivity_risk,
+    CASE WHEN legislative_count = 0 THEN TRUE ELSE FALSE END AS has_inactive_legislation_risk,
+    CASE WHEN active_members <= 3 THEN TRUE ELSE FALSE END AS has_understaffing_risk,
+    CASE WHEN document_count < 5 THEN TRUE ELSE FALSE END AS has_stagnation_risk,
+    
+    -- Intelligence assessment
+    CASE
+        WHEN calculated_risk_score >= 70 
+            THEN 'CRITICAL: Ministry failure - immediate government intervention required'
+        WHEN calculated_risk_score >= 50 AND calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) >= 10
+            THEN 'HIGH RISK: Escalating ministry dysfunction - cabinet reshuffle likely'
+        WHEN calculated_risk_score >= 50
+            THEN 'HIGH RISK: Sustained ministry underperformance - monitor closely'
+        WHEN calculated_risk_score >= 30 AND calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) >= 15
+            THEN 'MODERATE RISK: Rapid ministry decline - early intervention needed'
+        WHEN calculated_risk_score >= 30
+            THEN 'MODERATE RISK: Ministry effectiveness concerns'
+        WHEN prev_risk_score >= 50 AND calculated_risk_score < 30
+            THEN 'IMPROVING: Effective ministry turnaround achieved'
+        ELSE 'LOW RISK: Ministry functioning normally'
+    END AS risk_assessment,
+    
+    first_activity,
+    last_activity,
+    CASE 
+        WHEN first_activity IS NOT NULL AND last_activity IS NOT NULL 
+        THEN (last_activity - first_activity)::INTEGER 
+        ELSE 0 
+    END AS activity_span_days
+    
+FROM risk_calculations
+WHERE org_code IS NOT NULL
+ORDER BY org_code, assessment_period DESC;
+        ]]>
+    </createView>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 4. PERFORMANCE INDEXES                                                    -->
+<!-- Optimize query performance for ministry intelligence operations           -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="ministry-2025111704-performance-indexes" failOnError="true">
+    <comment>
+        Performance Indexes for Ministry Intelligence Queries
+        
+        These indexes optimize the most common temporal queries used in
+        ministry intelligence analysis and government effectiveness dashboards.
+    </comment>
+    
+    <sql>
+        -- Index for ministry document temporal queries
+        CREATE INDEX IF NOT EXISTS idx_document_data_ministry_date 
+            ON document_data(org, made_public_date DESC)
+            WHERE org IS NOT NULL AND org LIKE '%departement%';
+        
+        -- Index for ministry assignment temporal queries
+        CREATE INDEX IF NOT EXISTS idx_assignment_data_ministry_dates
+            ON assignment_data(org_code, role_code, from_date DESC, to_date DESC)
+            WHERE assignment_type = 'Departement';
+        
+        -- Index for ministry view document queries (if backed by materialized view)
+        CREATE INDEX IF NOT EXISTS idx_politician_document_ministry
+            ON view_riksdagen_politician_document(org, made_public_date DESC, document_type)
+            WHERE org IS NOT NULL;
+    </sql>
+</changeSet>
+
+</databaseChangeLog>
