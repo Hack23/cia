@@ -472,14 +472,403 @@ psql -U postgres -d cia_dev -c "
 "
 ```
 
+## Database Health Checks
+
+### Overview
+
+The `schema-health-check.sql` script provides comprehensive database health monitoring by:
+- Validating all foreign key constraints for referential integrity
+- Checking for orphaned records
+- Validating view definitions (detecting broken views)
+- Checking materialized view freshness
+- Identifying missing indexes on foreign keys
+- Checking for empty critical tables
+- Validating data quality (NULL values in required fields)
+- Analyzing query performance patterns
+- Detecting table bloat
+- Analyzing view dependency depth
+- Generating health score (0-100)
+- Providing actionable recommendations
+
+This script complements `schema-validation.sql` (which provides statistics) by adding health checks and recommendations.
+
+### Running Health Check
+
+#### Generate Full Health Check Report
+
+```bash
+cd /path/to/cia/repository
+
+# Full health check with text output
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-health-check.sql > health_check_report.txt 2>&1
+
+# View the report
+less health_check_report.txt
+
+# Save with timestamp
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-health-check.sql > health_check_$(date +%Y%m%d_%H%M%S).txt 2>&1
+```
+
+#### Generate JSON Report for Automation
+
+```bash
+# Extract JSON report
+psql -U postgres -d cia_dev -t -A -f service.data.impl/src/main/resources/schema-health-check.sql | \
+  grep -A 1000 '{"timestamp"' | grep -B 1000 '}\s*$' | head -1 > health_check.json
+
+# Pretty print JSON
+cat health_check.json | python3 -m json.tool
+
+# Example JSON structure:
+# {
+#   "timestamp": "2025-11-18T17:30:00",
+#   "database": "cia_dev",
+#   "health_score": 87.5,
+#   "summary": {
+#     "total_checks": 45,
+#     "passed": 38,
+#     "warnings": 5,
+#     "failures": 2,
+#     "critical_issues": 1
+#   },
+#   "categories": [...],
+#   "issues": [...]
+# }
+```
+
+### Health Score Interpretation
+
+The health score ranges from 0 to 100 based on check results:
+- **PASS** checks contribute 100 points each
+- **WARN** checks contribute 50 points each
+- **FAIL** checks contribute 0 points each
+
+| Score | Status | Action Required |
+|-------|--------|----------------|
+| 90-100 | ✓ EXCELLENT | No action needed, maintain current practices |
+| 75-89 | ⚠ GOOD | Monitor warnings, plan improvements |
+| 60-74 | ⚠⚠ NEEDS ATTENTION | Address failures and warnings soon |
+| < 60 | ✗✗✗ CRITICAL | Immediate action required |
+
+### Health Check Categories
+
+#### 1. Schema Integrity
+- **Foreign Key Validation**: Checks for orphaned records in child tables
+- **View Integrity**: Validates all views can be queried without errors
+- **Materialized View Freshness**: Checks when views were last refreshed
+
+**Example Output:**
+```
+Category: Schema Integrity
+Check: Foreign Key: assignment_data.person_id
+Status: PASS
+Details: Found 0 orphaned records
+```
+
+#### 2. Data Quality
+- **Critical Table Checks**: Ensures important tables have data
+- **NULL Value Checks**: Validates no NULL values in required columns
+- **Duplicate Detection**: Identifies duplicate primary keys in views
+
+**Example Output:**
+```
+Category: Data Quality
+Check: Critical Table: person_data
+Status: PASS
+Details: Table has 5,432 rows
+
+Check: NULL Check: person_data.person_id
+Status: FAIL
+Details: Found 12 NULL person_id values
+Recommendation: Fix NULL values in person_data.person_id
+```
+
+#### 3. Performance Analysis
+- **Missing Indexes**: Identifies foreign keys without indexes
+- **Table Maintenance**: Checks when tables were last vacuumed
+- **Slow Queries**: Reports queries with high execution time (requires pg_stat_statements)
+- **Table Bloat**: Detects tables with excessive dead tuples
+
+**Example Output:**
+```
+Category: Performance
+Check: Missing Index: ballot_data.issue_id
+Status: WARN
+Details: No index found on foreign key column
+Recommendation: CREATE INDEX idx_ballot_data_issue_id ON ballot_data(issue_id);
+
+Check: Table Bloat: document_data
+Status: WARN
+Details: Live tuples: 50000 | Dead tuples: 12000 | Dead ratio: 24.0%
+Recommendation: VACUUM FULL document_data; -- WARNING: Locks table
+```
+
+#### 4. View Dependencies
+- **Dependency Depth**: Checks for overly complex view hierarchies
+- **Empty Views**: Identifies views returning zero rows
+
+**Example Output:**
+```
+Category: View Dependencies
+Check: Maximum Dependency Depth
+Status: PASS
+Details: Maximum dependency depth: 3 | Views with depth > 3: 0
+
+Check: Empty View: view_riksdagen_committee_decisions
+Status: WARN
+Details: View returns 0 rows
+Recommendation: Check if this is expected. See TROUBLESHOOTING_EMPTY_VIEWS.md
+```
+
+### Common Issues and Solutions
+
+#### Foreign Key Violations
+
+**Problem:** Orphaned records found in child tables
+
+```sql
+-- Find orphaned records
+SELECT c.* 
+FROM assignment_data c
+LEFT JOIN person_data p ON c.person_id = p.person_id
+WHERE c.person_id IS NOT NULL AND p.person_id IS NULL;
+
+-- Clean up (use with caution)
+DELETE FROM assignment_data 
+WHERE person_id NOT IN (SELECT person_id FROM person_data);
+
+-- Or add missing parent records
+INSERT INTO person_data (person_id, ...) VALUES (...);
+```
+
+#### Stale Materialized Views
+
+**Problem:** Materialized views haven't been refreshed in over 7 days
+
+```bash
+# Refresh all materialized views
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/refresh-all-views.sql
+
+# Refresh specific view
+psql -U postgres -d cia_dev -c "REFRESH MATERIALIZED VIEW view_name;"
+```
+
+#### Missing Indexes on Foreign Keys
+
+**Problem:** Foreign key columns lack indexes, causing slow joins
+
+```sql
+-- Create index as recommended
+CREATE INDEX idx_ballot_data_issue_id ON ballot_data(issue_id);
+
+-- Verify index created
+\d ballot_data
+```
+
+#### Empty Critical Tables
+
+**Problem:** Critical tables have no data
+
+See [TROUBLESHOOTING_EMPTY_VIEWS.md](../../TROUBLESHOOTING_EMPTY_VIEWS.md) for detailed diagnostic steps:
+
+1. Check if data import has been run
+2. Verify external API connectivity (Riksdagen API)
+3. Check application logs for import errors
+4. Run data import jobs manually
+
+#### Table Bloat
+
+**Problem:** Tables have high dead tuple ratio
+
+```sql
+-- Light cleanup (doesn't lock table)
+VACUUM ANALYZE table_name;
+
+-- Heavy cleanup (locks table - use during maintenance window)
+VACUUM FULL table_name;
+
+-- Or rebuild table
+CREATE TABLE table_name_new AS SELECT * FROM table_name;
+DROP TABLE table_name;
+ALTER TABLE table_name_new RENAME TO table_name;
+-- Recreate indexes and constraints
+```
+
+### Automation
+
+#### Daily Health Check Script
+
+Create a cron job to run daily health checks:
+
+```bash
+#!/bin/bash
+# File: /usr/local/bin/cia-daily-health-check.sh
+
+REPORT_DIR="/var/log/cia/health-checks"
+mkdir -p "$REPORT_DIR"
+
+DATE=$(date +%Y%m%d_%H%M%S)
+REPORT_FILE="$REPORT_DIR/health_check_$DATE.txt"
+JSON_FILE="$REPORT_DIR/health_check_$DATE.json"
+
+echo "Running CIA database health check at $DATE"
+
+# Run health check
+psql -U postgres -d cia_dev -f /path/to/service.data.impl/src/main/resources/schema-health-check.sql > "$REPORT_FILE" 2>&1
+
+# Extract health score
+HEALTH_SCORE=$(grep "HEALTH SCORE:" "$REPORT_FILE" | grep -oP '\d+' | head -1)
+
+echo "Health check completed. Score: $HEALTH_SCORE/100"
+
+# Alert if critical
+if [ "$HEALTH_SCORE" -lt 60 ]; then
+    echo "CRITICAL: Database health score below 60!"
+    # Send alert (email, Slack, PagerDuty, etc.)
+    # mail -s "CIA Database Health CRITICAL" admin@example.com < "$REPORT_FILE"
+    # curl -X POST -H 'Content-type: application/json' \
+    #   --data "{\"text\":\"CIA Database Health CRITICAL: $HEALTH_SCORE/100\"}" \
+    #   $SLACK_WEBHOOK_URL
+fi
+
+# Clean up old reports (keep last 30 days)
+find "$REPORT_DIR" -name "health_check_*.txt" -mtime +30 -delete
+
+echo "Health check report saved to $REPORT_FILE"
+```
+
+Make executable and add to crontab:
+
+```bash
+chmod +x /usr/local/bin/cia-daily-health-check.sh
+
+# Run daily at 2 AM
+echo "0 2 * * * /usr/local/bin/cia-daily-health-check.sh" | crontab -
+```
+
+#### Integration with CI/CD
+
+Add to `.github/workflows/verify-and-release.yml`:
+
+```yaml
+- name: Database Health Check
+  run: |
+    psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-health-check.sql > health_check.txt 2>&1
+    
+    # Extract health score
+    HEALTH_SCORE=$(grep "HEALTH SCORE:" health_check.txt | grep -oP '\d+' | head -1)
+    echo "Database Health Score: $HEALTH_SCORE/100"
+    
+    # Fail if score below threshold
+    if [ "$HEALTH_SCORE" -lt 75 ]; then
+      echo "Health check failed: Score below 75"
+      cat health_check.txt
+      exit 1
+    fi
+    
+    echo "Health check passed"
+
+- name: Upload Health Check Report
+  if: always()
+  uses: actions/upload-artifact@v5
+  with:
+    name: database-health-check
+    path: health_check.txt
+```
+
+#### Monitoring with Prometheus/Grafana
+
+Export metrics for monitoring systems:
+
+```bash
+#!/bin/bash
+# File: export-health-metrics.sh
+
+# Run health check and extract JSON
+JSON=$(psql -U postgres -d cia_dev -t -A -f schema-health-check.sql | grep '{"timestamp"' | head -1)
+
+# Extract metrics
+HEALTH_SCORE=$(echo "$JSON" | jq -r '.health_score')
+TOTAL_CHECKS=$(echo "$JSON" | jq -r '.summary.total_checks')
+PASSED=$(echo "$JSON" | jq -r '.summary.passed')
+WARNINGS=$(echo "$JSON" | jq -r '.summary.warnings')
+FAILURES=$(echo "$JSON" | jq -r '.summary.failures')
+CRITICAL=$(echo "$JSON" | jq -r '.summary.critical_issues')
+
+# Write to Prometheus text file
+cat <<EOF > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+# HELP cia_health_score Database health score (0-100)
+# TYPE cia_health_score gauge
+cia_health_score $HEALTH_SCORE
+
+# HELP cia_health_checks_total Total number of health checks
+# TYPE cia_health_checks_total gauge
+cia_health_checks_total{status="passed"} $PASSED
+cia_health_checks_total{status="warnings"} $WARNINGS
+cia_health_checks_total{status="failures"} $FAILURES
+cia_health_checks_total{status="critical"} $CRITICAL
+EOF
+```
+
+### Best Practices
+
+1. **Run health checks regularly**: Weekly or before major deployments
+2. **Address issues promptly**: Don't let warnings accumulate
+3. **Monitor trends**: Track health score over time
+4. **Automate alerts**: Set up notifications for score drops
+5. **Document fixes**: Keep track of recurring issues and solutions
+6. **Combine with validation**: Use both health-check and validation scripts
+7. **Test after fixes**: Re-run health check after addressing issues
+
+### Troubleshooting
+
+#### Health Check Script Fails
+
+If the script fails to run:
+
+```bash
+# Check PostgreSQL is running
+sudo systemctl status postgresql
+
+# Verify database exists
+psql -U postgres -l | grep cia_dev
+
+# Check permissions
+psql -U postgres -d cia_dev -c "\du"
+
+# Test basic connectivity
+psql -U postgres -d cia_dev -c "SELECT version();"
+```
+
+#### False Positives
+
+Some warnings may be expected based on your environment:
+
+- **Empty application event views**: Normal for new installations
+- **Unstale materialized views**: May be intentional if data hasn't changed
+- **Missing pg_stat_statements**: Optional extension for performance monitoring
+
+Update the script to skip checks that don't apply to your environment.
+
+#### Performance Impact
+
+The health check script queries system catalogs and may perform COUNT(*) operations. To minimize impact:
+
+- Run during low-traffic periods
+- Use connection pooling
+- Consider running on a read replica
+- Adjust check frequency based on database size
+
 ## Related Files
 
 - `service.data.impl/src/main/resources/full_schema.sql` - The complete schema file
 - `service.data.impl/src/main/resources/schema-validation.sql` - Schema validation and statistics script
+- `service.data.impl/src/main/resources/schema-health-check.sql` - Database health check script
 - `service.data.impl/src/main/resources/refresh-all-views.sql` - Materialized view refresh script
 - `service.data.impl/src/main/resources/db-changelog*.xml` - Liquibase migration files
 - `.github/workflows/copilot-setup-steps.yml` - CI/CD database setup
 - `DATABASE_VIEW_INTELLIGENCE_CATALOG.md` - View documentation catalog
+- `TROUBLESHOOTING_EMPTY_VIEWS.md` - Troubleshooting guide for empty views
 - `README.md` - Main project documentation with PostgreSQL setup instructions
 
 ## Additional Resources
