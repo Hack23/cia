@@ -49,11 +49,11 @@
 -- Table: person_data
 \echo ''
 \echo 'Extracting: person_data (fields used in views)'
-\copy (SELECT person_id, first_name, last_name, gender, birth_year, party, status FROM person_data ORDER BY person_id LIMIT 10) TO 'table_person_data_sample.csv' WITH CSV HEADER;
+\copy (SELECT id, first_name, last_name, gender, born_year, party, status FROM person_data ORDER BY id LIMIT 10) TO 'table_person_data_sample.csv' WITH CSV HEADER;
 
 -- Table: assignment_data
 \echo 'Extracting: assignment_data (fields used in views)'
-\copy (SELECT person_id, role_code, org_code, status, from_date, to_date, detail FROM assignment_data ORDER BY person_id, from_date LIMIT 10) TO 'table_assignment_data_sample.csv' WITH CSV HEADER;
+\copy (SELECT hjid, intressent_id, role_code, org_code, status, from_date, to_date, detail FROM assignment_data ORDER BY intressent_id, from_date LIMIT 10) TO 'table_assignment_data_sample.csv' WITH CSV HEADER;
 
 -- Table: document_data
 \echo 'Extracting: document_data (fields used in views)'
@@ -61,31 +61,31 @@
 
 -- Table: document_element
 \echo 'Extracting: document_element (fields used in views)'
-\copy (SELECT id, document_id, order_number FROM document_element ORDER BY document_id, order_number LIMIT 10) TO 'table_document_element_sample.csv' WITH CSV HEADER;
+\copy (SELECT id, label, document_type, org, status, made_public_date FROM document_element ORDER BY id LIMIT 10) TO 'table_document_element_sample.csv' WITH CSV HEADER;
 
--- Table: ballot_data
-\echo 'Extracting: ballot_data (fields used in views)'
-\copy (SELECT ballot_id, issue_id, vote_date, concern, decision, decision_type FROM ballot_data ORDER BY vote_date DESC LIMIT 10) TO 'table_ballot_data_sample.csv' WITH CSV HEADER;
+-- Table: ballot_data (not a real table, skipping)
+-- Note: ballot_data does not exist in schema
+\echo 'Skipping: ballot_data (table does not exist in schema)'
 
 -- Table: vote_data
 \echo 'Extracting: vote_data (fields used in views)'
-\copy (SELECT ballot_id, person_id, vote, party, vote_date FROM vote_data ORDER BY vote_date DESC LIMIT 10) TO 'table_vote_data_sample.csv' WITH CSV HEADER;
+\copy (SELECT embedded_id_ballot_id, embedded_id_intressent_id, embedded_id_concern, embedded_id_issue, vote, party, vote_date FROM vote_data ORDER BY vote_date DESC LIMIT 10) TO 'table_vote_data_sample.csv' WITH CSV HEADER;
 
 -- Table: sweden_political_party
 \echo 'Extracting: sweden_political_party (fields used in views)'
-\copy (SELECT party_id, party_name, party_short_code, current_parliament_seats FROM sweden_political_party ORDER BY party_name LIMIT 10) TO 'table_sweden_political_party_sample.csv' WITH CSV HEADER;
+\copy (SELECT hjid, party_id, party_name, short_code FROM sweden_political_party ORDER BY party_name LIMIT 10) TO 'table_sweden_political_party_sample.csv' WITH CSV HEADER;
 
 -- Table: committee_proposal_data
 \echo 'Extracting: committee_proposal_data (fields used in views)'
-\copy (SELECT id, organ, proposal_number, decision_type, committee_report FROM committee_proposal_data ORDER BY id LIMIT 10) TO 'table_committee_proposal_data_sample.csv' WITH CSV HEADER;
+\copy (SELECT hjid, ballot_id, decision_type, committee_report FROM committee_proposal_data ORDER BY hjid LIMIT 10) TO 'table_committee_proposal_data_sample.csv' WITH CSV HEADER;
 
--- Table: party_member_data
-\echo 'Extracting: party_member_data (fields used in views)'
-\copy (SELECT person_id, party, from_date, to_date, active FROM party_member_data ORDER BY person_id, from_date LIMIT 10) TO 'table_party_member_data_sample.csv' WITH CSV HEADER;
+-- Table: party_member_data (not a real table, skipping)
+-- Note: party_member_data does not exist in schema
+\echo 'Skipping: party_member_data (table does not exist in schema)'
 
 -- Table: world_bank_data
 \echo 'Extracting: world_bank_data (fields used in views)'
-\copy (SELECT country_code, indicator_code, year_date, data_value FROM world_bank_data ORDER BY year_date DESC LIMIT 10) TO 'table_world_bank_data_sample.csv' WITH CSV HEADER;
+\copy (SELECT hjid, country_id, indicator_id, year_date, data_value FROM world_bank_data ORDER BY year_date DESC LIMIT 10) TO 'table_world_bank_data_sample.csv' WITH CSV HEADER;
 
 -- ===========================================================================
 -- SECTION 2: Extract Sample Data from All Views
@@ -175,7 +175,7 @@ END $$;
 \echo '=========================================='
 
 -- Create manifest with metadata about all extracted files
-\copy (SELECT 'TABLE' AS source_type, tablename AS object_name, n_live_tup AS approximate_rows, pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename)) AS size, 'table_' || tablename || '_sample.csv' AS filename FROM pg_stat_user_tables WHERE schemaname = 'public' AND n_live_tup > 0 ORDER BY tablename) TO 'sample_data_manifest.csv' WITH CSV HEADER;
+\copy (SELECT 'TABLE' AS source_type, relname AS object_name, n_live_tup AS approximate_rows, pg_size_pretty(pg_total_relation_size(schemaname||'.'||relname)) AS size, 'table_' || relname || '_sample.csv' AS filename FROM pg_stat_user_tables WHERE schemaname = 'public' AND n_live_tup > 0 ORDER BY relname) TO 'sample_data_manifest.csv' WITH CSV HEADER;
 
 -- ===========================================================================
 -- SECTION 4: Generate Column Mapping for Views
