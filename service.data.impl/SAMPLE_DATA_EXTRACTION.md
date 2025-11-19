@@ -16,7 +16,8 @@ The sample data extraction script has been enhanced to provide comprehensive cov
 - Extracts **50 rows** per table/view
 - Extracts from **ALL 93+ tables** dynamically (excluding internal tables)
 - Extracts from **ALL 80+ views** dynamically (both regular and materialized)
-- Total: **170+ CSV files** generated with comprehensive coverage
+- Extracts **distinct value sets** for important columns used in views
+- Total: **~137 CSV files** generated (85 tables + 42 views + 8 distinct sets + 2 metadata)
 
 ## Key Features
 
@@ -34,19 +35,32 @@ The sample data extraction script has been enhanced to provide comprehensive cov
 - **Tables**: All user tables (excludes Quartz scheduler and Liquibase tables)
 - **Views**: All regular views
 - **Materialized Views**: All materialized views
+- **Distinct Value Sets**: Important columns with counts for view analysis
 - **Manifest**: Complete metadata file listing all extractions
 
-### 4. Smart Filtering
+### 4. Distinct Value Extraction
+Automatically extracts distinct values with counts for columns commonly used in views:
+- **party**: Party distribution in person_data
+- **org_code**: Organization codes in assignment_data
+- **role_code**: Role codes in assignment_data
+- **status**: Assignment status values
+- **document_type**: Document type distribution
+- **org**: Document organization values
+- **vote patterns**: Vote distribution by party
+- **political_parties**: Complete party list with codes
+
+### 5. Smart Filtering
 Automatically skips:
 - Internal Quartz scheduler tables (`qrtz_*`)
 - Liquibase change tracking tables (`databasechange*`)
 - Empty tables and views (no data to extract)
 
-### 5. Progress Tracking
+### 6. Progress Tracking
 - Phase 1: Analysis - reports row counts for each object
 - Phase 2: Extraction - shows extraction progress
 - Phase 3: Manifest generation - creates metadata
 - Phase 4: Column mapping - documents view dependencies
+- Phase 5: Distinct values - extracts important column distributions
 
 ## Usage
 
@@ -90,6 +104,18 @@ view_riksdagen_committee_sample.csv    (50 rows)
 ```
 sample_data_manifest.csv              (List of all extracted files)
 view_column_mapping.csv               (View-to-column mappings)
+```
+
+### Distinct Value Files
+```
+distinct_party_values.csv             (Party distribution with counts)
+distinct_org_code_values.csv          (Organization codes with counts)
+distinct_role_code_values.csv         (Role codes with counts)
+distinct_assignment_status_values.csv (Assignment status values)
+distinct_document_type_values.csv     (Document types with counts)
+distinct_document_org_values.csv      (Document orgs with counts)
+distinct_vote_values.csv              (Vote patterns by party)
+distinct_political_parties.csv        (Complete political party list)
 ```
 
 ## Expected Output
@@ -158,14 +184,29 @@ Extracting: view_riksdagen_party (VIEW)
 === GENERATING VIEW COLUMN MAPPING    ===
 ==========================================
 
+==========================================
+=== EXTRACTING DISTINCT VALUE SETS    ===
+==========================================
+
+Extracting distinct party values...
+Extracting distinct org_code values...
+Extracting distinct role_code values...
+... (8 distinct value extractions)
+
+Distinct value extraction summary:
+  - distinct_party_values.csv: Party distribution
+  - distinct_org_code_values.csv: Organization codes
+  ... (8 files total)
+
 ==================================================
 Sample data extraction completed
 Finished: Wed Nov 19 02:42:31 CET 2025
 ==================================================
 
-Total CSV files: 129
+Total CSV files: 137
   - Tables: 85
   - Views: 42
+  - Distinct value sets: 8
   - Other: 2
 ```
 
@@ -196,7 +237,25 @@ for file in table_*_sample.csv; do
 done
 ```
 
-### 3. Documentation Examples
+### 3. Analyzing Data Distribution
+```bash
+# Extract sample data with distinct values
+./extract-sample-data.sh /tmp/analysis
+
+# Check party distribution
+cat /tmp/analysis/distinct_party_values.csv
+
+# Find most common organization codes
+cat /tmp/analysis/distinct_org_code_values.csv | head -20
+
+# Review all political parties
+cat /tmp/analysis/distinct_political_parties.csv
+
+# Understand vote patterns
+cat /tmp/analysis/distinct_vote_values.csv
+```
+
+### 4. Documentation Examples
 ```bash
 # Extract sample data
 ./extract-sample-data.sh /tmp/docs
@@ -237,6 +296,8 @@ ORDER BY tablename
 - **Medium database** (~10GB): 3-5 minutes
 - **Large database** (~100GB): 5-10 minutes
 
+**Note on ORDER BY random()**: The extraction uses `ORDER BY random()` for diverse sampling. This works well for most tables but can be slow on very large tables (100M+ rows) as it requires a full table scan. For such tables, consider using PostgreSQL's `TABLESAMPLE SYSTEM` clause instead.
+
 ### Disk Space
 - Each CSV file: typically 10KB - 5MB
 - Total for all files: typically 50MB - 200MB
@@ -270,8 +331,8 @@ Potential improvements for future versions:
 
 ## Related Documentation
 
-- [TROUBLESHOOTING_EMPTY_VIEWS.md](../../TROUBLESHOOTING_EMPTY_VIEWS.md) - Debug empty views
-- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View catalog
+- [TROUBLESHOOTING_EMPTY_VIEWS.md](../TROUBLESHOOTING_EMPTY_VIEWS.md) - Debug empty views
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View catalog
 - [README-SCHEMA-MAINTENANCE.md](README-SCHEMA-MAINTENANCE.md) - Schema maintenance guide
 - [sample_data/README.md](src/main/resources/sample_data/README.md) - Sample data directory
 

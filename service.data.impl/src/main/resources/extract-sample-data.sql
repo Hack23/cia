@@ -99,6 +99,9 @@ END $$;
 \echo 'Extracting sample data from tables...'
 \echo ''
 
+-- NOTE: ORDER BY random() is used for diverse sampling but can be slow on very large tables (100M+ rows).
+-- For tables of that size, consider using TABLESAMPLE SYSTEM instead.
+
 -- Generate and execute \copy commands for each table
 SELECT format(
     '\echo ''Extracting: %s'''||E'\n'||
@@ -112,11 +115,6 @@ FROM pg_tables
 WHERE schemaname = 'public'
 AND tablename NOT LIKE 'qrtz_%'
 AND tablename NOT LIKE 'databasechange%'
-AND EXISTS (
-    SELECT 1 FROM information_schema.tables t
-    WHERE t.table_schema = pg_tables.schemaname
-    AND t.table_name = pg_tables.tablename
-)
 ORDER BY tablename
 \gexec
 
@@ -158,11 +156,11 @@ BEGIN
             INTO row_count;
             
             IF row_count > 0 THEN
-                RAISE NOTICE 'View %: % rows available (%))', 
+                RAISE NOTICE 'View %: % rows available (%)', 
                     view_record.objectname, row_count, view_record.object_type;
                 view_count := view_count + 1;
             ELSE
-                RAISE NOTICE 'Skipping %: empty % ', 
+                RAISE NOTICE 'Skipping %: empty %', 
                     view_record.objectname, view_record.object_type;
                 empty_count := empty_count + 1;
             END IF;
@@ -233,6 +231,53 @@ ORDER BY matviewname
 -- Generate CSV showing which table columns are used in which views
 \copy (WITH view_columns AS (SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema = 'public' AND table_name IN (SELECT viewname FROM pg_views WHERE schemaname = 'public') ORDER BY table_name, column_name) SELECT * FROM view_columns) TO 'view_column_mapping.csv' WITH CSV HEADER;
 
+-- ===========================================================================
+-- SECTION 5: Extract Distinct Values for Important Columns
+-- ===========================================================================
+\echo ''
+\echo '=========================================='
+\echo '=== EXTRACTING DISTINCT VALUE SETS    ==='
+\echo '=========================================='
+
+-- Extract distinct values with counts for columns commonly used in views
+-- This helps understand data distribution and aids in view debugging
+
+\echo 'Extracting distinct party values...'
+\copy (SELECT party, COUNT(*) as count FROM person_data WHERE party IS NOT NULL GROUP BY party ORDER BY count DESC, party) TO 'distinct_party_values.csv' WITH CSV HEADER;
+
+\echo 'Extracting distinct org_code values...'
+\copy (SELECT org_code, COUNT(*) as count FROM assignment_data WHERE org_code IS NOT NULL GROUP BY org_code ORDER BY count DESC, org_code) TO 'distinct_org_code_values.csv' WITH CSV HEADER;
+
+\echo 'Extracting distinct role_code values...'
+\copy (SELECT role_code, COUNT(*) as count FROM assignment_data WHERE role_code IS NOT NULL GROUP BY role_code ORDER BY count DESC, role_code) TO 'distinct_role_code_values.csv' WITH CSV HEADER;
+
+\echo 'Extracting distinct assignment status values...'
+\copy (SELECT status, COUNT(*) as count FROM assignment_data WHERE status IS NOT NULL GROUP BY status ORDER BY count DESC, status) TO 'distinct_assignment_status_values.csv' WITH CSV HEADER;
+
+\echo 'Extracting distinct document types...'
+\copy (SELECT document_type, COUNT(*) as count FROM document_data WHERE document_type IS NOT NULL GROUP BY document_type ORDER BY count DESC, document_type) TO 'distinct_document_type_values.csv' WITH CSV HEADER;
+
+\echo 'Extracting distinct document org values...'
+\copy (SELECT org, COUNT(*) as count FROM document_data WHERE org IS NOT NULL GROUP BY org ORDER BY count DESC, org) TO 'distinct_document_org_values.csv' WITH CSV HEADER;
+
+\echo 'Extracting distinct vote values...'
+\copy (SELECT vote, party, COUNT(*) as count FROM vote_data WHERE vote IS NOT NULL GROUP BY vote, party ORDER BY count DESC, vote, party LIMIT 100) TO 'distinct_vote_values.csv' WITH CSV HEADER;
+
+\echo 'Extracting political party list...'
+\copy (SELECT party_id, party_name, short_code FROM sweden_political_party ORDER BY party_name) TO 'distinct_political_parties.csv' WITH CSV HEADER;
+
+\echo ''
+\echo 'Distinct value extraction summary:'
+\echo '  - distinct_party_values.csv: Party distribution'
+\echo '  - distinct_org_code_values.csv: Organization codes'
+\echo '  - distinct_role_code_values.csv: Role codes'
+\echo '  - distinct_assignment_status_values.csv: Assignment statuses'
+\echo '  - distinct_document_type_values.csv: Document types'
+\echo '  - distinct_document_org_values.csv: Document organizations'
+\echo '  - distinct_vote_values.csv: Vote patterns by party'
+\echo '  - distinct_political_parties.csv: Complete party list'
+\echo ''
+
 \echo ''
 \echo '=================================================='
 \echo 'Sample data extraction completed'
@@ -244,6 +289,7 @@ ORDER BY matviewname
 \echo '  - view_*_sample.csv: Sample data from views'
 \echo '  - sample_data_manifest.csv: Metadata about extracted files'
 \echo '  - view_column_mapping.csv: Column mappings for views'
+\echo '  - distinct_*_values.csv: Distinct values with counts for important columns'
 \echo ''
 \echo 'To reload sample data:'
 \echo '  1. Review the CSV files'
