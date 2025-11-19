@@ -921,10 +921,14 @@ The script creates multiple CSV files:
 - `table_person_data_sample.csv` - Person information
 - `table_assignment_data_sample.csv` - Political assignments
 - `table_document_data_sample.csv` - Documents
-- `table_ballot_data_sample.csv` - Voting ballots
+- `table_document_element_sample.csv` - Document elements
 - `table_vote_data_sample.csv` - Individual votes
 - `table_sweden_political_party_sample.csv` - Party information
+- `table_committee_proposal_data_sample.csv` - Committee proposals
+- `table_world_bank_data_sample.csv` - World Bank economic data
 - Additional tables as configured
+
+**Note:** Some tables (e.g., `ballot_data`, `party_member_data`) do not exist in the schema and are skipped during extraction.
 
 **View Samples:**
 - `view_riksdagen_politician_sample.csv` - Politician aggregated data
