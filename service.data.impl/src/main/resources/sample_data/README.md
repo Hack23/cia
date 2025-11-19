@@ -28,10 +28,12 @@ psql -U postgres -d cia_dev -f ../extract-sample-data.sql
 
 ## Files Generated
 
-- `table_*_sample.csv` - Sample data from tables (10 rows each)
-- `view_*_sample.csv` - Sample data from views (10 rows each)
+- `table_*_sample.csv` - Sample data from tables (50 rows each)
+- `view_*_sample.csv` - Sample data from views (50 rows each)
 - `sample_data_manifest.csv` - Metadata about all extracted files
 - `view_column_mapping.csv` - Shows which columns are used in which views
+
+The extraction script now automatically extracts from ALL tables and views in the database, providing diverse sampling for comprehensive coverage.
 
 ## Version Control
 

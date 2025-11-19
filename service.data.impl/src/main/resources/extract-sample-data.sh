@@ -27,6 +27,7 @@ echo "Configuration:"
 echo "  Database: $DATABASE"
 echo "  Output directory: $OUTPUT_DIR"
 echo "  PostgreSQL user: $PSQL_USER"
+echo "  Sample size: 50 rows per table/view"
 echo ""
 
 # Create output directory if it doesn't exist
@@ -46,13 +47,19 @@ echo "=================================================="
 echo "Extraction Complete!"
 echo "=================================================="
 echo ""
+echo ""
 echo "Files generated in: $OUTPUT_DIR"
 echo ""
 if compgen -G "table_*_sample.csv" > /dev/null || compgen -G "view_*_sample.csv" > /dev/null || compgen -G "*.csv" > /dev/null; then
-    ls -lh table_*_sample.csv view_*_sample.csv *.csv 2>/dev/null | head -20
+    echo "Sample of generated files:"
+    ls -lh table_*_sample.csv view_*_sample.csv *.csv 2>/dev/null | head -30
 else
     echo "  No CSV files found"
 fi
 echo ""
 echo "Total CSV files: $(ls -1 *.csv 2>/dev/null | wc -l)"
+echo "  - Tables: $(ls -1 table_*_sample.csv 2>/dev/null | wc -l)"
+echo "  - Views: $(ls -1 view_*_sample.csv 2>/dev/null | wc -l)"
+echo "  - Distinct value sets: $(ls -1 distinct_*.csv 2>/dev/null | wc -l)"
+echo "  - Other: $(ls -1 *.csv 2>/dev/null | grep -v -E '(table_|view_|distinct_)' | wc -l)"
 echo ""
