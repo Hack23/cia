@@ -1183,6 +1183,321 @@ psql -U postgres -d cia_dev -f schema-validation.sql
 echo "Validation shows X tables, extraction created Y CSV files"
 ```
 
+## Refreshing Materialized Views
+
+### Overview
+
+The CIA database uses materialized views for performance optimization. These views cache complex query results and need to be refreshed periodically to reflect updated data.
+
+The `refresh-all-views.sql` script provides:
+- Automatic validation that all views exist before refresh
+- Error handling to continue on individual failures
+- Timing information for each view refresh
+- Progress logging and summary report
+- Proper dependency order (base views → dependent views)
+
+### Quick Start
+
+```bash
+cd /path/to/cia/repository
+
+# Refresh all materialized views
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/refresh-all-views.sql
+```
+
+The script will:
+1. **Validate** all 28 materialized views exist
+2. **Refresh** each view in dependency order
+3. **Report** success/failure for each view
+4. **Show** timing information
+5. **Summarize** total results
+
+### Example Output
+
+```
+=======================================
+Materialized View Refresh Script
+Started at: Mon Nov 18 17:30:00 UTC 2025
+=======================================
+
+--- VALIDATION PHASE ---
+Checking that all materialized views exist...
+NOTICE:  ✓ View exists: view_worldbank_indicator_data_country_summary
+NOTICE:  ✓ View exists: view_riksdagen_politician_document
+...
+NOTICE:  Validation passed: All 28 views exist
+
+--- REFRESH PHASE ---
+Refreshing materialized views in dependency order...
+
+NOTICE:  Refreshing: view_worldbank_indicator_data_country_summary...
+Timing is on.
+NOTICE:  ✓ Refreshed view_worldbank_indicator_data_country_summary in 00:00:02.145
+...
+
+===========================================
+--- REFRESH SUMMARY ---
+===========================================
+NOTICE:  Total views: 28
+NOTICE:  Successful: 28
+NOTICE:  Failed: 0
+===========================================
+
+=======================================
+Refresh script completed
+Finished at: Mon Nov 18 17:35:30 UTC 2025
+=======================================
+```
+
+### Options and Advanced Usage
+
+**Save output to log file:**
+```bash
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/refresh-all-views.sql > refresh_log_$(date +%Y%m%d_%H%M%S).txt 2>&1
+```
+
+**Run with different database:**
+```bash
+psql -U postgres -d cia_prod -f service.data.impl/src/main/resources/refresh-all-views.sql
+```
+
+**Refresh specific view manually:**
+```bash
+# If you need to refresh just one view
+psql -U postgres -d cia_dev -c "REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;"
+```
+
+### Error Handling
+
+The script uses `\set ON_ERROR_STOP off` to continue on errors, so a single view failure won't stop the entire refresh.
+
+**If a view refresh fails:**
+1. Check the error message in the output
+2. Verify the underlying data sources are populated
+3. Check for schema changes that may affect the view
+4. Review view definition in `full_schema.sql`
+5. See [TROUBLESHOOTING_EMPTY_VIEWS.md](../../TROUBLESHOOTING_EMPTY_VIEWS.md) for diagnostic steps
+
+**Common issues:**
+- Missing source data (empty tables)
+- Schema changes requiring view recreation
+- Insufficient database permissions
+- Disk space issues
+- Long-running queries on source tables
+
+### Materialized Views in CIA
+
+The database includes 28 materialized views organized in tiers:
+
+**TIER 1: Base views** (9 views)
+- `view_worldbank_indicator_data_country_summary`
+- `view_riksdagen_politician_document`
+- `view_riksdagen_org_document_daily_summary`
+- `view_riksdagen_document_type_daily_summary`
+- `view_riksdagen_committee_decisions`
+- `view_riksdagen_vote_data_ballot_summary`
+- `view_riksdagen_committee_ballot_decision_summary`
+- `view_riksdagen_vote_data_ballot_party_summary`
+- `view_riksdagen_vote_data_ballot_politician_summary`
+
+**TIER 2: Dependent views** (19 views)
+- Vote data summaries (daily, weekly, monthly, annual)
+- Party summaries (daily, weekly, monthly, annual)
+- Politician summaries (daily, weekly, monthly, annual)
+- Committee decision summaries
+- Document summaries
+
+Views are refreshed in dependency order to ensure data consistency.
+
+## Analyzing View Dependencies
+
+### Overview
+
+The `analyze-view-dependencies.sql` script generates a dependency report showing which views depend on which tables and other views.
+
+This is useful for:
+- Understanding view relationships
+- Planning view refresh order
+- Debugging view issues
+- Documenting the data model
+- Impact analysis before schema changes
+
+### Usage
+
+**Output to terminal:**
+```bash
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/analyze-view-dependencies.sql
+```
+
+**Save to CSV file:**
+```bash
+# Using psql output redirection
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/analyze-view-dependencies.sql -o view_dependencies.csv
+
+# Or using shell redirection
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/analyze-view-dependencies.sql > view_dependencies.csv
+```
+
+### Output Format
+
+The report includes these columns:
+
+| Column | Description |
+|--------|-------------|
+| `dependent_schema` | Schema containing the dependent view (usually 'public') |
+| `dependent_view` | Name of the view that depends on something |
+| `source_schema` | Schema containing the source object |
+| `source_object` | Name of the table/view being depended on |
+| `source_type` | Type: TABLE, VIEW, or MATERIALIZED VIEW |
+
+### Example Output
+
+```csv
+dependent_schema,dependent_view,source_schema,source_object,source_type
+public,view_riksdagen_politician_document,public,document_data,TABLE
+public,view_riksdagen_politician_document,public,person_data,TABLE
+public,view_riksdagen_politician_document_daily_summary,public,view_riksdagen_politician_document,MATERIALIZED VIEW
+public,view_riksdagen_vote_data_ballot_summary,public,ballot_data,TABLE
+public,view_riksdagen_vote_data_ballot_summary,public,vote_data,TABLE
+```
+
+### Use Cases
+
+**1. Find all dependencies for a specific view:**
+```bash
+psql -U postgres -d cia_dev -f analyze-view-dependencies.sql -o deps.csv
+grep "view_riksdagen_politician_document_daily_summary" deps.csv
+```
+
+**2. Find all views that depend on a specific table:**
+```bash
+psql -U postgres -d cia_dev -f analyze-view-dependencies.sql -o deps.csv
+grep ",ballot_data," deps.csv
+```
+
+**3. Identify circular dependencies:**
+```bash
+# Generate dependency report
+psql -U postgres -d cia_dev -f analyze-view-dependencies.sql -o deps.csv
+
+# Analyze with spreadsheet or custom script
+# Look for views that depend on each other
+```
+
+**4. Plan schema changes:**
+```bash
+# Before modifying a table, see what views depend on it
+psql -U postgres -d cia_dev -f analyze-view-dependencies.sql | grep "document_data"
+```
+
+### Integration with Development Workflow
+
+**Before schema changes:**
+```bash
+# 1. Generate current dependency report
+psql -U postgres -d cia_dev -f analyze-view-dependencies.sql -o deps_before.csv
+
+# 2. Make schema changes
+# ... apply migrations ...
+
+# 3. Compare dependencies
+psql -U postgres -d cia_dev -f analyze-view-dependencies.sql -o deps_after.csv
+diff deps_before.csv deps_after.csv
+```
+
+## Automation
+
+### Daily View Refresh Job
+
+For production environments, automate view refresh:
+
+```bash
+#!/bin/bash
+# File: /usr/local/bin/cia-refresh-views.sh
+
+set -e
+
+LOG_DIR="/var/log/cia/view-refresh"
+mkdir -p "$LOG_DIR"
+
+LOG_FILE="$LOG_DIR/refresh_$(date +%Y%m%d_%H%M%S).log"
+
+echo "Starting view refresh at $(date)" | tee -a "$LOG_FILE"
+
+psql -U postgres -d cia_dev -f /path/to/service.data.impl/src/main/resources/refresh-all-views.sql 2>&1 | tee -a "$LOG_FILE"
+
+if [ ${PIPESTATUS[0]} -eq 0 ]; then
+    echo "View refresh completed successfully" | tee -a "$LOG_FILE"
+    
+    # Clean up old logs (keep last 30 days)
+    find "$LOG_DIR" -name "refresh_*.log" -mtime +30 -delete
+    
+    exit 0
+else
+    echo "View refresh failed. Check $LOG_FILE for details" | tee -a "$LOG_FILE"
+    
+    # Send alert (email, Slack, etc.)
+    # mail -s "CIA View Refresh Failed" admin@example.com < "$LOG_FILE"
+    
+    exit 1
+fi
+```
+
+Make executable and schedule:
+```bash
+chmod +x /usr/local/bin/cia-refresh-views.sh
+
+# Add to crontab - run daily at 3 AM
+(crontab -l 2>/dev/null; echo "0 3 * * * /usr/local/bin/cia-refresh-views.sh") | crontab -
+```
+
+### CI/CD Integration
+
+Add to `.github/workflows/verify-and-release.yml`:
+
+```yaml
+- name: Refresh Materialized Views
+  run: |
+    psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/refresh-all-views.sql > refresh_log.txt 2>&1
+    
+    # Check for failures in summary
+    if grep -q "Failed: [1-9]" refresh_log.txt; then
+      echo "Some views failed to refresh"
+      cat refresh_log.txt
+      exit 1
+    fi
+    
+    echo "All views refreshed successfully"
+
+- name: Upload Refresh Log
+  if: always()
+  uses: actions/upload-artifact@v5
+  with:
+    name: view-refresh-log
+    path: refresh_log.txt
+```
+
+### Monitoring View Freshness
+
+Check when views were last refreshed:
+
+```bash
+# Query to check last refresh time of materialized views
+psql -U postgres -d cia_dev -c "
+SELECT 
+    schemaname,
+    matviewname,
+    pg_size_pretty(pg_total_relation_size(schemaname||'.'||matviewname)) AS size,
+    CASE 
+        WHEN last_vacuum IS NULL THEN 'Never refreshed'
+        ELSE (NOW() - last_vacuum)::text
+    END AS time_since_refresh
+FROM pg_stat_user_tables
+WHERE schemaname = 'public' AND relname LIKE 'view_%'
+ORDER BY matviewname;
+"
+```
+
 ## Related Files
 
 - `service.data.impl/src/main/resources/full_schema.sql` - The complete schema file
@@ -1191,6 +1506,7 @@ echo "Validation shows X tables, extraction created Y CSV files"
 - `service.data.impl/src/main/resources/extract-sample-data.sql` - Sample data extraction script
 - `service.data.impl/src/main/resources/extract-sample-data.sh` - Shell wrapper for data extraction
 - `service.data.impl/src/main/resources/refresh-all-views.sql` - Materialized view refresh script
+- `service.data.impl/src/main/resources/analyze-view-dependencies.sql` - View dependency analysis script
 - `service.data.impl/src/main/resources/db-changelog*.xml` - Liquibase migration files
 - `.github/workflows/copilot-setup-steps.yml` - CI/CD database setup
 - `DATABASE_VIEW_INTELLIGENCE_CATALOG.md` - View documentation catalog
