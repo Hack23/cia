@@ -112,31 +112,12 @@ jobs:
     #   make bootstrap
     #   make release
 
-    - name: Cache Maven dependencies
-      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-      with:
-        path: |
-          ~/.m2/repository
-          ~/.m2/wrapper
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-
     - name: Set up JDK 25
       uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
       with:
         distribution: 'temurin'
         java-version: '25'
         cache: 'maven'
-
-    - name: Cache APT packages
-      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-      with:
-        path: |
-          /var/cache/apt/archives
-        key: ${{ runner.os }}-apt-${{ hashFiles('.github/workflows/codeql-analysis.yml') }}
-        restore-keys: |
-          ${{ runner.os }}-apt-
 
     - name: APT update
       run: sudo apt-get update
@@ -223,15 +204,6 @@ jobs:
       run: |
         # Load the full schema into the database
         sudo -u postgres psql -d cia_dev -f service.data.impl/src/main/resources/full_schema.sql || echo "Schema load completed with warnings (expected for first-time setup)"
-
-    - name: Cache Maven binaries
-      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-      with:
-        path: |
-          ~/.m2/wrapper/dists
-        key: ${{ runner.os }}-maven-binaries-3.9.9
-        restore-keys: |
-          ${{ runner.os }}-maven-binaries-
 
     - name: Set up Maven
       uses: stCarolas/setup-maven@d6af6abeda15e98926a57b5aa970a96bb37f97d1 # v5
