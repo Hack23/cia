@@ -48,18 +48,16 @@
 \echo '=========================================='
 \echo ''
 
--- Dynamic extraction from all tables
+-- Generate dynamic \copy commands for all tables
+-- First, analyze which tables have data
 DO $$
 DECLARE
     table_record RECORD;
     table_count INTEGER := 0;
     skip_count INTEGER := 0;
-    error_count INTEGER := 0;
     row_count BIGINT;
-    copy_command TEXT;
-    filename TEXT;
 BEGIN
-    RAISE NOTICE 'Extracting sample data from all tables...';
+    RAISE NOTICE 'Analyzing tables for sample data extraction...';
     RAISE NOTICE '';
     
     FOR table_record IN 
@@ -77,42 +75,50 @@ BEGIN
             INTO row_count;
             
             IF row_count > 0 THEN
-                filename := 'table_' || table_record.tablename || '_sample.csv';
-                
-                -- Generate copy command to extract data
-                -- Use a diverse sampling strategy with ORDER BY random() for variety
-                copy_command := format(
-                    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''%s'' WITH CSV HEADER',
-                    table_record.schemaname,
-                    table_record.tablename,
-                    filename
-                );
-                
-                RAISE NOTICE 'Extracting: % (% rows available)', 
+                RAISE NOTICE 'Table %: % rows available', 
                     table_record.tablename, row_count;
-                
-                -- Execute the copy command
-                EXECUTE copy_command;
                 table_count := table_count + 1;
-                
             ELSE
-                RAISE NOTICE 'Skipping: % (empty table)', table_record.tablename;
+                RAISE NOTICE 'Skipping %: empty table', table_record.tablename;
                 skip_count := skip_count + 1;
             END IF;
             
         EXCEPTION WHEN OTHERS THEN
-            RAISE NOTICE 'ERROR extracting %: %', table_record.tablename, SQLERRM;
-            error_count := error_count + 1;
+            RAISE NOTICE 'ERROR checking %: %', table_record.tablename, SQLERRM;
         END;
     END LOOP;
     
     RAISE NOTICE '';
-    RAISE NOTICE 'Table extraction summary:';
-    RAISE NOTICE '  Tables extracted: %', table_count;
-    RAISE NOTICE '  Empty tables skipped: %', skip_count;
-    RAISE NOTICE '  Errors: %', error_count;
+    RAISE NOTICE 'Table analysis summary:';
+    RAISE NOTICE '  Tables with data: %', table_count;
+    RAISE NOTICE '  Empty tables: %', skip_count;
     RAISE NOTICE '';
 END $$;
+
+-- Now extract sample data from all non-empty tables using dynamic \copy commands
+\echo 'Extracting sample data from tables...'
+\echo ''
+
+-- Generate and execute \copy commands for each table
+SELECT format(
+    '\echo ''Extracting: %s'''||E'\n'||
+    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''table_%s_sample.csv'' WITH CSV HEADER',
+    tablename,
+    schemaname,
+    tablename,
+    tablename
+)
+FROM pg_tables
+WHERE schemaname = 'public'
+AND tablename NOT LIKE 'qrtz_%'
+AND tablename NOT LIKE 'databasechange%'
+AND EXISTS (
+    SELECT 1 FROM information_schema.tables t
+    WHERE t.table_schema = pg_tables.schemaname
+    AND t.table_name = pg_tables.tablename
+)
+ORDER BY tablename
+\gexec
 
 -- ===========================================================================
 -- SECTION 2: Extract Sample Data from ALL Views Dynamically
@@ -123,18 +129,15 @@ END $$;
 \echo '=========================================='
 \echo ''
 
--- Dynamic extraction from all views (both regular and materialized)
+-- Analyze which views have data (both regular and materialized)
 DO $$
 DECLARE
     view_record RECORD;
     view_count INTEGER := 0;
-    error_count INTEGER := 0;
     empty_count INTEGER := 0;
     row_count BIGINT;
-    copy_command TEXT;
-    filename TEXT;
 BEGIN
-    RAISE NOTICE 'Extracting sample data from all views...';
+    RAISE NOTICE 'Analyzing views for sample data extraction...';
     RAISE NOTICE '';
     
     -- Process regular views
@@ -155,43 +158,58 @@ BEGIN
             INTO row_count;
             
             IF row_count > 0 THEN
-                filename := 'view_' || view_record.objectname || '_sample.csv';
-                
-                -- Generate copy command to extract data
-                -- For views, use diverse sampling to get variety across different dimensions
-                copy_command := format(
-                    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''%s'' WITH CSV HEADER',
-                    view_record.schemaname,
-                    view_record.objectname,
-                    filename
-                );
-                
-                RAISE NOTICE 'Extracting: % (% - % rows available)', 
-                    view_record.objectname, view_record.object_type, row_count;
-                
-                -- Execute the copy command
-                EXECUTE copy_command;
+                RAISE NOTICE 'View %: % rows available (%))', 
+                    view_record.objectname, row_count, view_record.object_type;
                 view_count := view_count + 1;
-                
             ELSE
-                RAISE NOTICE 'Skipping: % (empty %)', 
+                RAISE NOTICE 'Skipping %: empty % ', 
                     view_record.objectname, view_record.object_type;
                 empty_count := empty_count + 1;
             END IF;
             
         EXCEPTION WHEN OTHERS THEN
-            RAISE NOTICE 'ERROR extracting %: %', view_record.objectname, SQLERRM;
-            error_count := error_count + 1;
+            RAISE NOTICE 'ERROR checking %: %', view_record.objectname, SQLERRM;
         END;
     END LOOP;
     
     RAISE NOTICE '';
-    RAISE NOTICE 'View extraction summary:';
-    RAISE NOTICE '  Views extracted: %', view_count;
-    RAISE NOTICE '  Empty views skipped: %', empty_count;
-    RAISE NOTICE '  Errors: %', error_count;
+    RAISE NOTICE 'View analysis summary:';
+    RAISE NOTICE '  Views with data: %', view_count;
+    RAISE NOTICE '  Empty views: %', empty_count;
     RAISE NOTICE '';
 END $$;
+
+-- Now extract sample data from all non-empty views using dynamic \copy commands
+\echo 'Extracting sample data from views...'
+\echo ''
+
+-- Generate and execute \copy commands for regular views
+SELECT format(
+    '\echo ''Extracting: %s (VIEW)'''||E'\n'||
+    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''view_%s_sample.csv'' WITH CSV HEADER',
+    viewname,
+    schemaname,
+    viewname,
+    viewname
+)
+FROM pg_views
+WHERE schemaname = 'public'
+ORDER BY viewname
+\gexec
+
+-- Generate and execute \copy commands for materialized views
+SELECT format(
+    '\echo ''Extracting: %s (MATERIALIZED VIEW)'''||E'\n'||
+    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''view_%s_sample.csv'' WITH CSV HEADER',
+    matviewname,
+    schemaname,
+    matviewname,
+    matviewname
+)
+FROM pg_matviews
+WHERE schemaname = 'public'
+ORDER BY matviewname
+\gexec
 
 -- ===========================================================================
 -- SECTION 3: Generate Comprehensive Manifest File
