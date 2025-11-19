@@ -123,8 +123,7 @@ Karin      | Holm      | C     |          76.20 |         88.30 |        -12.10 
 **Status**: ✅ ADDED  
 **Views Used**: 
 - `view_riksdagen_vote_data_ballot_politician_summary_annual`
-- `view_riksdagen_politician_document_summary`  
-**Performance**: ~1.2s (complex joins)
+**Performance**: ~1.2s (complex aggregations)
 
 **Query Purpose**: Identify high-risk behavioral patterns using multiple correlated factors.
 
@@ -311,7 +310,6 @@ All queries reference existing, validated database views:
 |-----------|------|---------|----------------|---------------|
 | `view_riksdagen_vote_data_ballot_politician_summary_daily` | Materialized | v1.0-v1.31 | Initial schema | #1, #2 |
 | `view_riksdagen_vote_data_ballot_politician_summary_annual` | Materialized | v1.0-v1.31 | Initial schema | #3, #4 |
-| `view_riksdagen_politician_document_summary` | Materialized | v1.0-v1.31 | Initial schema | #4 |
 | `view_riksdagen_vote_data_ballot_party_summary` | Materialized | v1.0-v1.31 | Initial schema | #5 |
 | `view_riksdagen_politician_influence_metrics` | View | v1.29 | 2025-11-13 | #6 |
 | `view_riksdagen_intelligence_dashboard` | View | v1.29 | 2025-11-13 | #7 |

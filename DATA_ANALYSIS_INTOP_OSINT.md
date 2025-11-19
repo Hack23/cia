@@ -301,8 +301,7 @@ person_id | first_name | last_name  | party | vote_date  | total_votes | yes_vot
 
 ```sql
 -- Monthly engagement trends showing declining patterns
--- Views: view_riksdagen_politician_document_summary, 
---        view_riksdagen_vote_data_ballot_politician_summary_annual
+-- View: view_riksdagen_vote_data_ballot_politician_summary_daily
 -- Performance: ~800ms for 12-month window
 
 WITH monthly_metrics AS (
@@ -542,9 +541,8 @@ graph TB
 
 ```sql
 -- Multi-factor risk clustering
--- Views: view_riksdagen_vote_data_ballot_politician_summary_annual,
---        view_riksdagen_politician_document_summary
--- Performance: ~1.2s (complex joins)
+-- View: view_riksdagen_vote_data_ballot_politician_summary_annual
+-- Performance: ~1.2s (complex aggregations)
 
 WITH politician_metrics AS (
     SELECT 
