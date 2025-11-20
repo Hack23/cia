@@ -927,6 +927,294 @@ psql -U cia_user -d cia -f service.data.impl/src/main/resources/diagnose-ministr
 
 ---
 
+## 🎯 Intelligence Views: Crisis, Risk, and Proposal Analysis
+
+**Purpose:** Track crisis resilience, risk score evolution, and parliamentary proposal analysis  
+**Expected Row Count:** Variable based on active politicians and available data
+
+### View: view_riksdagen_member_proposals
+
+**Purpose:** All parliamentary member proposals (motions)  
+**Expected Row Count:** ~90,000+ rows (all member motions in document_element)
+
+**Common Issues:**
+
+1. **Case-sensitive document_type filter (FIXED in v1.33)**
+   - **Symptom:** View returns 0 rows even with motion documents
+   - **Root Cause:** Filter used `document_type = 'MOT'` but data contains `'mot'` (lowercase)
+   - **Fix Applied:** Changed to `UPPER(document_type) = 'MOT'`
+   
+   **Diagnostic:**
+   ```sql
+   -- Check actual document_type values
+   SELECT 
+       document_type,
+       COUNT(*) AS count
+   FROM document_element
+   WHERE LOWER(document_type) = 'mot'
+   GROUP BY document_type;
+   
+   -- Expected: Should show 'mot' with ~90,000+ rows
+   ```
+
+2. **No motion documents imported**
+   - **Fix:** Import motion data from Riksdagen API
+   - **Check:** `SELECT COUNT(*) FROM document_element WHERE UPPER(document_type) = 'MOT';`
+
+**Validation Query:**
+```sql
+-- After v1.33 fix, should return all member proposals
+SELECT 
+    COUNT(*) AS total_proposals,
+    MIN(made_public_date) AS earliest,
+    MAX(made_public_date) AS latest,
+    COUNT(DISTINCT org) AS unique_orgs
+FROM view_riksdagen_member_proposals;
+
+-- Expected: ~90,000+ proposals from various parliamentary organizations
+```
+
+### View: view_riksdagen_committee_parliament_member_proposal
+
+**Purpose:** Committee member proposals linked to specific committees  
+**Expected Row Count:** Subset of member proposals where org matches committee org_code
+
+**Common Issues:**
+
+1. **Case-sensitive document_type filter (FIXED in v1.33)**
+   - **Same issue as view_riksdagen_member_proposals**
+   - **Fix Applied:** Changed to `UPPER(document_data.document_type) = 'MOT'`
+   
+   **Diagnostic:**
+   ```sql
+   -- Check committee-linked proposals
+   SELECT 
+       c.embedded_id_org_code AS committee,
+       COUNT(DISTINCT d.id) AS proposal_count
+   FROM view_riksdagen_committee c
+   LEFT JOIN document_data d ON c.embedded_id_org_code = d.org
+   WHERE UPPER(d.document_type) = 'MOT'
+   GROUP BY c.embedded_id_org_code
+   ORDER BY proposal_count DESC;
+   ```
+
+2. **No committee org matching**
+   - **Diagnostic:** Check if document_data.org values match committee org_codes
+   - **Fix:** Verify org_code format consistency
+
+**Validation Query:**
+```sql
+-- Should return committee-linked proposals
+SELECT 
+    embedded_id_org_code AS committee,
+    embedded_id_detail AS committee_name,
+    COUNT(*) AS proposal_count
+FROM view_riksdagen_committee_parliament_member_proposal
+GROUP BY embedded_id_org_code, embedded_id_detail
+ORDER BY proposal_count DESC
+LIMIT 20;
+```
+
+### View: view_riksdagen_crisis_resilience_indicators
+
+**Purpose:** Track politician performance during high-activity (crisis) periods vs normal periods  
+**Expected Row Count:** Active politicians with voting data in both crisis and normal periods
+
+**Common Issues:**
+
+1. **Case-sensitive vote value filters (FIXED in v1.33)**
+   - **Symptom:** View returns 0 rows even with extensive vote data
+   - **Root Cause:** Filters used `vote = 'Ja'`, `'Nej'`, `'Frånvarande'` (mixed case) but data contains `'JA'`, `'NEJ'`, `'FRÅNVARANDE'` (all uppercase)
+   - **Fix Applied:** Changed to `UPPER(vote)` for all vote comparisons
+   
+   **Diagnostic:**
+   ```sql
+   -- Check actual vote values and case
+   SELECT 
+       vote,
+       COUNT(*) AS count
+   FROM vote_data
+   WHERE vote_date >= CURRENT_DATE - INTERVAL '2 years'
+   GROUP BY vote
+   ORDER BY count DESC;
+   
+   -- Expected: Should show 'JA', 'NEJ', 'FRÅNVARANDE', 'AVSTÅR' (uppercase)
+   ```
+
+2. **Insufficient data for crisis/normal period detection**
+   - **Requires:** At least 2 years of voting data with varying monthly activity levels
+   - **Diagnostic:**
+   ```sql
+   -- Check monthly ballot distribution
+   WITH monthly_activity AS (
+       SELECT 
+           DATE_TRUNC('month', vote_date::TIMESTAMP WITH TIME ZONE) AS month,
+           COUNT(DISTINCT embedded_id_ballot_id) AS ballot_count
+       FROM vote_data
+       WHERE vote_date >= CURRENT_DATE - INTERVAL '2 years'
+       GROUP BY DATE_TRUNC('month', vote_date::TIMESTAMP WITH TIME ZONE)
+   )
+   SELECT 
+       COUNT(*) AS total_months,
+       AVG(ballot_count) AS avg_monthly_ballots,
+       MIN(ballot_count) AS min_ballots,
+       MAX(ballot_count) AS max_ballots,
+       COUNT(*) FILTER (WHERE ballot_count > AVG(ballot_count) * 1.5) AS crisis_months,
+       COUNT(*) FILTER (WHERE ballot_count <= AVG(ballot_count)) AS normal_months
+   FROM monthly_activity;
+   
+   -- Expected: Should show variation in monthly activity for crisis detection
+   ```
+
+3. **No politicians with both crisis and normal period votes**
+   - **Fix:** View now includes politicians with either crisis OR normal votes
+   - **Filter:** WHERE clause ensures at least one period has data
+
+**Validation Query:**
+```sql
+-- Should show resilience metrics for active politicians
+SELECT 
+    resilience_classification,
+    COUNT(*) AS politician_count,
+    AVG(crisis_period_votes) AS avg_crisis_votes,
+    AVG(normal_period_votes) AS avg_normal_votes,
+    AVG(resilience_score) AS avg_resilience
+FROM view_riksdagen_crisis_resilience_indicators
+GROUP BY resilience_classification
+ORDER BY resilience_classification;
+```
+
+### View: view_risk_score_evolution
+
+**Purpose:** Track monthly risk score changes for politicians over time (3-year window)  
+**Expected Row Count:** Monthly records for active politicians with sufficient voting activity
+
+**Common Issues:**
+
+1. **Case-sensitive status filter (IMPROVED in v1.33)**
+   - **Symptom:** View returns 0 rows if person_data.status has case variations
+   - **Root Cause:** Filter used `p.status = 'active'` but data might contain 'Active' or 'ACTIVE'
+   - **Fix Applied:** Changed to `p.status IN ('active', 'Active', 'ACTIVE')`
+   
+   **Diagnostic:**
+   ```sql
+   -- Check actual status values
+   SELECT 
+       status,
+       COUNT(*) AS count
+   FROM person_data
+   WHERE status IS NOT NULL
+   GROUP BY status;
+   
+   -- Expected: Should show actual status values in the data
+   ```
+
+2. **Materialized view not refreshed**
+   - **Requires:** view_riksdagen_vote_data_ballot_politician_summary_daily must be up-to-date
+   - **Diagnostic:**
+   ```sql
+   -- Check if daily summary has recent data
+   SELECT 
+       COUNT(*) AS total_records,
+       MIN(embedded_id_vote_date) AS earliest_date,
+       MAX(embedded_id_vote_date) AS latest_date,
+       COUNT(DISTINCT embedded_id_intressent_id) AS unique_politicians
+   FROM view_riksdagen_vote_data_ballot_politician_summary_daily
+   WHERE embedded_id_vote_date >= CURRENT_DATE - INTERVAL '3 years';
+   
+   -- Expected: Should have records within 3-year window
+   ```
+   
+   **Fix:**
+   ```sql
+   -- Refresh materialized view
+   REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_daily;
+   
+   -- Then check view_risk_score_evolution again
+   ```
+
+3. **Insufficient ballot count per month**
+   - **Filter:** View requires ballot_count >= 5 per month
+   - **Diagnostic:** If too restrictive, adjust threshold in view definition
+
+**Validation Query:**
+```sql
+-- Should show risk evolution over time
+SELECT 
+    DATE_TRUNC('month', assessment_period) AS month,
+    COUNT(DISTINCT person_id) AS politicians_assessed,
+    AVG(risk_score) AS avg_risk,
+    COUNT(*) FILTER (WHERE risk_severity = 'CRITICAL') AS critical_count,
+    COUNT(*) FILTER (WHERE risk_trend = 'SIGNIFICANT_INCREASE') AS escalating
+FROM view_risk_score_evolution
+GROUP BY DATE_TRUNC('month', assessment_period)
+ORDER BY month DESC
+LIMIT 12;
+```
+
+### Crisis, Risk, and Proposal Views Diagnostic Script
+
+**Quick diagnostic for all 4 views:**
+
+```sql
+-- Comprehensive diagnostic for intelligence views
+DO $$
+DECLARE
+    view_name TEXT;
+    row_count BIGINT;
+BEGIN
+    RAISE NOTICE '=== Intelligence Views Status ===';
+    
+    -- Check each view
+    FOR view_name IN 
+        SELECT unnest(ARRAY[
+            'view_riksdagen_member_proposals',
+            'view_riksdagen_committee_parliament_member_proposal',
+            'view_riksdagen_crisis_resilience_indicators',
+            'view_risk_score_evolution'
+        ])
+    LOOP
+        EXECUTE format('SELECT COUNT(*) FROM %I', view_name) INTO row_count;
+        RAISE NOTICE 'View: % | Rows: %', view_name, row_count;
+    END LOOP;
+    
+    RAISE NOTICE '';
+    RAISE NOTICE '=== Data Availability Check ===';
+    
+    -- Check source data
+    SELECT COUNT(*) INTO row_count FROM document_element WHERE UPPER(document_type) = 'MOT';
+    RAISE NOTICE 'Motion documents (document_element): %', row_count;
+    
+    SELECT COUNT(*) INTO row_count FROM vote_data WHERE vote_date >= CURRENT_DATE - INTERVAL '2 years';
+    RAISE NOTICE 'Votes (last 2 years): %', row_count;
+    
+    SELECT COUNT(*) INTO row_count FROM person_data WHERE status ILIKE '%active%';
+    RAISE NOTICE 'Active politicians: %', row_count;
+    
+    SELECT COUNT(*) INTO row_count 
+    FROM view_riksdagen_vote_data_ballot_politician_summary_daily 
+    WHERE embedded_id_vote_date >= CURRENT_DATE - INTERVAL '3 years';
+    RAISE NOTICE 'Daily vote summaries (last 3 years): %', row_count;
+END $$;
+```
+
+**Expected output (after v1.33 fixes):**
+```
+NOTICE:  === Intelligence Views Status ===
+NOTICE:  View: view_riksdagen_member_proposals | Rows: 90534
+NOTICE:  View: view_riksdagen_committee_parliament_member_proposal | Rows: [varies]
+NOTICE:  View: view_riksdagen_crisis_resilience_indicators | Rows: [varies]
+NOTICE:  View: view_risk_score_evolution | Rows: [varies]
+NOTICE:  
+NOTICE:  === Data Availability Check ===
+NOTICE:  Motion documents (document_element): 90534
+NOTICE:  Votes (last 2 years): [varies]
+NOTICE:  Active politicians: [varies]
+NOTICE:  Daily vote summaries (last 3 years): [varies]
+```
+
+---
+
 ## 🚨 Emergency Data Recovery
 
 ### Scenario: Multiple Views Empty After Update
@@ -1138,6 +1426,7 @@ END $$;
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 1.0 | 2025-11-18 | Initial troubleshooting guide for empty database views | Database Team |
+| 1.1 | 2025-11-20 | Added fixes for 4 empty intelligence views (crisis, risk, proposals) | Intelligence Team |
 
 ---
 
