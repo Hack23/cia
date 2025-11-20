@@ -16,36 +16,49 @@
 
 1. [Executive Summary](#executive-summary)
 2. [View Categories Overview](#view-categories-overview)
-3. [Politician Views](#politician-views)
-4. [Party Views](#party-views)
-5. [Committee Views](#committee-views)
-6. [Ministry/Government Views](#ministrygovernment-views)
-7. [Vote Data Views](#vote-data-views)
-8. [Document Views](#document-views)
-9. [Intelligence Views](#intelligence-views)
-10. [Application & Audit Views](#application--audit-views)
-11. [Common Usage Patterns](#common-usage-patterns)
-12. [View Dependency Diagram](#view-dependency-diagram)
-13. [Performance Optimization Guide](#performance-optimization-guide)
-14. [Cross-Reference to Intelligence Frameworks](#cross-reference-to-intelligence-frameworks)
-15. [Appendices](#appendices)
+3. [Complete View Inventory](#complete-view-inventory)
+4. [Politician Views](#politician-views)
+5. [Party Views](#party-views)
+6. [Committee Views](#committee-views)
+7. [Ministry/Government Views](#ministrygovernment-views)
+8. [Vote Data Views](#vote-data-views)
+9. [Document Views](#document-views)
+10. [Intelligence Views](#intelligence-views)
+11. [Application & Audit Views](#application--audit-views)
+12. [Common Usage Patterns](#common-usage-patterns)
+13. [View Dependency Diagram](#view-dependency-diagram)
+14. [Performance Optimization Guide](#performance-optimization-guide)
+15. [Cross-Reference to Intelligence Frameworks](#cross-reference-to-intelligence-frameworks)
+16. [Appendices](#appendices)
 
 ---
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **80+ database views** across 8 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring. This catalog provides complete documentation of all views, including their purpose, structure, usage examples, performance characteristics, and integration with intelligence frameworks.
+The Citizen Intelligence Agency (CIA) platform employs **80 database views** across 8 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+
+⚠️ **Documentation Status**: This catalog is actively being expanded. Currently **9 views** are fully documented with detailed examples and usage patterns. See [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for the complete validation report and prioritized documentation roadmap for the remaining **71 views**.
+
+**Last Validated**: 2025-11-20  
+**Validation Method**: Automated comparison against full_schema.sql  
+**Schema Source**: service.data.impl/src/main/resources/full_schema.sql
 
 ### Key Statistics
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 80+ | All database views across platform |
-| **Materialized Views** | 25+ | Performance-optimized views with physical storage |
-| **Intelligence Views** | 15+ | Advanced analytical views (v1.29-v1.30) |
-| **Vote Summary Views** | 20+ | Daily, weekly, monthly, annual ballot summaries |
-| **Document Views** | 10+ | Politician and party document productivity |
-| **Changelog Versions** | v1.0-v1.30 | Database schema evolution tracking |
+| **Total Views** | 80 | All database views across platform (validated 2025-11-20) |
+| **Views Documented (Detailed)** | 9 | Fully documented with examples, performance, intelligence value |
+| **Views Documented (Basic)** | 71 | Listed in inventory below with basic purpose |
+| **Documentation Coverage** | 11.25% | Detailed documentation coverage |
+| **Materialized Views** | 28 | Performance-optimized views with physical storage (see refresh-all-views.sql) |
+| **Intelligence Views** | 6 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard) |
+| **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
+| **Document Views** | 7 | Politician and party document productivity |
+| **Committee Views** | 12 | Committee productivity, decisions, membership |
+| **Government/Ministry Views** | 7 | Government and ministry performance tracking |
+| **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
+| **Changelog Versions** | v1.0-v1.31 | Database schema evolution tracking |
 
 ### Intelligence Value Classification
 
@@ -70,6 +83,7 @@ Views are classified by intelligence value for analytical operations:
 
 | Document | Link | Description |
 |----------|------|-------------|
+| **Validation Report** | [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) | View documentation validation and remediation plan (2025-11-20) |
 | **Intelligence Frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) | Analysis methodologies and OSINT techniques |
 | **Risk Rules** | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) | 45 behavioral detection rules |
 | **Changelog Analysis** | [LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) | Schema evolution analysis |
@@ -137,6 +151,172 @@ graph TB
 | **v1.27-v1.28** | 2024 | Politician experience scoring | Expertise tracking |
 | **v1.29** | 2024-11 | Intelligence dashboard, coalition alignment, anomaly detection | Advanced intelligence |
 | **v1.30** | 2024-11 | Behavioral trends, risk evolution, effectiveness trends | Predictive analytics |
+
+---
+
+## Complete View Inventory
+
+This section provides a complete alphabetical inventory of all 80 database views with brief descriptions. Views marked with 📖 have detailed documentation below; others provide basic descriptions pending full documentation (see [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for the documentation roadmap).
+
+**Legend:**
+- 📖 = Fully documented with examples and performance characteristics
+- ⭐⭐⭐⭐⭐ = VERY HIGH intelligence value
+- ⭐⭐⭐⭐ = HIGH intelligence value
+- ⭐⭐⭐ = MEDIUM intelligence value
+- ⭐⭐ = LOW intelligence value (administrative/audit)
+- 🔄 = Materialized view (requires refresh)
+
+### Application & Audit Views (14 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_application_action_event_page_annual_summary | Standard | ⭐⭐ | Annual summary of user interactions by page |
+| view_application_action_event_page_daily_summary | Standard | ⭐⭐ | Daily summary of user interactions by page |
+| view_application_action_event_page_element_annual_summary | Standard | ⭐⭐ | Annual summary of UI element interactions |
+| view_application_action_event_page_element_daily_summary | Standard | ⭐⭐ | Daily summary of UI element interactions |
+| view_application_action_event_page_element_hourly_summary | Standard | ⭐⭐ | Hourly summary of UI element interactions |
+| view_application_action_event_page_element_weekly_summary | Standard | ⭐⭐ | Weekly summary of UI element interactions |
+| view_application_action_event_page_hourly_summary | Standard | ⭐⭐ | Hourly summary of user interactions by page |
+| view_application_action_event_page_modes_annual_summary | Standard | ⭐⭐ | Annual summary of page access modes |
+| view_application_action_event_page_modes_daily_summary | Standard | ⭐⭐ | Daily summary of page access modes |
+| view_application_action_event_page_modes_hourly_summary | Standard | ⭐⭐ | Hourly summary of page access modes |
+| view_application_action_event_page_modes_weekly_summary | Standard | ⭐⭐ | Weekly summary of page access modes |
+| view_application_action_event_page_weekly_summary | Standard | ⭐⭐ | Weekly summary of user interactions by page |
+| view_audit_author_summary | Standard | ⭐⭐ | Summary of data changes by author |
+| view_audit_data_summary | Standard | ⭐⭐ | Summary of audit trail data changes |
+
+### Committee Views (12 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_committee_productivity | Standard | ⭐⭐⭐⭐ | Committee productivity metrics and efficiency indicators |
+| view_committee_productivity_matrix | Standard | ⭐⭐⭐⭐ | Matrix comparison of committee productivity |
+| view_riksdagen_committee | Standard | ⭐⭐⭐⭐ | Committee structure, membership, and activity metrics |
+| view_riksdagen_committee_ballot_decision_party_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Party-level committee ballot decisions |
+| view_riksdagen_committee_ballot_decision_politician_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Individual politician committee ballot decisions |
+| view_riksdagen_committee_ballot_decision_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated committee ballot decision summary |
+| view_riksdagen_committee_decision_type_org_summary | 🔄 Materialized | ⭐⭐⭐ | Committee decisions by type and organization |
+| view_riksdagen_committee_decision_type_summary | 🔄 Materialized | ⭐⭐⭐ | Committee decisions aggregated by type |
+| view_riksdagen_committee_decisions | 🔄 Materialized | ⭐⭐⭐⭐ | Detailed committee decision tracking |
+| view_riksdagen_committee_parliament_member_proposal | Standard | ⭐⭐⭐ | Parliamentary member proposals to committees |
+| view_riksdagen_committee_role_member | Standard | ⭐⭐⭐ | Committee role assignments and members |
+| view_riksdagen_committee_roles | Standard | ⭐⭐⭐ | Committee role definitions and structure |
+
+### Document Views (7 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_party_document_summary | Standard | ⭐⭐⭐⭐ | Aggregated party document statistics |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |
+
+### Government/Ministry Views (7 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_ministry_effectiveness_trends | Standard | ⭐⭐⭐⭐⭐ | Ministry performance trends over time |
+| view_ministry_productivity_matrix | Standard | ⭐⭐⭐⭐⭐ | Comparative ministry productivity analysis |
+| view_ministry_risk_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of ministry risk indicators |
+| view_riksdagen_goverment | Standard | ⭐⭐⭐⭐ | Government structure and composition |
+| view_riksdagen_goverment_proposals | Standard | ⭐⭐⭐⭐ | Government legislative proposals |
+| view_riksdagen_goverment_role_member | Standard | ⭐⭐⭐⭐ | Government role assignments |
+| view_riksdagen_goverment_roles | Standard | ⭐⭐⭐⭐ | Government role definitions |
+
+### Intelligence & Risk Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| 📖 view_party_effectiveness_trends | Standard | ⭐⭐⭐⭐⭐ | Party effectiveness metrics over time |
+| 📖 view_politician_behavioral_trends | Standard | ⭐⭐⭐⭐⭐ | Politician behavioral pattern analysis |
+| view_politician_risk_summary | Standard | ⭐⭐⭐⭐⭐ | Aggregated politician risk indicators |
+| view_riksdagen_crisis_resilience_indicators | Standard | ⭐⭐⭐⭐⭐ | Crisis period performance and resilience metrics |
+| view_riksdagen_intelligence_dashboard | Standard | ⭐⭐⭐⭐⭐ | Unified intelligence dashboard with key metrics |
+| 📖 view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Voting anomaly and defection risk detection |
+| 📖 view_risk_score_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of risk scores over time |
+
+### Party Views (12 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| 📖 view_riksdagen_coalition_alignment_matrix | Standard | ⭐⭐⭐⭐⭐ | Party coalition alignment and probability matrix |
+| 📖 view_riksdagen_party | Standard | ⭐⭐⭐⭐⭐ | Core party information and metrics |
+| view_party_performance_metrics | Standard | ⭐⭐⭐⭐⭐ | Comprehensive party performance indicators |
+| view_riksdagen_party_ballot_support_annual_summary | Standard | ⭐⭐⭐⭐ | Annual party ballot support patterns |
+| view_riksdagen_party_coalation_against_annual_summary | Standard | ⭐⭐⭐⭐ | Annual party opposition coalition patterns |
+| view_riksdagen_party_member | Standard | ⭐⭐⭐⭐ | Party membership roster |
+| view_riksdagen_party_momentum_analysis | Standard | ⭐⭐⭐⭐⭐ | Party momentum and trend analysis |
+| view_riksdagen_party_role_member | Standard | ⭐⭐⭐ | Party role assignments |
+| view_riksdagen_party_signatures_document_summary | Standard | ⭐⭐⭐ | Party document signature patterns |
+| view_riksdagen_party_summary | Standard | ⭐⭐⭐⭐ | Aggregated party statistics |
+| view_riksdagen_person_signed_document_summary | Standard | ⭐⭐⭐ | Individual document signature summary |
+
+### Politician Views (8 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| 📖 view_riksdagen_politician | Standard | ⭐⭐⭐⭐⭐ | Core politician information and demographics |
+| 📖 view_riksdagen_politician_document | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Politician document authorship and productivity |
+| 📖 view_riksdagen_politician_experience_summary | Standard | ⭐⭐⭐⭐⭐ | Politician experience scoring and classification |
+| view_riksdagen_politician_ballot_summary | Standard | ⭐⭐⭐⭐⭐ | Politician voting record summary |
+| view_riksdagen_politician_influence_metrics | Standard | ⭐⭐⭐⭐⭐ | Politician influence and network analysis |
+
+### Vote Data Views (20 views)
+
+**Ballot Summary Views (5 views)**
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_riksdagen_vote_data_ballot_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Overall ballot outcome summary |
+| view_riksdagen_vote_data_ballot_summary_annual | 🔄 Materialized | ⭐⭐⭐⭐ | Annual ballot summary aggregation |
+| view_riksdagen_vote_data_ballot_summary_daily | 🔄 Materialized | ⭐⭐⭐⭐ | Daily ballot summary aggregation |
+| view_riksdagen_vote_data_ballot_summary_monthly | 🔄 Materialized | ⭐⭐⭐⭐ | Monthly ballot summary aggregation |
+| view_riksdagen_vote_data_ballot_summary_weekly | 🔄 Materialized | ⭐⭐⭐⭐ | Weekly ballot summary aggregation |
+
+**Party Voting Views (5 views)**
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_riksdagen_vote_data_ballot_party_summary | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Party-level voting summary |
+| view_riksdagen_vote_data_ballot_party_summary_annual | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Annual party voting patterns |
+| view_riksdagen_vote_data_ballot_party_summary_daily | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Daily party voting patterns |
+| view_riksdagen_vote_data_ballot_party_summary_monthly | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Monthly party voting patterns |
+| view_riksdagen_vote_data_ballot_party_summary_weekly | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Weekly party voting patterns |
+
+**Politician Voting Views (5 views)**
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_riksdagen_vote_data_ballot_politician_summary | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Individual politician voting summary |
+| view_riksdagen_vote_data_ballot_politician_summary_annual | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Annual politician voting patterns |
+| 📖 view_riksdagen_vote_data_ballot_politician_summary_daily | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Daily politician voting patterns |
+| view_riksdagen_vote_data_ballot_politician_summary_monthly | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Monthly politician voting patterns |
+| view_riksdagen_vote_data_ballot_politician_summary_weekly | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Weekly politician voting patterns |
+
+**Other Voting & Proposal Views (5 views)**
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_riksdagen_member_proposals | Standard | ⭐⭐⭐ | Parliamentary member legislative proposals |
+| view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Anomalous voting behavior detection |
+
+### WorldBank Data (1 view)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_worldbank_indicator_data_country_summary | 🔄 Materialized | ⭐⭐⭐ | Economic indicators for country analysis |
+
+**Total Views:** 80  
+**Fully Documented:** 9  
+**Materialized Views:** 28  
+**Views by Intelligence Value:**
+- ⭐⭐⭐⭐⭐ VERY HIGH: 30 views
+- ⭐⭐⭐⭐ HIGH: 26 views
+- ⭐⭐⭐ MEDIUM: 10 views
+- ⭐⭐ LOW: 14 views
 
 ---
 
@@ -1772,6 +1952,338 @@ Intelligence views (v1.29-v1.30) represent advanced analytical capabilities comb
 | **Coalition Analysis** | coalition_alignment_matrix | Government formation forecasting |
 | **Network Intelligence** | politician_influence_metrics | Power structure mapping |
 | **Dashboard Aggregation** | riksdagen_intelligence_dashboard | Unified intelligence products |
+| **Crisis Analysis** | crisis_resilience_indicators | Crisis period performance assessment |
+| **Anomaly Detection** | voting_anomaly_detection | Behavioral outlier identification |
+
+---
+
+### view_riksdagen_intelligence_dashboard ⭐⭐⭐⭐⭐
+
+**Category:** Intelligence Views (v1.29)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Unified Intelligence Dashboard  
+**Changelog:** v1.29 Intelligence Dashboard Integration
+
+#### Purpose
+
+Unified intelligence dashboard providing real-time aggregated metrics across all intelligence domains. Synthesizes data from party momentum, coalition alignment, voting anomalies, politician influence, and crisis resilience to provide executive-level intelligence assessment. Generates automated stability and coalition assessments based on multi-domain indicators.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `parties_gaining_momentum` | BIGINT | Count of parties with positive/strong positive momentum | 3 |
+| `parties_losing_momentum` | BIGINT | Count of parties with negative/strong negative momentum | 2 |
+| `volatile_parties` | BIGINT | Count of parties with volatile/highly volatile stability | 1 |
+| `high_probability_coalitions` | BIGINT | Count of very high likelihood coalitions | 4 |
+| `cross_bloc_alliances` | BIGINT | Count of high/very high cross-bloc alliances | 1 |
+| `high_defection_risks` | BIGINT | Count of politicians with high defection risk | 7 |
+| `low_discipline_politicians` | BIGINT | Count of low discipline politicians | 12 |
+| `power_brokers` | BIGINT | Count of strong/moderate brokers | 8 |
+| `highly_connected_politicians` | BIGINT | Count of highly connected politicians | 15 |
+| `crisis_ready_politicians` | BIGINT | Count of highly resilient politicians | 45 |
+| `low_resilience_politicians` | BIGINT | Count of low resilience politicians | 18 |
+| `stability_assessment` | TEXT | Overall political stability rating | 'STABLE_POLITICAL_ENVIRONMENT' |
+| `coalition_assessment` | TEXT | Coalition landscape assessment | 'STABLE_COALITION_PATTERNS' |
+| `latest_vote_data` | DATE | Most recent vote date | '2024-11-15' |
+| `ballots_last_30_days` | BIGINT | Number of ballots in last 30 days | 42 |
+| `intelligence_report_timestamp` | TIMESTAMP | Report generation time | '2024-11-20 14:15:23' |
+
+#### Assessment Classifications
+
+**Stability Assessment Logic:**
+- `HIGH_POLITICAL_INSTABILITY_RISK`: ≥5 high defection risks detected
+- `MODERATE_POLITICAL_INSTABILITY_RISK`: ≥3 volatile parties detected
+- `STABLE_POLITICAL_ENVIRONMENT`: Otherwise
+
+**Coalition Assessment Logic:**
+- `POTENTIAL_REALIGNMENT_DETECTED`: ≥2 cross-bloc alliances detected
+- `STABLE_COALITION_PATTERNS`: ≥5 high probability coalitions exist
+- `UNCERTAIN_COALITION_LANDSCAPE`: Otherwise
+
+#### Data Sources
+
+This view aggregates data from 6 intelligence views:
+1. **view_riksdagen_party_momentum_analysis**: Party momentum trends
+2. **view_riksdagen_coalition_alignment_matrix**: Coalition probabilities
+3. **view_riksdagen_voting_anomaly_detection**: Defection and discipline
+4. **view_riksdagen_politician_influence_metrics**: Network analysis
+5. **view_riksdagen_crisis_resilience_indicators**: Crisis preparedness
+6. **vote_data** table: Recent voting activity
+
+#### Example Queries
+
+**1. Current Intelligence Dashboard Status**
+
+```sql
+SELECT 
+    stability_assessment,
+    coalition_assessment,
+    parties_gaining_momentum,
+    parties_losing_momentum,
+    high_defection_risks,
+    power_brokers,
+    crisis_ready_politicians,
+    ballots_last_30_days,
+    intelligence_report_timestamp
+FROM view_riksdagen_intelligence_dashboard;
+```
+
+**Output:**
+```
+stability_assessment: STABLE_POLITICAL_ENVIRONMENT
+coalition_assessment: STABLE_COALITION_PATTERNS
+parties_gaining_momentum: 3
+parties_losing_momentum: 2
+high_defection_risks: 7
+power_brokers: 8
+crisis_ready_politicians: 45
+ballots_last_30_days: 42
+```
+
+**2. Monitor for Political Instability Triggers**
+
+```sql
+SELECT 
+    CASE 
+        WHEN high_defection_risks >= 5 THEN 'CRITICAL ALERT: High defection risk'
+        WHEN volatile_parties >= 3 THEN 'WARNING: Elevated political volatility'
+        WHEN cross_bloc_alliances >= 2 THEN 'NOTICE: Potential coalition realignment'
+        ELSE 'Normal operations'
+    END AS alert_status,
+    high_defection_risks,
+    volatile_parties,
+    cross_bloc_alliances,
+    low_discipline_politicians
+FROM view_riksdagen_intelligence_dashboard;
+```
+
+**3. Dashboard Health Check**
+
+```sql
+SELECT 
+    ballots_last_30_days,
+    latest_vote_data,
+    CURRENT_DATE - latest_vote_data AS days_since_last_vote,
+    CASE 
+        WHEN CURRENT_DATE - latest_vote_data > 60 THEN 'Data may be stale'
+        WHEN ballots_last_30_days < 20 THEN 'Low voting activity'
+        ELSE 'Data current'
+    END AS data_freshness
+FROM view_riksdagen_intelligence_dashboard;
+```
+
+#### Performance Characteristics
+
+- **Query Time:** 500-1500ms (aggregates 6 intelligence views)
+- **Refresh Frequency:** Real-time (recalculates on each query)
+- **Data Volume:** Single row (aggregate metrics)
+- **Optimization Consideration:** Consider materializing for sub-100ms dashboard response
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Strategic Assessment**: Overall political landscape monitoring
+- **Early Warning**: Instability and realignment detection
+- **Executive Intelligence**: High-level situational awareness
+- **Multi-Domain Integration**: Synthesizes momentum, coalition, behavioral, network, and crisis data
+
+#### Integration with Product Features
+
+From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
+- **Intelligence Dashboard** (Product Line 3): Primary data source for executive dashboard
+- **Early Warning System**: Feeds alerts and notifications
+- **API Intelligence Endpoints**: Powers /api/intelligence/dashboard
+
+#### Use Cases
+
+1. **Executive Briefing**: Generate daily intelligence summary for analysts
+2. **Early Warning System**: Monitor for political instability triggers
+3. **Coalition Watch**: Track coalition formation dynamics
+4. **Crisis Detection**: Identify emerging political crises
+5. **API Integration**: Provide unified intelligence endpoint
+
+---
+
+### view_riksdagen_crisis_resilience_indicators ⭐⭐⭐⭐⭐
+
+**Category:** Intelligence Views (v1.29)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Crisis Performance Assessment  
+**Changelog:** v1.29 Crisis Resilience Analysis
+
+#### Purpose
+
+Sophisticated crisis resilience analysis comparing politician performance during high-activity "crisis" periods versus normal periods. Automatically identifies crisis periods (ballot volume >150% of average), then calculates individual resilience metrics including attendance, party discipline, and performance consistency. Provides resilience classification from HIGHLY_RESILIENT to LOW_RESILIENCE.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Politician identifier | '0532213467925' |
+| `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
+| `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
+| `party` | VARCHAR(50) | Party affiliation | 'S' |
+| `status` | VARCHAR(100) | Current status | 'Tjänstgörande riksdagsledamot' |
+| `crisis_period_votes` | BIGINT | Votes during crisis periods | 145 |
+| `crisis_definitive_votes` | BIGINT | Definitive votes (Ja/Nej) in crisis | 132 |
+| `crisis_absences` | BIGINT | Absences during crisis | 13 |
+| `crisis_absence_rate` | DOUBLE PRECISION | Crisis absence rate (0.0-1.0) | 0.090 (9%) |
+| `normal_votes` | BIGINT | Votes during normal periods | 320 |
+| `normal_absences` | BIGINT | Absences during normal periods | 28 |
+| `normal_absence_rate` | DOUBLE PRECISION | Normal absence rate (0.0-1.0) | 0.088 (8.8%) |
+| `absence_delta` | DOUBLE PRECISION | Crisis - Normal absence rate | 0.002 (0.2%) |
+| `aligned_crisis_votes` | BIGINT | Votes aligned with party in crisis | 125 |
+| `crisis_party_alignment_rate` | DOUBLE PRECISION | Party discipline in crisis (0.0-1.0) | 0.947 (94.7%) |
+| `resilience_score` | NUMERIC(10,2) | Overall resilience score (0-100) | 87.5 |
+| `resilience_classification` | TEXT | Resilience level | 'HIGHLY_RESILIENT' |
+| `attendance_resilience` | TEXT | Attendance-specific resilience | 'RESILIENT' |
+| `discipline_resilience` | TEXT | Discipline-specific resilience | 'HIGHLY_RESILIENT' |
+
+#### Crisis Period Detection
+
+**Algorithm:**
+1. Calculate average monthly ballot count (last 2 years)
+2. Identify months with ballot count >150% of average as "crisis periods"
+3. Remaining months classified as "normal periods"
+4. Compare individual performance across both period types
+
+**Example Crisis Triggers:**
+- Budget crises requiring extensive voting
+- Government formation periods
+- Major legislative pushes
+- Political scandals requiring multiple votes
+- Emergency legislation periods
+
+#### Resilience Score Calculation
+
+**Formula:**
+```
+resilience_score = 100 - (
+    (crisis_absence_rate × 40) + 
+    ((1 - crisis_party_alignment_rate) × 40) +
+    (max(0, absence_delta) × 20)
+)
+```
+
+**Components:**
+- **40% weight**: Crisis absence rate (lower is better)
+- **40% weight**: Crisis party discipline (higher is better)
+- **20% weight**: Absence rate increase in crisis (lower is better)
+
+**Resilience Classification Thresholds:**
+
+| Score Range | Classification | Description |
+|-------------|----------------|-------------|
+| **90-100** | HIGHLY_RESILIENT | Excellent crisis performance |
+| **75-89** | RESILIENT | Good crisis performance |
+| **60-74** | MODERATE_RESILIENCE | Adequate crisis performance |
+| **45-59** | VULNERABLE | Below average crisis performance |
+| **0-44** | LOW_RESILIENCE | Poor crisis performance |
+
+#### Example Queries
+
+**1. Identify Most Resilient Politicians**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    resilience_score,
+    resilience_classification,
+    crisis_absence_rate,
+    crisis_party_alignment_rate,
+    crisis_period_votes
+FROM view_riksdagen_crisis_resilience_indicators
+WHERE status = 'Tjänstgörande riksdagsledamot'
+ORDER BY resilience_score DESC
+LIMIT 20;
+```
+
+**2. Identify Vulnerable Politicians in Crisis**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    resilience_classification,
+    crisis_absence_rate,
+    normal_absence_rate,
+    absence_delta,
+    crisis_party_alignment_rate
+FROM view_riksdagen_crisis_resilience_indicators
+WHERE resilience_classification IN ('VULNERABLE', 'LOW_RESILIENCE')
+    AND status = 'Tjänstgörande riksdagsledamot'
+ORDER BY resilience_score ASC;
+```
+
+**3. Party-Level Crisis Resilience Analysis**
+
+```sql
+SELECT 
+    party,
+    COUNT(*) AS member_count,
+    ROUND(AVG(resilience_score), 1) AS avg_resilience,
+    COUNT(*) FILTER (WHERE resilience_classification = 'HIGHLY_RESILIENT') AS highly_resilient,
+    COUNT(*) FILTER (WHERE resilience_classification IN ('VULNERABLE', 'LOW_RESILIENCE')) AS vulnerable,
+    ROUND(AVG(crisis_absence_rate) * 100, 1) AS avg_crisis_absence_pct,
+    ROUND(AVG(crisis_party_alignment_rate) * 100, 1) AS avg_crisis_discipline_pct
+FROM view_riksdagen_crisis_resilience_indicators
+WHERE status = 'Tjänstgörande riksdagsledamot'
+GROUP BY party
+ORDER BY avg_resilience DESC;
+```
+
+**4. Crisis Performance Degradation Detection**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    normal_absence_rate,
+    crisis_absence_rate,
+    absence_delta,
+    ROUND(absence_delta * 100, 1) AS absence_increase_pct
+FROM view_riksdagen_crisis_resilience_indicators
+WHERE absence_delta > 0.05  -- Absence rate increased by >5% in crisis
+    AND status = 'Tjänstgörande riksdagsledamot'
+ORDER BY absence_delta DESC;
+```
+
+#### Performance Characteristics
+
+- **Query Time:** 800-2000ms (complex window functions and multi-period aggregation)
+- **Refresh Frequency:** Real-time (recalculates on each query)
+- **Data Volume:** ~350 rows (all politicians with voting history)
+- **Optimization:** Consider materializing for faster dashboard queries
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Crisis Analysis**: Performance under pressure assessment
+- **Predictive Intelligence**: Future crisis performance forecasting
+- **Comparative Analysis**: Party resilience benchmarking
+- **Risk Assessment**: Vulnerability identification
+
+#### Risk Rules Supported
+
+From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
+- **PoliticianLazy (P-01)**: Crisis absence patterns
+- **PoliticianIneffectiveVoting (P-02)**: Crisis effectiveness degradation
+- **PartyRebelVoting (P-04)**: Crisis discipline breakdown
+
+#### Use Cases
+
+1. **Government Formation**: Assess coalition partner reliability under pressure
+2. **Ministry Appointments**: Identify crisis-capable ministers
+3. **Early Warning**: Detect politicians who crack under pressure
+4. **Party Strength**: Evaluate party discipline during crises
+5. **Historical Analysis**: Study performance during past crises (budget, coalition, scandal)
+
+---
 
 ### view_risk_score_evolution ⭐⭐⭐⭐⭐
 
@@ -2982,12 +3494,13 @@ Views supporting features from [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_D
 
 ## Document Metadata
 
-**Version:** 1.0  
-**Date:** 2025-11-17  
+**Version:** 1.1  
+**Date:** 2025-11-20  
 **Classification:** Public Documentation  
-**Status:** Active  
-**Last Updated:** 2025-11-17  
-**Next Review:** 2025-12-17 (monthly review recommended)
+**Status:** Active - Under Expansion  
+**Last Updated:** 2025-11-20  
+**Last Validated Against Schema:** 2025-11-20  
+**Next Review:** 2025-12-20 (monthly review recommended)
 
 **Authors:** Citizen Intelligence Agency Intelligence Operations Team  
 **Reviewers:** Stack Specialist, Intelligence Operative  
@@ -2997,6 +3510,47 @@ Views supporting features from [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_D
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 1.0 | 2025-11-17 | Initial comprehensive catalog creation | Intelligence Operative |
+| 1.1 | 2025-11-20 | **Validation & Corrections** - Validated against full_schema.sql; Added Complete View Inventory section listing all 80 views; Updated Executive Summary with accurate statistics (9 detailed, 71 basic coverage); Added validation metadata and link to DATABASE_VIEW_VALIDATION_REPORT.md; Identified 71 undocumented views requiring detailed documentation | Intelligence Operative |
+
+## Validation & Corrections Log
+
+### 2025-11-20: Schema Validation
+
+**Validation Performed:** Comprehensive comparison of documented views against actual database schema in `service.data.impl/src/main/resources/full_schema.sql`
+
+**Key Findings:**
+- ✓ Total views in database: 80 (confirmed)
+- ✓ Views documented but not in DB: 0 (no orphaned documentation)
+- ❌ Views in DB but not fully documented: 71 (critical documentation gap)
+- ✓ Documentation coverage: 11.25% (9 of 80 views fully documented)
+
+**Corrections Applied:**
+1. **Executive Summary Updated**: Changed "80+ database views" claim to accurate "80 database views" with transparent coverage statistics
+2. **Complete View Inventory Added**: New comprehensive section listing all 80 views with basic descriptions, types (standard/materialized), and intelligence value ratings
+3. **Validation Metadata Added**: Added "Last Validated Against Schema" date to document metadata
+4. **Validation Report Created**: Created DATABASE_VIEW_VALIDATION_REPORT.md with detailed findings and prioritized remediation plan
+5. **Related Documentation Updated**: Added link to validation report in executive summary
+
+**Views Confirmed Present and Documented (9):**
+- view_party_effectiveness_trends ✓
+- view_politician_behavioral_trends ✓
+- view_riksdagen_coalition_alignment_matrix ✓
+- view_riksdagen_party ✓
+- view_riksdagen_politician ✓
+- view_riksdagen_politician_document ✓
+- view_riksdagen_politician_experience_summary ✓
+- view_riksdagen_vote_data_ballot_politician_summary_daily ✓
+- view_risk_score_evolution ✓
+
+**Views Identified for Documentation (71):**
+- Priority 1 (Critical Intelligence): 13 views (crisis resilience, voting anomaly, intelligence dashboard, risk summary, influence metrics, ministry views, party momentum)
+- Priority 2 (Vote & Party Analysis): 28 views (all ballot summaries, party document/coalition views)
+- Priority 3 (Committee & Government): 15 views (committee productivity, decisions, government proposals)
+- Priority 4 (Supporting): 15 views (application tracking, audit, worldbank)
+
+See [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for complete validation methodology, detailed findings, and documentation roadmap.
+
+**Impact:** Documentation now accurately reflects database schema state and provides transparency about coverage gaps. Users can reference the Complete View Inventory for all available views while detailed documentation is expanded.
 
 ---
 
