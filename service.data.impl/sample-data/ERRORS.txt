@@ -1,0 +1,1183 @@
+./service.data.impl/src/main/resources/extract-sample-data.sh /tmp/sample_data
+==================================================
+CIA Sample Data Extraction Wrapper
+==================================================
+
+Configuration:
+  Database: cia_dev
+  Output directory: /tmp/sample_data
+  PostgreSQL user: postgres
+  Sample size: 50 rows per table/view
+
+Extracting sample data...
+
+Timing is on.
+==================================================
+CIA Sample Data Extraction
+Started: Thu Nov 20 14:35:54 CET 2025
+==================================================
+
+Configuration:
+  Sample size: 50 rows per table/view
+  Output format: CSV with headers
+  Extraction strategy: Diverse sampling with DISTINCT for key columns
+
+
+==========================================
+=== EXTRACTING TABLE SAMPLE DATA      ===
+==========================================
+
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Analyzing tables for sample data extraction...
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table against_proposal_container: 5497 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table against_proposal_data: 56277 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table agency: 1 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table application_action_event: 70352 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table application_configuration: 16 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table application_session: 41895 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping application_view: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table assignment_data: 31278 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping assignment_element: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table committee_document_data: 8834 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table committee_proposal_component_0: 8834 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table committee_proposal_container: 8169 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table committee_proposal_data: 60092 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping countries_element: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table country_element: 211 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping data_element: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping data_source_content: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table detail_data: 17542 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping detail_element: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_activity_container: 104071 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_activity_data: 379155 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_attachment: 177277 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_attachment_container: 84492 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping document_container_element: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_content_data: 291696 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_data: 105030 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_detail_container: 103847 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_detail_data: 359447 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_element: 309559 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_person_reference_co_0: 92551 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_person_reference_da_0: 257425 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_proposal_container: 94192 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_proposal_data: 94192 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_reference_container: 52448 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_reference_data: 256474 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_status_container: 105030 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping domain_portal: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table encrypted_value: 812 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table indicator_element: 27377 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping indicators_element: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table jv_commit: 6267962 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table jv_commit_property: 6267962 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table jv_global_id: 12695382 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table jv_snapshot: 13659953 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table language_content_data: 2 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table language_data: 135 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping operational_information_cont_0: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping performance_indicator_content: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table person_assignment_data: 2485 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping person_assignment_element: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping person_container_data: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping person_container_element: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table person_data: 2485 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table person_detail_data: 2485 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping person_detail_element: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping person_element: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table portal: 2 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping quality_assurance_content: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table rule_violation: 2458 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_county_data: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_county_data_container: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_county_electoral_area: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_county_electoral_regi_0: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_county_electoral_regi_1: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_election_region: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_election_type: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_election_type_contain_0: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_municipality_data: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_municipality_election_0: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_parliament_electoral__0: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_parliament_electoral__1: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table sweden_political_party: 40 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping target_profile_content: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table topic: 7480 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table topics: 27377 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table user_account: 4136 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping user_account_address: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table vote_data: 3652634 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping vote_meta_data: empty table
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table world_bank_data: 598902 rows available
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table analysis summary:
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:    Tables with data: 48
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:    Empty tables: 32
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  
+DO
+Time: 1110,061 ms (00:01,110)
+Extracting sample data from tables...
+
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: against_proposal_container'
+        ^
+Time: 0,058 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: against_proposal_data'
+        ^
+Time: 0,018 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: agency'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: application_action_event'
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: application_configuration'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: application_session'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: application_view'
+        ^
+Time: 0,020 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: assignment_data'
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: assignment_element'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: committee_document_data'
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: committee_proposal_component_0'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: committee_proposal_container'
+        ^
+Time: 0,020 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: committee_proposal_data'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: countries_element'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: country_element'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: data_element'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: data_source_content'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: detail_data'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: detail_element'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_activity_container'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_activity_data'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_attachment'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_attachment_container'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_container_element'
+        ^
+Time: 0,020 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_content_data'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_data'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_detail_container'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_detail_data'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_element'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_person_reference_co_0'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_person_reference_da_0'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_proposal_container'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_proposal_data'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_reference_container'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_reference_data'
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: document_status_container'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: domain_portal'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: encrypted_value'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: indicator_element'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: indicators_element'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: jv_commit'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: jv_commit_property'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: jv_global_id'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: jv_snapshot'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: language_content_data'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: language_data'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: operational_information_cont_0'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: performance_indicator_content'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: person_assignment_data'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: person_assignment_element'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: person_container_data'
+        ^
+Time: 0,018 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: person_container_element'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: person_data'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: person_detail_data'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: person_detail_element'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: person_element'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: portal'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: quality_assurance_content'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: rule_violation'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_county_data'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_county_data_container'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_county_electoral_area'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_county_electoral_regi_0'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_county_electoral_regi_1'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_election_region'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_election_type'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_election_type_contain_0'
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_municipality_data'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_municipality_election_0'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_parliament_electoral__0'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_parliament_electoral__1'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: sweden_political_party'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: target_profile_content'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: topic'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: topics'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: user_account'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: user_account_address'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: vote_data'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: vote_meta_data'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:119: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: world_bank_data'
+        ^
+Time: 0,014 ms
+Time: 1,217 ms
+
+==========================================
+=== EXTRACTING VIEW SAMPLE DATA       ===
+==========================================
+
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Analyzing views for sample data extraction...
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View pg_stat_statements: 443 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View pg_stat_statements_info: 1 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_annual_summary: 36 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_daily_summary: 5410 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_element_annual_summary: 1069 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_element_daily_summary: 10825 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_element_hourly_summary: 16535 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_element_weekly_summary: 3528 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_hourly_summary: 8476 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_modes_annual_summary: 136 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_modes_daily_summary: 16933 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_modes_hourly_summary: 26751 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_modes_weekly_summary: 4344 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_application_action_event_page_weekly_summary: 1376 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_audit_author_summary: 4550 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_audit_data_summary: 121 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_committee_productivity: 28 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_committee_productivity_matrix: 171 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_document_data_committee_report_url: 8834 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_ministry_effectiveness_trends: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_ministry_productivity_matrix: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_ministry_risk_evolution: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_party_effectiveness_trends: 115 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_party_performance_metrics: 40 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_politician_behavioral_trends: 8756 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_politician_risk_summary: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_riksdagen_coalition_alignment_matrix: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_committee: 28 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_committee_ballot_decision_party_summary: 39830 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_committee_ballot_decision_politician_summary: 1810263 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_committee_ballot_decision_summary: 5187 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_committee_decision_type_org_summary: 9713 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_committee_decision_type_summary: 4517 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_committee_decisions: 60148 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_riksdagen_committee_parliament_member_proposal: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_committee_role_member: 18991 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_committee_roles: 152 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_riksdagen_crisis_resilience_indicators: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_document_type_daily_summary: 42519 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_goverment: 20 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_riksdagen_goverment_proposals: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_goverment_role_member: 502 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_goverment_roles: 78 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_intelligence_dashboard: 1 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_riksdagen_member_proposals: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_org_document_daily_summary: 87847 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_party: 11 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_party_ballot_support_annual_summary: 13056 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_party_coalation_against_annual_summary: 348 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_party_document_daily_summary: 10901 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_party_document_summary: 9 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_party_member: 2424 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_party_momentum_analysis: 432 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_party_role_member: 295 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_party_signatures_document_summary: 9 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_party_summary: 12 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_person_signed_document_summary: 1733 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_politician: 2071 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_politician_ballot_summary: 2424 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_politician_document: 269904 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_politician_document_daily_summary: 71429 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_politician_document_summary: 1360 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_politician_experience_summary: 2085 rows available (VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_riksdagen_politician_influence_metrics: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary: 86536 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_annual: 201 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_daily: 10585 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_monthly: 1795 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_weekly: 5407 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary: 3652634 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_annual: 9647 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_daily: 457944 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_monthly: 76981 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_weekly: 231816 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_summary: 10466 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_summary_annual: 24 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_summary_daily: 1311 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_summary_monthly: 219 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_riksdagen_vote_data_ballot_summary_weekly: 663 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_riksdagen_voting_anomaly_detection: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  Skipping view_risk_score_evolution: empty VIEW
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View view_worldbank_indicator_data_country_summary: 6743 rows available (MATERIALIZED VIEW)
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  View analysis summary:
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:    Views with data: 70
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:    Empty views: 12
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:178: NOTICE:  
+DO
+Time: 7912,480 ms (00:07,912)
+Extracting sample data from views...
+
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: pg_stat_statements (VIEW)'
+        ^
+Time: 0,041 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: pg_stat_statements_info (VIEW)'
+        ^
+Time: 0,021 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_annual...
+        ^
+Time: 0,018 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_daily_...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_elemen...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_elemen...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_elemen...
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_elemen...
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_hourly...
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_modes_...
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_modes_...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_modes_...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_modes_...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_application_action_event_page_weekly...
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_audit_author_summary (VIEW)'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_audit_data_summary (VIEW)'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_committee_productivity (VIEW)'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_committee_productivity_matrix (VIEW)...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_document_data_committee_report_url (...
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_ministry_effectiveness_trends (VIEW)...
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_ministry_productivity_matrix (VIEW)'
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_ministry_risk_evolution (VIEW)'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_party_effectiveness_trends (VIEW)'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_party_performance_metrics (VIEW)'
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_politician_behavioral_trends (VIEW)'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_politician_risk_summary (VIEW)'
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_coalition_alignment_matrix...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_committee (VIEW)'
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_committee_parliament_membe...
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_committee_role_member (VIE...
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_committee_roles (VIEW)'
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_crisis_resilience_indicato...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_goverment (VIEW)'
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_goverment_proposals (VIEW)...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_goverment_role_member (VIE...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_goverment_roles (VIEW)'
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_intelligence_dashboard (VI...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_member_proposals (VIEW)'
+        ^
+Time: 0,012 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_party (VIEW)'
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_party_ballot_support_annua...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_party_coalation_against_an...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_party_document_summary (VI...
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_party_member (VIEW)'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_party_momentum_analysis (V...
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_party_role_member (VIEW)'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_party_signatures_document_...
+        ^
+Time: 0,013 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_party_summary (VIEW)'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_person_signed_document_sum...
+        ^
+Time: 0,018 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_politician (VIEW)'
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_politician_ballot_summary ...
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_politician_experience_summ...
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_politician_influence_metri...
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_voting_anomaly_detection (...
+        ^
+Time: 0,017 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:196: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_risk_score_evolution (VIEW)'
+        ^
+Time: 0,017 ms
+Time: 1,132 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_committee_ballot_decision_...
+        ^
+Time: 0,039 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_committee_ballot_decision_...
+        ^
+Time: 0,019 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_committee_ballot_decision_...
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_committee_decision_type_or...
+        ^
+Time: 0,019 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_committee_decision_type_su...
+        ^
+Time: 0,019 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_committee_decisions (MATER...
+        ^
+Time: 0,018 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_document_type_daily_summar...
+        ^
+Time: 0,018 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_org_document_daily_summary...
+        ^
+Time: 0,020 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_party_document_daily_summa...
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_politician_document (MATER...
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_politician_document_daily_...
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_politician_document_summar...
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_party_sum...
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_party_sum...
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_party_sum...
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_party_sum...
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_party_sum...
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_politicia...
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_politicia...
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_politicia...
+        ^
+Time: 0,014 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_politicia...
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_politicia...
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_summary (...
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_summary_a...
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_summary_d...
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_summary_m...
+        ^
+Time: 0,016 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_riksdagen_vote_data_ballot_summary_w...
+        ^
+Time: 0,015 ms
+psql:/var/lib/postgresql/service.data.impl/src/main/resources/extract-sample-data.sql:210: ERROR:  syntax error at or near "\"
+LINE 1: \echo 'Extracting: view_worldbank_indicator_data_country_sum...
+        ^
+Time: 0,015 ms
+Time: 1,075 ms
+
+==========================================
+=== GENERATING MANIFEST FILE          ===
+==========================================
+COPY 110
+Time: 4,124 ms
+
+==========================================
+=== GENERATING VIEW COLUMN MAPPING    ===
+==========================================
+COPY 854
+Time: 7,774 ms
+
+==========================================
+=== EXTRACTING DISTINCT VALUE SETS    ===
+==========================================
+Extracting distinct party values...
+COPY 16
+Time: 1,734 ms
+Extracting distinct org_code values...
+COPY 91
+Time: 3,783 ms
+Extracting distinct role_code values...
+COPY 77
+Time: 3,846 ms
+Extracting distinct assignment status values...
+COPY 5
+Time: 3,200 ms
+Extracting distinct document types...
+COPY 3
+Time: 11,793 ms
+Extracting distinct document org values...
+COPY 77
+Time: 14,616 ms
+Extracting distinct vote values...
+COPY 36
+Time: 235,270 ms
+Extracting political party list...
+COPY 40
+Time: 0,330 ms
+
+Distinct value extraction summary:
+  - distinct_party_values.csv: Party distribution
+  - distinct_org_code_values.csv: Organization codes
+  - distinct_role_code_values.csv: Role codes
+  - distinct_assignment_status_values.csv: Assignment statuses
+  - distinct_document_type_values.csv: Document types
+  - distinct_document_org_values.csv: Document organizations
+  - distinct_vote_values.csv: Vote patterns by party
+  - distinct_political_parties.csv: Complete party list
+
+
+==================================================
+Sample data extraction completed
+Finished: Thu Nov 20 14:36:03 CET 2025
+==================================================
+
+Generated files:
+  - table_*_sample.csv: Sample data from tables
+  - view_*_sample.csv: Sample data from views
+  - sample_data_manifest.csv: Metadata about extracted files
+  - view_column_mapping.csv: Column mappings for views
+  - distinct_*_values.csv: Distinct values with counts for important columns
+
+To reload sample data:
+  1. Review the CSV files
+  2. Use COPY FROM to import: 
+     copy table_name FROM 'table_name_sample.csv' WITH CSV HEADER;
+
+For troubleshooting empty views, see:
+  - TROUBLESHOOTING_EMPTY_VIEWS.md
+  - view_column_mapping.csv for required columns
+
+Timing is off.
+
+==================================================
+Extraction Complete!
+==================================================
+
+
+Files generated in: /tmp/sample_data
+
+Sample of generated files:
+-rwxrwxrwx 1 postgres postgres   89 Nov 20 14:36 distinct_assignment_status_values.csv
+-rwxrwxrwx 1 postgres postgres 1.1K Nov 20 14:36 distinct_document_org_values.csv
+-rwxrwxrwx 1 postgres postgres   49 Nov 20 14:36 distinct_document_type_values.csv
+-rwxrwxrwx 1 postgres postgres  712 Nov 20 14:36 distinct_org_code_values.csv
+-rwxrwxrwx 1 postgres postgres  121 Nov 20 14:36 distinct_party_values.csv
+-rwxrwxrwx 1 postgres postgres 1.2K Nov 20 14:36 distinct_political_parties.csv
+-rwxrwxrwx 1 postgres postgres 2.0K Nov 20 14:36 distinct_role_code_values.csv
+-rwxrwxrwx 1 postgres postgres  576 Nov 20 14:36 distinct_vote_values.csv
+-rwxrwxrwx 1 postgres postgres  14K Nov 20 14:36 sample_data_manifest.csv
+-rwxrwxrwx 1 postgres postgres  49K Nov 20 14:36 view_column_mapping.csv
+
+Total CSV files: 10
+  - Tables: 0
+  - Views: 0
+  - Distinct value sets: 8
+  - Other: 1
+
+
+ psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-health-check.sql > health_check_report.txt     
+psql:service.data.impl/src/main/resources/schema-health-check.sql:29: NOTICE:  table "health_check_results" does not exist, skipping
+
+ psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > current_schema.txt
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  TABLE INVENTORY WITH ROW COUNTS, COLUMNS, AND SIZE
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  -----------------------------------------------------
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Format: Schema.Table | Rows | Columns | Size
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.against_proposal_container | Rows: 5497 | Columns: 1 | Size: 360 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.against_proposal_data | Rows: 56277 | Columns: 7 | Size: 6616 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.agency | Rows: 1 | Columns: 5 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.application_action_event | Rows: 70352 | Columns: 15 | Size: 37 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.application_configuration | Rows: 16 | Columns: 13 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.application_session | Rows: 41895 | Columns: 14 | Size: 22 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.application_view | Rows: 0 | Columns: 7 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.assignment_data | Rows: 31278 | Columns: 11 | Size: 6904 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.assignment_element | Rows: 0 | Columns: 11 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.committee_document_data | Rows: 8834 | Columns: 18 | Size: 3416 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.committee_proposal_component_0 | Rows: 8834 | Columns: 4 | Size: 800 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.committee_proposal_container | Rows: 8169 | Columns: 1 | Size: 520 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.committee_proposal_data | Rows: 60092 | Columns: 14 | Size: 23 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.countries_element | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.country_element | Rows: 211 | Columns: 16 | Size: 56 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.data_element | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.data_source_content | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.databasechangelog | Rows: 372 | Columns: 14 | Size: 144 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.databasechangeloglock | Rows: 1 | Columns: 4 | Size: 24 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.detail_data | Rows: 17542 | Columns: 6 | Size: 4520 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.detail_element | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_activity_container | Rows: 104071 | Columns: 1 | Size: 6008 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_activity_data | Rows: 379155 | Columns: 8 | Size: 43 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_attachment | Rows: 177277 | Columns: 6 | Size: 29 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_attachment_container | Rows: 84492 | Columns: 1 | Size: 4960 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_container_element | Rows: 0 | Columns: 12 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_content_data | Rows: 291696 | Columns: 3 | Size: 5303 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_data | Rows: 105030 | Columns: 19 | Size: 38 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_detail_container | Rows: 103847 | Columns: 1 | Size: 6032 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_detail_data | Rows: 359447 | Columns: 5 | Size: 54 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_element | Rows: 309559 | Columns: 33 | Size: 388 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_person_reference_co_0 | Rows: 92551 | Columns: 1 | Size: 5368 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_person_reference_da_0 | Rows: 257425 | Columns: 7 | Size: 30 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_proposal_container | Rows: 94192 | Columns: 2 | Size: 6184 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_proposal_data | Rows: 94192 | Columns: 11 | Size: 27 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_reference_container | Rows: 52448 | Columns: 1 | Size: 3120 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_reference_data | Rows: 256474 | Columns: 5 | Size: 29 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_status_container | Rows: 105030 | Columns: 9 | Size: 12 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.domain_portal | Rows: 0 | Columns: 2 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.encrypted_value | Rows: 812 | Columns: 4 | Size: 224 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.indicator_element | Rows: 27377 | Columns: 9 | Size: 14 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.indicators_element | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.jv_commit | Rows: 6267962 | Columns: 5 | Size: 923 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.jv_commit_property | Rows: 6267962 | Columns: 3 | Size: 650 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.jv_global_id | Rows: 12695382 | Columns: 5 | Size: 2301 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.jv_snapshot | Rows: 13659953 | Columns: 8 | Size: 15 GB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.language_content_data | Rows: 2 | Columns: 12 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.language_data | Rows: 135 | Columns: 10 | Size: 40 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.operational_information_cont_0 | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.performance_indicator_content | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_assignment_data | Rows: 2485 | Columns: 1 | Size: 160 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_assignment_element | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_container_data | Rows: 0 | Columns: 2 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_container_element | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_data | Rows: 2485 | Columns: 16 | Size: 11 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_detail_data | Rows: 2485 | Columns: 1 | Size: 160 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_detail_element | Rows: 0 | Columns: 2 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_element | Rows: 0 | Columns: 17 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.portal | Rows: 2 | Columns: 8 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_blob_triggers | Rows: 0 | Columns: 4 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_calendars | Rows: 0 | Columns: 3 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_cron_triggers | Rows: 4 | Columns: 5 | Size: 66 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_fired_triggers | Rows: 0 | Columns: 13 | Size: 248 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_job_details | Rows: 4 | Columns: 10 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_locks | Rows: 2 | Columns: 2 | Size: 24 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_paused_trigger_grps | Rows: 0 | Columns: 2 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_scheduler_state | Rows: 1 | Columns: 4 | Size: 1056 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_simple_triggers | Rows: 0 | Columns: 6 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_simprop_triggers | Rows: 0 | Columns: 14 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_triggers | Rows: 4 | Columns: 16 | Size: 290 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.quality_assurance_content | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.rule_violation | Rows: 2458 | Columns: 10 | Size: 20 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_county_data | Rows: 0 | Columns: 4 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_county_data_container | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_county_electoral_area | Rows: 0 | Columns: 9 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_county_electoral_regi_0 | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_county_electoral_regi_1 | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_election_region | Rows: 0 | Columns: 4 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_election_type | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_election_type_contain_0 | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_municipality_data | Rows: 0 | Columns: 4 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_municipality_election_0 | Rows: 0 | Columns: 9 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_parliament_electoral__0 | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_parliament_electoral__1 | Rows: 0 | Columns: 8 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_political_party | Rows: 40 | Columns: 14 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.target_profile_content | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.topic | Rows: 7480 | Columns: 4 | Size: 1000 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.topics | Rows: 27377 | Columns: 1 | Size: 2256 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.user_account | Rows: 4136 | Columns: 14 | Size: 2128 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.user_account_address | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.vote_data | Rows: 3652634 | Columns: 19 | Size: 1156 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.vote_meta_data | Rows: 0 | Columns: 6 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.world_bank_data | Rows: 598902 | Columns: 8 | Size: 93 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  REGULAR VIEWS INVENTORY
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  -----------------------
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Format: Schema.View | Rows | Columns
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.pg_stat_statements | Rows: 477 | Columns: 43
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.pg_stat_statements_info | Rows: 1 | Columns: 2
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_annual_summary | Rows: 36 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_daily_summary | Rows: 5410 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_element_annual_summary | Rows: 1069 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_element_daily_summary | Rows: 10825 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_element_hourly_summary | Rows: 16535 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_element_weekly_summary | Rows: 3528 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_hourly_summary | Rows: 8476 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_modes_annual_summary | Rows: 136 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_modes_daily_summary | Rows: 16933 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_modes_hourly_summary | Rows: 26751 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_modes_weekly_summary | Rows: 4344 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_weekly_summary | Rows: 1376 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_audit_author_summary | Rows: 4550 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_audit_data_summary | Rows: 121 | Columns: 3
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_committee_productivity | Rows: 28 | Columns: 26
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_committee_productivity_matrix | Rows: 171 | Columns: 28
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_document_data_committee_report_url | Rows: 8834 | Columns: 2
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_ministry_effectiveness_trends | Rows: 0 | Columns: 25
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_ministry_productivity_matrix | Rows: 0 | Columns: 25
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_ministry_risk_evolution | Rows: 0 | Columns: 24
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_party_effectiveness_trends | Rows: 115 | Columns: 28
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_party_performance_metrics | Rows: 40 | Columns: 24
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_politician_behavioral_trends | Rows: 8756 | Columns: 26
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_politician_risk_summary | Rows: 0 | Columns: 21
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_coalition_alignment_matrix | Rows: 0 | Columns: 12
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_committee | Rows: 28 | Columns: 19
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_committee_parliament_member_proposal | Rows: 0 | Columns: 22
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_committee_role_member | Rows: 18991 | Columns: 19
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_committee_roles | Rows: 152 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_crisis_resilience_indicators | Rows: 0 | Columns: 15
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_goverment | Rows: 20 | Columns: 13
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_goverment_proposals | Rows: 0 | Columns: 10
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_goverment_role_member | Rows: 502 | Columns: 17
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_goverment_roles | Rows: 78 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_intelligence_dashboard | Rows: 1 | Columns: 16
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_member_proposals | Rows: 0 | Columns: 23
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party | Rows: 11 | Columns: 17
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_ballot_support_annual_summary | Rows: 13056 | Columns: 7
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_coalation_against_annual_summary | Rows: 348 | Columns: 3
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_document_summary | Rows: 9 | Columns: 23
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_member | Rows: 2424 | Columns: 39
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_momentum_analysis | Rows: 432 | Columns: 14
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_role_member | Rows: 295 | Columns: 18
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_signatures_document_summary | Rows: 9 | Columns: 2
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_summary | Rows: 12 | Columns: 59
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_person_signed_document_summary | Rows: 1733 | Columns: 4
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_politician | Rows: 2071 | Columns: 53
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_politician_ballot_summary | Rows: 2424 | Columns: 21
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_politician_experience_summary | Rows: 2085 | Columns: 20
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_politician_influence_metrics | Rows: 0 | Columns: 12
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_voting_anomaly_detection | Rows: 0 | Columns: 15
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_risk_score_evolution | Rows: 0 | Columns: 21
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  MATERIALIZED VIEWS INVENTORY
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  ----------------------------
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Format: Schema.View | Rows | Columns | Size
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_ballot_decision_party_summary | Rows: 39830 | Columns: 0 | Size: 17 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_ballot_decision_politician_summary | Rows: 1810263 | Columns: 0 | Size: 835 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_ballot_decision_summary | Rows: 5187 | Columns: 0 | Size: 1888 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_decision_type_org_summary | Rows: 9713 | Columns: 0 | Size: 856 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_decision_type_summary | Rows: 4517 | Columns: 0 | Size: 456 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_decisions | Rows: 60148 | Columns: 0 | Size: 18 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_document_type_daily_summary | Rows: 42519 | Columns: 0 | Size: 2352 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_org_document_daily_summary | Rows: 87847 | Columns: 0 | Size: 5320 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_party_document_daily_summary | Rows: 10901 | Columns: 0 | Size: 752 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_politician_document | Rows: 269904 | Columns: 0 | Size: 73 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_politician_document_daily_summary | Rows: 71429 | Columns: 0 | Size: 4208 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_politician_document_summary | Rows: 1360 | Columns: 0 | Size: 416 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_party_summary | Rows: 86536 | Columns: 0 | Size: 27 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_party_summary_annual | Rows: 201 | Columns: 0 | Size: 96 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_party_summary_daily | Rows: 10585 | Columns: 0 | Size: 3072 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_party_summary_monthly | Rows: 1795 | Columns: 0 | Size: 496 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_party_summary_weekly | Rows: 5407 | Columns: 0 | Size: 1352 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_politician_summary | Rows: 3652634 | Columns: 0 | Size: 1217 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_politician_summary_annual | Rows: 9647 | Columns: 0 | Size: 3576 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_politician_summary_daily | Rows: 457944 | Columns: 0 | Size: 194 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_politician_summary_monthly | Rows: 76981 | Columns: 0 | Size: 26 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_politician_summary_weekly | Rows: 231816 | Columns: 0 | Size: 83 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_summary | Rows: 10466 | Columns: 0 | Size: 3096 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_summary_annual | Rows: 24 | Columns: 0 | Size: 40 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_summary_daily | Rows: 1311 | Columns: 0 | Size: 328 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_summary_monthly | Rows: 219 | Columns: 0 | Size: 96 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_summary_weekly | Rows: 663 | Columns: 0 | Size: 176 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_worldbank_indicator_data_country_summary | Rows: 6743 | Columns: 0 | Size: 4776 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:226: NOTICE:  Executing: SELECT * FROM view_riksdagen_politician LIMIT 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:239: NOTICE:  Executing: SELECT * FROM view_riksdagen_party LIMIT 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:252: NOTICE:  Executing: SELECT * FROM view_riksdagen_vote_data_ballot_politician_summary_daily ORDER BY vote_date DESC LIMIT 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:296: ERROR:  column "tablename" does not exist
+LINE 3:     tablename,
+            ^
+psql:service.data.impl/src/main/resources/schema-validation.sql:308: ERROR:  column "tablename" does not exist
+LINE 3:     tablename,
+            ^
+psql:service.data.impl/src/main/resources/schema-validation.sql:409: ERROR:  column "tablename" does not exist
+LINE 3:     tablename,
+            ^
+psql:service.data.impl/src/main/resources/schema-validation.sql:421: ERROR:  column "tablename" does not exist
+LINE 3:     tablename,
+            ^
+
+
+
+  
+  
+  

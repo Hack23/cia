@@ -1,0 +1,931 @@
+Timing is on.
+
+==========================================
+=== DATABASE OBJECT COUNTS             ===
+==========================================
+
+SELECT 'Base Tables' AS object_type, COUNT(*) AS count
+FROM information_schema.tables
+WHERE table_schema = 'public' AND table_type = 'BASE TABLE';
+ object_type | count 
+-------------+-------
+ Base Tables |    93
+(1 row)
+
+Time: 3,030 ms
+SELECT 'Regular Views' AS object_type, COUNT(*) AS count
+FROM information_schema.views
+WHERE table_schema = 'public';
+  object_type  | count 
+---------------+-------
+ Regular Views |    54
+(1 row)
+
+Time: 1,301 ms
+SELECT 'Materialized Views' AS object_type, COUNT(*) AS count
+FROM pg_matviews
+WHERE schemaname = 'public';
+    object_type     | count 
+--------------------+-------
+ Materialized Views |    28
+(1 row)
+
+Time: 0,846 ms
+SELECT 'Indexes' AS object_type, COUNT(*) AS count
+FROM pg_indexes
+WHERE schemaname = 'public';
+ object_type | count 
+-------------+-------
+ Indexes     |   178
+(1 row)
+
+Time: 2,040 ms
+SELECT 'Sequences' AS object_type, COUNT(*) AS count
+FROM information_schema.sequences
+WHERE sequence_schema = 'public';
+ object_type | count 
+-------------+-------
+ Sequences   |     4
+(1 row)
+
+Time: 0,515 ms
+SELECT 'Functions' AS object_type, COUNT(*) AS count
+FROM pg_proc p
+JOIN pg_namespace n ON p.pronamespace = n.oid
+WHERE n.nspname = 'public';
+ object_type | count 
+-------------+-------
+ Functions   |    78
+(1 row)
+
+Time: 0,392 ms
+
+Summary of database objects:
+SELECT 
+    (SELECT COUNT(*) FROM information_schema.tables 
+     WHERE table_schema = 'public' AND table_type = 'BASE TABLE') AS base_tables,
+    (SELECT COUNT(*) FROM information_schema.views 
+     WHERE table_schema = 'public') AS regular_views,
+    (SELECT COUNT(*) FROM pg_matviews 
+     WHERE schemaname = 'public') AS materialized_views,
+    (SELECT COUNT(*) FROM pg_indexes 
+     WHERE schemaname = 'public') AS indexes,
+    (SELECT COUNT(*) FROM information_schema.sequences 
+     WHERE sequence_schema = 'public') AS sequences,
+    (SELECT COUNT(*) FROM pg_proc p JOIN pg_namespace n ON p.pronamespace = n.oid 
+     WHERE n.nspname = 'public') AS functions;
+ base_tables | regular_views | materialized_views | indexes | sequences | functions 
+-------------+---------------+--------------------+---------+-----------+-----------
+          93 |            54 |                 28 |     178 |         4 |        78
+(1 row)
+
+Time: 4,215 ms
+
+==========================================
+=== TABLE INVENTORY                    ===
+==========================================
+
+DO $$
+DECLARE
+    r RECORD;
+    row_count BIGINT;
+    col_count INTEGER;
+    table_size TEXT;
+BEGIN
+    RAISE NOTICE 'TABLE INVENTORY WITH ROW COUNTS, COLUMNS, AND SIZE';
+    RAISE NOTICE '-----------------------------------------------------';
+    RAISE NOTICE 'Format: Schema.Table | Rows | Columns | Size';
+    RAISE NOTICE '';
+    
+    FOR r IN 
+        SELECT schemaname, tablename 
+        FROM pg_tables 
+        WHERE schemaname = 'public'
+        ORDER BY tablename
+    LOOP
+        BEGIN
+            -- Get row count
+            EXECUTE format('SELECT COUNT(*) FROM %I.%I', r.schemaname, r.tablename) INTO row_count;
+            
+            -- Get column count
+            SELECT COUNT(*) INTO col_count
+            FROM information_schema.columns
+            WHERE table_schema = r.schemaname AND table_name = r.tablename;
+            
+            -- Get table size
+            EXECUTE format('SELECT pg_size_pretty(pg_total_relation_size(%L))', 
+                          r.schemaname || '.' || r.tablename) INTO table_size;
+            
+            RAISE NOTICE 'Table: %.% | Rows: % | Columns: % | Size: %', 
+                         r.schemaname, r.tablename, row_count, col_count, table_size;
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Table: %.% | ERROR: %', r.schemaname, r.tablename, SQLERRM;
+        END;
+    END LOOP;
+END $$;
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  TABLE INVENTORY WITH ROW COUNTS, COLUMNS, AND SIZE
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  -----------------------------------------------------
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Format: Schema.Table | Rows | Columns | Size
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.against_proposal_container | Rows: 5497 | Columns: 1 | Size: 360 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.against_proposal_data | Rows: 56277 | Columns: 7 | Size: 6616 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.agency | Rows: 1 | Columns: 5 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.application_action_event | Rows: 70352 | Columns: 15 | Size: 37 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.application_configuration | Rows: 16 | Columns: 13 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.application_session | Rows: 41895 | Columns: 14 | Size: 22 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.application_view | Rows: 0 | Columns: 7 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.assignment_data | Rows: 31278 | Columns: 11 | Size: 6904 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.assignment_element | Rows: 0 | Columns: 11 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.committee_document_data | Rows: 8834 | Columns: 18 | Size: 3416 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.committee_proposal_component_0 | Rows: 8834 | Columns: 4 | Size: 800 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.committee_proposal_container | Rows: 8169 | Columns: 1 | Size: 520 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.committee_proposal_data | Rows: 60092 | Columns: 14 | Size: 23 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.countries_element | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.country_element | Rows: 211 | Columns: 16 | Size: 56 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.data_element | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.data_source_content | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.databasechangelog | Rows: 372 | Columns: 14 | Size: 144 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.databasechangeloglock | Rows: 1 | Columns: 4 | Size: 24 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.detail_data | Rows: 17542 | Columns: 6 | Size: 4520 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.detail_element | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_activity_container | Rows: 104071 | Columns: 1 | Size: 6008 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_activity_data | Rows: 379155 | Columns: 8 | Size: 43 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_attachment | Rows: 177277 | Columns: 6 | Size: 29 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_attachment_container | Rows: 84492 | Columns: 1 | Size: 4960 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_container_element | Rows: 0 | Columns: 12 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_content_data | Rows: 291696 | Columns: 3 | Size: 5303 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_data | Rows: 105030 | Columns: 19 | Size: 38 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_detail_container | Rows: 103847 | Columns: 1 | Size: 6032 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_detail_data | Rows: 359447 | Columns: 5 | Size: 54 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_element | Rows: 309559 | Columns: 33 | Size: 388 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_person_reference_co_0 | Rows: 92551 | Columns: 1 | Size: 5368 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_person_reference_da_0 | Rows: 257425 | Columns: 7 | Size: 30 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_proposal_container | Rows: 94192 | Columns: 2 | Size: 6184 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_proposal_data | Rows: 94192 | Columns: 11 | Size: 27 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_reference_container | Rows: 52448 | Columns: 1 | Size: 3120 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_reference_data | Rows: 256474 | Columns: 5 | Size: 29 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.document_status_container | Rows: 105030 | Columns: 9 | Size: 12 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.domain_portal | Rows: 0 | Columns: 2 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.encrypted_value | Rows: 812 | Columns: 4 | Size: 224 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.indicator_element | Rows: 27377 | Columns: 9 | Size: 14 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.indicators_element | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.jv_commit | Rows: 6267962 | Columns: 5 | Size: 923 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.jv_commit_property | Rows: 6267962 | Columns: 3 | Size: 650 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.jv_global_id | Rows: 12695382 | Columns: 5 | Size: 2301 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.jv_snapshot | Rows: 13659953 | Columns: 8 | Size: 15 GB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.language_content_data | Rows: 2 | Columns: 12 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.language_data | Rows: 135 | Columns: 10 | Size: 40 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.operational_information_cont_0 | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.performance_indicator_content | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_assignment_data | Rows: 2485 | Columns: 1 | Size: 160 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_assignment_element | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_container_data | Rows: 0 | Columns: 2 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_container_element | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_data | Rows: 2485 | Columns: 16 | Size: 11 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_detail_data | Rows: 2485 | Columns: 1 | Size: 160 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_detail_element | Rows: 0 | Columns: 2 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.person_element | Rows: 0 | Columns: 17 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.portal | Rows: 2 | Columns: 8 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_blob_triggers | Rows: 0 | Columns: 4 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_calendars | Rows: 0 | Columns: 3 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_cron_triggers | Rows: 4 | Columns: 5 | Size: 66 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_fired_triggers | Rows: 0 | Columns: 13 | Size: 248 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_job_details | Rows: 4 | Columns: 10 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_locks | Rows: 2 | Columns: 2 | Size: 24 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_paused_trigger_grps | Rows: 0 | Columns: 2 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_scheduler_state | Rows: 1 | Columns: 4 | Size: 1056 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_simple_triggers | Rows: 0 | Columns: 6 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_simprop_triggers | Rows: 0 | Columns: 14 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.qrtz_triggers | Rows: 4 | Columns: 16 | Size: 290 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.quality_assurance_content | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.rule_violation | Rows: 2458 | Columns: 10 | Size: 20 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_county_data | Rows: 0 | Columns: 4 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_county_data_container | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_county_electoral_area | Rows: 0 | Columns: 9 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_county_electoral_regi_0 | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_county_electoral_regi_1 | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_election_region | Rows: 0 | Columns: 4 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_election_type | Rows: 0 | Columns: 5 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_election_type_contain_0 | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_municipality_data | Rows: 0 | Columns: 4 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_municipality_election_0 | Rows: 0 | Columns: 9 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_parliament_electoral__0 | Rows: 0 | Columns: 1 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_parliament_electoral__1 | Rows: 0 | Columns: 8 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.sweden_political_party | Rows: 40 | Columns: 14 | Size: 32 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.target_profile_content | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.topic | Rows: 7480 | Columns: 4 | Size: 1000 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.topics | Rows: 27377 | Columns: 1 | Size: 2256 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.user_account | Rows: 4136 | Columns: 14 | Size: 2128 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.user_account_address | Rows: 0 | Columns: 3 | Size: 8192 bytes
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.vote_data | Rows: 3652634 | Columns: 19 | Size: 1156 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.vote_meta_data | Rows: 0 | Columns: 6 | Size: 16 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:125: NOTICE:  Table: public.world_bank_data | Rows: 598902 | Columns: 8 | Size: 93 MB
+DO
+Time: 1242,057 ms (00:01,242)
+
+==========================================
+=== VIEW INVENTORY                     ===
+==========================================
+
+DO $$
+DECLARE
+    r RECORD;
+    row_count BIGINT;
+    col_count INTEGER;
+BEGIN
+    RAISE NOTICE 'REGULAR VIEWS INVENTORY';
+    RAISE NOTICE '-----------------------';
+    RAISE NOTICE 'Format: Schema.View | Rows | Columns';
+    RAISE NOTICE '';
+    
+    -- Regular views
+    FOR r IN 
+        SELECT schemaname, viewname AS name
+        FROM pg_views 
+        WHERE schemaname = 'public'
+        ORDER BY viewname
+    LOOP
+        BEGIN
+            -- Get row count
+            EXECUTE format('SELECT COUNT(*) FROM %I.%I', r.schemaname, r.name) INTO row_count;
+            
+            -- Get column count
+            SELECT COUNT(*) INTO col_count
+            FROM information_schema.columns
+            WHERE table_schema = r.schemaname AND table_name = r.name;
+            
+            RAISE NOTICE 'View: %.% | Rows: % | Columns: %', 
+                         r.schemaname, r.name, row_count, col_count;
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'View: %.% | ERROR: %', r.schemaname, r.name, SQLERRM;
+        END;
+    END LOOP;
+    
+    RAISE NOTICE '';
+    RAISE NOTICE 'MATERIALIZED VIEWS INVENTORY';
+    RAISE NOTICE '----------------------------';
+    RAISE NOTICE 'Format: Schema.View | Rows | Columns | Size';
+    RAISE NOTICE '';
+    
+    -- Materialized views
+    FOR r IN 
+        SELECT schemaname, matviewname AS name
+        FROM pg_matviews 
+        WHERE schemaname = 'public'
+        ORDER BY matviewname
+    LOOP
+        DECLARE
+            view_size TEXT;
+        BEGIN
+            -- Get row count
+            EXECUTE format('SELECT COUNT(*) FROM %I.%I', r.schemaname, r.name) INTO row_count;
+            
+            -- Get column count
+            SELECT COUNT(*) INTO col_count
+            FROM information_schema.columns
+            WHERE table_schema = r.schemaname AND table_name = r.name;
+            
+            -- Get materialized view size
+            EXECUTE format('SELECT pg_size_pretty(pg_total_relation_size(%L))', 
+                          r.schemaname || '.' || r.name) INTO view_size;
+            
+            RAISE NOTICE 'Materialized View: %.% | Rows: % | Columns: % | Size: %', 
+                         r.schemaname, r.name, row_count, col_count, view_size;
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'Materialized View: %.% | ERROR: %', r.schemaname, r.name, SQLERRM;
+        END;
+    END LOOP;
+END $$;
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  REGULAR VIEWS INVENTORY
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  -----------------------
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Format: Schema.View | Rows | Columns
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.pg_stat_statements | Rows: 148 | Columns: 43
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.pg_stat_statements_info | Rows: 1 | Columns: 2
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_annual_summary | Rows: 36 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_daily_summary | Rows: 5410 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_element_annual_summary | Rows: 1069 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_element_daily_summary | Rows: 10825 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_element_hourly_summary | Rows: 16535 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_element_weekly_summary | Rows: 3528 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_hourly_summary | Rows: 8476 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_modes_annual_summary | Rows: 136 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_modes_daily_summary | Rows: 16933 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_modes_hourly_summary | Rows: 26751 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_modes_weekly_summary | Rows: 4344 | Columns: 6
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_application_action_event_page_weekly_summary | Rows: 1376 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_audit_author_summary | Rows: 4550 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_audit_data_summary | Rows: 121 | Columns: 3
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_committee_productivity | Rows: 28 | Columns: 26
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_committee_productivity_matrix | Rows: 171 | Columns: 28
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_document_data_committee_report_url | Rows: 8834 | Columns: 2
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_ministry_effectiveness_trends | Rows: 0 | Columns: 25
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_ministry_productivity_matrix | Rows: 0 | Columns: 25
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_ministry_risk_evolution | Rows: 0 | Columns: 24
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_party_effectiveness_trends | Rows: 115 | Columns: 28
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_party_performance_metrics | Rows: 40 | Columns: 24
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_politician_behavioral_trends | Rows: 8756 | Columns: 26
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_politician_risk_summary | Rows: 0 | Columns: 21
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_coalition_alignment_matrix | Rows: 0 | Columns: 12
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_committee | Rows: 28 | Columns: 19
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_committee_parliament_member_proposal | Rows: 0 | Columns: 22
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_committee_role_member | Rows: 18991 | Columns: 19
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_committee_roles | Rows: 152 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_crisis_resilience_indicators | Rows: 0 | Columns: 15
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_goverment | Rows: 20 | Columns: 13
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_goverment_proposals | Rows: 0 | Columns: 10
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_goverment_role_member | Rows: 502 | Columns: 17
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_goverment_roles | Rows: 78 | Columns: 5
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_intelligence_dashboard | Rows: 1 | Columns: 16
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_member_proposals | Rows: 0 | Columns: 23
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party | Rows: 11 | Columns: 17
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_ballot_support_annual_summary | Rows: 13056 | Columns: 7
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_coalation_against_annual_summary | Rows: 348 | Columns: 3
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_document_summary | Rows: 9 | Columns: 23
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_member | Rows: 2424 | Columns: 39
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_momentum_analysis | Rows: 432 | Columns: 14
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_role_member | Rows: 295 | Columns: 18
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_signatures_document_summary | Rows: 9 | Columns: 2
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_party_summary | Rows: 12 | Columns: 59
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_person_signed_document_summary | Rows: 1733 | Columns: 4
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_politician | Rows: 2071 | Columns: 53
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_politician_ballot_summary | Rows: 2424 | Columns: 21
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_politician_experience_summary | Rows: 2085 | Columns: 20
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_politician_influence_metrics | Rows: 0 | Columns: 12
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_riksdagen_voting_anomaly_detection | Rows: 0 | Columns: 15
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  View: public.view_risk_score_evolution | Rows: 0 | Columns: 21
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  MATERIALIZED VIEWS INVENTORY
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  ----------------------------
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Format: Schema.View | Rows | Columns | Size
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_ballot_decision_party_summary | Rows: 39830 | Columns: 0 | Size: 17 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_ballot_decision_politician_summary | Rows: 1810263 | Columns: 0 | Size: 835 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_ballot_decision_summary | Rows: 5187 | Columns: 0 | Size: 1888 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_decision_type_org_summary | Rows: 9713 | Columns: 0 | Size: 856 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_decision_type_summary | Rows: 4517 | Columns: 0 | Size: 456 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_committee_decisions | Rows: 60148 | Columns: 0 | Size: 18 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_document_type_daily_summary | Rows: 42519 | Columns: 0 | Size: 2352 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_org_document_daily_summary | Rows: 87847 | Columns: 0 | Size: 5320 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_party_document_daily_summary | Rows: 10901 | Columns: 0 | Size: 752 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_politician_document | Rows: 269904 | Columns: 0 | Size: 73 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_politician_document_daily_summary | Rows: 71429 | Columns: 0 | Size: 4208 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_politician_document_summary | Rows: 1360 | Columns: 0 | Size: 416 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_party_summary | Rows: 86536 | Columns: 0 | Size: 27 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_party_summary_annual | Rows: 201 | Columns: 0 | Size: 96 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_party_summary_daily | Rows: 10585 | Columns: 0 | Size: 3072 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_party_summary_monthly | Rows: 1795 | Columns: 0 | Size: 496 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_party_summary_weekly | Rows: 5407 | Columns: 0 | Size: 1352 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_politician_summary | Rows: 3652634 | Columns: 0 | Size: 1217 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_politician_summary_annual | Rows: 9647 | Columns: 0 | Size: 3576 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_politician_summary_daily | Rows: 457944 | Columns: 0 | Size: 194 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_politician_summary_monthly | Rows: 76981 | Columns: 0 | Size: 26 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_politician_summary_weekly | Rows: 231816 | Columns: 0 | Size: 83 MB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_summary | Rows: 10466 | Columns: 0 | Size: 3096 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_summary_annual | Rows: 24 | Columns: 0 | Size: 40 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_summary_daily | Rows: 1311 | Columns: 0 | Size: 328 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_summary_monthly | Rows: 219 | Columns: 0 | Size: 96 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_riksdagen_vote_data_ballot_summary_weekly | Rows: 663 | Columns: 0 | Size: 176 kB
+psql:service.data.impl/src/main/resources/schema-validation.sql:205: NOTICE:  Materialized View: public.view_worldbank_indicator_data_country_summary | Rows: 6743 | Columns: 0 | Size: 4784 kB
+DO
+Time: 8363,376 ms (00:08,363)
+
+==========================================
+=== SAMPLE DATA FROM KEY VIEWS         ===
+==========================================
+
+--- Sample from view_riksdagen_politician (5 rows) ---
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM information_schema.views WHERE table_name = 'view_riksdagen_politician') THEN
+        RAISE NOTICE 'Executing: SELECT * FROM view_riksdagen_politician LIMIT 5';
+    ELSE
+        RAISE NOTICE 'View view_riksdagen_politician does not exist';
+    END IF;
+END $$;
+psql:service.data.impl/src/main/resources/schema-validation.sql:226: NOTICE:  Executing: SELECT * FROM view_riksdagen_politician LIMIT 5
+DO
+Time: 0,263 ms
+SELECT * FROM view_riksdagen_politician LIMIT 5;
+   person_id   | first_name |    last_name    | party | born_year | gender | first_assignment_date | last_assignment_date | total_days_served | total_days_served_parliament | total_days_served_committee | total_days_served_government | total_days_served_eu | active | total_assignments | current_assignments | total_days_served_speaker | active_speaker | total_days_served_party | active_party | current_committee_assignments | current_ministry_assignments | current_party_assignments | current_speaker_assignments | total_committee_assignments | total_party_assignments | total_speaker_assignments | total_ministry_assignments | active_eu | active_government | active_committee | active_parliament | total_committee_substitute_assignments | current_committee_substitute_assignments | total_days_served_committee_substitute | total_committee_leadership_assignments | current_committee_leadership_assignments | total_days_served_committee_leadership | total_documents | party_motions | individual_motions | committee_motions | multi_party_motions | follow_up_motions | documents_last_year | document_years_active | average_docs_per_year | doc_activity_level | doc_activity_profile | collaboration_percentage |                                   document_types                                    | first_document_date | last_document_date 
+---------------+------------+-----------------+-------+-----------+--------+-----------------------+----------------------+-------------------+------------------------------+-----------------------------+------------------------------+----------------------+--------+-------------------+---------------------+---------------------------+----------------+-------------------------+--------------+-------------------------------+------------------------------+---------------------------+-----------------------------+-----------------------------+-------------------------+---------------------------+----------------------------+-----------+-------------------+------------------+-------------------+----------------------------------------+------------------------------------------+----------------------------------------+----------------------------------------+------------------------------------------+----------------------------------------+-----------------+---------------+--------------------+-------------------+---------------------+-------------------+---------------------+-----------------------+-----------------------+--------------------+----------------------+--------------------------+-------------------------------------------------------------------------------------+---------------------+--------------------
+ 0100689229625 | Hannes     | Beckman         | M     |      1984 | MAN    | 2011-06-07            | 2012-02-24           |               448 |                          151 |                         297 |                            0 |                    0 | f      |                 6 |                   0 |                         0 | f              |                       0 | f            |                             0 |                            0 |                         0 |                           0 |                           4 |                       0 |                         0 |                          0 | f         | f                 | f                | f                 |                                      4 |                                        0 |                                    297 |                                      0 |                                        0 |                                      0 |               0 |             0 |                  0 |                 0 |                   0 |                 0 |                   0 |                     0 |                     0 | Inactive           | None                 |                        0 |                                                                                     |                     | 
+ 0101299073819 | Karin      | Pilsäter        | L     |      1960 | KVINNA | 1991-10-05            | 2010-10-04           |             27980 |                         6315 |                       16300 |                            0 |                    0 | f      |                37 |                   0 |                         0 | f              |                       0 | f            |                             0 |                            0 |                         0 |                           0 |                          14 |                       0 |                         0 |                          0 | f         | f                 | f                | f                 |                                     10 |                                        0 |                                  11876 |                                      1 |                                        0 |                                   1214 |             370 |           112 |                138 |               101 |                   6 |                 0 |                   0 |                     9 |                  41.1 | Very High          | Individual-focused   |                      1.6 | {mot:-,"mot:Enskild motion",mot:Flerpartimotion,mot:Kommittémotion,mot:Partimotion} | 2000-02-09          | 2009-10-06
+ 0102278739624 | Peter      | Kullgren        | KD    |      1981 | MAN    | 2018-09-14            | 2022-10-24           |              1501 |                            0 |                           0 |                            0 |                    0 | f      |                 1 |                   0 |                         0 | f              |                    1501 | f            |                             0 |                            0 |                         0 |                           0 |                           0 |                       1 |                         0 |                          0 | f         | f                 | f                | f                 |                                      0 |                                        0 |                                      0 |                                      0 |                                        0 |                                      0 |               0 |             0 |                  0 |                 0 |                   0 |                 0 |                   0 |                     0 |                     0 | Inactive           | None                 |                        0 |                                                                                     |                     | 
+ 0103279988010 | Heléne     | Fritzon         | S     |      1960 | KVINNA | 2017-07-27            | 2029-07-16           |              2876 |                            0 |                           0 |                          543 |                 2333 | t      |                 3 |                   1 |                         0 | f              |                       0 | f            |                             0 |                            0 |                         0 |                           0 |                           0 |                       0 |                         0 |                          1 | t         | f                 | f                | f                 |                                      0 |                                        0 |                                      0 |                                      0 |                                        0 |                                      0 |              32 |             0 |                  0 |                 0 |                   0 |                 0 |                   0 |                     1 |                  32.0 | Low                | Mixed                |                        0 | {prop:prop,prop:skr}                                                                | 2017-09-11          | 2019-01-22
+ 010343930918  | Cecilie    | Tenfjord Toftby | M     |      1970 | KVINNA | 2008-09-30            | 2022-09-26           |             31559 |                         5109 |                       21199 |                            0 |                    0 | f      |                48 |                   0 |                         0 | f              |                       0 | f            |                             0 |                            0 |                         0 |                           0 |                          30 |                       0 |                         0 |                          0 | f         | f                 | f                | f                 |                                     25 |                                        0 |                                  16848 |                                      0 |                                        0 |                                      0 |             276 |             0 |                170 |               106 |                   0 |                 0 |                   0 |                    13 |                  21.2 | Very High          | Individual-focused   |                      0.0 | {"mot:Enskild motion",mot:Kommittémotion}                                           | 2008-09-26          | 2022-04-27
+(5 rows)
+
+Time: 51,381 ms
+
+--- Sample from view_riksdagen_party (5 rows) ---
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM information_schema.views WHERE table_name = 'view_riksdagen_party') THEN
+        RAISE NOTICE 'Executing: SELECT * FROM view_riksdagen_party LIMIT 5';
+    ELSE
+        RAISE NOTICE 'View view_riksdagen_party does not exist';
+    END IF;
+END $$;
+psql:service.data.impl/src/main/resources/schema-validation.sql:239: NOTICE:  Executing: SELECT * FROM view_riksdagen_party LIMIT 5
+DO
+Time: 0,273 ms
+SELECT * FROM view_riksdagen_party LIMIT 5;
+ party_number |    party_name     | party_id |         website          | registered_date | head_count | total_documents | avg_documents_per_member | documents_last_year | very_high_activity_members | high_activity_members | medium_activity_members | low_activity_members | party_focused_members | committee_focused_members | individual_focused_members | avg_collaboration_percentage 
+--------------+-------------------+----------+--------------------------+-----------------+------------+-----------------+--------------------------+---------------------+----------------------------+-----------------------+-------------------------+----------------------+-----------------------+---------------------------+----------------------------+------------------------------
+ 232323       | Politiskt Vilde   | -        |                          | 1971-01-01      |         24 |            2837 |                    118.2 |                  12 |                          5 |                     4 |                       6 |                    4 |                     2 |                         6 |                         11 |                          2.0
+ 4            | Centerpartiet     | C        | www.centerpartiet.se     | 1995-05-18      |        254 |           20626 |                     81.2 |                 158 |                         40 |                    25 |                      11 |                   14 |                    11 |                        20 |                         59 |                          1.6
+ 68           | Kristdemokraterna | KD       | www.kristdemokraterna.se | 1996-08-29      |        127 |           25185 |                    198.3 |                  62 |                         50 |                    22 |                       9 |                   24 |                    10 |                        65 |                         27 |                          2.8
+ 3            | Liberalerna       | L        | www.liberalerna.se       | 2015-11-30      |        263 |           20436 |                     77.7 |                  20 |                         43 |                    26 |                       8 |                   21 |                    20 |                        25 |                         50 |                          2.2
+ 1            | Moderaterna       | M        | www.moderat.se           | 2013-09-06      |        470 |           51155 |                    108.8 |                 232 |                         96 |                    74 |                      43 |                   97 |                    17 |                        66 |                        221 |                          1.5
+(5 rows)
+
+Time: 4,765 ms
+
+--- Sample from view_riksdagen_vote_data_ballot_politician_summary_daily (recent 5 rows) ---
+DO $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM pg_matviews WHERE matviewname = 'view_riksdagen_vote_data_ballot_politician_summary_daily') THEN
+        RAISE NOTICE 'Executing: SELECT * FROM view_riksdagen_vote_data_ballot_politician_summary_daily ORDER BY vote_date DESC LIMIT 5';
+    ELSE
+        RAISE NOTICE 'Materialized view view_riksdagen_vote_data_ballot_politician_summary_daily does not exist';
+    END IF;
+END $$;
+psql:service.data.impl/src/main/resources/schema-validation.sql:252: NOTICE:  Executing: SELECT * FROM view_riksdagen_vote_data_ballot_politician_summary_daily ORDER BY vote_date DESC LIMIT 5
+DO
+Time: 0,274 ms
+DO $$
+DECLARE
+    has_column BOOLEAN;
+BEGIN
+    SELECT EXISTS (
+        SELECT 1 FROM information_schema.columns 
+        WHERE table_name = 'view_riksdagen_vote_data_ballot_politician_summary_daily' 
+        AND column_name = 'vote_date'
+    ) INTO has_column;
+    
+    IF has_column THEN
+        EXECUTE format('SELECT * FROM %I ORDER BY vote_date DESC LIMIT 5', 'view_riksdagen_vote_data_ballot_politician_summary_daily');
+    ELSE
+        EXECUTE format('SELECT * FROM %I LIMIT 5', 'view_riksdagen_vote_data_ballot_politician_summary_daily');
+    END IF;
+EXCEPTION WHEN OTHERS THEN
+    RAISE NOTICE 'Could not query view: %', SQLERRM;
+END $$;
+DO
+Time: 55,593 ms
+
+==========================================
+=== SCHEMA STATISTICS                  ===
+==========================================
+
+--- Top 20 Largest Tables by Row Count ---
+SELECT 
+    schemaname,
+    tablename,
+    n_live_tup AS row_count,
+    pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename)) AS total_size,
+    pg_size_pretty(pg_relation_size(schemaname||'.'||tablename)) AS table_size,
+    pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename) - pg_relation_size(schemaname||'.'||tablename)) AS indexes_size
+FROM pg_stat_user_tables
+WHERE schemaname = 'public'
+ORDER BY n_live_tup DESC
+LIMIT 20;
+psql:service.data.impl/src/main/resources/schema-validation.sql:296: ERROR:  column "tablename" does not exist
+LINE 3:     tablename,
+            ^
+Time: 0,539 ms
+
+--- Top 20 Largest Tables by Total Size ---
+SELECT 
+    schemaname,
+    tablename,
+    n_live_tup AS row_count,
+    pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename)) AS total_size
+FROM pg_stat_user_tables
+WHERE schemaname = 'public'
+ORDER BY pg_total_relation_size(schemaname||'.'||tablename) DESC
+LIMIT 20;
+psql:service.data.impl/src/main/resources/schema-validation.sql:308: ERROR:  column "tablename" does not exist
+LINE 3:     tablename,
+            ^
+Time: 0,030 ms
+
+--- Tables with No Data ---
+SELECT 
+    t.tablename,
+    COALESCE(s.n_live_tup, 0) AS row_count
+FROM pg_tables t
+LEFT JOIN pg_stat_user_tables s ON t.tablename = s.relname AND t.schemaname = s.schemaname
+WHERE t.schemaname = 'public' 
+  AND (s.n_live_tup = 0 OR s.n_live_tup IS NULL)
+ORDER BY t.tablename;
+           tablename            | row_count 
+--------------------------------+-----------
+ against_proposal_container     |         0
+ against_proposal_data          |         0
+ agency                         |         0
+ application_action_event       |         0
+ application_configuration      |         0
+ application_session            |         0
+ application_view               |         0
+ assignment_data                |         0
+ assignment_element             |         0
+ committee_document_data        |         0
+ committee_proposal_component_0 |         0
+ committee_proposal_container   |         0
+ committee_proposal_data        |         0
+ countries_element              |         0
+ country_element                |         0
+ data_element                   |         0
+ data_source_content            |         0
+ databasechangelog              |         0
+ databasechangeloglock          |         0
+ detail_data                    |         0
+ detail_element                 |         0
+ document_activity_container    |         0
+ document_activity_data         |         0
+ document_attachment            |         0
+ document_attachment_container  |         0
+ document_container_element     |         0
+ document_content_data          |         0
+ document_data                  |         0
+ document_detail_container      |         0
+ document_detail_data           |         0
+ document_element               |         0
+ document_person_reference_co_0 |         0
+ document_person_reference_da_0 |         0
+ document_proposal_container    |         0
+ document_proposal_data         |         0
+ document_reference_container   |         0
+ document_reference_data        |         0
+ document_status_container      |         0
+ domain_portal                  |         0
+ encrypted_value                |         0
+ indicator_element              |         0
+ indicators_element             |         0
+ jv_commit                      |         0
+ jv_commit_property             |         0
+ jv_global_id                   |         0
+ jv_snapshot                    |         0
+ language_content_data          |         0
+ language_data                  |         0
+ operational_information_cont_0 |         0
+ performance_indicator_content  |         0
+ person_assignment_data         |         0
+ person_assignment_element      |         0
+ person_container_data          |         0
+ person_container_element       |         0
+ person_data                    |         0
+ person_detail_data             |         0
+ person_detail_element          |         0
+ person_element                 |         0
+ portal                         |         0
+ qrtz_blob_triggers             |         0
+ qrtz_calendars                 |         0
+ qrtz_cron_triggers             |         0
+ qrtz_fired_triggers            |         0
+ qrtz_job_details               |         0
+ qrtz_locks                     |         0
+ qrtz_paused_trigger_grps       |         0
+ qrtz_scheduler_state           |         0
+ qrtz_simple_triggers           |         0
+ qrtz_simprop_triggers          |         0
+ qrtz_triggers                  |         0
+ quality_assurance_content      |         0
+ rule_violation                 |         0
+ sweden_county_data             |         0
+ sweden_county_data_container   |         0
+ sweden_county_electoral_area   |         0
+ sweden_county_electoral_regi_0 |         0
+ sweden_county_electoral_regi_1 |         0
+ sweden_election_region         |         0
+ sweden_election_type           |         0
+ sweden_election_type_contain_0 |         0
+ sweden_municipality_data       |         0
+ sweden_municipality_election_0 |         0
+ sweden_parliament_electoral__0 |         0
+ sweden_parliament_electoral__1 |         0
+ sweden_political_party         |         0
+ target_profile_content         |         0
+ topic                          |         0
+ topics                         |         0
+ user_account                   |         0
+ user_account_address           |         0
+ vote_data                      |         0
+ vote_meta_data                 |         0
+ world_bank_data                |         0
+(93 rows)
+
+Time: 2,216 ms
+
+--- Top 20 Views with Most Dependencies ---
+SELECT 
+    dependent_view.relname AS view_name,
+    dependent_view.relkind AS view_type,
+    COUNT(DISTINCT source_table.relname) AS dependency_count
+FROM pg_depend
+JOIN pg_rewrite ON pg_depend.objid = pg_rewrite.oid
+JOIN pg_class AS dependent_view ON pg_rewrite.ev_class = dependent_view.oid
+JOIN pg_class AS source_table ON pg_depend.refobjid = source_table.oid
+WHERE dependent_view.relkind IN ('v', 'm')
+  AND dependent_view.relnamespace = (SELECT oid FROM pg_namespace WHERE nspname = 'public')
+GROUP BY dependent_view.relname, dependent_view.relkind
+ORDER BY dependency_count DESC
+LIMIT 20;
+                      view_name                      | view_type | dependency_count 
+-----------------------------------------------------+-----------+------------------
+ view_riksdagen_intelligence_dashboard               | v         |                7
+ view_party_performance_metrics                      | v         |                7
+ view_committee_productivity                         | v         |                6
+ view_party_effectiveness_trends                     | v         |                5
+ view_riksdagen_politician_document                  | m         |                5
+ view_politician_risk_summary                        | v         |                5
+ view_risk_score_evolution                           | v         |                5
+ view_riksdagen_committee_role_member                | v         |                4
+ view_riksdagen_goverment_role_member                | v         |                4
+ view_worldbank_indicator_data_country_summary       | m         |                4
+ view_riksdagen_party_role_member                    | v         |                4
+ view_riksdagen_party_member                         | v         |                4
+ view_riksdagen_politician                           | v         |                4
+ view_riksdagen_crisis_resilience_indicators         | v         |                3
+ view_riksdagen_goverment                            | v         |                3
+ view_riksdagen_committee_decisions                  | m         |                3
+ view_riksdagen_committee_ballot_decision_summary    | m         |                3
+ view_riksdagen_committee_parliament_member_proposal | v         |                3
+ view_riksdagen_committee                            | v         |                3
+ view_ministry_effectiveness_trends                  | v         |                3
+(20 rows)
+
+Time: 28,797 ms
+
+--- Database Size Summary ---
+SELECT 
+    pg_size_pretty(pg_database_size(current_database())) AS database_size,
+    (SELECT COUNT(*) FROM pg_stat_user_tables WHERE schemaname = 'public') AS table_count,
+    (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') AS view_count,
+    (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public') AS materialized_view_count,
+    (SELECT SUM(n_live_tup) FROM pg_stat_user_tables WHERE schemaname = 'public') AS total_rows;
+ database_size | table_count | view_count | materialized_view_count | total_rows 
+---------------+-------------+------------+-------------------------+------------
+ 29 GB         |         121 |         54 |                      28 |          0
+(1 row)
+
+Time: 4,220 ms
+
+==========================================
+=== COLUMN STATISTICS                  ===
+==========================================
+
+--- Tables with Most Columns ---
+SELECT 
+    table_name,
+    COUNT(*) AS column_count
+FROM information_schema.columns
+WHERE table_schema = 'public'
+GROUP BY table_name
+ORDER BY column_count DESC
+LIMIT 20;
+                     table_name                      | column_count 
+-----------------------------------------------------+--------------
+ view_riksdagen_party_summary                        |           59
+ view_riksdagen_politician                           |           53
+ pg_stat_statements                                  |           43
+ view_riksdagen_party_member                         |           39
+ document_element                                    |           33
+ view_committee_productivity_matrix                  |           28
+ view_party_effectiveness_trends                     |           28
+ view_committee_productivity                         |           26
+ view_politician_behavioral_trends                   |           26
+ view_ministry_effectiveness_trends                  |           25
+ view_ministry_productivity_matrix                   |           25
+ view_party_performance_metrics                      |           24
+ view_ministry_risk_evolution                        |           24
+ view_riksdagen_member_proposals                     |           23
+ view_riksdagen_party_document_summary               |           23
+ view_riksdagen_committee_parliament_member_proposal |           22
+ view_politician_risk_summary                        |           21
+ view_risk_score_evolution                           |           21
+ view_riksdagen_politician_ballot_summary            |           21
+ view_riksdagen_politician_experience_summary        |           20
+(20 rows)
+
+Time: 4,680 ms
+
+--- Most Common Column Names ---
+SELECT 
+    column_name,
+    COUNT(*) AS usage_count
+FROM information_schema.columns
+WHERE table_schema = 'public'
+GROUP BY column_name
+ORDER BY usage_count DESC
+LIMIT 20;
+       column_name        | usage_count 
+--------------------------+-------------
+ hjid                     |          69
+ party                    |          22
+ id                       |          20
+ status                   |          17
+ last_name                |          16
+ first_name               |          16
+ person_id                |          13
+ hits                     |          13
+ model_object_version     |          13
+ model_object_id          |          13
+ rank                     |          12
+ rank_percentage          |          12
+ embedded_id_page         |          12
+ embedded_id_created_date |          12
+ total_documents          |          11
+ documents_last_year      |          11
+ sched_name               |          11
+ created_date             |          10
+ code                     |           9
+ detail                   |           8
+(20 rows)
+
+Time: 4,776 ms
+
+--- Most Common Data Types ---
+SELECT 
+    data_type,
+    COUNT(*) AS usage_count
+FROM information_schema.columns
+WHERE table_schema = 'public'
+GROUP BY data_type
+ORDER BY usage_count DESC;
+          data_type          | usage_count 
+-----------------------------+-------------
+ character varying           |         527
+ bigint                      |         422
+ numeric                     |         209
+ text                        |         113
+ date                        |          57
+ integer                     |          52
+ boolean                     |          35
+ timestamp without time zone |          30
+ double precision            |          30
+ timestamp with time zone    |           8
+ bytea                       |           4
+ oid                         |           2
+ name                        |           1
+ smallint                    |           1
+ ARRAY                       |           1
+(15 rows)
+
+Time: 4,645 ms
+
+==========================================
+=== INDEX STATISTICS                   ===
+==========================================
+
+--- Index Usage Statistics (Top 20 by Size) ---
+SELECT 
+    schemaname,
+    tablename,
+    indexname,
+    pg_size_pretty(pg_relation_size(indexrelid)) AS index_size,
+    idx_scan AS number_of_scans,
+    idx_tup_read AS tuples_read,
+    idx_tup_fetch AS tuples_fetched
+FROM pg_stat_user_indexes
+WHERE schemaname = 'public'
+ORDER BY pg_relation_size(indexrelid) DESC
+LIMIT 20;
+psql:service.data.impl/src/main/resources/schema-validation.sql:409: ERROR:  column "tablename" does not exist
+LINE 3:     tablename,
+            ^
+Time: 0,525 ms
+
+--- Unused Indexes (No Scans) ---
+SELECT 
+    schemaname,
+    tablename,
+    indexname,
+    pg_size_pretty(pg_relation_size(indexrelid)) AS index_size
+FROM pg_stat_user_indexes
+WHERE schemaname = 'public'
+  AND idx_scan = 0
+ORDER BY pg_relation_size(indexrelid) DESC;
+psql:service.data.impl/src/main/resources/schema-validation.sql:421: ERROR:  column "tablename" does not exist
+LINE 3:     tablename,
+            ^
+Time: 0,099 ms
+
+==========================================
+=== JSON OUTPUT AVAILABLE              ===
+==========================================
+
+To generate JSON report, run:
+psql -U postgres -d cia_dev -t -A -F"," -c "SELECT json_build_object(...)" > schema_report.json
+
+
+==========================================
+=== CSV OUTPUT AVAILABLE               ===
+==========================================
+
+To generate CSV inventory, run:
+psql -U postgres -d cia_dev -c "COPY (...) TO STDOUT WITH CSV HEADER" > schema_inventory.csv
+
+
+==========================================
+=== VALIDATION COMPLETE                ===
+==========================================
+
+Schema validation report generated successfully.
+Review the output above for schema health and statistics.
+
+Timing is off.
+/*
+COPY (
+  SELECT json_build_object(
+    'generated_at', NOW(),
+    'database', current_database(),
+    'summary', json_build_object(
+      'base_tables', (SELECT COUNT(*) FROM information_schema.tables 
+                      WHERE table_schema = 'public' AND table_type = 'BASE TABLE'),
+      'regular_views', (SELECT COUNT(*) FROM information_schema.views 
+                       WHERE table_schema = 'public'),
+      'materialized_views', (SELECT COUNT(*) FROM pg_matviews 
+                            WHERE schemaname = 'public'),
+      'indexes', (SELECT COUNT(*) FROM pg_indexes WHERE schemaname = 'public'),
+      'total_rows', (SELECT SUM(n_live_tup) FROM pg_stat_user_tables WHERE schemaname = 'public')
+    ),
+    'tables', (
+      SELECT json_agg(json_build_object(
+        'name', tablename,
+        'rows', n_live_tup,
+        'size', pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename))
+      ))
+      FROM pg_stat_user_tables 
+      WHERE schemaname = 'public'
+      ORDER BY tablename
+    ),
+    'views', (
+      SELECT json_agg(json_build_object(
+        'name', viewname,
+        'type', 'regular'
+      ))
+      FROM pg_views 
+      WHERE schemaname = 'public'
+      ORDER BY viewname
+    ),
+    'materialized_views', (
+      SELECT json_agg(json_build_object(
+        'name', matviewname,
+        'type', 'materialized'
+      ))
+      FROM pg_matviews 
+      WHERE schemaname = 'public'
+      ORDER BY matviewname
+    )
+  )::text
+) TO '/path/to/schema_report.json';
+*/
+-- ===========================================================================
+-- PART 9: CSV OUTPUT (Optional)
+-- ===========================================================================
+-- Commented out: Uncomment and modify path as needed
+/*
+COPY (
+  SELECT 
+    'TABLE' AS object_type, 
+    tablename AS object_name, 
+    n_live_tup AS row_count,
+    pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename)) AS total_size,
+    (SELECT COUNT(*) FROM information_schema.columns 
+     WHERE table_schema = schemaname AND table_name = tablename) AS column_count
+  FROM pg_stat_user_tables
+  WHERE schemaname = 'public'
+  
+  UNION ALL
+  
+  SELECT 
+    'VIEW' AS object_type, 
+    viewname AS object_name, 
+    NULL AS row_count,
+    NULL AS total_size,
+    (SELECT COUNT(*) FROM information_schema.columns 
+     WHERE table_schema = schemaname AND table_name = viewname) AS column_count
+  FROM pg_views
+  WHERE schemaname = 'public'
+  
+  UNION ALL
+  
+  SELECT 
+    'MATERIALIZED_VIEW' AS object_type, 
+    matviewname AS object_name, 
+    NULL AS row_count,
+    pg_size_pretty(pg_total_relation_size(schemaname||'.'||matviewname)) AS total_size,
+    (SELECT COUNT(*) FROM information_schema.columns 
+     WHERE table_schema = schemaname AND table_name = matviewname) AS column_count
+  FROM pg_matviews
+  WHERE schemaname = 'public'
+  
+  ORDER BY object_type, object_name
+) TO '/path/to/schema_inventory.csv' WITH (FORMAT CSV, HEADER);
+*/
+-- ===========================================================================
+-- VALIDATION COMPLETE
+-- ===========================================================================
