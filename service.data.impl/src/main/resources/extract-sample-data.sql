@@ -104,9 +104,7 @@ END $$;
 
 -- Generate and execute \copy commands for each table
 SELECT format(
-    '\echo ''Extracting: %s'''||E'\n'||
     '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''table_%s_sample.csv'' WITH CSV HEADER',
-    tablename,
     schemaname,
     tablename,
     tablename
@@ -178,14 +176,12 @@ BEGIN
 END $$;
 
 -- Now extract sample data from all non-empty views using dynamic \copy commands
-\echo 'Extracting sample data from views...'
+\echo 'Extracting sample data from regular views...'
 \echo ''
 
 -- Generate and execute \copy commands for regular views
 SELECT format(
-    '\echo ''Extracting: %s (VIEW)'''||E'\n'||
     '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''view_%s_sample.csv'' WITH CSV HEADER',
-    viewname,
     schemaname,
     viewname,
     viewname
@@ -195,11 +191,12 @@ WHERE schemaname = 'public'
 ORDER BY viewname
 \gexec
 
+\echo 'Extracting sample data from materialized views...'
+\echo ''
+
 -- Generate and execute \copy commands for materialized views
 SELECT format(
-    '\echo ''Extracting: %s (MATERIALIZED VIEW)'''||E'\n'||
     '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''view_%s_sample.csv'' WITH CSV HEADER',
-    matviewname,
     schemaname,
     matviewname,
     matviewname
