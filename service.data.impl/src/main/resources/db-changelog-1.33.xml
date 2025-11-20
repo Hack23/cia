@@ -6,8 +6,7 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
 <!-- 
-<<<<<<< HEAD
-  Ministry and Government View Fixes v1.32
+  Ministry and Government View Fixes v1.33
   Author: Database Analyst & Intelligence Operative
   Date: 2025-11-20
   Issue: #7884 - Fix Empty Ministry and Government Database Views
@@ -38,7 +37,7 @@
 <!-- Root Cause: document_type='PROP' should be document_type='prop'           -->
 <!-- ========================================================================= -->
 
-<changeSet author="database-analyst" id="fix-1.32-001-government-proposals" failOnError="true">
+<changeSet author="database-analyst" id="fix-1.33-001-government-proposals" failOnError="true">
     <comment>
         Fix view_riksdagen_goverment_proposals - Case Sensitivity Issue
         
@@ -107,7 +106,7 @@ WHERE document_type = 'PROP'
 <!--        view_riksdagen_politician_document have no ministry data          -->
 <!-- ========================================================================= -->
 
-<changeSet author="database-analyst" id="fix-1.32-002-ministry-effectiveness-resilient" failOnError="true">
+<changeSet author="database-analyst" id="fix-1.33-002-ministry-effectiveness-resilient" failOnError="true">
     <comment>
         Improve view_ministry_effectiveness_trends - Add Data Availability Fallbacks
         
@@ -118,7 +117,7 @@ WHERE document_type = 'PROP'
         - View returns 0 rows even if document data exists
         
         Improvements:
-        - Add existence checks and COALESCEto handle NULL values gracefully
+        - Add existence checks and COALESCE to handle NULL values gracefully
         - Filter out completely empty periods where period_start IS NULL
         - Maintain view logic but make it resilient to partial data
         
@@ -178,7 +177,7 @@ WHERE document_type = 'PROP'
 <!-- Document data requirements for ministry views                             -->
 <!-- ========================================================================= -->
 
-<changeSet author="database-analyst" id="fix-1.32-003-document-requirements" failOnError="true">
+<changeSet author="database-analyst" id="fix-1.33-003-document-requirements" failOnError="true">
     <comment>
         Document Data Requirements for Ministry Views
         
@@ -232,7 +231,7 @@ WHERE document_type = 'PROP'
 <!-- Helps identify why views return 0 rows                                    -->
 <!-- ========================================================================= -->
 
-<changeSet author="database-analyst" id="fix-1.32-004-diagnostic-view" failOnError="true">
+<changeSet author="database-analyst" id="fix-1.33-004-diagnostic-view" failOnError="true">
     <comment>
         Create Ministry View Data Availability Diagnostic
         
@@ -323,218 +322,20 @@ SELECT
     END AS proposals_view_status,
     
     CURRENT_TIMESTAMP AS diagnostic_timestamp
-=======
-  Fix Empty Politician Intelligence Views v1.32
-  Author: Political Analyst & Intelligence Operative
-  Date: 2025-11-20
-  GitHub Issue: #7884
-  
-  This changelog fixes 4 advanced politician intelligence views that currently
-  return 0 rows due to overly restrictive date filters and JOIN conditions.
-  
-  Root Causes Identified:
-  1. view_politician_risk_summary: Date filter on annual summary too restrictive
-     - Fixed: Changed from exact year match to using most recent available data
-  2. view_riksdagen_coalition_alignment_matrix: Working correctly (uses vote_data directly)
-     - No fix needed, but verified
-  3. view_riksdagen_politician_influence_metrics: Working correctly (uses vote_data directly)
-     - No fix needed, but verified
-  4. view_riksdagen_voting_anomaly_detection: Working correctly (uses vote_data directly)
-     - No fix needed, but verified
-     
-  The main issue is that view_riksdagen_vote_data_ballot_politician_summary_annual
-  may not have data for the exact date filter used (date_trunc('year', CURRENT_DATE - INTERVAL '1 year')).
-  This happens when:
-  - Data hasn't been aggregated for that specific year
-  - The date truncation doesn't align with actual data dates
-  - Annual summary is only generated for complete years
-  
-  Fix Strategy:
-  - Replace exact date match with a year range filter
-  - Use subquery to find most recent year with data
-  - Maintain backward compatibility with existing queries
--->
-
-<!-- ========================================================================= -->
-<!-- 1. FIX: view_politician_risk_summary                                      -->
-<!-- Issue: Overly restrictive date filter on annual summary view             -->
-<!-- Fix: Use most recent year's data instead of exact date match             -->
-<!-- ========================================================================= -->
-
-<changeSet author="intelligence-analyst" id="fix-politician-risk-summary-1.32-001" failOnError="true">
-    <comment>
-        Fix view_politician_risk_summary to return data
-        
-        Root Cause: The JOIN condition on view_riksdagen_vote_data_ballot_politician_summary_annual
-        was filtering on an exact date (date_trunc('year', CURRENT_DATE - INTERVAL '1 year'))
-        which may not match actual data dates in the annual summary view.
-        
-        Solution: Use a year-based filter to find the most recent complete year of data
-        for each politician, rather than requiring an exact date match.
-        
-        Changes:
-        - Replace exact date filter with year-based range filter
-        - Use most recent available data within past 2 years
-        - Maintain all risk calculation logic unchanged
-    </comment>
-    
-    <dropView viewName="view_politician_risk_summary" ifExists="true"/>
-    
-    <createView viewName="view_politician_risk_summary">
-        <![CDATA[
-WITH risk_calculations AS (
-    SELECT
-        p.id AS person_id,
-        p.first_name,
-        p.last_name,
-        p.party,
-        p.status,
-        
-        -- Rule Violation Metrics
-        COUNT(DISTINCT rv.id) AS total_violations,
-        MAX(rv.detected_date) AS latest_violation_date,
-        
-        -- Violation Breakdown by Severity/Group
-        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'ABSENTEEISM') AS absenteeism_violations,
-        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'EFFECTIVENESS') AS effectiveness_violations,
-        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'DISCIPLINE') AS discipline_violations,
-        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'PRODUCTIVITY') AS productivity_violations,
-        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'COLLABORATION') AS collaboration_violations,
-        
-        -- Current Performance Metrics (most recent year with data)
-        -- Changed from exact date match to year-based range
-        COALESCE(vps_annual.avg_percentage_absent, 0) AS annual_absence_rate,
-        COALESCE(vps_annual.won_percentage, 0) AS annual_win_rate,
-        COALESCE(vps_annual.rebel_percentage, 0) AS annual_rebel_rate,
-        COALESCE(vps_annual.total_votes, 0) AS annual_vote_count,
-        
-        -- Document Activity
-        COUNT(DISTINCT vpd.id) AS documents_last_year,
-        
-        -- Risk Score Calculation (0-100 scale) - Higher score = higher risk
-        (
-            -- Violation component (0-40 points)
-            LEAST(COUNT(DISTINCT rv.id) * 2, 40) +
-            
-            -- Absence component (0-20 points)
-            (COALESCE(vps_annual.avg_percentage_absent, 0) * 20 / 100.0) +
-            
-            -- Ineffectiveness component (0-20 points)
-            ((100 - COALESCE(vps_annual.won_percentage, 50)) * 20 / 100.0) +
-            
-            -- Rebel component (0-10 points)
-            (COALESCE(vps_annual.rebel_percentage, 0) * 10 / 100.0) +
-            
-            -- Low productivity component (0-10 points)
-            (CASE 
-                WHEN COUNT(DISTINCT vpd.id) < 5 
-                THEN 10 
-                ELSE 0 
-            END)
-        ) AS calculated_risk_score
-        
-    FROM person_data p
-    LEFT JOIN rule_violation rv 
-        ON rv.reference_id = p.id 
-        AND rv.resource_type = 'POLITICIAN'
-        AND rv.status = 'ACTIVE'
-    LEFT JOIN LATERAL (
-        -- Get most recent year's data for this politician
-        SELECT 
-            avg_percentage_absent,
-            won_percentage,
-            rebel_percentage,
-            total_votes
-        FROM view_riksdagen_vote_data_ballot_politician_summary_annual
-        WHERE embedded_id_intressent_id = p.id
-            AND embedded_id_vote_date >= date_trunc('year', CURRENT_DATE - INTERVAL '2 years')
-        ORDER BY embedded_id_vote_date DESC
-        LIMIT 1
-    ) vps_annual ON true
-    LEFT JOIN view_riksdagen_politician_document vpd 
-        ON vpd.person_reference_id = p.id 
-        AND vpd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
-    
-    WHERE p.status = 'active'
-    
-    GROUP BY 
-        p.id, p.first_name, p.last_name, p.party, p.status,
-        vps_annual.avg_percentage_absent,
-        vps_annual.won_percentage,
-        vps_annual.rebel_percentage,
-        vps_annual.total_votes
-)
-SELECT
-    person_id,
-    first_name,
-    last_name,
-    party,
-    status,
-    total_violations,
-    latest_violation_date,
-    absenteeism_violations,
-    effectiveness_violations,
-    discipline_violations,
-    productivity_violations,
-    collaboration_violations,
-    annual_absence_rate,
-    annual_win_rate,
-    annual_rebel_rate,
-    annual_vote_count,
-    documents_last_year,
-    
-    ROUND(calculated_risk_score::NUMERIC, 2) AS risk_score,
-    
-    -- Risk Classification
-    CASE
-        WHEN calculated_risk_score >= 70 THEN 'CRITICAL'
-        WHEN calculated_risk_score >= 50 THEN 'HIGH'
-        WHEN calculated_risk_score >= 30 THEN 'MEDIUM'
-        ELSE 'LOW'
-    END AS risk_level,
-    
-    -- Intelligence Assessment
-    CASE
-        WHEN total_violations >= 5 AND annual_absence_rate >= 20
-            THEN 'Chronic accountability failure - multiple violations with high absenteeism'
-        WHEN total_violations >= 5
-            THEN 'Multiple rule violations detected - requires investigation'
-        WHEN annual_absence_rate >= 25
-            THEN 'Severe absenteeism - constituent representation failure'
-        WHEN annual_win_rate < 20
-            THEN 'Critically low effectiveness - marginalized in policy process'
-        WHEN annual_rebel_rate >= 15
-            THEN 'High rebel rate - party discipline breakdown'
-        WHEN documents_last_year < 3
-            THEN 'Minimal legislative activity - lack of policy initiative'
-        ELSE 'Standard performance - no significant risk indicators'
-    END AS risk_assessment,
-    
-    -- Days since last violation
-    COALESCE(EXTRACT(DAY FROM (CURRENT_DATE - latest_violation_date))::INTEGER, NULL) AS days_since_last_violation
-
-FROM risk_calculations
-ORDER BY risk_score DESC, total_violations DESC;
->>>>>>> origin/master
         ]]>
     </createView>
     
     <rollback>
-<<<<<<< HEAD
         <dropView viewName="view_ministry_data_diagnostic"/>
-=======
-        <dropView viewName="view_politician_risk_summary"/>
->>>>>>> origin/master
     </rollback>
 </changeSet>
 
 <!-- ========================================================================= -->
-<<<<<<< HEAD
 <!-- 5. REFRESH MATERIALIZED VIEWS IF DATA EXISTS                             -->
 <!-- Ensure view_riksdagen_politician_document is populated                    -->
 <!-- ========================================================================= -->
 
-<changeSet author="database-analyst" id="fix-1.32-005-refresh-materialized-views" failOnError="false">
+<changeSet author="database-analyst" id="fix-1.33-005-refresh-materialized-views" failOnError="false">
     <comment>
         Refresh Materialized Views for Ministry Intelligence
         
@@ -567,53 +368,15 @@ ORDER BY risk_score DESC, total_violations DESC;
     
     <rollback>
         <sql>-- No rollback needed for refresh operation</sql>
-=======
-<!-- 2. VERIFY: Other views are working correctly                             -->
-<!-- Coalition, Influence, and Anomaly views use vote_data directly           -->
-<!-- ========================================================================= -->
-
-<changeSet author="intelligence-analyst" id="verify-other-views-1.32-002" failOnError="false">
-    <comment>
-        Verification changeset for other politician intelligence views
-        
-        After investigation, the following views should work correctly as they
-        query vote_data directly without restrictive date filters on aggregated views:
-        
-        - view_riksdagen_coalition_alignment_matrix: Uses vote_data with 2-year window
-        - view_riksdagen_politician_influence_metrics: Uses vote_data with 1-year window  
-        - view_riksdagen_voting_anomaly_detection: Uses vote_data with 1-year window
-        
-        These views will return data if:
-        1. vote_data table has records within the time windows
-        2. Votes include 'Ja' and 'Nej' values
-        3. Party information is populated
-        
-        No schema changes needed, but this changeset documents the verification.
-    </comment>
-    
-    <sql>
-        -- This is a verification-only changeset
-        -- No schema changes required
-        SELECT 'view_riksdagen_coalition_alignment_matrix verified' AS status
-        UNION ALL
-        SELECT 'view_riksdagen_politician_influence_metrics verified'
-        UNION ALL
-        SELECT 'view_riksdagen_voting_anomaly_detection verified';
-    </sql>
-    
-    <rollback>
-        <sql>SELECT 'No rollback needed for verification' AS status;</sql>
->>>>>>> origin/master
     </rollback>
 </changeSet>
 
 <!-- ========================================================================= -->
-<<<<<<< HEAD
 <!-- 6. ADD INDEXES FOR MINISTRY VIEW PERFORMANCE                             -->
 <!-- Optimize queries for ministry intelligence operations                     -->
 <!-- ========================================================================= -->
 
-<changeSet author="database-analyst" id="fix-1.32-006-ministry-indexes" failOnError="false">
+<changeSet author="database-analyst" id="fix-1.33-006-ministry-indexes" failOnError="false">
     <comment>
         Add Performance Indexes for Ministry and Government Views
         
@@ -641,8 +404,6 @@ ORDER BY risk_score DESC, total_violations DESC;
         CREATE INDEX IF NOT EXISTS idx_document_org_type_date
             ON document_data(org, document_type, made_public_date)
             WHERE org IS NOT NULL;
-        
-        RAISE NOTICE 'Ministry view performance indexes created successfully';
     </sql>
     
     <rollback>
@@ -651,41 +412,6 @@ ORDER BY risk_score DESC, total_violations DESC;
             DROP INDEX IF EXISTS idx_document_type_prop_lowercase;
             DROP INDEX IF EXISTS idx_document_org_type_date;
         </sql>
-=======
-<!-- 3. DOCUMENTATION: Update view intelligence catalog                       -->
-<!-- ========================================================================= -->
-
-<changeSet author="intelligence-analyst" id="document-fixes-1.32-003" failOnError="false">
-    <comment>
-        Documentation for v1.32 fixes
-        
-        This changeset documents the fixes applied to politician intelligence views
-        for inclusion in DATABASE_VIEW_INTELLIGENCE_CATALOG.md and 
-        TROUBLESHOOTING_EMPTY_VIEWS.md.
-        
-        Summary of Changes:
-        1. view_politician_risk_summary: Changed from exact date match to LATERAL join
-           with most recent data lookup
-        2. Other views: Verified to be working correctly with existing definitions
-        
-        Expected Row Counts (with sample data):
-        - view_politician_risk_summary: Should equal active politician count
-        - view_riksdagen_coalition_alignment_matrix: One row per party pair 
-        - view_riksdagen_politician_influence_metrics: Active politicians with sufficient votes
-        - view_riksdagen_voting_anomaly_detection: Aggregated per politician
-    </comment>
-    
-    <sql>
-        -- Documentation only - no schema changes
-        SELECT 
-            'v1.32' AS version,
-            'Fixed empty politician intelligence views' AS change_description,
-            CURRENT_TIMESTAMP AS documented_at;
-    </sql>
-    
-    <rollback>
-        <sql>SELECT 'Documentation rollback - no action needed' AS status;</sql>
->>>>>>> origin/master
     </rollback>
 </changeSet>
 
