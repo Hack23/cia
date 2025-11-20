@@ -78,6 +78,8 @@ SELECT DISTINCT
 FROM assignment_data
 WHERE assignment_type = 'Departement'
     AND org_code IS NOT NULL
+    -- Using LOWER() for diagnostic robustness - catches any case variation
+    -- Note: View definition uses case-sensitive match for performance
     AND LOWER(org_code) LIKE '%departement%'
 GROUP BY org_code, detail
 ORDER BY assignment_count DESC

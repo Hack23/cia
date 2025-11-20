@@ -101,8 +101,8 @@ SELECT
     (SELECT COUNT(*) FROM view_riksdagen_goverment_proposals) AS row_count,
     CASE 
         WHEN (SELECT COUNT(*) FROM view_riksdagen_goverment_proposals) > 0 
-        THEN '✅ WORKING' 
-        ELSE '❌ EMPTY (check document_data)' 
+        THEN '[OK] WORKING' 
+        ELSE '[EMPTY] Check document_data' 
     END AS status
 UNION ALL
 SELECT 
@@ -110,8 +110,8 @@ SELECT
     (SELECT COUNT(*) FROM view_ministry_effectiveness_trends),
     CASE 
         WHEN (SELECT COUNT(*) FROM view_ministry_effectiveness_trends) > 0 
-        THEN '✅ WORKING' 
-        ELSE '⚠️  EMPTY (data dependency - see diagnostics)' 
+        THEN '[OK] WORKING' 
+        ELSE '[WARNING] EMPTY (data dependency - see diagnostics)' 
     END
 UNION ALL
 SELECT 
@@ -119,8 +119,8 @@ SELECT
     (SELECT COUNT(*) FROM view_ministry_productivity_matrix),
     CASE 
         WHEN (SELECT COUNT(*) FROM view_ministry_productivity_matrix) > 0 
-        THEN '✅ WORKING' 
-        ELSE '⚠️  EMPTY (data dependency - see diagnostics)' 
+        THEN '[OK] WORKING' 
+        ELSE '[WARNING] EMPTY (data dependency - see diagnostics)' 
     END
 UNION ALL
 SELECT 
@@ -128,8 +128,8 @@ SELECT
     (SELECT COUNT(*) FROM view_ministry_risk_evolution),
     CASE 
         WHEN (SELECT COUNT(*) FROM view_ministry_risk_evolution) > 0 
-        THEN '✅ WORKING' 
-        ELSE '⚠️  EMPTY (data dependency - see diagnostics)' 
+        THEN '[OK] WORKING' 
+        ELSE '[WARNING] EMPTY (data dependency - see diagnostics)' 
     END
 ORDER BY view_name;
 

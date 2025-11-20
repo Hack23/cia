@@ -266,7 +266,7 @@ view_ministry_risk_evolution:           0 rows (⚠️  Data sources need popula
    - 8 comprehensive diagnostic queries
 
 4. `service.data.impl/src/main/resources/validate-ministry-fixes.sql` (NEW)
-   - 175 lines
+   - 157 lines
    - Validation tests for all 4 views
 
 ## Next Steps

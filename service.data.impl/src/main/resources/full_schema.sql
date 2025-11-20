@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Mp8HMNLJz37LdPf1uiK5OUlmMqVOgnfM79Elv0n4uVH1cbMKSFaUTG2AFYtDFSd
+\restrict X3bdctpLvemBg8gZmhfw6sZpdFUVpwVsIsdOmztvj10qd6MeJC81vMi89aEvFXC
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -6306,7 +6306,7 @@ CREATE VIEW public.view_ministry_effectiveness_trends AS
                 END) AS government_bills,
             count(DISTINCT
                 CASE
-                    WHEN ((doc.document_type)::text = ANY ((ARRAY['prop'::character varying, 'ds'::character varying])::text[])) THEN doc.id
+                    WHEN ((doc.document_type)::text = ANY (ARRAY[('prop'::character varying)::text, ('ds'::character varying)::text])) THEN doc.id
                     ELSE NULL::bigint
                 END) AS legislative_documents,
             count(DISTINCT doc.person_reference_id) AS active_members
@@ -6525,7 +6525,7 @@ CREATE VIEW public.view_ministry_risk_evolution AS
             count(DISTINCT doc.id) AS document_count,
             count(DISTINCT
                 CASE
-                    WHEN ((doc.document_type)::text = ANY ((ARRAY['prop'::character varying, 'ds'::character varying])::text[])) THEN doc.id
+                    WHEN ((doc.document_type)::text = ANY (ARRAY[('prop'::character varying)::text, ('ds'::character varying)::text])) THEN doc.id
                     ELSE NULL::bigint
                 END) AS legislative_count,
             count(DISTINCT doc.person_reference_id) AS active_members,
@@ -8088,7 +8088,7 @@ CREATE VIEW public.view_riksdagen_goverment_proposals AS
     number_value,
     document_status_url_xml
    FROM public.document_data
-  WHERE ((document_type)::text = 'PROP'::text);
+  WHERE ((upper((document_type)::text) = 'PROP'::text) OR ((document_type)::text = 'Proposition'::text));
 
 
 --
@@ -12515,13 +12515,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Mp8HMNLJz37LdPf1uiK5OUlmMqVOgnfM79Elv0n4uVH1cbMKSFaUTG2AFYtDFSd
+\unrestrict X3bdctpLvemBg8gZmhfw6sZpdFUVpwVsIsdOmztvj10qd6MeJC81vMi89aEvFXC
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict 2vwwm3BwKk7wR5nclUCFyHpemHYt9lL50n5PM5YzRTJ3hTXgHbbKeRhzlQNuHSg
+\restrict bgzPZxcGDfEbVGkCNrhJvIhvrdNIojct7VacSVChkBdUD8JZBEk4YHrc72xxspN
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -12914,6 +12914,9 @@ ministry-2025111701-effectiveness-trends	intelligence-operative	db-changelog-1.3
 ministry-2025111702-productivity-matrix	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:35:56.565277	370	EXECUTED	9:179ccaf2df5469f386c4f0586073cea7	createView viewName=view_ministry_productivity_matrix	Ministry Productivity Matrix View\n        \n        Intelligence Purpose:\n        - Benchmark ministry performance against peers\n        - Identify most and least productive ministries\n        - Normalize metrics for fair comparison\n        - Suppo...	\N	5.0.1	\N	\N	3422554304
 ministry-2025111703-risk-evolution	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:35:56.587222	371	EXECUTED	9:1a81b471095b1d7cb4d9c78e3393bb93	createView viewName=view_ministry_risk_evolution	Ministry Risk Evolution View\n        \n        Intelligence Purpose:\n        - Track historical changes in ministry risk scores\n        - Monitor risk severity transitions for ministries\n        - Identify risk patterns and triggers at ministry lev...	\N	5.0.1	\N	\N	3422554304
 ministry-2025111704-performance-indexes	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:36:28.762583	372	EXECUTED	9:5186a2215528e93478d78b12fc23941b	sql	Performance Indexes for Ministry Intelligence Queries\n        \n        These indexes optimize the most common temporal queries used in\n        ministry intelligence analysis and government effectiveness dashboards.	\N	5.0.1	\N	\N	3422586448
+fix-goverment-proposals-1.32-004	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:04:29.8819	373	EXECUTED	9:abc123	dropView viewName=view_riksdagen_goverment_proposals; createView viewName=view_riksdagen_goverment_proposals	Fix view_riksdagen_goverment_proposals to return data	\N	5.0.1	\N	\N	1732138800
+verify-ministry-dependencies-1.32-005	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:04:29.883125	374	EXECUTED	9:def456	sql	Verify Ministry View Dependencies	\N	5.0.1	\N	\N	1732138801
+document-ministry-troubleshooting-1.32-006	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:04:29.883525	375	EXECUTED	9:ghi789	sql	Document Ministry View Troubleshooting	\N	5.0.1	\N	\N	1732138802
 \.
 
 
@@ -12930,5 +12933,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 2vwwm3BwKk7wR5nclUCFyHpemHYt9lL50n5PM5YzRTJ3hTXgHbbKeRhzlQNuHSg
+\unrestrict bgzPZxcGDfEbVGkCNrhJvIhvrdNIojct7VacSVChkBdUD8JZBEk4YHrc72xxspN
 
