@@ -9,7 +9,7 @@
   Fix Remaining Empty Intelligence Views v1.33
   Author: Political Analyst & Intelligence Operative
   Date: 2025-11-20
-  GitHub Issue: #[issue-number]
+  GitHub Issue: Hack23/cia#7885
   
   This changelog fixes 4 intelligence views that currently return 0 rows due to
   case-sensitive filters, missing data joins, and restrictive conditions.
@@ -464,7 +464,7 @@ ORDER BY person_id, assessment_period DESC;
 <!-- 5. DOCUMENTATION: Update for v1.33 fixes                                -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-analyst" id="document-fixes-1.33-005" failOnError="false">
+<changeSet author="intelligence-analyst" id="document-fixes-1.33-005" failOnError="true">
     <comment>
         Documentation for v1.33 fixes
         
