@@ -492,6 +492,177 @@ FROM party_member_data
 WHERE active = true;
 ```
 
+### Advanced Politician Intelligence Views
+
+**Purpose:** Risk assessment, influence tracking, coalition analysis, anomaly detection  
+**Expected Row Count:** Variable based on active politicians and time windows
+
+#### View: view_politician_risk_summary
+
+**Common Issues:**
+1. **Overly restrictive date filter on annual summary view**
+   - **Symptom:** View returns 0 rows even with active politicians
+   - **Root Cause:** JOIN condition using exact date match on `view_riksdagen_vote_data_ballot_politician_summary_annual`
+   - **Fix Applied in v1.32:** Changed to LATERAL join with most recent data lookup
+   
+   **Diagnostic:**
+   ```sql
+   -- Check if annual summary has data for expected date
+   SELECT 
+       COUNT(*) as total_rows,
+       MIN(embedded_id_vote_date) as earliest_date,
+       MAX(embedded_id_vote_date) as latest_date
+   FROM view_riksdagen_vote_data_ballot_politician_summary_annual;
+   
+   -- Expected: Should have data, but may not match exact date filter
+   ```
+   
+   **Solution (Applied):**
+   ```sql
+   -- v1.32 fix: Use LATERAL join to get most recent data
+   LEFT JOIN LATERAL (
+       SELECT 
+           avg_percentage_absent,
+           won_percentage,
+           rebel_percentage,
+           total_votes
+       FROM view_riksdagen_vote_data_ballot_politician_summary_annual
+       WHERE embedded_id_intressent_id = p.id
+           AND embedded_id_vote_date >= date_trunc('year', CURRENT_DATE - INTERVAL '2 years')
+       ORDER BY embedded_id_vote_date DESC
+       LIMIT 1
+   ) vps_annual ON true
+   ```
+
+2. **Missing rule_violation data**
+   - **Check:** `SELECT COUNT(*) FROM rule_violation WHERE resource_type = 'POLITICIAN';`
+   - **Note:** Risk scores work even without violations (uses voting/document data)
+
+**Validation Query:**
+```sql
+-- After fix, should return one row per active politician
+SELECT 
+    COUNT(*) as politicians_with_risk_scores,
+    AVG(risk_score) as avg_risk_score,
+    COUNT(*) FILTER (WHERE risk_level = 'CRITICAL') as critical_count
+FROM view_politician_risk_summary;
+```
+
+#### View: view_riksdagen_coalition_alignment_matrix
+
+**Common Issues:**
+1. **Insufficient vote_data within time window**
+   - **Time Window:** 2 years
+   - **Required:** Party votes with 'Ja' or 'Nej' values
+   
+   **Diagnostic:**
+   ```sql
+   -- Check vote availability
+   SELECT 
+       COUNT(*) as total_votes,
+       COUNT(DISTINCT party) as unique_parties,
+       MIN(vote_date) as earliest,
+       MAX(vote_date) as latest
+   FROM vote_data
+   WHERE vote_date >= CURRENT_DATE - INTERVAL '2 years'
+       AND vote IN ('Ja', 'Nej')
+       AND party IS NOT NULL;
+   ```
+
+2. **Missing party information**
+   - **Fix:** Ensure `vote_data.party` is populated from import
+
+**Validation Query:**
+```sql
+-- Should return party pairs with alignment metrics
+SELECT 
+    party_1,
+    party_2,
+    alignment_rate,
+    coalition_likelihood
+FROM view_riksdagen_coalition_alignment_matrix
+ORDER BY alignment_rate DESC
+LIMIT 10;
+```
+
+#### View: view_riksdagen_politician_influence_metrics
+
+**Common Issues:**
+1. **Insufficient co-voting data**
+   - **Time Window:** 1 year
+   - **Minimum:** 20 shared votes per politician pair
+   
+   **Diagnostic:**
+   ```sql
+   -- Check if enough votes for network analysis
+   SELECT 
+       COUNT(DISTINCT embedded_id_intressent_id) as politicians,
+       COUNT(DISTINCT embedded_id_ballot_id) as ballots,
+       AVG(vote_count) as avg_votes_per_politician
+   FROM (
+       SELECT 
+           embedded_id_intressent_id,
+           COUNT(*) as vote_count
+       FROM vote_data
+       WHERE vote_date >= CURRENT_DATE - INTERVAL '1 year'
+           AND vote IN ('Ja', 'Nej')
+       GROUP BY embedded_id_intressent_id
+   ) sub;
+   ```
+
+**Validation Query:**
+```sql
+-- Should show politicians with network metrics
+SELECT 
+    first_name,
+    last_name,
+    party,
+    network_connections,
+    cross_party_bridges,
+    connectivity_level
+FROM view_riksdagen_politician_influence_metrics
+ORDER BY network_connections DESC
+LIMIT 10;
+```
+
+#### View: view_riksdagen_voting_anomaly_detection
+
+**Common Issues:**
+1. **Low party cohesion makes anomaly detection difficult**
+   - **Requires:** Clear party majority votes
+   - **Time Window:** 1 year
+   
+   **Diagnostic:**
+   ```sql
+   -- Check party voting cohesion
+   SELECT 
+       party,
+       COUNT(DISTINCT embedded_id_ballot_id) as ballots,
+       COUNT(*) as total_votes
+   FROM vote_data
+   WHERE vote_date >= CURRENT_DATE - INTERVAL '1 year'
+       AND vote IN ('Ja', 'Nej', 'Avstår')
+       AND party IS NOT NULL
+   GROUP BY party
+   ORDER BY party;
+   ```
+
+**Validation Query:**
+```sql
+-- Should show politicians who voted against party line
+SELECT 
+    first_name,
+    last_name,
+    party,
+    total_votes,
+    party_discipline_score,
+    rebellion_rate,
+    discipline_classification
+FROM view_riksdagen_voting_anomaly_detection
+ORDER BY rebellion_rate DESC
+LIMIT 10;
+```
+
 ---
 
 ## 🚨 Emergency Data Recovery
