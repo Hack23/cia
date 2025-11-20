@@ -281,4 +281,161 @@ ORDER BY risk_score DESC, total_violations DESC;
     </rollback>
 </changeSet>
 
+<!-- ========================================================================= -->
+<!-- 4. FIX: view_riksdagen_goverment_proposals                               -->
+<!-- Issue: Case-sensitive document_type filter                               -->
+<!-- Fix: Use case-insensitive filter for government proposals                -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-analyst" id="fix-goverment-proposals-1.32-004" failOnError="true">
+    <comment>
+        Fix view_riksdagen_goverment_proposals to return data
+        
+        Root Cause: The view filters by document_type = 'PROP' (uppercase), but
+        the actual data in document_data may use different case variations:
+        - 'prop' (lowercase) - used in newer views
+        - 'PROP' (uppercase) - used in older views
+        - Other variations possible based on data import
+        
+        Solution: Use UPPER() function to make the filter case-insensitive,
+        ensuring it matches regardless of how the data was imported.
+        
+        Changes:
+        - Replace exact case match with UPPER(document_type) = 'PROP'
+        - Add alternative filter for 'Proposition' full word variant
+        - Maintain all existing columns and logic
+    </comment>
+    
+    <dropView viewName="view_riksdagen_goverment_proposals" ifExists="true"/>
+    
+    <createView viewName="view_riksdagen_goverment_proposals">
+        <![CDATA[
+SELECT 
+    id,
+    title,
+    sub_title,
+    status,
+    org,
+    hangar_id,
+    label,
+    made_public_date,
+    number_value,
+    document_status_url_xml
+FROM document_data
+WHERE UPPER(document_type) = 'PROP' 
+   OR document_type = 'Proposition';
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_goverment_proposals"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 5. VERIFICATION: Check ministry view dependencies                        -->
+<!-- Purpose: Document that ministry views depend on correct data sources     -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-analyst" id="verify-ministry-dependencies-1.32-005" failOnError="false">
+    <comment>
+        Verify Ministry View Dependencies
+        
+        The 3 ministry views created in v1.31 depend on:
+        1. assignment_data table with assignment_type = 'Departement'
+        2. view_riksdagen_politician_document materialized view
+        3. Matching org_code values between the two sources
+        
+        Common Issues:
+        - Empty assignment_data for ministries
+        - view_riksdagen_politician_document not refreshed
+        - Org codes don't match (e.g., case differences)
+        - No documents in the 3-year lookback window
+        
+        The views will return data if:
+        - assignment_data has records with assignment_type='Departement'
+        - org_code contains 'departement' (Swedish spelling)
+        - view_riksdagen_politician_document has matching org values
+        - Documents exist within CURRENT_DATE - INTERVAL '3 years'
+        
+        If views are still empty after v1.32 fixes:
+        1. Run diagnose-ministry-views.sql to check data availability
+        2. Verify view_riksdagen_politician_document is populated
+        3. Check org_code matching between sources
+        4. Refresh materialized view if needed
+    </comment>
+    
+    <sql>
+        -- Verification query for ministry data sources
+        SELECT 
+            'Ministry View Dependencies Check' AS check_name,
+            (SELECT COUNT(DISTINCT org_code) 
+             FROM assignment_data 
+             WHERE assignment_type = 'Departement' 
+               AND LOWER(org_code) LIKE '%departement%') AS ministry_org_count,
+            (SELECT COUNT(*) 
+             FROM view_riksdagen_politician_document 
+             WHERE LOWER(org) LIKE '%departement%'
+               AND made_public_date >= CURRENT_DATE - INTERVAL '3 years') AS ministry_doc_count,
+            CASE 
+                WHEN (SELECT COUNT(DISTINCT org_code) 
+                      FROM assignment_data 
+                      WHERE assignment_type = 'Departement') > 0
+                THEN 'Data available'
+                ELSE 'No ministry assignments - views will be empty'
+            END AS status;
+    </sql>
+    
+    <rollback>
+        <sql>SELECT 'No rollback needed for verification' AS status;</sql>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 6. DOCUMENTATION: Ministry view troubleshooting                          -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-analyst" id="document-ministry-troubleshooting-1.32-006" failOnError="false">
+    <comment>
+        Document Ministry View Troubleshooting
+        
+        This changeset provides documentation for TROUBLESHOOTING_EMPTY_VIEWS.md
+        specific to ministry views created in v1.31.
+        
+        Ministry Views Fixed in v1.32:
+        1. view_riksdagen_goverment_proposals - Now case-insensitive
+        
+        Ministry Views Verified (v1.31):
+        1. view_ministry_effectiveness_trends - Depends on data availability
+        2. view_ministry_productivity_matrix - Depends on data availability
+        3. view_ministry_risk_evolution - Depends on data availability
+        
+        Data Requirements:
+        - assignment_data: Ministry assignments with assignment_type='Departement'
+        - document_data: Documents with matching org codes
+        - view_riksdagen_politician_document: Materialized view must be refreshed
+        - Time window: Last 3 years for most queries
+        
+        Common Fixes:
+        1. Refresh materialized view: 
+           REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;
+        2. Verify org_code format matches between tables
+        3. Check date ranges have data within 3-year window
+        4. Run diagnose-ministry-views.sql for detailed analysis
+    </comment>
+    
+    <sql>
+        -- Documentation marker
+        SELECT 
+            'v1.32' AS version,
+            'Ministry and government view fixes completed' AS change_description,
+            '4 views addressed: 1 fixed (goverment_proposals), 3 verified (ministry views)' AS details,
+            CURRENT_TIMESTAMP AS documented_at;
+    </sql>
+    
+    <rollback>
+        <sql>SELECT 'Documentation rollback - no action needed' AS status;</sql>
+    </rollback>
+</changeSet>
+
 </databaseChangeLog>

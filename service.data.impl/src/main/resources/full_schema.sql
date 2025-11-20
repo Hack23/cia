@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Mp8HMNLJz37LdPf1uiK5OUlmMqVOgnfM79Elv0n4uVH1cbMKSFaUTG2AFYtDFSd
+\restrict pGSpWQ2GyGWtIAncaPmaSyCdj1I5SqTmZwErqyVZdeBqyejT6rcgyF37MBfiTUT
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -6306,7 +6306,7 @@ CREATE VIEW public.view_ministry_effectiveness_trends AS
                 END) AS government_bills,
             count(DISTINCT
                 CASE
-                    WHEN ((doc.document_type)::text = ANY ((ARRAY['prop'::character varying, 'ds'::character varying])::text[])) THEN doc.id
+                    WHEN ((doc.document_type)::text = ANY (ARRAY[('prop'::character varying)::text, ('ds'::character varying)::text])) THEN doc.id
                     ELSE NULL::bigint
                 END) AS legislative_documents,
             count(DISTINCT doc.person_reference_id) AS active_members
@@ -6525,7 +6525,7 @@ CREATE VIEW public.view_ministry_risk_evolution AS
             count(DISTINCT doc.id) AS document_count,
             count(DISTINCT
                 CASE
-                    WHEN ((doc.document_type)::text = ANY ((ARRAY['prop'::character varying, 'ds'::character varying])::text[])) THEN doc.id
+                    WHEN ((doc.document_type)::text = ANY (ARRAY[('prop'::character varying)::text, ('ds'::character varying)::text])) THEN doc.id
                     ELSE NULL::bigint
                 END) AS legislative_count,
             count(DISTINCT doc.person_reference_id) AS active_members,
@@ -7436,7 +7436,14 @@ CREATE VIEW public.view_politician_risk_summary AS
                 END)::numeric) AS calculated_risk_score
            FROM (((public.person_data p
              LEFT JOIN public.rule_violation rv ON ((((rv.reference_id)::text = (p.id)::text) AND ((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = 'ACTIVE'::text))))
-             LEFT JOIN public.view_riksdagen_vote_data_ballot_politician_summary_annual vps_annual ON ((((vps_annual.embedded_id_intressent_id)::text = (p.id)::text) AND (vps_annual.embedded_id_vote_date = date_trunc('year'::text, (CURRENT_DATE - '1 year'::interval))))))
+             LEFT JOIN LATERAL ( SELECT view_riksdagen_vote_data_ballot_politician_summary_annual.avg_percentage_absent,
+                    view_riksdagen_vote_data_ballot_politician_summary_annual.won_percentage,
+                    view_riksdagen_vote_data_ballot_politician_summary_annual.rebel_percentage,
+                    view_riksdagen_vote_data_ballot_politician_summary_annual.total_votes
+                   FROM public.view_riksdagen_vote_data_ballot_politician_summary_annual
+                  WHERE (((view_riksdagen_vote_data_ballot_politician_summary_annual.embedded_id_intressent_id)::text = (p.id)::text) AND (view_riksdagen_vote_data_ballot_politician_summary_annual.embedded_id_vote_date >= date_trunc('year'::text, (CURRENT_DATE - '2 years'::interval))))
+                  ORDER BY view_riksdagen_vote_data_ballot_politician_summary_annual.embedded_id_vote_date DESC
+                 LIMIT 1) vps_annual ON (true))
              LEFT JOIN public.view_riksdagen_politician_document vpd ON ((((vpd.person_reference_id)::text = (p.id)::text) AND (vpd.made_public_date >= (CURRENT_DATE - '1 year'::interval)))))
           WHERE ((p.status)::text = 'active'::text)
           GROUP BY p.id, p.first_name, p.last_name, p.party, p.status, vps_annual.avg_percentage_absent, vps_annual.won_percentage, vps_annual.rebel_percentage, vps_annual.total_votes
@@ -8088,7 +8095,7 @@ CREATE VIEW public.view_riksdagen_goverment_proposals AS
     number_value,
     document_status_url_xml
    FROM public.document_data
-  WHERE ((document_type)::text = 'PROP'::text);
+  WHERE ((upper((document_type)::text) = 'PROP'::text) OR ((document_type)::text = 'Proposition'::text));
 
 
 --
@@ -12515,13 +12522,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Mp8HMNLJz37LdPf1uiK5OUlmMqVOgnfM79Elv0n4uVH1cbMKSFaUTG2AFYtDFSd
+\unrestrict pGSpWQ2GyGWtIAncaPmaSyCdj1I5SqTmZwErqyVZdeBqyejT6rcgyF37MBfiTUT
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict 2vwwm3BwKk7wR5nclUCFyHpemHYt9lL50n5PM5YzRTJ3hTXgHbbKeRhzlQNuHSg
+\restrict TY2P9nfEiTaTjCtwvFbfJTQcpq94h5cWIfiICgkVzfwxrm1ByuobEgH6S5X71EA
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -12914,6 +12921,11 @@ ministry-2025111701-effectiveness-trends	intelligence-operative	db-changelog-1.3
 ministry-2025111702-productivity-matrix	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:35:56.565277	370	EXECUTED	9:179ccaf2df5469f386c4f0586073cea7	createView viewName=view_ministry_productivity_matrix	Ministry Productivity Matrix View\n        \n        Intelligence Purpose:\n        - Benchmark ministry performance against peers\n        - Identify most and least productive ministries\n        - Normalize metrics for fair comparison\n        - Suppo...	\N	5.0.1	\N	\N	3422554304
 ministry-2025111703-risk-evolution	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:35:56.587222	371	EXECUTED	9:1a81b471095b1d7cb4d9c78e3393bb93	createView viewName=view_ministry_risk_evolution	Ministry Risk Evolution View\n        \n        Intelligence Purpose:\n        - Track historical changes in ministry risk scores\n        - Monitor risk severity transitions for ministries\n        - Identify risk patterns and triggers at ministry lev...	\N	5.0.1	\N	\N	3422554304
 ministry-2025111704-performance-indexes	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:36:28.762583	372	EXECUTED	9:5186a2215528e93478d78b12fc23941b	sql	Performance Indexes for Ministry Intelligence Queries\n        \n        These indexes optimize the most common temporal queries used in\n        ministry intelligence analysis and government effectiveness dashboards.	\N	5.0.1	\N	\N	3422586448
+fix-politician-risk-summary-1.32-001	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:30:02.863216	373	EXECUTED	9:a5bd4210d7968d1004790f7d482867e8	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary to return data\n        \n        Root Cause: The JOIN condition on view_riksdagen_vote_data_ballot_politician_summary_annual\n        was filtering on an exact date (date_trunc('year', CURRENT_DATE - INTERVAL '1 year...	\N	5.0.1	\N	\N	3674200675
+verify-other-views-1.32-002	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:30:02.870332	374	EXECUTED	9:72d8a71e1aae0b931ebd79e83a10cf1d	sql	Verification changeset for other politician intelligence views\n        \n        After investigation, the following views should work correctly as they\n        query vote_data directly without restrictive date filters on aggregated views:\n        \n...	\N	5.0.1	\N	\N	3674200675
+document-fixes-1.32-003	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:30:02.873579	375	EXECUTED	9:8a10e26023ff9e74bf785363f03efdd6	sql	Documentation for v1.32 fixes\n        \n        This changeset documents the fixes applied to politician intelligence views\n        for inclusion in DATABASE_VIEW_INTELLIGENCE_CATALOG.md and \n        TROUBLESHOOTING_EMPTY_VIEWS.md.\n        \n       ...	\N	5.0.1	\N	\N	3674200675
+fix-goverment-proposals-1.32-004	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:30:02.879547	376	EXECUTED	9:c881ba745964943eb175bc0ff9c55520	dropView viewName=view_riksdagen_goverment_proposals; createView viewName=view_riksdagen_goverment_proposals	Fix view_riksdagen_goverment_proposals to return data\n        \n        Root Cause: The view filters by document_type = 'PROP' (uppercase), but\n        the actual data in document_data may use different case variations:\n        - 'prop' (lowercase)...	\N	5.0.1	\N	\N	3674200675
+document-ministry-troubleshooting-1.32-006	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:30:02.92816	377	EXECUTED	9:11eae01f4f5f0d419aacbe440d4b60f3	sql	Document Ministry View Troubleshooting\n        \n        This changeset provides documentation for TROUBLESHOOTING_EMPTY_VIEWS.md\n        specific to ministry views created in v1.31.\n        \n        Ministry Views Fixed in v1.32:\n        1. view_r...	\N	5.0.1	\N	\N	3674200675
 \.
 
 
@@ -12930,5 +12942,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 2vwwm3BwKk7wR5nclUCFyHpemHYt9lL50n5PM5YzRTJ3hTXgHbbKeRhzlQNuHSg
+\unrestrict TY2P9nfEiTaTjCtwvFbfJTQcpq94h5cWIfiICgkVzfwxrm1ByuobEgH6S5X71EA
 

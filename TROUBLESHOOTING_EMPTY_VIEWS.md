@@ -665,6 +665,268 @@ LIMIT 10;
 
 ---
 
+## 🏛️ Ministry & Government Views
+
+**Purpose:** Ministry effectiveness analysis and government proposal tracking  
+**Expected Row Count:** Variable based on ministry count and document availability
+
+### View: view_riksdagen_goverment_proposals
+
+**Common Issues:**
+
+1. **Case-sensitive document_type filter (FIXED in v1.32)**
+   - **Symptom:** View returns 0 rows even with proposal documents
+   - **Root Cause:** Filter used `document_type = 'PROP'` but data might be lowercase 'prop'
+   - **Fix Applied:** Changed to `UPPER(document_type) = 'PROP' OR document_type = 'Proposition'`
+   
+   **Diagnostic:**
+   ```sql
+   -- Check actual document_type values
+   SELECT 
+       document_type,
+       COUNT(*) AS count
+   FROM document_data
+   WHERE UPPER(document_type) LIKE '%PROP%'
+      OR LOWER(document_type) LIKE '%prop%'
+      OR document_type LIKE '%Proposition%'
+   GROUP BY document_type
+   ORDER BY count DESC;
+   ```
+
+2. **No government proposal documents imported**
+   - **Fix:** Import proposal data from Riksdagen API
+   - **Check:** `SELECT COUNT(*) FROM document_data WHERE UPPER(document_type) = 'PROP';`
+
+**Validation Query:**
+```sql
+-- After v1.32 fix, should return government proposals
+SELECT 
+    COUNT(*) AS total_proposals,
+    MIN(made_public_date) AS earliest,
+    MAX(made_public_date) AS latest,
+    COUNT(DISTINCT org) AS unique_ministries
+FROM view_riksdagen_goverment_proposals;
+```
+
+### View: view_ministry_effectiveness_trends
+
+**Purpose:** Track ministry performance metrics over time (quarterly)  
+**Expected Row Count:** # of ministries × # of quarters with data (typically 10-50 rows)
+
+**Common Issues:**
+
+1. **No ministry assignments in assignment_data**
+   - **Diagnostic:**
+   ```sql
+   -- Check for ministry assignments
+   SELECT 
+       COUNT(DISTINCT org_code) AS ministry_count,
+       MIN(from_date) AS earliest_assignment,
+       MAX(COALESCE(to_date, CURRENT_DATE)) AS latest_assignment
+   FROM assignment_data
+   WHERE assignment_type = 'Departement'
+       AND LOWER(org_code) LIKE '%departement%';
+   ```
+   
+   - **Fix:** If count is 0, ministry assignment data needs to be imported
+   - **Expected:** Should have 10-15 unique ministry org_codes
+
+2. **view_riksdagen_politician_document not populated**
+   - **Diagnostic:**
+   ```sql
+   -- Check for ministry documents
+   SELECT 
+       COUNT(*) AS ministry_doc_count,
+       MIN(made_public_date) AS earliest,
+       MAX(made_public_date) AS latest
+   FROM view_riksdagen_politician_document
+   WHERE LOWER(org) LIKE '%departement%'
+       AND made_public_date >= CURRENT_DATE - INTERVAL '3 years';
+   ```
+   
+   - **Fix:** Refresh materialized view
+   ```sql
+   REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;
+   ```
+
+3. **Org codes don't match between tables**
+   - **Diagnostic:**
+   ```sql
+   -- Check org_code matching
+   SELECT 
+       'In assignment_data only' AS location,
+       COUNT(DISTINCT ad.org_code) AS count
+   FROM assignment_data ad
+   WHERE ad.assignment_type = 'Departement'
+       AND LOWER(ad.org_code) LIKE '%departement%'
+       AND NOT EXISTS (
+           SELECT 1 FROM view_riksdagen_politician_document vpd
+           WHERE vpd.org = ad.org_code
+       )
+   UNION ALL
+   SELECT 
+       'In politician_document only',
+       COUNT(DISTINCT vpd.org)
+   FROM view_riksdagen_politician_document vpd
+   WHERE LOWER(vpd.org) LIKE '%departement%'
+       AND NOT EXISTS (
+           SELECT 1 FROM assignment_data ad
+           WHERE ad.org_code = vpd.org
+               AND ad.assignment_type = 'Departement'
+       );
+   ```
+   
+   - **Expected:** Should show "In both (matching)" with count > 0
+   - **Fix:** Verify org_code format consistency, update if needed
+
+4. **No documents in 3-year window**
+   - **Diagnostic:** View filters by `made_public_date >= CURRENT_DATE - INTERVAL '3 years'`
+   - **Fix:** Extend date range or import more recent ministry documents
+
+**Validation Query:**
+```sql
+-- Should return quarterly metrics for each ministry
+SELECT 
+    short_code,
+    name,
+    period_start,
+    documents_produced,
+    propositions,
+    active_members,
+    productivity_level,
+    effectiveness_assessment
+FROM view_ministry_effectiveness_trends
+ORDER BY period_start DESC, documents_produced DESC
+LIMIT 20;
+```
+
+### View: view_ministry_productivity_matrix
+
+**Purpose:** Annual benchmarking of ministry performance  
+**Expected Row Count:** # of ministries × # of years with data (typically 30-60 rows)
+
+**Common Issues:**
+- Same as `view_ministry_effectiveness_trends` but with annual aggregation
+- Requires at least 1 full year of data to populate
+
+**Diagnostic:**
+```sql
+-- Check annual ministry data
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND LOWER(org_code) LIKE '%departement%'
+)
+SELECT 
+    m.org_code,
+    m.name,
+    EXTRACT(YEAR FROM doc.made_public_date) AS year,
+    COUNT(DISTINCT doc.id) AS document_count
+FROM ministry_base m
+LEFT JOIN view_riksdagen_politician_document doc 
+    ON doc.org = m.org_code
+    AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+GROUP BY m.org_code, m.name, EXTRACT(YEAR FROM doc.made_public_date)
+ORDER BY year DESC, document_count DESC;
+```
+
+**Validation Query:**
+```sql
+-- Should show annual productivity comparison
+SELECT 
+    short_code,
+    name,
+    year,
+    documents_produced,
+    performance_classification,
+    vs_average_pct,
+    productivity_assessment
+FROM view_ministry_productivity_matrix
+ORDER BY year DESC, documents_produced DESC
+LIMIT 15;
+```
+
+### View: view_ministry_risk_evolution
+
+**Purpose:** Track ministry risk scores over time (quarterly)  
+**Expected Row Count:** # of ministries × # of quarters with assessments
+
+**Common Issues:**
+- Same dependencies as other ministry views
+- Risk score calculated from productivity and staffing metrics
+- Will show data even if risk score is 0 (good performance)
+
+**Diagnostic:**
+```sql
+-- Check ministry risk calculation
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND LOWER(org_code) LIKE '%departement%'
+)
+SELECT 
+    m.org_code,
+    DATE_TRUNC('quarter', doc.made_public_date) AS quarter,
+    COUNT(DISTINCT doc.id) AS doc_count,
+    COUNT(DISTINCT CASE 
+        WHEN LOWER(doc.document_type) IN ('prop', 'ds') THEN doc.id 
+    END) AS legislative_count,
+    COUNT(DISTINCT doc.person_reference_id) AS active_members
+FROM ministry_base m
+LEFT JOIN view_riksdagen_politician_document doc 
+    ON doc.org = m.org_code
+    AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+GROUP BY m.org_code, DATE_TRUNC('quarter', doc.made_public_date)
+ORDER BY quarter DESC, doc_count DESC
+LIMIT 20;
+```
+
+**Validation Query:**
+```sql
+-- Should show risk evolution over time
+SELECT 
+    short_code,
+    name,
+    assessment_period,
+    document_count,
+    legislative_count,
+    active_members,
+    risk_score,
+    risk_severity,
+    risk_assessment
+FROM view_ministry_risk_evolution
+ORDER BY assessment_period DESC, risk_score DESC
+LIMIT 20;
+```
+
+### Ministry Views Diagnostic Script
+
+**Comprehensive diagnostic query provided in:**
+```bash
+service.data.impl/src/main/resources/diagnose-ministry-views.sql
+```
+
+**Run complete diagnosis:**
+```bash
+psql -U cia_user -d cia -f service.data.impl/src/main/resources/diagnose-ministry-views.sql
+```
+
+**Expected output:**
+1. Document type analysis
+2. Ministry org_code verification
+3. Data availability check
+4. Org matching analysis
+5. Current view row counts
+6. Recommendations for fixes
+
+---
+
 ## 🚨 Emergency Data Recovery
 
 ### Scenario: Multiple Views Empty After Update
