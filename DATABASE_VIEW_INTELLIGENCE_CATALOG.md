@@ -1952,6 +1952,338 @@ Intelligence views (v1.29-v1.30) represent advanced analytical capabilities comb
 | **Coalition Analysis** | coalition_alignment_matrix | Government formation forecasting |
 | **Network Intelligence** | politician_influence_metrics | Power structure mapping |
 | **Dashboard Aggregation** | riksdagen_intelligence_dashboard | Unified intelligence products |
+| **Crisis Analysis** | crisis_resilience_indicators | Crisis period performance assessment |
+| **Anomaly Detection** | voting_anomaly_detection | Behavioral outlier identification |
+
+---
+
+### view_riksdagen_intelligence_dashboard ⭐⭐⭐⭐⭐
+
+**Category:** Intelligence Views (v1.29)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Unified Intelligence Dashboard  
+**Changelog:** v1.29 Intelligence Dashboard Integration
+
+#### Purpose
+
+Unified intelligence dashboard providing real-time aggregated metrics across all intelligence domains. Synthesizes data from party momentum, coalition alignment, voting anomalies, politician influence, and crisis resilience to provide executive-level intelligence assessment. Generates automated stability and coalition assessments based on multi-domain indicators.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `parties_gaining_momentum` | BIGINT | Count of parties with positive/strong positive momentum | 3 |
+| `parties_losing_momentum` | BIGINT | Count of parties with negative/strong negative momentum | 2 |
+| `volatile_parties` | BIGINT | Count of parties with volatile/highly volatile stability | 1 |
+| `high_probability_coalitions` | BIGINT | Count of very high likelihood coalitions | 4 |
+| `cross_bloc_alliances` | BIGINT | Count of high/very high cross-bloc alliances | 1 |
+| `high_defection_risks` | BIGINT | Count of politicians with high defection risk | 7 |
+| `low_discipline_politicians` | BIGINT | Count of low discipline politicians | 12 |
+| `power_brokers` | BIGINT | Count of strong/moderate brokers | 8 |
+| `highly_connected_politicians` | BIGINT | Count of highly connected politicians | 15 |
+| `crisis_ready_politicians` | BIGINT | Count of highly resilient politicians | 45 |
+| `low_resilience_politicians` | BIGINT | Count of low resilience politicians | 18 |
+| `stability_assessment` | TEXT | Overall political stability rating | 'STABLE_POLITICAL_ENVIRONMENT' |
+| `coalition_assessment` | TEXT | Coalition landscape assessment | 'STABLE_COALITION_PATTERNS' |
+| `latest_vote_data` | DATE | Most recent vote date | '2024-11-15' |
+| `ballots_last_30_days` | BIGINT | Number of ballots in last 30 days | 42 |
+| `intelligence_report_timestamp` | TIMESTAMP | Report generation time | '2024-11-20 14:15:23' |
+
+#### Assessment Classifications
+
+**Stability Assessment Logic:**
+- `HIGH_POLITICAL_INSTABILITY_RISK`: ≥5 high defection risks detected
+- `MODERATE_POLITICAL_INSTABILITY_RISK`: ≥3 volatile parties detected
+- `STABLE_POLITICAL_ENVIRONMENT`: Otherwise
+
+**Coalition Assessment Logic:**
+- `POTENTIAL_REALIGNMENT_DETECTED`: ≥2 cross-bloc alliances detected
+- `STABLE_COALITION_PATTERNS`: ≥5 high probability coalitions exist
+- `UNCERTAIN_COALITION_LANDSCAPE`: Otherwise
+
+#### Data Sources
+
+This view aggregates data from 6 intelligence views:
+1. **view_riksdagen_party_momentum_analysis**: Party momentum trends
+2. **view_riksdagen_coalition_alignment_matrix**: Coalition probabilities
+3. **view_riksdagen_voting_anomaly_detection**: Defection and discipline
+4. **view_riksdagen_politician_influence_metrics**: Network analysis
+5. **view_riksdagen_crisis_resilience_indicators**: Crisis preparedness
+6. **vote_data** table: Recent voting activity
+
+#### Example Queries
+
+**1. Current Intelligence Dashboard Status**
+
+```sql
+SELECT 
+    stability_assessment,
+    coalition_assessment,
+    parties_gaining_momentum,
+    parties_losing_momentum,
+    high_defection_risks,
+    power_brokers,
+    crisis_ready_politicians,
+    ballots_last_30_days,
+    intelligence_report_timestamp
+FROM view_riksdagen_intelligence_dashboard;
+```
+
+**Output:**
+```
+stability_assessment: STABLE_POLITICAL_ENVIRONMENT
+coalition_assessment: STABLE_COALITION_PATTERNS
+parties_gaining_momentum: 3
+parties_losing_momentum: 2
+high_defection_risks: 7
+power_brokers: 8
+crisis_ready_politicians: 45
+ballots_last_30_days: 42
+```
+
+**2. Monitor for Political Instability Triggers**
+
+```sql
+SELECT 
+    CASE 
+        WHEN high_defection_risks >= 5 THEN 'CRITICAL ALERT: High defection risk'
+        WHEN volatile_parties >= 3 THEN 'WARNING: Elevated political volatility'
+        WHEN cross_bloc_alliances >= 2 THEN 'NOTICE: Potential coalition realignment'
+        ELSE 'Normal operations'
+    END AS alert_status,
+    high_defection_risks,
+    volatile_parties,
+    cross_bloc_alliances,
+    low_discipline_politicians
+FROM view_riksdagen_intelligence_dashboard;
+```
+
+**3. Dashboard Health Check**
+
+```sql
+SELECT 
+    ballots_last_30_days,
+    latest_vote_data,
+    CURRENT_DATE - latest_vote_data AS days_since_last_vote,
+    CASE 
+        WHEN CURRENT_DATE - latest_vote_data > 60 THEN 'Data may be stale'
+        WHEN ballots_last_30_days < 20 THEN 'Low voting activity'
+        ELSE 'Data current'
+    END AS data_freshness
+FROM view_riksdagen_intelligence_dashboard;
+```
+
+#### Performance Characteristics
+
+- **Query Time:** 500-1500ms (aggregates 6 intelligence views)
+- **Refresh Frequency:** Real-time (recalculates on each query)
+- **Data Volume:** Single row (aggregate metrics)
+- **Optimization Consideration:** Consider materializing for sub-100ms dashboard response
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Strategic Assessment**: Overall political landscape monitoring
+- **Early Warning**: Instability and realignment detection
+- **Executive Intelligence**: High-level situational awareness
+- **Multi-Domain Integration**: Synthesizes momentum, coalition, behavioral, network, and crisis data
+
+#### Integration with Product Features
+
+From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
+- **Intelligence Dashboard** (Product Line 3): Primary data source for executive dashboard
+- **Early Warning System**: Feeds alerts and notifications
+- **API Intelligence Endpoints**: Powers /api/intelligence/dashboard
+
+#### Use Cases
+
+1. **Executive Briefing**: Generate daily intelligence summary for analysts
+2. **Early Warning System**: Monitor for political instability triggers
+3. **Coalition Watch**: Track coalition formation dynamics
+4. **Crisis Detection**: Identify emerging political crises
+5. **API Integration**: Provide unified intelligence endpoint
+
+---
+
+### view_riksdagen_crisis_resilience_indicators ⭐⭐⭐⭐⭐
+
+**Category:** Intelligence Views (v1.29)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Crisis Performance Assessment  
+**Changelog:** v1.29 Crisis Resilience Analysis
+
+#### Purpose
+
+Sophisticated crisis resilience analysis comparing politician performance during high-activity "crisis" periods versus normal periods. Automatically identifies crisis periods (ballot volume >150% of average), then calculates individual resilience metrics including attendance, party discipline, and performance consistency. Provides resilience classification from HIGHLY_RESILIENT to LOW_RESILIENCE.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Politician identifier | '0532213467925' |
+| `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
+| `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
+| `party` | VARCHAR(50) | Party affiliation | 'S' |
+| `status` | VARCHAR(100) | Current status | 'Tjänstgörande riksdagsledamot' |
+| `crisis_period_votes` | BIGINT | Votes during crisis periods | 145 |
+| `crisis_definitive_votes` | BIGINT | Definitive votes (Ja/Nej) in crisis | 132 |
+| `crisis_absences` | BIGINT | Absences during crisis | 13 |
+| `crisis_absence_rate` | DOUBLE PRECISION | Crisis absence rate (0.0-1.0) | 0.090 (9%) |
+| `normal_votes` | BIGINT | Votes during normal periods | 320 |
+| `normal_absences` | BIGINT | Absences during normal periods | 28 |
+| `normal_absence_rate` | DOUBLE PRECISION | Normal absence rate (0.0-1.0) | 0.088 (8.8%) |
+| `absence_delta` | DOUBLE PRECISION | Crisis - Normal absence rate | 0.002 (0.2%) |
+| `aligned_crisis_votes` | BIGINT | Votes aligned with party in crisis | 125 |
+| `crisis_party_alignment_rate` | DOUBLE PRECISION | Party discipline in crisis (0.0-1.0) | 0.947 (94.7%) |
+| `resilience_score` | NUMERIC(10,2) | Overall resilience score (0-100) | 87.5 |
+| `resilience_classification` | TEXT | Resilience level | 'HIGHLY_RESILIENT' |
+| `attendance_resilience` | TEXT | Attendance-specific resilience | 'RESILIENT' |
+| `discipline_resilience` | TEXT | Discipline-specific resilience | 'HIGHLY_RESILIENT' |
+
+#### Crisis Period Detection
+
+**Algorithm:**
+1. Calculate average monthly ballot count (last 2 years)
+2. Identify months with ballot count >150% of average as "crisis periods"
+3. Remaining months classified as "normal periods"
+4. Compare individual performance across both period types
+
+**Example Crisis Triggers:**
+- Budget crises requiring extensive voting
+- Government formation periods
+- Major legislative pushes
+- Political scandals requiring multiple votes
+- Emergency legislation periods
+
+#### Resilience Score Calculation
+
+**Formula:**
+```
+resilience_score = 100 - (
+    (crisis_absence_rate × 40) + 
+    ((1 - crisis_party_alignment_rate) × 40) +
+    (max(0, absence_delta) × 20)
+)
+```
+
+**Components:**
+- **40% weight**: Crisis absence rate (lower is better)
+- **40% weight**: Crisis party discipline (higher is better)
+- **20% weight**: Absence rate increase in crisis (lower is better)
+
+**Resilience Classification Thresholds:**
+
+| Score Range | Classification | Description |
+|-------------|----------------|-------------|
+| **90-100** | HIGHLY_RESILIENT | Excellent crisis performance |
+| **75-89** | RESILIENT | Good crisis performance |
+| **60-74** | MODERATE_RESILIENCE | Adequate crisis performance |
+| **45-59** | VULNERABLE | Below average crisis performance |
+| **0-44** | LOW_RESILIENCE | Poor crisis performance |
+
+#### Example Queries
+
+**1. Identify Most Resilient Politicians**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    resilience_score,
+    resilience_classification,
+    crisis_absence_rate,
+    crisis_party_alignment_rate,
+    crisis_period_votes
+FROM view_riksdagen_crisis_resilience_indicators
+WHERE status = 'Tjänstgörande riksdagsledamot'
+ORDER BY resilience_score DESC
+LIMIT 20;
+```
+
+**2. Identify Vulnerable Politicians in Crisis**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    resilience_classification,
+    crisis_absence_rate,
+    normal_absence_rate,
+    absence_delta,
+    crisis_party_alignment_rate
+FROM view_riksdagen_crisis_resilience_indicators
+WHERE resilience_classification IN ('VULNERABLE', 'LOW_RESILIENCE')
+    AND status = 'Tjänstgörande riksdagsledamot'
+ORDER BY resilience_score ASC;
+```
+
+**3. Party-Level Crisis Resilience Analysis**
+
+```sql
+SELECT 
+    party,
+    COUNT(*) AS member_count,
+    ROUND(AVG(resilience_score), 1) AS avg_resilience,
+    COUNT(*) FILTER (WHERE resilience_classification = 'HIGHLY_RESILIENT') AS highly_resilient,
+    COUNT(*) FILTER (WHERE resilience_classification IN ('VULNERABLE', 'LOW_RESILIENCE')) AS vulnerable,
+    ROUND(AVG(crisis_absence_rate) * 100, 1) AS avg_crisis_absence_pct,
+    ROUND(AVG(crisis_party_alignment_rate) * 100, 1) AS avg_crisis_discipline_pct
+FROM view_riksdagen_crisis_resilience_indicators
+WHERE status = 'Tjänstgörande riksdagsledamot'
+GROUP BY party
+ORDER BY avg_resilience DESC;
+```
+
+**4. Crisis Performance Degradation Detection**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    normal_absence_rate,
+    crisis_absence_rate,
+    absence_delta,
+    ROUND(absence_delta * 100, 1) AS absence_increase_pct
+FROM view_riksdagen_crisis_resilience_indicators
+WHERE absence_delta > 0.05  -- Absence rate increased by >5% in crisis
+    AND status = 'Tjänstgörande riksdagsledamot'
+ORDER BY absence_delta DESC;
+```
+
+#### Performance Characteristics
+
+- **Query Time:** 800-2000ms (complex window functions and multi-period aggregation)
+- **Refresh Frequency:** Real-time (recalculates on each query)
+- **Data Volume:** ~350 rows (all politicians with voting history)
+- **Optimization:** Consider materializing for faster dashboard queries
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Crisis Analysis**: Performance under pressure assessment
+- **Predictive Intelligence**: Future crisis performance forecasting
+- **Comparative Analysis**: Party resilience benchmarking
+- **Risk Assessment**: Vulnerability identification
+
+#### Risk Rules Supported
+
+From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
+- **PoliticianLazy (P-01)**: Crisis absence patterns
+- **PoliticianIneffectiveVoting (P-02)**: Crisis effectiveness degradation
+- **PartyRebelVoting (P-04)**: Crisis discipline breakdown
+
+#### Use Cases
+
+1. **Government Formation**: Assess coalition partner reliability under pressure
+2. **Ministry Appointments**: Identify crisis-capable ministers
+3. **Early Warning**: Detect politicians who crack under pressure
+4. **Party Strength**: Evaluate party discipline during crises
+5. **Historical Analysis**: Study performance during past crises (budget, coalition, scandal)
+
+---
 
 ### view_risk_score_evolution ⭐⭐⭐⭐⭐
 
