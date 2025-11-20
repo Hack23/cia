@@ -16,36 +16,49 @@
 
 1. [Executive Summary](#executive-summary)
 2. [View Categories Overview](#view-categories-overview)
-3. [Politician Views](#politician-views)
-4. [Party Views](#party-views)
-5. [Committee Views](#committee-views)
-6. [Ministry/Government Views](#ministrygovernment-views)
-7. [Vote Data Views](#vote-data-views)
-8. [Document Views](#document-views)
-9. [Intelligence Views](#intelligence-views)
-10. [Application & Audit Views](#application--audit-views)
-11. [Common Usage Patterns](#common-usage-patterns)
-12. [View Dependency Diagram](#view-dependency-diagram)
-13. [Performance Optimization Guide](#performance-optimization-guide)
-14. [Cross-Reference to Intelligence Frameworks](#cross-reference-to-intelligence-frameworks)
-15. [Appendices](#appendices)
+3. [Complete View Inventory](#complete-view-inventory)
+4. [Politician Views](#politician-views)
+5. [Party Views](#party-views)
+6. [Committee Views](#committee-views)
+7. [Ministry/Government Views](#ministrygovernment-views)
+8. [Vote Data Views](#vote-data-views)
+9. [Document Views](#document-views)
+10. [Intelligence Views](#intelligence-views)
+11. [Application & Audit Views](#application--audit-views)
+12. [Common Usage Patterns](#common-usage-patterns)
+13. [View Dependency Diagram](#view-dependency-diagram)
+14. [Performance Optimization Guide](#performance-optimization-guide)
+15. [Cross-Reference to Intelligence Frameworks](#cross-reference-to-intelligence-frameworks)
+16. [Appendices](#appendices)
 
 ---
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **80+ database views** across 8 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring. This catalog provides complete documentation of all views, including their purpose, structure, usage examples, performance characteristics, and integration with intelligence frameworks.
+The Citizen Intelligence Agency (CIA) platform employs **80 database views** across 8 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+
+⚠️ **Documentation Status**: This catalog is actively being expanded. Currently **9 views** are fully documented with detailed examples and usage patterns. See [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for the complete validation report and prioritized documentation roadmap for the remaining **71 views**.
+
+**Last Validated**: 2025-11-20  
+**Validation Method**: Automated comparison against full_schema.sql  
+**Schema Source**: service.data.impl/src/main/resources/full_schema.sql
 
 ### Key Statistics
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 80+ | All database views across platform |
-| **Materialized Views** | 25+ | Performance-optimized views with physical storage |
-| **Intelligence Views** | 15+ | Advanced analytical views (v1.29-v1.30) |
-| **Vote Summary Views** | 20+ | Daily, weekly, monthly, annual ballot summaries |
-| **Document Views** | 10+ | Politician and party document productivity |
-| **Changelog Versions** | v1.0-v1.30 | Database schema evolution tracking |
+| **Total Views** | 80 | All database views across platform (validated 2025-11-20) |
+| **Views Documented (Detailed)** | 9 | Fully documented with examples, performance, intelligence value |
+| **Views Documented (Basic)** | 71 | Listed in inventory below with basic purpose |
+| **Documentation Coverage** | 11.25% | Detailed documentation coverage |
+| **Materialized Views** | 28 | Performance-optimized views with physical storage (see refresh-all-views.sql) |
+| **Intelligence Views** | 6 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard) |
+| **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
+| **Document Views** | 7 | Politician and party document productivity |
+| **Committee Views** | 12 | Committee productivity, decisions, membership |
+| **Government/Ministry Views** | 7 | Government and ministry performance tracking |
+| **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
+| **Changelog Versions** | v1.0-v1.31 | Database schema evolution tracking |
 
 ### Intelligence Value Classification
 
@@ -70,6 +83,7 @@ Views are classified by intelligence value for analytical operations:
 
 | Document | Link | Description |
 |----------|------|-------------|
+| **Validation Report** | [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) | View documentation validation and remediation plan (2025-11-20) |
 | **Intelligence Frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) | Analysis methodologies and OSINT techniques |
 | **Risk Rules** | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) | 45 behavioral detection rules |
 | **Changelog Analysis** | [LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) | Schema evolution analysis |
@@ -137,6 +151,172 @@ graph TB
 | **v1.27-v1.28** | 2024 | Politician experience scoring | Expertise tracking |
 | **v1.29** | 2024-11 | Intelligence dashboard, coalition alignment, anomaly detection | Advanced intelligence |
 | **v1.30** | 2024-11 | Behavioral trends, risk evolution, effectiveness trends | Predictive analytics |
+
+---
+
+## Complete View Inventory
+
+This section provides a complete alphabetical inventory of all 80 database views with brief descriptions. Views marked with 📖 have detailed documentation below; others provide basic descriptions pending full documentation (see [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for the documentation roadmap).
+
+**Legend:**
+- 📖 = Fully documented with examples and performance characteristics
+- ⭐⭐⭐⭐⭐ = VERY HIGH intelligence value
+- ⭐⭐⭐⭐ = HIGH intelligence value
+- ⭐⭐⭐ = MEDIUM intelligence value
+- ⭐⭐ = LOW intelligence value (administrative/audit)
+- 🔄 = Materialized view (requires refresh)
+
+### Application & Audit Views (14 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_application_action_event_page_annual_summary | Standard | ⭐⭐ | Annual summary of user interactions by page |
+| view_application_action_event_page_daily_summary | Standard | ⭐⭐ | Daily summary of user interactions by page |
+| view_application_action_event_page_element_annual_summary | Standard | ⭐⭐ | Annual summary of UI element interactions |
+| view_application_action_event_page_element_daily_summary | Standard | ⭐⭐ | Daily summary of UI element interactions |
+| view_application_action_event_page_element_hourly_summary | Standard | ⭐⭐ | Hourly summary of UI element interactions |
+| view_application_action_event_page_element_weekly_summary | Standard | ⭐⭐ | Weekly summary of UI element interactions |
+| view_application_action_event_page_hourly_summary | Standard | ⭐⭐ | Hourly summary of user interactions by page |
+| view_application_action_event_page_modes_annual_summary | Standard | ⭐⭐ | Annual summary of page access modes |
+| view_application_action_event_page_modes_daily_summary | Standard | ⭐⭐ | Daily summary of page access modes |
+| view_application_action_event_page_modes_hourly_summary | Standard | ⭐⭐ | Hourly summary of page access modes |
+| view_application_action_event_page_modes_weekly_summary | Standard | ⭐⭐ | Weekly summary of page access modes |
+| view_application_action_event_page_weekly_summary | Standard | ⭐⭐ | Weekly summary of user interactions by page |
+| view_audit_author_summary | Standard | ⭐⭐ | Summary of data changes by author |
+| view_audit_data_summary | Standard | ⭐⭐ | Summary of audit trail data changes |
+
+### Committee Views (12 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_committee_productivity | Standard | ⭐⭐⭐⭐ | Committee productivity metrics and efficiency indicators |
+| view_committee_productivity_matrix | Standard | ⭐⭐⭐⭐ | Matrix comparison of committee productivity |
+| view_riksdagen_committee | Standard | ⭐⭐⭐⭐ | Committee structure, membership, and activity metrics |
+| view_riksdagen_committee_ballot_decision_party_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Party-level committee ballot decisions |
+| view_riksdagen_committee_ballot_decision_politician_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Individual politician committee ballot decisions |
+| view_riksdagen_committee_ballot_decision_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated committee ballot decision summary |
+| view_riksdagen_committee_decision_type_org_summary | 🔄 Materialized | ⭐⭐⭐ | Committee decisions by type and organization |
+| view_riksdagen_committee_decision_type_summary | 🔄 Materialized | ⭐⭐⭐ | Committee decisions aggregated by type |
+| view_riksdagen_committee_decisions | 🔄 Materialized | ⭐⭐⭐⭐ | Detailed committee decision tracking |
+| view_riksdagen_committee_parliament_member_proposal | Standard | ⭐⭐⭐ | Parliamentary member proposals to committees |
+| view_riksdagen_committee_role_member | Standard | ⭐⭐⭐ | Committee role assignments and members |
+| view_riksdagen_committee_roles | Standard | ⭐⭐⭐ | Committee role definitions and structure |
+
+### Document Views (7 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_party_document_summary | Standard | ⭐⭐⭐⭐ | Aggregated party document statistics |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |
+
+### Government/Ministry Views (7 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_ministry_effectiveness_trends | Standard | ⭐⭐⭐⭐⭐ | Ministry performance trends over time |
+| view_ministry_productivity_matrix | Standard | ⭐⭐⭐⭐⭐ | Comparative ministry productivity analysis |
+| view_ministry_risk_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of ministry risk indicators |
+| view_riksdagen_goverment | Standard | ⭐⭐⭐⭐ | Government structure and composition |
+| view_riksdagen_goverment_proposals | Standard | ⭐⭐⭐⭐ | Government legislative proposals |
+| view_riksdagen_goverment_role_member | Standard | ⭐⭐⭐⭐ | Government role assignments |
+| view_riksdagen_goverment_roles | Standard | ⭐⭐⭐⭐ | Government role definitions |
+
+### Intelligence & Risk Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| 📖 view_party_effectiveness_trends | Standard | ⭐⭐⭐⭐⭐ | Party effectiveness metrics over time |
+| 📖 view_politician_behavioral_trends | Standard | ⭐⭐⭐⭐⭐ | Politician behavioral pattern analysis |
+| view_politician_risk_summary | Standard | ⭐⭐⭐⭐⭐ | Aggregated politician risk indicators |
+| view_riksdagen_crisis_resilience_indicators | Standard | ⭐⭐⭐⭐⭐ | Crisis period performance and resilience metrics |
+| view_riksdagen_intelligence_dashboard | Standard | ⭐⭐⭐⭐⭐ | Unified intelligence dashboard with key metrics |
+| 📖 view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Voting anomaly and defection risk detection |
+| 📖 view_risk_score_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of risk scores over time |
+
+### Party Views (12 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| 📖 view_riksdagen_coalition_alignment_matrix | Standard | ⭐⭐⭐⭐⭐ | Party coalition alignment and probability matrix |
+| 📖 view_riksdagen_party | Standard | ⭐⭐⭐⭐⭐ | Core party information and metrics |
+| view_party_performance_metrics | Standard | ⭐⭐⭐⭐⭐ | Comprehensive party performance indicators |
+| view_riksdagen_party_ballot_support_annual_summary | Standard | ⭐⭐⭐⭐ | Annual party ballot support patterns |
+| view_riksdagen_party_coalation_against_annual_summary | Standard | ⭐⭐⭐⭐ | Annual party opposition coalition patterns |
+| view_riksdagen_party_member | Standard | ⭐⭐⭐⭐ | Party membership roster |
+| view_riksdagen_party_momentum_analysis | Standard | ⭐⭐⭐⭐⭐ | Party momentum and trend analysis |
+| view_riksdagen_party_role_member | Standard | ⭐⭐⭐ | Party role assignments |
+| view_riksdagen_party_signatures_document_summary | Standard | ⭐⭐⭐ | Party document signature patterns |
+| view_riksdagen_party_summary | Standard | ⭐⭐⭐⭐ | Aggregated party statistics |
+| view_riksdagen_person_signed_document_summary | Standard | ⭐⭐⭐ | Individual document signature summary |
+
+### Politician Views (8 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| 📖 view_riksdagen_politician | Standard | ⭐⭐⭐⭐⭐ | Core politician information and demographics |
+| 📖 view_riksdagen_politician_document | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Politician document authorship and productivity |
+| 📖 view_riksdagen_politician_experience_summary | Standard | ⭐⭐⭐⭐⭐ | Politician experience scoring and classification |
+| view_riksdagen_politician_ballot_summary | Standard | ⭐⭐⭐⭐⭐ | Politician voting record summary |
+| view_riksdagen_politician_influence_metrics | Standard | ⭐⭐⭐⭐⭐ | Politician influence and network analysis |
+
+### Vote Data Views (20 views)
+
+**Ballot Summary Views (5 views)**
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_riksdagen_vote_data_ballot_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Overall ballot outcome summary |
+| view_riksdagen_vote_data_ballot_summary_annual | 🔄 Materialized | ⭐⭐⭐⭐ | Annual ballot summary aggregation |
+| view_riksdagen_vote_data_ballot_summary_daily | 🔄 Materialized | ⭐⭐⭐⭐ | Daily ballot summary aggregation |
+| view_riksdagen_vote_data_ballot_summary_monthly | 🔄 Materialized | ⭐⭐⭐⭐ | Monthly ballot summary aggregation |
+| view_riksdagen_vote_data_ballot_summary_weekly | 🔄 Materialized | ⭐⭐⭐⭐ | Weekly ballot summary aggregation |
+
+**Party Voting Views (5 views)**
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_riksdagen_vote_data_ballot_party_summary | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Party-level voting summary |
+| view_riksdagen_vote_data_ballot_party_summary_annual | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Annual party voting patterns |
+| view_riksdagen_vote_data_ballot_party_summary_daily | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Daily party voting patterns |
+| view_riksdagen_vote_data_ballot_party_summary_monthly | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Monthly party voting patterns |
+| view_riksdagen_vote_data_ballot_party_summary_weekly | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Weekly party voting patterns |
+
+**Politician Voting Views (5 views)**
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_riksdagen_vote_data_ballot_politician_summary | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Individual politician voting summary |
+| view_riksdagen_vote_data_ballot_politician_summary_annual | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Annual politician voting patterns |
+| 📖 view_riksdagen_vote_data_ballot_politician_summary_daily | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Daily politician voting patterns |
+| view_riksdagen_vote_data_ballot_politician_summary_monthly | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Monthly politician voting patterns |
+| view_riksdagen_vote_data_ballot_politician_summary_weekly | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Weekly politician voting patterns |
+
+**Other Voting & Proposal Views (5 views)**
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_riksdagen_member_proposals | Standard | ⭐⭐⭐ | Parliamentary member legislative proposals |
+| view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Anomalous voting behavior detection |
+
+### WorldBank Data (1 view)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_worldbank_indicator_data_country_summary | 🔄 Materialized | ⭐⭐⭐ | Economic indicators for country analysis |
+
+**Total Views:** 80  
+**Fully Documented:** 9  
+**Materialized Views:** 28  
+**Views by Intelligence Value:**
+- ⭐⭐⭐⭐⭐ VERY HIGH: 30 views
+- ⭐⭐⭐⭐ HIGH: 26 views
+- ⭐⭐⭐ MEDIUM: 10 views
+- ⭐⭐ LOW: 14 views
 
 ---
 
@@ -2982,12 +3162,13 @@ Views supporting features from [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_D
 
 ## Document Metadata
 
-**Version:** 1.0  
-**Date:** 2025-11-17  
+**Version:** 1.1  
+**Date:** 2025-11-20  
 **Classification:** Public Documentation  
-**Status:** Active  
-**Last Updated:** 2025-11-17  
-**Next Review:** 2025-12-17 (monthly review recommended)
+**Status:** Active - Under Expansion  
+**Last Updated:** 2025-11-20  
+**Last Validated Against Schema:** 2025-11-20  
+**Next Review:** 2025-12-20 (monthly review recommended)
 
 **Authors:** Citizen Intelligence Agency Intelligence Operations Team  
 **Reviewers:** Stack Specialist, Intelligence Operative  
@@ -2997,6 +3178,47 @@ Views supporting features from [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_D
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 1.0 | 2025-11-17 | Initial comprehensive catalog creation | Intelligence Operative |
+| 1.1 | 2025-11-20 | **Validation & Corrections** - Validated against full_schema.sql; Added Complete View Inventory section listing all 80 views; Updated Executive Summary with accurate statistics (9 detailed, 71 basic coverage); Added validation metadata and link to DATABASE_VIEW_VALIDATION_REPORT.md; Identified 71 undocumented views requiring detailed documentation | Intelligence Operative |
+
+## Validation & Corrections Log
+
+### 2025-11-20: Schema Validation
+
+**Validation Performed:** Comprehensive comparison of documented views against actual database schema in `service.data.impl/src/main/resources/full_schema.sql`
+
+**Key Findings:**
+- ✓ Total views in database: 80 (confirmed)
+- ✓ Views documented but not in DB: 0 (no orphaned documentation)
+- ❌ Views in DB but not fully documented: 71 (critical documentation gap)
+- ✓ Documentation coverage: 11.25% (9 of 80 views fully documented)
+
+**Corrections Applied:**
+1. **Executive Summary Updated**: Changed "80+ database views" claim to accurate "80 database views" with transparent coverage statistics
+2. **Complete View Inventory Added**: New comprehensive section listing all 80 views with basic descriptions, types (standard/materialized), and intelligence value ratings
+3. **Validation Metadata Added**: Added "Last Validated Against Schema" date to document metadata
+4. **Validation Report Created**: Created DATABASE_VIEW_VALIDATION_REPORT.md with detailed findings and prioritized remediation plan
+5. **Related Documentation Updated**: Added link to validation report in executive summary
+
+**Views Confirmed Present and Documented (9):**
+- view_party_effectiveness_trends ✓
+- view_politician_behavioral_trends ✓
+- view_riksdagen_coalition_alignment_matrix ✓
+- view_riksdagen_party ✓
+- view_riksdagen_politician ✓
+- view_riksdagen_politician_document ✓
+- view_riksdagen_politician_experience_summary ✓
+- view_riksdagen_vote_data_ballot_politician_summary_daily ✓
+- view_risk_score_evolution ✓
+
+**Views Identified for Documentation (71):**
+- Priority 1 (Critical Intelligence): 13 views (crisis resilience, voting anomaly, intelligence dashboard, risk summary, influence metrics, ministry views, party momentum)
+- Priority 2 (Vote & Party Analysis): 28 views (all ballot summaries, party document/coalition views)
+- Priority 3 (Committee & Government): 15 views (committee productivity, decisions, government proposals)
+- Priority 4 (Supporting): 15 views (application tracking, audit, worldbank)
+
+See [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for complete validation methodology, detailed findings, and documentation roadmap.
+
+**Impact:** Documentation now accurately reflects database schema state and provides transparency about coverage gaps. Users can reference the Complete View Inventory for all available views while detailed documentation is expanded.
 
 ---
 
