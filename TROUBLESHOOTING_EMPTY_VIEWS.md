@@ -492,6 +492,89 @@ FROM party_member_data
 WHERE active = true;
 ```
 
+### 🏛️ Ministry & Government Views (e.g., view_ministry_effectiveness_trends, view_riksdagen_goverment_proposals)
+
+**Purpose:** Ministry and government performance tracking  
+**Expected Row Count:** Variable based on ministry assignments (0-50+ for ministry views, 100+ for government proposals)
+
+**Common Issues:**
+1. **No ministry assignments in assignment_data**
+   - **Fix:** Import ministry assignment data from Riksdagen
+   - **Check:** `SELECT COUNT(*) FROM assignment_data WHERE assignment_type = 'Departement';`
+
+2. **Case sensitivity in document_type (Government Proposals)**
+   - **Issue:** View used 'PROP' (uppercase) but data is 'prop' (lowercase)
+   - **Fix:** Applied in db-changelog-1.32.xml (changeSet fix-1.32-001)
+   - **Check:** `SELECT COUNT(*) FROM document_data WHERE document_type = 'prop';`
+
+3. **Empty view_riksdagen_politician_document materialized view**
+   - **Fix:** Refresh materialized view
+   - **Command:** `REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;`
+
+4. **No documents linked to ministry org_codes**
+   - **Diagnostic:** Check if documents have ministry org values
+   - **Fix:** Verify document import includes ministry-produced documents
+
+**Validation Queries:**
+```sql
+-- Check ministry data availability
+SELECT * FROM view_ministry_data_diagnostic;
+
+-- Expected diagnostic output:
+--   assignment_ministries > 0 (ministry assignments exist)
+--   documents_prop > 0 (government proposals exist)
+--   politician_doc_materialized_rows > 0 (materialized view populated)
+--   government_proposals_rows > 0 (proposals view working)
+
+-- Manual verification of ministry assignments
+SELECT 
+    org_code,
+    detail AS ministry_name,
+    COUNT(*) AS assignment_count
+FROM assignment_data
+WHERE assignment_type = 'Departement'
+  AND org_code LIKE '%departement%'
+GROUP BY org_code, detail
+ORDER BY assignment_count DESC;
+
+-- Check government proposals (after fix)
+SELECT 
+    COUNT(*) AS total_proposals,
+    MIN(made_public_date) AS earliest_proposal,
+    MAX(made_public_date) AS latest_proposal
+FROM view_riksdagen_goverment_proposals;
+```
+
+**Root Cause: Case Sensitivity (v1.32 Fix)**
+```sql
+-- BEFORE (db-changelog-1.1.xml): 
+-- WHERE document_type='PROP'  -- Uppercase, no data matches
+
+-- AFTER (db-changelog-1.32.xml):
+-- WHERE document_type='prop'   -- Lowercase, matches DocumentType.java enum
+
+-- Verification that fix works:
+SELECT 
+    document_type, 
+    COUNT(*) 
+FROM document_data 
+WHERE document_type IN ('PROP', 'prop')  -- Check both cases
+GROUP BY document_type;
+-- Should show rows only for lowercase 'prop'
+```
+
+**Expected Results After Fix:**
+- `view_riksdagen_goverment_proposals`: 100-5000+ rows (depends on imported data range)
+- `view_ministry_effectiveness_trends`: 0-50+ rows per quarter (depends on ministry count)
+- `view_ministry_productivity_matrix`: 0-15+ rows per year per ministry
+- `view_ministry_risk_evolution`: 0-50+ rows per quarter
+
+**Important Notes:**
+1. Ministry views require **both** assignment_data (ministry assignments) **and** document_data (ministry documents)
+2. If assignment_data has no 'Departement' records, ministry views will be empty by design
+3. Government proposals view (view_riksdagen_goverment_proposals) is independent and only needs document_data
+4. All views use 3-year rolling windows, so historical data matters
+
 ---
 
 ## 🚨 Emergency Data Recovery
