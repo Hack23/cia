@@ -1048,11 +1048,11 @@ LIMIT 20;
    -- Check monthly ballot distribution
    WITH monthly_activity AS (
        SELECT 
-           DATE_TRUNC('month', vote_date) AS month,
+           DATE_TRUNC('month', vote_date::TIMESTAMP WITH TIME ZONE) AS month,
            COUNT(DISTINCT embedded_id_ballot_id) AS ballot_count
        FROM vote_data
        WHERE vote_date >= CURRENT_DATE - INTERVAL '2 years'
-       GROUP BY DATE_TRUNC('month', vote_date)
+       GROUP BY DATE_TRUNC('month', vote_date::TIMESTAMP WITH TIME ZONE)
    )
    SELECT 
        COUNT(*) AS total_months,

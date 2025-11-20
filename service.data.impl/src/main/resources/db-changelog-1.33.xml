@@ -283,7 +283,7 @@ LEFT JOIN crisis_voting cv ON cv.person_id = pd.id
 LEFT JOIN normal_voting nv ON nv.person_id = pd.id
 LEFT JOIN party_discipline_crisis pdc ON pdc.person_id = pd.id
 WHERE pd.status = 'active'
-    AND (cv.crisis_votes IS NOT NULL OR nv.normal_votes IS NOT NULL);
+    AND (COALESCE(cv.crisis_votes, 0) >= 10 OR COALESCE(nv.normal_votes, 0) >= 20);
         ]]>
     </createView>
     
@@ -310,7 +310,7 @@ WHERE pd.status = 'active'
         available data even if not perfectly up-to-date.
         
         Changes:
-        - Use broader status filter to include recently inactive politicians
+        - Use case-insensitive status filter for "active" status
         - Maintain all risk score calculation logic
         - Ensure ballot_count threshold is reasonable
     </comment>
