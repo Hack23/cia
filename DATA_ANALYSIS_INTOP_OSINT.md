@@ -490,8 +490,8 @@ pie title "Resignation Probability - Lars Andersson"
 - ✅ **Strategic Insight**: Correlates with broader party morale issues (Social Democrats down 3.2% in polls)
 
 **Cross-Reference**: 
-- [RISK_RULES_INTOP_OSINT.md - Rule #5: PoliticianLazy.drl](RISK_RULES_INTOP_OSINT.md#rule-5-politicianlazydrl)
-- [RISK_RULES_INTOP_OSINT.md - Rule #23: PoliticianDecliningEngagement.drl](RISK_RULES_INTOP_OSINT.md#rule-23-politiciandecliningengagementdrl)
+- [RISK_RULES_INTOP_OSINT.md - Rule #1: PoliticianLazy.drl](RISK_RULES_INTOP_OSINT.md#1-politicianlazydrl-absenteeism-detection)
+- [RISK_RULES_INTOP_OSINT.md - Rule #4: PoliticianDecliningEngagement.drl](RISK_RULES_INTOP_OSINT.md#4-politiciandecliningengagementdrl-trend-analysis)
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - View: view_riksdagen_vote_data_ballot_politician_summary_monthly](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_vote_data_ballot_politician_summary_monthly)
 
 **Data Validation**: ✅ Query validated against schema version 1.29 (2025-11-21)
@@ -736,9 +736,9 @@ graph TB
 | Opposition Unity (S-V-MP) | 84.3% | 82.1% ± 3.8% | 🟡 WATCH | Opposition increasingly coordinated |
 
 **Risk Rule Activations**:
-- 🟠 **MAJOR**: `PartyDecliningGovernmentSupportPercentage.drl` - Centre Party alignment declining for 4 consecutive months
-- 🟡 **MINOR**: `PartyCoalitionDrift.drl` - Core coalition alignment -2.3% from historical baseline
-- 🟡 **MINOR**: `OppositionCoordinationIncrease.drl` - Opposition unity trending upward
+- 🟠 **MAJOR**: `PartyDecliningPerformance.drl` - Centre Party alignment declining for 4 consecutive months
+- 🟡 **MINOR**: `PartyInconsistentBehavior.drl` - Core coalition alignment -2.3% from historical baseline (erratic pattern)
+- 🟡 **MINOR**: `PartyLowCollaboration.drl` - Opposition unity trending upward (increased coordination)
 
 **Coalition Stability Trend - 12-Month Analysis**:
 
@@ -777,7 +777,7 @@ pie title "Coalition Stability Forecast - Next 6 Months"
 5. ⚠️ **Warning**: If Centre Party alignment drops below 85%, escalate to CRITICAL risk
 
 **Cross-Reference**:
-- [RISK_RULES_INTOP_OSINT.md - Rule #38: PartyDecliningGovernmentSupportPercentage.drl](RISK_RULES_INTOP_OSINT.md#rule-38-partydeclininggovernmentsupportpercentagedrl)
+- [RISK_RULES_INTOP_OSINT.md - Rule #2: PartyDecliningPerformance.drl](RISK_RULES_INTOP_OSINT.md#2-partydecliningperformancedrl-performance-trend-analysis-and-early-warning)
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - View: view_riksdagen_coalition_alignment_matrix](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_coalition_alignment_matrix)
 
 **Data Validation**: ✅ Query validated against schema version 1.29 (2025-11-21)
@@ -1752,7 +1752,7 @@ graph TB
 5. ⚠️ **Early Warning**: If Centre Party alignment drops below 75%, escalate to CRITICAL coalition risk
 
 **Cross-Reference**:
-- [RISK_RULES_INTOP_OSINT.md - Rule #38: PartyDecliningGovernmentSupportPercentage.drl](RISK_RULES_INTOP_OSINT.md#rule-38-partydeclininggovernmentsupportpercentagedrl)
+- [RISK_RULES_INTOP_OSINT.md - Rule #2: PartyDecliningPerformance.drl](RISK_RULES_INTOP_OSINT.md#2-partydecliningperformancedrl-performance-trend-analysis-and-early-warning)
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - View: view_riksdagen_vote_data_ballot_party_summary](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_vote_data_ballot_party_summary)
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - View: view_riksdagen_party_coalation_against_annual_summary](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_party_coalation_against_annual_summary)
 
@@ -2643,7 +2643,7 @@ xychart-beta
 | **1 day** | Final SD parliamentary group meeting | Pending | ⚠️ WATCH |
 
 **Cross-Reference**:
-- [RISK_RULES_INTOP_OSINT.md - Rule #38: PartyDecliningGovernmentSupportPercentage.drl](RISK_RULES_INTOP_OSINT.md#rule-38-partydeclininggovernmentsupportpercentagedrl)
+- [RISK_RULES_INTOP_OSINT.md - Rule #2: PartyDecliningPerformance.drl](RISK_RULES_INTOP_OSINT.md#2-partydecliningperformancedrl-performance-trend-analysis-and-early-warning)
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - View: view_riksdagen_vote_data_ballot_party_summary](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_vote_data_ballot_party_summary)
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - View: view_riksdagen_party_ballot_support_annual_summary](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_party_ballot_support_annual_summary)
 
@@ -3623,7 +3623,7 @@ pie title "Coalition Formation Dependency on Key Bridge Politicians"
 - **Communication Style**: High media visibility (2.3x average press mentions)
 
 **Cross-Reference**:
-- [RISK_RULES_INTOP_OSINT.md - Rule #22: PoliticianIsolatedBehavior.drl](RISK_RULES_INTOP_OSINT.md#rule-22-politicianisolatedbehaviordrl)
+- [RISK_RULES_INTOP_OSINT.md - Rule #9: PoliticianIsolatedBehavior.drl](RISK_RULES_INTOP_OSINT.md#9-politicianisolatedbehaviordrl-collaboration-analysis)
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - View: view_riksdagen_committee_role_member](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_committee_role_member)
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - View: view_riksdagen_politician_influence_metrics](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_influence_metrics)
 
