@@ -1,0 +1,114 @@
+Timing is on.
+=======================================
+Materialized View Refresh Script
+Started at: Fri Nov 21 11:10:28 AM CET 2025
+=======================================
+
+--- VALIDATION PHASE ---
+Checking that all materialized views exist...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_worldbank_indicator_data_country_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_politician_document
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_org_document_daily_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_document_type_daily_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_committee_decisions
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_summary_daily
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_committee_ballot_decision_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_party_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_party_summary_daily
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_party_summary_monthly
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_party_summary_weekly
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_party_summary_annual
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_summary_annual
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_summary_monthly
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_summary_weekly
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_politician_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_politician_summary_daily
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_politician_summary_annual
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_politician_summary_monthly
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_vote_data_ballot_politician_summary_weekly
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_committee_ballot_decision_party_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_committee_ballot_decision_politician_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_committee_decision_type_org_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_committee_decision_type_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_party_document_daily_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_politician_document_daily_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  ✓ View exists: view_riksdagen_politician_document_summary
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:86: NOTICE:  Validation passed: All 28 views exist
+DO
+Time: 35.434 ms
+
+--- REFRESH PHASE ---
+Refreshing materialized views in dependency order...
+
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_worldbank_indicator_data_country_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_worldbank_indicator_data_country_summary in 00:00:00.271438
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_politician_document...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_politician_document in 00:00:01.190451
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_org_document_daily_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_org_document_daily_summary in 00:00:00.368789
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_document_type_daily_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_document_type_daily_summary in 00:00:00.25135
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_committee_decisions...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_committee_decisions in 00:00:00.403088
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_summary in 00:00:02.208783
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_committee_ballot_decision_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_committee_ballot_decision_summary in 00:00:00.025988
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_party_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_party_summary in 00:00:03.764602
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_politician_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_politician_summary in 00:01:13.331822
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_summary_daily...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_summary_daily in 00:00:00.022353
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_summary_weekly...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_summary_weekly in 00:00:00.01107
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_summary_monthly...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_summary_monthly in 00:00:00.008976
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_summary_annual...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_summary_annual in 00:00:00.006842
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_party_summary_daily...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_party_summary_daily in 00:00:00.281095
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_party_summary_weekly...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_party_summary_weekly in 00:00:00.072999
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_party_summary_monthly...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_party_summary_monthly in 00:00:00.06737
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_party_summary_annual...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_party_summary_annual in 00:00:00.021041
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_politician_summary_daily...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_politician_summary_daily in 00:00:17.151329
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_politician_summary_weekly...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_politician_summary_weekly in 00:00:05.83114
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_politician_summary_monthly...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_politician_summary_monthly in 00:00:02.273664
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_vote_data_ballot_politician_summary_annual...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_vote_data_ballot_politician_summary_annual in 00:00:00.789338
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_committee_ballot_decision_party_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_committee_ballot_decision_party_summary in 00:00:00.466794
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_committee_ballot_decision_politician_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_committee_ballot_decision_politician_summary in 00:00:17.793151
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_committee_decision_type_org_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_committee_decision_type_org_summary in 00:00:00.071783
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_committee_decision_type_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_committee_decision_type_summary in 00:00:00.027468
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_party_document_daily_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_party_document_daily_summary in 00:00:00.458547
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_politician_document_daily_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_politician_document_daily_summary in 00:00:00.072759
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Refreshing: view_riksdagen_politician_document_summary...
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ✓ Refreshed view_riksdagen_politician_document_summary in 00:00:00.189616
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ===========================================
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  --- REFRESH SUMMARY ---
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ===========================================
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Total views: 28
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Successful: 28
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  Failed: 0
+psql:service.data.impl/src/main/resources/refresh-all-views.sql:166: NOTICE:  ===========================================
+DO
+Time: 127799.852 ms (02:07.800)
+
+=======================================
+Refresh script completed
+Finished at: Fri Nov 21 11:12:36 AM CET 2025
+=======================================
