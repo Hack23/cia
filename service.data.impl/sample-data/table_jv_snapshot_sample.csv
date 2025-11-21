@@ -1,0 +1,1056 @@
+snapshot_pk,type,version,state,changed_properties,managed_type,global_id_fk,commit_fk
+389652900,INITIAL,1,"{
+  ""intressentId"": ""0371414788216"",
+  ""issue"": ""3"",
+  ""ballotId"": ""8120E656-19DB-4078-8DBA-5E1DFD707E2E"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,3896180,2012106
+395930600,INITIAL,1,"{
+  ""intressentId"": ""0588282566419"",
+  ""issue"": ""15"",
+  ""ballotId"": ""350C2F56-FA11-4830-BCEA-EF1897C1F290"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,3958955,2045520
+419202200,INITIAL,1,"{
+  ""bankNumber"": ""340"",
+  ""lastName"": ""Nilsson"",
+  ""bornYear"": 1963,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Västra Götalands läns södra"",
+  ""fullName"": ""Ulrik  Nilsson"",
+  ""label"": ""FiU21"",
+  ""firstName"": ""Ulrik"",
+  ""electoralRegionNumber"": 19,
+  ""voteDate"": ""2011-06-16T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2010/11"",
+  ""vote"": ""JA"",
+  ""party"": ""M"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""14,9FF99DB8-C5F5-4153-A533-4724B5DF5E5F,0410640630411,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,4191671,2168485
+931481800,INITIAL,1,"{
+  ""id"": ""FI"",
+  ""value"": ""Finland""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Country,9311768,4255960
+118312100,INITIAL,1,"{
+  ""bankNumber"": ""34"",
+  ""lastName"": ""Skalberg Karlsson"",
+  ""bornYear"": 1993,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Gotlands län"",
+  ""fullName"": ""Jesper Skalberg Karlsson"",
+  ""label"": ""NU16"",
+  ""firstName"": ""Jesper"",
+  ""electoralRegionNumber"": 9,
+  ""voteDate"": ""2017-05-10T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2016/17"",
+  ""vote"": ""NEJ"",
+  ""party"": ""M"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""1,78395F14-5110-4D1A-9F56-4E12835A0D31,0250583732424,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,1182772,589774
+977817800,INITIAL,1,"{
+  ""id"": ""GB"",
+  ""value"": ""United Kingdom""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Country,9775124,4410414
+158966200,INITIAL,1,"{
+  ""intressentId"": ""0110600080618"",
+  ""issue"": ""2"",
+  ""ballotId"": ""C666B2A4-127D-4188-B06E-2D57CA6EB016"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,1589311,802959
+923371200,INITIAL,1,"{
+  ""id"": ""NY.ADJ.SVNG.CD"",
+  ""value"": ""Adjusted net savings, including particulate emission damage (current US$)""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Indicator,9230662,4228924
+997325100,INITIAL,1,"{
+  ""id"": ""IP.PAT.NRES"",
+  ""value"": ""Patent applications, nonresidents""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Indicator,9970199,4475438
+251479500,INITIAL,1,"{
+  ""bankNumber"": ""241"",
+  ""lastName"": ""Holma"",
+  ""bornYear"": 1952,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Norrbottens län"",
+  ""fullName"": ""Siv  Holma"",
+  ""label"": ""UU11"",
+  ""firstName"": ""Siv"",
+  ""electoralRegionNumber"": 29,
+  ""voteDate"": ""2010-02-23T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2009/10"",
+  ""vote"": ""FRÅNVARANDE"",
+  ""party"": ""V"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""2,613ABB1D-6BCE-4BBB-82A5-A6B1610053CA,0395416536118,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,2514446,1286586
+953435100,INITIAL,1,"{
+  ""indicator"": {
+    ""valueObject"": ""com.hack23.cia.model.external.worldbank.data.impl.Indicator"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.worldbank.data.impl.WorldBankData"",
+      ""cdoId"": 1327178
+    },
+    ""fragment"": ""indicator""
+  },
+  ""country"": {
+    ""valueObject"": ""com.hack23.cia.model.external.worldbank.data.impl.Country"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.worldbank.data.impl.WorldBankData"",
+      ""cdoId"": 1327178
+    },
+    ""fragment"": ""country""
+  },
+  ""dataValue"": ""0"",
+  ""yearDate"": 2001,
+  ""hjid"": 1327178
+}","[
+  ""indicator"",
+  ""country"",
+  ""dataValue"",
+  ""yearDate"",
+  ""hjid""
+]",com.hack23.cia.model.external.worldbank.data.impl.WorldBankData,9531301,4329138
+152596600,INITIAL,1,"{
+  ""bankNumber"": ""215"",
+  ""lastName"": ""Johansson"",
+  ""bornYear"": 1950,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Göteborgs kommun"",
+  ""fullName"": ""Lars  Johansson"",
+  ""label"": ""KrU8"",
+  ""firstName"": ""Lars"",
+  ""electoralRegionNumber"": 16,
+  ""voteDate"": ""2006-02-07T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2005/06"",
+  ""vote"": ""FRÅNVARANDE"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""10,BB040227-48AC-4152-9CC4-322925975146,0288805051019,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,1525617,769381
+908180600,INITIAL,1,"{
+  ""id"": ""US"",
+  ""value"": ""United States""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Country,9078756,4178290
+994015200,INITIAL,1,"{
+  ""id"": ""NO"",
+  ""value"": ""Norway""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Country,9937100,4464405
+999108100,INITIAL,1,"{
+  ""indicator"": {
+    ""valueObject"": ""com.hack23.cia.model.external.worldbank.data.impl.Indicator"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.worldbank.data.impl.WorldBankData"",
+      ""cdoId"": 1479368
+    },
+    ""fragment"": ""indicator""
+  },
+  ""country"": {
+    ""valueObject"": ""com.hack23.cia.model.external.worldbank.data.impl.Country"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.worldbank.data.impl.WorldBankData"",
+      ""cdoId"": 1479368
+    },
+    ""fragment"": ""country""
+  },
+  ""dataValue"": """",
+  ""yearDate"": 1965,
+  ""hjid"": 1479368
+}","[
+  ""indicator"",
+  ""country"",
+  ""dataValue"",
+  ""yearDate"",
+  ""hjid""
+]",com.hack23.cia.model.external.worldbank.data.impl.WorldBankData,9988029,4481382
+756612900,INITIAL,1,"{
+  ""documentDetailList"": [
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData"",
+      ""cdoId"": 196276
+    },
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData"",
+      ""cdoId"": 196277
+    },
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData"",
+      ""cdoId"": 196278
+    },
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData"",
+      ""cdoId"": 196279
+    }
+  ],
+  ""hjid"": 196275
+}","[
+  ""documentDetailList"",
+  ""hjid""
+]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailContainer,7562957,3856550
+146818500,INITIAL,1,"{
+  ""intressentId"": ""0183788551910"",
+  ""issue"": ""3"",
+  ""ballotId"": ""59E6AB4D-866F-44E1-BDD6-CE5BDD26D591"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,1467836,739057
+807602600,INITIAL,1,"{
+  ""id"": ""SE"",
+  ""value"": ""Sweden""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Country,8072853,3906013
+284672900,INITIAL,1,"{
+  ""bankNumber"": ""60"",
+  ""lastName"": ""Özürküt"",
+  ""bornYear"": 1949,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Stockholms län"",
+  ""fullName"": ""Sermin  Özürküt"",
+  ""label"": ""JuU1"",
+  ""firstName"": ""Sermin"",
+  ""electoralRegionNumber"": 2,
+  ""voteDate"": ""2005-12-06T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2005/06"",
+  ""vote"": ""JA"",
+  ""party"": ""V"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""16,27EC9645-7D3E-4670-A55B-181867A40753,0229825314217,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,2846381,1459625
+356912100,INITIAL,1,"{
+  ""bankNumber"": ""138"",
+  ""lastName"": ""Virgin"",
+  ""bornYear"": 1939,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Gotlands län"",
+  ""fullName"": ""Lilian  Virgin"",
+  ""label"": ""SfU1"",
+  ""firstName"": ""Lilian"",
+  ""electoralRegionNumber"": 9,
+  ""voteDate"": ""2005-11-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2005/06"",
+  ""vote"": ""JA"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""78,28C2FEE7-BDA2-408D-A82D-C20F4376D4A0,0567810897103,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,3568773,1838068
+606086800,INITIAL,1,"{
+  ""bankNumber"": ""281"",
+  ""lastName"": ""Bjellqvist"",
+  ""bornYear"": 1944,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Stockholms kommun"",
+  ""fullName"": ""Elsemarie Bjellqvist"",
+  ""label"": ""UU2"",
+  ""firstName"": ""Elsemarie"",
+  ""electoralRegionNumber"": 1,
+  ""voteDate"": ""2021-12-09T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2021/22"",
+  ""vote"": ""JA"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C3C2B25-644A-4B8E-B0FF-28B8F3632A88,0395762282903,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,6060515,3144343
+864216300,INITIAL,1,"{
+  ""indicator"": {
+    ""valueObject"": ""com.hack23.cia.model.external.worldbank.data.impl.Indicator"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.worldbank.data.impl.WorldBankData"",
+      ""cdoId"": 960346
+    },
+    ""fragment"": ""indicator""
+  },
+  ""country"": {
+    ""valueObject"": ""com.hack23.cia.model.external.worldbank.data.impl.Country"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.worldbank.data.impl.WorldBankData"",
+      ""cdoId"": 960346
+    },
+    ""fragment"": ""country""
+  },
+  ""dataValue"": """",
+  ""yearDate"": 1972,
+  ""hjid"": 960346
+}","[
+  ""indicator"",
+  ""country"",
+  ""dataValue"",
+  ""yearDate"",
+  ""hjid""
+]",com.hack23.cia.model.external.worldbank.data.impl.WorldBankData,8638990,4057673
+804941800,INITIAL,1,"{
+  ""detail"": ""2015/16:JuU20"",
+  ""hjid"": 658278
+}","[
+  ""detail"",
+  ""hjid""
+]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentReferenceData,8046242,3900627
+919977500,INITIAL,1,"{
+  ""id"": ""FI"",
+  ""value"": ""Finland""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Country,9196725,4217612
+420764100,INITIAL,1,"{
+  ""bankNumber"": ""300"",
+  ""lastName"": ""Waltersson Grönvall"",
+  ""bornYear"": 1969,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Västra Götalands läns norra"",
+  ""fullName"": ""Camilla  Waltersson Grönvall"",
+  ""label"": ""MJU2"",
+  ""firstName"": ""Camilla"",
+  ""electoralRegionNumber"": 18,
+  ""voteDate"": ""2010-12-07T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2010/11"",
+  ""vote"": ""JA"",
+  ""party"": ""M"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""9,69BB6C0B-765E-44F1-91BF-000E0B84EF83,0781623040415,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,4207292,2176734
+658644500,INITIAL,1,"{
+  ""intressentId"": ""0522054204918"",
+  ""issue"": ""3"",
+  ""ballotId"": ""ACAA018F-C3CA-4F6A-AC11-FA2D43E7E779"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,6586092,3407130
+252465600,INITIAL,1,"{
+  ""intressentId"": ""0521844714515"",
+  ""issue"": ""3"",
+  ""ballotId"": ""1F732441-52E1-45E8-8E0C-7455E628F717"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,2524307,1291691
+1010062800,INITIAL,1,"{
+  ""proposal"": ""Riksdagen avslår motion \n2011/12:U315 av Urban Ahlin m.fl. (S) yrkande 69.\n"",
+  ""issueNumber"": 2,
+  ""hjid"": 1549068,
+  ""ballotUrlXml"": """",
+  ""ballotSummaryItem"": ""\u003c?xml version\u003d\""1.0\"" encoding\u003d\""UTF-8\""?\u003e\u003cpunkttyp/\u003e"",
+  ""winner"": ""utskottet"",
+  ""committeeReport"": ""UU8"",
+  ""againstProposalNumber"": 0,
+  ""againstProposalParties"": """",
+  ""header"": ""Afrikas horn"",
+  ""decisionType"": ""acklamation"",
+  ""rm"": ""2011/12"",
+  ""ballotId"": """"
+}","[
+  ""proposal"",
+  ""issueNumber"",
+  ""hjid"",
+  ""ballotUrlXml"",
+  ""ballotSummaryItem"",
+  ""winner"",
+  ""committeeReport"",
+  ""againstProposalNumber"",
+  ""againstProposalParties"",
+  ""header"",
+  ""decisionType"",
+  ""rm"",
+  ""ballotId""
+]",com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalData,10094816,4508265
+836175600,INITIAL,1,"{
+  ""hjid"": 819582,
+  ""documentActivities"": [
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData"",
+      ""cdoId"": 819583
+    },
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData"",
+      ""cdoId"": 819584
+    },
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData"",
+      ""cdoId"": 819585
+    },
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData"",
+      ""cdoId"": 819586
+    },
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData"",
+      ""cdoId"": 819587
+    },
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData"",
+      ""cdoId"": 819588
+    },
+    {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData"",
+      ""cdoId"": 819589
+    }
+  ]
+}","[
+  ""hjid"",
+  ""documentActivities""
+]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityContainer,8358580,3982577
+774810300,INITIAL,1,"{
+  ""code"": ""tilldelat"",
+  ""detailName"": ""Tilldelat"",
+  ""text"": ""Trafikutskottet"",
+  ""hjid"": 370203
+}","[
+  ""code"",
+  ""detailName"",
+  ""text"",
+  ""hjid""
+]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData,7744930,3873111
+468684400,INITIAL,1,"{
+  ""intressentId"": ""0588282566419"",
+  ""issue"": ""2"",
+  ""ballotId"": ""9873EDDE-8E06-4017-AAE1-14EB82B3EAE3"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,4686495,2431367
+412763200,INITIAL,1,"{
+  ""intressentId"": ""039102787629"",
+  ""issue"": ""4"",
+  ""ballotId"": ""4B4A170C-7B4B-40A6-8D6E-5B8C8E4F3B60"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,4127282,2135077
+127370600,INITIAL,1,"{
+  ""intressentId"": ""0204240926023"",
+  ""issue"": ""7"",
+  ""ballotId"": ""56568FFB-FEB4-4371-9BAA-8933324E8378"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,1273356,637325
+537896300,INITIAL,1,"{
+  ""intressentId"": ""0891731772016"",
+  ""issue"": ""1"",
+  ""ballotId"": ""47A8BB37-6703-4D33-B63A-B0504B7C10C3"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,5378610,2798825
+964478100,INITIAL,1,"{
+  ""id"": ""GB"",
+  ""value"": ""United Kingdom""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Country,9641729,4365948
+702724700,INITIAL,1,"{
+  ""intressentId"": ""0338458649710"",
+  ""issue"": ""1"",
+  ""ballotId"": ""E8C414F1-FA0F-4B3F-BFC9-BC97C4A58468"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,7026893,3627532
+891844800,INITIAL,1,"{
+  ""id"": ""SE.PRM.ENRR.FE"",
+  ""value"": ""School enrollment, primary, female (% gross)""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Indicator,8915272,4131930
+67596400,INITIAL,1,"{
+  ""bankNumber"": ""209"",
+  ""lastName"": ""Österberg"",
+  ""bornYear"": 1981,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Stockholms kommun"",
+  ""fullName"": ""Anders Österberg"",
+  ""label"": ""JuU27"",
+  ""firstName"": ""Anders"",
+  ""electoralRegionNumber"": 1,
+  ""voteDate"": ""2021-06-09T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2020/21"",
+  ""vote"": ""FRÅNVARANDE"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""44,76344DBF-0FFC-49D7-9F23-273197163C27,0277648711624,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,675616,323673
+346609200,INITIAL,1,"{
+  ""bankNumber"": ""289"",
+  ""lastName"": ""Persson"",
+  ""bornYear"": 1955,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Jönköpings län"",
+  ""fullName"": ""Peter Persson"",
+  ""label"": ""MJU11"",
+  ""firstName"": ""Peter"",
+  ""electoralRegionNumber"": 6,
+  ""voteDate"": ""2018-03-07T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2017/18"",
+  ""vote"": ""JA"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""8,4D9BC8B3-FBED-4845-86EA-182D9A0A03B7,0903307301618,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,3465743,1784248
+230034700,INITIAL,1,"{
+  ""bankNumber"": ""236"",
+  ""lastName"": ""Thorell"",
+  ""bornYear"": 1967,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Västmanlands län"",
+  ""fullName"": ""Olle  Thorell"",
+  ""label"": ""JuU1"",
+  ""firstName"": ""Olle"",
+  ""electoralRegionNumber"": 23,
+  ""voteDate"": ""2012-12-07T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2012/13"",
+  ""vote"": ""NEJ"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""34,F1B3892D-903D-4331-B537-3BC9B40A6D3E,0879782396219,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,2299999,1174837
+247292700,INITIAL,1,"{
+  ""bankNumber"": ""324"",
+  ""lastName"": ""Nordén"",
+  ""bornYear"": 1967,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Jämtlands län"",
+  ""fullName"": ""Marie  Nordén"",
+  ""label"": ""BoU12"",
+  ""firstName"": ""Marie"",
+  ""electoralRegionNumber"": 27,
+  ""voteDate"": ""2006-04-20T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2005/06"",
+  ""vote"": ""JA"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""10,3A8AFD4C-6F2B-4855-80EA-8E1D6C039F97,0291542732518,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,2472578,1264956
+633369200,INITIAL,1,"{
+  ""bankNumber"": ""112"",
+  ""lastName"": ""Waidelich"",
+  ""bornYear"": 1963,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Stockholms län"",
+  ""fullName"": ""Tommy  Waidelich"",
+  ""label"": ""FiU21"",
+  ""firstName"": ""Tommy"",
+  ""electoralRegionNumber"": 2,
+  ""voteDate"": ""2007-06-12T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2006/07"",
+  ""vote"": ""NEJ"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""28,A551EFE9-0BEF-4C2A-B446-0DD502126937,0135730306412,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,6333339,3280755
+683816500,INITIAL,1,"{
+  ""intressentId"": ""0777657837318"",
+  ""issue"": ""1"",
+  ""ballotId"": ""77D66952-724F-4844-8CD4-4FD44709E358"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,6837813,3532991
+935084400,INITIAL,1,"{
+  ""id"": ""SE.PRM.OENR.FE.ZS"",
+  ""value"": ""Over-age students, primary, female (% of female enrollment)""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Indicator,9347794,4267968
+536118400,INITIAL,1,"{
+  ""intressentId"": ""0911067396229"",
+  ""issue"": ""1"",
+  ""ballotId"": ""09E69DF1-ED56-41C3-9C46-C1787C943885"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,5360831,2789406
+760503200,INITIAL,1,"{
+  ""proposal"": {
+    ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData"",
+    ""cdoId"": 233496
+  },
+  ""hjid"": 233495
+}","[
+  ""proposal"",
+  ""hjid""
+]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalContainer,7601859,3860137
+834429100,INITIAL,1,"{
+  ""code"": ""tilldelat"",
+  ""detailName"": ""Tilldelat"",
+  ""text"": ""Kulturutskottet"",
+  ""hjid"": 811026
+}","[
+  ""code"",
+  ""detailName"",
+  ""text"",
+  ""hjid""
+]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData,8341116,3977836
+875879100,INITIAL,1,"{
+  ""indicator"": {
+    ""valueObject"": ""com.hack23.cia.model.external.worldbank.data.impl.Indicator"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.worldbank.data.impl.WorldBankData"",
+      ""cdoId"": 1021583
+    },
+    ""fragment"": ""indicator""
+  },
+  ""country"": {
+    ""valueObject"": ""com.hack23.cia.model.external.worldbank.data.impl.Country"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.worldbank.data.impl.WorldBankData"",
+      ""cdoId"": 1021583
+    },
+    ""fragment"": ""country""
+  },
+  ""dataValue"": """",
+  ""yearDate"": 1979,
+  ""hjid"": 1021583
+}","[
+  ""indicator"",
+  ""country"",
+  ""dataValue"",
+  ""yearDate"",
+  ""hjid""
+]",com.hack23.cia.model.external.worldbank.data.impl.WorldBankData,8755614,4087843
+314054900,INITIAL,1,"{
+  ""intressentId"": ""0324815829026"",
+  ""issue"": ""5"",
+  ""ballotId"": ""C17B8AF1-D827-467C-BAAB-EA8038A884D5"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,3140200,1613531
+581898200,INITIAL,1,"{
+  ""bankNumber"": ""199"",
+  ""lastName"": ""Nilsson"",
+  ""bornYear"": 1962,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Västmanlands län"",
+  ""fullName"": ""Pia  Nilsson"",
+  ""label"": ""KU22"",
+  ""firstName"": ""Pia"",
+  ""electoralRegionNumber"": 23,
+  ""voteDate"": ""2011-04-15T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2010/11"",
+  ""vote"": ""JA"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""1,E8C01EE2-BA54-412E-8A05-5B19E87BD842,0460690753617,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,5818629,3023402
