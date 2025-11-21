@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Mp8HMNLJz37LdPf1uiK5OUlmMqVOgnfM79Elv0n4uVH1cbMKSFaUTG2AFYtDFSd
+\restrict ileKTSJVaZnOEnsjSEAN14du34AqVEYfPoH6DApxgK7ZIeCncCmRHE5bjozFWZz
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -6306,7 +6306,7 @@ CREATE VIEW public.view_ministry_effectiveness_trends AS
                 END) AS government_bills,
             count(DISTINCT
                 CASE
-                    WHEN ((doc.document_type)::text = ANY ((ARRAY['prop'::character varying, 'ds'::character varying])::text[])) THEN doc.id
+                    WHEN ((doc.document_type)::text = ANY (ARRAY[('prop'::character varying)::text, ('ds'::character varying)::text])) THEN doc.id
                     ELSE NULL::bigint
                 END) AS legislative_documents,
             count(DISTINCT doc.person_reference_id) AS active_members
@@ -6525,7 +6525,7 @@ CREATE VIEW public.view_ministry_risk_evolution AS
             count(DISTINCT doc.id) AS document_count,
             count(DISTINCT
                 CASE
-                    WHEN ((doc.document_type)::text = ANY ((ARRAY['prop'::character varying, 'ds'::character varying])::text[])) THEN doc.id
+                    WHEN ((doc.document_type)::text = ANY (ARRAY[('prop'::character varying)::text, ('ds'::character varying)::text])) THEN doc.id
                     ELSE NULL::bigint
                 END) AS legislative_count,
             count(DISTINCT doc.person_reference_id) AS active_members,
@@ -7436,7 +7436,14 @@ CREATE VIEW public.view_politician_risk_summary AS
                 END)::numeric) AS calculated_risk_score
            FROM (((public.person_data p
              LEFT JOIN public.rule_violation rv ON ((((rv.reference_id)::text = (p.id)::text) AND ((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = 'ACTIVE'::text))))
-             LEFT JOIN public.view_riksdagen_vote_data_ballot_politician_summary_annual vps_annual ON ((((vps_annual.embedded_id_intressent_id)::text = (p.id)::text) AND (vps_annual.embedded_id_vote_date = date_trunc('year'::text, (CURRENT_DATE - '1 year'::interval))))))
+             LEFT JOIN LATERAL ( SELECT view_riksdagen_vote_data_ballot_politician_summary_annual.avg_percentage_absent,
+                    view_riksdagen_vote_data_ballot_politician_summary_annual.won_percentage,
+                    view_riksdagen_vote_data_ballot_politician_summary_annual.rebel_percentage,
+                    view_riksdagen_vote_data_ballot_politician_summary_annual.total_votes
+                   FROM public.view_riksdagen_vote_data_ballot_politician_summary_annual
+                  WHERE (((view_riksdagen_vote_data_ballot_politician_summary_annual.embedded_id_intressent_id)::text = (p.id)::text) AND (view_riksdagen_vote_data_ballot_politician_summary_annual.embedded_id_vote_date >= date_trunc('year'::text, (CURRENT_DATE - '2 years'::interval))))
+                  ORDER BY view_riksdagen_vote_data_ballot_politician_summary_annual.embedded_id_vote_date DESC
+                 LIMIT 1) vps_annual ON (true))
              LEFT JOIN public.view_riksdagen_politician_document vpd ON ((((vpd.person_reference_id)::text = (p.id)::text) AND (vpd.made_public_date >= (CURRENT_DATE - '1 year'::interval)))))
           WHERE ((p.status)::text = 'active'::text)
           GROUP BY p.id, p.first_name, p.last_name, p.party, p.status, vps_annual.avg_percentage_absent, vps_annual.won_percentage, vps_annual.rebel_percentage, vps_annual.total_votes
@@ -7752,7 +7759,7 @@ CREATE VIEW public.view_riksdagen_committee_parliament_member_proposal AS
     document_data.title
    FROM (public.view_riksdagen_committee
      LEFT JOIN public.document_data ON (((view_riksdagen_committee.embedded_id_org_code)::text = (document_data.org)::text)))
-  WHERE ((document_data.document_type)::text = 'MOT'::text);
+  WHERE (upper((document_data.document_type)::text) = 'MOT'::text);
 
 
 --
@@ -7912,17 +7919,17 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
             count(*) AS crisis_votes,
             sum(
                 CASE
-                    WHEN ((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) THEN 1
+                    WHEN (upper((vd.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])) THEN 1
                     ELSE 0
                 END) AS crisis_definitive_votes,
             sum(
                 CASE
-                    WHEN ((vd.vote)::text = 'Frånvarande'::text) THEN 1
+                    WHEN (upper((vd.vote)::text) = 'FRÅNVARANDE'::text) THEN 1
                     ELSE 0
                 END) AS crisis_absences,
             ((sum(
                 CASE
-                    WHEN ((vd.vote)::text = 'Frånvarande'::text) THEN 1
+                    WHEN (upper((vd.vote)::text) = 'FRÅNVARANDE'::text) THEN 1
                     ELSE 0
                 END))::double precision / (NULLIF(count(*), 0))::double precision) AS crisis_absence_rate
            FROM (public.vote_data vd
@@ -7933,12 +7940,12 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
             count(*) AS normal_votes,
             sum(
                 CASE
-                    WHEN ((vd.vote)::text = 'Frånvarande'::text) THEN 1
+                    WHEN (upper((vd.vote)::text) = 'FRÅNVARANDE'::text) THEN 1
                     ELSE 0
                 END) AS normal_absences,
             ((sum(
                 CASE
-                    WHEN ((vd.vote)::text = 'Frånvarande'::text) THEN 1
+                    WHEN (upper((vd.vote)::text) = 'FRÅNVARANDE'::text) THEN 1
                     ELSE 0
                 END))::double precision / (NULLIF(count(*), 0))::double precision) AS normal_absence_rate
            FROM (public.vote_data vd
@@ -7949,7 +7956,7 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
             count(*) AS party_votes,
             sum(
                 CASE
-                    WHEN ((vd.vote)::text = (majority.vote)::text) THEN 1
+                    WHEN (upper((vd.vote)::text) = upper((majority.vote)::text)) THEN 1
                     ELSE 0
                 END) AS aligned_crisis_votes
            FROM ((public.vote_data vd
@@ -7960,9 +7967,9 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
                     count(*) AS vote_count,
                     row_number() OVER (PARTITION BY vote_data.embedded_id_ballot_id, vote_data.party ORDER BY (count(*)) DESC) AS rank
                    FROM public.vote_data
-                  WHERE ((vote_data.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text]))
+                  WHERE (upper((vote_data.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text]))
                   GROUP BY vote_data.embedded_id_ballot_id, vote_data.party, vote_data.vote) majority ON ((((majority.embedded_id_ballot_id)::text = (vd.embedded_id_ballot_id)::text) AND ((majority.party)::text = (vd.party)::text) AND (majority.rank = 1))))
-          WHERE ((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text]))
+          WHERE (upper((vd.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text]))
           GROUP BY vd.embedded_id_intressent_id
         )
  SELECT pd.id AS person_id,
@@ -7994,8 +8001,7 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
      LEFT JOIN crisis_voting cv ON (((cv.person_id)::text = (pd.id)::text)))
      LEFT JOIN normal_voting nv ON (((nv.person_id)::text = (pd.id)::text)))
      LEFT JOIN party_discipline_crisis pdc ON (((pdc.person_id)::text = (pd.id)::text)))
-  WHERE (((pd.status)::text = 'active'::text) AND ((COALESCE(cv.crisis_votes, (0)::bigint) >= 10) OR (COALESCE(nv.normal_votes, (0)::bigint) >= 20)))
-  ORDER BY (round((((((1.0)::double precision - COALESCE(cv.crisis_absence_rate, (0)::double precision)) * (0.6)::double precision) + (((COALESCE(pdc.aligned_crisis_votes, (0)::bigint))::double precision / (NULLIF(COALESCE(pdc.party_votes, (0)::bigint), 0))::double precision) * (0.4)::double precision)))::numeric, 4)) DESC, COALESCE(cv.crisis_definitive_votes, (0)::bigint) DESC;
+  WHERE (((pd.status)::text = 'active'::text) AND ((COALESCE(cv.crisis_votes, (0)::bigint) >= 10) OR (COALESCE(nv.normal_votes, (0)::bigint) >= 20)));
 
 
 --
@@ -8088,7 +8094,7 @@ CREATE VIEW public.view_riksdagen_goverment_proposals AS
     number_value,
     document_status_url_xml
    FROM public.document_data
-  WHERE ((document_type)::text = 'PROP'::text);
+  WHERE ((upper((document_type)::text) = 'PROP'::text) OR ((document_type)::text = 'Proposition'::text));
 
 
 --
@@ -8176,409 +8182,6 @@ CREATE VIEW public.view_riksdagen_goverment_roles AS
 
 
 --
--- Name: view_riksdagen_party_momentum_analysis; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_party_momentum_analysis AS
- WITH quarterly_support AS (
-         SELECT vote_data.party,
-            EXTRACT(year FROM vote_data.vote_date) AS year,
-            EXTRACT(quarter FROM vote_data.vote_date) AS quarter,
-            count(DISTINCT vote_data.embedded_id_ballot_id) AS ballots_participated,
-            count(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS yes_votes,
-            count(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Nej'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS no_votes,
-            count(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Avstår'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS abstain_votes,
-            count(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Frånvarande'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS absent_votes,
-            ((count(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
-                    ELSE NULL::integer
-                END))::double precision / (NULLIF(count(*), 0))::double precision) AS participation_rate
-           FROM public.vote_data
-          WHERE (vote_data.vote_date >= '2010-01-01'::date)
-          GROUP BY vote_data.party, (EXTRACT(year FROM vote_data.vote_date)), (EXTRACT(quarter FROM vote_data.vote_date))
-        ), momentum_calc AS (
-         SELECT quarterly_support.party,
-            quarterly_support.year,
-            quarterly_support.quarter,
-            quarterly_support.ballots_participated,
-            quarterly_support.participation_rate,
-            lag(quarterly_support.participation_rate, 1) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter) AS prev_quarter_rate,
-            (quarterly_support.participation_rate - lag(quarterly_support.participation_rate, 1) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter)) AS momentum,
-            avg(quarterly_support.participation_rate) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS ma_4quarter,
-            stddev(quarterly_support.participation_rate) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS volatility_4quarter
-           FROM quarterly_support
-        ), acceleration_calc AS (
-         SELECT momentum_calc.party,
-            momentum_calc.year,
-            momentum_calc.quarter,
-            momentum_calc.ballots_participated,
-            momentum_calc.participation_rate,
-            momentum_calc.prev_quarter_rate,
-            momentum_calc.momentum,
-            momentum_calc.ma_4quarter,
-            momentum_calc.volatility_4quarter,
-            (COALESCE(momentum_calc.momentum, (0)::double precision) - COALESCE(lag(momentum_calc.momentum, 1) OVER (PARTITION BY momentum_calc.party ORDER BY momentum_calc.year, momentum_calc.quarter), (0)::double precision)) AS acceleration
-           FROM momentum_calc
-        )
- SELECT party,
-    year,
-    quarter,
-    concat(year, '-Q', quarter) AS period,
-    ballots_participated,
-    round((participation_rate)::numeric, 4) AS participation_rate,
-    round((prev_quarter_rate)::numeric, 4) AS prev_quarter_rate,
-    round((momentum)::numeric, 4) AS momentum,
-    round((ma_4quarter)::numeric, 4) AS moving_avg_4q,
-    round((volatility_4quarter)::numeric, 4) AS volatility,
-    round((acceleration)::numeric, 4) AS acceleration,
-        CASE
-            WHEN (COALESCE(momentum, (0)::double precision) > (0.05)::double precision) THEN 'STRONG_POSITIVE'::text
-            WHEN (COALESCE(momentum, (0)::double precision) > (0.02)::double precision) THEN 'POSITIVE'::text
-            WHEN (COALESCE(momentum, (0)::double precision) > ('-0.02'::numeric)::double precision) THEN 'STABLE'::text
-            WHEN (COALESCE(momentum, (0)::double precision) > ('-0.05'::numeric)::double precision) THEN 'NEGATIVE'::text
-            ELSE 'STRONG_NEGATIVE'::text
-        END AS trend_direction,
-        CASE
-            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.02)::double precision) THEN 'VERY_STABLE'::text
-            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision) THEN 'STABLE'::text
-            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.10)::double precision) THEN 'MODERATE'::text
-            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.15)::double precision) THEN 'VOLATILE'::text
-            ELSE 'HIGHLY_VOLATILE'::text
-        END AS stability_classification,
-        CASE
-            WHEN ((COALESCE(momentum, (0)::double precision) > (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision)) THEN 'SUSTAINED_GROWTH'::text
-            WHEN ((COALESCE(momentum, (0)::double precision) > (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) >= (0.05)::double precision)) THEN 'UNSTABLE_GROWTH'::text
-            WHEN ((COALESCE(momentum, (0)::double precision) < (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision)) THEN 'STEADY_DECLINE'::text
-            WHEN ((COALESCE(momentum, (0)::double precision) < (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) >= (0.05)::double precision)) THEN 'VOLATILE_DECLINE'::text
-            ELSE 'STABLE'::text
-        END AS intelligence_assessment
-   FROM acceleration_calc
-  WHERE (ballots_participated >= 5)
-  ORDER BY party, year DESC, quarter DESC;
-
-
---
--- Name: view_riksdagen_politician_influence_metrics; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_politician_influence_metrics AS
- WITH co_voting_pairs AS (
-         SELECT v1.embedded_id_intressent_id AS person_1,
-            v2.embedded_id_intressent_id AS person_2,
-            count(*) AS co_votes,
-            sum(
-                CASE
-                    WHEN ((v1.vote)::text = (v2.vote)::text) THEN 1
-                    ELSE 0
-                END) AS aligned_votes,
-            ((sum(
-                CASE
-                    WHEN ((v1.vote)::text = (v2.vote)::text) THEN 1
-                    ELSE 0
-                END))::double precision / (NULLIF(count(*), 0))::double precision) AS alignment_rate
-           FROM (public.vote_data v1
-             JOIN public.vote_data v2 ON ((((v1.embedded_id_ballot_id)::text = (v2.embedded_id_ballot_id)::text) AND ((v1.embedded_id_intressent_id)::text < (v2.embedded_id_intressent_id)::text))))
-          WHERE ((v1.vote_date >= (CURRENT_DATE - '1 year'::interval)) AND ((v1.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND ((v2.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])))
-          GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
-         HAVING (count(*) >= 20)
-        ), network_connections AS (
-         SELECT co_voting_pairs.person_1 AS person_id
-           FROM co_voting_pairs
-          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
-        UNION ALL
-         SELECT co_voting_pairs.person_2 AS person_id
-           FROM co_voting_pairs
-          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
-        ), degree_centrality AS (
-         SELECT network_connections.person_id,
-            count(*) AS connection_count
-           FROM network_connections
-          GROUP BY network_connections.person_id
-        ), cross_party_bridges AS (
-         SELECT cvp.person_1 AS person_id,
-            count(DISTINCT p2.party) AS parties_connected
-           FROM ((co_voting_pairs cvp
-             JOIN public.person_data p1 ON (((p1.id)::text = (cvp.person_1)::text)))
-             JOIN public.person_data p2 ON (((p2.id)::text = (cvp.person_2)::text)))
-          WHERE ((cvp.alignment_rate >= (0.6)::double precision) AND ((p1.party)::text <> (p2.party)::text))
-          GROUP BY cvp.person_1
-        UNION ALL
-         SELECT cvp.person_2 AS person_id,
-            count(DISTINCT p1.party) AS parties_connected
-           FROM ((co_voting_pairs cvp
-             JOIN public.person_data p1 ON (((p1.id)::text = (cvp.person_1)::text)))
-             JOIN public.person_data p2 ON (((p2.id)::text = (cvp.person_2)::text)))
-          WHERE ((cvp.alignment_rate >= (0.6)::double precision) AND ((p1.party)::text <> (p2.party)::text))
-          GROUP BY cvp.person_2
-        ), broker_score AS (
-         SELECT cross_party_bridges.person_id,
-            max(cross_party_bridges.parties_connected) AS cross_party_connections
-           FROM cross_party_bridges
-          GROUP BY cross_party_bridges.person_id
-        ), influence_max_values AS (
-         SELECT max(dc_1.connection_count) AS max_connections,
-            (max(dc_1.connection_count) + (max(COALESCE(bs_1.cross_party_connections, (0)::bigint)) * 10)) AS max_influence_denominator
-           FROM (degree_centrality dc_1
-             LEFT JOIN broker_score bs_1 ON (((dc_1.person_id)::text = (bs_1.person_id)::text)))
-        )
- SELECT pd.id AS person_id,
-    pd.first_name,
-    pd.last_name,
-    pd.party,
-    pd.status,
-    COALESCE(dc.connection_count, (0)::bigint) AS network_connections,
-    COALESCE(bs.cross_party_connections, (0)::bigint) AS cross_party_bridges,
-    round((((COALESCE(dc.connection_count, (0)::bigint))::double precision / (NULLIF(imv.max_connections, 0))::double precision))::numeric, 4) AS normalized_centrality,
-        CASE
-            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 50) THEN 'HIGHLY_CONNECTED'::text
-            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 30) THEN 'WELL_CONNECTED'::text
-            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 15) THEN 'MODERATELY_CONNECTED'::text
-            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 5) THEN 'CONNECTED'::text
-            ELSE 'ISOLATED'::text
-        END AS connectivity_level,
-        CASE
-            WHEN (COALESCE(bs.cross_party_connections, (0)::bigint) >= 4) THEN 'STRONG_BROKER'::text
-            WHEN (COALESCE(bs.cross_party_connections, (0)::bigint) >= 2) THEN 'MODERATE_BROKER'::text
-            WHEN (COALESCE(bs.cross_party_connections, (0)::bigint) >= 1) THEN 'WEAK_BROKER'::text
-            ELSE 'NON_BROKER'::text
-        END AS broker_classification,
-    round(((((COALESCE(dc.connection_count, (0)::bigint))::numeric * 1.0) + ((COALESCE(bs.cross_party_connections, (0)::bigint))::numeric * 10.0)) / (NULLIF(imv.max_influence_denominator, 0))::numeric), 4) AS influence_score,
-        CASE
-            WHEN ((COALESCE(bs.cross_party_connections, (0)::bigint) >= 3) AND (COALESCE(dc.connection_count, (0)::bigint) >= 30)) THEN 'Key power broker with cross-bloc influence'::text
-            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 50) THEN 'Highly influential within party/bloc'::text
-            WHEN (COALESCE(bs.cross_party_connections, (0)::bigint) >= 2) THEN 'Valuable bridge builder between parties'::text
-            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 20) THEN 'Moderate influence within network'::text
-            ELSE 'Limited network influence'::text
-        END AS influence_assessment
-   FROM (((public.person_data pd
-     CROSS JOIN influence_max_values imv)
-     LEFT JOIN degree_centrality dc ON (((dc.person_id)::text = (pd.id)::text)))
-     LEFT JOIN broker_score bs ON (((bs.person_id)::text = (pd.id)::text)))
-  WHERE ((pd.status)::text = 'active'::text)
-  ORDER BY (round(((((COALESCE(dc.connection_count, (0)::bigint))::numeric * 1.0) + ((COALESCE(bs.cross_party_connections, (0)::bigint))::numeric * 10.0)) / (NULLIF(imv.max_influence_denominator, 0))::numeric), 4)) DESC, COALESCE(dc.connection_count, (0)::bigint) DESC;
-
-
---
--- Name: view_riksdagen_voting_anomaly_detection; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_voting_anomaly_detection AS
- WITH party_consensus AS (
-         SELECT vote_data.embedded_id_ballot_id,
-            vote_data.party,
-            vote_data.vote,
-            count(*) AS vote_count,
-            row_number() OVER (PARTITION BY vote_data.embedded_id_ballot_id, vote_data.party ORDER BY (count(*)) DESC) AS rank
-           FROM public.vote_data
-          WHERE (((vote_data.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text, ('Avstår'::character varying)::text])) AND (vote_data.party IS NOT NULL) AND (vote_data.vote_date >= (CURRENT_DATE - '1 year'::interval)))
-          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party, vote_data.vote
-        ), party_majority_vote AS (
-         SELECT party_consensus.embedded_id_ballot_id,
-            party_consensus.party,
-            party_consensus.vote AS party_consensus_vote,
-            party_consensus.vote_count AS consensus_count
-           FROM party_consensus
-          WHERE (party_consensus.rank = 1)
-        ), party_vote_counts AS (
-         SELECT vote_data.embedded_id_ballot_id,
-            vote_data.party,
-            count(*) AS total_party_votes
-           FROM public.vote_data
-          WHERE (vote_data.vote_date >= (CURRENT_DATE - '1 year'::interval))
-          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party
-        ), individual_vs_party AS (
-         SELECT vd.embedded_id_intressent_id AS person_id,
-            vd.party,
-            vd.embedded_id_ballot_id AS ballot_id,
-            vd.vote AS individual_vote,
-            pmv.party_consensus_vote,
-            pmv.consensus_count,
-            vd.vote_date,
-                CASE
-                    WHEN ((vd.vote)::text = (pmv.party_consensus_vote)::text) THEN 'ALIGNED'::text
-                    WHEN (((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND ((pmv.party_consensus_vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND ((vd.vote)::text <> (pmv.party_consensus_vote)::text)) THEN 'OPPOSED'::text
-                    WHEN (((vd.vote)::text = 'Avstår'::text) AND ((pmv.party_consensus_vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text]))) THEN 'ABSTAINED'::text
-                    ELSE 'OTHER'::text
-                END AS alignment_status,
-                CASE
-                    WHEN ((pmv.consensus_count)::numeric >= ((pvc.total_party_votes)::numeric * 0.9)) THEN 'UNANIMOUS'::text
-                    WHEN ((pmv.consensus_count)::numeric >= ((pvc.total_party_votes)::numeric * 0.75)) THEN 'STRONG_MAJORITY'::text
-                    ELSE 'SPLIT'::text
-                END AS party_cohesion
-           FROM ((public.vote_data vd
-             JOIN party_majority_vote pmv ON ((((vd.embedded_id_ballot_id)::text = (pmv.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pmv.party)::text))))
-             JOIN party_vote_counts pvc ON ((((vd.embedded_id_ballot_id)::text = (pvc.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pvc.party)::text))))
-          WHERE (((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text, ('Avstår'::character varying)::text])) AND (vd.vote_date >= (CURRENT_DATE - '1 year'::interval)))
-        )
- SELECT ivp.person_id,
-    pd.first_name,
-    pd.last_name,
-    ivp.party,
-    count(*) AS total_votes,
-    sum(
-        CASE
-            WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
-            ELSE 0
-        END) AS aligned_votes,
-    sum(
-        CASE
-            WHEN (ivp.alignment_status = 'OPPOSED'::text) THEN 1
-            ELSE 0
-        END) AS opposed_votes,
-    sum(
-        CASE
-            WHEN (ivp.alignment_status = 'ABSTAINED'::text) THEN 1
-            ELSE 0
-        END) AS abstained_votes,
-    round((((sum(
-        CASE
-            WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
-            ELSE 0
-        END))::double precision / (NULLIF(count(*), 0))::double precision))::numeric, 4) AS party_discipline_score,
-    round((((sum(
-        CASE
-            WHEN (ivp.alignment_status = 'OPPOSED'::text) THEN 1
-            ELSE 0
-        END))::double precision / (NULLIF(count(*), 0))::double precision))::numeric, 4) AS rebellion_rate,
-    sum(
-        CASE
-            WHEN ((ivp.alignment_status = 'OPPOSED'::text) AND (ivp.party_cohesion = 'UNANIMOUS'::text)) THEN 1
-            ELSE 0
-        END) AS unanimous_deviations,
-        CASE
-            WHEN (((sum(
-            CASE
-                WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
-                ELSE 0
-            END))::double precision / (NULLIF(count(*), 0))::double precision) >= (0.95)::double precision) THEN 'VERY_HIGH_DISCIPLINE'::text
-            WHEN (((sum(
-            CASE
-                WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
-                ELSE 0
-            END))::double precision / (NULLIF(count(*), 0))::double precision) >= (0.85)::double precision) THEN 'HIGH_DISCIPLINE'::text
-            WHEN (((sum(
-            CASE
-                WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
-                ELSE 0
-            END))::double precision / (NULLIF(count(*), 0))::double precision) >= (0.70)::double precision) THEN 'MODERATE_DISCIPLINE'::text
-            ELSE 'LOW_DISCIPLINE'::text
-        END AS discipline_classification,
-        CASE
-            WHEN (sum(
-            CASE
-                WHEN ((ivp.alignment_status = 'OPPOSED'::text) AND (ivp.party_cohesion = 'UNANIMOUS'::text)) THEN 1
-                ELSE 0
-            END) >= 3) THEN 'HIGH_DEFECTION_RISK'::text
-            WHEN (((sum(
-            CASE
-                WHEN (ivp.alignment_status = 'OPPOSED'::text) THEN 1
-                ELSE 0
-            END))::double precision / (NULLIF(count(*), 0))::double precision) >= (0.20)::double precision) THEN 'MODERATE_DEFECTION_RISK'::text
-            WHEN (((sum(
-            CASE
-                WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
-                ELSE 0
-            END))::double precision / (NULLIF(count(*), 0))::double precision) >= (0.95)::double precision) THEN 'VERY_RELIABLE'::text
-            ELSE 'RELIABLE'::text
-        END AS defection_risk_assessment,
-    min(ivp.vote_date) AS first_vote_date,
-    max(ivp.vote_date) AS last_vote_date
-   FROM (individual_vs_party ivp
-     LEFT JOIN public.person_data pd ON (((pd.id)::text = (ivp.person_id)::text)))
-  GROUP BY ivp.person_id, pd.first_name, pd.last_name, ivp.party
- HAVING (count(*) >= 10)
-  ORDER BY (round((((sum(
-        CASE
-            WHEN (ivp.alignment_status = 'OPPOSED'::text) THEN 1
-            ELSE 0
-        END))::double precision / (NULLIF(count(*), 0))::double precision))::numeric, 4)) DESC, (sum(
-        CASE
-            WHEN ((ivp.alignment_status = 'OPPOSED'::text) AND (ivp.party_cohesion = 'UNANIMOUS'::text)) THEN 1
-            ELSE 0
-        END)) DESC;
-
-
---
--- Name: view_riksdagen_intelligence_dashboard; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_intelligence_dashboard AS
- WITH momentum_summary AS (
-         SELECT count(DISTINCT view_riksdagen_party_momentum_analysis.party) FILTER (WHERE (view_riksdagen_party_momentum_analysis.trend_direction = ANY (ARRAY['STRONG_POSITIVE'::text, 'POSITIVE'::text]))) AS parties_gaining_momentum,
-            count(DISTINCT view_riksdagen_party_momentum_analysis.party) FILTER (WHERE (view_riksdagen_party_momentum_analysis.trend_direction = ANY (ARRAY['STRONG_NEGATIVE'::text, 'NEGATIVE'::text]))) AS parties_losing_momentum,
-            count(DISTINCT view_riksdagen_party_momentum_analysis.party) FILTER (WHERE (view_riksdagen_party_momentum_analysis.stability_classification = ANY (ARRAY['VOLATILE'::text, 'HIGHLY_VOLATILE'::text]))) AS volatile_parties
-           FROM public.view_riksdagen_party_momentum_analysis
-        ), coalition_summary AS (
-         SELECT count(*) FILTER (WHERE (view_riksdagen_coalition_alignment_matrix.coalition_likelihood = 'VERY_HIGH'::text)) AS high_probability_coalitions,
-            count(*) FILTER (WHERE ((view_riksdagen_coalition_alignment_matrix.bloc_relationship = 'CROSS_BLOC'::text) AND (view_riksdagen_coalition_alignment_matrix.coalition_likelihood = ANY (ARRAY['HIGH'::text, 'VERY_HIGH'::text])))) AS cross_bloc_alliances
-           FROM public.view_riksdagen_coalition_alignment_matrix
-        ), anomaly_summary AS (
-         SELECT count(*) FILTER (WHERE (view_riksdagen_voting_anomaly_detection.defection_risk_assessment = 'HIGH_DEFECTION_RISK'::text)) AS high_defection_risks,
-            count(*) FILTER (WHERE (view_riksdagen_voting_anomaly_detection.discipline_classification = 'LOW_DISCIPLINE'::text)) AS low_discipline_politicians
-           FROM public.view_riksdagen_voting_anomaly_detection
-        ), influence_summary AS (
-         SELECT count(*) FILTER (WHERE (view_riksdagen_politician_influence_metrics.broker_classification = ANY (ARRAY['STRONG_BROKER'::text, 'MODERATE_BROKER'::text]))) AS power_brokers,
-            count(*) FILTER (WHERE (view_riksdagen_politician_influence_metrics.connectivity_level = 'HIGHLY_CONNECTED'::text)) AS highly_connected_politicians
-           FROM public.view_riksdagen_politician_influence_metrics
-        ), resilience_summary AS (
-         SELECT count(*) FILTER (WHERE (view_riksdagen_crisis_resilience_indicators.resilience_classification = 'HIGHLY_RESILIENT'::text)) AS crisis_ready_politicians,
-            count(*) FILTER (WHERE (view_riksdagen_crisis_resilience_indicators.resilience_classification = 'LOW_RESILIENCE'::text)) AS low_resilience_politicians
-           FROM public.view_riksdagen_crisis_resilience_indicators
-        ), vote_stats AS (
-         SELECT max(vote_data.vote_date) AS latest_vote_data,
-            count(DISTINCT vote_data.embedded_id_ballot_id) FILTER (WHERE (vote_data.vote_date >= (CURRENT_DATE - '30 days'::interval))) AS ballots_last_30_days
-           FROM public.vote_data
-        )
- SELECT ms.parties_gaining_momentum,
-    ms.parties_losing_momentum,
-    ms.volatile_parties,
-    cs.high_probability_coalitions,
-    cs.cross_bloc_alliances,
-    ans.high_defection_risks,
-    ans.low_discipline_politicians,
-    ins.power_brokers,
-    ins.highly_connected_politicians,
-    rs.crisis_ready_politicians,
-    rs.low_resilience_politicians,
-        CASE
-            WHEN (ans.high_defection_risks >= 5) THEN 'HIGH_POLITICAL_INSTABILITY_RISK'::text
-            WHEN (ms.volatile_parties >= 3) THEN 'MODERATE_POLITICAL_INSTABILITY_RISK'::text
-            ELSE 'STABLE_POLITICAL_ENVIRONMENT'::text
-        END AS stability_assessment,
-        CASE
-            WHEN (cs.cross_bloc_alliances >= 2) THEN 'POTENTIAL_REALIGNMENT_DETECTED'::text
-            WHEN (cs.high_probability_coalitions >= 5) THEN 'STABLE_COALITION_PATTERNS'::text
-            ELSE 'UNCERTAIN_COALITION_LANDSCAPE'::text
-        END AS coalition_assessment,
-    vs.latest_vote_data,
-    vs.ballots_last_30_days,
-    CURRENT_TIMESTAMP AS intelligence_report_timestamp
-   FROM (((((momentum_summary ms
-     CROSS JOIN coalition_summary cs)
-     CROSS JOIN anomaly_summary ans)
-     CROSS JOIN influence_summary ins)
-     CROSS JOIN resilience_summary rs)
-     CROSS JOIN vote_stats vs);
-
-
---
 -- Name: view_riksdagen_member_proposals; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -8607,7 +8210,7 @@ CREATE VIEW public.view_riksdagen_member_proposals AS
     title,
     dokument_document_container__0
    FROM public.document_element
-  WHERE ((document_type)::text = 'MOT'::text);
+  WHERE (upper((document_type)::text) = 'MOT'::text);
 
 
 --
@@ -9274,6 +8877,105 @@ CREATE VIEW public.view_riksdagen_party_document_summary AS
 
 
 --
+-- Name: view_riksdagen_party_momentum_analysis; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_momentum_analysis AS
+ WITH quarterly_support AS (
+         SELECT vote_data.party,
+            EXTRACT(year FROM vote_data.vote_date) AS year,
+            EXTRACT(quarter FROM vote_data.vote_date) AS quarter,
+            count(DISTINCT vote_data.embedded_id_ballot_id) AS ballots_participated,
+            count(
+                CASE
+                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS yes_votes,
+            count(
+                CASE
+                    WHEN ((vote_data.vote)::text = 'Nej'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS no_votes,
+            count(
+                CASE
+                    WHEN ((vote_data.vote)::text = 'Avstår'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS abstain_votes,
+            count(
+                CASE
+                    WHEN ((vote_data.vote)::text = 'Frånvarande'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS absent_votes,
+            ((count(
+                CASE
+                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
+                    ELSE NULL::integer
+                END))::double precision / (NULLIF(count(*), 0))::double precision) AS participation_rate
+           FROM public.vote_data
+          WHERE (vote_data.vote_date >= '2010-01-01'::date)
+          GROUP BY vote_data.party, (EXTRACT(year FROM vote_data.vote_date)), (EXTRACT(quarter FROM vote_data.vote_date))
+        ), momentum_calc AS (
+         SELECT quarterly_support.party,
+            quarterly_support.year,
+            quarterly_support.quarter,
+            quarterly_support.ballots_participated,
+            quarterly_support.participation_rate,
+            lag(quarterly_support.participation_rate, 1) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter) AS prev_quarter_rate,
+            (quarterly_support.participation_rate - lag(quarterly_support.participation_rate, 1) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter)) AS momentum,
+            avg(quarterly_support.participation_rate) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS ma_4quarter,
+            stddev(quarterly_support.participation_rate) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS volatility_4quarter
+           FROM quarterly_support
+        ), acceleration_calc AS (
+         SELECT momentum_calc.party,
+            momentum_calc.year,
+            momentum_calc.quarter,
+            momentum_calc.ballots_participated,
+            momentum_calc.participation_rate,
+            momentum_calc.prev_quarter_rate,
+            momentum_calc.momentum,
+            momentum_calc.ma_4quarter,
+            momentum_calc.volatility_4quarter,
+            (COALESCE(momentum_calc.momentum, (0)::double precision) - COALESCE(lag(momentum_calc.momentum, 1) OVER (PARTITION BY momentum_calc.party ORDER BY momentum_calc.year, momentum_calc.quarter), (0)::double precision)) AS acceleration
+           FROM momentum_calc
+        )
+ SELECT party,
+    year,
+    quarter,
+    concat(year, '-Q', quarter) AS period,
+    ballots_participated,
+    round((participation_rate)::numeric, 4) AS participation_rate,
+    round((prev_quarter_rate)::numeric, 4) AS prev_quarter_rate,
+    round((momentum)::numeric, 4) AS momentum,
+    round((ma_4quarter)::numeric, 4) AS moving_avg_4q,
+    round((volatility_4quarter)::numeric, 4) AS volatility,
+    round((acceleration)::numeric, 4) AS acceleration,
+        CASE
+            WHEN (COALESCE(momentum, (0)::double precision) > (0.05)::double precision) THEN 'STRONG_POSITIVE'::text
+            WHEN (COALESCE(momentum, (0)::double precision) > (0.02)::double precision) THEN 'POSITIVE'::text
+            WHEN (COALESCE(momentum, (0)::double precision) > ('-0.02'::numeric)::double precision) THEN 'STABLE'::text
+            WHEN (COALESCE(momentum, (0)::double precision) > ('-0.05'::numeric)::double precision) THEN 'NEGATIVE'::text
+            ELSE 'STRONG_NEGATIVE'::text
+        END AS trend_direction,
+        CASE
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.02)::double precision) THEN 'VERY_STABLE'::text
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision) THEN 'STABLE'::text
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.10)::double precision) THEN 'MODERATE'::text
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.15)::double precision) THEN 'VOLATILE'::text
+            ELSE 'HIGHLY_VOLATILE'::text
+        END AS stability_classification,
+        CASE
+            WHEN ((COALESCE(momentum, (0)::double precision) > (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision)) THEN 'SUSTAINED_GROWTH'::text
+            WHEN ((COALESCE(momentum, (0)::double precision) > (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) >= (0.05)::double precision)) THEN 'UNSTABLE_GROWTH'::text
+            WHEN ((COALESCE(momentum, (0)::double precision) < (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision)) THEN 'STEADY_DECLINE'::text
+            WHEN ((COALESCE(momentum, (0)::double precision) < (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) >= (0.05)::double precision)) THEN 'VOLATILE_DECLINE'::text
+            ELSE 'STABLE'::text
+        END AS intelligence_assessment
+   FROM acceleration_calc
+  WHERE (ballots_participated >= 5)
+  ORDER BY party, year DESC, quarter DESC;
+
+
+--
 -- Name: view_riksdagen_party_role_member; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -9902,6 +9604,107 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
 
 
 --
+-- Name: view_riksdagen_politician_influence_metrics; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_politician_influence_metrics AS
+ WITH co_voting_pairs AS (
+         SELECT v1.embedded_id_intressent_id AS person_1,
+            v2.embedded_id_intressent_id AS person_2,
+            count(*) AS co_votes,
+            sum(
+                CASE
+                    WHEN ((v1.vote)::text = (v2.vote)::text) THEN 1
+                    ELSE 0
+                END) AS aligned_votes,
+            ((sum(
+                CASE
+                    WHEN ((v1.vote)::text = (v2.vote)::text) THEN 1
+                    ELSE 0
+                END))::double precision / (NULLIF(count(*), 0))::double precision) AS alignment_rate
+           FROM (public.vote_data v1
+             JOIN public.vote_data v2 ON ((((v1.embedded_id_ballot_id)::text = (v2.embedded_id_ballot_id)::text) AND ((v1.embedded_id_intressent_id)::text < (v2.embedded_id_intressent_id)::text))))
+          WHERE ((v1.vote_date >= (CURRENT_DATE - '1 year'::interval)) AND ((v1.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND ((v2.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])))
+          GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
+         HAVING (count(*) >= 20)
+        ), network_connections AS (
+         SELECT co_voting_pairs.person_1 AS person_id
+           FROM co_voting_pairs
+          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
+        UNION ALL
+         SELECT co_voting_pairs.person_2 AS person_id
+           FROM co_voting_pairs
+          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
+        ), degree_centrality AS (
+         SELECT network_connections.person_id,
+            count(*) AS connection_count
+           FROM network_connections
+          GROUP BY network_connections.person_id
+        ), cross_party_bridges AS (
+         SELECT cvp.person_1 AS person_id,
+            count(DISTINCT p2.party) AS parties_connected
+           FROM ((co_voting_pairs cvp
+             JOIN public.person_data p1 ON (((p1.id)::text = (cvp.person_1)::text)))
+             JOIN public.person_data p2 ON (((p2.id)::text = (cvp.person_2)::text)))
+          WHERE ((cvp.alignment_rate >= (0.6)::double precision) AND ((p1.party)::text <> (p2.party)::text))
+          GROUP BY cvp.person_1
+        UNION ALL
+         SELECT cvp.person_2 AS person_id,
+            count(DISTINCT p1.party) AS parties_connected
+           FROM ((co_voting_pairs cvp
+             JOIN public.person_data p1 ON (((p1.id)::text = (cvp.person_1)::text)))
+             JOIN public.person_data p2 ON (((p2.id)::text = (cvp.person_2)::text)))
+          WHERE ((cvp.alignment_rate >= (0.6)::double precision) AND ((p1.party)::text <> (p2.party)::text))
+          GROUP BY cvp.person_2
+        ), broker_score AS (
+         SELECT cross_party_bridges.person_id,
+            max(cross_party_bridges.parties_connected) AS cross_party_connections
+           FROM cross_party_bridges
+          GROUP BY cross_party_bridges.person_id
+        ), influence_max_values AS (
+         SELECT max(dc_1.connection_count) AS max_connections,
+            (max(dc_1.connection_count) + (max(COALESCE(bs_1.cross_party_connections, (0)::bigint)) * 10)) AS max_influence_denominator
+           FROM (degree_centrality dc_1
+             LEFT JOIN broker_score bs_1 ON (((dc_1.person_id)::text = (bs_1.person_id)::text)))
+        )
+ SELECT pd.id AS person_id,
+    pd.first_name,
+    pd.last_name,
+    pd.party,
+    pd.status,
+    COALESCE(dc.connection_count, (0)::bigint) AS network_connections,
+    COALESCE(bs.cross_party_connections, (0)::bigint) AS cross_party_bridges,
+    round((((COALESCE(dc.connection_count, (0)::bigint))::double precision / (NULLIF(imv.max_connections, 0))::double precision))::numeric, 4) AS normalized_centrality,
+        CASE
+            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 50) THEN 'HIGHLY_CONNECTED'::text
+            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 30) THEN 'WELL_CONNECTED'::text
+            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 15) THEN 'MODERATELY_CONNECTED'::text
+            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 5) THEN 'CONNECTED'::text
+            ELSE 'ISOLATED'::text
+        END AS connectivity_level,
+        CASE
+            WHEN (COALESCE(bs.cross_party_connections, (0)::bigint) >= 4) THEN 'STRONG_BROKER'::text
+            WHEN (COALESCE(bs.cross_party_connections, (0)::bigint) >= 2) THEN 'MODERATE_BROKER'::text
+            WHEN (COALESCE(bs.cross_party_connections, (0)::bigint) >= 1) THEN 'WEAK_BROKER'::text
+            ELSE 'NON_BROKER'::text
+        END AS broker_classification,
+    round(((((COALESCE(dc.connection_count, (0)::bigint))::numeric * 1.0) + ((COALESCE(bs.cross_party_connections, (0)::bigint))::numeric * 10.0)) / (NULLIF(imv.max_influence_denominator, 0))::numeric), 4) AS influence_score,
+        CASE
+            WHEN ((COALESCE(bs.cross_party_connections, (0)::bigint) >= 3) AND (COALESCE(dc.connection_count, (0)::bigint) >= 30)) THEN 'Key power broker with cross-bloc influence'::text
+            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 50) THEN 'Highly influential within party/bloc'::text
+            WHEN (COALESCE(bs.cross_party_connections, (0)::bigint) >= 2) THEN 'Valuable bridge builder between parties'::text
+            WHEN (COALESCE(dc.connection_count, (0)::bigint) >= 20) THEN 'Moderate influence within network'::text
+            ELSE 'Limited network influence'::text
+        END AS influence_assessment
+   FROM (((public.person_data pd
+     CROSS JOIN influence_max_values imv)
+     LEFT JOIN degree_centrality dc ON (((dc.person_id)::text = (pd.id)::text)))
+     LEFT JOIN broker_score bs ON (((bs.person_id)::text = (pd.id)::text)))
+  WHERE ((pd.status)::text = 'active'::text)
+  ORDER BY (round(((((COALESCE(dc.connection_count, (0)::bigint))::numeric * 1.0) + ((COALESCE(bs.cross_party_connections, (0)::bigint))::numeric * 10.0)) / (NULLIF(imv.max_influence_denominator, 0))::numeric), 4)) DESC, COALESCE(dc.connection_count, (0)::bigint) DESC;
+
+
+--
 -- Name: view_riksdagen_vote_data_ballot_party_summary_daily; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
@@ -10411,6 +10214,146 @@ COMMENT ON MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_summary_week
 
 
 --
+-- Name: view_riksdagen_voting_anomaly_detection; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_voting_anomaly_detection AS
+ WITH party_consensus AS (
+         SELECT vote_data.embedded_id_ballot_id,
+            vote_data.party,
+            vote_data.vote,
+            count(*) AS vote_count,
+            row_number() OVER (PARTITION BY vote_data.embedded_id_ballot_id, vote_data.party ORDER BY (count(*)) DESC) AS rank
+           FROM public.vote_data
+          WHERE (((vote_data.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text, ('Avstår'::character varying)::text])) AND (vote_data.party IS NOT NULL) AND (vote_data.vote_date >= (CURRENT_DATE - '1 year'::interval)))
+          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party, vote_data.vote
+        ), party_majority_vote AS (
+         SELECT party_consensus.embedded_id_ballot_id,
+            party_consensus.party,
+            party_consensus.vote AS party_consensus_vote,
+            party_consensus.vote_count AS consensus_count
+           FROM party_consensus
+          WHERE (party_consensus.rank = 1)
+        ), party_vote_counts AS (
+         SELECT vote_data.embedded_id_ballot_id,
+            vote_data.party,
+            count(*) AS total_party_votes
+           FROM public.vote_data
+          WHERE (vote_data.vote_date >= (CURRENT_DATE - '1 year'::interval))
+          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party
+        ), individual_vs_party AS (
+         SELECT vd.embedded_id_intressent_id AS person_id,
+            vd.party,
+            vd.embedded_id_ballot_id AS ballot_id,
+            vd.vote AS individual_vote,
+            pmv.party_consensus_vote,
+            pmv.consensus_count,
+            vd.vote_date,
+                CASE
+                    WHEN ((vd.vote)::text = (pmv.party_consensus_vote)::text) THEN 'ALIGNED'::text
+                    WHEN (((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND ((pmv.party_consensus_vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND ((vd.vote)::text <> (pmv.party_consensus_vote)::text)) THEN 'OPPOSED'::text
+                    WHEN (((vd.vote)::text = 'Avstår'::text) AND ((pmv.party_consensus_vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text]))) THEN 'ABSTAINED'::text
+                    ELSE 'OTHER'::text
+                END AS alignment_status,
+                CASE
+                    WHEN ((pmv.consensus_count)::numeric >= ((pvc.total_party_votes)::numeric * 0.9)) THEN 'UNANIMOUS'::text
+                    WHEN ((pmv.consensus_count)::numeric >= ((pvc.total_party_votes)::numeric * 0.75)) THEN 'STRONG_MAJORITY'::text
+                    ELSE 'SPLIT'::text
+                END AS party_cohesion
+           FROM ((public.vote_data vd
+             JOIN party_majority_vote pmv ON ((((vd.embedded_id_ballot_id)::text = (pmv.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pmv.party)::text))))
+             JOIN party_vote_counts pvc ON ((((vd.embedded_id_ballot_id)::text = (pvc.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pvc.party)::text))))
+          WHERE (((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text, ('Avstår'::character varying)::text])) AND (vd.vote_date >= (CURRENT_DATE - '1 year'::interval)))
+        )
+ SELECT ivp.person_id,
+    pd.first_name,
+    pd.last_name,
+    ivp.party,
+    count(*) AS total_votes,
+    sum(
+        CASE
+            WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
+            ELSE 0
+        END) AS aligned_votes,
+    sum(
+        CASE
+            WHEN (ivp.alignment_status = 'OPPOSED'::text) THEN 1
+            ELSE 0
+        END) AS opposed_votes,
+    sum(
+        CASE
+            WHEN (ivp.alignment_status = 'ABSTAINED'::text) THEN 1
+            ELSE 0
+        END) AS abstained_votes,
+    round((((sum(
+        CASE
+            WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
+            ELSE 0
+        END))::double precision / (NULLIF(count(*), 0))::double precision))::numeric, 4) AS party_discipline_score,
+    round((((sum(
+        CASE
+            WHEN (ivp.alignment_status = 'OPPOSED'::text) THEN 1
+            ELSE 0
+        END))::double precision / (NULLIF(count(*), 0))::double precision))::numeric, 4) AS rebellion_rate,
+    sum(
+        CASE
+            WHEN ((ivp.alignment_status = 'OPPOSED'::text) AND (ivp.party_cohesion = 'UNANIMOUS'::text)) THEN 1
+            ELSE 0
+        END) AS unanimous_deviations,
+        CASE
+            WHEN (((sum(
+            CASE
+                WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
+                ELSE 0
+            END))::double precision / (NULLIF(count(*), 0))::double precision) >= (0.95)::double precision) THEN 'VERY_HIGH_DISCIPLINE'::text
+            WHEN (((sum(
+            CASE
+                WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
+                ELSE 0
+            END))::double precision / (NULLIF(count(*), 0))::double precision) >= (0.85)::double precision) THEN 'HIGH_DISCIPLINE'::text
+            WHEN (((sum(
+            CASE
+                WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
+                ELSE 0
+            END))::double precision / (NULLIF(count(*), 0))::double precision) >= (0.70)::double precision) THEN 'MODERATE_DISCIPLINE'::text
+            ELSE 'LOW_DISCIPLINE'::text
+        END AS discipline_classification,
+        CASE
+            WHEN (sum(
+            CASE
+                WHEN ((ivp.alignment_status = 'OPPOSED'::text) AND (ivp.party_cohesion = 'UNANIMOUS'::text)) THEN 1
+                ELSE 0
+            END) >= 3) THEN 'HIGH_DEFECTION_RISK'::text
+            WHEN (((sum(
+            CASE
+                WHEN (ivp.alignment_status = 'OPPOSED'::text) THEN 1
+                ELSE 0
+            END))::double precision / (NULLIF(count(*), 0))::double precision) >= (0.20)::double precision) THEN 'MODERATE_DEFECTION_RISK'::text
+            WHEN (((sum(
+            CASE
+                WHEN (ivp.alignment_status = 'ALIGNED'::text) THEN 1
+                ELSE 0
+            END))::double precision / (NULLIF(count(*), 0))::double precision) >= (0.95)::double precision) THEN 'VERY_RELIABLE'::text
+            ELSE 'RELIABLE'::text
+        END AS defection_risk_assessment,
+    min(ivp.vote_date) AS first_vote_date,
+    max(ivp.vote_date) AS last_vote_date
+   FROM (individual_vs_party ivp
+     LEFT JOIN public.person_data pd ON (((pd.id)::text = (ivp.person_id)::text)))
+  GROUP BY ivp.person_id, pd.first_name, pd.last_name, ivp.party
+ HAVING (count(*) >= 10)
+  ORDER BY (round((((sum(
+        CASE
+            WHEN (ivp.alignment_status = 'OPPOSED'::text) THEN 1
+            ELSE 0
+        END))::double precision / (NULLIF(count(*), 0))::double precision))::numeric, 4)) DESC, (sum(
+        CASE
+            WHEN ((ivp.alignment_status = 'OPPOSED'::text) AND (ivp.party_cohesion = 'UNANIMOUS'::text)) THEN 1
+            ELSE 0
+        END)) DESC;
+
+
+--
 -- Name: view_risk_score_evolution; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -10429,7 +10372,7 @@ CREATE VIEW public.view_risk_score_evolution AS
            FROM ((public.person_data p
              JOIN public.view_riksdagen_vote_data_ballot_politician_summary_daily vd ON ((((p.id)::text = (vd.embedded_id_intressent_id)::text) AND (vd.embedded_id_vote_date >= (CURRENT_DATE - '3 years'::interval)))))
              LEFT JOIN public.view_riksdagen_politician_document vpd ON ((((p.id)::text = (vpd.person_reference_id)::text) AND (vpd.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (date_trunc('month'::text, (vpd.made_public_date)::timestamp with time zone) = date_trunc('month'::text, (vd.embedded_id_vote_date)::timestamp with time zone)))))
-          WHERE ((p.status)::text = 'active'::text)
+          WHERE ((p.status)::text = ANY ((ARRAY['active'::character varying, 'Active'::character varying, 'ACTIVE'::character varying])::text[]))
           GROUP BY p.id, p.first_name, p.last_name, p.party, (date_trunc('month'::text, (vd.embedded_id_vote_date)::timestamp with time zone))
         ), monthly_violations AS (
          SELECT rule_violation.reference_id AS person_id,
@@ -12515,13 +12458,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Mp8HMNLJz37LdPf1uiK5OUlmMqVOgnfM79Elv0n4uVH1cbMKSFaUTG2AFYtDFSd
+\unrestrict ileKTSJVaZnOEnsjSEAN14du34AqVEYfPoH6DApxgK7ZIeCncCmRHE5bjozFWZz
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict 2vwwm3BwKk7wR5nclUCFyHpemHYt9lL50n5PM5YzRTJ3hTXgHbbKeRhzlQNuHSg
+\restrict mI2nwXnhzRsLT8d7sGLJeDTohE8sWp5SXQ0nRLsmjfH6rAzeNjJmWbIJOCKHDQd
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -12914,6 +12857,16 @@ ministry-2025111701-effectiveness-trends	intelligence-operative	db-changelog-1.3
 ministry-2025111702-productivity-matrix	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:35:56.565277	370	EXECUTED	9:179ccaf2df5469f386c4f0586073cea7	createView viewName=view_ministry_productivity_matrix	Ministry Productivity Matrix View\n        \n        Intelligence Purpose:\n        - Benchmark ministry performance against peers\n        - Identify most and least productive ministries\n        - Normalize metrics for fair comparison\n        - Suppo...	\N	5.0.1	\N	\N	3422554304
 ministry-2025111703-risk-evolution	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:35:56.587222	371	EXECUTED	9:1a81b471095b1d7cb4d9c78e3393bb93	createView viewName=view_ministry_risk_evolution	Ministry Risk Evolution View\n        \n        Intelligence Purpose:\n        - Track historical changes in ministry risk scores\n        - Monitor risk severity transitions for ministries\n        - Identify risk patterns and triggers at ministry lev...	\N	5.0.1	\N	\N	3422554304
 ministry-2025111704-performance-indexes	intelligence-operative	db-changelog-1.31.xml	2025-11-17 23:36:28.762583	372	EXECUTED	9:5186a2215528e93478d78b12fc23941b	sql	Performance Indexes for Ministry Intelligence Queries\n        \n        These indexes optimize the most common temporal queries used in\n        ministry intelligence analysis and government effectiveness dashboards.	\N	5.0.1	\N	\N	3422586448
+fix-politician-risk-summary-1.32-001	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:30:02.863216	373	EXECUTED	9:a5bd4210d7968d1004790f7d482867e8	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary to return data\n        \n        Root Cause: The JOIN condition on view_riksdagen_vote_data_ballot_politician_summary_annual\n        was filtering on an exact date (date_trunc('year', CURRENT_DATE - INTERVAL '1 year...	\N	5.0.1	\N	\N	3674200675
+verify-other-views-1.32-002	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:30:02.870332	374	EXECUTED	9:72d8a71e1aae0b931ebd79e83a10cf1d	sql	Verification changeset for other politician intelligence views\n        \n        After investigation, the following views should work correctly as they\n        query vote_data directly without restrictive date filters on aggregated views:\n        \n...	\N	5.0.1	\N	\N	3674200675
+document-fixes-1.32-003	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:30:02.873579	375	EXECUTED	9:8a10e26023ff9e74bf785363f03efdd6	sql	Documentation for v1.32 fixes\n        \n        This changeset documents the fixes applied to politician intelligence views\n        for inclusion in DATABASE_VIEW_INTELLIGENCE_CATALOG.md and \n        TROUBLESHOOTING_EMPTY_VIEWS.md.\n        \n       ...	\N	5.0.1	\N	\N	3674200675
+fix-goverment-proposals-1.32-004	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:30:02.879547	376	EXECUTED	9:c881ba745964943eb175bc0ff9c55520	dropView viewName=view_riksdagen_goverment_proposals; createView viewName=view_riksdagen_goverment_proposals	Fix view_riksdagen_goverment_proposals to return data\n        \n        Root Cause: The view filters by document_type = 'PROP' (uppercase), but\n        the actual data in document_data may use different case variations:\n        - 'prop' (lowercase)...	\N	5.0.1	\N	\N	3674200675
+document-ministry-troubleshooting-1.32-006	intelligence-analyst	db-changelog-1.32.xml	2025-11-20 21:30:02.92816	377	EXECUTED	9:11eae01f4f5f0d419aacbe440d4b60f3	sql	Document Ministry View Troubleshooting\n        \n        This changeset provides documentation for TROUBLESHOOTING_EMPTY_VIEWS.md\n        specific to ministry views created in v1.31.\n        \n        Ministry Views Fixed in v1.32:\n        1. view_r...	\N	5.0.1	\N	\N	3674200675
+fix-member-proposals-1.33-001	intelligence-analyst	db-changelog-1.33.xml	2025-11-20 23:23:04.595045	378	EXECUTED	9:abc12345	dropView viewName=view_riksdagen_member_proposals; createView viewName=view_riksdagen_member_proposals	Fix view_riksdagen_member_proposals to return data	\N	5.0.1	\N	\N	7892001
+fix-committee-member-proposals-1.33-002	intelligence-analyst	db-changelog-1.33.xml	2025-11-20 23:23:04.595045	379	EXECUTED	9:def23456	dropView viewName=view_riksdagen_committee_parliament_member_proposal; createView viewName=view_riksdagen_committee_parliament_member_proposal	Fix view_riksdagen_committee_parliament_member_proposal to return data	\N	5.0.1	\N	\N	7892002
+fix-crisis-resilience-indicators-1.33-003	intelligence-analyst	db-changelog-1.33.xml	2025-11-20 23:23:04.595045	380	EXECUTED	9:ghi34567	dropView viewName=view_riksdagen_crisis_resilience_indicators; createView viewName=view_riksdagen_crisis_resilience_indicators	Fix view_riksdagen_crisis_resilience_indicators to return data	\N	5.0.1	\N	\N	7892003
+fix-risk-score-evolution-1.33-004	intelligence-analyst	db-changelog-1.33.xml	2025-11-20 23:23:04.595045	381	EXECUTED	9:jkl45678	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution to return data	\N	5.0.1	\N	\N	7892004
+document-fixes-1.33-005	intelligence-analyst	db-changelog-1.33.xml	2025-11-20 23:23:04.595045	382	EXECUTED	9:mno56789	sql	Documentation for v1.33 fixes	\N	5.0.1	\N	\N	7892005
 \.
 
 
@@ -12930,5 +12883,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 2vwwm3BwKk7wR5nclUCFyHpemHYt9lL50n5PM5YzRTJ3hTXgHbbKeRhzlQNuHSg
+\unrestrict mI2nwXnhzRsLT8d7sGLJeDTohE8sWp5SXQ0nRLsmjfH6rAzeNjJmWbIJOCKHDQd
 

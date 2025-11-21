@@ -492,6 +492,727 @@ FROM party_member_data
 WHERE active = true;
 ```
 
+### Advanced Politician Intelligence Views
+
+**Purpose:** Risk assessment, influence tracking, coalition analysis, anomaly detection  
+**Expected Row Count:** Variable based on active politicians and time windows
+
+#### View: view_politician_risk_summary
+
+**Common Issues:**
+1. **Overly restrictive date filter on annual summary view**
+   - **Symptom:** View returns 0 rows even with active politicians
+   - **Root Cause:** JOIN condition using exact date match on `view_riksdagen_vote_data_ballot_politician_summary_annual`
+   - **Fix Applied in v1.32:** Changed to LATERAL join with most recent data lookup
+   
+   **Diagnostic:**
+   ```sql
+   -- Check if annual summary has data for expected date
+   SELECT 
+       COUNT(*) as total_rows,
+       MIN(embedded_id_vote_date) as earliest_date,
+       MAX(embedded_id_vote_date) as latest_date
+   FROM view_riksdagen_vote_data_ballot_politician_summary_annual;
+   
+   -- Expected: Should have data, but may not match exact date filter
+   ```
+   
+   **Solution (Applied):**
+   ```sql
+   -- v1.32 fix: Use LATERAL join to get most recent data
+   LEFT JOIN LATERAL (
+       SELECT 
+           avg_percentage_absent,
+           won_percentage,
+           rebel_percentage,
+           total_votes
+       FROM view_riksdagen_vote_data_ballot_politician_summary_annual
+       WHERE embedded_id_intressent_id = p.id
+           AND embedded_id_vote_date >= date_trunc('year', CURRENT_DATE - INTERVAL '2 years')
+       ORDER BY embedded_id_vote_date DESC
+       LIMIT 1
+   ) vps_annual ON true
+   ```
+
+2. **Missing rule_violation data**
+   - **Check:** `SELECT COUNT(*) FROM rule_violation WHERE resource_type = 'POLITICIAN';`
+   - **Note:** Risk scores work even without violations (uses voting/document data)
+
+**Validation Query:**
+```sql
+-- After fix, should return one row per active politician
+SELECT 
+    COUNT(*) as politicians_with_risk_scores,
+    AVG(risk_score) as avg_risk_score,
+    COUNT(*) FILTER (WHERE risk_level = 'CRITICAL') as critical_count
+FROM view_politician_risk_summary;
+```
+
+#### View: view_riksdagen_coalition_alignment_matrix
+
+**Common Issues:**
+1. **Insufficient vote_data within time window**
+   - **Time Window:** 2 years
+   - **Required:** Party votes with 'Ja' or 'Nej' values
+   
+   **Diagnostic:**
+   ```sql
+   -- Check vote availability
+   SELECT 
+       COUNT(*) as total_votes,
+       COUNT(DISTINCT party) as unique_parties,
+       MIN(vote_date) as earliest,
+       MAX(vote_date) as latest
+   FROM vote_data
+   WHERE vote_date >= CURRENT_DATE - INTERVAL '2 years'
+       AND vote IN ('Ja', 'Nej')
+       AND party IS NOT NULL;
+   ```
+
+2. **Missing party information**
+   - **Fix:** Ensure `vote_data.party` is populated from import
+
+**Validation Query:**
+```sql
+-- Should return party pairs with alignment metrics
+SELECT 
+    party_1,
+    party_2,
+    alignment_rate,
+    coalition_likelihood
+FROM view_riksdagen_coalition_alignment_matrix
+ORDER BY alignment_rate DESC
+LIMIT 10;
+```
+
+#### View: view_riksdagen_politician_influence_metrics
+
+**Common Issues:**
+1. **Insufficient co-voting data**
+   - **Time Window:** 1 year
+   - **Minimum:** 20 shared votes per politician pair
+   
+   **Diagnostic:**
+   ```sql
+   -- Check if enough votes for network analysis
+   SELECT 
+       COUNT(DISTINCT embedded_id_intressent_id) as politicians,
+       COUNT(DISTINCT embedded_id_ballot_id) as ballots,
+       AVG(vote_count) as avg_votes_per_politician
+   FROM (
+       SELECT 
+           embedded_id_intressent_id,
+           COUNT(*) as vote_count
+       FROM vote_data
+       WHERE vote_date >= CURRENT_DATE - INTERVAL '1 year'
+           AND vote IN ('Ja', 'Nej')
+       GROUP BY embedded_id_intressent_id
+   ) sub;
+   ```
+
+**Validation Query:**
+```sql
+-- Should show politicians with network metrics
+SELECT 
+    first_name,
+    last_name,
+    party,
+    network_connections,
+    cross_party_bridges,
+    connectivity_level
+FROM view_riksdagen_politician_influence_metrics
+ORDER BY network_connections DESC
+LIMIT 10;
+```
+
+#### View: view_riksdagen_voting_anomaly_detection
+
+**Common Issues:**
+1. **Low party cohesion makes anomaly detection difficult**
+   - **Requires:** Clear party majority votes
+   - **Time Window:** 1 year
+   
+   **Diagnostic:**
+   ```sql
+   -- Check party voting cohesion
+   SELECT 
+       party,
+       COUNT(DISTINCT embedded_id_ballot_id) as ballots,
+       COUNT(*) as total_votes
+   FROM vote_data
+   WHERE vote_date >= CURRENT_DATE - INTERVAL '1 year'
+       AND vote IN ('Ja', 'Nej', 'Avstår')
+       AND party IS NOT NULL
+   GROUP BY party
+   ORDER BY party;
+   ```
+
+**Validation Query:**
+```sql
+-- Should show politicians who voted against party line
+SELECT 
+    first_name,
+    last_name,
+    party,
+    total_votes,
+    party_discipline_score,
+    rebellion_rate,
+    discipline_classification
+FROM view_riksdagen_voting_anomaly_detection
+ORDER BY rebellion_rate DESC
+LIMIT 10;
+```
+
+---
+
+## 🏛️ Ministry & Government Views
+
+**Purpose:** Ministry effectiveness analysis and government proposal tracking  
+**Expected Row Count:** Variable based on ministry count and document availability
+
+### View: view_riksdagen_goverment_proposals
+
+**Common Issues:**
+
+1. **Case-sensitive document_type filter (FIXED in v1.32)**
+   - **Symptom:** View returns 0 rows even with proposal documents
+   - **Root Cause:** Filter used `document_type = 'PROP'` but data might be lowercase 'prop'
+   - **Fix Applied:** Changed to `UPPER(document_type) = 'PROP' OR document_type = 'Proposition'`
+   
+   **Diagnostic:**
+   ```sql
+   -- Check actual document_type values
+   SELECT 
+       document_type,
+       COUNT(*) AS count
+   FROM document_data
+   WHERE UPPER(document_type) LIKE '%PROP%'
+      OR LOWER(document_type) LIKE '%prop%'
+      OR document_type LIKE '%Proposition%'
+   GROUP BY document_type
+   ORDER BY count DESC;
+   ```
+
+2. **No government proposal documents imported**
+   - **Fix:** Import proposal data from Riksdagen API
+   - **Check:** `SELECT COUNT(*) FROM document_data WHERE UPPER(document_type) = 'PROP';`
+
+**Validation Query:**
+```sql
+-- After v1.32 fix, should return government proposals
+SELECT 
+    COUNT(*) AS total_proposals,
+    MIN(made_public_date) AS earliest,
+    MAX(made_public_date) AS latest,
+    COUNT(DISTINCT org) AS unique_ministries
+FROM view_riksdagen_goverment_proposals;
+```
+
+### View: view_ministry_effectiveness_trends
+
+**Purpose:** Track ministry performance metrics over time (quarterly)  
+**Expected Row Count:** # of ministries × # of quarters with data (typically 10-50 rows)
+
+**Common Issues:**
+
+1. **No ministry assignments in assignment_data**
+   - **Diagnostic:**
+   ```sql
+   -- Check for ministry assignments
+   SELECT 
+       COUNT(DISTINCT org_code) AS ministry_count,
+       MIN(from_date) AS earliest_assignment,
+       MAX(COALESCE(to_date, CURRENT_DATE)) AS latest_assignment
+   FROM assignment_data
+   WHERE assignment_type = 'Departement'
+       AND LOWER(org_code) LIKE '%departement%';
+   ```
+   
+   - **Fix:** If count is 0, ministry assignment data needs to be imported
+   - **Expected:** Should have 10-15 unique ministry org_codes
+
+2. **view_riksdagen_politician_document not populated**
+   - **Diagnostic:**
+   ```sql
+   -- Check for ministry documents
+   SELECT 
+       COUNT(*) AS ministry_doc_count,
+       MIN(made_public_date) AS earliest,
+       MAX(made_public_date) AS latest
+   FROM view_riksdagen_politician_document
+   WHERE LOWER(org) LIKE '%departement%'
+       AND made_public_date >= CURRENT_DATE - INTERVAL '3 years';
+   ```
+   
+   - **Fix:** Refresh materialized view
+   ```sql
+   REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;
+   ```
+
+3. **Org codes don't match between tables**
+   - **Diagnostic:**
+   ```sql
+   -- Check org_code matching
+   SELECT 
+       'In assignment_data only' AS location,
+       COUNT(DISTINCT ad.org_code) AS count
+   FROM assignment_data ad
+   WHERE ad.assignment_type = 'Departement'
+       AND LOWER(ad.org_code) LIKE '%departement%'
+       AND NOT EXISTS (
+           SELECT 1 FROM view_riksdagen_politician_document vpd
+           WHERE vpd.org = ad.org_code
+       )
+   UNION ALL
+   SELECT 
+       'In politician_document only',
+       COUNT(DISTINCT vpd.org)
+   FROM view_riksdagen_politician_document vpd
+   WHERE LOWER(vpd.org) LIKE '%departement%'
+       AND NOT EXISTS (
+           SELECT 1 FROM assignment_data ad
+           WHERE ad.org_code = vpd.org
+               AND ad.assignment_type = 'Departement'
+       );
+   ```
+   
+   - **Expected:** Should show "In both (matching)" with count > 0
+   - **Fix:** Verify org_code format consistency, update if needed
+
+4. **No documents in 3-year window**
+   - **Diagnostic:** View filters by `made_public_date >= CURRENT_DATE - INTERVAL '3 years'`
+   - **Fix:** Extend date range or import more recent ministry documents
+
+**Validation Query:**
+```sql
+-- Should return quarterly metrics for each ministry
+SELECT 
+    short_code,
+    name,
+    period_start,
+    documents_produced,
+    propositions,
+    active_members,
+    productivity_level,
+    effectiveness_assessment
+FROM view_ministry_effectiveness_trends
+ORDER BY period_start DESC, documents_produced DESC
+LIMIT 20;
+```
+
+### View: view_ministry_productivity_matrix
+
+**Purpose:** Annual benchmarking of ministry performance  
+**Expected Row Count:** # of ministries × # of years with data (typically 30-60 rows)
+
+**Common Issues:**
+- Same as `view_ministry_effectiveness_trends` but with annual aggregation
+- Requires at least 1 full year of data to populate
+
+**Diagnostic:**
+```sql
+-- Check annual ministry data
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND LOWER(org_code) LIKE '%departement%'
+)
+SELECT 
+    m.org_code,
+    m.name,
+    EXTRACT(YEAR FROM doc.made_public_date) AS year,
+    COUNT(DISTINCT doc.id) AS document_count
+FROM ministry_base m
+LEFT JOIN view_riksdagen_politician_document doc 
+    ON doc.org = m.org_code
+    AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+GROUP BY m.org_code, m.name, EXTRACT(YEAR FROM doc.made_public_date)
+ORDER BY year DESC, document_count DESC;
+```
+
+**Validation Query:**
+```sql
+-- Should show annual productivity comparison
+SELECT 
+    short_code,
+    name,
+    year,
+    documents_produced,
+    performance_classification,
+    vs_average_pct,
+    productivity_assessment
+FROM view_ministry_productivity_matrix
+ORDER BY year DESC, documents_produced DESC
+LIMIT 15;
+```
+
+### View: view_ministry_risk_evolution
+
+**Purpose:** Track ministry risk scores over time (quarterly)  
+**Expected Row Count:** # of ministries × # of quarters with assessments
+
+**Common Issues:**
+- Same dependencies as other ministry views
+- Risk score calculated from productivity and staffing metrics
+- Will show data even if risk score is 0 (good performance)
+
+**Diagnostic:**
+```sql
+-- Check ministry risk calculation
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND LOWER(org_code) LIKE '%departement%'
+)
+SELECT 
+    m.org_code,
+    DATE_TRUNC('quarter', doc.made_public_date) AS quarter,
+    COUNT(DISTINCT doc.id) AS doc_count,
+    COUNT(DISTINCT CASE 
+        WHEN LOWER(doc.document_type) IN ('prop', 'ds') THEN doc.id 
+    END) AS legislative_count,
+    COUNT(DISTINCT doc.person_reference_id) AS active_members
+FROM ministry_base m
+LEFT JOIN view_riksdagen_politician_document doc 
+    ON doc.org = m.org_code
+    AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+GROUP BY m.org_code, DATE_TRUNC('quarter', doc.made_public_date)
+ORDER BY quarter DESC, doc_count DESC
+LIMIT 20;
+```
+
+**Validation Query:**
+```sql
+-- Should show risk evolution over time
+SELECT 
+    short_code,
+    name,
+    assessment_period,
+    document_count,
+    legislative_count,
+    active_members,
+    risk_score,
+    risk_severity,
+    risk_assessment
+FROM view_ministry_risk_evolution
+ORDER BY assessment_period DESC, risk_score DESC
+LIMIT 20;
+```
+
+### Ministry Views Diagnostic Script
+
+**Comprehensive diagnostic query provided in:**
+```bash
+service.data.impl/src/main/resources/diagnose-ministry-views.sql
+```
+
+**Run complete diagnosis:**
+```bash
+psql -U cia_user -d cia -f service.data.impl/src/main/resources/diagnose-ministry-views.sql
+```
+
+**Expected output:**
+1. Document type analysis
+2. Ministry org_code verification
+3. Data availability check
+4. Org matching analysis
+5. Current view row counts
+6. Recommendations for fixes
+
+---
+
+## 🎯 Intelligence Views: Crisis, Risk, and Proposal Analysis
+
+**Purpose:** Track crisis resilience, risk score evolution, and parliamentary proposal analysis  
+**Expected Row Count:** Variable based on active politicians and available data
+
+### View: view_riksdagen_member_proposals
+
+**Purpose:** All parliamentary member proposals (motions)  
+**Expected Row Count:** ~90,000+ rows (all member motions in document_element)
+
+**Common Issues:**
+
+1. **Case-sensitive document_type filter (FIXED in v1.33)**
+   - **Symptom:** View returns 0 rows even with motion documents
+   - **Root Cause:** Filter used `document_type = 'MOT'` but data contains `'mot'` (lowercase)
+   - **Fix Applied:** Changed to `UPPER(document_type) = 'MOT'`
+   
+   **Diagnostic:**
+   ```sql
+   -- Check actual document_type values
+   SELECT 
+       document_type,
+       COUNT(*) AS count
+   FROM document_element
+   WHERE LOWER(document_type) = 'mot'
+   GROUP BY document_type;
+   
+   -- Expected: Should show 'mot' with ~90,000+ rows
+   ```
+
+2. **No motion documents imported**
+   - **Fix:** Import motion data from Riksdagen API
+   - **Check:** `SELECT COUNT(*) FROM document_element WHERE UPPER(document_type) = 'MOT';`
+
+**Validation Query:**
+```sql
+-- After v1.33 fix, should return all member proposals
+SELECT 
+    COUNT(*) AS total_proposals,
+    MIN(made_public_date) AS earliest,
+    MAX(made_public_date) AS latest,
+    COUNT(DISTINCT org) AS unique_orgs
+FROM view_riksdagen_member_proposals;
+
+-- Expected: ~90,000+ proposals from various parliamentary organizations
+```
+
+### View: view_riksdagen_committee_parliament_member_proposal
+
+**Purpose:** Committee member proposals linked to specific committees  
+**Expected Row Count:** Subset of member proposals where org matches committee org_code
+
+**Common Issues:**
+
+1. **Case-sensitive document_type filter (FIXED in v1.33)**
+   - **Same issue as view_riksdagen_member_proposals**
+   - **Fix Applied:** Changed to `UPPER(document_data.document_type) = 'MOT'`
+   
+   **Diagnostic:**
+   ```sql
+   -- Check committee-linked proposals
+   SELECT 
+       c.embedded_id_org_code AS committee,
+       COUNT(DISTINCT d.id) AS proposal_count
+   FROM view_riksdagen_committee c
+   LEFT JOIN document_data d ON c.embedded_id_org_code = d.org
+   WHERE UPPER(d.document_type) = 'MOT'
+   GROUP BY c.embedded_id_org_code
+   ORDER BY proposal_count DESC;
+   ```
+
+2. **No committee org matching**
+   - **Diagnostic:** Check if document_data.org values match committee org_codes
+   - **Fix:** Verify org_code format consistency
+
+**Validation Query:**
+```sql
+-- Should return committee-linked proposals
+SELECT 
+    embedded_id_org_code AS committee,
+    embedded_id_detail AS committee_name,
+    COUNT(*) AS proposal_count
+FROM view_riksdagen_committee_parliament_member_proposal
+GROUP BY embedded_id_org_code, embedded_id_detail
+ORDER BY proposal_count DESC
+LIMIT 20;
+```
+
+### View: view_riksdagen_crisis_resilience_indicators
+
+**Purpose:** Track politician performance during high-activity (crisis) periods vs normal periods  
+**Expected Row Count:** Active politicians with voting data in both crisis and normal periods
+
+**Common Issues:**
+
+1. **Case-sensitive vote value filters (FIXED in v1.33)**
+   - **Symptom:** View returns 0 rows even with extensive vote data
+   - **Root Cause:** Filters used `vote = 'Ja'`, `'Nej'`, `'Frånvarande'` (mixed case) but data contains `'JA'`, `'NEJ'`, `'FRÅNVARANDE'` (all uppercase)
+   - **Fix Applied:** Changed to `UPPER(vote)` for all vote comparisons
+   
+   **Diagnostic:**
+   ```sql
+   -- Check actual vote values and case
+   SELECT 
+       vote,
+       COUNT(*) AS count
+   FROM vote_data
+   WHERE vote_date >= CURRENT_DATE - INTERVAL '2 years'
+   GROUP BY vote
+   ORDER BY count DESC;
+   
+   -- Expected: Should show 'JA', 'NEJ', 'FRÅNVARANDE', 'AVSTÅR' (uppercase)
+   ```
+
+2. **Insufficient data for crisis/normal period detection**
+   - **Requires:** At least 2 years of voting data with varying monthly activity levels
+   - **Diagnostic:**
+   ```sql
+   -- Check monthly ballot distribution
+   WITH monthly_activity AS (
+       SELECT 
+           DATE_TRUNC('month', vote_date::TIMESTAMP WITH TIME ZONE) AS month,
+           COUNT(DISTINCT embedded_id_ballot_id) AS ballot_count
+       FROM vote_data
+       WHERE vote_date >= CURRENT_DATE - INTERVAL '2 years'
+       GROUP BY DATE_TRUNC('month', vote_date::TIMESTAMP WITH TIME ZONE)
+   )
+   SELECT 
+       COUNT(*) AS total_months,
+       AVG(ballot_count) AS avg_monthly_ballots,
+       MIN(ballot_count) AS min_ballots,
+       MAX(ballot_count) AS max_ballots,
+       COUNT(*) FILTER (WHERE ballot_count > AVG(ballot_count) * 1.5) AS crisis_months,
+       COUNT(*) FILTER (WHERE ballot_count <= AVG(ballot_count)) AS normal_months
+   FROM monthly_activity;
+   
+   -- Expected: Should show variation in monthly activity for crisis detection
+   ```
+
+3. **No politicians with both crisis and normal period votes**
+   - **Fix:** View now includes politicians with either crisis OR normal votes
+   - **Filter:** WHERE clause ensures at least one period has data
+
+**Validation Query:**
+```sql
+-- Should show resilience metrics for active politicians
+SELECT 
+    resilience_classification,
+    COUNT(*) AS politician_count,
+    AVG(crisis_period_votes) AS avg_crisis_votes,
+    AVG(normal_period_votes) AS avg_normal_votes,
+    AVG(resilience_score) AS avg_resilience
+FROM view_riksdagen_crisis_resilience_indicators
+GROUP BY resilience_classification
+ORDER BY resilience_classification;
+```
+
+### View: view_risk_score_evolution
+
+**Purpose:** Track monthly risk score changes for politicians over time (3-year window)  
+**Expected Row Count:** Monthly records for active politicians with sufficient voting activity
+
+**Common Issues:**
+
+1. **Case-sensitive status filter (IMPROVED in v1.33)**
+   - **Symptom:** View returns 0 rows if person_data.status has case variations
+   - **Root Cause:** Filter used `p.status = 'active'` but data might contain 'Active' or 'ACTIVE'
+   - **Fix Applied:** Changed to `p.status IN ('active', 'Active', 'ACTIVE')`
+   
+   **Diagnostic:**
+   ```sql
+   -- Check actual status values
+   SELECT 
+       status,
+       COUNT(*) AS count
+   FROM person_data
+   WHERE status IS NOT NULL
+   GROUP BY status;
+   
+   -- Expected: Should show actual status values in the data
+   ```
+
+2. **Materialized view not refreshed**
+   - **Requires:** view_riksdagen_vote_data_ballot_politician_summary_daily must be up-to-date
+   - **Diagnostic:**
+   ```sql
+   -- Check if daily summary has recent data
+   SELECT 
+       COUNT(*) AS total_records,
+       MIN(embedded_id_vote_date) AS earliest_date,
+       MAX(embedded_id_vote_date) AS latest_date,
+       COUNT(DISTINCT embedded_id_intressent_id) AS unique_politicians
+   FROM view_riksdagen_vote_data_ballot_politician_summary_daily
+   WHERE embedded_id_vote_date >= CURRENT_DATE - INTERVAL '3 years';
+   
+   -- Expected: Should have records within 3-year window
+   ```
+   
+   **Fix:**
+   ```sql
+   -- Refresh materialized view
+   REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_daily;
+   
+   -- Then check view_risk_score_evolution again
+   ```
+
+3. **Insufficient ballot count per month**
+   - **Filter:** View requires ballot_count >= 5 per month
+   - **Diagnostic:** If too restrictive, adjust threshold in view definition
+
+**Validation Query:**
+```sql
+-- Should show risk evolution over time
+SELECT 
+    DATE_TRUNC('month', assessment_period) AS month,
+    COUNT(DISTINCT person_id) AS politicians_assessed,
+    AVG(risk_score) AS avg_risk,
+    COUNT(*) FILTER (WHERE risk_severity = 'CRITICAL') AS critical_count,
+    COUNT(*) FILTER (WHERE risk_trend = 'SIGNIFICANT_INCREASE') AS escalating
+FROM view_risk_score_evolution
+GROUP BY DATE_TRUNC('month', assessment_period)
+ORDER BY month DESC
+LIMIT 12;
+```
+
+### Crisis, Risk, and Proposal Views Diagnostic Script
+
+**Quick diagnostic for all 4 views:**
+
+```sql
+-- Comprehensive diagnostic for intelligence views
+DO $$
+DECLARE
+    view_name TEXT;
+    row_count BIGINT;
+BEGIN
+    RAISE NOTICE '=== Intelligence Views Status ===';
+    
+    -- Check each view
+    FOR view_name IN 
+        SELECT unnest(ARRAY[
+            'view_riksdagen_member_proposals',
+            'view_riksdagen_committee_parliament_member_proposal',
+            'view_riksdagen_crisis_resilience_indicators',
+            'view_risk_score_evolution'
+        ])
+    LOOP
+        EXECUTE format('SELECT COUNT(*) FROM %I', view_name) INTO row_count;
+        RAISE NOTICE 'View: % | Rows: %', view_name, row_count;
+    END LOOP;
+    
+    RAISE NOTICE '';
+    RAISE NOTICE '=== Data Availability Check ===';
+    
+    -- Check source data
+    SELECT COUNT(*) INTO row_count FROM document_element WHERE UPPER(document_type) = 'MOT';
+    RAISE NOTICE 'Motion documents (document_element): %', row_count;
+    
+    SELECT COUNT(*) INTO row_count FROM vote_data WHERE vote_date >= CURRENT_DATE - INTERVAL '2 years';
+    RAISE NOTICE 'Votes (last 2 years): %', row_count;
+    
+    SELECT COUNT(*) INTO row_count FROM person_data WHERE status ILIKE '%active%';
+    RAISE NOTICE 'Active politicians: %', row_count;
+    
+    SELECT COUNT(*) INTO row_count 
+    FROM view_riksdagen_vote_data_ballot_politician_summary_daily 
+    WHERE embedded_id_vote_date >= CURRENT_DATE - INTERVAL '3 years';
+    RAISE NOTICE 'Daily vote summaries (last 3 years): %', row_count;
+END $$;
+```
+
+**Expected output (after v1.33 fixes):**
+```
+NOTICE:  === Intelligence Views Status ===
+NOTICE:  View: view_riksdagen_member_proposals | Rows: 90534
+NOTICE:  View: view_riksdagen_committee_parliament_member_proposal | Rows: [varies]
+NOTICE:  View: view_riksdagen_crisis_resilience_indicators | Rows: [varies]
+NOTICE:  View: view_risk_score_evolution | Rows: [varies]
+NOTICE:  
+NOTICE:  === Data Availability Check ===
+NOTICE:  Motion documents (document_element): 90534
+NOTICE:  Votes (last 2 years): [varies]
+NOTICE:  Active politicians: [varies]
+NOTICE:  Daily vote summaries (last 3 years): [varies]
+```
+
 ---
 
 ## 🚨 Emergency Data Recovery
@@ -705,6 +1426,7 @@ END $$;
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 1.0 | 2025-11-18 | Initial troubleshooting guide for empty database views | Database Team |
+| 1.1 | 2025-11-20 | Added fixes for 4 empty intelligence views (crisis, risk, proposals) | Intelligence Team |
 
 ---
 
