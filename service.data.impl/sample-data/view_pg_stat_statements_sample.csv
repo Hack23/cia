@@ -1,61 +1,132 @@
 userid,dbid,toplevel,queryid,query,plans,total_plan_time,min_plan_time,max_plan_time,mean_plan_time,stddev_plan_time,calls,total_exec_time,min_exec_time,max_exec_time,mean_exec_time,stddev_exec_time,rows,shared_blks_hit,shared_blks_read,shared_blks_dirtied,shared_blks_written,local_blks_hit,local_blks_read,local_blks_dirtied,local_blks_written,temp_blks_read,temp_blks_written,blk_read_time,blk_write_time,temp_blk_read_time,temp_blk_write_time,wal_records,wal_fpi,wal_bytes,jit_functions,jit_generation_time,jit_inlining_count,jit_inlining_time,jit_optimization_count,jit_optimization_time,jit_emission_count,jit_emission_time
-10,16385,t,-8417403164036496200,COPY (SELECT * FROM public.sweden_county_data ORDER BY random() LIMIT 50) TO '/tmp/service.data.impl/sample-data/table_sweden_county_data_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,0.222164,0.222164,0.222164,0.222164,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,1981295091963296575,SELECT COUNT(*) FROM public.person_assignment_data,0,0,0,0,0,0,4,42.315122,0.22961800000000002,41.373978,10.5787805,17.779690938301606,4,0,196,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,2761361339680794055,SELECT COUNT(*) FROM public.view_riksdagen_party_member,0,0,0,0,0,0,5,8.270071,1.3091890000000002,1.770429,1.6540142,0.174531523840709,5,1805,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,7463011211037757966,REFRESH MATERIALIZED VIEW view_riksdagen_party_document_daily_summary,0,0,0,0,0,0,3,1925.6365059999998,362.329784,1104.78371,641.8788353333333,329.670518872896,18756,4970,7264,179,200,0,0,0,0,1908,1914,0,0,0,0,19282,20,1884674,0,0,0,0,0,0,0,0
-10,16385,t,-2250173999955238374,COPY (SELECT * FROM public.assignment_data ORDER BY random() LIMIT 50) TO '/tmp/service.data.impl/sample-data/table_assignment_data_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,13.844672,13.844672,13.844672,13.844672,0,50,26,501,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,7378833678927389502,SELECT COUNT(*) FROM public.detail_data child LEFT JOIN public.person_detail_data parent ON child.detail_list_person_detail_da_0 = parent.hjid WHERE child.detail_list_person_detail_da_0 IS NOT NULL AND parent.hjid IS NULL,0,0,0,0,0,0,1,9.835901,9.835901,9.835901,9.835901,0,1,1,566,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,3841998332986513067,PREPARE TRANSACTION '131077_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAuKjE=_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAuPAAAAAAAAAAA',0,0,0,0,0,0,1,0.000922,0.000922,0.000922,0.000922,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,-8719185560936294843,"SELECT c.oid, a.attnum, a.attname, c.relname, n.nspname, a.attnotnull OR (t.typtype = $1 AND t.typnotnull), a.attidentity != $2 OR pg_catalog.pg_get_expr(d.adbin, d.adrelid) LIKE $3 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON (c.relnamespace = n.oid) JOIN pg_catalog.pg_attribute a ON (c.oid = a.attrelid) JOIN pg_catalog.pg_type t ON (a.atttypid = t.oid) LEFT JOIN pg_catalog.pg_attrdef d ON (d.adrelid = a.attrelid AND d.adnum = a.attnum) JOIN (SELECT $4 AS oid , $5 AS attnum) vals ON (c.oid = vals.oid AND a.attnum = vals.attnum) where c.oid in ($6)",0,0,0,0,0,0,2,0.092192,0.038782000000000004,0.05341,0.046096,0.007313999999999999,2,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-7670248116783111509,COPY (SELECT * FROM public.application_action_event ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_application_action_event_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,0.328311,0.328311,0.328311,0.328311,0,50,0,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-2626845048731211848,"SELECT $1 AS object_type, COUNT(*) AS count
-FROM information_schema.sequences
-WHERE sequence_schema = $2",0,0,0,0,0,0,1,1.5446550000000001,1.5446550000000001,1.5446550000000001,1.5446550000000001,0,1,105,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,851081137484925357,SELECT COUNT(*) FROM public.qrtz_simprop_triggers child LEFT JOIN public.qrtz_triggers parent ON child.trigger_name = parent.trigger_group WHERE child.trigger_name IS NOT NULL AND parent.trigger_group IS NULL,0,0,0,0,0,0,1,0.004428,0.004428,0.004428,0.004428,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,-8049417112250516439,COMMIT PREPARED '131077_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAL/zE=_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAN+gAAAAAAAAAA',0,0,0,0,0,0,1,122.218283,122.218283,122.218283,122.218283,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,42,0,0,0,0,0,0,0,0
-16384,16385,t,-2956400364494390992,"select viewriksda0_.party as party1_106_, viewriksda0_.active as active2_106_, viewriksda0_.active_committee as active_c3_106_, viewriksda0_.active_eu as active_e4_106_, viewriksda0_.active_government as active_g5_106_, viewriksda0_.active_parliament as active_p6_106_, viewriksda0_.active_party as active_p7_106_, viewriksda0_.active_speaker as active_s8_106_, viewriksda0_.avg_collaboration_percentage as avg_coll9_106_, viewriksda0_.avg_documents_last_year as avg_doc10_106_, viewriksda0_.avg_documents_per_member as avg_doc11_106_, viewriksda0_.committee_focused_members as committ12_106_, viewriksda0_.current_assignments as current13_106_, viewriksda0_.current_committee_assignments as current14_106_, viewriksda0_.current_committee_leadership_assignments as current15_106_, viewriksda0_.current_committee_substitute_assignments as current16_106_, viewriksda0_.current_ministry_assignments as current17_106_, viewriksda0_.current_party_assignments as current18_106_, viewriksda0_.current_speaker_assignments as current19_106_, viewriksda0_.currently_active_members as current20_106_, viewriksda0_.first_assignment_date as first_a21_106_, viewriksda0_.first_party_document as first_p22_106_, viewriksda0_.high_activity_members as high_ac23_106_, viewriksda0_.highly_collaborative_members as highly_24_106_, viewriksda0_.individual_focused_members as individ25_106_, viewriksda0_.last_assignment_date as last_as26_106_, viewriksda0_.last_party_document as last_pa27_106_, viewriksda0_.low_activity_members as low_act28_106_, viewriksda0_.medium_activity_members as medium_29_106_, viewriksda0_.party_focused_members as party_f30_106_, viewriksda0_.total_active_committee as total_a31_106_, viewriksda0_.total_active_eu as total_a32_106_, viewriksda0_.total_active_government as total_a33_106_, viewriksda0_.total_active_parliament as total_a34_106_, viewriksda0_.total_assignments as total_a35_106_, viewriksda0_.total_collaborative_motions as total_c36_106_, viewriksda0_.total_committee_assignments as total_c37_106_, viewriksda0_.total_committee_leadership_assignments as total_c38_106_, viewriksda0_.total_committee_motions as total_c39_106_, viewriksda0_.total_committee_substitute_assignments as total_c40_106_, viewriksda0_.total_days_served as total_d41_106_, viewriksda0_.total_days_served_committee as total_d42_106_, viewriksda0_.total_days_served_committee_leadership as total_d43_106_, viewriksda0_.total_days_served_committee_substitute as total_d44_106_, viewriksda0_.total_days_served_eu as total_d45_106_, viewriksda0_.total_days_served_government as total_d46_106_, viewriksda0_.total_days_served_parliament as total_d47_106_, viewriksda0_.total_days_served_party as total_d48_106_, viewriksda0_.total_days_served_speaker as total_d49_106_, viewriksda0_.total_documents as total_d50_106_, viewriksda0_.total_documents_last_year as total_d51_106_, viewriksda0_.total_follow_up_motions as total_f52_106_, viewriksda0_.total_individual_motions as total_i53_106_, viewriksda0_.total_ministry_assignments as total_m54_106_, viewriksda0_.total_party_assignments as total_p55_106_, viewriksda0_.total_party_motions as total_p56_106_, viewriksda0_.total_speaker_assignments as total_s57_106_, viewriksda0_.very_high_activity_members as very_hi58_106_ from view_riksdagen_party_summary viewriksda0_",0,0,0,0,0,0,1,311.322037,311.322037,311.322037,311.322037,0,13,141,807,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,-2568021337837537148,"select substring(documentel0_.created_date, $1, $2) as col_0_0_ from document_element documentel0_ group by substring(documentel0_.created_date, 0, 5) order by substring(documentel0_.created_date, 0, 5) asc",0,0,0,0,0,0,1,84916.147241,84916.147241,84916.147241,84916.147241,0,26,41,43774,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,3545896809112774543,SELECT COUNT(*) FROM public.data_source_content,0,0,0,0,0,0,4,0.01657,0.0039369999999999995,0.004448,0.0041425,0.00019309388907989844,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,5352061430512400216,COPY (SELECT * FROM public.document_activity_data ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_document_activity_data_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,60.919689999999996,60.919689999999996,60.919689999999996,60.919689999999996,0,50,0,2078,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,3311811035173984864,COPY (SELECT * FROM public.performance_indicator_content ORDER BY random() LIMIT 50) TO '/tmp/service.data.impl/sample-data/table_performance_indicator_content_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,0.10787,0.10787,0.10787,0.10787,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-2890738321363404,COPY (SELECT * FROM public.portal ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_portal_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,1.164611,1.164611,1.164611,1.164611,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-2013281149812042543,REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_org_summary,0,0,0,0,0,0,3,788.306225,46.523472,670.02895,262.76874166666664,288.1606037951463,14520,6168,20,171,195,0,0,0,0,0,0,0,0,0,0,15084,55,1807071,0,0,0,0,0,0,0,0
-10,16385,f,-3581113891881914687,SELECT COUNT(*) FROM public.databasechangelog,0,0,0,0,0,0,1,3.144029,3.144029,3.144029,3.144029,0,1,0,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-6283441326438401935,SELECT COUNT(*) FROM public.view_application_action_event_page_annual_summary LIMIT $1,0,0,0,0,0,0,1,10.826226,10.826226,10.826226,10.826226,0,1,6,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-6508019926504520749,SELECT COUNT(*) FROM public.qrtz_paused_trigger_grps,0,0,0,0,0,0,1,0.004818,0.004818,0.004818,0.004818,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,-8098950173284362144,COMMIT PREPARED '131077_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAbdTE=_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAe1wAAAAAAAAAA',0,0,0,0,0,0,1,105.155572,105.155572,105.155572,105.155572,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,42,0,0,0,0,0,0,0,0
-10,16385,t,7732593243957972257,COPY (SELECT * FROM public.detail_element ORDER BY random() LIMIT 50) TO '/tmp/service.data.impl/sample-data/table_detail_element_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,0.200424,0.200424,0.200424,0.200424,0,0,8,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,2731441732195880702,COPY (SELECT * FROM public.document_person_reference_co_0 ORDER BY random() LIMIT 50) TO '/tmp/service.data.impl/sample-data/table_document_person_reference_co_0_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,15.279263,15.279263,15.279263,15.279263,0,50,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-7652294891628938372,COPY (SELECT * FROM public.document_status_container ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_document_status_container_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,13.049429,13.049429,13.049429,13.049429,0,50,0,658,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,6669428892807728746,SELECT COUNT(*) FROM public.application_view child LEFT JOIN public.performance_indicator_content parent ON child.performance_indicators_appli_0 = parent.hjid WHERE child.performance_indicators_appli_0 IS NOT NULL AND parent.hjid IS NULL,0,0,0,0,0,0,1,0.003437,0.003437,0.003437,0.003437,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,8025780048614159100,"SELECT
-    category,
-    check_name,
-    details,
-    recommendation
-FROM health_check_results
-WHERE status = $1
-ORDER BY category, check_name",0,0,0,0,0,0,1,0.034526,0.034526,0.034526,0.034526,0,2,0,0,0,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,-568908185734014712,COMMIT PREPARED '131077_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAw5TE=_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAw6wAAAAAAAAAA',0,0,0,0,0,0,1,49.150392,49.150392,49.150392,49.150392,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,42,0,0,0,0,0,0,0,0
-16384,16385,t,3749380189022910195,ROLLBACK,0,0,0,0,0,0,2,0.001954,0.000741,0.001213,0.000977,0.00023600000000000002,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-7953554662625462247,SELECT COUNT(*) FROM public.qrtz_cron_triggers,0,0,0,0,0,0,1,0.050523,0.050523,0.050523,0.050523,0,1,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-9042798010249821697,"COPY  ( SELECT vote, party, COUNT ( * ) as count FROM vote_data WHERE vote IS NOT NULL GROUP BY vote, party ORDER BY count DESC, vote, party LIMIT 100 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,2,923.4549460000001,457.464759,465.990187,461.72747300000003,4.262714000000003,72,562,356246,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-132270313938773931,SELECT COUNT(*) FROM public.view_application_action_event_page_hourly_summary LIMIT $1,0,0,0,0,0,0,1,0.197317,0.197317,0.197317,0.197317,0,1,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,1564486711334912533,COPY (SELECT * FROM public.jv_commit ORDER BY random() LIMIT 50) TO '/tmp/service.data.impl/sample-data/table_jv_commit_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,1094.609026,1094.609026,1094.609026,1094.609026,0,50,14,57645,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,1913730486083906809,SELECT COUNT(*) FROM public.qrtz_simple_triggers child LEFT JOIN public.qrtz_triggers parent ON child.sched_name = parent.sched_name WHERE child.sched_name IS NOT NULL AND parent.sched_name IS NULL,0,0,0,0,0,0,1,0.004528,0.004528,0.004528,0.004528,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-2556193269327394290,SELECT COUNT(*)                 FROM document_data WHERE id IS NULL,0,0,0,0,0,0,1,0.595911,0.595911,0.595911,0.595911,0,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,-371640136827155683,SELECT MAX(commit_id) FROM jv_commit WHERE $1 = $2,0,0,0,0,0,0,1539,651.4201259999983,0.007325,619.9130269999999,0.4232749356725142,15.79634342735501,1539,11488,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,-7225625025941232355,"select documentco0_.hjid as hjid1_22_0_, documentco0_.content as content2_22_0_, documentco0_.id as id3_22_0_ from document_content_data documentco0_ where documentco0_.hjid in ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",0,0,0,0,0,0,863,295267.56758299976,0.405976,4448.049217000001,342.1408662607186,410.12037467105773,8630,44317,23903,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-376302834259616077,COPY (SELECT * FROM public.document_content_data ORDER BY random() LIMIT 50) TO '/tmp/service.data.impl/sample-data/table_document_content_data_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,3295.164289,3295.164289,3295.164289,3295.164289,0,50,95,5122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,6173740207613159148,COMMIT PREPARED '131077_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAhTDE=_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAhUgAAAAAAAAAA',0,0,0,0,0,0,1,284.990264,284.990264,284.990264,284.990264,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,42,0,0,0,0,0,0,0,0
-16384,16385,t,2762624672225068213,PREPARE TRANSACTION '131077_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAA2vjE=_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAA2xAAAAAAAAAAA',0,0,0,0,0,0,1,0.001252,0.001252,0.001252,0.001252,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-7324431356415453933,REFRESH MATERIALIZED VIEW view_riksdagen_org_document_daily_summary,0,0,0,0,0,0,3,1059.5483550000001,332.542028,368.764163,353.182785,15.214220385082413,257664,6395,131455,1955,2118,0,0,0,0,1134,2190,0,0,0,0,258172,11,22785707,0,0,0,0,0,0,0,0
-16384,16385,t,-429869969931059587,PREPARE TRANSACTION '131077_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAA3NjE=_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAA3bQAAAAAAAAAA',0,0,0,0,0,0,1,0.000861,0.000861,0.000861,0.000861,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-1327958826994308836,COPY (SELECT * FROM public.sweden_county_electoral_regi_1 ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_sweden_county_electoral_regi_1_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,0.003948,0.003948,0.003948,0.003948,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,-8981973244041331875,"select documentre0_.hjid as hjid1_31_0_ from document_reference_container documentre0_ where documentre0_.hjid in ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49, $50, $51, $52, $53, $54, $55, $56, $57, $58, $59, $60, $61, $62, $63, $64, $65, $66, $67, $68, $69, $70, $71, $72, $73, $74, $75, $76, $77, $78, $79, $80, $81, $82, $83, $84, $85, $86, $87, $88, $89, $90, $91, $92, $93, $94, $95, $96, $97, $98, $99, $100)",0,0,0,0,0,0,41,1510.7097020000003,0.10409399999999999,448.31464700000004,36.84657809756098,86.31766580293879,4100,8956,97,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,-7335233138011102459,"INSERT INTO jv_global_id ( fragment, owner_id_fk, global_id_pk ) VALUES  ( $1,$2,$3 )",0,0,0,0,0,0,2375,1211.4133919999965,0.023964,568.8671830000001,0.5100687966315794,14.219465250864465,2375,33491,9,32,21,0,0,0,0,0,0,0,0,0,0,9570,9,761012,0,0,0,0,0,0,0,0
-16384,16385,t,2796442278249521791,COMMIT PREPARED '131077_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAA0PjE=_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAA0RAAAAAAAAAAA',0,0,0,0,0,0,1,6.100669,6.100669,6.100669,6.100669,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,42,0,0,0,0,0,0,0,0
-10,16385,f,4223162133034376459,"SELECT COUNT(*)                            FROM information_schema.columns
-            WHERE table_schema = r.schemaname AND table_name = r.name",0,0,0,0,0,0,82,6.929970000000003,0.008505,0.290151,0.08451182926829268,0.0686707446959242,82,11072,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-9020255911144765981,SELECT COUNT(*) FROM public.person_element child LEFT JOIN public.person_assignment_element parent ON child.person_assignment_element_pe_0 = parent.hjid WHERE child.person_assignment_element_pe_0 IS NOT NULL AND parent.hjid IS NULL,0,0,0,0,0,0,1,0.005208999999999999,0.005208999999999999,0.005208999999999999,0.005208999999999999,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-16384,16385,t,423015977513917400,PREPARE TRANSACTION '131077_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAqYjE=_AAAAAAAAAAAAAP//fwAAAQAAtiVpIDC4AAAqaAAAAAAAAAAA',0,0,0,0,0,0,1,0.001373,0.001373,0.001373,0.001373,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,7378833678927389502,SELECT COUNT(*) FROM public.detail_data child LEFT JOIN public.person_detail_data parent ON child.detail_list_person_detail_da_0 = parent.hjid WHERE child.detail_list_person_detail_da_0 IS NOT NULL AND parent.hjid IS NULL,0,0,0,0,0,0,1,12.251824,12.251824,12.251824,12.251824,0,1,1,566,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,5220720815737010668,SELECT COUNT(*) FROM public.qrtz_simple_triggers child LEFT JOIN public.qrtz_triggers parent ON child.trigger_group = parent.trigger_group WHERE child.trigger_group IS NOT NULL AND parent.trigger_group IS NULL,0,0,0,0,0,0,1,0.004138,0.004138,0.004138,0.004138,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-2873038590247904193,REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_monthly,0,0,0,0,0,0,1,2248.121838,2248.121838,2248.121838,2248.121838,0,74881,15120,20933,3017,3970,0,0,0,0,13595,13619,0,0,0,0,75341,153,26920596,0,0,0,0,0,0,0,0
+10,16385,f,7114804826197491058,SELECT COUNT(*) FROM public.view_risk_score_evolution LIMIT $1,0,0,0,0,0,0,1,0.5884790000000001,0.5884790000000001,0.5884790000000001,0.5884790000000001,0,1,315,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,7800106406085720218,SELECT COUNT(*) FROM public.qrtz_triggers child LEFT JOIN public.qrtz_job_details parent ON child.sched_name = parent.job_group WHERE child.sched_name IS NOT NULL AND parent.job_group IS NULL,0,0,0,0,0,0,1,0.034554,0.034554,0.034554,0.034554,0,1,17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-1743048949564542433,SELECT COUNT(*) FROM public.assignment_element,0,0,0,0,0,0,2,0.009488,0.004478,0.0050100000000000006,0.004744,0.00026599999999999996,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,5198113118429188945,SELECT COUNT(*) FROM public.portal child LEFT JOIN public.agency parent ON child.portals_agency_hjid = parent.hjid WHERE child.portals_agency_hjid IS NOT NULL AND parent.hjid IS NULL,0,0,0,0,0,0,1,3.030142,3.030142,3.030142,3.030142,0,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-2615053563646155745,SELECT COUNT(*) FROM public.against_proposal_data child LEFT JOIN public.against_proposal_container parent ON child.against_proposal_list_agains_0 = parent.hjid WHERE child.against_proposal_list_agains_0 IS NOT NULL AND parent.hjid IS NULL,0,0,0,0,0,0,1,21.769202,21.769202,21.769202,21.769202,0,1,2,624,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-137668195526350440,COPY (SELECT * FROM public.sweden_municipality_data ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_sweden_municipality_data_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,0.0041470000000000005,0.0041470000000000005,0.0041470000000000005,0.0041470000000000005,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,3345668446938292953,SELECT COUNT(*) FROM public.view_riksdagen_committee_parliament_member_proposal,0,0,0,0,0,0,3,643.394839,211.862573,218.62498,214.46494633333333,2.9723465919418297,3,16554,0,0,0,0,0,0,0,2028,2034,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,1893915560020180559,SELECT COUNT(*) FROM public.person_element,0,0,0,0,0,0,2,0.007373000000000001,0.0028150000000000002,0.004558,0.0036865000000000005,0.0008715000000000002,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,1809349874619169723,SELECT COUNT(*) FROM public.world_bank_data,0,0,0,0,0,0,2,228.537825,31.646434,196.891391,114.2689125,82.6224785,2,0,20430,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,4646091248205268584,COPY (SELECT * FROM public.person_container_data ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_person_container_data_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,0.008045,0.008045,0.008045,0.008045,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-8602640411836812453,SELECT COUNT(*) FROM public.view_riksdagen_vote_data_ballot_politician_summary,0,0,0,0,0,0,2,295.647699,117.963415,177.684284,147.8238495,29.860434499999997,2,225,5960,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,7270529598951558748,SELECT COUNT(*) FROM public.qrtz_simple_triggers child LEFT JOIN public.qrtz_triggers parent ON child.trigger_name = parent.trigger_group WHERE child.trigger_name IS NOT NULL AND parent.trigger_group IS NULL,0,0,0,0,0,0,1,0.003987999999999999,0.003987999999999999,0.003987999999999999,0.003987999999999999,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,3253083052894592554,SELECT COUNT(*) FROM public.pg_stat_statements_info,0,0,0,0,0,0,3,0.019775,0.003726,0.010920000000000001,0.0065916666666666675,0.0031137281334260524,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-2465516527854348124,SELECT COUNT(*) FROM public.qrtz_cron_triggers child LEFT JOIN public.qrtz_triggers parent ON child.trigger_name = parent.trigger_name WHERE child.trigger_name IS NOT NULL AND parent.trigger_name IS NULL,0,0,0,0,0,0,1,0.056506,0.056506,0.056506,0.056506,0,1,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,4593734634050593492,REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary,0,0,0,0,0,0,1,83545.738607,83545.738607,83545.738607,83545.738607,0,10118,3240,178329,249,258,0,0,0,0,86720,86842,0,0,0,0,10481,126,3090889,0,0,0,0,0,0,0,0
+10,16385,f,-5894348268534974440,SELECT COUNT(*) FROM public.view_politician_risk_summary,0,0,0,0,0,0,3,72.614687,22.543555,27.463388,24.204895666666665,2.304251038367178,3,948,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,114,5.529346,0,0,3,2.6000680000000003,3,66.650722
+16384,16385,t,4657953789397675476,"SELECT * FROM public.databasechangelog ORDER BY DATEEXECUTED ASC, ORDEREXECUTED ASC",0,0,0,0,0,0,2,1.242251,0.528919,0.713332,0.6211255,0.09220649999999997,760,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,-4413869161178316406,select commit_id from jv_commit where $1<$2,0,0,0,0,0,0,1,0.001061,0.001061,0.001061,0.001061,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-1327958826994308836,COPY (SELECT * FROM public.sweden_county_electoral_regi_1 ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_sweden_county_electoral_regi_1_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,0.003817,0.003817,0.003817,0.003817,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-5754458802830619748,SELECT COUNT(*) FROM public.document_status_container child LEFT JOIN public.document_person_reference_co_0 parent ON child.document_person_reference_co_1 = parent.hjid WHERE child.document_person_reference_co_1 IS NOT NULL AND parent.hjid IS NULL,0,0,0,0,0,0,1,12.635911,12.635911,12.635911,12.635911,0,1,913,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,t,1793349962363156949,COPY (SELECT * FROM public.document_attachment ORDER BY random() LIMIT 50) TO '/tmp/service.data.impl/sample-data/table_document_attachment_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,24.029631,24.029631,24.029631,24.029631,0,50,23,1526,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-7652294891628938372,COPY (SELECT * FROM public.document_status_container ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_document_status_container_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,13.059503,13.059503,13.059503,13.059503,0,50,0,658,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,9052388314580198222,REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_monthly,0,0,0,0,0,0,1,86.68557,86.68557,86.68557,86.68557,0,1741,1985,71,53,67,0,0,0,0,43,112,0,0,0,0,2015,10,502987,0,0,0,0,0,0,0,0
+10,16385,f,-2112847474557707406,SELECT COUNT(*) FROM public.view_riksdagen_politician_document_summary,0,0,0,0,0,0,2,0.13975900000000002,0.067655,0.072104,0.06987950000000001,0.0022245000000000008,2,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-8111393788935606760,SELECT COUNT(*) FROM public.countries_element,0,0,0,0,0,0,2,0.010509000000000001,0.004057000000000001,0.006452,0.0052545000000000005,0.0011974999999999998,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-3982217310012896494,SELECT COUNT(*) FROM public.view_riksdagen_politician_experience_summary LIMIT $1,0,0,0,0,0,0,1,129.31719999999999,129.31719999999999,129.31719999999999,129.31719999999999,0,1,809,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,t,1592135237743838615,COPY (SELECT * FROM public.target_profile_content ORDER BY random() LIMIT 50) TO '/tmp/service.data.impl/sample-data/table_target_profile_content_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,0.133199,0.133199,0.133199,0.133199,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,t,7361927649484143699,"SELECT 
+    pg_size_pretty(pg_database_size(current_database())) AS database_size,
+    (SELECT COUNT(*) FROM pg_stat_user_tables WHERE schemaname = $1) AS table_count,
+    (SELECT COUNT(*) FROM pg_views WHERE schemaname = $2) AS view_count,
+    (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = $3) AS materialized_view_count,
+    (SELECT SUM(n_live_tup) FROM pg_stat_user_tables WHERE schemaname = $4) AS total_rows",0,0,0,0,0,0,1,4.988692,4.988692,4.988692,4.988692,0,1,445,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-672258026398889954,SELECT COUNT(*) FROM public.jv_snapshot child LEFT JOIN public.jv_commit parent ON child.commit_fk = parent.commit_pk WHERE child.commit_fk IS NOT NULL AND parent.commit_pk IS NULL,0,0,0,0,0,0,1,8734.417673,8734.417673,8734.417673,8734.417673,0,1,668592,342002,0,0,0,0,0,0,51294,51508,0,0,0,0,0,0,0,10,0.275184,1,44.672835,1,9.645703,1,8.510862
+10,16385,f,-7619556669694772075,SELECT COUNT(*) FROM public.committee_proposal_data,0,0,0,0,0,0,3,37.577617000000004,7.665314,21.809803,12.525872333333334,6.567156125612482,3,2650,5300,0,1963,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-2403440320727437577,SELECT COUNT(*) FROM public.jv_global_id child LEFT JOIN public.jv_global_id parent ON child.owner_id_fk = parent.global_id_pk WHERE child.owner_id_fk IS NOT NULL AND parent.global_id_pk IS NULL,0,0,0,0,0,0,1,22816.711762,22816.711762,22816.711762,22816.711762,0,1,308201,168569,0,0,0,0,0,0,51468,51768,0,0,0,0,0,0,0,10,0.292729,0,0,1,0.1877,1,2.453073
+10,16385,f,3065953479645288419,SELECT * FROM view_riksdagen_vote_data_ballot_politician_summary_daily LIMIT $1,0,0,0,0,0,0,1,0.013146,0.013146,0.013146,0.013146,0,5,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,-1068858405594993427,"UPDATE public.databasechangeloglock SET LOCKED = $1, LOCKEDBY = $2, LOCKGRANTED = NOW() WHERE ID = $3 AND LOCKED = $4",0,0,0,0,0,0,1,0.039644,0.039644,0.039644,0.039644,0,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,545,0,0,0,0,0,0,0,0
+10,16385,t,1490862907230434892,"DO $$
+DECLARE
+    v_table TEXT;
+    v_count BIGINT;
+    v_critical_tables TEXT[] := ARRAY[
+        'person_data',
+        'assignment_data',
+        'ballot_data',
+        'vote_data',
+        'document_data',
+        'sweden_political_party',
+        'committee_proposal_data',
+        'document_element',
+        'document_person_reference_data'
+    ];
+BEGIN
+    FOREACH v_table IN ARRAY v_critical_tables
+    LOOP
+        BEGIN
+            EXECUTE format('SELECT COUNT(*) FROM %I', v_table) INTO v_count;
+            
+            IF v_count = 0 THEN
+                INSERT INTO health_check_results VALUES (
+                    'Data Quality',
+                    'Critical Table: ' || v_table,
+                    'FAIL',
+                    4,
+                    'Table is empty (0 rows)',
+                    'Load data into table or check data import processes. See TROUBLESHOOTING_EMPTY_VIEWS.md'
+                );
+            ELSIF v_count < 100 THEN
+                INSERT INTO health_check_results VALUES (
+                    'Data Quality',
+                    'Critical Table: ' || v_table,
+                    'WARN',
+                    2,
+                    'Table has only ' || v_count || ' rows',
+                    'Verify data completeness and import status'
+                );
+            ELSE
+                INSERT INTO health_check_results VALUES (
+                    'Data Quality',
+                    'Critical Table: ' || v_table,
+                    'PASS',
+                    1,
+                    'Table has ' || v_count || ' rows',
+                    NULL
+                );
+            END IF;
+        EXCEPTION WHEN OTHERS THEN
+            INSERT INTO health_check_results VALUES (
+                'Data Quality',
+                'Critical Table: ' || v_table,
+                'INFO',
+                1,
+                'Table does not exist or cannot be accessed: ' || SQLERRM,
+                'Verify table name and permissions'
+            );
+        END;
+    END LOOP;
+END $$",0,0,0,0,0,0,1,1060.188248,1060.188248,1060.188248,1060.188248,0,0,145037,33046,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-2581191670018567981,SELECT COUNT(*) FROM public.view_application_action_event_page_element_weekly_summary LIMIT $1,0,0,0,0,0,0,1,0.169236,0.169236,0.169236,0.169236,0,1,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-507225500057516508,COPY (SELECT * FROM public.world_bank_data ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_world_bank_data_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,238.245612,238.245612,238.245612,238.245612,0,50,0,10215,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-5222745275007569262,SELECT COUNT(*) FROM public.sweden_county_electoral_area child LEFT JOIN public.sweden_county_electoral_regi_1 parent ON child.landstingsvalkrets_sweden_co_0 = parent.hjid WHERE child.landstingsvalkrets_sweden_co_0 IS NOT NULL AND parent.hjid IS NULL,0,0,0,0,0,0,1,0.009278,0.009278,0.009278,0.009278,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,2470514466340265250,"DO $$
+        DECLARE
+            v_vote_count BIGINT;
+            v_person_count INTEGER;
+            v_document_count INTEGER;
+        BEGIN
+            SELECT COUNT(*) INTO v_vote_count FROM vote_data;
+            SELECT COUNT(*) INTO v_person_count FROM person_data;
+            SELECT COUNT(*) INTO v_document_count FROM document_data;
+            
+            RAISE NOTICE 'Pre-flight: vote_data=%, person_data=%, document_data=%', 
+                v_vote_count, v_person_count, v_document_count;
+                
+            IF v_vote_count < 1000 THEN
+                RAISE WARNING 'Limited vote data - politician views may be sparse';
+            END IF;
+        END $$",0,0,0,0,0,0,1,7894.222924,7894.222924,7894.222924,7894.222924,0,0,6372,9493,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,-4590939273026221284,SELECT MAX(ORDEREXECUTED) FROM public.databasechangelog,0,0,0,0,0,0,1,0.057848,0.057848,0.057848,0.057848,0,1,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-6494996850470410184,SELECT COUNT(*) FROM public.qrtz_simple_triggers child LEFT JOIN public.qrtz_triggers parent ON child.trigger_name = parent.trigger_name WHERE child.trigger_name IS NOT NULL AND parent.trigger_name IS NULL,0,0,0,0,0,0,1,0.003998,0.003998,0.003998,0.003998,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-6459971082938617115,SELECT COUNT(*) FROM public.application_view,0,0,0,0,0,0,2,0.019236,0.004629,0.014606999999999998,0.009618,0.0049889999999999995,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-2796630933708883656,SELECT COUNT(*) FROM public.detail_element,0,0,0,0,0,0,2,0.011561,0.005029,0.0065320000000000005,0.0057805,0.0007515000000000004,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,8025256661819257358,SELECT COUNT(*) FROM public.language_data,0,0,0,0,0,0,2,0.136887,0.057227,0.07966000000000001,0.0684435,0.011216500000000004,2,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-4077870557015655163,SELECT COUNT(*) FROM public.view_riksdagen_party_document_daily_summary,0,0,0,0,0,0,2,91.54251400000001,0.332842,91.20967200000001,45.771257000000006,45.438415000000006,2,0,102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,7164030026146320949,REFRESH MATERIALIZED VIEW view_riksdagen_politician_document,0,0,0,0,0,0,1,3693.820051,3693.820051,3693.820051,3693.820051,0,110684,28775,3600,3133,4228,0,0,0,0,2166,2154,0,0,0,0,111619,684,32877725,0,0,0,0,0,0,0,0
+10,16385,f,2653161908494979458,SELECT COUNT(*) FROM public.assignment_data child LEFT JOIN public.person_assignment_data parent ON child.assignment_list_person_assig_0 = parent.hjid WHERE child.assignment_list_person_assig_0 IS NOT NULL AND parent.hjid IS NULL,0,0,0,0,0,0,1,6.510816,6.510816,6.510816,6.510816,0,1,495,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,7832858577965349251,COPY (SELECT * FROM public.detail_data ORDER BY random() LIMIT $1) TO '/tmp/service.data.impl/sample-data/table_detail_data_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,6.487212,6.487212,6.487212,6.487212,0,50,0,515,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

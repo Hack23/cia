@@ -1,0 +1,608 @@
+Timing is on.
+==================================================
+CIA Sample Data Extraction
+Started: Fri Nov 21 02:34:04 PM CET 2025
+==================================================
+
+Configuration:
+  Sample size: 50 rows per table/view
+  Output format: CSV with headers
+  Extraction strategy: Diverse sampling with DISTINCT for key columns
+
+
+==========================================
+=== EXTRACTING TABLE SAMPLE DATA      ===
+==========================================
+
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Analyzing tables for sample data extraction...
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table against_proposal_container: 2622 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table against_proposal_data: 27626 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table agency: 1 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table application_action_event: 357 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table application_configuration: 14 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table application_session: 147 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping application_view: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table assignment_data: 31127 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping assignment_element: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table committee_document_data: 4156 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table committee_proposal_component_0: 4156 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table committee_proposal_container: 3874 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table committee_proposal_data: 29502 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping countries_element: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table country_element: 211 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping data_element: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping data_source_content: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table detail_data: 17541 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping detail_element: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_activity_container: 42967 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_activity_data: 159926 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_attachment: 74037 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_attachment_container: 34656 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping document_container_element: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_content_data: 132868 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_data: 43441 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_detail_container: 42881 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_detail_data: 150899 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_element: 304034 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_person_reference_co_0: 37384 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_person_reference_da_0: 104627 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_proposal_container: 38289 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_proposal_data: 38289 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_reference_container: 20367 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_reference_data: 115231 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table document_status_container: 43441 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping domain_portal: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table encrypted_value: 2 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table indicator_element: 20480 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping indicators_element: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table jv_commit: 4662659 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table jv_commit_property: 4662657 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table jv_global_id: 10432365 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table jv_snapshot: 10458304 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping language_content_data: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table language_data: 135 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping operational_information_cont_0: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping performance_indicator_content: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table person_assignment_data: 2482 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping person_assignment_element: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping person_container_data: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping person_container_element: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table person_data: 2482 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table person_detail_data: 2482 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping person_detail_element: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping person_element: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table portal: 2 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping quality_assurance_content: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table rule_violation: 2325 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_county_data: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_county_data_container: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_county_electoral_area: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_county_electoral_regi_0: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_county_electoral_regi_1: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_election_region: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_election_type: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_election_type_contain_0: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_municipality_data: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_municipality_election_0: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_parliament_electoral__0: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping sweden_parliament_electoral__1: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table sweden_political_party: 40 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping target_profile_content: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table topic: 4410 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table topics: 20480 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table user_account: 12 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping user_account_address: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table vote_data: 3530762 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Skipping vote_meta_data: empty table
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table world_bank_data: 595268 rows available
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  Table analysis summary:
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:    Tables with data: 47
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:    Empty tables: 33
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:96: NOTICE:  
+DO
+Time: 5651.259 ms (00:05.651)
+Extracting sample data from tables...
+
+COPY 50
+Time: 0.867 ms
+COPY 50
+Time: 12.803 ms
+COPY 1
+Time: 0.245 ms
+COPY 50
+Time: 0.625 ms
+COPY 14
+Time: 0.242 ms
+COPY 50
+Time: 1.844 ms
+COPY 0
+Time: 0.238 ms
+COPY 50
+Time: 12.462 ms
+COPY 0
+Time: 0.267 ms
+COPY 50
+Time: 4.081 ms
+COPY 50
+Time: 1.300 ms
+COPY 50
+Time: 0.838 ms
+COPY 50
+Time: 21.953 ms
+COPY 0
+Time: 0.335 ms
+COPY 50
+Time: 0.492 ms
+COPY 0
+Time: 0.207 ms
+COPY 0
+Time: 0.208 ms
+COPY 50
+Time: 6.793 ms
+COPY 0
+Time: 0.218 ms
+COPY 50
+Time: 5.789 ms
+COPY 50
+Time: 51.416 ms
+COPY 50
+Time: 24.187 ms
+COPY 50
+Time: 4.598 ms
+COPY 0
+Time: 0.287 ms
+COPY 50
+Time: 4243.318 ms (00:04.243)
+COPY 50
+Time: 29.414 ms
+COPY 50
+Time: 5.652 ms
+COPY 50
+Time: 45.244 ms
+COPY 50
+Time: 345.083 ms
+COPY 50
+Time: 5.145 ms
+COPY 50
+Time: 31.966 ms
+COPY 50
+Time: 5.693 ms
+COPY 50
+Time: 424.897 ms
+COPY 50
+Time: 2.877 ms
+COPY 50
+Time: 29.025 ms
+COPY 50
+Time: 13.363 ms
+COPY 0
+Time: 0.217 ms
+COPY 2
+Time: 0.210 ms
+COPY 50
+Time: 19.274 ms
+COPY 0
+Time: 0.341 ms
+COPY 50
+Time: 1094.326 ms (00:01.094)
+COPY 50
+Time: 796.511 ms
+COPY 50
+Time: 2204.671 ms (00:02.205)
+COPY 50
+Time: 276783.957 ms (04:36.784)
+COPY 0
+Time: 1.760 ms
+COPY 50
+Time: 1.898 ms
+COPY 0
+Time: 0.197 ms
+COPY 0
+Time: 0.223 ms
+COPY 50
+Time: 0.651 ms
+COPY 0
+Time: 0.213 ms
+COPY 0
+Time: 0.209 ms
+COPY 0
+Time: 0.235 ms
+COPY 50
+Time: 7.088 ms
+COPY 50
+Time: 0.651 ms
+COPY 0
+Time: 0.189 ms
+COPY 0
+Time: 0.198 ms
+COPY 2
+Time: 0.205 ms
+COPY 0
+Time: 0.211 ms
+COPY 50
+Time: 8.193 ms
+COPY 0
+Time: 0.278 ms
+COPY 0
+Time: 0.196 ms
+COPY 0
+Time: 0.224 ms
+COPY 0
+Time: 0.210 ms
+COPY 0
+Time: 0.209 ms
+COPY 0
+Time: 0.202 ms
+COPY 0
+Time: 0.193 ms
+COPY 0
+Time: 0.211 ms
+COPY 0
+Time: 0.231 ms
+COPY 0
+Time: 0.209 ms
+COPY 0
+Time: 0.199 ms
+COPY 0
+Time: 0.218 ms
+COPY 40
+Time: 0.317 ms
+COPY 0
+Time: 0.205 ms
+COPY 50
+Time: 4.126 ms
+COPY 50
+Time: 3.140 ms
+COPY 12
+Time: 2.604 ms
+COPY 0
+Time: 0.222 ms
+COPY 50
+Time: 2136.587 ms (00:02.137)
+COPY 0
+Time: 2.080 ms
+COPY 50
+Time: 240.488 ms
+Time: 1.193 ms
+
+==========================================
+=== EXTRACTING VIEW SAMPLE DATA       ===
+==========================================
+
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  Analyzing views for sample data extraction...
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View pg_stat_statements: 671 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View pg_stat_statements_info: 1 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_annual_summary: 31 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_daily_summary: 55 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_element_annual_summary: 71 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_element_daily_summary: 92 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_element_hourly_summary: 98 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_element_weekly_summary: 88 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_hourly_summary: 73 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_modes_annual_summary: 57 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_modes_daily_summary: 80 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_modes_hourly_summary: 98 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_modes_weekly_summary: 79 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_application_action_event_page_weekly_summary: 54 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_audit_author_summary: 19 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_audit_data_summary: 121 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_committee_productivity: 28 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_committee_productivity_matrix: 118 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_document_data_committee_report_url: 4136 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  Skipping view_ministry_effectiveness_trends: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  Skipping view_ministry_productivity_matrix: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  Skipping view_ministry_risk_evolution: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_party_effectiveness_trends: 88 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_party_performance_metrics: 40 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_politician_behavioral_trends: 7354 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  Skipping view_politician_risk_summary: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  Skipping view_riksdagen_coalition_alignment_matrix: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_committee: 28 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_committee_ballot_decision_party_summary: 19231 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_committee_ballot_decision_politician_summary: 872500 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_committee_ballot_decision_summary: 2500 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_committee_decision_type_org_summary: 4840 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_committee_decision_type_summary: 3012 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_committee_decisions: 29502 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_committee_parliament_member_proposal: 36382 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_committee_role_member: 18911 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_committee_roles: 152 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  Skipping view_riksdagen_crisis_resilience_indicators: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_document_type_daily_summary: 41394 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_goverment: 20 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_goverment_proposals: 2782 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_goverment_role_member: 467 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_goverment_roles: 71 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_intelligence_dashboard: 1 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_member_proposals: 90655 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_org_document_daily_summary: 85888 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_party: 12 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_party_ballot_support_annual_summary: 12624 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_party_coalation_against_annual_summary: 257 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_party_document_daily_summary: 6252 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_party_document_summary: 10 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_party_member: 2421 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_party_momentum_analysis: 423 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_party_role_member: 288 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_party_signatures_document_summary: 9 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_party_summary: 13 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_person_signed_document_summary: 1585 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_politician: 2068 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_politician_ballot_summary: 2421 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_politician_document: 110684 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_politician_document_daily_summary: 37467 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_politician_document_summary: 1314 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_politician_experience_summary: 2082 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  Skipping view_riksdagen_politician_influence_metrics: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary: 83408 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_annual: 201 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_daily: 10333 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_monthly: 1741 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_weekly: 5263 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary: 3530762 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_annual: 9629 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_daily: 448172 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_monthly: 74881 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_weekly: 226232 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_summary: 10118 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_summary_annual: 24 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_summary_daily: 1283 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_summary_monthly: 213 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_riksdagen_vote_data_ballot_summary_weekly: 647 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  Skipping view_riksdagen_voting_anomaly_detection: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  Skipping view_risk_score_evolution: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View view_worldbank_indicator_data_country_summary: 3827 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  View analysis summary:
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:    Views with data: 73
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:    Empty views: 9
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:176: NOTICE:  
+DO
+Time: 12199.609 ms (00:12.200)
+Extracting sample data from regular views...
+
+COPY 50
+Time: 1.716 ms
+COPY 1
+Time: 0.219 ms
+COPY 31
+Time: 0.505 ms
+COPY 50
+Time: 0.508 ms
+COPY 50
+Time: 0.553 ms
+COPY 50
+Time: 0.613 ms
+COPY 50
+Time: 0.669 ms
+COPY 50
+Time: 0.617 ms
+COPY 50
+Time: 0.552 ms
+COPY 50
+Time: 0.526 ms
+COPY 50
+Time: 0.566 ms
+COPY 50
+Time: 0.562 ms
+COPY 50
+Time: 0.565 ms
+COPY 50
+Time: 0.480 ms
+COPY 19
+Time: 322.260 ms
+COPY 50
+Time: 1.463 ms
+COPY 28
+Time: 231.544 ms
+COPY 50
+Time: 203.147 ms
+COPY 50
+Time: 7.462 ms
+COPY 0
+Time: 1.215 ms
+COPY 0
+Time: 0.950 ms
+COPY 0
+Time: 0.952 ms
+COPY 50
+Time: 69.261 ms
+COPY 40
+Time: 11.213 ms
+COPY 50
+Time: 141.799 ms
+COPY 0
+Time: 32.339 ms
+COPY 0
+Time: 0.658 ms
+COPY 28
+Time: 268.605 ms
+COPY 50
+Time: 275.331 ms
+COPY 50
+Time: 110.118 ms
+COPY 50
+Time: 8.291 ms
+COPY 0
+Time: 1392.476 ms (00:01.392)
+COPY 20
+Time: 396.933 ms
+COPY 50
+Time: 15.890 ms
+COPY 50
+Time: 17.987 ms
+COPY 50
+Time: 5.965 ms
+COPY 1
+Time: 13810.159 ms (00:13.810)
+COPY 50
+Time: 216.110 ms
+COPY 12
+Time: 12.395 ms
+COPY 50
+Time: 1546.917 ms (00:01.547)
+COPY 50
+Time: 13.615 ms
+COPY 10
+Time: 19.358 ms
+COPY 50
+Time: 4.885 ms
+COPY 50
+Time: 3937.612 ms (00:03.938)
+COPY 50
+Time: 16.741 ms
+COPY 9
+Time: 38.206 ms
+COPY 13
+Time: 115.178 ms
+COPY 50
+Time: 31.949 ms
+COPY 50
+Time: 117.037 ms
+COPY 50
+Time: 256.190 ms
+COPY 50
+Time: 447.712 ms
+COPY 0
+Time: 2.570 ms
+COPY 0
+Time: 1.397 ms
+COPY 0
+Time: 1.824 ms
+Time: 0.692 ms
+Extracting sample data from materialized views...
+
+COPY 50
+Time: 218.030 ms
+COPY 50
+Time: 6678.849 ms (00:06.679)
+COPY 50
+Time: 21.191 ms
+COPY 50
+Time: 1.645 ms
+COPY 50
+Time: 0.951 ms
+COPY 50
+Time: 20.965 ms
+COPY 50
+Time: 8.163 ms
+COPY 50
+Time: 18.158 ms
+COPY 50
+Time: 1.812 ms
+COPY 50
+Time: 63.923 ms
+COPY 50
+Time: 8.349 ms
+COPY 50
+Time: 1.307 ms
+COPY 50
+Time: 77.178 ms
+COPY 50
+Time: 1.646 ms
+COPY 50
+Time: 20.260 ms
+COPY 50
+Time: 119.207 ms
+COPY 50
+Time: 60.134 ms
+COPY 50
+Time: 4560.955 ms (00:04.561)
+COPY 50
+Time: 12.472 ms
+COPY 50
+Time: 572.443 ms
+COPY 50
+Time: 277.886 ms
+COPY 50
+Time: 265.992 ms
+COPY 50
+Time: 19.147 ms
+COPY 24
+Time: 0.526 ms
+COPY 50
+Time: 1.323 ms
+COPY 50
+Time: 0.609 ms
+COPY 50
+Time: 0.853 ms
+COPY 50
+Time: 11.315 ms
+Time: 0.821 ms
+
+==========================================
+=== GENERATING MANIFEST FILE          ===
+==========================================
+COPY 110
+Time: 17.176 ms
+
+==========================================
+=== GENERATING VIEW COLUMN MAPPING    ===
+==========================================
+COPY 854
+Time: 74.785 ms
+
+==========================================
+=== EXTRACTING DISTINCT VALUE SETS    ===
+==========================================
+Extracting distinct party values...
+COPY 17
+Time: 1.603 ms
+Extracting distinct org_code values...
+COPY 91
+Time: 6.942 ms
+Extracting distinct role_code values...
+COPY 71
+Time: 5.963 ms
+Extracting distinct assignment status values...
+COPY 5
+Time: 6.426 ms
+Extracting distinct document types...
+COPY 3
+Time: 12.623 ms
+Extracting distinct document org values...
+COPY 70
+Time: 11.309 ms
+Extracting distinct vote values...
+COPY 36
+Time: 453.384 ms
+Extracting political party list...
+COPY 40
+Time: 0.314 ms
+
+Distinct value extraction summary:
+  - distinct_party_values.csv: Party distribution
+  - distinct_org_code_values.csv: Organization codes
+  - distinct_role_code_values.csv: Role codes
+  - distinct_assignment_status_values.csv: Assignment statuses
+  - distinct_document_type_values.csv: Document types
+  - distinct_document_org_values.csv: Document organizations
+  - distinct_vote_values.csv: Vote patterns by party
+  - distinct_political_parties.csv: Complete party list
+
+
+==================================================
+Sample data extraction completed
+Finished: Fri Nov 21 02:39:49 PM CET 2025
+==================================================
+
+Generated files:
+  - table_*_sample.csv: Sample data from tables
+  - view_*_sample.csv: Sample data from views
+  - sample_data_manifest.csv: Metadata about extracted files
+  - view_column_mapping.csv: Column mappings for views
+  - distinct_*_values.csv: Distinct values with counts for important columns
+
+To reload sample data:
+  1. Review the CSV files
+  2. Use COPY FROM to import: 
+     copy table_name FROM 'table_name_sample.csv' WITH CSV HEADER;
+
+For troubleshooting empty views, see:
+  - TROUBLESHOOTING_EMPTY_VIEWS.md
+  - view_column_mapping.csv for required columns
+
+Timing is off.

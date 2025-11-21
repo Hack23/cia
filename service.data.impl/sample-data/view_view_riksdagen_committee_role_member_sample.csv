@@ -1,51 +1,51 @@
 role_id,detail,role_code,first_name,last_name,from_date,to_date,person_id,party,total_days_served,active,total_documents,documents_last_year,total_committee_reports,total_statements,total_initiatives,activity_level,role_type,committee_type
-29182,Trafikutskottet,Suppleant,Göran,Lindell,2015-09-24,2015-09-24,0397377293714,C,0,f,0,0,0,0,0,Inactive,Deputy Member,Transport
-42525,Konstitutionsutskottet,Suppleant,Per Olof,Håkansson,1991-09-30,1994-10-02,0522191574902,S,1098,f,0,0,0,0,0,Inactive,Deputy Member,Constitution
-9235,Miljö- och jordbruksutskottet,Ledamot,Ingemar,Josefsson,1994-10-11,1998-10-04,0489591175704,S,1454,f,0,0,0,0,0,Inactive,Member,Environment and Agriculture
-15110,Miljö- och jordbruksutskottet,Ordförande,Kristina,Yngwe,2018-10-02,2020-04-16,0884738092723,C,562,f,1,0,0,0,1,Inactive,Chairman,Environment and Agriculture
-5397,Justitieutskottet,Suppleant,Maria,Ferm,2022-01-11,2022-09-26,0462699892622,MP,258,f,0,0,0,0,0,Inactive,Deputy Member,Justice
-44930,Socialförsäkringsutskottet,Ledamot,Solveig,Zander,2010-10-12,2014-09-29,0196077326617,C,1448,f,0,0,0,0,0,Inactive,Member,Social Insurance
-51634,Finansutskottet,Suppleant,Malcolm Momodou,Jallow,2020-03-18,2022-09-26,0254695027922,V,922,f,55,4,0,0,55,Low,Deputy Member,Finance
-9162,Justitieutskottet,Suppleant,Jan,Ertsborn,2004-09-14,2006-10-02,09812885803,FP,748,f,0,0,0,0,0,Inactive,Deputy Member,Justice
-23581,Konstitutionsutskottet,Suppleant,Jabar,Amin,2010-10-12,2014-09-29,0849219210615,MP,1448,f,0,0,0,0,0,Inactive,Deputy Member,Constitution
-8321,Näringsutskottet,Ordförande,Lennart,Pettersson,1988-10-11,1991-09-29,0805469037201,S,1083,f,0,0,0,0,0,Inactive,Chairman,Industry and Trade
-17485,Utrikesutskottet,Suppleant,Shadiye,Heydari,2014-11-25,2017-07-27,0231432628318,S,975,f,0,0,0,0,0,Inactive,Deputy Member,Foreign Affairs
-19515,Utrikesutskottet,Suppleant,Kaj,Nordquist,2003-02-20,2003-08-01,0976656359110,S,162,f,0,0,0,0,0,Inactive,Deputy Member,Foreign Affairs
-48949,Trafikutskottet,Suppleant,Henrik,Vinge,2020-03-18,2022-09-26,0406831930624,SD,922,f,1,0,0,0,1,Inactive,Deputy Member,Transport
-24664,Civilutskottet,Ledamot,Jennie,Wernäng,2025-01-24,2026-09-21,098329342620,M,301,t,1,0,0,0,1,Inactive,Member,Civil Affairs
-9559,Trafikutskottet,Suppleant,Viviann,Gerdin,1998-10-13,2002-09-30,019623784404,C,1448,f,0,0,0,0,0,Inactive,Deputy Member,Transport
-8837,Socialförsäkringsutskottet,Ledamot,Kerstin,Kristiansson Karlstedt,2002-10-08,2006-10-02,0836614547702,S,1455,f,0,0,0,0,0,Inactive,Member,Social Insurance
-42596,Försvarsutskottet,Suppleant,Anders,Hansson,2014-10-07,2018-09-24,0843345349823,M,1448,f,18,0,0,0,18,Inactive,Deputy Member,Defense
-14087,Justitieutskottet,Ledamot,Elisebeht,Markström,2002-10-08,2006-10-02,0683297678211,S,1455,f,0,0,0,0,0,Inactive,Member,Justice
-44938,EU-nämnden,Suppleant,Solveig,Zander,2018-10-16,2020-12-31,0196077326617,C,807,f,0,0,0,0,0,Inactive,Deputy Member,EU Affairs
-56396,Socialutskottet,Suppleant,Ludvig,Aspling,2020-03-18,2022-09-26,0526748040023,SD,922,f,8,0,0,0,8,Inactive,Deputy Member,Social Affairs
-33895,Socialförsäkringsutskottet,Ledamot,Ragnhild,Pohanka,1994-10-11,1998-10-04,0161018662505,MP,1454,f,0,0,0,0,0,Inactive,Member,Social Insurance
-16104,Lagutskottet,Suppleant,Mats,Berglind,2002-10-08,2006-10-02,0780836041816,S,1455,f,0,0,0,0,0,Inactive,Deputy Member,Law
-14391,Utrikesutskottet,Ledamot,Krister,Örnfjäder,2015-10-01,2018-09-24,0573136138218,S,1089,f,0,0,0,0,0,Inactive,Member,Foreign Affairs
-10623,Socialutskottet,Suppleant,Hans,Ekström,2020-03-18,2022-09-26,0475778011711,S,922,f,17,0,0,0,17,Inactive,Deputy Member,Social Affairs
-4564,EU-nämnden,Ledamot,Jens,Holm,2014-10-07,2018-10-02,0216534495014,V,1456,f,20,0,0,0,20,Inactive,Member,EU Affairs
-11121,Utrikesutskottet,Ledamot,Nic,Grönvall,1991-10-08,1993-10-05,0736538502404,M,728,f,0,0,0,0,0,Inactive,Member,Foreign Affairs
-1794772,Trafikutskottet,Suppleant,Rasmus,Giertz,2025-03-25,2026-09-21,0112333043027,SD,241,t,3,0,0,0,3,Inactive,Deputy Member,Transport
-50616,Arbetsmarknadsutskottet,Suppleant,Annie,Lööf,2009-09-24,2010-10-04,0862868280923,C,375,f,0,0,0,0,0,Inactive,Deputy Member,Labor Market
-45458,Socialutskottet,Suppleant,Ulla,Orring,1988-10-11,1991-09-29,0823175828602,FP,1083,f,0,0,0,0,0,Inactive,Deputy Member,Social Affairs
-5509,Näringsutskottet,Suppleant,Carina,Ståhl Herrstedt,2020-03-18,2022-09-26,0603753860213,SD,922,f,43,1,0,0,43,Low,Deputy Member,Industry and Trade
-9730,Justitieutskottet,Ledamot,Caroline,Szyber,2010-10-12,2014-09-29,0666958447826,KD,1448,f,0,0,0,0,0,Inactive,Member,Justice
-43640,Bostadsutskottet,Suppleant,Harry,Staaf,1991-10-08,1994-10-02,0667211637804,KD,1090,f,0,0,0,0,0,Inactive,Deputy Member,Housing
-42359,Justitieutskottet,Suppleant,Acko,Ankarberg Johansson,2020-03-18,2022-09-26,0796071663617,KD,922,f,22,2,0,0,22,Low,Deputy Member,Justice
-43666,Socialutskottet,Ledamot,Ingrid,Andersson,1988-10-11,1991-09-29,0688961392304,S,1083,f,0,0,0,0,0,Inactive,Member,Social Affairs
-9603,Konstitutionsutskottet,Ledamot,Per,Lager,1998-10-13,2002-09-30,075043103804,MP,1448,f,0,0,0,0,0,Inactive,Member,Constitution
-40228,Finansutskottet,Suppleant,Mats,Pertoft,2011-11-07,2014-09-29,0488357052317,MP,1057,f,0,0,0,0,0,Inactive,Deputy Member,Finance
-33834,Näringsutskottet,Suppleant,Christer,Eirefelt,1988-10-03,1991-09-29,0593022437106,L,1091,f,0,0,0,0,0,Inactive,Deputy Member,Industry and Trade
-7400,Finansutskottet,Suppleant,Mikael,Damsgaard,2020-03-18,2022-09-26,066036027425,M,922,f,20,0,0,0,20,Inactive,Deputy Member,Finance
-11655,Skatteutskottet,Suppleant,Markus,Wiechel,2020-03-18,2022-09-26,0204240926023,SD,922,f,234,0,0,0,234,Inactive,Deputy Member,Taxation
-50476,Lagutskottet,Suppleant,Eva,Nordmark,1997-05-07,1998-10-04,0661583406713,S,515,f,6,0,0,0,6,Inactive,Deputy Member,Law
-1207,Konstitutionsutskottet,Suppleant,Viktor,Wärnick,2020-03-18,2020-09-03,0796312429425,M,169,f,13,0,0,0,13,Inactive,Deputy Member,Constitution
-41185,Utbildningsutskottet,Suppleant,Jennie,Åfeldt,2020-03-18,2022-09-26,0787535945527,SD,922,f,16,0,0,0,16,Inactive,Deputy Member,Education
-32632,Skatteutskottet,Suppleant,Ulf,Kristersson,2020-03-18,2022-09-26,0222691314314,M,922,f,119,26,0,0,119,High,Deputy Member,Taxation
-25996,Skatteutskottet,Suppleant,Karl-Gösta,Svenson,1985-09-30,1988-10-02,0274590687101,M,1098,f,0,0,0,0,0,Inactive,Deputy Member,Taxation
-49018,Trafikutskottet,Suppleant,Abraham,Halef,2020-09-23,2022-02-06,0488332307829,S,501,f,7,0,0,0,7,Inactive,Deputy Member,Transport
-54776,Sammansatta utrikes- och försvarsutskottet,Deputerad,Mikael,Oscarsson,2015-11-17,2015-12-16,0973782197017,KD,29,f,21,0,0,0,21,Inactive,Deputy,Joint Committee
-52005,Miljö- och jordbruksutskottet,Suppleant,Björn,Söder,2013-02-22,2013-03-19,0452755722723,SD,25,f,36,0,0,0,36,Inactive,Deputy Member,Environment and Agriculture
-1862,Utrikesutskottet,Ledamot,Carina,Hägg,2010-10-12,2014-09-29,0600928907216,S,1448,f,0,0,0,0,0,Inactive,Member,Foreign Affairs
-17692,Socialutskottet,Suppleant,My,Persson,1994-10-11,1998-10-04,0495620358802,M,1454,f,0,0,0,0,0,Inactive,Deputy Member,Social Affairs
-51030,Socialförsäkringsutskottet,Suppleant,Alireza,Akhondi,2020-03-18,2022-09-26,0364687971222,C,922,f,47,1,0,0,47,Low,Deputy Member,Social Insurance
+14341,Skatteutskottet,Suppleant,Lars U,Granberg,1998-10-13,2000-09-19,0957631371811,S,707,f,0,0,0,0,0,Inactive,Deputy Member,Taxation
+9034,EES-utskottet,Suppleant,Knut,Billing,1992-06-10,1993-06-04,0277100069203,M,359,f,0,0,0,0,0,Inactive,Deputy Member,Other
+46008,Justitieutskottet,Ledamot,Ann-Marie,Fagerström,1998-10-13,2002-09-30,0871076471012,S,1448,f,0,0,0,0,0,Inactive,Member,Justice
+37738,Sammansatta utrikes- och försvarsutskottet,Suppleant,Rolf,Gunnarsson,1999-03-23,1999-09-13,0785143384002,M,174,f,0,0,0,0,0,Inactive,Deputy Member,Joint Committee
+41084,Socialförsäkringsutskottet,Suppleant,Vivianne,Franzén,1992-11-13,1992-12-13,0836242026100,NYD,30,f,0,0,0,0,0,Inactive,Deputy Member,Social Insurance
+1030,Civilutskottet,Suppleant,Angelika,Bengtsson,2020-03-20,2022-09-26,0138741628520,SD,920,f,28,0,0,0,28,Inactive,Deputy Member,Civil Affairs
+52798,Försvarsutskottet,Suppleant,Åsa,Karlsson,2020-03-18,2020-09-03,0648224557612,S,169,f,29,1,0,0,29,Low,Deputy Member,Defense
+15900,Sammansatta utrikes- och försvarsutskottet,Deputerad,Olle,Thorell,2017-11-14,2017-12-15,0879782396219,S,31,f,22,1,0,0,22,Low,Deputy,Joint Committee
+29251,Finansutskottet,Suppleant,Ulla,Hoffmann,1994-10-18,1998-10-04,0166402877505,V,1447,f,0,0,0,0,0,Inactive,Deputy Member,Finance
+38001,Kulturutskottet,Suppleant,Amanda,Palmstierna,2020-03-18,2022-09-26,0999976269027,MP,922,f,1,0,0,0,1,Inactive,Deputy Member,Culture
+48249,Civilutskottet,Suppleant,Erik,Ottoson,2020-03-18,2022-09-26,0832311880029,M,922,f,9,0,0,0,9,Inactive,Deputy Member,Civil Affairs
+47969,Socialförsäkringsutskottet,Suppleant,Ida,Gabrielsson,2019-06-19,2020-11-27,025158809026,V,527,f,78,4,0,0,78,Low,Deputy Member,Social Insurance
+15698,EU-nämnden,Suppleant,Maria,Stenberg,2003-03-12,2004-10-27,0747852417614,S,595,f,0,0,0,0,0,Inactive,Deputy Member,EU Affairs
+39045,Socialutskottet,Suppleant,Cassandra,Sundin,2018-10-09,2022-09-26,0905312407726,SD,1448,f,6,0,0,0,6,Inactive,Deputy Member,Social Affairs
+2650,Sammansatta utrikes- och försvarsutskottet,Suppleant,Anne-Marie,Pålsson,2008-11-20,2008-12-19,0906365922712,M,29,f,0,0,0,0,0,Inactive,Deputy Member,Joint Committee
+11665,Socialförsäkringsutskottet,Ledamot,Markus,Wiechel,2014-10-07,2016-09-27,0204240926023,SD,721,f,234,0,0,0,234,Inactive,Member,Social Insurance
+14619,Skatteutskottet,Ledamot,Désirée,Pethrus,2000-02-01,2000-05-31,0860429409414,KD,120,f,5,0,0,0,5,Inactive,Member,Taxation
+43714,Utrikesutskottet,Vice ordförande,Pierre,Schori,1991-10-08,1994-10-02,0928800583601,S,1090,f,0,0,0,0,0,Inactive,Vice Chairman,Foreign Affairs
+43121,Sammansatta utrikes- och försvarsutskottet,Deputerad,Runar,Patriksson,2002-05-31,2002-06-12,0996373560505,FP,12,f,0,0,0,0,0,Inactive,Deputy,Joint Committee
+34786,Justitieutskottet,Ledamot,Teresa,Carvalho,2024-10-03,2024-10-17,0315499690028,S,14,f,55,2,0,0,55,Low,Member,Justice
+25056,Skatteutskottet,Suppleant,Jonas,Eriksson,2013-01-31,2014-09-29,0157062733618,MP,606,f,0,0,0,0,0,Inactive,Deputy Member,Taxation
+50879,Försvarsutskottet,Suppleant,Annelie,Karlsson,2020-03-18,2020-09-03,0199751900210,S,169,f,3,0,0,0,3,Inactive,Deputy Member,Defense
+49828,Näringsutskottet,Suppleant,Patrik,Lundqvist,2020-03-18,2022-09-26,0418929039326,S,922,f,8,0,0,0,8,Inactive,Deputy Member,Industry and Trade
+37143,Konstitutionsutskottet,Suppleant,Marianne,Watz,2006-12-01,2010-10-04,039371311407,M,1403,f,0,0,0,0,0,Inactive,Deputy Member,Constitution
+44580,Försvarsutskottet,Suppleant,Jörgen,Weibull,1988-06-06,1988-07-05,0242784896493,FP,29,f,0,0,0,0,0,Inactive,Deputy Member,Defense
+27648,EU-nämnden,Suppleant,Leif,Nysmed,2018-10-02,2022-10-04,0376353897112,S,1463,f,22,1,0,0,22,Low,Deputy Member,EU Affairs
+47964,Skatteutskottet,Suppleant,Ida,Gabrielsson,2021-10-22,2022-09-26,025158809026,V,339,f,78,4,0,0,78,Low,Deputy Member,Taxation
+9180,Utrikesutskottet,Ledamot,Magdalena,Thuresson,2022-10-04,2022-10-27,041911485722,M,23,f,18,0,0,0,18,Inactive,Member,Foreign Affairs
+33996,Civilutskottet,Suppleant,Kenneth G,Forslund,2020-03-18,2022-09-26,0257612529618,S,922,f,4,0,0,0,4,Inactive,Deputy Member,Civil Affairs
+5637,Skatteutskottet,Suppleant,Staffan,Danielsson,2007-02-28,2010-10-04,0352254228107,C,1314,f,0,0,0,0,0,Inactive,Deputy Member,Taxation
+17030,Försvarsutskottet,Suppleant,Adam,Marttinen,2020-03-20,2020-09-03,0831039938224,SD,167,f,18,0,0,0,18,Inactive,Deputy Member,Defense
+48602,Skatteutskottet,Suppleant,Runar,Filper,2020-03-18,2022-09-26,065701062615,SD,922,f,23,0,0,0,23,Inactive,Deputy Member,Taxation
+42055,Skatteutskottet,Andre vice ordförande,Niklas,Wykman,2019-03-05,2022-09-26,0493288854424,M,1301,f,27,6,0,0,27,Low,Second Vice Chairman,Taxation
+10437,Civilutskottet,Suppleant,Fredrik,Schulte,2020-03-18,2022-03-22,0210198640127,M,734,f,5,0,0,0,5,Inactive,Deputy Member,Civil Affairs
+5148,Sammansatta utrikes- och försvarsutskottet,Suppleant,Jan R,Andersson,2016-04-12,2016-05-25,0529103571012,M,43,f,4,0,0,0,4,Inactive,Deputy Member,Joint Committee
+38156,EU-nämnden,Suppleant,Gustaf,Lantz,2020-03-18,2022-10-04,075747847023,S,930,f,3,0,0,0,3,Inactive,Deputy Member,EU Affairs
+53940,Utrikesutskottet,Extra suppleant,Gulan,Avci,2013-02-15,2013-08-14,0800956862429,L,180,f,26,0,0,0,26,Inactive,Additional Deputy,Foreign Affairs
+28851,Socialförsäkringsutskottet,Suppleant,Anders,Österberg,2020-03-18,2022-09-26,0277648711624,S,922,f,6,0,0,0,6,Inactive,Deputy Member,Social Insurance
+3674,Socialutskottet,Suppleant,Sofia,Arkelsten,2018-01-19,2018-01-24,0802826314426,M,5,f,0,0,0,0,0,Inactive,Deputy Member,Social Affairs
+33068,Trafikutskottet,Ledamot,Håkan,Strömberg,1991-10-08,1994-10-02,0212469298402,S,1090,f,0,0,0,0,0,Inactive,Member,Transport
+46032,Näringsutskottet,Suppleant,Annika,Qarlsson,2020-03-18,2022-09-26,0962841101917,C,922,f,5,0,0,0,5,Inactive,Deputy Member,Industry and Trade
+29820,Arbetsmarknadsutskottet,Ledamot,Josefin,Brink,2006-10-10,2010-10-04,0116603319117,V,1455,f,0,0,0,0,0,Inactive,Member,Labor Market
+14741,Utrikesutskottet,Suppleant,Alexandra,Anstrell,2022-10-04,2022-11-29,0866055333028,M,56,f,19,0,0,0,19,Inactive,Deputy Member,Foreign Affairs
+33370,Lagutskottet,Suppleant,Lennart,Nilsson,1985-09-30,1988-10-02,0446973363306,S,1098,f,0,0,0,0,0,Inactive,Deputy Member,Law
+18387,EU-nämnden,Ledamot,Tina,Acketoft,2018-10-02,2021-04-06,0582811195313,L,917,f,2,0,0,0,2,Inactive,Member,EU Affairs
+48098,Näringsutskottet,Suppleant,Gustav,Fridolin,2010-10-12,2011-11-06,0238588409223,MP,390,f,0,0,0,0,0,Inactive,Deputy Member,Industry and Trade
+12284,Utrikesutskottet,Suppleant,Lotta,Olsson,2020-03-18,2020-09-03,066769783310,M,169,f,11,0,0,0,11,Inactive,Deputy Member,Foreign Affairs
+41637,Arbetsmarknadsutskottet,Ledamot,Eva-Lena,Jansson,2014-10-07,2018-09-24,048970816012,S,1448,f,1,0,0,0,1,Inactive,Member,Labor Market
+34673,Miljö- och jordbruksutskottet,Ledamot,Kjell-Arne,Ottosson,2022-10-04,2022-10-04,0509415296421,KD,0,f,32,0,0,0,32,Inactive,Member,Environment and Agriculture
+30917,Utrikesutskottet,Suppleant,Bengt,Silfverstrand,1988-11-07,1991-09-29,0241621108903,S,1056,f,0,0,0,0,0,Inactive,Deputy Member,Foreign Affairs

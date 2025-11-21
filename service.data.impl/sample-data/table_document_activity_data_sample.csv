@@ -1,51 +1,51 @@
 hjid,activity_name,code,created_date,order_number,process,status,document_activities_document_0
-1590280,Inlämnad,INL,2017-10-04,0,behandling,inträffat,1590279
-248176,Inlämning,INL,2010-10-26,13,hantering,inträffat,248174
-1632976,Inlämnad,INL,2023-10-04,0,behandling,inträffat,1632975
-558091,Under beredning,UBE,2005-10-18,30,beredning,inträffat,558090
-982312,Trycklov till Gotab och webb,TROWE,2014-06-10,70,beredning,inträffat,982300
-388615,Inlämnad,INL,2017-10-04,0,behandling,inträffat,388614
-115087,Inlämning,INL,2008-10-06,13,hantering,inträffat,115086
-1062564,Bordläggning,B,2012-11-22,1,hanvisning,inträffat,1062562
-438912,Hänvisad,HÄN,2017-10-13,0,behandling,inträffat,438909
-1721202,Hänvisning,HÄN,2012-04-13,2,hanvisning,inträffat,1721199
-918257,Beslut,BES,2024-10-02,0,"",inträffat,918243
-859434,Bordläggning,B,2002-04-10,1,hanvisning,inträffat,859432
-1604964,Inlämning,INL,2011-10-04,13,hantering,inträffat,1604963
-727393,Granskad,Granskad,2021-09-29,0,behandling,inträffat,727391
-303723,Granskad,Granskad,2021-09-28,0,behandling,inträffat,303721
-430651,Justering,JUS,2023-09-28,0,"",inträffat,430647
-1060250,Hänvisningsförslag,HFÖR,2001-10-05,6,hantering,inträffat,1060247
-999235,Hänvisad,HÄN,2023-10-17,0,behandling,inträffat,999229
-1709278,Registrering,REG,2001-10-05,2,hantering,inträffat,1709272
-315304,Numrering,NUM,2010-10-29,7,hantering,inträffat,315302
-489432,Hänvisningsförslag,HFÖR,2001-10-05,6,hantering,inträffat,489424
-1101526,Inlämnad,INL,2018-11-26,0,behandling,inträffat,1101525
-1681934,Hänvisningsförslag,HFÖR,2001-10-05,6,hantering,inträffat,1681931
-343443,Behandling,BEH,2001-12-10,3,avgorande,inträffat,343435
-414036,Inlämning,INL,2012-10-05,13,hantering,inträffat,414035
-1138946,Motionstid slutar,MOT,2017-11-23,0,behandling,inträffat,1138942
-483796,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,483793
-522292,Granskad,Granskad,2020-10-06,0,behandling,inträffat,522288
-155355,Numrering,NUM,2009-10-06,7,hantering,inträffat,155351
-1586895,Numrering,NUM,2009-10-01,7,hantering,inträffat,1586893
-827624,Inlämnad,INL,2023-10-05,0,behandling,inträffat,827622
-1721370,Bordläggning,B,2018-01-23,0,"",inträffat,1721366
-547850,Utfärdande av riksdagsskrivelse,RSKR,2001-12-07,6,avgorande,inträffat,547826
-1604287,Inlämning,INL,2011-10-05,13,hantering,inträffat,1604286
-1022254,Inlämnad,INL,2023-10-05,0,behandling,inträffat,1022239
-190135,Motionstid slutar,MOT,2022-04-22,0,behandling,inträffat,190131
-160437,Registrering,REG,2003-10-15,70,hantering,inträffat,160433
-459331,Numrering,NUM,2007-10-05,7,hantering,inträffat,459329
-794358,Inlämning,INL,2000-10-05,13,hantering,inträffat,794356
-1164776,Bordläggning,B,2001-11-15,1,hanvisning,inträffat,1164771
-231992,Beslut,BES,2024-11-20,0,"",inträffat,231985
-1616022,Inlämning,INL,2013-04-12,60,hantering,planerat,1616019
-1646694,Trycklov,TRY,2019-11-12,0,"",inträffat,1646690
-412332,Inlämning,INL,2009-10-05,13,hantering,inträffat,412331
-297852,Numrering,NUM,2010-10-29,7,hantering,inträffat,297847
-621598,Inlämning,INL,2006-10-31,13,hantering,inträffat,621597
-276200,Granskad,Granskad,2020-10-06,0,behandling,inträffat,276198
-677660,Numrering,NUM,2007-10-04,7,hantering,inträffat,677656
-257846,Hänvisning,HÄN,2001-03-23,3,hanvisning,inträffat,257843
-819957,Inlämning,INL,2001-10-05,60,hantering,planerat,819956
+1653161,Bordläggning,B,2000-10-11,1,hanvisning,inträffat,1653157
+462722,Registrering,REG,2006-03-01,70,hantering,inträffat,462721
+272968,Numrering,NUM,2010-10-28,7,hantering,inträffat,272966
+1021193,Beredning,UBE,2019-12-12,0,"",inträffat,1021192
+405476,Avgörande,AVG,2013-05-29,5,avgorande,inträffat,405469
+134379,Hänvisning,HÄN,2000-10-11,2,hanvisning,inträffat,134376
+686406,Inlämning,INL,2013-10-04,13,hantering,inträffat,686405
+837012,Hänvisning,HÄN,2006-11-07,2,hanvisning,inträffat,837009
+205522,Trycklov,TRY,2010-03-12,60,beredning,inträffat,205518
+452479,Hänvisad,HÄN,2020-10-14,0,behandling,inträffat,452476
+400001,Inlämnad,INL,2015-10-05,0,behandling,inträffat,400000
+1127946,Inlämning,INL,2001-10-05,13,hantering,inträffat,1127945
+611723,Registrering,REG,2006-02-09,70,hantering,inträffat,611722
+421629,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,421627
+863411,Inlämnad,INL,2023-10-04,0,behandling,inträffat,863410
+1625473,Utfärdande av riksdagsskrivelse,RSKR,2006-05-11,6,avgorande,inträffat,1625465
+225131,Inlämning,INL,2005-10-05,13,hantering,inträffat,225129
+1660843,Inlämnad,INL,2023-10-05,0,behandling,inträffat,1660842
+332430,Numrering,NUM,2006-11-02,7,hantering,inträffat,332428
+208925,Bordläggning 1,B1,2008-12-08,1,avgorande,inträffat,208918
+1152691,Hänvisningsförslag,HFÖR,2001-10-05,6,hantering,inträffat,1152688
+733179,Avgörande,AVG,2002-04-17,5,avgorande,inträffat,733167
+458179,Numrering,NUM,2007-10-09,7,hantering,inträffat,458177
+105002,Avgörande,AVG,2005-10-19,5,avgorande,inträffat,104993
+285615,Registrering,REG,2004-04-20,2,hantering,inträffat,285613
+335737,Numrering,NUM,2010-10-29,7,hantering,inträffat,335735
+144548,Inlämning,INL,2012-10-04,13,hantering,inträffat,144547
+235079,Beslut,BES,2014-02-26,4,avgorande,inträffat,235069
+599218,Bordläggning 1,B1,2012-03-13,1,avgorande,planerat,599206
+451714,Hänvisad,HÄN,2020-10-14,0,behandling,inträffat,451711
+577288,Granskad,Granskad,2021-01-25,0,behandling,inträffat,577286
+313354,Behandling,BEH,2004-05-26,3,avgorande,inträffat,313320
+903187,Granskad,Granskad,2015-10-07,0,behandling,inträffat,903185
+235784,Justering,JUS,2021-04-22,0,"",inträffat,235779
+997041,Numrering,NUM,2006-10-31,7,hantering,inträffat,997040
+591057,Bordläggning 1,B1,2007-02-23,1,avgorande,inträffat,591052
+610547,Registrering,REG,2001-10-05,2,hantering,inträffat,610541
+254176,Inlämning,INL,2011-06-14,13,hantering,inträffat,254175
+508062,Bordläggning,B,2006-11-07,1,hanvisning,inträffat,508054
+143355,Numrering,NUM,2011-10-10,7,hantering,inträffat,143353
+337247,Hänvisning,HÄN,2001-04-18,2,hanvisning,inträffat,337243
+931445,Granskad,Granskad,2023-10-04,0,behandling,inträffat,931441
+1663198,Bordlagd,B,2023-03-14,0,behandling,inträffat,1663194
+949271,Bordläggning,B,2001-10-16,1,hanvisning,inträffat,949253
+416804,Bordlagd,B,2020-03-10,0,behandling,inträffat,416802
+317068,Registrering,REG,2001-10-05,2,hantering,inträffat,317062
+578062,Inlämnad,INL,2021-10-01,0,behandling,inträffat,578060
+902887,Numrering,NUM,2010-10-29,7,hantering,inträffat,902885
+851955,Inlämning,INL,2003-10-07,13,hantering,inträffat,851954
+475860,Numrering,NUM,2013-10-07,7,hantering,inträffat,475858
