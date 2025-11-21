@@ -51,7 +51,7 @@
 <changeSet id="1.34-preflight" author="database-architect">
     <comment>Pre-flight: Verify source data exists before applying view fixes</comment>
     
-    <sql><![CDATA[
+    <sql splitStatements="false"><![CDATA[
         DO $$
         DECLARE
             v_vote_count BIGINT;
@@ -76,7 +76,7 @@
 <changeSet author="intelligence-analyst" id="1.34-ministry-verify-001" failOnError="false">
     <comment>Ministry views - Expected to be empty without ministry assignment data</comment>
     
-    <sql><![CDATA[
+    <sql splitStatements="false"><![CDATA[
         DO $$
         DECLARE
             v_ministry_count INTEGER;
@@ -335,7 +335,7 @@ ORDER BY risk_score DESC, total_violations DESC;
 <changeSet author="intelligence-analyst" id="1.34-verify-others-006" failOnError="false">
     <comment>Verify other politician and intelligence views exist (from v1.33)</comment>
     
-    <sql><![CDATA[
+    <sql splitStatements="false"><![CDATA[
         DO $$
         DECLARE
             v_views TEXT[] := ARRAY[
@@ -363,7 +363,7 @@ ORDER BY risk_score DESC, total_violations DESC;
 <changeSet id="1.34-postflight" author="database-architect">
     <comment>Post-flight: Verify all 12 views and check row counts</comment>
     
-    <sql><![CDATA[
+    <sql splitStatements="false"><![CDATA[
         DO $$
         DECLARE
             v_views TEXT[] := ARRAY[
