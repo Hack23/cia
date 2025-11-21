@@ -287,4 +287,4 @@ jobs:
           cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
 
     - name: Submit Dependency Release
-      uses: advanced-security/maven-dependency-submission-action@b275d12641ac2d2508b2cbb7598b154ad2f2cee8
+      uses: advanced-security/maven-dependency-submission-action@v5
