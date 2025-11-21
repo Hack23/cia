@@ -236,7 +236,7 @@
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>2.20.0</version>
+        <version>2.21.0</version>
       </dependency>
       <dependency>
         <groupId>commons-codec</groupId>
@@ -852,7 +852,7 @@
             <dependency>
               <groupId>commons-io</groupId>
               <artifactId>commons-io</artifactId>
-              <version>2.20.0</version>
+              <version>2.21.0</version>
             </dependency>
             <dependency>
               <groupId>org.apache.commons</groupId>
@@ -1455,7 +1455,8 @@
         <jdk>25</jdk>
       </activation>
       <properties>
-        <testAdditionalRuntimeArgLine>-XX:+EnableDynamicAgentLoading --enable-native-access=ALL-UNNAMED --add-exports
+        <testAdditionalRuntimeArgLine>-XX:+EnableDynamicAgentLoading
+          --enable-native-access=ALL-UNNAMED --add-exports
           java.base/sun.nio.ch=ALL-UNNAMED
           --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
           java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
