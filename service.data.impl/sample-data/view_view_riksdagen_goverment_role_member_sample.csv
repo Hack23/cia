@@ -1,51 +1,51 @@
 role_id,detail,role_code,first_name,last_name,from_date,to_date,person_id,party,total_days_served,active,total_documents,documents_last_year,total_propositions,total_government_bills,activity_level,role_type
-54241,Kulturdepartementet,Kulturminister,Parisa,Liljestrand,2022-10-18,2024-09-10,0647668663722,M,693,f,2,1,2,0,Low,Minister of State
-18744,Finansdepartementet,Statsråd,Ida,Karkiainen,2022-10-07,2022-10-18,0509830681123,S,11,f,47,0,4,2,Inactive,Minister of State
-27687,Infrastrukturdepartementet,Infrastrukturminister,Tomas,Eneroth,2021-07-09,2021-11-30,0284192765516,S,144,f,22,1,11,3,Low,Minister of State
-38634,Utbildnings- och kulturdepartementet,Kulturminister,Cecilia,Stegö Chilò,2006-10-06,2006-10-16,0199679103214,M,10,f,0,0,0,0,Inactive,Minister of State
-1803666,Finansdepartementet,Civilminister,Erik,Slottner,2025-09-08,2025-09-09,0767167947420,KD,1,f,4,1,4,3,Low,Minister of State
-4630,Finansdepartementet,Statsråd,Per,Bolund,2016-05-25,2017-07-27,0956444284814,MP,428,f,5,0,1,0,Inactive,Minister of State
-52838,Arbetsmarknadsdepartementet,Statsråd,Märta,Stenevi,2021-07-09,2021-11-30,0349986646724,MP,144,f,35,5,0,0,Low,Minister of State
-11897,Näringsdepartementet,Statsråd,Ulrica,Messing,2002-09-30,2006-10-02,0165732384110,S,1463,f,0,0,0,0,Inactive,Minister of State
-41910,Näringsdepartementet,Statsråd,Björn,von Sydow,1996-03-22,1997-01-31,0787533297400,S,315,f,0,0,0,0,Inactive,Minister of State
-1527,Landsbygdsdepartementet,Landsbygdsminister,Eskil,Erlandsson,2011-01-01,2014-10-03,0465398691116,C,1371,f,0,0,0,0,Inactive,Minister of State
-4720,Finansdepartementet,Statsråd,Lena,Micko,2021-02-05,2021-06-29,0783117374519,S,144,f,2,0,2,1,Inactive,Minister of State
-28333,Näringsdepartementet,Statsråd,Jennie,Nilsson,2019-10-01,2020-12-17,0339894357417,S,443,f,31,1,0,0,Low,Minister of State
-12760,Näringsdepartementet,Energi- och näringsminister,Maud,Olofsson,2010-10-06,2011-09-29,0356767744510,C,358,f,0,0,0,0,Inactive,Minister of State
-35057,Statsrådsberedningen,Statsråd,Margareta,Winberg,2002-10-21,2003-10-31,0874604979107,S,375,f,0,0,0,0,Inactive,Minister of State
-29525,Utrikesdepartementet,Utrikesminister,Bosse,Ringholm,2006-03-21,2006-03-26,0552112259207,S,5,f,0,0,0,0,Inactive,Minister of State
-50465,Arbetsmarknadsdepartementet,Arbetsmarknadsminister,Eva,Nordmark,2021-06-30,2021-07-09,0661583406713,S,9,f,6,0,6,2,Inactive,Minister of State
-44047,Utrikesdepartementet,Utrikesminister,Margaretha,af Ugglas,1991-10-04,1994-10-07,018160186302,M,1099,f,0,0,0,0,Inactive,Minister of State
-21655,Finansdepartementet,Statsråd,Max,Elger,2022-10-07,2022-10-18,0596495003124,S,11,f,22,0,22,4,Inactive,Minister of State
-27689,Infrastrukturdepartementet,Infrastrukturminister,Tomas,Eneroth,2020-12-17,2021-02-04,0284192765516,S,49,f,22,1,11,3,Low,Minister of State
-27688,Infrastrukturdepartementet,Infrastrukturminister,Tomas,Eneroth,2021-02-05,2021-07-09,0284192765516,S,154,f,22,1,11,3,Low,Minister of State
-49535,Kulturdepartementet,Kultur- och demokratiminister,Amanda,Lind,2020-12-17,2021-02-04,0888807074321,MP,49,f,48,1,1,0,Low,Minister of State
+1936,Justitiedepartementet,Statsråd,Thomas,Bodström,2002-09-30,2006-10-02,0581480697617,S,1463,f,0,0,0,0,Inactive,Minister of State
+10364,Finansdepartementet,Statsråd,Åsa,Lindhagen,2021-07-09,2021-11-30,062367962120,MP,144,f,10,0,9,1,Inactive,Minister of State
+32861,Näringsdepartementet,Statsråd,Sven-Erik,Bucht,2018-03-08,2019-01-21,0781357446917,S,319,f,0,0,0,0,Inactive,Minister of State
+40012,Statsrådsberedningen,Statsråd,Thage G,Peterson,1997-02-01,1998-10-06,0348268153001,S,612,f,0,0,0,0,Inactive,Minister of State
+34485,Statsrådsberedningen,Statsråd,Hans,Dahlgren,2020-12-17,2021-02-04,0339624201100,S,49,f,3,0,3,1,Inactive,Minister of State
+47878,Utrikesdepartementet,Utrikesminister,Ann,Linde,2019-10-01,2020-12-17,0992800527915,S,443,f,5,0,5,1,Inactive,Minister of State
+10393,Arbetsmarknadsdepartementet,Statsråd,Åsa,Lindhagen,2019-09-10,2019-10-01,062367962120,MP,21,f,10,0,9,1,Inactive,Minister of State
+51145,Utbildningsdepartementet,Statsråd,Lina,Axelsson Kihlblom,2021-11-30,2022-10-06,0877853587410,S,310,f,10,0,10,0,Inactive,Minister of State
+13715,Kulturdepartementet,Kulturminister,Lena,Adelsohn Liljeroth,2007-01-01,2010-10-05,0427127522211,M,1373,f,0,0,0,0,Inactive,Minister of State
+18173,Försvarsdepartementet,Försvarsminister,Peter,Hultqvist,2014-10-03,2016-05-25,0937688366013,S,600,f,22,0,4,2,Inactive,Minister of State
+2490,Finansdepartementet,Finansminister,Elisabeth,Svantesson,2024-09-10,2026-09-21,0899112324519,M,437,t,52,17,44,13,Medium,Minister of State
+47880,Utrikesdepartementet,Statsråd,Ann,Linde,2019-01-21,2019-09-10,0992800527915,S,232,f,5,0,5,1,Inactive,Minister of State
+27662,Utbildningsdepartementet,Statsråd,Nyamko,Sabuni,2011-01-01,2013-01-21,0802373156815,L,751,f,0,0,0,0,Inactive,Minister of State
+16319,Statsrådsberedningen,Statsminister,Magdalena,Andersson,2021-11-30,2022-10-18,098412828516,S,322,f,177,0,174,31,Inactive,Minister of State
+10988,Socialdepartementet,Statsråd,Berit,Andnor,2002-09-30,2004-09-13,0332067570917,S,714,f,0,0,0,0,Inactive,Minister of State
+35325,Landsbygds- och infrastrukturdepartementet,Statsråd,Andreas,Carlson,2022-10-18,2022-10-18,0542160909628,KD,0,f,27,5,13,4,Low,Minister of State
+15057,Finansdepartementet,Statsråd,Erik,Slottner,2024-09-10,2025-06-27,0767167947420,KD,290,f,4,1,4,3,Low,Minister of State
+8713,Statsrådsberedningen,Statsråd,Pär,Nuder,2002-10-21,2004-10-31,0138450838510,S,741,f,0,0,0,0,Inactive,Minister of State
+48397,Landsbygds- och infrastrukturdepartementet,Landsbygdsminister,Peter,Kullgren,2024-09-10,2026-09-21,0168348837024,KD,437,t,8,2,8,0,Low,Minister of State
+36890,Utrikesdepartementet,Statsråd,Anna,Hallberg,2021-07-09,2021-11-30,0828690288413,S,144,f,5,0,5,3,Inactive,Minister of State
+1805210,Finansdepartementet,Finansmarknadsminister,Niklas,Wykman,2025-09-08,2025-09-09,0493288854424,M,1,f,27,6,19,3,Low,Minister of State
+51144,Utbildningsdepartementet,Statsråd,Lina,Axelsson Kihlblom,2022-10-07,2022-10-18,0877853587410,S,11,f,10,0,10,0,Inactive,Minister of State
+5937,Näringsdepartementet,Statsråd,Anna,Johansson,2014-10-03,2016-05-25,0691264514114,S,600,f,1,0,0,0,Inactive,Minister of State
+24562,Statsrådsberedningen,Statsminister,Stefan,Löfven,2019-01-21,2021-07-09,0218878014918,S,900,f,39,0,39,10,Inactive,Minister of State
 15983,Utrikesdepartementet,Statsråd,Carin,Jämtin,2002-09-30,2006-10-02,0882001830516,S,1463,f,0,0,0,0,Inactive,Minister of State
-34482,Statsrådsberedningen,Statsråd,Hans,Dahlgren,2021-11-30,2022-10-06,0339624201100,S,310,f,3,0,3,1,Inactive,Minister of State
-20945,Utrikesdepartementet,Statsråd,Alf,Svensson,1991-10-04,1994-10-07,0739780276601,KD,1099,f,0,0,0,0,Inactive,Minister of State
-2852,Näringsdepartementet,Statsråd,Mehmet,Kaplan,2014-10-03,2016-04-18,0116084827614,MP,563,f,0,0,0,0,Inactive,Minister of State
-40079,Utrikesdepartementet,Statsråd,Barbro,Holmberg,2002-09-30,2006-10-02,0822276103016,S,1463,f,0,0,0,0,Inactive,Minister of State
-21331,Finansdepartementet,Statsråd,Ardalan,Shekarabi,2016-05-25,2017-07-27,0922497728524,S,428,f,37,0,18,5,Inactive,Minister of State
-14585,Näringsdepartementet,Statsråd,Catharina,Elmsäter-Svärd,2012-04-18,2014-10-03,064601872511,M,898,f,0,0,0,0,Inactive,Minister of State
-5668,Justitiedepartementet,Statsråd,Mikael,Damberg,2019-09-10,2021-02-04,014744660015,S,513,f,42,2,27,6,Low,Minister of State
-38920,Näringsdepartementet,Statsråd,Hans,Karlsson,2006-10-02,2006-10-06,0472624390304,S,4,f,0,0,0,0,Inactive,Minister of State
-34487,Statsrådsberedningen,Statsråd,Hans,Dahlgren,2019-09-10,2019-10-01,0339624201100,S,21,f,3,0,3,1,Inactive,Minister of State
-47874,Utrikesdepartementet,Utrikesminister,Ann,Linde,2021-11-30,2022-10-06,0992800527915,S,310,f,5,0,5,1,Inactive,Minister of State
-15446,Finansdepartementet,Statsråd,Sven-Erik,Österberg,2004-11-01,2006-10-02,0714307225418,S,700,f,0,0,0,0,Inactive,Minister of State
-27734,Utbildningsdepartementet,Utbildningsminister,Anna,Ekström,2021-02-05,2021-07-09,0137849446315,S,154,f,6,0,6,1,Inactive,Minister of State
-27738,Utbildningsdepartementet,Utbildningsminister,Anna,Ekström,2020-12-17,2021-02-04,0137849446315,S,49,f,6,0,6,1,Inactive,Minister of State
-16307,Finansdepartementet,Finansminister,Magdalena,Andersson,2019-01-21,2019-09-10,098412828516,S,232,f,177,0,174,31,Inactive,Minister of State
-49537,Kulturdepartementet,Kultur- och demokratiminister,Amanda,Lind,2019-09-10,2019-10-01,0888807074321,MP,21,f,48,1,1,0,Low,Minister of State
-26706,Näringsdepartementet,Statsråd,Jörgen,Andersson,1994-10-07,1996-03-22,0805783144803,S,532,f,0,0,0,0,Inactive,Minister of State
-34076,Utbildningsdepartementet,Utbildningsminister,Lars,Leijonborg,2007-01-01,2007-09-10,0980725315516,L,252,f,0,0,0,0,Inactive,Minister of State
-23113,Arbetsmarknadsdepartementet,Arbetsmarknads- och integrationsminister,Mats,Persson,2024-09-10,2026-09-21,023767922422,L,437,t,28,0,2,1,Inactive,Minister of State
-48402,Infrastrukturdepartementet,Statsråd,Peter,Kullgren,2022-10-18,2022-10-18,0168348837024,KD,0,f,8,2,8,0,Low,Minister of State
-49896,Socialdepartementet,Statsråd,Gabriel,Wikström,2016-05-25,2017-07-27,0551169456620,S,428,f,0,0,0,0,Inactive,Minister of State
-3192,Miljödepartementet,Klimat- och miljöminister,Romina,Pourmokhtari,2022-10-18,2022-12-31,0875693083423,L,74,f,6,3,6,2,Low,Minister of State
-27743,Utbildningsdepartementet,Utbildningsminister,Anna,Ekström,2019-01-21,2019-09-10,0137849446315,S,232,f,6,0,6,1,Inactive,Minister of State
-2025,Utrikesdepartementet,Utrikesminister,Tobias,Billström,2022-10-18,2024-09-10,0956595590924,M,693,f,8,0,2,1,Inactive,Minister of State
-4634,Finansdepartementet,Statsråd,Per,Bolund,2014-10-03,2016-05-25,0956444284814,MP,600,f,5,0,1,0,Inactive,Minister of State
-49926,Utrikesdepartementet,Statsråd,Isabella,Lövin,2014-10-03,2016-05-25,0911490574010,MP,600,f,0,0,0,0,Inactive,Minister of State
-4389,Utbildningsdepartementet,Statsråd,Lotta,Edholm,2022-10-18,2024-09-10,023001325318,L,693,f,5,1,5,2,Low,Minister of State
-4713,Finansdepartementet,Statsråd,Lena,Micko,2021-07-09,2021-11-30,0783117374519,S,144,f,2,0,2,1,Inactive,Minister of State
-27686,Infrastrukturdepartementet,Infrastrukturminister,Tomas,Eneroth,2021-11-30,2022-10-06,0284192765516,S,310,f,22,1,11,3,Low,Minister of State
+21327,Socialdepartementet,Statsråd,Ardalan,Shekarabi,2019-10-01,2021-02-04,0922497728524,S,492,f,37,0,18,5,Inactive,Minister of State
+23363,Näringsdepartementet,Statsråd,Thomas,Östros,2002-09-30,2006-10-02,0977281927618,S,1463,f,0,0,0,0,Inactive,Minister of State
+22059,Utbildnings- och kulturdepartementet,Statsråd,Lena,Hallengren,2002-09-30,2006-10-02,0853395328224,S,1463,f,26,0,22,6,Inactive,Minister of State
+3190,Klimat- och näringslivsdepartementet,Statsråd,Romina,Pourmokhtari,2024-09-10,2026-09-21,0875693083423,L,437,t,6,3,6,2,Low,Minister of State
+29539,Statsrådsberedningen,Statsråd,Bosse,Ringholm,2004-11-01,2006-03-20,0552112259207,S,504,f,0,0,0,0,Inactive,Minister of State
+2288,Miljö- och samhällsbyggnadsdepartementet,Statsråd,Lena,Sommestad,2002-09-30,2006-10-02,0185498861416,S,1463,f,0,0,0,0,Inactive,Minister of State
+4475,Statsrådsberedningen,Statsminister,Göran,Persson,1996-03-22,2006-10-06,0825004049003,S,3850,f,0,0,0,0,Inactive,Minister of State
+10986,Socialdepartementet,Socialminister,Berit,Andnor,2004-09-13,2006-10-06,0332067570917,S,753,f,0,0,0,0,Inactive,Minister of State
+35501,Utrikesdepartementet,Statsråd,Ulf,Dinkelspiel,1991-10-04,1994-10-07,0972941768604,M,1099,f,0,0,0,0,Inactive,Minister of State
+45958,Miljö- och samhällsbyggnadsdepartementet,Miljöminister,Andreas,Carlgren,2006-10-06,2006-12-31,0195228370311,C,86,f,0,0,0,0,Inactive,Minister of State
+40622,Näringsdepartementet,Statsråd,Peter,Eriksson,2016-09-13,2017-07-27,0447198048312,MP,317,f,0,0,0,0,Inactive,Minister of State
+48088,Utbildningsdepartementet,Utbildningsminister,Gustav,Fridolin,2014-10-03,2016-05-25,0238588409223,MP,600,f,0,0,0,0,Inactive,Minister of State
+20372,Utrikesdepartementet,Statsråd,Ewa,Björling,2007-09-12,2014-10-03,0784309503313,M,2578,f,0,0,0,0,Inactive,Minister of State
+25524,Arbetsmarknadsdepartementet,Statsråd,Paulina,Brandberg,2024-09-10,2025-03-31,099099202224,L,202,f,3,2,3,2,Low,Minister of State
+1804721,Utrikesdepartementet,Bistånds- och utrikeshandelsminister,Benjamin,Dousa,2025-09-08,2025-09-09,0910272619521,M,1,f,1,1,1,1,Low,Minister of State
+29902,Utbildningsdepartementet,Statsråd,Matilda,Ernkrans,2021-06-30,2021-07-09,0983984918111,S,9,f,19,0,10,4,Inactive,Minister of State
+45113,Näringsdepartementet,Statsråd,Åsa,Torstensson,2006-10-06,2010-10-05,0183788551910,C,1460,f,0,0,0,0,Inactive,Minister of State
+21329,Finansdepartementet,Statsråd,Ardalan,Shekarabi,2019-01-21,2019-09-10,0922497728524,S,232,f,37,0,18,5,Inactive,Minister of State
+36694,Statsrådsberedningen,Statsråd,Jessica,Rosencrantz,2024-09-10,2025-03-31,0992420223820,M,202,f,11,0,0,0,Inactive,Minister of State
+47377,Försvarsdepartementet,Försvarsminister,Anders,Björck,1991-10-04,1994-10-03,037063714405,M,1095,f,0,0,0,0,Inactive,Minister of State
+23501,Försvarsdepartementet,Försvarsminister,Leni,Björklund,2006-10-02,2006-10-06,0286593079005,S,4,f,0,0,0,0,Inactive,Minister of State
+4628,Finansdepartementet,Statsråd,Per,Bolund,2017-07-27,2019-01-21,0956444284814,MP,543,f,5,0,1,0,Inactive,Minister of State
+34073,Utbildningsdepartementet,Statsråd,Lars,Leijonborg,2007-09-11,2009-06-17,0980725315516,L,645,f,0,0,0,0,Inactive,Minister of State
+22043,Socialdepartementet,Socialminister,Lena,Hallengren,2021-11-30,2022-10-06,0853395328224,S,310,f,26,0,22,6,Inactive,Minister of State
+50462,Arbetsmarknadsdepartementet,Arbetsmarknads- och jämställdhetsministe,Eva,Nordmark,2022-10-07,2022-10-18,0661583406713,S,11,f,6,0,6,2,Inactive,Minister of State
