@@ -102,12 +102,12 @@ END $$;
 -- NOTE: ORDER BY random() is used for diverse sampling but can be slow on very large tables (100M+ rows).
 -- For tables of that size, consider using TABLESAMPLE SYSTEM instead.
 
--- Generate and execute \copy commands for each table
+-- Generate and execute COPY commands for each table
 SELECT format(
-    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''table_%s_sample.csv'' WITH CSV HEADER',
+    'COPY (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO %L WITH CSV HEADER',
     schemaname,
     tablename,
-    tablename
+    '/tmp/service.data.impl/sample-data/table_' || tablename || '_sample.csv'
 )
 FROM pg_tables
 WHERE schemaname = 'public'
@@ -179,12 +179,12 @@ END $$;
 \echo 'Extracting sample data from regular views...'
 \echo ''
 
--- Generate and execute \copy commands for regular views
+-- Generate and execute COPY commands for regular views
 SELECT format(
-    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''view_%s_sample.csv'' WITH CSV HEADER',
+    'COPY (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO %L WITH CSV HEADER',
     schemaname,
     viewname,
-    viewname
+    '/tmp/service.data.impl/sample-data/view_' || viewname || '_sample.csv'
 )
 FROM pg_views
 WHERE schemaname = 'public'
@@ -194,12 +194,12 @@ ORDER BY viewname
 \echo 'Extracting sample data from materialized views...'
 \echo ''
 
--- Generate and execute \copy commands for materialized views
+-- Generate and execute COPY commands for materialized views
 SELECT format(
-    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''view_%s_sample.csv'' WITH CSV HEADER',
+    'COPY (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO %L WITH CSV HEADER',
     schemaname,
     matviewname,
-    matviewname
+    '/tmp/service.data.impl/sample-data/view_' || matviewname || '_sample.csv'
 )
 FROM pg_matviews
 WHERE schemaname = 'public'
