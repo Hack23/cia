@@ -1,10 +1,12 @@
 # DATA_ANALYSIS_INTOP_OSINT.md SQL Query Enhancement Report
 
-**Date:** 2025-11-18  
+**Date:** 2025-11-21 (Updated)  
 **Validator:** Copilot Intelligence Operative Agent  
 **Database:** PostgreSQL 16.10  
 **Schema Version:** v1.31 (from full_schema.sql)  
-**Intelligence Views:** v1.29-v1.30 (validated 2025-11-13)
+**Intelligence Views:** v1.29-v1.30 (validated 2025-11-13)  
+**Latest Schema Validation:** 2025-11-21 (service.data.impl/sample-data/schema_validation_20251121_142510.txt)  
+**Latest Health Check:** 2025-11-21 (service.data.impl/sample-data/health_check_20251121_143220.txt)
 
 ---
 
@@ -553,6 +555,115 @@ The following documents are now better integrated:
 **Performance Documentation**: ✅ Complete  
 **Intelligence Value**: ⭐⭐⭐⭐⭐ **VERY HIGH**  
 **Deployment Readiness**: ✅ **PRODUCTION-READY**
+
+---
+
+## Performance Findings from Latest Health Check (2025-11-21)
+
+### Database Health Overview
+
+The latest health check (service.data.impl/sample-data/health_check_20251121_143220.txt) reveals important performance insights:
+
+**Overall Health Score**: 78.37/100 (Status: GOOD - Monitor warnings, plan improvements)
+
+### Category Performance
+
+| Category | Pass Rate | Status | Issues |
+|----------|-----------|--------|--------|
+| **Schema Integrity** | 90.8% | ✅ Good | 12 failures (Quartz orphaned records) |
+| **Data Quality** | 88.9% | ✅ Good | 1 warning (sweden_political_party has 40 rows) |
+| **Performance** | 5.6% | ⚠️ **Needs Attention** | 84 warnings (68 missing indexes, 10 slow queries) |
+| **View Dependencies** | 10.0% | ⚠️ **Needs Investigation** | 9 empty views |
+
+### Critical Performance Issues
+
+#### 1. Slow Query Patterns (10 queries identified)
+
+Top slow queries requiring optimization:
+
+| Query Description | Avg Time | Calls | Impact | Recommendation |
+|-------------------|----------|-------|--------|----------------|
+| Table inventory DO block | 413,196ms | 1 | High | Optimize row count queries |
+| jv_snapshot COUNT query | 256,481ms | 1 | High | Add index or use estimate |
+| View inventory DO block | 233,299ms | 1 | High | Optimize view row counts |
+| Materialized view refresh (ballot politician) | 83,546ms | 1 | Medium | Consider incremental refresh |
+| jv_global_id COUNT query | 83,467ms | 1 | High | Add index or use estimate |
+| Materialized view refresh (ballot politician daily) | 74,450ms | 1 | Medium | Consider incremental refresh |
+| Foreign key integrity check | 60,638ms | 1 | Medium | Batch processing approach |
+| View integrity check | 43,195ms | 1 | Medium | Optimize view validation |
+| jv_commit COUNT query | 37,797ms | 1 | Medium | Add index on table |
+| Member proposals count | 30,148ms | 1 | Medium | Optimize view query |
+
+**Action Required**: The audit tables (jv_*) are causing significant performance issues. Consider:
+- Adding indexes on jv_snapshot, jv_global_id, jv_commit
+- Implementing table partitioning for audit data
+- Using pg_class.reltuples for approximate counts instead of COUNT(*)
+
+#### 2. Missing Indexes on Foreign Keys (68 indexes)
+
+The health check identified 68 foreign key columns without indexes, causing performance degradation in JOIN operations. Priority indexes to create:
+
+**High Priority (Join-heavy tables):**
+- `document_status_container` (7 missing indexes on FK columns)
+- `person_element` (3 missing indexes)
+- `qrtz_cron_triggers` (3 missing indexes)
+- `document_person_reference_da_0` (1 missing index, high volume table)
+
+**Medium Priority:**
+- Various assignment, committee, and document tables (50+ missing indexes)
+
+#### 3. Materialized View Maintenance Issues
+
+**Never Vacuumed (10 materialized views):**
+- `view_riksdagen_document_type_daily_summary` (2.3 MB)
+- `view_riksdagen_org_document_daily_summary` (5.2 MB)
+- `view_riksdagen_party_document_daily_summary` (448 KB)
+- `view_riksdagen_politician_document` (30 MB) ⚠️ **High Impact**
+- `view_riksdagen_politician_document_daily_summary` (2.2 MB)
+- `view_riksdagen_politician_document_summary` (400 KB)
+- `view_riksdagen_vote_data_ballot_party_summary` (26 MB) ⚠️ **High Impact**
+- `view_riksdagen_vote_data_ballot_politician_summary` (1.2 GB) ⚠️ **Critical Impact**
+- `view_riksdagen_vote_data_ballot_summary` (3 MB)
+- `view_worldbank_indicator_data_country_summary` (3.1 MB)
+
+**Recommendation**: Schedule weekly VACUUM ANALYZE for all materialized views.
+
+**Never Refreshed (4 materialized views):**
+- `view_riksdagen_vote_data_ballot_party_summary_annual`
+- `view_riksdagen_vote_data_ballot_summary_annual`
+- `view_riksdagen_vote_data_ballot_summary_monthly`
+- `view_riksdagen_vote_data_ballot_summary_weekly`
+
+**Recommendation**: Set up automated refresh schedule using refresh-all-views.sql.
+
+#### 4. Table Bloat Issue
+
+**Critical Bloat Detected:**
+- `qrtz_scheduler_state`: 1 live tuple, 1,612 dead tuples (161,200% dead ratio)
+
+**Recommendation**: Execute `VACUUM FULL qrtz_scheduler_state;` during maintenance window.
+
+### Empty Intelligence Views Investigation Required
+
+The following 9 intelligence views return 0 rows and require investigation:
+
+1. `view_ministry_effectiveness_trends` - Ministry analysis view
+2. `view_ministry_productivity_matrix` - Ministry performance metrics
+3. `view_ministry_risk_evolution` - Ministry risk tracking
+4. `view_politician_risk_summary` - Individual politician risk
+5. `view_riksdagen_coalition_alignment_matrix` - Coalition analysis
+6. `view_riksdagen_crisis_resilience_indicators` - Crisis monitoring
+7. `view_riksdagen_politician_influence_metrics` - Influence tracking
+8. `view_riksdagen_voting_anomaly_detection` - Anomaly detection
+9. `view_risk_score_evolution` - Overall risk trends
+
+**Possible Causes:**
+- Views depend on data that hasn't been loaded yet (ministry assignments, risk calculations)
+- Views have WHERE clauses filtering out all current data
+- Views depend on other empty base tables or views
+- Views require manual calculation/scoring that hasn't been performed
+
+**Recommendation**: See TROUBLESHOOTING_EMPTY_VIEWS.md for diagnostic steps (if it exists) or create investigation plan in SCHEMA_IMPROVEMENT_ACTION_PLAN.md.
 
 ---
 

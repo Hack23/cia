@@ -35,30 +35,38 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **80 database views** across 8 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **82 database views** (54 regular views + 28 materialized views) across 8 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-⚠️ **Documentation Status**: This catalog is actively being expanded. Currently **9 views** are fully documented with detailed examples and usage patterns. See [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for the complete validation report and prioritized documentation roadmap for the remaining **71 views**.
+⚠️ **Documentation Status**: This catalog is actively being expanded. Currently **9 views** are fully documented with detailed examples and usage patterns. See [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for the complete validation report and prioritized documentation roadmap for the remaining **73 views**.
 
-**Last Validated**: 2025-11-20  
-**Validation Method**: Automated comparison against full_schema.sql  
-**Schema Source**: service.data.impl/src/main/resources/full_schema.sql
+**Last Validated**: 2025-11-21  
+**Validation Method**: Automated schema validation and health check analysis  
+**Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
+**Latest Validation Report**: service.data.impl/sample-data/schema_validation_20251121_142510.txt  
+**Latest Health Check**: service.data.impl/sample-data/health_check_20251121_143220.txt
 
 ### Key Statistics
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 80 | All database views across platform (validated 2025-11-20) |
-| **Views Documented (Detailed)** | 9 | Fully documented with examples, performance, intelligence value |
-| **Views Documented (Basic)** | 71 | Listed in inventory below with basic purpose |
-| **Documentation Coverage** | 11.25% | Detailed documentation coverage |
+| **Total Views** | 82 | All database views across platform (validated 2025-11-21) |
+| **Regular Views** | 54 | Standard SQL views |
 | **Materialized Views** | 28 | Performance-optimized views with physical storage (see refresh-all-views.sql) |
+| **Views Documented (Detailed)** | 9 | Fully documented with examples, performance, intelligence value |
+| **Views Documented (Basic)** | 73 | Listed in inventory below with basic purpose |
+| **Documentation Coverage** | 10.98% | Detailed documentation coverage |
 | **Intelligence Views** | 6 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard) |
+| **Empty Views Requiring Investigation** | 9 | Views returning 0 rows (ministry, risk, coalition analysis) |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Document Views** | 7 | Politician and party document productivity |
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
 | **Government/Ministry Views** | 7 | Government and ministry performance tracking |
 | **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
 | **Changelog Versions** | v1.0-v1.31 | Database schema evolution tracking |
+| **Database Size** | 20 GB | Total database size (validated 2025-11-21) |
+| **Total Rows** | 5.6M | Total rows across all tables |
+| **Base Tables** | 93 | Core data tables |
+| **Indexes** | 178 | Database indexes (68 missing on FK columns) |
 
 ### Intelligence Value Classification
 
