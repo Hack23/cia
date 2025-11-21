@@ -615,7 +615,7 @@ This section demonstrates party-level comparative analysis and coalition alignme
 
 **Intelligence Question**: How aligned are coalition parties on key votes? Are there signs of coalition breakdown?
 
-**Data Source**: `view_riksdagen_coalition_alignment_matrix` (cross-referenced with [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md))
+**Data Source**: `view_riksdagen_vote_data_ballot_party_summary` (analyzed to create alignment matrix, cross-referenced with [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md))
 
 **SQL Query**:
 ```sql
@@ -2478,7 +2478,10 @@ WITH party_discipline AS (
                 NULLIF(yes_votes + no_votes + abstain_votes, 0), 2) AS discipline_percentage
         FROM view_riksdagen_vote_data_ballot_party_summary
         WHERE vote_date >= CURRENT_DATE - INTERVAL '12 months'
-            AND ballot_type = 'Government Budget'
+            -- Note: Filter by specific ballot types or remove filter for all budget-related votes
+            -- Common types: 'Budget', 'Government Proposal', 'Motion', etc.
+            -- Adjust filter based on actual ballot_type values in your database
+            AND (ballot_type LIKE '%Budget%' OR ballot_type LIKE '%Statsbudget%')
     ) party_votes
     GROUP BY party
 ),
