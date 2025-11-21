@@ -2,11 +2,13 @@
 
 ## Validation Metadata
 
-**Date:** 2025-11-20  
+**Date:** 2025-11-21  
 **Validator:** Intelligence Operative (Copilot Agent)  
 **Source Schema:** service.data.impl/src/main/resources/full_schema.sql  
 **Documentation File:** DATABASE_VIEW_INTELLIGENCE_CATALOG.md  
-**Validation Method:** Automated comparison of view names in schema vs. documentation
+**Validation Method:** Automated comparison of view names in schema vs. documentation  
+**Schema Validation Report:** service.data.impl/sample-data/schema_validation_20251121_142510.txt  
+**Health Check Report:** service.data.impl/sample-data/health_check_20251121_143220.txt
 
 ---
 
@@ -18,11 +20,16 @@ This validation report identifies significant discrepancies between the document
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| **Total views in database** | 80 | ✓ Confirmed |
+| **Total views in database** | 82 | ✓ Confirmed (54 regular + 28 materialized) |
 | **Total views documented** | 9 | ❌ **Critical Gap** |
-| **Documentation coverage** | 11.25% | ❌ **Severely Inadequate** |
-| **Views missing from documentation** | 71 | ❌ **Major Issue** |
+| **Documentation coverage** | 10.98% | ❌ **Severely Inadequate** |
+| **Views missing from documentation** | 73 | ❌ **Major Issue** |
 | **Views documented but not in DB** | 0 | ✓ Good |
+| **Empty views requiring investigation** | 9 | ⚠️ **Action Required** |
+| **Materialized views never vacuumed** | 10 | ⚠️ **Performance Impact** |
+| **Materialized views never refreshed** | 4 | ⚠️ **Data Freshness Issue** |
+| **Missing indexes on foreign keys** | 68 | ⚠️ **Performance Impact** |
+| **Database health score** | 78.37/100 | ⚠️ **Good - Monitor warnings** |
 | **Matching views requiring validation** | 9 | ⚠️ Needs column/example validation |
 
 ### Severity Assessment
