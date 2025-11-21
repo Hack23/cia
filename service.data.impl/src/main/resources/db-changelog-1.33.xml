@@ -169,7 +169,7 @@ WHERE UPPER(document_data.document_type) = 'MOT';
         - Maintain all crisis/normal period logic and metrics
     </comment>
     
-    <dropView viewName="view_riksdagen_crisis_resilience_indicators" ifExists="true"/>
+    <sql>DROP VIEW IF EXISTS view_riksdagen_crisis_resilience_indicators CASCADE;</sql>
     
     <createView viewName="view_riksdagen_crisis_resilience_indicators">
         <![CDATA[
@@ -288,7 +288,128 @@ WHERE pd.status = 'active'
     </createView>
     
     <rollback>
-        <dropView viewName="view_riksdagen_crisis_resilience_indicators"/>
+        <sql>DROP VIEW IF EXISTS view_riksdagen_crisis_resilience_indicators CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 3b. RECREATE: view_riksdagen_intelligence_dashboard                      -->
+<!-- Dependency: Depends on view_riksdagen_crisis_resilience_indicators       -->
+<!-- Note: Dropped by CASCADE, must be recreated                              -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-analyst" id="recreate-intelligence-dashboard-1.33-003b" failOnError="true">
+    <comment>
+        Recreate view_riksdagen_intelligence_dashboard after crisis resilience fix
+        
+        This view was dropped by CASCADE when fixing view_riksdagen_crisis_resilience_indicators.
+        The view aggregates multiple intelligence indicators into a single dashboard.
+        
+        Note: This is the same definition from v1.29, recreated to restore the dependency.
+    </comment>
+    
+    <sql>DROP VIEW IF EXISTS view_riksdagen_intelligence_dashboard CASCADE;</sql>
+    
+    <createView viewName="view_riksdagen_intelligence_dashboard">
+        <![CDATA[
+WITH momentum_summary AS (
+    -- Aggregate momentum indicators independently
+    SELECT
+        COUNT(DISTINCT party) FILTER (WHERE trend_direction IN ('STRONG_POSITIVE', 'POSITIVE')) AS parties_gaining_momentum,
+        COUNT(DISTINCT party) FILTER (WHERE trend_direction IN ('STRONG_NEGATIVE', 'NEGATIVE')) AS parties_losing_momentum,
+        COUNT(DISTINCT party) FILTER (WHERE stability_classification IN ('VOLATILE', 'HIGHLY_VOLATILE')) AS volatile_parties
+    FROM view_riksdagen_party_momentum_analysis
+),
+coalition_summary AS (
+    -- Aggregate coalition indicators independently
+    SELECT
+        COUNT(*) FILTER (WHERE coalition_likelihood = 'VERY_HIGH') AS high_probability_coalitions,
+        COUNT(*) FILTER (WHERE bloc_relationship = 'CROSS_BLOC' AND coalition_likelihood IN ('HIGH', 'VERY_HIGH')) AS cross_bloc_alliances
+    FROM view_riksdagen_coalition_alignment_matrix
+),
+anomaly_summary AS (
+    -- Aggregate risk indicators independently
+    SELECT
+        COUNT(*) FILTER (WHERE defection_risk_assessment = 'HIGH_DEFECTION_RISK') AS high_defection_risks,
+        COUNT(*) FILTER (WHERE discipline_classification = 'LOW_DISCIPLINE') AS low_discipline_politicians
+    FROM view_riksdagen_voting_anomaly_detection
+),
+influence_summary AS (
+    -- Aggregate influence indicators independently
+    SELECT
+        COUNT(*) FILTER (WHERE broker_classification IN ('STRONG_BROKER', 'MODERATE_BROKER')) AS power_brokers,
+        COUNT(*) FILTER (WHERE connectivity_level = 'HIGHLY_CONNECTED') AS highly_connected_politicians
+    FROM view_riksdagen_politician_influence_metrics
+),
+resilience_summary AS (
+    -- Aggregate resilience indicators independently
+    SELECT
+        COUNT(*) FILTER (WHERE resilience_classification = 'HIGHLY_RESILIENT') AS crisis_ready_politicians,
+        COUNT(*) FILTER (WHERE resilience_classification = 'LOW_RESILIENCE') AS low_resilience_politicians
+    FROM view_riksdagen_crisis_resilience_indicators
+),
+vote_stats AS (
+    SELECT
+        MAX(vote_date) AS latest_vote_data,
+        COUNT(DISTINCT embedded_id_ballot_id) FILTER (WHERE vote_date >= CURRENT_DATE - INTERVAL '30 days') AS ballots_last_30_days
+    FROM vote_data
+)
+SELECT
+    -- Temporal indicators
+    ms.parties_gaining_momentum,
+    ms.parties_losing_momentum,
+    ms.volatile_parties,
+    
+    -- Coalition indicators
+    cs.high_probability_coalitions,
+    cs.cross_bloc_alliances,
+    
+    -- Risk indicators
+    ans.high_defection_risks,
+    ans.low_discipline_politicians,
+    
+    -- Influence indicators
+    ins.power_brokers,
+    ins.highly_connected_politicians,
+    
+    -- Resilience indicators
+    rs.crisis_ready_politicians,
+    rs.low_resilience_politicians,
+    
+    -- Overall assessment flags
+    CASE
+        WHEN ans.high_defection_risks >= 5
+            THEN 'HIGH_POLITICAL_INSTABILITY_RISK'
+        WHEN ms.volatile_parties >= 3
+            THEN 'MODERATE_POLITICAL_INSTABILITY_RISK'
+        ELSE 'STABLE_POLITICAL_ENVIRONMENT'
+    END AS stability_assessment,
+    
+    CASE
+        WHEN cs.cross_bloc_alliances >= 2
+            THEN 'POTENTIAL_REALIGNMENT_DETECTED'
+        WHEN cs.high_probability_coalitions >= 5
+            THEN 'STABLE_COALITION_PATTERNS'
+        ELSE 'UNCERTAIN_COALITION_LANDSCAPE'
+    END AS coalition_assessment,
+    
+    -- Data freshness
+    vs.latest_vote_data,
+    vs.ballots_last_30_days,
+    
+    -- Intelligence report timestamp
+    CURRENT_TIMESTAMP AS intelligence_report_timestamp
+FROM momentum_summary ms
+CROSS JOIN coalition_summary cs
+CROSS JOIN anomaly_summary ans
+CROSS JOIN influence_summary ins
+CROSS JOIN resilience_summary rs
+CROSS JOIN vote_stats vs;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_riksdagen_intelligence_dashboard CASCADE;</sql>
     </rollback>
 </changeSet>
 

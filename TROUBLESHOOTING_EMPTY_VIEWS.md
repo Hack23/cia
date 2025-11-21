@@ -11,13 +11,13 @@
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-Database_Team-0A66C2?style=for-the-badge" alt="Owner"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Date-2025--11--18-success?style=for-the-badge" alt="Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.1-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Updated-2025--11--21-success?style=for-the-badge" alt="Date"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Priority-HIGH-red?style=for-the-badge" alt="Priority"/></a>
 </p>
 
-**📋 Document Owner:** Database Administration Team | **📄 Version:** 1.0 | **📅 Created:** 2025-11-18 (UTC)  
-**🔍 Scope:** Diagnostic procedures for views returning 0 rows  
+**📋 Document Owner:** Database Administration Team | **📄 Version:** 1.1 | **📅 Updated:** 2025-11-21 (UTC)  
+**🔍 Scope:** Diagnostic procedures for views returning 0 rows | **✅ Status:** v1.34 fixes applied  
 **🏷️ Classification:** [![Confidentiality: Internal](https://img.shields.io/badge/C-Internal-blue?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels)
 
 ---
@@ -34,6 +34,94 @@ This guide provides systematic troubleshooting procedures for database views ret
 3. **🟠 HIGH - Dependency Failures:** Upstream views/tables failed to populate
 4. **🟡 MEDIUM - Timing Issues:** Data not yet imported (scheduled processes pending)
 5. **🟢 LOW - Expected Behavior:** View is conditionally populated (e.g., error tracking views)
+
+---
+
+## 🎉 Changelog v1.34 - Empty View Fixes Applied (2025-11-21)
+
+**Status:** ✅ Comprehensive fixes and validation implemented in db-changelog-1.34.xml
+
+### Summary of Fixes
+
+Database changelog v1.34 addresses **12 empty views** identified in PR #7880 with comprehensive pre/post-flight validation. The changelog consolidates fixes from issues #7882-#7885.
+
+### Views Fixed in v1.34
+
+#### 🔧 **Fixed with SQL Changes (4 views)**
+
+1. **view_riksdagen_goverment_proposals**
+   - **Issue:** Case-sensitive `document_type` filter missed variations
+   - **Fix:** Broader filter catches `prop`, `PROP`, `Proposition`
+   - **Changeset:** `1.34-gov-proposals-002`
+
+2. **view_riksdagen_member_proposals**
+   - **Issue:** Case-sensitive `document_type` filter
+   - **Fix:** Broader filter catches `mot`, `MOT`, `Motion`
+   - **Changeset:** `1.34-member-proposals-003`
+
+3. **view_riksdagen_committee_parliament_member_proposal**
+   - **Issue:** Same as member proposals
+   - **Fix:** Broader document_type filter with LEFT JOIN
+   - **Changeset:** `1.34-committee-proposals-004`
+
+4. **view_politician_risk_summary**
+   - **Issue:** Dependency on aggregated summary views with restrictive date filters
+   - **Fix:** Simplified to use direct `vote_data` with 2-year window
+   - **Changeset:** `1.34-risk-summary-005`
+
+#### ✓ **Verified from Previous Changesets (8 views)**
+
+5. **view_ministry_effectiveness_trends** - Expected empty without ministry data (v1.31)
+6. **view_ministry_productivity_matrix** - Expected empty without ministry data (v1.31)
+7. **view_ministry_risk_evolution** - Expected empty without ministry data (v1.31)
+8. **view_riksdagen_politician_influence_metrics** - From v1.33
+9. **view_riksdagen_coalition_alignment_matrix** - From v1.33
+10. **view_riksdagen_voting_anomaly_detection** - From v1.33
+11. **view_riksdagen_crisis_resilience_indicators** - From v1.33 (case-insensitive vote matching)
+12. **view_risk_score_evolution** - From v1.33 (broadened status filter)
+
+### Validation Framework
+
+**Pre-Flight Validation** (`1.34-preflight`):
+- Checks source data counts (vote_data, person_data, document_data)
+- Warns if data volumes are insufficient
+- Helps diagnose empty views before applying fixes
+
+**Post-Flight Validation** (`1.34-postflight`):
+- Verifies all 12 views exist
+- Reports row counts for each view
+- Provides clear PASS/PARTIAL/CONCERN status
+- Notes when ministry views are expected to be empty
+
+### Expected Outcomes
+
+After applying changelog v1.34:
+
+✅ **Working Views (with sufficient data)**:
+- Government proposals (if `prop/PROP/Proposition` documents exist)
+- Member proposals (if `mot/MOT/Motion` documents exist)
+- Politician risk summary (if active politicians have voting history)
+- Crisis resilience, voting anomaly, coalition alignment, influence metrics (if vote_data has sufficient records)
+
+⚠️ **Expected Empty (without specific data)**:
+- Ministry views (require `assignment_data` with `assignment_type = 'Departement'`)
+
+### Root Causes Addressed
+
+1. **Case-Sensitive Filters**: Views now use `IN ('lowercase', 'UPPERCASE')` or `UPPER()` for case-insensitive matching
+2. **Overly Restrictive Joins**: Changed from aggregated summary views to direct table queries where appropriate
+3. **Date Filter Issues**: Simplified date ranges and removed exact date matching
+4. **Missing Source Data**: Documented which views are expected to be empty without specific data
+
+### Next Steps
+
+If views are still empty after applying v1.34:
+
+1. **Check Pre-Flight Output**: Review warnings about data volume
+2. **Check Post-Flight Output**: Identify which specific views are empty
+3. **Verify Data Import**: Ensure source tables (vote_data, document_data, person_data) are populated
+4. **Refresh Materialized Views**: Run `REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;`
+5. **Check Ministry Data**: Query `SELECT COUNT(*) FROM assignment_data WHERE assignment_type = 'Departement';`
 
 ---
 
