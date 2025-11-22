@@ -1407,8 +1407,7 @@ SELECT
     SUM(approved_decisions) AS total_approved,
     SUM(rejected_decisions) AS total_rejected
 FROM view_riksdagen_politician_decision_pattern
-WHERE decision_type LIKE '%Proposition%'  -- Government propositions
-    AND decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 1
+WHERE decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 1
 GROUP BY person_id, first_name, last_name, party, committee_org
 HAVING SUM(total_decisions) >= 3
 ORDER BY avg_approval_rate DESC, ministry_decisions DESC
