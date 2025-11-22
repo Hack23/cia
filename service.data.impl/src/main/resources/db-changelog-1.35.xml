@@ -9,7 +9,7 @@
   Party Decision Flow View - Database Changelog v1.35
   Author: Political Analyst & Intelligence Operative
   Date: 2025-11-22
-  GitHub Issue: Hack23/cia#[issue-number]
+  GitHub Issue: Hack23/cia#7887
   
   Creates party-level decision flow aggregation view from DOCUMENT_PROPOSAL_DATA,
   enabling analysis of party-level proposal success rates, decision patterns,
@@ -193,8 +193,8 @@ LEFT JOIN document_person_reference_da_0 dpr
 WHERE dpd.chamber IS NOT NULL
   AND dpd.committee IS NOT NULL
   AND dd.made_public_date IS NOT NULL
-  AND LENGTH(dpd.chamber) >= 6  -- Minimum valid decision text length
-  AND LENGTH(dpd.chamber) <= 100  -- Reasonable max length
+  AND LENGTH(dpd.chamber) >= 6  -- Minimum valid decision text length (matches DecisionDataFactoryImpl)
+  AND LENGTH(dpd.chamber) <= 29  -- Matches DecisionDataFactoryImpl.CHAMBER_MAX_LENGTH
 
 GROUP BY 
     dpr.party_short_code,
