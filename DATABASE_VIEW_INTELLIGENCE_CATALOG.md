@@ -166,7 +166,7 @@ graph TB
 | Category | Count | Primary Purpose | Intelligence Value |
 |----------|-------|----------------|-------------------|
 | **Politician Views** | 15+ | Individual performance, experience, behavior | ⭐⭐⭐⭐⭐ VERY HIGH |
-| **Party Views** | 12+ | Organizational effectiveness, coalition analysis | ⭐⭐⭐⭐⭐ VERY HIGH |
+| **Party Views** | 13+ | Organizational effectiveness, coalition analysis | ⭐⭐⭐⭐⭐ VERY HIGH |
 | **Committee Views** | 10+ | Legislative body productivity, decision tracking | ⭐⭐⭐⭐ HIGH |
 | **Ministry Views** | 6+ | Government executive performance monitoring | ⭐⭐⭐⭐ HIGH |
 | **Vote Data Views** | 20+ | Ballot summaries (daily/weekly/monthly/annual) | ⭐⭐⭐⭐ HIGH |
@@ -273,7 +273,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | 📖 view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Voting anomaly and defection risk detection |
 | 📖 view_risk_score_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of risk scores over time |
 
-### Party Views (12 views)
+### Party Views (13 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
@@ -282,6 +282,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_party_performance_metrics | Standard | ⭐⭐⭐⭐⭐ | Comprehensive party performance indicators |
 | view_riksdagen_party_ballot_support_annual_summary | Standard | ⭐⭐⭐⭐ | Annual party ballot support patterns |
 | view_riksdagen_party_coalation_against_annual_summary | Standard | ⭐⭐⭐⭐ | Annual party opposition coalition patterns |
+| 📖 view_riksdagen_party_decision_flow | Standard | ⭐⭐⭐⭐⭐ | Party-level proposal decision analysis (NEW v1.35) |
 | view_riksdagen_party_member | Standard | ⭐⭐⭐⭐ | Party membership roster |
 | view_riksdagen_party_momentum_analysis | Standard | ⭐⭐⭐⭐⭐ | Party momentum and trend analysis |
 | view_riksdagen_party_role_member | Standard | ⭐⭐⭐ | Party role assignments |
@@ -1453,7 +1454,7 @@ LIMIT 20;
 - **Indexes Used:** `idx_person_ref_person_id`, `idx_doc_proposal_committee`, `idx_doc_data_made_public_date`
 - **Data Volume:** ~50,000 rows (depends on proposal data volume)
 - **Refresh Frequency:** Real-time (standard view)
-- **Optimization:** Candidate for materialization in v1.36
+- **Optimization:** Candidate for materialization in future version
 
 #### Data Sources
 
