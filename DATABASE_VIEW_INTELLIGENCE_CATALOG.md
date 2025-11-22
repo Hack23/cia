@@ -40,7 +40,7 @@ The Citizen Intelligence Agency (CIA) platform employs **83 database views** (55
 ✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 83 database views. **10 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
 **Last Validated**: 2025-11-22  
-**Latest Addition**: v1.35 Party Decision Flow View (view_riksdagen_party_decision_flow)  
+**Latest Addition**: v1.35 Politician Decision Pattern View (view_riksdagen_politician_decision_pattern)  
 **Validation Method**: Automated schema validation and health check analysis  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
 **Latest Validation Report**: service.data.impl/sample-data/schema_validation_20251121_142510.txt  
@@ -57,7 +57,7 @@ The Citizen Intelligence Agency (CIA) platform employs **83 database views** (55
 | **Views Documented (Structured)** | 73 | Documented with purpose, key metrics, sample queries, applications |
 | **Documentation Coverage** | 100% | All 83 views now documented |
 | **Intelligence Views** | 6 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard) |
-| **Decision Flow Views** | 1 | Party-level proposal decision analysis (NEW in v1.35) |
+| **Decision Flow Views** | 2 | Party and politician-level proposal decision analysis (v1.35) |
 | **Empty Views Requiring Investigation** | 9 | Views returning 0 rows (ministry, risk, coalition analysis) |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Document Views** | 7 | Politician and party document productivity |
@@ -298,6 +298,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | 📖 view_riksdagen_politician_experience_summary | Standard | ⭐⭐⭐⭐⭐ | Politician experience scoring and classification |
 | view_riksdagen_politician_ballot_summary | Standard | ⭐⭐⭐⭐⭐ | Politician voting record summary |
 | view_riksdagen_politician_influence_metrics | Standard | ⭐⭐⭐⭐⭐ | Politician influence and network analysis |
+| 📖 view_riksdagen_politician_decision_pattern | Standard | ⭐⭐⭐⭐⭐ | Politician decision effectiveness and committee specialization (NEW v1.35) |
 
 ### Vote Data Views (20 views)
 
@@ -1262,6 +1263,254 @@ ORDER BY current_risk_score DESC;
 - Alert systems for high-risk politicians
 - Party risk distribution analysis
 - Risk intervention prioritization
+
+---
+
+### view_riksdagen_politician_decision_pattern ⭐⭐⭐⭐⭐
+
+**Category:** Politician Intelligence Views (v1.35)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Decision Effectiveness & Committee Specialization  
+**Changelog:** v1.35 Politician Decision Pattern Tracking
+
+#### Purpose
+
+Tracks individual politician decision patterns from DOCUMENT_PROPOSAL_DATA, enabling analysis of politician-level proposal success rates, committee work effectiveness, and legislative productivity. Complements view_riksdagen_party_decision_flow by providing individual politician decision analytics.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Unique politician identifier | '0532213467925' |
+| `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
+| `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
+| `party` | VARCHAR(50) | Party affiliation at decision time | 'S' |
+| `committee` | VARCHAR(255) | Committee handling decision | 'UU' (Foreign Affairs) |
+| `decision_type` | VARCHAR(255) | Type of decision | 'Proposition', 'Motion' |
+| `committee_org` | VARCHAR(20) | Committee organization code | 'uu' |
+| `decision_month` | DATE | Month of aggregation (first day) | '2024-10-01' |
+| `decision_year` | INTEGER | Year of decision | 2024 |
+| `decision_month_num` | INTEGER | Month number (1-12) | 10 |
+| `total_decisions` | BIGINT | Total decisions in period | 45 |
+| `approved_decisions` | BIGINT | Decisions approved (bifall) | 32 |
+| `rejected_decisions` | BIGINT | Decisions rejected (avslag) | 8 |
+| `referred_back_decisions` | BIGINT | Decisions referred back | 3 |
+| `other_decisions` | BIGINT | Other decision outcomes | 2 |
+| `approval_rate` | NUMERIC(5,2) | Percentage approved | 71.11 |
+| `rejection_rate` | NUMERIC(5,2) | Percentage rejected | 17.78 |
+| `committees_active` | INTEGER | Number of committees active in | 3 |
+| `decision_types` | TEXT | Comma-separated decision types | 'Motion, Proposition' |
+| `earliest_decision_date` | DATE | First decision in period | '2024-10-01' |
+| `latest_decision_date` | DATE | Last decision in period | '2024-10-31' |
+
+#### Example Queries
+
+**1. Top 10 Most Effective Politicians by Approval Rate (Last Year)**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    SUM(total_decisions) AS total_decisions,
+    ROUND(
+        100.0 * SUM(approved_decisions) / NULLIF(SUM(total_decisions), 0), 
+        2
+    ) AS overall_approval_rate,
+    COUNT(DISTINCT committee) AS committees_worked,
+    STRING_AGG(DISTINCT committee, ', ' ORDER BY committee) AS committees
+FROM view_riksdagen_politician_decision_pattern
+WHERE decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+GROUP BY person_id, first_name, last_name, party
+HAVING SUM(total_decisions) >= 5  -- Minimum sample size
+ORDER BY overall_approval_rate DESC, total_decisions DESC
+LIMIT 10;
+```
+
+**2. Committee Specialist Identification**
+
+```sql
+-- Identify politicians with high activity in specific committees
+WITH committee_activity AS (
+    SELECT
+        person_id,
+        first_name,
+        last_name,
+        party,
+        committee,
+        SUM(total_decisions) AS decisions_in_committee,
+        ROUND(AVG(approval_rate), 2) AS avg_approval_rate
+    FROM view_riksdagen_politician_decision_pattern
+    WHERE decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 1
+    GROUP BY person_id, first_name, last_name, party, committee
+),
+total_activity AS (
+    SELECT
+        person_id,
+        SUM(decisions_in_committee) AS total_decisions_all_committees
+    FROM committee_activity
+    GROUP BY person_id
+)
+SELECT
+    ca.first_name,
+    ca.last_name,
+    ca.party,
+    ca.committee,
+    ca.decisions_in_committee,
+    ROUND(
+        100.0 * ca.decisions_in_committee / ta.total_decisions_all_committees,
+        1
+    ) AS concentration_pct,
+    ca.avg_approval_rate,
+    CASE
+        WHEN 100.0 * ca.decisions_in_committee / ta.total_decisions_all_committees >= 60 THEN 'SPECIALIST'
+        WHEN 100.0 * ca.decisions_in_committee / ta.total_decisions_all_committees >= 40 THEN 'FOCUSED'
+        ELSE 'DIVERSIFIED'
+    END AS specialization_level
+FROM committee_activity ca
+JOIN total_activity ta ON ta.person_id = ca.person_id
+WHERE ta.total_decisions_all_committees >= 10  -- Minimum activity threshold
+ORDER BY concentration_pct DESC
+LIMIT 20;
+```
+
+**3. Monthly Decision Productivity Trend**
+
+```sql
+SELECT
+    person_id,
+    first_name,
+    last_name,
+    party,
+    decision_month,
+    SUM(total_decisions) AS monthly_decisions,
+    ROUND(AVG(approval_rate), 2) AS monthly_approval_rate,
+    COUNT(DISTINCT committee) AS committees_active
+FROM view_riksdagen_politician_decision_pattern
+WHERE decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+    AND person_id = '0532213467925'  -- Specific politician
+GROUP BY person_id, first_name, last_name, party, decision_month
+ORDER BY decision_month DESC;
+```
+
+**4. Ministry Proposal Support Patterns**
+
+```sql
+-- Which politicians are most supportive of ministry proposals
+SELECT
+    first_name,
+    last_name,
+    party,
+    committee_org AS ministry,
+    SUM(total_decisions) AS ministry_decisions,
+    ROUND(AVG(approval_rate), 2) AS avg_approval_rate,
+    SUM(approved_decisions) AS total_approved,
+    SUM(rejected_decisions) AS total_rejected
+FROM view_riksdagen_politician_decision_pattern
+WHERE decision_type LIKE '%Proposition%'  -- Government propositions
+    AND decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 1
+GROUP BY person_id, first_name, last_name, party, committee_org
+HAVING SUM(total_decisions) >= 3
+ORDER BY avg_approval_rate DESC, ministry_decisions DESC
+LIMIT 30;
+```
+
+**5. Cross-Party Collaboration on Decisions**
+
+```sql
+-- Identify decisions with broad cross-party approval
+WITH decision_aggregates AS (
+    SELECT
+        committee,
+        decision_month,
+        COUNT(DISTINCT party) AS parties_involved,
+        ROUND(AVG(approval_rate), 2) AS avg_approval_across_parties,
+        SUM(total_decisions) AS total_decisions
+    FROM view_riksdagen_politician_decision_pattern
+    WHERE decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+    GROUP BY committee, decision_month
+)
+SELECT
+    committee,
+    decision_month,
+    parties_involved,
+    avg_approval_across_parties,
+    total_decisions,
+    CASE
+        WHEN parties_involved >= 6 AND avg_approval_across_parties >= 70 THEN 'STRONG_CONSENSUS'
+        WHEN parties_involved >= 4 AND avg_approval_across_parties >= 60 THEN 'MODERATE_CONSENSUS'
+        ELSE 'LIMITED_CONSENSUS'
+    END AS consensus_level
+FROM decision_aggregates
+WHERE total_decisions >= 5
+ORDER BY avg_approval_across_parties DESC, parties_involved DESC
+LIMIT 20;
+```
+
+#### Performance Characteristics
+
+- **Query Time:** 100-200ms (complex aggregation with joins)
+- **Indexes Used:** `idx_person_ref_person_id`, `idx_doc_proposal_committee`, `idx_doc_data_made_public_date`
+- **Data Volume:** ~50,000 rows (depends on proposal data volume)
+- **Refresh Frequency:** Real-time (standard view)
+- **Optimization:** Candidate for materialization in v1.36
+
+#### Data Sources
+
+- **Primary Table:** `document_proposal_data` (all proposal decisions)
+- **Joined Tables:** 
+  - `document_proposal_container` (proposal linkage)
+  - `document_status_container` (status linkage)
+  - `document_data` (dates and metadata)
+  - `document_person_reference_co_0/da_0` (person/party info)
+  - `person_data` (politician identification)
+
+#### Dependencies
+
+- No view dependencies (built directly on source tables)
+- Complements: `view_riksdagen_party_decision_flow` (party-level view)
+- Used by: Politician scorecards, committee analysis dashboards
+
+#### Risk Rules Supported
+
+From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
+- **PoliticianLowProductivity (P-06)**: Decision count metrics
+- **PoliticianIneffectiveVoting (P-02)**: Approval rate context
+- **Committee Effectiveness**: Specialist identification
+
+#### Intelligence Applications
+
+This view supports multiple analytical frameworks from [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+
+| Analysis Framework | Use Case | Example Application | Link |
+|--------------------|----------|-------------------|------|
+| **Temporal Analysis** | Track decision effectiveness over time | Monitor politician approval rate trends monthly | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
+| **Comparative Analysis** | Politician vs. party/committee benchmarks | Compare individual approval rates to committee averages | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
+| **Pattern Recognition** | Committee specialization clustering | Identify specialists vs. generalists | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#3-pattern-recognition-framework) |
+| **Predictive Intelligence** | Forecast decision success probability | Predict proposal outcomes based on politician history | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#4-predictive-intelligence-framework) |
+
+**Intelligence Products Generated:**
+- 🏆 Politician Scorecards - Decision effectiveness metrics
+- 📊 Committee Specialist Reports - Expertise area identification
+- 🎯 Ministry Support Analysis - Government proposal alignment
+- 🤝 Cross-Party Collaboration Tracking - Consensus-building identification
+
+**Data Flow:** See [Intelligence Data Flow Map - View to Analysis Mapping](INTELLIGENCE_DATA_FLOW.md#view--analysis-framework-mapping) for complete data pipeline.
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Productivity Analysis**: Decision volume and success metrics
+- **Specialization Analysis**: Committee focus and expertise
+- **Comparative Analysis**: Individual vs. party/committee benchmarks
+- **Temporal Analysis**: Monthly decision patterns and trends
+
+#### Integration with Product Features
+
+From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
+- **Politician Dashboard** (Product Line 1): Decision effectiveness metrics
+- **Committee Analysis** (Product Line 2): Specialist identification
+- **Comparative Analytics** (Product Line 2): Decision success benchmarking
 
 ---
 
