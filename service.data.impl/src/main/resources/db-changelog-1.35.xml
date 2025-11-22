@@ -820,6 +820,229 @@ ORDER BY decision_day DESC
     ]]></sql>
 </changeSet>
 
+<!-- Ministry Decision Impact View -->
+<changeSet author="intelligence-operative" id="1.35-ministry-decision-impact-001" failOnError="true">
+    <comment>
+        Create view_ministry_decision_impact
+        
+        Tracks ministry-initiated proposal outcomes from DOCUMENT_PROPOSAL_DATA,
+        enabling analysis of which government ministries have the highest/lowest
+        success rates for their legislative proposals.
+        
+        Purpose:
+        - Government policy effectiveness tracking
+        - Ministry-parliament relations analysis
+        - Coalition stability indicators
+        - Policy domain success patterns
+        
+        Complements:
+        - Issue Hack23/cia#7918 (party-level decision flow)
+        - Issue Hack23/cia#7919 (politician-level decision patterns)
+        
+        Intelligence Applications:
+        - Identify ministries with low approval rates (policy effectiveness issues)
+        - Track coalition stability via ministry success patterns
+        - Committee-ministry relationship analysis
+        - Temporal trends in government legislative success
+        
+        Related: Issue Hack23/cia#7920
+    </comment>
+    
+    <createView viewName="view_ministry_decision_impact" replaceIfExists="true">
+        <![CDATA[
+SELECT 
+    dd.org AS ministry_code,
+    dpd.committee,
+    dpd.decision_type,
+    DATE_TRUNC('quarter', dd.made_public_date) AS decision_quarter,
+    EXTRACT(YEAR FROM dd.made_public_date) AS decision_year,
+    EXTRACT(QUARTER FROM dd.made_public_date) AS quarter_num,
+    
+    -- Proposal counts
+    COUNT(*) AS total_proposals,
+    
+    -- Approved proposals (Swedish: bifall)
+    COUNT(*) FILTER (
+        WHERE UPPER(dpd.chamber) LIKE '%BIFALL%'
+           OR UPPER(dpd.chamber) LIKE '%GODKÄNT%'
+           OR UPPER(dpd.chamber) LIKE '%BIFALLA%'
+    ) AS approved_proposals,
+    
+    -- Rejected proposals (Swedish: avslag)
+    COUNT(*) FILTER (
+        WHERE UPPER(dpd.chamber) LIKE '%AVSLAG%'
+           OR UPPER(dpd.chamber) LIKE '%AVSLÅ%'
+    ) AS rejected_proposals,
+    
+    -- Approval rate calculation
+    ROUND(
+        100.0 * COUNT(*) FILTER (
+            WHERE UPPER(dpd.chamber) LIKE '%BIFALL%'
+               OR UPPER(dpd.chamber) LIKE '%GODKÄNT%'
+               OR UPPER(dpd.chamber) LIKE '%BIFALLA%'
+        ) / NULLIF(COUNT(*), 0),
+        2
+    ) AS approval_rate,
+    
+    -- Rejection rate calculation
+    ROUND(
+        100.0 * COUNT(*) FILTER (
+            WHERE UPPER(dpd.chamber) LIKE '%AVSLAG%'
+               OR UPPER(dpd.chamber) LIKE '%AVSLÅ%'
+        ) / NULLIF(COUNT(*), 0),
+        2
+    ) AS rejection_rate,
+    
+    -- Committees involved (distinct count per ministry/quarter)
+    COUNT(DISTINCT dpd.committee) AS committees_involved,
+    
+    -- Average processing days (if available in future enhancements)
+    -- For now, calculate average days between made_public_date
+    AVG(
+        EXTRACT(EPOCH FROM (dd.made_public_date - LAG(dd.made_public_date) OVER (
+            PARTITION BY dd.org, dpd.committee 
+            ORDER BY dd.made_public_date
+        ))) / 86400
+    ) AS avg_processing_days,
+    
+    -- Date range for this aggregation
+    MIN(dd.made_public_date) AS earliest_proposal_date,
+    MAX(dd.made_public_date) AS latest_proposal_date
+
+FROM document_data dd
+
+-- Join to status container
+INNER JOIN document_status_container dsc 
+    ON dsc.document_document_status_con_0 = dd.id
+
+-- Join to proposal container
+INNER JOIN document_proposal_container dpc
+    ON dpc.hjid = dsc.document_proposal_document_s_0
+
+-- Join to proposal data
+INNER JOIN document_proposal_data dpd
+    ON dpd.hjid = dpc.proposal_document_proposal_c_0
+
+-- Filter for government propositions (ministry-initiated)
+WHERE dd.document_type = 'prop'  -- Propositions (government bills)
+  AND dd.org IS NOT NULL  -- Ministry/org code required
+  AND dpd.committee IS NOT NULL
+  AND dpd.chamber IS NOT NULL
+  AND dd.made_public_date IS NOT NULL
+  AND LENGTH(dpd.chamber) >= 6  -- Minimum valid decision text length
+  AND LENGTH(dpd.chamber) <= 29  -- Matches DecisionDataFactoryImpl.CHAMBER_MAX_LENGTH
+
+GROUP BY 
+    dd.org,
+    dpd.committee,
+    dpd.decision_type,
+    DATE_TRUNC('quarter', dd.made_public_date),
+    EXTRACT(YEAR FROM dd.made_public_date),
+    EXTRACT(QUARTER FROM dd.made_public_date)
+
+HAVING COUNT(*) > 0  -- Only include aggregations with actual data
+
+ORDER BY 
+    decision_year DESC,
+    quarter_num DESC,
+    ministry_code,
+    committee;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_ministry_decision_impact"/>
+    </rollback>
+</changeSet>
+
+<!-- Create Performance Indexes for Ministry Decision Impact -->
+<changeSet author="intelligence-operative" id="1.35-ministry-decision-impact-index-002" failOnError="false">
+    <comment>
+        Create indexes for performance optimization of ministry decision impact queries
+        
+        Index on document_data.org (ministry_code) and document_type for efficient
+        ministry-specific and government proposal queries.
+    </comment>
+    
+    <sql splitStatements="true">
+        -- Index on org (ministry_code) for ministry-specific filtering
+        CREATE INDEX IF NOT EXISTS idx_doc_data_org
+        ON document_data(org)
+        WHERE org IS NOT NULL;
+        
+        -- Composite index for ministry + document_type (propositions)
+        CREATE INDEX IF NOT EXISTS idx_doc_data_org_type_date
+        ON document_data(org, document_type, made_public_date)
+        WHERE org IS NOT NULL 
+          AND document_type = 'prop' 
+          AND made_public_date IS NOT NULL;
+    </sql>
+    
+    <rollback>
+        <sql splitStatements="true">
+            DROP INDEX IF EXISTS idx_doc_data_org;
+            DROP INDEX IF EXISTS idx_doc_data_org_type_date;
+        </sql>
+    </rollback>
+</changeSet>
+
+<!-- Post-Flight Validation for Ministry Decision Impact -->
+<changeSet id="1.35-ministry-decision-impact-postflight" author="intelligence-operative">
+    <comment>Post-flight: Verify ministry decision impact view creation and validate data</comment>
+    
+    <sql splitStatements="false"><![CDATA[
+        DO $$
+        DECLARE
+            v_view_exists BOOLEAN;
+            v_row_count BIGINT := 0;
+            v_ministry_count INTEGER := 0;
+            v_year_range TEXT;
+        BEGIN
+            -- Check if view exists
+            SELECT EXISTS (
+                SELECT 1 FROM pg_views 
+                WHERE schemaname = 'public' 
+                AND viewname = 'view_ministry_decision_impact'
+            ) INTO v_view_exists;
+            
+            IF NOT v_view_exists THEN
+                RAISE WARNING 'View view_ministry_decision_impact was not created';
+                RETURN;
+            END IF;
+            
+            RAISE NOTICE 'View view_ministry_decision_impact created successfully';
+            
+            -- Try to get row count and data characteristics
+            BEGIN
+                EXECUTE 'SELECT COUNT(*) FROM view_ministry_decision_impact' INTO v_row_count;
+                EXECUTE 'SELECT COUNT(DISTINCT ministry_code) FROM view_ministry_decision_impact' INTO v_ministry_count;
+                EXECUTE 'SELECT MIN(decision_year) || ''-'' || MAX(decision_year) FROM view_ministry_decision_impact' INTO v_year_range;
+                
+                IF v_row_count = 0 THEN
+                    RAISE WARNING 'View is EMPTY - no government proposal data found';
+                    RAISE NOTICE 'This is expected if proposal data has not been loaded yet';
+                ELSE
+                    RAISE NOTICE 'View has DATA: % rows across % ministries, years %', 
+                        v_row_count, v_ministry_count, v_year_range;
+                    RAISE NOTICE 'Ministry proposal success tracking enabled';
+                END IF;
+            EXCEPTION
+                WHEN OTHERS THEN
+                    RAISE WARNING 'Could not query view: %', SQLERRM;
+            END;
+            
+            RAISE NOTICE '========================================';
+            RAISE NOTICE 'Ministry decision impact view ready for intelligence analysis';
+            RAISE NOTICE 'Intelligence Applications:';
+            RAISE NOTICE '  - Government policy effectiveness tracking';
+            RAISE NOTICE '  - Ministry-parliament relations analysis';
+            RAISE NOTICE '  - Coalition stability indicators';
+            RAISE NOTICE '  - Committee-ministry relationship patterns';
+            RAISE NOTICE '========================================';
+        END $$;
+    ]]></sql>
+</changeSet>
+
 <!-- Final Documentation Summary -->
 <changeSet id="1.35-final-summary" author="intelligence-operative">
     <comment>
@@ -829,6 +1052,7 @@ ORDER BY decision_day DESC
         1. view_riksdagen_party_decision_flow - Party-level decision aggregation
         2. view_riksdagen_politician_decision_pattern - Individual politician decision patterns
         3. view_decision_temporal_trends - Temporal trends and predictive analytics
+        4. view_ministry_decision_impact - Ministry proposal success rates and effectiveness
         
         Intelligence Value:
         - Enables party and politician legislative effectiveness tracking
@@ -836,6 +1060,7 @@ ORDER BY decision_day DESC
         - Supports seasonal pattern identification
         - Enables predictive forecasting of legislative activity
         - Facilitates anomaly detection in decision patterns
+        - Tracks government ministry policy effectiveness and coalition stability
         
         See DATABASE_VIEW_INTELLIGENCE_CATALOG.md for complete documentation and usage examples.
     </comment>
@@ -843,9 +1068,9 @@ ORDER BY decision_day DESC
     <sql>
         SELECT 
             'v1.35' AS version,
-            '3 decision flow views created' AS summary,
-            'view_riksdagen_party_decision_flow, view_riksdagen_politician_decision_pattern, view_decision_temporal_trends' AS views,
-            'Temporal analysis, predictive intelligence, seasonal patterns' AS capabilities,
+            '4 decision flow views created' AS summary,
+            'view_riksdagen_party_decision_flow, view_riksdagen_politician_decision_pattern, view_decision_temporal_trends, view_ministry_decision_impact' AS views,
+            'Temporal analysis, predictive intelligence, seasonal patterns, government effectiveness' AS capabilities,
             'See DATABASE_VIEW_INTELLIGENCE_CATALOG.md' AS documentation,
             CURRENT_TIMESTAMP AS completed_at;
     </sql>
