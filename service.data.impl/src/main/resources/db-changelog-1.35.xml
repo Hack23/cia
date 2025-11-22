@@ -471,7 +471,7 @@ INNER JOIN document_person_reference_da_0 dpr
 
 -- Join to person_data for politician identification
 INNER JOIN person_data pd
-    ON pd.id = dpr.person_id
+    ON pd.id = dpr.person_reference_id
 
 -- Filter for valid data
 WHERE dpd.chamber IS NOT NULL
@@ -518,10 +518,10 @@ ORDER BY
     </comment>
     
     <sql splitStatements="true">
-        -- Composite index on person_id for politician-specific queries
+        -- Index on person_reference_id for politician-specific queries
         CREATE INDEX IF NOT EXISTS idx_person_ref_person_id
-        ON document_person_reference_da_0(person_id)
-        WHERE person_id IS NOT NULL;
+        ON document_person_reference_da_0(person_reference_id)
+        WHERE person_reference_id IS NOT NULL;
     </sql>
     
     <rollback>
