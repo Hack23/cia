@@ -611,12 +611,20 @@ ORDER BY
     
     <createView viewName="view_decision_temporal_trends" replaceIfExists="true">
         <![CDATA[
+-- Swedish Decision Pattern Detection:
+-- Approval patterns: BIFALL (approval), GODKÄNT (accepted), BIFALLA (approve verb form)
+-- Rejection patterns: AVSLAG (rejection), AVSLÅ (reject verb form)
+-- Referral patterns: ÅTERFÖRVISNING (referral back), ÅTERFÖRVISA (refer back verb form)
+-- Note: Patterns are consistent with existing decision views (v1.35 party/politician views)
+--       and match DecisionDataFactoryImpl validation rules
+
 WITH daily_decisions AS (
     SELECT 
         dd.made_public_date::DATE AS decision_day,
         COUNT(*) AS daily_decisions,
         
-        -- Approval rate calculation (Swedish: bifall)
+        -- Approval rate calculation
+        -- Swedish decision terms: bifall (approval), godkänt (accepted), bifalla (approve)
         ROUND(
             100.0 * COUNT(*) FILTER (
                 WHERE UPPER(dpd.chamber) LIKE '%BIFALL%'
@@ -628,9 +636,10 @@ WITH daily_decisions AS (
         
         -- Average processing time (days from submission to decision)
         -- Note: Using document dates as proxy for processing time
+        -- Conversion: EXTRACT(EPOCH) returns seconds, divide by 86400 (seconds per day) to get days
         ROUND(
             AVG(
-                EXTRACT(EPOCH FROM (dd.made_public_date - dd.published))::NUMERIC / 86400
+                EXTRACT(EPOCH FROM (dd.made_public_date - dd.published))::NUMERIC / 86400  -- 86400 = seconds per day
             ),
             2
         ) AS daily_avg_processing_days,
@@ -735,12 +744,18 @@ SELECT
     EXTRACT(DOW FROM decision_day) AS decision_day_of_week,
     
     -- Seasonal indicators for Swedish parliamentary calendar
+    -- Based on Riksdag's traditional calendar:
+    -- Summer Recess: July-August (low activity)
+    -- Winter Recess: December-January (holidays, low activity)  
+    -- Spring Session: February-March (budget review)
+    -- Late Spring Session: April-June (legislation before summer)
+    -- Autumn Session: September-November (highest activity, new parliamentary year)
     CASE 
-        WHEN EXTRACT(MONTH FROM decision_day) IN (7, 8) THEN 'Summer Recess'
-        WHEN EXTRACT(MONTH FROM decision_day) IN (12, 1) THEN 'Winter Recess'
-        WHEN EXTRACT(MONTH FROM decision_day) IN (2, 3) THEN 'Spring Session'
-        WHEN EXTRACT(MONTH FROM decision_day) IN (9, 10, 11) THEN 'Autumn Session'
-        WHEN EXTRACT(MONTH FROM decision_day) IN (4, 5, 6) THEN 'Late Spring Session'
+        WHEN EXTRACT(MONTH FROM decision_day) IN (7, 8) THEN 'Summer Recess'       -- July, August
+        WHEN EXTRACT(MONTH FROM decision_day) IN (12, 1) THEN 'Winter Recess'      -- December, January
+        WHEN EXTRACT(MONTH FROM decision_day) IN (2, 3) THEN 'Spring Session'      -- February, March
+        WHEN EXTRACT(MONTH FROM decision_day) IN (9, 10, 11) THEN 'Autumn Session' -- September, October, November
+        WHEN EXTRACT(MONTH FROM decision_day) IN (4, 5, 6) THEN 'Late Spring Session' -- April, May, June
         ELSE 'Active Session'
     END AS parliamentary_period,
     
