@@ -1960,7 +1960,7 @@ Tracks ministry-initiated proposal outcomes from DOCUMENT_PROPOSAL_DATA, enablin
 - **approval_rate**: Percentage of proposals approved (%)
 - **rejection_rate**: Percentage of proposals rejected (%)
 - **committees_involved**: Number of distinct committees handling ministry proposals
-- **avg_processing_days**: Average days between proposals (processing time estimate)
+- **avg_processing_days**: Average days between consecutive proposals (throughput estimate, not actual processing time)
 - **earliest_proposal_date**: Start of period
 - **latest_proposal_date**: End of period
 

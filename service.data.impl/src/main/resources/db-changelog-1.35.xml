@@ -896,8 +896,8 @@ SELECT
     -- Committees involved (distinct count per ministry/quarter)
     COUNT(DISTINCT dpd.committee) AS committees_involved,
     
-    -- Average processing days (if available in future enhancements)
-    -- For now, calculate average days between made_public_date
+    -- Average days between consecutive proposals (processing throughput estimate)
+    -- Note: This calculates gaps between proposal submissions, not actual processing duration
     AVG(
         EXTRACT(EPOCH FROM (dd.made_public_date - LAG(dd.made_public_date) OVER (
             PARTITION BY dd.org, dpd.committee 
