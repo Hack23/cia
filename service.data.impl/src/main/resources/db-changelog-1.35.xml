@@ -634,16 +634,6 @@ WITH daily_decisions AS (
             2
         ) AS daily_approval_rate,
         
-        -- Average processing time (days from submission to decision)
-        -- Note: Using document dates as proxy for processing time
-        -- Conversion: EXTRACT(EPOCH) returns seconds, divide by 86400 (seconds per day) to get days
-        ROUND(
-            AVG(
-                EXTRACT(EPOCH FROM (dd.made_public_date - dd.published))::NUMERIC / 86400  -- 86400 = seconds per day
-            ),
-            2
-        ) AS daily_avg_processing_days,
-        
         -- Decision type breakdown
         COUNT(*) FILTER (
             WHERE UPPER(dpd.chamber) LIKE '%BIFALL%'
@@ -687,7 +677,6 @@ SELECT
     decision_day,
     daily_decisions,
     daily_approval_rate,
-    daily_avg_processing_days,
     approved_decisions,
     rejected_decisions,
     referred_back_decisions,

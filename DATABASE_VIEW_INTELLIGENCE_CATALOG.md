@@ -4075,7 +4075,6 @@ Temporal trends view for decision flow analysis from DOCUMENT_PROPOSAL_DATA, ena
 | `decision_day` | DATE | Date of decision(s) | '2024-11-15' |
 | `daily_decisions` | BIGINT | Total decisions on this day | 42 |
 | `daily_approval_rate` | NUMERIC(5,2) | Percentage of approved decisions (bifall) | 67.50 |
-| `daily_avg_processing_days` | NUMERIC(10,2) | Average days from submission to decision | 45.23 |
 | `approved_decisions` | BIGINT | Count of approved decisions (bifall) | 28 |
 | `rejected_decisions` | BIGINT | Count of rejected decisions (avslag) | 8 |
 | `referred_back_decisions` | BIGINT | Count of decisions referred back (återförvisning) | 6 |
