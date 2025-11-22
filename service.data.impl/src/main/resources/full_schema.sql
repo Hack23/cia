@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict RXYkf2R3nuMImcN33LOjJDmcaBlODudDkYzMhfav636kz4lJpp3qC4FqfP5vmMO
+\restrict oIHoKiKd4hbryltlUgAyg3tfZ68ZoOv5hD0Q8okHNvihfavCv32LVEol7KAJsWd
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -6327,6 +6327,36 @@ CREATE VIEW public.view_document_data_committee_report_url AS
 
 
 --
+-- Name: view_ministry_decision_impact; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_ministry_decision_impact AS
+ SELECT dd.org AS ministry_code,
+    dpd.committee,
+    dpd.decision_type,
+    date_trunc('quarter'::text, (dd.made_public_date)::timestamp with time zone) AS decision_quarter,
+    EXTRACT(year FROM dd.made_public_date) AS decision_year,
+    EXTRACT(quarter FROM dd.made_public_date) AS quarter_num,
+    count(*) AS total_proposals,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))) AS approved_proposals,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))) AS rejected_proposals,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISNING%'::text) OR (upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISA%'::text))) AS referred_back_proposals,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) !~~ '%BIFALL%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLAG%'::text) AND (upper((dpd.chamber)::text) !~~ '%GODKÄNT%'::text) AND (upper((dpd.chamber)::text) !~~ '%BIFALLA%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLÅ%'::text) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISNING%'::text) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISA%'::text))) AS other_decisions,
+    round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS approval_rate,
+    round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS rejection_rate,
+    min(dd.made_public_date) AS earliest_proposal_date,
+    max(dd.made_public_date) AS latest_proposal_date
+   FROM (((public.document_data dd
+     JOIN public.document_status_container dsc ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
+     JOIN public.document_proposal_container dpc ON ((dpc.hjid = dsc.document_proposal_document_s_0)))
+     JOIN public.document_proposal_data dpd ON ((dpd.hjid = dpc.proposal_document_proposal_c_0)))
+  WHERE (((dd.document_type)::text = 'prop'::text) AND (dd.org IS NOT NULL) AND (dpd.committee IS NOT NULL) AND (dpd.chamber IS NOT NULL) AND (dd.made_public_date IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29))
+  GROUP BY dd.org, dpd.committee, dpd.decision_type, (date_trunc('quarter'::text, (dd.made_public_date)::timestamp with time zone)), (EXTRACT(year FROM dd.made_public_date)), (EXTRACT(quarter FROM dd.made_public_date))
+ HAVING (count(*) > 0)
+  ORDER BY (EXTRACT(year FROM dd.made_public_date)) DESC, (EXTRACT(quarter FROM dd.made_public_date)) DESC, dd.org, dpd.committee;
+
+
+--
 -- Name: view_ministry_effectiveness_trends; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -11726,6 +11756,20 @@ CREATE INDEX idx_doc_data_made_public_date ON public.document_data USING btree (
 
 
 --
+-- Name: idx_doc_data_org; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_doc_data_org ON public.document_data USING btree (org) WHERE (org IS NOT NULL);
+
+
+--
+-- Name: idx_doc_data_org_type_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_doc_data_org_type_date ON public.document_data USING btree (org, document_type, made_public_date) WHERE ((org IS NOT NULL) AND ((document_type)::text = 'prop'::text) AND (made_public_date IS NOT NULL));
+
+
+--
 -- Name: idx_doc_proposal_committee; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12671,13 +12715,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict RXYkf2R3nuMImcN33LOjJDmcaBlODudDkYzMhfav636kz4lJpp3qC4FqfP5vmMO
+\unrestrict oIHoKiKd4hbryltlUgAyg3tfZ68ZoOv5hD0Q8okHNvihfavCv32LVEol7KAJsWd
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict 4Fb5aLp06dFVC9TsXKcLzkFHajTNx0qIjhSkr8H0jhZwtgh7L8DJwZRYZXkKa07
+\restrict zYZgTOOIhP0ZkYFuXZLfumzKHtEgXtkx0IkEG6tEQQGZRserXsJtDmcM81pgwvp
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -13108,5 +13152,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 4Fb5aLp06dFVC9TsXKcLzkFHajTNx0qIjhSkr8H0jhZwtgh7L8DJwZRYZXkKa07
+\unrestrict zYZgTOOIhP0ZkYFuXZLfumzKHtEgXtkx0IkEG6tEQQGZRserXsJtDmcM81pgwvp
 
