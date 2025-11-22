@@ -385,7 +385,6 @@ SELECT
     pd.last_name,
     dpr.party_short_code AS party,
     dpd.committee,
-    dpd.decision_type,
     dd.org AS committee_org,
     DATE_TRUNC('month', dd.made_public_date) AS decision_month,
     EXTRACT(YEAR FROM dd.made_public_date) AS decision_year,
@@ -443,9 +442,6 @@ SELECT
         2
     ) AS rejection_rate,
     
-    -- Decision type variety
-    STRING_AGG(DISTINCT dpd.decision_type, ', ' ORDER BY dpd.decision_type) AS decision_types,
-    
     -- Latest and earliest dates for the aggregation
     MIN(dd.made_public_date) AS earliest_decision_date,
     MAX(dd.made_public_date) AS latest_decision_date
@@ -491,7 +487,6 @@ GROUP BY
     pd.last_name,
     dpr.party_short_code,
     dpd.committee,
-    dpd.decision_type,
     dd.org,
     DATE_TRUNC('month', dd.made_public_date),
     EXTRACT(YEAR FROM dd.made_public_date),
@@ -518,7 +513,7 @@ ORDER BY
     <comment>
         Create indexes for performance optimization of politician decision pattern queries
         
-        Index on person_id + date for efficient temporal queries by politician.
+        Index on person_id for efficient politician-specific queries.
         These complement the existing base table indexes created in changeSet 002.
     </comment>
     

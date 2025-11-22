@@ -1287,7 +1287,6 @@ Tracks individual politician decision patterns from DOCUMENT_PROPOSAL_DATA, enab
 | `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
 | `party` | VARCHAR(50) | Party affiliation at decision time | 'S' |
 | `committee` | VARCHAR(255) | Committee handling decision | 'UU' (Foreign Affairs) |
-| `decision_type` | VARCHAR(255) | Type of decision | 'Proposition', 'Motion' |
 | `committee_org` | VARCHAR(20) | Committee organization code | 'uu' |
 | `decision_month` | DATE | Month of aggregation (first day) | '2024-10-01' |
 | `decision_year` | INTEGER | Year of decision | 2024 |
@@ -1299,9 +1298,10 @@ Tracks individual politician decision patterns from DOCUMENT_PROPOSAL_DATA, enab
 | `other_decisions` | BIGINT | Other decision outcomes | 2 |
 | `approval_rate` | NUMERIC(5,2) | Percentage approved | 71.11 |
 | `rejection_rate` | NUMERIC(5,2) | Percentage rejected | 17.78 |
-| `decision_types` | TEXT | Comma-separated decision types | 'Motion, Proposition' |
 | `earliest_decision_date` | DATE | First decision in period | '2024-10-01' |
 | `latest_decision_date` | DATE | Last decision in period | '2024-10-31' |
+
+> **Note:** This view aggregates all decision types together. It focuses on politician-committee-month granularity for tracking decision effectiveness.
 
 #### Example Queries
 
