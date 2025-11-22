@@ -1299,7 +1299,6 @@ Tracks individual politician decision patterns from DOCUMENT_PROPOSAL_DATA, enab
 | `other_decisions` | BIGINT | Other decision outcomes | 2 |
 | `approval_rate` | NUMERIC(5,2) | Percentage approved | 71.11 |
 | `rejection_rate` | NUMERIC(5,2) | Percentage rejected | 17.78 |
-| `committees_active` | INTEGER | Number of committees active in | 3 |
 | `decision_types` | TEXT | Comma-separated decision types | 'Motion, Proposition' |
 | `earliest_decision_date` | DATE | First decision in period | '2024-10-01' |
 | `latest_decision_date` | DATE | Last decision in period | '2024-10-31' |

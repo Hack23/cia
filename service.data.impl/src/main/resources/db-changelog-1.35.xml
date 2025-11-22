@@ -443,9 +443,6 @@ SELECT
         2
     ) AS rejection_rate,
     
-    -- Committee activity metrics
-    COUNT(DISTINCT dpd.committee) OVER (PARTITION BY pd.person_id) AS committees_active,
-    
     -- Decision type variety
     STRING_AGG(DISTINCT dpd.decision_type, ', ' ORDER BY dpd.decision_type) AS decision_types,
     
@@ -468,6 +465,8 @@ INNER JOIN document_data dd
     ON dd.id = dsc.document_document_status_con_0
 
 -- Join to person reference container and data for person information
+-- Note: Using INNER JOIN (not LEFT JOIN like party view) because this view
+-- specifically tracks individual politician decisions, so we require person attribution
 INNER JOIN document_person_reference_co_0 dprc
     ON dprc.hjid = dsc.document_person_reference_co_1
 
