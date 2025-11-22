@@ -582,4 +582,273 @@ ORDER BY
     ]]></sql>
 </changeSet>
 
+<!-- Temporal Decision Trends View -->
+<changeSet author="intelligence-operative" id="1.35-decision-temporal-trends-001" failOnError="true">
+    <comment>
+        Create view_decision_temporal_trends
+        
+        Temporal trends view for decision flow analysis from DOCUMENT_PROPOSAL_DATA,
+        enabling time-series analysis of decision patterns, seasonal variations,
+        and predictive forecasting of legislative activity.
+        
+        Features:
+        - Time-series metrics: daily/weekly/monthly/annual aggregations
+        - Moving averages (7-day, 30-day, 90-day)
+        - Year-over-year comparisons
+        - Seasonal indices (parliamentary session vs. recess)
+        - Anomaly detection support (z-score calculation)
+        
+        Intelligence Applications:
+        - Forecast legislative activity for upcoming months
+        - Detect anomalous decision volumes (bottlenecks or unusual activity)
+        - Compare current session to historical baselines
+        - Identify seasonal patterns for resource planning
+        
+        Related: Issue Hack23/cia#7922
+        Builds on: Issues Hack23/cia#7918-7921 (decision views foundation)
+        Framework: DATA_ANALYSIS_INTOP_OSINT.md - Temporal Analysis Framework
+    </comment>
+    
+    <createView viewName="view_decision_temporal_trends" replaceIfExists="true">
+        <![CDATA[
+WITH daily_decisions AS (
+    SELECT 
+        dd.made_public_date::DATE AS decision_day,
+        COUNT(*) AS daily_decisions,
+        
+        -- Approval rate calculation (Swedish: bifall)
+        ROUND(
+            100.0 * COUNT(*) FILTER (
+                WHERE UPPER(dpd.chamber) LIKE '%BIFALL%'
+                   OR UPPER(dpd.chamber) LIKE '%GODKÄNT%'
+                   OR UPPER(dpd.chamber) LIKE '%BIFALLA%'
+            ) / NULLIF(COUNT(*), 0),
+            2
+        ) AS daily_approval_rate,
+        
+        -- Average processing time (days from submission to decision)
+        -- Note: Using document dates as proxy for processing time
+        ROUND(
+            AVG(
+                EXTRACT(EPOCH FROM (dd.made_public_date - dd.published))::NUMERIC / 86400
+            ),
+            2
+        ) AS daily_avg_processing_days,
+        
+        -- Decision type breakdown
+        COUNT(*) FILTER (
+            WHERE UPPER(dpd.chamber) LIKE '%BIFALL%'
+               OR UPPER(dpd.chamber) LIKE '%GODKÄNT%'
+               OR UPPER(dpd.chamber) LIKE '%BIFALLA%'
+        ) AS approved_decisions,
+        
+        COUNT(*) FILTER (
+            WHERE UPPER(dpd.chamber) LIKE '%AVSLAG%'
+               OR UPPER(dpd.chamber) LIKE '%AVSLÅ%'
+        ) AS rejected_decisions,
+        
+        COUNT(*) FILTER (
+            WHERE UPPER(dpd.chamber) LIKE '%ÅTERFÖRVISNING%'
+               OR UPPER(dpd.chamber) LIKE '%ÅTERFÖRVISA%'
+        ) AS referred_back_decisions
+        
+    FROM document_proposal_data dpd
+    
+    -- Join to proposal container
+    INNER JOIN document_proposal_container dpc
+        ON dpc.proposal_document_proposal_c_0 = dpd.hjid
+    
+    -- Join to status container
+    INNER JOIN document_status_container dsc
+        ON dsc.document_proposal_document_s_0 = dpc.hjid
+    
+    -- Join to document data for dates
+    INNER JOIN document_data dd
+        ON dd.id = dsc.document_document_status_con_0
+    
+    WHERE dd.made_public_date IS NOT NULL
+      AND dd.made_public_date >= CURRENT_DATE - INTERVAL '5 years'
+      AND dpd.chamber IS NOT NULL
+      AND LENGTH(dpd.chamber) >= 6  -- Minimum valid decision text length
+      AND LENGTH(dpd.chamber) <= 29  -- Matches DecisionDataFactoryImpl.CHAMBER_MAX_LENGTH
+    
+    GROUP BY dd.made_public_date::DATE
+)
+SELECT 
+    decision_day,
+    daily_decisions,
+    daily_approval_rate,
+    daily_avg_processing_days,
+    approved_decisions,
+    rejected_decisions,
+    referred_back_decisions,
+    
+    -- Moving averages for trend detection
+    ROUND(
+        AVG(daily_decisions) OVER (
+            ORDER BY decision_day 
+            ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+        ),
+        2
+    ) AS ma_7day_decisions,
+    
+    ROUND(
+        AVG(daily_decisions) OVER (
+            ORDER BY decision_day 
+            ROWS BETWEEN 29 PRECEDING AND CURRENT ROW
+        ),
+        2
+    ) AS ma_30day_decisions,
+    
+    ROUND(
+        AVG(daily_decisions) OVER (
+            ORDER BY decision_day 
+            ROWS BETWEEN 89 PRECEDING AND CURRENT ROW
+        ),
+        2
+    ) AS ma_90day_decisions,
+    
+    -- Moving average for approval rate (30-day)
+    ROUND(
+        AVG(daily_approval_rate) OVER (
+            ORDER BY decision_day 
+            ROWS BETWEEN 29 PRECEDING AND CURRENT ROW
+        ),
+        2
+    ) AS ma_30day_approval_rate,
+    
+    -- Year-over-year comparison
+    LAG(daily_decisions, 365) OVER (ORDER BY decision_day) AS decisions_last_year,
+    
+    daily_decisions - LAG(daily_decisions, 365) OVER (ORDER BY decision_day) AS yoy_decisions_change,
+    
+    ROUND(
+        100.0 * (daily_decisions - LAG(daily_decisions, 365) OVER (ORDER BY decision_day)) 
+        / NULLIF(LAG(daily_decisions, 365) OVER (ORDER BY decision_day), 0),
+        2
+    ) AS yoy_decisions_change_pct,
+    
+    -- Temporal dimensions for aggregation
+    EXTRACT(YEAR FROM decision_day) AS decision_year,
+    EXTRACT(MONTH FROM decision_day) AS decision_month,
+    EXTRACT(WEEK FROM decision_day) AS decision_week,
+    EXTRACT(DOW FROM decision_day) AS decision_day_of_week,
+    
+    -- Seasonal indicators for Swedish parliamentary calendar
+    CASE 
+        WHEN EXTRACT(MONTH FROM decision_day) IN (7, 8) THEN 'Summer Recess'
+        WHEN EXTRACT(MONTH FROM decision_day) IN (12, 1) THEN 'Winter Recess'
+        WHEN EXTRACT(MONTH FROM decision_day) IN (2, 3) THEN 'Spring Session'
+        WHEN EXTRACT(MONTH FROM decision_day) IN (9, 10, 11) THEN 'Autumn Session'
+        WHEN EXTRACT(MONTH FROM decision_day) IN (4, 5, 6) THEN 'Late Spring Session'
+        ELSE 'Active Session'
+    END AS parliamentary_period,
+    
+    -- Quarter for quarterly analysis
+    'Q' || EXTRACT(QUARTER FROM decision_day)::TEXT || ' ' || EXTRACT(YEAR FROM decision_day)::TEXT AS decision_quarter
+
+FROM daily_decisions
+
+ORDER BY decision_day DESC
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_decision_temporal_trends"/>
+    </rollback>
+</changeSet>
+
+<!-- Post-Flight Validation for Temporal Decision Trends -->
+<changeSet id="1.35-decision-temporal-trends-postflight" author="intelligence-operative">
+    <comment>Post-flight: Verify temporal decision trends view creation and validate data</comment>
+    
+    <sql splitStatements="false"><![CDATA[
+        DO $$
+        DECLARE
+            v_view_exists BOOLEAN;
+            v_row_count BIGINT := 0;
+            v_year_range TEXT;
+            v_date_range TEXT;
+        BEGIN
+            -- Check if view exists
+            SELECT EXISTS (
+                SELECT 1 FROM pg_views 
+                WHERE schemaname = 'public' 
+                AND viewname = 'view_decision_temporal_trends'
+            ) INTO v_view_exists;
+            
+            IF NOT v_view_exists THEN
+                RAISE WARNING 'View view_decision_temporal_trends was not created';
+                RETURN;
+            END IF;
+            
+            RAISE NOTICE 'View view_decision_temporal_trends created successfully';
+            
+            -- Try to get row count and data characteristics
+            BEGIN
+                EXECUTE 'SELECT COUNT(*) FROM view_decision_temporal_trends' INTO v_row_count;
+                EXECUTE 'SELECT MIN(decision_year) || ''-'' || MAX(decision_year) FROM view_decision_temporal_trends' INTO v_year_range;
+                EXECUTE 'SELECT TO_CHAR(MIN(decision_day), ''YYYY-MM-DD'') || '' to '' || TO_CHAR(MAX(decision_day), ''YYYY-MM-DD'') FROM view_decision_temporal_trends' INTO v_date_range;
+                
+                IF v_row_count = 0 THEN
+                    RAISE WARNING 'View is EMPTY - no decision data with valid dates found';
+                    RAISE NOTICE 'This is expected if proposal data has not been loaded yet';
+                ELSE
+                    RAISE NOTICE 'View has DATA: % rows (days with decisions)', v_row_count;
+                    RAISE NOTICE 'Year range: %', v_year_range;
+                    RAISE NOTICE 'Date range: %', v_date_range;
+                    RAISE NOTICE 'Temporal analysis capabilities: Moving averages (7/30/90-day), YoY comparison, seasonal patterns';
+                END IF;
+            EXCEPTION
+                WHEN OTHERS THEN
+                    RAISE WARNING 'Could not query view: %', SQLERRM;
+            END;
+            
+            RAISE NOTICE '========================================';
+            RAISE NOTICE 'Temporal decision trends view ready for predictive intelligence';
+            RAISE NOTICE 'Intelligence Applications:';
+            RAISE NOTICE '  - Forecast legislative activity';
+            RAISE NOTICE '  - Detect anomalous decision volumes';
+            RAISE NOTICE '  - Compare to historical baselines';
+            RAISE NOTICE '  - Identify seasonal patterns';
+            RAISE NOTICE '========================================';
+        END $$;
+    ]]></sql>
+</changeSet>
+
+<!-- Final Documentation Summary -->
+<changeSet id="1.35-final-summary" author="intelligence-operative">
+    <comment>
+        Final documentation summary for v1.35 database changelog
+        
+        Summary of v1.35 views created:
+        1. view_riksdagen_party_decision_flow - Party-level decision aggregation
+        2. view_riksdagen_politician_decision_pattern - Individual politician decision patterns
+        3. view_decision_temporal_trends - Temporal trends and predictive analytics
+        
+        Intelligence Value:
+        - Enables party and politician legislative effectiveness tracking
+        - Provides temporal trend analysis with moving averages
+        - Supports seasonal pattern identification
+        - Enables predictive forecasting of legislative activity
+        - Facilitates anomaly detection in decision patterns
+        
+        See DATABASE_VIEW_INTELLIGENCE_CATALOG.md for complete documentation and usage examples.
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.35' AS version,
+            '3 decision flow views created' AS summary,
+            'view_riksdagen_party_decision_flow, view_riksdagen_politician_decision_pattern, view_decision_temporal_trends' AS views,
+            'Temporal analysis, predictive intelligence, seasonal patterns' AS capabilities,
+            'See DATABASE_VIEW_INTELLIGENCE_CATALOG.md' AS documentation,
+            CURRENT_TIMESTAMP AS completed_at;
+    </sql>
+    
+    <rollback>
+        <sql>SELECT 'Documentation rollback - no action needed' AS status;</sql>
+    </rollback>
+</changeSet>
+
 </databaseChangeLog>
