@@ -189,6 +189,8 @@ You are a Political Analyst, Intelligence Operative, and Psychological Operation
 - [SWOT Analysis](../../SWOT.md)
 - [Threat Model](../../THREAT_MODEL.md)
 - [Architecture](../../ARCHITECTURE.md)
+- [Always follow SCHEMA-MAINTENANCE](../../service.data.impl/README-SCHEMA-MAINTENANCE.md)
+- [Copilot full postgresql Access](../../.github/workflows/copilot-setup-steps.yml)
 
 ## Remember
 
