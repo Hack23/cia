@@ -52,22 +52,24 @@
     <sql splitStatements="false"><![CDATA[
         DO $$
         DECLARE
-            v_proposal_count BIGINT;
-            v_document_count BIGINT;
-            v_person_ref_count BIGINT;
+            v_has_proposals BOOLEAN;
+            v_has_documents BOOLEAN;
+            v_has_person_refs BOOLEAN;
         BEGIN
-            SELECT COUNT(*) INTO v_proposal_count FROM document_proposal_data;
-            SELECT COUNT(*) INTO v_document_count FROM document_data;
-            SELECT COUNT(*) INTO v_person_ref_count FROM document_person_reference_da_0;
+            -- Use EXISTS for efficient data presence checks instead of full counts
+            SELECT EXISTS(SELECT 1 FROM document_proposal_data LIMIT 1) INTO v_has_proposals;
+            SELECT EXISTS(SELECT 1 FROM document_data LIMIT 1) INTO v_has_documents;
+            SELECT EXISTS(SELECT 1 FROM document_person_reference_da_0 LIMIT 1) INTO v_has_person_refs;
             
-            RAISE NOTICE 'Pre-flight v1.35: document_proposal_data=%, document_data=%, document_person_reference_da_0=%', 
-                v_proposal_count, v_document_count, v_person_ref_count;
-                
-            IF v_proposal_count = 0 THEN
+            IF v_has_proposals THEN
+                RAISE NOTICE 'Pre-flight v1.35: document_proposal_data has data';
+            ELSE
                 RAISE WARNING 'No proposal data found - view will be empty until data is loaded';
             END IF;
             
-            IF v_person_ref_count = 0 THEN
+            IF v_has_person_refs THEN
+                RAISE NOTICE 'Pre-flight v1.35: document_person_reference_da_0 has data';
+            ELSE
                 RAISE WARNING 'No person reference data - party attribution will be limited';
             END IF;
         END $$;
@@ -218,39 +220,49 @@ ORDER BY
     </rollback>
 </changeSet>
 
-<!-- Create Performance Index -->
+<!-- Create Performance Indexes on Base Tables -->
 <changeSet author="intelligence-operative" id="1.35-party-decision-flow-index-002" failOnError="false">
     <comment>
-        Create index for performance optimization on party decision flow view
+        Create indexes on base tables for performance optimization of party decision flow queries
         
-        Indexes on frequently filtered columns:
-        - party (for party-specific queries)
-        - decision_year (for temporal analysis)
-        - decision_month (for time-series analysis)
-        - committee (for committee-specific analysis)
+        Indexes on frequently joined and filtered columns:
+        - document_proposal_data.committee (for committee-specific queries)
+        - document_data.made_public_date (for temporal queries)
+        - document_person_reference_da_0.party_short_code (for party filtering)
+        
+        Note: These indexes support the view queries but are also beneficial for other queries.
+        Functional indexes on views with complex subqueries are not supported in PostgreSQL.
     </comment>
     
-    <sql>
-        CREATE INDEX IF NOT EXISTS idx_party_decision_flow_party_year
-        ON document_proposal_data (
-            (SELECT party_short_code 
-             FROM document_person_reference_da_0 dpr
-             INNER JOIN document_person_reference_co_0 dprc ON dpr.document_person_reference_li_1 = dprc.hjid
-             INNER JOIN document_status_container dsc ON dprc.hjid = dsc.document_person_reference_co_1
-             INNER JOIN document_proposal_container dpc ON dsc.document_proposal_document_s_0 = dpc.hjid
-             WHERE dpc.proposal_document_proposal_c_0 = document_proposal_data.hjid
-             LIMIT 1)
-        );
+    <sql splitStatements="true">
+        -- Index on committee for committee-specific filtering
+        CREATE INDEX IF NOT EXISTS idx_doc_proposal_committee 
+        ON document_proposal_data(committee) 
+        WHERE committee IS NOT NULL;
+        
+        -- Index on decision_type for decision type filtering  
+        CREATE INDEX IF NOT EXISTS idx_doc_proposal_decision_type
+        ON document_proposal_data(decision_type)
+        WHERE decision_type IS NOT NULL;
+        
+        -- Index on made_public_date for temporal queries
+        CREATE INDEX IF NOT EXISTS idx_doc_data_made_public_date
+        ON document_data(made_public_date)
+        WHERE made_public_date IS NOT NULL;
+        
+        -- Index on party_short_code for party-specific queries
+        CREATE INDEX IF NOT EXISTS idx_person_ref_party
+        ON document_person_reference_da_0(party_short_code)
+        WHERE party_short_code IS NOT NULL;
     </sql>
     
-    <comment>
-        Note: Direct indexing on view columns not possible for regular views.
-        Index created on base table to support view queries.
-        For better performance with large datasets, consider materializing the view.
-    </comment>
-    
     <rollback>
-        <sql>DROP INDEX IF EXISTS idx_party_decision_flow_party_year;</sql>
+        <sql splitStatements="true">
+            DROP INDEX IF EXISTS idx_doc_proposal_committee;
+            DROP INDEX IF EXISTS idx_doc_proposal_decision_type;
+            DROP INDEX IF EXISTS idx_doc_data_made_public_date;
+            DROP INDEX IF EXISTS idx_person_ref_party;
+        </sql>
     </rollback>
 </changeSet>
 
