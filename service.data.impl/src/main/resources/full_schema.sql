@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict XaplsNxpa5FdRlFGHxBB7yKMKpECdKa5xTyBAK7N4EdHBm3otEMoonD3iuLvTKd
+\restrict W4qr8YY5Y2Un7VPj8drEPMZe1pzum7m2TpQEIhoITZnqEK3kBuZc26U3KrlI24y
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -7444,7 +7444,7 @@ CREATE VIEW public.view_politician_risk_summary AS
            FROM ((public.person_data p
              LEFT JOIN public.rule_violation rv ON ((((rv.reference_id)::text = (p.id)::text) AND ((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = 'ACTIVE'::text))))
              LEFT JOIN politician_votes pv ON (((pv.person_id)::text = (p.id)::text)))
-          WHERE ((p.status)::text = ANY ((ARRAY['active'::character varying, 'Active'::character varying, 'ACTIVE'::character varying])::text[]))
+          WHERE ((p.status)::text = ANY (ARRAY[('active'::character varying)::text, ('Active'::character varying)::text, ('ACTIVE'::character varying)::text]))
           GROUP BY p.id, p.first_name, p.last_name, p.party, p.status, pv.absence_rate, pv.total_votes
         )
  SELECT person_id,
@@ -7756,7 +7756,7 @@ CREATE VIEW public.view_riksdagen_committee_parliament_member_proposal AS
     document_data.title
    FROM (public.view_riksdagen_committee
      LEFT JOIN public.document_data ON (((view_riksdagen_committee.embedded_id_org_code)::text = (document_data.org)::text)))
-  WHERE (((document_data.document_type)::text = ANY ((ARRAY['mot'::character varying, 'MOT'::character varying, 'Motion'::character varying])::text[])) OR (upper((document_data.document_type)::text) = 'MOT'::text));
+  WHERE (((document_data.document_type)::text = ANY (ARRAY[('mot'::character varying)::text, ('MOT'::character varying)::text, ('Motion'::character varying)::text])) OR (upper((document_data.document_type)::text) = 'MOT'::text));
 
 
 --
@@ -8091,7 +8091,7 @@ CREATE VIEW public.view_riksdagen_goverment_proposals AS
     number_value,
     document_status_url_xml
    FROM public.document_data
-  WHERE (((document_type)::text = ANY ((ARRAY['prop'::character varying, 'PROP'::character varying, 'Proposition'::character varying])::text[])) OR (upper((document_type)::text) = 'PROP'::text));
+  WHERE (((document_type)::text = ANY (ARRAY[('prop'::character varying)::text, ('PROP'::character varying)::text, ('Proposition'::character varying)::text])) OR (upper((document_type)::text) = 'PROP'::text));
 
 
 --
@@ -8610,7 +8610,7 @@ CREATE VIEW public.view_riksdagen_member_proposals AS
     title,
     dokument_document_container__0
    FROM public.document_element
-  WHERE (((document_type)::text = ANY ((ARRAY['mot'::character varying, 'MOT'::character varying, 'Motion'::character varying])::text[])) OR (upper((document_type)::text) = 'MOT'::text));
+  WHERE (((document_type)::text = ANY (ARRAY[('mot'::character varying)::text, ('MOT'::character varying)::text, ('Motion'::character varying)::text])) OR (upper((document_type)::text) = 'MOT'::text));
 
 
 --
@@ -8886,6 +8886,39 @@ CREATE VIEW public.view_riksdagen_party_coalation_against_annual_summary AS
   WHERE (((decision_type)::text = 'röstning'::text) AND (against_proposal_parties IS NOT NULL) AND ((against_proposal_parties)::text <> ''::text) AND (char_length((against_proposal_parties)::text) > 10))
   GROUP BY (quote_literal(upper(replace(replace((against_proposal_parties)::text, ' '::text, ''::text), '"'::text, ''::text)))), rm
   ORDER BY rm;
+
+
+--
+-- Name: view_riksdagen_party_decision_flow; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_decision_flow AS
+ SELECT dpr.party_short_code AS party,
+    dpd.committee,
+    dpd.decision_type,
+    dd.org AS committee_org,
+    date_trunc('month'::text, (dd.made_public_date)::timestamp with time zone) AS decision_month,
+    EXTRACT(year FROM dd.made_public_date) AS decision_year,
+    EXTRACT(month FROM dd.made_public_date) AS decision_month_num,
+    count(*) AS total_proposals,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))) AS approved_proposals,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))) AS rejected_proposals,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISNING%'::text) OR (upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISA%'::text))) AS referred_back_proposals,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) !~~ '%BIFALL%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLAG%'::text) AND (upper((dpd.chamber)::text) !~~ '%GODKÄNT%'::text) AND (upper((dpd.chamber)::text) !~~ '%BIFALLA%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLÅ%'::text) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISNING%'::text) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISA%'::text))) AS other_decisions,
+    round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS approval_rate,
+    round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS rejection_rate,
+    min(dd.made_public_date) AS earliest_decision_date,
+    max(dd.made_public_date) AS latest_decision_date
+   FROM (((((public.document_proposal_data dpd
+     JOIN public.document_proposal_container dpc ON ((dpc.proposal_document_proposal_c_0 = dpd.hjid)))
+     JOIN public.document_status_container dsc ON ((dsc.document_proposal_document_s_0 = dpc.hjid)))
+     JOIN public.document_data dd ON (((dd.id)::text = (dsc.document_document_status_con_0)::text)))
+     LEFT JOIN public.document_person_reference_co_0 dprc ON ((dprc.hjid = dsc.document_person_reference_co_1)))
+     LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
+  WHERE ((dpd.chamber IS NOT NULL) AND (dpd.committee IS NOT NULL) AND (dd.made_public_date IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29))
+  GROUP BY dpr.party_short_code, dpd.committee, dpd.decision_type, dd.org, (date_trunc('month'::text, (dd.made_public_date)::timestamp with time zone)), (EXTRACT(year FROM dd.made_public_date)), (EXTRACT(month FROM dd.made_public_date))
+ HAVING (count(*) > 0)
+  ORDER BY (EXTRACT(year FROM dd.made_public_date)) DESC, (EXTRACT(month FROM dd.made_public_date)) DESC, dpr.party_short_code, dpd.committee;
 
 
 --
@@ -11601,6 +11634,27 @@ CREATE INDEX idx_decision_type_org_composite ON public.view_riksdagen_committee_
 
 
 --
+-- Name: idx_doc_data_made_public_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_doc_data_made_public_date ON public.document_data USING btree (made_public_date) WHERE (made_public_date IS NOT NULL);
+
+
+--
+-- Name: idx_doc_proposal_committee; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_doc_proposal_committee ON public.document_proposal_data USING btree (committee) WHERE (committee IS NOT NULL);
+
+
+--
+-- Name: idx_doc_proposal_decision_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_doc_proposal_decision_type ON public.document_proposal_data USING btree (decision_type) WHERE (decision_type IS NOT NULL);
+
+
+--
 -- Name: idx_document_data_ministry_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11668,6 +11722,13 @@ CREATE INDEX idx_party_summary_party ON public.view_riksdagen_vote_data_ballot_p
 --
 
 CREATE INDEX idx_party_summary_party_won ON public.view_riksdagen_vote_data_ballot_party_summary USING btree (party_won);
+
+
+--
+-- Name: idx_person_ref_party; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_person_ref_party ON public.document_person_reference_da_0 USING btree (party_short_code) WHERE (party_short_code IS NOT NULL);
 
 
 --
@@ -12518,13 +12579,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict XaplsNxpa5FdRlFGHxBB7yKMKpECdKa5xTyBAK7N4EdHBm3otEMoonD3iuLvTKd
+\unrestrict W4qr8YY5Y2Un7VPj8drEPMZe1pzum7m2TpQEIhoITZnqEK3kBuZc26U3KrlI24y
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict uXHAhRGMidzrDr9BKN9FbMC6kMctMooSvJ3R3BQbUhVOKeMed6eRcIl53COU6e5
+\restrict 8QoS4CHz6ysxcedXYXyySkirCmX7UDSAcIDje3yyhl4hlYzE7bV63tNwgHNfJbZ
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -12955,5 +13016,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict uXHAhRGMidzrDr9BKN9FbMC6kMctMooSvJ3R3BQbUhVOKeMed6eRcIl53COU6e5
+\unrestrict 8QoS4CHz6ysxcedXYXyySkirCmX7UDSAcIDje3yyhl4hlYzE7bV63tNwgHNfJbZ
 

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Party Decision Flow View - Database Changelog v1.35
+  Author: Political Analyst & Intelligence Operative
+  Date: 2025-11-22
+  GitHub Issue: Hack23/cia#7887
+  
+  Creates party-level decision flow aggregation view from DOCUMENT_PROPOSAL_DATA,
+  enabling analysis of party-level proposal success rates, decision patterns,
+  and legislative effectiveness.
+  
+  Purpose:
+  - Party decision effectiveness tracking
+  - Coalition alignment on proposals
+  - Committee proposal success rates by party
+  - Temporal decision trends by party
+  
+  Intelligence Applications:
+  - Party scorecards (legislative success rates)
+  - Coalition formation analysis (party alignment on decisions)
+  - Committee influence assessment (party success in committees)
+  - Trend analysis (temporal patterns in decision outcomes)
+-->
+
+<changeSet id="1.35-intro" author="intelligence-operative">
+    <comment>
+        Database Changelog v1.35 - Party Decision Flow View
+        
+        Creates view_riksdagen_party_decision_flow for aggregating proposal
+        decision data by party, enabling party-level legislative effectiveness
+        and coalition analysis.
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.35' AS version,
+            'Party decision flow view for legislative effectiveness analysis' AS description,
+            CURRENT_TIMESTAMP AS applied_at;
+    </sql>
+</changeSet>
+
+<!-- Pre-Flight Validation -->
+<changeSet id="1.35-preflight" author="intelligence-operative">
+    <comment>Pre-flight: Verify source data exists before creating view</comment>
+    
+    <sql splitStatements="false"><![CDATA[
+        DO $$
+        DECLARE
+            v_has_proposals BOOLEAN;
+            v_has_documents BOOLEAN;
+            v_has_person_refs BOOLEAN;
+        BEGIN
+            -- Use EXISTS for efficient data presence checks instead of full counts
+            SELECT EXISTS(SELECT 1 FROM document_proposal_data LIMIT 1) INTO v_has_proposals;
+            SELECT EXISTS(SELECT 1 FROM document_data LIMIT 1) INTO v_has_documents;
+            SELECT EXISTS(SELECT 1 FROM document_person_reference_da_0 LIMIT 1) INTO v_has_person_refs;
+            
+            IF v_has_proposals THEN
+                RAISE NOTICE 'Pre-flight v1.35: document_proposal_data has data';
+            ELSE
+                RAISE WARNING 'No proposal data found - view will be empty until data is loaded';
+            END IF;
+            
+            IF v_has_person_refs THEN
+                RAISE NOTICE 'Pre-flight v1.35: document_person_reference_da_0 has data';
+            ELSE
+                RAISE WARNING 'No person reference data - party attribution will be limited';
+            END IF;
+        END $$;
+    ]]></sql>
+</changeSet>
+
+<!-- Create Party Decision Flow View -->
+<changeSet author="intelligence-operative" id="1.35-party-decision-flow-001" failOnError="true">
+    <comment>
+        Create view_riksdagen_party_decision_flow
+        
+        Aggregates proposal decision data by party, committee, decision type, and time period.
+        Provides comprehensive party-level decision intelligence including:
+        - Total proposals processed
+        - Approved proposals (bifall, etc.)
+        - Rejected proposals (avslag)
+        - Approval rates
+        - Temporal trends (monthly, yearly)
+        
+        Join Path:
+        document_proposal_data → document_proposal_container → document_status_container
+        → document_data (for dates)
+        → document_person_reference_co_0/da_0 (for party info)
+        
+        Swedish Decision Terms:
+        - "bifall" = approval
+        - "avslag" = rejection
+        - "återförvisning" = referral back
+        - Other variations captured via LIKE patterns
+    </comment>
+    
+    <createView viewName="view_riksdagen_party_decision_flow" replaceIfExists="true">
+        <![CDATA[
+SELECT 
+    dpr.party_short_code AS party,
+    dpd.committee,
+    dpd.decision_type,
+    dd.org AS committee_org,
+    DATE_TRUNC('month', dd.made_public_date) AS decision_month,
+    EXTRACT(YEAR FROM dd.made_public_date) AS decision_year,
+    EXTRACT(MONTH FROM dd.made_public_date) AS decision_month_num,
+    
+    -- Proposal counts
+    COUNT(*) AS total_proposals,
+    
+    -- Approved proposals (Swedish: bifall)
+    COUNT(*) FILTER (
+        WHERE UPPER(dpd.chamber) LIKE '%BIFALL%'
+           OR UPPER(dpd.chamber) LIKE '%GODKÄNT%'
+           OR UPPER(dpd.chamber) LIKE '%BIFALLA%'
+    ) AS approved_proposals,
+    
+    -- Rejected proposals (Swedish: avslag)
+    COUNT(*) FILTER (
+        WHERE UPPER(dpd.chamber) LIKE '%AVSLAG%'
+           OR UPPER(dpd.chamber) LIKE '%AVSLÅ%'
+    ) AS rejected_proposals,
+    
+    -- Referred back to committee (Swedish: återförvisning)
+    COUNT(*) FILTER (
+        WHERE UPPER(dpd.chamber) LIKE '%ÅTERFÖRVISNING%'
+           OR UPPER(dpd.chamber) LIKE '%ÅTERFÖRVISA%'
+    ) AS referred_back_proposals,
+    
+    -- Other decisions (not clearly approved/rejected)
+    COUNT(*) FILTER (
+        WHERE UPPER(dpd.chamber) NOT LIKE '%BIFALL%'
+          AND UPPER(dpd.chamber) NOT LIKE '%AVSLAG%'
+          AND UPPER(dpd.chamber) NOT LIKE '%GODKÄNT%'
+          AND UPPER(dpd.chamber) NOT LIKE '%BIFALLA%'
+          AND UPPER(dpd.chamber) NOT LIKE '%AVSLÅ%'
+          AND UPPER(dpd.chamber) NOT LIKE '%ÅTERFÖRVISNING%'
+          AND UPPER(dpd.chamber) NOT LIKE '%ÅTERFÖRVISA%'
+    ) AS other_decisions,
+    
+    -- Approval rate calculation
+    ROUND(
+        100.0 * COUNT(*) FILTER (
+            WHERE UPPER(dpd.chamber) LIKE '%BIFALL%'
+               OR UPPER(dpd.chamber) LIKE '%GODKÄNT%'
+               OR UPPER(dpd.chamber) LIKE '%BIFALLA%'
+        ) / NULLIF(COUNT(*), 0),
+        2
+    ) AS approval_rate,
+    
+    -- Rejection rate calculation
+    ROUND(
+        100.0 * COUNT(*) FILTER (
+            WHERE UPPER(dpd.chamber) LIKE '%AVSLAG%'
+               OR UPPER(dpd.chamber) LIKE '%AVSLÅ%'
+        ) / NULLIF(COUNT(*), 0),
+        2
+    ) AS rejection_rate,
+    
+    -- Latest and earliest dates for the aggregation
+    MIN(dd.made_public_date) AS earliest_decision_date,
+    MAX(dd.made_public_date) AS latest_decision_date
+
+FROM document_proposal_data dpd
+
+-- Join to proposal container
+INNER JOIN document_proposal_container dpc
+    ON dpc.proposal_document_proposal_c_0 = dpd.hjid
+
+-- Join to status container
+INNER JOIN document_status_container dsc
+    ON dsc.document_proposal_document_s_0 = dpc.hjid
+
+-- Join to document data for dates and metadata
+INNER JOIN document_data dd
+    ON dd.id = dsc.document_document_status_con_0
+
+-- Join to person reference container and data for party information
+LEFT JOIN document_person_reference_co_0 dprc
+    ON dprc.hjid = dsc.document_person_reference_co_1
+
+LEFT JOIN document_person_reference_da_0 dpr
+    ON dpr.document_person_reference_li_1 = dprc.hjid
+
+-- Filter for valid data
+WHERE dpd.chamber IS NOT NULL
+  AND dpd.committee IS NOT NULL
+  AND dd.made_public_date IS NOT NULL
+  AND LENGTH(dpd.chamber) >= 6  -- Minimum valid decision text length (matches DecisionDataFactoryImpl)
+  AND LENGTH(dpd.chamber) <= 29  -- Matches DecisionDataFactoryImpl.CHAMBER_MAX_LENGTH
+
+GROUP BY 
+    dpr.party_short_code,
+    dpd.committee,
+    dpd.decision_type,
+    dd.org,
+    DATE_TRUNC('month', dd.made_public_date),
+    EXTRACT(YEAR FROM dd.made_public_date),
+    EXTRACT(MONTH FROM dd.made_public_date)
+
+HAVING COUNT(*) > 0  -- Only include aggregations with actual data
+
+ORDER BY 
+    decision_year DESC,
+    decision_month_num DESC,
+    party,
+    committee;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_party_decision_flow"/>
+    </rollback>
+</changeSet>
+
+<!-- Create Performance Indexes on Base Tables -->
+<changeSet author="intelligence-operative" id="1.35-party-decision-flow-index-002" failOnError="false">
+    <comment>
+        Create indexes on base tables for performance optimization of party decision flow queries
+        
+        Indexes on frequently joined and filtered columns:
+        - document_proposal_data.committee (for committee-specific queries)
+        - document_data.made_public_date (for temporal queries)
+        - document_person_reference_da_0.party_short_code (for party filtering)
+        
+        Note: These indexes support the view queries but are also beneficial for other queries.
+        Functional indexes on views with complex subqueries are not supported in PostgreSQL.
+    </comment>
+    
+    <sql splitStatements="true">
+        -- Index on committee for committee-specific filtering
+        CREATE INDEX IF NOT EXISTS idx_doc_proposal_committee 
+        ON document_proposal_data(committee) 
+        WHERE committee IS NOT NULL;
+        
+        -- Index on decision_type for decision type filtering  
+        CREATE INDEX IF NOT EXISTS idx_doc_proposal_decision_type
+        ON document_proposal_data(decision_type)
+        WHERE decision_type IS NOT NULL;
+        
+        -- Index on made_public_date for temporal queries
+        CREATE INDEX IF NOT EXISTS idx_doc_data_made_public_date
+        ON document_data(made_public_date)
+        WHERE made_public_date IS NOT NULL;
+        
+        -- Index on party_short_code for party-specific queries
+        CREATE INDEX IF NOT EXISTS idx_person_ref_party
+        ON document_person_reference_da_0(party_short_code)
+        WHERE party_short_code IS NOT NULL;
+    </sql>
+    
+    <rollback>
+        <sql splitStatements="true">
+            DROP INDEX IF EXISTS idx_doc_proposal_committee;
+            DROP INDEX IF EXISTS idx_doc_proposal_decision_type;
+            DROP INDEX IF EXISTS idx_doc_data_made_public_date;
+            DROP INDEX IF EXISTS idx_person_ref_party;
+        </sql>
+    </rollback>
+</changeSet>
+
+<!-- Post-Flight Validation -->
+<changeSet id="1.35-postflight" author="intelligence-operative">
+    <comment>Post-flight: Verify view creation and check initial data</comment>
+    
+    <sql splitStatements="false"><![CDATA[
+        DO $$
+        DECLARE
+            v_view_exists BOOLEAN;
+            v_row_count BIGINT := 0;
+            v_party_count INTEGER := 0;
+            v_year_range TEXT;
+        BEGIN
+            -- Check if view exists
+            SELECT EXISTS (
+                SELECT 1 FROM pg_views 
+                WHERE schemaname = 'public' 
+                AND viewname = 'view_riksdagen_party_decision_flow'
+            ) INTO v_view_exists;
+            
+            IF NOT v_view_exists THEN
+                RAISE WARNING 'View view_riksdagen_party_decision_flow was not created';
+                RETURN;
+            END IF;
+            
+            RAISE NOTICE 'View view_riksdagen_party_decision_flow created successfully';
+            
+            -- Try to get row count (may be 0 if no data)
+            BEGIN
+                EXECUTE 'SELECT COUNT(*) FROM view_riksdagen_party_decision_flow' INTO v_row_count;
+                EXECUTE 'SELECT COUNT(DISTINCT party) FROM view_riksdagen_party_decision_flow' INTO v_party_count;
+                EXECUTE 'SELECT MIN(decision_year) || ''-'' || MAX(decision_year) FROM view_riksdagen_party_decision_flow' INTO v_year_range;
+                
+                IF v_row_count = 0 THEN
+                    RAISE WARNING 'View is EMPTY - no proposal data with party references found';
+                    RAISE NOTICE 'This is expected if proposal data has not been loaded yet';
+                ELSE
+                    RAISE NOTICE 'View has DATA: % rows across % parties, years %', 
+                        v_row_count, v_party_count, v_year_range;
+                END IF;
+            EXCEPTION
+                WHEN OTHERS THEN
+                    RAISE WARNING 'Could not query view: %', SQLERRM;
+            END;
+            
+            RAISE NOTICE '========================================';
+            RAISE NOTICE 'v1.35 deployment completed successfully';
+            RAISE NOTICE 'Party decision flow view ready for intelligence analysis';
+            RAISE NOTICE '========================================';
+        END $$;
+    ]]></sql>
+</changeSet>
+
+<!-- Documentation -->
+<changeSet id="1.35-documentation" author="intelligence-operative">
+    <comment>
+        Documentation for v1.35 party decision flow view
+        
+        Summary:
+        - Creates view_riksdagen_party_decision_flow for party-level decision aggregation
+        - Enables party scorecards, coalition analysis, committee effectiveness tracking
+        - Supports temporal trend analysis by year/month
+        - Includes approval rates, rejection rates, and decision type breakdowns
+        - Performance optimized with base table indexes
+        
+        Intelligence Applications:
+        - Party Legislative Effectiveness: Success rates by party
+        - Coalition Dynamics: Party alignment on proposal outcomes  
+        - Committee Influence: Party performance in different committees
+        - Temporal Trends: How party effectiveness changes over time
+        - Comparative Analysis: Party-to-party decision pattern comparison
+        
+        See DATABASE_VIEW_INTELLIGENCE_CATALOG.md for usage examples and queries.
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.35' AS version,
+            'Party decision flow view created' AS description,
+            1 AS views_created,
+            'view_riksdagen_party_decision_flow' AS view_name,
+            'Enables party-level legislative effectiveness analysis' AS purpose,
+            'See DATABASE_VIEW_INTELLIGENCE_CATALOG.md for documentation' AS documentation,
+            CURRENT_TIMESTAMP AS applied_at;
+    </sql>
+    
+    <rollback>
+        <sql>SELECT 'Documentation rollback - no action needed' AS status;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
