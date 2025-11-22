@@ -91,12 +91,35 @@ Views are classified by intelligence value for analytical operations:
 
 | Document | Link | Description |
 |----------|------|-------------|
+| **Intelligence Data Flow Map** | [INTELLIGENCE_DATA_FLOW.md](INTELLIGENCE_DATA_FLOW.md) | Central cross-reference hub showing data pipeline |
 | **Validation Report** | [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) | View documentation validation and remediation plan (2025-11-20) |
 | **Intelligence Frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) | Analysis methodologies and OSINT techniques |
 | **Risk Rules** | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) | 45 behavioral detection rules |
 | **Changelog Analysis** | [LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) | Schema evolution analysis |
 | **Data Model** | [DATA_MODEL.md](DATA_MODEL.md) | Database schema and relationships |
 | **Schema Maintenance** | [service.data.impl/README-SCHEMA-MAINTENANCE.md](service.data.impl/README-SCHEMA-MAINTENANCE.md) | Database maintenance guide |
+
+---
+
+## 📋 Quick Reference: Finding Views for Your Analysis
+
+<div class="quick-reference">
+
+| I Want To... | Navigate To |
+|--------------|-------------|
+| **See which views support temporal analysis** | [Temporal Analysis Views](INTELLIGENCE_DATA_FLOW.md#temporal-analysis-framework) |
+| **See which views support comparative analysis** | [Comparative Analysis Views](INTELLIGENCE_DATA_FLOW.md#comparative-analysis-framework) |
+| **See which views support pattern recognition** | [Pattern Recognition Views](INTELLIGENCE_DATA_FLOW.md#pattern-recognition-framework) |
+| **See which views support predictive intelligence** | [Predictive Intelligence Views](INTELLIGENCE_DATA_FLOW.md#predictive-intelligence-framework) |
+| **See which views support network analysis** | [Network Analysis Views](INTELLIGENCE_DATA_FLOW.md#network-analysis-framework) |
+| **See complete data flow pipeline** | [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) |
+| **Understand how risk rules use views** | [Risk Rule → View Mapping](INTELLIGENCE_DATA_FLOW.md#risk-rule--view-mapping) |
+| **Browse politician views** | [Politician Views](#politician-views) |
+| **Browse party views** | [Party Views](#party-views) |
+| **Browse committee views** | [Committee Views](#committee-views) |
+| **Browse vote data views** | [Vote Data Views](#vote-data-views) |
+
+</div>
 
 ---
 
@@ -483,6 +506,25 @@ From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
 - **PoliticianLazy (P-01)**: Provides politician identification
 - **PoliticianIneffectiveVoting (P-02)**: Links to voting analysis
 - **All Politician Rules**: Base identification layer
+
+#### Intelligence Applications
+
+This view supports multiple analytical frameworks from [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+
+| Analysis Framework | Use Case | Example Application | Link |
+|--------------------|----------|-------------------|------|
+| **Temporal Analysis** | Track career duration and entry cohorts | Monitor politician career trajectories over time | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
+| **Comparative Analysis** | Party composition and experience levels | Compare experience distribution across parties | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
+| **Pattern Recognition** | Demographic clustering analysis | Identify patterns in gender, age, regional representation | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#3-pattern-recognition-framework) |
+| **Predictive Intelligence** | Career trajectory modeling | Predict re-election likelihood based on profile | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#4-predictive-intelligence-framework) |
+| **Network Analysis** | Politician identification for network construction | Base layer for building collaboration and voting networks | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#5-network-analysis-framework) |
+
+**Intelligence Products Generated:**
+- 🏆 Political Scorecards - Basic identification and demographic information
+- 📊 Party Composition Reports - Gender balance, age distribution, regional representation
+- 🎯 Recruitment Analysis - New politician tracking and onboarding patterns
+
+**Data Flow:** See [Intelligence Data Flow Map - View to Analysis Mapping](INTELLIGENCE_DATA_FLOW.md#view--analysis-framework-mapping) for complete data pipeline.
 
 #### Intelligence Frameworks Applicable
 
@@ -1734,6 +1776,22 @@ Catalog of government roles, ministries, and position definitions. Reference dat
 **Sample Query**: `SELECT * FROM view_riksdagen_party_summary ORDER BY total_members DESC;`  
 **Applications**: Quick reference, party comparison, dashboard display
 
+#### Intelligence Applications
+
+This view supports multiple analytical frameworks:
+
+| Analysis Framework | Use Case | Link |
+|--------------------|----------|------|
+| **Comparative Analysis** | Inter-party benchmarking and effectiveness comparison | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
+| **Temporal Analysis** | Track party performance changes over time | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
+| **Network Analysis** | Map party relationship and coalition structures | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#5-network-analysis-framework) |
+
+**Risk Rules Supported**: [Party Risk Rules](RISK_RULES_INTOP_OSINT.md#-party-risk-rules-10-rules) - Party declining support, low cohesion, document productivity
+
+**Intelligence Products**: Party effectiveness scorecards, coalition strength analysis, organizational health reports
+
+**Data Flow**: [Intelligence Data Flow Map - Party Views](INTELLIGENCE_DATA_FLOW.md#party-views)
+
 ---
 
 ### view_riksdagen_person_signed_document_summary ⭐⭐⭐
@@ -1824,6 +1882,31 @@ LIMIT 30;
 ```
 
 **Applications**: Politician performance scorecards, behavioral trend analysis, absence tracking
+
+#### Intelligence Applications
+
+These views are **CRITICAL** for the CIA platform's intelligence capabilities:
+
+| Analysis Framework | Use Case | Supported Granularities | Link |
+|--------------------|----------|------------------------|------|
+| **Temporal Analysis** | Track voting behavior changes over time | Daily, Weekly, Monthly, Annual | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
+| **Comparative Analysis** | Benchmark politicians against peers | Annual, Monthly | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
+| **Pattern Recognition** | Detect behavioral anomalies and clusters | All granularities | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#3-pattern-recognition-framework) |
+| **Predictive Intelligence** | Forecast future voting behavior and risks | Monthly, Annual | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#4-predictive-intelligence-framework) |
+
+**Risk Rules Supported**: These views power most politician risk rules including:
+- [#1 PoliticianLazy (Absenteeism)](RISK_RULES_INTOP_OSINT.md#1--politicianlazydrl---absenteeism-detection)
+- [#2 PoliticianIneffectiveVoting (Effectiveness)](RISK_RULES_INTOP_OSINT.md#2--politicianineffectivevotingdrl---effectiveness-tracking)
+- [#3 PoliticianHighRebelRate (Party Discipline)](RISK_RULES_INTOP_OSINT.md#3--politicianhighrebelratedrl---party-discipline-analysis)
+- [#4 PoliticianDecliningEngagement (Trend Analysis)](RISK_RULES_INTOP_OSINT.md#4--politiciandecliningengagementdrl---trend-analysis)
+
+**Intelligence Products Generated**:
+- 🏆 Political Scorecards - Performance rankings by win rate, absence, productivity
+- ⚠️ Risk Assessments - Behavioral anomaly detection and risk scoring
+- 📊 Trend Reports - Temporal analysis of engagement and effectiveness
+- 🎯 Predictive Alerts - Early warning system for declining performance
+
+**Data Flow**: [Intelligence Data Flow Map - Vote Data Views](INTELLIGENCE_DATA_FLOW.md#vote-data-views-20-views)
 
 ---
 
