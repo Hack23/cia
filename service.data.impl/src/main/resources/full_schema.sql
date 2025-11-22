@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict W4qr8YY5Y2Un7VPj8drEPMZe1pzum7m2TpQEIhoITZnqEK3kBuZc26U3KrlI24y
+\restrict RXYkf2R3nuMImcN33LOjJDmcaBlODudDkYzMhfav636kz4lJpp3qC4FqfP5vmMO
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -6267,6 +6267,55 @@ CREATE VIEW public.view_committee_productivity_matrix AS
 
 
 --
+-- Name: view_decision_temporal_trends; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_decision_temporal_trends AS
+ WITH daily_decisions AS (
+         SELECT dd.made_public_date AS decision_day,
+            count(*) AS daily_decisions,
+            round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS daily_approval_rate,
+            count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))) AS approved_decisions,
+            count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))) AS rejected_decisions,
+            count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISNING%'::text) OR (upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISA%'::text))) AS referred_back_decisions
+           FROM (((public.document_proposal_data dpd
+             JOIN public.document_proposal_container dpc ON ((dpc.proposal_document_proposal_c_0 = dpd.hjid)))
+             JOIN public.document_status_container dsc ON ((dsc.document_proposal_document_s_0 = dpc.hjid)))
+             JOIN public.document_data dd ON (((dd.id)::text = (dsc.document_document_status_con_0)::text)))
+          WHERE ((dd.made_public_date IS NOT NULL) AND (dd.made_public_date >= (CURRENT_DATE - '5 years'::interval)) AND (dpd.chamber IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29))
+          GROUP BY dd.made_public_date
+        )
+ SELECT decision_day,
+    daily_decisions,
+    daily_approval_rate,
+    approved_decisions,
+    rejected_decisions,
+    referred_back_decisions,
+    round(avg(daily_decisions) OVER (ORDER BY decision_day ROWS BETWEEN 6 PRECEDING AND CURRENT ROW), 2) AS ma_7day_decisions,
+    round(avg(daily_decisions) OVER (ORDER BY decision_day ROWS BETWEEN 29 PRECEDING AND CURRENT ROW), 2) AS ma_30day_decisions,
+    round(avg(daily_decisions) OVER (ORDER BY decision_day ROWS BETWEEN 89 PRECEDING AND CURRENT ROW), 2) AS ma_90day_decisions,
+    round(avg(daily_approval_rate) OVER (ORDER BY decision_day ROWS BETWEEN 29 PRECEDING AND CURRENT ROW), 2) AS ma_30day_approval_rate,
+    lag(daily_decisions, 365) OVER (ORDER BY decision_day) AS decisions_last_year,
+    (daily_decisions - lag(daily_decisions, 365) OVER (ORDER BY decision_day)) AS yoy_decisions_change,
+    round(((100.0 * ((daily_decisions - lag(daily_decisions, 365) OVER (ORDER BY decision_day)))::numeric) / (NULLIF(lag(daily_decisions, 365) OVER (ORDER BY decision_day), 0))::numeric), 2) AS yoy_decisions_change_pct,
+    EXTRACT(year FROM decision_day) AS decision_year,
+    EXTRACT(month FROM decision_day) AS decision_month,
+    EXTRACT(week FROM decision_day) AS decision_week,
+    EXTRACT(dow FROM decision_day) AS decision_day_of_week,
+        CASE
+            WHEN (EXTRACT(month FROM decision_day) = ANY (ARRAY[(7)::numeric, (8)::numeric])) THEN 'Summer Recess'::text
+            WHEN (EXTRACT(month FROM decision_day) = ANY (ARRAY[(12)::numeric, (1)::numeric])) THEN 'Winter Recess'::text
+            WHEN (EXTRACT(month FROM decision_day) = ANY (ARRAY[(2)::numeric, (3)::numeric])) THEN 'Spring Session'::text
+            WHEN (EXTRACT(month FROM decision_day) = ANY (ARRAY[(9)::numeric, (10)::numeric, (11)::numeric])) THEN 'Autumn Session'::text
+            WHEN (EXTRACT(month FROM decision_day) = ANY (ARRAY[(4)::numeric, (5)::numeric, (6)::numeric])) THEN 'Late Spring Session'::text
+            ELSE 'Active Session'::text
+        END AS parliamentary_period,
+    ((('Q'::text || (EXTRACT(quarter FROM decision_day))::text) || ' '::text) || (EXTRACT(year FROM decision_day))::text) AS decision_quarter
+   FROM daily_decisions
+  ORDER BY decision_day DESC;
+
+
+--
 -- Name: view_document_data_committee_report_url; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -8941,42 +8990,6 @@ CREATE MATERIALIZED VIEW public.view_riksdagen_party_document_daily_summary AS
 -- Name: view_riksdagen_politician; Type: VIEW; Schema: public; Owner: -
 --
 
---
--- Name: view_riksdagen_politician_decision_pattern; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_politician_decision_pattern AS
- SELECT pd.id AS person_id,
-    pd.first_name,
-    pd.last_name,
-    dpr.party_short_code AS party,
-    dpd.committee,
-    dd.org AS committee_org,
-    date_trunc('month'::text, (dd.made_public_date)::timestamp with time zone) AS decision_month,
-    EXTRACT(year FROM dd.made_public_date) AS decision_year,
-    EXTRACT(month FROM dd.made_public_date) AS decision_month_num,
-    count(*) AS total_decisions,
-    count(*) FILTER (WHERE (((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text)) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))) AS approved_decisions,
-    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))) AS rejected_decisions,
-    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISNING%'::text) OR (upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISA%'::text))) AS referred_back_decisions,
-    count(*) FILTER (WHERE (((((((upper((dpd.chamber)::text) !~~ '%BIFALL%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLAG%'::text)) AND (upper((dpd.chamber)::text) !~~ '%GODKÄNT%'::text)) AND (upper((dpd.chamber)::text) !~~ '%BIFALLA%'::text)) AND (upper((dpd.chamber)::text) !~~ '%AVSLÅ%'::text)) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISNING%'::text)) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISA%'::text))) AS other_decisions,
-    round((((100.0 * (count(*) FILTER (WHERE (((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text)) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text)))))::numeric / (NULLIF(count(*), (0)::bigint))::numeric)), 2) AS approval_rate,
-    round((((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text)))))::numeric / (NULLIF(count(*), (0)::bigint))::numeric)), 2) AS rejection_rate,
-    min(dd.made_public_date) AS earliest_decision_date,
-    max(dd.made_public_date) AS latest_decision_date
-   FROM ((((((document_proposal_data dpd
-     JOIN document_proposal_container dpc ON ((dpc.proposal_document_proposal_c_0 = dpd.hjid)))
-     JOIN document_status_container dsc ON ((dsc.document_proposal_document_s_0 = dpc.hjid)))
-     JOIN document_data dd ON (((dd.id)::text = (dsc.document_document_status_con_0)::text)))
-     JOIN document_person_reference_co_0 dprc ON ((dprc.hjid = dsc.document_person_reference_co_1)))
-     JOIN document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
-     JOIN person_data pd ON (((pd.id)::text = (dpr.person_reference_id)::text)))
-  WHERE ((((dpd.chamber IS NOT NULL) AND (dpd.committee IS NOT NULL)) AND (dd.made_public_date IS NOT NULL)) AND ((pd.id IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29)))
-  GROUP BY pd.id, pd.first_name, pd.last_name, dpr.party_short_code, dpd.committee, dd.org, (date_trunc('month'::text, (dd.made_public_date)::timestamp with time zone)), (EXTRACT(year FROM dd.made_public_date)), (EXTRACT(month FROM dd.made_public_date))
- HAVING (count(*) > 0)
-  ORDER BY (EXTRACT(year FROM dd.made_public_date)) DESC, (EXTRACT(month FROM dd.made_public_date)) DESC, pd.last_name, pd.first_name, dpd.committee;
-
-
 CREATE VIEW public.view_riksdagen_politician AS
  SELECT base.person_id,
     base.first_name,
@@ -9639,6 +9652,42 @@ CREATE VIEW public.view_riksdagen_politician_ballot_summary AS
    FROM (public.view_riksdagen_party_member pm
      LEFT JOIN politician_voting_aggregates pva ON (((pm.id)::text = (pva.embedded_id_intressent_id)::text)))
   ORDER BY pm.last_name, pm.first_name;
+
+
+--
+-- Name: view_riksdagen_politician_decision_pattern; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_politician_decision_pattern AS
+ SELECT pd.id AS person_id,
+    pd.first_name,
+    pd.last_name,
+    dpr.party_short_code AS party,
+    dpd.committee,
+    dd.org AS committee_org,
+    date_trunc('month'::text, (dd.made_public_date)::timestamp with time zone) AS decision_month,
+    EXTRACT(year FROM dd.made_public_date) AS decision_year,
+    EXTRACT(month FROM dd.made_public_date) AS decision_month_num,
+    count(*) AS total_decisions,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))) AS approved_decisions,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))) AS rejected_decisions,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISNING%'::text) OR (upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISA%'::text))) AS referred_back_decisions,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) !~~ '%BIFALL%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLAG%'::text) AND (upper((dpd.chamber)::text) !~~ '%GODKÄNT%'::text) AND (upper((dpd.chamber)::text) !~~ '%BIFALLA%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLÅ%'::text) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISNING%'::text) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISA%'::text))) AS other_decisions,
+    round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS approval_rate,
+    round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS rejection_rate,
+    min(dd.made_public_date) AS earliest_decision_date,
+    max(dd.made_public_date) AS latest_decision_date
+   FROM ((((((public.document_proposal_data dpd
+     JOIN public.document_proposal_container dpc ON ((dpc.proposal_document_proposal_c_0 = dpd.hjid)))
+     JOIN public.document_status_container dsc ON ((dsc.document_proposal_document_s_0 = dpc.hjid)))
+     JOIN public.document_data dd ON (((dd.id)::text = (dsc.document_document_status_con_0)::text)))
+     JOIN public.document_person_reference_co_0 dprc ON ((dprc.hjid = dsc.document_person_reference_co_1)))
+     JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
+     JOIN public.person_data pd ON (((pd.id)::text = (dpr.person_reference_id)::text)))
+  WHERE ((dpd.chamber IS NOT NULL) AND (dpd.committee IS NOT NULL) AND (dd.made_public_date IS NOT NULL) AND (pd.id IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29))
+  GROUP BY pd.id, pd.first_name, pd.last_name, dpr.party_short_code, dpd.committee, dd.org, (date_trunc('month'::text, (dd.made_public_date)::timestamp with time zone)), (EXTRACT(year FROM dd.made_public_date)), (EXTRACT(month FROM dd.made_public_date))
+ HAVING (count(*) > 0)
+  ORDER BY (EXTRACT(year FROM dd.made_public_date)) DESC, (EXTRACT(month FROM dd.made_public_date)) DESC, pd.last_name, pd.first_name, dpd.committee;
 
 
 --
@@ -11766,12 +11815,12 @@ CREATE INDEX idx_party_summary_party_won ON public.view_riksdagen_vote_data_ball
 
 CREATE INDEX idx_person_ref_party ON public.document_person_reference_da_0 USING btree (party_short_code) WHERE (party_short_code IS NOT NULL);
 
+
 --
 -- Name: idx_person_ref_person_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_person_ref_person_id ON public.document_person_reference_da_0 USING btree (person_reference_id) WHERE (person_reference_id IS NOT NULL);
-
 
 
 --
@@ -12622,13 +12671,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict W4qr8YY5Y2Un7VPj8drEPMZe1pzum7m2TpQEIhoITZnqEK3kBuZc26U3KrlI24y
+\unrestrict RXYkf2R3nuMImcN33LOjJDmcaBlODudDkYzMhfav636kz4lJpp3qC4FqfP5vmMO
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict 8QoS4CHz6ysxcedXYXyySkirCmX7UDSAcIDje3yyhl4hlYzE7bV63tNwgHNfJbZ
+\restrict 4Fb5aLp06dFVC9TsXKcLzkFHajTNx0qIjhSkr8H0jhZwtgh7L8DJwZRYZXkKa07
 
 -- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
@@ -13059,5 +13108,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 8QoS4CHz6ysxcedXYXyySkirCmX7UDSAcIDje3yyhl4hlYzE7bV63tNwgHNfJbZ
+\unrestrict 4Fb5aLp06dFVC9TsXKcLzkFHajTNx0qIjhSkr8H0jhZwtgh7L8DJwZRYZXkKa07
 

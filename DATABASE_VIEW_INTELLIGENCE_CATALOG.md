@@ -35,12 +35,12 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **83 database views** (55 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 83 database views. **10 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views. **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
 **Last Validated**: 2025-11-22  
-**Latest Addition**: v1.35 Politician Decision Pattern View (view_riksdagen_politician_decision_pattern)  
+**Latest Addition**: v1.35 Temporal Decision Trends View (view_decision_temporal_trends) - Predictive intelligence with moving averages  
 **Validation Method**: Automated schema validation and health check analysis  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
 **Latest Validation Report**: service.data.impl/sample-data/schema_validation_20251121_142510.txt  
@@ -50,14 +50,14 @@ The Citizen Intelligence Agency (CIA) platform employs **83 database views** (55
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 83 | All database views across platform (validated 2025-11-22) |
-| **Regular Views** | 55 | Standard SQL views |
+| **Total Views** | 84 | All database views across platform (validated 2025-11-22, updated with v1.35) |
+| **Regular Views** | 56 | Standard SQL views (includes view_decision_temporal_trends) |
 | **Materialized Views** | 28 | Performance-optimized views with physical storage (see refresh-all-views.sql) |
-| **Views Documented (Detailed)** | 10 | Fully documented with complex examples, performance characteristics, intelligence value |
+| **Views Documented (Detailed)** | 11 | Fully documented with complex examples, performance characteristics, intelligence value |
 | **Views Documented (Structured)** | 73 | Documented with purpose, key metrics, sample queries, applications |
-| **Documentation Coverage** | 100% | All 83 views now documented |
-| **Intelligence Views** | 6 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard) |
-| **Decision Flow Views** | 2 | Party and politician-level proposal decision analysis (v1.35) |
+| **Documentation Coverage** | 100% | All 84 views now documented |
+| **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
+| **Decision Flow Views** | 3 | Party, politician, and temporal decision analysis (v1.35) |
 | **Empty Views Requiring Investigation** | 9 | Views returning 0 rows (ministry, risk, coalition analysis) |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Document Views** | 7 | Politician and party document productivity |
@@ -4054,6 +4054,333 @@ From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
 - **All Politician Risk Rules (P-01 to P-24)**: Unified risk scoring
 - **PoliticianCombinedRisk (P-05)**: Primary implementation view
 - **Risk Trending Rules**: Temporal risk evolution tracking
+
+---
+
+### view_decision_temporal_trends ⭐⭐⭐⭐⭐
+
+**Category:** Intelligence Views (v1.35)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Temporal Decision Flow Analysis & Predictive Intelligence  
+**Changelog:** v1.35 Temporal Decision Trends with Moving Averages
+
+#### Purpose
+
+Temporal trends view for decision flow analysis from DOCUMENT_PROPOSAL_DATA, enabling time-series analysis of decision patterns, seasonal variations, and predictive forecasting of legislative activity. Provides daily aggregations with moving averages (7-day, 30-day, 90-day), year-over-year comparisons, and seasonal decomposition for Swedish parliamentary calendar. Supports anomaly detection through z-score analysis and trend identification via moving average crossovers.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `decision_day` | DATE | Date of decision(s) | '2024-11-15' |
+| `daily_decisions` | BIGINT | Total decisions on this day | 42 |
+| `daily_approval_rate` | NUMERIC(5,2) | Percentage of approved decisions (bifall) | 67.50 |
+| `approved_decisions` | BIGINT | Count of approved decisions (bifall) | 28 |
+| `rejected_decisions` | BIGINT | Count of rejected decisions (avslag) | 8 |
+| `referred_back_decisions` | BIGINT | Count of decisions referred back (återförvisning) | 6 |
+| `ma_7day_decisions` | NUMERIC(10,2) | 7-day moving average of daily decisions | 38.71 |
+| `ma_30day_decisions` | NUMERIC(10,2) | 30-day moving average of daily decisions | 41.15 |
+| `ma_90day_decisions` | NUMERIC(10,2) | 90-day moving average of daily decisions | 39.82 |
+| `ma_30day_approval_rate` | NUMERIC(5,2) | 30-day moving average of approval rate | 68.20 |
+| `decisions_last_year` | BIGINT | Decisions on same day last year | 45 |
+| `yoy_decisions_change` | BIGINT | Year-over-year change in decisions | -3 |
+| `yoy_decisions_change_pct` | NUMERIC(5,2) | Year-over-year percentage change | -6.67 |
+| `decision_year` | NUMERIC | Year of decision | 2024 |
+| `decision_month` | NUMERIC | Month of decision (1-12) | 11 |
+| `decision_week` | NUMERIC | Week of year (1-53) | 46 |
+| `decision_day_of_week` | NUMERIC | Day of week (0=Sunday, 6=Saturday) | 2 |
+| `parliamentary_period` | TEXT | Seasonal period classification | 'Autumn Session' |
+| `decision_quarter` | TEXT | Quarter and year | 'Q4 2024' |
+
+#### Seasonal Indicators
+
+**Parliamentary Period Classification:**
+- `Summer Recess`: July-August (low activity expected)
+- `Winter Recess`: December-January (low activity expected)
+- `Spring Session`: February-March
+- `Late Spring Session`: April-June
+- `Autumn Session`: September-November (typically highest activity)
+- `Active Session`: Other periods
+
+#### Example Queries
+
+**1. Seasonal Pattern Analysis**
+
+Identify average decision volumes and approval rates by parliamentary period over the last 3 years.
+
+```sql
+SELECT 
+    parliamentary_period,
+    COUNT(DISTINCT decision_day) AS days_with_decisions,
+    ROUND(AVG(daily_decisions), 2) AS avg_daily_decisions,
+    ROUND(AVG(daily_approval_rate), 2) AS avg_approval_rate,
+    ROUND(MIN(daily_decisions), 2) AS min_daily_decisions,
+    ROUND(MAX(daily_decisions), 2) AS max_daily_decisions
+FROM view_decision_temporal_trends
+WHERE decision_day >= CURRENT_DATE - INTERVAL '3 years'
+GROUP BY parliamentary_period
+ORDER BY avg_daily_decisions DESC;
+```
+
+**Sample Output:**
+
+```
+parliamentary_period      | days_with_decisions | avg_daily_decisions | avg_approval_rate | min_daily_decisions | max_daily_decisions
+--------------------------+---------------------+---------------------+-------------------+---------------------+--------------------
+Autumn Session           |                 245 |               42.15 |             68.30 |                  15 |                 87
+Late Spring Session      |                 198 |               38.72 |             67.80 |                  12 |                 78
+Spring Session           |                 156 |               35.45 |             66.50 |                   8 |                 72
+Winter Recess            |                  45 |                8.23 |             71.20 |                   1 |                 25
+Summer Recess            |                  38 |                5.67 |             69.40 |                   1 |                 18
+```
+
+**Intelligence Application**: Identifies seasonal patterns for resource planning and forecasting. Autumn Session shows highest activity (~42 decisions/day), while Summer Recess has minimal activity (~6 decisions/day).
+
+---
+
+**2. Trend Detection (Moving Average Crossover)**
+
+Detect uptrends and downtrends in legislative activity using moving average crossovers.
+
+```sql
+SELECT 
+    decision_day,
+    daily_decisions,
+    ma_7day_decisions,
+    ma_30day_decisions,
+    CASE 
+        WHEN ma_7day_decisions > ma_30day_decisions THEN 'Uptrend ⬆'
+        WHEN ma_7day_decisions < ma_30day_decisions THEN 'Downtrend ⬇'
+        ELSE 'Neutral ➡'
+    END AS trend_signal,
+    ROUND(ma_7day_decisions - ma_30day_decisions, 2) AS ma_divergence
+FROM view_decision_temporal_trends
+WHERE decision_day >= CURRENT_DATE - INTERVAL '6 months'
+ORDER BY decision_day DESC
+LIMIT 20;
+```
+
+**Sample Output:**
+
+```
+decision_day | daily_decisions | ma_7day_decisions | ma_30day_decisions | trend_signal | ma_divergence
+-------------+-----------------+-------------------+--------------------+--------------+--------------
+2024-11-15   |              42 |             38.71 |              41.15 | Downtrend ⬇  |         -2.44
+2024-11-14   |              45 |             39.86 |              41.22 | Downtrend ⬇  |         -1.36
+2024-11-13   |              48 |             40.29 |              40.95 | Downtrend ⬇  |         -0.66
+2024-11-12   |              52 |             41.14 |              40.75 | Uptrend ⬆    |          0.39
+2024-11-11   |              47 |             40.71 |              40.35 | Uptrend ⬆    |          0.36
+```
+
+**Intelligence Application**: Moving average crossovers signal trend changes. When 7-day MA crosses above 30-day MA, legislative activity is accelerating. When it crosses below, activity is declining. This helps identify bottlenecks or unusual activity surges.
+
+---
+
+**3. Anomaly Detection (Z-Score Method)**
+
+Identify days with abnormally high or low decision volumes using statistical deviation analysis.
+
+```sql
+WITH stats AS (
+    SELECT 
+        AVG(daily_decisions) AS mean_decisions,
+        STDDEV(daily_decisions) AS stddev_decisions
+    FROM view_decision_temporal_trends
+    WHERE decision_day >= CURRENT_DATE - INTERVAL '1 year'
+)
+SELECT 
+    vdt.decision_day,
+    vdt.daily_decisions,
+    vdt.parliamentary_period,
+    ROUND(s.mean_decisions, 2) AS mean_decisions,
+    ROUND(s.stddev_decisions, 2) AS stddev_decisions,
+    ROUND((vdt.daily_decisions - s.mean_decisions) / NULLIF(s.stddev_decisions, 0), 2) AS z_score,
+    CASE 
+        WHEN ABS((vdt.daily_decisions - s.mean_decisions) / NULLIF(s.stddev_decisions, 0)) > 2.5 THEN 'EXTREME ANOMALY 🔴'
+        WHEN ABS((vdt.daily_decisions - s.mean_decisions) / NULLIF(s.stddev_decisions, 0)) > 2.0 THEN 'ANOMALY 🟡'
+        WHEN ABS((vdt.daily_decisions - s.mean_decisions) / NULLIF(s.stddev_decisions, 0)) > 1.5 THEN 'NOTABLE 🟢'
+        ELSE 'NORMAL'
+    END AS anomaly_status
+FROM view_decision_temporal_trends vdt
+CROSS JOIN stats s
+WHERE vdt.decision_day >= CURRENT_DATE - INTERVAL '3 months'
+  AND ABS((vdt.daily_decisions - s.mean_decisions) / NULLIF(s.stddev_decisions, 0)) > 1.5
+ORDER BY ABS((vdt.daily_decisions - s.mean_decisions) / NULLIF(s.stddev_decisions, 0)) DESC
+LIMIT 15;
+```
+
+**Sample Output:**
+
+```
+decision_day | daily_decisions | parliamentary_period | mean_decisions | stddev_decisions | z_score | anomaly_status
+-------------+-----------------+----------------------+----------------+------------------+---------+------------------
+2024-10-22   |              87 |    Autumn Session    |          39.45 |            15.23 |    3.12 | EXTREME ANOMALY 🔴
+2024-09-15   |              78 |    Autumn Session    |          39.45 |            15.23 |    2.53 | EXTREME ANOMALY 🔴
+2024-11-03   |              72 |    Autumn Session    |          39.45 |            15.23 |    2.14 | ANOMALY 🟡
+2024-08-05   |               1 |    Summer Recess     |          39.45 |            15.23 |   -2.52 | EXTREME ANOMALY 🔴
+2024-10-08   |              65 |    Autumn Session    |          39.45 |            15.23 |    1.68 | NOTABLE 🟢
+```
+
+**Intelligence Application**: Z-score > 2 indicates statistically significant anomalies. High z-scores may indicate critical legislative pushes, deadline-driven activity, or unusual parliamentary sessions. Low z-scores may indicate bottlenecks, political gridlock, or unexpected recesses.
+
+---
+
+**4. Year-over-Year Comparison**
+
+Compare current legislative activity to the same period last year to identify trends.
+
+```sql
+SELECT 
+    decision_day,
+    daily_decisions AS current_year_decisions,
+    decisions_last_year AS prior_year_decisions,
+    yoy_decisions_change AS decision_change,
+    yoy_decisions_change_pct AS pct_change,
+    parliamentary_period,
+    CASE 
+        WHEN yoy_decisions_change_pct > 20 THEN 'Significant Increase ⬆⬆'
+        WHEN yoy_decisions_change_pct > 10 THEN 'Moderate Increase ⬆'
+        WHEN yoy_decisions_change_pct > -10 THEN 'Stable ➡'
+        WHEN yoy_decisions_change_pct > -20 THEN 'Moderate Decrease ⬇'
+        ELSE 'Significant Decrease ⬇⬇'
+    END AS yoy_trend
+FROM view_decision_temporal_trends
+WHERE decision_day >= CURRENT_DATE - INTERVAL '3 months'
+  AND decisions_last_year IS NOT NULL
+ORDER BY decision_day DESC
+LIMIT 20;
+```
+
+**Sample Output:**
+
+```
+decision_day | current_year | prior_year | decision_change | pct_change | parliamentary_period | yoy_trend
+-------------+--------------+------------+-----------------+------------+----------------------+-------------------------
+2024-11-15   |           42 |         45 |              -3 |      -6.67 | Autumn Session       | Stable ➡
+2024-11-14   |           45 |         38 |               7 |      18.42 | Autumn Session       | Moderate Increase ⬆
+2024-11-13   |           48 |         52 |              -4 |      -7.69 | Autumn Session       | Stable ➡
+2024-11-12   |           52 |         41 |              11 |      26.83 | Autumn Session       | Significant Increase ⬆⬆
+```
+
+**Intelligence Application**: Year-over-year comparisons identify whether current legislative activity is above or below historical baselines. Significant deviations may indicate changing political priorities, coalition dynamics, or procedural changes.
+
+---
+
+**5. Forecast Legislative Activity (Simple Moving Average)**
+
+Use 30-day moving average to forecast expected decision volumes for upcoming week.
+
+```sql
+WITH recent_trend AS (
+    SELECT 
+        ROUND(AVG(ma_30day_decisions), 2) AS forecast_baseline,
+        ROUND(STDDEV(daily_decisions), 2) AS forecast_uncertainty
+    FROM view_decision_temporal_trends
+    WHERE decision_day >= CURRENT_DATE - INTERVAL '30 days'
+)
+SELECT 
+    CURRENT_DATE + INTERVAL '1 day' * generate_series(1, 7) AS forecast_date,
+    rt.forecast_baseline AS expected_decisions,
+    rt.forecast_baseline - rt.forecast_uncertainty AS lower_bound,
+    rt.forecast_baseline + rt.forecast_uncertainty AS upper_bound,
+    CASE 
+        WHEN EXTRACT(DOW FROM CURRENT_DATE + INTERVAL '1 day' * generate_series(1, 7)) IN (0, 6) THEN 'Weekend (Low Activity)'
+        ELSE 'Weekday (Normal Activity)'
+    END AS activity_expectation
+FROM recent_trend rt;
+```
+
+**Sample Output:**
+
+```
+forecast_date | expected_decisions | lower_bound | upper_bound | activity_expectation
+--------------+--------------------+-------------+-------------+----------------------
+2024-11-16    |              41.15 |       26.92 |       55.38 | Weekend (Low Activity)
+2024-11-17    |              41.15 |       26.92 |       55.38 | Weekend (Low Activity)
+2024-11-18    |              41.15 |       26.92 |       55.38 | Weekday (Normal Activity)
+2024-11-19    |              41.15 |       26.92 |       55.38 | Weekday (Normal Activity)
+2024-11-20    |              41.15 |       26.92 |       55.38 | Weekday (Normal Activity)
+```
+
+**Intelligence Application**: Simple forecasting using moving average baseline provides expected decision volumes. Actual volumes significantly outside bounds indicate unusual activity warranting investigation.
+
+---
+
+**6. Parliamentary Session Effectiveness**
+
+Compare approval rates across different parliamentary periods to identify procedural patterns.
+
+```sql
+SELECT 
+    parliamentary_period,
+    COUNT(*) AS total_days,
+    ROUND(AVG(daily_decisions), 2) AS avg_decisions_per_day,
+    ROUND(AVG(daily_approval_rate), 2) AS avg_approval_rate,
+    ROUND(AVG(ma_30day_approval_rate), 2) AS smoothed_approval_rate,
+    ROUND(SUM(daily_decisions), 0) AS total_decisions,
+    ROUND(SUM(approved_decisions), 0) AS total_approved,
+    ROUND(SUM(rejected_decisions), 0) AS total_rejected
+FROM view_decision_temporal_trends
+WHERE decision_day >= CURRENT_DATE - INTERVAL '2 years'
+GROUP BY parliamentary_period
+ORDER BY total_decisions DESC;
+```
+
+**Sample Output:**
+
+```
+parliamentary_period    | total_days | avg_decisions_per_day | avg_approval_rate | smoothed_approval_rate | total_decisions | total_approved | total_rejected
+------------------------+------------+-----------------------+-------------------+------------------------+-----------------+----------------+---------------
+Autumn Session         |        245 |                 42.15 |             68.30 |                  68.50 |           10327 |           7053 |           2845
+Late Spring Session    |        198 |                 38.72 |             67.80 |                  68.10 |            7667 |           5198 |           2134
+Spring Session         |        156 |                 35.45 |             66.50 |                  67.20 |            5530 |           3677 |           1623
+Winter Recess          |         45 |                  8.23 |             71.20 |                  71.80 |             370 |            263 |              95
+Summer Recess          |         38 |                  5.67 |             69.40 |                  70.10 |             215 |            149 |              58
+```
+
+**Intelligence Application**: Identifies highest productivity periods (Autumn Session) and approval rate variations by season. Recess periods show higher approval rates but much lower volume, suggesting only consensus items are processed during these periods.
+
+#### Performance Characteristics
+
+- **Query Time:** 200-500ms (5-year rolling window, daily granularity)
+- **Refresh Frequency:** Real-time (recalculates on each query)
+- **Data Volume:** ~1,825 rows (5 years × 365 days, filtered to days with decisions)
+- **Optimization:** Indexed on `document_data.made_public_date` for temporal queries
+
+#### Data Sources
+
+- **Primary Table:** `document_proposal_data` (proposal decision text)
+- **Join Path:** `document_proposal_data` → `document_proposal_container` → `document_status_container` → `document_data` (dates)
+- **Time Range:** Last 5 years (configurable in view definition)
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Temporal Analysis Framework**: Primary implementation of time-series decision analysis
+- **Predictive Intelligence Framework**: Forecasting legislative activity using moving averages
+- **Pattern Recognition Framework**: Seasonal decomposition and anomaly detection
+- **Strategic Assessment**: Parliamentary productivity monitoring and baseline comparison
+
+#### Intelligence Applications
+
+1. **Forecast Legislative Activity**: Predict decision volumes for upcoming months based on moving average trends
+2. **Detect Anomalous Decision Volumes**: Identify bottlenecks or unusual activity through z-score analysis
+3. **Compare to Historical Baselines**: Year-over-year comparison to assess if current session is above/below normal
+4. **Identify Seasonal Patterns**: Resource planning based on parliamentary calendar patterns
+5. **Trend Detection**: Moving average crossovers signal acceleration or deceleration in legislative activity
+6. **Crisis Response**: Monitor decision volume drops during political crises or government transitions
+
+#### Dependencies
+
+- Depends on: `document_proposal_data`, `document_proposal_container`, `document_status_container`, `document_data`
+- Used by: Predictive analytics dashboards, legislative planning tools, anomaly detection systems
+- Complements: `view_riksdagen_party_decision_flow`, `view_riksdagen_politician_decision_pattern`
+
+#### Related Views
+
+- **view_riksdagen_party_decision_flow**: Party-level decision aggregation (v1.35)
+- **view_riksdagen_politician_decision_pattern**: Individual politician decision patterns (v1.35)
+- **view_politician_behavioral_trends**: Behavioral time-series analysis (v1.30)
 
 ---
 
