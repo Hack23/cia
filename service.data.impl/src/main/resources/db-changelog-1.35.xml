@@ -893,18 +893,6 @@ SELECT
         2
     ) AS rejection_rate,
     
-    -- Committees involved (distinct count per ministry/quarter)
-    COUNT(DISTINCT dpd.committee) AS committees_involved,
-    
-    -- Average days between consecutive proposals (processing throughput estimate)
-    -- Note: This calculates gaps between proposal submissions, not actual processing duration
-    AVG(
-        EXTRACT(EPOCH FROM (dd.made_public_date - LAG(dd.made_public_date) OVER (
-            PARTITION BY dd.org, dpd.committee 
-            ORDER BY dd.made_public_date
-        ))) / 86400
-    ) AS avg_processing_days,
-    
     -- Date range for this aggregation
     MIN(dd.made_public_date) AS earliest_proposal_date,
     MAX(dd.made_public_date) AS latest_proposal_date

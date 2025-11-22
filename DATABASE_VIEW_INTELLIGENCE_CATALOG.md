@@ -1959,8 +1959,6 @@ Tracks ministry-initiated proposal outcomes from DOCUMENT_PROPOSAL_DATA, enablin
 - **rejected_proposals**: Count of rejected proposals (avslag, avslå)
 - **approval_rate**: Percentage of proposals approved (%)
 - **rejection_rate**: Percentage of proposals rejected (%)
-- **committees_involved**: Number of distinct committees handling ministry proposals
-- **avg_processing_days**: Average days between consecutive proposals (throughput estimate, not actual processing time)
 - **earliest_proposal_date**: Start of period
 - **latest_proposal_date**: End of period
 
@@ -1972,7 +1970,7 @@ SELECT ministry_code,
        SUM(total_proposals) AS total,
        ROUND(AVG(approval_rate), 2) AS avg_approval_rate,
        ROUND(AVG(rejection_rate), 2) AS avg_rejection_rate,
-       SUM(committees_involved) AS committees_worked_with
+       COUNT(DISTINCT committee) AS committees_worked_with
 FROM view_ministry_decision_impact
 WHERE decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 1
 GROUP BY ministry_code
