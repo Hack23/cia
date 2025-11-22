@@ -2957,7 +2957,7 @@ From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
 - 📊 **Committee Influence Maps** - Which parties control which committees
 - 📈 **Temporal Effectiveness Trends** - Is party legislative power growing or declining?
 
-**Data Flow:** See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#decision-flow-views) for complete data pipeline.
+**Data Flow:** See [Intelligence Data Flow Map - Party Views](INTELLIGENCE_DATA_FLOW.md#party-views) for complete data pipeline.
 
 #### Integration with Product Features
 
