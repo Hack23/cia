@@ -35,7 +35,7 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **83 database views** (55 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
 ✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views. **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 

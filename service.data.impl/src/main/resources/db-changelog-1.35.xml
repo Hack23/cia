@@ -620,7 +620,7 @@ ORDER BY
 
 WITH daily_decisions AS (
     SELECT 
-        dd.made_public_date::DATE AS decision_day,
+        dd.made_public_date AS decision_day,
         COUNT(*) AS daily_decisions,
         
         -- Approval rate calculation
@@ -671,7 +671,7 @@ WITH daily_decisions AS (
       AND LENGTH(dpd.chamber) >= 6  -- Minimum valid decision text length
       AND LENGTH(dpd.chamber) <= 29  -- Matches DecisionDataFactoryImpl.CHAMBER_MAX_LENGTH
     
-    GROUP BY dd.made_public_date::DATE
+    GROUP BY dd.made_public_date
 )
 SELECT 
     decision_day,
