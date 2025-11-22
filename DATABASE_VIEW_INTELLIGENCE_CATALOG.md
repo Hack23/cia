@@ -35,12 +35,12 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **85 database views** (57 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views. **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 85 database views. **11 views** have detailed examples with complex queries, while **74 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
 **Last Validated**: 2025-11-22  
-**Latest Addition**: v1.35 Temporal Decision Trends View (view_decision_temporal_trends) - Predictive intelligence with moving averages  
+**Latest Addition**: v1.35 Ministry Decision Impact View (view_ministry_decision_impact) - Government policy effectiveness and coalition stability tracking  
 **Validation Method**: Automated schema validation and health check analysis  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
 **Latest Validation Report**: service.data.impl/sample-data/schema_validation_20251121_142510.txt  
@@ -50,19 +50,19 @@ The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 84 | All database views across platform (validated 2025-11-22, updated with v1.35) |
-| **Regular Views** | 56 | Standard SQL views (includes view_decision_temporal_trends) |
+| **Total Views** | 85 | All database views across platform (validated 2025-11-22, updated with v1.35 ministry decision impact) |
+| **Regular Views** | 57 | Standard SQL views (includes view_ministry_decision_impact) |
 | **Materialized Views** | 28 | Performance-optimized views with physical storage (see refresh-all-views.sql) |
 | **Views Documented (Detailed)** | 11 | Fully documented with complex examples, performance characteristics, intelligence value |
-| **Views Documented (Structured)** | 73 | Documented with purpose, key metrics, sample queries, applications |
-| **Documentation Coverage** | 100% | All 84 views now documented |
+| **Views Documented (Structured)** | 74 | Documented with purpose, key metrics, sample queries, applications |
+| **Documentation Coverage** | 100% | All 85 views now documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
-| **Decision Flow Views** | 3 | Party, politician, and temporal decision analysis (v1.35) |
+| **Decision Flow Views** | 4 | Party, politician, temporal, and ministry decision analysis (v1.35) |
 | **Empty Views Requiring Investigation** | 9 | Views returning 0 rows (ministry, risk, coalition analysis) |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Document Views** | 7 | Politician and party document productivity |
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
-| **Government/Ministry Views** | 7 | Government and ministry performance tracking |
+| **Government/Ministry Views** | 8 | Government and ministry performance tracking (including decision impact) |
 | **Party Views** | 13 | Party performance, decision flow, effectiveness (updated v1.35) |
 | **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
 | **Changelog Versions** | v1.0-v1.35 | Database schema evolution tracking |
@@ -249,13 +249,14 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
 | view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |
 
-### Government/Ministry Views (7 views)
+### Government/Ministry Views (8 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
 | view_ministry_effectiveness_trends | Standard | ⭐⭐⭐⭐⭐ | Ministry performance trends over time |
 | view_ministry_productivity_matrix | Standard | ⭐⭐⭐⭐⭐ | Comparative ministry productivity analysis |
 | view_ministry_risk_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of ministry risk indicators |
+| view_ministry_decision_impact | Standard | ⭐⭐⭐⭐⭐ | Ministry proposal success rates and effectiveness (v1.35) |
 | view_riksdagen_goverment | Standard | ⭐⭐⭐⭐ | Government structure and composition |
 | view_riksdagen_goverment_proposals | Standard | ⭐⭐⭐⭐ | Government legislative proposals |
 | view_riksdagen_goverment_role_member | Standard | ⭐⭐⭐⭐ | Government role assignments |
@@ -1933,6 +1934,122 @@ Catalog of government roles, ministries, and position definitions. Reference dat
 - `role_title`: Official role name
 - `ministry_category`: Ministry grouping
 - `role_level`: CABINET, STATE_SECRETARY, etc.
+
+---
+
+### view_ministry_decision_impact ⭐⭐⭐⭐⭐
+
+**Category:** Ministry Decision Analysis (v1.35)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Government Policy Effectiveness & Coalition Stability  
+
+#### Purpose
+
+Tracks ministry-initiated proposal outcomes from DOCUMENT_PROPOSAL_DATA, enabling analysis of which government ministries have the highest/lowest success rates for their legislative proposals. Provides comprehensive insight into government policy effectiveness, ministry-parliament relations, and coalition stability indicators.
+
+#### Key Metrics
+
+- **ministry_code**: Government ministry/department identifier (org)
+- **committee**: Parliamentary committee handling the proposal
+- **decision_type**: Type of decision rendered
+- **decision_quarter**: Quarter when decision was made (aggregated)
+- **decision_year**: Year of decision
+- **quarter_num**: Quarter number (1-4) for sorting and filtering
+- **total_proposals**: Total ministry proposals in period
+- **approved_proposals**: Count of approved proposals (bifall, godkänt, bifalla)
+- **rejected_proposals**: Count of rejected proposals (avslag, avslå)
+- **referred_back_proposals**: Count of proposals referred back to committee (återförvisning, återförvisa)
+- **other_decisions**: Count of other decisions (not approved/rejected/referred back)
+- **approval_rate**: Percentage of proposals approved (%)
+- **rejection_rate**: Percentage of proposals rejected (%)
+- **earliest_proposal_date**: Start of period
+- **latest_proposal_date**: End of period
+
+#### Sample Query: Ministry Success Rates (Last 2 Years)
+
+```sql
+-- Ministry proposal success rates comparison
+SELECT ministry_code,
+       SUM(total_proposals) AS total,
+       ROUND(AVG(approval_rate), 2) AS avg_approval_rate,
+       ROUND(AVG(rejection_rate), 2) AS avg_rejection_rate,
+       COUNT(DISTINCT committee) AS committees_worked_with
+FROM view_ministry_decision_impact
+WHERE decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 1
+GROUP BY ministry_code
+ORDER BY avg_approval_rate DESC;
+```
+
+#### Sample Query: Quarterly Ministry Performance Trends
+
+```sql
+-- Track ministry performance trends over time
+SELECT ministry_code, decision_year, quarter_num,
+       total_proposals, approval_rate, rejection_rate
+FROM view_ministry_decision_impact
+WHERE ministry_code = 'U'  -- Example: Ministry of Foreign Affairs
+  AND decision_year >= 2020
+ORDER BY decision_year DESC, quarter_num DESC;
+```
+
+#### Sample Query: Committee-Ministry Relationship Analysis
+
+```sql
+-- Which committees approve ministry proposals most frequently
+SELECT committee, ministry_code,
+       SUM(total_proposals) AS proposals,
+       ROUND(AVG(approval_rate), 2) AS avg_approval
+FROM view_ministry_decision_impact
+WHERE decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 2
+GROUP BY committee, ministry_code
+HAVING SUM(total_proposals) >= 5  -- At least 5 proposals
+ORDER BY avg_approval DESC;
+```
+
+#### Intelligence Applications
+
+1. **Government Policy Effectiveness**: 
+   - Identify ministries with low approval rates indicating policy effectiveness issues
+   - Track which ministries have strongest parliamentary support
+   - Monitor government legislative success over time
+
+2. **Coalition Stability Analysis**:
+   - Low ministry approval rates may signal coalition tensions
+   - Track whether government proposals face increasing rejection
+   - Identify at-risk ministries with declining success rates
+
+3. **Committee-Ministry Relations**:
+   - Analyze which committees are most supportive/critical of specific ministries
+   - Identify bottlenecks where ministry proposals stall
+   - Map institutional relationships between executive and legislative branches
+
+4. **Temporal Trend Analysis**:
+   - Detect declining ministry effectiveness over quarters/years
+   - Forecast future approval rates based on historical patterns
+   - Identify seasonal variations in ministry legislative success
+
+5. **Policy Domain Success Patterns**:
+   - Compare success rates across different policy domains (ministries)
+   - Identify high-performing vs. struggling ministries
+   - Resource allocation and capacity assessment
+
+#### Related Views
+
+- **view_riksdagen_party_decision_flow** (Issue Hack23/cia#7918) - Party-level decision patterns
+- **view_riksdagen_politician_decision_pattern** (Issue Hack23/cia#7919) - Individual politician decisions
+- **view_decision_temporal_trends** (Issue Hack23/cia#7922) - Temporal decision analysis
+- **view_ministry_effectiveness_trends** - Broader ministry performance metrics
+- **view_riksdagen_goverment_proposals** - Government legislative proposals tracking
+
+#### Complementary Analysis
+
+This view complements the existing ministry effectiveness views by adding decision outcome tracking:
+- **view_ministry_effectiveness_trends**: Tracks document productivity
+- **view_ministry_productivity_matrix**: Compares ministry output
+- **view_ministry_risk_evolution**: Monitors ministry risk indicators
+- **view_ministry_decision_impact**: Adds proposal success/failure outcomes ← **NEW**
+
+Together, these views provide comprehensive government performance intelligence spanning productivity, risk, and legislative effectiveness.
 
 ---
 
@@ -5454,7 +5571,7 @@ See [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for
   - Politician Views: 8 views (including ballot summary, influence metrics, risk summary)
   - Party Views: 12 views (including performance metrics, momentum analysis, coalition patterns)
   - Committee Views: 12 views (productivity, decisions, roles, membership)
-  - Ministry/Government Views: 7 views (effectiveness trends, productivity matrix, risk evolution)
+  - Ministry/Government Views: 8 views (effectiveness trends, productivity matrix, risk evolution, decision impact)
   - Intelligence Views: 6 views (dashboard, crisis resilience, voting anomaly detection)
   - Vote Data Views: 20 views (ballot/party/politician summaries - daily/weekly/monthly/annual)
   - Document Views: 7 views (politician and party document productivity)
