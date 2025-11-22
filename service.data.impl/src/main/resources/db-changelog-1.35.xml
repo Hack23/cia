@@ -380,7 +380,7 @@ ORDER BY
     <createView viewName="view_riksdagen_politician_decision_pattern" replaceIfExists="true">
         <![CDATA[
 SELECT 
-    pd.person_id,
+    pd.id AS person_id,
     pd.first_name,
     pd.last_name,
     dpr.party_short_code AS party,
@@ -477,12 +477,12 @@ INNER JOIN person_data pd
 WHERE dpd.chamber IS NOT NULL
   AND dpd.committee IS NOT NULL
   AND dd.made_public_date IS NOT NULL
-  AND pd.person_id IS NOT NULL
+  AND pd.id IS NOT NULL
   AND LENGTH(dpd.chamber) >= 6  -- Minimum valid decision text length
   AND LENGTH(dpd.chamber) <= 29  -- Matches DecisionDataFactoryImpl.CHAMBER_MAX_LENGTH
 
 GROUP BY 
-    pd.person_id,
+    pd.id,
     pd.first_name,
     pd.last_name,
     dpr.party_short_code,
