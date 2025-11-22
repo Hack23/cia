@@ -1954,6 +1954,7 @@ Tracks ministry-initiated proposal outcomes from DOCUMENT_PROPOSAL_DATA, enablin
 - **decision_type**: Type of decision rendered
 - **decision_quarter**: Quarter when decision was made (aggregated)
 - **decision_year**: Year of decision
+- **quarter_num**: Quarter number (1-4) for sorting and filtering
 - **total_proposals**: Total ministry proposals in period
 - **approved_proposals**: Count of approved proposals (bifall, godkänt, bifalla)
 - **rejected_proposals**: Count of rejected proposals (avslag, avslå)
