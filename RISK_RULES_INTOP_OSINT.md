@@ -13,6 +13,25 @@ This document provides comprehensive intelligence analysis documentation for all
 
 ---
 
+## 📋 Quick Reference: Risk Rules and Data Sources
+
+<div class="quick-reference">
+
+| I Want To... | Navigate To |
+|--------------|-------------|
+| **See complete data flow pipeline** | [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) |
+| **Find which views support risk rules** | [Risk Rule → View Mapping](INTELLIGENCE_DATA_FLOW.md#risk-rule--view-mapping) |
+| **Understand analytical frameworks** | [Data Analysis Documentation](DATA_ANALYSIS_INTOP_OSINT.md) |
+| **Browse all database views** | [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **Jump to Politician Risk Rules** | [Politician Risk Rules](#-politician-risk-rules-24-rules) |
+| **Jump to Party Risk Rules** | [Party Risk Rules](#-party-risk-rules-10-rules) |
+| **Jump to Committee Risk Rules** | [Committee Risk Rules](#-committee-risk-rules-4-rules) |
+| **Jump to Ministry Risk Rules** | [Ministry Risk Rules](#-ministry-risk-rules-4-rules) |
+
+</div>
+
+---
+
 ## 📊 Intelligence Framework Overview
 
 ```mermaid
@@ -114,6 +133,19 @@ graph TB
 
 **OSINT Indicators**: Physical absence from parliamentary votes, pattern recognition across temporal scales
 
+#### Data Source Views
+
+| View Name | Temporal Granularity | Purpose | Link |
+|-----------|---------------------|---------|------|
+| **view_riksdagen_vote_data_ballot_politician_summary_daily** | Daily | Detect 100% daily absence spikes | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_monthly** | Monthly | Track ≥20% monthly absence patterns | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_annual** | Annual | Assess sustained 20-30% or ≥30% absenteeism | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_politician_summary** | Aggregated | Cross-reference with overall performance metrics | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_summary) |
+
+**Analytical Framework**: [Temporal Analysis](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) - Tracks absence trends across time granularities
+
+**Data Flow**: See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#risk-rule--view-mapping) for complete pipeline
+
 ```mermaid
 flowchart TD
     A[Politician Voting Data] --> B{Absence Analysis}
@@ -155,6 +187,18 @@ flowchart TD
 
 **OSINT Indicators**: Vote outcome correlation, minority party patterns, coalition effectiveness
 
+#### Data Source Views
+
+| View Name | Temporal Granularity | Purpose | Link |
+|-----------|---------------------|---------|------|
+| **view_riksdagen_vote_data_ballot_politician_summary_annual** | Annual | Calculate win rate percentages | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_politician_summary** | Aggregated | Overall effectiveness assessment | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_summary) |
+| **view_riksdagen_party_summary** | Aggregated | Compare individual vs. party effectiveness | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+
+**Analytical Framework**: [Comparative Analysis](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) - Benchmarks win rates against peers
+
+**Data Flow**: See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#risk-rule--view-mapping) for complete pipeline
+
 ```mermaid
 flowchart TD
     A[Annual Voting Summary] --> B{Win Rate Analysis}
@@ -194,6 +238,18 @@ flowchart TD
 **Intelligence Purpose**: Detects politicians who frequently vote against party line, indicating internal conflicts or ideological independence.
 
 **OSINT Indicators**: Party loyalty metrics, factional analysis, ideological positioning
+
+#### Data Source Views
+
+| View Name | Temporal Granularity | Purpose | Link |
+|-----------|---------------------|---------|------|
+| **view_riksdagen_vote_data_ballot_politician_summary_annual** | Annual | Calculate rebel voting percentage | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_politician_ballot_support_annual_summary** | Annual | Analyze party line support patterns | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
+| **view_riksdagen_party_ballot_support_annual_summary** | Annual | Compare individual vs. party discipline | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+
+**Analytical Framework**: [Pattern Recognition](DATA_ANALYSIS_INTOP_OSINT.md#3-pattern-recognition-framework) - Identifies rebellion patterns and factional clustering
+
+**Data Flow**: See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#risk-rule--view-mapping) for complete pipeline
 
 ```mermaid
 flowchart TD
@@ -235,6 +291,18 @@ flowchart TD
 **Intelligence Purpose**: Detects deteriorating performance by comparing recent vs. historical behavior.
 
 **OSINT Indicators**: Temporal trend analysis, burnout indicators, crisis signals
+
+#### Data Source Views
+
+| View Name | Temporal Granularity | Purpose | Link |
+|-----------|---------------------|---------|------|
+| **view_riksdagen_vote_data_ballot_politician_summary_monthly** | Monthly | Track monthly performance changes | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_annual** | Annual | Establish baseline for comparison | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_politician_summary** | Aggregated | Overall performance trend assessment | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_summary) |
+
+**Analytical Framework**: [Temporal Analysis](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) & [Predictive Intelligence](DATA_ANALYSIS_INTOP_OSINT.md#4-predictive-intelligence-framework) - Detects trends and forecasts escalation
+
+**Data Flow**: See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#risk-rule--view-mapping) for complete pipeline
 
 ```mermaid
 flowchart TD
