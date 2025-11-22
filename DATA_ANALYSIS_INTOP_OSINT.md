@@ -14,12 +14,34 @@ This document provides comprehensive documentation of data analysis methodologie
 
 ---
 
+## 📋 Quick Reference: Intelligence Data Flow
+
+<div class="quick-reference">
+
+| I Want To... | Navigate To |
+|--------------|-------------|
+| **See complete data pipeline** | [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) |
+| **Find views for my analysis type** | [Analysis Framework → View Mapping](INTELLIGENCE_DATA_FLOW.md#analysis-framework--view-mapping) |
+| **Browse all database views** | [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **Understand risk rule data sources** | [Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md) |
+| **Jump to Temporal Analysis** | [Temporal Analysis Framework](#1-temporal-analysis-framework) |
+| **Jump to Comparative Analysis** | [Comparative Analysis Framework](#2-comparative-analysis-framework) |
+| **Jump to Pattern Recognition** | [Pattern Recognition Framework](#3-pattern-recognition-framework) |
+| **Jump to Predictive Intelligence** | [Predictive Intelligence Framework](#4-predictive-intelligence-framework) |
+| **Jump to Network Analysis** | [Network Analysis Framework](#5-network-analysis-framework) |
+
+</div>
+
+---
+
 ## 📚 Related Documentation
 
 <div class="documentation-map">
 
 | Document | Focus | Description | Link |
 |----------|-------|-------------|------|
+| **[Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md)** | 🗺️ Navigation | Central cross-reference hub | [View](https://github.com/Hack23/cia/blob/master/INTELLIGENCE_DATA_FLOW.md) |
+| **[Database View Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | 82 database views catalog | [View](https://github.com/Hack23/cia/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
 | **[Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md)** | 🔴 Risk Rules | 45 behavioral detection rules | [View](https://github.com/Hack23/cia/blob/master/RISK_RULES_INTOP_OSINT.md) |
 | **[Liquibase Intelligence Analysis](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 🗄️ Database | Schema evolution intelligence analysis | [View](https://github.com/Hack23/cia/blob/master/LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
 | **[Drools Risk Rules](DROOLS_RISK_RULES.md)** | ⚙️ Rules Engine | Technical rule documentation | [View](https://github.com/Hack23/cia/blob/master/DROOLS_RISK_RULES.md) |
@@ -223,6 +245,28 @@ graph LR
 ### 1. Temporal Analysis Framework
 
 Temporal analysis examines behavioral patterns across different time scales to detect trends, anomalies, and evolutionary patterns in political behavior.
+
+#### Data Sources
+
+This analysis framework uses the following database views:
+
+| View Name | Purpose | Temporal Granularity | Update Frequency | Link |
+|-----------|---------|---------------------|------------------|------|
+| **view_riksdagen_politician_summary** | Politician performance metrics over time | Daily/Annual | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_summary) |
+| **view_riksdagen_vote_data_ballot_politician_summary_daily** | Daily voting activity tracking | Daily | Real-time | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_weekly** | Weekly voting trend analysis | Weekly | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_monthly** | Monthly engagement patterns | Monthly | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_annual** | Annual performance assessment | Annual | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_party_ballot_support_annual_summary** | Party voting patterns by year | Annual | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_committee_decision_summary** | Committee productivity trends | Ongoing | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+| **view_riksdagen_politician_document_daily_summary** | Document production trends | Daily | Real-time | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#document-views) |
+
+**Related Risk Rules:**
+- [#1 - PoliticianLazy (Absenteeism Detection)](RISK_RULES_INTOP_OSINT.md#1--politicianlazydrl---absenteeism-detection)
+- [#4 - PoliticianDecliningEngagement (Trend Analysis)](RISK_RULES_INTOP_OSINT.md#4--politiciandecliningengagementdrl---trend-analysis)
+- [#7 - PoliticianLowEngagement (Participation Monitoring)](RISK_RULES_INTOP_OSINT.md#7--politicianlowengagementdrl---participation-monitoring)
+
+**Complete Data Flow:** See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#temporal-analysis-framework) for visual pipeline.
 
 #### Time Granularity Levels
 
@@ -501,6 +545,27 @@ pie title "Resignation Probability - Lars Andersson"
 ### 2. Comparative Analysis Framework
 
 Comparative analysis benchmarks political actors against peers, norms, and international standards.
+
+#### Data Sources
+
+This analysis framework uses the following database views:
+
+| View Name | Purpose | Comparison Type | Update Frequency | Link |
+|-----------|---------|-----------------|------------------|------|
+| **view_riksdagen_politician_summary** | Individual vs. party benchmarks | Peer comparison | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_summary) |
+| **view_riksdagen_party_summary** | Inter-party comparison | Party comparison | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_party_ballot_support_annual_summary** | Party voting effectiveness | Historical comparison | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_committee_ballot_decision_summary** | Committee effectiveness comparison | Committee benchmarking | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+| **view_riksdagen_politician_document_daily_summary** | Document productivity comparison | Output benchmarking | Real-time | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#document-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_annual** | Annual performance ranking | Percentile analysis | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_politician_experience_summary** | Experience-based comparison | Career stage benchmarking | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_experience_summary) |
+
+**Related Risk Rules:**
+- [#2 - PoliticianIneffectiveVoting (Effectiveness Tracking)](RISK_RULES_INTOP_OSINT.md#2--politicianineffectivevotingdrl---effectiveness-tracking)
+- [#8 - PoliticianLowDocumentActivity (Legislative Productivity)](RISK_RULES_INTOP_OSINT.md#8--politicianlowdocumentactivitydrl---legislative-productivity)
+- [Party Risk Rules (Organizational Effectiveness)](RISK_RULES_INTOP_OSINT.md#-party-risk-rules-10-rules)
+
+**Complete Data Flow:** See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#comparative-analysis-framework) for visual pipeline.
 
 ```mermaid
 graph TB
@@ -787,6 +852,26 @@ pie title "Coalition Stability Forecast - Next 6 Months"
 ### 3. Pattern Recognition Framework
 
 Pattern recognition identifies behavioral clusters, correlations, and anomalies indicating risk profiles or political dynamics.
+
+#### Data Sources
+
+This analysis framework uses the following database views:
+
+| View Name | Purpose | Pattern Type | Update Frequency | Link |
+|-----------|---------|-------------|------------------|------|
+| **view_risk_rule_violation** | Historical risk patterns | Anomaly detection | Real-time | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#intelligence--risk-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary** | Voting behavior patterns | Behavioral clustering | Real-time | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_politician_ballot_support_annual_summary** | Support pattern analysis | Coalition patterns | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
+| **view_riksdagen_politician_summary** | Multi-dimensional behavior | Feature clustering | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_summary) |
+| **view_riksdagen_party_ballot_support_annual_summary** | Party alignment patterns | Voting bloc detection | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_annual** | Annual behavioral patterns | Statistical anomalies | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+
+**Related Risk Rules:**
+- [#5 - PoliticianCombinedRisk (Multi-Factor Assessment)](RISK_RULES_INTOP_OSINT.md#5--politiciancombinedriskdrl---multi-factor-assessment)
+- [#6 - PoliticianAbstentionPattern (Strategic Behavior Analysis)](RISK_RULES_INTOP_OSINT.md#6--politicianabstentionpatterndrl---strategic-behavior-analysis)
+- [#9 - PoliticianIsolatedBehavior (Collaboration Analysis)](RISK_RULES_INTOP_OSINT.md#9--politicianisolatedbehaviordrl---collaboration-analysis)
+
+**Complete Data Flow:** See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#pattern-recognition-framework) for visual pipeline.
 
 #### Behavioral Cluster Identification
 
@@ -1764,6 +1849,26 @@ graph TB
 
 Predictive intelligence extrapolates trends, models scenarios, and assesses likelihood of political events.
 
+#### Data Sources
+
+This analysis framework uses the following database views:
+
+| View Name | Purpose | Prediction Target | Update Frequency | Link |
+|-----------|---------|------------------|------------------|------|
+| **view_riksdagen_vote_data_ballot_politician_summary_annual** | Historical voting patterns | Future voting behavior | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_party_ballot_support_annual_summary** | Party trend trajectories | Coalition stability | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_politician_summary** | Performance trajectories | Re-election likelihood | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_summary) |
+| **view_risk_rule_violation** | Historical risk events | Future risk probability | Real-time | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#intelligence--risk-views) |
+| **view_riksdagen_committee_decision_summary** | Committee productivity | Legislative output forecast | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_monthly** | Monthly trend data | Short-term predictions | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+
+**Related Risk Rules:**
+- [#4 - PoliticianDecliningEngagement (Trend Analysis)](RISK_RULES_INTOP_OSINT.md#4--politiciandecliningengagementdrl---trend-analysis)
+- [#5 - PoliticianCombinedRisk (Multi-Factor Assessment)](RISK_RULES_INTOP_OSINT.md#5--politiciancombinedriskdrl---multi-factor-assessment)
+- [Party Declining Support Rules](RISK_RULES_INTOP_OSINT.md#-party-risk-rules-10-rules)
+
+**Complete Data Flow:** See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#predictive-intelligence-framework) for visual pipeline.
+
 #### Predictive Modeling Approaches
 
 ```mermaid
@@ -2654,6 +2759,26 @@ xychart-beta
 ### 5. Network Analysis Framework
 
 Network analysis examines relationships, influence patterns, and coalition structures among political actors.
+
+#### Data Sources
+
+This analysis framework uses the following database views:
+
+| View Name | Purpose | Network Type | Update Frequency | Link |
+|-----------|---------|-------------|------------------|------|
+| **view_riksdagen_committee_role_member** | Committee memberships | Formal networks | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+| **view_riksdagen_politician_document_daily_summary** | Co-authorship patterns | Collaboration networks | Real-time | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#document-views) |
+| **view_riksdagen_party_summary** | Party relationships | Coalition networks | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary** | Voting alignment | Voting bloc networks | Real-time | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_party_ballot_support_annual_summary** | Inter-party coordination | Alliance networks | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_politician_ballot_support_annual_summary** | Individual voting patterns | Influence networks | Daily | [View Documentation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
+
+**Related Risk Rules:**
+- [#9 - PoliticianIsolatedBehavior (Collaboration Analysis)](RISK_RULES_INTOP_OSINT.md#9--politicianisolatedbehaviordrl---collaboration-analysis)
+- [#3 - PoliticianHighRebelRate (Party Discipline Analysis)](RISK_RULES_INTOP_OSINT.md#3--politicianhighrebelratedrl---party-discipline-analysis)
+- [Committee Risk Rules](RISK_RULES_INTOP_OSINT.md#-committee-risk-rules-4-rules)
+
+**Complete Data Flow:** See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#network-analysis-framework) for visual pipeline.
 
 ```mermaid
 graph TB
