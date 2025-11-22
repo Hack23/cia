@@ -675,6 +675,24 @@ graph TB
 
 **INTOP Note**: Party-level intelligence provides strategic assessment of organizational health, coalition dynamics, and government stability. Unlike individual politician analysis, party rules reveal systemic organizational issues.
 
+#### Data Source Views for Party Rules
+
+| Risk Rule | Primary Views | Purpose | Link |
+|-----------|---------------|---------|------|
+| **All Party Rules** | **view_riksdagen_party_summary** | Overall party metrics and comparison | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_party_summary) |
+| **Absenteeism & Performance** | **view_riksdagen_vote_data_ballot_party_summary_daily/monthly/annual** | Party-wide voting patterns and absence rates | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-level-vote-summaries-5-views) |
+| **Effectiveness & Discipline** | **view_riksdagen_party_ballot_support_annual_summary** | Win rates and party cohesion metrics | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **Productivity** | **view_riksdagen_party_document_daily_summary** | Legislative output and document production | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#document-views) |
+
+**Analytical Frameworks**: 
+- [Comparative Analysis](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) - Inter-party benchmarking
+- [Temporal Analysis](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) - Performance trend tracking
+- [Predictive Intelligence](DATA_ANALYSIS_INTOP_OSINT.md#4-predictive-intelligence-framework) - Coalition stability forecasting
+
+**Data Flow**: [Intelligence Data Flow Map - Party Risk Rules](INTELLIGENCE_DATA_FLOW.md#party-risk-rules-10-rules)
+
+---
+
 **1. 💤 PartyLazy.drl** - Party-wide absenteeism monitoring
 - *Strategic intelligence*: Collective absence patterns indicate coordinated strategy, organizational collapse, or opposition tactics
 - *Coalition warning*: Government party absence signals coalition instability; opposition absence may indicate boycott strategy
@@ -754,6 +772,22 @@ graph TB
 
 **INTOP Note**: Committee-level intelligence assesses legislative capacity and policy specialization effectiveness. Committees are the engine rooms of parliamentary work where detailed policy is developed.
 
+#### Data Source Views for Committee Rules
+
+| Risk Rule | Primary Views | Purpose | Link |
+|-----------|---------------|---------|------|
+| **Productivity & Activity** | **view_riksdagen_committee_decision_summary** | Committee productivity metrics and decision tracking | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+| **Productivity & Activity** | **view_riksdagen_committee_ballot_decision_summary** | Committee voting effectiveness | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+| **Leadership & Structure** | **view_riksdagen_committee_role_member** | Committee membership and leadership tracking | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+
+**Analytical Frameworks**:
+- [Temporal Analysis](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) - Committee productivity trends
+- [Comparative Analysis](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) - Cross-committee benchmarking
+
+**Data Flow**: [Intelligence Data Flow Map - Committee Risk Rules](INTELLIGENCE_DATA_FLOW.md#committee-risk-rules-4-rules)
+
+---
+
 **1. 📉 CommitteeLowProductivity.drl** - Output monitoring and productivity tracking
 - *Policy capacity assessment*: Low productivity indicates committee inability to fulfill legislative mandate
 - *Specialization gap*: Committees with low output create policy vacuums in their specialized domains
@@ -779,6 +813,19 @@ graph TB
 ## 👔 Ministry Risk Rules (4 Rules)
 
 ### Government Executive Intelligence
+
+#### Data Source Views for Ministry Rules
+
+| Risk Rule | Primary Views | Purpose | Link |
+|-----------|---------------|---------|------|
+| **All Ministry Rules** | **view_riksdagen_government_member_summary** | Government member performance tracking | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#ministrygovernment-views) |
+| **All Ministry Rules** | **view_riksdagen_ministry_member_summary** | Ministry-level aggregated metrics | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#ministrygovernment-views) |
+
+**Analytical Frameworks**:
+- [Temporal Analysis](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) - Ministry performance trends
+- [Comparative Analysis](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) - Cross-ministry benchmarking
+
+**Data Flow**: [Intelligence Data Flow Map - Ministry Risk Rules](INTELLIGENCE_DATA_FLOW.md#ministry-risk-rules-4-rules)
 
 ```mermaid
 graph TB

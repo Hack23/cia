@@ -1776,6 +1776,22 @@ Catalog of government roles, ministries, and position definitions. Reference dat
 **Sample Query**: `SELECT * FROM view_riksdagen_party_summary ORDER BY total_members DESC;`  
 **Applications**: Quick reference, party comparison, dashboard display
 
+#### Intelligence Applications
+
+This view supports multiple analytical frameworks:
+
+| Analysis Framework | Use Case | Link |
+|--------------------|----------|------|
+| **Comparative Analysis** | Inter-party benchmarking and effectiveness comparison | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
+| **Temporal Analysis** | Track party performance changes over time | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
+| **Network Analysis** | Map party relationship and coalition structures | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#5-network-analysis-framework) |
+
+**Risk Rules Supported**: [Party Risk Rules](RISK_RULES_INTOP_OSINT.md#-party-risk-rules-10-rules) - Party declining support, low cohesion, document productivity
+
+**Intelligence Products**: Party effectiveness scorecards, coalition strength analysis, organizational health reports
+
+**Data Flow**: [Intelligence Data Flow Map - Party Views](INTELLIGENCE_DATA_FLOW.md#party-views)
+
 ---
 
 ### view_riksdagen_person_signed_document_summary ⭐⭐⭐
@@ -1866,6 +1882,31 @@ LIMIT 30;
 ```
 
 **Applications**: Politician performance scorecards, behavioral trend analysis, absence tracking
+
+#### Intelligence Applications
+
+These views are **CRITICAL** for the CIA platform's intelligence capabilities:
+
+| Analysis Framework | Use Case | Supported Granularities | Link |
+|--------------------|----------|------------------------|------|
+| **Temporal Analysis** | Track voting behavior changes over time | Daily, Weekly, Monthly, Annual | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
+| **Comparative Analysis** | Benchmark politicians against peers | Annual, Monthly | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
+| **Pattern Recognition** | Detect behavioral anomalies and clusters | All granularities | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#3-pattern-recognition-framework) |
+| **Predictive Intelligence** | Forecast future voting behavior and risks | Monthly, Annual | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#4-predictive-intelligence-framework) |
+
+**Risk Rules Supported**: These views power most politician risk rules including:
+- [#1 PoliticianLazy (Absenteeism)](RISK_RULES_INTOP_OSINT.md#1--politicianlazydrl---absenteeism-detection)
+- [#2 PoliticianIneffectiveVoting (Effectiveness)](RISK_RULES_INTOP_OSINT.md#2--politicianineffectivevotingdrl---effectiveness-tracking)
+- [#3 PoliticianHighRebelRate (Party Discipline)](RISK_RULES_INTOP_OSINT.md#3--politicianhighrebelratedrl---party-discipline-analysis)
+- [#4 PoliticianDecliningEngagement (Trend Analysis)](RISK_RULES_INTOP_OSINT.md#4--politiciandecliningengagementdrl---trend-analysis)
+
+**Intelligence Products Generated**:
+- 🏆 Political Scorecards - Performance rankings by win rate, absence, productivity
+- ⚠️ Risk Assessments - Behavioral anomaly detection and risk scoring
+- 📊 Trend Reports - Temporal analysis of engagement and effectiveness
+- 🎯 Predictive Alerts - Early warning system for declining performance
+
+**Data Flow**: [Intelligence Data Flow Map - Vote Data Views](INTELLIGENCE_DATA_FLOW.md#vote-data-views-20-views)
 
 ---
 
