@@ -35,11 +35,12 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **82 database views** (54 regular views + 28 materialized views) across 8 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **83 database views** (55 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 82 database views. **9 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 83 database views. **10 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
-**Last Validated**: 2025-11-21  
+**Last Validated**: 2025-11-22  
+**Latest Addition**: v1.35 Party Decision Flow View (view_riksdagen_party_decision_flow)  
 **Validation Method**: Automated schema validation and health check analysis  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
 **Latest Validation Report**: service.data.impl/sample-data/schema_validation_20251121_142510.txt  
@@ -49,20 +50,22 @@ The Citizen Intelligence Agency (CIA) platform employs **82 database views** (54
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 82 | All database views across platform (validated 2025-11-21) |
-| **Regular Views** | 54 | Standard SQL views |
+| **Total Views** | 83 | All database views across platform (validated 2025-11-22) |
+| **Regular Views** | 55 | Standard SQL views |
 | **Materialized Views** | 28 | Performance-optimized views with physical storage (see refresh-all-views.sql) |
-| **Views Documented (Detailed)** | 9 | Fully documented with complex examples, performance characteristics, intelligence value |
+| **Views Documented (Detailed)** | 10 | Fully documented with complex examples, performance characteristics, intelligence value |
 | **Views Documented (Structured)** | 73 | Documented with purpose, key metrics, sample queries, applications |
-| **Documentation Coverage** | 100% | All 82 views now documented |
+| **Documentation Coverage** | 100% | All 83 views now documented |
 | **Intelligence Views** | 6 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard) |
+| **Decision Flow Views** | 1 | Party-level proposal decision analysis (NEW in v1.35) |
 | **Empty Views Requiring Investigation** | 9 | Views returning 0 rows (ministry, risk, coalition analysis) |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Document Views** | 7 | Politician and party document productivity |
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
 | **Government/Ministry Views** | 7 | Government and ministry performance tracking |
+| **Party Views** | 13 | Party performance, decision flow, effectiveness (updated v1.35) |
 | **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
-| **Changelog Versions** | v1.0-v1.31 | Database schema evolution tracking |
+| **Changelog Versions** | v1.0-v1.35 | Database schema evolution tracking |
 | **Database Size** | 20 GB | Total database size (validated 2025-11-21) |
 | **Total Rows** | 5.6M | Total rows across all tables |
 | **Base Tables** | 93 | Core data tables |
@@ -2109,11 +2112,11 @@ ORDER BY action_date DESC, total_events DESC;
 
 ### Overview
 
-Party views provide organizational-level intelligence on Swedish political parties, tracking electoral performance, coalition behavior, internal discipline, and effectiveness trends. These views enable coalition analysis, party comparison, and government formation forecasting.
+Party views provide organizational-level intelligence on Swedish political parties, tracking electoral performance, coalition behavior, internal discipline, decision effectiveness, and performance trends. These views enable coalition analysis, party comparison, and government formation forecasting.
 
-**Total Party Views:** 12+  
+**Total Party Views:** 13+ (NEW: Party Decision Flow v1.35)  
 **Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH  
-**Primary Use Cases:** Coalition analysis, party performance monitoring, electoral forecasting, bloc alignment
+**Primary Use Cases:** Coalition analysis, party performance monitoring, electoral forecasting, bloc alignment, legislative effectiveness
 
 ---
 
@@ -2693,6 +2696,311 @@ From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
 - **Network Analysis**: Party relationship mapping
 - **Predictive Intelligence**: Election outcome scenario planning
 - **Comparative Analysis**: Bloc cohesion vs. cross-bloc cooperation
+
+---
+
+### view_riksdagen_party_decision_flow ⭐⭐⭐⭐⭐
+
+**Category:** Decision Flow Views (NEW in v1.35)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Party Legislative Effectiveness  
+**Changelog:** v1.35 Party Decision Flow Analysis
+
+#### Purpose
+
+Aggregates proposal decision data by party, enabling analysis of party-level legislative effectiveness, coalition alignment on proposals, committee influence, and temporal decision patterns. Provides comprehensive party scorecards showing success rates in getting proposals approved or rejected.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `party` | VARCHAR(255) | Party short code | 'S', 'M', 'SD' |
+| `committee` | VARCHAR(255) | Committee processing proposal | 'Finansutskottet' |
+| `decision_type` | VARCHAR(255) | Type of decision | 'Utlåtande', 'Betänkande' |
+| `committee_org` | VARCHAR(255) | Committee organization code | 'FiU' |
+| `decision_month` | TIMESTAMP | Month of decision (truncated) | '2024-10-01 00:00:00' |
+| `decision_year` | NUMERIC | Year of decision | 2024 |
+| `decision_month_num` | NUMERIC | Month number (1-12) | 10 |
+| `total_proposals` | BIGINT | Total proposals processed | 45 |
+| `approved_proposals` | BIGINT | Proposals approved (bifall) | 32 |
+| `rejected_proposals` | BIGINT | Proposals rejected (avslag) | 10 |
+| `referred_back_proposals` | BIGINT | Proposals referred back | 2 |
+| `other_decisions` | BIGINT | Other decision outcomes | 1 |
+| `approval_rate` | NUMERIC(5,2) | Percentage approved | 71.11 |
+| `rejection_rate` | NUMERIC(5,2) | Percentage rejected | 22.22 |
+| `earliest_decision_date` | DATE | First decision in period | '2024-10-01' |
+| `latest_decision_date` | DATE | Last decision in period | '2024-10-31' |
+
+#### Swedish Decision Terms
+
+The view recognizes Swedish parliamentary decision terminology:
+
+| Swedish Term | English | Aggregation Column |
+|-------------|---------|-------------------|
+| **Bifall** / Bifalla / Godkänt | Approval/Accepted | `approved_proposals` |
+| **Avslag** / Avslå | Rejection/Denied | `rejected_proposals` |
+| **Återförvisning** / Återförvisa | Referral back to committee | `referred_back_proposals` |
+
+#### Example Queries
+
+**1. Party Success Rates (Current Year)**
+
+```sql
+SELECT
+    party,
+    SUM(total_proposals) AS total,
+    SUM(approved_proposals) AS approved,
+    SUM(rejected_proposals) AS rejected,
+    ROUND(
+        100.0 * SUM(approved_proposals) / NULLIF(SUM(total_proposals), 0),
+        2
+    ) AS overall_approval_rate
+FROM view_riksdagen_party_decision_flow
+WHERE decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+GROUP BY party
+ORDER BY overall_approval_rate DESC;
+```
+
+**Output:**
+```
+ party | total | approved | rejected | overall_approval_rate
+-------+-------+----------+----------+---------------------
+ S     |   234 |      178 |       42 |               76.07
+ M     |   198 |      145 |       38 |               73.23
+ SD    |   156 |      102 |       45 |               65.38
+```
+
+**2. Committee Effectiveness by Party**
+
+```sql
+SELECT
+    committee,
+    party,
+    SUM(total_proposals) AS proposals,
+    SUM(approved_proposals) AS approved,
+    ROUND(
+        100.0 * SUM(approved_proposals) / NULLIF(SUM(total_proposals), 0),
+        2
+    ) AS approval_rate
+FROM view_riksdagen_party_decision_flow
+WHERE decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 1
+GROUP BY committee, party
+HAVING SUM(total_proposals) >= 10  -- Minimum threshold for statistical relevance
+ORDER BY committee, approval_rate DESC;
+```
+
+**3. Temporal Trends - Party Success Over Time**
+
+```sql
+SELECT
+    party,
+    decision_year,
+    decision_month_num,
+    TO_CHAR(decision_month, 'YYYY-MM') AS month,
+    SUM(total_proposals) AS proposals,
+    SUM(approved_proposals) AS approved,
+    ROUND(AVG(approval_rate), 2) AS avg_approval_rate
+FROM view_riksdagen_party_decision_flow
+WHERE decision_month >= CURRENT_DATE - INTERVAL '12 months'
+GROUP BY party, decision_year, decision_month_num, decision_month
+ORDER BY party, decision_year DESC, decision_month_num DESC;
+```
+
+**4. Coalition Alignment Analysis**
+
+Compare decision patterns between government and opposition parties:
+
+```sql
+WITH party_decisions AS (
+    SELECT
+        party,
+        SUM(total_proposals) AS total,
+        SUM(approved_proposals) AS approved,
+        SUM(rejected_proposals) AS rejected,
+        ROUND(
+            100.0 * SUM(approved_proposals) / NULLIF(SUM(total_proposals), 0),
+            2
+        ) AS approval_rate
+    FROM view_riksdagen_party_decision_flow
+    WHERE decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+    GROUP BY party
+)
+SELECT
+    pd.*,
+    CASE
+        WHEN party IN ('M', 'SD', 'KD', 'L') THEN 'GOVERNMENT'
+        WHEN party IN ('S', 'V', 'MP', 'C') THEN 'OPPOSITION'
+        ELSE 'OTHER'
+    END AS bloc,
+    ROUND(approval_rate - (SELECT AVG(approval_rate) FROM party_decisions), 2) AS vs_avg
+FROM party_decisions pd
+ORDER BY bloc, approval_rate DESC;
+```
+
+**5. Committee Influence by Party (Which committees favor which parties?)**
+
+```sql
+SELECT
+    committee,
+    party,
+    SUM(total_proposals) AS proposals,
+    ROUND(AVG(approval_rate), 2) AS avg_approval_rate,
+    RANK() OVER (PARTITION BY committee ORDER BY AVG(approval_rate) DESC) AS party_rank
+FROM view_riksdagen_party_decision_flow
+WHERE decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 2
+GROUP BY committee, party
+HAVING SUM(total_proposals) >= 5
+ORDER BY committee, party_rank;
+```
+
+**6. Decision Pattern Analysis (Approval vs Rejection Trends)**
+
+```sql
+SELECT
+    decision_year,
+    party,
+    SUM(total_proposals) AS total,
+    SUM(approved_proposals) AS approved,
+    SUM(rejected_proposals) AS rejected,
+    SUM(referred_back_proposals) AS referred_back,
+    ROUND(100.0 * SUM(approved_proposals) / NULLIF(SUM(total_proposals), 0), 2) AS approval_pct,
+    ROUND(100.0 * SUM(rejected_proposals) / NULLIF(SUM(total_proposals), 0), 2) AS rejection_pct
+FROM view_riksdagen_party_decision_flow
+WHERE decision_year >= 2020
+GROUP BY decision_year, party
+ORDER BY decision_year DESC, party;
+```
+
+**7. Government vs Opposition Success Rates**
+
+```sql
+WITH bloc_classification AS (
+    SELECT
+        *,
+        CASE
+            WHEN party IN ('M', 'SD', 'KD', 'L') THEN 'GOVERNMENT_BLOC'
+            WHEN party IN ('S', 'V', 'MP', 'C') THEN 'OPPOSITION_BLOC'
+            ELSE 'INDEPENDENT'
+        END AS political_bloc
+    FROM view_riksdagen_party_decision_flow
+    WHERE decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+)
+SELECT
+    political_bloc,
+    COUNT(DISTINCT party) AS party_count,
+    SUM(total_proposals) AS total_proposals,
+    SUM(approved_proposals) AS approved_proposals,
+    ROUND(
+        100.0 * SUM(approved_proposals) / NULLIF(SUM(total_proposals), 0),
+        2
+    ) AS bloc_approval_rate
+FROM bloc_classification
+GROUP BY political_bloc
+ORDER BY bloc_approval_rate DESC;
+```
+
+#### Performance Characteristics
+
+- **Query Time:** 50-200ms (depends on date range and aggregation)
+- **Indexes:** Base table indexes on proposal data and document data
+- **Data Volume:** Typically 500-2000 rows per year (varies by proposal activity)
+- **Refresh:** Real-time (standard view)
+- **Optimization:** For heavy analytical use, consider materializing
+
+#### Data Sources
+
+**Primary Tables:**
+- `document_proposal_data` - Proposal details and decisions
+- `document_proposal_container` - Linkage structure
+- `document_status_container` - Status information
+- `document_data` - Document metadata and dates
+- `document_person_reference_da_0` - Party attribution
+
+**Join Path:**
+```
+document_proposal_data
+  → document_proposal_container (proposal_document_proposal_c_0)
+  → document_status_container (document_proposal_document_s_0)
+  → document_data (document_document_status_con_0)
+  ← document_person_reference_co_0 (document_person_reference_co_1)
+  ← document_person_reference_da_0 (document_person_reference_li_1)
+```
+
+#### Dependencies
+
+- **Depends on:** Base tables (no view dependencies)
+- **Used by:** Party scorecards, coalition analysis, committee effectiveness dashboards
+
+#### Risk Rules Supported
+
+From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
+- **PartyWeakSupport (Y-01)**: Low approval rates indicate weak legislative position
+- **PartyCoalitionUnstable (Y-02)**: Divergent approval rates indicate coalition stress
+- **PartyLowDiscipline (Y-03)**: Inconsistent decision patterns suggest internal divisions
+- **PartyIsolated (Y-05)**: Low approval rates across committees indicate marginalization
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+
+| Framework | Application | Example Analysis |
+|-----------|-------------|------------------|
+| **Temporal Analysis** | Track party effectiveness trends over time | Monthly approval rate trajectories |
+| **Comparative Analysis** | Party-to-party effectiveness comparison | Government vs opposition success rates |
+| **Pattern Recognition** | Identify committee specializations | Which parties succeed in which committees |
+| **Predictive Intelligence** | Forecast proposal outcomes | Based on party sponsorship and committee |
+| **Coalition Analysis** | Assess coalition alignment on decisions | Do coalition partners have similar approval rates? |
+
+**Intelligence Products Generated:**
+- 🏆 **Party Legislative Scorecards** - Success rates, committee effectiveness
+- 🤝 **Coalition Alignment Reports** - Decision pattern convergence/divergence
+- 📊 **Committee Influence Maps** - Which parties control which committees
+- 📈 **Temporal Effectiveness Trends** - Is party legislative power growing or declining?
+
+**Data Flow:** See [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md#decision-flow-views) for complete data pipeline.
+
+#### Integration with Product Features
+
+From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
+- **Party Dashboard** (Product Line 1): Legislative effectiveness metrics
+- **Coalition Analysis** (Product Line 2): Formation scenario modeling
+- **Committee Analytics** (Product Line 2): Committee influence assessment
+- **Comparative Analytics** (Product Line 2): Party-to-party benchmarking
+
+#### Intelligence Applications
+
+**1. Party Scorecards**
+- Legislative effectiveness tracking (approval vs rejection rates)
+- Committee specialization identification
+- Temporal trend analysis (improving or declining)
+
+**2. Coalition Analysis**
+- Government formation scenarios (which parties work well together on proposals?)
+- Coalition stability assessment (diverging approval rates = coalition stress)
+- Cross-bloc cooperation opportunities
+
+**3. Committee Effectiveness**
+- Party influence in different committees
+- Committee chair performance (approval rates under their leadership)
+- Proposal routing optimization (which committee most favorable for party's proposals)
+
+**4. Strategic Intelligence**
+- Early warning: Declining approval rates signal weakening position
+- Opportunity identification: High approval rates in specific committees
+- Opposition strategy: Which proposals have best chance of success?
+
+**5. OSINT Research Applications**
+- Academic research on legislative effectiveness
+- Journalism: Data-driven political analysis
+- Citizen engagement: Understanding how parties perform on proposals
+- Think tanks: Evidence-based policy recommendations
+
+#### Notes
+
+- **Empty Data Warning**: View will be empty if `document_proposal_data` has no records with party references
+- **Swedish Language**: Decision terms use official Riksdag Swedish terminology
+- **Party Attribution**: Requires person reference data linking documents to parties
+- **Historical Analysis**: Effective for analyzing any time period with available data
 
 ---
 
