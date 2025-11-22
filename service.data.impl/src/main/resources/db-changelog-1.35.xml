@@ -874,6 +874,23 @@ SELECT
            OR UPPER(dpd.chamber) LIKE '%AVSLÅ%'
     ) AS rejected_proposals,
     
+    -- Referred back to committee (Swedish: återförvisning)
+    COUNT(*) FILTER (
+        WHERE UPPER(dpd.chamber) LIKE '%ÅTERFÖRVISNING%'
+           OR UPPER(dpd.chamber) LIKE '%ÅTERFÖRVISA%'
+    ) AS referred_back_proposals,
+    
+    -- Other decisions (not clearly approved/rejected/referred back)
+    COUNT(*) FILTER (
+        WHERE UPPER(dpd.chamber) NOT LIKE '%BIFALL%'
+          AND UPPER(dpd.chamber) NOT LIKE '%AVSLAG%'
+          AND UPPER(dpd.chamber) NOT LIKE '%GODKÄNT%'
+          AND UPPER(dpd.chamber) NOT LIKE '%BIFALLA%'
+          AND UPPER(dpd.chamber) NOT LIKE '%AVSLÅ%'
+          AND UPPER(dpd.chamber) NOT LIKE '%ÅTERFÖRVISNING%'
+          AND UPPER(dpd.chamber) NOT LIKE '%ÅTERFÖRVISA%'
+    ) AS other_decisions,
+    
     -- Approval rate calculation
     ROUND(
         100.0 * COUNT(*) FILTER (

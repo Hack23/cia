@@ -1958,6 +1958,8 @@ Tracks ministry-initiated proposal outcomes from DOCUMENT_PROPOSAL_DATA, enablin
 - **total_proposals**: Total ministry proposals in period
 - **approved_proposals**: Count of approved proposals (bifall, godkänt, bifalla)
 - **rejected_proposals**: Count of rejected proposals (avslag, avslå)
+- **referred_back_proposals**: Count of proposals referred back to committee (återförvisning, återförvisa)
+- **other_decisions**: Count of other decisions (not approved/rejected/referred back)
 - **approval_rate**: Percentage of proposals approved (%)
 - **rejection_rate**: Percentage of proposals rejected (%)
 - **earliest_proposal_date**: Start of period
