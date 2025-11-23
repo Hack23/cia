@@ -628,8 +628,8 @@ Endpoints:
 - view_riksdagen_party_decision_flow
 - view_riksdagen_politician_decision_pattern
 - view_ministry_decision_impact
-- view_decision_temporal_trends (if exists)
-- view_decision_outcome_kpi_dashboard (if exists)
+- view_decision_temporal_trends
+- view_decision_outcome_kpi_dashboard
 
 ---
 
