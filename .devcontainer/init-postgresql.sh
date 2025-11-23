@@ -48,17 +48,14 @@ else
     echo "Database already exists. Skipping creation."
 fi
 
-# Check if SSL certificates exist
-if [ ! -f "/var/lib/postgresql/16/main/server.crt" ] || [ ! -f "/var/lib/postgresql/16/main/server.key" ]; then
-    echo "SSL certificates not found. Generating..."
-    # Generate SSL certificates with stronger security settings
-    openssl rand -base64 48 > passphrase.txt
-    umask 077 # Ensure secure file permissions
-    openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 4096  # Increased key size
-    openssl rsa -passin file:passphrase.txt -in server.pass.key -out server.key
-    rm server.pass.key
-    # Create OpenSSL config file
-    cat > openssl.cnf <<EOL
+# Generate SSL certificates with stronger security settings
+openssl rand -base64 48 > passphrase.txt
+umask 077 # Ensure secure file permissions
+openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 4096  # Increased key size
+openssl rsa -passin file:passphrase.txt -in server.pass.key -out server.key
+rm server.pass.key
+# Create OpenSSL config file
+cat > openssl.cnf <<EOL
 [req]
 default_bits = 2048
 prompt = no
@@ -82,55 +79,45 @@ DNS.1 = localhost
 IP.1 = 127.0.0.1
 EOL
 
-    openssl req -new -key server.key -out server.csr -config openssl.cnf
-    openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt -extensions req_ext -extfile openssl.cnf
-    rm passphrase.txt
-    rm server.csr
-    rm openssl.cnf
+openssl req -new -key server.key -out server.csr -config openssl.cnf
+openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt -extensions req_ext -extfile openssl.cnf
+rm passphrase.txt
+rm server.csr
+rm openssl.cnf
 
-    # Secure the certificate files
-    chmod 600 server.key server.crt
-    chown postgres:postgres server.key server.crt
+# Secure the certificate files
+chmod 600 server.key server.crt
+chown postgres:postgres server.key server.crt
 
-    # Configure PostgreSQL SSL and other settings
-    cp server.crt /var/lib/postgresql/16/main/server.crt
-    cp server.key /var/lib/postgresql/16/main/server.key
-    rm server.key
-    chmod 700 /var/lib/postgresql/16/main/server.key
-    chmod 700 /var/lib/postgresql/16/main/server.crt
-    chown -R postgres:postgres /var/lib/postgresql/16/main/
+# Configure PostgreSQL SSL and other settings
+cp server.crt /var/lib/postgresql/16/main/server.crt
+cp server.key /var/lib/postgresql/16/main/server.key
+rm server.key
+chmod 700 /var/lib/postgresql/16/main/server.key
+chmod 700 /var/lib/postgresql/16/main/server.crt
+chown -R postgres:postgres /var/lib/postgresql/16/main/
 
-    # Create .postgresql directory for the vscode user
-    mkdir -p /home/vscode/.postgresql
-    cp server.crt /home/vscode/.postgresql/root.crt
-    chmod 700 /home/vscode/.postgresql/root.crt
-    chown -R vscode:vscode /home/vscode/.postgresql
-    rm server.crt
-else
-    echo "SSL certificates already exist. Skipping generation."
-    # Ensure vscode user has the certificate
-    mkdir -p /home/vscode/.postgresql
-    if [ ! -f "/home/vscode/.postgresql/root.crt" ]; then
-        cp /var/lib/postgresql/16/main/server.crt /home/vscode/.postgresql/root.crt
-        chmod 700 /home/vscode/.postgresql/root.crt
-        chown -R vscode:vscode /home/vscode/.postgresql
-    fi
-fi
+# Create .postgresql directory for the vscode user
+mkdir -p /home/vscode/.postgresql
+cp server.crt /home/vscode/.postgresql/root.crt
+chmod 700 /home/vscode/.postgresql/root.crt
+chown -R vscode:vscode /home/vscode/.postgresql
+rm server.crt
 
-# Update PostgreSQL configuration (idempotent)
-grep -q "^ssl = on" /etc/postgresql/16/main/postgresql.conf || echo "ssl = on" >> /etc/postgresql/16/main/postgresql.conf
-grep -q "^ssl_cert_file" /etc/postgresql/16/main/postgresql.conf || echo "ssl_cert_file = '/var/lib/postgresql/16/main/server.crt'" >> /etc/postgresql/16/main/postgresql.conf
-grep -q "^ssl_key_file" /etc/postgresql/16/main/postgresql.conf || echo "ssl_key_file = '/var/lib/postgresql/16/main/server.key'" >> /etc/postgresql/16/main/postgresql.conf
-grep -q "^max_prepared_transactions" /etc/postgresql/16/main/postgresql.conf || echo "max_prepared_transactions = 100" >> /etc/postgresql/16/main/postgresql.conf
-grep -q "^shared_preload_libraries" /etc/postgresql/16/main/postgresql.conf || echo "shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'" >> /etc/postgresql/16/main/postgresql.conf
-grep -q "^pgaudit.log" /etc/postgresql/16/main/postgresql.conf || echo "pgaudit.log = ddl" >> /etc/postgresql/16/main/postgresql.conf
-grep -q "^pg_stat_statements.track" /etc/postgresql/16/main/postgresql.conf || echo "pg_stat_statements.track = all" >> /etc/postgresql/16/main/postgresql.conf
-grep -q "^pg_stat_statements.max" /etc/postgresql/16/main/postgresql.conf || echo "pg_stat_statements.max = 10000" >> /etc/postgresql/16/main/postgresql.conf
-grep -q "^listen_addresses" /etc/postgresql/16/main/postgresql.conf || echo "listen_addresses = '*'" >> /etc/postgresql/16/main/postgresql.conf
+# Update PostgreSQL configuration
+echo "ssl = on" >> /etc/postgresql/16/main/postgresql.conf
+echo "ssl_cert_file = '/var/lib/postgresql/16/main/server.crt'" >> /etc/postgresql/16/main/postgresql.conf
+echo "ssl_key_file = '/var/lib/postgresql/16/main/server.key'" >> /etc/postgresql/16/main/postgresql.conf
+echo "max_prepared_transactions = 100" >> /etc/postgresql/16/main/postgresql.conf
+echo "shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'" >> /etc/postgresql/16/main/postgresql.conf
+echo "pgaudit.log = ddl" >> /etc/postgresql/16/main/postgresql.conf
+echo "pg_stat_statements.track = all" >> /etc/postgresql/16/main/postgresql.conf
+echo "pg_stat_statements.max = 10000" >> /etc/postgresql/16/main/postgresql.conf
+echo "listen_addresses = '*'" >> /etc/postgresql/16/main/postgresql.conf
 
-# Update pg_hba.conf (idempotent)
-grep -q "hostssl all all 0.0.0.0/0 md5" /etc/postgresql/16/main/pg_hba.conf || echo "hostssl all all 0.0.0.0/0 md5" >> /etc/postgresql/16/main/pg_hba.conf
-grep -q "hostssl all all ::1/128 md5" /etc/postgresql/16/main/pg_hba.conf || echo "hostssl all all ::1/128 md5" >> /etc/postgresql/16/main/pg_hba.conf
+# Update pg_hba.conf
+echo "hostssl all all 0.0.0.0/0 md5" >> /etc/postgresql/16/main/pg_hba.conf
+echo "hostssl all all ::1/128 md5" >> /etc/postgresql/16/main/pg_hba.conf
 
 # Verify SSL configuration
 if ! su - postgres -c "psql -c 'SHOW ssl'" | grep -q 'on'; then
