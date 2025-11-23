@@ -3942,7 +3942,7 @@ ORDER BY avg_approval_rate DESC;
 -- Coalition Decision Alignment Analysis
 -- Views: view_riksdagen_party_decision_flow
 -- Purpose: Identify party pairs with high decision alignment
--- Performance: ~1.2s (cross-party comparison with self-join)
+-- Performance: Estimated ~1.2s (cross-party comparison with self-join)
 
 WITH party_pairs AS (
     SELECT 
@@ -4001,7 +4001,7 @@ ORDER BY alignment_rate DESC;
 -- Top Politician Legislative Effectiveness
 -- View: view_riksdagen_politician_decision_pattern
 -- Purpose: Rank politicians by proposal success rates
--- Performance: ~300ms (person-level aggregation)
+-- Performance: Estimated ~300ms (person-level aggregation)
 
 SELECT 
     person_id,
@@ -4046,7 +4046,7 @@ LIMIT 50;
 -- Ministry Legislative Performance Analysis
 -- View: view_ministry_decision_impact
 -- Purpose: Assess government policy effectiveness by ministry
--- Performance: ~400ms (ministry-level aggregation)
+-- Performance: Estimated ~400ms (ministry-level aggregation)
 
 SELECT 
     ministry_code,
@@ -4090,7 +4090,7 @@ ORDER BY decision_year DESC, decision_quarter DESC, approval_rate DESC;
 -- Decision Volume Anomaly Detection
 -- View: view_decision_temporal_trends
 -- Purpose: Detect unusual legislative activity patterns
--- Performance: ~600ms (temporal aggregation with statistical calculations)
+-- Performance: Estimated ~600ms (temporal aggregation with statistical calculations)
 
 WITH volume_stats AS (
     SELECT 
