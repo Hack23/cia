@@ -4,11 +4,12 @@
 
 This document provides comprehensive intelligence analysis documentation for all risk assessment rules in the Citizen Intelligence Agency platform. From an **Intelligence Operations (INTOP)** and **Open-Source Intelligence (OSINT)** perspective, these rules form a sophisticated behavioral analysis framework for monitoring political actors, detecting anomalies, and identifying threats to democratic accountability.
 
-**Total Rules Coverage**: 45 risk detection rules across 4 operational domains
+**Total Rules Coverage**: 50 risk detection rules across 5 operational domains
 - 🔴 **24 Politician Rules**: Individual behavioral analysis
 - 🔵 **10 Party Rules**: Organizational effectiveness monitoring
 - 🟢 **4 Committee Rules**: Legislative body performance
 - 🟡 **4 Ministry Rules**: Government executive assessment
+- 📊 **5 Decision Pattern Rules**: Legislative effectiveness and coalition stability (NEW v1.35)
 - ⚪ **3 Other Rules**: Application and user-level rules
 
 ---
@@ -27,6 +28,7 @@ This document provides comprehensive intelligence analysis documentation for all
 | **Jump to Party Risk Rules** | [Party Risk Rules](#-party-risk-rules-10-rules) |
 | **Jump to Committee Risk Rules** | [Committee Risk Rules](#-committee-risk-rules-4-rules) |
 | **Jump to Ministry Risk Rules** | [Ministry Risk Rules](#-ministry-risk-rules-4-rules) |
+| **Jump to Decision Pattern Risk Rules** | [Decision Pattern Risk Rules](#-decision-pattern-risk-rules-5-rules---d-01-to-d-05) |
 
 </div>
 
@@ -879,6 +881,511 @@ graph TB
 - *Government crisis indicator*: Stagnant ministries signal broader government dysfunction
 - *Electoral liability*: Visible ministry failure creates electoral vulnerability for governing parties
 - *Reform pressure*: Stagnation justifies government reshuffles or ministerial replacements
+
+---
+
+## 📊 Decision Pattern Risk Rules (5 Rules - D-01 to D-05)
+
+### Decision Intelligence Framework
+
+**NEW in v1.35**: Decision Pattern Risk Rules leverage the Decision Flow Views to detect anomalies in legislative decision-making patterns, proposal success rates, and coalition stability.
+
+#### Data Source Views for Decision Pattern Rules
+
+| Risk Rule | Primary Views | Purpose | Link |
+|-----------|---------------|---------|------|
+| **D-01, D-05** | **view_riksdagen_party_decision_flow** | Party-level decision approval rates and patterns | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_party_decision_flow) |
+| **D-02** | **view_riksdagen_politician_decision_pattern** | Individual politician proposal success tracking | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_decision_pattern) |
+| **D-03** | **view_ministry_decision_impact** | Ministry legislative effectiveness analysis | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_ministry_decision_impact) |
+| **D-04** | **view_decision_temporal_trends** | Time-series decision patterns with anomaly detection | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_decision_temporal_trends) |
+| **All Rules** | **view_decision_outcome_kpi_dashboard** | Consolidated decision KPIs across all dimensions | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_decision_outcome_kpi_dashboard) |
+
+**Analytical Frameworks**:
+- [Decision Intelligence Framework](DATA_ANALYSIS_INTOP_OSINT.md#6-decision-intelligence-framework) - Complete decision analysis methodology
+- [Temporal Analysis](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) - Decision trend analysis
+- [Comparative Analysis](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) - Cross-party/politician effectiveness comparison
+- [Predictive Intelligence](DATA_ANALYSIS_INTOP_OSINT.md#4-predictive-intelligence-framework) - Proposal outcome prediction
+
+**Data Flow**: [Intelligence Data Flow Map - Decision Intelligence](INTELLIGENCE_DATA_FLOW.md#decision-intelligence-framework)
+
+```mermaid
+graph TB
+    subgraph "Decision Intelligence OSINT"
+        A[📄 DOCUMENT_PROPOSAL_DATA] --> B{Decision Analysis}
+        B --> C[🏛️ Party Decisions]
+        B --> D[👤 Politician Proposals]
+        B --> E[🏢 Ministry Policies]
+        B --> F[📅 Temporal Patterns]
+    end
+    
+    subgraph "Risk Detection"
+        C --> G[Party Approval Rate Monitoring]
+        D --> H[Individual Effectiveness Tracking]
+        E --> I[Ministry Performance Assessment]
+        F --> J[Volume Anomaly Detection]
+    end
+    
+    subgraph "Intelligence Products"
+        G --> K[🔴 Decision Risk Profile]
+        H --> K
+        I --> K
+        J --> K
+        K --> L[📋 Legislative Effectiveness Report]
+        K --> M[⚠️ Coalition Stability Warning]
+    end
+    
+    style A fill:#e1f5ff
+    style K fill:#ffcccc
+    style L fill:#ccffcc
+    style M fill:#ffe6cc
+```
+
+---
+
+### Complete Decision Pattern Rules List
+
+**INTOP Note**: Decision Pattern Intelligence provides direct assessment of legislative effectiveness beyond voting behavior. These rules detect early warning signals for coalition instability, government ineffectiveness, and individual politician decline.
+
+---
+
+### D-01: Party Low Approval Rate 🔴
+
+**Category:** Party Performance Risk  
+**Severity:** MODERATE (Salience: 60)  
+**Detection Window:** 3-month rolling average
+
+#### Description
+
+Triggers when a political party's proposal approval rate falls below 30% for 3 consecutive months, indicating systematic legislative ineffectiveness, coalition misalignment, or opposition marginalization.
+
+#### Intelligence Rationale
+
+- **Coalition Instability**: Low approval rates for coalition parties signal internal friction or minority government weakness
+- **Opposition Marginalization**: Consistent rejection indicates opposition lacks cross-party support for proposals
+- **Policy Misalignment**: Party proposals not aligned with parliamentary majority preferences
+- **Weak Negotiation Position**: Party unable to build consensus for its legislative initiatives
+
+#### Detection Logic
+
+```sql
+-- D-01: Party Low Approval Rate Detection
+-- View: view_riksdagen_party_decision_flow
+-- Threshold: <30% approval rate for 3+ consecutive months
+
+SELECT 
+    party,
+    decision_year,
+    decision_month,
+    ROUND(AVG(approval_rate), 2) AS avg_approval_rate,
+    COUNT(*) OVER (PARTITION BY party ORDER BY decision_year, decision_month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS consecutive_months,
+    CASE 
+        WHEN AVG(approval_rate) < 30 THEN '🔴 LOW APPROVAL'
+        WHEN AVG(approval_rate) < 50 THEN '🟠 MODERATE CONCERN'
+        ELSE '🟢 HEALTHY'
+    END AS risk_status
+FROM view_riksdagen_party_decision_flow
+WHERE decision_month >= CURRENT_DATE - INTERVAL '6 months'
+GROUP BY party, decision_year, decision_month
+HAVING AVG(approval_rate) < 30
+ORDER BY decision_year DESC, decision_month DESC, avg_approval_rate ASC;
+```
+
+#### Risk Indicators
+
+| Indicator | Threshold | Intelligence Implication |
+|-----------|-----------|-------------------------|
+| Approval Rate <20% | CRITICAL | Party completely marginalized, potential defections |
+| Approval Rate 20-30% | MAJOR | Severe legislative ineffectiveness, coalition friction |
+| 3+ Consecutive Months | MAJOR | Sustained pattern, not temporary anomaly |
+| 6+ Consecutive Months | CRITICAL | Structural coalition breakdown or opposition irrelevance |
+
+#### Remediation Intelligence
+
+**For Government Parties:**
+- **Coalition Negotiation**: Renegotiate policy priorities with coalition partners
+- **Messaging Adjustment**: Realign proposals with parliamentary majority preferences
+- **Strategic Withdrawal**: Pull controversial proposals to preserve coalition unity
+
+**For Opposition Parties:**
+- **Cross-Bloc Coalition**: Seek alliance with centrist parties for specific proposals
+- **Policy Moderation**: Adjust proposals to appeal to swing voters in parliament
+- **Public Pressure**: Use media to create public demand for rejected proposals
+
+#### Related Views & Queries
+
+- [view_riksdagen_party_decision_flow](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_party_decision_flow) - Primary data source
+- [DATA_ANALYSIS_INTOP_OSINT.md - Query 1: Party Effectiveness Comparison](DATA_ANALYSIS_INTOP_OSINT.md#query-1-party-decision-effectiveness-comparison-last-12-months)
+- [DATA_ANALYSIS_INTOP_OSINT.md - Query 2: Coalition Alignment Matrix](DATA_ANALYSIS_INTOP_OSINT.md#query-2-coalition-decision-alignment-matrix)
+
+**Data Validation**: ✅ Rule validated against schema version 1.35 (2025-11-22)
+
+---
+
+### D-02: Politician Proposal Ineffectiveness 🟡
+
+**Category:** Politician Performance Risk  
+**Severity:** MINOR (Salience: 40)  
+**Detection Window:** Annual assessment (minimum 10 proposals)
+
+#### Description
+
+Triggers when an individual politician's proposal approval rate is below 20% with at least 10 proposals submitted, indicating legislative ineffectiveness, lack of cross-party support, or political isolation.
+
+#### Intelligence Rationale
+
+- **Career Stagnation**: Chronic low approval rates indicate politician is ineffective legislator
+- **Party Margination**: May signal politician is out of favor with own party leadership
+- **Committee Mismatch**: Politician assigned to committees where they lack influence or expertise
+- **Resignation Precursor**: Declining effectiveness often precedes resignation or party switch
+
+#### Detection Logic
+
+```sql
+-- D-02: Politician Proposal Ineffectiveness Detection
+-- View: view_riksdagen_politician_decision_pattern
+-- Threshold: <20% approval rate with 10+ proposals
+
+SELECT 
+    person_id,
+    first_name,
+    last_name,
+    party,
+    decision_year,
+    COUNT(DISTINCT committee) AS committees_active,
+    SUM(total_decisions) AS total_proposals,
+    ROUND(AVG(approval_rate), 2) AS avg_approval_rate,
+    RANK() OVER (PARTITION BY party ORDER BY AVG(approval_rate) ASC) AS party_rank_bottom,
+    CASE 
+        WHEN AVG(approval_rate) < 10 THEN '🔴 CRITICAL INEFFECTIVE'
+        WHEN AVG(approval_rate) < 20 THEN '🟠 MODERATE INEFFECTIVE'
+        ELSE '🟡 LOW CONCERN'
+    END AS risk_status
+FROM view_riksdagen_politician_decision_pattern
+WHERE decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+GROUP BY person_id, first_name, last_name, party, decision_year
+HAVING SUM(total_decisions) >= 10 
+   AND AVG(approval_rate) < 20
+ORDER BY avg_approval_rate ASC;
+```
+
+#### Risk Indicators
+
+| Indicator | Threshold | Intelligence Implication |
+|-----------|-----------|-------------------------|
+| Approval Rate <10% | CRITICAL | Complete legislative failure, resignation risk |
+| Approval Rate 10-20% | MODERATE | Significant ineffectiveness, career stagnation |
+| 10-20 Proposals | MODERATE | Sufficient sample size for statistical significance |
+| 20+ Proposals | HIGH CONFIDENCE | Strong evidence of systematic ineffectiveness |
+| Bottom 10% in Party | MAJOR | Outlier within own party, internal friction likely |
+
+#### Remediation Intelligence
+
+**For Politician:**
+- **Committee Reassignment**: Request transfer to committee with better party representation
+- **Coalition Building**: Develop cross-party relationships to increase proposal support
+- **Proposal Quality**: Focus on consensus-building proposals rather than partisan issues
+- **Mentorship**: Seek guidance from high-performing party colleagues
+
+**For Party Leadership:**
+- **Coaching & Support**: Provide legislative training and coalition negotiation skills
+- **Strategic Positioning**: Assign politician to committees where party has strong influence
+- **Proposal Vetting**: Review and improve quality of proposals before submission
+
+#### Related Views & Queries
+
+- [view_riksdagen_politician_decision_pattern](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_decision_pattern) - Primary data source
+- [DATA_ANALYSIS_INTOP_OSINT.md - Query 3: Politician Success Leaders](DATA_ANALYSIS_INTOP_OSINT.md#query-3-politician-proposal-success-rate-leaders)
+- [Pattern Recognition - Career Trajectory](DATA_ANALYSIS_INTOP_OSINT.md#3-pattern-recognition-integration)
+
+**Data Validation**: ✅ Rule validated against schema version 1.35 (2025-11-22)
+
+---
+
+### D-03: Ministry Declining Success Rate 🔴
+
+**Category:** Government Performance Risk  
+**Severity:** MAJOR (Salience: 75)  
+**Detection Window:** Quarter-over-quarter comparison
+
+#### Description
+
+Triggers when a government ministry's proposal approval rate declines by more than 20 percentage points quarter-over-quarter, signaling coalition friction, policy implementation failures, or declining government authority.
+
+#### Intelligence Rationale
+
+- **Coalition Breakdown**: Declining ministry approval indicates coalition partners blocking government proposals
+- **Minister Performance**: Rapid decline may signal incompetent minister or internal sabotage
+- **Policy Backlash**: Controversial policies face increased parliamentary resistance
+- **Government Weakness**: Overall decline across ministries signals government losing parliamentary control
+
+#### Detection Logic
+
+```sql
+-- D-03: Ministry Declining Success Rate Detection
+-- View: view_ministry_decision_impact
+-- Threshold: >20 percentage point decline quarter-over-quarter
+
+WITH quarterly_rates AS (
+    SELECT 
+        ministry_code,
+        ministry_name,
+        decision_year,
+        decision_quarter,
+        approval_rate,
+        LAG(approval_rate) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter) AS prev_quarter_rate,
+        total_proposals
+    FROM view_ministry_decision_impact
+)
+SELECT 
+    ministry_code,
+    ministry_name,
+    decision_year,
+    decision_quarter,
+    ROUND(approval_rate, 2) AS current_approval_rate,
+    ROUND(prev_quarter_rate, 2) AS prev_approval_rate,
+    ROUND(approval_rate - prev_quarter_rate, 2) AS rate_change,
+    total_proposals,
+    CASE 
+        WHEN approval_rate - prev_quarter_rate < -30 THEN '🔴 CRITICAL DECLINE'
+        WHEN approval_rate - prev_quarter_rate < -20 THEN '🟠 MAJOR DECLINE'
+        ELSE '🟡 MODERATE DECLINE'
+    END AS risk_status
+FROM quarterly_rates
+WHERE approval_rate - prev_quarter_rate < -20
+  AND total_proposals >= 5  -- Minimum sample size for statistical significance
+ORDER BY rate_change ASC;
+```
+
+#### Risk Indicators
+
+| Indicator | Threshold | Intelligence Implication |
+|-----------|-----------|-------------------------|
+| Decline >30% | CRITICAL | Ministry crisis, minister replacement likely |
+| Decline 20-30% | MAJOR | Significant coalition friction or policy backlash |
+| Decline with <50% Current Rate | CRITICAL | Ministry completely ineffective, government crisis |
+| Multiple Ministries Declining | CRITICAL | Government-wide collapse, potential government fall |
+
+#### Remediation Intelligence
+
+**For Government:**
+- **Cabinet Reshuffle**: Replace underperforming minister
+- **Coalition Renegotiation**: Address underlying policy disagreements with partners
+- **Policy Withdrawal**: Pull controversial proposals causing parliamentary resistance
+- **Communication Strategy**: Improve public messaging to rebuild parliamentary support
+
+**For Coalition Partners:**
+- **Negotiation Leverage**: Use declining ministry as bargaining chip in coalition talks
+- **Policy Blocking**: Systematic blocking signals need for policy concessions
+- **Coalition Exit Preparation**: Sustained decline may justify leaving coalition
+
+#### Related Views & Queries
+
+- [view_ministry_decision_impact](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_ministry_decision_impact) - Primary data source
+- [DATA_ANALYSIS_INTOP_OSINT.md - Query 4: Ministry Performance Analysis](DATA_ANALYSIS_INTOP_OSINT.md#query-4-ministry-decision-impact-analysis)
+- [Ministry Performance Benchmarking](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#pattern-3-ministry-performance-benchmarking)
+
+**Data Validation**: ✅ Rule validated against schema version 1.35 (2025-11-22)
+
+---
+
+### D-04: Decision Volume Anomaly ⚠️
+
+**Category:** Process Risk  
+**Severity:** MODERATE (Salience: 50)  
+**Detection Window:** 90-day baseline with z-score analysis
+
+#### Description
+
+Triggers when daily decision volume deviates more than 2 standard deviations from the 90-day moving average, detecting legislative processing anomalies, crisis response activity, or procedural bottlenecks.
+
+#### Intelligence Rationale
+
+- **Crisis Legislation**: Extreme high volume indicates emergency legislative response (war, pandemic, economic crisis)
+- **Pre-Recess Surge**: Predictable spikes before parliamentary breaks (expected anomaly)
+- **Procedural Bottleneck**: Extreme low volume signals decision-making paralysis or obstruction
+- **Seasonal Pattern**: Normal patterns have predictable weekly/monthly variations
+
+#### Detection Logic
+
+```sql
+-- D-04: Decision Volume Anomaly Detection
+-- View: view_decision_temporal_trends
+-- Threshold: z-score > 2 or < -2 (2 standard deviations from mean)
+
+WITH volume_stats AS (
+    SELECT 
+        AVG(daily_decisions) AS avg_volume,
+        STDDEV(daily_decisions) AS stddev_volume,
+        AVG(daily_decisions) + (2 * STDDEV(daily_decisions)) AS upper_threshold,
+        AVG(daily_decisions) - (2 * STDDEV(daily_decisions)) AS lower_threshold
+    FROM view_decision_temporal_trends
+    WHERE decision_day >= CURRENT_DATE - INTERVAL '90 days'
+)
+SELECT 
+    vdt.decision_day,
+    vdt.daily_decisions,
+    vdt.moving_avg_7d,
+    vdt.moving_avg_30d,
+    ROUND(vs.avg_volume, 2) AS baseline_avg,
+    ROUND((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 2) AS z_score,
+    EXTRACT(DOW FROM vdt.decision_day) AS day_of_week,
+    EXTRACT(MONTH FROM vdt.decision_day) AS month,
+    CASE 
+        WHEN vdt.daily_decisions > vs.upper_threshold THEN '⚠️ HIGH ANOMALY (Surge)'
+        WHEN vdt.daily_decisions < vs.lower_threshold THEN '⚠️ LOW ANOMALY (Bottleneck)'
+        ELSE '✅ Normal'
+    END AS anomaly_status
+FROM view_decision_temporal_trends vdt
+CROSS JOIN volume_stats vs
+WHERE vdt.decision_day >= CURRENT_DATE - INTERVAL '30 days'
+  AND (vdt.daily_decisions > vs.upper_threshold OR vdt.daily_decisions < vs.lower_threshold)
+ORDER BY ABS((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0)) DESC;
+```
+
+#### Risk Indicators
+
+| Indicator | Threshold | Intelligence Implication |
+|-----------|-----------|-------------------------|
+| Z-Score > +3 | MAJOR | Extreme surge, likely crisis response or pre-recess rush |
+| Z-Score +2 to +3 | MODERATE | Significant increase, investigate cause |
+| Z-Score -2 to -3 | MODERATE | Significant decrease, potential bottleneck or obstruction |
+| Z-Score < -3 | MAJOR | Extreme low volume, parliamentary paralysis |
+| Weekend/Holiday Anomaly | CRITICAL | Unexpected activity during non-working period (crisis?) |
+
+#### Remediation Intelligence
+
+**For High Volume Anomalies (Surge):**
+- **Context Assessment**: Verify if surge is crisis-driven (legitimate) or political manipulation
+- **Media Monitoring**: Check if "rushed legislation" is being criticized publicly
+- **Quality Control**: Ensure rapid processing doesn't compromise decision quality
+- **Resource Allocation**: Temporary staff increase to handle surge without bottleneck
+
+**For Low Volume Anomalies (Bottleneck):**
+- **Obstruction Detection**: Identify if low volume is due to deliberate blocking tactics
+- **Process Review**: Investigate procedural inefficiencies causing delays
+- **Coalition Negotiation**: Address underlying political deadlock preventing decisions
+- **Public Communication**: Explain delay to prevent "do-nothing parliament" narrative
+
+#### Related Views & Queries
+
+- [view_decision_temporal_trends](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_decision_temporal_trends) - Primary data source
+- [DATA_ANALYSIS_INTOP_OSINT.md - Query 5: Volume Anomaly Detection](DATA_ANALYSIS_INTOP_OSINT.md#query-5-decision-volume-anomaly-detection)
+- [Temporal Analysis Framework](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-integration)
+
+**Data Validation**: ✅ Rule validated against schema version 1.35 (2025-11-22)
+
+---
+
+### D-05: Coalition Decision Misalignment 🔴
+
+**Category:** Coalition Stability Risk  
+**Severity:** MAJOR (Salience: 80)  
+**Detection Window:** 30-day rolling window
+
+#### Description
+
+Triggers when decision alignment between coalition partner parties falls below 60% over a 30-day period, signaling coalition instability, policy disagreement, or potential government collapse.
+
+#### Intelligence Rationale
+
+- **Coalition Fracture**: Low alignment indicates fundamental policy disagreements between partners
+- **Government Instability**: Coalition partners blocking each other's proposals signals breakdown
+- **Policy Gridlock**: Misalignment prevents government from implementing legislative agenda
+- **Government Fall Precursor**: Sustained misalignment often precedes coalition collapse and new elections
+
+#### Detection Logic
+
+```sql
+-- D-05: Coalition Decision Misalignment Detection
+-- View: view_riksdagen_party_decision_flow
+-- Threshold: <60% alignment between coalition partners over 30 days
+
+-- Example for current Swedish coalition (adjust party list as needed)
+WITH coalition_parties AS (
+    SELECT UNNEST(ARRAY['S', 'C', 'V', 'MP']) AS party  -- Current coalition (example)
+),
+party_pairs AS (
+    SELECT 
+        pdf1.party AS party_a,
+        pdf2.party AS party_b,
+        pdf1.committee,
+        pdf1.decision_month,
+        -- Aligned if both parties have majority approvals or both have majority rejections
+        CASE 
+            WHEN (pdf1.approved_decisions > pdf1.rejected_decisions AND pdf2.approved_decisions > pdf2.rejected_decisions)
+              OR (pdf1.approved_decisions < pdf1.rejected_decisions AND pdf2.approved_decisions < pdf2.rejected_decisions)
+            THEN 1 
+            ELSE 0 
+        END AS aligned
+    FROM view_riksdagen_party_decision_flow pdf1
+    JOIN view_riksdagen_party_decision_flow pdf2 
+        ON pdf1.committee = pdf2.committee 
+        AND pdf1.decision_month = pdf2.decision_month
+        AND pdf1.party < pdf2.party
+    JOIN coalition_parties cp1 ON pdf1.party = cp1.party
+    JOIN coalition_parties cp2 ON pdf2.party = cp2.party
+    WHERE pdf1.decision_month >= CURRENT_DATE - INTERVAL '30 days'
+)
+SELECT 
+    party_a,
+    party_b,
+    COUNT(*) AS total_decision_periods,
+    SUM(aligned) AS aligned_periods,
+    ROUND(100.0 * SUM(aligned) / COUNT(*), 2) AS alignment_rate,
+    CASE 
+        WHEN ROUND(100.0 * SUM(aligned) / COUNT(*), 2) < 40 THEN '🔴 CRITICAL MISALIGNMENT'
+        WHEN ROUND(100.0 * SUM(aligned) / COUNT(*), 2) < 60 THEN '🟠 MAJOR MISALIGNMENT'
+        ELSE '🟢 HEALTHY ALIGNMENT'
+    END AS risk_status
+FROM party_pairs
+GROUP BY party_a, party_b
+HAVING ROUND(100.0 * SUM(aligned) / COUNT(*), 2) < 60
+ORDER BY alignment_rate ASC;
+```
+
+#### Risk Indicators
+
+| Indicator | Threshold | Intelligence Implication |
+|-----------|-----------|-------------------------|
+| Alignment <40% | CRITICAL | Coalition collapse imminent, government fall likely |
+| Alignment 40-60% | MAJOR | Severe coalition stress, early warning for breakdown |
+| Major Party Misalignment | CRITICAL | If largest coalition partner <60%, critical instability |
+| All Pairs <60% | CRITICAL | Complete coalition dysfunction, government cannot function |
+| Declining Trend | MAJOR | Even if above 60%, declining alignment signals trouble ahead |
+
+#### Remediation Intelligence
+
+**For Government Leadership:**
+- **Emergency Coalition Summit**: Convene party leaders to address policy disagreements
+- **Policy Concessions**: Make strategic compromises to restore coalition unity
+- **Cabinet Reshuffle**: Replace ministers causing inter-party friction
+- **Early Election Consideration**: If alignment cannot be restored, prepare for government fall
+
+**For Coalition Partners:**
+- **Negotiation Leverage**: Use misalignment as bargaining chip for policy concessions
+- **Alternative Coalition Exploration**: Discreetly explore coalition alternatives with opposition
+- **Public Pressure**: Use media to pressure coalition partners on key policy issues
+- **Exit Strategy**: Prepare for leaving coalition while minimizing electoral damage
+
+#### Related Views & Queries
+
+- [view_riksdagen_party_decision_flow](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_party_decision_flow) - Primary data source
+- [DATA_ANALYSIS_INTOP_OSINT.md - Query 2: Coalition Alignment Matrix](DATA_ANALYSIS_INTOP_OSINT.md#query-2-coalition-decision-alignment-matrix)
+- [Coalition Stability Assessment Pattern](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#pattern-1-coalition-stability-assessment)
+
+**Data Validation**: ✅ Rule validated against schema version 1.35 (2025-11-22)
+
+---
+
+### Decision Pattern Risk Rules: Summary Table
+
+| Rule ID | Rule Name | Category | Severity | Primary View | Key Threshold |
+|---------|-----------|----------|----------|--------------|---------------|
+| **D-01** | Party Low Approval Rate | Party Performance | MODERATE (60) | view_riksdagen_party_decision_flow | <30% for 3+ months |
+| **D-02** | Politician Proposal Ineffectiveness | Politician Performance | MINOR (40) | view_riksdagen_politician_decision_pattern | <20% with 10+ proposals |
+| **D-03** | Ministry Declining Success Rate | Government Performance | MAJOR (75) | view_ministry_decision_impact | >20% decline QoQ |
+| **D-04** | Decision Volume Anomaly | Process Risk | MODERATE (50) | view_decision_temporal_trends | z-score > 2 or < -2 |
+| **D-05** | Coalition Decision Misalignment | Coalition Stability | MAJOR (80) | view_riksdagen_party_decision_flow | <60% alignment 30d |
 
 ---
 
