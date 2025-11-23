@@ -566,7 +566,7 @@ Endpoints:
 
 | Component | Revenue Type | Annual Potential |
 |-----------|-------------|------------------|
-| **Subscription Fees** | Recurring (MRR) | €1,400,000 (50 Professional + 20 Enterprise + 5 Strategic) |
+| **Subscription Fees** | Recurring (MRR) | €11,220,000 (50 Professional + 20 Enterprise + 5 Strategic) |
 | **Custom Models** | Project-based | €300,000 (10-15 projects/year) |
 | **Quarterly Reports** | Recurring | €240,000 (16 clients × €15K/quarter) |
 | **Training & Consulting** | Service-based | €150,000 (30 days/year) |
