@@ -3902,7 +3902,7 @@ Decision agreement trends between coalition partners.
 -- Party Decision Effectiveness Analysis
 -- View: view_riksdagen_party_decision_flow
 -- Purpose: Rank parties by legislative success and activity level
--- Performance: ~500ms (monthly aggregation)
+-- Performance: Estimated ~500ms (monthly aggregation)
 
 SELECT 
     party,
@@ -3950,8 +3950,10 @@ WITH party_pairs AS (
         pdf2.party AS party_b,
         pdf1.committee,
         pdf1.decision_month,
-        -- Count aligned decisions (both approved or both rejected)
+        -- Count aligned decisions (both have majority approvals or both have majority rejections)
         CASE 
+            WHEN pdf1.approved_decisions = pdf1.rejected_decisions 
+              AND pdf2.approved_decisions = pdf2.rejected_decisions THEN 1  -- Both neutral
             WHEN (pdf1.approved_decisions > pdf1.rejected_decisions AND pdf2.approved_decisions > pdf2.rejected_decisions) 
               OR (pdf1.approved_decisions < pdf1.rejected_decisions AND pdf2.approved_decisions < pdf2.rejected_decisions)
             THEN 1 
@@ -4105,7 +4107,7 @@ SELECT
     vdt.moving_avg_7d,
     vdt.moving_avg_30d,
     ROUND(vs.avg_volume, 2) AS baseline_avg,
-    ROUND((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 2) AS z_score,
+    ROUND(COALESCE((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 0), 2) AS z_score,
     CASE 
         WHEN vdt.daily_decisions > vs.upper_threshold THEN '⚠️ HIGH ANOMALY'
         WHEN vdt.daily_decisions < vs.lower_threshold THEN '⚠️ LOW ANOMALY'
@@ -4118,7 +4120,7 @@ FROM view_decision_temporal_trends vdt
 CROSS JOIN volume_stats vs
 WHERE vdt.decision_day >= CURRENT_DATE - INTERVAL '30 days'
   AND (vdt.daily_decisions > vs.upper_threshold OR vdt.daily_decisions < vs.lower_threshold)
-ORDER BY vdt.decision_day DESC;
+ORDER BY ABS(COALESCE((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 0)) DESC;
 ```
 
 **Expected Output**: Typical anomalies include pre-recess decision surges (z-score > 2.5), summer/Christmas lulls (z-score < -2), and crisis-driven activity spikes.

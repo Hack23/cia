@@ -1250,7 +1250,7 @@ SELECT
     vdt.moving_avg_7d,
     vdt.moving_avg_30d,
     ROUND(vs.avg_volume, 2) AS baseline_avg,
-    ROUND((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 2) AS z_score,
+    ROUND(COALESCE((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 0), 2) AS z_score,
     EXTRACT(DOW FROM vdt.decision_day) AS day_of_week,
     EXTRACT(MONTH FROM vdt.decision_day) AS month,
     CASE 
@@ -1262,7 +1262,7 @@ FROM view_decision_temporal_trends vdt
 CROSS JOIN volume_stats vs
 WHERE vdt.decision_day >= CURRENT_DATE - INTERVAL '30 days'
   AND (vdt.daily_decisions > vs.upper_threshold OR vdt.daily_decisions < vs.lower_threshold)
-ORDER BY ABS((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0)) DESC;
+ORDER BY ABS(COALESCE((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 0)) DESC;
 ```
 
 #### Risk Indicators
@@ -1339,6 +1339,8 @@ party_pairs AS (
         pdf1.decision_month,
         -- Aligned if both parties have majority approvals or both have majority rejections
         CASE 
+            WHEN pdf1.approved_decisions = pdf1.rejected_decisions 
+              AND pdf2.approved_decisions = pdf2.rejected_decisions THEN 1  -- Both neutral
             WHEN (pdf1.approved_decisions > pdf1.rejected_decisions AND pdf2.approved_decisions > pdf2.rejected_decisions)
               OR (pdf1.approved_decisions < pdf1.rejected_decisions AND pdf2.approved_decisions < pdf2.rejected_decisions)
             THEN 1 

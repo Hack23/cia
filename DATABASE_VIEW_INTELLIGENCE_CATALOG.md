@@ -2007,7 +2007,7 @@ anomaly_calc AS (
         vdt.daily_decisions,
         vdt.moving_avg_7d,
         ROUND(vs.avg_volume, 2) AS baseline_avg,
-        ROUND((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 2) AS z_score
+        ROUND(COALESCE((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 0), 2) AS z_score
     FROM view_decision_temporal_trends vdt
     CROSS JOIN volume_stats vs
     WHERE vdt.decision_day >= CURRENT_DATE - INTERVAL '30 days'
