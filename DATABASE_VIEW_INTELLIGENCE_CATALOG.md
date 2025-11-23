@@ -57,7 +57,7 @@ The Citizen Intelligence Agency (CIA) platform employs **85 database views** (57
 | **Views Documented (Structured)** | 74 | Documented with purpose, key metrics, sample queries, applications |
 | **Documentation Coverage** | 100% | All 85 views now documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
-| **Decision Flow Views** | 4 | Party, politician, temporal, and ministry decision analysis (v1.35) |
+| **Decision Flow Views** | 5 | Party, politician, ministry, temporal trends, and KPI dashboard for decision analysis (v1.35) |
 | **Empty Views Requiring Investigation** | 9 | Views returning 0 rows (ministry, risk, coalition analysis) |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Document Views** | 7 | Politician and party document productivity |
@@ -1710,6 +1710,476 @@ ORDER BY anomaly_score DESC;
 - Coalition stability monitoring
 - Swing voter identification
 - Discipline problem detection
+
+---
+
+## Decision Flow Views (v1.35)
+
+**Total Views:** 5  
+**Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH  
+**Primary Use Cases:** Legislative effectiveness tracking, proposal outcome prediction, coalition analysis, government performance monitoring  
+**Changelog:** v1.35 Decision Intelligence Layer
+
+### Overview
+
+The Decision Flow Views (introduced in v1.35) provide comprehensive analysis of legislative decision patterns, tracking proposal creation, processing, and outcomes across parties, politicians, ministries, and committees. These views enable intelligence assessment of:
+
+- **Party Legislative Effectiveness**: Which parties achieve highest proposal approval rates
+- **Politician Proposal Success**: Individual effectiveness in advancing legislative initiatives
+- **Ministry Policy Impact**: Government ministry success in implementing policy agenda
+- **Decision Velocity**: Legislative processing efficiency and bottleneck identification
+- **Coalition Decision Alignment**: Cross-party agreement patterns for stability assessment
+
+### View Inventory
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_riksdagen_party_decision_flow | Standard | ⭐⭐⭐⭐⭐ | Party-level decision approval rates and patterns |
+| view_riksdagen_politician_decision_pattern | Standard | ⭐⭐⭐⭐⭐ | Individual politician proposal success tracking |
+| view_ministry_decision_impact | Standard | ⭐⭐⭐⭐⭐ | Ministry legislative effectiveness analysis |
+| view_decision_temporal_trends | Standard | ⭐⭐⭐⭐⭐ | Time-series decision patterns with moving averages |
+| view_decision_outcome_kpi_dashboard | Standard | ⭐⭐⭐⭐⭐ | Consolidated decision KPIs across all dimensions |
+
+---
+
+### view_riksdagen_party_decision_flow ⭐⭐⭐⭐⭐
+
+**Category:** Decision Intelligence (v1.35)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Party Legislative Effectiveness  
+
+#### Purpose
+
+Tracks party-level proposal decision patterns from DOCUMENT_PROPOSAL_DATA, aggregating monthly approval rates, rejection rates, and committee activity. Enables comparative analysis of party legislative effectiveness and coalition decision alignment.
+
+#### Key Metrics
+
+- **Approval Rate**: Percentage of party proposals approved (bifall) vs. rejected (avslag)
+- **Decision Volume**: Total decisions per party per month/year
+- **Committee Breadth**: Number of distinct committees where party is active
+- **Temporal Trends**: Month-over-month approval rate changes
+- **Coalition Alignment**: Cross-party decision agreement patterns
+
+#### Schema
+
+| Column Name | Type | Description | Example |
+|-------------|------|-------------|---------|
+| `party` | VARCHAR(50) | Political party code | 'S' (Social Democrats) |
+| `committee` | VARCHAR(255) | Committee handling decisions | 'UU' (Foreign Affairs) |
+| `decision_month` | DATE | Month of aggregation (first day) | '2024-10-01' |
+| `decision_year` | INTEGER | Year of decision | 2024 |
+| `decision_month_num` | INTEGER | Month number (1-12) | 10 |
+| `total_decisions` | BIGINT | Total decisions in period | 45 |
+| `approved_decisions` | BIGINT | Decisions approved (bifall) | 32 |
+| `rejected_decisions` | BIGINT | Decisions rejected (avslag) | 8 |
+| `other_decisions` | BIGINT | Other decision outcomes | 5 |
+| `approval_rate` | NUMERIC | Approval percentage | 71.11 |
+
+#### Sample Query: Party Effectiveness Ranking (Current Year)
+
+```sql
+SELECT 
+    party,
+    COUNT(*) AS total_months,
+    ROUND(AVG(approval_rate), 2) AS avg_approval_rate,
+    COUNT(DISTINCT committee) AS committees_active,
+    SUM(total_decisions) AS total_decisions,
+    RANK() OVER (ORDER BY AVG(approval_rate) DESC) AS effectiveness_rank
+FROM view_riksdagen_party_decision_flow
+WHERE decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+GROUP BY party
+ORDER BY avg_approval_rate DESC;
+```
+
+#### Intelligence Applications
+
+1. **Coalition Formation Analysis**: Identify party combinations with highest joint approval rates
+2. **Opposition Effectiveness**: Measure which opposition parties achieve legislative success
+3. **Government Strength**: Track ruling coalition proposal success over time
+4. **Committee Specialization**: Determine which parties dominate specific policy areas
+5. **Trend Detection**: Early warning for declining party legislative effectiveness
+
+#### Related Risk Rules
+
+- **D-01: Party Low Approval Rate** - Triggers when party approval rate <30% for 3+ months
+- **D-05: Coalition Decision Misalignment** - Detects coalition partner alignment <60%
+
+#### Cross-References
+
+- [DATA_ANALYSIS_INTOP_OSINT.md - Decision Intelligence Framework](DATA_ANALYSIS_INTOP_OSINT.md#6-decision-intelligence-framework)
+- [RISK_RULES_INTOP_OSINT.md - Decision Pattern Risk Rules](RISK_RULES_INTOP_OSINT.md#decision-pattern-risk-rules-d-01-to-d-05)
+
+---
+
+### view_riksdagen_politician_decision_pattern ⭐⭐⭐⭐⭐
+
+**Category:** Decision Intelligence (v1.35)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Decision Effectiveness & Committee Specialization  
+
+#### Purpose
+
+Tracks individual politician decision patterns from DOCUMENT_PROPOSAL_DATA, enabling analysis of politician-level proposal success rates, committee work effectiveness, and legislative productivity. Complements view_riksdagen_party_decision_flow by providing individual politician decision analytics.
+
+#### Key Metrics
+
+- **Individual Approval Rate**: Politician's proposal success rate
+- **Committee Specialization**: Primary committees where politician is most active
+- **Legislative Productivity**: Total proposals submitted per period
+- **Career Trajectory**: Approval rate trends over time (improving vs. declining)
+- **Cross-Party Influence**: Success rate compared to party average
+
+#### Schema
+
+| Column Name | Type | Description | Example |
+|-------------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Unique politician identifier | '0279865129018' |
+| `first_name` | VARCHAR(255) | Politician first name | 'Magdalena' |
+| `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
+| `party` | VARCHAR(50) | Party affiliation at decision time | 'S' |
+| `committee` | VARCHAR(255) | Committee handling decision | 'UU' (Foreign Affairs) |
+| `decision_month` | DATE | Month of aggregation (first day) | '2024-10-01' |
+| `decision_year` | INTEGER | Year of decision | 2024 |
+| `decision_month_num` | INTEGER | Month number (1-12) | 10 |
+| `total_decisions` | BIGINT | Total decisions in period | 45 |
+| `approved_decisions` | BIGINT | Decisions approved (bifall) | 32 |
+| `rejected_decisions` | BIGINT | Decisions rejected (avslag) | 8 |
+| `other_decisions` | BIGINT | Other decision outcomes | 5 |
+| `approval_rate` | NUMERIC | Approval percentage | 71.11 |
+
+#### Sample Query: Top Performing Politicians (Minimum 10 Proposals)
+
+```sql
+SELECT 
+    person_id,
+    first_name,
+    last_name,
+    party,
+    COUNT(DISTINCT committee) AS committees_active,
+    SUM(total_decisions) AS total_proposals,
+    ROUND(AVG(approval_rate), 2) AS avg_approval_rate,
+    RANK() OVER (ORDER BY AVG(approval_rate) DESC) AS effectiveness_rank
+FROM view_riksdagen_politician_decision_pattern
+WHERE decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+GROUP BY person_id, first_name, last_name, party
+HAVING SUM(total_decisions) >= 10
+ORDER BY avg_approval_rate DESC
+LIMIT 50;
+```
+
+#### Intelligence Applications
+
+1. **Rising Political Stars**: Identify high-performing politicians for advancement
+2. **Committee Chair Effectiveness**: Assess committee leadership performance
+3. **Shadow Cabinet Analysis**: Evaluate opposition leadership proposal success
+4. **Legislative Mentorship**: Target low-performing members for support
+5. **Resignation Prediction**: Detect declining effectiveness patterns (early warning)
+
+#### Related Risk Rules
+
+- **D-02: Politician Proposal Ineffectiveness** - Triggers when approval rate <20% with 10+ proposals
+
+#### Cross-References
+
+- [DATA_ANALYSIS_INTOP_OSINT.md - Decision Intelligence Framework](DATA_ANALYSIS_INTOP_OSINT.md#6-decision-intelligence-framework)
+- [RISK_RULES_INTOP_OSINT.md - Decision Pattern Risk Rules](RISK_RULES_INTOP_OSINT.md#decision-pattern-risk-rules-d-01-to-d-05)
+
+---
+
+### view_ministry_decision_impact ⭐⭐⭐⭐⭐
+
+**Category:** Decision Intelligence (v1.35)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Government Policy Effectiveness & Coalition Stability  
+
+#### Purpose
+
+Evaluates ministry-level legislative performance by tracking government proposal outcomes, approval rates, and processing times. Critical for assessing executive branch effectiveness, minister performance, and coalition stability.
+
+#### Key Metrics
+
+- **Ministry Approval Rate**: Success rate of ministry proposals
+- **Proposal Volume**: Legislative activity by ministry
+- **Processing Efficiency**: Average days from proposal to decision
+- **Quarterly Performance**: Trend analysis for ministry effectiveness
+- **Policy Domain Success**: Which policy areas achieve highest approval
+
+#### Schema
+
+| Column Name | Type | Description | Example |
+|-------------|------|-------------|---------|
+| `ministry_code` | VARCHAR(10) | Ministry abbreviation | 'FI' (Finance) |
+| `ministry_name` | VARCHAR(255) | Full ministry name | 'Finance Ministry' |
+| `decision_year` | INTEGER | Year of decision | 2024 |
+| `decision_quarter` | INTEGER | Quarter (1-4) | 3 |
+| `total_proposals` | BIGINT | Total ministry proposals | 78 |
+| `approved_proposals` | BIGINT | Approved proposals | 65 |
+| `rejected_proposals` | BIGINT | Rejected proposals | 8 |
+| `other_outcomes` | BIGINT | Other decision outcomes | 5 |
+| `approval_rate` | NUMERIC | Approval percentage | 83.33 |
+| `avg_processing_days` | NUMERIC | Average days to decision | 45.2 |
+
+#### Sample Query: Ministry Performance Ranking (Last 4 Quarters)
+
+```sql
+SELECT 
+    ministry_code,
+    ministry_name,
+    decision_year,
+    decision_quarter,
+    total_proposals,
+    approved_proposals,
+    ROUND(approval_rate, 2) AS approval_rate,
+    ROUND(avg_processing_days, 1) AS avg_processing_days,
+    CASE 
+        WHEN approval_rate >= 85 THEN '🟢 Excellent'
+        WHEN approval_rate >= 70 THEN '🟡 Good'
+        WHEN approval_rate >= 50 THEN '🟠 Moderate'
+        ELSE '🔴 Concerning'
+    END AS performance_rating
+FROM view_ministry_decision_impact
+WHERE decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 1
+ORDER BY decision_year DESC, decision_quarter DESC, approval_rate DESC;
+```
+
+#### Intelligence Applications
+
+1. **Minister Performance Evaluation**: Objective assessment of minister effectiveness
+2. **Coalition Friction Detection**: Low approval rates indicate coalition disagreement
+3. **Budget Effectiveness**: Track which ministries deliver on policy promises
+4. **Government Reshuffle**: Identify underperforming ministries for cabinet changes
+5. **Policy Priority Tracking**: Monitor success of government's top policy areas
+
+#### Related Risk Rules
+
+- **D-03: Ministry Declining Success Rate** - Triggers when approval rate declines >20% QoQ
+
+#### Cross-References
+
+- [DATA_ANALYSIS_INTOP_OSINT.md - Decision Intelligence Framework](DATA_ANALYSIS_INTOP_OSINT.md#6-decision-intelligence-framework)
+- [RISK_RULES_INTOP_OSINT.md - Decision Pattern Risk Rules](RISK_RULES_INTOP_OSINT.md#decision-pattern-risk-rules-d-01-to-d-05)
+
+---
+
+### view_decision_temporal_trends ⭐⭐⭐⭐⭐
+
+**Category:** Decision Intelligence (v1.35)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Temporal Decision Pattern Analysis  
+
+#### Purpose
+
+Provides time-series analysis of legislative decision patterns with moving averages for trend detection. Enables identification of seasonal patterns, decision volume anomalies, and processing efficiency trends.
+
+#### Key Metrics
+
+- **Daily Decision Volume**: Number of decisions per day
+- **Moving Averages**: 7-day and 30-day smoothed trends
+- **Volume Anomalies**: Statistically significant spikes/drops
+- **Seasonal Patterns**: Day-of-week and month effects
+- **Processing Momentum**: Acceleration/deceleration in legislative activity
+
+#### Schema
+
+| Column Name | Type | Description | Example |
+|-------------|------|-------------|---------|
+| `decision_day` | DATE | Date of decisions | '2024-10-15' |
+| `daily_decisions` | BIGINT | Total decisions on date | 127 |
+| `moving_avg_7d` | NUMERIC | 7-day moving average | 98.43 |
+| `moving_avg_30d` | NUMERIC | 30-day moving average | 85.67 |
+| `day_of_week` | INTEGER | Day of week (0=Sunday) | 2 (Tuesday) |
+| `week_of_year` | INTEGER | Week number | 42 |
+| `month` | INTEGER | Month number | 10 |
+
+#### Sample Query: Decision Volume Anomaly Detection (Z-Score > 2)
+
+```sql
+WITH volume_stats AS (
+    SELECT 
+        AVG(daily_decisions) AS avg_volume,
+        STDDEV(daily_decisions) AS stddev_volume
+    FROM view_decision_temporal_trends
+    WHERE decision_day >= CURRENT_DATE - INTERVAL '90 days'
+)
+SELECT 
+    vdt.decision_day,
+    vdt.daily_decisions,
+    vdt.moving_avg_7d,
+    ROUND(vs.avg_volume, 2) AS baseline_avg,
+    ROUND((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 2) AS z_score,
+    CASE 
+        WHEN (vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0) > 2 THEN '⚠️ HIGH ANOMALY'
+        WHEN (vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0) < -2 THEN '⚠️ LOW ANOMALY'
+        ELSE '✅ Normal'
+    END AS anomaly_status
+FROM view_decision_temporal_trends vdt
+CROSS JOIN volume_stats vs
+WHERE vdt.decision_day >= CURRENT_DATE - INTERVAL '30 days'
+ORDER BY ABS((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0)) DESC;
+```
+
+#### Intelligence Applications
+
+1. **Crisis Response Monitoring**: Detect emergency legislative activity spikes
+2. **Process Bottleneck Detection**: Identify unusual decision processing delays
+3. **Seasonal Planning**: Resource allocation based on historical patterns
+4. **Media Monitoring**: Validate claims of legislative "gridlock" or "rush"
+5. **Pre-Recess Activity**: Track decision surge before parliamentary breaks
+
+#### Related Risk Rules
+
+- **D-04: Decision Volume Anomaly** - Triggers when z-score > 2 or < -2
+
+#### Cross-References
+
+- [DATA_ANALYSIS_INTOP_OSINT.md - Decision Intelligence Framework](DATA_ANALYSIS_INTOP_OSINT.md#6-decision-intelligence-framework)
+- [RISK_RULES_INTOP_OSINT.md - Decision Pattern Risk Rules](RISK_RULES_INTOP_OSINT.md#decision-pattern-risk-rules-d-01-to-d-05)
+
+---
+
+### view_decision_outcome_kpi_dashboard ⭐⭐⭐⭐⭐
+
+**Category:** Decision Intelligence (v1.35)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Unified Decision Intelligence Dashboard  
+
+#### Purpose
+
+Consolidated dashboard aggregating all decision intelligence KPIs across party, politician, ministry, and temporal dimensions. Provides executive-level summary of legislative effectiveness and decision patterns.
+
+#### Key Metrics
+
+- **Overall Approval Rate**: Platform-wide legislative success rate
+- **Top Parties**: Highest-performing parties by approval rate
+- **Top Politicians**: Most effective individual legislators
+- **Top Ministries**: Best-performing government ministries
+- **Decision Volume Trends**: Current activity vs. baseline
+- **Processing Efficiency**: Average decision processing times
+
+#### Schema
+
+| Column Name | Type | Description | Example |
+|-------------|------|-------------|---------|
+| `metric_category` | VARCHAR(50) | KPI category | 'Party', 'Politician', 'Ministry' |
+| `entity_name` | VARCHAR(255) | Entity identifier | 'Social Democrats', 'Finance Ministry' |
+| `approval_rate` | NUMERIC | Success percentage | 75.50 |
+| `total_decisions` | BIGINT | Decision volume | 1247 |
+| `rank` | INTEGER | Effectiveness ranking | 1 |
+| `trend` | VARCHAR(20) | Direction indicator | 'Improving', 'Stable', 'Declining' |
+
+#### Sample Query: Complete Dashboard Summary
+
+```sql
+SELECT 
+    metric_category,
+    entity_name,
+    ROUND(approval_rate, 2) AS approval_rate,
+    total_decisions,
+    rank,
+    trend
+FROM view_decision_outcome_kpi_dashboard
+ORDER BY metric_category, rank;
+```
+
+#### Intelligence Applications
+
+1. **Executive Briefing**: One-screen summary of legislative effectiveness
+2. **Government Accountability**: Public transparency dashboard for citizen access
+3. **Coalition Health Check**: Quick assessment of government performance
+4. **Opposition Strategy**: Identify weaknesses in ruling coalition performance
+5. **Media Fact-Checking**: Verify political claims about legislative effectiveness
+
+#### Cross-References
+
+- [DATA_ANALYSIS_INTOP_OSINT.md - Decision Intelligence Framework](DATA_ANALYSIS_INTOP_OSINT.md#6-decision-intelligence-framework)
+- [RISK_RULES_INTOP_OSINT.md - Decision Pattern Risk Rules](RISK_RULES_INTOP_OSINT.md#decision-pattern-risk-rules-d-01-to-d-05)
+
+---
+
+### Decision Flow Views: Common Usage Patterns
+
+#### Pattern 1: Coalition Stability Assessment
+
+Combine party decision alignment with ministry approval rates to assess coalition health.
+
+```sql
+-- Coalition Stability Score (0-100)
+SELECT 
+    'Coalition Stability' AS metric,
+    ROUND(AVG(pdf.approval_rate) * 0.6 + AVG(mdi.approval_rate) * 0.4, 2) AS stability_score
+FROM view_riksdagen_party_decision_flow pdf
+CROSS JOIN view_ministry_decision_impact mdi
+WHERE pdf.party IN ('S', 'C', 'V', 'MP')  -- Current coalition
+  AND pdf.decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+  AND mdi.decision_year = EXTRACT(YEAR FROM CURRENT_DATE);
+```
+
+#### Pattern 2: Politician Career Trajectory Analysis
+
+Track individual politician approval rate trends to predict career advancement or decline.
+
+```sql
+-- Politician Career Momentum (Improving vs. Declining)
+WITH quarterly_performance AS (
+    SELECT 
+        person_id,
+        first_name,
+        last_name,
+        decision_year,
+        EXTRACT(QUARTER FROM decision_month) AS quarter,
+        AVG(approval_rate) AS quarterly_approval_rate
+    FROM view_riksdagen_politician_decision_pattern
+    WHERE decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 1
+    GROUP BY person_id, first_name, last_name, decision_year, quarter
+)
+SELECT 
+    person_id,
+    first_name,
+    last_name,
+    COUNT(*) AS quarters_tracked,
+    ROUND(AVG(quarterly_approval_rate), 2) AS avg_approval_rate,
+    ROUND(REGR_SLOPE(quarterly_approval_rate, ROW_NUMBER() OVER (PARTITION BY person_id ORDER BY decision_year, quarter))::NUMERIC, 4) AS trend_slope,
+    CASE 
+        WHEN REGR_SLOPE(quarterly_approval_rate, ROW_NUMBER() OVER (PARTITION BY person_id ORDER BY decision_year, quarter)) > 2 THEN '📈 Rising Star'
+        WHEN REGR_SLOPE(quarterly_approval_rate, ROW_NUMBER() OVER (PARTITION BY person_id ORDER BY decision_year, quarter)) < -2 THEN '📉 Declining'
+        ELSE '➡️ Stable'
+    END AS career_trajectory
+FROM quarterly_performance
+GROUP BY person_id, first_name, last_name
+HAVING COUNT(*) >= 4
+ORDER BY trend_slope DESC;
+```
+
+#### Pattern 3: Ministry Performance Benchmarking
+
+Compare ministry approval rates to identify high/low performers for cabinet assessment.
+
+```sql
+-- Ministry Performance Scorecard with Peer Comparison
+WITH ministry_stats AS (
+    SELECT 
+        AVG(approval_rate) AS avg_approval_rate,
+        STDDEV(approval_rate) AS stddev_approval_rate
+    FROM view_ministry_decision_impact
+    WHERE decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+)
+SELECT 
+    mdi.ministry_code,
+    mdi.ministry_name,
+    ROUND(mdi.approval_rate, 2) AS approval_rate,
+    ROUND(ms.avg_approval_rate, 2) AS ministry_average,
+    ROUND((mdi.approval_rate - ms.avg_approval_rate) / NULLIF(ms.stddev_approval_rate, 0), 2) AS z_score,
+    CASE 
+        WHEN (mdi.approval_rate - ms.avg_approval_rate) / NULLIF(ms.stddev_approval_rate, 0) > 1 THEN '⭐⭐⭐⭐⭐ Excellent'
+        WHEN (mdi.approval_rate - ms.avg_approval_rate) / NULLIF(ms.stddev_approval_rate, 0) > 0 THEN '⭐⭐⭐⭐ Above Average'
+        WHEN (mdi.approval_rate - ms.avg_approval_rate) / NULLIF(ms.stddev_approval_rate, 0) > -1 THEN '⭐⭐⭐ Average'
+        ELSE '⭐⭐ Below Average'
+    END AS performance_tier
+FROM view_ministry_decision_impact mdi
+CROSS JOIN ministry_stats ms
+WHERE mdi.decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
+ORDER BY z_score DESC;
+```
 
 ---
 
