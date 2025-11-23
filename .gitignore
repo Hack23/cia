@@ -29,3 +29,5 @@ service.data.impl/DocumentElement/write.lock
 service.data.impl/DocumentContentData/segments_1
 service.data.impl/DocumentContentData/write.lock
 service.data.impl/DocumentElement/segments_1
+citizen-intelligence-agency/data
+citizen-intelligence-agency/data/
