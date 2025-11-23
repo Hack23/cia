@@ -66,8 +66,11 @@
         <class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeHourlySummary</class>
         <class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeWeeklySummary</class>
         <class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageWeeklySummary</class>
+        <class>com.hack23.cia.model.internal.application.data.impl.ViewDecisionTemporalTrends</class>
         <class>com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary</class>
         <class>com.hack23.cia.model.internal.application.data.impl.WorldbankIndicatorDataCountrySummaryEmbeddedId</class>
+        <class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewMinistryDecisionImpact</class>
+        <class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewMinistryDecisionImpactEmbeddedId</class>
         <class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember</class>
         <class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty</class>
@@ -75,10 +78,14 @@
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummaryEmbeddedId</class>
+        <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyDecisionFlow</class>
+        <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyDecisionFlowEmbeddedId</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary</class>
-        <class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>        
+        <class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
+        <class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDecisionPattern</class>
+        <class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDecisionPatternEmbeddedId</class>
         <class>com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation</class>      
         <class>com.hack23.cia.model.internal.application.system.impl.Agency</class>
         <class>com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent</class>
