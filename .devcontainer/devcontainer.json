@@ -86,9 +86,6 @@
         "ryanluker.vscode-coverage-gutters",
         "ckolkman.vscode-postgres",
         "redhat.vscode-yaml",
-        "SonarSource.sonarlint-vscode",
-        "VisualStudioExptTeam.vscodeintellicode",
-        "VisualStudioExptTeam.intellicode-api-usage-examples",
         "ms-azuretools.vscode-docker",
         "eamodio.gitlens"
       ]
