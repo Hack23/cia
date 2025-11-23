@@ -53,7 +53,7 @@ public class ViewRiksdagenPartyDecisionFlowDAOITest extends AbstractServiceDataF
 	@Test
 	public void getIdListTest() throws Exception {
 		final List<ViewRiksdagenPartyDecisionFlowEmbeddedId> all = dao.getIdList();
-		assertNotNull("ID list should not be null", all);
+		assertNotNull(all);
 	}
 
 	/**
@@ -65,15 +65,15 @@ public class ViewRiksdagenPartyDecisionFlowDAOITest extends AbstractServiceDataF
 	@Test
 	public void findAllTest() throws Exception {
 		final List<ViewRiksdagenPartyDecisionFlow> all = dao.getAll();
-		assertNotNull("Result list should not be null", all);
+		assertNotNull(all);
 		
 		// If data exists, validate entity mapping
 		if (!all.isEmpty()) {
 			final ViewRiksdagenPartyDecisionFlow entity = all.get(0);
-			assertNotNull("Embedded ID should not be null", entity.getEmbeddedId());
-			assertNotNull("Party should not be null", entity.getEmbeddedId().getParty());
-			assertNotNull("Committee should not be null", entity.getEmbeddedId().getCommittee());
-			assertTrue("Total proposals should be non-negative", entity.getTotalProposals() >= 0);
+			assertNotNull(entity.getEmbeddedId());
+			assertNotNull(entity.getEmbeddedId().getParty());
+			assertNotNull(entity.getEmbeddedId().getCommittee());
+			assertTrue(entity.getTotalProposals() >= 0);
 		}
 	}
 }

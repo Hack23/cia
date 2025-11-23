@@ -53,7 +53,7 @@ public class ViewRiksdagenPoliticianDecisionPatternDAOITest extends AbstractServ
 	@Test
 	public void getIdListTest() throws Exception {
 		final List<ViewRiksdagenPoliticianDecisionPatternEmbeddedId> all = dao.getIdList();
-		assertNotNull("ID list should not be null", all);
+		assertNotNull(all);
 	}
 
 	/**
@@ -65,15 +65,15 @@ public class ViewRiksdagenPoliticianDecisionPatternDAOITest extends AbstractServ
 	@Test
 	public void findAllTest() throws Exception {
 		final List<ViewRiksdagenPoliticianDecisionPattern> all = dao.getAll();
-		assertNotNull("Result list should not be null", all);
+		assertNotNull(all);
 		
 		// If data exists, validate entity mapping
 		if (!all.isEmpty()) {
 			final ViewRiksdagenPoliticianDecisionPattern entity = all.get(0);
-			assertNotNull("Embedded ID should not be null", entity.getEmbeddedId());
-			assertNotNull("Person ID should not be null", entity.getEmbeddedId().getPersonId());
-			assertNotNull("Committee should not be null", entity.getEmbeddedId().getCommittee());
-			assertTrue("Total decisions should be non-negative", entity.getTotalDecisions() >= 0);
+			assertNotNull(entity.getEmbeddedId());
+			assertNotNull(entity.getEmbeddedId().getPersonId());
+			assertNotNull(entity.getEmbeddedId().getCommittee());
+			assertTrue(entity.getTotalDecisions() >= 0);
 		}
 	}
 }

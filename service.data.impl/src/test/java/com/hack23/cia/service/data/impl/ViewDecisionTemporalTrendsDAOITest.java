@@ -53,7 +53,7 @@ public class ViewDecisionTemporalTrendsDAOITest extends AbstractServiceDataFunct
 	@Test
 	public void getIdListTest() throws Exception {
 		final List<Date> all = dao.getIdList();
-		assertNotNull("ID list should not be null", all);
+		assertNotNull(all);
 	}
 
 	/**
@@ -65,13 +65,13 @@ public class ViewDecisionTemporalTrendsDAOITest extends AbstractServiceDataFunct
 	@Test
 	public void findAllTest() throws Exception {
 		final List<ViewDecisionTemporalTrends> all = dao.getAll();
-		assertNotNull("Result list should not be null", all);
+		assertNotNull(all);
 		
 		// If data exists, validate entity mapping
 		if (!all.isEmpty()) {
 			final ViewDecisionTemporalTrends entity = all.get(0);
-			assertNotNull("Decision day should not be null", entity.getDecisionDay());
-			assertTrue("Daily decisions should be non-negative", entity.getDailyDecisions() >= 0);
+			assertNotNull(entity.getDecisionDay());
+			assertTrue(entity.getDailyDecisions() >= 0);
 		}
 	}
 }
