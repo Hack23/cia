@@ -972,22 +972,45 @@ Triggers when a political party's proposal approval rate falls below 30% for 3 c
 -- View: view_riksdagen_party_decision_flow
 -- Threshold: <30% approval rate for 3+ consecutive months
 
+WITH monthly_approval AS (
+    SELECT 
+        party,
+        decision_year,
+        decision_month,
+        ROUND(AVG(approval_rate), 2) AS avg_approval_rate,
+        CASE WHEN AVG(approval_rate) < 30 THEN 1 ELSE 0 END AS is_low_approval
+    FROM view_riksdagen_party_decision_flow
+    WHERE decision_month >= CURRENT_DATE - INTERVAL '6 months'
+    GROUP BY party, decision_year, decision_month
+),
+consecutive_low AS (
+    SELECT 
+        party,
+        decision_year,
+        decision_month,
+        avg_approval_rate,
+        is_low_approval,
+        SUM(is_low_approval) OVER (
+            PARTITION BY party 
+            ORDER BY decision_year, decision_month 
+            ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+        ) AS consecutive_low_count
+    FROM monthly_approval
+)
 SELECT 
     party,
     decision_year,
     decision_month,
-    ROUND(AVG(approval_rate), 2) AS avg_approval_rate,
-    COUNT(*) OVER (PARTITION BY party ORDER BY decision_year, decision_month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS consecutive_months,
+    avg_approval_rate,
+    consecutive_low_count AS consecutive_months_below_30,
     CASE 
-        WHEN AVG(approval_rate) < 30 THEN '🔴 LOW APPROVAL'
-        WHEN AVG(approval_rate) < 50 THEN '🟠 MODERATE CONCERN'
+        WHEN avg_approval_rate < 30 AND consecutive_low_count >= 3 THEN '🔴 CRITICAL - 3+ Months Low'
+        WHEN avg_approval_rate < 30 THEN '🟠 WARNING - Low Approval'
         ELSE '🟢 HEALTHY'
     END AS risk_status
-FROM view_riksdagen_party_decision_flow
-WHERE decision_month >= CURRENT_DATE - INTERVAL '6 months'
-GROUP BY party, decision_year, decision_month
-HAVING AVG(approval_rate) < 30
-ORDER BY decision_year DESC, decision_month DESC, avg_approval_rate ASC;
+FROM consecutive_low
+WHERE avg_approval_rate < 30 OR consecutive_low_count >= 3
+ORDER BY consecutive_low_count DESC, avg_approval_rate ASC;
 ```
 
 #### Risk Indicators
@@ -1300,9 +1323,13 @@ Triggers when decision alignment between coalition partner parties falls below 6
 -- View: view_riksdagen_party_decision_flow
 -- Threshold: <60% alignment between coalition partners over 30 days
 
--- Example for current Swedish coalition (adjust party list as needed)
+-- NOTE: The coalition party list should be updated based on current government composition
+-- Example shown is for illustration purposes (S-C-V-MP coalition from 2019-2022)
+-- In production, this should be parameterized or retrieved from a configuration table
+
 WITH coalition_parties AS (
-    SELECT UNNEST(ARRAY['S', 'C', 'V', 'MP']) AS party  -- Current coalition (example)
+    -- ⚠️ IMPORTANT: Update this list to reflect current coalition composition
+    SELECT UNNEST(ARRAY['S', 'C', 'V', 'MP']) AS party  -- Example: Red-Green coalition + Center
 ),
 party_pairs AS (
     SELECT 

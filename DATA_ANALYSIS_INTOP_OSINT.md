@@ -4263,7 +4263,7 @@ coalition_strength AS (
     SELECT 
         AVG(approval_rate) AS coalition_avg_approval_rate
     FROM view_riksdagen_party_decision_flow
-    WHERE party IN ('S', 'C', 'V', 'MP')  -- Current coalition (example)
+    WHERE party IN ('S', 'C', 'V', 'MP')  -- Example coalition (update based on current government)
       AND decision_year = EXTRACT(YEAR FROM CURRENT_DATE)
 )
 SELECT 
