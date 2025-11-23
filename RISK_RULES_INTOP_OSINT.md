@@ -1352,21 +1352,30 @@ party_pairs AS (
     JOIN coalition_parties cp1 ON pdf1.party = cp1.party
     JOIN coalition_parties cp2 ON pdf2.party = cp2.party
     WHERE pdf1.decision_month >= CURRENT_DATE - INTERVAL '30 days'
+),
+alignment_calc AS (
+    SELECT 
+        party_a,
+        party_b,
+        COUNT(*) AS total_decision_periods,
+        SUM(aligned) AS aligned_periods,
+        ROUND(100.0 * SUM(aligned) / NULLIF(COUNT(*), 0), 2) AS alignment_rate
+    FROM party_pairs
+    GROUP BY party_a, party_b
 )
 SELECT 
     party_a,
     party_b,
-    COUNT(*) AS total_decision_periods,
-    SUM(aligned) AS aligned_periods,
-    ROUND(100.0 * SUM(aligned) / COUNT(*), 2) AS alignment_rate,
+    total_decision_periods,
+    aligned_periods,
+    alignment_rate,
     CASE 
-        WHEN ROUND(100.0 * SUM(aligned) / COUNT(*), 2) < 40 THEN '🔴 CRITICAL MISALIGNMENT'
-        WHEN ROUND(100.0 * SUM(aligned) / COUNT(*), 2) < 60 THEN '🟠 MAJOR MISALIGNMENT'
+        WHEN alignment_rate < 40 THEN '🔴 CRITICAL MISALIGNMENT'
+        WHEN alignment_rate < 60 THEN '🟠 MAJOR MISALIGNMENT'
         ELSE '🟢 HEALTHY ALIGNMENT'
     END AS risk_status
-FROM party_pairs
-GROUP BY party_a, party_b
-HAVING ROUND(100.0 * SUM(aligned) / COUNT(*), 2) < 60
+FROM alignment_calc
+WHERE alignment_rate < 60
 ORDER BY alignment_rate ASC;
 ```
 

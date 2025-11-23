@@ -2000,22 +2000,31 @@ WITH volume_stats AS (
         STDDEV(daily_decisions) AS stddev_volume
     FROM view_decision_temporal_trends
     WHERE decision_day >= CURRENT_DATE - INTERVAL '90 days'
+),
+anomaly_calc AS (
+    SELECT 
+        vdt.decision_day,
+        vdt.daily_decisions,
+        vdt.moving_avg_7d,
+        ROUND(vs.avg_volume, 2) AS baseline_avg,
+        ROUND((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 2) AS z_score
+    FROM view_decision_temporal_trends vdt
+    CROSS JOIN volume_stats vs
+    WHERE vdt.decision_day >= CURRENT_DATE - INTERVAL '30 days'
 )
 SELECT 
-    vdt.decision_day,
-    vdt.daily_decisions,
-    vdt.moving_avg_7d,
-    ROUND(vs.avg_volume, 2) AS baseline_avg,
-    ROUND((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0), 2) AS z_score,
+    decision_day,
+    daily_decisions,
+    moving_avg_7d,
+    baseline_avg,
+    z_score,
     CASE 
-        WHEN (vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0) > 2 THEN '⚠️ HIGH ANOMALY'
-        WHEN (vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0) < -2 THEN '⚠️ LOW ANOMALY'
+        WHEN z_score > 2 THEN '⚠️ HIGH ANOMALY'
+        WHEN z_score < -2 THEN '⚠️ LOW ANOMALY'
         ELSE '✅ Normal'
     END AS anomaly_status
-FROM view_decision_temporal_trends vdt
-CROSS JOIN volume_stats vs
-WHERE vdt.decision_day >= CURRENT_DATE - INTERVAL '30 days'
-ORDER BY ABS((vdt.daily_decisions - vs.avg_volume) / NULLIF(vs.stddev_volume, 0)) DESC;
+FROM anomaly_calc
+ORDER BY ABS(z_score) DESC;
 ```
 
 #### Intelligence Applications
