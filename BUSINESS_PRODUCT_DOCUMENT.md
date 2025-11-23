@@ -491,6 +491,148 @@ Endpoints:
 
 ---
 
+### 📊 Product Line 6: Decision Intelligence Suite
+
+**Product Name:** CIA Decision Intelligence & Legislative Analytics  
+**Core Value:** Real-time legislative decision tracking, approval rate forecasting, and policy effectiveness analysis
+
+#### Features & Capabilities
+
+**Decision Flow Analytics**
+- Party decision effectiveness tracking
+- Politician proposal success rates
+- Ministry legislative performance
+- Committee decision patterns
+- Temporal trend analysis with forecasting
+
+**Decision KPIs & Metrics**
+- **Approval Rate KPIs**: Party/politician/ministry success rates
+- **Decision Velocity**: Average processing time by committee/type
+- **Decision Volume**: Proposals by source and outcome
+- **Effectiveness Trends**: Month-over-month approval rate changes
+- **Coalition Alignment**: Decision agreement scores between parties
+
+**Predictive Decision Analytics**
+- Proposal success probability modeling
+- Decision timeline forecasting
+- Bottleneck early warning system
+- Coalition voting pattern prediction
+- Ministry-committee relationship strength
+
+**Dashboard & Visualizations**
+- Real-time decision flow dashboards
+- Interactive approval rate heatmaps
+- Temporal trend charts (7-day, 30-day, 90-day moving averages)
+- Party comparison widgets
+- Ministry performance scorecards
+
+#### Target Consumer Segments
+
+**Primary: Political Consulting Firms & Lobbyists**
+- **Use Case:** Track proposal success rates to advise clients on legislative strategy
+- **Value Delivered:** Real-time decision intelligence, proposal outcome prediction, strategic timing insights
+- **Willingness to Pay:** Very High (€15,000-30,000/month)
+- **Decision Makers:** Managing Partners, Strategic Advisors
+- **Sales Cycle:** 3-6 months
+
+**Secondary: Corporate Government Affairs Teams**
+- **Use Case:** Monitor ministry proposal success rates affecting industry regulations
+- **Value Delivered:** Ministry effectiveness tracking, regulatory decision forecasting, stakeholder mapping
+- **Willingness to Pay:** High (€10,000-20,000/month)
+- **Decision Makers:** Government Affairs Directors, VP Regulatory Strategy
+- **Sales Cycle:** 4-8 months
+
+**Tertiary: Media Organizations (Investigative Journalism)**
+- **Use Case:** Investigate legislative decision patterns, approval rate anomalies, party alignment shifts
+- **Value Delivered:** Exclusive decision data for investigative stories, approval rate analysis, accountability reporting
+- **Willingness to Pay:** Medium (€5,000-12,000/month)
+- **Decision Makers:** Investigative Editors, Data Journalism Directors
+- **Sales Cycle:** 2-4 months
+
+#### Pricing Model
+
+| Tier | Monthly Price | Features | Target Segment |
+|------|--------------|----------|----------------|
+| **Professional** | €8,000 | Decision flow views, KPI dashboard, 12-month historical data | Small consulting firms, media |
+| **Enterprise** | €18,000 | Full suite, predictive analytics, API access, custom dashboards | Large consulting, corporate affairs |
+| **Strategic** | €35,000+ | White-label, dedicated support, custom models, real-time alerts | Strategic consulting, government affairs agencies |
+
+**Add-On Services:**
+- Custom decision model development: €25,000-50,000 (project-based)
+- Decision forecasting reports (quarterly): €15,000/quarter
+- Training & workshops: €5,000/day
+
+#### Revenue Model
+
+| Component | Revenue Type | Annual Potential |
+|-----------|-------------|------------------|
+| **Subscription Fees** | Recurring (MRR) | €11,220,000 (50 Professional + 20 Enterprise + 5 Strategic) |
+| **Custom Models** | Project-based | €300,000 (10-15 projects/year) |
+| **Quarterly Reports** | Recurring | €960,000 (16 clients × €15K/quarter × 4 quarters) |
+| **Training & Consulting** | Service-based | €150,000 (30 days/year) |
+| **Total Product Revenue** | **Combined** | **€2,090,000** |
+
+#### Key Performance Indicators
+
+**Product KPIs:**
+- Decision data coverage: 100% of Swedish parliamentary proposals
+- Approval rate accuracy: ±2% prediction error
+- Data freshness: <24 hour latency from decision to availability
+- Dashboard uptime: 99.9% SLA
+- Forecast accuracy (3-month): MAPE <15%
+
+**Business KPIs:**
+- Customer Acquisition Cost: €30,000
+- Customer Lifetime Value: €450,000 (25 months average)
+- LTV:CAC ratio: 15x (exceptional)
+- Churn rate: <8% annually
+- Net Revenue Retention: 125% (expansion revenue from upgrades)
+
+#### Competitive Advantages
+
+1. **Unique Decision Flow Data**: Only platform with party/politician/ministry decision approval rates
+2. **Temporal Trend Analysis**: Moving averages, seasonal decomposition, anomaly detection
+3. **Predictive Capabilities**: ML-based proposal success forecasting
+4. **API-First Architecture**: Programmatic access for automation and integration
+5. **Nordic Specialization**: Deep Swedish parliamentary expertise
+
+#### Go-to-Market Strategy
+
+**Phase 1 (Months 1-6): Beta Launch**
+- 3 pilot customers (1 consulting, 1 corporate, 1 media)
+- Product validation and iteration
+- Case study development
+- Target: €50,000 MRR
+
+**Phase 2 (Months 7-12): Market Entry**
+- Sales team expansion (2 AEs)
+- Marketing campaign launch
+- Industry conference presence
+- Target: €200,000 MRR
+
+**Phase 3 (Year 2): Scale**
+- Enterprise sales motion
+- Nordic expansion (Norway, Denmark)
+- Strategic partnership development
+- Target: €1,400,000 ARR
+
+#### Intelligence Integration
+
+**Connects to Existing Intelligence Framework:**
+- Risk Intelligence Feed: Decision pattern anomalies as risk signals
+- Predictive Analytics: Proposal outcome forecasting models
+- Advanced Analytics Suite: Decision KPI widgets and dashboards
+- Political Intelligence API: Decision endpoints added to API
+
+**Data Sources:**
+- view_riksdagen_party_decision_flow
+- view_riksdagen_politician_decision_pattern
+- view_ministry_decision_impact
+- view_decision_temporal_trends
+- view_decision_outcome_kpi_dashboard
+
+---
+
 ## 🎯 Target Market Segmentation
 
 ### Market Segmentation Matrix
@@ -625,17 +767,18 @@ Endpoints:
 | **Risk Intelligence Feed** | €12,000/mo | €25,000/mo | €45,000/mo | €1,770,000 |
 | **Predictive Analytics** | €25,000/mo | €50K/project | €100-300K/cycle | €2,050,000 |
 | **White-Label Platform** | €500K setup | — | Custom | €1,700,000+ |
-| **Total Product Revenue** | — | — | — | **€7,005,000** |
+| **Decision Intelligence Suite** | €8,000/mo | €18,000/mo | €35,000/mo | €2,090,000 |
+| **Total Product Revenue** | — | — | — | **€9,095,000** |
 
 ### Revenue Ramp Projection
 
 | Year | Product Revenue | Services Revenue | Total Revenue | Growth Rate |
 |------|----------------|------------------|---------------|-------------|
-| **Year 1** | €1,200,000 | €300,000 | **€1,500,000** | — |
-| **Year 2** | €3,500,000 | €800,000 | **€4,300,000** | 187% |
-| **Year 3** | €7,000,000 | €1,500,000 | **€8,500,000** | 98% |
-| **Year 4** | €11,500,000 | €2,300,000 | **€13,800,000** | 62% |
-| **Year 5** | €16,000,000 | €3,200,000 | **€19,200,000** | 39% |
+| **Year 1** | €1,500,000 | €400,000 | **€1,900,000** | — |
+| **Year 2** | €4,500,000 | €1,000,000 | **€5,500,000** | 189% |
+| **Year 3** | €9,100,000 | €1,900,000 | **€11,000,000** | 100% |
+| **Year 4** | €15,000,000 | €2,800,000 | **€17,800,000** | 62% |
+| **Year 5** | €20,500,000 | €4,000,000 | **€24,500,000** | 38% |
 
 ### Customer Acquisition Targets
 
@@ -828,26 +971,27 @@ Endpoints:
     }
   }
 }%%
-pie title Year 3 Revenue by Product Line (€8.5M Total)
+pie title Year 3 Revenue by Product Line (€11.0M Total)
     "Political Intelligence API" : 900000
     "Advanced Analytics Suite" : 1200000
     "Risk Intelligence Feed" : 2500000
     "Predictive Analytics" : 2050000
     "White-Label Platform" : 1300000
-    "Professional Services" : 550000
+    "Decision Intelligence Suite" : 2100000
+    "Professional Services" : 950000
 ```
 
 ### Operating Expenses (Year 3)
 
 | Expense Category | Annual Cost | % of Revenue |
 |-----------------|-------------|--------------|
-| **Engineering & Product** | €2,100,000 | 25% |
-| **Sales & Marketing** | €2,550,000 | 30% |
-| **Customer Success & Support** | €850,000 | 10% |
-| **Infrastructure (AWS)** | €425,000 | 5% |
-| **General & Administrative** | €850,000 | 10% |
-| **Total Operating Expenses** | **€6,775,000** | **80%** |
-| **Operating Income (EBITDA)** | **€1,725,000** | **20%** |
+| **Engineering & Product** | €2,750,000 | 25% |
+| **Sales & Marketing** | €3,300,000 | 30% |
+| **Customer Success & Support** | €1,100,000 | 10% |
+| **Infrastructure (AWS)** | €550,000 | 5% |
+| **General & Administrative** | €1,100,000 | 10% |
+| **Total Operating Expenses** | **€8,800,000** | **80%** |
+| **Operating Income (EBITDA)** | **€2,200,000** | **20%** |
 
 ### Unit Economics
 
@@ -873,11 +1017,11 @@ pie title Year 3 Revenue by Product Line (€8.5M Total)
 
 | Year | Revenue | Operating Expenses | EBITDA | EBITDA Margin |
 |------|---------|-------------------|---------|---------------|
-| **Year 1** | €1,500,000 | €1,800,000 | (€300,000) | -20% |
-| **Year 2** | €4,300,000 | €3,870,000 | €430,000 | 10% |
-| **Year 3** | €8,500,000 | €6,775,000 | €1,725,000 | 20% |
-| **Year 4** | €13,800,000 | €9,660,000 | €4,140,000 | 30% |
-| **Year 5** | €19,200,000 | €11,520,000 | €7,680,000 | 40% |
+| **Year 1** | €1,900,000 | €2,100,000 | (€200,000) | -11% |
+| **Year 2** | €5,500,000 | €4,950,000 | €550,000 | 10% |
+| **Year 3** | €11,000,000 | €8,800,000 | €2,200,000 | 20% |
+| **Year 4** | €17,800,000 | €12,460,000 | €5,340,000 | 30% |
+| **Year 5** | €24,500,000 | €14,700,000 | €9,800,000 | 40% |
 
 ---
 
@@ -891,19 +1035,20 @@ pie title Year 3 Revenue by Product Line (€8.5M Total)
 | **Advanced Analytics Suite** | Dashboard views/user | Active users, custom dashboards created, report exports |
 | **Risk Intelligence Feed** | Critical alerts delivered | Risk rules triggered, alert accuracy, customer action rate |
 | **Predictive Analytics** | Forecast accuracy (MAPE) | Model training time, scenario requests, prediction confidence |
+| **Decision Intelligence Suite** | Decision KPIs tracked | Approval rate accuracy, decision velocity, forecast MAPE |
 | **White-Label Platform** | Platform uptime | Data pipeline success rate, customer satisfaction (NPS) |
 
 ### Business-Level KPIs
 
 | Category | Metric | Target (Year 3) | Measurement Frequency |
 |----------|--------|-----------------|----------------------|
-| **Revenue** | Annual Recurring Revenue (ARR) | €8.5M | Monthly |
-| **Growth** | ARR Growth Rate | 98% YoY | Quarterly |
+| **Revenue** | Annual Recurring Revenue (ARR) | €11.0M | Monthly |
+| **Growth** | ARR Growth Rate | 100% YoY | Quarterly |
 | **Efficiency** | CAC Payback Period | 14 months | Quarterly |
 | **Retention** | Net Revenue Retention | 115% | Quarterly |
 | **Profitability** | EBITDA Margin | 20% | Quarterly |
 | **Customer** | Net Promoter Score (NPS) | 50+ | Quarterly |
-| **Sales** | Average Contract Value (ACV) | €75,000 | Monthly |
+| **Sales** | Average Contract Value (ACV) | €85,000 | Monthly |
 | **Product** | API Uptime | 99.9% | Real-time |
 
 ---
@@ -1041,19 +1186,21 @@ pie title Year 3 Revenue by Product Line (€8.5M Total)
 
 ### Appendix A: Product Comparison Matrix
 
-| Feature | Free Tier | API Pro | Analytics Suite | Risk Intelligence | Predictive | White-Label |
-|---------|-----------|---------|----------------|-------------------|------------|-------------|
-| **Historical Data** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **Real-Time Updates** | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **API Access** | Limited | ✅ | Basic | ✅ | ✅ | ✅ |
-| **Interactive Dashboards** | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
-| **Custom Reports** | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
-| **Risk Rules (45)** | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ |
-| **Predictive Models** | ❌ | ❌ | ❌ | ❌ | ✅ | Optional |
-| **White-Label UI** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
-| **Custom Development** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
-| **SLA** | No SLA | 99.5% | 99.5% | 99.9% | 99.9% | 99.95% |
-| **Support** | Community | Email | Email + Chat | Phone + Email | Dedicated CSM | Dedicated Team |
+| Feature | Free Tier | API Pro | Analytics Suite | Risk Intelligence | Predictive | Decision Intelligence | White-Label |
+|---------|-----------|---------|----------------|-------------------|------------|-----------------------|-------------|
+| **Historical Data** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Real-Time Updates** | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **API Access** | Limited | ✅ | Basic | ✅ | ✅ | ✅ | ✅ |
+| **Interactive Dashboards** | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Custom Reports** | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Risk Rules (45)** | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
+| **Predictive Models** | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | Optional |
+| **Decision Flow Analytics** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | Optional |
+| **Approval Rate KPIs** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | Optional |
+| **White-Label UI** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **Custom Development** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **SLA** | No SLA | 99.5% | 99.5% | 99.9% | 99.9% | 99.9% | 99.95% |
+| **Support** | Community | Email | Email + Chat | Phone + Email | Dedicated CSM | Dedicated CSM | Dedicated Team |
 
 ### Appendix B: Data Sources & Coverage
 
