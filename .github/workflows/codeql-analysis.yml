@@ -90,7 +90,7 @@ jobs:
         download_external_modules: true
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@e12f0178983d466f2f6028f5cc7a6d786fd97f4b # v3.29.5
+      uses: github/codeql-action/init@fdbfb4d2750291e159f0156def62b853c2798ca2 # v3.29.5
       with:
         languages: ${{ matrix.language }}
         dependency-caching: true
@@ -214,4 +214,4 @@ jobs:
       run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -Dmaven.test.skip=true 
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@e12f0178983d466f2f6028f5cc7a6d786fd97f4b # v3.29.5
+      uses: github/codeql-action/analyze@fdbfb4d2750291e159f0156def62b853c2798ca2 # v3.29.5
