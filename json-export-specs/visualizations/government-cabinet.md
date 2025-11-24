@@ -341,7 +341,23 @@ graph TB
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_goverment`, `view_riksdagen_minister`
+- **Primary Views**:
+  - `view_riksdagen_goverment` - Government structure and composition
+  - `view_riksdagen_goverment_role_member` - Ministerial assignments
+  - `view_riksdagen_goverment_roles` - Role definitions
+  - `view_ministry_effectiveness_trends` - Ministry performance over time
+  - `view_ministry_productivity_matrix` - Comparative ministry analysis
+- **Coalition Data**:
+  - Tidö Agreement (2022) - Coalition framework document
+  - Party seat counts: M (68), KD (19), L (16), SD (73 external support)
+  - Policy implementation tracking (73-point program)
+- **Key Metrics**:
+  - Cabinet composition by party
+  - Ministerial responsibilities and portfolios
+  - Coalition stability indicators (Budget agreement, Policy alignment, Public support)
+  - Budget execution rates
+  - Legislative success rates
+  - Public approval ratings
 - **JSON Spec**: `government-composition.json`, `minister-profiles.json`
 - **Update Frequency**: As government changes (major updates), Weekly (metrics)
 - **Cache Duration**: 24 hours

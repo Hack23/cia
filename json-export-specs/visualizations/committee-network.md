@@ -303,10 +303,26 @@ graph LR
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_committee`
+- **Primary Views**:
+  - `view_riksdagen_committee` - Committee structure and membership
+  - `view_committee_productivity` - Productivity metrics and efficiency
+  - `view_committee_productivity_matrix` - Cross-committee benchmarking
+  - `view_riksdagen_committee_decisions` - Decision tracking
+  - `view_riksdagen_committee_ballot_decision_summary` - Voting outcomes
+- **Committee Collaboration Indicators**:
+  - Cross-committee proposal references
+  - Joint hearings and reports
+  - Budget coordination patterns
+  - Policy area overlaps
+- **Key Metrics**:
+  - Member counts and party distribution
+  - Decisions per quarter
+  - Processing times (days from proposal to decision)
+  - Productivity level classifications (HIGH, MODERATE, LOW)
 - **JSON Spec**: `committee-relationships.json`, `committee-members.json`
 - **Update Frequency**: Daily (membership), Weekly (collaboration metrics)
 - **Cache Duration**: 6 hours
+- **Coverage**: All 15 Riksdag committees with documented codes (FiU, FöU, UU, JuU, etc.)
 - **Coverage**: All 15 standing committees + special committees
 
 ## Swedish Committee System Context

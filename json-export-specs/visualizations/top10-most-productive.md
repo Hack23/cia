@@ -245,11 +245,27 @@ graph TB
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_politician`, `view_riksdagen_vote`, document database
-- **Metrics**: Bills, amendments, questions, committee work, motions
-- **Update Frequency**: Daily (activity counts), Monthly (productivity scores)
-- **Historical Data**: 4-year legislative period for trends
-- **Success Tracking**: Bill passage, amendment adoption, question responses
+- **Primary Views**:
+  - `view_riksdagen_politician_document_summary` - Legislative productivity metrics
+  - `view_riksdagen_politician_document_daily_summary` - Daily document tracking
+  - `view_politician_behavioral_trends` - Overall behavioral patterns
+- **Document Types Tracked**:
+  - Bills/motions (`view_riksdagen_politician_document`)
+  - Amendments and proposals
+  - Parliamentary questions
+  - Committee reports
+- **Key Columns**:
+  - Document counts by type (bills, amendments, questions, motions)
+  - Success rates (passed vs. proposed)
+  - Committee contribution metrics
+  - Temporal activity patterns
+- **Metrics Calculation**: 
+  - Bills sponsored, amendments proposed, committee work hours
+  - Document passage rates and policy impact measures
+  - Cross-party collaboration indicators
+- **Update Frequency**: Daily (document summaries), Real-time (new documents)
+- **Historical Data**: Full 4-year legislative period for comprehensive trends
+- **Success Tracking**: Bill passage, amendment adoption, question response rates
 
 ---
 

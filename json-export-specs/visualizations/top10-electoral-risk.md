@@ -231,11 +231,28 @@ graph TB
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_politician`, `view_riksdagen_vote`, polling data
-- **Risk Model**: Weighted algorithm combining 4 factor categories
-- **Update**: Weekly (risk scores), Daily (component data)
+- **Primary Views**: 
+  - `view_politician_behavioral_trends` - Behavioral metrics and risk assessment
+  - `view_politician_risk_summary` - Aggregated risk indicators
+  - `view_riksdagen_vote_data_ballot_politician_summary_annual` - Voting patterns
+- **Supplementary Data**: 
+  - Electoral margin data (2022 election results)
+  - District competitiveness indicators
+  - External polling data (when available)
+- **Key Columns**:
+  - `behavioral_assessment` - EXCELLENT_BEHAVIOR to CRITICAL_CONCERN
+  - `avg_absence_rate` - Attendance performance
+  - `avg_win_rate` - Legislative effectiveness
+  - `effectiveness_status` - Classification level
+- **Risk Model Components** (Weighted):
+  - Poll Decline (35%): Trends in support metrics
+  - Scandals (25%): Ethics violations and media controversies
+  - Performance (20%): Attendance + effectiveness + productivity metrics
+  - District (20%): Electoral margin and opponent strength
+- **Risk Rules**: Multiple rules including `PoliticianLazy.drl`, `PoliticianIneffectiveVoting.drl`
+- **Update Frequency**: Weekly (risk scores), Daily (behavioral metrics)
 - **Historical Data**: 2018, 2022 elections for validation
-- **Accuracy**: 78% predictive accuracy in 2022 election
+- **Predictive Accuracy**: Based on documented behavioral patterns
 
 ## Model Details
 

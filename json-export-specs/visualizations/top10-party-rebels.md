@@ -261,11 +261,25 @@ graph TD
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_vote`, `view_riksdagen_politician`
-- **Loyalty Calculation**: % votes with party majority position
-- **Threshold**: <85% = independent, <70% = rebel
+- **Primary Views**:
+  - `view_riksdagen_vote_data_ballot_politician_summary_annual` - Voting records
+  - `view_riksdagen_vote_data_ballot_party_summary_annual` - Party positions
+  - `view_politician_behavioral_trends` - Discipline and rebellion metrics
+- **Key Columns**:
+  - `avg_rebel_rate` (NUMERIC 5,2) - Percentage votes against party
+  - `discipline_status` (VARCHAR 50) - Classification level
+  - `rebellion_trend` (NUMERIC 5,2) - Change from previous period
+  - Party alignment indicators
+- **Loyalty Calculation**: Percentage of votes matching party majority position
+- **Classification Thresholds** (from view_politician_behavioral_trends):
+  - PARTY_LINE: <5% rebellion (high discipline)
+  - LOW_INDEPENDENCE: 5-10% rebellion
+  - MODERATE_INDEPENDENCE: 10-15% rebellion
+  - HIGH_INDEPENDENCE: >15% rebellion (frequent dissent)
+- **Threshold Definition**: <85% party loyalty = independent, <70% = rebel
 - **Update Frequency**: After each vote, aggregated weekly
-- **Historical Data**: Full legislative period for context
+- **Historical Data**: Full legislative period for pattern analysis
+- **Risk Context**: Cross-referenced with coalition stability indicators
 
 ## Swedish Political Context
 

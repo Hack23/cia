@@ -247,11 +247,32 @@ pie title "How Violations Were Discovered"
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_politician`, ethics committee records, media reports
-- **Violation Database**: 45 documented cases (2022-2024)
+- **Primary Views**:
+  - `view_riksdagen_politician` - Ethics-related profile data
+  - Ethics committee records - Investigation and violation tracking
+  - Parliamentary conduct monitoring - Code of conduct compliance
+- **Violation Database**: 
+  - Documented cases from parliamentary ethics committee
+  - Media-reported investigations and scandals
+  - Public disclosure violations
+  - Conflict of interest registrations
+- **Violation Categories**:
+  - Conflict of Interest: Business interests, voting conflicts
+  - Financial Disclosure: Asset reporting, transparency failures
+  - Misuse of Position: Resource misuse, privilege abuse
+  - Harassment/Misconduct: Behavioral violations
+  - Code of Conduct: General ethics breaches
+- **Severity Classification**:
+  - MINOR (10-49): Technical violations, correctable issues
+  - MAJOR (50-99): Significant breaches, public accountability concerns
+  - CRITICAL (100+): Severe violations, resignation-worthy offenses
+- **Investigation Status Tracking**:
+  - Active: Ongoing inquiries
+  - Closed: Completed investigations with outcomes
+  - Pending: Initial complaints under review
 - **Update Frequency**: Weekly (active cases), As-needed (new violations)
-- **Verification**: Multiple source corroboration required
-- **Privacy**: Public information only, no unsubstantiated allegations
+- **Data Validation**: Multiple source corroboration, official records prioritized
+- **Privacy Compliance**: Public information only, no unsubstantiated allegations
 
 ## Ethics Framework
 

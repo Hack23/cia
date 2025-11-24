@@ -234,11 +234,28 @@ xychart-beta
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_politician`, `view_riksdagen_vote`, network analysis
-- **Influence Model**: Position + network + success + agenda-setting
+- **Primary Views**:
+  - `view_riksdagen_politician_influence_metrics` - Influence and network analysis
+  - `view_riksdagen_politician` - Core politician profiles
+  - `view_riksdagen_vote_data_ballot_politician_summary_annual` - Legislative success
+- **Network Analysis**: 
+  - Co-sponsorship networks (bill collaboration patterns)
+  - Voting alignment matrices
+  - Committee membership overlaps
+  - Coalition building indicators
+- **Influence Dimensions**:
+  - **Formal Power**: Government position, committee chair, party leadership
+  - **Informal Power**: Network centrality, personal relationships, reputation
+  - **Legacy Impact**: Policy achievements, institutional changes, lasting reforms
+- **Key Metrics**:
+  - Network centrality scores (betweenness, closeness, degree)
+  - Bill passage rates and amendment success
+  - Agenda-setting capacity (media influence, policy framing)
+  - Coalition formation effectiveness
+- **Influence Model**: Position (30%) + Network (25%) + Success (25%) + Agenda (20%)
 - **Update Frequency**: Monthly (influence scores), Weekly (component metrics)
 - **Network Data**: Co-sponsorship, voting patterns, committee membership
-- **Validation**: Expert surveys, peer nominations, media analysis
+- **Validation**: Expert surveys, peer nominations, media analysis cross-reference
 
 ---
 

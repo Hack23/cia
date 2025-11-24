@@ -257,11 +257,26 @@ graph TB
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_politician`, `view_riksdagen_vote`, bill co-sponsorship data
-- **Network Metrics**: Betweenness centrality, closeness centrality, degree
+- **Primary Views**:
+  - `view_riksdagen_coalition_alignment_matrix` - Party coalition patterns
+  - `view_riksdagen_politician` - Individual politician profiles
+  - `view_riksdagen_vote_data_ballot_politician_summary_annual` - Cross-party voting
+- **Network Metrics**:
+  - Betweenness centrality - Bridge position between party clusters
+  - Closeness centrality - Access to broader network
+  - Degree centrality - Number of cross-party connections
+- **Collaboration Indicators**:
+  - Bill co-sponsorship across party lines
+  - Cross-party voting alignment
+  - Committee cooperation patterns
+  - Coalition negotiation participation
+- **Bridge Score Components**:
+  - Network Reach (35%): Cross-party contact breadth
+  - Trust (30%): Reputation and collaboration invitations
+  - Success (35%): Deal completion and compromise effectiveness
 - **Update Frequency**: Monthly (network metrics), Weekly (activity data)
 - **Historical Data**: 2018-2024 for long-term pattern analysis
-- **Validation**: Peer nominations, committee records, media analysis
+- **Validation**: Peer nominations, committee records, coalition formation history
 
 ## Swedish Political Context
 

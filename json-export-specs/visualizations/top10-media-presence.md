@@ -249,11 +249,34 @@ graph TD
 
 ## Data Sources
 
-- **Source**: Media monitoring services, social media APIs, press office data
-- **Coverage**: National and regional news, broadcast, print, digital, social media
-- **Update Frequency**: Daily (mentions), Weekly (aggregated scores)
+- **Media Monitoring**:
+  - National and regional news outlets (print, broadcast, digital)
+  - Press release tracking and official communications
+  - Social media APIs (Twitter/X, Facebook, Instagram)
+  - Podcast and radio appearance tracking
+- **Coverage Metrics**:
+  - Mention frequency across media types
+  - Sentiment analysis (positive, neutral, negative tone)
+  - Visibility scores (weighted by media reach)
+  - Share of voice compared to peers
+- **Social Media Analytics**:
+  - Follower counts and growth rates
+  - Engagement metrics (likes, shares, comments)
+  - Content frequency and consistency
+  - Audience demographics
+- **Primary Data Sources**:
+  - Press office data and media relations records
+  - Parliamentary communication logs
+  - Public appearance schedules
+- **Visibility Calculation**:
+  - Television (35%): Broadcast reach and frequency
+  - Print/Online News (30%): Articles and features
+  - Social Media (20%): Follower count and engagement
+  - Radio/Podcasts (10%): Audio appearances
+  - Other (5%): Events, interviews, miscellaneous
+- **Update Frequency**: Daily (media mentions), Weekly (aggregated scores)
 - **Historical Data**: 24 months for trend analysis
-- **Sentiment Analysis**: AI-powered natural language processing
+- **Sentiment Processing**: AI-powered natural language processing with human validation
 
 ## Swedish Media Landscape
 

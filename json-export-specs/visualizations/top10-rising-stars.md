@@ -304,11 +304,30 @@ xychart-beta
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_politician`, performance metrics, media monitoring
-- **Potential Model**: Age + trajectory + performance + visibility + advancement
-- **Update Frequency**: Quarterly (major reassessment), Monthly (incremental)
-- **Historical Data**: Comparison to past rising stars' trajectories
-- **Validation**: Party insider input, peer nominations, expert assessment
+- **Primary Views**:
+  - `view_riksdagen_politician` - Core profiles with age, experience, committee assignments
+  - `view_riksdagen_politician_influence_metrics` - Emerging influence indicators
+  - `view_politician_behavioral_trends` - Performance trajectory
+  - `view_riksdagen_politician_document_summary` - Productivity growth
+- **External Data**:
+  - Media monitoring (mentions, sentiment, visibility trends)
+  - Party advancement indicators (spokesperson roles, committee positions)
+  - Social media metrics (follower growth, engagement rates)
+- **Key Indicators**:
+  - Age profile and career runway
+  - Performance trajectory (improving metrics over time)
+  - Media visibility growth rate
+  - Party investment signals (committee assignments, spokesperson roles)
+  - Legislative productivity acceleration
+- **Potential Model Components**:
+  - Age + Career Stage (20%): Runway for advancement
+  - Trajectory (35%): Performance improvement rate
+  - Performance (25%): Current effectiveness and productivity
+  - Visibility (15%): Media presence and public recognition
+  - Advancement (5%): Party promotion signals
+- **Update Frequency**: Quarterly (major reassessment), Monthly (incremental updates)
+- **Historical Comparison**: Trajectory analysis vs. past rising stars
+- **Validation**: Party insider input, peer nominations, media analyst assessment
 
 ## Swedish Political Context
 

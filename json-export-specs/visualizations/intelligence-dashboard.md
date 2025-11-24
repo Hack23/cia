@@ -317,11 +317,31 @@ xychart-beta
 
 ## Data Sources
 
-- **Source**: All 85 database views, system metrics, application logs
+- **Primary Views** (All 85 documented views):
+  - `view_riksdagen_intelligence_dashboard` - Unified intelligence dashboard with KPIs
+  - `view_riksdagen_voting_anomaly_detection` - Voting anomalies and defection risk
+  - `view_riksdagen_coalition_alignment_matrix` - Coalition probability matrix
+  - `view_politician_behavioral_trends` - Behavioral pattern analysis
+  - `view_politician_risk_summary` - Aggregated risk indicators
+  - `view_risk_score_evolution` - Risk score temporal evolution
+  - `view_riksdagen_crisis_resilience_indicators` - Crisis performance metrics
+- **System Metrics**:
+  - Application logs and performance data
+  - Database health indicators (connections, query times, cache hit rates)
+  - Data collection status from external APIs (Riksdagen, Election Authority, World Bank)
+- **Risk Rules Framework**:
+  - 45-50 Drools-based behavioral detection rules
+  - Categories: Politician (24), Party (10), Committee (4), Ministry (4), Decision Pattern (5)
+  - Severity levels: MINOR (10-49), MAJOR (50-99), CRITICAL (100+)
+- **Intelligence Products Status**:
+  - Risk assessments (349 politicians, 8 parties, 15 committees)
+  - Network analysis (12,547 relationships, 87 key influencers)
+  - Trend reports (156 indicators, 24-month lookback)
+  - Predictive analytics (3 forecast models, documented accuracy)
 - **JSON Spec**: `dashboard-metrics.json`, `system-health.json`
-- **Update Frequency**: Real-time (system), Hourly (intelligence)
-- **Cache Duration**: 5 minutes (metrics), 1 hour (intelligence products)
-- **Coverage**: Complete CIA platform infrastructure and intelligence products
+- **Update Frequency**: Real-time (system metrics), Hourly (intelligence products)
+- **Cache Duration**: 5 minutes (system metrics), 1 hour (intelligence products)
+- **Coverage**: Complete CIA platform infrastructure and all intelligence products
 
 ## Technical Architecture
 

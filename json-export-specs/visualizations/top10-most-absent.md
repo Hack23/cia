@@ -214,11 +214,24 @@ gantt
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_politician`
-- **Column**: `absent_percentage_yearly`, `total_days_served`
-- **Threshold**: >20% absence = monitoring, >30% = high risk, >40% = critical
-- **Update**: Daily
-- **Historical Data**: 24 months rolling window
+- **Primary View**: `view_politician_behavioral_trends` - Behavioral pattern analysis with temporal granularity
+- **Supplementary Views**: 
+  - `view_riksdagen_vote_data_ballot_politician_summary_annual` - Annual voting and absence data
+  - `view_riksdagen_politician` - Core politician profile information
+- **Key Columns**: 
+  - `avg_absence_rate` (NUMERIC 5,2) - Percentage absent from votes
+  - `attendance_status` (VARCHAR 50) - Classification level
+  - `absence_trend` (NUMERIC 5,2) - Change from previous period
+  - `behavioral_assessment` (VARCHAR 50) - Overall risk assessment
+- **Classification Thresholds** (from view_politician_behavioral_trends):
+  - EXCELLENT_ATTENDANCE: <5% absence
+  - GOOD_ATTENDANCE: 5-10% absence
+  - MODERATE_ABSENTEEISM: 10-20% absence
+  - HIGH_ABSENTEEISM: 20-30% absence
+  - CRITICAL_ABSENTEEISM: >30% absence
+- **Risk Rules**: References `PoliticianLazy.drl` (Salience 10-150 based on absence level)
+- **Update Frequency**: Materialized view refresh (daily for vote summaries)
+- **Historical Data**: 24 months rolling window with monthly granularity
 
 ## Context
 

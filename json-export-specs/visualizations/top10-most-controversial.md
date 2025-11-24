@@ -254,11 +254,26 @@ xychart-beta
 
 ## Data Sources
 
-- **Source**: `view_riksdagen_vote`, media mentions, social media sentiment, polling data
-- **Controversy Algorithm**: Combines vote divisiveness, media tone, public opinion splits
+- **Primary Views**:
+  - `view_riksdagen_vote_data_ballot_politician_summary_annual` - Voting patterns
+  - `view_riksdagen_vote_data_ballot_summary_annual` - Vote outcomes and divisiveness
+  - `view_politician_behavioral_trends` - Behavioral assessments
+- **External Data**:
+  - Media sentiment analysis (coverage tone, controversy mentions)
+  - Social media monitoring (engagement, polarization metrics)
+  - Public opinion polling (approval/disapproval splits)
+- **Controversy Algorithm Components**:
+  - Vote Divisiveness (35%): Margin of votes, split patterns
+  - Media Tone (25%): Negative coverage, scandal mentions
+  - Public Opinion (20%): Approval splits, polarization index
+  - Social Media (20%): High engagement, strong reactions
+- **Polarization Measurement**:
+  - Opinion distribution analysis (strong support vs. strong opposition)
+  - Neutral opinion percentage (low neutrality = high controversy)
+  - Cross-party reaction patterns
 - **Update Frequency**: Weekly (controversy scores), Daily (component metrics)
-- **Historical Data**: 2018-2024 for trend analysis
-- **Validation**: Expert assessment, peer nominations, media analysis
+- **Historical Data**: 2018-2024 for trend analysis and comparison
+- **Validation**: Expert assessment, peer consensus, media analysis correlation
 
 ## Swedish Political Context
 
