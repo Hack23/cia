@@ -9,6 +9,15 @@
 -- Issue: Hack23/cia#7872 - Extend Schema Validation Script
 -- Related: Hack23/cia#7865 - Schema validation script foundation
 --
+-- *** MAINTENANCE NOTE ***
+-- The object arrays in this script (tables, views, materialized views) must be kept
+-- in sync with full_schema.sql. When the schema changes:
+-- 1. Update the arrays in this script (lines ~56, ~220, ~335)
+-- 2. Update the arrays in schema-coverage-analysis.sql
+-- 3. Update the object counts in README-SCHEMA-MAINTENANCE.md
+-- 4. Run this script to verify 100% coverage
+-- Last synchronized: 2025-11-24
+--
 -- Usage:
 --   psql -U postgres -d cia_dev -f schema-validation-v2.sql > schema_validation_report.txt 2>&1
 --
@@ -53,6 +62,11 @@ SELECT NOW();
 
 DO $$
 DECLARE
+    -- *** MAINTENANCE NOTE ***
+    -- This array must be kept in sync with full_schema.sql
+    -- Update this list when tables are added/removed from the schema
+    -- Last verified: 2025-11-24 against full_schema.sql
+    -- Total expected: 93 tables
     v_all_tables TEXT[] := ARRAY[
         'against_proposal_container',
         'against_proposal_data',
@@ -204,6 +218,11 @@ END $$;
 
 DO $$
 DECLARE
+    -- *** MAINTENANCE NOTE ***
+    -- This array must be kept in sync with full_schema.sql
+    -- Update this list when regular views are added/removed from the schema
+    -- Last verified: 2025-11-24 against full_schema.sql
+    -- Total expected: 56 regular views
     v_all_views TEXT[] := ARRAY[
         'view_application_action_event_page_annual_summary',
         'view_application_action_event_page_daily_summary',
@@ -318,6 +337,11 @@ END $$;
 
 DO $$
 DECLARE
+    -- *** MAINTENANCE NOTE ***
+    -- This array must be kept in sync with full_schema.sql
+    -- Update this list when materialized views are added/removed from the schema
+    -- Last verified: 2025-11-24 against full_schema.sql
+    -- Total expected: 28 materialized views
     v_all_mviews TEXT[] := ARRAY[
         'view_riksdagen_committee_ballot_decision_party_summary',
         'view_riksdagen_committee_ballot_decision_politician_summary',

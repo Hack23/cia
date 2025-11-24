@@ -174,11 +174,19 @@ The CIA database schema validation system provides two complementary scripts:
 
 ### Schema Object Counts
 
-**From full_schema.sql:**
+**From full_schema.sql (as of 2025-11-24):**
 - **93 base tables** - All application and data tables
 - **56 regular views** - Intelligence analysis and aggregation views
 - **28 materialized views** - Performance-optimized cached views
 - **Total: 177 objects** requiring validation
+
+> **⚠️ Maintenance Note:** These counts must be kept in sync with full_schema.sql.
+> When the schema changes (tables/views added or removed):
+> 1. Update the object arrays in `schema-validation-v2.sql`
+> 2. Update the object arrays in `schema-coverage-analysis.sql`
+> 3. Update the counts in this README
+> 4. Run `schema-validation-v2.sql` to verify 100% coverage
+> 5. Update the "Last synchronized" dates in the script headers
 
 ### Running Schema Validation
 

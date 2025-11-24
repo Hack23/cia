@@ -8,6 +8,11 @@
 --
 -- Issue: Hack23/cia#7872 - Extend Schema Validation Script
 --
+-- *** MAINTENANCE NOTE ***
+-- The table arrays in this script must be kept in sync with full_schema.sql
+-- and schema-validation-v2.sql. When the schema changes, update all three files.
+-- Last synchronized: 2025-11-24
+--
 -- Usage:
 --   psql -U postgres -d cia_dev -f schema-coverage-analysis.sql > coverage_analysis.txt 2>&1
 --
