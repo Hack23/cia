@@ -531,24 +531,253 @@ FROM expected_tables, actual_match;
 
 \echo ''
 \echo '--- REGULAR VIEWS: Checking full_schema.sql (56) vs actual database ---'
--- Similar report for views would go here (abbreviated for length)
+WITH expected_views AS (
+    SELECT unnest(ARRAY[
+        'view_application_action_event_page_annual_summary',
+        'view_application_action_event_page_daily_summary',
+        'view_application_action_event_page_element_annual_summary',
+        'view_application_action_event_page_element_daily_summary',
+        'view_application_action_event_page_element_hourly_summary',
+        'view_application_action_event_page_element_weekly_summary',
+        'view_application_action_event_page_hourly_summary',
+        'view_application_action_event_page_modes_annual_summary',
+        'view_application_action_event_page_modes_daily_summary',
+        'view_application_action_event_page_modes_hourly_summary',
+        'view_application_action_event_page_modes_weekly_summary',
+        'view_application_action_event_page_weekly_summary',
+        'view_audit_author_summary',
+        'view_audit_data_summary',
+        'view_committee_productivity',
+        'view_committee_productivity_matrix',
+        'view_decision_temporal_trends',
+        'view_document_data_committee_report_url',
+        'view_ministry_decision_impact',
+        'view_ministry_effectiveness_trends',
+        'view_ministry_productivity_matrix',
+        'view_ministry_risk_evolution',
+        'view_party_effectiveness_trends',
+        'view_party_performance_metrics',
+        'view_politician_behavioral_trends',
+        'view_politician_risk_summary',
+        'view_riksdagen_coalition_alignment_matrix',
+        'view_riksdagen_committee',
+        'view_riksdagen_committee_parliament_member_proposal',
+        'view_riksdagen_committee_role_member',
+        'view_riksdagen_committee_roles',
+        'view_riksdagen_crisis_resilience_indicators',
+        'view_riksdagen_goverment',
+        'view_riksdagen_goverment_proposals',
+        'view_riksdagen_goverment_role_member',
+        'view_riksdagen_goverment_roles',
+        'view_riksdagen_intelligence_dashboard',
+        'view_riksdagen_member_proposals',
+        'view_riksdagen_party',
+        'view_riksdagen_party_ballot_support_annual_summary',
+        'view_riksdagen_party_coalation_against_annual_summary',
+        'view_riksdagen_party_decision_flow',
+        'view_riksdagen_party_document_summary',
+        'view_riksdagen_party_member',
+        'view_riksdagen_party_momentum_analysis',
+        'view_riksdagen_party_role_member',
+        'view_riksdagen_party_signatures_document_summary',
+        'view_riksdagen_party_summary',
+        'view_riksdagen_person_signed_document_summary',
+        'view_riksdagen_politician',
+        'view_riksdagen_politician_ballot_summary',
+        'view_riksdagen_politician_decision_pattern',
+        'view_riksdagen_politician_experience_summary',
+        'view_riksdagen_politician_influence_metrics',
+        'view_riksdagen_voting_anomaly_detection',
+        'view_risk_score_evolution'
+    ]) AS view_name
+),
+actual_views AS (
+    SELECT viewname AS view_name
+    FROM pg_views
+    WHERE schemaname = 'public'
+)
+SELECT 
+    COALESCE(e.view_name, a.view_name) AS view_name,
+    CASE 
+        WHEN e.view_name IS NULL THEN 'EXTRA (in DB, not in schema)'
+        WHEN a.view_name IS NULL THEN 'MISSING (in schema, not in DB)'
+        ELSE 'OK'
+    END AS status
+FROM expected_views e
+FULL OUTER JOIN actual_views a ON e.view_name = a.view_name
+WHERE e.view_name IS NULL OR a.view_name IS NULL
+ORDER BY status, view_name;
+
+-- Count coverage
+WITH expected_views AS (
+    SELECT 56 AS expected_count
+),
+actual_match AS (
+    SELECT COUNT(*) AS matched_count
+    FROM pg_views
+    WHERE schemaname = 'public'
+    AND viewname IN (
+        'view_application_action_event_page_annual_summary',
+        'view_application_action_event_page_daily_summary',
+        'view_application_action_event_page_element_annual_summary',
+        'view_application_action_event_page_element_daily_summary',
+        'view_application_action_event_page_element_hourly_summary',
+        'view_application_action_event_page_element_weekly_summary',
+        'view_application_action_event_page_hourly_summary',
+        'view_application_action_event_page_modes_annual_summary',
+        'view_application_action_event_page_modes_daily_summary',
+        'view_application_action_event_page_modes_hourly_summary',
+        'view_application_action_event_page_modes_weekly_summary',
+        'view_application_action_event_page_weekly_summary',
+        'view_audit_author_summary',
+        'view_audit_data_summary',
+        'view_committee_productivity',
+        'view_committee_productivity_matrix',
+        'view_decision_temporal_trends',
+        'view_document_data_committee_report_url',
+        'view_ministry_decision_impact',
+        'view_ministry_effectiveness_trends',
+        'view_ministry_productivity_matrix',
+        'view_ministry_risk_evolution',
+        'view_party_effectiveness_trends',
+        'view_party_performance_metrics',
+        'view_politician_behavioral_trends',
+        'view_politician_risk_summary',
+        'view_riksdagen_coalition_alignment_matrix',
+        'view_riksdagen_committee',
+        'view_riksdagen_committee_parliament_member_proposal',
+        'view_riksdagen_committee_role_member',
+        'view_riksdagen_committee_roles',
+        'view_riksdagen_crisis_resilience_indicators',
+        'view_riksdagen_goverment',
+        'view_riksdagen_goverment_proposals',
+        'view_riksdagen_goverment_role_member',
+        'view_riksdagen_goverment_roles',
+        'view_riksdagen_intelligence_dashboard',
+        'view_riksdagen_member_proposals',
+        'view_riksdagen_party',
+        'view_riksdagen_party_ballot_support_annual_summary',
+        'view_riksdagen_party_coalation_against_annual_summary',
+        'view_riksdagen_party_decision_flow',
+        'view_riksdagen_party_document_summary',
+        'view_riksdagen_party_member',
+        'view_riksdagen_party_momentum_analysis',
+        'view_riksdagen_party_role_member',
+        'view_riksdagen_party_signatures_document_summary',
+        'view_riksdagen_party_summary',
+        'view_riksdagen_person_signed_document_summary',
+        'view_riksdagen_politician',
+        'view_riksdagen_politician_ballot_summary',
+        'view_riksdagen_politician_decision_pattern',
+        'view_riksdagen_politician_experience_summary',
+        'view_riksdagen_politician_influence_metrics',
+        'view_riksdagen_voting_anomaly_detection',
+        'view_risk_score_evolution'
+    )
+)
 SELECT 
     'VIEWS' AS object_type,
-    56 AS expected,
-    COUNT(*) AS found_in_db,
-    ROUND(COUNT(*)::numeric / 56 * 100, 2) AS coverage_pct
-FROM pg_views
-WHERE schemaname = 'public';
+    expected_count AS expected,
+    matched_count AS found_in_db,
+    ROUND(matched_count::numeric / expected_count * 100, 2) AS coverage_pct
+FROM expected_views, actual_match;
 
 \echo ''
 \echo '--- MATERIALIZED VIEWS: Checking full_schema.sql (28) vs actual database ---'
+WITH expected_mviews AS (
+    SELECT unnest(ARRAY[
+        'view_riksdagen_committee_ballot_decision_party_summary',
+        'view_riksdagen_committee_ballot_decision_politician_summary',
+        'view_riksdagen_committee_ballot_decision_summary',
+        'view_riksdagen_committee_decision_type_org_summary',
+        'view_riksdagen_committee_decision_type_summary',
+        'view_riksdagen_committee_decisions',
+        'view_riksdagen_document_type_daily_summary',
+        'view_riksdagen_org_document_daily_summary',
+        'view_riksdagen_party_document_daily_summary',
+        'view_riksdagen_politician_document',
+        'view_riksdagen_politician_document_daily_summary',
+        'view_riksdagen_politician_document_summary',
+        'view_riksdagen_vote_data_ballot_party_summary',
+        'view_riksdagen_vote_data_ballot_party_summary_annual',
+        'view_riksdagen_vote_data_ballot_party_summary_daily',
+        'view_riksdagen_vote_data_ballot_party_summary_monthly',
+        'view_riksdagen_vote_data_ballot_party_summary_weekly',
+        'view_riksdagen_vote_data_ballot_politician_summary',
+        'view_riksdagen_vote_data_ballot_politician_summary_annual',
+        'view_riksdagen_vote_data_ballot_politician_summary_daily',
+        'view_riksdagen_vote_data_ballot_politician_summary_monthly',
+        'view_riksdagen_vote_data_ballot_politician_summary_weekly',
+        'view_riksdagen_vote_data_ballot_summary',
+        'view_riksdagen_vote_data_ballot_summary_annual',
+        'view_riksdagen_vote_data_ballot_summary_daily',
+        'view_riksdagen_vote_data_ballot_summary_monthly',
+        'view_riksdagen_vote_data_ballot_summary_weekly',
+        'view_worldbank_indicator_data_country_summary'
+    ]) AS mview_name
+),
+actual_mviews AS (
+    SELECT matviewname AS mview_name
+    FROM pg_matviews
+    WHERE schemaname = 'public'
+)
+SELECT 
+    COALESCE(e.mview_name, a.mview_name) AS mview_name,
+    CASE 
+        WHEN e.mview_name IS NULL THEN 'EXTRA (in DB, not in schema)'
+        WHEN a.mview_name IS NULL THEN 'MISSING (in schema, not in DB)'
+        ELSE 'OK'
+    END AS status
+FROM expected_mviews e
+FULL OUTER JOIN actual_mviews a ON e.mview_name = a.mview_name
+WHERE e.mview_name IS NULL OR a.mview_name IS NULL
+ORDER BY status, mview_name;
+
+-- Count coverage
+WITH expected_mviews AS (
+    SELECT 28 AS expected_count
+),
+actual_match AS (
+    SELECT COUNT(*) AS matched_count
+    FROM pg_matviews
+    WHERE schemaname = 'public'
+    AND matviewname IN (
+        'view_riksdagen_committee_ballot_decision_party_summary',
+        'view_riksdagen_committee_ballot_decision_politician_summary',
+        'view_riksdagen_committee_ballot_decision_summary',
+        'view_riksdagen_committee_decision_type_org_summary',
+        'view_riksdagen_committee_decision_type_summary',
+        'view_riksdagen_committee_decisions',
+        'view_riksdagen_document_type_daily_summary',
+        'view_riksdagen_org_document_daily_summary',
+        'view_riksdagen_party_document_daily_summary',
+        'view_riksdagen_politician_document',
+        'view_riksdagen_politician_document_daily_summary',
+        'view_riksdagen_politician_document_summary',
+        'view_riksdagen_vote_data_ballot_party_summary',
+        'view_riksdagen_vote_data_ballot_party_summary_annual',
+        'view_riksdagen_vote_data_ballot_party_summary_daily',
+        'view_riksdagen_vote_data_ballot_party_summary_monthly',
+        'view_riksdagen_vote_data_ballot_party_summary_weekly',
+        'view_riksdagen_vote_data_ballot_politician_summary',
+        'view_riksdagen_vote_data_ballot_politician_summary_annual',
+        'view_riksdagen_vote_data_ballot_politician_summary_daily',
+        'view_riksdagen_vote_data_ballot_politician_summary_monthly',
+        'view_riksdagen_vote_data_ballot_politician_summary_weekly',
+        'view_riksdagen_vote_data_ballot_summary',
+        'view_riksdagen_vote_data_ballot_summary_annual',
+        'view_riksdagen_vote_data_ballot_summary_daily',
+        'view_riksdagen_vote_data_ballot_summary_monthly',
+        'view_riksdagen_vote_data_ballot_summary_weekly',
+        'view_worldbank_indicator_data_country_summary'
+    )
+)
 SELECT 
     'MATERIALIZED VIEWS' AS object_type,
-    28 AS expected,
-    COUNT(*) AS found_in_db,
-    ROUND(COUNT(*)::numeric / 28 * 100, 2) AS coverage_pct
-FROM pg_matviews
-WHERE schemaname = 'public';
+    expected_count AS expected,
+    matched_count AS found_in_db,
+    ROUND(matched_count::numeric / expected_count * 100, 2) AS coverage_pct
+FROM expected_mviews, actual_match;
 
 -- ===========================================================================
 -- PART 6: FINAL COVERAGE SUMMARY

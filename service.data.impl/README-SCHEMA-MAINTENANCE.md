@@ -406,7 +406,7 @@ Ensure 100% schema coverage before major releases:
 psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > pre_release_validation.txt 2>&1
 
 # Check for 100% coverage
-if grep -q "100.0% validation coverage achieved" pre_release_validation.txt; then
+if grep -q "SUCCESS:.*100.*validation coverage achieved" pre_release_validation.txt; then
     echo "✓ Schema validation passed - ready for release"
 else
     echo "✗ Schema validation failed - review missing objects"
@@ -469,13 +469,13 @@ Add comprehensive schema validation to CI/CD pipeline in `.github/workflows/veri
     psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > schema_validation_report.txt 2>&1
     
     # Check for 100% coverage
-    if grep -q "100.0% validation coverage achieved" schema_validation_report.txt; then
+    if grep -q "SUCCESS:.*100.*validation coverage achieved" schema_validation_report.txt; then
       echo "✓ Schema validation passed with 100% coverage"
       
-      # Extract coverage metrics
-      TABLES_VALIDATED=$(grep "Tables" schema_validation_report.txt | grep -oP '\d+(?= │)')
-      VIEWS_VALIDATED=$(grep "Regular Views" schema_validation_report.txt | grep -oP '\d+(?= │)')
-      MVIEWS_VALIDATED=$(grep "Materialized Views" schema_validation_report.txt | grep -oP '\d+(?= │)')
+      # Extract coverage metrics using awk for reliable parsing
+      TABLES_VALIDATED=$(awk '/^║ Tables/ {print $4}' schema_validation_report.txt)
+      VIEWS_VALIDATED=$(awk '/^║ Regular Views/ {print $5}' schema_validation_report.txt)
+      MVIEWS_VALIDATED=$(awk '/^║ Materialized Views/ {print $5}' schema_validation_report.txt)
       
       echo "Coverage Summary:"
       echo "  - Tables: $TABLES_VALIDATED/93"
