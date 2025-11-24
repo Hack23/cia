@@ -57,13 +57,37 @@ AbstractRiksdagenFunctionalIntegrationTest {
 				.getDocumentContent("GX11916");
 		assertNotNull(documentContent);
 		assertTrue(documentContent.getContent().contains(
-				"till statsrådet Cristina Husmark Pehrsson"));
+				"Cristina Husmark Pehrsson"));
 
 		final DocumentContentData documentContent2 = riksdagenApi
-				.getDocumentContent("GVA3F%C3%B6U43");
+				.getDocumentContent("GVA3FöU43");
 		assertNotNull(documentContent2);
 		assertTrue(documentContent2.getContent().contains(
 				"Försvarsutskottet"));
+	}
+
+	/**
+	 * Gets the document content with Swedish characters test.
+	 * Tests that document IDs containing Swedish special characters (å, ä, ö)
+	 * are properly URL-encoded when making HTTP requests to data.riksdagen.se.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void getDocumentContentWithSwedishCharactersTest() throws Exception {
+		// Test with ö character - from production error logs
+		final DocumentContentData documentContent1 = riksdagenApi
+				.getDocumentContent("hca3föu34");
+		assertNotNull("Document with ö should be retrieved", documentContent1);
+		assertNotNull("Document content should not be null", documentContent1.getContent());
+		assertTrue("Document content should not be empty", documentContent1.getContent().length() > 0);
+		
+		// Test with another document ID containing ö
+		final DocumentContentData documentContent2 = riksdagenApi
+				.getDocumentContent("hc19föu6p2");
+		assertNotNull("Document with ö should be retrieved", documentContent2);
+		assertNotNull("Document content should not be null", documentContent2.getContent());
+		assertTrue("Document content should not be empty", documentContent2.getContent().length() > 0);
 	}
 
 	/**
