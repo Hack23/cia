@@ -134,7 +134,7 @@ graph TB
           "level": "major",
           "description": "Attendance dropped from 92% to 67% in last 6 months",
           "rule": "RULE-POL-002",
-          "detected": "2025-11-15T10:23:00Z",
+          "detected": "2024-11-15T10:23:00Z",
           "trend": "worsening",
           "evidence": {
             "previousAttendance": 92.0,
@@ -150,7 +150,7 @@ graph TB
           "level": "moderate",
           "description": "Subject of ongoing ethics investigation",
           "rule": "RULE-POL-012",
-          "detected": "2025-11-10T14:30:00Z",
+          "detected": "2024-11-10T14:30:00Z",
           "status": "active",
           "details": {
             "investigationType": "conflict-of-interest",
@@ -161,13 +161,13 @@ graph TB
       ],
       "timeline": [
         {
-          "date": "2025-11-15",
+          "date": "2024-11-15",
           "event": "Attendance threshold breached",
           "riskScore": 72.5,
           "change": +15.2
         },
         {
-          "date": "2025-10-01",
+          "date": "2024-10-01",
           "event": "Ethics investigation initiated",
           "riskScore": 57.3,
           "change": +12.0
@@ -223,7 +223,7 @@ graph TB
       "description": "Electoral support among 18-29 age group declining significantly for Social Democrats",
       "significance": "high",
       "confidence": 0.82,
-      "detected": "2025-11-01T00:00:00Z",
+      "detected": "2024-11-01T00:00:00Z",
       "direction": "declining",
       "magnitude": -5.8,
       "velocity": "accelerating",
@@ -234,17 +234,17 @@ graph TB
       },
       "dataPoints": [
         {
-          "date": "2025-10-24",
+          "date": "2024-10-24",
           "value": 22.3,
           "sample": 1200
         },
         {
-          "date": "2025-09-24",
+          "date": "2024-09-24",
           "value": 24.8,
           "sample": 1150
         },
         {
-          "date": "2025-08-24",
+          "date": "2024-08-24",
           "value": 26.5,
           "sample": 1180
         }

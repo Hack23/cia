@@ -1,11 +1,11 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "generated": "2025-11-24T02:23:58Z",
+    "generated": "2024-11-24T02:23:58Z",
     "source": "Citizen Intelligence Agency",
     "schema": "politician-profile",
     "recordCount": 2,
-    "dataDate": "2025-11-23",
+    "dataDate": "2024-11-23",
     "attribution": "Data derived from Riksdagen Open Data API",
     "license": "Apache-2.0"
   },
@@ -152,7 +152,7 @@
         "absences": 160,
         "period": {
           "start": "2014-09-29",
-          "end": "2025-11-23",
+          "end": "2024-11-23",
           "years": 11.2
         },
         "activityLevel": "high",
