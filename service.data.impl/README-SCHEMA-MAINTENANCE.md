@@ -387,9 +387,9 @@ Validate that DATABASE_VIEW_INTELLIGENCE_CATALOG.md matches actual schema:
 psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > current_schema_v2.txt
 
 # Extract object names for comparison
-grep "✓ Table:" current_schema_v2.txt | awk '{print $3}' | sort > current_tables.txt
-grep "✓ View:" current_schema_v2.txt | awk '{print $3}' | sort > current_views.txt
-grep "✓ MView:" current_schema_v2.txt | awk '{print $3}' | sort > current_mviews.txt
+grep "✓ Table:" current_schema_v2.txt | awk '{print $5}' | sort > current_tables.txt
+grep "✓ View:" current_schema_v2.txt | awk '{print $5}' | sort > current_views.txt
+grep "✓ MView:" current_schema_v2.txt | awk '{print $5}' | sort > current_mviews.txt
 
 # Compare with full_schema.sql
 diff /tmp/tables_in_schema.txt current_tables.txt
@@ -472,10 +472,10 @@ Add comprehensive schema validation to CI/CD pipeline in `.github/workflows/veri
     if grep -q "SUCCESS:.*100.*validation coverage achieved" schema_validation_report.txt; then
       echo "✓ Schema validation passed with 100% coverage"
       
-      # Extract coverage metrics using awk for reliable parsing
-      TABLES_VALIDATED=$(awk '/^║ Tables/ {print $4}' schema_validation_report.txt)
-      VIEWS_VALIDATED=$(awk '/^║ Regular Views/ {print $5}' schema_validation_report.txt)
-      MVIEWS_VALIDATED=$(awk '/^║ Materialized Views/ {print $5}' schema_validation_report.txt)
+      # Extract coverage metrics using awk with field delimiter
+      TABLES_VALIDATED=$(awk -F '│' '/NOTICE:.*║ Tables.*│.*│.*│/ {gsub(/^[ \t]+|[ \t]+$/, "", $3); print $3}' schema_validation_report.txt)
+      VIEWS_VALIDATED=$(awk -F '│' '/NOTICE:.*║ Regular Views.*│.*│.*│/ {gsub(/^[ \t]+|[ \t]+$/, "", $3); print $3}' schema_validation_report.txt)
+      MVIEWS_VALIDATED=$(awk -F '│' '/NOTICE:.*║ Materialized Views.*│.*│.*│/ {gsub(/^[ \t]+|[ \t]+$/, "", $3); print $3}' schema_validation_report.txt)
       
       echo "Coverage Summary:"
       echo "  - Tables: $TABLES_VALIDATED/93"
