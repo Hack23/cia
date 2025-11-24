@@ -1,0 +1,297 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2025-11-24T02:23:58Z",
+    "source": "Citizen Intelligence Agency",
+    "schema": "politician-profile",
+    "recordCount": 2,
+    "dataDate": "2025-11-23",
+    "attribution": "Data derived from Riksdagen Open Data API",
+    "license": "Apache-2.0"
+  },
+  "data": [
+    {
+      "id": "0123456789",
+      "labels": {
+        "category": "active-member",
+        "subcategories": [
+          "government-coalition",
+          "committee-chair",
+          "party-leadership",
+          "minister"
+        ],
+        "descriptions": {
+          "short": "Social Democrat MP and Finance Committee Chair with expertise in economic policy",
+          "long": "Experienced politician serving third term as member of Riksdag, currently chairing the influential Finance Committee with focus on fiscal policy and budget oversight. Known for pragmatic approach to coalition building.",
+          "detailed": "Elected to Riksdag in 2014 representing Stockholm constituency, has established reputation as expert in economic policy and public finance. Current role as Finance Committee Chair involves oversight of national budget process and scrutiny of government financial management. Previously served as deputy member of EU Affairs Committee and active in housing policy debates. Known for pragmatic approach to coalition building and ability to work across party lines on technical economic matters."
+        },
+        "intelligenceTags": [
+          "coalition-broker",
+          "policy-expert-economics",
+          "high-media-presence",
+          "committee-leader",
+          "rising-influence"
+        ]
+      },
+      "attributes": {
+        "firstName": "Anna",
+        "lastName": "Andersson",
+        "fullName": "Anna Maria Andersson",
+        "bornYear": 1975,
+        "gender": "female",
+        "party": "S",
+        "partyName": "Socialdemokraterna",
+        "status": "active",
+        "district": "Stockholms kommun",
+        "imageUrl": "https://data.riksdagen.se/filarkiv/bilder/ledamot/0123456789_max.jpg",
+        "riksdagenId": "0123456789",
+        "intressentId": "0ABCDEFGHIJ123",
+        "enteredParliament": "2014-09-29",
+        "currentTerm": {
+          "start": "2022-09-26",
+          "end": "2026-09-30",
+          "number": 3
+        },
+        "contact": {
+          "riksdagenEmail": "anna.andersson@riksdagen.se",
+          "phone": "+46 8 786 40 00",
+          "officialWebsite": null
+        }
+      },
+      "relationships": {
+        "party": {
+          "id": "s",
+          "name": "Socialdemokraterna",
+          "role": "member",
+          "since": "2005-01-15",
+          "positions": ["finance-spokesperson", "party-board"]
+        },
+        "committees": [
+          {
+            "id": "FiU",
+            "name": "Finansutskottet",
+            "role": "chair",
+            "since": "2022-10-01"
+          },
+          {
+            "id": "UU",
+            "name": "Utrikesutskottet",
+            "role": "deputy-member",
+            "since": "2018-10-01",
+            "until": "2022-09-30"
+          }
+        ],
+        "ministry": null,
+        "colleagues": {
+          "partyColleagues": ["0234567890", "0345678901"],
+          "committeeColleagues": ["0456789012", "0567890123"],
+          "districtColleagues": ["0678901234"]
+        }
+      },
+      "intelligence": {
+        "riskScore": 15.5,
+        "riskLevel": "low",
+        "riskFactors": [
+          {
+            "factor": "attendance-drop",
+            "severity": 10,
+            "description": "Attendance declined from 95% to 87% in past 6 months"
+          }
+        ],
+        "influenceScore": 78.3,
+        "influenceRank": 12,
+        "influenceFactors": {
+          "committeeLeadership": 25,
+          "partyPosition": 20,
+          "mediaVisibility": 18,
+          "legislativeSuccess": 15.3
+        },
+        "ranking": {
+          "overall": 12,
+          "inParty": 3,
+          "inCommittee": 1,
+          "trend": "rising"
+        },
+        "trendDirection": "positive",
+        "trendMetrics": {
+          "activityTrend": "+5.2%",
+          "votingTrend": "stable",
+          "documentTrend": "+12.3%",
+          "mediaTrend": "+8.7%"
+        },
+        "behavioralFlags": [
+          {
+            "flag": "committee-leadership",
+            "severity": "positive",
+            "description": "Effective committee chair with high productivity"
+          }
+        ],
+        "performance": {
+          "overall": 82.5,
+          "attendance": 87.2,
+          "productivity": 78.9,
+          "effectiveness": 81.3,
+          "collaboration": 85.7
+        },
+        "predictions": {
+          "reelectionProbability": 0.85,
+          "ministerialAppointment": 0.45,
+          "partyLeadership": 0.15,
+          "defectionRisk": 0.02
+        }
+      },
+      "activity": {
+        "totalDays": 1250,
+        "activeDays": 1090,
+        "attendanceRate": 87.2,
+        "absences": 160,
+        "period": {
+          "start": "2014-09-29",
+          "end": "2025-11-23",
+          "years": 11.2
+        },
+        "activityLevel": "high",
+        "recentTrend": {
+          "last30Days": 28,
+          "last90Days": 82,
+          "last365Days": 298
+        },
+        "breakdown": {
+          "plenarySession": 850,
+          "committeeSession": 680,
+          "partyMeeting": 420,
+          "constituencyWork": 150
+        },
+        "comparison": {
+          "partyAverage": 85.5,
+          "riksdagAverage": 84.3,
+          "percentile": 72
+        }
+      },
+      "voting": {
+        "totalVotes": 2847,
+        "breakdown": {
+          "yes": 1823,
+          "no": 892,
+          "abstain": 98,
+          "absent": 34
+        },
+        "partyLoyalty": 94.5,
+        "rebellions": 45,
+        "rebellionRate": 1.58,
+        "keyVotes": [
+          {
+            "id": "H901FiU12",
+            "date": "2024-11-15",
+            "topic": "Budget proposition 2025",
+            "vote": "yes",
+            "partyLine": "yes",
+            "result": "passed"
+          }
+        ],
+        "alignment": {
+          "withCoalition": 96.8,
+          "withOpposition": 3.2,
+          "crossPartyVotes": 12
+        },
+        "votingPatterns": {
+          "economicPolicy": {
+            "count": 456,
+            "loyaltyRate": 97.3
+          },
+          "socialPolicy": {
+            "count": 389,
+            "loyaltyRate": 93.1
+          },
+          "foreignPolicy": {
+            "count": 234,
+            "loyaltyRate": 91.5
+          }
+        }
+      },
+      "documents": {
+        "totalDocuments": 487,
+        "byType": {
+          "motion": 156,
+          "interpellation": 89,
+          "writtenQuestion": 178,
+          "amendment": 45,
+          "report": 19
+        },
+        "byPolicyArea": {
+          "economics": 234,
+          "socialPolicy": 123,
+          "environment": 67,
+          "foreignAffairs": 34,
+          "defense": 29
+        },
+        "recentDocuments": [
+          {
+            "id": "H901234",
+            "type": "motion",
+            "title": "Motion regarding tax reform proposals",
+            "date": "2024-11-20",
+            "status": "submitted",
+            "url": "https://data.riksdagen.se/dokument/H901234"
+          }
+        ],
+        "success": {
+          "adopted": 23,
+          "rejected": 98,
+          "pending": 45,
+          "withdrawn": 12,
+          "successRate": 14.7
+        },
+        "collaboration": {
+          "coAuthored": 123,
+          "solo": 364,
+          "crossParty": 34
+        },
+        "productivity": {
+          "docsPerYear": 43.9,
+          "partyAverage": 38.2,
+          "percentile": 68
+        }
+      },
+      "committees": {
+        "current": [
+          {
+            "id": "FiU",
+            "name": "Finansutskottet",
+            "nameEn": "Finance Committee",
+            "role": "chair",
+            "since": "2022-10-01",
+            "attendance": 92.3,
+            "documentsSubmitted": 45,
+            "influence": "high"
+          }
+        ],
+        "historical": [
+          {
+            "id": "SkU",
+            "name": "Skatteutskottet",
+            "nameEn": "Tax Committee",
+            "role": "member",
+            "since": "2014-10-01",
+            "until": "2022-09-30",
+            "duration": "8 years"
+          }
+        ],
+        "chairPositions": [
+          {
+            "committee": "FiU",
+            "since": "2022-10-01",
+            "current": true
+          }
+        ],
+        "specialAssignments": [
+          {
+            "name": "EU Budget Review Committee",
+            "role": "Swedish representative",
+            "since": "2023-01-15"
+          }
+        ]
+      }
+    }
+  ]
+}
