@@ -217,7 +217,7 @@ public final class EsvApiITest extends AbstractEsvFunctionalIntegrationTest {
 	public void getGovernmentBodyNamesSuccessTest() {
 		final List<String> list = esvApi.getGovernmentBodyNames();
 		assertNotNull(list);
-		assertEquals(344, list.size());
+		assertEquals(345, list.size());
 	}
 
 	/**
