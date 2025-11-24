@@ -1,0 +1,203 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2025-11-24T02:23:58Z",
+    "source": "Citizen Intelligence Agency",
+    "schema": "party-profile",
+    "recordCount": 8,
+    "dataDate": "2025-11-23",
+    "parliamentaryParties": 8,
+    "extraParliamentaryParties": 0
+  },
+  "data": [
+    {
+      "id": "s",
+      "labels": {
+        "category": "government-coalition",
+        "subcategories": [
+          "center-left",
+          "social-democratic",
+          "major-party",
+          "coalition-partner"
+        ],
+        "descriptions": {
+          "short": "Sweden's largest party, Social Democrats lead center-left coalition",
+          "long": "The Social Democratic Party (Socialdemokraterna) is Sweden's historically dominant political force, currently leading a minority government in coalition with the Green Party and Centre Party. Founded in 1889, the party advocates for social welfare, progressive taxation, and regulated market economy.",
+          "detailed": "The Social Democratic Workers' Party of Sweden (Socialdemokraterna) has shaped modern Swedish society through the creation of the comprehensive welfare state, known as the 'Swedish Model.' With roots in the labor movement, the party has been Sweden's largest for over a century, governing for most of the 20th century. Current policy priorities include climate transition, welfare system protection, labor market regulation, and Nordic cooperation. The party maintains strong ties with trade unions and represents urban workers and public sector employees. Recent electoral challenges include competition from Sweden Democrats on immigration and from Left Party on economic policy."
+        },
+        "intelligenceTags": [
+          "coalition-leader",
+          "stable-support",
+          "union-affiliated",
+          "center-left-ideology",
+          "government-experience",
+          "welfare-state-champion"
+        ]
+      },
+      "attributes": {
+        "shortCode": "S",
+        "fullName": "Socialdemokraterna",
+        "nameEn": "Social Democratic Party",
+        "officialName": "Sveriges socialdemokratiska arbetareparti",
+        "foundedYear": 1889,
+        "ideology": "social-democracy",
+        "spectrum": "center-left",
+        "position": {
+          "economic": -2.5,
+          "social": -1.8
+        },
+        "color": "#E8112d",
+        "logoUrl": "https://data.riksdagen.se/partier/s/logo.svg",
+        "websiteUrl": "https://www.socialdemokraterna.se",
+        "headquarters": "Stockholm",
+        "leader": {
+          "personId": "0123456789",
+          "name": "Magdalena Andersson",
+          "since": "2021-11-04",
+          "title": "Party Leader"
+        },
+        "contact": {
+          "email": "info@socialdemokraterna.se",
+          "phone": "+46 8 700 26 00",
+          "address": "Sveavägen 68, Stockholm"
+        }
+      },
+      "relationships": {
+        "coalition": {
+          "status": "government",
+          "partners": ["MP", "C"],
+          "opposition": ["M", "SD", "KD", "L"]
+        },
+        "ideology": {
+          "allies": ["V", "MP"],
+          "competitors": ["M", "SD"]
+        }
+      },
+      "intelligence": {
+        "strengthScore": 78.5,
+        "strengthFactors": {
+          "electoralSupport": 20.5,
+          "parliamentarySize": 22.0,
+          "coalitionLeadership": 15.0,
+          "organizationalStrength": 12.5,
+          "financialResources": 8.5
+        },
+        "riskScore": 32.8,
+        "riskLevel": "moderate",
+        "riskFactors": [
+          {
+            "factor": "declining-support",
+            "severity": 15,
+            "description": "Electoral support down 2.1% from peak"
+          },
+          {
+            "factor": "coalition-tension",
+            "severity": 10,
+            "description": "Internal disagreements with Centre Party"
+          }
+        ],
+        "trend": {
+          "overall": "declining",
+          "electoral": "declining",
+          "parliamentary": "stable",
+          "influence": "declining",
+          "confidence": 0.78
+        },
+        "predictions": {
+          "nextElection": {
+            "predictedSupport": 28.5,
+            "predictedSeats": 99,
+            "confidenceInterval": [26.2, 30.8],
+            "confidence": 0.85
+          },
+          "governmentContinuity": {
+            "probability": 0.42,
+            "alternativeCoalition": "opposition-majority"
+          }
+        }
+      },
+      "electoral": {
+        "currentSupport": 30.3,
+        "currentSupportTrend": -2.1,
+        "seats": 107,
+        "totalSeats": 349,
+        "seatPercentage": 30.7,
+        "lastElection": {
+          "date": "2022-09-11",
+          "votePercentage": 30.33,
+          "votes": 1935455,
+          "seats": 107,
+          "result": "government-formation"
+        },
+        "history": [
+          {
+            "year": 2022,
+            "votePercentage": 30.33,
+            "seats": 107,
+            "outcome": "government-formation"
+          },
+          {
+            "year": 2018,
+            "votePercentage": 28.26,
+            "seats": 100,
+            "outcome": "government-formation"
+          },
+          {
+            "year": 2014,
+            "votePercentage": 31.01,
+            "seats": 113,
+            "outcome": "government-formation"
+          }
+        ],
+        "trend": {
+          "direction": "declining",
+          "magnitude": -2.1,
+          "since": "2014-09-14"
+        }
+      },
+      "parliamentary": {
+        "totalMembers": 107,
+        "activeMemberCount": 105,
+        "averageAttendance": 89.3,
+        "committeeChairs": 5,
+        "legislativeSuccess": {
+          "motionsSubmitted": 2847,
+          "motionsAdopted": 387,
+          "successRate": 13.6
+        },
+        "productivity": {
+          "documentsPerMember": 26.6,
+          "questionsPerMember": 12.3,
+          "comparativeRank": 2
+        }
+      },
+      "voting": {
+        "totalVotes": 45821,
+        "breakdown": {
+          "yes": 28934,
+          "no": 14287,
+          "abstain": 1823,
+          "absent": 777
+        },
+        "cohesionScore": 96.8,
+        "disciplineRate": 94.5,
+        "rebellions": 312,
+        "rebellionRate": 0.68
+      },
+      "coalition": {
+        "status": "government",
+        "role": "leader",
+        "since": "2021-11-30",
+        "partners": ["MP", "C"],
+        "formationType": "minority",
+        "stability": 72.5,
+        "stabilityTrend": "declining",
+        "ministries": {
+          "controlled": 9,
+          "total": 11,
+          "key": ["FI", "UD", "JU", "S", "A"]
+        }
+      }
+    }
+  ]
+}
