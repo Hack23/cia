@@ -203,8 +203,9 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	@Override
 	public DocumentContentData getDocumentContent(final String id) throws DataFailureException {
 		try {
-			return new DocumentContentData().withId(UrlHelper.urlEncode(id,StandardCharsets.UTF_8.toString()))
-					.withContent(xmlAgent.retriveContent(DOCUMENT_CONTENT.replace(DOC_ID_KEY, id)));
+			final String encodedId = UrlHelper.urlEncode(id, StandardCharsets.UTF_8.toString());
+			return new DocumentContentData().withId(encodedId)
+					.withContent(xmlAgent.retriveContent(DOCUMENT_CONTENT.replace(DOC_ID_KEY, encodedId)));
 		} catch (final XmlAgentException e) {
 			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_CONTENT_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE, id);
 			throw new DataFailureException(e);
@@ -263,7 +264,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	@Override
 	public DocumentStatusContainer getDocumentStatus(final String id) throws DataFailureException {
 		try {
-			final String url = DOCUMENT_STATUS.replace(ID_KEY, UrlHelper.urlEncode(id,StandardCharsets.UTF_8.toString()));
+			final String url = DOCUMENT_STATUS.replace(ID_KEY, UrlHelper.urlEncode(id, StandardCharsets.UTF_8.toString()));
 			return ((JAXBElement<DocumentStatusContainer>) xmlAgent.unmarshallXml(riksdagenDocumentStatusMarshaller,
 					url, HTTP_DOKUMENTSTATUS_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();
 		} catch (final XmlAgentException e) {
