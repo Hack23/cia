@@ -157,35 +157,44 @@ If the changelog is empty:
 
 ### Overview
 
-The `schema-validation.sql` script provides comprehensive validation of the database schema by:
-- Counting all database objects (tables, views, materialized views, indexes, sequences, functions)
-- Extracting sample data from key views for validation
-- Generating detailed statistics about schema composition and health
-- Providing baseline metrics for documentation validation
+The CIA database schema validation system provides two complementary scripts:
 
-This script is essential for:
-- Validating documentation accuracy (DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
-- Detecting schema inconsistencies
-- Monitoring database health and performance
-- Generating reports for auditing and analysis
+1. **`schema-validation.sql`** - Statistics and analysis script (Issue #7865)
+   - Provides detailed statistics and metrics
+   - Samples data from key views
+   - Analyzes performance and health
+   - Generates comprehensive reports
+
+2. **`schema-validation-v2.sql`** - 100% Coverage validation script (Issue #7872)
+   - Validates **ALL 177 objects** from full_schema.sql
+   - Ensures **100% coverage** of 93 tables + 56 views + 28 materialized views
+   - Compares full_schema.sql vs actual database
+   - Identifies missing or extra objects
+   - Provides detailed coverage metrics
+
+### Schema Object Counts
+
+**From full_schema.sql:**
+- **93 base tables** - All application and data tables
+- **56 regular views** - Intelligence analysis and aggregation views
+- **28 materialized views** - Performance-optimized cached views
+- **Total: 177 objects** requiring validation
 
 ### Running Schema Validation
 
-#### Generate Text Report
-
-To generate a comprehensive text report:
+#### Option 1: Statistics and Analysis (Recommended for monitoring)
 
 ```bash
 cd /path/to/cia/repository
 
-# Generate full validation report
+# Generate full statistics report
 psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > schema_report.txt 2>&1
 
 # View the report
 less schema_report.txt
 ```
 
-The text report includes:
+The statistics report includes:
 1. **Object Counts**: Summary of all database objects
 2. **Table Inventory**: All tables with row counts, column counts, and sizes
 3. **View Inventory**: All views (regular and materialized) with metadata
@@ -193,6 +202,45 @@ The text report includes:
 5. **Schema Statistics**: Largest tables, empty objects, view dependencies
 6. **Column Statistics**: Most common columns and data types
 7. **Index Statistics**: Index usage and unused indexes
+
+#### Option 2: 100% Coverage Validation (Recommended for releases)
+
+```bash
+cd /path/to/cia/repository
+
+# Generate comprehensive coverage validation report
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > schema_validation_v2_report.txt 2>&1
+
+# View the report
+less schema_validation_v2_report.txt
+```
+
+The coverage validation report includes:
+1. **Complete Table Validation**: ALL 93 tables with row and column counts
+2. **Complete View Validation**: ALL 56 regular views with metadata
+3. **Complete Materialized View Validation**: ALL 28 mviews with metadata
+4. **Coverage Report**: Comparison of full_schema.sql vs actual database
+5. **Missing Objects Report**: Objects in schema but not in database
+6. **Extra Objects Report**: Objects in database but not in schema
+7. **Final Coverage Summary**: Visual report card with coverage percentages
+
+**Example Output:**
+```
+╔════════════════════════════════════════════════════════════════╗
+║               SCHEMA VALIDATION V2.0 REPORT                    ║
+╠════════════════════════════════════════════════════════════════╣
+║ Object Type          │ Expected │ Validated │ Coverage       ║
+╠══════════════════════╪══════════╪═══════════╪════════════════╣
+║ Tables               │       93 │        93 │         100.0% ║
+║ Regular Views        │       56 │        56 │         100.0% ║
+║ Materialized Views   │       28 │        28 │         100.0% ║
+╠══════════════════════╪══════════╪═══════════╪════════════════╣
+║ TOTAL                │      177 │       177 │         100.0% ║
+╚════════════════════════════════════════════════════════════════╝
+
+✓✓✓ SUCCESS: 100% validation coverage achieved!
+    All objects from full_schema.sql are validated.
+```
 
 #### Generate JSON Report
 
@@ -327,96 +375,221 @@ Sample rows (top 5-10) from key views:
 Validate that DATABASE_VIEW_INTELLIGENCE_CATALOG.md matches actual schema:
 
 ```bash
-# Generate current schema inventory
-psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > current_schema.txt
+# Generate current schema inventory with v2 for complete coverage
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > current_schema_v2.txt
 
-# Compare with documented views
-grep "^View:" current_schema.txt | sort > current_views.txt
-grep "^Materialized View:" current_schema.txt | sort > current_mviews.txt
+# Extract object names for comparison
+grep "✓ Table:" current_schema_v2.txt | awk '{print $3}' | sort > current_tables.txt
+grep "✓ View:" current_schema_v2.txt | awk '{print $3}' | sort > current_views.txt
+grep "✓ MView:" current_schema_v2.txt | awk '{print $3}' | sort > current_mviews.txt
 
-# Extract view names from documentation
-grep -E "^(###|##) view_" DATABASE_VIEW_INTELLIGENCE_CATALOG.md | sed 's/.*view_/view_/' | sort > documented_views.txt
-
-# Find differences
-comm -3 current_views.txt documented_views.txt
+# Compare with full_schema.sql
+diff /tmp/tables_in_schema.txt current_tables.txt
+diff /tmp/views_in_schema.txt current_views.txt
+diff /tmp/mviews_in_schema.txt current_mviews.txt
 ```
 
-#### 2. Schema Health Check
+#### 2. Pre-Release Validation
 
-Monitor schema health before releases:
+Ensure 100% schema coverage before major releases:
 
 ```bash
-# Run validation and check for issues
-psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql 2>&1 | \
-  grep -E "(ERROR|empty|0 rows)" > schema_issues.txt
+# Run comprehensive validation
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > pre_release_validation.txt 2>&1
 
-# Review issues
-cat schema_issues.txt
+# Check for 100% coverage
+if grep -q "100.0% validation coverage achieved" pre_release_validation.txt; then
+    echo "✓ Schema validation passed - ready for release"
+else
+    echo "✗ Schema validation failed - review missing objects"
+    cat pre_release_validation.txt
+    exit 1
+fi
 ```
 
-#### 3. Performance Analysis
+#### 3. Continuous Monitoring
 
-Identify performance optimization opportunities:
+Monitor schema health and statistics:
 
 ```bash
-# Generate report focused on performance metrics
-psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql 2>&1 | \
-  grep -A 30 "Largest Tables by Total Size" > largest_tables.txt
+# Run regular statistics report
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > weekly_stats_$(date +%Y%m%d).txt 2>&1
 
-# Check for unused indexes
-psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql 2>&1 | \
-  grep -A 20 "Unused Indexes" > unused_indexes.txt
+# Run comprehensive validation monthly
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > monthly_validation_$(date +%Y%m%d).txt 2>&1
 ```
 
-#### 4. Baseline Establishment
+#### 4. Schema Health Check
 
-Create baseline metrics for tracking schema evolution:
+Check for issues before running tests or deployments:
 
 ```bash
-# Generate baseline report
-DATE=$(date +%Y%m%d)
-psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > baseline_$DATE.txt 2>&1
+# Run comprehensive validation and check for issues
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql 2>&1 | \
+  grep -E "(ERROR|WARNING|MISSING)" > schema_issues.txt
 
-# Store in version control for comparison
-git add baseline_$DATE.txt
-git commit -m "Schema baseline snapshot $DATE"
+# Review issues if any
+if [ -s schema_issues.txt ]; then
+    echo "Schema issues detected:"
+    cat schema_issues.txt
+fi
+```
+
+#### 5. Database Migration Verification
+
+After applying Liquibase migrations, verify schema integrity:
+
+```bash
+# Apply migrations
+mvn liquibase:update
+
+# Validate complete schema coverage
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > post_migration_validation.txt 2>&1
+
+# Check coverage summary
+tail -30 post_migration_validation.txt
 ```
 
 ### Integration with CI/CD
 
-Add schema validation to CI/CD pipeline:
+Add comprehensive schema validation to CI/CD pipeline in `.github/workflows/verify-and-release.yml`:
 
 ```yaml
-# In .github/workflows/verify-and-release.yml
-- name: Validate Database Schema
+- name: Run Schema Validation V2 (100% Coverage)
   run: |
-    psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > schema_validation_report.txt 2>&1
+    echo "Running comprehensive schema validation..."
+    psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > schema_validation_report.txt 2>&1
     
-    # Check for errors in validation
-    if grep -q "ERROR" schema_validation_report.txt; then
-      echo "Schema validation found errors"
-      cat schema_validation_report.txt
+    # Check for 100% coverage
+    if grep -q "100.0% validation coverage achieved" schema_validation_report.txt; then
+      echo "✓ Schema validation passed with 100% coverage"
+      
+      # Extract coverage metrics
+      TABLES_VALIDATED=$(grep "Tables" schema_validation_report.txt | grep -oP '\d+(?= │)')
+      VIEWS_VALIDATED=$(grep "Regular Views" schema_validation_report.txt | grep -oP '\d+(?= │)')
+      MVIEWS_VALIDATED=$(grep "Materialized Views" schema_validation_report.txt | grep -oP '\d+(?= │)')
+      
+      echo "Coverage Summary:"
+      echo "  - Tables: $TABLES_VALIDATED/93"
+      echo "  - Regular Views: $VIEWS_VALIDATED/56"
+      echo "  - Materialized Views: $MVIEWS_VALIDATED/28"
+    else
+      echo "✗ Schema validation failed - coverage below 100%"
+      echo "Review the validation report for missing objects:"
+      tail -50 schema_validation_report.txt
       exit 1
     fi
     
-    echo "Schema validation passed"
+    # Check for errors in validation
+    if grep -qE "ERROR|✗" schema_validation_report.txt; then
+      echo "⚠ Validation errors detected"
+      grep -E "ERROR|✗" schema_validation_report.txt
+      exit 1
+    fi
+    
+    echo "Schema validation completed successfully"
 
-- name: Upload Schema Report
+- name: Upload Schema Validation Report
+  if: always()
   uses: actions/upload-artifact@v5
   with:
     name: schema-validation-report
     path: schema_validation_report.txt
+    retention-days: 30
+
+- name: Run Schema Statistics (Optional - for monitoring)
+  run: |
+    echo "Generating schema statistics..."
+    psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > schema_stats_report.txt 2>&1
+    
+    # Extract key metrics
+    echo "Schema Statistics Summary:"
+    grep "base_tables\|regular_views\|materialized_views" schema_stats_report.txt | head -3
+
+- name: Upload Schema Statistics Report
+  if: always()
+  uses: actions/upload-artifact@v5
+  with:
+    name: schema-statistics-report
+    path: schema_stats_report.txt
+    retention-days: 7
+```
+
+#### Expected CI/CD Output
+
+```
+Running comprehensive schema validation...
+✓ Schema validation passed with 100% coverage
+Coverage Summary:
+  - Tables: 93/93
+  - Regular Views: 56/56
+  - Materialized Views: 28/28
+Schema validation completed successfully
 ```
 
 ### Best Practices
 
-1. **Regular Validation**: Run schema validation weekly or before major releases
-2. **Compare Reports**: Keep historical reports to track schema evolution
-3. **Review Empty Objects**: Investigate tables/views with no data
-4. **Monitor Sizes**: Track growth trends in largest tables
-5. **Index Optimization**: Review unused indexes quarterly for removal
-6. **Document Changes**: Update documentation when schema changes are detected
-7. **Automate Checks**: Integrate validation into CI/CD for continuous monitoring
+1. **Use the Right Tool for the Job**
+   - Use **schema-validation-v2.sql** for comprehensive validation and pre-release checks
+   - Use **schema-validation.sql** for statistics, monitoring, and performance analysis
+   - Run v2 before major releases to ensure 100% coverage
+   - Run regular validation weekly or after schema changes
+
+2. **Regular Validation Schedule**
+   - **Daily**: Quick object count checks
+   - **Weekly**: Full statistics report (schema-validation.sql)
+   - **Monthly**: Comprehensive validation (schema-validation-v2.sql)
+   - **Pre-release**: Always run schema-validation-v2.sql
+
+3. **Compare Reports Over Time**
+   - Keep historical validation reports
+   - Track schema growth and changes
+   - Monitor coverage percentages
+   - Identify schema drift
+
+4. **Review Coverage Metrics**
+   - Target: 100% coverage (177/177 objects)
+   - Alert if coverage drops below 100%
+   - Investigate missing or extra objects immediately
+   - Update full_schema.sql when schema changes
+
+5. **Document Schema Changes**
+   - Update full_schema.sql after applying migrations
+   - Update README-SCHEMA-MAINTENANCE.md with new object counts
+   - Run validation to confirm changes
+   - Keep documentation synchronized with code
+
+6. **Automate Validation in CI/CD**
+   - Run schema-validation-v2.sql in CI/CD pipeline
+   - Fail builds if coverage < 100%
+   - Upload validation reports as artifacts
+   - Review reports during pull request reviews
+
+7. **Monitor for Schema Health**
+   - Use schema-validation.sql for performance insights
+   - Check for unused indexes
+   - Monitor table bloat
+   - Review empty views and tables
+
+### Coverage Metrics (Issue #7872)
+
+**Target Coverage: 100% (177 objects)**
+
+| Object Type | Count | Status |
+|-------------|-------|--------|
+| Base Tables | 93 | ✓ All validated |
+| Regular Views | 56 | ✓ All validated |
+| Materialized Views | 28 | ✓ All validated |
+| **Total** | **177** | **✓ 100% Coverage** |
+
+**Validation Scripts:**
+- `schema-validation.sql` - Statistics and monitoring (Issue #7865)
+- `schema-validation-v2.sql` - 100% coverage validation (Issue #7872)
+
+**Related Documentation:**
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View catalog
+- [TROUBLESHOOTING_EMPTY_VIEWS.md](../../TROUBLESHOOTING_EMPTY_VIEWS.md) - Troubleshooting guide
+- [full_schema.sql](src/main/resources/full_schema.sql) - Complete schema definition
 
 ### Troubleshooting
 
