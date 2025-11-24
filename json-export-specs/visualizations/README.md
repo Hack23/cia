@@ -39,28 +39,28 @@ This directory contains comprehensive visualization documentation for rendering 
 
 ### Core Entity Visualizations (5 guides)
 
-| Guide | Size | Description | Key Visualizations |
-|-------|------|-------------|-------------------|
-| [Politician Profile](./politician-profile.md) | 16KB | Complete politician dashboard | Profile cards, timelines, network graphs, performance gauges |
-| [Party Performance](./party-performance.md) | 14KB | Party analytics dashboard | Electoral trends, coalition maps, momentum trackers |
-| [Government Cabinet](./government-cabinet.md) | 13KB | Cabinet visualization | Org charts, coalition composition, minister scorecards |
-| [Committee Network](./committee-network.md) | 12KB | Parliamentary committees | Committee hierarchies, membership matrices, productivity charts |
-| [Intelligence Dashboard](./intelligence-dashboard.md) | 15KB | Intelligence products | Risk heat maps, influence networks, predictive models |
+| Guide | Status | Description | Key Visualizations |
+|-------|--------|-------------|-------------------|
+| [Politician Profile](./politician-profile.md) | ✅ Complete | Complete politician dashboard | Profile cards, timelines, network graphs, performance gauges |
+| [Party Performance](./party-performance.md) | ✅ Complete | Party analytics dashboard | Electoral trends, coalition maps, momentum trackers |
+| [Government Cabinet](./government-cabinet.md) | ✅ Complete | Cabinet visualization | Org charts, coalition composition, minister scorecards, stability metrics |
+| [Committee Network](./committee-network.md) | ✅ Complete | Parliamentary committees | Committee hierarchies, membership matrices, productivity charts, collaboration patterns |
+| [Intelligence Dashboard](./intelligence-dashboard.md) | ✅ Complete | Intelligence products | Risk heat maps, system health, KPI dashboard, data pipeline monitoring |
 
 ### Top-10 Ranking Visualizations (10 guides)
 
-| Guide | Engagement | Description | Key Visualizations |
-|-------|-----------|-------------|-------------------|
-| [Electoral Risk](./top10-electoral-risk.md) | 🔥🔥🔥🔥🔥 | Politicians at risk of losing seats | Risk ladders, seat change maps, factor breakdowns |
-| [Ethics Concerns](./top10-ethics-concerns.md) | 🔥🔥🔥🔥🔥 | Politicians under investigation | Investigation timelines, severity matrices, impact radars |
-| [Most Influential](./top10-most-influential.md) | 🔥🔥🔥🔥 | Real power players | Power rankings, influence spiders, network positions |
-| [Rising Stars](./top10-rising-stars.md) | 🔥🔥🔥🔥 | Young politicians to watch | Momentum trajectories, potential matrices, predictions |
-| [Most Absent](./top10-most-absent.md) | 🔥🔥🔥🔥 | Worst attendance records | League tables, cost calculators, absence heatmaps |
-| [Party Rebels](./top10-party-rebels.md) | 🔥🔥🔥🔥 | Independent thinkers | Loyalty spectrums, dissent timelines, defection meters |
-| [Most Productive](./top10-most-productive.md) | 🔥🔥🔥 | Legislative workhorses | Leaderboards, output timelines, efficiency matrices |
-| [Coalition Brokers](./top10-coalition-brokers.md) | 🔥🔥🔥 | Cross-party deal makers | Collaboration networks, bridge scores, co-sponsorship matrices |
-| [Media Presence](./top10-media-presence.md) | 🔥🔥🔥🔥 | Darlings vs ghosts | Visibility spectrums, sentiment distributions, coverage treemaps |
-| [Most Controversial](./top10-most-controversial.md) | 🔥🔥🔥🔥🔥 | Sweden's most divisive | Polarization indices, controversy timelines, sentiment heatmaps |
+| Guide | Status | Description | Key Visualizations |
+|-------|--------|-------------|-------------------|
+| [Electoral Risk](./top10-electoral-risk.md) | ✅ Complete | Politicians at risk of losing seats | Risk scores, factor breakdown, district vulnerability, trend analysis |
+| [Ethics Concerns](./top10-ethics-concerns.md) | ✅ Complete | Politicians under investigation | Investigation timelines, severity matrices, violation types, sanctions tracking |
+| [Most Influential](./top10-most-influential.md) | ✅ Complete | Real power players | Power rankings, influence dimensions, network centrality, agenda-setting capacity |
+| [Rising Stars](./top10-rising-stars.md) | ✅ Complete | Young politicians to watch | Momentum trajectories, potential matrices, career projections, generational advantage |
+| [Most Absent](./top10-most-absent.md) | ✅ Complete | Worst attendance records | Absence rankings, risk assessment, electoral consequences, comparative benchmarks |
+| [Party Rebels](./top10-party-rebels.md) | ✅ Complete | Independent thinkers | Loyalty spectrums, rebellion types, party response, electoral impact |
+| [Most Productive](./top10-most-productive.md) | ✅ Complete | Legislative workhorses | Productivity rankings, activity breakdown, success rates, policy coverage |
+| [Coalition Brokers](./top10-coalition-brokers.md) | ✅ Complete | Cross-party deal makers | Broker rankings, collaboration networks, bridge scores, influence mechanisms |
+| [Media Presence](./top10-media-presence.md) | ✅ Complete | Media visibility leaders | Visibility rankings, channel distribution, sentiment analysis, social media metrics |
+| [Most Controversial](./top10-most-controversial.md) | ✅ Complete | Sweden's most divisive | Controversy scores, polarization index, vote analysis, electoral consequences |
 
 ## Quick Start
 
