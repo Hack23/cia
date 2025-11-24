@@ -155,7 +155,7 @@ classDiagram
     "source": "Citizen Intelligence Agency",
     "schema": "politician-profile",
     "recordCount": 349,
-    "dataDate": "2025-11-23",
+    "dataDate": "2024-11-23",
     "attribution": "Data derived from Riksdagen Open Data API",
     "license": "Apache-2.0"
   },
@@ -415,7 +415,7 @@ Parliamentary participation and attendance metrics.
     "absences": 160,
     "period": {
       "start": "2014-09-29",
-      "end": "2025-11-23",
+      "end": "2024-11-23",
       "years": 11.2
     },
     "activityLevel": "high",

@@ -220,7 +220,7 @@ Comprehensive metadata for validation and caching:
     "generated": "2024-11-24T02:23:58Z",
     "schema": "politician-profile",
     "recordCount": 349,
-    "dataDate": "2025-11-23"
+    "dataDate": "2024-11-23"
   }
 }
 ```

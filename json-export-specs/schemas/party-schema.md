@@ -144,7 +144,7 @@ classDiagram
     "source": "Citizen Intelligence Agency",
     "schema": "party-profile",
     "recordCount": 8,
-    "dataDate": "2025-11-23",
+    "dataDate": "2024-11-23",
     "parliamentaryParties": 8,
     "extraParliamentaryParties": 0
   },

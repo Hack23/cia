@@ -144,7 +144,7 @@ graph TB
     "source": "Citizen Intelligence Agency",
     "schema": "politician-profile",
     "recordCount": 349,
-    "dataDate": "2025-11-23"
+    "dataDate": "2024-11-23"
   },
   "data": [
     {
