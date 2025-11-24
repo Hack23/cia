@@ -3,7 +3,7 @@
 
 **Version:** 1.0.0  
 **Schema ID**: `intelligence-products`  
-**Last Updated**: 2025-11-24
+**Last Updated**: 2024-11-24
 
 ---
 
@@ -102,7 +102,7 @@ graph TB
 {
   "metadata": {
     "version": "1.0.0",
-    "generated": "2025-11-24T02:23:58Z",
+    "generated": "2024-11-24T02:23:58Z",
     "schema": "risk-assessment",
     "productType": "intelligence",
     "updateFrequency": "daily",
@@ -124,7 +124,7 @@ graph TB
         "overallScore": 72.5,
         "level": "high",
         "trend": "increasing",
-        "lastUpdated": "2025-11-24T02:23:58Z"
+        "lastUpdated": "2024-11-24T02:23:58Z"
       },
       "riskFactors": [
         {
@@ -203,7 +203,7 @@ graph TB
 {
   "metadata": {
     "version": "1.0.0",
-    "generated": "2025-11-24T02:23:58Z",
+    "generated": "2024-11-24T02:23:58Z",
     "schema": "trend-analysis",
     "productType": "intelligence",
     "timePeriod": "30-days",
@@ -283,7 +283,7 @@ graph TB
 {
   "metadata": {
     "version": "1.0.0",
-    "generated": "2025-11-24T02:23:58Z",
+    "generated": "2024-11-24T02:23:58Z",
     "schema": "coalition-stability",
     "productType": "intelligence",
     "government": "Tidö Coalition",
@@ -431,7 +431,7 @@ graph TB
 {
   "metadata": {
     "version": "1.0.0",
-    "generated": "2025-11-24T02:23:58Z",
+    "generated": "2024-11-24T02:23:58Z",
     "schema": "voting-patterns",
     "productType": "intelligence",
     "period": "2024-Q3"
@@ -499,7 +499,7 @@ graph TB
 {
   "metadata": {
     "version": "1.0.0",
-    "generated": "2025-11-24T02:23:58Z",
+    "generated": "2024-11-24T02:23:58Z",
     "schema": "predictive-analytics",
     "productType": "intelligence",
     "horizon": "2026-election"
@@ -516,7 +516,7 @@ graph TB
       "predictionId": "PRED-2024-012",
       "type": "electoral-outcome",
       "title": "2026 Riksdag Election Forecast",
-      "generated": "2025-11-24T02:23:58Z",
+      "generated": "2024-11-24T02:23:58Z",
       "confidence": 0.78,
       "timeHorizon": "22-months",
       "forecast": {
@@ -673,5 +673,5 @@ async function monitorCoalition() {
 ---
 
 **Schema Version**: 1.0.0  
-**Last Updated**: 2025-11-24  
+**Last Updated**: 2024-11-24  
 **Maintained By**: Citizen Intelligence Agency Development Team

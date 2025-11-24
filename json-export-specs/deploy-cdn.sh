@@ -53,18 +53,33 @@ load_config() {
     case "$ENV" in
         dev)
             S3_BUCKET="cia-json-export-dev"
-            CLOUDFRONT_ID="E1234567890ABC"
+            CLOUDFRONT_ID="${CLOUDFRONT_ID_DEV:-}"
             AWS_REGION="eu-north-1"
+            if [ -z "$CLOUDFRONT_ID" ]; then
+                print_error "CLOUDFRONT_ID_DEV environment variable is not set."
+                print_info "Set it with: export CLOUDFRONT_ID_DEV=E1234567890ABC"
+                exit 1
+            fi
             ;;
         staging)
             S3_BUCKET="cia-json-export-staging"
-            CLOUDFRONT_ID="E0987654321XYZ"
+            CLOUDFRONT_ID="${CLOUDFRONT_ID_STAGING:-}"
             AWS_REGION="eu-north-1"
+            if [ -z "$CLOUDFRONT_ID" ]; then
+                print_error "CLOUDFRONT_ID_STAGING environment variable is not set."
+                print_info "Set it with: export CLOUDFRONT_ID_STAGING=E0987654321XYZ"
+                exit 1
+            fi
             ;;
         prod)
             S3_BUCKET="cia-json-export"
-            CLOUDFRONT_ID="E1122334455DEF"
+            CLOUDFRONT_ID="${CLOUDFRONT_ID_PROD:-}"
             AWS_REGION="eu-north-1"
+            if [ -z "$CLOUDFRONT_ID" ]; then
+                print_error "CLOUDFRONT_ID_PROD environment variable is not set."
+                print_info "Set it with: export CLOUDFRONT_ID_PROD=E1122334455DEF"
+                exit 1
+            fi
             ;;
         *)
             print_error "Unknown environment: $ENV"
@@ -191,6 +206,9 @@ upload_to_s3() {
     print_info "Syncing files to s3://$S3_BUCKET/"
     
     # Upload with appropriate caching headers
+    # Note: Using --acl public-read for CDN serving. Modern best practice
+    # is to use bucket policies instead of ACLs. Ensure your S3 bucket
+    # policy is properly configured for CloudFront access.
     aws s3 sync "$export_dir" "s3://$S3_BUCKET/v$VERSION/" \
         --region "$AWS_REGION" \
         --delete \

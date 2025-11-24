@@ -2,7 +2,7 @@
 ## Step-by-Step Guide to Implementing the JSON Export System
 
 **Version:** 1.0.0  
-**Last Updated**: 2025-11-24  
+**Last Updated**: 2024-11-24  
 **Estimated Implementation Time**: 2-3 weeks
 
 ---
@@ -31,7 +31,7 @@ gantt
     dateFormat YYYY-MM-DD
     
     section Phase 1: Setup
-    Create Maven Module           :p1, 2025-11-24, 2d
+    Create Maven Module           :p1, 2024-11-24, 2d
     Database Connection Setup     :p2, after p1, 1d
     JSON Library Integration      :p3, after p1, 1d
     
@@ -184,11 +184,25 @@ public class DatabaseConfig {
     
     @Bean
     public DataSource dataSource() {
+        String url = System.getenv("DATABASE_URL");
+        String username = System.getenv("DATABASE_USERNAME");
+        String password = System.getenv("DATABASE_PASSWORD");
+        
+        if (url == null || url.isEmpty()) {
+            throw new IllegalStateException("Environment variable DATABASE_URL is not set or empty.");
+        }
+        if (username == null || username.isEmpty()) {
+            throw new IllegalStateException("Environment variable DATABASE_USERNAME is not set or empty.");
+        }
+        if (password == null || password.isEmpty()) {
+            throw new IllegalStateException("Environment variable DATABASE_PASSWORD is not set or empty.");
+        }
+        
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl(System.getenv("DATABASE_URL"));
-        dataSource.setUsername(System.getenv("DATABASE_USERNAME"));
-        dataSource.setPassword(System.getenv("DATABASE_PASSWORD"));
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
         return dataSource;
     }
     
@@ -649,5 +663,5 @@ Before production deployment:
 
 ---
 
-**Last Updated**: 2025-11-24  
+**Last Updated**: 2024-11-24  
 **Maintained By**: Citizen Intelligence Agency Development Team

@@ -217,7 +217,7 @@ Comprehensive metadata for validation and caching:
 {
   "metadata": {
     "version": "1.0.0",
-    "generated": "2025-11-24T02:23:58Z",
+    "generated": "2024-11-24T02:23:58Z",
     "schema": "politician-profile",
     "recordCount": 349,
     "dataDate": "2025-11-23"
@@ -270,4 +270,4 @@ Apache License 2.0 - Same as CIA platform
 
 **Version**: 1.0.0  
 **Status**: Specifications Complete, Implementation Pending  
-**Last Updated**: 2025-11-24
+**Last Updated**: 2024-11-24

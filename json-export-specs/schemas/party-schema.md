@@ -3,7 +3,7 @@
 
 **Version:** 1.0.0  
 **Schema ID**: `party-profile`  
-**Last Updated**: 2025-11-24
+**Last Updated**: 2024-11-24
 
 ---
 
@@ -140,7 +140,7 @@ classDiagram
 {
   "metadata": {
     "version": "1.0.0",
-    "generated": "2025-11-24T02:23:58Z",
+    "generated": "2024-11-24T02:23:58Z",
     "source": "Citizen Intelligence Agency",
     "schema": "party-profile",
     "recordCount": 8,
@@ -822,5 +822,5 @@ async function assessCoalitionStability() {
 ---
 
 **Schema Version**: 1.0.0  
-**Last Updated**: 2025-11-24  
+**Last Updated**: 2024-11-24  
 **Maintained By**: Citizen Intelligence Agency Development Team

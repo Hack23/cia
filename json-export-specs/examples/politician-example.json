@@ -81,7 +81,12 @@
             "until": "2022-09-30"
           }
         ],
-        "ministry": null,
+        "ministry": {
+          "id": "FI",
+          "name": "Finansdepartementet",
+          "position": "minister-finance",
+          "since": "2021-11-30"
+        },
         "colleagues": {
           "partyColleagues": ["0234567890", "0345678901"],
           "committeeColleagues": ["0456789012", "0567890123"],
