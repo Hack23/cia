@@ -80,16 +80,16 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		// Test with ö character - from production error logs
 		final DocumentContentData documentContent1 = riksdagenApi
 				.getDocumentContent("hca3föu34");
-		assertNotNull("Document with ö should be retrieved", documentContent1);
-		assertNotNull("Document content should not be null", documentContent1.getContent());
-		assertTrue("Document content should not be empty", documentContent1.getContent().length() > 0);
+		assertNotNull(documentContent1);
+		assertNotNull(documentContent1.getContent());
+		assertTrue(documentContent1.getContent().length() > 0);
 		
 		// Test with another document ID containing ö
 		final DocumentContentData documentContent2 = riksdagenApi
 				.getDocumentContent("hc19föu6p2");
-		assertNotNull("Document with ö should be retrieved", documentContent2);
-		assertNotNull("Document content should not be null", documentContent2.getContent());
-		assertTrue("Document content should not be empty", documentContent2.getContent().length() > 0);
+		assertNotNull(documentContent2);
+		assertNotNull(documentContent2.getContent());
+		assertTrue(documentContent2.getContent().length() > 0);
 	}
 
 	/**
