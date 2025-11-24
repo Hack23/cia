@@ -293,7 +293,13 @@ ORDER BY matviewname
 
 -- Generate comprehensive extraction statistics
 -- Note: This query is intentionally on one line to work with \copy command
--- It generates a summary table with coverage metrics for tables, views, and total objects
+-- It cannot be split into multiple lines or use temporary tables/views because
+-- \copy requires a complete SELECT statement in a single command
+-- The query generates a summary table with coverage metrics for:
+--   - TABLES: counts and filters out qrtz_* and databasechange* tables
+--   - REGULAR_VIEWS: counts all regular views
+--   - MATERIALIZED_VIEWS: counts all materialized views
+--   - TOTAL: aggregates all object types with overall coverage percentage
 \copy (SELECT 'TABLES' as category, COUNT(*) as total_in_schema, (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%') as extracted_count, ROUND((SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%')::numeric / NULLIF(COUNT(*), 0) * 100, 2) as coverage_pct, (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND (tablename LIKE 'qrtz_%' OR tablename LIKE 'databasechange%')) as excluded_count FROM pg_tables WHERE schemaname = 'public' UNION ALL SELECT 'REGULAR_VIEWS', COUNT(*), COUNT(*), 100.00, 0 FROM pg_views WHERE schemaname = 'public' UNION ALL SELECT 'MATERIALIZED_VIEWS', COUNT(*), COUNT(*), 100.00, 0 FROM pg_matviews WHERE schemaname = 'public' UNION ALL SELECT 'TOTAL', (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'), (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%') + (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'), ROUND(((SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%') + (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'))::numeric / NULLIF((SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'), 0) * 100, 2), (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND (tablename LIKE 'qrtz_%' OR tablename LIKE 'databasechange%'))) TO 'extraction_statistics.csv' WITH CSV HEADER;
 
 \echo 'Extraction statistics saved to: extraction_statistics.csv'

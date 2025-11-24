@@ -184,9 +184,9 @@ if [ -f "extraction_statistics.csv" ]; then
     
     # Display statistics in formatted table
     if command -v column &> /dev/null; then
-        cat extraction_statistics.csv | column -t -s',' | sed 's/^/  /'
+        column -t -s',' < extraction_statistics.csv | sed 's/^/  /'
     else
-        cat extraction_statistics.csv | sed 's/^/  /'
+        sed 's/^/  /' < extraction_statistics.csv
     fi
     echo ""
     
