@@ -162,7 +162,7 @@ final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernment
      * @return the string
      */
     private String buildUrl(DataType type) {
-        return String.format(Locale.ENGLISH,"%s?documentType=%s&fileType=Zip&fileName=M%%C3%%A5nadsutfall%%20%s%%20januari%%202006%%20-%%20november%%202024,%%20definitivt.zip&Year=2024&month=11&status=Definitiv",
+        return String.format(Locale.ENGLISH,"%s?documentType=%s&fileType=Zip&fileName=M%%C3%%A5nadsutfall%%20%s%%20januari%%202006%%20-%%20september%%202025,%%20definitivt.zip&Year=2025&month=9&status=Definitiv",
             ESV_BASE_URL,
             type.getDocumentType(),
             type.getUrlName());
