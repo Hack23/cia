@@ -83,7 +83,6 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		assertNotNull(documentContent1);
 		assertNotNull(documentContent1.getContent());
 		assertTrue(documentContent1.getContent().length() > 0);
-		
 		// Test with another document ID containing ö
 		final DocumentContentData documentContent2 = riksdagenApi
 				.getDocumentContent("hc19föu6p2");
