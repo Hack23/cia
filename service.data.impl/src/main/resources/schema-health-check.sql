@@ -1190,38 +1190,44 @@ SELECT json_build_object(
 \echo '--- PROMETHEUS METRICS EXPORT ---'
 \echo 'Generating Prometheus-compatible metrics...'
 
-SELECT
-    '# HELP cia_db_health_score Database health score by category' || E'\n' ||
-    '# TYPE cia_db_health_score gauge' || E'\n' ||
-    string_agg(
-        'cia_db_health_score{category="' || category || '"} ' || 
+WITH category_metrics AS (
+    SELECT
+        category,
+        COUNT(*) AS total_checks,
+        COUNT(*) FILTER (WHERE status = 'PASS') AS passed,
+        COUNT(*) FILTER (WHERE status = 'WARN') AS warnings,
+        COUNT(*) FILTER (WHERE status = 'FAIL') AS failures,
         ROUND(
             (COUNT(*) FILTER (WHERE status = 'PASS') * 100.0 + 
              COUNT(*) FILTER (WHERE status = 'WARN') * 50.0) / 
             NULLIF(COUNT(*), 0), 
             2
-        )::TEXT,
+        ) AS category_score
+    FROM health_check_results
+    WHERE status != 'INFO'
+    GROUP BY category
+)
+SELECT
+    '# HELP cia_db_health_score Database health score by category' || E'\n' ||
+    '# TYPE cia_db_health_score gauge' || E'\n' ||
+    string_agg(
+        'cia_db_health_score{category="' || category || '"} ' || category_score::TEXT,
         E'\n'
     ) || E'\n' ||
     E'\n' ||
     '# HELP cia_db_health_checks_total Total health checks by category and status' || E'\n' ||
     '# TYPE cia_db_health_checks_total counter' || E'\n' ||
     string_agg(
-        'cia_db_health_checks_total{category="' || category || '",status="pass"} ' || 
-        COUNT(*) FILTER (WHERE status = 'PASS')::TEXT || E'\n' ||
-        'cia_db_health_checks_total{category="' || category || '",status="warn"} ' || 
-        COUNT(*) FILTER (WHERE status = 'WARN')::TEXT || E'\n' ||
-        'cia_db_health_checks_total{category="' || category || '",status="fail"} ' || 
-        COUNT(*) FILTER (WHERE status = 'FAIL')::TEXT,
+        'cia_db_health_checks_total{category="' || category || '",status="pass"} ' || passed::TEXT || E'\n' ||
+        'cia_db_health_checks_total{category="' || category || '",status="warn"} ' || warnings::TEXT || E'\n' ||
+        'cia_db_health_checks_total{category="' || category || '",status="fail"} ' || failures::TEXT,
         E'\n'
     ) AS prometheus_metrics
-FROM health_check_results
-WHERE status != 'INFO'
-GROUP BY category;
+FROM category_metrics;
 
 \echo ''
 \echo 'To export Prometheus metrics to file, run:'
-\echo '  psql -U postgres -d cia_dev -t -A -f schema-health-check.sql | grep -A 999 "PROMETHEUS METRICS" > metrics.prom'
+\echo '  psql -U postgres -d cia_dev -t -A -f schema-health-check.sql | grep -A 999 "cia_db_health" > metrics.prom'
 \echo ''
 
 \echo ''
