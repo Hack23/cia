@@ -606,7 +606,10 @@ SELECT
         ELSE NULL
     END AS recommendation
 FROM (
-    SELECT COUNT(*) as active_connections FROM pg_stat_activity WHERE state = 'active'
+    SELECT COUNT(*) as active_connections
+    FROM pg_stat_activity
+    WHERE pid != pg_backend_pid()
+      AND backend_type = 'client backend'
 ) a,
 (SELECT setting::INT as max_connections FROM pg_settings WHERE name = 'max_connections') m;
 
@@ -655,7 +658,7 @@ SELECT
     END AS severity,
     'Current lock waits: ' || lock_count AS details,
     CASE 
-        WHEN lock_count > 5 THEN 'Investigate long-running transactions: SELECT * FROM pg_stat_activity WHERE wait_event_type = ''Lock'''
+        WHEN lock_count > 5 THEN 'Investigate long-running transactions: SELECT pid, usename, query, state, wait_event, wait_event_type, query_start FROM pg_stat_activity WHERE wait_event_type = ''Lock'''
         ELSE NULL
     END AS recommendation
 FROM (
@@ -680,22 +683,21 @@ SELECT
     'Security' AS category,
     'User Permissions: ' || usename AS check_name,
     CASE 
-        WHEN usesysid = 10 THEN 'INFO'  -- postgres superuser (expected)
+        WHEN usename = 'postgres' THEN 'INFO'  -- expected postgres superuser
         WHEN usesuper THEN 'WARN'  -- other superusers
         ELSE 'PASS'
     END AS status,
     CASE 
-        WHEN usesysid = 10 THEN 1
+        WHEN usename = 'postgres' THEN 1
         WHEN usesuper THEN 2
         ELSE 1
     END AS severity,
     'User: ' || usename || ' | Superuser: ' || usesuper || ' | Create DB: ' || usecreatedb AS details,
     CASE 
-        WHEN usesuper AND usesysid != 10 THEN 'Review superuser privileges for ' || usename
+        WHEN usesuper AND usename != 'postgres' THEN 'Review superuser privileges for ' || usename
         ELSE NULL
     END AS recommendation
-FROM pg_user
-WHERE usename != 'postgres';
+FROM pg_user;
 
 -- Check 4.2: SSL configuration
 \echo 'Checking SSL configuration...'
@@ -774,17 +776,19 @@ BEGIN
             'Security',
             'Password Encryption Method',
             CASE 
-                WHEN encryption_method IN ('scram-sha-256', 'md5') THEN 'PASS'
-                ELSE 'WARN'
+                WHEN encryption_method = 'scram-sha-256' THEN 'PASS'
+                WHEN encryption_method = 'md5' THEN 'WARN'
+                ELSE 'FAIL'
             END,
             CASE 
-                WHEN encryption_method IN ('scram-sha-256', 'md5') THEN 1
-                ELSE 2
+                WHEN encryption_method = 'scram-sha-256' THEN 1
+                WHEN encryption_method = 'md5' THEN 2
+                ELSE 3
             END,
             'Encryption method: ' || encryption_method,
             CASE 
-                WHEN encryption_method NOT IN ('scram-sha-256', 'md5') 
-                THEN 'Consider using scram-sha-256 for better password security'
+                WHEN encryption_method = 'md5' THEN 'MD5 is deprecated - migrate to scram-sha-256 for better security'
+                WHEN encryption_method NOT IN ('scram-sha-256', 'md5') THEN 'Use scram-sha-256 for password security'
                 ELSE NULL
             END
         );
@@ -1216,7 +1220,7 @@ SELECT
     ) || E'\n' ||
     E'\n' ||
     '# HELP cia_db_health_checks_total Total health checks by category and status' || E'\n' ||
-    '# TYPE cia_db_health_checks_total counter' || E'\n' ||
+    '# TYPE cia_db_health_checks_total gauge' || E'\n' ||
     string_agg(
         'cia_db_health_checks_total{category="' || category || '",status="pass"} ' || passed::TEXT || E'\n' ||
         'cia_db_health_checks_total{category="' || category || '",status="warn"} ' || warnings::TEXT || E'\n' ||

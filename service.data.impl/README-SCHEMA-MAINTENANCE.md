@@ -1119,7 +1119,7 @@ The health check script now provides native Prometheus metrics export with categ
 
 # Run health check and extract Prometheus metrics
 psql -U postgres -d cia_dev -t -A -f /path/to/service.data.impl/src/main/resources/schema-health-check.sql 2>/dev/null | \
-  grep -E "^cia_db_" > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+  grep -E "^(#|cia_db_)" > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
 
 echo "Prometheus metrics exported to cia_health.prom"
 
@@ -1183,7 +1183,7 @@ done
 
 ```promql
 # Overall health score
-cia_db_health_score_overall
+cia_db_health_score
 
 # Category-level health scores
 cia_db_health_score{category=~".*"}
