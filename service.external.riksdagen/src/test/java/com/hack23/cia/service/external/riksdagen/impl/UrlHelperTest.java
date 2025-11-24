@@ -36,7 +36,7 @@ public class UrlHelperTest extends Assert {
 	@Test
 	public void urlEncodeSuccesTest() throws Exception {
 		new UrlHelper();
-		assertEquals("%26", UrlHelper.urlEncode("&",StandardCharsets.UTF_8.toString()));
+		assertEquals("%26", UrlHelper.urlEncode("&", StandardCharsets.UTF_8.toString()));
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class UrlHelperTest extends Assert {
 	@Test
 	public void urlEncodeFailureTest() throws Exception {
 		new UrlHelper();
-		assertEquals("&", UrlHelper.urlEncode("&","bad encoding"));
+		assertEquals("&", UrlHelper.urlEncode("&", "bad encoding"));
 	}
 
 	/**
@@ -58,14 +58,14 @@ public class UrlHelperTest extends Assert {
 	@Test
 	public void urlEncodeSwedishCharactersTest() throws Exception {
 		// Test Swedish characters å, ä, ö
-		assertEquals("hca3f%C3%B6u34", UrlHelper.urlEncode("hca3föu34",StandardCharsets.UTF_8.toString()));
-		assertEquals("hc19f%C3%B6u6p2", UrlHelper.urlEncode("hc19föu6p2",StandardCharsets.UTF_8.toString()));
-		assertEquals("hda1f%C3%B6u3p", UrlHelper.urlEncode("hda1föu3p",StandardCharsets.UTF_8.toString()));
+		assertEquals("hca3f%C3%B6u34", UrlHelper.urlEncode("hca3föu34", StandardCharsets.UTF_8.toString()));
+		assertEquals("hc19f%C3%B6u6p2", UrlHelper.urlEncode("hc19föu6p2", StandardCharsets.UTF_8.toString()));
+		assertEquals("hda1f%C3%B6u3p", UrlHelper.urlEncode("hda1föu3p", StandardCharsets.UTF_8.toString()));
 		
 		// Test all Swedish special characters
-		assertEquals("%C3%A5", UrlHelper.urlEncode("å",StandardCharsets.UTF_8.toString()));
-		assertEquals("%C3%A4", UrlHelper.urlEncode("ä",StandardCharsets.UTF_8.toString()));
-		assertEquals("%C3%B6", UrlHelper.urlEncode("ö",StandardCharsets.UTF_8.toString()));
+		assertEquals("%C3%A5", UrlHelper.urlEncode("å", StandardCharsets.UTF_8.toString()));
+		assertEquals("%C3%A4", UrlHelper.urlEncode("ä", StandardCharsets.UTF_8.toString()));
+		assertEquals("%C3%B6", UrlHelper.urlEncode("ö", StandardCharsets.UTF_8.toString()));
 	}
 
 }
