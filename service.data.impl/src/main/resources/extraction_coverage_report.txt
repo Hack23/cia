@@ -1,0 +1,44 @@
+SAMPLE DATA EXTRACTION COVERAGE REPORT
+Generated: 2025-11-24 22:09:56
+
+SCHEMA OBJECTS:
+  Total Tables: 93
+  Total Regular Views: 56
+  Total Materialized Views: 28
+  Total Objects: 177
+
+EXTRACTION COVERAGE:
+  Tables Extracted: 80 (86.02%)
+  Tables Excluded: 13
+  Views Extracted: 84 (100%)
+  Total Extracted: 164 (92.66%)
+
+EXCLUDED OBJECTS:
+  - 11 Quartz scheduler tables (qrtz_*)
+  - 2 Liquibase tracking tables (databasechange*)
+
+OUTPUT FILES:
+  Table CSVs: 80
+  View CSVs: 84
+  Distinct Value CSVs: 8
+  Metadata CSVs: 3
+  Total CSVs: 175
+
+EXTRACTION STRATEGY:
+  Method: Dynamic discovery using PostgreSQL system catalogs
+  Adaptability: Automatic (adapts to schema changes)
+  Sample Size: 50 rows per table/view (or all if fewer)
+  Sampling Method: Random sampling (ORDER BY random())
+
+VALIDATION:
+  - File count validation
+  - Empty file detection
+  - CSV header validation
+  - File size analysis
+  - Coverage statistics verification
+
+REFERENCES:
+  - Schema: full_schema.sql
+  - Extraction Script: extract-sample-data.sql
+  - Documentation: SAMPLE_DATA_EXTRACTION.md
+  - Validation Script: validate-sample-data-extraction.sh

@@ -142,6 +142,22 @@ The validation script checks:
 - Required file presence
 - Data quality spot checks
 
+### Using Coverage Analysis Script
+
+To analyze extraction coverage without running the extraction:
+
+```bash
+# Analyze coverage based on schema
+./service.data.impl/src/main/resources/analyze-extraction-coverage.sh
+```
+
+This script:
+- Compares schema objects with extraction script logic
+- Calculates expected coverage percentages
+- Identifies excluded objects
+- Generates coverage report and CSV summary
+- Does not require database connection
+
 ## Output Files
 
 ### Table Sample Files
@@ -477,6 +493,43 @@ Potential improvements for future versions:
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View catalog
 - [README-SCHEMA-MAINTENANCE.md](README-SCHEMA-MAINTENANCE.md) - Schema maintenance guide
 - [sample_data/README.md](src/main/resources/sample_data/README.md) - Sample data directory
+
+## Analysis and Validation Tools
+
+The sample data extraction includes several helper scripts:
+
+### 1. extract-sample-data.sh
+Main extraction wrapper with built-in validation:
+```bash
+./service.data.impl/src/main/resources/extract-sample-data.sh [output_dir] [database]
+```
+
+### 2. validate-sample-data-extraction.sh
+Standalone validation script for post-extraction checks:
+```bash
+./service.data.impl/src/main/resources/validate-sample-data-extraction.sh [directory]
+```
+
+### 3. analyze-extraction-coverage.sh
+Coverage analysis without database connection:
+```bash
+./service.data.impl/src/main/resources/analyze-extraction-coverage.sh
+```
+
+Generates:
+- `extraction_coverage_report.txt` - Detailed text report
+- `extraction_coverage_summary.csv` - Coverage metrics in CSV format
+
+Example output:
+```
+EXTRACTION COVERAGE:
+  Tables Extracted: 80 (86.02%)
+  Tables Excluded: 13
+  Views Extracted: 84 (100%)
+  Total Extracted: 164 (92.66%)
+
+✅✅✅ EXCELLENT COVERAGE: 92.66% ✅✅✅
+```
 
 ## Version History
 
