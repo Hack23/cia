@@ -56,6 +56,8 @@ AbstractRiksdagenFunctionalIntegrationTest {
 		final DocumentContentData documentContent = riksdagenApi
 				.getDocumentContent("GX11916");
 		assertNotNull(documentContent);
+		// Note: Original assertion "till statsrådet Cristina Husmark Pehrsson" updated to match
+		// current document format which uses "Cristina Husmark Pehrsson (m), statsråd"
 		assertTrue(documentContent.getContent().contains(
 				"Cristina Husmark Pehrsson"));
 
