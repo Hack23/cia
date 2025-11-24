@@ -112,7 +112,11 @@ echo "  Total: $EXPECTED_TOTAL_EXTRACTIONS (out of $TOTAL_OBJECTS)"
 echo ""
 
 # Calculate coverage percentage
-COVERAGE_PCT=$(awk "BEGIN {printf \"%.2f\", ($EXPECTED_TOTAL_EXTRACTIONS / $TOTAL_OBJECTS) * 100}")
+if [ "$TOTAL_OBJECTS" -gt 0 ]; then
+    COVERAGE_PCT=$(awk "BEGIN {printf \"%.2f\", ($EXPECTED_TOTAL_EXTRACTIONS / $TOTAL_OBJECTS) * 100}")
+else
+    COVERAGE_PCT="0.00"
+fi
 echo "Expected coverage: $COVERAGE_PCT%"
 echo ""
 
@@ -291,7 +295,14 @@ echo "CSV summary saved to: extraction_coverage_summary.csv"
 echo ""
 
 # Final status
-if (( $(echo "$COVERAGE_PCT >= 90" | bc -l) )); then
+if [ "$TOTAL_OBJECTS" -eq 0 ]; then
+    echo "⚠️  ERROR: No objects found in schema"
+    exit 1
+fi
+
+# Check coverage using shell arithmetic instead of bc
+COVERAGE_INT=$(echo "$COVERAGE_PCT" | cut -d'.' -f1)
+if [ "$COVERAGE_INT" -ge 90 ]; then
     echo "✅✅✅ EXCELLENT COVERAGE: $COVERAGE_PCT% ✅✅✅"
     echo ""
     echo "The extraction script provides comprehensive coverage of the schema."

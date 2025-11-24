@@ -161,7 +161,11 @@ echo ""
 # Display extraction statistics if available
 if [ -f "extraction_statistics.csv" ]; then
     echo "Coverage Statistics (from extraction_statistics.csv):"
-    cat extraction_statistics.csv | column -t -s',' | sed 's/^/  /'
+    if command -v column &> /dev/null; then
+        column -t -s',' < extraction_statistics.csv | sed 's/^/  /'
+    else
+        sed 's/^/  /' < extraction_statistics.csv
+    fi
     echo ""
 fi
 

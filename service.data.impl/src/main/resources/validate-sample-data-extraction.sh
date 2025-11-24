@@ -190,8 +190,8 @@ if [ -f "extraction_statistics.csv" ]; then
     fi
     echo ""
     
-    # Extract key metrics
-    TOTAL_COVERAGE=$(grep "^TOTAL," extraction_statistics.csv | cut -d',' -f4)
+    # Extract key metrics (coverage_pct is column 5: category,total_in_schema,extracted,excluded,coverage_pct)
+    TOTAL_COVERAGE=$(grep "^TOTAL," extraction_statistics.csv | cut -d',' -f5)
     if [ -n "$TOTAL_COVERAGE" ]; then
         echo "Overall coverage: $TOTAL_COVERAGE%"
         
