@@ -156,7 +156,7 @@ echo ""
 SMALL_FILES=$(find . -maxdepth 1 -name "*_sample.csv" -size -100c 2>/dev/null | wc -l)
 if [ "$SMALL_FILES" -gt 0 ]; then
     echo "⚠️  WARNING: Found $SMALL_FILES suspiciously small CSV files (< 100 bytes):"
-    find . -maxdepth 1 -name "*_sample.csv" -size -100c 2>/dev/null | while read file; do
+    find . -maxdepth 1 -name "*_sample.csv" -size -100c 2>/dev/null | while IFS= read -r file; do
         SIZE=$(ls -lh "$file" | awk '{print $5}')
         echo "   $file - $SIZE"
     done
@@ -190,7 +190,7 @@ if [ -f "extraction_statistics.csv" ]; then
     fi
     echo ""
     
-    # Extract key metrics (coverage_pct is column 5: category,total_in_schema,extracted,excluded,coverage_pct)
+    # Extract key metrics (coverage_pct is column 5: category,total_in_schema,extracted_count,excluded_count,coverage_pct)
     TOTAL_COVERAGE=$(grep "^TOTAL," extraction_statistics.csv | cut -d',' -f5)
     if [ -n "$TOTAL_COVERAGE" ]; then
         echo "Overall coverage: $TOTAL_COVERAGE%"

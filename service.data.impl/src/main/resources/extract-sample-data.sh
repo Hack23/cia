@@ -150,7 +150,11 @@ echo "Checking file sizes..."
 SMALL_FILES=$(find . -maxdepth 1 -name "*_sample.csv" -size -100c 2>/dev/null)
 if [ -n "$SMALL_FILES" ]; then
     echo "⚠️  INFO: Found suspiciously small CSV files (< 100 bytes):"
-    ls -lh $SMALL_FILES 2>/dev/null | awk '{print "    " $9 " - " $5}'
+    echo "$SMALL_FILES" | while IFS= read -r file; do
+        if [ -f "$file" ]; then
+            ls -lh "$file" 2>/dev/null | awk '{print "    " $9 " - " $5}'
+        fi
+    done
     echo "    (These may be from empty tables/views)"
 else
     echo "✅ All sample CSV files have reasonable sizes"

@@ -39,7 +39,7 @@ echo ""
 
 # Create temporary directory for analysis
 TEMP_DIR=$(mktemp -d)
-trap "rm -rf $TEMP_DIR" EXIT
+trap "rm -rf \"$TEMP_DIR\"" EXIT
 
 echo "=================================================="
 echo "=== SCHEMA OBJECT DISCOVERY                    ==="

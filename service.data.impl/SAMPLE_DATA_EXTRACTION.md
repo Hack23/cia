@@ -19,7 +19,7 @@ The sample data extraction script provides comprehensive coverage of all databas
 | **Materialized Views** | 28 | 28 | 100% | ✅ Complete |
 | **Distinct Value Sets** | N/A | 8 | N/A | ✅ Custom extractions |
 | **Metadata Files** | N/A | 3 | N/A | ✅ Manifest + mapping + statistics |
-| **TOTAL** | 177 | 175 | 98.9% | ✅ Near-complete |
+| **TOTAL** | 177 | 164 | 92.66% | ✅ Near-complete |
 
 ### Intentionally Skipped Objects
 
