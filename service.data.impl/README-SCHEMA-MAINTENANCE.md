@@ -769,7 +769,7 @@ Export health check metrics in Prometheus format:
 ```bash
 # Generate Prometheus metrics file
 psql -U postgres -d cia_dev -t -A -f service.data.impl/src/main/resources/schema-health-check.sql 2>/dev/null | \
-  grep -A 999 "cia_db_health_score" | grep "^cia_db" > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+  grep -A 999 "cia_db_health_score" | grep -E "^(#|cia_db_)" > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
 
 # Example Prometheus metrics:
 # cia_db_health_score{category="Schema Integrity"} 96.67
