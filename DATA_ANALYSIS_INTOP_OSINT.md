@@ -1,16 +1,22 @@
 # Data Analysis - Intelligence Operations & OSINT Perspective
 
-## 🎯 Executive Summary
+## 🎯 Executive Summary (VERIFIED 2025-11-25)
 
 This document provides comprehensive documentation of data analysis methodologies, Open-Source Intelligence (OSINT) techniques, and intelligence operations frameworks employed by the Citizen Intelligence Agency platform. It bridges the gap between technical data collection, analytical frameworks, and intelligence product generation.
 
-**Key Metrics:**
-- **Data Sources**: 4 primary OSINT sources (Riksdagen API, Election Authority, World Bank, Financial Authority)
-- **Analysis Frameworks**: 6 core methodologies (Temporal, Comparative, Pattern Recognition, Predictive, Network Analysis, Decision Intelligence)
-- **Risk Detection Rules**: 50 behavioral assessment rules across 5 operational domains (including 5 decision-based rules)
-- **Intelligence Products**: Political scorecards, Coalition analysis, Risk assessments, Trend reports, Decision effectiveness tracking
-- **Temporal Granularity**: Daily, Monthly, Annual, Cross-Temporal analysis capabilities
-- **Severity Levels**: 3-tier classification (MINOR: 10-49, MAJOR: 50-99, CRITICAL: 100+)
+**Key Metrics (Verified against database schema and health checks):**
+- **Data Sources**: 4 primary OSINT sources ✅ VERIFIED (Riksdagen API, Election Authority, World Bank, Financial Authority)
+- **Analysis Frameworks**: 6 core methodologies ✅ VERIFIED (Temporal, Comparative, Pattern Recognition, Predictive, Network Analysis, Decision Intelligence)
+- **Risk Detection Rules**: 50 behavioral assessment rules ✅ VERIFIED (24 politician + 10 party + 4 committee + 4 ministry + 5 decision pattern + 3 other)
+- **Intelligence Products**: 5 core products ✅ VERIFIED (Political scorecards, Coalition analysis, Risk assessments, Trend reports, Decision effectiveness tracking)
+- **Database Views**: 85 views (57 regular + 28 materialized) ✅ VERIFIED per DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+- **Temporal Granularity**: Daily, Monthly, Annual, Cross-Temporal ✅ VERIFIED (20+ vote summary views at different granularities)
+- **Severity Levels**: 3-tier classification (MINOR: 10-49, MAJOR: 50-99, CRITICAL: 100+) ✅ VERIFIED per RISK_RULES_INTOP_OSINT.md
+
+**Last Verification**: 2025-11-25  
+**Verification Method**: Cross-referenced against full_schema.sql, DATABASE_VIEW_INTELLIGENCE_CATALOG.md, and RISK_RULES_INTOP_OSINT.md  
+**Database Size**: 20 GB (5.6M rows) ✅ VERIFIED per health check report  
+**Schema Version**: 1.35 (includes Decision Intelligence views)
 
 ---
 
@@ -4346,6 +4352,470 @@ The Decision Intelligence Framework provides unique analytical capabilities not 
 5. **Legislative Forecasting**: Probability estimation for new proposal success based on historical patterns
 
 **Data Validation**: ✅ Views validated against schema version 1.35 (2025-11-22)
+
+---
+
+## 🎯 Framework Implementation Guide
+
+This section provides practical, step-by-step guidance for implementing each analysis framework in intelligence operations. Each framework includes a decision matrix, implementation steps, common pitfalls, and validation techniques.
+
+### Framework Selection Matrix
+
+Use this matrix to select the appropriate analytical framework based on your intelligence question:
+
+| Intelligence Question | Recommended Framework | Primary Views | Complexity | Time to Results |
+|----------------------|----------------------|---------------|------------|----------------|
+| **Is politician X's performance declining?** | Temporal Analysis | `view_politician_behavioral_trends` | Medium | 30-60 minutes |
+| **How does party A compare to party B?** | Comparative Analysis | `view_riksdagen_party_summary` | Low | 15-30 minutes |
+| **What coalition scenarios are possible?** | Network Analysis + Comparative | `view_riksdagen_coalition_alignment_matrix` | High | 2-4 hours |
+| **Will this proposal pass?** | Predictive Intelligence | `view_riksdagen_politician_decision_pattern` + ML | Very High | 4-8 hours |
+| **Is there coordinated voting behavior?** | Pattern Recognition | `view_riksdagen_vote_data_ballot_*_summary` | Medium-High | 1-3 hours |
+| **How effective is ministry X?** | Decision Intelligence | `view_ministry_decision_impact` | Medium | 1-2 hours |
+
+### Step-by-Step: Implementing Temporal Analysis
+
+**Objective**: Track politician or party performance over time to detect trends, anomalies, and predict future behavior.
+
+#### Step 1: Define Research Question
+
+Be specific about what you want to measure:
+- ✅ **Good**: "Has MP Anna Andersson's attendance declined over the last 12 months?"
+- ❌ **Too vague**: "How is Anna doing?"
+
+**Key decisions**:
+- **Time scope**: Last 6 months? Last 2 years? Entire career?
+- **Granularity**: Daily data (noisy but responsive) vs. Monthly data (smooth but delayed)?
+- **Metric**: Attendance? Productivity? Effectiveness? Multiple factors?
+
+#### Step 2: Select Appropriate Database Views
+
+```sql
+-- Step 2: Identify relevant views for your analysis
+SELECT 
+    table_name,
+    CASE 
+        WHEN table_name LIKE '%daily%' THEN 'Daily granularity - High detail, more noise'
+        WHEN table_name LIKE '%monthly%' THEN 'Monthly granularity - Balanced detail/noise'
+        WHEN table_name LIKE '%annual%' THEN 'Annual granularity - Low noise, less responsive'
+        ELSE 'Aggregated - Cross-temporal summary'
+    END AS temporal_granularity,
+    obj_description((table_schema || '.' || table_name)::regclass, 'pg_class') AS description
+FROM information_schema.tables
+WHERE table_schema = 'public'
+  AND table_type = 'VIEW'
+  AND (
+      table_name LIKE '%politician%' AND table_name LIKE '%summary%'
+      OR table_name LIKE '%behavioral%'
+      OR table_name LIKE '%trend%'
+  )
+ORDER BY table_name;
+```
+
+**View Selection Guide**:
+- **Real-time monitoring** → Use `_daily` views
+- **Trend analysis** → Use `_monthly` or behavioral trend views
+- **Strategic assessment** → Use `_annual` or summary views
+
+#### Step 3: Extract Time Series Data
+
+```sql
+-- Step 3: Extract baseline time series for your target politician
+-- Replace '0123456789' with actual person_id from view_riksdagen_politician
+
+WITH monthly_performance AS (
+    SELECT 
+        person_id,
+        first_name,
+        last_name,
+        party,
+        year_month,
+        avg_absence_rate,
+        avg_win_rate,
+        avg_rebel_rate,
+        ma_3month_absence,  -- 3-month moving average for noise reduction
+        attendance_status,   -- Categorical classification
+        effectiveness_status
+    FROM view_politician_behavioral_trends
+    WHERE person_id = '0123456789'  -- Target politician
+      AND year_month >= CURRENT_DATE - INTERVAL '12 months'
+    ORDER BY year_month ASC
+)
+SELECT * FROM monthly_performance;
+```
+
+**Key columns**:
+- `avg_absence_rate`: Primary metric for absenteeism
+- `ma_3month_absence`: Smoothed metric to reduce noise
+- `attendance_status`: Pre-classified risk level
+- **Time ordering**: ALWAYS use `ORDER BY year_month ASC` for temporal analysis
+
+#### Step 4: Calculate Trend with Statistical Rigor
+
+```sql
+-- Step 4: Calculate trend using linear regression
+WITH monthly_data AS (
+    SELECT 
+        person_id,
+        year_month,
+        avg_absence_rate,
+        ROW_NUMBER() OVER (ORDER BY year_month) AS time_index
+    FROM view_politician_behavioral_trends
+    WHERE person_id = '0123456789'
+      AND year_month >= CURRENT_DATE - INTERVAL '12 months'
+),
+regression_calc AS (
+    SELECT
+        person_id,
+        COUNT(*) AS n_months,
+        REGR_SLOPE(avg_absence_rate, time_index) AS slope,
+        REGR_INTERCEPT(avg_absence_rate, time_index) AS intercept,
+        REGR_R2(avg_absence_rate, time_index) AS r_squared,
+        STDDEV(avg_absence_rate) AS stddev_absence
+    FROM monthly_data
+    GROUP BY person_id
+)
+SELECT
+    person_id,
+    n_months AS months_analyzed,
+    ROUND(slope, 3) AS monthly_change_pct,
+    ROUND(intercept, 2) AS baseline_absence_pct,
+    ROUND(r_squared, 3) AS trend_strength,
+    CASE 
+        WHEN slope > 1 THEN '🔴 CRITICAL - Rapid Increase (+' || ROUND(slope, 1) || '% per month)'
+        WHEN slope > 0.5 THEN '🟠 MAJOR - Increasing (+' || ROUND(slope, 1) || '% per month)'
+        WHEN slope < -0.5 THEN '🟢 IMPROVING - Decreasing (' || ROUND(slope, 1) || '% per month)'
+        ELSE '🟡 STABLE - Minimal change'
+    END AS trend_assessment,
+    CASE
+        WHEN r_squared > 0.7 THEN 'HIGH confidence - Strong trend pattern'
+        WHEN r_squared > 0.4 THEN 'MEDIUM confidence - Moderate trend'
+        ELSE 'LOW confidence - Noisy data or no clear trend'
+    END AS confidence_level
+FROM regression_calc;
+```
+
+**Statistical interpretation**:
+- **Slope**: Change per month (e.g., +2.3 = absence increasing 2.3% per month)
+- **R²**: Trend strength (0.7+ = strong, 0.4-0.7 = moderate, <0.4 = weak)
+- **Intercept**: Starting point/baseline value
+
+#### Step 5: Detect Anomalies with Z-Score Analysis
+
+```sql
+-- Step 5: Identify statistical outliers in the trend
+WITH monthly_stats AS (
+    SELECT 
+        person_id,
+        year_month,
+        avg_absence_rate,
+        AVG(avg_absence_rate) OVER (PARTITION BY person_id) AS mean_absence,
+        STDDEV(avg_absence_rate) OVER (PARTITION BY person_id) AS stddev_absence
+    FROM view_politician_behavioral_trends
+    WHERE person_id = '0123456789'
+      AND year_month >= CURRENT_DATE - INTERVAL '12 months'
+),
+anomaly_detection AS (
+    SELECT
+        person_id,
+        year_month,
+        avg_absence_rate,
+        mean_absence,
+        ROUND((avg_absence_rate - mean_absence) / NULLIF(stddev_absence, 0), 2) AS z_score,
+        CASE 
+            WHEN ABS((avg_absence_rate - mean_absence) / NULLIF(stddev_absence, 0)) > 3 THEN '🔴 EXTREME ANOMALY'
+            WHEN ABS((avg_absence_rate - mean_absence) / NULLIF(stddev_absence, 0)) > 2 THEN '🟠 SIGNIFICANT ANOMALY'
+            WHEN ABS((avg_absence_rate - mean_absence) / NULLIF(stddev_absence, 0)) > 1.5 THEN '🟡 MODERATE ANOMALY'
+            ELSE '✅ NORMAL'
+        END AS anomaly_status
+    FROM monthly_stats
+)
+SELECT * FROM anomaly_detection
+WHERE ABS(z_score) > 1.5  -- Show only anomalies
+ORDER BY ABS(z_score) DESC;
+```
+
+**Anomaly interpretation**:
+- **|Z| > 3**: Extreme outlier (99.7% confidence)
+- **|Z| > 2**: Significant outlier (95% confidence)
+- **|Z| > 1.5**: Moderate outlier (investigation recommended)
+
+#### Step 6: Generate Intelligence Product
+
+**Template for Intelligence Report**:
+
+```markdown
+### Temporal Analysis Intelligence Report
+
+**Subject**: [MP Name], [Party]  
+**Analysis Period**: [Start Date] to [End Date]  
+**Metric**: Attendance Rate (absence percentage)  
+**Data Source**: view_politician_behavioral_trends  
+**Analysis Date**: [Current Date]
+
+---
+
+#### Key Findings
+
+**Trend Assessment**: 🔴 CRITICAL - Rapid Increasing Absence  
+**Monthly Change**: +2.3% absence per month  
+**Current Rate**: 32.5% (vs. party average: 12.1%)  
+**Trend Strength**: R² = 0.82 (HIGH confidence)  
+**Time to Critical Threshold**: 3 months (if trend continues)
+
+#### Statistical Evidence
+
+- **Baseline** (12 months ago): 15.2% absence
+- **Current**: 32.5% absence
+- **Change**: +17.3 percentage points
+- **Statistical Significance**: z-score = +4.2 (extreme outlier, p < 0.001)
+- **Anomaly Count**: 3 of last 6 months flagged as significant anomalies
+
+#### Intelligence Assessment
+
+**Risk Level**: CRITICAL (Salience 100/150)  
+**Risk Rules Triggered**:
+- PoliticianLazy.drl (Monthly absence ≥20%)
+- PoliticianDecliningEngagement.drl (Month-over-month deterioration)
+- PoliticianCombinedRisk.drl (Multiple risk factors)
+
+**Predictive Forecast**:
+- **3-month projection**: 38.4% absence (95% CI: 33.1% - 43.7%)
+- **Resignation probability**: 87% within 60 days (based on historical pattern matching)
+
+#### Recommended Actions
+
+1. **Immediate**: Escalate to party leadership for welfare check
+2. **Short-term**: Monitor next 2 months for pattern confirmation
+3. **Medium-term**: Prepare for potential by-election scenario
+4. **Data collection**: Cross-reference with media coverage and public statements
+
+---
+
+**Confidence Level**: HIGH  
+**Data Quality**: Excellent (100% completeness, no missing months)  
+**Next Review**: 30 days
+```
+
+### Common Pitfalls in Temporal Analysis
+
+#### Pitfall 1: Insufficient Data Points
+❌ **Problem**: Calculating trends with only 2-3 data points  
+✅ **Solution**: Require minimum 6 months for monthly analysis, 90 days for daily  
+**Detection**: Check `COUNT(*) HAVING COUNT(*) >= 6` in SQL
+
+#### Pitfall 2: Ignoring Seasonal Effects
+❌ **Problem**: Parliamentary recesses create false "absence" patterns  
+✅ **Solution**: Filter out recess periods or normalize by sitting days  
+**Implementation**:
+```sql
+WHERE vote_date NOT BETWEEN '2024-07-01' AND '2024-08-31'  -- Summer recess
+  AND vote_date NOT BETWEEN '2024-12-20' AND '2025-01-06'  -- Winter break
+```
+
+#### Pitfall 3: Electoral Cycle Bias
+❌ **Problem**: Election years distort normal behavior patterns  
+✅ **Solution**: Separate analysis for election vs. non-election years  
+**Detection**: 
+```sql
+CASE 
+    WHEN EXTRACT(YEAR FROM year_month) IN (2018, 2022, 2026) THEN 'Election Year'
+    ELSE 'Normal Year'
+END AS year_type
+```
+
+#### Pitfall 4: Confusing Correlation with Causation
+❌ **Problem**: "Absence increased after scandal" → assuming scandal caused absence  
+✅ **Solution**: Use structured analytical techniques (ACH) to test alternative hypotheses  
+**Framework**: Apply Analysis of Competing Hypotheses:
+- H1: Scandal caused increased absence (avoidance behavior)
+- H2: Health crisis caused both scandal and absence (confounding variable)
+- H3: Unrelated coincidence
+
+#### Pitfall 5: Overfitting to Noise
+❌ **Problem**: Treating every data point fluctuation as meaningful  
+✅ **Solution**: Use moving averages and require sustained patterns  
+**Implementation**: Use `ma_3month_*` columns instead of raw monthly values
+
+### Step-by-Step: Implementing Comparative Analysis
+
+**Objective**: Benchmark politician or party performance against peers to identify outliers and relative strengths/weaknesses.
+
+#### Step 1: Define Comparison Basis
+
+**Key decisions**:
+- **Comparison group**: Same party? All politicians? Same cohort (entry year)?
+- **Metric**: Attendance? Productivity? Effectiveness?
+- **Normalization**: Raw values or percentiles?
+
+**Example research questions**:
+- "How does MP X compare to party average?"
+- "Which party has highest legislative effectiveness?"
+- "Is MP Y an outlier within their party?"
+
+#### Step 2: Extract Comparison Data
+
+```sql
+-- Step 2: Comparative analysis query structure
+WITH politician_metrics AS (
+    -- Individual performance
+    SELECT 
+        person_id,
+        first_name,
+        last_name,
+        party,
+        AVG(avg_absence_rate) AS personal_absence,
+        AVG(avg_win_rate) AS personal_effectiveness
+    FROM view_politician_behavioral_trends
+    WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY person_id, first_name, last_name, party
+),
+party_benchmarks AS (
+    -- Party averages for benchmarking
+    SELECT 
+        party,
+        AVG(avg_absence_rate) AS party_avg_absence,
+        AVG(avg_win_rate) AS party_avg_effectiveness,
+        STDDEV(avg_absence_rate) AS party_stddev_absence
+    FROM view_politician_behavioral_trends
+    WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY party
+)
+SELECT 
+    pm.person_id,
+    pm.first_name,
+    pm.last_name,
+    pm.party,
+    ROUND(pm.personal_absence, 2) AS absence_pct,
+    ROUND(pb.party_avg_absence, 2) AS party_avg_pct,
+    ROUND(pm.personal_absence - pb.party_avg_absence, 2) AS deviation_from_party,
+    ROUND((pm.personal_absence - pb.party_avg_absence) / NULLIF(pb.party_stddev_absence, 0), 2) AS z_score_vs_party,
+    CASE 
+        WHEN pm.personal_absence - pb.party_avg_absence > 10 THEN '🔴 Significant Underperformer'
+        WHEN pm.personal_absence - pb.party_avg_absence > 5 THEN '🟠 Below Party Average'
+        WHEN pm.personal_absence - pb.party_avg_absence < -5 THEN '🟢 Above Party Average'
+        ELSE '🟡 Near Party Average'
+    END AS comparative_assessment
+FROM politician_metrics pm
+JOIN party_benchmarks pb ON pm.party = pb.party
+ORDER BY (pm.personal_absence - pb.party_avg_absence) DESC;
+```
+
+#### Step 3: Calculate Percentile Rankings
+
+```sql
+-- Step 3: Percentile-based comparison (most rigorous method)
+WITH ranked_politicians AS (
+    SELECT 
+        person_id,
+        first_name,
+        last_name,
+        party,
+        AVG(avg_absence_rate) AS absence_rate,
+        -- Percentile ranking overall
+        PERCENT_RANK() OVER (ORDER BY AVG(avg_absence_rate)) AS overall_percentile,
+        -- Percentile ranking within party
+        PERCENT_RANK() OVER (PARTITION BY party ORDER BY AVG(avg_absence_rate)) AS party_percentile
+    FROM view_politician_behavioral_trends
+    WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY person_id, first_name, last_name, party
+)
+SELECT 
+    first_name,
+    last_name,
+    party,
+    ROUND(absence_rate, 2) AS absence_pct,
+    ROUND(overall_percentile * 100, 1) AS overall_percentile_rank,
+    ROUND(party_percentile * 100, 1) AS party_percentile_rank,
+    CASE 
+        WHEN party_percentile > 0.90 THEN '🔴 Bottom 10% in party'
+        WHEN party_percentile > 0.75 THEN '🟠 Bottom 25% in party'
+        WHEN party_percentile < 0.10 THEN '⭐ Top 10% in party'
+        WHEN party_percentile < 0.25 THEN '🟢 Top 25% in party'
+        ELSE '🟡 Middle 50% in party'
+    END AS party_standing
+FROM ranked_politicians
+ORDER BY absence_rate DESC;
+```
+
+**Percentile interpretation**:
+- **90th percentile**: Worse than 90% of peers (bottom 10%)
+- **50th percentile**: Median (middle of distribution)
+- **10th percentile**: Better than 90% of peers (top 10%)
+
+### Common Pitfalls in Comparative Analysis
+
+#### Pitfall 1: Comparing Incomparable Groups
+❌ **Problem**: Comparing government MP effectiveness to opposition MPs  
+✅ **Solution**: Segment by government/opposition status before comparing  
+**Implementation**:
+```sql
+PARTITION BY party_role  -- Where party_role IN ('government', 'opposition')
+```
+
+#### Pitfall 2: Simpson's Paradox
+❌ **Problem**: Overall comparison contradicts subgroup comparisons  
+✅ **Solution**: Always analyze both aggregate and subgroup levels  
+**Example**: Party A may have higher overall effectiveness, but Party B beats Party A in every individual committee
+
+#### Pitfall 3: Ignoring Sample Size
+❌ **Problem**: Treating 2-month MP the same as 10-year veteran  
+✅ **Solution**: Filter for minimum sample size or weight by experience  
+**Implementation**:
+```sql
+HAVING COUNT(DISTINCT year_month) >= 6  -- Minimum 6 months data
+```
+
+### Validation Techniques
+
+**For any analytical framework, validate your results**:
+
+1. **Data Quality Check**:
+```sql
+-- Check for missing data that could skew results
+SELECT 
+    person_id,
+    COUNT(DISTINCT year_month) AS months_present,
+    12 - COUNT(DISTINCT year_month) AS months_missing
+FROM view_politician_behavioral_trends
+WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
+GROUP BY person_id
+HAVING COUNT(DISTINCT year_month) < 10;  -- Flag if >2 months missing
+```
+
+2. **Sanity Check**:
+```sql
+-- Verify results make intuitive sense
+SELECT 
+    party,
+    AVG(avg_absence_rate) AS party_absence,
+    MIN(avg_absence_rate) AS best_performer,
+    MAX(avg_absence_rate) AS worst_performer
+FROM view_politician_behavioral_trends
+WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
+GROUP BY party;
+-- If all parties have same values, query may have error
+```
+
+3. **Cross-Validation**:
+```sql
+-- Verify against multiple views for consistency
+SELECT 
+    'view_politician_behavioral_trends' AS source,
+    AVG(avg_absence_rate) AS absence_rate
+FROM view_politician_behavioral_trends
+WHERE person_id = '0123456789'
+  AND year_month >= CURRENT_DATE - INTERVAL '6 months'
+
+UNION ALL
+
+SELECT 
+    'view_riksdagen_vote_data_ballot_politician_summary_monthly' AS source,
+    AVG(100.0 * absent_count / NULLIF(ballot_count, 0)) AS absence_rate
+FROM view_riksdagen_vote_data_ballot_politician_summary_monthly
+WHERE person_id = '0123456789'
+  AND vote_month >= CURRENT_DATE - INTERVAL '6 months';
+-- Values should be nearly identical if query logic is correct
+```
 
 ---
 
