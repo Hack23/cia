@@ -37,14 +37,15 @@
 
 The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views. **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views (100% coverage). **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
-**Last Validated**: 2025-11-25 ✅ CURRENT  
-**Latest Addition**: v1.36 Business Context Integration - Enhanced view documentation with product mappings and market segment analysis  
-**Validation Method**: Automated schema validation script against full_schema.sql  
+**Last Validated**: 2025-11-25  
+**Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Latest Validation Report**: service.data.impl/sample-data/schema_validation_20251121_142510.txt  
-**Latest Health Check**: service.data.impl/sample-data/health_check_20251121_143220.txt
+**Latest Validation Report**: DATABASE_VIEW_VALIDATION_REPORT.md  
+**Documentation Coverage**: 100% (84/84 views)
+
+**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
 
 ### Key Statistics (REVERIFIED 2025-11-25)
 
@@ -57,15 +58,14 @@ The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56
 | **Views Documented (Structured)** | 73 | Purpose, metrics, queries, product mappings |
 | **Documentation Coverage** | 100% | All 84 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
-| **Decision Flow Views** | 5 | Party, politician, ministry, temporal trends, and KPI dashboard for decision analysis (v1.35) |
-| **Empty Views Requiring Investigation** | 9 | Views returning 0 rows (ministry, risk, coalition analysis) |
+| **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
+| **Application Event Views** | 12 | User behavior tracking (daily, weekly, monthly, annual) |
 | **Document Views** | 7 | Politician and party document productivity |
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
-| **Government/Ministry Views** | 8 | Government and ministry performance tracking (including decision impact) |
-| **Party Views** | 13 | Party performance, decision flow, effectiveness (updated v1.35) |
+| **Government/Ministry Views** | 7 | Government and ministry performance tracking |
+| **Party Views** | 13 | Party performance, decision flow, effectiveness |
 | **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
-| **Changelog Versions** | v1.0-v1.35 | Database schema evolution tracking |
 | **Database Size** | 20 GB | Total database size (validated 2025-11-21) |
 | **Total Rows** | 5.6M | Total rows across all tables |
 | **Base Tables** | 93 | Core data tables |
@@ -2069,65 +2069,6 @@ ORDER BY ABS(z_score) DESC;
 
 ---
 
-### view_decision_outcome_kpi_dashboard ⭐⭐⭐⭐⭐
-
-**Category:** Decision Intelligence (v1.35)  
-**Type:** Standard View  
-**Intelligence Value:** VERY HIGH - Unified Decision Intelligence Dashboard  
-
-#### Purpose
-
-Consolidated dashboard aggregating all decision intelligence KPIs across party, politician, ministry, and temporal dimensions. Provides executive-level summary of legislative effectiveness and decision patterns.
-
-#### Key Metrics
-
-- **Overall Approval Rate**: Platform-wide legislative success rate
-- **Top Parties**: Highest-performing parties by approval rate
-- **Top Politicians**: Most effective individual legislators
-- **Top Ministries**: Best-performing government ministries
-- **Decision Volume Trends**: Current activity vs. baseline
-- **Processing Efficiency**: Average decision processing times
-
-#### Schema
-
-| Column Name | Type | Description | Example |
-|-------------|------|-------------|---------|
-| `metric_category` | VARCHAR(50) | KPI category | 'Party', 'Politician', 'Ministry' |
-| `entity_name` | VARCHAR(255) | Entity identifier | 'Social Democrats', 'Finance Ministry' |
-| `approval_rate` | NUMERIC | Success percentage | 75.50 |
-| `total_decisions` | BIGINT | Decision volume | 1247 |
-| `rank` | INTEGER | Effectiveness ranking | 1 |
-| `trend` | VARCHAR(20) | Direction indicator | 'Improving', 'Stable', 'Declining' |
-
-#### Sample Query: Complete Dashboard Summary
-
-```sql
-SELECT 
-    metric_category,
-    entity_name,
-    ROUND(approval_rate, 2) AS approval_rate,
-    total_decisions,
-    rank,
-    trend
-FROM view_decision_outcome_kpi_dashboard
-ORDER BY metric_category, rank;
-```
-
-#### Intelligence Applications
-
-1. **Executive Briefing**: One-screen summary of legislative effectiveness
-2. **Government Accountability**: Public transparency dashboard for citizen access
-3. **Coalition Health Check**: Quick assessment of government performance
-4. **Opposition Strategy**: Identify weaknesses in ruling coalition performance
-5. **Media Fact-Checking**: Verify political claims about legislative effectiveness
-
-#### Cross-References
-
-- [DATA_ANALYSIS_INTOP_OSINT.md - Decision Intelligence Framework](DATA_ANALYSIS_INTOP_OSINT.md#6-decision-intelligence-framework)
-- [RISK_RULES_INTOP_OSINT.md - Decision Pattern Risk Rules](RISK_RULES_INTOP_OSINT.md#decision-pattern-risk-rules-d-01-to-d-05)
-
----
-
 ### Decision Flow Views: Common Usage Patterns
 
 #### Pattern 1: Coalition Stability Assessment
@@ -2924,25 +2865,119 @@ These views are **CRITICAL** for the CIA platform's intelligence capabilities:
 
 ### Application Action Event Views (12 views) ⭐⭐
 
-**Views**: 
-- view_application_action_event_page_{annual|daily|hourly|weekly}_summary
-- view_application_action_event_page_element_{annual|daily|hourly|weekly}_summary  
-- view_application_action_event_page_modes_{annual|daily|hourly|weekly}_summary
-
 **Purpose**: Track user interactions with CIA platform pages, UI elements, and access modes at various time granularities.
 
 **Key Metrics**: action_date/period, page_name, element_name, action_type, event_count, unique_users
 
-**Sample Query (Daily Page Summary)**:
-```sql
-SELECT action_date, page_name, SUM(event_count) as total_events
-FROM view_application_action_event_page_daily_summary
-WHERE action_date >= CURRENT_DATE - INTERVAL '7 days'
-GROUP BY action_date, page_name
-ORDER BY action_date DESC, total_events DESC;
-```
-
 **Applications**: User behavior analytics, feature usage tracking, platform optimization, engagement analysis
+
+---
+
+### view_application_action_event_page_annual_summary ⭐⭐
+
+**Purpose**: Annual summary of user interactions with platform pages.  
+**Key Metrics**: year, page_name, total_events, unique_users, avg_events_per_user  
+**Sample Query**: `SELECT year, page_name, total_events FROM view_application_action_event_page_annual_summary WHERE year >= 2024 ORDER BY year DESC, total_events DESC;`  
+**Applications**: Annual usage trends, page popularity analysis, long-term engagement tracking
+
+---
+
+### view_application_action_event_page_daily_summary ⭐⭐
+
+**Purpose**: Daily summary of user interactions with platform pages.  
+**Key Metrics**: action_date, page_name, event_count, unique_users  
+**Sample Query**: `SELECT action_date, page_name, SUM(event_count) as total FROM view_application_action_event_page_daily_summary WHERE action_date >= CURRENT_DATE - 7 GROUP BY action_date, page_name ORDER BY action_date DESC;`  
+**Applications**: Daily usage monitoring, page traffic analysis, user engagement tracking
+
+---
+
+### view_application_action_event_page_element_annual_summary ⭐⭐
+
+**Purpose**: Annual summary of user interactions with UI elements within pages.  
+**Key Metrics**: year, page_name, element_name, total_clicks, unique_users  
+**Sample Query**: `SELECT year, page_name, element_name, total_clicks FROM view_application_action_event_page_element_annual_summary WHERE year >= 2024 ORDER BY total_clicks DESC;`  
+**Applications**: Feature usage analysis, UI/UX optimization, element effectiveness tracking
+
+---
+
+### view_application_action_event_page_element_daily_summary ⭐⭐
+
+**Purpose**: Daily summary of user interactions with UI elements within pages.  
+**Key Metrics**: action_date, page_name, element_name, click_count, unique_users  
+**Sample Query**: `SELECT action_date, element_name, SUM(click_count) as clicks FROM view_application_action_event_page_element_daily_summary WHERE action_date >= CURRENT_DATE - 7 GROUP BY action_date, element_name ORDER BY clicks DESC;`  
+**Applications**: Daily feature monitoring, UI element tracking, user interaction patterns
+
+---
+
+### view_application_action_event_page_element_hourly_summary ⭐⭐
+
+**Purpose**: Hourly summary of user interactions with UI elements within pages.  
+**Key Metrics**: action_timestamp, page_name, element_name, click_count, unique_users  
+**Sample Query**: `SELECT DATE_TRUNC('hour', action_timestamp) as hour, element_name, SUM(click_count) FROM view_application_action_event_page_element_hourly_summary WHERE action_timestamp >= NOW() - INTERVAL '24 hours' GROUP BY hour, element_name;`  
+**Applications**: Real-time monitoring, peak usage detection, hourly engagement patterns
+
+---
+
+### view_application_action_event_page_element_weekly_summary ⭐⭐
+
+**Purpose**: Weekly summary of user interactions with UI elements within pages.  
+**Key Metrics**: week_start_date, page_name, element_name, total_clicks, unique_users  
+**Sample Query**: `SELECT week_start_date, element_name, SUM(total_clicks) as clicks FROM view_application_action_event_page_element_weekly_summary WHERE week_start_date >= CURRENT_DATE - 30 GROUP BY week_start_date, element_name ORDER BY clicks DESC;`  
+**Applications**: Weekly trend analysis, UI element performance, engagement patterns
+
+---
+
+### view_application_action_event_page_hourly_summary ⭐⭐
+
+**Purpose**: Hourly summary of user interactions with platform pages.  
+**Key Metrics**: action_timestamp, page_name, event_count, unique_users  
+**Sample Query**: `SELECT DATE_TRUNC('hour', action_timestamp) as hour, page_name, SUM(event_count) FROM view_application_action_event_page_hourly_summary WHERE action_timestamp >= NOW() - INTERVAL '24 hours' GROUP BY hour, page_name ORDER BY hour DESC;`  
+**Applications**: Real-time traffic monitoring, peak hour detection, load balancing
+
+---
+
+### view_application_action_event_page_modes_annual_summary ⭐⭐
+
+**Purpose**: Annual summary of user access modes (desktop, mobile, tablet) by page.  
+**Key Metrics**: year, page_name, access_mode, event_count, unique_users  
+**Sample Query**: `SELECT year, access_mode, SUM(event_count) as total FROM view_application_action_event_page_modes_annual_summary WHERE year >= 2024 GROUP BY year, access_mode ORDER BY total DESC;`  
+**Applications**: Device usage trends, platform optimization, responsive design decisions
+
+---
+
+### view_application_action_event_page_modes_daily_summary ⭐⭐
+
+**Purpose**: Daily summary of user access modes (desktop, mobile, tablet) by page.  
+**Key Metrics**: action_date, page_name, access_mode, event_count, unique_users  
+**Sample Query**: `SELECT action_date, access_mode, SUM(event_count) as total FROM view_application_action_event_page_modes_daily_summary WHERE action_date >= CURRENT_DATE - 7 GROUP BY action_date, access_mode ORDER BY action_date DESC;`  
+**Applications**: Daily device analytics, mobile vs desktop usage, accessibility monitoring
+
+---
+
+### view_application_action_event_page_modes_hourly_summary ⭐⭐
+
+**Purpose**: Hourly summary of user access modes (desktop, mobile, tablet) by page.  
+**Key Metrics**: action_timestamp, page_name, access_mode, event_count, unique_users  
+**Sample Query**: `SELECT DATE_TRUNC('hour', action_timestamp) as hour, access_mode, SUM(event_count) FROM view_application_action_event_page_modes_hourly_summary WHERE action_timestamp >= NOW() - INTERVAL '24 hours' GROUP BY hour, access_mode;`  
+**Applications**: Real-time device monitoring, peak usage by device type
+
+---
+
+### view_application_action_event_page_modes_weekly_summary ⭐⭐
+
+**Purpose**: Weekly summary of user access modes (desktop, mobile, tablet) by page.  
+**Key Metrics**: week_start_date, page_name, access_mode, event_count, unique_users  
+**Sample Query**: `SELECT week_start_date, access_mode, SUM(event_count) as total FROM view_application_action_event_page_modes_weekly_summary WHERE week_start_date >= CURRENT_DATE - 30 GROUP BY week_start_date, access_mode ORDER BY total DESC;`  
+**Applications**: Weekly device trends, platform strategy decisions
+
+---
+
+### view_application_action_event_page_weekly_summary ⭐⭐
+
+**Purpose**: Weekly summary of user interactions with platform pages.  
+**Key Metrics**: week_start_date, page_name, event_count, unique_users  
+**Sample Query**: `SELECT week_start_date, page_name, SUM(event_count) as total FROM view_application_action_event_page_weekly_summary WHERE week_start_date >= CURRENT_DATE - 90 GROUP BY week_start_date, page_name ORDER BY week_start_date DESC;`  
+**Applications**: Weekly engagement tracking, page popularity trends, user activity patterns
 
 ---
 
@@ -5022,6 +5057,132 @@ From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
 - **view_riksdagen_party_decision_flow**: Party-level decision aggregation (v1.35)
 - **view_riksdagen_politician_decision_pattern**: Individual politician decision patterns (v1.35)
 - **view_politician_behavioral_trends**: Behavioral time-series analysis (v1.30)
+
+---
+
+### view_riksdagen_vote_data_ballot_party_summary ⭐⭐⭐⭐⭐
+
+**Purpose**: Aggregates party-level voting behavior across all ballots (base view for temporal summaries).  
+**Key Metrics**: party, ballot_id, total_votes, yes_votes, no_votes, abstain_votes, absent_votes, party_win_rate  
+**Sample Query**: `SELECT party, SUM(total_votes) as total, AVG(party_win_rate) as avg_win_rate FROM view_riksdagen_vote_data_ballot_party_summary GROUP BY party ORDER BY avg_win_rate DESC;`  
+**Applications**: Party voting behavior analysis, coalition alignment assessment, party discipline tracking
+
+---
+
+### view_riksdagen_vote_data_ballot_party_summary_annual ⭐⭐⭐⭐⭐
+
+**Purpose**: Annual aggregation of party voting behavior for long-term trend analysis.  
+**Key Metrics**: year, party, ballot_count, total_votes, avg_win_rate, party_cohesion_score  
+**Sample Query**: `SELECT year, party, ballot_count, ROUND(avg_win_rate, 2) as win_rate FROM view_riksdagen_vote_data_ballot_party_summary_annual WHERE year >= 2020 ORDER BY year DESC, win_rate DESC;`  
+**Applications**: Long-term party performance tracking, electoral cycle analysis, government effectiveness assessment
+
+---
+
+### view_riksdagen_vote_data_ballot_party_summary_daily ⭐⭐⭐⭐⭐
+
+**Purpose**: Daily aggregation of party voting behavior for real-time monitoring.  
+**Key Metrics**: vote_date, party, ballot_count, yes_votes, no_votes, daily_win_rate, daily_discipline_rate  
+**Sample Query**: `SELECT vote_date, party, ballot_count, ROUND(daily_win_rate, 2) as win_rate FROM view_riksdagen_vote_data_ballot_party_summary_daily WHERE vote_date >= CURRENT_DATE - 7 ORDER BY vote_date DESC, ballot_count DESC;`  
+**Applications**: Daily party performance tracking, coalition monitoring, legislative session analysis
+
+---
+
+### view_riksdagen_vote_data_ballot_party_summary_monthly ⭐⭐⭐⭐⭐
+
+**Purpose**: Monthly aggregation of party voting behavior for medium-term trend analysis.  
+**Key Metrics**: month, party, ballot_count, monthly_win_rate, coalition_alignment_score  
+**Sample Query**: `SELECT DATE_TRUNC('month', month) as month, party, ballot_count, ROUND(monthly_win_rate, 2) FROM view_riksdagen_vote_data_ballot_party_summary_monthly WHERE month >= CURRENT_DATE - INTERVAL '12 months' ORDER BY month DESC;`  
+**Applications**: Monthly performance reports, coalition stability tracking, trend identification
+
+---
+
+### view_riksdagen_vote_data_ballot_party_summary_weekly ⭐⭐⭐⭐⭐
+
+**Purpose**: Weekly aggregation of party voting behavior for short-term trend analysis.  
+**Key Metrics**: week_start_date, party, ballot_count, weekly_win_rate, weekly_absence_rate  
+**Sample Query**: `SELECT week_start_date, party, ballot_count, ROUND(weekly_win_rate, 2) as win_rate FROM view_riksdagen_vote_data_ballot_party_summary_weekly WHERE week_start_date >= CURRENT_DATE - 30 ORDER BY week_start_date DESC;`  
+**Applications**: Weekly performance tracking, short-term trend analysis, legislative activity monitoring
+
+---
+
+### view_riksdagen_vote_data_ballot_politician_summary ⭐⭐⭐⭐⭐
+
+**Purpose**: Aggregates individual politician voting behavior across all ballots (base view for temporal summaries).  
+**Key Metrics**: intressent_id, first_name, last_name, party, total_ballots, total_votes, win_rate, absence_rate, rebel_rate  
+**Sample Query**: `SELECT first_name, last_name, party, total_ballots, ROUND(win_rate, 2), ROUND(absence_rate, 2) FROM view_riksdagen_vote_data_ballot_politician_summary ORDER BY total_ballots DESC LIMIT 20;`  
+**Applications**: Individual politician performance scorecards, attendance tracking, party discipline analysis
+
+---
+
+### view_riksdagen_vote_data_ballot_politician_summary_annual ⭐⭐⭐⭐⭐
+
+**Purpose**: Annual aggregation of individual politician voting behavior for yearly comparisons.  
+**Key Metrics**: year, intressent_id, first_name, last_name, party, ballot_count, annual_win_rate, annual_absence_rate  
+**Sample Query**: `SELECT year, first_name, last_name, party, ballot_count, ROUND(annual_win_rate, 2) as win_rate FROM view_riksdagen_vote_data_ballot_politician_summary_annual WHERE year >= 2020 ORDER BY year DESC, ballot_count DESC;`  
+**Applications**: Annual performance reviews, electoral term analysis, career trajectory tracking
+
+---
+
+### view_riksdagen_vote_data_ballot_politician_summary_monthly ⭐⭐⭐⭐⭐
+
+**Purpose**: Monthly aggregation of individual politician voting behavior for medium-term tracking.  
+**Key Metrics**: month, intressent_id, first_name, last_name, party, ballot_count, monthly_win_rate, monthly_absence_rate  
+**Sample Query**: `SELECT DATE_TRUNC('month', month) as month, first_name, last_name, party, ballot_count FROM view_riksdagen_vote_data_ballot_politician_summary_monthly WHERE month >= CURRENT_DATE - INTERVAL '6 months' ORDER BY month DESC;`  
+**Applications**: Monthly politician scorecards, attendance monitoring, performance trending
+
+---
+
+### view_riksdagen_vote_data_ballot_politician_summary_weekly ⭐⭐⭐⭐⭐
+
+**Purpose**: Weekly aggregation of individual politician voting behavior for short-term monitoring.  
+**Key Metrics**: week_start_date, intressent_id, first_name, last_name, party, ballot_count, weekly_win_rate, weekly_absence_rate  
+**Sample Query**: `SELECT week_start_date, first_name, last_name, party, ballot_count, ROUND(weekly_absence_rate, 2) FROM view_riksdagen_vote_data_ballot_politician_summary_weekly WHERE week_start_date >= CURRENT_DATE - 30 ORDER BY weekly_absence_rate DESC;`  
+**Applications**: Weekly performance tracking, attendance alerts, short-term behavior analysis
+
+---
+
+### view_riksdagen_vote_data_ballot_summary ⭐⭐⭐⭐⭐
+
+**Purpose**: Aggregates overall ballot-level voting statistics (base view for temporal summaries).  
+**Key Metrics**: ballot_id, ballot_date, issue, total_voters, yes_count, no_count, abstain_count, absent_count, winning_side  
+**Sample Query**: `SELECT ballot_id, ballot_date, issue, total_voters, yes_count, no_count FROM view_riksdagen_vote_data_ballot_summary ORDER BY ballot_date DESC LIMIT 20;`  
+**Applications**: Ballot outcome tracking, voting patterns analysis, chamber activity monitoring
+
+---
+
+### view_riksdagen_vote_data_ballot_summary_annual ⭐⭐⭐⭐⭐
+
+**Purpose**: Annual aggregation of ballot statistics for yearly legislative activity analysis.  
+**Key Metrics**: year, total_ballots, avg_participation_rate, contentious_vote_count, unanimous_vote_count  
+**Sample Query**: `SELECT year, total_ballots, ROUND(avg_participation_rate, 2) as participation FROM view_riksdagen_vote_data_ballot_summary_annual WHERE year >= 2020 ORDER BY year DESC;`  
+**Applications**: Annual legislative activity reports, participation trend analysis, chamber effectiveness assessment
+
+---
+
+### view_riksdagen_vote_data_ballot_summary_daily ⭐⭐⭐⭐⭐
+
+**Purpose**: Daily aggregation of ballot statistics for real-time legislative activity monitoring.  
+**Key Metrics**: vote_date, ballot_count, avg_participation_rate, total_votes_cast  
+**Sample Query**: `SELECT vote_date, ballot_count, ROUND(avg_participation_rate, 2) as participation FROM view_riksdagen_vote_data_ballot_summary_daily WHERE vote_date >= CURRENT_DATE - 7 ORDER BY vote_date DESC;`  
+**Applications**: Daily legislative activity tracking, session monitoring, participation alerts
+
+---
+
+### view_riksdagen_vote_data_ballot_summary_monthly ⭐⭐⭐⭐⭐
+
+**Purpose**: Monthly aggregation of ballot statistics for medium-term legislative activity tracking.  
+**Key Metrics**: month, total_ballots, avg_participation_rate, legislative_intensity_score  
+**Sample Query**: `SELECT DATE_TRUNC('month', month) as month, total_ballots, ROUND(avg_participation_rate, 2) FROM view_riksdagen_vote_data_ballot_summary_monthly WHERE month >= CURRENT_DATE - INTERVAL '12 months' ORDER BY month DESC;`  
+**Applications**: Monthly legislative reports, activity trending, session comparison
+
+---
+
+### view_riksdagen_vote_data_ballot_summary_weekly ⭐⭐⭐⭐⭐
+
+**Purpose**: Weekly aggregation of ballot statistics for short-term legislative activity analysis.  
+**Key Metrics**: week_start_date, ballot_count, avg_participation_rate, weekly_legislative_activity  
+**Sample Query**: `SELECT week_start_date, ballot_count, ROUND(avg_participation_rate, 2) as participation FROM view_riksdagen_vote_data_ballot_summary_weekly WHERE week_start_date >= CURRENT_DATE - 30 ORDER BY week_start_date DESC;`  
+**Applications**: Weekly activity tracking, legislative pace monitoring, session planning
 
 ---
 
