@@ -86,7 +86,7 @@ grep -E "SUCCESS|TOTAL" schema_validation_*.txt
 - [ ] Zero objects missing from documentation
 - [ ] DATABASE_VIEW_INTELLIGENCE_CATALOG.md has 100% coverage
 
-**If Validation Fails**: See [Troubleshooting Schema Validation Failures](#troubleshooting-schema-validation-failures)
+**If Validation Fails**: See [Troubleshooting Schema Validation Failures](#common-issue-2-validation-coverage-100)
 
 ---
 
@@ -122,7 +122,7 @@ grep "HEALTH SCORE" health_check_*.txt
 | 60-74 | NEEDS ATTENTION ⚠⚠ | Address failures soon |
 | < 60 | CRITICAL ✗✗✗ | Immediate action required |
 
-**If Health Check Fails**: See [Troubleshooting Health Check Failures](#troubleshooting-health-check-failures)
+**If Health Check Fails**: See [Troubleshooting Health Check Failures](#common-issue-1-low-health-score-80)
 
 ---
 
@@ -468,7 +468,7 @@ GRANT USAGE ON SCHEMA public TO username;
 1. **Principle of Least Privilege**:
    ```sql
    -- Create read-only user for monitoring
-   CREATE USER monitor_user WITH PASSWORD 'secure_password';
+   CREATE USER monitor_user WITH PASSWORD 'CHANGE_ME_USE_STRONG_PASSWORD';
    GRANT CONNECT ON DATABASE cia_dev TO monitor_user;
    GRANT USAGE ON SCHEMA public TO monitor_user;
    GRANT SELECT ON ALL TABLES IN SCHEMA public TO monitor_user;
@@ -494,8 +494,10 @@ GRANT USAGE ON SCHEMA public TO username;
 
 4. **Use Password Encryption**:
    ```sql
-   -- Verify password encryption method
-   SELECT rolname, rolpassword FROM pg_authid WHERE rolpassword IS NOT NULL;
+   -- Verify password encryption method (safe)
+   SHOW password_encryption;
+   -- Or, for more detail:
+   SELECT name, setting FROM pg_settings WHERE name = 'password_encryption';
    
    -- Use scram-sha-256 (preferred)
    ALTER SYSTEM SET password_encryption = 'scram-sha-256';
@@ -554,8 +556,12 @@ ALTER SYSTEM SET effective_io_concurrency = 200;   -- For SSD storage
 ALTER SYSTEM SET max_connections = 200;
 ALTER SYSTEM SET shared_preload_libraries = 'pg_stat_statements';
 
--- Apply settings
-SELECT pg_reload_conf();
+-- Apply settings (requires database restart for some parameters)
+-- Parameters requiring restart: shared_buffers, max_connections, shared_preload_libraries
+-- Parameters that can reload: checkpoint_completion_target, work_mem, wal_buffers, max_wal_size, min_wal_size, random_page_cost, effective_io_concurrency
+-- After changing postgresql.conf or using ALTER SYSTEM:
+--   1. For parameters requiring restart: sudo systemctl restart postgresql
+--   2. For reload-only parameters: SELECT pg_reload_conf();
 ```
 
 ### Index Optimization
@@ -648,10 +654,14 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Load Schema
+        env:
+          PGPASSWORD: postgres
         run: |
           psql -U postgres -h localhost -d cia_dev -f service.data.impl/src/main/resources/full_schema.sql
       
       - name: Run Schema Validation
+        env:
+          PGPASSWORD: postgres
         run: |
           psql -U postgres -h localhost -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > validation_report.txt 2>&1
           
@@ -664,6 +674,8 @@ jobs:
           fi
       
       - name: Run Health Check
+        env:
+          PGPASSWORD: postgres
         run: |
           psql -U postgres -h localhost -d cia_dev -f service.data.impl/src/main/resources/schema-health-check.sql > health_report.txt 2>&1
           
