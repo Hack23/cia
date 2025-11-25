@@ -6066,7 +6066,7 @@ All views are exported via JSON API with standardized schemas. See complete spec
 - **Intelligence Analytics**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - 5 risk views
 - **Committee Data**: [committee-schema.md](json-export-specs/schemas/committee-schema.md) - 12 committee views
 - **Ministry Data**: [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) - 4 government views
-- **Voting & Ballot Data**: Included in [politician-schema.md#voting-section](json-export-specs/schemas/politician-schema.md#voting-section) - 20 vote views
+- **Voting & Ballot Data**: Vote view data exported via [politician-schema.md#voting-section](json-export-specs/schemas/politician-schema.md#voting-section) - 20 source views
 
 **API Documentation:** [json-export-specs/README.md](json-export-specs/README.md)  
 **Example Responses:** [json-export-specs/examples/](json-export-specs/examples/)
