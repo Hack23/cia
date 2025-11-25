@@ -102,10 +102,8 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 			for (int j = i + 1; j < parties.size(); j++) {
 				final String party1 = parties.get(i);
 				final String party2 = parties.get(j);
-				final Double alignment = getAlignment(alignmentMatrix, party1, party2);
-				if (alignment != null) {
-					pairwiseAlignments.add(alignment);
-				}
+				final double alignment = getAlignment(alignmentMatrix, party1, party2);
+				pairwiseAlignments.add(alignment);
 			}
 		}
 
