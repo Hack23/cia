@@ -1857,6 +1857,64 @@ graph TB
 
 ---
 
+#### 🚨 Common Pitfalls in Pattern Recognition
+
+**Pitfall 1: Overfitting to Noise**
+- ❌ **Problem**: Treating random fluctuations as meaningful patterns
+- ✅ **Solution**: Require pattern persistence across multiple time periods
+- **Detection**: If pattern only appears in 1-2 months, likely noise
+- **Best Practice**: Use 3-month moving averages to smooth volatility
+
+**Pitfall 2: Confirmation Bias**
+- ❌ **Problem**: Seeing patterns that confirm pre-existing beliefs
+- ✅ **Solution**: Apply structured Analysis of Competing Hypotheses (ACH)
+- **Example**: "Politician X is lazy" → Only noticing high absence, ignoring high productivity
+- **Best Practice**: Actively seek disconfirming evidence for your hypothesis
+
+**Pitfall 3: Small Sample Size**
+- ❌ **Problem**: Drawing conclusions from 2-3 data points
+- ✅ **Solution**: Minimum thresholds: 6 months monthly data, 90 days daily data
+- **Statistical Rule**: n ≥ 30 for parametric methods, n ≥ 10 for non-parametric
+- **Implementation**: `HAVING COUNT(*) >= 6` in SQL queries
+
+**Pitfall 4: Ignoring Base Rates**
+- ❌ **Problem**: "High rebel rate" without considering party/role context
+- ✅ **Solution**: Always compare against relevant baseline (party average, role baseline)
+- **Example**: 15% rebel rate is normal for opposition, abnormal for government
+- **Best Practice**: Segment analysis by party_role before pattern detection
+
+**Pitfall 5: Spurious Correlations**
+- ❌ **Problem**: Assuming causation from correlation (correlation ≠ causation)
+- ✅ **Solution**: Test for confounding variables and temporal precedence
+- **Example**: "Absence correlates with scandal" → Did scandal cause absence, or did both result from health crisis?
+- **Best Practice**: Use lag analysis to test temporal precedence
+
+**Pitfall 6: False Positive Cascade**
+- ❌ **Problem**: Multiple correlated metrics triggering redundant alerts
+- ✅ **Solution**: Use PoliticianCombinedRisk.drl to consolidate related factors
+- **Example**: High absence triggers 5 separate rules → Actually 1 underlying issue
+- **Best Practice**: Review rule violations in context, not isolation
+
+**Validation Checklist for Pattern Recognition**:
+```sql
+-- Validation Query: Check pattern robustness
+WITH pattern_check AS (
+    SELECT 
+        person_id,
+        COUNT(DISTINCT year_month) AS months_with_pattern,
+        COUNT(DISTINCT CASE WHEN behavioral_assessment = 'HIGH_RISK' THEN year_month END) AS high_risk_months,
+        ROUND(100.0 * COUNT(DISTINCT CASE WHEN behavioral_assessment = 'HIGH_RISK' THEN year_month END) / COUNT(DISTINCT year_month), 1) AS pattern_persistence_pct
+    FROM view_politician_behavioral_trends
+    WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
+    GROUP BY person_id
+)
+SELECT * FROM pattern_check
+WHERE pattern_persistence_pct >= 50  -- Pattern must persist in ≥50% of months
+  AND months_with_pattern >= 6;      -- Minimum 6 months observation
+```
+
+---
+
 ### 4. Predictive Intelligence Framework
 
 Predictive intelligence extrapolates trends, models scenarios, and assesses likelihood of political events.
@@ -2765,6 +2823,85 @@ xychart-beta
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - View: view_riksdagen_party_ballot_support_annual_summary](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_party_ballot_support_annual_summary)
 
 **Data Validation**: ✅ Query validated against schema version 1.29 (2025-11-21)
+
+---
+
+#### 🚨 Common Pitfalls in Predictive Intelligence
+
+**Pitfall 1: Overfitting to Historical Data**
+- ❌ **Problem**: Models that perfectly predict past but fail on future (overfitting)
+- ✅ **Solution**: Use train/test split (70/30) and validate on out-of-sample data
+- **Detection**: Model performs brilliantly on training data but poorly on new data
+- **Best Practice**: Use cross-validation and regularization techniques
+
+**Pitfall 2: Black Swan Events**
+- ❌ **Problem**: Models cannot predict unprecedented events (pandemics, wars)
+- ✅ **Solution**: Build scenario models including low-probability high-impact events
+- **Example**: 2020 COVID-19 rendered all election forecasts invalid
+- **Best Practice**: Provide confidence intervals and explicitly state model limitations
+
+**Pitfall 3: False Precision**
+- ❌ **Problem**: Reporting "87.342% probability" implies precision that doesn't exist
+- ✅ **Solution**: Round probabilities appropriately (±5% for political forecasts)
+- **Best Practice**: 87.3% → Report as "85-90% probability"
+- **Implementation**: Always provide confidence intervals, not point estimates
+
+**Pitfall 4: Ignoring Uncertainty Cascade**
+- ❌ **Problem**: Compounding uncertainty in multi-step predictions
+- ✅ **Solution**: Propagate uncertainty through Bayesian updating or Monte Carlo
+- **Example**: "A will happen (80%) → B will happen given A (70%)" = 56% combined probability, not 70%
+- **Implementation**: `P(B) = P(B|A) × P(A) + P(B|¬A) × P(¬A)`
+
+**Pitfall 5: Confirmation Bias in Model Selection**
+- ❌ **Problem**: Choosing models/features that support pre-existing beliefs
+- ✅ **Solution**: Pre-register model specifications before seeing outcome data
+- **Example**: Testing 20 models and only reporting the one supporting your hypothesis
+- **Best Practice**: Document all models tested and why certain ones were selected
+
+**Pitfall 6: Temporal Autocorrelation**
+- ❌ **Problem**: Treating time series data points as independent
+- ✅ **Solution**: Use time series models (ARIMA, VAR) accounting for autocorrelation
+- **Detection**: Durbin-Watson test for autocorrelation
+- **Best Practice**: Include lagged variables in regression models
+
+**Validation Checklist for Predictive Models**:
+```python
+# Model Validation Framework
+import pandas as pd
+from sklearn.model_selection import TimeSeriesSplit
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+
+# 1. Train/Test Split (Temporal Split for Time Series)
+train_size = int(len(data) * 0.7)
+train, test = data[:train_size], data[train_size:]
+
+# 2. Cross-Validation for Time Series
+tscv = TimeSeriesSplit(n_splits=5)
+cv_scores = []
+
+for train_idx, val_idx in tscv.split(train):
+    model.fit(train[train_idx])
+    pred = model.predict(train[val_idx])
+    cv_scores.append(mean_absolute_error(train[val_idx]['actual'], pred))
+
+# 3. Out-of-Sample Testing
+test_predictions = model.predict(test)
+test_mae = mean_absolute_error(test['actual'], test_predictions)
+
+# 4. Report with Uncertainty
+print(f"Cross-Validation MAE: {np.mean(cv_scores):.2f} ± {np.std(cv_scores):.2f}")
+print(f"Test MAE: {test_mae:.2f}")
+print(f"Model should be used with caution if test MAE > 10% higher than CV MAE")
+```
+
+**Forecast Confidence Levels**:
+
+| Confidence Level | Description | Use Case | Validation Required |
+|-----------------|-------------|----------|-------------------|
+| **HIGH (>80%)** | Strong historical pattern, stable conditions | Short-term voting outcome (1-7 days) | 3+ successful predictions |
+| **MEDIUM (60-80%)** | Moderate pattern, some volatility | Coalition stability (1-6 months) | 5+ successful predictions |
+| **LOW (40-60%)** | Weak pattern, high uncertainty | Election outcome (6-12 months) | 10+ successful predictions |
+| **SPECULATIVE (<40%)** | Little historical data, unprecedented | Long-term political shifts (12+ months) | Acknowledge high uncertainty |
 
 ---
 
@@ -3765,6 +3902,101 @@ pie title "Coalition Formation Dependency on Key Bridge Politicians"
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - View: view_riksdagen_politician_influence_metrics](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_influence_metrics)
 
 **Data Validation**: ✅ Query validated against schema version 1.29 (2025-11-21)
+
+---
+
+#### 🚨 Common Pitfalls in Network Analysis
+
+**Pitfall 1: Conflating Correlation with Causation in Networks**
+- ❌ **Problem**: "A and B vote similarly, therefore A influences B"
+- ✅ **Solution**: Network correlation ≠ influence direction. Could be B→A, C→both, or coincidence
+- **Best Practice**: Use temporal precedence and Granger causality tests
+- **Example**: Both A and B may follow party whip (C) rather than influencing each other
+
+**Pitfall 2: Ignoring Directed vs. Undirected Networks**
+- ❌ **Problem**: Treating all relationships as symmetric (undirected)
+- ✅ **Solution**: Distinguish mentor→mentee, leader→follower, influencer→influenced
+- **Implementation**: Use directed graphs for proposal co-sponsorship (primary author → co-authors)
+- **Example**: Committee chair influences members more than members influence chair
+
+**Pitfall 3: Missing Edge Weight Significance**
+- ❌ **Problem**: Treating single co-authorship same as 50 co-authorships
+- ✅ **Solution**: Weight edges by frequency, recency, and importance
+- **Implementation**: 
+```sql
+-- Weighted edge calculation
+edge_weight = (collaboration_count * 0.5) + (recent_collab_3mo * 0.3) + (high_impact_collabs * 0.2)
+```
+
+**Pitfall 4: Temporal Stationarity Assumption**
+- ❌ **Problem**: Assuming network structure is stable over time
+- ✅ **Solution**: Build temporal network snapshots and track evolution
+- **Example**: Coalition networks change dramatically after elections
+- **Best Practice**: Create network snapshots every 6 months and compare
+
+**Pitfall 5: Isolated Nodes Misinterpretation**
+- ❌ **Problem**: "Low network centrality = unimportant actor"
+- ✅ **Solution**: Some powerful actors work independently (especially party leaders)
+- **Context**: Opposition party leaders may be isolated but still highly influential
+- **Best Practice**: Combine network metrics with other power indicators (media coverage, policy success)
+
+**Pitfall 6: Network Boundary Definition**
+- ❌ **Problem**: Arbitrary boundaries exclude important external actors
+- ✅ **Solution**: Justify network boundaries and test sensitivity
+- **Example**: Excluding ministry officials from parliamentary network analysis may miss key influence channels
+- **Best Practice**: Document boundary criteria and run analysis with expanded boundaries as sensitivity check
+
+**Validation Checklist for Network Analysis**:
+```python
+import networkx as nx
+import pandas as pd
+
+# Network Quality Checks
+def validate_network(G):
+    """Validate network analysis quality"""
+    
+    # 1. Connectivity Check
+    if not nx.is_connected(G.to_undirected()):
+        print("⚠️ WARNING: Network has disconnected components")
+        components = list(nx.connected_components(G.to_undirected()))
+        print(f"   Components: {len(components)}, Largest: {len(max(components, key=len))} nodes")
+    
+    # 2. Density Check
+    density = nx.density(G)
+    if density > 0.5:
+        print("⚠️ WARNING: Very dense network (>50% possible edges)")
+        print("   Consider: Threshold filtering or focus on strongest ties")
+    elif density < 0.01:
+        print("⚠️ WARNING: Very sparse network (<1% possible edges)")
+        print("   Consider: Including weaker ties or expanding time window")
+    
+    # 3. Centralization Check
+    degree_centrality = list(nx.degree_centrality(G).values())
+    max_centrality = max(degree_centrality)
+    if max_centrality > 0.5:
+        print("⚠️ WARNING: Star network detected (one central node)")
+        print(f"   Max centrality: {max_centrality:.2%}")
+    
+    # 4. Temporal Stability Check (if multiple time periods)
+    # Compare network metrics across periods
+    
+    return True
+
+# Example Usage
+G = nx.Graph()
+# ... build network from data ...
+validate_network(G)
+```
+
+**Network Visualization Best Practices**:
+
+| Visualization Type | Use Case | Limitations | Recommended Tool |
+|-------------------|----------|-------------|-----------------|
+| **Force-directed Layout** | General network structure | Cluttered for >100 nodes | Gephi, Cytoscape |
+| **Hierarchical Layout** | Committee structures | Assumes clear hierarchy | GraphViz |
+| **Circular Layout** | Party-based grouping | Hard to show cross-group ties | D3.js |
+| **Sankey Diagram** | Directed flow networks | Limited to 2-3 levels | Plotly, Mermaid |
+| **Heatmap Matrix** | Dense networks | Loses spatial structure | Seaborn |
 
 ---
 
@@ -4816,6 +5048,109 @@ WHERE person_id = '0123456789'
   AND vote_month >= CURRENT_DATE - INTERVAL '6 months';
 -- Values should be nearly identical if query logic is correct
 ```
+
+---
+
+#### 🚨 Common Pitfalls in Decision Intelligence Framework
+
+**Pitfall 1: Confusing Approval Rate with Political Influence**
+- ❌ **Problem**: "High approval rate = powerful politician"
+- ✅ **Solution**: Approval rate measures consensus-building, not necessarily power
+- **Context**: Opposition politicians may have low approval but high media/public influence
+- **Best Practice**: Combine decision metrics with network influence and media visibility
+
+**Pitfall 2: Ignoring Proposal Quality/Importance**
+- ❌ **Problem**: Treating all proposals equally (minor amendments = major legislation)
+- ✅ **Solution**: Weight proposals by type, budget impact, or media coverage
+- **Implementation**:
+```sql
+-- Weighted approval rate by proposal importance
+CASE 
+    WHEN proposal_type = 'Budget' THEN approval_count * 3.0
+    WHEN proposal_type = 'Constitutional' THEN approval_count * 2.5
+    WHEN proposal_type = 'Major Legislation' THEN approval_count * 2.0
+    ELSE approval_count * 1.0
+END AS weighted_approvals
+```
+
+**Pitfall 3: Temporal Windowing Bias**
+- ❌ **Problem**: Using narrow time windows that miss seasonal patterns
+- ✅ **Solution**: Compare current period to same period last year (year-over-year)
+- **Example**: Q4 always has fewer proposals due to holidays → Don't compare Q4 to Q2
+- **Best Practice**: Use moving annual totals or YoY comparisons
+
+**Pitfall 4: Simpson's Paradox in Ministry Comparison**
+- ❌ **Problem**: Ministry A has higher overall approval than Ministry B, but B beats A in every committee
+- ✅ **Solution**: Segment analysis by committee before aggregating
+- **Cause**: Different ministries face different committees with different approval thresholds
+- **Detection**: Always perform subgroup analysis alongside aggregate analysis
+
+**Pitfall 5: Survivorship Bias**
+- ❌ **Problem**: Only analyzing proposals that reached decision phase
+- ✅ **Solution**: Track withdrawn proposals and proposals stalled in committee
+- **Impact**: Success rates inflated if failures are withdrawn before formal rejection
+- **Implementation**: Add `proposal_status IN ('Approved', 'Rejected', 'Withdrawn')` to queries
+
+**Pitfall 6: Coalition Dynamics Confusion**
+- ❌ **Problem**: Interpreting declining approval as incompetence
+- ✅ **Solution**: Context matters—opposition politicians SHOULD have low approval in government-controlled parliament
+- **Framework**: 
+  - Government MP: Expected approval 60-80%
+  - Opposition MP: Expected approval 20-40%
+  - Cross-party collaborator: Expected approval 45-65%
+
+**Validation Checklist for Decision Intelligence**:
+```sql
+-- Quality Assurance Query for Decision Analysis
+WITH decision_quality_checks AS (
+    SELECT 
+        'Total Decisions' AS metric,
+        COUNT(*) AS value,
+        CASE WHEN COUNT(*) >= 100 THEN '✅' ELSE '⚠️ Low Sample' END AS status
+    FROM view_riksdagen_party_decision_flow
+    WHERE decision_month >= CURRENT_DATE - INTERVAL '12 months'
+    
+    UNION ALL
+    
+    SELECT 
+        'Data Completeness' AS metric,
+        ROUND(100.0 * COUNT(DISTINCT decision_month) / 12, 1) AS value,
+        CASE WHEN COUNT(DISTINCT decision_month) >= 10 THEN '✅' ELSE '⚠️ Missing Months' END AS status
+    FROM view_riksdagen_party_decision_flow
+    WHERE decision_month >= CURRENT_DATE - INTERVAL '12 months'
+    
+    UNION ALL
+    
+    SELECT 
+        'Proposal Type Coverage' AS metric,
+        COUNT(DISTINCT proposal_type) AS value,
+        CASE WHEN COUNT(DISTINCT proposal_type) >= 5 THEN '✅' ELSE '⚠️ Limited Diversity' END AS status
+    FROM view_ministry_decision_impact
+    WHERE decision_quarter >= EXTRACT(QUARTER FROM CURRENT_DATE - INTERVAL '12 months')
+)
+SELECT * FROM decision_quality_checks;
+```
+
+**Expected Output**:
+```
+metric                    | value | status
+--------------------------|-------|----------------
+Total Decisions           | 2547  | ✅
+Data Completeness         | 100.0 | ✅
+Proposal Type Coverage    | 8     | ✅
+```
+
+**Decision Intelligence Maturity Model**:
+
+| Maturity Level | Capabilities | Example Analysis | Recommended Tools |
+|---------------|--------------|------------------|-------------------|
+| **Level 1: Basic** | Track approval/rejection counts | "Ministry X approved 45/100 proposals" | SQL queries, Excel |
+| **Level 2: Comparative** | Benchmark against peers | "Ministry X: 45% vs. Ministry Y: 67%" | SQL + visualization |
+| **Level 3: Temporal** | Track trends over time | "Ministry X declining from 67% → 45%" | Time series analysis |
+| **Level 4: Predictive** | Forecast future success | "Next proposal: 73% approval probability" | ML models, regression |
+| **Level 5: Prescriptive** | Recommend actions | "Modify proposal to include SD priorities → +25% approval" | AI-driven optimization |
+
+**CIA Platform Current Capability**: Level 3 (Temporal), with Level 4 (Predictive) foundations in place.
 
 ---
 
