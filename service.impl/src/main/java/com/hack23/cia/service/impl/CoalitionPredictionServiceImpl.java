@@ -63,7 +63,7 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 
 		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = dataViewer.getAll(ViewRiksdagenCoalitionAlignmentMatrix.class);
 		final Map<String, Map<String, Double>> alignmentMatrix = buildAlignmentMatrix(alignmentData);
-		final Map<String, Integer> seatCounts = loadSeatCounts(year);
+		final Map<String, Integer> seatCounts = loadSeatCounts();
 
 		final List<CoalitionScenario> scenarios = new ArrayList<>();
 
