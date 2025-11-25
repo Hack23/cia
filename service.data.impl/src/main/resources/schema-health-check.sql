@@ -598,7 +598,7 @@ SELECT
         WHEN active_connections * 100.0 / max_connections > 80 THEN 2
         ELSE 1
     END AS severity,
-    'Active: ' || active_connections || ' / Max: ' || max_connections || 
+    'Client Connections: ' || active_connections || ' / Max: ' || max_connections || 
     ' (' || ROUND(active_connections * 100.0 / max_connections, 1) || '%)' AS details,
     CASE 
         WHEN active_connections * 100.0 / max_connections > 80 
