@@ -29,7 +29,7 @@ jobs:
           bash service.data.impl/src/main/resources/validate-view-documentation.sh
 
       - name: Upload validation report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: validation-report
           path: DATABASE_VIEW_VALIDATION_REPORT.md
