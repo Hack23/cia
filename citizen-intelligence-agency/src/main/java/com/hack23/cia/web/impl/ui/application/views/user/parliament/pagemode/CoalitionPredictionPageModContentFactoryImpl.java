@@ -69,7 +69,7 @@ public final class CoalitionPredictionPageModContentFactoryImpl extends Abstract
 		final VerticalLayout panelContent = createPanelContent();
 
 		setupMenuAndHeader(menuBar, panel, panelContent);
-		final String selectedYear = extractSelectedYear(parameters);
+		final String selectedYear = extractSelectedYear(parameters, DEFAULT_YEAR);
 
 		addCoalitionScenarios(panelContent, selectedYear);
 		addPartyAlignmentMatrix(panelContent, selectedYear);
@@ -92,22 +92,6 @@ public final class CoalitionPredictionPageModContentFactoryImpl extends Abstract
 			ParliamentPageTitleConstants.COALITION_PREDICTION_TITLE,
 			ParliamentPageTitleConstants.COALITION_PREDICTION_SUBTITLE,
 			ParliamentPageTitleConstants.COALITION_PREDICTION_DESC);
-	}
-
-	/**
-	 * Extract selected year from parameters.
-	 *
-	 * @param parameters the parameters
-	 * @return the string
-	 */
-	private String extractSelectedYear(final String parameters) {
-		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
-			return parameters.substring(
-				parameters.indexOf('[') + 1,
-				parameters.lastIndexOf(']')
-			);
-		}
-		return DEFAULT_YEAR;
 	}
 
 	/**

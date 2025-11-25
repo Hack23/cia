@@ -60,13 +60,13 @@ public interface CoalitionPredictionService {
 	/**
 	 * Coalition scenario data class.
 	 */
-	class CoalitionScenario {
-		private List<String> parties;
-		private int totalSeats;
-		private double probability;
-		private int stabilityIndex;
-		private String coalitionType;
-		private String blocRelationship;
+	static class CoalitionScenario {
+		private final List<String> parties;
+		private final int totalSeats;
+		private final double probability;
+		private final int stabilityIndex;
+		private final String coalitionType;
+		private final String blocRelationship;
 
 		public CoalitionScenario(List<String> parties, int totalSeats, double probability, 
 				int stabilityIndex, String coalitionType, String blocRelationship) {

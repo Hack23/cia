@@ -52,4 +52,22 @@ abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractBasic
 		return parliamentMenuItemFactory;
 	}
 
+	/**
+	 * Extract selected year from parameters.
+	 * Common utility method for extracting year parameter from page navigation.
+	 *
+	 * @param parameters the parameters string containing year in brackets
+	 * @param defaultYear the default year to return if no year found in parameters
+	 * @return the extracted year string or default year
+	 */
+	protected final String extractSelectedYear(final String parameters, final String defaultYear) {
+		if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
+			return parameters.substring(
+				parameters.indexOf('[') + 1,
+				parameters.lastIndexOf(']')
+			);
+		}
+		return defaultYear;
+	}
+
 }
