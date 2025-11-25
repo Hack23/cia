@@ -278,6 +278,62 @@ For details on our technology lifecycle management, see the [End-of-Life Strateg
 
 </div>
 
+## 🔍 Intelligence & Analytics Documentation
+
+<div class="intelligence-documentation">
+
+The CIA platform provides comprehensive intelligence operations (INTOP) and open-source intelligence (OSINT) capabilities. Our intelligence documentation tracks the evolution of analytical frameworks, risk assessment rules, and database views that power political intelligence products.
+
+### 📋 Intelligence Changelogs
+
+Track the evolution of intelligence capabilities and analytical infrastructure:
+
+| Document | Focus | Description | Documentation Link |
+|----------|-------|-------------|-------------------|
+| **[Intelligence Analysis Changelog](CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 📊 Intelligence | Complete history of intelligence capabilities, frameworks, and OSINT enhancements | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
+| **[Database Views Changelog](CHANGELOG_DATABASE_VIEWS.md)** | 🗄️ Views | Detailed tracking of all 85 database views with schema specifications | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_DATABASE_VIEWS.md) |
+| **[Risk Rules Changelog](CHANGELOG_RISK_RULES.md)** | 🔴 Risk Rules | Evolution of 50 behavioral assessment rules across 5 domains | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_RISK_RULES.md) |
+
+### 📚 Core Intelligence Documentation
+
+Comprehensive documentation of analytical capabilities and methodologies:
+
+| Document | Focus | Description | Documentation Link |
+|----------|-------|-------------|-------------------|
+| **[Data Analysis - INTOP OSINT](DATA_ANALYSIS_INTOP_OSINT.md)** | 🎯 Frameworks | 6 analysis frameworks (Temporal, Comparative, Pattern Recognition, Predictive, Network, Decision) | [View Source](https://github.com/Hack23/cia/blob/master/DATA_ANALYSIS_INTOP_OSINT.md) |
+| **[Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md)** | 🔴 Risk Rules | 50 behavioral detection rules (24 politician, 10 party, 4 committee, 4 ministry, 5 decision, 3 other) | [View Source](https://github.com/Hack23/cia/blob/master/RISK_RULES_INTOP_OSINT.md) |
+| **[Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | Complete catalog of 85 database views (57 regular + 28 materialized) | [View Source](https://github.com/Hack23/cia/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **[Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md)** | 🗺️ Pipeline | Data pipeline mappings and framework-to-view relationships | [View Source](https://github.com/Hack23/cia/blob/master/INTELLIGENCE_DATA_FLOW.md) |
+| **[Liquibase Intelligence Analysis](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 🗄️ Schema | Database schema evolution from intelligence perspective | [View Source](https://github.com/Hack23/cia/blob/master/LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
+
+### 🛠️ Intelligence Automation
+
+| Tool | Purpose | Location |
+|------|---------|----------|
+| **Intelligence Changelog Generator** | Automated detection of view changes, risk rule updates, and framework enhancements | [Script](.github/scripts/generate-intelligence-changelog.sh) |
+| **GitHub Actions Workflow** | Automated changelog generation on demand | [Workflow](.github/workflows/generate-intelligence-changelog.yml) |
+
+**Usage:**
+```bash
+# Generate intelligence changelog from recent changes
+.github/scripts/generate-intelligence-changelog.sh
+
+# Compare specific commits
+.github/scripts/generate-intelligence-changelog.sh <prev_commit> <current_commit>
+```
+
+### 📊 Intelligence Metrics (v1.36.0)
+
+| Category | Count | Description |
+|----------|-------|-------------|
+| **Analysis Frameworks** | 6 | Temporal, Comparative, Pattern Recognition, Predictive, Network, Decision Intelligence |
+| **Risk Rules** | 50 | 24 politician + 10 party + 4 committee + 4 ministry + 5 decision + 3 other |
+| **Database Views** | 85 | 57 regular views + 28 materialized views |
+| **OSINT Data Sources** | 4 | Riksdagen API, Election Authority, World Bank, Financial Authority |
+| **Intelligence Products** | 10+ | Scorecards, Coalition Analysis, Risk Assessments, Trend Reports, Decision Tracking |
+
+</div>
+
 ## 🔒 Reporting Security Issues
 
 Please follow the instructions in our [SECURITY.md](https://github.com/Hack23/cia/blob/master/SECURITY.md) file for reporting security issues.

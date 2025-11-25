@@ -1,0 +1,37 @@
+name: Generate Intelligence Changelog
+
+on:
+  workflow_dispatch:
+    inputs:
+      previous_commit:
+        description: 'Previous commit SHA (default: HEAD~1)'
+        required: false
+        default: 'HEAD~1'
+      current_commit:
+        description: 'Current commit SHA (default: HEAD)'
+        required: false
+        default: 'HEAD'
+
+jobs:
+  generate-changelog:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch full history for git diff
+    
+    - name: Run Intelligence Changelog Generator
+      run: |
+        cd $GITHUB_WORKSPACE
+        bash .github/scripts/generate-intelligence-changelog.sh \
+          ${{ github.event.inputs.previous_commit }} \
+          ${{ github.event.inputs.current_commit }} > changelog-output.txt
+      
+    - name: Upload Changelog Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: intelligence-changelog-report
+        path: changelog-output.txt
+        retention-days: 30
