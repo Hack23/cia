@@ -23,8 +23,8 @@ psql -U postgres -d cia_dev -f schema-health-check.sql > health_report.txt 2>&1
 psql -U postgres -d cia_dev -f schema-validation-v2.sql > validation_report.txt 2>&1
 
 # 4. Review reports
-cat health_report.txt | grep "HEALTH SCORE"  # Should be >80/100
-cat validation_report.txt | grep "SUCCESS"   # Should show 100% coverage
+grep "HEALTH SCORE" health_report.txt  # Should be >80/100
+grep "SUCCESS" validation_report.txt   # Should show 100% coverage
 
 # 5. If health score <80 or validation fails, proceed to detailed troubleshooting below
 ```
@@ -449,10 +449,7 @@ psql -U postgres -d cia_dev -c "\dp person_data"
 
 **Remediation**:
 ```sql
--- Grant SELECT on all tables
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO username;
-
--- Grant SELECT on all views
+-- Grant SELECT on all tables (includes views in PostgreSQL)
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO username;
 
 -- Grant USAGE on schema
@@ -558,7 +555,7 @@ ALTER SYSTEM SET shared_preload_libraries = 'pg_stat_statements';
 
 -- Apply settings (requires database restart for some parameters)
 -- Parameters requiring restart: shared_buffers, max_connections, shared_preload_libraries
--- Parameters that can reload: checkpoint_completion_target, work_mem, wal_buffers, max_wal_size, min_wal_size, random_page_cost, effective_io_concurrency
+-- Parameters that can reload: effective_cache_size, maintenance_work_mem, work_mem, checkpoint_completion_target, wal_buffers, max_wal_size, min_wal_size, random_page_cost, effective_io_concurrency
 -- After changing postgresql.conf or using ALTER SYSTEM:
 --   1. For parameters requiring restart: sudo systemctl restart postgresql
 --   2. For reload-only parameters: SELECT pg_reload_conf();
@@ -679,8 +676,8 @@ jobs:
         run: |
           psql -U postgres -h localhost -d cia_dev -f service.data.impl/src/main/resources/schema-health-check.sql > health_report.txt 2>&1
           
-          # Extract health score
-          HEALTH_SCORE=$(grep "HEALTH SCORE" health_report.txt | grep -oP '\d+' | head -1)
+          # Extract health score (portable method)
+          HEALTH_SCORE=$(grep "HEALTH SCORE" health_report.txt | sed -n 's/.*HEALTH SCORE[^0-9]*\([0-9][0-9]*\).*/\1/p' | head -1)
           echo "Health Score: $HEALTH_SCORE/100"
           
           if [ "$HEALTH_SCORE" -lt 80 ]; then
@@ -718,7 +715,7 @@ pipeline {
                     sh '''
                         psql -U $DB_USER -d $DB_NAME -f service.data.impl/src/main/resources/schema-validation-v2.sql > validation_report.txt 2>&1
                         
-                        if grep -q "SUCCESS:.*100" validation_report.txt; then
+                        if grep -q "SUCCESS:.*100.*validation coverage achieved" validation_report.txt; then
                             echo "✅ Validation passed"
                         else
                             echo "❌ Validation failed"
@@ -736,7 +733,8 @@ pipeline {
                     sh '''
                         psql -U $DB_USER -d $DB_NAME -f service.data.impl/src/main/resources/schema-health-check.sql > health_report.txt 2>&1
                         
-                        HEALTH_SCORE=$(grep "HEALTH SCORE" health_report.txt | grep -oP '\\d+' | head -1)
+                        # Extract health score (portable method)
+                        HEALTH_SCORE=$(grep "HEALTH SCORE" health_report.txt | sed -n 's/.*HEALTH SCORE[^0-9]*\([0-9][0-9]*\).*/\1/p' | head -1)
                         echo "Health Score: $HEALTH_SCORE/100"
                         
                         if [ "$HEALTH_SCORE" -lt 80 ]; then
