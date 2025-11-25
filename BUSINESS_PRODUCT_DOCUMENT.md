@@ -96,11 +96,11 @@ This section provides direct links to JSON specifications defining the data stru
 |----------------|-----------|---------------|------------------|
 | Political Intelligence API | [politician-schema.md](json-export-specs/schemas/politician-schema.md), [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_politician`, `view_riksdagen_party` | Real-time |
 | Risk Assessment Feed | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Hourly |
-| Voting Statistics Export | [politician-schema.md](json-export-specs/schemas/politician-schema.md#voting-records) | `view_riksdagen_vote_data_ballot_summary`, `view_riksdagen_vote_data_ballot_politician_summary` | Daily |
+| Voting Statistics Export | [politician-schema.md](json-export-specs/schemas/politician-schema.md#️-voting-section) | `view_riksdagen_vote_data_ballot_summary`, `view_riksdagen_vote_data_ballot_politician_summary` | Daily |
 | Party Performance Dashboard | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_summary`, `view_riksdagen_party_ballot_support_annual_summary` | Daily |
 | Committee Analytics | [committee-schema.md](json-export-specs/schemas/committee-schema.md) | `view_riksdagen_committee`, `view_riksdagen_committee_proposal_summary` | Daily |
-| Politician Scorecards | [politician-schema.md](json-export-specs/schemas/politician-schema.md#intelligence-analytics) | `view_riksdagen_politician_ranking`, `view_riksdagen_politician_document_summary` | Daily |
-| Coalition Prediction Data | [party-schema.md](json-export-specs/schemas/party-schema.md#coalition-patterns) | `view_riksdagen_party_ballot_support_annual_summary`, `view_riksdagen_party_coalition` | Weekly |
+| Politician Scorecards | [politician-schema.md](json-export-specs/schemas/politician-schema.md#-intelligence-section) | `view_riksdagen_politician_ranking`, `view_riksdagen_politician_document_summary` | Daily |
+| Coalition Prediction Data | [party-schema.md](json-export-specs/schemas/party-schema.md#-coalition-section) | `view_riksdagen_party_ballot_support_annual_summary`, `view_riksdagen_party_coalition` | Weekly |
 | Government Performance | [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) | `view_riksdagen_goverment`, `view_ministry_decision_impact` | As changes occur |
 | Decision Intelligence | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_party_decision_flow`, `view_politician_decision_flow`, `view_ministry_decision_flow` | Daily |
 
@@ -232,13 +232,13 @@ flowchart LR
 
 | Endpoint | Method | JSON Schema Reference | Database View | Response Example |
 |----------|--------|----------------------|---------------|------------------|
-| `/api/v1/politicians` | GET | [politician-schema.md#attributes](json-export-specs/schemas/politician-schema.md#attributes) | `view_riksdagen_politician` | [politician-example.json](json-export-specs/examples/politician-example.json) |
+| `/api/v1/politicians` | GET | [politician-schema.md#-attributes-section](json-export-specs/schemas/politician-schema.md#-attributes-section) | `view_riksdagen_politician` | [politician-example.json](json-export-specs/examples/politician-example.json) |
 | `/api/v1/politicians/{id}` | GET | [politician-schema.md](json-export-specs/schemas/politician-schema.md) | `view_riksdagen_politician_summary` | Full profile with intelligence |
-| `/api/v1/politicians/{id}/voting` | GET | [politician-schema.md#voting-records](json-export-specs/schemas/politician-schema.md#voting-records) | `view_riksdagen_vote_data_ballot_politician_summary` | Voting history |
+| `/api/v1/politicians/{id}/voting` | GET | [politician-schema.md#️-voting-section](json-export-specs/schemas/politician-schema.md#️-voting-section) | `view_riksdagen_vote_data_ballot_politician_summary` | Voting history |
 | `/api/v1/politicians/{id}/risk` | GET | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation` | Risk assessment |
-| `/api/v1/parties` | GET | [party-schema.md#attributes](json-export-specs/schemas/party-schema.md#attributes) | `view_riksdagen_party` | [party-example.json](json-export-specs/examples/party-example.json) |
+| `/api/v1/parties` | GET | [party-schema.md#-attributes-section](json-export-specs/schemas/party-schema.md#-attributes-section) | `view_riksdagen_party` | [party-example.json](json-export-specs/examples/party-example.json) |
 | `/api/v1/parties/{id}` | GET | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_summary` | Full party performance |
-| `/api/v1/votes/{ballot_id}` | GET | [politician-schema.md#voting-records](json-export-specs/schemas/politician-schema.md#voting-records) | `view_riksdagen_vote_data_ballot_summary` | Ballot results |
+| `/api/v1/votes/{ballot_id}` | GET | [politician-schema.md#️-voting-section](json-export-specs/schemas/politician-schema.md#️-voting-section) | `view_riksdagen_vote_data_ballot_summary` | Ballot results |
 | `/api/v1/risk-assessments` | GET | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Risk feed |
 
 ```yaml
@@ -337,8 +337,8 @@ Data Format:
 
 **🔗 JSON Data Specifications:**
 - **Intelligence Analytics**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Risk scores, trend analysis, predictive models, and anomaly detection
-- **Politician Analytics**: [politician-schema.md#intelligence-analytics](json-export-specs/schemas/politician-schema.md#intelligence-analytics) - Scorecard metrics and performance rankings
-- **Party Analytics**: [party-schema.md#performance-metrics](json-export-specs/schemas/party-schema.md#performance-metrics) - Coalition analysis and party effectiveness
+- **Politician Analytics**: [politician-schema.md#-intelligence-section](json-export-specs/schemas/politician-schema.md#-intelligence-section) - Scorecard metrics and performance rankings
+- **Party Analytics**: [party-schema.md#-intelligence-section](json-export-specs/schemas/party-schema.md#-intelligence-section) - Coalition analysis and party effectiveness
 - **Committee Analytics**: [committee-schema.md](json-export-specs/schemas/committee-schema.md) - Committee composition and proposal tracking
 - **Database Views**: `view_riksdagen_politician_ranking`, `view_riksdagen_party_summary`, `view_riksdagen_committee_proposal_summary`, `view_rule_violation`
 
@@ -346,11 +346,11 @@ Data Format:
 
 | Dashboard Component | Data Schema | Database Views | Visualization Type |
 |-------------------|-------------|----------------|-------------------|
-| Political Scorecards | [politician-schema.md#intelligence](json-export-specs/schemas/politician-schema.md#intelligence-analytics) | `view_riksdagen_politician_ranking`, `view_riksdagen_politician_summary` | Cards, Bar charts |
-| Coalition Stability | [party-schema.md#coalition](json-export-specs/schemas/party-schema.md#coalition-patterns) | `view_riksdagen_party_ballot_support_annual_summary` | Heatmap, Timeline |
-| Parliamentary Effectiveness | [politician-schema.md#activity](json-export-specs/schemas/politician-schema.md#activity-metrics) | `view_riksdagen_politician_document_summary`, `view_riksdagen_vote_data_ballot_politician_summary` | Sparklines, Trends |
+| Political Scorecards | [politician-schema.md#-intelligence-section](json-export-specs/schemas/politician-schema.md#-intelligence-section) | `view_riksdagen_politician_ranking`, `view_riksdagen_politician_summary` | Cards, Bar charts |
+| Coalition Stability | [party-schema.md#-coalition-section](json-export-specs/schemas/party-schema.md#-coalition-section) | `view_riksdagen_party_ballot_support_annual_summary` | Heatmap, Timeline |
+| Parliamentary Effectiveness | [politician-schema.md#-activity-section](json-export-specs/schemas/politician-schema.md#-activity-section) | `view_riksdagen_politician_document_summary`, `view_riksdagen_vote_data_ballot_politician_summary` | Sparklines, Trends |
 | Risk Monitoring | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Gauge, Alerts |
-| Voting Patterns | [politician-schema.md#voting](json-export-specs/schemas/politician-schema.md#voting-records) | `view_riksdagen_vote_data_ballot_summary`, `view_riksdagen_votedata_view` | Network graph, Sankey |
+| Voting Patterns | [politician-schema.md#️-voting-section](json-export-specs/schemas/politician-schema.md#️-voting-section) | `view_riksdagen_vote_data_ballot_summary`, `view_riksdagen_votedata_view` | Network graph, Sankey |
 
 **Export Formats:**
 - JSON (via [json-export-specs/](json-export-specs/))
@@ -440,7 +440,7 @@ Data Format:
 
 **🔗 JSON Data Specifications:**
 - **Risk Assessment**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Complete risk rule evaluation with 45 behavioral rules
-- **Violation Tracking**: [politician-schema.md#risk-violations](json-export-specs/schemas/politician-schema.md#intelligence-analytics) - Compliance violations and risk scores
+- **Violation Tracking**: [politician-schema.md#-intelligence-section](json-export-specs/schemas/politician-schema.md#-intelligence-section) - Compliance violations and risk scores
 - **Predictive Models**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Risk escalation probability and crisis forecasting
 - **Database Views**: `view_rule_violation`, `view_riksdagen_politician_summary`, `view_riksdagen_party_summary`
 
@@ -558,8 +558,8 @@ Data Format:
 
 **🔗 JSON Data Specifications:**
 - **Predictive Models**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Time series forecasts, scenario probabilities, and trend predictions
-- **Historical Trends**: [party-schema.md#temporal-patterns](json-export-specs/schemas/party-schema.md#performance-metrics) - Multi-year party and politician trends
-- **Coalition Analysis**: [party-schema.md#coalition-patterns](json-export-specs/schemas/party-schema.md#coalition-patterns) - Coalition formation and stability patterns
+- **Historical Trends**: [party-schema.md#️-electoral-section](json-export-specs/schemas/party-schema.md#️-electoral-section) - Multi-year party and politician trends
+- **Coalition Analysis**: [party-schema.md#-coalition-section](json-export-specs/schemas/party-schema.md#-coalition-section) - Coalition formation and stability patterns
 - **Database Views**: `view_riksdagen_party_ballot_support_annual_summary`, `view_riksdagen_politician_summary`, `view_riksdagen_vote_data_ballot_summary`
 
 **Predictive Model Outputs:**
@@ -809,7 +809,7 @@ flowchart TB
 **🔗 JSON Data Specifications:**
 - **Decision Flow Data**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Decision effectiveness and approval rates
 - **Party Decision Analytics**: [party-schema.md](json-export-specs/schemas/party-schema.md) - Party-level proposal success patterns
-- **Politician Decision Metrics**: [politician-schema.md#legislative-productivity](json-export-specs/schemas/politician-schema.md#activity-metrics) - Individual proposal success rates
+- **Politician Decision Metrics**: [politician-schema.md#-activity-section](json-export-specs/schemas/politician-schema.md#-activity-section) - Individual proposal success rates
 - **Ministry Performance**: [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) - Government ministry decision effectiveness
 - **Database Views**: `view_party_decision_flow`, `view_politician_decision_flow`, `view_ministry_decision_flow`, `view_ministry_decision_impact`, `view_decision_kpi_dashboard`
 
@@ -1569,7 +1569,7 @@ This appendix provides comprehensive traceability from business product features
   - `view_riksdagen_politician_summary` - Aggregated activity and performance
 - **JSON Specifications**:
   - Input: None (GET request with politician ID)
-  - Output: [politician-schema.md#intelligence-analytics](json-export-specs/schemas/politician-schema.md#intelligence-analytics), [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
+  - Output: [politician-schema.md#-intelligence-section](json-export-specs/schemas/politician-schema.md#-intelligence-section), [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
 - **API Endpoint**: `GET /api/v1/politicians/{id}/risk-assessment`
 - **Response Example**: 
   ```json
@@ -1595,7 +1595,7 @@ This appendix provides comprehensive traceability from business product features
   - `view_riksdagen_votedata_view` - Detailed individual votes
 - **JSON Specifications**:
   - Input: Query parameters (party, year, politician_id)
-  - Output: [politician-schema.md#voting-records](json-export-specs/schemas/politician-schema.md#voting-records)
+  - Output: [politician-schema.md#️-voting-section](json-export-specs/schemas/politician-schema.md#️-voting-section)
 - **API Endpoint**: `GET /api/v1/voting-statistics?party={party}&year={year}`
 - **Response Example**: [politician-example.json](json-export-specs/examples/politician-example.json) (voting section)
 - **Export Formats**: JSON, CSV, Excel
@@ -1618,7 +1618,7 @@ This appendix provides comprehensive traceability from business product features
   - `view_riksdagen_politician_document_summary` - Legislative productivity
   - `view_riksdagen_vote_data_ballot_politician_summary` - Voting effectiveness
 - **JSON Specifications**:
-  - Dashboard Data: [politician-schema.md#intelligence-analytics](json-export-specs/schemas/politician-schema.md#intelligence-analytics)
+  - Dashboard Data: [politician-schema.md#-intelligence-section](json-export-specs/schemas/politician-schema.md#-intelligence-section)
   - Visualization Config: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
 - **Dashboard Components**:
   - Scorecard widgets (JSON data binding)
@@ -1635,7 +1635,7 @@ This appendix provides comprehensive traceability from business product features
   - `view_riksdagen_party_coalition` - Coalition membership and agreements
   - `view_riksdagen_party_summary` - Party performance metrics
 - **JSON Specifications**:
-  - Coalition Data: [party-schema.md#coalition-patterns](json-export-specs/schemas/party-schema.md#coalition-patterns)
+  - Coalition Data: [party-schema.md#-coalition-section](json-export-specs/schemas/party-schema.md#-coalition-section)
   - Analytics: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
 - **Visualization**: Heatmap (agreement scores), Timeline (stability trends)
 
@@ -1888,9 +1888,9 @@ flowchart TB
 | Product Feature | JSON Schema | Database Views | Data Sources | API Endpoint | Customer Segment | Revenue Impact |
 |----------------|-------------|----------------|--------------|--------------|------------------|----------------|
 | Politician Risk Assessment | [politician-schema.md](json-export-specs/schemas/politician-schema.md), [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Riksdagen API | `/api/v1/politicians/{id}/risk` | Political Consulting | €15M TAM |
-| Voting Statistics Export | [politician-schema.md#voting](json-export-specs/schemas/politician-schema.md#voting-records) | `view_riksdagen_vote_data_ballot_summary` | Riksdagen API | `/api/v1/voting-statistics` | Academic Research | €5M TAM |
+| Voting Statistics Export | [politician-schema.md#️-voting-section](json-export-specs/schemas/politician-schema.md#️-voting-section) | `view_riksdagen_vote_data_ballot_summary` | Riksdagen API | `/api/v1/voting-statistics` | Academic Research | €5M TAM |
 | Party Performance Dashboard | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_summary` | Riksdagen API | `/api/v1/parties/{id}` | Corporate Affairs | €12M TAM |
-| Coalition Stability Monitor | [party-schema.md#coalition](json-export-specs/schemas/party-schema.md#coalition-patterns) | `view_riksdagen_party_ballot_support_annual_summary` | Riksdagen API | `/api/v1/analytics/coalitions` | Media & Journalism | €8M TAM |
+| Coalition Stability Monitor | [party-schema.md#-coalition-section](json-export-specs/schemas/party-schema.md#-coalition-section) | `view_riksdagen_party_ballot_support_annual_summary` | Riksdagen API | `/api/v1/analytics/coalitions` | Media & Journalism | €8M TAM |
 | Committee Analytics | [committee-schema.md](json-export-specs/schemas/committee-schema.md) | `view_riksdagen_committee_proposal_summary` | Riksdagen API | `/api/v1/committees/{id}` | Government Affairs | €12M TAM |
 | Real-Time Risk Alerts | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation` | Multiple sources | Webhooks | Financial Services | €20M+ TAM |
 | Electoral Forecasting | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_riksdagen_party_summary` | Riksdagen API + Historical | `/api/v1/predictions/elections` | Strategic Consulting | €30M+ TAM |
