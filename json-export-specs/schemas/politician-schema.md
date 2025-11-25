@@ -12,15 +12,15 @@
 This JSON schema powers **3 product lines** serving multiple market segments:
 
 ### Product Integration
-- **[Political Intelligence API](../../BUSINESS_PRODUCT_DOCUMENT.md#-product-line-1-political-intelligence-api)** - Core API product (€630K/year revenue potential)
+- **[Political Intelligence API](../../BUSINESS_PRODUCT_DOCUMENT.md#product-line-1-political-intelligence-api)** - Core API product (€630K/year revenue potential)
   - Politician profiles and risk assessment
   - Voting statistics export
   - Real-time political monitoring
-- **[Advanced Analytics Suite](../../BUSINESS_PRODUCT_DOCUMENT.md#-product-line-2-advanced-analytics-suite)** - Analytics platform (€855K/year)
+- **[Advanced Analytics Suite](../../BUSINESS_PRODUCT_DOCUMENT.md#product-line-2-advanced-analytics-suite)** - Analytics platform (€855K/year)
   - Political scorecards dashboard
   - Comparative politician benchmarking
   - Activity metrics visualization
-- **[Risk Intelligence Feed](../../BUSINESS_PRODUCT_DOCUMENT.md#-product-line-3-risk-intelligence-feed)** - Risk monitoring (€1.77M/year)
+- **[Risk Intelligence Feed](../../BUSINESS_PRODUCT_DOCUMENT.md#product-line-3-risk-intelligence-feed)** - Risk monitoring (€1.77M/year)
   - Real-time risk assessment (45 rules)
   - Compliance violation tracking
   - Early warning alerts

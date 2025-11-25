@@ -14,7 +14,7 @@ These JSON specifications are the **technical foundation** for the CIA product p
 
 ### Business Strategy Documentation
 - **[BUSINESS_PRODUCT_DOCUMENT.md](../BUSINESS_PRODUCT_DOCUMENT.md)** - Complete business strategy with product-to-data mapping (€46M TAM)
-- **[BUSINESS_PRODUCT_DOCUMENT.md#technical-data-specifications](../BUSINESS_PRODUCT_DOCUMENT.md#-technical-data-specifications)** - Product-to-Data Mapping Table
+- **[BUSINESS_PRODUCT_DOCUMENT.md#technical-data-specifications](../BUSINESS_PRODUCT_DOCUMENT.md#technical-data-specifications)** - Product-to-Data Mapping Table
 - **[BUSINESS_PRODUCT_DOCUMENT.md#appendix-e-product-to-data-mapping](../BUSINESS_PRODUCT_DOCUMENT.md#appendix-e-product-to-data-mapping)** - Comprehensive traceability from features to data
 
 ### Market Opportunity
