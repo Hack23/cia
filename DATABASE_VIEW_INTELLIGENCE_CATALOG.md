@@ -5960,8 +5960,8 @@ Views supporting features from [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_D
 
 This appendix maps database views to business product features per [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md), establishing complete traceability from data sources to commercial products.
 
-**Total Addressable Market (TAM):** €46M across 5 market segments  
-**Annual Revenue Potential:** €2.7M+ across all product lines  
+**Total Addressable Market (TAM):** €46M across 5 market segments (Political Consulting €15M, Media & Journalism €8M, Academic Research €5M, Corporate Affairs €12M, Government Transparency €6M)  
+**Annual Revenue Potential:** €5.1M across cross-product feature categories (see Cross-Product Feature Matrix below)  
 **JSON Specifications:** See [json-export-specs/schemas/](json-export-specs/schemas/) for complete API schemas
 
 ---
@@ -6145,8 +6145,8 @@ All views are exported via JSON API with standardized schemas. See complete spec
 |---------|------|---------|--------|
 | 1.0 | 2025-11-17 | Initial comprehensive catalog creation | Intelligence Operative |
 | 1.1 | 2025-11-20 | **Validation & Corrections** - Validated against full_schema.sql; Added Complete View Inventory section listing all 82 views; Updated Executive Summary with accurate statistics (9 detailed, 73 basic coverage); Added validation metadata and link to DATABASE_VIEW_VALIDATION_REPORT.md; Identified 73 undocumented views requiring detailed documentation | Intelligence Operative |
-| 2.0 | 2025-11-21 | **Complete Documentation Achievement** - Added comprehensive structured documentation for all 73 remaining views; Documented all politician views (ballot summary, influence metrics, risk summary, document summaries); Documented all intelligence views (dashboard, crisis resilience, voting anomaly detection); Completed ministry/government views (effectiveness trends, productivity matrix, risk evolution, government structure); Documented all party views (performance metrics, momentum analysis, document summaries, coalition patterns); Completed vote data views (20 ballot/party/politician summaries at daily/weekly/monthly/annual granularities); Documented all committee views (productivity, decisions, roles, membership); Completed document views and application/audit views; Added WorldBank data view documentation; **Achievement: 100% documentation coverage (82/82 views documented)** | Intelligence Operative (Copilot Agent) |
-| 2.1 | 2025-11-25 | **Business Context Integration & Statistical Corrections (v1.36)** - ✅ Reverified view counts: corrected from 85 to 84 total views (56 regular + 28 materialized); ✅ Updated "Last Validated" date from 2025-11-22 to 2025-11-25; ✅ Added business value context to key views (view_riksdagen_politician, view_riksdagen_party) with TAM metrics, product integration links, and customer segments; ✅ Added comprehensive Appendix C: View-to-Product Mapping linking all 84 views to commercial products across 4 product lines (€2.7M+ annual revenue potential); ✅ Integrated JSON export specification cross-references for API endpoints; ✅ Added links to BUSINESS_PRODUCT_DOCUMENT.md throughout catalog; ✅ Enhanced Related Documentation section with Business Product Document and JSON Export Specs | Intelligence Operative (Copilot Agent) |
+| 2.0 | 2025-11-21 | **Complete Documentation Achievement** - Added comprehensive structured documentation for all 73 remaining views; Documented all politician views (ballot summary, influence metrics, risk summary, document summaries); Documented all intelligence views (dashboard, crisis resilience, voting anomaly detection); Completed ministry/government views (effectiveness trends, productivity matrix, risk evolution, government structure); Documented all party views (performance metrics, momentum analysis, document summaries, coalition patterns); Completed vote data views (20 ballot/party/politician summaries at daily/weekly/monthly/annual granularities); Documented all committee views (productivity, decisions, roles, membership); Completed document views and application/audit views; Added WorldBank data view documentation; **Achievement: 100% documentation coverage (85/85 views documented; later corrected to 84 in v2.1 after schema reverification)** | Intelligence Operative (Copilot Agent) |
+| 2.1 | 2025-11-25 | **Business Context Integration & Statistical Corrections (v1.36)** - ✅ Reverified view counts: corrected from 85 to 84 total views (56 regular + 28 materialized); ✅ Updated "Last Validated" date from 2025-11-22 to 2025-11-25; ✅ Added business value context to key views (view_riksdagen_politician, view_riksdagen_party) with TAM metrics, product integration links, and customer segments; ✅ Added comprehensive Appendix C: View-to-Product Mapping linking 22+ key views to commercial products across 4 product lines (€5.1M annual revenue potential); ✅ Integrated JSON export specification cross-references for API endpoints; ✅ Added links to BUSINESS_PRODUCT_DOCUMENT.md throughout catalog; ✅ Enhanced Related Documentation section with Business Product Document and JSON Export Specs | Intelligence Operative (Copilot Agent) |
 
 ## Validation & Corrections Log
 
@@ -6258,12 +6258,12 @@ See [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for
    - API endpoint mappings and JSON schema references
    - Revenue tier and customer segment classification
 
-2. **New Appendix C Created**: Comprehensive View-to-Product Mapping (138-row reference table)
-   - **Product Line 1**: Political Intelligence API (€630K revenue) - 7 core views mapped
-   - **Product Line 2**: Advanced Analytics Suite (€855K revenue) - 6 dashboard components
-   - **Product Line 3**: Risk Intelligence Feed (€1.77M revenue) - 5 risk assessment views
-   - **Product Line 4**: Custom Report Generator (€525K revenue) - 4 report templates
-   - Cross-Product Feature Matrix showing view usage across product lines
+2. **New Appendix C Created**: Comprehensive View-to-Product Mapping
+   - **Product Line 1**: Political Intelligence API - 7 core views mapped
+   - **Product Line 2**: Advanced Analytics Suite - 6 dashboard components
+   - **Product Line 3**: Risk Intelligence Feed - 5 risk assessment views
+   - **Product Line 4**: Custom Report Generator - 4 report templates
+   - **Cross-Product Feature Matrix**: 6 feature categories with €5.1M annual revenue potential (Politician Intelligence €1.2M, Party & Coalition €800K, Risk Assessment €1.8M, Government Performance €400K, Committee & Legislative €300K, Voting & Ballot €600K)
    - JSON Schema Integration Reference with 5 schema categories
 
 3. **Related Documentation Updated**:
@@ -6280,8 +6280,8 @@ See [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for
 
 **Impact:**
 - **Business Alignment**: Complete traceability from database views to commercial products
-- **Revenue Context**: €2.7M+ annual revenue potential mapped to view dependencies
-- **Market Transparency**: Customer segments (€46M TAM) linked to specific views
+- **Revenue Context**: €5.1M annual revenue potential mapped across 6 feature categories
+- **Market Transparency**: Customer segments (€46M TAM across 5 segments) linked to specific views
 - **API Integration**: JSON export specs cross-referenced for all product features
 - **Strategic Planning**: View-to-revenue mapping enables data-driven prioritization
 
