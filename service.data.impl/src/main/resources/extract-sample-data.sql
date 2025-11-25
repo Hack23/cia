@@ -31,6 +31,21 @@
 
 -- Configuration
 \set SAMPLE_SIZE 50
+\set TABLE_CMD_FILE '/tmp/cia_table_extract_commands.sql'
+\set VIEW_CMD_FILE '/tmp/cia_view_extract_commands.sql'
+
+DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
+CREATE OR REPLACE FUNCTION cia_tmp_rowcount(schema_name text, rel_name text)
+RETURNS bigint
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    result bigint;
+BEGIN
+    EXECUTE format('SELECT COUNT(*) FROM %I.%I', schema_name, rel_name) INTO result;
+    RETURN COALESCE(result, 0);
+END;
+$$;
 
 \echo ''
 \echo 'Configuration:'
@@ -48,76 +63,46 @@
 \echo '=========================================='
 \echo ''
 
--- Generate dynamic \copy commands for all tables
--- First, analyze which tables have data
-DO $$
-DECLARE
-    table_record RECORD;
-    table_count INTEGER := 0;
-    skip_count INTEGER := 0;
-    row_count BIGINT;
-BEGIN
-    RAISE NOTICE 'Analyzing tables for sample data extraction...';
-    RAISE NOTICE '';
-    
-    FOR table_record IN 
-        SELECT schemaname, tablename 
-        FROM pg_tables 
-        WHERE schemaname = 'public' 
-        AND tablename NOT LIKE 'qrtz_%'  -- Skip Quartz scheduler tables
-        AND tablename NOT LIKE 'databasechange%'  -- Skip Liquibase tables
-        ORDER BY tablename
-    LOOP
-        BEGIN
-            -- Check if table has data
-            EXECUTE format('SELECT COUNT(*) FROM %I.%I', 
-                table_record.schemaname, table_record.tablename) 
-            INTO row_count;
-            
-            IF row_count > 0 THEN
-                RAISE NOTICE 'Table %: % rows available', 
-                    table_record.tablename, row_count;
-                table_count := table_count + 1;
-            ELSE
-                RAISE NOTICE 'Skipping %: empty table', table_record.tablename;
-                skip_count := skip_count + 1;
-            END IF;
-            
-        EXCEPTION WHEN OTHERS THEN
-            RAISE NOTICE 'ERROR checking %: %', table_record.tablename, SQLERRM;
-        END;
-    END LOOP;
-    
-    RAISE NOTICE '';
-    RAISE NOTICE 'Table analysis summary:';
-    RAISE NOTICE '  Tables with data: %', table_count;
-    RAISE NOTICE '  Empty tables: %', skip_count;
-    RAISE NOTICE '';
-END $$;
-
--- Now extract sample data from all non-empty tables using dynamic \copy commands
-\echo 'Extracting sample data from tables...'
-\echo ''
-
--- NOTE: ORDER BY random() is used for diverse sampling but can be slow on very large tables (100M+ rows).
--- For tables of that size, consider using TABLESAMPLE SYSTEM instead.
-
--- Generate and execute \copy commands for each table
--- Note: \copy runs on client side and writes to current working directory
+\! rm -f :TABLE_CMD_FILE
+\pset format unaligned
+\pset tuples_only on
+\o :TABLE_CMD_FILE
+WITH table_counts AS (
+    SELECT schemaname,
+           tablename,
+           cia_tmp_rowcount(schemaname, tablename) AS row_count
+    FROM pg_tables
+    WHERE schemaname = 'public'
+),
+table_extract AS (
+    SELECT schemaname,
+           tablename,
+           row_count,
+           LEAST(:SAMPLE_SIZE::int, row_count) AS sample_rows,
+           CASE WHEN tablename LIKE 'table_%' THEN tablename ELSE 'table_' || tablename END AS file_prefix
+    FROM table_counts
+    WHERE row_count > 0
+)
 SELECT format(
-    '\echo ''Extracting table: %s''' || E'\n' ||
-    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''table_%s_sample.csv'' WITH CSV HEADER',
-    tablename,
+    '\echo ''Extracting table: %I.%I (%s rows sampled of %s rows total)''' || E'\n' ||
+    '\copy (SELECT * FROM %I.%I LIMIT %s) TO ''%s_sample.csv'' CSV HEADER',
     schemaname,
     tablename,
-    tablename
+    sample_rows,
+    row_count,
+    schemaname,
+    tablename,
+    sample_rows,
+    file_prefix
 )
-FROM pg_tables
-WHERE schemaname = 'public'
-AND tablename NOT LIKE 'qrtz_%'
-AND tablename NOT LIKE 'databasechange%'
-ORDER BY tablename
-\gexec
+FROM table_extract
+ORDER BY tablename;
+\o
+\pset format aligned
+\pset tuples_only off
+
+\i :TABLE_CMD_FILE
+\! rm -f :TABLE_CMD_FILE
 
 -- ===========================================================================
 -- SECTION 2: Extract Sample Data from ALL Views Dynamically
@@ -182,36 +167,54 @@ END $$;
 \echo 'Extracting sample data from regular views...'
 \echo ''
 
--- Generate and execute \copy commands for regular views
-SELECT format(
-    '\echo ''Extracting view: %s''' || E'\n' ||
-    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''view_%s_sample.csv'' WITH CSV HEADER',
-    viewname,
-    schemaname,
-    viewname,
-    viewname
+\! rm -f :VIEW_CMD_FILE
+\pset format unaligned
+\pset tuples_only on
+\o :VIEW_CMD_FILE
+WITH all_views AS (
+    SELECT schemaname, viewname AS object_name, 'VIEW' AS object_type
+    FROM pg_views
+    WHERE schemaname = 'public'
+    UNION ALL
+    SELECT schemaname, matviewname AS object_name, 'MATERIALIZED VIEW' AS object_type
+    FROM pg_matviews
+    WHERE schemaname = 'public'
+),
+view_counts AS (
+    SELECT schemaname,
+           object_name,
+           object_type,
+           cia_tmp_rowcount(schemaname, object_name) AS row_count
+    FROM all_views
+),
+view_extract AS (
+    SELECT schemaname,
+           object_name,
+           object_type,
+           row_count,
+           LEAST(:SAMPLE_SIZE::int, row_count) AS sample_rows,
+           CASE WHEN object_name LIKE 'view_%' THEN object_name ELSE 'view_' || object_name END AS file_prefix
+    FROM view_counts
+    WHERE row_count > 0
 )
-FROM pg_views
-WHERE schemaname = 'public'
-ORDER BY viewname
-\gexec
-
-\echo 'Extracting sample data from materialized views...'
-\echo ''
-
--- Generate and execute \copy commands for materialized views
 SELECT format(
-    '\echo ''Extracting materialized view: %s''' || E'\n' ||
-    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT 50) TO ''view_%s_sample.csv'' WITH CSV HEADER',
-    matviewname,
+    '\echo ''Extracting %s: %s''' || E'\n' ||
+    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' WITH CSV HEADER',
+    lower(object_type),
+    object_name,
     schemaname,
-    matviewname,
-    matviewname
+    object_name,
+    sample_rows,
+    file_prefix
 )
-FROM pg_matviews
-WHERE schemaname = 'public'
-ORDER BY matviewname
-\gexec
+FROM view_extract
+ORDER BY object_name;
+\o
+\pset format aligned
+\pset tuples_only off
+
+\i :VIEW_CMD_FILE
+\! rm -f :VIEW_CMD_FILE
 
 -- ===========================================================================
 -- SECTION 3: Generate Comprehensive Manifest File
@@ -334,7 +337,7 @@ BEGIN
     RAISE NOTICE '  Total Tables: % (% extracted, % excluded)', total_tables, extracted_tables, excluded_tables;
     RAISE NOTICE '  Regular Views: % (all extracted)', regular_views;
     RAISE NOTICE '  Materialized Views: % (all extracted)', mat_views;
-    RAISE NOTICE '  Total Objects: % (% extracted = %%)', total_objects, total_extracted, coverage_pct;
+    RAISE NOTICE '  Total Objects: % (% extracted = %)', total_objects, total_extracted, format('%s%%', coverage_pct);
     RAISE NOTICE '';
     RAISE NOTICE 'Expected CSV Files:';
     RAISE NOTICE '  Table CSVs: %', extracted_tables;
@@ -367,5 +370,7 @@ END $$;
 \echo '  - TROUBLESHOOTING_EMPTY_VIEWS.md'
 \echo '  - view_column_mapping.csv for required columns'
 \echo ''
+
+DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
 
 \timing off

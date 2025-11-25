@@ -1,51 +1,51 @@
 hjid,header,number_value,parties,proposal_issue_number,proposal_type,against_proposal_list_agains_0
-1549115,Minskningsregeln,5,"""s"",""v"",""mp""",4,reservation,1549110
-1539246,Utseende av styrelseledamöter,1,"""s"",""v"",""mp""",1,reservation,1539245
-1497871,Hets mot folkgrupp m.m.,1,"""S"",""MP"",""V""",1,reservation,1497870
-1548195,"",22,"""SD""",10,reservation,1548173
-1515743,Sprututbyte,19,"""kd""",19,reservation,1515724
-1550464,"",16,"""M"",""C"",""L"",""KD""",13,reservation,1550448
-1500154,Övrigt om internationell handelspolitik,6,"""MP"",""V""",5,reservation,1500148
-1551037,"",24,"""L""",15,reservation,1551013
-1518885,Förhållningsregler,3,"""mp""",5,reservation,1518882
-1503648,Aktivitetsgaranti ,27,"""c"",""fp""",26,reservation,1503620
-1542345,Brott och ordningsstörningar i affärslokaler,5,"""m"",""c"",""fp"",""kd""",5,reservation,1542340
-1512502,"",7,"""L""",7,reservation,1512493
-1530482,Rehabiliteringsfrågor i övrigt,44,"""m""",43,reservation,1530435
-1544380,Mål för bostadsbyggandet,5,"""m"",""c"",""fp""",5,reservation,1544375
-1730116,Iran,18,"""V""",11,reservation,1730098
-1539415,Mål för bostadsbyggandet,5,"""v""",4,reservation,1539410
-1548797,M/S Estonias förlisning,10,"""kd""",15,reservation,1548787
-1516361,Kvalitetsarbete i äldreomsorgen ,23,"""fp""",13,reservation,1516338
-1499484,"",22,"""SD""",19,reservation,1499462
-1545719,Grytjakt,5,"""s"",""v"",""mp""",4,reservation,1545714
-1544571,Den akademiska friheten,4,"""c""",3,reservation,1544567
-1531355,"",1,"""C""",2,reservation,1531354
-1544464,Mobiltelefoni,9,"""v""",9,reservation,1544455
-1800551,"",22,"""S""",16,reservation,1800529
-1536293,"",2,"""V""",1,reservation,1536291
-1546810,Rabatter och  taxor,3,"""v""",3,reservation,1546807
-1538009,Stöd till PION m.m.,2,"""m"",""c"",""fp"",""kd""",10,reservation,1538007
-1522039,Lagreglering av principerna för Riksbankens inleveranser,1,"""m""",6,reservation,1522038
-1541677,"",7,"""KD""",7,reservation,1541670
-1533148,"",1,"""L""",3,reservation,1533147
-1551619,Handel med elcertifikat ,17,"""m"",""fp"",""kd""",13,reservation,1551602
-1529419,Stöd för konvertering från direktverkande elvärme och oljeuppvärmning i bostadshus,1,"""m"",""fp""",1,reservation,1529418
-1508375,Tobaksprevention,5,"""m""",6,reservation,1508370
-1510336,Insatser för kvinnor med missbruksproblem,23,"""s"",""v"",""mp""",36,reservation,1510313
-1550675,Besöksvisum,31,"""v""",20,reservation,1550642
-1538907,"",46,"""C""",29,reservation,1538834
-1517115,"",1,"""M""",3,reservation,1517114
-1540697,"",10,"""C""",6,reservation,1540680
-1522295,"",30,"""M""",14,reservation,1522264
-1800356,"",66,"""MP""",34,reservation,1800290
-1723527,"",4,"""C""",2,reservation,1723520
-1512262,Expropriationsändamålen ,4,"""m""",3,reservation,1512258
-1548208,"",35,"""SD""",13,reservation,1548173
-1539639,"",20,"""M""",10,reservation,1539618
-1537311,"",2,"""SD""",2,reservation,1537309
-1543038,"",39,"""SD""",15,reservation,1542987
-1802137,"",9,"""S""",4,reservation,1802128
-1533725,"",11,"""C""",4,reservation,1533714
-1542439,"",5,"""M"",""C"",""L"",""KD""",4,reservation,1542434
-1543668,Det civilrättsliga sanktionsdirektivet,5,"""V""",4,reservation,1543662
+73034,Studiestöd för elever i gymnasieskolan ,1,"""kd""",2,reservation,73033
+73035,Studiestöd för elever i gymnasiesärskolan ,2,"""kd""",3,reservation,73033
+73036,Indraget studiebidrag för elever som mobbar eller skolkar ,3,"""fp""",4,reservation,73033
+73037,Grunddragen i studiemedelssystemet ,4,"""fp""",5,reservation,73033
+73038,Grunddragen i studiemedelssystemet ,5,"""kd""",5,reservation,73033
+73039,Grunddragen i studiemedelssystemet ,6,"""c""",5,reservation,73033
+73040,Avskaffande av inkomstprövningen vid beviljande av studiemedel ,7,"""m"",""fp"",""kd""",6,reservation,73033
+73041,Dispens från tolvterminersregeln vid beviljande av studiemedel ,8,"""m"",""c"",""fp"",""kd""",7,reservation,73033
+73042,Översyn av övre åldersgräns för studiemedel ,9,"""kd""",8,reservation,73033
+73043,Avskrivning av studielån som regionalpolitiskt medel ,10,"""kd"",""mp""",9,reservation,73033
+73044,Studiemedel vid utlandsförlagd svensk högskoleutbildning ,11,"""m""",11,reservation,73033
+73045,Studiemedel vid studier utomlands ,12,"""m""",12,reservation,73033
+73046,Införande av ett treterminerssystem med studiemedel ,13,"""fp""",13,reservation,73033
+73047,Studiestöd vid vuxenutbildning ,14,"""kd""",15,reservation,73033
+73048,Studiestöd vid vuxenutbildning ,15,"""fp""",15,reservation,73033
+73049,"Utökad teckenspråksutbildning för vissa föräldrar, s.k. TUFF ",16,"""m"",""kd""",18,reservation,73033
+73050,Utredning om Centrala studiestödsnämndens upplåning i Riksgäldskontoret ,17,"""kd""",20,reservation,73033
+73143,Utbildning m.m. i avvaktan på avvisning eller utvisning ,1,"""fp""",2,reservation,73142
+73144,Skolgång m.m. för gömda barn ,2,"""fp""",3,reservation,73142
+222744,Varningstext på mobiltelefoner,1,"""v"",""mp""",1,reservation,222743
+222745,Sänkning av gränsvärden,2,"""mp""",4,reservation,222743
+222746,Forskning m.m.,3,"""v""",6,reservation,222743
+73185,Lagreglering av universitets och högskolors ansvar för rekrytering ,1,"""m""",1,reservation,73184
+73186,Basår och collegeutbildning ,2,"""m""",2,reservation,73184
+73187,Basår och collegeutbildning ,3,"""c""",2,reservation,73184
+73188,Basår och collegeutbildning ,4,"""fp""",2,reservation,73184
+73189,Åtgärder i övrigt för att förbättra rekryteringen ,5,"""m""",3,reservation,73184
+73190,Utredning om framtidens utbildningssystem ,6,"""kd""",4,reservation,73184
+73191,Riktlinjer för behörighet och urval ,7,"""m""",5,reservation,73184
+73192,Riktlinjer för behörighet och urval ,8,"""kd""",5,reservation,73184
+73193,Riktlinjer för behörighet och urval ,9,"""c""",5,reservation,73184
+73194,Riktlinjer för behörighet och urval ,10,"""fp""",5,reservation,73184
+73195,Gymnasieexamen ,11,"""m"",""fp""",6,reservation,73184
+73196,Betygssättningen i gymnasieskolan ,12,"""m""",7,reservation,73184
+73197,Åtgärder för att främja livslångt lärande ,13,"""c""",8,reservation,73184
+73198,Forskarutbildningen ,14,"""m"",""fp""",9,reservation,73184
+73199,Forskarutbildningen ,15,"""c""",9,reservation,73184
+73200,Högskolans samverkansuppgift ,16,"""kd""",10,reservation,73184
+73201,Mål för grundläggande högskoleutbildning ,17,"""m""",11,reservation,73184
+73202,Högskolepedagogisk utbildning och forskning ,18,"""m"",""fp""",13,reservation,73184
+73203,Högskolepedagogisk utbildning och forskning ,19,"""kd""",13,reservation,73184
+222759,Djurskyddsmyndigheten,1,"""m"",""c""",2,reservation,222758
+222760,Djurskyddstillsyn m.m.,2,"""m"",""fp""",5,reservation,222758
+222761,Djurskyddstillsyn m.m.,3,"""kd""",5,reservation,222758
+221198,Internationella djurskyddsfrågor,1,"""m"",""c""",1,reservation,221197
+221199,Internationella djurskyddsfrågor,2,"""mp""",1,reservation,221197
+221200,Importförbud av hund- och kattskinn,3,"""v"",""mp""",2,reservation,221197
+221201,Tillsynsfrågor m.m.,4,"""fp""",3,reservation,221197
+221202,Kvalitetssäkring av hästbranschen m.m.,5,"""fp""",4,reservation,221197
+221203,Sexuellt utnyttjande av djur,6,"""kd""",5,reservation,221197
