@@ -8,6 +8,38 @@
 
 ---
 
+## 🔗 Business Context & Product Integration
+
+These JSON specifications are the **technical foundation** for the CIA product portfolio, enabling all 6 product lines with structured political intelligence data.
+
+### Business Strategy Documentation
+- **[BUSINESS_PRODUCT_DOCUMENT.md](../BUSINESS_PRODUCT_DOCUMENT.md)** - Complete business strategy with product-to-data mapping (€46M TAM)
+- **[BUSINESS_PRODUCT_DOCUMENT.md#technical-data-specifications](../BUSINESS_PRODUCT_DOCUMENT.md#technical-data-specifications)** - Product-to-Data Mapping Table
+- **[BUSINESS_PRODUCT_DOCUMENT.md#appendix-e-product-to-data-mapping](../BUSINESS_PRODUCT_DOCUMENT.md#appendix-e-product-to-data-mapping)** - Comprehensive traceability from features to data
+
+### Market Opportunity
+The JSON specifications power products serving 5 customer segments with **€46M Total Addressable Market**:
+- **Political Consulting** (€15M TAM) - Politician risk assessment, voting statistics
+- **Media & Journalism** (€8M TAM) - Real-time political monitoring, investigative data
+- **Academic Research** (€5M TAM) - Comprehensive datasets, bulk exports
+- **Corporate Affairs** (€12M TAM) - Government affairs monitoring, regulatory tracking
+- **Financial Services** (€20M+ TAM) - Political risk intelligence, early warning systems
+
+### Product Line Integration
+
+| Product Line | JSON Schemas Used | Revenue Potential | Customer Segments |
+|--------------|-------------------|-------------------|-------------------|
+| **Political Intelligence API** | [politician-schema.md](schemas/politician-schema.md), [party-schema.md](schemas/party-schema.md) | €630K/year | Political consulting, media, academic |
+| **Advanced Analytics Suite** | [intelligence-schema.md](schemas/intelligence-schema.md), All schemas | €855K/year | Corporate affairs, NGOs, political parties |
+| **Risk Intelligence Feed** | [intelligence-schema.md](schemas/intelligence-schema.md) | €1.77M/year | Financial services, corporate risk, consulting |
+| **Predictive Analytics** | [intelligence-schema.md](schemas/intelligence-schema.md), [party-schema.md](schemas/party-schema.md) | €2.05M/year | Strategic consulting, corporate strategy, campaigns |
+| **White-Label Platform** | All schemas | €1.7M-4.7M/year | Government agencies, international orgs, consulting |
+| **Decision Intelligence** | [intelligence-schema.md](schemas/intelligence-schema.md), [ministry-schema.md](schemas/ministry-schema.md) | €2.09M/year | Lobbying, corporate affairs, media |
+
+**Total Annual Revenue Potential**: €9.1M+ from JSON-powered products
+
+---
+
 ## 🎯 Executive Summary
 
 The CIA JSON Export System transforms the comprehensive political intelligence database into structured, versioned JSON files optimized for static CDN hosting. This enables lightweight JavaScript applications, data visualization tools, and third-party integrations to access Swedish political data without direct database connections.
@@ -171,6 +203,38 @@ graph TB
   ]
 }
 ```
+
+### Schema-to-Product Mapping
+
+Each JSON schema directly supports specific product features and customer use cases:
+
+| Schema File | Product Lines | Key Features | Business Value | Customer Segments |
+|------------|---------------|--------------|----------------|-------------------|
+| **[politician-schema.md](schemas/politician-schema.md)** | Political Intelligence API, Advanced Analytics, Risk Intelligence | Politician profiles, voting records, risk scores, activity metrics | Core API product, €15M TAM | Political consulting, media, academic |
+| **[party-schema.md](schemas/party-schema.md)** | Political Intelligence API, Advanced Analytics, Predictive Analytics | Party performance, coalition patterns, voting trends | Coalition analysis, €12M TAM | Corporate affairs, political consulting |
+| **[committee-schema.md](schemas/committee-schema.md)** | Advanced Analytics, Decision Intelligence | Committee composition, proposal tracking, effectiveness metrics | Legislative monitoring, €8M TAM | Government affairs, lobbying |
+| **[ministry-schema.md](schemas/ministry-schema.md)** | Decision Intelligence, White-Label Platform | Government ministry data, decision flows, policy effectiveness | Regulatory forecasting, €10M TAM | Corporate risk, consulting firms |
+| **[intelligence-schema.md](schemas/intelligence-schema.md)** | Risk Intelligence, Predictive Analytics, Decision Intelligence | Risk assessment, predictions, decision analytics, trend forecasting | Premium analytics, €30M+ TAM | Financial services, strategic consulting |
+
+**See Complete Product Documentation**: [BUSINESS_PRODUCT_DOCUMENT.md](../BUSINESS_PRODUCT_DOCUMENT.md)
+
+### Detailed Schema Documentation
+
+All schemas are documented in Markdown format with:
+- **Entity structure** and field definitions
+- **Database view mappings** (from 85 available views)
+- **Sample data** with real examples
+- **Mermaid diagrams** for visual representation
+- **Intelligence applications** and use cases
+
+**Complete Schema Catalog**:
+1. **[schemas/politician-schema.md](schemas/politician-schema.md)** - 19,893 bytes, comprehensive politician data model
+2. **[schemas/party-schema.md](schemas/party-schema.md)** - 19,748 bytes, party performance and coalition analytics
+3. **[schemas/committee-schema.md](schemas/committee-schema.md)** - 10,245 bytes, committee composition and proposals
+4. **[schemas/ministry-schema.md](schemas/ministry-schema.md)** - 10,949 bytes, government ministry performance
+5. **[schemas/intelligence-schema.md](schemas/intelligence-schema.md)** - 17,122 bytes, risk assessment and predictive models
+
+**Database View Integration**: All schemas map to specific database views documented in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) (85 views total).
 
 ---
 

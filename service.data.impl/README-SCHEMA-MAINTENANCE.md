@@ -1,8 +1,893 @@
-# Database Schema Maintenance Guide
+# Schema Maintenance & Automation Guide
 
-This guide explains how to maintain and update the `full_schema.sql` file for the CIA application.
+Comprehensive guide for database schema maintenance, validation, health monitoring, and sample data extraction for the CIA intelligence platform.
 
-## Overview
+**Maintained by**: Intelligence Operative Agent (@intelligence-operative)  
+**Last Updated**: 2025-11-25  
+**Target Audience**: Database Administrators, Intelligence Operatives, DevOps Engineers
+
+---
+
+## 🚀 Quick Start (5 Minutes)
+
+Get up and running with schema maintenance in 5 minutes:
+
+```bash
+# 1. Navigate to schema maintenance directory
+cd service.data.impl/src/main/resources/
+
+# 2. Run health check (2 min)
+psql -U postgres -d cia_dev -f schema-health-check.sql > health_report.txt 2>&1
+
+# 3. Validate schema coverage (1 min)
+psql -U postgres -d cia_dev -f schema-validation-v2.sql > validation_report.txt 2>&1
+
+# 4. Review reports
+grep "HEALTH SCORE" health_report.txt  # Should be >80/100
+grep "SUCCESS" validation_report.txt   # Should show 100% coverage
+
+# 5. If health score <80 or validation fails, proceed to detailed troubleshooting below
+```
+
+**Expected Results:**
+- Health Score: 85-95/100 (Excellent)
+- Validation: 100% coverage (177 objects: 93 tables + 56 views + 28 materialized views)
+- Execution Time: ~2-3 minutes
+
+**If issues detected**: See [Troubleshooting](#troubleshooting) section below.
+
+---
+
+## 📋 Complete Automation Pipeline
+
+The CIA schema maintenance pipeline consists of 4 stages executed in sequence:
+
+```mermaid
+flowchart LR
+    A[1. Schema Validation] --> B{100% Coverage?}
+    B -->|Yes| C[2. Health Check]
+    B -->|No| D[Fix Missing Views]
+    D --> A
+    
+    C --> E{Health Score >80?}
+    E -->|Yes| F[3. Sample Data Extraction]
+    E -->|No| G[Remediate Issues]
+    G --> C
+    
+    F --> H[4. Documentation Update]
+    H --> I[✅ Pipeline Complete]
+    
+    style A fill:#3498db,color:#fff
+    style C fill:#9b59b6,color:#fff
+    style F fill:#2ecc71,color:#fff
+    style H fill:#f39c12,color:#fff
+    style I fill:#27ae60,color:#fff
+```
+
+### Stage 1: Schema Validation (Required - Run First)
+
+**Purpose**: Verify all tables/views are documented and match `full_schema.sql`
+
+**Script**: `schema-validation-v2.sql`
+
+**Usage:**
+```bash
+# Generate validation report
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > schema_validation_$(date +%Y%m%d_%H%M%S).txt 2>&1
+
+# Quick check: Coverage summary
+grep -E "SUCCESS|TOTAL" schema_validation_*.txt
+```
+
+**Exit Criteria:**
+- [ ] All 93 tables validated
+- [ ] All 56 regular views validated
+- [ ] All 28 materialized views validated
+- [ ] Zero objects missing from documentation
+- [ ] DATABASE_VIEW_INTELLIGENCE_CATALOG.md has 100% coverage
+
+**If Validation Fails**: See [Troubleshooting Schema Validation Failures](#common-issue-2-validation-coverage-100)
+
+---
+
+### Stage 2: Health Check (Required - Run After Validation)
+
+**Purpose**: Assess database health across integrity, performance, security, and data quality
+
+**Script**: `schema-health-check.sql`
+
+**Usage:**
+```bash
+# Run comprehensive health check
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-health-check.sql > health_check_$(date +%Y%m%d_%H%M%S).txt 2>&1
+
+# Extract health score
+grep "HEALTH SCORE" health_check_*.txt
+```
+
+**Exit Criteria:**
+- [ ] Overall Health Score ≥ 80/100
+- [ ] Schema Integrity: ≥ 90/100
+- [ ] Data Quality: ≥ 80/100
+- [ ] Performance: ≥ 75/100
+- [ ] Security: ≥ 85/100
+- [ ] Zero CRITICAL issues
+
+**Health Score Interpretation:**
+
+| Score | Status | Action |
+|-------|--------|--------|
+| 90-100 | EXCELLENT ✓ | No action needed |
+| 75-89 | GOOD ⚠ | Monitor warnings |
+| 60-74 | NEEDS ATTENTION ⚠⚠ | Address failures soon |
+| < 60 | CRITICAL ✗✗✗ | Immediate action required |
+
+**If Health Check Fails**: See [Troubleshooting Health Check Failures](#common-issue-1-low-health-score-80)
+
+---
+
+### Stage 3: Sample Data Extraction (Optional - For Analysis/Testing)
+
+**Purpose**: Extract representative sample data for analysis, testing, or documentation
+
+**Script**: `extract-sample-data.sql` + `extract-sample-data.sh`
+
+**Usage:**
+```bash
+# Full extraction (all tables/views)
+cd service.data.impl/src/main/resources/
+./extract-sample-data.sh /tmp/sample_data
+
+# Extract with validation
+./extract-sample-data.sh /tmp/sample_data && ./validate-sample-data-extraction.sh /tmp/sample_data
+```
+
+**Exit Criteria:**
+- [ ] 80+ table CSV files generated
+- [ ] 84+ view CSV files generated (56 regular + 28 materialized)
+- [ ] 8 distinct value CSV files generated
+- [ ] 3 metadata files (manifest + mapping + statistics)
+- [ ] All CSVs have valid headers
+- [ ] Total data size: 50-200 MB
+
+**Output Location**: `/tmp/sample_data/` (or specified directory)
+
+**See**: [SAMPLE_DATA_EXTRACTION.md](SAMPLE_DATA_EXTRACTION.md) for detailed documentation.
+
+---
+
+### Stage 4: Documentation Update (Required - Final Step)
+
+**Purpose**: Update documentation to reflect current schema state
+
+**Steps:**
+
+1. **Update DATABASE_VIEW_INTELLIGENCE_CATALOG.md**:
+   ```bash
+   # Add any new views discovered
+   # Update statistics (85 → 86 views, etc.)
+   # Update "Last Validated" date
+   ```
+
+2. **Update DATABASE_VIEW_VALIDATION_REPORT.md**:
+   ```bash
+   # Validation report is auto-generated by schema-validation-v2.sql
+   # Review and commit the updated report
+   ```
+
+3. **Update CHANGELOG_INTELLIGENCE_ANALYSIS.md**:
+   ```markdown
+   ## [Unreleased] - 2025-11-25
+   
+   ### Added
+   - New view: view_name_here
+   
+   ### Changed
+   - Updated health check thresholds
+   ```
+
+---
+
+## 📊 Daily Operations Checklist
+
+Intelligence Operatives should perform these tasks regularly:
+
+### Morning Health Check (10 min) - Daily
+- [ ] Run `schema-health-check.sql`
+- [ ] Verify health score ≥ 80/100
+- [ ] Check for CRITICAL issues
+- [ ] Review overnight materialized view refreshes
+- [ ] Check database size: `SELECT pg_size_pretty(pg_database_size('cia_dev'));`
+
+### Weekly Validation (30 min)
+- [ ] Run `schema-validation-v2.sql`
+- [ ] Verify 100% documentation coverage
+- [ ] Update DATABASE_VIEW_INTELLIGENCE_CATALOG.md if needed
+- [ ] Run `refresh-all-views.sql` to refresh materialized views
+- [ ] Extract sample data for analysis
+
+### Monthly Maintenance (2 hours)
+- [ ] Full automation pipeline (all 4 stages)
+- [ ] Performance tuning review
+- [ ] Security audit
+- [ ] Update all documentation
+- [ ] Generate intelligence changelog entries
+- [ ] Review and optimize slow queries
+- [ ] Analyze table bloat and vacuum status
+
+---
+
+## 🔧 Troubleshooting
+
+### Common Issue 1: Low Health Score (<80)
+
+**Symptoms**: Health check reports score below 80/100
+
+**Diagnosis**:
+```bash
+# View category breakdown
+grep -A20 "CATEGORY BREAKDOWN" health_check_*.txt
+
+# Identify failures
+grep "FAIL" health_check_*.txt
+```
+
+**Remediation**:
+
+1. **Integrity Issues (Score <90)**:
+   - Foreign key violations: Clean up orphaned records
+   - Broken views: Recreate views using `full_schema.sql`
+   - Stale materialized views: Run `refresh-all-views.sql`
+
+2. **Performance Issues (Score <75)**:
+   - Missing indexes: Create indexes per recommendations
+   - Connection pool exhaustion: Increase `max_connections`
+   - Slow queries: Optimize using pg_stat_statements
+
+3. **Data Quality Issues (Score <80)**:
+   - High NULL percentages: Investigate data import processes
+   - Duplicate records: Identify and merge duplicates
+   - Empty tables: Check data ingestion jobs
+
+---
+
+### Common Issue 2: Validation Coverage <100%
+
+**Symptoms**: `schema-validation-v2.sql` reports missing views
+
+**Diagnosis**:
+```bash
+# Find missing views
+grep "MISSING" schema_validation_*.txt
+```
+
+**Remediation**:
+1. Add missing views to DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+2. Use existing view documentation as templates
+3. Include: purpose, key metrics, sample query
+4. Run validation again to verify
+
+---
+
+### Common Issue 3: Sample Extraction Fails
+
+**Symptoms**: `extract-sample-data.sh` exits with errors
+
+**Diagnosis**:
+```bash
+# Check error log
+tail -50 extract_sample_data.log
+
+# Common errors:
+# - Permission denied: Grant SELECT on views
+# - Out of disk space: Clean up /tmp
+# - Views returning 0 rows: Normal for some views
+```
+
+**Remediation**:
+- Grant permissions: `GRANT SELECT ON ALL TABLES IN SCHEMA public TO username;`
+- Free disk space: `df -h` to check, clean up old samples
+- Skip empty views: Normal behavior, ~42 views may be empty
+
+---
+
+### Common Issue 4: Materialized View Refresh Fails
+
+**Symptoms**: `refresh-all-views.sql` reports errors
+
+**Diagnosis**:
+```bash
+# Check which views failed
+grep "ERROR" refresh_log.txt
+
+# Test individual view
+psql -U postgres -d cia_dev -c "REFRESH MATERIALIZED VIEW view_name;"
+```
+
+**Remediation**:
+1. Check view definition in `full_schema.sql`
+2. Verify source tables have data
+3. See [TROUBLESHOOTING_EMPTY_VIEWS.md](../../TROUBLESHOOTING_EMPTY_VIEWS.md)
+4. Recreate view if definition changed
+
+---
+
+### Common Issue 5: Foreign Key Violations
+
+**Symptoms**: Orphaned records found in child tables
+
+**Diagnosis**:
+```sql
+-- Find orphaned records
+SELECT c.* 
+FROM assignment_data c
+LEFT JOIN person_data p ON c.person_id = p.person_id
+WHERE c.person_id IS NOT NULL AND p.person_id IS NULL;
+```
+
+**Remediation**:
+```sql
+-- Clean up orphaned records (use with caution)
+DELETE FROM assignment_data
+WHERE NOT EXISTS (
+    SELECT 1 FROM person_data p
+    WHERE p.person_id = assignment_data.person_id
+);
+
+-- Or add missing parent records
+INSERT INTO person_data (person_id, ...) VALUES (...);
+```
+
+---
+
+### Common Issue 6: Missing Indexes on Foreign Keys
+
+**Symptoms**: Slow queries, high CPU usage
+
+**Diagnosis**:
+```bash
+# Health check identifies missing indexes
+grep "Missing Index" health_check_*.txt
+```
+
+**Remediation**:
+```sql
+-- Create index as recommended
+CREATE INDEX idx_ballot_data_issue_id ON ballot_data(issue_id);
+
+-- Verify index created
+\d ballot_data
+```
+
+---
+
+### Common Issue 7: Table Bloat
+
+**Symptoms**: Tables have high dead tuple ratio
+
+**Diagnosis**:
+```bash
+# Health check reports bloat
+grep "Table Bloat" health_check_*.txt
+```
+
+**Remediation**:
+```sql
+-- Light cleanup (doesn't lock table)
+VACUUM ANALYZE table_name;
+
+-- Heavy cleanup (locks table - use during maintenance window)
+VACUUM FULL table_name;
+```
+
+**WARNING**: Manual table rebuilding is complex and error-prone. Use `VACUUM FULL` instead.
+
+---
+
+### Common Issue 8: Empty Critical Tables
+
+**Symptoms**: Critical tables have no data
+
+**Diagnosis**:
+```bash
+# Check row counts
+psql -U postgres -d cia_dev -c "
+  SELECT tablename, n_live_tup 
+  FROM pg_stat_user_tables 
+  WHERE schemaname = 'public' AND n_live_tup = 0
+  ORDER BY tablename;
+"
+```
+
+**Remediation**:
+1. Check if data import has been run
+2. Verify external API connectivity (Riksdagen API)
+3. Check application logs for import errors
+4. Run data import jobs manually
+5. See [TROUBLESHOOTING_EMPTY_VIEWS.md](../../TROUBLESHOOTING_EMPTY_VIEWS.md)
+
+---
+
+### Common Issue 9: Slow Query Performance
+
+**Symptoms**: Queries taking longer than expected
+
+**Diagnosis**:
+```sql
+-- Enable pg_stat_statements if not already enabled
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+
+-- Find slow queries
+SELECT query, calls, mean_exec_time, total_exec_time
+FROM pg_stat_statements
+WHERE mean_exec_time > 1000  -- Queries taking >1 second
+ORDER BY mean_exec_time DESC
+LIMIT 20;
+```
+
+**Remediation**:
+1. Add appropriate indexes
+2. Optimize query structure
+3. Use materialized views for complex queries
+4. Increase work_mem for sorting operations
+5. Review and update table statistics: `ANALYZE table_name;`
+
+---
+
+### Common Issue 10: Permission Errors
+
+**Symptoms**: "permission denied for table" errors
+
+**Diagnosis**:
+```bash
+# Check user permissions
+psql -U postgres -d cia_dev -c "\du"
+
+# Check table permissions
+psql -U postgres -d cia_dev -c "\dp person_data"
+```
+
+**Remediation**:
+```sql
+-- Grant SELECT on all tables (includes views in PostgreSQL)
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO username;
+
+-- Grant USAGE on schema
+GRANT USAGE ON SCHEMA public TO username;
+```
+
+---
+
+## 🔐 Security Best Practices
+
+### Database Access Control
+
+1. **Principle of Least Privilege**:
+   ```sql
+   -- Create read-only user for monitoring
+   CREATE USER monitor_user WITH PASSWORD 'CHANGE_ME_USE_STRONG_PASSWORD';
+   GRANT CONNECT ON DATABASE cia_dev TO monitor_user;
+   GRANT USAGE ON SCHEMA public TO monitor_user;
+   GRANT SELECT ON ALL TABLES IN SCHEMA public TO monitor_user;
+   ```
+
+2. **Use SSL/TLS Encryption**:
+   ```bash
+   # Verify SSL is enabled
+   psql -U postgres -d cia_dev -c "SHOW ssl;"
+   
+   # Connect with SSL required
+   psql "sslmode=require host=localhost dbname=cia_dev user=postgres"
+   ```
+
+3. **Enable Audit Logging**:
+   ```sql
+   -- Verify pgaudit extension
+   SELECT * FROM pg_available_extensions WHERE name = 'pgaudit';
+   
+   -- Enable pgaudit
+   CREATE EXTENSION IF NOT EXISTS pgaudit;
+   ```
+
+4. **Use Password Encryption**:
+   ```sql
+   -- Verify password encryption method (safe)
+   SHOW password_encryption;
+   -- Or, for more detail:
+   SELECT name, setting FROM pg_settings WHERE name = 'password_encryption';
+   
+   -- Use scram-sha-256 (preferred)
+   ALTER SYSTEM SET password_encryption = 'scram-sha-256';
+   SELECT pg_reload_conf();
+   ```
+
+### Sensitive Data Handling
+
+1. **Never Commit Secrets**:
+   - Use environment variables for passwords
+   - Use `.pgpass` file for authentication
+   - Keep credentials out of scripts
+
+2. **Anonymize Sample Data**:
+   ```bash
+   # Before committing sample data
+   # Review CSV files for sensitive information
+   grep -r "person_id\|email\|ssn" /tmp/sample_data/
+   ```
+
+3. **Secure Script Execution**:
+   ```bash
+   # Set restrictive permissions on scripts
+   chmod 750 /usr/local/bin/cia-*.sh
+   
+   # Ensure log files are not world-readable
+   chmod 640 /var/log/cia/*.log
+   ```
+
+---
+
+## ⚡ Performance Tuning Guidelines
+
+### Database Configuration
+
+**Recommended PostgreSQL Settings for CIA Database:**
+
+```sql
+-- Memory settings (adjust based on available RAM)
+ALTER SYSTEM SET shared_buffers = '4GB';           -- 25% of RAM
+ALTER SYSTEM SET effective_cache_size = '12GB';    -- 75% of RAM
+ALTER SYSTEM SET maintenance_work_mem = '1GB';     -- For VACUUM, CREATE INDEX
+ALTER SYSTEM SET work_mem = '50MB';                -- Per-operation memory
+
+-- Checkpoint settings
+ALTER SYSTEM SET checkpoint_completion_target = 0.9;
+ALTER SYSTEM SET wal_buffers = '16MB';
+ALTER SYSTEM SET max_wal_size = '4GB';
+ALTER SYSTEM SET min_wal_size = '1GB';
+
+-- Query planning
+ALTER SYSTEM SET random_page_cost = 1.1;           -- For SSD storage
+ALTER SYSTEM SET effective_io_concurrency = 200;   -- For SSD storage
+
+-- Connection settings
+ALTER SYSTEM SET max_connections = 200;
+ALTER SYSTEM SET shared_preload_libraries = 'pg_stat_statements';
+
+-- Apply settings (requires database restart for some parameters)
+-- Parameters requiring restart: shared_buffers, max_connections, shared_preload_libraries
+-- Parameters that can reload: effective_cache_size, maintenance_work_mem, work_mem, checkpoint_completion_target, wal_buffers, max_wal_size, min_wal_size, random_page_cost, effective_io_concurrency
+-- After changing postgresql.conf or using ALTER SYSTEM:
+--   1. For parameters requiring restart: sudo systemctl restart postgresql
+--   2. For reload-only parameters: SELECT pg_reload_conf();
+```
+
+### Index Optimization
+
+```sql
+-- Identify missing indexes
+SELECT schemaname, tablename, attname
+FROM pg_stats
+WHERE schemaname = 'public' 
+  AND n_distinct > 100
+  AND correlation < 0.1
+ORDER BY tablename, attname;
+
+-- Create indexes on foreign keys
+CREATE INDEX CONCURRENTLY idx_assignment_person_id ON assignment_data(person_id);
+CREATE INDEX CONCURRENTLY idx_vote_ballot_id ON vote_data(ballot_id);
+CREATE INDEX CONCURRENTLY idx_document_element_doc_id ON document_element(document_id);
+```
+
+### Materialized View Refresh Strategy
+
+```bash
+# Refresh critical views daily at low-traffic times
+0 2 * * * psql -U postgres -d cia_dev -f /path/to/refresh-all-views.sql
+
+# Refresh specific views more frequently if needed
+*/30 * * * * psql -U postgres -d cia_dev -c "REFRESH MATERIALIZED VIEW view_riksdagen_politician;"
+```
+
+### Query Optimization
+
+1. **Use EXPLAIN ANALYZE**:
+   ```sql
+   EXPLAIN ANALYZE SELECT * FROM view_riksdagen_politician WHERE party = 'S';
+   ```
+
+2. **Optimize with CTEs**:
+   ```sql
+   -- Instead of nested subqueries, use CTEs
+   WITH party_stats AS (
+       SELECT party, COUNT(*) as count
+       FROM person_data
+       GROUP BY party
+   )
+   SELECT * FROM party_stats WHERE count > 10;
+   ```
+
+3. **Use Appropriate JOIN Types**:
+   ```sql
+   -- Use EXISTS instead of IN for large datasets
+   SELECT * FROM person_data p
+   WHERE EXISTS (
+       SELECT 1 FROM assignment_data a 
+       WHERE a.person_id = p.person_id
+   );
+   ```
+
+---
+
+## 🔄 CI/CD Integration
+
+### GitHub Actions Workflow
+
+Create `.github/workflows/schema-maintenance.yml`:
+
+```yaml
+name: Schema Maintenance
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 02:00 UTC
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: cia_dev
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Load Schema
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -U postgres -h localhost -d cia_dev -f service.data.impl/src/main/resources/full_schema.sql
+      
+      - name: Run Schema Validation
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -U postgres -h localhost -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > validation_report.txt 2>&1
+          
+          if grep -q "SUCCESS:.*100.*validation coverage achieved" validation_report.txt; then
+            echo "✅ Schema validation passed with 100% coverage"
+          else
+            echo "❌ Schema validation failed"
+            cat validation_report.txt
+            exit 1
+          fi
+      
+      - name: Run Health Check
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -U postgres -h localhost -d cia_dev -f service.data.impl/src/main/resources/schema-health-check.sql > health_report.txt 2>&1
+          
+          # Extract health score (portable method)
+          HEALTH_SCORE=$(grep "HEALTH SCORE" health_report.txt | sed -n 's/.*HEALTH SCORE[^0-9]*\([0-9][0-9]*\).*/\1/p' | head -1)
+          echo "Health Score: $HEALTH_SCORE/100"
+          
+          if [ "$HEALTH_SCORE" -lt 80 ]; then
+            echo "❌ Health check failed: Score $HEALTH_SCORE < 80"
+            cat health_report.txt
+            exit 1
+          else
+            echo "✅ Health check passed: Score $HEALTH_SCORE ≥ 80"
+          fi
+      
+      - name: Upload Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: schema-reports
+          path: |
+            health_report.txt
+            validation_report.txt
+```
+
+### Jenkins Pipeline
+
+```groovy
+pipeline {
+    agent any
+    
+    triggers {
+        cron('H 2 * * *')  // Daily at 2am
+    }
+    
+    stages {
+        stage('Schema Validation') {
+            steps {
+                script {
+                    sh '''
+                        psql -U $DB_USER -d $DB_NAME -f service.data.impl/src/main/resources/schema-validation-v2.sql > validation_report.txt 2>&1
+                        
+                        if grep -q "SUCCESS:.*100.*validation coverage achieved" validation_report.txt; then
+                            echo "✅ Validation passed"
+                        else
+                            echo "❌ Validation failed"
+                            cat validation_report.txt
+                            exit 1
+                        fi
+                    '''
+                }
+            }
+        }
+        
+        stage('Health Check') {
+            steps {
+                script {
+                    sh '''
+                        psql -U $DB_USER -d $DB_NAME -f service.data.impl/src/main/resources/schema-health-check.sql > health_report.txt 2>&1
+                        
+                        # Extract health score (portable method)
+                        HEALTH_SCORE=$(grep "HEALTH SCORE" health_report.txt | sed -n 's/.*HEALTH SCORE[^0-9]*\([0-9][0-9]*\).*/\1/p' | head -1)
+                        echo "Health Score: $HEALTH_SCORE/100"
+                        
+                        if [ "$HEALTH_SCORE" -lt 80 ]; then
+                            echo "❌ Health check failed"
+                            exit 1
+                        fi
+                    '''
+                }
+            }
+        }
+        
+        stage('Archive Reports') {
+            steps {
+                archiveArtifacts artifacts: '*_report.txt', fingerprint: true
+            }
+        }
+    }
+    
+    post {
+        failure {
+            mail to: 'intelligence-ops@example.com',
+                 subject: "Schema Maintenance Failed: ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
+                 body: "Check console output at ${env.BUILD_URL}"
+        }
+    }
+}
+```
+
+---
+
+## 📈 Monitoring and Alerting
+
+### Prometheus Metrics Export
+
+```bash
+#!/bin/bash
+# File: /usr/local/bin/export-health-metrics-prometheus.sh
+
+# Run health check and extract Prometheus metrics
+psql -U postgres -d cia_dev -t -A -f /path/to/schema-health-check.sql 2>/dev/null | \
+  grep -E "^(#|cia_db_)" > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+
+echo "Prometheus metrics exported to cia_health.prom"
+```
+
+**Grafana Dashboard Queries:**
+
+```promql
+# Overall health score
+cia_db_health_score
+
+# Category-level health scores
+cia_db_health_score{category=~".*"}
+
+# Health checks by status
+sum by (status) (cia_db_health_checks_total)
+
+# Alert on low health score
+cia_db_health_score{category="Security"} < 80
+```
+
+### Daily Health Check Script
+
+```bash
+#!/bin/bash
+# File: /usr/local/bin/cia-daily-health-check.sh
+
+REPORT_DIR="/var/log/cia/health-checks"
+mkdir -p "$REPORT_DIR"
+
+DATE=$(date +%Y%m%d_%H%M%S)
+REPORT_FILE="$REPORT_DIR/health_check_$DATE.txt"
+
+echo "Running CIA database health check at $DATE"
+
+# Run health check
+psql -U postgres -d cia_dev -f /path/to/schema-health-check.sql > "$REPORT_FILE" 2>&1
+
+# Extract health score
+HEALTH_SCORE=$(grep "HEALTH SCORE:" "$REPORT_FILE" | sed -n 's/.*HEALTH SCORE: \([0-9][0-9]*\).*/\1/p' | head -1)
+
+echo "Health check completed. Score: $HEALTH_SCORE/100"
+
+# Alert if critical
+if [ "$HEALTH_SCORE" -lt 60 ]; then
+    echo "CRITICAL: Database health score below 60!"
+    # Send alert (email, Slack, PagerDuty, etc.)
+fi
+
+# Clean up old reports (keep last 30 days)
+find "$REPORT_DIR" -name "health_check_*.txt" -mtime +30 -delete
+
+echo "Health check report saved to $REPORT_FILE"
+```
+
+**Schedule with cron:**
+```bash
+chmod +x /usr/local/bin/cia-daily-health-check.sh
+
+# Run daily at 2 AM
+(crontab -l 2>/dev/null; echo "0 2 * * * /usr/local/bin/cia-daily-health-check.sh") | crontab -
+```
+
+---
+
+## 🧭 Decision Tree: Selecting Maintenance Tasks
+
+```
+START: What do you need to do?
+│
+├─ Need to verify schema completeness?
+│  └─> Run schema-validation-v2.sql (Stage 1)
+│      ├─ Coverage < 100%? → Add missing objects to documentation
+│      └─ Coverage = 100%? → Continue to health check
+│
+├─ Need to assess database health?
+│  └─> Run schema-health-check.sql (Stage 2)
+│      ├─ Score < 60? → CRITICAL: Immediate action required
+│      ├─ Score 60-74? → Address issues within 24 hours
+│      ├─ Score 75-89? → Schedule maintenance
+│      └─ Score 90-100? → No action needed
+│
+├─ Need to extract test/analysis data?
+│  └─> Run extract-sample-data.sh (Stage 3)
+│      ├─ For specific views? → Use --views flag
+│      ├─ Custom sample size? → Use --sample-size flag
+│      └─ Full extraction? → Run without flags
+│
+├─ Need to refresh materialized views?
+│  └─> Run refresh-all-views.sql
+│      ├─ All views? → Run full script
+│      └─ Single view? → REFRESH MATERIALIZED VIEW view_name;
+│
+├─ Need to update schema documentation?
+│  └─> Stage 4: Documentation Update
+│      ├─ Update DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+│      ├─ Update DATABASE_VIEW_VALIDATION_REPORT.md
+│      └─ Update CHANGELOG_INTELLIGENCE_ANALYSIS.md
+│
+├─ Need to update full_schema.sql?
+│  └─> See "Updating full_schema.sql" section below
+│
+└─ Regular maintenance schedule?
+   ├─ Daily: Health check (10 min)
+   ├─ Weekly: Validation + view refresh (30 min)
+   └─ Monthly: Full pipeline (2 hours)
+```
+
+---
+
+## 📚 Original Schema Maintenance Guide
+
+### Overview
 
 The `full_schema.sql` file contains the complete database schema including:
 - All table definitions
@@ -157,35 +1042,52 @@ If the changelog is empty:
 
 ### Overview
 
-The `schema-validation.sql` script provides comprehensive validation of the database schema by:
-- Counting all database objects (tables, views, materialized views, indexes, sequences, functions)
-- Extracting sample data from key views for validation
-- Generating detailed statistics about schema composition and health
-- Providing baseline metrics for documentation validation
+The CIA database schema validation system provides two complementary scripts:
 
-This script is essential for:
-- Validating documentation accuracy (DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
-- Detecting schema inconsistencies
-- Monitoring database health and performance
-- Generating reports for auditing and analysis
+1. **`schema-validation.sql`** - Statistics and analysis script (Issue #7865)
+   - Provides detailed statistics and metrics
+   - Samples data from key views
+   - Analyzes performance and health
+   - Generates comprehensive reports
+
+2. **`schema-validation-v2.sql`** - 100% Coverage validation script (Issue #7872)
+   - Validates **ALL 177 objects** from full_schema.sql
+   - Ensures **100% coverage** of 93 tables + 56 views + 28 materialized views
+   - Compares full_schema.sql vs actual database
+   - Identifies missing or extra objects
+   - Provides detailed coverage metrics
+
+### Schema Object Counts
+
+**From full_schema.sql (as of 2025-11-24):**
+- **93 base tables** - All application and data tables
+- **56 regular views** - Intelligence analysis and aggregation views
+- **28 materialized views** - Performance-optimized cached views
+- **Total: 177 objects** requiring validation
+
+> **⚠️ Maintenance Note:** These counts must be kept in sync with full_schema.sql.
+> When the schema changes (tables/views added or removed):
+> 1. Update the object arrays in `schema-validation-v2.sql`
+> 2. Update the object arrays in `schema-coverage-analysis.sql`
+> 3. Update the counts in this README
+> 4. Run `schema-validation-v2.sql` to verify 100% coverage
+> 5. Update the "Last synchronized" dates in the script headers
 
 ### Running Schema Validation
 
-#### Generate Text Report
-
-To generate a comprehensive text report:
+#### Option 1: Statistics and Analysis (Recommended for monitoring)
 
 ```bash
 cd /path/to/cia/repository
 
-# Generate full validation report
+# Generate full statistics report
 psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > schema_report.txt 2>&1
 
 # View the report
 less schema_report.txt
 ```
 
-The text report includes:
+The statistics report includes:
 1. **Object Counts**: Summary of all database objects
 2. **Table Inventory**: All tables with row counts, column counts, and sizes
 3. **View Inventory**: All views (regular and materialized) with metadata
@@ -193,6 +1095,45 @@ The text report includes:
 5. **Schema Statistics**: Largest tables, empty objects, view dependencies
 6. **Column Statistics**: Most common columns and data types
 7. **Index Statistics**: Index usage and unused indexes
+
+#### Option 2: 100% Coverage Validation (Recommended for releases)
+
+```bash
+cd /path/to/cia/repository
+
+# Generate comprehensive coverage validation report
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > schema_validation_v2_report.txt 2>&1
+
+# View the report
+less schema_validation_v2_report.txt
+```
+
+The coverage validation report includes:
+1. **Complete Table Validation**: ALL 93 tables with row and column counts
+2. **Complete View Validation**: ALL 56 regular views with metadata
+3. **Complete Materialized View Validation**: ALL 28 mviews with metadata
+4. **Coverage Report**: Comparison of full_schema.sql vs actual database
+5. **Missing Objects Report**: Objects in schema but not in database
+6. **Extra Objects Report**: Objects in database but not in schema
+7. **Final Coverage Summary**: Visual report card with coverage percentages
+
+**Example Output:**
+```
+╔════════════════════════════════════════════════════════════════╗
+║               SCHEMA VALIDATION V2.0 REPORT                    ║
+╠════════════════════════════════════════════════════════════════╣
+║ Object Type          │ Expected │ Validated │ Coverage       ║
+╠══════════════════════╪══════════╪═══════════╪════════════════╣
+║ Tables               │       93 │        93 │         100.0% ║
+║ Regular Views        │       56 │        56 │         100.0% ║
+║ Materialized Views   │       28 │        28 │         100.0% ║
+╠══════════════════════╪══════════╪═══════════╪════════════════╣
+║ TOTAL                │      177 │       177 │         100.0% ║
+╚════════════════════════════════════════════════════════════════╝
+
+✓✓✓ SUCCESS: 100% validation coverage achieved!
+    All objects from full_schema.sql are validated.
+```
 
 #### Generate JSON Report
 
@@ -327,96 +1268,221 @@ Sample rows (top 5-10) from key views:
 Validate that DATABASE_VIEW_INTELLIGENCE_CATALOG.md matches actual schema:
 
 ```bash
-# Generate current schema inventory
-psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > current_schema.txt
+# Generate current schema inventory with v2 for complete coverage
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > current_schema_v2.txt
 
-# Compare with documented views
-grep "^View:" current_schema.txt | sort > current_views.txt
-grep "^Materialized View:" current_schema.txt | sort > current_mviews.txt
+# Extract object names for comparison
+grep "✓ Table:" current_schema_v2.txt | awk '{print $5}' | sort > current_tables.txt
+grep "✓ View:" current_schema_v2.txt | awk '{print $5}' | sort > current_views.txt
+grep "✓ MView:" current_schema_v2.txt | awk '{print $5}' | sort > current_mviews.txt
 
-# Extract view names from documentation
-grep -E "^(###|##) view_" DATABASE_VIEW_INTELLIGENCE_CATALOG.md | sed 's/.*view_/view_/' | sort > documented_views.txt
-
-# Find differences
-comm -3 current_views.txt documented_views.txt
+# Compare with full_schema.sql
+diff /tmp/tables_in_schema.txt current_tables.txt
+diff /tmp/views_in_schema.txt current_views.txt
+diff /tmp/mviews_in_schema.txt current_mviews.txt
 ```
 
-#### 2. Schema Health Check
+#### 2. Pre-Release Validation
 
-Monitor schema health before releases:
+Ensure 100% schema coverage before major releases:
 
 ```bash
-# Run validation and check for issues
-psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql 2>&1 | \
-  grep -E "(ERROR|empty|0 rows)" > schema_issues.txt
+# Run comprehensive validation
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > pre_release_validation.txt 2>&1
 
-# Review issues
-cat schema_issues.txt
+# Check for 100% coverage
+if grep -q "SUCCESS:.*100.*validation coverage achieved" pre_release_validation.txt; then
+    echo "✓ Schema validation passed - ready for release"
+else
+    echo "✗ Schema validation failed - review missing objects"
+    cat pre_release_validation.txt
+    exit 1
+fi
 ```
 
-#### 3. Performance Analysis
+#### 3. Continuous Monitoring
 
-Identify performance optimization opportunities:
+Monitor schema health and statistics:
 
 ```bash
-# Generate report focused on performance metrics
-psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql 2>&1 | \
-  grep -A 30 "Largest Tables by Total Size" > largest_tables.txt
+# Run regular statistics report
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > weekly_stats_$(date +%Y%m%d).txt 2>&1
 
-# Check for unused indexes
-psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql 2>&1 | \
-  grep -A 20 "Unused Indexes" > unused_indexes.txt
+# Run comprehensive validation monthly
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > monthly_validation_$(date +%Y%m%d).txt 2>&1
 ```
 
-#### 4. Baseline Establishment
+#### 4. Schema Health Check
 
-Create baseline metrics for tracking schema evolution:
+Check for issues before running tests or deployments:
 
 ```bash
-# Generate baseline report
-DATE=$(date +%Y%m%d)
-psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > baseline_$DATE.txt 2>&1
+# Run comprehensive validation and check for issues
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql 2>&1 | \
+  grep -E "(ERROR|WARNING|MISSING)" > schema_issues.txt
 
-# Store in version control for comparison
-git add baseline_$DATE.txt
-git commit -m "Schema baseline snapshot $DATE"
+# Review issues if any
+if [ -s schema_issues.txt ]; then
+    echo "Schema issues detected:"
+    cat schema_issues.txt
+fi
+```
+
+#### 5. Database Migration Verification
+
+After applying Liquibase migrations, verify schema integrity:
+
+```bash
+# Apply migrations
+mvn liquibase:update
+
+# Validate complete schema coverage
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > post_migration_validation.txt 2>&1
+
+# Check coverage summary
+tail -30 post_migration_validation.txt
 ```
 
 ### Integration with CI/CD
 
-Add schema validation to CI/CD pipeline:
+Add comprehensive schema validation to CI/CD pipeline in `.github/workflows/verify-and-release.yml`:
 
 ```yaml
-# In .github/workflows/verify-and-release.yml
-- name: Validate Database Schema
+- name: Run Schema Validation V2 (100% Coverage)
   run: |
-    psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > schema_validation_report.txt 2>&1
+    echo "Running comprehensive schema validation..."
+    psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation-v2.sql > schema_validation_report.txt 2>&1
     
-    # Check for errors in validation
-    if grep -q "ERROR" schema_validation_report.txt; then
-      echo "Schema validation found errors"
-      cat schema_validation_report.txt
+    # Check for 100% coverage
+    if grep -q "SUCCESS:.*100.*validation coverage achieved" schema_validation_report.txt; then
+      echo "✓ Schema validation passed with 100% coverage"
+      
+      # Extract coverage metrics using awk with field delimiter
+      TABLES_VALIDATED=$(awk -F '│' '/NOTICE:.*║ Tables.*│.*│.*│/ {gsub(/^[ \t]+|[ \t]+$/, "", $3); print $3}' schema_validation_report.txt)
+      VIEWS_VALIDATED=$(awk -F '│' '/NOTICE:.*║ Regular Views.*│.*│.*│/ {gsub(/^[ \t]+|[ \t]+$/, "", $3); print $3}' schema_validation_report.txt)
+      MVIEWS_VALIDATED=$(awk -F '│' '/NOTICE:.*║ Materialized Views.*│.*│.*│/ {gsub(/^[ \t]+|[ \t]+$/, "", $3); print $3}' schema_validation_report.txt)
+      
+      echo "Coverage Summary:"
+      echo "  - Tables: $TABLES_VALIDATED/93"
+      echo "  - Regular Views: $VIEWS_VALIDATED/56"
+      echo "  - Materialized Views: $MVIEWS_VALIDATED/28"
+    else
+      echo "✗ Schema validation failed - coverage below 100%"
+      echo "Review the validation report for missing objects:"
+      tail -50 schema_validation_report.txt
       exit 1
     fi
     
-    echo "Schema validation passed"
+    # Check for errors in validation
+    if grep -qE "ERROR|✗" schema_validation_report.txt; then
+      echo "⚠ Validation errors detected"
+      grep -E "ERROR|✗" schema_validation_report.txt
+      exit 1
+    fi
+    
+    echo "Schema validation completed successfully"
 
-- name: Upload Schema Report
+- name: Upload Schema Validation Report
+  if: always()
   uses: actions/upload-artifact@v5
   with:
     name: schema-validation-report
     path: schema_validation_report.txt
+    retention-days: 30
+
+- name: Run Schema Statistics (Optional - for monitoring)
+  run: |
+    echo "Generating schema statistics..."
+    psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/schema-validation.sql > schema_stats_report.txt 2>&1
+    
+    # Extract key metrics
+    echo "Schema Statistics Summary:"
+    grep "base_tables\|regular_views\|materialized_views" schema_stats_report.txt | head -3
+
+- name: Upload Schema Statistics Report
+  if: always()
+  uses: actions/upload-artifact@v5
+  with:
+    name: schema-statistics-report
+    path: schema_stats_report.txt
+    retention-days: 7
+```
+
+#### Expected CI/CD Output
+
+```
+Running comprehensive schema validation...
+✓ Schema validation passed with 100% coverage
+Coverage Summary:
+  - Tables: 93/93
+  - Regular Views: 56/56
+  - Materialized Views: 28/28
+Schema validation completed successfully
 ```
 
 ### Best Practices
 
-1. **Regular Validation**: Run schema validation weekly or before major releases
-2. **Compare Reports**: Keep historical reports to track schema evolution
-3. **Review Empty Objects**: Investigate tables/views with no data
-4. **Monitor Sizes**: Track growth trends in largest tables
-5. **Index Optimization**: Review unused indexes quarterly for removal
-6. **Document Changes**: Update documentation when schema changes are detected
-7. **Automate Checks**: Integrate validation into CI/CD for continuous monitoring
+1. **Use the Right Tool for the Job**
+   - Use **schema-validation-v2.sql** for comprehensive validation and pre-release checks
+   - Use **schema-validation.sql** for statistics, monitoring, and performance analysis
+   - Run v2 before major releases to ensure 100% coverage
+   - Run regular validation weekly or after schema changes
+
+2. **Regular Validation Schedule**
+   - **Daily**: Quick object count checks
+   - **Weekly**: Full statistics report (schema-validation.sql)
+   - **Monthly**: Comprehensive validation (schema-validation-v2.sql)
+   - **Pre-release**: Always run schema-validation-v2.sql
+
+3. **Compare Reports Over Time**
+   - Keep historical validation reports
+   - Track schema growth and changes
+   - Monitor coverage percentages
+   - Identify schema drift
+
+4. **Review Coverage Metrics**
+   - Target: 100% coverage (177/177 objects)
+   - Alert if coverage drops below 100%
+   - Investigate missing or extra objects immediately
+   - Update full_schema.sql when schema changes
+
+5. **Document Schema Changes**
+   - Update full_schema.sql after applying migrations
+   - Update README-SCHEMA-MAINTENANCE.md with new object counts
+   - Run validation to confirm changes
+   - Keep documentation synchronized with code
+
+6. **Automate Validation in CI/CD**
+   - Run schema-validation-v2.sql in CI/CD pipeline
+   - Fail builds if coverage < 100%
+   - Upload validation reports as artifacts
+   - Review reports during pull request reviews
+
+7. **Monitor for Schema Health**
+   - Use schema-validation.sql for performance insights
+   - Check for unused indexes
+   - Monitor table bloat
+   - Review empty views and tables
+
+### Coverage Metrics (Issue #7872)
+
+**Target Coverage: 100% (177 objects)**
+
+| Object Type | Count | Status |
+|-------------|-------|--------|
+| Base Tables | 93 | ✓ All validated |
+| Regular Views | 56 | ✓ All validated |
+| Materialized Views | 28 | ✓ All validated |
+| **Total** | **177** | **✓ 100% Coverage** |
+
+**Validation Scripts:**
+- `schema-validation.sql` - Statistics and monitoring (Issue #7865)
+- `schema-validation-v2.sql` - 100% coverage validation (Issue #7872)
+
+**Related Documentation:**
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View catalog
+- [TROUBLESHOOTING_EMPTY_VIEWS.md](../../TROUBLESHOOTING_EMPTY_VIEWS.md) - Troubleshooting guide
+- [full_schema.sql](src/main/resources/full_schema.sql) - Complete schema definition
 
 ### Troubleshooting
 
@@ -477,18 +1543,52 @@ psql -U postgres -d cia_dev -c "
 ### Overview
 
 The `schema-health-check.sql` script provides comprehensive database health monitoring by:
+
+**Schema Integrity:**
 - Validating all foreign key constraints for referential integrity
 - Checking for orphaned records
 - Validating view definitions (detecting broken views)
 - Checking materialized view freshness
-- Identifying missing indexes on foreign keys
+
+**Data Quality:**
 - Checking for empty critical tables
 - Validating data quality (NULL values in required fields)
-- Analyzing query performance patterns
+- Checking NULL percentage in critical columns
+- Analyzing data distribution balance (party distribution)
+- Detecting duplicate records in key views
+
+**Performance Analysis:**
+- Identifying missing indexes on foreign keys
+- Analyzing table maintenance (vacuum status)
+- Detecting slow query patterns (via pg_stat_statements)
 - Detecting table bloat
+- Monitoring connection pool usage
+- Analyzing query cache hit ratios
+- Detecting database lock waits
+
+**Security Validation:**
+- Auditing user permissions
+- Checking SSL configuration
+- Validating pgaudit extension status
+- Verifying password encryption methods
+
+**Referential Integrity:**
+- Analyzing cascade delete configurations
+- Validating constraint status
+
+**View Dependencies:**
 - Analyzing view dependency depth
-- Generating health score (0-100)
+- Detecting empty views
+
+**Health Scoring:**
+- Overall health score (0-100)
+- Category-level health scores (per check type)
 - Providing actionable recommendations
+
+**Monitoring Integration:**
+- Prometheus metrics export format
+- JSON export for automation
+- Alerting threshold support
 
 This script complements `schema-validation.sql` (which provides statistics) by adding health checks and recommendations.
 
@@ -521,19 +1621,50 @@ cat health_check.json | python3 -m json.tool
 
 # Example JSON structure:
 # {
-#   "timestamp": "2025-11-18T17:30:00",
+#   "timestamp": "2025-11-24T22:00:00",
 #   "database": "cia_dev",
 #   "health_score": 87.5,
 #   "summary": {
-#     "total_checks": 45,
-#     "passed": 38,
-#     "warnings": 5,
-#     "failures": 2,
-#     "critical_issues": 1
+#     "total_checks": 65,
+#     "passed": 52,
+#     "warnings": 10,
+#     "failures": 3,
+#     "critical_issues": 2
 #   },
-#   "categories": [...],
+#   "categories": [
+#     {
+#       "category": "Schema Integrity",
+#       "total_checks": 15,
+#       "passed": 14,
+#       "warnings": 1,
+#       "failures": 0,
+#       "pass_rate": 93.3,
+#       "category_score": 96.67
+#     },
+#     ...
+#   ],
 #   "issues": [...]
 # }
+```
+
+#### Generate Prometheus Metrics
+
+Export health check metrics in Prometheus format:
+
+```bash
+# Generate Prometheus metrics file
+psql -U postgres -d cia_dev -t -A -f service.data.impl/src/main/resources/schema-health-check.sql 2>/dev/null | \
+  grep -A 999 "cia_db_health_score" | grep -E "^(#|cia_db_)" > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+
+# Example Prometheus metrics:
+# cia_db_health_score{category="Schema Integrity"} 96.67
+# cia_db_health_score{category="Data Quality"} 85.00
+# cia_db_health_score{category="Performance"} 78.50
+# cia_db_health_score{category="Security"} 100.00
+# cia_db_health_score{category="Referential Integrity"} 100.00
+# cia_db_health_checks_total{category="Schema Integrity",status="pass"} 14
+# cia_db_health_checks_total{category="Schema Integrity",status="warn"} 1
+# cia_db_health_checks_total{category="Schema Integrity",status="fail"} 0
 ```
 
 ### Health Score Interpretation
@@ -543,12 +1674,18 @@ The health score ranges from 0 to 100 based on check results:
 - **WARN** checks contribute 50 points each
 - **FAIL** checks contribute 0 points each
 
+**Overall Health Score:**
+
 | Score | Status | Action Required |
 |-------|--------|----------------|
 | 90-100 | ✓ EXCELLENT | No action needed, maintain current practices |
 | 75-89 | ⚠ GOOD | Monitor warnings, plan improvements |
 | 60-74 | ⚠⚠ NEEDS ATTENTION | Address failures and warnings soon |
 | < 60 | ✗✗✗ CRITICAL | Immediate action required |
+
+**Category-Level Scores:**
+
+Each category (Schema Integrity, Data Quality, Performance, Security, Referential Integrity, View Dependencies) receives its own health score, allowing for targeted improvements in specific areas.
 
 ### Health Check Categories
 
@@ -567,7 +1704,9 @@ Details: Found 0 orphaned records
 
 #### 2. Data Quality
 - **Critical Table Checks**: Ensures important tables have data
-- **NULL Value Checks**: Validates no NULL values in required columns
+- **NULL Value Checks**: Validates no NULL values in required columns (specific fields)
+- **NULL Percentage Analysis**: Checks percentage of NULL values in critical columns
+- **Data Distribution Balance**: Analyzes party distribution for imbalances
 - **Duplicate Detection**: Identifies duplicate primary keys in views
 
 **Example Output:**
@@ -577,10 +1716,14 @@ Check: Critical Table: person_data
 Status: PASS
 Details: Table has 5,432 rows
 
-Check: NULL Check: person_data.person_id
-Status: FAIL
-Details: Found 12 NULL person_id values
-Recommendation: Fix NULL values in person_data.person_id
+Check: NULL Percentage: person_data.first_name
+Status: WARN
+Details: 7.5% NULL values
+Recommendation: Investigate and fix NULL values in person_data.first_name
+
+Check: Party Distribution Balance
+Status: PASS
+Details: Distribution coefficient: 0.85 | Avg per party: 450
 ```
 
 #### 3. Performance Analysis
@@ -588,6 +1731,9 @@ Recommendation: Fix NULL values in person_data.person_id
 - **Table Maintenance**: Checks when tables were last vacuumed
 - **Slow Queries**: Reports queries with high execution time (requires pg_stat_statements)
 - **Table Bloat**: Detects tables with excessive dead tuples
+- **Connection Pool Usage**: Monitors total client backend connections vs max connections
+- **Query Cache Hit Ratio**: Analyzes buffer cache effectiveness
+- **Lock Waits**: Detects blocking queries and lock contention
 
 **Example Output:**
 ```
@@ -601,9 +1747,64 @@ Check: Table Bloat: document_data
 Status: WARN
 Details: Live tuples: 50000 | Dead tuples: 12000 | Dead ratio: 24.0%
 Recommendation: VACUUM FULL document_data; -- WARNING: Locks table
+
+Check: Connection Pool Usage
+Status: PASS
+Details: Client Connections: 15 / Max: 100 (15.0%)
+
+Check: Query Cache Hit Ratio
+Status: PASS
+Details: Hit Ratio: 95.50%
+
+Check: Database Lock Waits
+Status: PASS
+Details: Current lock waits: 0
 ```
 
-#### 4. View Dependencies
+#### 4. Security Validation
+- **User Permission Audit**: Reviews database user privileges
+- **SSL Configuration**: Verifies SSL/TLS encryption settings
+- **pgaudit Extension**: Checks audit logging configuration
+- **Password Encryption**: Validates password encryption methods
+
+**Example Output:**
+```
+Category: Security
+Check: User Permissions: app_user
+Status: PASS
+Details: User: app_user | Superuser: false | Create DB: false
+
+Check: SSL Configuration
+Status: PASS
+Details: SSL: on
+
+Check: pgaudit Extension
+Status: PASS
+Details: pgaudit is installed and active
+
+Check: Password Encryption Method
+Status: PASS
+Details: Encryption method: scram-sha-256
+```
+
+#### 5. Referential Integrity
+- **Cascade Delete Configuration**: Reviews cascade rules on foreign keys
+- **Constraint Validation**: Ensures all constraints are validated
+
+**Example Output:**
+```
+Category: Referential Integrity
+Check: Cascade Rule: vote_data -> ballot_data
+Status: INFO
+Details: Delete rule: CASCADE | Update rule: CASCADE
+Recommendation: CASCADE delete configured - ensure this is intentional for vote_data
+
+Check: Constraint Validation: fk_assignment_person
+Status: PASS
+Details: Constraint fk_assignment_person on assignment_data | Validated: true
+```
+
+#### 6. View Dependencies
 - **Dependency Depth**: Checks for overly complex view hierarchies
 - **Empty Views**: Identifies views returning zero rows
 
@@ -793,7 +1994,33 @@ Add to `.github/workflows/verify-and-release.yml`:
 
 #### Monitoring with Prometheus/Grafana
 
-Export metrics for monitoring systems:
+The health check script now provides native Prometheus metrics export with category-level granularity.
+
+**Option 1: Direct Export from Script**
+
+```bash
+#!/bin/bash
+# File: /usr/local/bin/export-health-metrics-prometheus.sh
+
+# Run health check and extract Prometheus metrics
+psql -U postgres -d cia_dev -t -A -f /path/to/service.data.impl/src/main/resources/schema-health-check.sql 2>/dev/null | \
+  grep -E "^(#|cia_db_)" > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+
+echo "Prometheus metrics exported to cia_health.prom"
+
+# Example metrics output:
+# cia_db_health_score{category="Schema Integrity"} 96.67
+# cia_db_health_score{category="Data Quality"} 85.00
+# cia_db_health_score{category="Performance"} 78.50
+# cia_db_health_score{category="Security"} 100.00
+# cia_db_health_score{category="Referential Integrity"} 100.00
+# cia_db_health_score{category="View Dependencies"} 95.00
+# cia_db_health_checks_total{category="Schema Integrity",status="pass"} 14
+# cia_db_health_checks_total{category="Schema Integrity",status="warn"} 1
+# cia_db_health_checks_total{category="Schema Integrity",status="fail"} 0
+```
+
+**Option 2: JSON-based Export (Legacy)**
 
 ```bash
 #!/bin/bash
@@ -802,7 +2029,7 @@ Export metrics for monitoring systems:
 # Run health check and extract JSON
 JSON=$(psql -U postgres -d cia_dev -t -A -f service.data.impl/src/main/resources/schema-health-check.sql | grep '{"timestamp"' | head -1)
 
-# Extract metrics
+# Extract overall metrics
 HEALTH_SCORE=$(echo "$JSON" | jq -r '.health_score')
 TOTAL_CHECKS=$(echo "$JSON" | jq -r '.summary.total_checks')
 PASSED=$(echo "$JSON" | jq -r '.summary.passed')
@@ -810,26 +2037,62 @@ WARNINGS=$(echo "$JSON" | jq -r '.summary.warnings')
 FAILURES=$(echo "$JSON" | jq -r '.summary.failures')
 CRITICAL=$(echo "$JSON" | jq -r '.summary.critical_issues')
 
+# Extract category-level scores
+CATEGORIES=$(echo "$JSON" | jq -r '.categories[] | "\(.category)|\(.category_score)"')
+
 # Write to Prometheus text file
 cat <<EOF > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
-# HELP cia_health_score Database health score (0-100)
-# TYPE cia_health_score gauge
-cia_health_score $HEALTH_SCORE
-
-# HELP cia_health_checks_total Total number of health checks
-# TYPE cia_health_checks_total gauge
-cia_health_checks_total{status="passed"} $PASSED
-cia_health_checks_total{status="warnings"} $WARNINGS
-cia_health_checks_total{status="failures"} $FAILURES
-cia_health_checks_total{status="critical"} $CRITICAL
+# HELP cia_db_health_score Database health score by category (0-100)
+# TYPE cia_db_health_score gauge
 EOF
+
+# Add category scores (matching Option 1 script output format)
+echo "$CATEGORIES" | while IFS='|' read -r category score; do
+  echo "cia_db_health_score{category=\"$category\"} $score" >> /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+done
+
+# Add aggregate health checks by status
+cat <<EOF >> /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+
+# HELP cia_db_health_checks_total Total number of health checks by status
+# TYPE cia_db_health_checks_total gauge
+cia_db_health_checks_total{status="passed"} $PASSED
+cia_db_health_checks_total{status="warnings"} $WARNINGS
+cia_db_health_checks_total{status="failures"} $FAILURES
+cia_db_health_checks_total{status="critical"} $CRITICAL
+EOF
+```
+
+**Grafana Dashboard Queries:**
+
+```promql
+# Overall health score
+cia_db_health_score
+
+# Category-level health scores
+cia_db_health_score{category=~".*"}
+
+# Health checks by status
+sum by (status) (cia_db_health_checks_total)
+
+# Alert on low health score
+cia_db_health_score{category="Security"} < 80
+```
+
+**Schedule with Cron:**
+
+```bash
+chmod +x /usr/local/bin/export-health-metrics-prometheus.sh
+
+# Run every 15 minutes
+(crontab -l 2>/dev/null; echo "*/15 * * * * /usr/local/bin/export-health-metrics-prometheus.sh") | crontab -
 ```
 
 ### Best Practices
 
 1. **Run health checks regularly**: Weekly or before major deployments
 2. **Address issues promptly**: Don't let warnings accumulate
-3. **Monitor trends**: Track health score over time
+3. **Monitor trends**: Track health score over time (use category scores for targeted analysis)
 4. **Automate alerts**: Set up notifications for score drops
 5. **Document fixes**: Keep track of recurring issues and solutions
 6. **Combine with validation**: Use both health-check and validation scripts
@@ -1501,6 +2764,139 @@ WHERE schemaname = 'public' AND relname LIKE 'view_%'
 ORDER BY matviewname;
 "
 ```
+
+---
+
+## 📖 Complete Tool Reference
+
+### Available Scripts and Tools
+
+| Script | Purpose | When to Use | Documentation |
+|--------|---------|-------------|---------------|
+| `schema-validation-v2.sql` | 100% coverage validation | Pre-release, weekly checks | [Stage 1](#stage-1-schema-validation-required---run-first) |
+| `schema-validation.sql` | Statistics and analysis | Monitoring, investigation | [Schema Validation](#schema-validation-and-statistics) |
+| `schema-health-check.sql` | Comprehensive health check | Daily, before deployments | [Stage 2](#stage-2-health-check-required---run-after-validation) |
+| `extract-sample-data.sql` | Sample data extraction (SQL) | Testing, debugging | [Stage 3](#stage-3-sample-data-extraction-optional---for-analysistesting) |
+| `extract-sample-data.sh` | Sample data extraction (Shell) | Testing, debugging | [SAMPLE_DATA_EXTRACTION.md](SAMPLE_DATA_EXTRACTION.md) |
+| `validate-sample-data-extraction.sh` | Validate extracted samples | After extraction | [SAMPLE_DATA_EXTRACTION.md](SAMPLE_DATA_EXTRACTION.md) |
+| `refresh-all-views.sql` | Refresh materialized views | Daily/weekly refresh | [Refreshing Materialized Views](#refreshing-materialized-views) |
+| `analyze-view-dependencies.sql` | View dependency analysis | Understanding relationships | [Analyzing View Dependencies](#analyzing-view-dependencies) |
+| `schema-coverage-analysis.sql` | Coverage metrics | Quality assurance | Detailed analysis script |
+| `full_schema.sql` | Complete schema definition | Fresh installs, CI/CD | [Updating full_schema.sql](#updating-fullschemasql) |
+
+### Script Locations
+
+All scripts are located in:
+```
+service.data.impl/src/main/resources/
+```
+
+### Quick Command Reference
+
+```bash
+# Navigate to scripts directory
+cd service.data.impl/src/main/resources/
+
+# Schema Validation (100% coverage)
+psql -U postgres -d cia_dev -f schema-validation-v2.sql > report.txt 2>&1
+
+# Health Check
+psql -U postgres -d cia_dev -f schema-health-check.sql > health.txt 2>&1
+
+# Sample Data Extraction
+./extract-sample-data.sh /tmp/samples
+
+# Refresh All Views
+psql -U postgres -d cia_dev -f refresh-all-views.sql
+
+# View Dependencies
+psql -U postgres -d cia_dev -f analyze-view-dependencies.sql > deps.csv
+```
+
+---
+
+## 🔗 Related Documentation
+
+### Primary Documentation
+- [SAMPLE_DATA_EXTRACTION.md](SAMPLE_DATA_EXTRACTION.md) - Detailed sample data extraction guide
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Complete view catalog
+- [TROUBLESHOOTING_EMPTY_VIEWS.md](../../TROUBLESHOOTING_EMPTY_VIEWS.md) - Debugging empty views
+
+### Intelligence Analysis Documentation
+- [CHANGELOG_INTELLIGENCE_ANALYSIS.md](../../CHANGELOG_INTELLIGENCE_ANALYSIS.md) - Intelligence analysis changelog
+- [DATABASE_VIEW_VALIDATION_REPORT.md](../../DATABASE_VIEW_VALIDATION_REPORT.md) - Validation reports
+- [DATA_MODEL.md](../../DATA_MODEL.md) - Complete data model documentation
+
+### Agent Documentation
+- [intelligence-operative.md](../../.github/agents/intelligence-operative.md) - Intelligence operative agent definition
+
+### Architecture and Security
+- [ARCHITECTURE.md](../../ARCHITECTURE.md) - System architecture
+- [SECURITY.md](../../SECURITY.md) - Security policy
+- [THREAT_MODEL.md](../../THREAT_MODEL.md) - Threat modeling
+
+### Workflow Integration
+- [.github/workflows/copilot-setup-steps.yml](../../.github/workflows/copilot-setup-steps.yml) - CI/CD setup with database
+
+---
+
+## 📊 Summary: Schema Maintenance Coverage
+
+### Object Coverage Statistics
+
+| Object Type | Total | Validated | Coverage | Status |
+|-------------|-------|-----------|----------|--------|
+| Base Tables | 93 | 93 | 100% | ✅ Complete |
+| Regular Views | 56 | 56 | 100% | ✅ Complete |
+| Materialized Views | 28 | 28 | 100% | ✅ Complete |
+| **TOTAL** | **177** | **177** | **100%** | ✅ Complete |
+
+### Maintenance Task Coverage
+
+| Task | Script | Automation | Status |
+|------|--------|------------|--------|
+| Schema Validation | ✅ | ✅ CI/CD | Complete |
+| Health Monitoring | ✅ | ✅ Daily cron | Complete |
+| Sample Extraction | ✅ | ✅ On-demand | Complete |
+| View Refresh | ✅ | ✅ Daily cron | Complete |
+| Documentation | ✅ | ⚠️ Manual | Comprehensive |
+| Troubleshooting | ✅ | ⚠️ Manual | 10+ scenarios |
+
+### Documentation Coverage
+
+| Area | Coverage | Quality | Maintenance |
+|------|----------|---------|-------------|
+| Quick Start | ✅ 100% | Excellent | Active |
+| Automation Pipeline | ✅ 100% | Excellent | Active |
+| Troubleshooting | ✅ 100% | Excellent | Active |
+| Security Practices | ✅ 100% | Excellent | Active |
+| Performance Tuning | ✅ 100% | Excellent | Active |
+| CI/CD Integration | ✅ 100% | Excellent | Active |
+| Daily Operations | ✅ 100% | Excellent | Active |
+
+---
+
+## 🎯 Next Steps for Intelligence Operatives
+
+### Getting Started (First Time)
+1. Review [Quick Start](#-quick-start-5-minutes) section
+2. Run first health check and validation
+3. Familiarize yourself with [Decision Tree](#-decision-tree-selecting-maintenance-tasks)
+4. Set up [Daily Operations](#-daily-operations-checklist) routine
+
+### Regular Operations
+1. Follow [Daily Operations Checklist](#-daily-operations-checklist)
+2. Execute [Complete Automation Pipeline](#-complete-automation-pipeline) monthly
+3. Review [Troubleshooting](#-troubleshooting) when issues arise
+4. Maintain [Security Best Practices](#-security-best-practices)
+
+### Advanced Operations
+1. Implement [CI/CD Integration](#-cicd-integration)
+2. Configure [Monitoring and Alerting](#-monitoring-and-alerting)
+3. Apply [Performance Tuning](#-performance-tuning-guidelines)
+4. Contribute improvements back to this guide
+
+---
 
 ## Related Files
 

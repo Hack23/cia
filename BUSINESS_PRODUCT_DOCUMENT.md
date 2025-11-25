@@ -86,6 +86,91 @@ flowchart TB
 
 ---
 
+## 📊 Technical Data Specifications
+
+This section provides direct links to JSON specifications defining the data structures, API schemas, and export formats for each product feature, establishing complete traceability from business strategy to technical implementation.
+
+### Product-to-Data Mapping Table
+
+| Product Feature | JSON Spec | Database View | Update Frequency |
+|----------------|-----------|---------------|------------------|
+| Political Intelligence API | [politician-schema.md](json-export-specs/schemas/politician-schema.md), [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_politician`, `view_riksdagen_party` | Real-time |
+| Risk Assessment Feed | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Hourly |
+| Voting Statistics Export | [politician-schema.md](json-export-specs/schemas/politician-schema.md#voting-section) | `view_riksdagen_vote_data_ballot_summary`, `view_riksdagen_vote_data_ballot_politician_summary` | Daily |
+| Party Performance Dashboard | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_summary`, `view_riksdagen_party_ballot_support_annual_summary` | Daily |
+| Committee Analytics | [committee-schema.md](json-export-specs/schemas/committee-schema.md) | `view_riksdagen_committee`, `view_riksdagen_committee_proposal_summary` | Daily |
+| Politician Scorecards | [politician-schema.md](json-export-specs/schemas/politician-schema.md#intelligence-section) | `view_riksdagen_politician_ranking`, `view_riksdagen_politician_document_summary` | Daily |
+| Coalition Prediction Data | [party-schema.md](json-export-specs/schemas/party-schema.md#coalition-section) | `view_riksdagen_party_ballot_support_annual_summary`, `view_riksdagen_party_coalition` | Weekly |
+| Government Performance | [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) | `view_riksdagen_goverment`, `view_ministry_decision_impact` | As changes occur |
+| Decision Intelligence | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_party_decision_flow`, `view_politician_decision_flow`, `view_ministry_decision_flow` | Daily |
+
+### JSON Spec Repository Structure
+
+```
+json-export-specs/
+├── schemas/                     # JSON schema definitions (Markdown format)
+│   ├── politician-schema.md    # Politician profiles, voting, activity, rankings
+│   ├── party-schema.md         # Party performance, coalitions, voting patterns
+│   ├── committee-schema.md     # Committee composition, proposals, effectiveness
+│   ├── ministry-schema.md      # Government ministries, decisions, performance
+│   └── intelligence-schema.md  # Risk assessment, analytics, predictions
+├── examples/                    # Sample data files
+│   ├── politician-example.json # Real politician data example
+│   └── party-example.json      # Real party data example
+├── visualizations/              # Mermaid diagrams
+│   ├── intelligence-dashboard.md
+│   ├── party-performance.md
+│   └── politician-profile.md
+└── README.md                    # Integration guide and CDN deployment
+
+Total Schemas: 5 comprehensive specifications
+Total Examples: 2 real-world samples
+Total Visualizations: 3+ Mermaid diagrams
+```
+
+### Data Model Integration
+
+For comprehensive database schema documentation:
+- **[DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** - Complete catalog of 85 database views with intelligence applications
+- **[full_schema.sql](service.data.impl/src/main/resources/full_schema.sql)** - Complete database schema with tables and views
+- **[json-export-specs/README.md](json-export-specs/README.md)** - JSON export system architecture and CDN deployment guide
+
+### Data Lineage Overview
+
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#e8f5e9',
+      'primaryTextColor': '#2e7d32',
+      'lineColor': '#4caf50',
+      'fontSize': '14px'
+    }
+  }
+}%%
+flowchart LR
+    A[Riksdagen API<br/>Valmyndigheten<br/>World Bank<br/>ESV] --> B[Database Tables<br/>person_data<br/>assignment_data<br/>vote_data<br/>document_data]
+    B --> C[Database Views<br/>85 views<br/>57 regular + 28 materialized]
+    C --> D[JSON Specs<br/>5 schemas<br/>Markdown format]
+    D --> E[API Endpoints<br/>REST API<br/>CDN Static Files]
+    E --> F[Product Features<br/>6 Product Lines<br/>20+ Features]
+    F --> G[Customer Segments<br/>Political Consulting<br/>Media & Journalism<br/>Academic Research<br/>Corporate Affairs<br/>Government Transparency]
+```
+
+### Schema Coverage by Product Line
+
+| Product Line | Primary Schema | Secondary Schemas | Database Views Used |
+|--------------|----------------|-------------------|---------------------|
+| **Political Intelligence API** | politician-schema.md | party-schema.md | 15+ politician views |
+| **Advanced Analytics Suite** | intelligence-schema.md | All schemas | 25+ analytical views |
+| **Risk Intelligence Feed** | intelligence-schema.md | politician-schema.md | 10+ risk & violation views |
+| **Predictive Analytics** | intelligence-schema.md | party-schema.md | 12+ temporal & trend views |
+| **White-Label Platform** | All schemas | - | All 85 views |
+| **Decision Intelligence** | intelligence-schema.md | ministry-schema.md | 8+ decision flow views |
+
+---
+
 ## 📦 Product Definitions
 
 ### 🎯 Product Line 1: Political Intelligence API
@@ -137,6 +222,25 @@ flowchart TB
 
 #### Technical Specifications
 
+**🔗 JSON Data Specifications:**
+- **Politician Data**: [politician-schema.md](json-export-specs/schemas/politician-schema.md) - Comprehensive politician profiles with voting records, activity metrics, and risk assessments
+- **Party Data**: [party-schema.md](json-export-specs/schemas/party-schema.md) - Party performance, coalitions, voting patterns, and political positioning
+- **Example Responses**: [politician-example.json](json-export-specs/examples/politician-example.json), [party-example.json](json-export-specs/examples/party-example.json)
+- **Database Views**: `view_riksdagen_politician`, `view_riksdagen_party`, `view_riksdagen_vote_data_ballot_summary`, `view_riksdagen_politician_summary`, `view_riksdagen_politician_ranking`
+
+**API Endpoints with JSON Specs:**
+
+| Endpoint | Method | JSON Schema Reference | Database View | Response Example |
+|----------|--------|----------------------|---------------|------------------|
+| `/api/v1/politicians` | GET | [politician-schema.md#attributes-section](json-export-specs/schemas/politician-schema.md#attributes-section) | `view_riksdagen_politician` | [politician-example.json](json-export-specs/examples/politician-example.json) |
+| `/api/v1/politicians/{id}` | GET | [politician-schema.md](json-export-specs/schemas/politician-schema.md) | `view_riksdagen_politician_summary` | Full profile with intelligence |
+| `/api/v1/politicians/{id}/voting` | GET | [politician-schema.md#voting-section](json-export-specs/schemas/politician-schema.md#voting-section) | `view_riksdagen_vote_data_ballot_politician_summary` | Voting history |
+| `/api/v1/politicians/{id}/risk` | GET | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation` | Risk assessment |
+| `/api/v1/parties` | GET | [party-schema.md#attributes-section](json-export-specs/schemas/party-schema.md#attributes-section) | `view_riksdagen_party` | [party-example.json](json-export-specs/examples/party-example.json) |
+| `/api/v1/parties/{id}` | GET | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_summary` | Full party performance |
+| `/api/v1/votes/{ballot_id}` | GET | [politician-schema.md#voting-section](json-export-specs/schemas/politician-schema.md#voting-section) | `view_riksdagen_vote_data_ballot_summary` | Ballot results |
+| `/api/v1/risk-assessments` | GET | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Risk feed |
+
 ```yaml
 API Architecture:
   Protocol: REST API (JSON), GraphQL optional
@@ -146,19 +250,11 @@ API Architecture:
   Response Time: <200ms (P95), <500ms (P99)
   Data Freshness: Real-time (votes), Daily (risk assessments)
   
-Endpoints:
-  Core:
-    - GET /politicians/{id}
-    - GET /parties/{id}
-    - GET /votes/{ballot_id}
-    - GET /risk-assessments
-  Analytics:
-    - POST /analytics/scorecards
-    - GET /analytics/trends
-    - GET /analytics/predictions
-  Bulk:
-    - GET /bulk/export/{dataset}
-    - POST /bulk/custom-query
+Data Format:
+  Content-Type: application/json
+  Encoding: UTF-8
+  Schema Validation: JSON Schema Draft 7
+  Documentation: See json-export-specs/schemas/ for complete specifications
 ```
 
 #### Revenue Model
@@ -237,6 +333,32 @@ Endpoints:
 | **Enterprise** | €15,000+ | Unlimited | Unlimited | Unlimited | Unlimited |
 | **NGO/Academic** | €2,500 | 5 | 10 | 50 | 50 |
 
+#### Technical Specifications
+
+**🔗 JSON Data Specifications:**
+- **Intelligence Analytics**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Risk scores, trend analysis, predictive models, and anomaly detection
+- **Politician Analytics**: [politician-schema.md#intelligence-section](json-export-specs/schemas/politician-schema.md#intelligence-section) - Scorecard metrics and performance rankings
+- **Party Analytics**: [party-schema.md#intelligence-section](json-export-specs/schemas/party-schema.md#intelligence-section) - Coalition analysis and party effectiveness
+- **Committee Analytics**: [committee-schema.md](json-export-specs/schemas/committee-schema.md) - Committee composition and proposal tracking
+- **Database Views**: `view_riksdagen_politician_ranking`, `view_riksdagen_party_summary`, `view_riksdagen_committee_proposal_summary`, `view_rule_violation`
+
+**Dashboard Components with Data Sources:**
+
+| Dashboard Component | Data Schema | Database Views | Visualization Type |
+|-------------------|-------------|----------------|-------------------|
+| Political Scorecards | [politician-schema.md#intelligence-section](json-export-specs/schemas/politician-schema.md#intelligence-section) | `view_riksdagen_politician_ranking`, `view_riksdagen_politician_summary` | Cards, Bar charts |
+| Coalition Stability | [party-schema.md#coalition-section](json-export-specs/schemas/party-schema.md#coalition-section) | `view_riksdagen_party_ballot_support_annual_summary` | Heatmap, Timeline |
+| Parliamentary Effectiveness | [politician-schema.md#activity-section](json-export-specs/schemas/politician-schema.md#activity-section) | `view_riksdagen_politician_document_summary`, `view_riksdagen_vote_data_ballot_politician_summary` | Sparklines, Trends |
+| Risk Monitoring | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Gauge, Alerts |
+| Voting Patterns | [politician-schema.md#voting-section](json-export-specs/schemas/politician-schema.md#voting-section) | `view_riksdagen_vote_data_ballot_summary`, `view_riksdagen_votedata_view` | Network graph, Sankey |
+
+**Export Formats:**
+- JSON (via [json-export-specs/](json-export-specs/))
+- CSV (bulk downloads)
+- PDF (reports with charts)
+- Excel (data tables with formatting)
+- PowerPoint (executive presentations)
+
 #### Revenue Model
 
 | Component | Revenue Type | Annual Potential |
@@ -313,6 +435,37 @@ Endpoints:
 | **Standard** | €12,000 | All 45 rules | 3-month | No | 99.5% |
 | **Advanced** | €25,000 | All + Custom | 6-month | Yes | 99.9% |
 | **Enterprise** | €45,000+ | Unlimited | 12-month | Unlimited | 99.95% |
+
+#### Technical Specifications
+
+**🔗 JSON Data Specifications:**
+- **Risk Assessment**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Complete risk rule evaluation with 45 behavioral rules
+- **Violation Tracking**: [politician-schema.md#intelligence-section](json-export-specs/schemas/politician-schema.md#intelligence-section) - Compliance violations and risk scores
+- **Predictive Models**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Risk escalation probability and crisis forecasting
+- **Database Views**: `view_rule_violation`, `view_riksdagen_politician_summary`, `view_riksdagen_party_summary`
+
+**Risk Data Feeds:**
+
+| Feed Type | JSON Schema | Database Views | Update Frequency | Delivery Method |
+|-----------|-------------|----------------|------------------|-----------------|
+| Critical Risk Alerts | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation` (CRITICAL severity) | Real-time | Webhook, Email, SMS |
+| Daily Risk Summary | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Daily 06:00 CET | Email, API |
+| Weekly Risk Analysis | [politician-schema.md](json-export-specs/schemas/politician-schema.md), [party-schema.md](json-export-specs/schemas/party-schema.md) | Multiple views | Weekly Monday | PDF Report + JSON |
+| Monthly Risk Forecast | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | Predictive models + historical views | Monthly 1st | PDF Report + Data Export |
+
+**Risk Rule Categories (45 Rules):**
+- **Attendance Rules** (10 rules) - Based on `view_riksdagen_politician` absence percentage metrics
+- **Voting Rules** (12 rules) - Based on `view_riksdagen_vote_data_ballot_politician_summary` patterns
+- **Document Rules** (8 rules) - Based on `view_riksdagen_politician_document_summary` productivity
+- **Role Rules** (7 rules) - Based on `view_riksdagen_politician` role changes and assignments
+- **Behavior Rules** (8 rules) - Cross-view pattern analysis
+
+**Integration Methods:**
+- REST API with OAuth 2.0 authentication
+- Webhook notifications (HTTPS POST)
+- Scheduled email reports (HTML + JSON attachments)
+- SFTP file drops (for enterprise clients)
+- Dedicated Slack/Teams channels
 
 #### Data Products
 
@@ -401,6 +554,47 @@ Endpoints:
 | **Election Campaign Package** | €100,000-300,000 | Election cycle | Political parties, campaigns |
 | **Academic Research License** | €10,000/year | Annual access | Universities, research institutions |
 
+#### Technical Specifications
+
+**🔗 JSON Data Specifications:**
+- **Predictive Models**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Time series forecasts, scenario probabilities, and trend predictions
+- **Historical Trends**: [party-schema.md#electoral-section](json-export-specs/schemas/party-schema.md#electoral-section) - Multi-year party and politician trends
+- **Coalition Analysis**: [party-schema.md#coalition-section](json-export-specs/schemas/party-schema.md#coalition-section) - Coalition formation and stability patterns
+- **Database Views**: `view_riksdagen_party_ballot_support_annual_summary`, `view_riksdagen_politician_summary`, `view_riksdagen_vote_data_ballot_summary`
+
+**Predictive Model Outputs:**
+
+| Model Type | JSON Schema | Input Data Views | Prediction Horizon | Confidence Intervals |
+|------------|-------------|------------------|-------------------|---------------------|
+| Electoral Forecasting | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_riksdagen_party_summary`, `view_riksdagen_vote_data_ballot_summary` | 3-12 months | 80%, 90%, 95% |
+| Coalition Probability | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_ballot_support_annual_summary`, `view_riksdagen_party_coalition` | 6-24 months | 70%, 85%, 95% |
+| Risk Escalation | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | 1-6 months | 75%, 90% |
+| Government Stability | [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) | `view_riksdagen_goverment`, `view_ministry_decision_impact` | 3-18 months | 80%, 90% |
+
+**Machine Learning Pipeline:**
+- **Feature Engineering**: Extracts 200+ features from database views
+- **Model Training**: Monthly retraining on 10+ years historical data
+- **Validation**: Cross-validation with election results and political events
+- **Output Format**: JSON with point estimates, confidence intervals, feature importance
+- **Model Types**: ARIMA, Prophet, XGBoost, Random Forest, Neural Networks
+
+**Scenario Analysis Framework:**
+```json
+{
+  "scenarioId": "coalition-change-2026",
+  "baselineData": "json-export-specs/examples/party-example.json",
+  "assumptions": [
+    {"party": "S", "voteShareChange": -5.0},
+    {"party": "SD", "voteShareChange": +3.0}
+  ],
+  "predictions": {
+    "coalitionFormation": ["M-KD-L-SD", "S-C-V-MP"],
+    "probabilities": [0.65, 0.35],
+    "governmentStability": [0.72, 0.58]
+  }
+}
+```
+
 #### Revenue Model
 
 | Component | Revenue Type | Annual Potential |
@@ -481,6 +675,59 @@ Endpoints:
 | **Data Pipeline Setup** | €100,000-300,000 | €50,000-100,000 | Custom data sources |
 | **Training & Onboarding** | €50,000-150,000 | — | Staff training, documentation |
 
+#### Technical Specifications
+
+**🔗 JSON Data Specifications:**
+- **Complete Platform Data**: All schemas in [json-export-specs/schemas/](json-export-specs/schemas/) - Full access to all data models
+- **Politician Data**: [politician-schema.md](json-export-specs/schemas/politician-schema.md)
+- **Party Data**: [party-schema.md](json-export-specs/schemas/party-schema.md)
+- **Committee Data**: [committee-schema.md](json-export-specs/schemas/committee-schema.md)
+- **Ministry Data**: [ministry-schema.md](json-export-specs/schemas/ministry-schema.md)
+- **Intelligence Data**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
+- **Database Access**: All 85 views documented in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
+
+**White-Label Platform Components:**
+
+| Component | Technology Stack | JSON Data Sources | Customization Level |
+|-----------|-----------------|-------------------|---------------------|
+| User Interface | Vaadin (Java) | All JSON schemas | Full branding, colors, logos |
+| API Layer | Spring Boot REST | All schemas as endpoints | Custom endpoints available |
+| Database Layer | PostgreSQL + 85 views | Direct view access | Custom views supported |
+| Analytics Engine | Drools (45 rules) | intelligence-schema.md | Custom rules available |
+| Export System | JSON/CSV/PDF | json-export-specs/ | Custom formats supported |
+
+**Integration Architecture:**
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#e8f5e9',
+      'primaryTextColor': '#2e7d32',
+      'lineColor': '#4caf50'
+    }
+  }
+}%%
+flowchart TB
+    CLIENT[Client Systems<br/>CRM, BI, Data Warehouse] <--> API[CIA REST API<br/>OAuth 2.0 + API Keys]
+    API <--> PLATFORM[White-Label Platform<br/>Custom Branding + Domain]
+    PLATFORM <--> DB[(PostgreSQL Database<br/>85 Views + Custom Views)]
+    DB <--> EXPORT[JSON Export System<br/>json-export-specs/]
+    EXPORT --> CDN[CDN Static Files<br/>Client-Branded]
+```
+
+**Deployment Options:**
+- **Cloud Hosted** (CIA-managed AWS): Standard deployment with CIA infrastructure
+- **Client AWS Account**: Deployed to client's AWS with CIA support
+- **On-Premises**: Client datacenter deployment with VPN support
+- **Hybrid**: Mix of cloud and on-premises components
+
+**Data Customization:**
+- Custom database views based on client needs
+- Additional data source integration (e.g., local government, industry-specific)
+- Custom JSON schema extensions
+- Tailored risk rules and analytics
+
 #### Revenue Model
 
 | Year | New Contracts | Recurring Revenue | Total Revenue |
@@ -556,6 +803,67 @@ Endpoints:
 | **Professional** | €8,000 | Decision flow views, KPI dashboard, 12-month historical data | Small consulting firms, media |
 | **Enterprise** | €18,000 | Full suite, predictive analytics, API access, custom dashboards | Large consulting, corporate affairs |
 | **Strategic** | €35,000+ | White-label, dedicated support, custom models, real-time alerts | Strategic consulting, government affairs agencies |
+
+#### Technical Specifications
+
+**🔗 JSON Data Specifications:**
+- **Decision Flow Data**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Decision effectiveness and approval rates
+- **Party Decision Analytics**: [party-schema.md](json-export-specs/schemas/party-schema.md) - Party-level proposal success patterns
+- **Politician Decision Metrics**: [politician-schema.md#activity-section](json-export-specs/schemas/politician-schema.md#activity-section) - Individual proposal success rates
+- **Ministry Performance**: [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) - Government ministry decision effectiveness
+- **Database Views**: `view_party_decision_flow`, `view_politician_decision_flow`, `view_ministry_decision_flow`, `view_ministry_decision_impact`, `view_decision_kpi_dashboard`
+
+**Decision Intelligence Data Models:**
+
+| Data Product | JSON Schema | Database View | Metrics Included | Update Frequency |
+|--------------|-------------|---------------|------------------|------------------|
+| Party Decision Flow | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_party_decision_flow` | Approval rates, proposal volume, success trends | Daily |
+| Politician Decision Flow | [politician-schema.md](json-export-specs/schemas/politician-schema.md) | `view_politician_decision_flow` | Individual proposal success, committee effectiveness | Daily |
+| Ministry Decision Flow | [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) | `view_ministry_decision_flow`, `view_ministry_decision_impact` | Ministry effectiveness, coalition alignment | Daily |
+| Decision KPI Dashboard | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_decision_kpi_dashboard` | Aggregate KPIs, temporal trends, forecasts | Hourly |
+
+**Decision Analytics Features:**
+
+```json
+{
+  "decisionAnalytics": {
+    "entityType": "party",
+    "entityId": "S",
+    "timeframe": "last_90_days",
+    "metrics": {
+      "totalProposals": 245,
+      "approved": 189,
+      "rejected": 42,
+      "pending": 14,
+      "approvalRate": 0.772,
+      "approvalRateTrend": {
+        "7day": 0.785,
+        "30day": 0.768,
+        "90day": 0.772,
+        "change": "+0.004"
+      }
+    },
+    "predictions": {
+      "nextMonthApprovalRate": 0.765,
+      "confidenceInterval": [0.735, 0.795]
+    },
+    "schema": "json-export-specs/schemas/intelligence-schema.md"
+  }
+}
+```
+
+**API Endpoints:**
+- `GET /api/v1/decision-analytics/party/{partyId}` → [party-schema.md](json-export-specs/schemas/party-schema.md)
+- `GET /api/v1/decision-analytics/politician/{politicianId}` → [politician-schema.md](json-export-specs/schemas/politician-schema.md)
+- `GET /api/v1/decision-analytics/ministry/{ministryId}` → [ministry-schema.md](json-export-specs/schemas/ministry-schema.md)
+- `GET /api/v1/decision-analytics/trends` → [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
+- `GET /api/v1/decision-analytics/kpi-dashboard` → Aggregate dashboard data
+
+**Dashboard Components:**
+- **Decision Flow Visualization**: Real-time Sankey diagrams showing proposal flow from submission to outcome
+- **Approval Rate Heatmap**: Interactive heatmap with party/ministry/politician approval rates
+- **Temporal Trends**: Moving averages (7-day, 30-day, 90-day) with forecasting
+- **Coalition Alignment**: Network graph showing decision agreement patterns
 
 **Add-On Services:**
 - Custom decision model development: €25,000-50,000 (project-based)
@@ -1239,6 +1547,357 @@ pie title Year 3 Revenue by Product Line (€11.0M Total)
 | **Operations** | 1 | 2 | 3 | €85K/person |
 | **Total Headcount** | **9** | **20** | **39** | **€3.9M (Year 3)** |
 
+### Appendix E: Product-to-Data Mapping
+
+This appendix provides comprehensive traceability from business product features to technical implementations, establishing bidirectional integration between product strategy and data architecture.
+
+#### Product Line 1: Political Intelligence API — Data Mapping
+
+**Business Features:**
+1. Politician Risk Assessment
+2. Voting Statistics Export
+3. Compliance Violation Tracking
+4. Party Performance Metrics
+
+**Feature 1.1: Politician Risk Assessment**
+- **User Story**: "As a political consultant, I want to assess politician risk scores to advise campaigns on candidate selection and opposition research"
+- **Product Value**: €15M TAM (Political Consulting segment)
+- **Data Sources**:
+  - `view_riksdagen_politician` - Core politician profiles, attendance metrics
+  - `view_rule_violation` - 45 risk rules with MINOR/MAJOR/CRITICAL severity
+  - `view_riksdagen_vote_data_ballot_politician_summary` - Voting patterns and consistency
+  - `view_riksdagen_politician_summary` - Aggregated activity and performance
+- **JSON Specifications**:
+  - Input: None (GET request with politician ID)
+  - Output: [politician-schema.md#intelligence-section](json-export-specs/schemas/politician-schema.md#intelligence-section), [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
+- **API Endpoint**: `GET /api/v1/politicians/{id}/risk-assessment`
+- **Response Example**: 
+  ```json
+  {
+    "politicianId": "0289929810624",
+    "riskScore": 42,
+    "riskLevel": "MAJOR",
+    "violations": [
+      {"rule": "HIGH_ABSENCE_RATE", "severity": "MAJOR", "value": 15.8}
+    ],
+    "schema": "json-export-specs/schemas/intelligence-schema.md"
+  }
+  ```
+- **Business Rules**: 45 Drools rules documented in RISK_RULES_INTOP_OSINT.md
+- **Database View**: See [DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_rule_violation](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
+
+**Feature 1.2: Voting Statistics Export**
+- **User Story**: "As a researcher, I want to export comprehensive voting statistics for political science analysis"
+- **Product Value**: €5M TAM (Academic Research segment)
+- **Data Sources**:
+  - `view_riksdagen_vote_data_ballot_summary` - Aggregated voting results by ballot
+  - `view_riksdagen_vote_data_ballot_politician_summary_daily` - Daily politician voting statistics
+  - `view_riksdagen_votedata_view` - Detailed individual votes
+- **JSON Specifications**:
+  - Input: Query parameters (party, year, politician_id)
+  - Output: [politician-schema.md#voting-section](json-export-specs/schemas/politician-schema.md#voting-section)
+- **API Endpoint**: `GET /api/v1/voting-statistics?party={party}&year={year}`
+- **Response Example**: [politician-example.json](json-export-specs/examples/politician-example.json) (voting section)
+- **Export Formats**: JSON, CSV, Excel
+- **Database Views**: Multiple voting views with different aggregation levels
+
+#### Product Line 2: Advanced Analytics Suite — Data Mapping
+
+**Business Features:**
+1. Interactive Dashboards (Scorecards, Coalition Monitoring)
+2. Report Generation (Weekly/Monthly Reports)
+3. Alerting & Notifications (Risk Thresholds)
+4. Comparative Analysis (Benchmarking)
+
+**Feature 2.1: Political Scorecards Dashboard**
+- **User Story**: "As a government affairs director, I want real-time scorecards on politicians affecting my industry to monitor their effectiveness and influence"
+- **Product Value**: €12M TAM (Corporate Affairs segment)
+- **Data Sources**:
+  - `view_riksdagen_politician_ranking` - Comparative politician rankings across metrics
+  - `view_riksdagen_politician_summary` - Activity summaries and KPIs
+  - `view_riksdagen_politician_document_summary` - Legislative productivity
+  - `view_riksdagen_vote_data_ballot_politician_summary` - Voting effectiveness
+- **JSON Specifications**:
+  - Dashboard Data: [politician-schema.md#intelligence-section](json-export-specs/schemas/politician-schema.md#intelligence-section)
+  - Visualization Config: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
+- **Dashboard Components**:
+  - Scorecard widgets (JSON data binding)
+  - Bar charts (politician comparisons)
+  - Sparklines (temporal trends)
+  - Gauge charts (risk levels)
+- **Database Views**: 4+ politician analytical views
+
+**Feature 2.2: Coalition Stability Monitoring**
+- **User Story**: "As a political analyst, I want to monitor coalition stability in real-time to forecast government changes"
+- **Product Value**: €8M TAM (Media & Journalism segment)
+- **Data Sources**:
+  - `view_riksdagen_party_ballot_support_annual_summary` - Historical coalition voting patterns
+  - `view_riksdagen_party_coalition` - Coalition membership and agreements
+  - `view_riksdagen_party_summary` - Party performance metrics
+- **JSON Specifications**:
+  - Coalition Data: [party-schema.md#coalition-section](json-export-specs/schemas/party-schema.md#coalition-section)
+  - Analytics: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
+- **Visualization**: Heatmap (agreement scores), Timeline (stability trends)
+
+#### Product Line 3: Risk Intelligence Feed — Data Mapping
+
+**Business Features:**
+1. Real-Time Risk Monitoring (45 rules, severity classification)
+2. Early Warning System (Predictive escalation)
+3. Threat Intelligence Integration (OSINT correlation)
+4. Compliance & Governance Reporting
+
+**Feature 3.1: Real-Time Risk Alerts**
+- **User Story**: "As a CRO at an investment firm, I want instant alerts on critical political risks to protect portfolio investments"
+- **Product Value**: €20M+ TAM (Financial Services segment)
+- **Data Sources**:
+  - `view_rule_violation` - All 45 risk rules with severity and timestamps
+  - `view_riksdagen_politician_summary` - Real-time politician metrics
+  - `view_riksdagen_party_summary` - Real-time party metrics
+- **JSON Specifications**:
+  - Alert Format: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
+  - Risk Data: Includes politician/party context from respective schemas
+- **Delivery Methods**:
+  - Webhook (HTTPS POST with JSON payload)
+  - Email (HTML with JSON attachment)
+  - SMS (text summary)
+- **Alert Example**:
+  ```json
+  {
+    "alertId": "RISK-2025-11-25-001",
+    "timestamp": "2025-11-25T08:30:00Z",
+    "severity": "CRITICAL",
+    "rule": "CORRUPTION_INVESTIGATION",
+    "entity": {"type": "politician", "id": "0289929810624", "name": "Example Person"},
+    "description": "New corruption investigation announced",
+    "schema": "json-export-specs/schemas/intelligence-schema.md"
+  }
+  ```
+
+#### Product Line 4: Predictive Analytics Service — Data Mapping
+
+**Business Features:**
+1. Electoral Forecasting (Seat projections)
+2. Coalition Probability Modeling
+3. Risk Escalation Prediction
+4. Scenario Planning Tools
+
+**Feature 4.1: Electoral Forecasting Model**
+- **User Story**: "As a strategic consultant, I want 12-month electoral forecasts to advise clients on market entry timing"
+- **Product Value**: €30M+ TAM (Strategic Consulting segment)
+- **Data Sources**:
+  - `view_riksdagen_party_summary` - Historical party performance
+  - `view_riksdagen_vote_data_ballot_summary` - Voting trends
+  - `view_riksdagen_party_ballot_support_annual_summary` - Multi-year patterns
+- **JSON Specifications**:
+  - Model Output: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) (predictions section)
+  - Input Data: [party-schema.md](json-export-specs/schemas/party-schema.md)
+- **Machine Learning Pipeline**:
+  - Feature extraction from 10+ years of database views
+  - ARIMA, Prophet, XGBoost ensemble models
+  - Output: JSON with point estimates + confidence intervals
+- **Forecast Example**:
+  ```json
+  {
+    "forecastDate": "2026-09-15",
+    "electionType": "riksdag",
+    "predictions": {
+      "S": {"seats": 98, "confidenceInterval": [92, 104]},
+      "M": {"seats": 88, "confidenceInterval": [83, 93]}
+    },
+    "schema": "json-export-specs/schemas/intelligence-schema.md"
+  }
+  ```
+
+#### Product Line 5: White-Label Platform — Data Mapping
+
+**Business Features:**
+- Complete platform with all data sources
+- Custom branding and domain
+- All 85 database views accessible
+- Full JSON schema customization
+
+**Feature 5.1: White-Label Data Access**
+- **User Story**: "As a government transparency agency, I want a fully branded platform with all political data for public transparency"
+- **Product Value**: €500K-2M initial + €100K-300K/year (Government segment)
+- **Data Sources**: All 85 database views ([DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md))
+- **JSON Specifications**: All schemas in [json-export-specs/schemas/](json-export-specs/schemas/)
+  - [politician-schema.md](json-export-specs/schemas/politician-schema.md)
+  - [party-schema.md](json-export-specs/schemas/party-schema.md)
+  - [committee-schema.md](json-export-specs/schemas/committee-schema.md)
+  - [ministry-schema.md](json-export-specs/schemas/ministry-schema.md)
+  - [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
+- **Customization**: Client can add custom views, extend schemas, add new data sources
+
+#### Product Line 6: Decision Intelligence Suite — Data Mapping
+
+**Business Features:**
+1. Decision Flow Analytics (Approval rates, velocity, volume)
+2. Decision KPIs & Metrics (Party/politician/ministry effectiveness)
+3. Predictive Decision Analytics (Success probability, timeline forecasting)
+4. Dashboard & Visualizations
+
+**Feature 6.1: Party Decision Effectiveness Dashboard**
+- **User Story**: "As a lobbyist, I want to track party proposal success rates to optimize legislative strategy timing"
+- **Product Value**: €15M+ TAM (Political Consulting & Lobbying segment)
+- **Data Sources**:
+  - `view_party_decision_flow` - Party-level decision metrics and approval rates
+  - `view_riksdagen_party_ballot_support_annual_summary` - Historical patterns
+  - `view_decision_kpi_dashboard` - Aggregated KPIs across all entities
+- **JSON Specifications**:
+  - Party Data: [party-schema.md](json-export-specs/schemas/party-schema.md)
+  - Decision Analytics: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
+- **Dashboard Data Example**:
+  ```json
+  {
+    "entity": {"type": "party", "id": "S", "name": "Socialdemokraterna"},
+    "timeframe": "last_90_days",
+    "metrics": {
+      "totalProposals": 245,
+      "approvalRate": 0.772,
+      "trends": {"7day": 0.785, "30day": 0.768, "90day": 0.772}
+    },
+    "schema": "json-export-specs/schemas/party-schema.md"
+  }
+  ```
+
+**Feature 6.2: Ministry Decision Impact Analysis**
+- **User Story**: "As a corporate affairs manager, I want to analyze ministry decision effectiveness to predict regulatory changes"
+- **Product Value**: €10M+ TAM (Corporate Affairs segment)
+- **Data Sources**:
+  - `view_ministry_decision_flow` - Ministry proposal submission and outcomes
+  - `view_ministry_decision_impact` - Decision impact on coalition stability (NEW in v1.35)
+  - `view_riksdagen_goverment` - Ministry composition and changes
+- **JSON Specifications**:
+  - Ministry Data: [ministry-schema.md](json-export-specs/schemas/ministry-schema.md)
+  - Impact Analysis: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
+
+#### Data Lineage: Source to Product
+
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#e8f5e9',
+      'primaryTextColor': '#2e7d32',
+      'lineColor': '#4caf50',
+      'fontSize': '14px'
+    }
+  }
+}%%
+flowchart TB
+    subgraph SOURCES["📡 Data Sources"]
+        RIKS[Riksdagen API<br/>Swedish Parliament]
+        VAL[Valmyndigheten<br/>Elections]
+        WB[World Bank<br/>Economics]
+        ESV[ESV<br/>Government Finances]
+    end
+    
+    subgraph TABLES["🗄️ Database Tables"]
+        PERSON[person_data]
+        ASSIGN[assignment_data]
+        VOTE[vote_data]
+        DOC[document_data]
+    end
+    
+    subgraph VIEWS["📊 Database Views (85)"]
+        POL_VIEWS[Politician Views<br/>15+ views]
+        PARTY_VIEWS[Party Views<br/>12+ views]
+        COMMITTEE_VIEWS[Committee Views<br/>8+ views]
+        DECISION_VIEWS[Decision Views<br/>8+ views]
+        INTEL_VIEWS[Intelligence Views<br/>7+ views]
+    end
+    
+    subgraph SPECS["📄 JSON Specifications"]
+        POL_SCHEMA[politician-schema.md]
+        PARTY_SCHEMA[party-schema.md]
+        COMM_SCHEMA[committee-schema.md]
+        MIN_SCHEMA[ministry-schema.md]
+        INTEL_SCHEMA[intelligence-schema.md]
+    end
+    
+    subgraph APIS["🌐 API Endpoints"]
+        POL_API[/api/v1/politicians]
+        PARTY_API[/api/v1/parties]
+        RISK_API[/api/v1/risk-assessments]
+        DECISION_API[/api/v1/decision-analytics]
+    end
+    
+    subgraph PRODUCTS["📦 Product Features"]
+        API_PROD[Political Intelligence API]
+        ANALYTICS_PROD[Advanced Analytics Suite]
+        RISK_PROD[Risk Intelligence Feed]
+        PREDICT_PROD[Predictive Analytics]
+        DECISION_PROD[Decision Intelligence]
+    end
+    
+    subgraph CUSTOMERS["👥 Customer Segments"]
+        CONSULTING[Political Consulting<br/>€15M TAM]
+        MEDIA[Media & Journalism<br/>€8M TAM]
+        ACADEMIC[Academic Research<br/>€5M TAM]
+        CORPORATE[Corporate Affairs<br/>€12M TAM]
+        FINANCE[Financial Services<br/>€20M+ TAM]
+    end
+    
+    RIKS --> PERSON
+    RIKS --> ASSIGN
+    RIKS --> VOTE
+    RIKS --> DOC
+    VAL --> PERSON
+    WB --> TABLES
+    ESV --> TABLES
+    
+    PERSON --> POL_VIEWS
+    ASSIGN --> POL_VIEWS
+    VOTE --> PARTY_VIEWS
+    DOC --> COMMITTEE_VIEWS
+    PERSON --> DECISION_VIEWS
+    VOTE --> INTEL_VIEWS
+    
+    POL_VIEWS --> POL_SCHEMA
+    PARTY_VIEWS --> PARTY_SCHEMA
+    COMMITTEE_VIEWS --> COMM_SCHEMA
+    DECISION_VIEWS --> MIN_SCHEMA
+    INTEL_VIEWS --> INTEL_SCHEMA
+    
+    POL_SCHEMA --> POL_API
+    PARTY_SCHEMA --> PARTY_API
+    INTEL_SCHEMA --> RISK_API
+    MIN_SCHEMA --> DECISION_API
+    
+    POL_API --> API_PROD
+    PARTY_API --> ANALYTICS_PROD
+    RISK_API --> RISK_PROD
+    INTEL_SCHEMA --> PREDICT_PROD
+    DECISION_API --> DECISION_PROD
+    
+    API_PROD --> CONSULTING
+    ANALYTICS_PROD --> CORPORATE
+    RISK_PROD --> FINANCE
+    PREDICT_PROD --> CONSULTING
+    DECISION_PROD --> CONSULTING
+    
+    API_PROD --> MEDIA
+    ANALYTICS_PROD --> MEDIA
+    API_PROD --> ACADEMIC
+```
+
+#### Complete Traceability Matrix
+
+| Product Feature | JSON Schema | Database Views | Data Sources | API Endpoint | Customer Segment | Revenue Impact |
+|----------------|-------------|----------------|--------------|--------------|------------------|----------------|
+| Politician Risk Assessment | [politician-schema.md](json-export-specs/schemas/politician-schema.md), [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Riksdagen API | `/api/v1/politicians/{id}/risk` | Political Consulting | €15M TAM |
+| Voting Statistics Export | [politician-schema.md#voting-section](json-export-specs/schemas/politician-schema.md#voting-section) | `view_riksdagen_vote_data_ballot_summary` | Riksdagen API | `/api/v1/voting-statistics` | Academic Research | €5M TAM |
+| Party Performance Dashboard | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_summary` | Riksdagen API | `/api/v1/parties/{id}` | Corporate Affairs | €12M TAM |
+| Coalition Stability Monitor | [party-schema.md#coalition-section](json-export-specs/schemas/party-schema.md#coalition-section) | `view_riksdagen_party_ballot_support_annual_summary` | Riksdagen API | `/api/v1/analytics/coalitions` | Media & Journalism | €8M TAM |
+| Committee Analytics | [committee-schema.md](json-export-specs/schemas/committee-schema.md) | `view_riksdagen_committee_proposal_summary` | Riksdagen API | `/api/v1/committees/{id}` | Government Affairs | €12M TAM |
+| Real-Time Risk Alerts | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation` | Multiple sources | Webhooks | Financial Services | €20M+ TAM |
+| Electoral Forecasting | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_riksdagen_party_summary` | Riksdagen API + Historical | `/api/v1/predictions/elections` | Strategic Consulting | €30M+ TAM |
+| Decision Flow Analytics | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md), [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) | `view_party_decision_flow`, `view_ministry_decision_flow` | Riksdagen API | `/api/v1/decision-analytics` | Lobbying & Consulting | €15M+ TAM |
+
+**Total Addressable Market**: €46M across all product features and customer segments
+
 ---
 
 ## ✅ Approval & Sign-Off
@@ -1260,6 +1919,9 @@ pie title Year 3 Revenue by Product Line (€11.0M Total)
 - [SWOT.md](SWOT.md) — Strategic strengths, weaknesses, opportunities, and threats
 - [FinancialSecurityPlan.md](FinancialSecurityPlan.md) — Infrastructure costs and security investments
 - [ARCHITECTURE.md](ARCHITECTURE.md) — System architecture and technical foundation
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) — Complete catalog of 85 database views
+- [json-export-specs/README.md](json-export-specs/README.md) — JSON export specifications and CDN deployment
+- [json-export-specs/schemas/](json-export-specs/schemas/) — Technical JSON data specifications for all products
 
 ---
 

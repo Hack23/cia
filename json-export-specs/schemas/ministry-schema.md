@@ -7,6 +7,34 @@
 
 ---
 
+## 🔗 Business Context
+
+This JSON schema powers **3 product lines** serving multiple market segments:
+
+### Product Integration
+- **[Political Intelligence API](../../BUSINESS_PRODUCT_DOCUMENT.md#product-line-1-political-intelligence-api)** - Core API product (€630K/year)
+  - Government ministry performance data
+  - Ministry composition and changes
+  - Policy area monitoring
+- **[White-Label Platform](../../BUSINESS_PRODUCT_DOCUMENT.md#product-line-5-white-label-platform--integration-services)** - Enterprise solutions (€1.7M-4.7M/year)
+  - Government transparency platforms
+  - Ministry performance tracking for public agencies
+  - Policy effectiveness monitoring
+- **[Decision Intelligence](../../BUSINESS_PRODUCT_DOCUMENT.md#product-line-6-decision-intelligence-suite)** - Legislative analytics (€2.09M/year)
+  - Ministry decision flow analysis
+  - Government proposal success tracking
+  - Coalition stability impact assessment
+
+### Primary Market Segments
+> **Note:** Market segments overlap across multiple schemas and products. This schema primarily serves:
+
+- **Corporate Affairs** (€12M TAM) - Regulatory monitoring, ministry relationship tracking
+- **Government Agencies** (€6M TAM) - Transparency platforms, accountability monitoring
+
+**See Complete Business Strategy**: [BUSINESS_PRODUCT_DOCUMENT.md](../../BUSINESS_PRODUCT_DOCUMENT.md) | [Product-to-Data Mapping](../../BUSINESS_PRODUCT_DOCUMENT.md#appendix-e-product-to-data-mapping)
+
+---
+
 ## 🎯 Overview
 
 The Ministry JSON schema provides comprehensive representation of Swedish government ministries, including organizational structure, budget allocation, policy effectiveness, personnel, decision-making patterns, and performance analytics.

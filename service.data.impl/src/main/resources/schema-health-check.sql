@@ -343,6 +343,105 @@ BEGIN
     END;
 END $$;
 
+-- Check 2.4: NULL percentage in critical columns
+\echo 'Checking NULL percentage in critical columns...'
+DO $$
+DECLARE
+    v_null_pct NUMERIC;
+    v_critical_columns TEXT[][] := ARRAY[
+        ['person_data', 'first_name'],
+        ['person_data', 'last_name'],
+        ['assignment_data', 'org_code'],
+        ['vote_data', 'vote']
+    ];
+    v_col TEXT[];
+BEGIN
+    FOREACH v_col SLICE 1 IN ARRAY v_critical_columns
+    LOOP
+        BEGIN
+            EXECUTE format(
+                'SELECT ROUND(COUNT(*) FILTER (WHERE %I IS NULL) * 100.0 / NULLIF(COUNT(*), 0), 2) FROM %I',
+                v_col[2], v_col[1]
+            ) INTO v_null_pct;
+            
+            INSERT INTO health_check_results VALUES (
+                'Data Quality',
+                'NULL Percentage: ' || v_col[1] || '.' || v_col[2],
+                CASE 
+                    WHEN v_null_pct > 10 THEN 'FAIL'
+                    WHEN v_null_pct > 5 THEN 'WARN'
+                    ELSE 'PASS'
+                END,
+                CASE 
+                    WHEN v_null_pct > 10 THEN 3
+                    WHEN v_null_pct > 5 THEN 2
+                    ELSE 1
+                END,
+                COALESCE(v_null_pct::TEXT, '0') || '% NULL values',
+                CASE 
+                    WHEN v_null_pct > 5 THEN 'Investigate and fix NULL values in ' || v_col[1] || '.' || v_col[2]
+                    ELSE NULL
+                END
+            );
+        EXCEPTION WHEN OTHERS THEN
+            -- Table or column doesn't exist, skip
+            NULL;
+        END;
+    END LOOP;
+END $$;
+
+-- Check 2.5: Data distribution analysis (party balance)
+\echo 'Checking data distribution...'
+DO $$
+DECLARE
+    v_stddev NUMERIC;
+    v_avg NUMERIC;
+    v_coefficient NUMERIC;
+BEGIN
+    BEGIN
+        WITH person_party_distribution AS (
+            SELECT party, COUNT(*) as count
+            FROM person_data
+            WHERE party IS NOT NULL
+            GROUP BY party
+        )
+        SELECT 
+            STDDEV(count),
+            AVG(count),
+            CASE WHEN AVG(count) > 0 THEN STDDEV(count) / AVG(count) ELSE 0 END
+        INTO v_stddev, v_avg, v_coefficient
+        FROM person_party_distribution;
+        
+        INSERT INTO health_check_results VALUES (
+            'Data Quality',
+            'Party Distribution Balance',
+            CASE 
+                WHEN v_coefficient > 1.5 THEN 'WARN'
+                ELSE 'PASS'
+            END,
+            CASE 
+                WHEN v_coefficient > 1.5 THEN 2
+                ELSE 1
+            END,
+            'Distribution coefficient: ' || COALESCE(ROUND(v_coefficient, 2)::TEXT, 'N/A') || 
+            ' | Avg per party: ' || COALESCE(ROUND(v_avg, 0)::TEXT, 'N/A'),
+            CASE 
+                WHEN v_coefficient > 1.5 THEN 'Party distribution imbalance detected - investigate if intentional'
+                ELSE NULL
+            END
+        );
+    EXCEPTION WHEN OTHERS THEN
+        INSERT INTO health_check_results VALUES (
+            'Data Quality',
+            'Party Distribution Balance',
+            'INFO',
+            1,
+            'Could not analyze: ' || SQLERRM,
+            NULL
+        );
+    END;
+END $$;
+
 -- ============================================
 -- SECTION 3: Performance Analysis
 -- ============================================
@@ -483,15 +582,293 @@ WHERE schemaname = 'public'
 ORDER BY n_dead_tup DESC
 LIMIT 10;
 
+-- Check 3.5: Connection pool usage
+\echo 'Checking connection pool usage...'
+INSERT INTO health_check_results
+SELECT
+    'Performance' AS category,
+    'Connection Pool Usage' AS check_name,
+    CASE 
+        WHEN active_connections * 100.0 / max_connections > 90 THEN 'FAIL'
+        WHEN active_connections * 100.0 / max_connections > 80 THEN 'WARN'
+        ELSE 'PASS'
+    END AS status,
+    CASE 
+        WHEN active_connections * 100.0 / max_connections > 90 THEN 3
+        WHEN active_connections * 100.0 / max_connections > 80 THEN 2
+        ELSE 1
+    END AS severity,
+    'Client Connections: ' || active_connections || ' / Max: ' || max_connections || 
+    ' (' || ROUND(active_connections * 100.0 / max_connections, 1) || '%)' AS details,
+    CASE 
+        WHEN active_connections * 100.0 / max_connections > 80 
+        THEN 'Increase max_connections or review connection pooling configuration'
+        ELSE NULL
+    END AS recommendation
+FROM (
+    SELECT COUNT(*) as active_connections
+    FROM pg_stat_activity
+    WHERE pid != pg_backend_pid()
+      AND backend_type = 'client backend'
+) a,
+(SELECT setting::INT as max_connections FROM pg_settings WHERE name = 'max_connections') m;
+
+-- Check 3.6: Query cache hit ratio
+\echo 'Checking query cache hit ratio...'
+INSERT INTO health_check_results
+SELECT
+    'Performance' AS category,
+    'Query Cache Hit Ratio' AS check_name,
+    CASE 
+        WHEN hit_ratio < 80 THEN 'FAIL'
+        WHEN hit_ratio < 90 THEN 'WARN'
+        ELSE 'PASS'
+    END AS status,
+    CASE 
+        WHEN hit_ratio < 80 THEN 3
+        WHEN hit_ratio < 90 THEN 2
+        ELSE 1
+    END AS severity,
+    'Hit Ratio: ' || ROUND(hit_ratio, 2) || '%' AS details,
+    CASE 
+        WHEN hit_ratio < 90 THEN 'Increase shared_buffers or optimize queries to reduce disk I/O'
+        ELSE NULL
+    END AS recommendation
+FROM (
+    SELECT 
+        COALESCE(SUM(heap_blks_hit) * 100.0 / NULLIF(SUM(heap_blks_hit + heap_blks_read), 0), 100) AS hit_ratio
+    FROM pg_statio_user_tables
+) cache;
+
+-- Check 3.7: Database lock waits
+\echo 'Checking for database lock waits...'
+INSERT INTO health_check_results
+SELECT
+    'Performance' AS category,
+    'Database Lock Waits' AS check_name,
+    CASE 
+        WHEN lock_count > 10 THEN 'FAIL'
+        WHEN lock_count > 5 THEN 'WARN'
+        ELSE 'PASS'
+    END AS status,
+    CASE 
+        WHEN lock_count > 10 THEN 3
+        WHEN lock_count > 5 THEN 2
+        ELSE 1
+    END AS severity,
+    'Current lock waits: ' || lock_count AS details,
+    CASE 
+        WHEN lock_count > 5 THEN 'Investigate long-running transactions: SELECT pid, usename, query, state, wait_event, wait_event_type, query_start FROM pg_stat_activity WHERE wait_event_type = ''Lock'''
+        ELSE NULL
+    END AS recommendation
+FROM (
+    SELECT COUNT(*) as lock_count
+    FROM pg_stat_activity
+    WHERE wait_event_type = 'Lock'
+) locks;
+
 -- ============================================
--- SECTION 4: View Dependency Analysis
+-- SECTION 4: Security Validation
+-- ============================================
+\echo ''
+\echo '=========================================='
+\echo '=== SECURITY VALIDATION              ==='
+\echo '=========================================='
+
+-- Check 4.1: User permission audit
+\echo ''
+\echo 'Checking user permissions...'
+INSERT INTO health_check_results
+SELECT
+    'Security' AS category,
+    'User Permissions: ' || usename AS check_name,
+    CASE 
+        WHEN usename = 'postgres' THEN 'INFO'  -- expected postgres superuser
+        WHEN usesuper THEN 'WARN'  -- other superusers
+        ELSE 'PASS'
+    END AS status,
+    CASE 
+        WHEN usename = 'postgres' THEN 1
+        WHEN usesuper THEN 2
+        ELSE 1
+    END AS severity,
+    'User: ' || usename || ' | Superuser: ' || usesuper || ' | Create DB: ' || usecreatedb AS details,
+    CASE 
+        WHEN usesuper AND usename != 'postgres' THEN 'Review superuser privileges for ' || usename
+        ELSE NULL
+    END AS recommendation
+FROM pg_user;
+
+-- Check 4.2: SSL configuration
+\echo 'Checking SSL configuration...'
+DO $$
+DECLARE
+    ssl_setting TEXT;
+BEGIN
+    SELECT setting INTO ssl_setting FROM pg_settings WHERE name = 'ssl';
+    
+    IF ssl_setting IS NOT NULL THEN
+        INSERT INTO health_check_results VALUES (
+            'Security',
+            'SSL Configuration',
+            CASE 
+                WHEN ssl_setting = 'on' THEN 'PASS'
+                ELSE 'WARN'
+            END,
+            CASE 
+                WHEN ssl_setting = 'on' THEN 1
+                ELSE 2
+            END,
+            'SSL: ' || ssl_setting,
+            CASE 
+                WHEN ssl_setting != 'on' THEN 'Consider enabling SSL in postgresql.conf for encrypted connections'
+                ELSE NULL
+            END
+        );
+    ELSE
+        INSERT INTO health_check_results VALUES (
+            'Security',
+            'SSL Configuration',
+            'INFO',
+            1,
+            'SSL setting not found',
+            'SSL may not be configured'
+        );
+    END IF;
+END $$;
+
+-- Check 4.3: pgaudit extension
+\echo 'Checking pgaudit extension...'
+INSERT INTO health_check_results
+SELECT
+    'Security' AS category,
+    'pgaudit Extension' AS check_name,
+    CASE 
+        WHEN extname IS NOT NULL THEN 'PASS'
+        ELSE 'INFO'
+    END AS status,
+    1 AS severity,
+    CASE 
+        WHEN extname IS NOT NULL THEN 'pgaudit is installed and active'
+        ELSE 'pgaudit extension not found'
+    END AS details,
+    CASE 
+        WHEN extname IS NULL THEN 'Consider installing pgaudit extension for comprehensive audit logging: CREATE EXTENSION pgaudit;'
+        ELSE NULL
+    END AS recommendation
+FROM (
+    SELECT extname FROM pg_extension WHERE extname = 'pgaudit'
+    UNION ALL
+    SELECT NULL WHERE NOT EXISTS (SELECT 1 FROM pg_extension WHERE extname = 'pgaudit')
+    LIMIT 1
+) ext;
+
+-- Check 4.4: Password encryption method
+\echo 'Checking password encryption...'
+DO $$
+DECLARE
+    encryption_method TEXT;
+BEGIN
+    SELECT setting INTO encryption_method FROM pg_settings WHERE name = 'password_encryption';
+    
+    IF encryption_method IS NOT NULL THEN
+        INSERT INTO health_check_results VALUES (
+            'Security',
+            'Password Encryption Method',
+            CASE 
+                WHEN encryption_method = 'scram-sha-256' THEN 'PASS'
+                WHEN encryption_method = 'md5' THEN 'WARN'
+                ELSE 'FAIL'
+            END,
+            CASE 
+                WHEN encryption_method = 'scram-sha-256' THEN 1
+                WHEN encryption_method = 'md5' THEN 2
+                ELSE 3
+            END,
+            'Encryption method: ' || encryption_method,
+            CASE 
+                WHEN encryption_method = 'md5' THEN 'MD5 is deprecated - migrate to scram-sha-256 for better security'
+                WHEN encryption_method NOT IN ('scram-sha-256', 'md5') THEN 'Use scram-sha-256 for password security'
+                ELSE NULL
+            END
+        );
+    END IF;
+END $$;
+
+-- ============================================
+-- SECTION 5: Referential Integrity
+-- ============================================
+\echo ''
+\echo '=========================================='
+\echo '=== REFERENTIAL INTEGRITY CHECKS     ==='
+\echo '=========================================='
+
+-- Check 5.1: Cascade delete configuration
+\echo ''
+\echo 'Checking cascade delete rules...'
+INSERT INTO health_check_results
+SELECT
+    'Referential Integrity' AS category,
+    'Cascade Rule: ' || tc.table_name || ' -> ' || ccu.table_name AS check_name,
+    CASE 
+        WHEN rc.delete_rule = 'CASCADE' THEN 'INFO'
+        WHEN rc.delete_rule = 'NO ACTION' THEN 'PASS'
+        ELSE 'INFO'
+    END AS status,
+    1 AS severity,
+    'Delete rule: ' || rc.delete_rule || ' | Update rule: ' || rc.update_rule AS details,
+    CASE 
+        WHEN rc.delete_rule = 'CASCADE' 
+        THEN 'CASCADE delete configured - ensure this is intentional for ' || tc.table_name
+        ELSE NULL
+    END AS recommendation
+FROM information_schema.table_constraints AS tc
+JOIN information_schema.referential_constraints AS rc
+    ON tc.constraint_name = rc.constraint_name
+JOIN information_schema.constraint_column_usage AS ccu
+    ON ccu.constraint_name = tc.constraint_name
+WHERE tc.constraint_type = 'FOREIGN KEY'
+    AND tc.table_schema = 'public'
+    AND rc.delete_rule = 'CASCADE'
+ORDER BY tc.table_name
+LIMIT 20;
+
+-- Check 5.2: Constraint validation
+\echo 'Checking constraint validation status...'
+INSERT INTO health_check_results
+SELECT
+    'Referential Integrity' AS category,
+    'Constraint Validation: ' || conname AS check_name,
+    CASE 
+        WHEN convalidated THEN 'PASS'
+        ELSE 'WARN'
+    END AS status,
+    CASE 
+        WHEN convalidated THEN 1
+        ELSE 2
+    END AS severity,
+    'Constraint ' || conname || ' on ' || conrelid::regclass::text || 
+    ' | Validated: ' || convalidated AS details,
+    CASE 
+        WHEN NOT convalidated THEN 'Validate constraint: ALTER TABLE ' || conrelid::regclass::text || 
+            ' VALIDATE CONSTRAINT ' || conname || ';'
+        ELSE NULL
+    END AS recommendation
+FROM pg_constraint
+WHERE connamespace = 'public'::regnamespace
+    AND contype IN ('f', 'c')  -- Foreign keys and check constraints
+    AND NOT convalidated
+LIMIT 10;
+
+-- ============================================
+-- SECTION 6: View Dependency Analysis
 -- ============================================
 \echo ''
 \echo '=========================================='
 \echo '=== VIEW DEPENDENCY ANALYSIS         ==='
 \echo '=========================================='
 
--- Check 4.1: View dependency depth
+-- Check 6.1: View dependency depth
 \echo ''
 \echo 'Checking view dependency depth...'
 DO $$
@@ -536,7 +913,7 @@ BEGIN
     );
 END $$;
 
--- Check 4.2: Empty views that may indicate data issues
+-- Check 6.2: Empty views that may indicate data issues
 \echo 'Checking for empty views...'
 DO $$
 DECLARE
@@ -584,7 +961,7 @@ BEGIN
 END $$;
 
 -- ============================================
--- SECTION 5: Calculate Health Score & Report
+-- SECTION 7: Calculate Health Score & Report
 -- ============================================
 \echo ''
 \echo '=========================================='
@@ -598,7 +975,14 @@ WITH health_summary AS (
         COUNT(*) FILTER (WHERE status = 'PASS') AS passed,
         COUNT(*) FILTER (WHERE status = 'WARN') AS warnings,
         COUNT(*) FILTER (WHERE status = 'FAIL') AS failures,
-        COUNT(*) FILTER (WHERE severity >= 3) AS critical_issues
+        COUNT(*) FILTER (WHERE severity >= 3) AS critical_issues,
+        -- Category-level score
+        ROUND(
+            (COUNT(*) FILTER (WHERE status = 'PASS') * 100.0 + 
+             COUNT(*) FILTER (WHERE status = 'WARN') * 50.0) / 
+            NULLIF(COUNT(*), 0), 
+            2
+        ) AS category_score
     FROM health_check_results
     WHERE status != 'INFO'  -- Exclude informational checks from scoring
     GROUP BY category
@@ -644,7 +1028,42 @@ SELECT
     ''::TEXT AS blank5
 FROM overall_score;
 
--- Display category breakdown
+-- Display category-level health scores
+\echo ''
+\echo '--- CATEGORY HEALTH SCORES ---'
+SELECT
+    category,
+    category_score || '/100' AS health_score,
+    CASE
+        WHEN category_score >= 90 THEN 'EXCELLENT ✓'
+        WHEN category_score >= 75 THEN 'GOOD ⚠'
+        WHEN category_score >= 60 THEN 'NEEDS ATTENTION ⚠⚠'
+        ELSE 'CRITICAL ✗✗✗'
+    END AS status,
+    total_checks AS checks,
+    passed || ' pass' AS passed,
+    warnings || ' warn' AS warnings,
+    failures || ' fail' AS failures
+FROM (
+    SELECT
+        category,
+        COUNT(*) AS total_checks,
+        COUNT(*) FILTER (WHERE status = 'PASS') AS passed,
+        COUNT(*) FILTER (WHERE status = 'WARN') AS warnings,
+        COUNT(*) FILTER (WHERE status = 'FAIL') AS failures,
+        ROUND(
+            (COUNT(*) FILTER (WHERE status = 'PASS') * 100.0 + 
+             COUNT(*) FILTER (WHERE status = 'WARN') * 50.0) / 
+            NULLIF(COUNT(*), 0), 
+            2
+        ) AS category_score
+    FROM health_check_results
+    WHERE status != 'INFO'
+    GROUP BY category
+) cat_scores
+ORDER BY category_score ASC;
+
+-- Display category breakdown (traditional format)
 \echo ''
 \echo '--- CATEGORY BREAKDOWN ---'
 SELECT
@@ -731,7 +1150,11 @@ SELECT json_build_object(
                 'passed', passed,
                 'warnings', warnings,
                 'failures', failures,
-                'pass_rate', ROUND(passed * 100.0 / NULLIF(total_checks, 0), 1)
+                'pass_rate', ROUND(passed * 100.0 / NULLIF(total_checks, 0), 1),
+                'category_score', ROUND(
+                    (passed * 100.0 + warnings * 50.0) / NULLIF(total_checks, 0), 
+                    2
+                )
             )
         )
         FROM (
@@ -763,6 +1186,53 @@ SELECT json_build_object(
         ) issues_subq
     )
 )::text AS json_report;
+
+-- ============================================
+-- SECTION 8: Prometheus Metrics Export
+-- ============================================
+\echo ''
+\echo '--- PROMETHEUS METRICS EXPORT ---'
+\echo 'Generating Prometheus-compatible metrics...'
+
+WITH category_metrics AS (
+    SELECT
+        category,
+        COUNT(*) AS total_checks,
+        COUNT(*) FILTER (WHERE status = 'PASS') AS passed,
+        COUNT(*) FILTER (WHERE status = 'WARN') AS warnings,
+        COUNT(*) FILTER (WHERE status = 'FAIL') AS failures,
+        ROUND(
+            (COUNT(*) FILTER (WHERE status = 'PASS') * 100.0 + 
+             COUNT(*) FILTER (WHERE status = 'WARN') * 50.0) / 
+            NULLIF(COUNT(*), 0), 
+            2
+        ) AS category_score
+    FROM health_check_results
+    WHERE status != 'INFO'
+    GROUP BY category
+)
+SELECT
+    '# HELP cia_db_health_score Database health score by category' || E'\n' ||
+    '# TYPE cia_db_health_score gauge' || E'\n' ||
+    string_agg(
+        'cia_db_health_score{category="' || category || '"} ' || category_score::TEXT,
+        E'\n'
+    ) || E'\n' ||
+    E'\n' ||
+    '# HELP cia_db_health_checks_total Total health checks by category and status' || E'\n' ||
+    '# TYPE cia_db_health_checks_total gauge' || E'\n' ||
+    string_agg(
+        'cia_db_health_checks_total{category="' || category || '",status="pass"} ' || passed::TEXT || E'\n' ||
+        'cia_db_health_checks_total{category="' || category || '",status="warn"} ' || warnings::TEXT || E'\n' ||
+        'cia_db_health_checks_total{category="' || category || '",status="fail"} ' || failures::TEXT,
+        E'\n'
+    ) AS prometheus_metrics
+FROM category_metrics;
+
+\echo ''
+\echo 'To export Prometheus metrics to file, run:'
+\echo '  psql -U postgres -d cia_dev -t -A -f schema-health-check.sql | grep -E "^(#|cia_db_)" > metrics.prom'
+\echo ''
 
 \echo ''
 \echo '=================================================='

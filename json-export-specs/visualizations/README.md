@@ -7,16 +7,26 @@ Complete visualization guides for all CIA JSON export types with color-coded Mer
 
 ## Overview
 
-This directory contains comprehensive visualization documentation for rendering political intelligence data from the CIA JSON export system. Each guide includes:
+This directory contains comprehensive visualization documentation for rendering political intelligence data from the CIA JSON export system. **All visualizations are based on actual data sources documented in the repository**, including:
 
-- 🟦 **Data Structure Diagrams** - JSON schema visualization
+- **85 Database Views**: [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
+- **45-50 Risk Rules**: [RISK_RULES_INTOP_OSINT.md](../../RISK_RULES_INTOP_OSINT.md)
+- **JSON Schemas**: [schemas/](../schemas/) (politician, party, committee, ministry, intelligence)
+- **Analysis Frameworks**: [DATA_ANALYSIS_INTOP_OSINT.md](../../DATA_ANALYSIS_INTOP_OSINT.md)
+- **Business Products**: [BUSINESS_PRODUCT_DOCUMENT.md](../../BUSINESS_PRODUCT_DOCUMENT.md)
+
+Each visualization guide includes:
+
+- 🟦 **Data Structure Diagrams** - JSON schema visualization using Mermaid
 - 🟩 **Data Flow Diagrams** - API to UI rendering pipeline  
 - 🟨 **Component Architecture** - UI component relationships
 - 🟥 **Interaction Flow** - User interaction state machines
-- 💻 **Implementation Code** - D3.js, Chart.js, React, Vue.js examples
+- 📊 **Example Data** - Representative samples based on documented metrics
 - 📱 **Responsive Design** - Mobile-first patterns
 - ♿ **Accessibility** - WCAG 2.1 AA compliance
 - ⚡ **Performance** - Optimization techniques
+
+> **Note**: Visualizations use illustrative examples with realistic ranges based on documented classification systems (e.g., attendance thresholds, effectiveness levels, risk categories). Actual data values are available through the platform's database views and JSON export APIs.
 
 ## Technology Stack
 
@@ -39,28 +49,28 @@ This directory contains comprehensive visualization documentation for rendering 
 
 ### Core Entity Visualizations (5 guides)
 
-| Guide | Size | Description | Key Visualizations |
-|-------|------|-------------|-------------------|
-| [Politician Profile](./politician-profile.md) | 16KB | Complete politician dashboard | Profile cards, timelines, network graphs, performance gauges |
-| [Party Performance](./party-performance.md) | 14KB | Party analytics dashboard | Electoral trends, coalition maps, momentum trackers |
-| [Government Cabinet](./government-cabinet.md) | 13KB | Cabinet visualization | Org charts, coalition composition, minister scorecards |
-| [Committee Network](./committee-network.md) | 12KB | Parliamentary committees | Committee hierarchies, membership matrices, productivity charts |
-| [Intelligence Dashboard](./intelligence-dashboard.md) | 15KB | Intelligence products | Risk heat maps, influence networks, predictive models |
+| Guide | Status | Description | Key Visualizations |
+|-------|--------|-------------|-------------------|
+| [Politician Profile](./politician-profile.md) | ✅ Complete | Complete politician dashboard | Profile cards, timelines, network graphs, performance gauges |
+| [Party Performance](./party-performance.md) | ✅ Complete | Party analytics dashboard | Electoral trends, coalition maps, momentum trackers |
+| [Government Cabinet](./government-cabinet.md) | ✅ Complete | Cabinet visualization | Org charts, coalition composition, minister scorecards, stability metrics |
+| [Committee Network](./committee-network.md) | ✅ Complete | Parliamentary committees | Committee hierarchies, membership matrices, productivity charts, collaboration patterns |
+| [Intelligence Dashboard](./intelligence-dashboard.md) | ✅ Complete | Intelligence products | Risk heat maps, system health, KPI dashboard, data pipeline monitoring |
 
 ### Top-10 Ranking Visualizations (10 guides)
 
-| Guide | Engagement | Description | Key Visualizations |
-|-------|-----------|-------------|-------------------|
-| [Electoral Risk](./top10-electoral-risk.md) | 🔥🔥🔥🔥🔥 | Politicians at risk of losing seats | Risk ladders, seat change maps, factor breakdowns |
-| [Ethics Concerns](./top10-ethics-concerns.md) | 🔥🔥🔥🔥🔥 | Politicians under investigation | Investigation timelines, severity matrices, impact radars |
-| [Most Influential](./top10-most-influential.md) | 🔥🔥🔥🔥 | Real power players | Power rankings, influence spiders, network positions |
-| [Rising Stars](./top10-rising-stars.md) | 🔥🔥🔥🔥 | Young politicians to watch | Momentum trajectories, potential matrices, predictions |
-| [Most Absent](./top10-most-absent.md) | 🔥🔥🔥🔥 | Worst attendance records | League tables, cost calculators, absence heatmaps |
-| [Party Rebels](./top10-party-rebels.md) | 🔥🔥🔥🔥 | Independent thinkers | Loyalty spectrums, dissent timelines, defection meters |
-| [Most Productive](./top10-most-productive.md) | 🔥🔥🔥 | Legislative workhorses | Leaderboards, output timelines, efficiency matrices |
-| [Coalition Brokers](./top10-coalition-brokers.md) | 🔥🔥🔥 | Cross-party deal makers | Collaboration networks, bridge scores, co-sponsorship matrices |
-| [Media Presence](./top10-media-presence.md) | 🔥🔥🔥🔥 | Darlings vs ghosts | Visibility spectrums, sentiment distributions, coverage treemaps |
-| [Most Controversial](./top10-most-controversial.md) | 🔥🔥🔥🔥🔥 | Sweden's most divisive | Polarization indices, controversy timelines, sentiment heatmaps |
+| Guide | Status | Description | Key Visualizations |
+|-------|--------|-------------|-------------------|
+| [Electoral Risk](./top10-electoral-risk.md) | ✅ Complete | Politicians at risk of losing seats | Risk scores, factor breakdown, district vulnerability, trend analysis |
+| [Ethics Concerns](./top10-ethics-concerns.md) | ✅ Complete | Politicians under investigation | Investigation timelines, severity matrices, violation types, sanctions tracking |
+| [Most Influential](./top10-most-influential.md) | ✅ Complete | Real power players | Power rankings, influence dimensions, network centrality, agenda-setting capacity |
+| [Rising Stars](./top10-rising-stars.md) | ✅ Complete | Young politicians to watch | Momentum trajectories, potential matrices, career projections, generational advantage |
+| [Most Absent](./top10-most-absent.md) | ✅ Complete | Worst attendance records | Absence rankings, risk assessment, electoral consequences, comparative benchmarks |
+| [Party Rebels](./top10-party-rebels.md) | ✅ Complete | Independent thinkers | Loyalty spectrums, rebellion types, party response, electoral impact |
+| [Most Productive](./top10-most-productive.md) | ✅ Complete | Legislative workhorses | Productivity rankings, activity breakdown, success rates, policy coverage |
+| [Coalition Brokers](./top10-coalition-brokers.md) | ✅ Complete | Cross-party deal makers | Broker rankings, collaboration networks, bridge scores, influence mechanisms |
+| [Media Presence](./top10-media-presence.md) | ✅ Complete | Media visibility leaders | Visibility rankings, channel distribution, sentiment analysis, social media metrics |
+| [Most Controversial](./top10-most-controversial.md) | ✅ Complete | Sweden's most divisive | Controversy scores, polarization index, vote analysis, electoral consequences |
 
 ## Quick Start
 
@@ -299,8 +309,70 @@ When adding new visualization guides:
 
 - [Main README](../README.md) - JSON export system overview
 - [Schema Specifications](../schemas/) - JSON data structures
-- [Implementation Guide](../IMPLEMENTATION_GUIDE.md) - Backend setup
-- [Curated Aggregates](../CURATED_AGGREGATES_SPEC.md) - Top-10 and role collections
+- [Database View Catalog](../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - 85 documented database views
+- [Risk Rules Documentation](../../RISK_RULES_INTOP_OSINT.md) - 45-50 behavioral detection rules
+- [Data Analysis Frameworks](../../DATA_ANALYSIS_INTOP_OSINT.md) - OSINT methodologies
+- [Business Product Document](../../BUSINESS_PRODUCT_DOCUMENT.md) - Data products and APIs
+- [Intelligence Data Flow](../../INTELLIGENCE_DATA_FLOW.md) - Complete data pipeline
+
+## Actual Data Sources
+
+All visualizations in this directory are based on documented data sources from the Hack23 CIA platform:
+
+### Database Views (85 total)
+- **Politician Views**: `view_riksdagen_politician`, `view_politiker_behavioral_trends`, `view_riksdagen_politician_influence_metrics`
+- **Party Views**: `view_riksdagen_party`, `view_riksdagen_party_summary`, `view_riksdagen_party_decision_flow`
+- **Committee Views**: `view_riksdagen_committee`, `view_committee_productivity`, `view_committee_productivity_matrix`
+- **Government Views**: `view_riksdagen_goverment`, `view_ministry_effectiveness_trends`, `view_ministry_productivity_matrix`
+- **Intelligence Views**: `view_riksdagen_intelligence_dashboard`, `view_riksdagen_voting_anomaly_detection`, `view_riksdagen_coalition_alignment_matrix`
+
+### Actual Classification Systems
+
+**Attendance Status** (from `view_politician_behavioral_trends`):
+- EXCELLENT_ATTENDANCE: <5% absence
+- GOOD_ATTENDANCE: 5-10% absence
+- MODERATE_ABSENTEEISM: 10-20% absence
+- HIGH_ABSENTEEISM: 20-30% absence
+- CRITICAL_ABSENTEEISM: >30% absence
+
+**Effectiveness Status**:
+- HIGHLY_EFFECTIVE: >70% win rate
+- EFFECTIVE: 55-70% win rate
+- MODERATE_EFFECTIVENESS: 45-55% win rate
+- INEFFECTIVE: <45% win rate
+
+**Discipline Status**:
+- HIGH_INDEPENDENCE: >15% rebellion (frequent dissent)
+- MODERATE_INDEPENDENCE: 10-15% rebellion
+- LOW_INDEPENDENCE: 5-10% rebellion
+- PARTY_LINE: <5% rebellion (high discipline)
+
+**Risk Assessment Levels**:
+- EXCELLENT_BEHAVIOR: All metrics strong
+- STANDARD_BEHAVIOR: Normal patterns
+- MODERATE_RISK: One metric concerning
+- ELEVATED_RISK: Multiple concerning metrics
+- CRITICAL_CONCERN: All metrics problematic
+
+### Swedish Parliamentary Parties (8 parliamentary parties)
+- **S** (Social Democrats): #E8112d - 107 seats
+- **M** (Moderates): #52BDEC - 68 seats
+- **SD** (Sweden Democrats): #DDDD00 - 73 seats
+- **C** (Center Party): #009933 - 24 seats
+- **V** (Left Party): #DA291C - 24 seats
+- **KD** (Christian Democrats): #000077 - 19 seats
+- **L** (Liberals): #006AB3 - 16 seats
+- **MP** (Green Party): #83CF39 - 16 seats
+
+Total: 349 seats in Riksdag
+
+### Risk Rules Framework
+The platform implements 45-50 behavioral detection rules across 5 domains:
+- **24 Politician Rules**: Absenteeism, effectiveness, productivity, isolation
+- **10 Party Rules**: Organizational effectiveness monitoring
+- **4 Committee Rules**: Legislative body performance
+- **4 Ministry Rules**: Government executive assessment
+- **5 Decision Pattern Rules**: Legislative effectiveness and coalition stability
 
 ## License
 

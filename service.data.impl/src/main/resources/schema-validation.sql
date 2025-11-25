@@ -6,6 +6,10 @@
 -- Purpose: Validates database schema by counting objects, extracting samples,
 --          and generating statistics reports for documentation validation
 --
+-- NOTE: For comprehensive validation of ALL 177 objects (93 tables + 56 views + 28 mviews),
+--       use schema-validation-v2.sql which provides 100% coverage validation.
+--       This script focuses on statistics and sampling.
+--
 -- Usage:
 --   psql -U postgres -d cia_dev -f schema-validation.sql > schema_report.txt 2>&1
 --
@@ -13,6 +17,9 @@
 --   1. Text report (stdout)
 --   2. JSON report (see JSON output section)
 --   3. CSV inventory (see CSV output section)
+--
+-- Related: Issue Hack23/cia#7865 - Schema validation script foundation
+-- See also: schema-validation-v2.sql (Issue Hack23/cia#7872 - 100% coverage)
 
 \set ECHO queries
 \timing on

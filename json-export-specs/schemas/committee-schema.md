@@ -7,6 +7,30 @@
 
 ---
 
+## 🔗 Business Context
+
+This JSON schema powers **2 product lines** serving multiple market segments:
+
+### Product Integration
+- **[Advanced Analytics Suite](../../BUSINESS_PRODUCT_DOCUMENT.md#product-line-2-advanced-analytics-suite)** - Analytics platform (€855K/year)
+  - Committee analytics dashboards
+  - Proposal tracking and effectiveness
+  - Committee composition monitoring
+- **[Decision Intelligence](../../BUSINESS_PRODUCT_DOCUMENT.md#product-line-6-decision-intelligence-suite)** - Legislative analytics (€2.09M/year)
+  - Committee decision patterns
+  - Proposal success rates
+  - Legislative bottleneck analysis
+
+### Primary Market Segments
+> **Note:** Market segments overlap across multiple schemas and products. This schema primarily serves:
+
+- **Lobbying & Government Relations** (€15M+ TAM) - Committee targeting, proposal strategy
+- **Corporate Affairs** (€12M TAM) - Legislative monitoring, committee relationship tracking
+
+**See Complete Business Strategy**: [BUSINESS_PRODUCT_DOCUMENT.md](../../BUSINESS_PRODUCT_DOCUMENT.md) | [Product-to-Data Mapping](../../BUSINESS_PRODUCT_DOCUMENT.md#appendix-e-product-to-data-mapping)
+
+---
+
 ## 🎯 Overview
 
 The Committee JSON schema provides comprehensive representation of Swedish Riksdag committees, including membership, productivity, decision-making, policy focus, and performance analytics.
