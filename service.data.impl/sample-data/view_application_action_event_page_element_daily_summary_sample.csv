@@ -1,0 +1,29 @@
+embedded_id_page,embedded_id_element_id,embedded_id_created_date,hits,rank_percentage,rank
+main,PAGEVISITHISTORY,2025-11-24 00:00:00,1,0.5,2
+ministryranking,DATAGRID,2025-11-24 00:00:00,1,1,2
+adminagency,52,2025-11-25 00:00:00,1,0,1
+partyranking,CURRENTGOVERMENTPARTIES,2025-11-25 00:00:00,1,0,1
+ministryranking,CURRENTMINISTRIESLEADERSCORECARD,2025-11-25 00:00:00,1,0,1
+countryranking,FM.LBL.BMNY.ZG,2025-11-24 00:00:00,1,0,1
+countryranking,NY.EXP.CAPM.KN,2025-11-24 00:00:00,1,0,1
+governmentbodyranking,EXPENDITURE,2025-11-24 00:00:00,2,0,1
+main,LOGIN,2025-11-24 00:00:00,9,0,1
+adminapplicationevents,CHARTS,2025-11-23 00:00:00,1,0,1
+politicianranking,DATAGRID,2025-11-24 00:00:00,1,0,1
+ministryranking,CURRENTMINISTRIESLEADERSCORECARD,2025-11-24 00:00:00,3,0,1
+parliamentranking,2023/24,2025-11-25 00:00:00,1,0,1
+adminapplicationevents,CHARTS,2025-11-24 00:00:00,4,0,1
+main,REGISTER,2025-11-24 00:00:00,1,0.5,2
+partyranking,CURRENTPARTYLEADERSCORECARD,2025-11-25 00:00:00,1,0,1
+countryranking,DC.ODA.TOTL.GN.ZS,2025-11-25 00:00:00,1,0,1
+partyranking,CURRENTGOVERMENTPARTIES,2025-11-24 00:00:00,1,0,1
+parliamentranking,RISK_SUMMARY,2025-11-24 00:00:00,1,0,1
+politicianranking,DATAGRID,2025-11-23 00:00:00,1,0,1
+governmentbodyranking,HEADCOUNT,2025-11-24 00:00:00,1,1,2
+partyranking,CURRENTPARTYLEADERSCORECARD,2025-11-24 00:00:00,1,0,1
+main,LOGIN,2025-11-23 00:00:00,4,0,1
+main,REGISTER,2025-11-23 00:00:00,1,1,2
+parliamentranking,2025/26,2025-11-25 00:00:00,1,0,1
+politician,0947572086414,2025-11-23 00:00:00,1,0,1
+ministry,Klimat- och näringslivsdepartementet,2025-11-24 00:00:00,2,0,1
+parliamentranking,2024/25,2025-11-25 00:00:00,1,0,1

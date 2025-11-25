@@ -1,0 +1,5 @@
+category,total_in_schema,extracted_count,excluded_count,coverage_pct
+TABLES,93,80,13,86.02
+REGULAR_VIEWS,58,58,0,100.00
+MATERIALIZED_VIEWS,28,28,0,100.00
+TOTAL,179,166,13,92.74

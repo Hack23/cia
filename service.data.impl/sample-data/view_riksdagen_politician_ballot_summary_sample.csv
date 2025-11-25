@@ -1,0 +1,53 @@
+person_id,first_name,last_name,party,born_year,gender,status,election_region,total_votes,yes_percentage,no_percentage,absence_rate,rebel_rate,success_rate,voting_days,first_vote_date,last_vote_date,voting_participation_rate,loyalty_rate,voting_consistency_score,analysis_comment
+0274462857213,Petter,Löberg,S,1968,MAN,Tjänstgörande riksdagsledamot,Västra Götalands läns södra,1803283,53.12,15.49,24.91,0.08,64.20,13,2010-01-01,2025-01-01,75.09,99.92,64.15,Generally aligned
+0368245926011,Conny,Öhman,S,1950,MAN,Tidigare riksdagsledamot,Östergötlands län,655771,58.74,19.28,17.04,0.00,84.14,5,2002-01-01,2006-01-01,82.96,100.00,84.14,Often on winning side
+0641996868011,Ann,Arleklo,S,1953,KVINNA,Tidigare riksdagsledamot,Skåne läns västra,982086,58.75,23.10,14.50,0.07,35.53,9,2006-01-01,2014-01-01,85.50,99.93,35.51,Generally aligned
+012575bb-0cc6-48cb-b259-cbd181cb3c80,Rune,Carlstein,S,1921,MAN,Inga uppdrag,Älvsborgs läns södr,0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0114769874810,Sven Yngve,Persson,M,1960,MAN,Tidigare riksdagsledamot,Skåne läns västra,454049,53.16,26.82,17.56,0.00,94.08,5,2006-01-01,2010-01-01,82.44,100.00,94.08,Often on winning side
+0341604836310,Karin,Engdahl,S,1972,KVINNA,Tidigare riksdagsledamot,Västra Götalands läns norra,34900,59.84,21.78,12.59,0.00,68.00,1,2022-01-01,2022-01-01,87.41,100.00,68.00,Generally aligned
+0540309351004,Kurt Ove,Johansson,S,1934,MAN,Tidigare riksdagsledamot,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0681085425612,Per,Rosengren,V,1951,MAN,Tidigare riksdagsledamot,Västra Götalands läns östra,655771,58.74,19.28,17.04,0.27,51.68,5,2002-01-01,2006-01-01,82.96,99.73,51.54,Generally aligned
+0483306984615,Björn,Samuelson,M,1951,MAN,Tidigare ersättare,Stockholms län,343067,64.18,18.95,11.98,0.00,94.30,3,2012-01-01,2014-01-01,88.02,100.00,94.30,Often on winning side
+6f33c1aa-6ffc-4c9d-a255-49275ff750ab,Arvid,Eskel,S,1909,MAN,Inga uppdrag,Värmlands län,0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+db09ce80-d0d8-4cc7-8c42-0efe72c1888f,Arne,Persson,C,1913,MAN,Inga uppdrag,Älvsborgs läns södr,0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+d4526171-7191-479c-946d-b7d2c0c1b278,Erik,Adamsson,S,1916,MAN,Inga uppdrag,"Fyrstadskretsen 1971-1978/79
+Ledamot av Andra ka",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0800081986104,Christina,Raud,S,1939,KVINNA,Status saknas,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0642824296805,Eva,Julin,MP,1947,KVINNA,Tidigare riksdagsledamot,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0648224557612,Åsa,Karlsson,S,1973,KVINNA,Tjänstgörande riksdagsledamot,Västerbottens län,1105632,47.05,14.27,31.84,0.00,49.46,8,2018-01-01,2025-01-01,68.16,100.00,49.46,Frequently absent
+065701062615,Runar,Filper,SD,1964,MAN,Tjänstgörande riksdagsledamot,Värmlands län,1774665,53.22,15.24,24.99,0.02,41.63,12,2014-01-01,2025-01-01,75.01,99.98,41.62,Generally aligned
+0497217816024,Markus,Selin,S,1978,MAN,Tjänstgörande riksdagsledamot,Stockholms län,1160425,47.55,14.38,31.03,0.00,59.61,8,2018-01-01,2025-01-01,68.97,100.00,59.61,Frequently absent
+0784309503313,Ewa,Björling,M,1961,KVINNA,Tidigare riksdagsledamot,Stockholms län,753840,58.45,19.76,17.12,0.05,38.43,6,2002-01-01,2007-01-01,82.88,99.95,38.41,Generally aligned
+0467253407311,Hans,Unander,S,1970,MAN,Tidigare riksdagsledamot,Dalarnas län,946139,61.38,19.77,14.29,0.00,65.70,12,2002-01-01,2017-01-01,85.71,100.00,65.70,Generally aligned
+0695090885212,Maria,Abrahamsson,M,1963,KVINNA,Tidigare riksdagsledamot,Stockholms kommun,1246628,63.64,18.51,12.73,0.06,77.02,9,2010-01-01,2018-01-01,87.27,99.94,76.97,Often on winning side
+0648161048508,Margareta,Nachmanson,M,1940,KVINNA,Tidigare riksdagsledamot,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0530425150220,Annika,Strandhäll,S,1975,KVINNA,Tjänstgörande riksdagsledamot,Stockholms kommun,777921,41.67,12.46,39.56,0.27,31.36,7,2019-01-01,2025-01-01,60.44,99.73,31.28,Frequently absent
+0628005785225,Jörgen,Berglund,M,1974,MAN,Tjänstgörande riksdagsledamot,Västernorrlands län,1160425,47.55,14.38,31.03,0.00,54.44,8,2018-01-01,2025-01-01,68.97,100.00,54.44,Frequently absent
+0682674527208,Anita,Jönsson,S,1947,KVINNA,Tidigare riksdagsledamot,Skåne läns södra,655771,58.74,19.28,17.04,0.00,78.66,5,2002-01-01,2006-01-01,82.96,100.00,78.66,Often on winning side
+0741005094627,Gustav,Blix,M,1974,MAN,Tidigare riksdagsledamot,Stockholms kommun,981737,59.10,22.76,14.39,0.00,79.17,10,2006-01-01,2016-01-01,85.61,100.00,79.17,Often on winning side
+7c6ffd9b-ac58-429b-8496-84e73011ea6a,Ruth,Anderson,S,1908,KVINNA,Inga uppdrag,Älvsborgs läns norr,0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0181942435301,Ingela,Thalén,S,1943,KVINNA,Tidigare riksdagsledamot,"",319335,61.38,18.02,15.30,0.00,89.29,4,2002-01-01,2006-01-01,84.70,100.00,89.29,Often on winning side
+0542215898226,Jan Emanuel,Johansson,S,1974,MAN,Tidigare riksdagsledamot,Stockholms län,874245,56.76,21.91,17.12,0.16,65.55,8,2002-01-01,2010-01-01,82.88,99.84,65.45,Generally aligned
+7932ec1c-d0f8-4fe1-8778-415506265a19,Elvy,Westerberg,S,1932,KVINNA,Inga uppdrag,"Fyrstadskretsen 1984/85
+(från 11.4.1985)",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0841802782704,Birgit,Friggebo,L,1941,KVINNA,Tidigare riksdagsledamot,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0123965657818,Göran,Dahlstrand,S,1950,MAN,Tidigare ersättare,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0755978501008,Margareta,Andrén,L,1933,KVINNA,Avliden  2022-12-02,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0980316377627,Lars,Hjälmered,M,1977,MAN,Tidigare riksdagsledamot,Göteborgs kommun,2286648,54.29,18.39,22.77,0.00,63.73,17,2006-01-01,2022-01-01,77.23,100.00,63.73,Generally aligned
+0211726202212,Maria,Kornevik Jakobsson,C,1953,KVINNA,Tidigare ersättare,Västra Götalands läns västra,454049,53.16,26.82,17.56,0.00,81.09,5,2006-01-01,2010-01-01,82.44,100.00,81.09,Often on winning side
+0205437173407,Ingemar,Konradsson,S,1930,MAN,Avliden  2015-01-16,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0688288022003,Hans,Lindforss,MP,1934,MAN,Tidigare riksdagsledamot,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0321885416125,Rossana,Dinamarca,V,1974,KVINNA,Tidigare riksdagsledamot,Västra Götalands läns norra,2325387,60.22,20.35,14.85,0.14,34.31,17,2002-01-01,2018-01-01,85.15,99.86,34.26,Generally aligned
+0362315104401,Paul,Lestander,V,1926,MAN,Avliden  2012-06-02,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0155487380917,Kerstin,Lundgren,C,1955,KVINNA,Tredje vice talman (tjänstgörande riksdagsledamot),Stockholms län,3516873,56.06,18.36,20.19,0.15,52.21,24,2002-01-01,2025-01-01,79.81,99.85,52.13,Generally aligned
+0283853469394,Sten Sture,Paterson,M,1919,MAN,Tidigare riksdagsledamot,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0828001951212,Ingemar,Kihlström,KD,1966,MAN,Tjänstgörande riksdagsledamot,Västra Götalands läns södra,1160425,47.55,14.38,31.03,0.00,51.52,8,2018-01-01,2025-01-01,68.97,100.00,51.52,Frequently absent
+0123939426106,Märta,Johansson,S,1935,KVINNA,Avliden  2023-08-07,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0273506284025,Edward,Riedl,M,1976,MAN,Tjänstgörande riksdagsledamot,Västerbottens län,2407053,55.88,16.52,21.55,0.06,66.69,16,2010-01-01,2025-01-01,78.45,99.94,66.65,Generally aligned
+0231432628318,Shadiye,Heydari,S,1967,KVINNA,Tidigare riksdagsledamot,Göteborgs kommun,1052584,63.93,18.84,12.31,0.00,58.12,8,2010-01-01,2017-01-01,87.69,100.00,58.12,Generally aligned
+0510160730305,Anita,Bråkenhielm,M,1937,KVINNA,Tidigare riksdagsledamot,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0119851690521,David,Perez,SD,1990,MAN,Tjänstgörande riksdagsledamot,Uppsala län,733598,48.75,15.32,28.91,0.00,52.24,5,2021-01-01,2025-01-01,71.09,100.00,52.24,Frequently absent
+0394430340317,Monica,Tedestam Berglöw,SD,1962,KVINNA,Tidigare ersättare,Stockholms län,14658,70.59,13.42,12.61,0.00,42.86,1,2015-01-01,2015-01-01,87.39,100.00,42.86,Generally aligned
+0354791692918,Karl-Petter,Thorwaldsson,S,1964,MAN,Tidigare näringsminister,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+0490704966896,Lars,De Geer,L,1922,MAN,Tidigare riksdagsledamot,"",0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
+42eb50ab-98aa-4616-a573-faec2977dc6d,Svea,Wiklund,C,1917,KVINNA,Inga uppdrag,Västerbottens län,0,0,0,0,0,0,0,,,100.0,100.0,0,No voting record
