@@ -658,18 +658,52 @@ psql -U postgres -d cia_dev -c "
 ### Overview
 
 The `schema-health-check.sql` script provides comprehensive database health monitoring by:
+
+**Schema Integrity:**
 - Validating all foreign key constraints for referential integrity
 - Checking for orphaned records
 - Validating view definitions (detecting broken views)
 - Checking materialized view freshness
-- Identifying missing indexes on foreign keys
+
+**Data Quality:**
 - Checking for empty critical tables
 - Validating data quality (NULL values in required fields)
-- Analyzing query performance patterns
+- Checking NULL percentage in critical columns
+- Analyzing data distribution balance (party distribution)
+- Detecting duplicate records in key views
+
+**Performance Analysis:**
+- Identifying missing indexes on foreign keys
+- Analyzing table maintenance (vacuum status)
+- Detecting slow query patterns (via pg_stat_statements)
 - Detecting table bloat
+- Monitoring connection pool usage
+- Analyzing query cache hit ratios
+- Detecting database lock waits
+
+**Security Validation:**
+- Auditing user permissions
+- Checking SSL configuration
+- Validating pgaudit extension status
+- Verifying password encryption methods
+
+**Referential Integrity:**
+- Analyzing cascade delete configurations
+- Validating constraint status
+
+**View Dependencies:**
 - Analyzing view dependency depth
-- Generating health score (0-100)
+- Detecting empty views
+
+**Health Scoring:**
+- Overall health score (0-100)
+- Category-level health scores (per check type)
 - Providing actionable recommendations
+
+**Monitoring Integration:**
+- Prometheus metrics export format
+- JSON export for automation
+- Alerting threshold support
 
 This script complements `schema-validation.sql` (which provides statistics) by adding health checks and recommendations.
 
@@ -702,19 +736,50 @@ cat health_check.json | python3 -m json.tool
 
 # Example JSON structure:
 # {
-#   "timestamp": "2025-11-18T17:30:00",
+#   "timestamp": "2025-11-24T22:00:00",
 #   "database": "cia_dev",
 #   "health_score": 87.5,
 #   "summary": {
-#     "total_checks": 45,
-#     "passed": 38,
-#     "warnings": 5,
-#     "failures": 2,
-#     "critical_issues": 1
+#     "total_checks": 65,
+#     "passed": 52,
+#     "warnings": 10,
+#     "failures": 3,
+#     "critical_issues": 2
 #   },
-#   "categories": [...],
+#   "categories": [
+#     {
+#       "category": "Schema Integrity",
+#       "total_checks": 15,
+#       "passed": 14,
+#       "warnings": 1,
+#       "failures": 0,
+#       "pass_rate": 93.3,
+#       "category_score": 96.67
+#     },
+#     ...
+#   ],
 #   "issues": [...]
 # }
+```
+
+#### Generate Prometheus Metrics
+
+Export health check metrics in Prometheus format:
+
+```bash
+# Generate Prometheus metrics file
+psql -U postgres -d cia_dev -t -A -f service.data.impl/src/main/resources/schema-health-check.sql 2>/dev/null | \
+  grep -A 999 "cia_db_health_score" | grep -E "^(#|cia_db_)" > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+
+# Example Prometheus metrics:
+# cia_db_health_score{category="Schema Integrity"} 96.67
+# cia_db_health_score{category="Data Quality"} 85.00
+# cia_db_health_score{category="Performance"} 78.50
+# cia_db_health_score{category="Security"} 100.00
+# cia_db_health_score{category="Referential Integrity"} 100.00
+# cia_db_health_checks_total{category="Schema Integrity",status="pass"} 14
+# cia_db_health_checks_total{category="Schema Integrity",status="warn"} 1
+# cia_db_health_checks_total{category="Schema Integrity",status="fail"} 0
 ```
 
 ### Health Score Interpretation
@@ -724,12 +789,18 @@ The health score ranges from 0 to 100 based on check results:
 - **WARN** checks contribute 50 points each
 - **FAIL** checks contribute 0 points each
 
+**Overall Health Score:**
+
 | Score | Status | Action Required |
 |-------|--------|----------------|
 | 90-100 | ✓ EXCELLENT | No action needed, maintain current practices |
 | 75-89 | ⚠ GOOD | Monitor warnings, plan improvements |
 | 60-74 | ⚠⚠ NEEDS ATTENTION | Address failures and warnings soon |
 | < 60 | ✗✗✗ CRITICAL | Immediate action required |
+
+**Category-Level Scores:**
+
+Each category (Schema Integrity, Data Quality, Performance, Security, Referential Integrity, View Dependencies) receives its own health score, allowing for targeted improvements in specific areas.
 
 ### Health Check Categories
 
@@ -748,7 +819,9 @@ Details: Found 0 orphaned records
 
 #### 2. Data Quality
 - **Critical Table Checks**: Ensures important tables have data
-- **NULL Value Checks**: Validates no NULL values in required columns
+- **NULL Value Checks**: Validates no NULL values in required columns (specific fields)
+- **NULL Percentage Analysis**: Checks percentage of NULL values in critical columns
+- **Data Distribution Balance**: Analyzes party distribution for imbalances
 - **Duplicate Detection**: Identifies duplicate primary keys in views
 
 **Example Output:**
@@ -758,10 +831,14 @@ Check: Critical Table: person_data
 Status: PASS
 Details: Table has 5,432 rows
 
-Check: NULL Check: person_data.person_id
-Status: FAIL
-Details: Found 12 NULL person_id values
-Recommendation: Fix NULL values in person_data.person_id
+Check: NULL Percentage: person_data.first_name
+Status: WARN
+Details: 7.5% NULL values
+Recommendation: Investigate and fix NULL values in person_data.first_name
+
+Check: Party Distribution Balance
+Status: PASS
+Details: Distribution coefficient: 0.85 | Avg per party: 450
 ```
 
 #### 3. Performance Analysis
@@ -769,6 +846,9 @@ Recommendation: Fix NULL values in person_data.person_id
 - **Table Maintenance**: Checks when tables were last vacuumed
 - **Slow Queries**: Reports queries with high execution time (requires pg_stat_statements)
 - **Table Bloat**: Detects tables with excessive dead tuples
+- **Connection Pool Usage**: Monitors total client backend connections vs max connections
+- **Query Cache Hit Ratio**: Analyzes buffer cache effectiveness
+- **Lock Waits**: Detects blocking queries and lock contention
 
 **Example Output:**
 ```
@@ -782,9 +862,64 @@ Check: Table Bloat: document_data
 Status: WARN
 Details: Live tuples: 50000 | Dead tuples: 12000 | Dead ratio: 24.0%
 Recommendation: VACUUM FULL document_data; -- WARNING: Locks table
+
+Check: Connection Pool Usage
+Status: PASS
+Details: Client Connections: 15 / Max: 100 (15.0%)
+
+Check: Query Cache Hit Ratio
+Status: PASS
+Details: Hit Ratio: 95.50%
+
+Check: Database Lock Waits
+Status: PASS
+Details: Current lock waits: 0
 ```
 
-#### 4. View Dependencies
+#### 4. Security Validation
+- **User Permission Audit**: Reviews database user privileges
+- **SSL Configuration**: Verifies SSL/TLS encryption settings
+- **pgaudit Extension**: Checks audit logging configuration
+- **Password Encryption**: Validates password encryption methods
+
+**Example Output:**
+```
+Category: Security
+Check: User Permissions: app_user
+Status: PASS
+Details: User: app_user | Superuser: false | Create DB: false
+
+Check: SSL Configuration
+Status: PASS
+Details: SSL: on
+
+Check: pgaudit Extension
+Status: PASS
+Details: pgaudit is installed and active
+
+Check: Password Encryption Method
+Status: PASS
+Details: Encryption method: scram-sha-256
+```
+
+#### 5. Referential Integrity
+- **Cascade Delete Configuration**: Reviews cascade rules on foreign keys
+- **Constraint Validation**: Ensures all constraints are validated
+
+**Example Output:**
+```
+Category: Referential Integrity
+Check: Cascade Rule: vote_data -> ballot_data
+Status: INFO
+Details: Delete rule: CASCADE | Update rule: CASCADE
+Recommendation: CASCADE delete configured - ensure this is intentional for vote_data
+
+Check: Constraint Validation: fk_assignment_person
+Status: PASS
+Details: Constraint fk_assignment_person on assignment_data | Validated: true
+```
+
+#### 6. View Dependencies
 - **Dependency Depth**: Checks for overly complex view hierarchies
 - **Empty Views**: Identifies views returning zero rows
 
@@ -974,7 +1109,33 @@ Add to `.github/workflows/verify-and-release.yml`:
 
 #### Monitoring with Prometheus/Grafana
 
-Export metrics for monitoring systems:
+The health check script now provides native Prometheus metrics export with category-level granularity.
+
+**Option 1: Direct Export from Script**
+
+```bash
+#!/bin/bash
+# File: /usr/local/bin/export-health-metrics-prometheus.sh
+
+# Run health check and extract Prometheus metrics
+psql -U postgres -d cia_dev -t -A -f /path/to/service.data.impl/src/main/resources/schema-health-check.sql 2>/dev/null | \
+  grep -E "^(#|cia_db_)" > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+
+echo "Prometheus metrics exported to cia_health.prom"
+
+# Example metrics output:
+# cia_db_health_score{category="Schema Integrity"} 96.67
+# cia_db_health_score{category="Data Quality"} 85.00
+# cia_db_health_score{category="Performance"} 78.50
+# cia_db_health_score{category="Security"} 100.00
+# cia_db_health_score{category="Referential Integrity"} 100.00
+# cia_db_health_score{category="View Dependencies"} 95.00
+# cia_db_health_checks_total{category="Schema Integrity",status="pass"} 14
+# cia_db_health_checks_total{category="Schema Integrity",status="warn"} 1
+# cia_db_health_checks_total{category="Schema Integrity",status="fail"} 0
+```
+
+**Option 2: JSON-based Export (Legacy)**
 
 ```bash
 #!/bin/bash
@@ -983,7 +1144,7 @@ Export metrics for monitoring systems:
 # Run health check and extract JSON
 JSON=$(psql -U postgres -d cia_dev -t -A -f service.data.impl/src/main/resources/schema-health-check.sql | grep '{"timestamp"' | head -1)
 
-# Extract metrics
+# Extract overall metrics
 HEALTH_SCORE=$(echo "$JSON" | jq -r '.health_score')
 TOTAL_CHECKS=$(echo "$JSON" | jq -r '.summary.total_checks')
 PASSED=$(echo "$JSON" | jq -r '.summary.passed')
@@ -991,26 +1152,62 @@ WARNINGS=$(echo "$JSON" | jq -r '.summary.warnings')
 FAILURES=$(echo "$JSON" | jq -r '.summary.failures')
 CRITICAL=$(echo "$JSON" | jq -r '.summary.critical_issues')
 
+# Extract category-level scores
+CATEGORIES=$(echo "$JSON" | jq -r '.categories[] | "\(.category)|\(.category_score)"')
+
 # Write to Prometheus text file
 cat <<EOF > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
-# HELP cia_health_score Database health score (0-100)
-# TYPE cia_health_score gauge
-cia_health_score $HEALTH_SCORE
-
-# HELP cia_health_checks_total Total number of health checks
-# TYPE cia_health_checks_total gauge
-cia_health_checks_total{status="passed"} $PASSED
-cia_health_checks_total{status="warnings"} $WARNINGS
-cia_health_checks_total{status="failures"} $FAILURES
-cia_health_checks_total{status="critical"} $CRITICAL
+# HELP cia_db_health_score Database health score by category (0-100)
+# TYPE cia_db_health_score gauge
 EOF
+
+# Add category scores (matching Option 1 script output format)
+echo "$CATEGORIES" | while IFS='|' read -r category score; do
+  echo "cia_db_health_score{category=\"$category\"} $score" >> /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+done
+
+# Add aggregate health checks by status
+cat <<EOF >> /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+
+# HELP cia_db_health_checks_total Total number of health checks by status
+# TYPE cia_db_health_checks_total gauge
+cia_db_health_checks_total{status="passed"} $PASSED
+cia_db_health_checks_total{status="warnings"} $WARNINGS
+cia_db_health_checks_total{status="failures"} $FAILURES
+cia_db_health_checks_total{status="critical"} $CRITICAL
+EOF
+```
+
+**Grafana Dashboard Queries:**
+
+```promql
+# Overall health score
+cia_db_health_score
+
+# Category-level health scores
+cia_db_health_score{category=~".*"}
+
+# Health checks by status
+sum by (status) (cia_db_health_checks_total)
+
+# Alert on low health score
+cia_db_health_score{category="Security"} < 80
+```
+
+**Schedule with Cron:**
+
+```bash
+chmod +x /usr/local/bin/export-health-metrics-prometheus.sh
+
+# Run every 15 minutes
+(crontab -l 2>/dev/null; echo "*/15 * * * * /usr/local/bin/export-health-metrics-prometheus.sh") | crontab -
 ```
 
 ### Best Practices
 
 1. **Run health checks regularly**: Weekly or before major deployments
 2. **Address issues promptly**: Don't let warnings accumulate
-3. **Monitor trends**: Track health score over time
+3. **Monitor trends**: Track health score over time (use category scores for targeted analysis)
 4. **Automate alerts**: Set up notifications for score drops
 5. **Document fixes**: Keep track of recurring issues and solutions
 6. **Combine with validation**: Use both health-check and validation scripts
