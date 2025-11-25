@@ -7,6 +7,38 @@
 
 ---
 
+## 🔗 Business Context
+
+This JSON schema powers **4 product lines** serving €32M Total Addressable Market:
+
+### Product Integration
+- **[Political Intelligence API](../../BUSINESS_PRODUCT_DOCUMENT.md#-product-line-1-political-intelligence-api)** - Core API product (€630K/year)
+  - Party performance metrics
+  - Voting pattern analysis
+  - Coalition monitoring
+- **[Advanced Analytics Suite](../../BUSINESS_PRODUCT_DOCUMENT.md#-product-line-2-advanced-analytics-suite)** - Analytics platform (€855K/year)
+  - Party performance dashboards
+  - Coalition stability monitoring
+  - Comparative party analysis
+- **[Predictive Analytics](../../BUSINESS_PRODUCT_DOCUMENT.md#-product-line-4-predictive-analytics-service)** - Forecasting service (€2.05M/year)
+  - Electoral forecasting and seat projections
+  - Coalition formation probability
+  - Government stability predictions
+- **[Decision Intelligence](../../BUSINESS_PRODUCT_DOCUMENT.md#-product-line-6-decision-intelligence-suite)** - Legislative analytics (€2.09M/year)
+  - Party decision effectiveness tracking
+  - Approval rate monitoring
+  - Coalition alignment analysis
+
+### Market Segments
+- **Political Consulting** (€15M TAM) - Campaign strategy, coalition analysis
+- **Corporate Affairs** (€12M TAM) - Government relations, regulatory monitoring
+- **Strategic Consulting** (€30M+ TAM) - Political scenario planning, market entry risk
+- **Media & Journalism** (€8M TAM) - Political analysis, investigative reporting
+
+**See Complete Business Strategy**: [BUSINESS_PRODUCT_DOCUMENT.md](../../BUSINESS_PRODUCT_DOCUMENT.md) | [Product-to-Data Mapping](../../BUSINESS_PRODUCT_DOCUMENT.md#appendix-e-product-to-data-mapping)
+
+---
+
 ## 🎯 Overview
 
 The Party JSON schema provides comprehensive representation of Swedish political parties, including electoral performance, parliamentary activity, coalition dynamics, voting cohesion, policy positions, and intelligence analytics.
