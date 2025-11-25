@@ -27,40 +27,11 @@ jobs:
         cd $GITHUB_WORKSPACE
         bash .github/scripts/generate-intelligence-changelog.sh \
           ${{ github.event.inputs.previous_commit }} \
-          ${{ github.event.inputs.current_commit }}
+          ${{ github.event.inputs.current_commit }} > changelog-output.txt
       
     - name: Upload Changelog Report
       uses: actions/upload-artifact@v4
       with:
         name: intelligence-changelog-report
-        path: |
-          ${{ github.workspace }}/.github/scripts/
+        path: changelog-output.txt
         retention-days: 30
-    
-    - name: Comment on PR (if triggered from PR)
-      if: github.event_name == 'pull_request'
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const fs = require('fs');
-          const output = `## 🤖 Intelligence Changelog Analysis
-          
-          The intelligence changelog generator has analyzed the changes in this PR.
-          
-          Please review the suggestions and update the following files as appropriate:
-          - \`CHANGELOG_INTELLIGENCE_ANALYSIS.md\`
-          - \`CHANGELOG_DATABASE_VIEWS.md\`
-          - \`CHANGELOG_RISK_RULES.md\`
-          
-          Run the generator locally for detailed output:
-          \`\`\`bash
-          .github/scripts/generate-intelligence-changelog.sh
-          \`\`\`
-          `;
-          
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: output
-          });

@@ -18,8 +18,8 @@ This changelog documents changes to intelligence operations (INTOP), Open-Source
 | **Understand risk rules** | [Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md) |
 | **Learn analysis frameworks** | [Data Analysis Documentation](DATA_ANALYSIS_INTOP_OSINT.md) |
 | **See data flow** | [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) |
-| **View database view changes** | [Database Views Changelog](#changelog_database_viewsmd) |
-| **View risk rule changes** | [Risk Rules Changelog](#changelog_risk_rulesmd) |
+| **View database view changes** | [Database Views Changelog](CHANGELOG_DATABASE_VIEWS.md) |
+| **View risk rule changes** | [Risk Rules Changelog](CHANGELOG_RISK_RULES.md) |
 
 ---
 
