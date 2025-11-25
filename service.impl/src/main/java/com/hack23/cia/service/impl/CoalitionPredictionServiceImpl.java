@@ -7,7 +7,8 @@
  *
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law  * distributed under the License is distributed on an "AS IS" BASIS,
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -52,19 +53,6 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 
 	private static final int MAJORITY_SEATS = 175;
 	private static final List<String> ALL_PARTIES = Arrays.asList("S", "M", "SD", "C", "V", "KD", "MP", "L");
-	
-	// Historical seat counts (approximate - should be loaded from database)
-	private static final Map<String, Integer> DEFAULT_SEATS = new HashMap<>();
-	static {
-		DEFAULT_SEATS.put("S", 107);
-		DEFAULT_SEATS.put("M", 68);
-		DEFAULT_SEATS.put("SD", 73);
-		DEFAULT_SEATS.put("C", 24);
-		DEFAULT_SEATS.put("V", 24);
-		DEFAULT_SEATS.put("KD", 19);
-		DEFAULT_SEATS.put("MP", 18);
-		DEFAULT_SEATS.put("L", 16);
-	}
 
 	@Autowired
 	private DataViewer dataViewer;
@@ -161,9 +149,34 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	}
 
 	private Map<String, Integer> loadSeatCounts(final String year) {
-		// In a full implementation, this would query the database for actual seat counts
-		// For now, using default values
-		return new HashMap<>(DEFAULT_SEATS);
+		// Load actual seat counts from ViewRiksdagenParty or similar data source
+		// For now, using approximate recent values as fallback
+		final Map<String, Integer> seatCounts = new HashMap<>();
+		
+		try {
+			final List<ViewRiksdagenParty> parties = dataViewer.getAll(ViewRiksdagenParty.class);
+			for (final ViewRiksdagenParty party : parties) {
+				if (party.getHeadCount() > 0) {
+					seatCounts.put(party.getPartyId(), (int) party.getHeadCount());
+				}
+			}
+		} catch (final Exception e) {
+			LOGGER.warn("Could not load seat counts from database, using defaults", e);
+		}
+		
+		// Fallback to approximate recent election results if database query fails
+		if (seatCounts.isEmpty()) {
+			seatCounts.put("S", 107);
+			seatCounts.put("M", 68);
+			seatCounts.put("SD", 73);
+			seatCounts.put("C", 24);
+			seatCounts.put("V", 24);
+			seatCounts.put("KD", 19);
+			seatCounts.put("MP", 18);
+			seatCounts.put("L", 16);
+		}
+		
+		return seatCounts;
 	}
 
 	private List<CoalitionScenario> generateTwoPartyCoalitions(

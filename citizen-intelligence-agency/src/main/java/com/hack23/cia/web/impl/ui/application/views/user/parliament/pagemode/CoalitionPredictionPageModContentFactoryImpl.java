@@ -124,7 +124,7 @@ public final class CoalitionPredictionPageModContentFactoryImpl extends Abstract
 		scenariosLayout.setMargin(true);
 		scenariosLayout.setWidth(100, Unit.PERCENTAGE);
 
-		final Label header = new Label("🔮 Coalition Formation Scenarios (Ranked by Probability)");
+		final Label header = new Label("Coalition Formation Scenarios (Ranked by Probability)");
 		header.addStyleName(ValoTheme.LABEL_H2);
 		scenariosLayout.addComponent(header);
 
@@ -205,7 +205,7 @@ public final class CoalitionPredictionPageModContentFactoryImpl extends Abstract
 		matrixLayout.setMargin(true);
 		matrixLayout.setWidth(100, Unit.PERCENTAGE);
 
-		final Label header = new Label("📊 Party Alignment Matrix (Voting Pattern Compatibility)");
+		final Label header = new Label("Party Alignment Matrix (Voting Pattern Compatibility)");
 		header.addStyleName(ValoTheme.LABEL_H2);
 		matrixLayout.addComponent(header);
 
