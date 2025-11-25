@@ -5964,6 +5964,10 @@ This appendix maps database views to business product features per [BUSINESS_PRO
 **Annual Revenue Potential:** €5.1M across cross-product feature categories (see Cross-Product Feature Matrix below)  
 **JSON Specifications:** See [json-export-specs/schemas/](json-export-specs/schemas/) for complete API schemas
 
+**Note on Revenue Models:** This appendix presents two complementary revenue perspectives:
+1. **Product Line Revenue** (€630K + €855K + €1.77M + €525K = €3.78M): Individual product line subscription revenues
+2. **Cross-Product Feature Matrix** (€5.1M total): Feature-category-based revenue model reflecting cross-product feature usage and premium tiers. This is the primary revenue model used for strategic planning.
+
 ---
 
 #### Product Line 1: Political Intelligence API (€630K annual revenue potential)
@@ -6054,6 +6058,7 @@ All views are exported via JSON API with standardized schemas. See complete spec
 - **Intelligence Analytics**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - 5 risk views
 - **Committee Data**: [committee-schema.md](json-export-specs/schemas/committee-schema.md) - 12 committee views
 - **Ministry Data**: [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) - 4 government views
+- **Voting & Ballot Data**: Included in [politician-schema.md#voting-section](json-export-specs/schemas/politician-schema.md#voting-section) - 20 vote views
 
 **API Documentation:** [json-export-specs/README.md](json-export-specs/README.md)  
 **Example Responses:** [json-export-specs/examples/](json-export-specs/examples/)
