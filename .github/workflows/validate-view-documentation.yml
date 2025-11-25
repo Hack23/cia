@@ -41,7 +41,7 @@ jobs:
           git diff --quiet DATABASE_VIEW_VALIDATION_REPORT.md || echo "changed=true" >> $GITHUB_OUTPUT
       
       - name: Commit updated report
-        if: steps.changes.outputs.changed == 'true'
+        if: steps.changes.outputs.changed == 'true' && github.event_name == 'schedule'
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -49,11 +49,10 @@ jobs:
           git commit -m "chore: update view documentation validation report [automated]"
       
       - name: Push changes
-        if: steps.changes.outputs.changed == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+        if: steps.changes.outputs.changed == 'true' && github.event_name == 'schedule'
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push origin HEAD:${{ github.ref }}
       
       - name: Create issue if validation fails
         if: steps.validate.outcome == 'failure' && github.event_name == 'schedule'
@@ -75,32 +74,32 @@ jobs:
               repo: context.repo.repo,
               title: `📊 View Documentation Coverage: ${coverage}% (${missing} views missing)`,
               body: `# Automated Validation Alert
-              
-            The monthly view documentation validation has detected missing documentation.
-            
-            ## Summary
-            
-            - **Coverage**: ${coverage}%
-            - **Missing Views**: ${missing}
-            - **Validation Date**: ${new Date().toISOString().split('T')[0]}
-            
-            ## Details
-            
-            See the attached validation report artifact for complete details.
-            
-            ## Action Required
-            
-            Please review the validation report and add documentation for the missing views in \`DATABASE_VIEW_INTELLIGENCE_CATALOG.md\`.
-            
-            ## Resources
-            
-            - [Validation Report](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
-            - [Documentation Catalog](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
-            - [Full Schema](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/master/service.data.impl/src/main/resources/full_schema.sql)
-            
-            ---
-            
-            *This issue was automatically created by the validate-view-documentation workflow.*`,
+
+The monthly view documentation validation has detected missing documentation.
+
+## Summary
+
+- **Coverage**: ${coverage}%
+- **Missing Views**: ${missing}
+- **Validation Date**: ${new Date().toISOString().split('T')[0]}
+
+## Details
+
+See the attached validation report artifact for complete details.
+
+## Action Required
+
+Please review the validation report and add documentation for the missing views in \`DATABASE_VIEW_INTELLIGENCE_CATALOG.md\`.
+
+## Resources
+
+- [Validation Report](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+- [Documentation Catalog](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
+- [Full Schema](https://github.com/${context.repo.owner}/${context.repo.repo}/blob/master/service.data.impl/src/main/resources/full_schema.sql)
+
+---
+
+*This issue was automatically created by the validate-view-documentation workflow.*`,
               labels: ['documentation', 'database', 'automation', 'priority:medium']
             });
             
@@ -123,14 +122,14 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
               body: `## ⚠️ View Documentation Validation Failed
-              
-            This PR modifies view-related files, and the validation has detected incomplete documentation coverage.
-            
-            ${missing}
-            
-            Please ensure all views are documented in \`DATABASE_VIEW_INTELLIGENCE_CATALOG.md\` before merging.
-            
-            See the workflow artifacts for the complete validation report.`
+
+This PR modifies view-related files, and the validation has detected incomplete documentation coverage.
+
+${missing}
+
+Please ensure all views are documented in \`DATABASE_VIEW_INTELLIGENCE_CATALOG.md\` before merging.
+
+See the workflow artifacts for the complete validation report.`
             });
       
       - name: Set workflow status

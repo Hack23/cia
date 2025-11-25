@@ -2,6 +2,7 @@
 # validate-view-documentation.sh
 # Automated validation of view documentation coverage
 # Part of the Citizen Intelligence Agency (CIA) platform quality assurance system
+# NOTE: This script requires Linux/GNU utilities (date -d) and is designed for CI environments
 
 set -e
 
@@ -36,24 +37,35 @@ echo "   Documentation: $DOC_FILE"
 echo "   Output: $OUTPUT_FILE"
 echo ""
 
+# Create temporary directory for working files
+TEMP_DIR=$(mktemp -d)
+trap "rm -rf $TEMP_DIR" EXIT
+
 # Extract views from full_schema.sql
 echo "🔍 Extracting views from schema..."
 grep -E "^CREATE (OR REPLACE )?(MATERIALIZED )?VIEW" "$SCHEMA_FILE" | \
   sed 's/.*VIEW //' | \
   sed 's/ AS.*//' | \
   sed 's/public\.//' | \
-  sort | uniq > /tmp/schema_views.txt
+  sort | uniq > "$TEMP_DIR/schema_views.txt"
 
 # Extract documented views from catalog
 echo "📚 Extracting documented views..."
 grep -E "^### view_" "$DOC_FILE" | \
   sed 's/### //' | \
   awk '{print $1}' | \
-  sort | uniq > /tmp/documented_views.txt
+  sort | uniq > "$TEMP_DIR/documented_views.txt"
 
 # Calculate statistics
-TOTAL_VIEWS=$(wc -l < /tmp/schema_views.txt | tr -d ' ')
-DOCUMENTED_VIEWS=$(wc -l < /tmp/documented_views.txt | tr -d ' ')
+TOTAL_VIEWS=$(wc -l < "$TEMP_DIR/schema_views.txt" | tr -d ' ')
+DOCUMENTED_VIEWS=$(wc -l < "$TEMP_DIR/documented_views.txt" | tr -d ' ')
+
+# Check for division by zero
+if [ "$TOTAL_VIEWS" -eq 0 ]; then
+    echo "❌ ERROR: No views found in schema"
+    exit 1
+fi
+
 COVERAGE=$(awk "BEGIN {printf \"%.2f\", ($DOCUMENTED_VIEWS / $TOTAL_VIEWS) * 100}")
 
 echo ""
@@ -64,24 +76,24 @@ echo "   Coverage: $COVERAGE%"
 echo ""
 
 # Find missing views
-comm -23 /tmp/schema_views.txt /tmp/documented_views.txt > /tmp/missing_views.txt
-MISSING_COUNT=$(wc -l < /tmp/missing_views.txt | tr -d ' ')
+comm -23 "$TEMP_DIR/schema_views.txt" "$TEMP_DIR/documented_views.txt" > "$TEMP_DIR/missing_views.txt"
+MISSING_COUNT=$(wc -l < "$TEMP_DIR/missing_views.txt" | tr -d ' ')
 
 # Find extra views (documented but not in schema)
-comm -13 /tmp/schema_views.txt /tmp/documented_views.txt > /tmp/extra_views.txt
-EXTRA_COUNT=$(wc -l < /tmp/extra_views.txt | tr -d ' ')
+comm -13 "$TEMP_DIR/schema_views.txt" "$TEMP_DIR/documented_views.txt" > "$TEMP_DIR/extra_views.txt"
+EXTRA_COUNT=$(wc -l < "$TEMP_DIR/extra_views.txt" | tr -d ' ')
 
-# Determine status
+# Determine status using awk for portability (instead of bc)
 if [ "$MISSING_COUNT" -eq 0 ] && [ "$EXTRA_COUNT" -eq 0 ]; then
     STATUS="✅ Complete"
     SEVERITY="🟢 **OPTIMAL**"
 elif [ "$COVERAGE" == "100.00" ] && [ "$EXTRA_COUNT" -gt 0 ]; then
     STATUS="⚠️ Extra views documented"
     SEVERITY="🟡 **ATTENTION**"
-elif [ $(echo "$COVERAGE >= 90" | bc -l) -eq 1 ]; then
+elif awk "BEGIN {exit !($COVERAGE >= 90)}"; then
     STATUS="✅ Excellent"
     SEVERITY="🟢 **GOOD**"
-elif [ $(echo "$COVERAGE >= 70" | bc -l) -eq 1 ]; then
+elif awk "BEGIN {exit !($COVERAGE >= 70)}"; then
     STATUS="⚠️ Good"
     SEVERITY="🟡 **ACCEPTABLE**"
 else
@@ -127,13 +139,46 @@ $SEVERITY: Documentation provides **$COVERAGE% coverage** for $TOTAL_VIEWS datab
 
 EOF
 
+# Create backup of existing report before generating new one
+if [ -f "$OUTPUT_FILE" ]; then
+    cp "$OUTPUT_FILE" "$OUTPUT_FILE.bak"
+fi
+
+# Helper function to extract numeric value from markdown table and validate
+extract_numeric() {
+    local line="$1"
+    local value
+    value=$(echo "$line" | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $(NF-1)); print $(NF-1)}')
+    # Remove percent sign if present
+    value="${value%\%}"
+    # Remove any status text (e.g., "✓ Confirmed")
+    value=$(echo "$value" | awk '{print $1}')
+    # Validate numeric (integer or float)
+    if [[ "$value" =~ ^[0-9]+([.][0-9]+)?$ ]]; then
+        echo "$value"
+    else
+        echo ""
+    fi
+}
+
 # Add comparison to previous validation if significant progress was made
-# Extract previous metrics from existing report if it exists
+# Extract previous metrics from backup report if it exists
 if [ -f "$OUTPUT_FILE.bak" ]; then
-    PREV_COVERAGE=$(grep "Documentation coverage.*|" "$OUTPUT_FILE.bak" | head -1 | sed 's/.*| \([0-9.]*\)%.*/\1/')
-    PREV_TOTAL=$(grep "Total views in database.*|" "$OUTPUT_FILE.bak" | head -1 | sed 's/.*| \([0-9]*\).*/\1/')
-    PREV_DOCUMENTED=$(grep "Total views documented.*|" "$OUTPUT_FILE.bak" | head -1 | sed 's/.*| \([0-9]*\).*/\1/')
-    PREV_MISSING=$(grep "Views missing from documentation.*|" "$OUTPUT_FILE.bak" | head -1 | sed 's/.*| \([0-9]*\).*/\1/')
+    PREV_COVERAGE_LINE=$(grep "Documentation coverage.*|" "$OUTPUT_FILE.bak" | head -1)
+    PREV_TOTAL_LINE=$(grep "Total views in database.*|" "$OUTPUT_FILE.bak" | head -1)
+    PREV_DOCUMENTED_LINE=$(grep "Total views documented.*|" "$OUTPUT_FILE.bak" | head -1)
+    PREV_MISSING_LINE=$(grep "Views missing from documentation.*|" "$OUTPUT_FILE.bak" | head -1)
+    
+    PREV_COVERAGE=$(extract_numeric "$PREV_COVERAGE_LINE")
+    PREV_TOTAL=$(extract_numeric "$PREV_TOTAL_LINE")
+    PREV_DOCUMENTED=$(extract_numeric "$PREV_DOCUMENTED_LINE")
+    PREV_MISSING=$(extract_numeric "$PREV_MISSING_LINE")
+    
+    # Fallback to baseline if extraction failed
+    [ -z "$PREV_COVERAGE" ] && PREV_COVERAGE="10.98"
+    [ -z "$PREV_TOTAL" ] && PREV_TOTAL="82"
+    [ -z "$PREV_DOCUMENTED" ] && PREV_DOCUMENTED="9"
+    [ -z "$PREV_MISSING" ] && PREV_MISSING="73"
 else
     # Fallback to known baseline from 2025-11-21 validation
     PREV_COVERAGE="10.98"
@@ -142,18 +187,18 @@ else
     PREV_MISSING="73"
 fi
 
-# Show progress if there's been improvement
-if [ $(echo "$COVERAGE > $PREV_COVERAGE" | bc -l) -eq 1 ]; then
+# Show progress if there's been improvement (using awk for portability)
+if awk "BEGIN {exit !($COVERAGE > $PREV_COVERAGE)}"; then
     cat >> "$OUTPUT_FILE" <<EOF
 
 ### Progress Since Previous Validation (2025-11-21)
 
 | Metric | Previous (2025-11-21) | Current ($(date +%Y-%m-%d)) | Improvement |
 |--------|----------------------|---------------------|-------------|
-| **Total views in database** | $PREV_TOTAL | $TOTAL_VIEWS | $([ $TOTAL_VIEWS -gt $PREV_TOTAL ] && echo "+$(($TOTAL_VIEWS - $PREV_TOTAL))" || echo "✓") |
-| **Total views documented** | $PREV_DOCUMENTED | $DOCUMENTED_VIEWS | +$(($DOCUMENTED_VIEWS - $PREV_DOCUMENTED)) views |
-| **Documentation coverage** | $PREV_COVERAGE% | $COVERAGE% | +$(echo "$COVERAGE - $PREV_COVERAGE" | bc)% |
-| **Views missing from documentation** | $PREV_MISSING | $MISSING_COUNT | -$(($PREV_MISSING - $MISSING_COUNT)) views |
+| **Total views in database** | ${PREV_TOTAL:-0} | $TOTAL_VIEWS | $([ ${TOTAL_VIEWS:-0} -gt ${PREV_TOTAL:-0} ] && echo "+$((${TOTAL_VIEWS:-0} - ${PREV_TOTAL:-0}))" || echo "✓") |
+| **Total views documented** | ${PREV_DOCUMENTED:-0} | $DOCUMENTED_VIEWS | +$((${DOCUMENTED_VIEWS:-0} - ${PREV_DOCUMENTED:-0})) views |
+| **Documentation coverage** | ${PREV_COVERAGE:-0}% | $COVERAGE% | +$(awk "BEGIN {printf \"%.2f\", ${COVERAGE:-0} - ${PREV_COVERAGE:-0}}")% |
+| **Views missing from documentation** | ${PREV_MISSING:-0} | $MISSING_COUNT | -$((${PREV_MISSING:-0} - ${MISSING_COUNT:-0})) views |
 
 EOF
 fi
@@ -171,9 +216,9 @@ The following $MISSING_COUNT views are in the schema but missing from documentat
 EOF
     
     # Categorize missing views
-    APP_VIEWS=$(grep "view_application_action_event" /tmp/missing_views.txt || true)
-    VOTE_VIEWS=$(grep "view_riksdagen_vote_data_ballot" /tmp/missing_views.txt || true)
-    OTHER_VIEWS=$(grep -v "view_application_action_event\|view_riksdagen_vote_data_ballot" /tmp/missing_views.txt || true)
+    APP_VIEWS=$(grep "view_application_action_event" "$TEMP_DIR/missing_views.txt" || true)
+    VOTE_VIEWS=$(grep "view_riksdagen_vote_data_ballot" "$TEMP_DIR/missing_views.txt" || true)
+    OTHER_VIEWS=$(grep -v "view_application_action_event\|view_riksdagen_vote_data_ballot" "$TEMP_DIR/missing_views.txt" || true)
     
     if [ ! -z "$APP_VIEWS" ]; then
         echo "### Application Action Event Views" >> "$OUTPUT_FILE"
@@ -224,7 +269,7 @@ if [ "$EXTRA_COUNT" -gt 0 ]; then
 ⚠️ The following $EXTRA_COUNT views are documented but do not exist in the current schema:
 
 EOF
-    cat /tmp/extra_views.txt | while read view; do
+    cat "$TEMP_DIR/extra_views.txt" | while read view; do
         echo "- \`$view\`" >> "$OUTPUT_FILE"
     done
     echo "" >> "$OUTPUT_FILE"
@@ -326,7 +371,7 @@ comm -23 schema_views.txt documented_views.txt > missing_views.txt
 
 **Report Status**: GENERATED  
 **Generated By**: validate-view-documentation.sh  
-**Next Validation**: $(date -d "+1 month" +%Y-%m-01) 02:00 UTC
+**Next Validation**: $(date -d "+1 month" +%Y-%m-01 2>/dev/null || echo "Next month") 02:00 UTC
 EOF
 
 echo "✅ Report generated: $OUTPUT_FILE"
@@ -337,8 +382,7 @@ echo "   Missing: $MISSING_COUNT views"
 echo "   Extra: $EXTRA_COUNT views"
 echo ""
 
-# Cleanup
-rm -f /tmp/schema_views.txt /tmp/documented_views.txt /tmp/missing_views.txt /tmp/extra_views.txt
+# Cleanup is handled by trap EXIT that removes $TEMP_DIR
 
 # Exit with appropriate code
 if [ "$MISSING_COUNT" -eq 0 ] && [ "$EXTRA_COUNT" -eq 0 ]; then
