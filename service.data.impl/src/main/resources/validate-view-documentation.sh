@@ -104,6 +104,11 @@ fi
 echo "Status: $STATUS"
 echo ""
 
+# Create backup of existing report before generating new one
+if [ -f "$OUTPUT_FILE" ]; then
+    cp "$OUTPUT_FILE" "$OUTPUT_FILE.bak"
+fi
+
 # Generate report
 cat > "$OUTPUT_FILE" <<EOF
 # DATABASE_VIEW_INTELLIGENCE_CATALOG.md Validation Report
@@ -139,11 +144,6 @@ $SEVERITY: Documentation provides **$COVERAGE% coverage** for $TOTAL_VIEWS datab
 
 EOF
 
-# Create backup of existing report before generating new one
-if [ -f "$OUTPUT_FILE" ]; then
-    cp "$OUTPUT_FILE" "$OUTPUT_FILE.bak"
-fi
-
 # Helper function to extract numeric value from markdown table and validate
 extract_numeric() {
     local line="$1"
@@ -174,26 +174,37 @@ if [ -f "$OUTPUT_FILE.bak" ]; then
     PREV_DOCUMENTED=$(extract_numeric "$PREV_DOCUMENTED_LINE")
     PREV_MISSING=$(extract_numeric "$PREV_MISSING_LINE")
     
+    # Try to extract previous validation date from backup report
+    PREV_DATE_LINE=$(grep "^\*\*Date:\*\*" "$OUTPUT_FILE.bak" | head -1)
+    if [ -n "$PREV_DATE_LINE" ]; then
+        # Extract date (format: **Date:** YYYY-MM-DD)
+        PREV_DATE=$(echo "$PREV_DATE_LINE" | awk '{print $2}')
+    else
+        PREV_DATE=""
+    fi
+    
     # Fallback to baseline if extraction failed
     [ -z "$PREV_COVERAGE" ] && PREV_COVERAGE="10.98"
     [ -z "$PREV_TOTAL" ] && PREV_TOTAL="82"
     [ -z "$PREV_DOCUMENTED" ] && PREV_DOCUMENTED="9"
     [ -z "$PREV_MISSING" ] && PREV_MISSING="73"
+    [ -z "$PREV_DATE" ] && PREV_DATE="2025-11-21"
 else
     # Fallback to known baseline from 2025-11-21 validation
     PREV_COVERAGE="10.98"
     PREV_TOTAL="82"
     PREV_DOCUMENTED="9"
     PREV_MISSING="73"
+    PREV_DATE="2025-11-21"
 fi
 
 # Show progress if there's been improvement (using awk for portability)
 if awk "BEGIN {exit !($COVERAGE > $PREV_COVERAGE)}"; then
     cat >> "$OUTPUT_FILE" <<EOF
 
-### Progress Since Previous Validation (2025-11-21)
+### Progress Since Previous Validation ($PREV_DATE)
 
-| Metric | Previous (2025-11-21) | Current ($(date +%Y-%m-%d)) | Improvement |
+| Metric | Previous ($PREV_DATE) | Current ($(date +%Y-%m-%d)) | Improvement |
 |--------|----------------------|---------------------|-------------|
 | **Total views in database** | ${PREV_TOTAL:-0} | $TOTAL_VIEWS | $([ ${TOTAL_VIEWS:-0} -gt ${PREV_TOTAL:-0} ] && echo "+$((${TOTAL_VIEWS:-0} - ${PREV_TOTAL:-0}))" || echo "✓") |
 | **Total views documented** | ${PREV_DOCUMENTED:-0} | $DOCUMENTED_VIEWS | +$((${DOCUMENTED_VIEWS:-0} - ${PREV_DOCUMENTED:-0})) views |
@@ -220,7 +231,7 @@ EOF
     VOTE_VIEWS=$(grep "view_riksdagen_vote_data_ballot" "$TEMP_DIR/missing_views.txt" || true)
     OTHER_VIEWS=$(grep -v "view_application_action_event\|view_riksdagen_vote_data_ballot" "$TEMP_DIR/missing_views.txt" || true)
     
-    if [ ! -z "$APP_VIEWS" ]; then
+    if [ -n "$APP_VIEWS" ]; then
         echo "### Application Action Event Views" >> "$OUTPUT_FILE"
         echo "" >> "$OUTPUT_FILE"
         echo "$APP_VIEWS" | while read view; do
@@ -229,7 +240,7 @@ EOF
         echo "" >> "$OUTPUT_FILE"
     fi
     
-    if [ ! -z "$VOTE_VIEWS" ]; then
+    if [ -n "$VOTE_VIEWS" ]; then
         echo "### Vote Data Summary Views" >> "$OUTPUT_FILE"
         echo "" >> "$OUTPUT_FILE"
         echo "$VOTE_VIEWS" | while read view; do
@@ -238,7 +249,7 @@ EOF
         echo "" >> "$OUTPUT_FILE"
     fi
     
-    if [ ! -z "$OTHER_VIEWS" ]; then
+    if [ -n "$OTHER_VIEWS" ]; then
         echo "### Other Views" >> "$OUTPUT_FILE"
         echo "" >> "$OUTPUT_FILE"
         echo "$OTHER_VIEWS" | while read view; do
