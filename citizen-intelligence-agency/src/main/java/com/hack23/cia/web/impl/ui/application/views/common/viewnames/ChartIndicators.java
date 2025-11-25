@@ -111,6 +111,8 @@ public enum ChartIndicators {
  /** The allgovernmentroles. */
  ALLGOVERNMENTROLES,
  /** The allpartiesbyheadcount. */
- ALLPARTIESBYHEADCOUNT;
+ ALLPARTIESBYHEADCOUNT,
+ /** The coalition prediction. */
+ COALITION_PREDICTION;
 
 }
