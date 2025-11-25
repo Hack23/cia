@@ -147,6 +147,8 @@ public final class CoalitionPredictionPageModContentFactoryImpl extends Abstract
 
 		// Probability bar
 		final ProgressBar probabilityBar = new ProgressBar();
+		// Vaadin ProgressBar API requires float value; casting from double results in minimal precision loss.
+		// This is acceptable for UI display purposes as the bar visualization does not require high precision.
 		probabilityBar.setValue((float) scenario.getProbability());
 		probabilityBar.setCaption(String.format("%.1f%% probability", scenario.getProbability() * 100));
 		probabilityBar.setWidth(200, Unit.PIXELS);

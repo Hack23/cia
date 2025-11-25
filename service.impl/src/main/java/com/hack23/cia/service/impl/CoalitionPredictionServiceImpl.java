@@ -53,6 +53,24 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 
 	private static final int MAJORITY_SEATS = 175;
 	private static final List<String> ALL_PARTIES = Arrays.asList("S", "M", "SD", "C", "V", "KD", "MP", "L");
+	
+	// Probability calculation weights
+	private static final double ALIGNMENT_WEIGHT = 0.6;
+	private static final double SEATS_WEIGHT = 0.4;
+	private static final double SEATS_SCALING_FACTOR = 100.0;
+	
+	// Fallback seat counts (2022 election results) - should be externalized to configuration
+	private static final Map<String, Integer> FALLBACK_SEAT_COUNTS = new HashMap<>();
+	static {
+		FALLBACK_SEAT_COUNTS.put("S", 107);
+		FALLBACK_SEAT_COUNTS.put("M", 68);
+		FALLBACK_SEAT_COUNTS.put("SD", 73);
+		FALLBACK_SEAT_COUNTS.put("C", 24);
+		FALLBACK_SEAT_COUNTS.put("V", 24);
+		FALLBACK_SEAT_COUNTS.put("KD", 19);
+		FALLBACK_SEAT_COUNTS.put("MP", 18);
+		FALLBACK_SEAT_COUNTS.put("L", 16);
+	}
 
 	@Autowired
 	private DataViewer dataViewer;
@@ -169,17 +187,11 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 		}
 		
 		// Fallback to approximate recent election results if database query fails
-		// NOTE: These values should ideally be moved to a configuration table or file
-		// that can be updated after each election without code changes
+		// NOTE: These values are externalized to FALLBACK_SEAT_COUNTS constant and represent 2022 election results.
+		// In production, these should be moved to a configuration table or properties file
+		// that can be updated after each election without code changes.
 		if (seatCounts.isEmpty()) {
-			seatCounts.put("S", 107);
-			seatCounts.put("M", 68);
-			seatCounts.put("SD", 73);
-			seatCounts.put("C", 24);
-			seatCounts.put("V", 24);
-			seatCounts.put("KD", 19);
-			seatCounts.put("MP", 18);
-			seatCounts.put("L", 16);
+			seatCounts.putAll(FALLBACK_SEAT_COUNTS);
 		}
 		
 		return seatCounts;
@@ -307,11 +319,12 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	}
 
 	private double calculateProbability(final double alignment, final int totalSeats) {
-		// Simple probability model:
-		// - Base probability from alignment (60% weight)
-		// - Seats above majority threshold (40% weight)
-		final double alignmentFactor = alignment * 0.6;
-		final double seatsFactor = Math.min((totalSeats - MAJORITY_SEATS) / 100.0, 0.4);
+		// Probability model based on two weighted factors:
+		// 1. Party alignment rate (ALIGNMENT_WEIGHT = 60%): How often parties vote together
+		// 2. Seats above majority (SEATS_WEIGHT = 40%): Strength of parliamentary position
+		// The SEATS_SCALING_FACTOR (100.0) normalizes excess seats to a 0-0.4 range
+		final double alignmentFactor = alignment * ALIGNMENT_WEIGHT;
+		final double seatsFactor = Math.min((totalSeats - MAJORITY_SEATS) / SEATS_SCALING_FACTOR, SEATS_WEIGHT);
 		return Math.min(alignmentFactor + seatsFactor, 1.0);
 	}
 
