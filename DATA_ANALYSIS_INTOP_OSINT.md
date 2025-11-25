@@ -5290,6 +5290,245 @@ To further enhance this documentation:
 
 ---
 
+## 📊 Framework-to-View Comprehensive Mapping
+
+This section provides a complete mapping of all 85 database views to the analytical frameworks they support. Use this reference to identify which views to query for specific analytical tasks.
+
+### Quick Reference Table
+
+| Framework | Primary Views | Secondary Views | Total Views | Complexity |
+|-----------|--------------|-----------------|-------------|------------|
+| **Temporal Analysis** | 25 views | 15 views | 40 views | Medium |
+| **Comparative Analysis** | 20 views | 10 views | 30 views | Low |
+| **Pattern Recognition** | 15 views | 20 views | 35 views | High |
+| **Predictive Intelligence** | 10 views | 25 views | 35 views | Very High |
+| **Network Analysis** | 8 views | 12 views | 20 views | High |
+| **Decision Intelligence** | 5 views | 10 views | 15 views | Medium |
+
+**Note**: Many views support multiple frameworks, so total view count exceeds 85.
+
+---
+
+### 1. Temporal Analysis Framework Views
+
+**Purpose**: Track changes over time, detect trends, identify anomalies
+
+#### Core Temporal Views (Granularity-Specific)
+
+| View Name | Granularity | Purpose | Intelligence Use | Link |
+|-----------|-------------|---------|------------------|------|
+| **view_riksdagen_vote_data_ballot_politician_summary_daily** | Daily | Daily voting patterns | Real-time monitoring, spike detection | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_weekly** | Weekly | Weekly aggregation | Short-term trend analysis | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_monthly** | Monthly | Monthly performance | Medium-term trend tracking | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary_annual** | Annual | Annual summary | Long-term strategic assessment | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_party_summary_daily** | Daily | Party-level daily voting | Party coordination tracking | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_party_summary_weekly** | Weekly | Party weekly aggregation | Coalition dynamics monitoring | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_party_summary_monthly** | Monthly | Party monthly performance | Policy shift detection | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_vote_data_ballot_party_summary_annual** | Annual | Party annual summary | Electoral cycle analysis | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+
+#### Advanced Temporal Trend Views
+
+| View Name | Purpose | Temporal Window | Intelligence Value | Link |
+|-----------|---------|-----------------|-------------------|------|
+| **view_politician_behavioral_trends** | Monthly behavioral metrics with moving averages | 3-year rolling | ⭐⭐⭐⭐⭐ Trend detection, early warning | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_politician_behavioral_trends) |
+| **view_party_effectiveness_trends** | Party performance over time | 2-year rolling | ⭐⭐⭐⭐⭐ Coalition stability | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_party_effectiveness_trends) |
+| **view_risk_score_evolution** | Risk score changes over time | Monthly snapshots | ⭐⭐⭐⭐⭐ Predictive risk assessment | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_risk_score_evolution) |
+| **view_ministry_effectiveness_trends** | Ministry performance trends | Quarterly | ⭐⭐⭐⭐⭐ Government accountability | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#government-ministry-views) |
+| **view_decision_temporal_trends** | Decision volume and approval trends (v1.35) | 5-year rolling | ⭐⭐⭐⭐⭐ Legislative activity forecasting | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_decision_temporal_trends) |
+
+#### Document Productivity Temporal Views
+
+| View Name | Purpose | Granularity | Link |
+|-----------|---------|-------------|------|
+| **view_riksdagen_politician_document_daily_summary** | Daily document production | Daily | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#document-views) |
+| **view_riksdagen_party_document_daily_summary** | Party document output | Daily | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#document-views) |
+
+**Total Temporal Views**: 15 core + 10 supporting = **25 views**
+
+---
+
+### 2. Comparative Analysis Framework Views
+
+**Purpose**: Benchmark performance across politicians, parties, committees
+
+#### Politician Comparison Views
+
+| View Name | Comparison Type | Benchmark | Link |
+|-----------|----------------|-----------|------|
+| **view_riksdagen_politician** | Basic profile comparison | All politicians | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician) |
+| **view_riksdagen_politician_summary** | Comprehensive metrics | Party averages | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
+| **view_riksdagen_politician_experience_summary** | Experience benchmarking | Experience cohorts | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_experience_summary) |
+| **view_riksdagen_politician_ballot_summary** | Voting record comparison | Peer voting | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
+| **view_riksdagen_politician_document_summary** | Document productivity | Party averages | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
+| **view_riksdagen_politician_influence_metrics** | Influence ranking | Network centrality | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
+| **view_riksdagen_politician_decision_pattern** (v1.35) | Decision effectiveness | Committee benchmarks | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_decision_pattern) |
+
+#### Party Comparison Views
+
+| View Name | Comparison Type | Benchmark | Link |
+|-----------|----------------|-----------|------|
+| **view_riksdagen_party** | Basic party comparison | All parties | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_party) |
+| **view_riksdagen_party_summary** | Comprehensive party metrics | National averages | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_party_performance_metrics** | Multi-dimensional performance | Historical benchmarks | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_party_ballot_support_annual_summary** | Voting coalition patterns | Inter-party alignment | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_party_decision_flow** (v1.35) | Decision approval rates | Party effectiveness | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_party_decision_flow) |
+
+#### Committee & Ministry Comparison Views
+
+| View Name | Comparison Type | Benchmark | Link |
+|-----------|----------------|-----------|------|
+| **view_committee_productivity** | Committee output comparison | Committee averages | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+| **view_committee_productivity_matrix** | Cross-committee benchmarking | Productivity matrix | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+| **view_ministry_productivity_matrix** | Ministry performance comparison | Ministry benchmarks | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#government-ministry-views) |
+| **view_ministry_decision_impact** (v1.35) | Ministry effectiveness | Approval rates | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_ministry_decision_impact) |
+
+**Total Comparative Views**: 18 core + 12 supporting = **30 views**
+
+---
+
+### 3. Pattern Recognition Framework Views
+
+**Purpose**: Identify behavioral clusters, anomalies, correlations
+
+#### Risk & Anomaly Detection Views
+
+| View Name | Pattern Type | Detection Method | Link |
+|-----------|-------------|-----------------|------|
+| **view_risk_score_evolution** | Risk pattern evolution | Multi-factor scoring | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_risk_score_evolution) |
+| **view_politician_risk_summary** | Risk profile clustering | Behavioral classification | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#intelligence-risk-views) |
+| **view_riksdagen_voting_anomaly_detection** | Voting anomalies | Statistical outliers | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_voting_anomaly_detection) |
+| **view_politician_behavioral_trends** | Behavioral pattern classification | Trend + threshold analysis | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_politician_behavioral_trends) |
+
+#### Coalition & Alignment Pattern Views
+
+| View Name | Pattern Type | Detection Method | Link |
+|-----------|-------------|-----------------|------|
+| **view_riksdagen_coalition_alignment_matrix** | Coalition formation patterns | Voting alignment analysis | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_coalition_alignment_matrix) |
+| **view_riksdagen_party_coalation_against_annual_summary** | Opposition coalition patterns | Historical voting patterns | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_party_momentum_analysis** | Party trajectory patterns | Momentum scoring | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+
+#### Behavioral Clustering Views
+
+| View Name | Cluster Type | Analysis Method | Link |
+|-----------|-------------|----------------|------|
+| **view_riksdagen_politician_ballot_summary** | Voting behavior clusters | Multi-dimensional clustering | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
+| **view_riksdagen_vote_data_ballot_politician_summary** | Behavioral segmentation | Feature-based clustering | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+
+**Total Pattern Recognition Views**: 15 core + 20 supporting = **35 views**
+
+---
+
+### 4. Predictive Intelligence Framework Views
+
+**Purpose**: Forecast future outcomes, model scenarios, predict risks
+
+#### Trend-Based Prediction Views
+
+| View Name | Prediction Target | Method | Link |
+|-----------|------------------|--------|------|
+| **view_politician_behavioral_trends** | Future politician behavior | Trend extrapolation | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_politician_behavioral_trends) |
+| **view_party_effectiveness_trends** | Future party performance | Time series forecasting | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_party_effectiveness_trends) |
+| **view_risk_score_evolution** | Future risk levels | Risk trajectory modeling | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_risk_score_evolution) |
+| **view_decision_temporal_trends** (v1.35) | Future decision volume | Moving average + seasonality | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_decision_temporal_trends) |
+
+#### Historical Pattern-Based Prediction
+
+| View Name | Prediction Target | Method | Link |
+|-----------|------------------|--------|------|
+| **view_riksdagen_vote_data_ballot_politician_summary_annual** | Future voting patterns | Historical pattern matching | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **view_riksdagen_party_ballot_support_annual_summary** | Coalition formation likelihood | Historical coalition analysis | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_politician_decision_pattern** (v1.35) | Proposal success prediction | Success rate modeling | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_decision_pattern) |
+
+#### Crisis & Resilience Prediction
+
+| View Name | Prediction Target | Method | Link |
+|-----------|------------------|--------|------|
+| **view_riksdagen_crisis_resilience_indicators** | Crisis response capability | Multi-factor resilience scoring | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#intelligence-risk-views) |
+| **view_ministry_risk_evolution** | Ministry failure risk | Risk accumulation modeling | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#government-ministry-views) |
+
+**Total Predictive Views**: 10 core + 25 supporting = **35 views**
+
+---
+
+### 5. Network Analysis Framework Views
+
+**Purpose**: Map relationships, identify influence, detect power structures
+
+#### Formal Network Views
+
+| View Name | Network Type | Nodes | Edges | Link |
+|-----------|-------------|-------|-------|------|
+| **view_riksdagen_committee_role_member** | Committee membership network | Politicians | Committee assignments | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+| **view_riksdagen_party_member** | Party membership network | Politicians | Party affiliation | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_party_role_member** | Party leadership network | Politicians | Leadership roles | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **view_riksdagen_goverment_role_member** | Government network | Politicians | Ministerial positions | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#government-ministry-views) |
+
+#### Collaboration Network Views
+
+| View Name | Network Type | Nodes | Edges | Link |
+|-----------|-------------|-------|-------|------|
+| **view_riksdagen_politician_document** | Document co-authorship | Politicians | Co-authored documents | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_document) |
+| **view_riksdagen_person_signed_document_summary** | Document signature network | Politicians | Document signatures | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+
+#### Voting Network Views
+
+| View Name | Network Type | Nodes | Edges | Link |
+|-----------|-------------|-------|-------|------|
+| **view_riksdagen_coalition_alignment_matrix** | Coalition network | Parties | Voting alignment | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_coalition_alignment_matrix) |
+| **view_riksdagen_politician_influence_metrics** | Influence network | Politicians | Network centrality measures | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
+
+**Total Network Views**: 8 core + 12 supporting = **20 views**
+
+---
+
+### 6. Decision Intelligence Framework Views (v1.35)
+
+**Purpose**: Analyze legislative decisions, proposal success rates, decision flow
+
+#### Core Decision Flow Views
+
+| View Name | Analysis Level | Purpose | Link |
+|-----------|---------------|---------|------|
+| **view_riksdagen_party_decision_flow** | Party-level | Party proposal success patterns | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_party_decision_flow) |
+| **view_riksdagen_politician_decision_pattern** | Politician-level | Individual proposal effectiveness | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_riksdagen_politician_decision_pattern) |
+| **view_ministry_decision_impact** | Ministry-level | Government policy effectiveness | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_ministry_decision_impact) |
+| **view_decision_temporal_trends** | Temporal patterns | Decision volume and approval trends | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_decision_temporal_trends) |
+| **view_decision_outcome_kpi_dashboard** | KPI dashboard | Consolidated decision metrics | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#view_decision_outcome_kpi_dashboard) |
+
+**Total Decision Intelligence Views**: 5 core + 10 supporting = **15 views**
+
+---
+
+### Application & Audit Views (Supporting All Frameworks)
+
+These views provide metadata, usage tracking, and audit trails supporting all analytical frameworks:
+
+| View Name | Purpose | Framework Support | Link |
+|-----------|---------|------------------|------|
+| **view_application_action_event_page_*_summary** (8 views) | User activity tracking | Usage analytics, pattern validation | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#application--audit-views) |
+| **view_audit_author_summary** | Data change auditing | Data quality assurance | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#application--audit-views) |
+| **view_audit_data_summary** | Audit trail analysis | Integrity verification | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#application--audit-views) |
+
+**Total Application/Audit Views**: 14 views (support all frameworks)
+
+---
+
+### WorldBank Data Views (Contextual Analysis)
+
+| View Name | Purpose | Framework Support | Link |
+|-----------|---------|------------------|------|
+| **view_worldbank_indicator_data_country_summary** | Economic indicators | Contextual comparative analysis | [Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#worldbank-data) |
+
+---
+
+### Complete View Inventory Cross-Reference
+
+For complete documentation of all 85 views, see:
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - Complete View Inventory](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#complete-view-inventory)
+- [INTELLIGENCE_DATA_FLOW.md - View-to-Analysis Framework Mapping](INTELLIGENCE_DATA_FLOW.md#view--analysis-framework-mapping)
+
+---
+
 ## 🎯 Risk Rule-to-Framework Mapping
 
 ### Politician Risk Rules (24 Rules)
