@@ -42,14 +42,14 @@ This JSON schema is the **highest-value** data specification, powering **5 produ
    - Analytical insights endpoints
    - **Primary Market**: Political consulting (€15M TAM), Media (€8M TAM)
 
-### Market Segments
+### Primary Market Segments
+> **Note:** Market segments overlap across multiple schemas and products. This schema is the primary data source for:
+
 - **Financial Services** (€20M+ TAM) - Political risk for investments, portfolio management
 - **Strategic Consulting** (€30M+ TAM) - Scenario planning, market entry analysis
 - **Political Consulting & Lobbying** (€15M+ TAM) - Opposition research, legislative strategy
-- **Corporate Risk Management** (€12M TAM) - Regulatory forecasting, stakeholder risk
-- **Media & Journalism** (€8M TAM) - Investigative data, predictive political analysis
 
-**Revenue Impact**: This single schema generates **€6.72M/year** in direct product revenue (74% of total product portfolio revenue).
+**Revenue Impact**: Products using this schema as their primary data source generate **€5.91M/year** (Risk Intelligence €1.77M + Predictive Analytics €2.05M + Decision Intelligence €2.09M), representing 65% of total product portfolio revenue (€9.1M). The Advanced Analytics Suite (€855K) and Political Intelligence API (€630K) use this schema alongside politician-schema.md and party-schema.md.
 
 **See Complete Business Strategy**: [BUSINESS_PRODUCT_DOCUMENT.md](../../BUSINESS_PRODUCT_DOCUMENT.md) | [Product-to-Data Mapping](../../BUSINESS_PRODUCT_DOCUMENT.md#appendix-e-product-to-data-mapping)
 

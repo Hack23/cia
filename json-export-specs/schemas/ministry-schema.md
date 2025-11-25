@@ -9,7 +9,7 @@
 
 ## 🔗 Business Context
 
-This JSON schema powers **3 product lines** serving €22M Total Addressable Market:
+This JSON schema powers **3 product lines** serving multiple market segments:
 
 ### Product Integration
 - **[Political Intelligence API](../../BUSINESS_PRODUCT_DOCUMENT.md#-product-line-1-political-intelligence-api)** - Core API product (€630K/year)
@@ -25,10 +25,11 @@ This JSON schema powers **3 product lines** serving €22M Total Addressable Mar
   - Government proposal success tracking
   - Coalition stability impact assessment
 
-### Market Segments
+### Primary Market Segments
+> **Note:** Market segments overlap across multiple schemas and products. This schema primarily serves:
+
 - **Corporate Affairs** (€12M TAM) - Regulatory monitoring, ministry relationship tracking
 - **Government Agencies** (€6M TAM) - Transparency platforms, accountability monitoring
-- **Strategic Consulting** (€10M TAM) - Policy effectiveness analysis, regulatory forecasting
 
 **See Complete Business Strategy**: [BUSINESS_PRODUCT_DOCUMENT.md](../../BUSINESS_PRODUCT_DOCUMENT.md) | [Product-to-Data Mapping](../../BUSINESS_PRODUCT_DOCUMENT.md#appendix-e-product-to-data-mapping)
 
