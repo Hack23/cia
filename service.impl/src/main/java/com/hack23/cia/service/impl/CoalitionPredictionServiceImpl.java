@@ -147,15 +147,13 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	}
 
 	/**
-	 * Loads seat counts for parties from database. The {@code year} parameter is currently unused
-	 * but reserved for future implementation when year-specific seat counts are available.
-	 * Currently loads current party membership counts from view_riksdagen_party and falls back
-	 * to approximate recent election results if database query fails.
+	 * Loads seat counts for parties from database. If database query fails, falls back
+	 * to approximate recent election results.
+	 * Currently, only current party membership counts are used (no year-specific data).
 	 *
-	 * @param year the election year (currently unused, reserved for future year-specific queries)
 	 * @return map of party IDs to seat counts
 	 */
-	private Map<String, Integer> loadSeatCounts(final String year) {
+	private Map<String, Integer> loadSeatCounts() {
 		// Load actual seat counts from ViewRiksdagenParty or similar data source
 		final Map<String, Integer> seatCounts = new HashMap<>();
 		
