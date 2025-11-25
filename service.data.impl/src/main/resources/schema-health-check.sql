@@ -1231,7 +1231,7 @@ FROM category_metrics;
 
 \echo ''
 \echo 'To export Prometheus metrics to file, run:'
-\echo '  psql -U postgres -d cia_dev -t -A -f schema-health-check.sql | grep -A 999 "cia_db_health" > metrics.prom'
+\echo '  psql -U postgres -d cia_dev -t -A -f schema-health-check.sql | grep -E "^(#|cia_db_)" > metrics.prom'
 \echo ''
 
 \echo ''

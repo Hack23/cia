@@ -846,7 +846,7 @@ Details: Distribution coefficient: 0.85 | Avg per party: 450
 - **Table Maintenance**: Checks when tables were last vacuumed
 - **Slow Queries**: Reports queries with high execution time (requires pg_stat_statements)
 - **Table Bloat**: Detects tables with excessive dead tuples
-- **Connection Pool Usage**: Monitors active vs max connections
+- **Connection Pool Usage**: Monitors total client backend connections vs max connections
 - **Query Cache Hit Ratio**: Analyzes buffer cache effectiveness
 - **Lock Waits**: Detects blocking queries and lock contention
 
@@ -865,7 +865,7 @@ Recommendation: VACUUM FULL document_data; -- WARNING: Locks table
 
 Check: Connection Pool Usage
 Status: PASS
-Details: Active: 15 / Max: 100 (15.0%)
+Details: Client Connections: 15 / Max: 100 (15.0%)
 
 Check: Query Cache Hit Ratio
 Status: PASS
@@ -1157,26 +1157,25 @@ CATEGORIES=$(echo "$JSON" | jq -r '.categories[] | "\(.category)|\(.category_sco
 
 # Write to Prometheus text file
 cat <<EOF > /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
-# HELP cia_health_score_overall Overall database health score (0-100)
-# TYPE cia_health_score_overall gauge
-cia_health_score_overall $HEALTH_SCORE
-
-# HELP cia_health_checks_total Total number of health checks by status
-# TYPE cia_health_checks_total gauge
-cia_health_checks_total{status="passed"} $PASSED
-cia_health_checks_total{status="warnings"} $WARNINGS
-cia_health_checks_total{status="failures"} $FAILURES
-cia_health_checks_total{status="critical"} $CRITICAL
-
-# HELP cia_health_score_category Database health score by category (0-100)
-# TYPE cia_health_score_category gauge
+# HELP cia_db_health_score Database health score by category (0-100)
+# TYPE cia_db_health_score gauge
 EOF
 
-# Add category scores
+# Add category scores (matching Option 1 script output format)
 echo "$CATEGORIES" | while IFS='|' read -r category score; do
-  cat_label=$(echo "$category" | tr ' ' '_' | tr '[:upper:]' '[:lower:]')
-  echo "cia_health_score_category{category=\"$category\"} $score" >> /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+  echo "cia_db_health_score{category=\"$category\"} $score" >> /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
 done
+
+# Add aggregate health checks by status
+cat <<EOF >> /var/lib/prometheus/node_exporter/textfile_collector/cia_health.prom
+
+# HELP cia_db_health_checks_total Total number of health checks by status
+# TYPE cia_db_health_checks_total gauge
+cia_db_health_checks_total{status="passed"} $PASSED
+cia_db_health_checks_total{status="warnings"} $WARNINGS
+cia_db_health_checks_total{status="failures"} $FAILURES
+cia_db_health_checks_total{status="critical"} $CRITICAL
+EOF
 ```
 
 **Grafana Dashboard Queries:**
