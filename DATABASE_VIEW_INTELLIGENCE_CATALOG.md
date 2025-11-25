@@ -45,6 +45,8 @@ The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56
 **Latest Validation Report**: DATABASE_VIEW_VALIDATION_REPORT.md  
 **Documentation Coverage**: 100% (84/84 views)
 
+**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
+
 ### Key Statistics
 
 | Metric | Count | Description |

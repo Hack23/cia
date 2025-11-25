@@ -1,7 +1,7 @@
 #!/bin/bash
 # validate-view-documentation.sh
 # Automated validation of view documentation coverage
-# Part of the CIA Intelligence Operations quality assurance system
+# Part of the Citizen Intelligence Agency (CIA) platform quality assurance system
 
 set -e
 
@@ -127,18 +127,33 @@ $SEVERITY: Documentation provides **$COVERAGE% coverage** for $TOTAL_VIEWS datab
 
 EOF
 
-# Add comparison to previous validation if this is an update
-if [ "$MISSING_COUNT" -lt 73 ]; then
+# Add comparison to previous validation if significant progress was made
+# Extract previous metrics from existing report if it exists
+if [ -f "$OUTPUT_FILE.bak" ]; then
+    PREV_COVERAGE=$(grep "Documentation coverage.*|" "$OUTPUT_FILE.bak" | head -1 | sed 's/.*| \([0-9.]*\)%.*/\1/')
+    PREV_TOTAL=$(grep "Total views in database.*|" "$OUTPUT_FILE.bak" | head -1 | sed 's/.*| \([0-9]*\).*/\1/')
+    PREV_DOCUMENTED=$(grep "Total views documented.*|" "$OUTPUT_FILE.bak" | head -1 | sed 's/.*| \([0-9]*\).*/\1/')
+    PREV_MISSING=$(grep "Views missing from documentation.*|" "$OUTPUT_FILE.bak" | head -1 | sed 's/.*| \([0-9]*\).*/\1/')
+else
+    # Fallback to known baseline from 2025-11-21 validation
+    PREV_COVERAGE="10.98"
+    PREV_TOTAL="82"
+    PREV_DOCUMENTED="9"
+    PREV_MISSING="73"
+fi
+
+# Show progress if there's been improvement
+if [ $(echo "$COVERAGE > $PREV_COVERAGE" | bc -l) -eq 1 ]; then
     cat >> "$OUTPUT_FILE" <<EOF
 
 ### Progress Since Previous Validation (2025-11-21)
 
 | Metric | Previous (2025-11-21) | Current ($(date +%Y-%m-%d)) | Improvement |
 |--------|----------------------|---------------------|-------------|
-| **Total views in database** | 82 | $TOTAL_VIEWS | $([ $TOTAL_VIEWS -gt 82 ] && echo "+$(($TOTAL_VIEWS - 82))" || echo "✓") |
-| **Total views documented** | 9 | $DOCUMENTED_VIEWS | +$(($DOCUMENTED_VIEWS - 9)) views |
-| **Documentation coverage** | 10.98% | $COVERAGE% | +$(echo "$COVERAGE - 10.98" | bc)% |
-| **Views missing from documentation** | 73 | $MISSING_COUNT | -$((73 - $MISSING_COUNT)) views |
+| **Total views in database** | $PREV_TOTAL | $TOTAL_VIEWS | $([ $TOTAL_VIEWS -gt $PREV_TOTAL ] && echo "+$(($TOTAL_VIEWS - $PREV_TOTAL))" || echo "✓") |
+| **Total views documented** | $PREV_DOCUMENTED | $DOCUMENTED_VIEWS | +$(($DOCUMENTED_VIEWS - $PREV_DOCUMENTED)) views |
+| **Documentation coverage** | $PREV_COVERAGE% | $COVERAGE% | +$(echo "$COVERAGE - $PREV_COVERAGE" | bc)% |
+| **Views missing from documentation** | $PREV_MISSING | $MISSING_COUNT | -$(($PREV_MISSING - $MISSING_COUNT)) views |
 
 EOF
 fi
