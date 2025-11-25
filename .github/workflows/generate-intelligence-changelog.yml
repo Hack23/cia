@@ -12,13 +12,21 @@ on:
         required: false
         default: 'HEAD'
 
+permissions:
+  contents: read
+
 jobs:
   generate-changelog:
     runs-on: ubuntu-latest
     
     steps:
+    - name: Harden the runner (Audit all outbound calls)
+      uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+      with:
+        egress-policy: audit
+
     - name: Checkout repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
       with:
         fetch-depth: 0  # Fetch full history for git diff
     
@@ -30,7 +38,7 @@ jobs:
           ${{ github.event.inputs.current_commit }} > changelog-output.txt
       
     - name: Upload Changelog Report
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
       with:
         name: intelligence-changelog-report
         path: changelog-output.txt
