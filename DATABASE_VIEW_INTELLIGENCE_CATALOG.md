@@ -5972,6 +5972,8 @@ This appendix maps database views to business product features per [BUSINESS_PRO
 
 #### Product Line 1: Political Intelligence API (€630K annual revenue potential)
 
+**Revenue Source:** [BUSINESS_PRODUCT_DOCUMENT.md#product-line-1-political-intelligence-api](BUSINESS_PRODUCT_DOCUMENT.md#product-line-1-political-intelligence-api) - €630,000 total (€450K subscription fees + €60K overage + €120K custom development)
+
 **Target Segments:** Political Consulting (€15M TAM), Media & Journalism (€8M TAM), Academic Research (€5M TAM)
 
 | View | Product Feature | JSON Schema | API Endpoint | Market Segment | Revenue Tier |
@@ -5990,6 +5992,8 @@ This appendix maps database views to business product features per [BUSINESS_PRO
 
 #### Product Line 2: Advanced Analytics Suite (€855K annual revenue potential)
 
+**Revenue Source:** [BUSINESS_PRODUCT_DOCUMENT.md#product-line-2-advanced-analytics-suite](BUSINESS_PRODUCT_DOCUMENT.md#product-line-2-advanced-analytics-suite) - €855,000 total (€720K subscription fees + €90K custom dashboards + €45K training)
+
 **Target Segments:** Corporate Government Affairs (€12M TAM), NGOs & Advocacy, Political Parties
 
 | View | Dashboard Component | Data Schema | Market Segment | Pricing Tier |
@@ -6007,6 +6011,8 @@ This appendix maps database views to business product features per [BUSINESS_PRO
 
 #### Product Line 3: Risk Intelligence Feed (€1.77M annual revenue potential)
 
+**Revenue Source:** [BUSINESS_PRODUCT_DOCUMENT.md#product-line-3-risk-intelligence-feed](BUSINESS_PRODUCT_DOCUMENT.md#product-line-3-risk-intelligence-feed) - €1,770,000 total (€900K subscription fees + €500K alerting + €220K consulting + €150K services)
+
 **Target Segments:** Political Consulting, Corporate Affairs, Media & Journalism
 
 | View | Risk Intelligence Product | Intelligence Value | Market Segment | Premium Tier |
@@ -6022,6 +6028,8 @@ This appendix maps database views to business product features per [BUSINESS_PRO
 ---
 
 #### Product Line 4: Custom Report Generator (€525K annual revenue potential)
+
+**Revenue Note:** This is a simplified representation of report generation features that appear across multiple product lines in BUSINESS_PRODUCT_DOCUMENT.md. The €525K figure is estimated based on view-to-product mapping: (20 Professional subscriptions at €6K/mo × 12 = €1.44M total, with ~36% allocated to custom reporting = €525K). See [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md) for complete product line breakdown.
 
 **Target Segments:** All segments, customizable templates
 
@@ -6292,10 +6300,12 @@ See [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) for
 
 **Quality Validation:**
 - ✓ All view counts verified against service.data.impl/src/main/resources/full_schema.sql
-- ✓ Business metrics sourced from BUSINESS_PRODUCT_DOCUMENT.md
+- ✓ TAM figures sourced from BUSINESS_PRODUCT_DOCUMENT.md (€46M across 5 segments)
+- ✓ Product Line 1-3 revenue figures sourced from BUSINESS_PRODUCT_DOCUMENT.md (€630K, €855K, €1.77M)
+- ✓ Product Line 4 revenue estimated based on view mapping and cross-product allocation (€525K)
+- ✓ Cross-Product Feature Matrix totals (€5.1M) represent primary revenue model
 - ✓ JSON schema links validated against json-export-specs/schemas/ directory
 - ✓ Product line mappings cross-referenced with product documentation
-- ✓ TAM and revenue figures consistent with business strategy documents
 
 **Next Actions:**
 - Monitor business metrics against actual usage patterns
