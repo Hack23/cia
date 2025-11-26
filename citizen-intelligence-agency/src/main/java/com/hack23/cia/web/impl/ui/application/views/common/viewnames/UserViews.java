@@ -74,4 +74,7 @@ public interface UserViews {
 	/** The Constant USERHOME_VIEW_NAME. */
 	String USERHOME_VIEW_NAME = "userhome";
 
+	/** The Constant BUSINESS_EXECUTIVE_DASHBOARD_VIEW_NAME. */
+	String BUSINESS_EXECUTIVE_DASHBOARD_VIEW_NAME = "business/executive-dashboard";
+
 }
