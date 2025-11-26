@@ -37,6 +37,7 @@ import org.springframework.transaction.annotation.Propagation;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrix;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
 import com.hack23.cia.service.data.api.ViewRiksdagenCoalitionAlignmentMatrixDAO;
 import com.hack23.cia.service.data.api.ViewRiksdagenPartyDAO;
 
@@ -179,11 +180,12 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 			
 			final String party1 = embeddedId.getParty1();
 			final String party2 = embeddedId.getParty2();
-			final BigDecimal alignmentRate = data.getAlignmentRate();
+			// Use agreementPercentage from the main entity, not the embedded ID
+			final Double agreementPercentage = data.getAgreementPercentage();
 
-			// Null checks to prevent NullPointerException when using party values as Map keys
-			if (party1 != null && party2 != null && alignmentRate != null) {
-				final double rate = alignmentRate.doubleValue();
+			if (party1 != null && party2 != null && agreementPercentage != null) {
+				// Convert percentage (0-100) to rate (0-1)
+				final double rate = agreementPercentage / 100.0;
 				matrix.computeIfAbsent(party1, k -> new HashMap<>()).put(party2, rate);
 				matrix.computeIfAbsent(party2, k -> new HashMap<>()).put(party1, rate);
 			}
@@ -197,32 +199,24 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 		return matrix;
 	}
 
-	/**
-	 * Loads seat counts for parties from database. If database query fails, falls back
-	 * to approximate recent election results.
-	 * Currently, only current party membership counts are used (no year-specific data).
-	 *
-	 * @return map of party IDs to seat counts
-	 */
 	private Map<String, Integer> loadSeatCounts() {
-		// Load actual seat counts from ViewRiksdagenParty or similar data source
 		final Map<String, Integer> seatCounts = new HashMap<>();
 		
 		try {
 			final List<ViewRiksdagenParty> parties = partyDAO.getAll();
 			for (final ViewRiksdagenParty party : parties) {
-				if (party.getHeadCount() > 0) {
-					seatCounts.put(party.getPartyId(), (int) party.getHeadCount());
+				// ViewRiksdagenParty uses partyNumber as the short code (e.g., "S", "M", "SD")
+				// and partyId is the primary key
+				final String partyShortCode = party.getPartyNumber();
+				final long headCount = party.getHeadCount();
+				if (headCount > 0 && partyShortCode != null) {
+					seatCounts.put(partyShortCode, (int) headCount);
 				}
 			}
 		} catch (final Exception e) {
 			LOGGER.warn("Could not load seat counts from database, using defaults", e);
 		}
 		
-		// Fallback to approximate recent election results if database query fails
-		// NOTE: These values are externalized to FALLBACK_SEAT_COUNTS constant and represent 2022 election results.
-		// In production, these should be moved to a configuration table or properties file
-		// that can be updated after each election without code changes.
 		if (seatCounts.isEmpty()) {
 			seatCounts.putAll(FALLBACK_SEAT_COUNTS);
 		}
@@ -352,10 +346,6 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	}
 
 	private double calculateProbability(final double alignment, final int totalSeats) {
-		// Probability model based on two weighted factors:
-		// 1. Party alignment rate (ALIGNMENT_WEIGHT = 60%): How often parties vote together
-		// 2. Seats above majority (SEATS_WEIGHT = 40%): Strength of parliamentary position
-		// The SEATS_SCALING_FACTOR (100.0) normalizes excess seats to a 0-0.4 range
 		final double alignmentFactor = alignment * ALIGNMENT_WEIGHT;
 		final double seatsFactor = Math.min((totalSeats - MAJORITY_SEATS) / SEATS_SCALING_FACTOR, SEATS_WEIGHT);
 		return Math.min(alignmentFactor + seatsFactor, 1.0);

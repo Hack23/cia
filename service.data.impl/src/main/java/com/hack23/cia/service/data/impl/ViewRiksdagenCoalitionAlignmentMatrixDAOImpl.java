@@ -49,7 +49,6 @@ final class ViewRiksdagenCoalitionAlignmentMatrixDAOImpl
 		super(ViewRiksdagenCoalitionAlignmentMatrix.class);
 	}
 
-	@Override
 	public List<ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId> getIdList() {
 		final CriteriaQuery<ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId> criteria = getCriteriaBuilder()
 				.createQuery(ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId.class);
