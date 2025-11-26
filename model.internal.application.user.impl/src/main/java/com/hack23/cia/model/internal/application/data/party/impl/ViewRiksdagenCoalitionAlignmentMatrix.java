@@ -181,7 +181,12 @@ public final class ViewRiksdagenCoalitionAlignmentMatrix implements ModelObject 
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
-	@Override
+	/**
+	 * Compare to.
+	 *
+	 * @param o the o
+	 * @return the int
+	 */
 	public int compareTo(final ModelObject o) {
 		if (this == o) {
 			return 0;
