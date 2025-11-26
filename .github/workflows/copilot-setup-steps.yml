@@ -235,27 +235,63 @@ jobs:
 
           PORT=28443
           APP_URL="https://localhost:${PORT}/cia/"
-          MAX_PORT_WAIT=40
+          MAX_PORT_WAIT=60
           PORT_READY=0
-          for i in $(seq 1 $MAX_PORT_WAIT); do
-            if curl --insecure --silent --show-error --fail --max-time 5 "$APP_URL" >/dev/null 2>&1; then
-              echo "✓ Application responded over HTTPS at ${APP_URL}"
-              PORT_READY=1
+
+          # Wait for port to be listening
+          echo "Waiting for port ${PORT} to open..."
+          for i in $(seq 1 30); do
+            if ss -ltn | grep -q ":${PORT} "; then
+              echo "✓ Port ${PORT} is listening (${i}/30)"
               break
             fi
+            echo "  Waiting for port ${PORT} to open (${i}/30)"
+            sleep 2
+          done
 
-            if ss -ltn | grep -q ":${PORT} "; then
-              echo "  Port ${PORT} is listening but HTTP response not ready yet (${i}/${MAX_PORT_WAIT})"
-            else
-              echo "  Waiting for port ${PORT} to open (${i}/${MAX_PORT_WAIT})"
+          # Now wait for actual HTTP readiness by monitoring logs
+          echo "Waiting for application to be ready for requests..."
+          for i in $(seq 1 $MAX_PORT_WAIT); do
+            # Check if server reports it's started
+            if grep -q "Server Started" /tmp/app-startup.log 2>/dev/null; then
+              echo "✓ Application reports server started"
+              # Give it a moment to finish initialization
+              sleep 3
+              
+              # Try HTTP request
+              if curl --insecure --silent --show-error --fail --max-time 5 "$APP_URL" >/dev/null 2>&1; then
+                echo "✓ Application responded over HTTPS at ${APP_URL}"
+                PORT_READY=1
+                break
+              else
+                echo "  Server started but HTTP not ready yet, retrying..."
+              fi
             fi
-            sleep 3
+            
+            # Fallback: check for Spring context initialization complete
+            if grep -q "Root WebApplicationContext: initialization completed" /tmp/app-startup.log 2>/dev/null; then
+              echo "✓ Spring context initialization completed"
+              sleep 2
+              
+              if curl --insecure --silent --show-error --fail --max-time 5 "$APP_URL" >/dev/null 2>&1; then
+                echo "✓ Application responded over HTTPS at ${APP_URL}"
+                PORT_READY=1
+                break
+              fi
+            fi
+            
+            sleep 2
           done
 
           if [ "$PORT_READY" -ne 1 ]; then
             echo "⚠ Application never responded on ${APP_URL}"
+            echo "Server status:"
             ss -ltnp | grep "${PORT}" || true
-            tail -50 /tmp/app-startup.log || true
+            echo ""
+            echo "Last 100 lines of application log:"
+            tail -100 /tmp/app-startup.log || true
+          else
+            echo "✓ Application validation successful - server is ready"
           fi
 
           # Stop the application gracefully
