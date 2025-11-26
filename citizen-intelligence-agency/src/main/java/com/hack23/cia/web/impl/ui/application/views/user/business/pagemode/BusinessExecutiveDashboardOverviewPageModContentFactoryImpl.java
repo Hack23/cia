@@ -18,21 +18,20 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.user.business.pagemode;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserHomeConstants;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Responsive;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Layout;
@@ -59,6 +58,19 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 	private static final double YEAR3_TARGET_REVENUE = 142560.0; // €142.56k
 	private static final double TOTAL_TAM = 46000000.0; // €46M
 	
+	/** Format pattern for percentage display */
+	private static final String PERCENTAGE_FORMAT = "%.1f";
+	
+	/** Format pattern for currency with percentage */
+	private static final String CURRENCY_PERCENTAGE_FORMAT = "€%.0f / €%.0f (%.1f%%)";
+	
+	/** Format pattern for funnel percentage */
+	private static final String FUNNEL_PERCENTAGE_FORMAT = "%.2f";
+	
+	/** The user home menu item factory. */
+	@Autowired
+	private UserHomeMenuItemFactory userHomeMenuItemFactory;
+	
 	/**
 	 * Instantiates a new business executive dashboard overview page mod content factory impl.
 	 */
@@ -81,39 +93,15 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		panel.setContent(panelContent);
 
 		final String pageId = getPageId(parameters);
+		
+		// Populate menu bar
+		userHomeMenuItemFactory.createUserHomeMenuBar(menuBar, pageId);
 
-		// Create page header
-		final HorizontalLayout headerLayout = new HorizontalLayout();
-		headerLayout.setWidth("100%");
-		headerLayout.setSpacing(true);
-		
-		final Label titleLabel = new Label("📊 Executive Dashboard");
-		titleLabel.addStyleName("h1");
-		headerLayout.addComponent(titleLabel);
-		
-		final Label lastUpdatedLabel = new Label("Last Updated: " + 
-			LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-		lastUpdatedLabel.addStyleName("v-label-light");
-		headerLayout.addComponent(lastUpdatedLabel);
-		headerLayout.setExpandRatio(lastUpdatedLabel, ContentRatio.SMALL);
-		
-		final Button refreshButton = new Button("Refresh", VaadinIcons.REFRESH);
-		refreshButton.setDescription("Refresh dashboard data");
-		refreshButton.addClickListener(e -> {
-			if (e.getButton().getUI() != null) {
-				e.getButton().getUI().getPage().reload();
-			}
-		});
-		headerLayout.addComponent(refreshButton);
-		
-		panelContent.addComponent(headerLayout);
-		
-		// Create description
-		final Label descLabel = new Label(
-			"Business metrics tracking for BUSINESS_PRODUCT_DOCUMENT.md strategy execution. " +
-			"Monitors progress toward €46M TAM and €29.7k-€142.5k revenue targets.");
-		descLabel.addStyleName("v-label-light");
-		panelContent.addComponent(descLabel);
+		// Create page header using CardInfoRowUtil for consistency
+		CardInfoRowUtil.createPageHeader(panel, panelContent, 
+			"📊 Executive Dashboard", 
+			"Business Metrics Dashboard", 
+			"Business metrics tracking for BUSINESS_PRODUCT_DOCUMENT.md strategy execution. Monitors progress toward €46M TAM and €29.7k-€142.5k revenue targets.");
 		
 		// Create KPI Cards Section
 		createKpiCardsSection(panelContent);
@@ -129,6 +117,10 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		
 		// Create Product Development Section
 		createProductDevelopmentSection(panelContent);
+		
+		// Track page event
+		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_USER_HOME_VIEW, ApplicationEventGroup.USER,
+				NAME, parameters, pageId);
 
 		return panelContent;
 	}
@@ -152,23 +144,23 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		
 		// Monthly Recurring Revenue (MRR)
 		kpiLayout.addComponent(createKpiCard("💰", "Monthly Recurring Revenue", "€2,475", 
-			"▲ 12.5% MoM", "Target: €2,475/month (Year 1)", "#27ae60"));
+			"▲ 12.5% MoM", "Target: €2,475/month (Year 1)"));
 		
 		// Average Revenue Per User (ARPU)
 		kpiLayout.addComponent(createKpiCard("👤", "Average Revenue Per User", "€99.00", 
-			"Professional tier", "Target: €99/user", "#3498db"));
+			"Professional tier", "Target: €99/user"));
 		
 		// Active Customers
 		kpiLayout.addComponent(createKpiCard("🎯", "Active Customers", "28", 
-			"Free: 20 | Paid: 8", "Target: 28 (Year 1)", "#9b59b6"));
+			"Free: 20 | Paid: 8", "Target: 28 (Year 1)"));
 		
 		// Monthly Churn Rate
 		kpiLayout.addComponent(createKpiCard("📉", "Monthly Churn Rate", "3.2%", 
-			"✅ Healthy", "Target: <5%", "#27ae60"));
+			"✅ Healthy", "Target: <5%"));
 		
 		// API Usage Growth
 		kpiLayout.addComponent(createKpiCard("🚀", "API Request Growth", "45k requests", 
-			"▲ 18.3% MoM", "Professional + Enterprise", "#1abc9c"));
+			"▲ 18.3% MoM", "Professional + Enterprise"));
 		
 		kpiPanel.setContent(kpiLayout);
 		panelContent.addComponent(kpiPanel);
@@ -183,11 +175,10 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 	 * @param value the value
 	 * @param subtitle the subtitle
 	 * @param target the target
-	 * @param color the color
 	 * @return the vertical layout
 	 */
 	private VerticalLayout createKpiCard(final String icon, final String title, final String value, 
-			final String subtitle, final String target, final String color) {
+			final String subtitle, final String target) {
 		final VerticalLayout card = new VerticalLayout();
 		card.setSpacing(false);
 		card.setMargin(true);
@@ -268,6 +259,8 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		nameLabel.setWidth("200px");
 		row.addComponent(nameLabel);
 		
+		// Using Label as a visual progress bar by setting width and applying CSS styling
+		// This is styled via the "progress-bar" CSS class for visual effect
 		final Label barLabel = new Label();
 		barLabel.setWidth(percentage + "%");
 		barLabel.setHeight("20px");
@@ -275,7 +268,7 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		row.addComponent(barLabel);
 		row.setExpandRatio(barLabel, 1.0f);
 		
-		final Label valueLabel = new Label(value + " (" + String.format(Locale.ENGLISH, "%.1f", percentage) + "%)");
+		final Label valueLabel = new Label(value + " (" + String.format(Locale.ENGLISH, PERCENTAGE_FORMAT, percentage) + "%)");
 		valueLabel.setWidth("150px");
 		row.addComponent(valueLabel);
 		
@@ -305,14 +298,26 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		descLabel.addStyleName("v-label-light");
 		revenueLayout.addComponent(descLabel);
 		
+		// Quarterly data
+		final double q1Actual = 6000;
+		final double q2Actual = 7200;
+		final double q3Actual = 7425;
+		final double q4Actual = 7425;
+		final double quarterTarget = 7425;
+		final double annualTarget = YEAR1_TARGET_REVENUE;
+		
 		// Quarterly progress bars
-		revenueLayout.addComponent(createRevenueQuarterRow("Q1 2024", 6000, 7425, 80.8));
-		revenueLayout.addComponent(createRevenueQuarterRow("Q2 2024", 7200, 7425, 97.0));
-		revenueLayout.addComponent(createRevenueQuarterRow("Q3 2024 (Projected)", 7425, 7425, 100.0));
-		revenueLayout.addComponent(createRevenueQuarterRow("Q4 2024 (Projected)", 7425, 7425, 100.0));
+		revenueLayout.addComponent(createRevenueQuarterRow("Q1 2024", q1Actual, quarterTarget, (q1Actual / quarterTarget * 100.0)));
+		revenueLayout.addComponent(createRevenueQuarterRow("Q2 2024", q2Actual, quarterTarget, (q2Actual / quarterTarget * 100.0)));
+		revenueLayout.addComponent(createRevenueQuarterRow("Q3 2024 (Projected)", q3Actual, quarterTarget, (q3Actual / quarterTarget * 100.0)));
+		revenueLayout.addComponent(createRevenueQuarterRow("Q4 2024 (Projected)", q4Actual, quarterTarget, (q4Actual / quarterTarget * 100.0)));
+		
+		// Calculate YTD from actual quarters
+		final double ytd = q1Actual + q2Actual;
+		final double onTrackPercent = annualTarget > 0 ? (ytd / annualTarget * 100.0) : 0.0;
 		
 		final Label summaryLabel = new Label(
-			"Year-to-Date: €13,200 | Year 1 Target: €29,700 | On Track: 88.9%");
+			String.format(Locale.ENGLISH, "Year-to-Date: €%,.0f | Year 1 Target: €%,.0f | On Track: %.1f%%", ytd, annualTarget, onTrackPercent));
 		summaryLabel.addStyleName("h4");
 		revenueLayout.addComponent(summaryLabel);
 		
@@ -340,16 +345,18 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		quarterLabel.setWidth("200px");
 		row.addComponent(quarterLabel);
 		
+		// Using Label as a visual progress bar by setting width and applying CSS styling
+		// This is styled via the "progress-bar" CSS class with conditional state classes
 		final Label barLabel = new Label();
 		barLabel.setWidth(percentage + "%");
 		barLabel.setHeight("30px");
 		barLabel.addStyleName("progress-bar");
-		barLabel.addStyleName(percentage >= 100 ? "success" : percentage >= 80 ? "warning" : "danger");
+		barLabel.addStyleName(percentage >= 100 ? "v-label-success" : percentage >= 80 ? "v-label-warning" : "v-label-error");
 		row.addComponent(barLabel);
 		row.setExpandRatio(barLabel, 1.0f);
 		
 		final Label valueLabel = new Label(
-			String.format(Locale.ENGLISH, "€%.0f / €%.0f (%.1f%%)", actual, target, percentage));
+			String.format(Locale.ENGLISH, CURRENCY_PERCENTAGE_FORMAT, actual, target, percentage));
 		valueLabel.setWidth("200px");
 		row.addComponent(valueLabel);
 		
@@ -413,6 +420,8 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		nameLabel.setWidth("200px");
 		row.addComponent(nameLabel);
 		
+		// Using Label as a visual progress bar by setting width and applying CSS styling
+		// This is styled via the "progress-bar" CSS class for visual effect
 		final Label barLabel = new Label();
 		barLabel.setWidth(percentage + "%");
 		barLabel.setHeight("40px");
@@ -420,7 +429,7 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		row.addComponent(barLabel);
 		row.setExpandRatio(barLabel, 1.0f);
 		
-		final Label valueLabel = new Label(count + " (" + String.format(Locale.ENGLISH, "%.2f", percentage) + "%)");
+		final Label valueLabel = new Label(count + " (" + String.format(Locale.ENGLISH, FUNNEL_PERCENTAGE_FORMAT, percentage) + "%)");
 		valueLabel.setWidth("150px");
 		row.addComponent(valueLabel);
 		
@@ -458,7 +467,7 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		// In Progress column
 		final VerticalLayout inProgressLayout = createKanbanColumn("🚧 In Progress", 
 			new String[] {
-				"Executive Dashboard (This!)",
+				"Executive Dashboard",
 				"Risk Intelligence Feed",
 				"API v2.0 Development",
 				"Customer Analytics"
