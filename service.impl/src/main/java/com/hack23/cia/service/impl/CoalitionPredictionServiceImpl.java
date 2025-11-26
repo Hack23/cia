@@ -33,9 +33,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Propagation;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrix;
-import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId;
 import com.hack23.cia.service.data.api.ViewRiksdagenCoalitionAlignmentMatrixDAO;
 import com.hack23.cia.service.data.api.ViewRiksdagenPartyDAO;
 
@@ -46,7 +47,7 @@ import com.hack23.cia.service.data.api.ViewRiksdagenPartyDAO;
  * coalition formation scenarios based on historical voting patterns.
  */
 @Service
-@Transactional(readOnly = true)
+@Transactional(propagation = Propagation.REQUIRED, timeout = 1200)
 @Secured({"ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN"})
 public class CoalitionPredictionServiceImpl implements CoalitionPredictionService {
 
@@ -91,7 +92,7 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	}
 
 	@Autowired
-	private ViewRiksdagenCoalitionAlignmentMatrixDAO alignmentMatrixDAO;
+	private ViewRiksdagenCoalitionAlignmentMatrixDAO coalitionAlignmentMatrixDAO;
 	
 	@Autowired
 	private ViewRiksdagenPartyDAO partyDAO;
@@ -103,7 +104,7 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 		// rather than year-specific snapshots. Future enhancement could filter by year if needed.
 		LOGGER.info("Generating coalition scenarios for year: {}", year);
 
-		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = alignmentMatrixDAO.getAll();
+		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = coalitionAlignmentMatrixDAO.getAll();
 		final Map<String, Map<String, Double>> alignmentMatrix = buildAlignmentMatrix(alignmentData);
 		final Map<String, Integer> seatCounts = loadSeatCounts();
 
@@ -129,7 +130,7 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	public Map<String, Map<String, Double>> getAlignmentMatrix(final String year) {
 		// NOTE: Year parameter is accepted for API consistency but not currently used for filtering
 		// because ViewRiksdagenCoalitionAlignmentMatrix represents aggregate historical patterns.
-		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = alignmentMatrixDAO.getAll();
+		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = coalitionAlignmentMatrixDAO.getAll();
 		return buildAlignmentMatrix(alignmentData);
 	}
 
@@ -171,8 +172,13 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 		}
 
 		for (final ViewRiksdagenCoalitionAlignmentMatrix data : alignmentData) {
-			final String party1 = data.getParty1();
-			final String party2 = data.getParty2();
+			final ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId embeddedId = data.getEmbeddedId();
+			if (embeddedId == null) {
+				continue;
+			}
+			
+			final String party1 = embeddedId.getParty1();
+			final String party2 = embeddedId.getParty2();
 			final BigDecimal alignmentRate = data.getAlignmentRate();
 
 			// Null checks to prevent NullPointerException when using party values as Map keys

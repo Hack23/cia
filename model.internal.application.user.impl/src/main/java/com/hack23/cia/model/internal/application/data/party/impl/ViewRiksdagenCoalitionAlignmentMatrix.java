@@ -18,8 +18,7 @@
  */
 package com.hack23.cia.model.internal.application.data.party.impl;
 
-import java.math.BigDecimal;
-import java.util.Objects;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -34,131 +33,137 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.hack23.cia.model.common.api.ModelObject;
 
 /**
- * Coalition alignment matrix view showing voting alignment between party pairs.
- * 
- * Based on view_riksdagen_coalition_alignment_matrix database view.
- * 
- * @author intelligence-operative
- * @since v1.29 (Intelligence Operations Enhancement)
+ * Coalition alignment matrix view.
  */
 @Entity
 @Table(name = "view_riksdagen_coalition_alignment_matrix")
 public final class ViewRiksdagenCoalitionAlignmentMatrix implements ModelObject {
 
-	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The embedded id. */
 	@EmbeddedId
 	private ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId embeddedId;
 
-	/** The total votes. */
-	@Column(name = "total_votes")
-	private Long totalVotes;
+	@Column(name = "total_ballots")
+	private Long totalBallots;
 
-	/** The aligned votes. */
-	@Column(name = "aligned_votes")
-	private Long alignedVotes;
+	@Column(name = "agreement_count")
+	private Long agreementCount;
 
-	/** The alignment rate. */
-	@Column(name = "alignment_rate")
-	private BigDecimal alignmentRate;
+	@Column(name = "disagreement_count")
+	private Long disagreementCount;
 
-	/**
-	 * Instantiates a new view riksdagen coalition alignment matrix.
-	 */
+	@Column(name = "agreement_percentage")
+	private Double agreementPercentage;
+
+	@Column(name = "coalition_likelihood")
+	private String coalitionLikelihood;
+
+	@Column(name = "bloc_relationship")
+	private String blocRelationship;
+
+	@Column(name = "intelligence_comment")
+	private String intelligenceComment;
+
+	@Column(name = "first_year")
+	private Integer firstYear;
+
+	@Column(name = "last_year")
+	private Integer lastYear;
+
+	@Column(name = "years_observed")
+	private Integer yearsObserved;
+
 	public ViewRiksdagenCoalitionAlignmentMatrix() {
 		super();
 	}
 
-	/**
-	 * Gets the embedded id.
-	 *
-	 * @return the embedded id
-	 */
 	public ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId getEmbeddedId() {
 		return embeddedId;
 	}
 
-	/**
-	 * Sets the embedded id.
-	 *
-	 * @param embeddedId the new embedded id
-	 */
 	public void setEmbeddedId(final ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId embeddedId) {
 		this.embeddedId = embeddedId;
 	}
 
-	/**
-	 * Gets the party 1.
-	 *
-	 * @return the party 1
-	 */
-	public String getParty1() {
-		return embeddedId != null ? embeddedId.getParty1() : null;
+	public Long getTotalBallots() {
+		return totalBallots;
 	}
 
-	/**
-	 * Gets the party 2.
-	 *
-	 * @return the party 2
-	 */
-	public String getParty2() {
-		return embeddedId != null ? embeddedId.getParty2() : null;
+	public void setTotalBallots(final Long totalBallots) {
+		this.totalBallots = totalBallots;
 	}
 
-	/**
-	 * Gets the total votes.
-	 *
-	 * @return the total votes
-	 */
-	public Long getTotalVotes() {
-		return totalVotes;
+	public Long getAgreementCount() {
+		return agreementCount;
 	}
 
-	/**
-	 * Sets the total votes.
-	 *
-	 * @param totalVotes the new total votes
-	 */
-	public void setTotalVotes(final Long totalVotes) {
-		this.totalVotes = totalVotes;
+	public void setAgreementCount(final Long agreementCount) {
+		this.agreementCount = agreementCount;
 	}
 
-	/**
-	 * Gets the aligned votes.
-	 *
-	 * @return the aligned votes
-	 */
-	public Long getAlignedVotes() {
-		return alignedVotes;
+	public Long getDisagreementCount() {
+		return disagreementCount;
 	}
 
-	/**
-	 * Sets the aligned votes.
-	 *
-	 * @param alignedVotes the new aligned votes
-	 */
-	public void setAlignedVotes(final Long alignedVotes) {
-		this.alignedVotes = alignedVotes;
+	public void setDisagreementCount(final Long disagreementCount) {
+		this.disagreementCount = disagreementCount;
 	}
 
-	/**
-	 * Gets the alignment rate.
-	 *
-	 * @return the alignment rate
-	 */
-	public BigDecimal getAlignmentRate() {
-		return alignmentRate;
+	public Double getAgreementPercentage() {
+		return agreementPercentage;
 	}
 
-	/**
-	 * Sets the alignment rate.
-	 *
-	 * @param alignmentRate the new alignment rate
-	 */
-	public void setAlignmentRate(final BigDecimal alignmentRate) {
-		this.alignmentRate = alignmentRate;
+	public void setAgreementPercentage(final Double agreementPercentage) {
+		this.agreementPercentage = agreementPercentage;
+	}
+
+	public String getCoalitionLikelihood() {
+		return coalitionLikelihood;
+	}
+
+	public void setCoalitionLikelihood(final String coalitionLikelihood) {
+		this.coalitionLikelihood = coalitionLikelihood;
+	}
+
+	public String getBlocRelationship() {
+		return blocRelationship;
+	}
+
+	public void setBlocRelationship(final String blocRelationship) {
+		this.blocRelationship = blocRelationship;
+	}
+
+	public String getIntelligenceComment() {
+		return intelligenceComment;
+	}
+
+	public void setIntelligenceComment(final String intelligenceComment) {
+		this.intelligenceComment = intelligenceComment;
+	}
+
+	public Integer getFirstYear() {
+		return firstYear;
+	}
+
+	public void setFirstYear(final Integer firstYear) {
+		this.firstYear = firstYear;
+	}
+
+	public Integer getLastYear() {
+		return lastYear;
+	}
+
+	public void setLastYear(final Integer lastYear) {
+		this.lastYear = lastYear;
+	}
+
+	public Integer getYearsObserved() {
+		return yearsObserved;
+	}
+
+	public void setYearsObserved(final Integer yearsObserved) {
+		this.yearsObserved = yearsObserved;
 	}
 
 	@Override
@@ -176,4 +181,21 @@ public final class ViewRiksdagenCoalitionAlignmentMatrix implements ModelObject 
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
+	@Override
+	public int compareTo(final ModelObject o) {
+		if (this == o) {
+			return 0;
+		}
+		if (embeddedId == null) {
+			return -1;
+		}
+		if (o == null || !(o instanceof ViewRiksdagenCoalitionAlignmentMatrix)) {
+			return -1;
+		}
+		final ViewRiksdagenCoalitionAlignmentMatrix other = (ViewRiksdagenCoalitionAlignmentMatrix) o;
+		if (other.embeddedId == null) {
+			return 1;
+		}
+		return embeddedId.compareTo(other.embeddedId);
+	}
 }

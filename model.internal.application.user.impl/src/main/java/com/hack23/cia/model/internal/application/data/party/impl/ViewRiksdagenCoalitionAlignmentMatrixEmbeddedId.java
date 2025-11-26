@@ -42,11 +42,11 @@ public final class ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId implements Se
 	private static final long serialVersionUID = 1L;
 
 	/** The party 1. */
-	@Column(name = "party1", nullable = false)
+	@Column(name = "party_1")
 	private String party1;
 
 	/** The party 2. */
-	@Column(name = "party2", nullable = false)
+	@Column(name = "party_2")
 	private String party2;
 
 	/**
@@ -119,4 +119,23 @@ public final class ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId implements Se
 		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
+	/**
+	 * Compare to.
+	 *
+	 * @param o the o
+	 * @return the int
+	 */
+	public int compareTo(final ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId o) {
+		if (this == o) {
+			return 0;
+		}
+		if (o == null) {
+			return -1;
+		}
+		int result = Objects.compare(party1, o.party1, String.CASE_INSENSITIVE_ORDER);
+		if (result != 0) {
+			return result;
+		}
+		return Objects.compare(party2, o.party2, String.CASE_INSENSITIVE_ORDER);
+	}
 }
