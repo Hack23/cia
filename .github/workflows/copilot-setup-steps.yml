@@ -80,25 +80,52 @@ jobs:
           # Generate secure random passphrase
           openssl rand -base64 48 > passphrase.txt
 
-          # Create passphrase-protected private key
-          openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
+          # Create passphrase-protected private key (increased to 4096 bits)
+          openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 4096
 
           # Remove passphrase protection from private key
           openssl rsa -passin file:passphrase.txt -in server.pass.key -out server.key
           rm server.pass.key
 
-          # Create Certificate Signing Request
-          openssl req -new -key server.key -out server.csr \
-            -subj "/C=UK/ST=PostgreSQL/L=Docker/O=Hack23/OU=demo/CN=127.0.0.1"
+          # Create OpenSSL config file with Subject Alternative Names
+          cat > openssl.cnf <<EOL
+          [req]
+          default_bits = 4096
+          prompt = no
+          default_md = sha256
+          req_extensions = req_ext
+          distinguished_name = dn
 
-          # Self-sign the certificate (valid for 10 years)
-          openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
+          [dn]
+          C=UK
+          ST=PostgreSQL
+          L=Docker
+          O=Hack23
+          OU=demo
+          CN=localhost
+
+          [req_ext]
+          subjectAltName = @alt_names
+
+          [alt_names]
+          DNS.1 = localhost
+          IP.1 = 127.0.0.1
+          EOL
+
+          # Create Certificate Signing Request with config
+          openssl req -new -key server.key -out server.csr -config openssl.cnf
+
+          # Self-sign the certificate with extensions (valid for 10 years)
+          openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt -extensions req_ext -extfile openssl.cnf
 
           # Clean up temporary files
-          rm passphrase.txt server.csr
+          rm passphrase.txt server.csr openssl.cnf
 
       - name: Deploy SSL certificate and key for PostgreSQL
         run: |
+          # Secure the certificate files
+          chmod 600 server.key server.crt
+
           # Copy certificate and key to PostgreSQL data directory
           sudo cp server.crt /var/lib/postgresql/16/main/server.crt
           sudo cp server.key /var/lib/postgresql/16/main/server.key
@@ -130,15 +157,23 @@ jobs:
           sudo -u postgres psql -c "CREATE USER eris WITH PASSWORD 'discord';"
           sudo -u postgres psql -c "CREATE DATABASE cia_dev;"
           sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE cia_dev TO eris;"
+          sudo -u postgres psql -c "ALTER USER eris WITH SUPERUSER;"
           sudo -u postgres psql -d cia_dev -c "CREATE EXTENSION IF NOT EXISTS pg_stat_statements;"
           sudo -u postgres psql -d cia_dev -c "CREATE EXTENSION IF NOT EXISTS pgaudit;"
           sudo -u postgres psql -d cia_dev -c "CREATE EXTENSION IF NOT EXISTS pgcrypto;"
           sudo -u postgres psql -d cia_dev -c "GRANT ALL ON SCHEMA public TO eris;"
+          sudo -u postgres psql -d cia_dev -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO eris;"
+          sudo -u postgres psql -d cia_dev -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO eris;"
+          sudo -u postgres psql -d cia_dev -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO eris;"
 
       - name: Load database schema
         run: |
           # Load the full schema into the database
           sudo -u postgres psql -d cia_dev -f service.data.impl/src/main/resources/full_schema.sql || echo "Schema load completed with warnings (expected for first-time setup)"
+
+          # Verify schema loaded successfully by checking for key tables
+          echo "Verifying schema loaded..."
+          sudo -u postgres psql -d cia_dev -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public';" || echo "Schema verification completed"
 
       - name: Verify PostgreSQL SSL configuration
         run: |
@@ -200,27 +235,63 @@ jobs:
 
           PORT=28443
           APP_URL="https://localhost:${PORT}/cia/"
-          MAX_PORT_WAIT=40
+          MAX_PORT_WAIT=60
           PORT_READY=0
-          for i in $(seq 1 $MAX_PORT_WAIT); do
-            if curl --insecure --silent --show-error --fail --max-time 5 "$APP_URL" >/dev/null 2>&1; then
-              echo "✓ Application responded over HTTPS at ${APP_URL}"
-              PORT_READY=1
+
+          # Wait for port to be listening
+          echo "Waiting for port ${PORT} to open..."
+          for i in $(seq 1 30); do
+            if ss -ltn | grep -q ":${PORT} "; then
+              echo "✓ Port ${PORT} is listening (${i}/30)"
               break
             fi
+            echo "  Waiting for port ${PORT} to open (${i}/30)"
+            sleep 2
+          done
 
-            if ss -ltn | grep -q ":${PORT} "; then
-              echo "  Port ${PORT} is listening but HTTP response not ready yet (${i}/${MAX_PORT_WAIT})"
-            else
-              echo "  Waiting for port ${PORT} to open (${i}/${MAX_PORT_WAIT})"
+          # Now wait for actual HTTP readiness by monitoring logs
+          echo "Waiting for application to be ready for requests..."
+          for i in $(seq 1 $MAX_PORT_WAIT); do
+            # Check if server reports it's started
+            if grep -q "Server Started" /tmp/app-startup.log 2>/dev/null; then
+              echo "✓ Application reports server started"
+              # Give it a moment to finish initialization
+              sleep 3
+              
+              # Try HTTP request
+              if curl --insecure --silent --show-error --fail --max-time 5 "$APP_URL" >/dev/null 2>&1; then
+                echo "✓ Application responded over HTTPS at ${APP_URL}"
+                PORT_READY=1
+                break
+              else
+                echo "  Server started but HTTP not ready yet, retrying..."
+              fi
             fi
-            sleep 3
+            
+            # Fallback: check for Spring context initialization complete
+            if grep -q "Root WebApplicationContext: initialization completed" /tmp/app-startup.log 2>/dev/null; then
+              echo "✓ Spring context initialization completed"
+              sleep 2
+              
+              if curl --insecure --silent --show-error --fail --max-time 5 "$APP_URL" >/dev/null 2>&1; then
+                echo "✓ Application responded over HTTPS at ${APP_URL}"
+                PORT_READY=1
+                break
+              fi
+            fi
+            
+            sleep 2
           done
 
           if [ "$PORT_READY" -ne 1 ]; then
             echo "⚠ Application never responded on ${APP_URL}"
+            echo "Server status:"
             ss -ltnp | grep "${PORT}" || true
-            tail -50 /tmp/app-startup.log || true
+            echo ""
+            echo "Last 100 lines of application log:"
+            tail -100 /tmp/app-startup.log || true
+          else
+            echo "✓ Application validation successful - server is ready"
           fi
 
           # Stop the application gracefully

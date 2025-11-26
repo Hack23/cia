@@ -235,6 +235,7 @@ public final class CitizenIntelligenceAgencyServer {
 
 			}
 			LOGGER.info("Server Started");
+			LOGGER.info("Application ready at {}", ACCESS_URL);
 		} catch (final Exception e) {
 			LOGGER.error("Application Exception", e);
 		}
