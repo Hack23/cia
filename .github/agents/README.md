@@ -8,38 +8,53 @@ Each agent profile is a Markdown file with YAML frontmatter that defines special
 
 ## 🎯 Agent Ecosystem
 
+This diagram shows how the six specialized agents work together to support the Citizen Intelligence Agency project. Each agent has a distinct role and area of expertise.
+
 ```mermaid
 graph TB
-    CIA[Citizen Intelligence Agency]
+    CIA[🔍 Citizen Intelligence Agency<br/>Political Transparency Platform]
     
-    CIA --> Task[📋 Task Agent]
-    CIA --> Stack[🛠️ Stack Specialist]
-    CIA --> UI[🎨 UI Enhancement Specialist]
-    CIA --> Biz[💰 Business Development Specialist]
-    CIA --> Intel[🔍 Intelligence Operative]
-    CIA --> Market[📢 Marketing Specialist]
+    CIA --> Task[📋 Task Agent<br/>Product Quality & ISMS]
+    CIA --> Stack[🛠️ Stack Specialist<br/>Java & Backend]
+    CIA --> UI[🎨 UI Enhancement<br/>Vaadin & UX]
+    CIA --> Biz[💰 Business Dev<br/>Strategy & Growth]
+    CIA --> Intel[🔍 Intelligence Ops<br/>Political Analysis]
+    CIA --> Market[📢 Marketing<br/>Brand & Community]
     
-    Task --> PM[Product Management<br/>Quality, ISMS, GitHub Issues]
-    Stack --> Tech[Technical Architecture<br/>Java, Spring, Vaadin]
-    UI --> UX[User Experience<br/>Data Visualization]
-    Biz --> Growth[Strategic Growth<br/>Partnerships, Revenue]
-    Intel --> Analysis[Political Analysis<br/>OSINT, Risk Assessment]
-    Market --> Brand[Brand & Community<br/>Digital Marketing]
+    Task --> PM[📊 Product Management<br/>Quality Assurance<br/>GitHub Issue Management<br/>ISMS Compliance<br/>AWS Monitoring<br/>Playwright Testing]
+    Stack --> Tech[⚙️ Technical Architecture<br/>Java 25 & Spring<br/>Vaadin Framework<br/>PostgreSQL & JPA<br/>Maven & Testing<br/>Security Best Practices]
+    UI --> UX[🎨 User Experience<br/>Data Visualization<br/>Accessibility WCAG 2.1<br/>Responsive Design<br/>Component Library<br/>Performance]
+    Biz --> Growth[📈 Strategic Growth<br/>Partnerships<br/>Revenue Models<br/>Market Expansion<br/>Competitive Analysis<br/>Sustainability]
+    Intel --> Analysis[🔎 Political Analysis<br/>OSINT Methodology<br/>Risk Assessment<br/>Predictive Analytics<br/>Swedish Politics<br/>Ethical Boundaries]
+    Market --> Brand[📣 Brand & Community<br/>Content Strategy<br/>Digital Marketing<br/>Public Relations<br/>SEO & Social Media<br/>Political Neutrality]
     
-    style CIA fill:#1565C0,stroke:#1565C0,stroke-width:3px,color:#fff
-    style Task fill:#8D6E63,stroke:#8D6E63,stroke-width:2px,color:#fff
-    style Stack fill:#455A64,stroke:#455A64,stroke-width:2px,color:#fff
-    style UI fill:#7B1FA2,stroke:#7B1FA2,stroke-width:2px,color:#fff
-    style Biz fill:#2E7D32,stroke:#2E7D32,stroke-width:2px,color:#fff
-    style Intel fill:#C62828,stroke:#C62828,stroke-width:2px,color:#fff
-    style Market fill:#FF6F00,stroke:#FF6F00,stroke-width:2px,color:#fff
-    style PM fill:#9E9E9E,stroke:#9E9E9E,stroke-width:1px,color:#000
-    style Tech fill:#9E9E9E,stroke:#9E9E9E,stroke-width:1px,color:#000
-    style UX fill:#9E9E9E,stroke:#9E9E9E,stroke-width:1px,color:#000
-    style Growth fill:#9E9E9E,stroke:#9E9E9E,stroke-width:1px,color:#000
-    style Analysis fill:#9E9E9E,stroke:#9E9E9E,stroke-width:1px,color:#000
-    style Brand fill:#9E9E9E,stroke:#9E9E9E,stroke-width:1px,color:#000
+    classDef projectNode fill:#0D47A1,stroke:#0D47A1,stroke-width:4px,color:#fff,font-weight:bold
+    classDef taskNode fill:#5D4037,stroke:#5D4037,stroke-width:3px,color:#fff,font-weight:bold
+    classDef stackNode fill:#263238,stroke:#263238,stroke-width:3px,color:#fff,font-weight:bold
+    classDef uiNode fill:#4A148C,stroke:#4A148C,stroke-width:3px,color:#fff,font-weight:bold
+    classDef bizNode fill:#1B5E20,stroke:#1B5E20,stroke-width:3px,color:#fff,font-weight:bold
+    classDef intelNode fill:#B71C1C,stroke:#B71C1C,stroke-width:3px,color:#fff,font-weight:bold
+    classDef marketNode fill:#E65100,stroke:#E65100,stroke-width:3px,color:#fff,font-weight:bold
+    classDef detailNode fill:#ECEFF1,stroke:#546E7A,stroke-width:2px,color:#263238
+    
+    class CIA projectNode
+    class Task taskNode
+    class Stack stackNode
+    class UI uiNode
+    class Biz bizNode
+    class Intel intelNode
+    class Market marketNode
+    class PM,Tech,UX,Growth,Analysis,Brand detailNode
 ```
+
+### Agent Color Coding
+- 🔵 **Blue** - Main Project
+- 🟤 **Brown** - Task Agent (Product & Quality)
+- ⚫ **Dark Gray** - Stack Specialist (Backend)
+- 🟣 **Purple** - UI Enhancement (Frontend)
+- 🟢 **Green** - Business Development (Strategy)
+- 🔴 **Red** - Intelligence Operative (Analysis)
+- 🟠 **Orange** - Marketing Specialist (Brand)
 
 ## 🤖 Available Agents
 
@@ -210,6 +225,109 @@ Below the YAML frontmatter, define the agent's behavior, expertise, and instruct
 - Resources
 - Example patterns or code where relevant
 
+## 📁 Essential Context Files
+
+**All agents include a standardized "Essential Context & Setup" section** that instructs them to read these critical files at the start of each task:
+
+### 1. Main Project Context
+**File**: [README.md](../../README.md)
+- Project mission and overview
+- Feature set and capabilities
+- Quality metrics and coverage policies
+- Blog posts and technical analysis
+- Links to comprehensive documentation
+
+### 2. Environment Setup & Workflow
+**File**: [.github/workflows/copilot-setup-steps.yml](../workflows/copilot-setup-steps.yml)
+
+This workflow defines the complete development environment setup including:
+
+**Tools & Versions**:
+- Java 25 (Temurin distribution)
+- Maven 3.9.9
+- PostgreSQL 16 with extensions (pg_stat_statements, pgaudit, pgcrypto)
+- Graphviz for documentation
+- Build tools (fakeroot, devscripts, debhelper)
+
+**Database Configuration**:
+- SSL/TLS enabled with certificate-based encryption
+- Prepared transactions enabled (max: 100)
+- IPv6 loopback access configured
+- Required extensions loaded and verified
+
+**Build & Test Steps**:
+- Maven dependency caching
+- Build command: `mvn clean install -Prelease-site,all-modules`
+- Database schema loading and verification
+- Application startup validation on port 28443
+
+**Workflow Permissions** (Important for understanding access scope):
+```yaml
+permissions:
+  contents: read
+  actions: read
+  attestations: read
+  checks: read
+  deployments: read
+  issues: write
+  models: read
+  discussions: read
+  pages: read
+  pull-requests: write
+  security-events: read
+  statuses: read
+```
+
+### 3. MCP Configuration
+**File**: [.github/copilot-mcp-config.json](../copilot-mcp-config.json)
+
+Model Context Protocol configuration providing:
+
+**Available MCP Servers**:
+- `github`: Repository operations, issues, PRs, workflows (via `@modelcontextprotocol/server-github`)
+- `filesystem`: Local file system access to `/home/runner/work/cia/cia`
+- `postgres`: Database integration (when available)
+- `git`: Git operations for version control
+
+**Project Metadata**:
+- Technology stack details (Java 25, Spring, Vaadin, Hibernate, PostgreSQL)
+- Architecture type: multi-module Maven
+- Testing frameworks: JUnit 5, Mockito, Selenium
+- Security tools: Spring Security, OWASP Dependency Check, CodeQL
+
+**Build Commands**:
+- `clean`, `compile`, `test`, `install`, `package`, `site`
+- `cleanInstall`: `mvn clean install`
+- `skipTests`: `mvn clean install -DskipTests`
+- `coverage`: `mvn clean test jacoco:report`
+- `dependencyCheck`: `mvn dependency-check:check`
+
+**Coding Standards & Security Rules**:
+- Java 21 language features (records, pattern matching, switch expressions, text blocks)
+- Spring conventions (constructor injection, proper annotations, transaction management)
+- JPA guidelines (proper entity design, fetch types, avoiding N+1)
+- Security rules (never commit secrets, validate inputs, use parameterized queries, sanitize output)
+- Testing requirements (unit tests for all new functionality, maintain coverage levels)
+
+**External API Integrations**:
+- Swedish Parliament (Riksdagen) API
+- Swedish Election Authority
+- World Bank Open Data
+- Swedish Financial Management Authority
+
+### Why These Files Matter
+
+Reading these files ensures agents:
+1. ✅ Understand the actual development environment and available tools
+2. ✅ Know which permissions are available for GitHub operations
+3. ✅ Can reference correct build commands and testing procedures
+4. ✅ Follow established coding standards and security practices
+5. ✅ Understand the project architecture and technology stack
+6. ✅ Are aware of database configuration and requirements
+7. ✅ Can properly coordinate with MCP servers and external APIs
+
+**Each agent profile now includes a standardized section instructing them to read these files at the start of each task.** This ensures consistent awareness of project context across all specialized agents.
+
 ## 📚 Using These Profiles
 
 ### 👨‍💻 For Developers
@@ -357,7 +475,7 @@ Use this flowchart to help select the right agent for your task:
 
 ```mermaid
 flowchart TD
-    Start([What are you working on?]) --> Type{Task Type}
+    Start([🎯 What are you working on?]) --> Type{Task Type}
     
     Type -->|Code/Architecture| Tech{Technical Area}
     Type -->|Design/UI| UI[🎨 UI Enhancement Specialist]
@@ -371,16 +489,40 @@ flowchart TD
     Tech -->|Testing/Quality| Stack
     Tech -->|Build/DevOps| Stack
     
-    style Start fill:#1565C0,stroke:#1565C0,stroke-width:2px,color:#fff
-    style Type fill:#7B1FA2,stroke:#7B1FA2,stroke-width:2px,color:#fff
-    style Tech fill:#7B1FA2,stroke:#7B1FA2,stroke-width:2px,color:#fff
-    style Task fill:#8D6E63,stroke:#8D6E63,stroke-width:2px,color:#fff
-    style Stack fill:#455A64,stroke:#455A64,stroke-width:2px,color:#fff
-    style UI fill:#7B1FA2,stroke:#7B1FA2,stroke-width:2px,color:#fff
-    style Biz fill:#2E7D32,stroke:#2E7D32,stroke-width:2px,color:#fff
-    style Intel fill:#C62828,stroke:#C62828,stroke-width:2px,color:#fff
-    style Market fill:#FF6F00,stroke:#FF6F00,stroke-width:2px,color:#fff
+    UI --> UIDesc[Vaadin Framework<br/>Data Visualization<br/>Accessibility<br/>Responsive Design]
+    Stack --> StackDesc[Java & Spring<br/>PostgreSQL & JPA<br/>Maven & Testing<br/>Backend Architecture]
+    Task --> TaskDesc[Product Quality<br/>GitHub Issues<br/>ISMS Compliance<br/>AWS Monitoring]
+    Biz --> BizDesc[Strategic Planning<br/>Partnerships<br/>Revenue Models<br/>Market Expansion]
+    Intel --> IntelDesc[Political Analysis<br/>OSINT Methods<br/>Risk Assessment<br/>Swedish Politics]
+    Market --> MarketDesc[Content Strategy<br/>Brand Building<br/>Community Growth<br/>Digital Marketing]
+    
+    classDef startNode fill:#0D47A1,stroke:#0D47A1,stroke-width:3px,color:#fff,font-weight:bold
+    classDef decisionNode fill:#6A1B9A,stroke:#6A1B9A,stroke-width:3px,color:#fff,font-weight:bold
+    classDef taskNode fill:#5D4037,stroke:#5D4037,stroke-width:2px,color:#fff
+    classDef stackNode fill:#263238,stroke:#263238,stroke-width:2px,color:#fff
+    classDef uiNode fill:#4A148C,stroke:#4A148C,stroke-width:2px,color:#fff
+    classDef bizNode fill:#1B5E20,stroke:#1B5E20,stroke-width:2px,color:#fff
+    classDef intelNode fill:#B71C1C,stroke:#B71C1C,stroke-width:2px,color:#fff
+    classDef marketNode fill:#E65100,stroke:#E65100,stroke-width:2px,color:#fff
+    classDef descNode fill:#ECEFF1,stroke:#546E7A,stroke-width:1px,color:#263238
+    
+    class Start startNode
+    class Type,Tech decisionNode
+    class Task taskNode
+    class Stack stackNode
+    class UI uiNode
+    class Biz bizNode
+    class Intel intelNode
+    class Market marketNode
+    class UIDesc,StackDesc,TaskDesc,BizDesc,IntelDesc,MarketDesc descNode
 ```
+
+### How to Use This Guide
+
+1. **Start** by identifying what type of work you're doing
+2. **Follow the arrows** based on your specific needs
+3. **Select the agent** that best matches your task domain
+4. **Reference the agent's profile** for detailed capabilities and best practices
 
 ---
 
