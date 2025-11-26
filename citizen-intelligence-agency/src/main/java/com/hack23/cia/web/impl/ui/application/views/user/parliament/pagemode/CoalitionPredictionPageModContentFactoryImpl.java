@@ -18,7 +18,10 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,20 +157,20 @@ public final class CoalitionPredictionPageModContentFactoryImpl extends Abstract
 		// Vaadin ProgressBar API requires float value; casting from double results in minimal precision loss.
 		// This is acceptable for UI display purposes as the bar visualization does not require high precision.
 		probabilityBar.setValue((float) scenario.getProbability());
-		probabilityBar.setCaption(String.format("%.1f%% probability", scenario.getProbability() * 100));
+		probabilityBar.setCaption(String.format(Locale.ENGLISH, "%.1f%% probability", scenario.getProbability() * 100));
 		probabilityBar.setWidth(200, Unit.PIXELS);
 		row.addComponent(probabilityBar);
 
 		// Stability index
 		final Label stabilityLabel = new Label(
-			String.format("Stability: %d/100", scenario.getStabilityIndex()));
+			String.format(Locale.ENGLISH, "Stability: %d/100", scenario.getStabilityIndex()));
 		stabilityLabel.addStyleName(
 			scenario.getStabilityIndex() > 70 ? ValoTheme.LABEL_SUCCESS : ValoTheme.LABEL_FAILURE);
 		stabilityLabel.setWidth(150, Unit.PIXELS);
 		row.addComponent(stabilityLabel);
 
 		// Seats
-		final Label seatsLabel = new Label(String.format("%d seats", scenario.getTotalSeats()));
+		final Label seatsLabel = new Label(String.format(Locale.ENGLISH, "%d seats", scenario.getTotalSeats()));
 		seatsLabel.setWidth(100, Unit.PIXELS);
 		row.addComponent(seatsLabel);
 
@@ -219,7 +222,7 @@ public final class CoalitionPredictionPageModContentFactoryImpl extends Abstract
 
 			for (final Map.Entry<String, Double> alignment : alignments.entrySet()) {
 				final Label alignmentLabel = new Label(
-					String.format("%s: %.1f%%", alignment.getKey(), alignment.getValue() * 100));
+					String.format(Locale.ENGLISH, "%s: %.1f%%", alignment.getKey(), alignment.getValue() * 100));
 				alignmentLabel.setWidth(120, Unit.PIXELS);
 				partyRow.addComponent(alignmentLabel);
 			}
