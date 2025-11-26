@@ -32,8 +32,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.service.impl.performance.PerformanceMetrics;
+import com.hack23.cia.service.impl.performance.PerformanceMetricsService;
+import com.hack23.cia.service.impl.performance.PerformanceTimer;
 import com.hack23.cia.web.impl.ui.application.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
@@ -54,15 +60,25 @@ import com.vaadin.ui.VerticalLayout;
 @Component
 public final class ParliamentDecisionFlowPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(ParliamentDecisionFlowPageModContentFactoryImpl.class);
+
     /** The Constant DEFAULT_YEAR. */
     private static final String DEFAULT_YEAR = "2023/24";
 
     /** The Constant YEAR_SELECTOR_LABEL. */
     private static final String YEAR_SELECTOR_LABEL = "Select year";
 
+    /** The Constant PERFORMANCE_THRESHOLD_MS. */
+    private static final long PERFORMANCE_THRESHOLD_MS = 2000L;
+
     /** The decision flow chart manager. */
     @Autowired
     private DecisionFlowChartManager decisionFlowChartManager;
+
+    /** The performance metrics service. */
+    @Autowired
+    private PerformanceMetricsService performanceMetricsService;
 
     /**
      * Creates the content.
@@ -75,19 +91,40 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
     @Secured({ "ROLE_ANONYMOUS", "ROLE_USER", "ROLE_ADMIN" })
     @Override
     public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-        final VerticalLayout panelContent = createPanelContent();
+        final PerformanceTimer timer = performanceMetricsService.startTimer("decision_flow_page");
+        
+        try {
+            final VerticalLayout panelContent = createPanelContent();
 
-        setupMenuAndHeader(menuBar, panel, panelContent);
-        final String selectedYear = extractSelectedYear(parameters, DEFAULT_YEAR);
-        final Map<String, List<ViewRiksdagenCommittee>> committeeMap = loadCommitteeMap();
+            timer.phase("menu_header_setup");
+            setupMenuAndHeader(menuBar, panel, panelContent);
+            
+            timer.phase("data_loading");
+            final String selectedYear = extractSelectedYear(parameters, DEFAULT_YEAR);
+            final Map<String, List<ViewRiksdagenCommittee>> committeeMap = loadCommitteeMap();
 
-        addYearSelector(panelContent, selectedYear);
-        addDecisionFlowChart(panelContent, committeeMap, selectedYear);
-        addDecisionSummary(panelContent, committeeMap, selectedYear);
+            timer.phase("ui_component_creation");
+            addYearSelector(panelContent, selectedYear);
+            
+            timer.phase("chart_generation");
+            addDecisionFlowChart(panelContent, committeeMap, selectedYear);
+            
+            timer.phase("summary_generation");
+            addDecisionSummary(panelContent, committeeMap, selectedYear);
 
-        recordPageVisit(parameters, selectedYear);
+            timer.phase("event_recording");
+            recordPageVisit(parameters, selectedYear);
+            
+            timer.stop();
+            
+            logPerformanceMetrics(timer, selectedYear);
 
-        return panelContent;
+            return panelContent;
+            
+        } catch (final Exception e) {
+            timer.error(e);
+            throw e;
+        }
     }
 
     /**
@@ -202,6 +239,35 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
             parameters,
             selectedYear
         );
+    }
+
+    /**
+     * Log performance metrics and send alerts if thresholds exceeded.
+     *
+     * @param timer the performance timer
+     * @param year the selected year
+     */
+    private void logPerformanceMetrics(final PerformanceTimer timer, final String year) {
+        final PerformanceMetrics metrics = timer.getMetrics();
+        
+        LOGGER.info("Decision Flow Page Performance for year {}: Total={}ms, Chart={}ms, DB={}ms, Memory={}MB",
+            year,
+            metrics.getTotalTimeMs(),
+            metrics.getPhaseTimeMs("chart_generation"),
+            metrics.getPhaseTimeMs("data_loading"),
+            metrics.getMemoryUsedMb());
+        
+        performanceMetricsService.recordMetrics("decision_flow_page", year, metrics);
+        
+        if (metrics.getTotalTimeMs() > PERFORMANCE_THRESHOLD_MS) {
+            LOGGER.warn("PERFORMANCE DEGRADATION: Decision flow page took {}ms (target: <{}ms) for year {}",
+                metrics.getTotalTimeMs(), PERFORMANCE_THRESHOLD_MS, year);
+            
+            performanceMetricsService.sendPerformanceAlert(
+                "Decision Flow Page Slow",
+                String.format("Page load: %dms for year %s (threshold: %dms)", 
+                    metrics.getTotalTimeMs(), year, PERFORMANCE_THRESHOLD_MS));
+        }
     }
 
     /**
