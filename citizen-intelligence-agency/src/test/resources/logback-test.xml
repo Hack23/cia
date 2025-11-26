@@ -10,33 +10,29 @@
 		</encoder>
 	</appender>
 
-
 	<logger name="com.structurizr" level="error" />
-
 	<logger name="net.sf.ehcache" level="error" />
-
 	<logger name="com.mchange" level="error" />
 	<logger name="org.hsqldb" level="error" />
-
 	<logger name="org.hibernate" level="error" />
 	<logger name="org.quartz" level="error" />
 	<logger name="atomikos" level="error" />
 	<logger name="com.atomikos" level="error" />
-
 	<logger name="org.eclipse" level="warn" />
-
 	<logger name="org.springframework" level="error" />
-	<logger name="org.springframework.web" level="error" />
+	<logger name="org.springframework.web" level="warn" />
 	<logger name="org.springframework.oxm.jaxb" level="error" />
-
 	<logger name="org.springframework.security" level="error" />
-
 	<logger name="org.apache.activemq.artemis" level="warn" />
-
 	<logger name="ch.qos.logback.core" level="warn" />
 
+	<!-- Show server lifecycle events -->
+	<logger name="org.eclipse.jetty.server.Server" level="info" />
+	<logger name="org.springframework.web.context.ContextLoader" level="info" />
+
 	<logger name="com.hack23.cia" level="warn" />
-	
+	<logger name="com.hack23.cia.systemintegrationtest" level="info" />
+
 
 	<root level="warn">
 		<appender-ref ref="console" />
