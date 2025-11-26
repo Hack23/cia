@@ -1,8 +1,7 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
-             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
-             version="2.1">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
 
 	<persistence-unit name="ciaPersistenceUnit"
 		transaction-type="JTA">
@@ -110,22 +109,23 @@
 
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary</class>
-		
+
 		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewPartyEffectivenessTrends</class>
-		
+
 		<!-- V1.29 Intelligence Operations Enhancement Views -->
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMomentumAnalysis</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrix</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId</class>
 
 
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary</class>
-		
+
 		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewPoliticianBehavioralTrends</class>
-		
+
 		<!-- V1.29 Intelligence Operations Enhancement Views -->
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenVotingAnomalyDetection</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianInfluenceMetrics</class>
@@ -161,16 +161,16 @@
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions</class>
-		
+
 		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewCommitteeProductivityMatrix</class>
 
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation</class>
-		
+
 		<!-- V1.29 Intelligence Operations Enhancement Views -->
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenIntelligenceDashboard</class>
-		
+
 		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.rules.impl.ViewRiskScoreEvolution</class>
 
@@ -229,11 +229,14 @@
 			<property name="hibernate.javax.cache.missing_cache_strategy" value="create" />
 			<property name="hibernate.search.automatic_indexing.strategy" value="none" />
 
-			<property name="hibernate.search.mapping.configurer" value="com.hack23.cia.service.data.impl.DataSearchMapping"/>
-			<property name="hibernate.search.backend.directory.root" value="${database.search.index.location}"/>
+			<property name="hibernate.search.mapping.configurer"
+				value="com.hack23.cia.service.data.impl.DataSearchMapping" />
+			<property name="hibernate.search.backend.directory.root"
+				value="${database.search.index.location}" />
 
-			<property name="hibernate.search.backend.lucene_version" value="8.7.0"/>
-			<property name="hibernate.search.backend.analysis.configurer" value="com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer"/>
+			<property name="hibernate.search.backend.lucene_version" value="8.7.0" />
+			<property name="hibernate.search.backend.analysis.configurer"
+				value="com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer" />
 
 
 		</properties>
