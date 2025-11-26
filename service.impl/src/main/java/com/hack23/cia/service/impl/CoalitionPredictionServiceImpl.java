@@ -242,7 +242,7 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 				final String blocRelation = determineBlocRelationship(coalition);
 
 				scenarios.add(new CoalitionScenario(coalition, totalSeats, probability, 
-						stability, "TWO_PARTY", blocRelation));
+						stability, COALITION_TYPE_TWO_PARTY, blocRelation));
 			}
 		}
 
