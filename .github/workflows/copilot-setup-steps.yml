@@ -25,7 +25,6 @@ jobs:
     permissions:
       contents: read
       actions: read
-      artifact-metadata: read
       attestations: read
       checks: read
       deployments: read
@@ -45,10 +44,19 @@ jobs:
       - name: Set up JDK 25
         uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
         with:
-          distribution: 'temurin'
-          java-version: '25'
-          cache: 'maven'
+          distribution: "temurin"
+          java-version: "25"
+          cache: "maven"
 
+      - name: Cache Maven and Sonar artifacts
+        uses: actions/cache@13b6fca0895ba643bebbfc4347ccd217111fbc74 # v4.0.2
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.sonar/cache
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
       - name: APT update
         run: sudo apt-get update
 
@@ -63,7 +71,7 @@ jobs:
           echo "pgaudit.log = ddl" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
           echo "pg_stat_statements.track = all" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
           echo "pg_stat_statements.max = 10000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          
+
           # Add IPv6 loopback access
           echo "host all all ::1/128 md5" | sudo tee -a /etc/postgresql/16/main/pg_hba.conf
 
@@ -71,21 +79,21 @@ jobs:
         run: |
           # Generate secure random passphrase
           openssl rand -base64 48 > passphrase.txt
-          
+
           # Create passphrase-protected private key
           openssl genrsa -des3 -passout file:passphrase.txt -out server.pass.key 2048
-          
+
           # Remove passphrase protection from private key
           openssl rsa -passin file:passphrase.txt -in server.pass.key -out server.key
           rm server.pass.key
-          
+
           # Create Certificate Signing Request
           openssl req -new -key server.key -out server.csr \
             -subj "/C=UK/ST=PostgreSQL/L=Docker/O=Hack23/OU=demo/CN=127.0.0.1"
-          
+
           # Self-sign the certificate (valid for 10 years)
           openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
-          
+
           # Clean up temporary files
           rm passphrase.txt server.csr
 
@@ -94,26 +102,26 @@ jobs:
           # Copy certificate and key to PostgreSQL data directory
           sudo cp server.crt /var/lib/postgresql/16/main/server.crt
           sudo cp server.key /var/lib/postgresql/16/main/server.key
-          
+
           # Secure the certificate and key
           sudo chmod 600 /var/lib/postgresql/16/main/server.key
           sudo chmod 644 /var/lib/postgresql/16/main/server.crt
           sudo chown postgres:postgres /var/lib/postgresql/16/main/server.key
           sudo chown postgres:postgres /var/lib/postgresql/16/main/server.crt
-          
+
           # Enable SSL in PostgreSQL
           echo "ssl = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
           echo "ssl_cert_file = '/var/lib/postgresql/16/main/server.crt'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
           echo "ssl_key_file = '/var/lib/postgresql/16/main/server.key'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          
+
           # Provide SSL certificate to the runner user
           mkdir -p $HOME/.postgresql
           cp server.crt $HOME/.postgresql/root.crt
           chmod 600 $HOME/.postgresql/root.crt
-          
+
           # Clean up
           rm server.key server.crt
-          
+
           # Restart PostgreSQL to apply all changes
           sudo systemctl restart postgresql
 
@@ -136,15 +144,15 @@ jobs:
         run: |
           # Verify SSL is enabled
           sudo -u postgres psql -c "SHOW ssl;" | grep on
-          
+
           # Verify prepared transactions are enabled
           sudo -u postgres psql -c "SHOW max_prepared_transactions;" | grep 100
-          
+
           # Verify extensions are loaded
           sudo -u postgres psql -d cia_dev -c "\dx" | grep pg_stat_statements
           sudo -u postgres psql -d cia_dev -c "\dx" | grep pgaudit
           sudo -u postgres psql -d cia_dev -c "\dx" | grep pgcrypto
-          
+
           # Test SSL connection from localhost
           echo "Testing SSL connection..."
           PGPASSWORD=discord PGSSLMODE=require psql -h localhost -U eris -d cia_dev -c "SELECT version();" || echo "SSL connection test completed"
@@ -153,21 +161,21 @@ jobs:
         uses: stCarolas/setup-maven@d6af6abeda15e98926a57b5aa970a96bb37f97d1 # v5
         with:
           maven-version: 3.9.9
-          
+
       - name: Build with Maven
         run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -Dmaven.test.skip=true
 
       - name: Validate app startup and database connection
         run: |
           cd citizen-intelligence-agency
-          
+
           # Start the application in background with a timeout
           echo "Starting application..."
           timeout 240 ant start > /tmp/app-startup.log 2>&1 &
           APP_PID=$!
-          
+
           echo "Application starting with PID: $APP_PID"
-          
+
           # Wait for application to start and apply database changelogs
           MAX_WAIT=60
           for i in $(seq 1 $MAX_WAIT); do
@@ -180,7 +188,7 @@ jobs:
             echo "Waiting for application to initialize and apply changelogs... ($i/$MAX_WAIT)"
             sleep 3
           done
-          
+
           # Check if we successfully verified the changelogs
           if sudo -u postgres psql -d cia_dev -c "SELECT COUNT(*) FROM databasechangelog;" > /dev/null 2>&1; then
             echo "✓ Application startup validation successful"
@@ -189,7 +197,32 @@ jobs:
             echo "Application logs:"
             tail -50 /tmp/app-startup.log || echo "No logs available"
           fi
-          
+
+          PORT=28443
+          APP_URL="https://localhost:${PORT}/cia/"
+          MAX_PORT_WAIT=40
+          PORT_READY=0
+          for i in $(seq 1 $MAX_PORT_WAIT); do
+            if curl --insecure --silent --show-error --fail --max-time 5 "$APP_URL" >/dev/null 2>&1; then
+              echo "✓ Application responded over HTTPS at ${APP_URL}"
+              PORT_READY=1
+              break
+            fi
+
+            if ss -ltn | grep -q ":${PORT} "; then
+              echo "  Port ${PORT} is listening but HTTP response not ready yet (${i}/${MAX_PORT_WAIT})"
+            else
+              echo "  Waiting for port ${PORT} to open (${i}/${MAX_PORT_WAIT})"
+            fi
+            sleep 3
+          done
+
+          if [ "$PORT_READY" -ne 1 ]; then
+            echo "⚠ Application never responded on ${APP_URL}"
+            ss -ltnp | grep "${PORT}" || true
+            tail -50 /tmp/app-startup.log || true
+          fi
+
           # Stop the application gracefully
           if kill -0 $APP_PID 2>/dev/null; then
             echo "Stopping application (PID: $APP_PID)..."
@@ -197,5 +230,5 @@ jobs:
             sleep 2
             kill -9 $APP_PID 2>/dev/null || true
           fi
-          
+
           wait $APP_PID 2>/dev/null || echo "Application validation completed"
