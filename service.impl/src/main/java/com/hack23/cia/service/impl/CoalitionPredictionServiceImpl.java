@@ -63,6 +63,19 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	private static final double SEATS_WEIGHT = 0.4;
 	private static final double SEATS_SCALING_FACTOR = 100.0;
 	
+	// Coalition type constants
+	private static final String COALITION_TYPE_TWO_PARTY = "TWO_PARTY";
+	private static final String COALITION_TYPE_THREE_PARTY = "THREE_PARTY";
+	private static final String COALITION_TYPE_FOUR_PARTY = "FOUR_PARTY";
+	
+	// Bloc relationship constants
+	private static final String BLOC_CROSS_BLOC = "CROSS_BLOC";
+	private static final String BLOC_LEFT_SD_COALITION = "LEFT_SD_COALITION";
+	private static final String BLOC_RIGHT_SD_COALITION = "RIGHT_SD_COALITION";
+	private static final String BLOC_LEFT_BLOC = "LEFT_BLOC";
+	private static final String BLOC_RIGHT_BLOC = "RIGHT_BLOC";
+	private static final String BLOC_OTHER = "OTHER";
+	
 	// Fallback seat counts (2022 election results) - should be externalized to configuration
 	private static final Map<String, Integer> FALLBACK_SEAT_COUNTS = new HashMap<>();
 	static {
@@ -259,8 +272,8 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 					final int stability = (int) (avgAlignment * 100);
 					final String blocRelation = determineBlocRelationship(coalition);
 
-					scenarios.add(new CoalitionScenario(coalition, totalSeats, probability, 
-							stability, "THREE_PARTY", blocRelation));
+					scenarios.add(new CoalitionScenario(coalition, totalSeats, probability,
+							stability, COALITION_TYPE_THREE_PARTY, blocRelation));
 				}
 			}
 		}
@@ -293,8 +306,8 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 						final int stability = (int) (avgAlignment * 100);
 						final String blocRelation = determineBlocRelationship(coalition);
 
-						scenarios.add(new CoalitionScenario(coalition, totalSeats, probability, 
-								stability, "FOUR_PARTY", blocRelation));
+						scenarios.add(new CoalitionScenario(coalition, totalSeats, probability,
+								stability, COALITION_TYPE_FOUR_PARTY, blocRelation));
 					}
 				}
 			}
@@ -344,17 +357,17 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 		final boolean hasSD = parties.contains("SD");
 
 		if (hasLeft && hasRight) {
-			return "CROSS_BLOC";
+			return BLOC_CROSS_BLOC;
 		} else if (hasLeft && hasSD) {
-			return "LEFT_SD_COALITION";
+			return BLOC_LEFT_SD_COALITION;
 		} else if (hasRight && hasSD) {
-			return "RIGHT_SD_COALITION";
+			return BLOC_RIGHT_SD_COALITION;
 		} else if (hasLeft) {
-			return "LEFT_BLOC";
+			return BLOC_LEFT_BLOC;
 		} else if (hasRight) {
-			return "RIGHT_BLOC";
+			return BLOC_RIGHT_BLOC;
 		} else {
-			return "OTHER";
+			return BLOC_OTHER;
 		}
 	}
 }

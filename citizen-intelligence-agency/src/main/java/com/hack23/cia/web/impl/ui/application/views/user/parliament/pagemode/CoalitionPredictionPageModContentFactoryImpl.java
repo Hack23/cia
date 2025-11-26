@@ -51,8 +51,6 @@ import com.vaadin.ui.themes.ValoTheme;
 @Component
 public final class CoalitionPredictionPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
 
-	private static final String DEFAULT_YEAR = "2023/24";
-
 	@Autowired
 	private CoalitionPredictionService coalitionPredictionService;
 
@@ -69,7 +67,7 @@ public final class CoalitionPredictionPageModContentFactoryImpl extends Abstract
 		final VerticalLayout panelContent = createPanelContent();
 
 		setupMenuAndHeader(menuBar, panel, panelContent);
-		final String selectedYear = extractSelectedYear(parameters, DEFAULT_YEAR);
+		final String selectedYear = extractSelectedYear(parameters, ParliamentChartConstants.DEFAULT_YEAR);
 
 		addCoalitionScenarios(panelContent, selectedYear);
 		addPartyAlignmentMatrix(panelContent, selectedYear);

@@ -62,7 +62,9 @@ public interface CoalitionPredictionService {
 	int calculateStabilityIndex(List<String> parties, String year);
 
 	/**
-	 * Coalition scenario data class.
+	 * Coalition scenario data class representing a potential government formation.
+	 * This immutable class encapsulates all relevant information about a coalition scenario
+	 * including participating parties, parliamentary strength, formation probability, and stability metrics.
 	 */
 	static class CoalitionScenario {
 		private final List<String> parties;
@@ -72,6 +74,16 @@ public interface CoalitionPredictionService {
 		private final String coalitionType;
 		private final String blocRelationship;
 
+		/**
+		 * Constructs a new coalition scenario with defensive copying for immutability.
+		 *
+		 * @param parties the list of party IDs participating in the coalition (e.g., ["S", "M", "C"])
+		 * @param totalSeats the total number of parliamentary seats held by the coalition
+		 * @param probability the formation probability (0.0-1.0, where 1.0 = 100% likely)
+		 * @param stabilityIndex the coalition stability score (0-100, where 100 = most stable)
+		 * @param coalitionType the type of coalition (TWO_PARTY, THREE_PARTY, or FOUR_PARTY)
+		 * @param blocRelationship the political bloc relationship (e.g., LEFT_BLOC, CROSS_BLOC)
+		 */
 		public CoalitionScenario(List<String> parties, int totalSeats, double probability, 
 				int stabilityIndex, String coalitionType, String blocRelationship) {
 			// Defensive copy to ensure immutability
@@ -83,27 +95,57 @@ public interface CoalitionPredictionService {
 			this.blocRelationship = blocRelationship;
 		}
 
+		/**
+		 * Gets the list of party IDs in this coalition.
+		 *
+		 * @return unmodifiable list of party IDs to preserve immutability
+		 */
 		public List<String> getParties() {
 			// Return unmodifiable view to preserve immutability
 			return Collections.unmodifiableList(parties);
 		}
 
+		/**
+		 * Gets the total number of parliamentary seats.
+		 *
+		 * @return total seats held by all parties in the coalition
+		 */
 		public int getTotalSeats() {
 			return totalSeats;
 		}
 
+		/**
+		 * Gets the formation probability.
+		 *
+		 * @return probability value between 0.0 and 1.0 (multiply by 100 for percentage)
+		 */
 		public double getProbability() {
 			return probability;
 		}
 
+		/**
+		 * Gets the coalition stability index.
+		 *
+		 * @return stability score from 0 to 100, where higher values indicate more stable coalitions
+		 */
 		public int getStabilityIndex() {
 			return stabilityIndex;
 		}
 
+		/**
+		 * Gets the coalition type.
+		 *
+		 * @return coalition type string (TWO_PARTY, THREE_PARTY, or FOUR_PARTY)
+		 */
 		public String getCoalitionType() {
 			return coalitionType;
 		}
 
+		/**
+		 * Gets the political bloc relationship.
+		 *
+		 * @return bloc relationship string (e.g., LEFT_BLOC, RIGHT_BLOC, CROSS_BLOC)
+		 */
 		public String getBlocRelationship() {
 			return blocRelationship;
 		}
