@@ -78,7 +78,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		createButtonLink(grid, DECISION_FLOW, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW, DECISION_FLOW_DESCRIPTION);
 
-		createButtonLink(grid, "Coalition Prediction", VaadinIcons.INSTITUTION,
+		createButtonLink(grid, ParliamentPageTitleConstants.COALITION_PREDICTION_TITLE, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_COALITION_PREDICTION,
 			ParliamentPageTitleConstants.COALITION_PREDICTION_DESC);
 
@@ -135,7 +135,7 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 			PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW);
 		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);
 
-		final MenuItem coalitionItem = chartIndicators.addItem("Coalition Prediction", VaadinIcons.INSTITUTION,
+		final MenuItem coalitionItem = chartIndicators.addItem(ParliamentPageTitleConstants.COALITION_PREDICTION_TITLE, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_COALITION_PREDICTION);
 		coalitionItem.setDescription(ParliamentPageTitleConstants.COALITION_PREDICTION_DESC);
 

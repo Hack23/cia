@@ -60,7 +60,7 @@ public final class CoalitionPredictionServiceITest extends AbstractServiceFuncti
 		final CoalitionScenario firstScenario = scenarios.get(0);
 		assertNotNull("Coalition parties should not be null", firstScenario.getParties());
 		assertTrue("Coalition should have at least 2 parties", firstScenario.getParties().size() >= 2);
-		assertTrue("Coalition should have at least 4 parties or less", firstScenario.getParties().size() <= 4);
+		assertTrue("Coalition should have at most 4 parties", firstScenario.getParties().size() <= 4);
 		assertTrue("Coalition should have majority seats (175+)", firstScenario.getTotalSeats() >= 175);
 		assertTrue("Probability should be between 0 and 1", 
 			firstScenario.getProbability() >= 0.0 && firstScenario.getProbability() <= 1.0);
