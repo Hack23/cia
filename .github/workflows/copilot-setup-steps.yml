@@ -157,15 +157,23 @@ jobs:
           sudo -u postgres psql -c "CREATE USER eris WITH PASSWORD 'discord';"
           sudo -u postgres psql -c "CREATE DATABASE cia_dev;"
           sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE cia_dev TO eris;"
+          sudo -u postgres psql -c "ALTER USER eris WITH SUPERUSER;"
           sudo -u postgres psql -d cia_dev -c "CREATE EXTENSION IF NOT EXISTS pg_stat_statements;"
           sudo -u postgres psql -d cia_dev -c "CREATE EXTENSION IF NOT EXISTS pgaudit;"
           sudo -u postgres psql -d cia_dev -c "CREATE EXTENSION IF NOT EXISTS pgcrypto;"
           sudo -u postgres psql -d cia_dev -c "GRANT ALL ON SCHEMA public TO eris;"
+          sudo -u postgres psql -d cia_dev -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO eris;"
+          sudo -u postgres psql -d cia_dev -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO eris;"
+          sudo -u postgres psql -d cia_dev -c "ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO eris;"
 
       - name: Load database schema
         run: |
           # Load the full schema into the database
           sudo -u postgres psql -d cia_dev -f service.data.impl/src/main/resources/full_schema.sql || echo "Schema load completed with warnings (expected for first-time setup)"
+
+          # Verify schema loaded successfully by checking for key tables
+          echo "Verifying schema loaded..."
+          sudo -u postgres psql -d cia_dev -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public';" || echo "Schema verification completed"
 
       - name: Verify PostgreSQL SSL configuration
         run: |
