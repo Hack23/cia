@@ -17,12 +17,7 @@
  *  $HeadURL$
 */
 package com.hack23.cia.service.component.agent.impl.riksdagen.workgenerator;
-
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import javax.jms.Destination;
 
 import org.slf4j.Logger;
@@ -70,29 +65,9 @@ final class RiksdagenPersonsWorkGeneratorImpl extends AbstractRiksdagenDataSourc
 				LOGGER.info("Send Load Order:{}", personElement.getPersonUrlXml());
 				getJmsSender().send(personElementWorkdestination, personElement);
 			}
-			for (final String personId : readMissingPersonList()) {
-				LOGGER.info("Send Load Order:{}{}", "https://data.riksdagen.se/person/", personId);
-				getJmsSender().send(personElementWorkdestination, new PersonElement().withId(personId));
-			}
 		} catch (final DataFailureException exception) {
 			LOGGER.warn("Problem during generate work orders", exception);
 		}
-	}
-
-	/**
-	 * Read missing person list.
-	 *
-	 * @return the string[]
-	 */
-	private static String[] readMissingPersonList() {
-
-		final Scanner sc = new Scanner(RiksdagenPersonsWorkGeneratorImpl.class.getResourceAsStream("/personlist.txt"),StandardCharsets.UTF_8.name());
-		final List<String> lines = new ArrayList<>();
-		while (sc.hasNextLine()) {
-			lines.add(sc.nextLine());
-		}
-		sc.close();
-		return lines.toArray(new String[0]);
 	}
 
 }
