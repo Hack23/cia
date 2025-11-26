@@ -69,8 +69,13 @@ public final class PerformanceTimer {
 	 * Completes timing for the current phase if one is active.
 	 * 
 	 * @param phaseName name of the phase to start
+	 * @throws IllegalArgumentException if phaseName is null
 	 */
 	public void phase(final String phaseName) {
+		if (phaseName == null) {
+			throw new IllegalArgumentException("phaseName cannot be null");
+		}
+		
 		final long now = System.currentTimeMillis();
 		
 		if (currentPhase != null) {

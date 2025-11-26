@@ -44,6 +44,15 @@ public class PerformanceMetricsServiceImplTest extends AbstractUnitTest {
 	}
 	
 	/**
+	 * Test start timer with null operation name.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testStartTimerWithNullOperationName() {
+		final PerformanceMetricsService service = new PerformanceMetricsServiceImpl();
+		service.startTimer(null);
+	}
+	
+	/**
 	 * Test record metrics.
 	 */
 	@Test

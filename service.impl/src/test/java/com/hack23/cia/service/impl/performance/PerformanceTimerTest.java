@@ -51,8 +51,8 @@ public class PerformanceTimerTest extends AbstractUnitTest {
 		assertNotNull(metrics);
 		assertEquals("test_operation", metrics.getOperationName());
 		assertTrue("Total time should be at least 20ms", metrics.getTotalTimeMs() >= 20);
-		assertTrue("Phase1 time should be positive", metrics.getPhaseTimeMs("phase1") > 0);
-		assertTrue("Phase2 time should be positive", metrics.getPhaseTimeMs("phase2") > 0);
+		assertTrue("Phase1 time should be at least 10ms", metrics.getPhaseTimeMs("phase1") >= 10);
+		assertTrue("Phase2 time should be at least 10ms", metrics.getPhaseTimeMs("phase2") >= 10);
 	}
 	
 	/**
@@ -158,6 +158,15 @@ public class PerformanceTimerTest extends AbstractUnitTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testNullOperationName() {
 		new PerformanceTimer(null);
+	}
+	
+	/**
+	 * Test null phase name throws exception.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testNullPhaseName() {
+		final PerformanceTimer timer = new PerformanceTimer("test_operation");
+		timer.phase(null);
 	}
 	
 	/**
