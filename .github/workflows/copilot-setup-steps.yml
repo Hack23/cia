@@ -49,7 +49,7 @@ jobs:
           cache: "maven"
 
       - name: Cache Maven and Sonar artifacts
-        uses: actions/cache@13b6fca0895ba643bebbfc4347ccd217111fbc74 # v4.0.2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.m2/repository
