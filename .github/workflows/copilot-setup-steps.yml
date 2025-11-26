@@ -163,7 +163,7 @@ jobs:
           maven-version: 3.9.9
 
       - name: Build with Maven
-        run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -Dmaven.test.skip=true
+        run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -DskipTests -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dspdx.skip=true
 
       - name: Validate app startup and database connection
         run: |
