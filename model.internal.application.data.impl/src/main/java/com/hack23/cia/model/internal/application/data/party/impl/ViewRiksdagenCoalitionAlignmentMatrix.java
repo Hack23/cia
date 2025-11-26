@@ -18,6 +18,7 @@
  */
 package com.hack23.cia.model.internal.application.data.party.impl;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -26,43 +27,30 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
-import com.hack23.cia.model.common.api.ModelObject;
+import org.hibernate.annotations.Immutable;
 
 /**
- * Coalition alignment matrix view showing voting alignment between party pairs.
- * 
- * Based on view_riksdagen_coalition_alignment_matrix database view.
- * 
- * @author intelligence-operative
- * @since v1.29 (Intelligence Operations Enhancement)
+ * The Class ViewRiksdagenCoalitionAlignmentMatrix.
+ * Database view for coalition alignment analysis.
  */
 @Entity
+@Immutable
 @Table(name = "view_riksdagen_coalition_alignment_matrix")
-public final class ViewRiksdagenCoalitionAlignmentMatrix implements ModelObject {
+public class ViewRiksdagenCoalitionAlignmentMatrix implements Serializable {
 
-	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The embedded id. */
 	@EmbeddedId
 	private ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId embeddedId;
 
-	/** The total votes. */
+	@Column(name = "alignment_rate")
+	private BigDecimal alignmentRate;
+
 	@Column(name = "total_votes")
 	private Long totalVotes;
 
-	/** The aligned votes. */
 	@Column(name = "aligned_votes")
 	private Long alignedVotes;
-
-	/** The alignment rate. */
-	@Column(name = "alignment_rate")
-	private BigDecimal alignmentRate;
 
 	/**
 	 * Instantiates a new view riksdagen coalition alignment matrix.
@@ -90,21 +78,39 @@ public final class ViewRiksdagenCoalitionAlignmentMatrix implements ModelObject 
 	}
 
 	/**
-	 * Gets the party 1.
+	 * Gets the party1.
 	 *
-	 * @return the party 1
+	 * @return the party1
 	 */
 	public String getParty1() {
 		return embeddedId != null ? embeddedId.getParty1() : null;
 	}
 
 	/**
-	 * Gets the party 2.
+	 * Gets the party2.
 	 *
-	 * @return the party 2
+	 * @return the party2
 	 */
 	public String getParty2() {
 		return embeddedId != null ? embeddedId.getParty2() : null;
+	}
+
+	/**
+	 * Gets the alignment rate.
+	 *
+	 * @return the alignment rate
+	 */
+	public BigDecimal getAlignmentRate() {
+		return alignmentRate;
+	}
+
+	/**
+	 * Sets the alignment rate.
+	 *
+	 * @param alignmentRate the new alignment rate
+	 */
+	public void setAlignmentRate(final BigDecimal alignmentRate) {
+		this.alignmentRate = alignmentRate;
 	}
 
 	/**
@@ -143,37 +149,31 @@ public final class ViewRiksdagenCoalitionAlignmentMatrix implements ModelObject 
 		this.alignedVotes = alignedVotes;
 	}
 
-	/**
-	 * Gets the alignment rate.
-	 *
-	 * @return the alignment rate
-	 */
-	public BigDecimal getAlignmentRate() {
-		return alignmentRate;
-	}
-
-	/**
-	 * Sets the alignment rate.
-	 *
-	 * @param alignmentRate the new alignment rate
-	 */
-	public void setAlignmentRate(final BigDecimal alignmentRate) {
-		this.alignmentRate = alignmentRate;
-	}
-
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj);
-	}
-
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		final ViewRiksdagenCoalitionAlignmentMatrix that = (ViewRiksdagenCoalitionAlignmentMatrix) obj;
+		return Objects.equals(embeddedId, that.embeddedId);
 	}
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return Objects.hash(embeddedId);
 	}
 
+	@Override
+	public String toString() {
+		return "ViewRiksdagenCoalitionAlignmentMatrix{" +
+				"party1='" + getParty1() + '\'' +
+				", party2='" + getParty2() + '\'' +
+				", alignmentRate=" + alignmentRate +
+				", totalVotes=" + totalVotes +
+				", alignedVotes=" + alignedVotes +
+				'}';
+	}
 }

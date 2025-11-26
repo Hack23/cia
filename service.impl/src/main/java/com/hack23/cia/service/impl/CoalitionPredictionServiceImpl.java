@@ -36,7 +36,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrix;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
-import com.hack23.cia.service.data.api.DataViewer;
+import com.hack23.cia.service.data.api.ViewRiksdagenCoalitionAlignmentMatrixDAO;
+import com.hack23.cia.service.data.api.ViewRiksdagenPartyDAO;
 
 /**
  * Implementation of coalition prediction service.
@@ -90,7 +91,10 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	}
 
 	@Autowired
-	private DataViewer dataViewer;
+	private ViewRiksdagenCoalitionAlignmentMatrixDAO alignmentMatrixDAO;
+	
+	@Autowired
+	private ViewRiksdagenPartyDAO partyDAO;
 
 	@Override
 	public List<CoalitionScenario> predictCoalitions(final String year) {
@@ -99,7 +103,7 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 		// rather than year-specific snapshots. Future enhancement could filter by year if needed.
 		LOGGER.info("Generating coalition scenarios for year: {}", year);
 
-		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = dataViewer.getAll(ViewRiksdagenCoalitionAlignmentMatrix.class);
+		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = alignmentMatrixDAO.getAll();
 		final Map<String, Map<String, Double>> alignmentMatrix = buildAlignmentMatrix(alignmentData);
 		final Map<String, Integer> seatCounts = loadSeatCounts();
 
@@ -125,7 +129,7 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	public Map<String, Map<String, Double>> getAlignmentMatrix(final String year) {
 		// NOTE: Year parameter is accepted for API consistency but not currently used for filtering
 		// because ViewRiksdagenCoalitionAlignmentMatrix represents aggregate historical patterns.
-		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = dataViewer.getAll(ViewRiksdagenCoalitionAlignmentMatrix.class);
+		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = alignmentMatrixDAO.getAll();
 		return buildAlignmentMatrix(alignmentData);
 	}
 
@@ -199,7 +203,7 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 		final Map<String, Integer> seatCounts = new HashMap<>();
 		
 		try {
-			final List<ViewRiksdagenParty> parties = dataViewer.getAll(ViewRiksdagenParty.class);
+			final List<ViewRiksdagenParty> parties = partyDAO.getAll();
 			for (final ViewRiksdagenParty party : parties) {
 				if (party.getHeadCount() > 0) {
 					seatCounts.put(party.getPartyId(), (int) party.getHeadCount());
