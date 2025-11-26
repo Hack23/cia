@@ -157,4 +157,18 @@ public final class CoalitionPredictionServiceITest extends AbstractServiceFuncti
 		
 		assertEquals("Stability should be 0 for single party", 0, stability);
 	}
+
+	/**
+	 * Test calculate stability index null list.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testCalculateStabilityIndexNullList() throws Exception {
+		setAuthenticatedAdminuser();
+		
+		final int stability = coalitionPredictionService.calculateStabilityIndex(null, "2023/24");
+		
+		assertEquals("Stability should be 0 for null list", 0, stability);
+	}
 }

@@ -54,6 +54,10 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	private static final int MAJORITY_SEATS = 175;
 	private static final List<String> ALL_PARTIES = Arrays.asList("S", "M", "SD", "C", "V", "KD", "MP", "L");
 	
+	// Political bloc definitions
+	private static final List<String> LEFT_BLOC_PARTIES = Arrays.asList("S", "V", "MP");
+	private static final List<String> RIGHT_BLOC_PARTIES = Arrays.asList("M", "KD", "L", "C");
+	
 	// Probability calculation weights
 	private static final double ALIGNMENT_WEIGHT = 0.6;
 	private static final double SEATS_WEIGHT = 0.4;
@@ -77,6 +81,9 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 
 	@Override
 	public List<CoalitionScenario> predictCoalitions(final String year) {
+		// NOTE: Year parameter is logged for auditing but not currently used to filter alignment data
+		// because ViewRiksdagenCoalitionAlignmentMatrix represents aggregate historical patterns
+		// rather than year-specific snapshots. Future enhancement could filter by year if needed.
 		LOGGER.info("Generating coalition scenarios for year: {}", year);
 
 		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = dataViewer.getAll(ViewRiksdagenCoalitionAlignmentMatrix.class);
@@ -103,6 +110,8 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 
 	@Override
 	public Map<String, Map<String, Double>> getAlignmentMatrix(final String year) {
+		// NOTE: Year parameter is accepted for API consistency but not currently used for filtering
+		// because ViewRiksdagenCoalitionAlignmentMatrix represents aggregate historical patterns.
 		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignmentData = dataViewer.getAll(ViewRiksdagenCoalitionAlignmentMatrix.class);
 		return buildAlignmentMatrix(alignmentData);
 	}
@@ -149,7 +158,8 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 			final String party2 = data.getParty2();
 			final BigDecimal alignmentRate = data.getAlignmentRate();
 
-			if (alignmentRate != null) {
+			// Null checks to prevent NullPointerException when using party values as Map keys
+			if (party1 != null && party2 != null && alignmentRate != null) {
 				final double rate = alignmentRate.doubleValue();
 				matrix.computeIfAbsent(party1, k -> new HashMap<>()).put(party2, rate);
 				matrix.computeIfAbsent(party2, k -> new HashMap<>()).put(party1, rate);
@@ -329,11 +339,8 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 	}
 
 	private String determineBlocRelationship(final List<String> parties) {
-		final List<String> leftBloc = Arrays.asList("S", "V", "MP");
-		final List<String> rightBloc = Arrays.asList("M", "KD", "L", "C");
-
-		final boolean hasLeft = parties.stream().anyMatch(leftBloc::contains);
-		final boolean hasRight = parties.stream().anyMatch(rightBloc::contains);
+		final boolean hasLeft = parties.stream().anyMatch(LEFT_BLOC_PARTIES::contains);
+		final boolean hasRight = parties.stream().anyMatch(RIGHT_BLOC_PARTIES::contains);
 		final boolean hasSD = parties.contains("SD");
 
 		if (hasLeft && hasRight) {

@@ -112,9 +112,15 @@ public final class CoalitionPredictionPageModContentFactoryImpl extends Abstract
 		header.addStyleName(ValoTheme.LABEL_H2);
 		scenariosLayout.addComponent(header);
 
-		int rank = 1;
-		for (final CoalitionScenario scenario : scenarios) {
-			scenariosLayout.addComponent(createScenarioRow(rank++, scenario));
+		if (scenarios == null || scenarios.isEmpty()) {
+			final Label noScenariosLabel = new Label("No viable coalition scenarios found for the selected year.");
+			noScenariosLabel.addStyleName(ValoTheme.LABEL_LIGHT);
+			scenariosLayout.addComponent(noScenariosLabel);
+		} else {
+			int rank = 1;
+			for (final CoalitionScenario scenario : scenarios) {
+				scenariosLayout.addComponent(createScenarioRow(rank++, scenario));
+			}
 		}
 
 		panelContent.addComponent(scenariosLayout);

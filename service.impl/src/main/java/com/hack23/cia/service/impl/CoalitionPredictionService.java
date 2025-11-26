@@ -18,8 +18,12 @@
  */
 package com.hack23.cia.service.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.security.access.annotation.Secured;
 
 /**
  * Service for coalition prediction and analysis.
@@ -70,7 +74,8 @@ public interface CoalitionPredictionService {
 
 		public CoalitionScenario(List<String> parties, int totalSeats, double probability, 
 				int stabilityIndex, String coalitionType, String blocRelationship) {
-			this.parties = parties;
+			// Defensive copy to ensure immutability
+			this.parties = parties != null ? new ArrayList<>(parties) : new ArrayList<>();
 			this.totalSeats = totalSeats;
 			this.probability = probability;
 			this.stabilityIndex = stabilityIndex;
@@ -79,7 +84,8 @@ public interface CoalitionPredictionService {
 		}
 
 		public List<String> getParties() {
-			return parties;
+			// Return unmodifiable view to preserve immutability
+			return Collections.unmodifiableList(parties);
 		}
 
 		public int getTotalSeats() {
