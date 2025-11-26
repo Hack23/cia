@@ -67,6 +67,9 @@ public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryIm
         accountItem.addItem(USER_HOME_OVERVIEW_TEXT, VaadinIcons.USER,
                 COMMAND_USERHOME_OVERVIEW);
 
+        accountItem.addItem(BUSINESS_EXECUTIVE_DASHBOARD_TEXT, VaadinIcons.DASHBOARD,
+                COMMAND_BUSINESS_EXECUTIVE_DASHBOARD);
+
         accountItem.addItem(SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,
                 COMMAND_USERHOME_SECURITY_SETTINGS);
 

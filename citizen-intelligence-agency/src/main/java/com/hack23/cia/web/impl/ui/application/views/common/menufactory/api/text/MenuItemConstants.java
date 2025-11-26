@@ -314,6 +314,9 @@ public interface MenuItemConstants extends
     /** The Constant USER_HOME_OVERVIEW_TEXT. */
     String USER_HOME_OVERVIEW_TEXT = "User Home Overview";
 
+    /** The Constant BUSINESS_EXECUTIVE_DASHBOARD_TEXT. */
+    String BUSINESS_EXECUTIVE_DASHBOARD_TEXT = "Business Dashboard";
+
     /** The Constant SWEDEN_DASHBOARD. */
     String SWEDEN_DASHBOARD = "Sweden Dashboard";
 

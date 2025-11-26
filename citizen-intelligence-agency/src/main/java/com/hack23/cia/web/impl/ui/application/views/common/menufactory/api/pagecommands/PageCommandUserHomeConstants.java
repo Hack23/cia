@@ -26,4 +26,8 @@ public interface PageCommandUserHomeConstants {
     PageModeMenuCommand COMMAND_USERHOME_USER_EVENTS = new PageModeMenuCommand(
                      UserViews.USERHOME_VIEW_NAME, UserHomePageMode.USER_EVENTS.toString());
 
+    /** The command business executive dashboard. */
+    PageModeMenuCommand COMMAND_BUSINESS_EXECUTIVE_DASHBOARD = new PageModeMenuCommand(
+                     UserViews.BUSINESS_EXECUTIVE_DASHBOARD_VIEW_NAME, PageMode.OVERVIEW);
+
 }
