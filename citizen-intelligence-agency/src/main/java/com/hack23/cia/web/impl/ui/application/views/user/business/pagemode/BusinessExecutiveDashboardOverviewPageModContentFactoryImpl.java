@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.user.business.pagemode;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -274,7 +275,7 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		row.addComponent(barLabel);
 		row.setExpandRatio(barLabel, 1.0f);
 		
-		final Label valueLabel = new Label(value + " (" + String.format("%.1f", percentage) + "%)");
+		final Label valueLabel = new Label(value + " (" + String.format(Locale.ENGLISH, "%.1f", percentage) + "%)");
 		valueLabel.setWidth("150px");
 		row.addComponent(valueLabel);
 		
@@ -348,7 +349,7 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		row.setExpandRatio(barLabel, 1.0f);
 		
 		final Label valueLabel = new Label(
-			String.format("€%.0f / €%.0f (%.1f%%)", actual, target, percentage));
+			String.format(Locale.ENGLISH, "€%.0f / €%.0f (%.1f%%)", actual, target, percentage));
 		valueLabel.setWidth("200px");
 		row.addComponent(valueLabel);
 		
@@ -419,7 +420,7 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		row.addComponent(barLabel);
 		row.setExpandRatio(barLabel, 1.0f);
 		
-		final Label valueLabel = new Label(count + " (" + String.format("%.2f", percentage) + "%)");
+		final Label valueLabel = new Label(count + " (" + String.format(Locale.ENGLISH, "%.2f", percentage) + "%)");
 		valueLabel.setWidth("150px");
 		row.addComponent(valueLabel);
 		
