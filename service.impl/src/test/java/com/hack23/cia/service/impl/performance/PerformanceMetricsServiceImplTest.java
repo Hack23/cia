@@ -109,11 +109,11 @@ public class PerformanceMetricsServiceImplTest extends AbstractUnitTest {
 		final PerformanceMetricsService service = new PerformanceMetricsServiceImpl();
 		
 		// Test with zero time
-		final PerformanceMetrics zeroTimeMetrics = new PerformanceMetrics("zero_time", 0L, new HashMap<>(), 0L);
+		final PerformanceMetrics zeroTimeMetrics = createTestMetrics("zero_time", 0L, 0L);
 		service.recordMetrics("zero_time", "test", zeroTimeMetrics);
 		
 		// Test with empty phases
-		final PerformanceMetrics emptyPhasesMetrics = new PerformanceMetrics("empty_phases", 100L, new HashMap<>(), 50L);
+		final PerformanceMetrics emptyPhasesMetrics = createTestMetrics("empty_phases", 100L, 50L);
 		service.recordMetrics("empty_phases", "test", emptyPhasesMetrics);
 		
 		// Test with null context
@@ -126,5 +126,17 @@ public class PerformanceMetricsServiceImplTest extends AbstractUnitTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testPerformanceMetricsWithNullOperationName() {
 		new PerformanceMetrics(null, 100L, new HashMap<>(), 50L);
+	}
+	
+	/**
+	 * Helper method to create test metrics.
+	 * 
+	 * @param operationName the operation name
+	 * @param totalTimeMs the total time in milliseconds
+	 * @param memoryUsedMb the memory used in MB
+	 * @return test performance metrics
+	 */
+	private PerformanceMetrics createTestMetrics(final String operationName, final long totalTimeMs, final long memoryUsedMb) {
+		return new PerformanceMetrics(operationName, totalTimeMs, new HashMap<>(), memoryUsedMb);
 	}
 }
