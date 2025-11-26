@@ -25,6 +25,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Appli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentPageTitleConstants;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
@@ -76,6 +77,10 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 
 		createButtonLink(grid, DECISION_FLOW, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW, DECISION_FLOW_DESCRIPTION);
+
+		createButtonLink(grid, ParliamentPageTitleConstants.COALITION_PREDICTION_TITLE, VaadinIcons.INSTITUTION,
+			PageCommandParliamentRankingConstants.COMMAND_COALITION_PREDICTION,
+			ParliamentPageTitleConstants.COALITION_PREDICTION_DESC);
 
 		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,
 				PageCommandParliamentRankingConstants.PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
@@ -129,6 +134,10 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,
 			PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW);
 		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);
+
+		final MenuItem coalitionItem = chartIndicators.addItem(ParliamentPageTitleConstants.COALITION_PREDICTION_TITLE, VaadinIcons.INSTITUTION,
+			PageCommandParliamentRankingConstants.COMMAND_COALITION_PREDICTION);
+		coalitionItem.setDescription(ParliamentPageTitleConstants.COALITION_PREDICTION_DESC);
 
 		charts.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,
 				PageCommandParliamentRankingConstants.PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);

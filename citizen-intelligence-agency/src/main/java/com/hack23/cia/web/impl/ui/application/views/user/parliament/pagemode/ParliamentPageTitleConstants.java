@@ -98,4 +98,14 @@ public interface ParliamentPageTitleConstants {
 
     /** The visit history desc. */
     String VISIT_HISTORY_DESC = "Longitudinal analysis of stakeholder engagement patterns";
+
+    /** The coalition prediction title. */
+    // Coalition Prediction
+    String COALITION_PREDICTION_TITLE = "Coalition Prediction Model";
+
+    /** The coalition prediction subtitle. */
+    String COALITION_PREDICTION_SUBTITLE = "Government Formation Intelligence";
+
+    /** The coalition prediction desc. */
+    String COALITION_PREDICTION_DESC = "Predictive analytics for coalition formation based on historical voting patterns and party alignment matrices";
 }

@@ -78,7 +78,7 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
         final VerticalLayout panelContent = createPanelContent();
 
         setupMenuAndHeader(menuBar, panel, panelContent);
-        final String selectedYear = extractSelectedYear(parameters);
+        final String selectedYear = extractSelectedYear(parameters, DEFAULT_YEAR);
         final Map<String, List<ViewRiksdagenCommittee>> committeeMap = loadCommitteeMap();
 
         addYearSelector(panelContent, selectedYear);
@@ -121,22 +121,6 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
             ParliamentPageTitleConstants.DECISION_FLOW_TITLE,
             ParliamentPageTitleConstants.DECISION_FLOW_SUBTITLE,
             ParliamentPageTitleConstants.DECISION_FLOW_DESC);
-    }
-
-    /**
-     * Extract selected year.
-     *
-     * @param parameters the parameters
-     * @return the string
-     */
-    private String extractSelectedYear(final String parameters) {
-        if (parameters != null && parameters.contains("[") && parameters.contains("]")) {
-            return parameters.substring(
-                parameters.indexOf('[') + 1,
-                parameters.lastIndexOf(']')
-            );
-        }
-        return DEFAULT_YEAR;
     }
 
     /**
