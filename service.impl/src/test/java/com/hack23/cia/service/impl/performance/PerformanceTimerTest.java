@@ -129,6 +129,7 @@ public class PerformanceTimerTest {
 	
 	/**
 	 * Helper method to sleep for specified milliseconds.
+	 * Restores interrupt status if interrupted to maintain thread interrupt semantics.
 	 * 
 	 * @param millis milliseconds to sleep
 	 */
@@ -136,6 +137,7 @@ public class PerformanceTimerTest {
 		try {
 			Thread.sleep(millis);
 		} catch (final InterruptedException e) {
+			// Restore interrupt status
 			Thread.currentThread().interrupt();
 		}
 	}

@@ -95,6 +95,9 @@ public final class PerformanceTimer {
 	/**
 	 * Get performance metrics for the timed operation.
 	 * 
+	 * Note: Memory calculation uses Runtime.getRuntime() which provides an approximate
+	 * heap memory usage. For more precise measurements, consider using MemoryMXBean.
+	 * 
 	 * @return performance metrics
 	 */
 	public PerformanceMetrics getMetrics() {

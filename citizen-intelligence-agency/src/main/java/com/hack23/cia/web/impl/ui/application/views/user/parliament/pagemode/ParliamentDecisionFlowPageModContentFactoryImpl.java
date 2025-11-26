@@ -72,6 +72,14 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
     /** The Constant PERFORMANCE_THRESHOLD_MS. */
     private static final long PERFORMANCE_THRESHOLD_MS = 2000L;
 
+    /** Performance phase names. */
+    private static final String PHASE_MENU_HEADER_SETUP = "menu_header_setup";
+    private static final String PHASE_DATA_LOADING = "data_loading";
+    private static final String PHASE_UI_COMPONENT_CREATION = "ui_component_creation";
+    private static final String PHASE_CHART_GENERATION = "chart_generation";
+    private static final String PHASE_SUMMARY_GENERATION = "summary_generation";
+    private static final String PHASE_EVENT_RECORDING = "event_recording";
+
     /** The decision flow chart manager. */
     @Autowired
     private DecisionFlowChartManager decisionFlowChartManager;
@@ -96,23 +104,23 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
         try {
             final VerticalLayout panelContent = createPanelContent();
 
-            timer.phase("menu_header_setup");
+            timer.phase(PHASE_MENU_HEADER_SETUP);
             setupMenuAndHeader(menuBar, panel, panelContent);
             
-            timer.phase("data_loading");
+            timer.phase(PHASE_DATA_LOADING);
             final String selectedYear = extractSelectedYear(parameters, DEFAULT_YEAR);
             final Map<String, List<ViewRiksdagenCommittee>> committeeMap = loadCommitteeMap();
 
-            timer.phase("ui_component_creation");
+            timer.phase(PHASE_UI_COMPONENT_CREATION);
             addYearSelector(panelContent, selectedYear);
             
-            timer.phase("chart_generation");
+            timer.phase(PHASE_CHART_GENERATION);
             addDecisionFlowChart(panelContent, committeeMap, selectedYear);
             
-            timer.phase("summary_generation");
+            timer.phase(PHASE_SUMMARY_GENERATION);
             addDecisionSummary(panelContent, committeeMap, selectedYear);
 
-            timer.phase("event_recording");
+            timer.phase(PHASE_EVENT_RECORDING);
             recordPageVisit(parameters, selectedYear);
             
             timer.stop();
@@ -253,8 +261,8 @@ public final class ParliamentDecisionFlowPageModContentFactoryImpl extends Abstr
         LOGGER.info("Decision Flow Page Performance for year {}: Total={}ms, Chart={}ms, DB={}ms, Memory={}MB",
             year,
             metrics.getTotalTimeMs(),
-            metrics.getPhaseTimeMs("chart_generation"),
-            metrics.getPhaseTimeMs("data_loading"),
+            metrics.getPhaseTimeMs(PHASE_CHART_GENERATION),
+            metrics.getPhaseTimeMs(PHASE_DATA_LOADING),
             metrics.getMemoryUsedMb());
         
         performanceMetricsService.recordMetrics("decision_flow_page", year, metrics);
