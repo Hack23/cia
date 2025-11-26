@@ -8,8 +8,8 @@
       "args": ["-y", "@modelcontextprotocol/server-github"],
       "description": "GitHub integration for repository operations, issues, PRs, and workflows",
       "env": {
-        "GITHUB_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}"
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}"
+        "GITHUB_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
         "GITHUB_OWNER": "Hack23",
         "GITHUB_REPO": "cia"
       },
