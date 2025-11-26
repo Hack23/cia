@@ -42,6 +42,10 @@ public class PerformanceMetricsServiceImpl implements PerformanceMetricsService 
 	
 	@Override
 	public void recordMetrics(final String operationName, final String context, final PerformanceMetrics metrics) {
+		if (metrics == null) {
+			LOGGER.warn("Attempted to record null metrics for operation: {}", operationName);
+			return;
+		}
 		LOGGER.info("Performance Metrics - Operation: {}, Context: {}, Total Time: {}ms, Memory: {}MB, Phases: {}",
 			operationName,
 			context,
@@ -52,6 +56,10 @@ public class PerformanceMetricsServiceImpl implements PerformanceMetricsService 
 	
 	@Override
 	public void sendPerformanceAlert(final String title, final String message) {
+		if (title == null || message == null) {
+			LOGGER.warn("Attempted to send performance alert with null title or message");
+			return;
+		}
 		LOGGER.warn("PERFORMANCE ALERT: {} - {}", title, message);
 	}
 }

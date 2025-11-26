@@ -24,10 +24,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.hack23.cia.testfoundation.AbstractUnitTest;
+
 /**
  * Unit test for PerformanceTimer.
  */
-public class PerformanceTimerTest {
+public class PerformanceTimerTest extends AbstractUnitTest {
 
 	/**
 	 * Test basic timer operation.
@@ -125,6 +127,37 @@ public class PerformanceTimerTest {
 		final PerformanceMetrics metrics = timer.getMetrics();
 		
 		assertEquals("Non-existent phase should return 0", 0L, metrics.getPhaseTimeMs("non_existent"));
+	}
+	
+	/**
+	 * Test multiple calls to getMetrics returns consistent results.
+	 */
+	@Test
+	public void testMultipleGetMetricsCalls() {
+		final PerformanceTimer timer = new PerformanceTimer("test_operation");
+		
+		timer.phase("phase1");
+		sleep(10);
+		
+		timer.stop();
+		
+		final PerformanceMetrics metrics1 = timer.getMetrics();
+		final PerformanceMetrics metrics2 = timer.getMetrics();
+		
+		assertNotNull("First metrics should not be null", metrics1);
+		assertNotNull("Second metrics should not be null", metrics2);
+		assertEquals("Multiple getMetrics calls should return same total time", 
+			metrics1.getTotalTimeMs(), metrics2.getTotalTimeMs());
+		assertEquals("Multiple getMetrics calls should return same phase time", 
+			metrics1.getPhaseTimeMs("phase1"), metrics2.getPhaseTimeMs("phase1"));
+	}
+	
+	/**
+	 * Test null operation name throws exception.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testNullOperationName() {
+		new PerformanceTimer(null);
 	}
 	
 	/**

@@ -41,9 +41,13 @@ public final class PerformanceMetrics {
 	 * @param totalTimeMs total execution time in milliseconds
 	 * @param phaseDurations map of phase names to durations in milliseconds
 	 * @param memoryUsedMb memory used in megabytes
+	 * @throws IllegalArgumentException if operationName is null
 	 */
 	public PerformanceMetrics(final String operationName, final long totalTimeMs, 
 			final Map<String, Long> phaseDurations, final long memoryUsedMb) {
+		if (operationName == null) {
+			throw new IllegalArgumentException("operationName cannot be null");
+		}
 		this.operationName = operationName;
 		this.totalTimeMs = totalTimeMs;
 		this.phaseDurations = phaseDurations != null ? new HashMap<>(phaseDurations) : new HashMap<>();

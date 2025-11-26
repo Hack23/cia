@@ -29,6 +29,10 @@ import org.slf4j.LoggerFactory;
  * 
  * Tracks execution time for an operation broken down into phases,
  * enabling detailed performance analysis and bottleneck identification.
+ * 
+ * <p><strong>Thread Safety:</strong> This class is NOT thread-safe. Each timer instance
+ * should only be accessed by a single thread. In typical usage, a timer is created as a
+ * local variable within a request handler method and used only by that thread.</p>
  */
 public final class PerformanceTimer {
 	
@@ -46,8 +50,12 @@ public final class PerformanceTimer {
 	 * Create a new performance timer for the specified operation.
 	 * 
 	 * @param operationName name of the operation being timed
+	 * @throws IllegalArgumentException if operationName is null
 	 */
 	public PerformanceTimer(final String operationName) {
+		if (operationName == null) {
+			throw new IllegalArgumentException("operationName cannot be null");
+		}
 		this.operationName = operationName;
 		this.startTime = System.currentTimeMillis();
 		this.phaseStartTimes = new HashMap<>();

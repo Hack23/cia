@@ -20,12 +20,16 @@ package com.hack23.cia.service.impl.performance;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.HashMap;
+
 import org.junit.Test;
+
+import com.hack23.cia.testfoundation.AbstractUnitTest;
 
 /**
  * Unit test for PerformanceMetricsServiceImpl.
  */
-public class PerformanceMetricsServiceImplTest {
+public class PerformanceMetricsServiceImplTest extends AbstractUnitTest {
 
 	/**
 	 * Test start timer.
@@ -62,5 +66,65 @@ public class PerformanceMetricsServiceImplTest {
 		final PerformanceMetricsService service = new PerformanceMetricsServiceImpl();
 		
 		service.sendPerformanceAlert("Test Alert", "Test message");
+	}
+	
+	/**
+	 * Test record metrics with null metrics parameter.
+	 */
+	@Test
+	public void testRecordMetricsWithNullMetrics() {
+		final PerformanceMetricsService service = new PerformanceMetricsServiceImpl();
+		
+		// Should log warning and not throw exception
+		service.recordMetrics("test_operation", "test_context", null);
+	}
+	
+	/**
+	 * Test send alert with null title.
+	 */
+	@Test
+	public void testSendPerformanceAlertWithNullTitle() {
+		final PerformanceMetricsService service = new PerformanceMetricsServiceImpl();
+		
+		// Should log warning and not throw exception
+		service.sendPerformanceAlert(null, "Test message");
+	}
+	
+	/**
+	 * Test send alert with null message.
+	 */
+	@Test
+	public void testSendPerformanceAlertWithNullMessage() {
+		final PerformanceMetricsService service = new PerformanceMetricsServiceImpl();
+		
+		// Should log warning and not throw exception
+		service.sendPerformanceAlert("Test Alert", null);
+	}
+	
+	/**
+	 * Test record metrics with various edge cases.
+	 */
+	@Test
+	public void testRecordMetricsEdgeCases() {
+		final PerformanceMetricsService service = new PerformanceMetricsServiceImpl();
+		
+		// Test with zero time
+		final PerformanceMetrics zeroTimeMetrics = new PerformanceMetrics("zero_time", 0L, new HashMap<>(), 0L);
+		service.recordMetrics("zero_time", "test", zeroTimeMetrics);
+		
+		// Test with empty phases
+		final PerformanceMetrics emptyPhasesMetrics = new PerformanceMetrics("empty_phases", 100L, new HashMap<>(), 50L);
+		service.recordMetrics("empty_phases", "test", emptyPhasesMetrics);
+		
+		// Test with null context
+		service.recordMetrics("test", null, zeroTimeMetrics);
+	}
+	
+	/**
+	 * Test PerformanceMetrics with null operation name.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testPerformanceMetricsWithNullOperationName() {
+		new PerformanceMetrics(null, 100L, new HashMap<>(), 50L);
 	}
 }
