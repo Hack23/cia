@@ -2526,6 +2526,112 @@ div.v-layout.v-horizontal.v-widget {
 	word-break: break-word;
 }
 
+.kpi-card {
+	background: #1f1f1f;
+	border: 1px solid #3a3a3a;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	transition: transform 0.2s, box-shadow 0.2s;
+	padding: 16px;
+	text-align: center;
+	color: #e0e0e0;
+	margin: 0.5rem;
+}
+
+.kpi-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.kpi-value {
+	font-size: 2em;
+	font-weight: bold;
+	margin: 10px 0;
+	color: #a0ff90;
+}
+
+.progress-bar {
+	background: linear, 90deg, #3498db 0%, #2980b9 100%;
+	border-radius: 4px;
+	display: inline-block;
+	transition: width 0.3s ease;
+	min-height: 20px;
+}
+
+.v-label-success.progress-bar {
+	background: linear, 90deg, #27ae60 0%, #229954 100%;
+}
+
+.v-label-warning.progress-bar {
+	background: linear, 90deg, #f39c12 0%, #d68910 100%;
+}
+
+.v-label-error.progress-bar {
+	background: linear, 90deg, #e74c3c 0%, #c0392b 100%;
+}
+
+@media (max-width: 768px) {
+	.kpi-card {
+		margin-bottom: 12px;
+	}
+	.kpi-value {
+		font-size: 1.5em;
+	}
+}
+
+.kpi-card {
+	background: #1f1f1f;
+	border: 1px solid #3a3a3a;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	transition: transform 0.2s, box-shadow 0.2s;
+	padding: 16px;
+	text-align: center;
+	color: #e0e0e0;
+	margin: 0.5rem;
+}
+
+.kpi-card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.kpi-value {
+	font-size: 2em;
+	font-weight: bold;
+	margin: 10px 0;
+	color: #a0ff90;
+}
+
+.progress-bar {
+	background: linear, 90deg, #3498db 0%, #2980b9 100%;
+	border-radius: 4px;
+	display: inline-block;
+	transition: width 0.3s ease;
+	min-height: 20px;
+}
+
+.v-label-success.progress-bar {
+	background: linear, 90deg, #27ae60 0%, #229954 100%;
+}
+
+.v-label-warning.progress-bar {
+	background: linear, 90deg, #f39c12 0%, #d68910 100%;
+}
+
+.v-label-error.progress-bar {
+	background: linear, 90deg, #e74c3c 0%, #c0392b 100%;
+}
+
+@media (max-width: 768px) {
+	.kpi-card {
+		margin-bottom: 12px;
+	}
+	.kpi-value {
+		font-size: 1.5em;
+	}
+}
+
 .cia {
 	@-webkit-keyframes progressIndeterminate {
 		0% {

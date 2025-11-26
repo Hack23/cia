@@ -45,6 +45,12 @@ import com.vaadin.ui.VerticalLayout;
  * Creates the main executive dashboard view with business metrics, KPIs, and charts
  * based on targets from BUSINESS_PRODUCT_DOCUMENT.md.
  * </p>
+ * <p>
+ * <b>Note on Mock Data:</b> This implementation currently uses hardcoded mock data for demonstration
+ * purposes. For production use with real-time tracking, this should be integrated with a
+ * BusinessMetricsService that calculates actual metrics from database tables (business_metrics,
+ * revenue_targets, customer_acquisition) as outlined in the original requirements.
+ * </p>
  */
 @Component
 public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
@@ -54,9 +60,6 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 	
 	/** Business metrics constants from BUSINESS_PRODUCT_DOCUMENT.md */
 	private static final double YEAR1_TARGET_REVENUE = 29700.0; // €29.7k
-	private static final double YEAR2_TARGET_REVENUE = 71280.0; // €71.28k
-	private static final double YEAR3_TARGET_REVENUE = 142560.0; // €142.56k
-	private static final double TOTAL_TAM = 46000000.0; // €46M
 	
 	/** Format pattern for percentage display */
 	private static final String PERCENTAGE_FORMAT = "%.1f";
@@ -229,11 +232,11 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 		marketLayout.setWidth("100%");
 		
 		// Market segments from BUSINESS_PRODUCT_DOCUMENT.md
-		marketLayout.addComponent(createMarketSegmentRow("Political Consulting", "€15M", 32.6, "#3498db"));
-		marketLayout.addComponent(createMarketSegmentRow("Corporate Affairs", "€12M", 26.1, "#e74c3c"));
-		marketLayout.addComponent(createMarketSegmentRow("Media & Journalism", "€8M", 17.4, "#f39c12"));
-		marketLayout.addComponent(createMarketSegmentRow("Gov Transparency", "€6M", 13.0, "#27ae60"));
-		marketLayout.addComponent(createMarketSegmentRow("Academic Research", "€5M", 10.9, "#9b59b6"));
+		marketLayout.addComponent(createMarketSegmentRow("Political Consulting", "€15M", 32.6));
+		marketLayout.addComponent(createMarketSegmentRow("Corporate Affairs", "€12M", 26.1));
+		marketLayout.addComponent(createMarketSegmentRow("Media & Journalism", "€8M", 17.4));
+		marketLayout.addComponent(createMarketSegmentRow("Gov Transparency", "€6M", 13.0));
+		marketLayout.addComponent(createMarketSegmentRow("Academic Research", "€5M", 10.9));
 		
 		marketPanel.setContent(marketLayout);
 		panelContent.addComponent(marketPanel);
@@ -246,11 +249,10 @@ public final class BusinessExecutiveDashboardOverviewPageModContentFactoryImpl e
 	 * @param name the name
 	 * @param value the value
 	 * @param percentage the percentage
-	 * @param color the color
 	 * @return the horizontal layout
 	 */
 	private HorizontalLayout createMarketSegmentRow(final String name, final String value, 
-			final double percentage, final String color) {
+			final double percentage) {
 		final HorizontalLayout row = new HorizontalLayout();
 		row.setWidth("100%");
 		row.setSpacing(true);
