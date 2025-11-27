@@ -44,17 +44,17 @@ public final class ViewRiksdagenCoalitionAlignmentMatrixTest extends AbstractUni
 	 */
 	@Test
 	public void testColumnMappingsMatchDatabaseSchema() throws Exception {
-		// Verify totalBallots maps to shared_votes
-		assertColumnMapping("totalBallots", "shared_votes");
+		// Verify sharedVotes maps to shared_votes
+		assertColumnMapping("sharedVotes", "shared_votes");
 		
-		// Verify agreementCount maps to aligned_votes
-		assertColumnMapping("agreementCount", "aligned_votes");
+		// Verify alignedVotes maps to aligned_votes
+		assertColumnMapping("alignedVotes", "aligned_votes");
 		
-		// Verify disagreementCount maps to opposed_votes
-		assertColumnMapping("disagreementCount", "opposed_votes");
+		// Verify opposedVotes maps to opposed_votes
+		assertColumnMapping("opposedVotes", "opposed_votes");
 		
-		// Verify agreementPercentage maps to alignment_rate
-		assertColumnMapping("agreementPercentage", "alignment_rate");
+		// Verify alignmentRate maps to alignment_rate
+		assertColumnMapping("alignmentRate", "alignment_rate");
 	}
 	
 	/**
@@ -67,10 +67,10 @@ public final class ViewRiksdagenCoalitionAlignmentMatrixTest extends AbstractUni
 		
 		final ViewRiksdagenCoalitionAlignmentMatrix entity = new ViewRiksdagenCoalitionAlignmentMatrix();
 		entity.setEmbeddedId(embeddedId);
-		entity.setTotalBallots(100L);
-		entity.setAgreementCount(70L);
-		entity.setDisagreementCount(30L);
-		entity.setAgreementPercentage(0.70);
+		entity.setSharedVotes(100L);
+		entity.setAlignedVotes(70L);
+		entity.setOpposedVotes(30L);
+		entity.setAlignmentRate(0.70);
 		entity.setCoalitionLikelihood("MEDIUM");
 		entity.setBlocRelationship("CROSS_BLOC");
 		entity.setIntelligenceComment("Test comment");
@@ -80,10 +80,10 @@ public final class ViewRiksdagenCoalitionAlignmentMatrixTest extends AbstractUni
 		
 		// Test getters
 		assertEquals(embeddedId, entity.getEmbeddedId());
-		assertEquals(Long.valueOf(100L), entity.getTotalBallots());
-		assertEquals(Long.valueOf(70L), entity.getAgreementCount());
-		assertEquals(Long.valueOf(30L), entity.getDisagreementCount());
-		assertEquals(Double.valueOf(0.70), entity.getAgreementPercentage());
+		assertEquals(Long.valueOf(100L), entity.getSharedVotes());
+		assertEquals(Long.valueOf(70L), entity.getAlignedVotes());
+		assertEquals(Long.valueOf(30L), entity.getOpposedVotes());
+		assertEquals(Double.valueOf(0.70), entity.getAlignmentRate());
 		assertEquals("MEDIUM", entity.getCoalitionLikelihood());
 		assertEquals("CROSS_BLOC", entity.getBlocRelationship());
 		assertEquals("Test comment", entity.getIntelligenceComment());
