@@ -96,16 +96,21 @@
 
 		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry</class>
 		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember</class>
+		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoles</class>
+		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRolesEmbeddedId</class>
 
 
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoles</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRolesEmbeddedId</class>
 
 
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySignaturesDocumentSummary</class>
 
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary</class>
@@ -137,6 +142,7 @@
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewDocumentDataCommitteeReportUrl</class>
+		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPersonSignedDocumentSummary</class>
 
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryDaily</class>
