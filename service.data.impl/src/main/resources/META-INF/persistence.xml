@@ -164,6 +164,10 @@
 
 		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewCommitteeProductivityMatrix</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewDecisionTemporalTrends</class>
+		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewMinistryDecisionImpact</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyDecisionFlow</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDecisionPattern</class>
 
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation</class>
