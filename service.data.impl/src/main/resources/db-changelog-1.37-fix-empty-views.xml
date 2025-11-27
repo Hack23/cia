@@ -6,7 +6,7 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
 <!-- 
-  Fix Empty Intelligence Views v1.36
+  Fix Empty Intelligence Views v1.37
   Author: Intelligence Operative & Political Analyst
   Date: 2025-11-27
   GitHub Issue: #7983 - OSINT Data Validation
@@ -43,7 +43,7 @@
 <!-- 1. FIX: Ministry Effectiveness Trends - Case-Insensitive Matching       -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="fix-ministry-effectiveness-1.36-001" failOnError="true">
+<changeSet author="intelligence-operative" id="fix-ministry-effectiveness-1.37-001" failOnError="true">
     <comment>
         Fix view_ministry_effectiveness_trends with case-insensitive org_code matching
         
@@ -208,7 +208,7 @@ ORDER BY org_code, period_start DESC;
 <!-- 2. FIX: Ministry Productivity Matrix - Case-Insensitive Matching        -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="fix-ministry-productivity-1.36-002" failOnError="true">
+<changeSet author="intelligence-operative" id="fix-ministry-productivity-1.37-002" failOnError="true">
     <comment>
         Fix view_ministry_productivity_matrix with case-insensitive org_code matching
         
@@ -303,7 +303,7 @@ ORDER BY mam.year DESC, mam.documents_produced DESC;
 <!-- 3. FIX: Ministry Risk Evolution - Case-Insensitive Matching             -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="fix-ministry-risk-evolution-1.36-003" failOnError="true">
+<changeSet author="intelligence-operative" id="fix-ministry-risk-evolution-1.37-003" failOnError="true">
     <comment>
         Fix view_ministry_risk_evolution with case-insensitive org_code matching
         
@@ -402,7 +402,7 @@ ORDER BY org_code, assessment_period DESC;
 <!-- 4. FIX: Coalition Alignment Matrix - Expand Date Range                   -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="fix-coalition-alignment-1.36-004" failOnError="true">
+<changeSet author="intelligence-operative" id="fix-coalition-alignment-1.37-004" failOnError="true">
     <comment>
         Fix view_riksdagen_coalition_alignment_matrix with expanded date range
         
@@ -498,7 +498,7 @@ ORDER BY alignment_percentage DESC, total_votes DESC;
 <!-- 5. FIX: Politician Risk Summary - Direct vote_data Aggregation          -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="fix-politician-risk-summary-1.36-005" failOnError="true">
+<changeSet author="intelligence-operative" id="fix-politician-risk-summary-1.37-005" failOnError="true">
     <comment>
         Fix view_politician_risk_summary using direct vote_data aggregation
         
