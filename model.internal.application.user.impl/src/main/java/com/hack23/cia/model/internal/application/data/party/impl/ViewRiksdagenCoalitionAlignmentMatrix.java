@@ -44,16 +44,16 @@ public final class ViewRiksdagenCoalitionAlignmentMatrix implements ModelObject 
 	@EmbeddedId
 	private ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId embeddedId;
 
-	@Column(name = "total_ballots")
+	@Column(name = "shared_votes")
 	private Long totalBallots;
 
-	@Column(name = "agreement_count")
+	@Column(name = "aligned_votes")
 	private Long agreementCount;
 
-	@Column(name = "disagreement_count")
+	@Column(name = "opposed_votes")
 	private Long disagreementCount;
 
-	@Column(name = "agreement_percentage")
+	@Column(name = "alignment_rate")
 	private Double agreementPercentage;
 
 	@Column(name = "coalition_likelihood")
