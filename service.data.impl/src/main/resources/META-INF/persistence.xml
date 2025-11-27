@@ -98,6 +98,7 @@
 		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember</class>
 		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoles</class>
 		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRolesEmbeddedId</class>
+		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentProposals</class>
 
 
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee</class>
