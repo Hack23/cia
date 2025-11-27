@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- Fix for import errors: Increase VARCHAR sizes for document_element fields -->
+    <!-- Error: "ERROR: value too long for type character varying(8192)" when importing EU committee
+    documents with long HTML note content -->
+    <changeSet author="import-error-fix" id="1736000000000-1">
+        <comment>Increase document_element.note from VARCHAR(8192) to VARCHAR(65536) to accommodate long EU committee notes with HTML lists</comment>
+        <modifyDataType tableName="document_element"
+            columnName="note"
+            newDataType="varchar(65536)" />
+    </changeSet>
+
+    <changeSet author="import-error-fix" id="1736000000000-2">
+        <comment>Increase document_element.note_title from VARCHAR(8192) to VARCHAR(16384) for consistency and future-proofing</comment>
+        <modifyDataType tableName="document_element"
+            columnName="note_title"
+            newDataType="varchar(16384)" />
+    </changeSet>
+
+    <changeSet author="import-error-fix" id="1736000000000-3">
+        <comment>Increase document_element.summary from VARCHAR(8192) to VARCHAR(65536) to match note field size</comment>
+        <modifyDataType tableName="document_element"
+            columnName="summary"
+            newDataType="varchar(65536)" />
+    </changeSet>
+
+</databaseChangeLog>

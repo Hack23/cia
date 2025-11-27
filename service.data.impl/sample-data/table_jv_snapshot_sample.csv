@@ -1,1337 +1,1333 @@
 snapshot_pk,type,version,state,changed_properties,managed_type,global_id_fk,commit_fk
-100,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": """",
-  ""address"": """",
-  ""registeredDate"": ""1971-01-01T00:00:00"",
-  ""city"": """",
-  ""hjid"": 1,
-  ""phoneNumber"": """",
-  ""partyName"": ""Politiskt Vilde"",
-  ""faxNumber"": """",
-  ""postCode"": """",
-  ""partyId"": ""232323"",
-  ""shortCode"": ""-"",
-  ""email"": """"
+1101600,INITIAL,1,"{
+  ""bankNumber"": ""76"",
+  ""lastName"": ""Svensk Larm"",
+  ""bornYear"": 1987,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Gävleborgs län"",
+  ""fullName"": ""Jim Svensk Larm"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Jim"",
+  ""electoralRegionNumber"": 25,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""NEJ"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0822010116020,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
 }","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11198,5466
+1101700,INITIAL,1,"{
+  ""intressentId"": ""0822010116020"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11199,5466
+1101800,INITIAL,1,"{
+  ""bankNumber"": ""77"",
+  ""lastName"": ""Wärnick"",
+  ""bornYear"": 1991,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Gävleborgs län"",
+  ""fullName"": ""Viktor Wärnick"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Viktor"",
+  ""electoralRegionNumber"": 25,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""FRÅNVARANDE"",
+  ""party"": ""M"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0796312429425,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11200,5467
+1101900,INITIAL,1,"{
+  ""intressentId"": ""0796312429425"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11201,5467
+1102000,INITIAL,1,"{
+  ""bankNumber"": ""78"",
+  ""lastName"": ""Lundh Sammeli"",
+  ""bornYear"": 1977,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Norrbottens län"",
+  ""fullName"": ""Fredrik Lundh Sammeli"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Fredrik"",
+  ""electoralRegionNumber"": 29,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""NEJ"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0911916463828,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11202,5468
+1102100,INITIAL,1,"{
+  ""intressentId"": ""0911916463828"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11203,5468
+1102200,INITIAL,1,"{
+  ""bankNumber"": ""79"",
+  ""lastName"": ""Lahti"",
+  ""bornYear"": 1964,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Norrbottens län"",
+  ""fullName"": ""Birger Lahti"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Birger"",
+  ""electoralRegionNumber"": 29,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""JA"",
+  ""party"": ""V"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0825441263617,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11204,5469
+1102300,INITIAL,1,"{
+  ""intressentId"": ""0825441263617"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11205,5469
+1102400,INITIAL,1,"{
+  ""bankNumber"": ""80"",
+  ""lastName"": ""Bengtsson"",
+  ""bornYear"": 1990,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Stockholms kommun"",
+  ""fullName"": ""Angelika Bengtsson"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Angelika"",
+  ""electoralRegionNumber"": 1,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""AVSTÅR"",
+  ""party"": ""SD"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0138741628520,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11206,5470
+1102500,INITIAL,1,"{
+  ""intressentId"": ""0138741628520"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11207,5470
+1427700,INITIAL,1,"{
+  ""fromDate"": ""2010-10-19T00:00:00"",
+  ""intressentId"": ""0893004490313"",
+  ""orderNumber"": ""20"",
+  ""orgCode"": ""KD"",
+  ""toDate"": ""2014-10-14T00:00:00"",
+  ""roleCode"": ""Ledamot"",
+  ""detail"": ""Krigsdelegationen"",
+  ""hjid"": 1146,
+  ""assignmentType"": ""Riksdagsorgan"",
+  ""status"": """"
+}","[
+  ""fromDate"",
+  ""intressentId"",
+  ""orderNumber"",
+  ""orgCode"",
+  ""toDate"",
+  ""roleCode"",
+  ""detail"",
   ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,100,100
-200,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": """",
-  ""address"": ""Box 10185"",
-  ""registeredDate"": ""1991-02-15T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 2,
-  ""phoneNumber"": ""08-16 09 30"",
-  ""partyName"": ""NyDemokrati"",
-  ""faxNumber"": """",
-  ""postCode"": ""10055"",
-  ""partyId"": ""170"",
-  ""shortCode"": ""NYD"",
-  ""email"": """"
+  ""assignmentType"",
+  ""status""
+]",com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData,14459,6972
+1427800,INITIAL,1,"{
+  ""detailType"": ""val"",
+  ""intressentId"": ""0893004490313"",
+  ""code"": ""KandiderarINastaVal"",
+  ""detail"": ""false"",
+  ""hjid"": 1169
 }","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,101,101
-300,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": """",
-  ""address"": ""Kyrkogatan 9"",
-  ""registeredDate"": ""2009-06-12T00:00:00"",
-  ""city"": ""Arlöv"",
-  ""hjid"": 3,
-  ""phoneNumber"": ""040-43 45 46"",
-  ""partyName"": ""Allianspartiet/Medborgarens röst"",
-  ""faxNumber"": ""040-43 00 75"",
-  ""postCode"": ""23234"",
-  ""partyId"": ""14"",
-  ""shortCode"": ""ALP"",
-  ""email"": """"
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,102,102
-400,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.socialdemokraterna.se"",
-  ""address"": "" "",
-  ""registeredDate"": ""1956-08-02T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 4,
-  ""phoneNumber"": ""08-700 26 00"",
-  ""partyName"": ""Arbetarepartiet-Socialdemokraterna"",
-  ""faxNumber"": ""08-20 42 57"",
-  ""postCode"": ""10560"",
-  ""partyId"": ""2"",
-  ""shortCode"": ""S"",
-  ""email"": ""info@sap.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,103,103
-500,INITIAL,1,"{
-  ""coAddress"": ""c/o Anders Königsson"",
-  ""website"": """",
-  ""phoneNumber"": ""073-694 13 14"",
-  ""address"": ""Kumminvägen 19"",
-  ""city"": ""Farsta"",
-  ""partyName"": ""Borgerlig Framtid"",
-  ""faxNumber"": """",
-  ""postCode"": ""12355"",
-  ""partyId"": ""1147"",
-  ""hjid"": 5,
-  ""shortCode"": ""---"",
-  ""email"": """"
-}","[
-  ""coAddress"",
-  ""website"",
-  ""phoneNumber"",
-  ""address"",
-  ""city"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""hjid"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,104,104
-600,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.centerpartiet.se"",
-  ""address"": ""Box 2200"",
-  ""registeredDate"": ""1995-05-18T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 6,
-  ""phoneNumber"": ""08-617 38 00"",
-  ""partyName"": ""Centerpartiet"",
-  ""faxNumber"": ""08-617 38 10"",
-  ""postCode"": ""10315"",
-  ""partyId"": ""4"",
-  ""shortCode"": ""C"",
-  ""email"": ""centerpartiet@centerpartiet.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,105,105
-700,INITIAL,1,"{
-  ""coAddress"": ""c/o Johan Liljegren"",
-  ""website"": ""www.direktdemokraterna.se"",
-  ""address"": ""Jägaregatan 9 A"",
-  ""registeredDate"": ""2014-07-01T00:00:00"",
-  ""city"": ""Göteborg"",
-  ""hjid"": 7,
-  ""phoneNumber"": ""070-670 85 68"",
-  ""partyName"": ""Direktdemokraterna"",
-  ""faxNumber"": """",
-  ""postCode"": ""41701"",
-  ""partyId"": ""1150"",
-  ""shortCode"": ""---"",
-  ""email"": ""info@direktdemokraterna.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,106,106
-800,INITIAL,1,"{
-  ""coAddress"": ""c/o Johanna Parikka Altenstedt"",
-  ""website"": ""www.djurensparti.se"",
-  ""address"": ""Mariagatan 9"",
-  ""registeredDate"": ""2014-02-19T00:00:00"",
-  ""city"": ""Lund"",
-  ""hjid"": 8,
-  ""phoneNumber"": ""0708-66 18 12"",
-  ""partyName"": ""Djurens parti"",
-  ""faxNumber"": """",
-  ""postCode"": ""22353"",
-  ""partyId"": ""1136"",
-  ""shortCode"": ""DjuP"",
-  ""email"": ""djurensparti@gmail.com""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,107,107
-900,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.enhet.se"",
-  ""address"": ""Abbedissavägen 27"",
-  ""registeredDate"": ""2014-03-12T00:00:00"",
-  ""city"": ""Skokloster"",
-  ""hjid"": 9,
-  ""phoneNumber"": ""076-148 12 00"",
-  ""partyName"": ""Enhet"",
-  ""faxNumber"": """",
-  ""postCode"": ""74695"",
-  ""partyId"": ""189"",
-  ""shortCode"": ""ENH"",
-  ""email"": ""info@enhet.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,108,108
-1000,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.larouche.se"",
-  ""address"": ""Box 6057"",
-  ""registeredDate"": ""1985-03-22T00:00:00"",
-  ""city"": ""Hägersten"",
-  ""hjid"": 10,
-  ""phoneNumber"": ""08-98 30 10"",
-  ""partyName"": ""Europeiska Arbetarpartiet-EAP"",
-  ""faxNumber"": ""08-98 30 90"",
-  ""postCode"": ""12906"",
-  ""partyId"": ""29"",
-  ""shortCode"": ""EAP"",
-  ""email"": ""larouche@nysol.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,109,109
-1100,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.feministisktinitiativ.se"",
-  ""address"": ""Box 498"",
-  ""registeredDate"": ""2006-03-07T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 11,
-  ""phoneNumber"": ""070-610 01 91"",
-  ""partyName"": ""Feministiskt initiativ"",
-  ""faxNumber"": """",
-  ""postCode"": ""10129"",
-  ""partyId"": ""532"",
-  ""shortCode"": ""FI"",
-  ""email"": ""info@feministisktinitiativ.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,110,110
-1200,INITIAL,1,"{
-  ""coAddress"": ""c/o Mellie Wahlberg"",
-  ""website"": ""www.frihets-partiet.se"",
-  ""address"": ""Sommaren 6 C, nb"",
-  ""registeredDate"": ""2010-02-15T00:00:00"",
-  ""city"": ""Bjuv"",
-  ""hjid"": 12,
-  ""phoneNumber"": ""0733-85 34 78"",
-  ""partyName"": ""Frihetspartiet"",
-  ""faxNumber"": """",
-  ""postCode"": ""26733"",
-  ""partyId"": ""979"",
-  ""shortCode"": ""---"",
-  ""email"": ""info@frihets-partiet.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,111,111
-1300,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": """",
-  ""address"": ""Adressuppgift saknas"",
-  ""registeredDate"": ""2004-03-11T00:00:00"",
-  ""city"": """",
-  ""hjid"": 13,
-  ""phoneNumber"": ""070-460 97 07"",
-  ""partyName"": ""Högerpartiet de konservativa"",
-  ""faxNumber"": """",
-  ""postCode"": """",
-  ""partyId"": ""452"",
-  ""shortCode"": ""---"",
-  ""email"": """"
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,112,112
-1400,INITIAL,1,"{
-  ""coAddress"": ""c/o Eva Nisser"",
-  ""website"": ""www.junilistan.se"",
-  ""address"": ""Fiskarbacken 12"",
-  ""registeredDate"": ""2004-02-27T00:00:00"",
-  ""city"": ""Saltsjö-Duvnäs"",
-  ""hjid"": 14,
-  ""phoneNumber"": """",
-  ""partyName"": ""Junilistan"",
-  ""faxNumber"": """",
-  ""postCode"": ""13150"",
-  ""partyId"": ""451"",
-  ""shortCode"": ""JL"",
-  ""email"": ""info@junilistan.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,113,113
-1500,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.liberalapartiet.se"",
-  ""address"": ""Box 38021"",
-  ""registeredDate"": ""2015-03-25T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 15,
-  ""phoneNumber"": ""070-608 10 89"",
-  ""partyName"": ""Klassiskt liberala partiet"",
-  ""faxNumber"": """",
-  ""postCode"": ""10064"",
-  ""partyId"": ""638"",
-  ""shortCode"": ""KLP"",
-  ""email"": ""info@liberalapartiet.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,114,114
-1600,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.kommunisterna.org"",
-  ""address"": ""Box 31187"",
-  ""registeredDate"": ""2005-01-12T00:00:00"",
-  ""city"": ""Göteborg"",
-  ""hjid"": 16,
-  ""phoneNumber"": ""031-12 26 31"",
-  ""partyName"": ""Kommunistiska Partiet"",
-  ""faxNumber"": ""031-24 51 72"",
-  ""postCode"": ""40032"",
-  ""partyId"": ""471"",
-  ""shortCode"": ""K"",
-  ""email"": ""info@kommunisterna.org""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,115,115
-1700,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.kristdemokraterna.se"",
-  ""address"": ""Box 2373"",
-  ""registeredDate"": ""1996-08-29T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 17,
-  ""phoneNumber"": ""08-723 25 00"",
-  ""partyName"": ""Kristdemokraterna"",
-  ""faxNumber"": ""08-723 25 10"",
-  ""postCode"": ""10318"",
-  ""partyId"": ""68"",
-  ""shortCode"": ""KD"",
-  ""email"": ""info@kristdemokraterna.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,116,116
-1800,INITIAL,1,"{
-  ""coAddress"": ""c/o Annette Westöö"",
-  ""website"": ""www.kristnavardepartiet.se"",
-  ""address"": ""Briljantgatan 77"",
-  ""registeredDate"": ""2014-02-24T00:00:00"",
-  ""city"": ""Västra Frölunda"",
-  ""hjid"": 18,
-  ""phoneNumber"": ""0706-23 12 11"",
-  ""partyName"": ""Kristna Värdepartiet"",
-  ""faxNumber"": """",
-  ""postCode"": ""42149"",
-  ""partyId"": ""1140"",
-  ""shortCode"": ""KrVP"",
-  ""email"": ""annette.westoo@kristnavardepartiet.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,117,117
-1900,INITIAL,1,"{
-  ""coAddress"": ""c/o Claes Littorin"",
-  ""website"": ""www.landsbygdspartiet.org"",
-  ""address"": ""Rungarns säteri 4"",
-  ""registeredDate"": ""2012-10-31T00:00:00"",
-  ""city"": ""Knutby"",
-  ""hjid"": 19,
-  ""phoneNumber"": ""0708-56 96 92"",
-  ""partyName"": ""Landsbygdspartiet Oberoende"",
-  ""faxNumber"": """",
-  ""postCode"": ""74012"",
-  ""partyId"": ""1011"",
-  ""shortCode"": ""LBPO"",
-  ""email"": ""c.littorin@telia.com""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,118,118
-2000,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.liberalerna.se"",
-  ""address"": ""Box 2253"",
-  ""registeredDate"": ""2015-11-30T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 20,
-  ""phoneNumber"": ""08-410 242 00"",
-  ""partyName"": ""Liberalerna"",
-  ""faxNumber"": ""08-509 116 60"",
-  ""postCode"": ""10316"",
-  ""partyId"": ""3"",
-  ""shortCode"": ""L"",
-  ""email"": ""info@liberalerna.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,119,119
-2100,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.folkpartiet.se"",
-  ""address"": ""Box 2253"",
-  ""registeredDate"": ""1990-12-17T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 21,
-  ""phoneNumber"": ""08-410 242 00"",
-  ""partyName"": ""Folkpartiet liberalerna"",
-  ""faxNumber"": ""08-509 116 60"",
-  ""postCode"": ""10316"",
-  ""partyId"": ""3"",
-  ""shortCode"": ""FP"",
-  ""email"": ""info@liberal.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,120,120
-2200,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.nordiskunion.nu"",
-  ""address"": ""Norregatan 5"",
-  ""registeredDate"": ""2015-11-13T00:00:00"",
-  ""city"": ""Skånes Fagerhult"",
-  ""hjid"": 22,
-  ""phoneNumber"": ""070-52 47 433"",
-  ""partyName"": ""LOTTOKRATIN"",
-  ""faxNumber"": """",
-  ""postCode"": ""28040"",
-  ""partyId"": ""518"",
-  ""shortCode"": ""---"",
-  ""email"": ""lottokratin@gmail.com""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,121,121
-2300,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.mp.se"",
-  ""address"": ""Pustegränd 1-3"",
-  ""registeredDate"": ""1985-02-04T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 23,
-  ""phoneNumber"": ""08-545 224 50"",
-  ""partyName"": ""Miljöpartiet de gröna"",
-  ""faxNumber"": ""08-545 224 60"",
-  ""postCode"": ""11820"",
-  ""partyId"": ""55"",
-  ""shortCode"": ""MP"",
-  ""email"": """"
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,122,122
-5700,INITIAL,1,"{
-  ""createdDate"": ""2025-11-23T16:56:33.883"",
-  ""languageEnabled"": false,
-  ""languageCode"": ""yi"",
-  ""languageName"": ""Yiddish"",
-  ""hjid"": 57
-}","[
-  ""createdDate"",
-  ""languageEnabled"",
-  ""languageCode"",
-  ""languageName"",
+  ""detailType"",
+  ""intressentId"",
+  ""code"",
+  ""detail"",
   ""hjid""
-]",com.hack23.cia.model.internal.application.system.impl.LanguageData,156,154
-2400,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.moderat.se"",
-  ""address"": ""Box 2080"",
-  ""registeredDate"": ""2013-09-06T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 24,
-  ""phoneNumber"": ""08-676 80 00"",
-  ""partyName"": ""Moderaterna"",
-  ""faxNumber"": ""08-676 81 30"",
-  ""postCode"": ""10312"",
-  ""partyId"": ""1"",
-  ""shortCode"": ""M"",
-  ""email"": ""info@moderat.se""
+]",com.hack23.cia.model.external.riksdagen.person.impl.DetailData,14460,6972
+1102600,INITIAL,1,"{
+  ""bankNumber"": ""81"",
+  ""lastName"": ""Redar"",
+  ""bornYear"": 1989,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Stockholms kommun"",
+  ""fullName"": ""Lawen Redar"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Lawen"",
+  ""electoralRegionNumber"": 1,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""NEJ"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,037561614928,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
 }","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11208,5471
+1102700,INITIAL,1,"{
+  ""intressentId"": ""037561614928"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11209,5471
+1102800,INITIAL,1,"{
+  ""bankNumber"": ""82"",
+  ""lastName"": ""Reuterskiöld"",
+  ""bornYear"": 1966,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Stockholms län"",
+  ""fullName"": ""Adam Reuterskiöld"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Adam"",
+  ""electoralRegionNumber"": 2,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""JA"",
+  ""party"": ""M"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,04571388712,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11210,5472
+1102900,INITIAL,1,"{
+  ""intressentId"": ""04571388712"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11211,5472
+1103000,INITIAL,1,"{
+  ""bankNumber"": ""83"",
+  ""lastName"": ""Kinnunen"",
+  ""bornYear"": 1983,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Stockholms län"",
+  ""fullName"": ""Martin Kinnunen"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Martin"",
+  ""electoralRegionNumber"": 2,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""AVSTÅR"",
+  ""party"": ""SD"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0294138886823,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11212,5473
+1103100,INITIAL,1,"{
+  ""intressentId"": ""0294138886823"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11213,5473
+1103200,INITIAL,1,"{
+  ""bankNumber"": ""84"",
+  ""lastName"": ""Dadgostar"",
+  ""bornYear"": 1985,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Stockholms län"",
+  ""fullName"": ""Nooshi Dadgostar"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Nooshi"",
+  ""electoralRegionNumber"": 2,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""JA"",
+  ""party"": ""V"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0721509806321,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11214,5474
+1103300,INITIAL,1,"{
+  ""intressentId"": ""0721509806321"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11215,5474
+1103400,INITIAL,1,"{
+  ""bankNumber"": ""85"",
+  ""lastName"": ""Völker"",
+  ""bornYear"": 1989,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Stockholms län"",
+  ""fullName"": ""Alexandra Völker"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Alexandra"",
+  ""electoralRegionNumber"": 2,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""FRÅNVARANDE"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0496341906327,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11216,5475
+1103500,INITIAL,1,"{
+  ""intressentId"": ""0496341906327"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11217,5475
+1103600,INITIAL,1,"{
+  ""bankNumber"": ""86"",
+  ""lastName"": ""Amloh"",
+  ""bornYear"": 1986,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Södermanlands län"",
+  ""fullName"": ""Sofia Amloh"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Sofia"",
+  ""electoralRegionNumber"": 4,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""NEJ"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0521260619925,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11218,5476
+1103800,INITIAL,1,"{
+  ""bankNumber"": ""87"",
+  ""lastName"": ""Lahti"",
+  ""bornYear"": 1969,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Södermanlands län"",
+  ""fullName"": ""Marielle Lahti"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Marielle"",
+  ""electoralRegionNumber"": 4,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""JA"",
+  ""party"": ""MP"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0348383585915,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11220,5477
+1103900,INITIAL,1,"{
+  ""intressentId"": ""0348383585915"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11221,5477
+1104000,INITIAL,1,"{
+  ""bankNumber"": ""88"",
+  ""lastName"": ""Löfstrand"",
+  ""bornYear"": 1976,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Östergötlands län"",
+  ""fullName"": ""Johan Löfstrand"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Johan"",
+  ""electoralRegionNumber"": 5,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""FRÅNVARANDE"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0612916684825,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11222,5478
+1104100,INITIAL,1,"{
+  ""intressentId"": ""0612916684825"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11223,5478
+1104200,INITIAL,1,"{
+  ""bankNumber"": ""89"",
+  ""lastName"": ""Nordström"",
+  ""bornYear"": 1963,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Östergötlands län"",
+  ""fullName"": ""Susanne Nordström"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Susanne"",
+  ""electoralRegionNumber"": 5,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""JA"",
+  ""party"": ""M"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0611350076611,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11224,5479
+1104300,INITIAL,1,"{
+  ""intressentId"": ""0611350076611"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11225,5479
+1104400,INITIAL,1,"{
+  ""bankNumber"": ""90"",
+  ""lastName"": ""Ödebrink"",
+  ""bornYear"": 1961,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Jönköpings län"",
+  ""fullName"": ""Carina Ödebrink"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Carina"",
+  ""electoralRegionNumber"": 6,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""NEJ"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,02910042914,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11226,5480
+1104500,INITIAL,1,"{
+  ""intressentId"": ""02910042914"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11227,5480
+1104600,INITIAL,1,"{
+  ""bankNumber"": ""91"",
+  ""lastName"": ""Rinaldo Miller"",
+  ""bornYear"": 1969,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Jönköpings län"",
+  ""fullName"": ""Camilla Rinaldo Miller"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Camilla"",
+  ""electoralRegionNumber"": 6,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""JA"",
+  ""party"": ""KD"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0302393368216,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11228,5481
+1104700,INITIAL,1,"{
+  ""intressentId"": ""0302393368216"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11229,5481
+1427900,INITIAL,1,"{
+  ""fromDate"": ""2010-10-12T00:00:00"",
+  ""intressentId"": ""0893004490313"",
+  ""orderNumber"": ""1"",
+  ""orgCode"": ""FöU"",
+  ""toDate"": ""2014-09-29T00:00:00"",
+  ""roleCode"": ""Vice ordförande"",
+  ""detail"": ""Försvarsutskottet"",
+  ""hjid"": 1116,
+  ""assignmentType"": ""uppdrag"",
+  ""status"": """"
+}","[
+  ""fromDate"",
+  ""intressentId"",
+  ""orderNumber"",
+  ""orgCode"",
+  ""toDate"",
+  ""roleCode"",
+  ""detail"",
   ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,123,123
-2500,INITIAL,1,"{
-  ""coAddress"": ""c/o Ercan Loströmmer"",
-  ""website"": """",
-  ""address"": ""Aprikosvägen 1 D"",
-  ""registeredDate"": ""2010-01-22T00:00:00"",
-  ""city"": ""Hässelby"",
-  ""hjid"": 25,
-  ""phoneNumber"": ""0738-93 23 53"",
-  ""partyName"": ""Mosebackedemokraterna"",
-  ""faxNumber"": """",
-  ""postCode"": ""16560"",
-  ""partyId"": ""976"",
-  ""shortCode"": ""---"",
-  ""email"": """"
+  ""assignmentType"",
+  ""status""
+]",com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData,14461,6972
+1104800,INITIAL,1,"{
+  ""bankNumber"": ""92"",
+  ""lastName"": ""Carlsson"",
+  ""bornYear"": 1954,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Malmö kommun"",
+  ""fullName"": ""Rose-Marie Carlsson"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Rose-Marie"",
+  ""electoralRegionNumber"": 11,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""NEJ"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0236597884217,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
 }","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11230,5482
+1104900,INITIAL,1,"{
+  ""intressentId"": ""0236597884217"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11231,5482
+1105000,INITIAL,1,"{
+  ""bankNumber"": ""93"",
+  ""lastName"": ""Ollén"",
+  ""bornYear"": 1959,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Malmö kommun"",
+  ""fullName"": ""Peter Ollén"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Peter"",
+  ""electoralRegionNumber"": 11,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""JA"",
+  ""party"": ""M"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0191189790215,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11232,5483
+1105100,INITIAL,1,"{
+  ""intressentId"": ""0191189790215"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11233,5483
+1105200,INITIAL,1,"{
+  ""bankNumber"": ""94"",
+  ""lastName"": ""Pihl Krabbe"",
+  ""bornYear"": 1947,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Skåne läns norra och östra"",
+  ""fullName"": ""Ewa Pihl Krabbe"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Ewa"",
+  ""electoralRegionNumber"": 14,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""NEJ"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0405594274208,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11234,5484
+1105300,INITIAL,1,"{
+  ""intressentId"": ""0405594274208"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11235,5484
+1105400,INITIAL,1,"{
+  ""bankNumber"": ""95"",
+  ""lastName"": ""Elofsson"",
+  ""bornYear"": 1950,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Skåne läns norra och östra"",
+  ""fullName"": ""Torsten Elofsson"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Torsten"",
+  ""electoralRegionNumber"": 14,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""FRÅNVARANDE"",
+  ""party"": ""KD"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0121015874810,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11236,5485
+1105500,INITIAL,1,"{
+  ""intressentId"": ""0121015874810"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11237,5485
+1105600,INITIAL,1,"{
+  ""bankNumber"": ""96"",
+  ""lastName"": ""Nilsson"",
+  ""bornYear"": 1972,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Hallands län"",
+  ""fullName"": ""Jennie Nilsson"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Jennie"",
+  ""electoralRegionNumber"": 15,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""FRÅNVARANDE"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0339894357417,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
+}","[
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11238,5486
+1105700,INITIAL,1,"{
+  ""intressentId"": ""0339894357417"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
+}","[
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11239,5486
+1428000,INITIAL,1,"{
+  ""fromDate"": ""2012-10-04T00:00:00"",
+  ""intressentId"": ""0893004490313"",
+  ""orderNumber"": ""3"",
+  ""orgCode"": ""NR"",
+  ""toDate"": ""2013-09-16T00:00:00"",
+  ""roleCode"": ""Suppleant"",
+  ""detail"": ""Nordiska rådets svenska delegation"",
+  ""hjid"": 1150,
+  ""assignmentType"": ""Riksdagsorgan"",
+  ""status"": """"
+}","[
+  ""fromDate"",
+  ""intressentId"",
+  ""orderNumber"",
+  ""orgCode"",
+  ""toDate"",
+  ""roleCode"",
+  ""detail"",
   ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,124,124
-2600,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": """",
-  ""address"": ""Box 52"",
-  ""registeredDate"": ""2015-07-09T00:00:00"",
-  ""city"": ""Grängesberg"",
-  ""hjid"": 26,
-  ""phoneNumber"": ""0738-396 301"",
-  ""partyName"": ""Nordiska motståndsrörelsen"",
-  ""faxNumber"": """",
-  ""postCode"": ""77222"",
-  ""partyId"": ""1273"",
-  ""shortCode"": ""---"",
-  ""email"": ""info@nordfront.se""
+  ""assignmentType"",
+  ""status""
+]",com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData,14462,6972
+1105800,INITIAL,1,"{
+  ""bankNumber"": ""97"",
+  ""lastName"": ""Dibrani"",
+  ""bornYear"": 1985,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Hallands län"",
+  ""fullName"": ""Adnan Dibrani"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Adnan"",
+  ""electoralRegionNumber"": 15,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""NEJ"",
+  ""party"": ""S"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0442629549320,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
 }","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,125,125
-2700,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.norrlandska-samlingspartiet.se"",
-  ""address"": ""Box 272"",
-  ""registeredDate"": ""2010-02-26T00:00:00"",
-  ""city"": ""Östersund"",
-  ""hjid"": 27,
-  ""phoneNumber"": ""072-22 55 26"",
-  ""partyName"": ""Norrländska Samlingspartiet"",
-  ""faxNumber"": """",
-  ""postCode"": ""83123"",
-  ""partyId"": ""995"",
-  ""shortCode"": ""NorrS"",
-  ""email"": ""jt.lindh@norrlandspartiet""
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11240,5487
+1105900,INITIAL,1,"{
+  ""intressentId"": ""0442629549320"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
 }","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,126,126
-2800,INITIAL,1,"{
-  ""coAddress"": ""c/o Karl Gustafson"",
-  ""website"": """",
-  ""phoneNumber"": ""0581-504 05"",
-  ""address"": ""Kvarnbergavägen 21"",
-  ""city"": ""Gusselby"",
-  ""partyName"": ""Permalogiskt Samhälle"",
-  ""faxNumber"": """",
-  ""postCode"": ""71195"",
-  ""partyId"": ""1277"",
-  ""hjid"": 28,
-  ""shortCode"": ""---"",
-  ""email"": """"
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11241,5487
+1106000,INITIAL,1,"{
+  ""bankNumber"": ""98"",
+  ""lastName"": ""Dioukarev"",
+  ""bornYear"": 1993,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""man"",
+  ""electoralRegion"": ""Göteborgs kommun"",
+  ""fullName"": ""Dennis Dioukarev"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Dennis"",
+  ""electoralRegionNumber"": 16,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""AVSTÅR"",
+  ""party"": ""SD"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0344222203323,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
 }","[
-  ""coAddress"",
-  ""website"",
-  ""phoneNumber"",
-  ""address"",
-  ""city"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""hjid"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,127,127
-2900,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.piratpartiet.se"",
-  ""address"": ""Box 307"",
-  ""registeredDate"": ""2006-02-15T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 29,
-  ""phoneNumber"": ""08-720 04 00"",
-  ""partyName"": ""Piratpartiet"",
-  ""faxNumber"": """",
-  ""postCode"": ""10126"",
-  ""partyId"": ""524"",
-  ""shortCode"": ""PP"",
-  ""email"": ""info@piratpartiet.se""
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11242,5488
+1106100,INITIAL,1,"{
+  ""intressentId"": ""0344222203323"",
+  ""issue"": ""3"",
+  ""ballotId"": ""2C788119-657E-4479-81F3-BE7F9C3A6170"",
+  ""concern"": ""SAKFRÅGAN""
 }","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,128,128
-3000,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.socialisterna.org"",
-  ""address"": ""Box 73"",
-  ""registeredDate"": ""1998-03-31T00:00:00"",
-  ""city"": ""Farsta"",
-  ""hjid"": 30,
-  ""phoneNumber"": ""08-605 94 03"",
-  ""partyName"": ""Rättvisepartiet Socialisterna"",
-  ""faxNumber"": ""08-556 252 52"",
-  ""postCode"": ""12322"",
-  ""partyId"": ""131"",
-  ""shortCode"": ""RS"",
-  ""email"": ""rs@socialisterna.org""
+  ""intressentId"",
+  ""issue"",
+  ""ballotId"",
+  ""concern""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId,11243,5488
+1106200,INITIAL,1,"{
+  ""bankNumber"": ""99"",
+  ""lastName"": ""Hänel Sandström"",
+  ""bornYear"": 1968,
+  ""ballotType"": ""HUVUD"",
+  ""gender"": ""kvinna"",
+  ""electoralRegion"": ""Göteborgs kommun"",
+  ""fullName"": ""Marie-Louise Hänel Sandström"",
+  ""label"": ""SkU8"",
+  ""firstName"": ""Marie-Louise"",
+  ""electoralRegionNumber"": 16,
+  ""voteDate"": ""2023-03-29T00:00:00"",
+  ""place"": """",
+  ""rm"": ""2022/23"",
+  ""vote"": ""JA"",
+  ""party"": ""M"",
+  ""embeddedId"": {
+    ""valueObject"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId"",
+    ""ownerId"": {
+      ""entity"": ""com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"",
+      ""cdoId"": ""3,2C788119-657E-4479-81F3-BE7F9C3A6170,0810852280213,SAKFRÅGAN""
+    },
+    ""fragment"": ""embeddedId""
+  }
 }","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,129,129
-3100,INITIAL,1,"{
-  ""coAddress"": ""c/o Johan Söderlin"",
-  ""website"": """",
-  ""address"": ""Näsbyborg, Näsbyborgsvägen 202"",
-  ""registeredDate"": ""1991-03-27T00:00:00"",
-  ""city"": ""Lövestad"",
-  ""hjid"": 31,
-  ""phoneNumber"": ""0416-340 49"",
-  ""partyName"": ""Sjöbopartiet"",
-  ""faxNumber"": """",
-  ""postCode"": ""27572"",
-  ""partyId"": ""172"",
-  ""shortCode"": ""SJP"",
-  ""email"": ""soderlin@hotmail.com""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,130,130
-3200,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.skanepartiet.org"",
-  ""address"": ""S Lindholmsvägen 270-70"",
-  ""registeredDate"": ""1979-05-15T00:00:00"",
-  ""city"": ""Svedala"",
-  ""hjid"": 32,
-  ""phoneNumber"": ""040-12 02 12"",
-  ""partyName"": ""Skånepartiet"",
-  ""faxNumber"": ""040-12 32 27"",
-  ""postCode"": ""23391"",
-  ""partyId"": ""54"",
-  ""shortCode"": ""SKÅ"",
-  ""email"": ""info@skanepartiet.org""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,131,131
-3300,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.socialapartiet.se"",
-  ""address"": ""Adressuppgift saknas"",
-  ""registeredDate"": ""2009-02-11T00:00:00"",
-  ""city"": """",
-  ""hjid"": 33,
-  ""phoneNumber"": """",
-  ""partyName"": ""Sociala Partiet (SP)"",
-  ""faxNumber"": """",
-  ""postCode"": """",
-  ""partyId"": ""522"",
-  ""shortCode"": ""---"",
-  ""email"": ""info@socialapartiet.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,132,132
-3400,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""http://www.socialistiskapartiet.se"",
-  ""address"": ""Box 5073"",
-  ""registeredDate"": ""1985-02-18T00:00:00"",
-  ""city"": ""Johanneshov"",
-  ""hjid"": 34,
-  ""phoneNumber"": ""08-31 08 50"",
-  ""partyName"": ""Socialistiska Partiet"",
-  ""faxNumber"": ""08-441 45 76"",
-  ""postCode"": ""12116"",
-  ""partyId"": ""74"",
-  ""shortCode"": ""SOC.P"",
-  ""email"": ""info@socialistiskapartiet.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,133,133
-5800,INITIAL,1,"{
-  ""createdDate"": ""2025-11-23T16:56:33.883"",
-  ""languageEnabled"": false,
-  ""languageCode"": ""cs"",
-  ""languageName"": ""Czech"",
-  ""hjid"": 58
-}","[
-  ""createdDate"",
-  ""languageEnabled"",
-  ""languageCode"",
-  ""languageName"",
-  ""hjid""
-]",com.hack23.cia.model.internal.application.system.impl.LanguageData,157,155
-717615200,INITIAL,1,"{
-  ""id"": ""NY.GDP.MKTP.KN"",
-  ""value"": ""GDP (constant LCU)""
-}","[
-  ""id"",
-  ""value""
-]",com.hack23.cia.model.external.worldbank.data.impl.Indicator,7177777,3583802
-3500,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.spi-valfarden.se"",
-  ""address"": ""Orups gränd 3"",
-  ""registeredDate"": ""2013-07-02T00:00:00"",
-  ""city"": ""Halmstad"",
-  ""hjid"": 35,
-  ""phoneNumber"": ""08-550 30 333"",
-  ""partyName"": ""SPI Välfärden"",
-  ""faxNumber"": """",
-  ""postCode"": ""30243"",
-  ""partyId"": ""107"",
-  ""shortCode"": ""SPI"",
-  ""email"": ""info@spi-valfarden.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,134,134
-3600,INITIAL,1,"{
-  ""coAddress"": ""c/o Benny Haag"",
-  ""website"": ""www.spritpartiet.se"",
-  ""address"": ""Nackanäsparken 4"",
-  ""registeredDate"": ""2010-03-04T00:00:00"",
-  ""city"": ""Nacka"",
-  ""hjid"": 36,
-  ""phoneNumber"": ""073-656 44 19"",
-  ""partyName"": ""Spritpartiet"",
-  ""faxNumber"": """",
-  ""postCode"": ""13133"",
-  ""partyId"": ""1004"",
-  ""shortCode"": ""---"",
-  ""email"": ""kontakt@spritpartiet.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,135,135
-3700,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.svenskafornuftspartiet.eu"",
-  ""address"": ""Rullstensvägen 13"",
-  ""registeredDate"": ""2014-04-10T00:00:00"",
-  ""city"": ""Åby"",
-  ""hjid"": 37,
-  ""phoneNumber"": ""0739-74 20 53"",
-  ""partyName"": ""Svenska Förnufts Partiet (SFP)"",
-  ""faxNumber"": """",
-  ""postCode"": ""61634"",
-  ""partyId"": ""1187"",
-  ""shortCode"": ""---"",
-  ""email"": ""info@svenskafornuftspartiet.eu""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,136,136
-3800,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.sverigedemokraterna.se"",
-  ""address"": ""Box 20085"",
-  ""registeredDate"": ""1991-02-08T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 38,
-  ""phoneNumber"": ""08-50 00 00 50"",
-  ""partyName"": ""Sverigedemokraterna"",
-  ""faxNumber"": ""08-50 00 00 68"",
-  ""postCode"": ""10460"",
-  ""partyId"": ""110"",
-  ""shortCode"": ""SD"",
-  ""email"": ""info@sverigedemokraterna.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,137,137
-3900,INITIAL,1,"{
-  ""coAddress"": ""c/o Theo Papaioannou"",
-  ""website"": ""www.vagvaletgbg.se"",
-  ""address"": ""Bokskogsbacken 83"",
-  ""registeredDate"": ""2014-02-21T00:00:00"",
-  ""city"": ""Hisings Backa"",
-  ""hjid"": 39,
-  ""phoneNumber"": ""0730-94 95 91"",
-  ""partyName"": ""Vägvalet"",
-  ""faxNumber"": """",
-  ""postCode"": ""42256"",
-  ""partyId"": ""1138"",
-  ""shortCode"": ""VägV"",
-  ""email"": ""info@vagvaletgbg.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,138,138
-4000,INITIAL,1,"{
-  ""coAddress"": """",
-  ""website"": ""www.vansterpartiet.se"",
-  ""address"": ""Box 12660"",
-  ""registeredDate"": ""1990-06-15T00:00:00"",
-  ""city"": ""Stockholm"",
-  ""hjid"": 40,
-  ""phoneNumber"": ""08-654 08 20"",
-  ""partyName"": ""Vänsterpartiet"",
-  ""faxNumber"": ""08-653 23 85"",
-  ""postCode"": ""11293"",
-  ""partyId"": ""5"",
-  ""shortCode"": ""V"",
-  ""email"": ""info@vansterpartiet.se""
-}","[
-  ""coAddress"",
-  ""website"",
-  ""address"",
-  ""registeredDate"",
-  ""city"",
-  ""hjid"",
-  ""phoneNumber"",
-  ""partyName"",
-  ""faxNumber"",
-  ""postCode"",
-  ""partyId"",
-  ""shortCode"",
-  ""email""
-]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,139,139
-4100,INITIAL,1,"{
-  ""configurationGroup"": ""EXTERNAL_SERVICES"",
-  ""component"": ""EmailServiceImpl"",
-  ""createdDate"": ""2025-11-23T16:56:33.595"",
-  ""configDescription"": ""Send email"",
-  ""componentTitle"": ""Send email"",
-  ""componentDescription"": ""Responsible for sending email"",
-  ""propertyValue"": ""false"",
-  ""updatedDate"": ""2025-11-23T16:56:33.595"",
-  ""configTitle"": ""Email configuration send emails"",
-  ""hjid"": 41,
-  ""propertyId"": ""application.email.send.email""
-}","[
-  ""configurationGroup"",
-  ""component"",
-  ""createdDate"",
-  ""configDescription"",
-  ""componentTitle"",
-  ""componentDescription"",
-  ""propertyValue"",
-  ""updatedDate"",
-  ""configTitle"",
-  ""hjid"",
-  ""propertyId""
-]",com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration,140,140
-4200,INITIAL,1,"{
-  ""configurationGroup"": ""EXTERNAL_SERVICES"",
-  ""component"": ""EmailServiceImpl"",
-  ""createdDate"": ""2025-11-23T16:56:33.615"",
-  ""configDescription"": ""From email"",
-  ""componentTitle"": ""Send email"",
-  ""componentDescription"": ""Responsible for sending email"",
-  ""propertyValue"": ""admin@hack23.com"",
-  ""updatedDate"": ""2025-11-23T16:56:33.615"",
-  ""configTitle"": ""Email configuration from email"",
-  ""hjid"": 42,
-  ""propertyId"": ""application.email.from.email""
-}","[
-  ""configurationGroup"",
-  ""component"",
-  ""createdDate"",
-  ""configDescription"",
-  ""componentTitle"",
-  ""componentDescription"",
-  ""propertyValue"",
-  ""updatedDate"",
-  ""configTitle"",
-  ""hjid"",
-  ""propertyId""
-]",com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration,141,141
-4300,INITIAL,1,"{
-  ""configurationGroup"": ""EXTERNAL_SERVICES"",
-  ""component"": ""EmailServiceImpl"",
-  ""createdDate"": ""2025-11-23T16:56:33.629"",
-  ""configDescription"": ""Smtp Host"",
-  ""componentTitle"": ""Smtp Host"",
-  ""componentDescription"": ""Responsible for sending email"",
-  ""propertyValue"": ""localhost"",
-  ""updatedDate"": ""2025-11-23T16:56:33.629"",
-  ""configTitle"": ""Email configuration smtp host"",
-  ""hjid"": 43,
-  ""propertyId"": ""application.email.smtp.host""
-}","[
-  ""configurationGroup"",
-  ""component"",
-  ""createdDate"",
-  ""configDescription"",
-  ""componentTitle"",
-  ""componentDescription"",
-  ""propertyValue"",
-  ""updatedDate"",
-  ""configTitle"",
-  ""hjid"",
-  ""propertyId""
-]",com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration,142,142
-4400,INITIAL,1,"{
-  ""configurationGroup"": ""EXTERNAL_SERVICES"",
-  ""component"": ""EmailServiceImpl"",
-  ""createdDate"": ""2025-11-23T16:56:33.644"",
-  ""configDescription"": ""Smtp port"",
-  ""componentTitle"": ""Smtp port"",
-  ""componentDescription"": ""Responsible for sending email"",
-  ""propertyValue"": ""587"",
-  ""updatedDate"": ""2025-11-23T16:56:33.644"",
-  ""configTitle"": ""Email configuration smtp port"",
-  ""hjid"": 44,
-  ""propertyId"": ""application.email.smtp.port""
-}","[
-  ""configurationGroup"",
-  ""component"",
-  ""createdDate"",
-  ""configDescription"",
-  ""componentTitle"",
-  ""componentDescription"",
-  ""propertyValue"",
-  ""updatedDate"",
-  ""configTitle"",
-  ""hjid"",
-  ""propertyId""
-]",com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration,143,143
-5900,INITIAL,1,"{
-  ""createdDate"": ""2025-11-23T16:56:33.883"",
-  ""languageEnabled"": false,
-  ""languageCode"": ""el"",
-  ""languageName"": ""Greek"",
-  ""hjid"": 59
-}","[
-  ""createdDate"",
-  ""languageEnabled"",
-  ""languageCode"",
-  ""languageName"",
-  ""hjid""
-]",com.hack23.cia.model.internal.application.system.impl.LanguageData,158,156
-1015862400,INITIAL,1,"{
-  ""id"": ""gt121857"",
-  ""hjid"": 1643629,
-  ""content"": ""\u003cdokumentstatus\u003e\u003cdokument\u003e\n \u003changar_id\u003e2403604\u003c/hangar_id\u003e\n \u003cdok_id\u003eGT121857\u003c/dok_id\u003e\n \u003crm\u003e2005/06\u003c/rm\u003e\n \u003cbeteckning\u003e1857\u003c/beteckning\u003e\n \u003ctyp\u003efrs\u003c/typ\u003e\n \u003csubtyp\u003e\u003c/subtyp\u003e\n \u003cdoktyp\u003efrs\u003c/doktyp\u003e\n \u003ctyprubrik\u003eSvar på skriftlig fråga 2005/06:1857 besvarad av \u003c/typrubrik\u003e\n \u003cdokumentnamn\u003eSvar på skriftlig fråga\u003c/dokumentnamn\u003e\n \u003cdebattnamn\u003eSvar på skriftlig fråga\u003c/debattnamn\u003e\n \u003ctempbeteckning\u003e \u003c/tempbeteckning\u003e\n \u003corgan\u003e\u003c/organ\u003e\n \u003cmottagare\u003eFörsvarsminister Leni Björklund\u003c/mottagare\u003e\n \u003cnummer\u003e1857\u003c/nummer\u003e\n \u003cslutnummer\u003e0\u003c/slutnummer\u003e\n \u003cdatum\u003e2006-06-28 00:00:00\u003c/datum\u003e\n \u003csystemdatum\u003e2006-09-22 15:40:06\u003c/systemdatum\u003e\n \u003cpublicerad\u003e2006-06-28 00:00:00\u003c/publicerad\u003e\n \u003ctitel\u003eVisbyklassen\u003c/titel\u003e\n \u003csubtitel\u003e\u003c/subtitel\u003e\n \u003cstatus\u003e\u003c/status\u003e\n \u003chtmlformat\u003e\u003c/htmlformat\u003e\n \u003crelaterat_id\u003e\u003c/relaterat_id\u003e\n \u003csource\u003e\u003c/source\u003e\n \u003csourceid\u003e\u003c/sourceid\u003e\n \u003cdokument_url_text\u003ehttps://data.riksdagen.se/dokument/GT121857/text\u003c/dokument_url_text\u003e\n \u003cdokument_url_html\u003ehttps://data.riksdagen.se/dokument/GT121857/text\u003c/dokument_url_html\u003e\n \u003cdokumentstatus_url_xml\u003ehttps://data.riksdagen.se/dokument/GT121857/text\u003c/dokumentstatus_url_xml\u003e\n \u003chtml\u003e \n \n\u0026lt;div class\u003dSection1\u0026gt; \n \n\u0026lt;p class\u003dFrgeSvarDatum style\u003d\u0027margin-top:0cm;line-height:normal\u0027\u0026gt;\u0026lt;a \nname\u003dPassTempLäge\u0026gt;\u0026lt;/a\u0026gt;\u0026lt;i style\u003d\u0027mso-bidi-font-style:normal\u0027\u0026gt;\u0026lt;font size\u003d2 \nface\u003dVerdana\u0026gt;\u0026lt;span lang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;den 28 \njuni \u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/i\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dFrgesvar style\u003d\u0027margin-top:0cm;line-height:normal;page-break-after: \nauto\u0027\u0026gt;\u0026lt;b style\u003d\u0027mso-bidi-font-weight:normal\u0027\u0026gt;\u0026lt;font size\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span \nlang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Svar på fråga 2005/06:1857 \nom Visbyklassen\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dBeslutsfattande style\u003d\u0027line-height:normal\u0027\u0026gt;\u0026lt;font size\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span \nlang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Försvarsminister Leni \nBjörklund\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dMsoNormalIndent style\u003d\u0027line-height:normal\u0027\u0026gt;\u0026lt;a name\u003dTemp\u0026gt;\u0026lt;/a\u0026gt;\u0026lt;font \nsize\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span lang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Allan \nWidman har frågat mig vilka åtgärder jag ämnar vidta så att en korvett ur \nVisbyklassen snarast kan insättas i en multinationell sjöstridsstyrka och som \ndel av en fredsstödjande operation.\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dMsoNormalIndent style\u003d\u0027line-height:normal\u0027\u0026gt;\u0026lt;font size\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span \nlang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Det första fartyget av \nVisbyklassens fem fartyg planeras bli operativt under 2008. Samtliga fem fartyg \nplaneras vara operativa 2010.\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dMsoNormalIndent style\u003d\u0027line-height:normal\u0027\u0026gt;\u0026lt;font size\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span \nlang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Sverige har sedan några år \ntillbaka anmält en korvettstyrka, omfattande två fartyg samt ett stödfartyg, \ntill internationella styrkeregister. Förbandet kallas för internationella \nkorvettstyrkan, IKS. Förbandet har en beredskap om 30 dagar. De fartyg som nu \nutgör internationella korvettstyrkan är två fartyg ur Göteborgsklassen, \ningående i fjärde Sjöstridsflottiljen baserad vid Muskö. I takt med att \nVisbykorvetterna blir operativa kommer Göteborgskorvetterna att avvecklas. \nAvsikten är därmed att Visbykorvetterna i framtiden kommer att utgöra stommen i \nden internationella korvettstyrkan.\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dMsoNormalIndent style\u003d\u0027line-height:normal\u0027\u0026gt;\u0026lt;font size\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span \nlang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Visbysystemet är konstruerat \nför att kunna genomföra flera uppgifter samtidigt. Detta innebär att fartygen är \nmångfunktionella och kan bland annat nyttjas för att utföra sjökontroll, \nminröjning samt spaning. Samtliga dessa förmågor kan komma väl till pass vid en \neventuell internationell insats.\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;/div\u0026gt; \n \n\u003c/html\u003e\n\u003c/dokument\u003e\n\u003cdokaktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eINL\u003c/kod\u003e\n\u003cnamn\u003eInlämnad\u003c/namn\u003e\n\u003cdatum\u003e2006-06-19 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eBESV\u003c/kod\u003e\n\u003cnamn\u003eBesvarad\u003c/namn\u003e\n\u003cdatum\u003e2006-06-28 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eBESV\u003c/kod\u003e\n\u003cnamn\u003eBesvarad\u003c/namn\u003e\n\u003cdatum\u003e2006-07-03 00:00:00\u003c/datum\u003e\n\u003cstatus\u003eplanerad\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eANM\u003c/kod\u003e\n\u003cnamn\u003eAnmäld\u003c/namn\u003e\n\u003cdatum\u003e2006-10-02 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eSA\u003c/kod\u003e\n\u003cnamn\u003eSvar anmält\u003c/namn\u003e\n\u003cdatum\u003e2006-10-02 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003c/dokaktivitet\u003e\n\u003cdokintressent\u003e\n\u003cintressent\u003e\n\u003cintressent_id\u003e0286593079005\u003c/intressent_id\u003e\n\u003cnamn\u003eLeni Björklund\u003c/namn\u003e\n\u003cpartibet\u003eS\u003c/partibet\u003e\n\u003cordning\u003e1\u003c/ordning\u003e\n\u003croll\u003ebesvarare\u003c/roll\u003e\n\u003c/intressent\u003e\n\u003cintressent\u003e\n\u003cintressent_id\u003e0446541913415\u003c/intressent_id\u003e\n\u003cnamn\u003eAllan Widman\u003c/namn\u003e\n\u003cpartibet\u003eFP\u003c/partibet\u003e\n\u003cordning\u003e1\u003c/ordning\u003e\n\u003croll\u003efragestallare\u003c/roll\u003e\n\u003c/intressent\u003e\n\u003c/dokintressent\u003e\n\u003cdokreferens\u003e\n\u003creferens\u003e\n\u003creferenstyp\u003efråga\u003c/referenstyp\u003e\n\u003cuppgift\u003eSkriftlig fråga 2005/06:1857 Visbyklassen\u003c/uppgift\u003e\n\u003cref_dok_id\u003eGT111857\u003c/ref_dok_id\u003e\n\u003cref_dok_typ\u003efr\u003c/ref_dok_typ\u003e\n\u003cref_dok_rm\u003e2005/06\u003c/ref_dok_rm\u003e\n\u003cref_dok_bet\u003e1857\u003c/ref_dok_bet\u003e\n\u003cref_dok_titel\u003eVisbyklassen\u003c/ref_dok_titel\u003e\n\u003cref_dok_subtitel\u003e\u003c/ref_dok_subtitel\u003e\n\u003cref_dok_subtyp\u003e\u003c/ref_dok_subtyp\u003e\n\u003cref_dok_dokumentnamn\u003eSkriftlig fråga\u003c/ref_dok_dokumentnamn\u003e\n\u003c/referens\u003e\n\u003c/dokreferens\u003e\n\u003c/dokumentstatus\u003e\n""
-}","[
-  ""id"",
-  ""hjid"",
-  ""content""
-]",com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData,10156779,4492000
-4500,INITIAL,1,"{
-  ""configurationGroup"": ""EXTERNAL_SERVICES"",
-  ""component"": ""EmailServiceImpl"",
-  ""createdDate"": ""2025-11-23T16:56:33.658"",
-  ""configDescription"": ""Smtp username"",
-  ""componentTitle"": ""Smtp username"",
-  ""componentDescription"": ""Responsible for sending email"",
-  ""propertyValue"": ""username"",
-  ""updatedDate"": ""2025-11-23T16:56:33.658"",
-  ""configTitle"": ""Email configuration smtp username"",
-  ""hjid"": 45,
-  ""propertyId"": ""application.email.smtp.username""
-}","[
-  ""configurationGroup"",
-  ""component"",
-  ""createdDate"",
-  ""configDescription"",
-  ""componentTitle"",
-  ""componentDescription"",
-  ""propertyValue"",
-  ""updatedDate"",
-  ""configTitle"",
-  ""hjid"",
-  ""propertyId""
-]",com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration,144,144
+  ""bankNumber"",
+  ""lastName"",
+  ""bornYear"",
+  ""ballotType"",
+  ""gender"",
+  ""electoralRegion"",
+  ""fullName"",
+  ""label"",
+  ""firstName"",
+  ""electoralRegionNumber"",
+  ""voteDate"",
+  ""place"",
+  ""rm"",
+  ""vote"",
+  ""party"",
+  ""embeddedId""
+]",com.hack23.cia.model.external.riksdagen.votering.impl.VoteData,11244,5489

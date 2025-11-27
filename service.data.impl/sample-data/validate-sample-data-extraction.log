@@ -1,0 +1,113 @@
+==================================================
+CIA Sample Data Extraction Validator
+==================================================
+
+Validating directory: /workspaces/cia/service.data.impl/sample-data/
+
+==================================================
+=== FILE COUNT VALIDATION                      ===
+==================================================
+
+Expected vs Actual CSV Files:
+  Tables: 87 / 80 expected
+  Views: 77 / 84 expected
+  Distinct value sets: 8 / 8 expected
+  Metadata files: 3 / 3 expected
+  Total: 175 / 175 expected
+
+⚠️  WARNING: More tables than expected
+   Extra: 7 table CSV files
+❌ FAIL: Missing view extractions!
+   Missing: 7 view CSV files
+✅ PASS: All distinct value sets extracted (8 files)
+✅ PASS: All metadata files generated (3 files)
+
+==================================================
+=== EMPTY FILE DETECTION                       ===
+==================================================
+
+✅ PASS: No empty CSV files found
+
+==================================================
+=== HEADER VALIDATION                          ===
+==================================================
+
+✅ PASS: All CSV files have valid headers (checked 175 files)
+
+==================================================
+=== FILE SIZE ANALYSIS                         ===
+==================================================
+
+⚠️  WARNING: Found 29 suspiciously small CSV files (< 100 bytes):
+   ./view_pg_stat_statements_info_sample.csv - 54
+   ./table_user_account_address_sample.csv - 21
+   ./table_sweden_county_electoral_regi_0_sample.csv - 5
+   ./table_indicators_element_sample.csv - 31
+   ./table_operational_information_cont_0_sample.csv - 42
+   ./table_data_source_content_sample.csv - 42
+   ./table_sweden_county_data_container_sample.csv - 5
+   ./table_target_profile_content_sample.csv - 42
+   ./table_domain_portal_sample.csv - 17
+   ./table_person_detail_element_sample.csv - 36
+   ./table_data_element_sample.csv - 31
+   ./table_detail_element_sample.csv - 43
+   ./table_sweden_parliament_electoral__0_sample.csv - 5
+   ./table_sweden_election_region_sample.csv - 40
+   ./table_vote_meta_data_sample.csv - 70
+   ./table_sweden_county_data_sample.csv - 53
+   ./table_performance_indicator_content_sample.csv - 42
+   ./table_sweden_election_type_sample.csv - 95
+   ./view_riksdagen_party_signatures_document_summary_sample.csv - 85
+   ./table_countries_element_sample.csv - 31
+   ./table_person_assignment_element_sample.csv - 5
+   ./table_quality_assurance_content_sample.csv - 42
+   ./table_person_container_data_sample.csv - 36
+   ./table_databasechangeloglock_sample.csv - 37
+   ./table_sweden_county_electoral_regi_1_sample.csv - 59
+   ./table_sweden_municipality_data_sample.csv - 56
+   ./table_person_container_element_sample.csv - 5
+   ./table_sweden_election_type_contain_0_sample.csv - 5
+   ./table_qrtz_locks_sample.csv - 81
+   (These may be from empty tables/views - verify expected)
+
+Total extraction size: 4.9M
+
+==================================================
+=== COVERAGE STATISTICS                        ===
+==================================================
+
+Coverage metrics from extraction_statistics.csv:
+
+  category            total_in_schema  extracted_count  excluded_count  coverage_pct
+  TABLES              93               80               13              86.02
+  REGULAR_VIEWS       58               58               0               100.00
+  MATERIALIZED_VIEWS  28               28               0               100.00
+  TOTAL               179              166              13              92.74
+
+Overall coverage: 92.74%
+✅ PASS: Coverage meets 90% threshold
+
+==================================================
+=== SPECIFIC FILE CHECKS                       ===
+==================================================
+
+✅ PASS: All required distinct value files present
+
+==================================================
+=== DATA QUALITY SPOT CHECKS                   ===
+==================================================
+
+✅ PASS: Spot checks passed (2 files checked)
+
+==================================================
+=== VALIDATION SUMMARY                         ===
+==================================================
+
+Files validated: 175 CSV files
+Warnings: 2
+Failures: 1
+
+❌❌❌ VALIDATION FAILED ❌❌❌
+
+Critical issues found. Review failures above.
+Sample data extraction may be incomplete.

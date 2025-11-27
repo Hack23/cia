@@ -1,0 +1,745 @@
+==================================================
+CIA Sample Data Extraction Wrapper
+==================================================
+
+Configuration:
+  Database: cia_dev
+  Output directory: /workspaces/cia/service.data.impl/sample-data/
+  PostgreSQL user: postgres
+  Sample size: 50 rows per table/view
+
+Extracting sample data...
+
+Timing is on.
+==================================================
+CIA Sample Data Extraction
+Started: Thu Nov 27 05:30:08 PM CET 2025
+==================================================
+DROP FUNCTION
+Time: 12.869 ms
+CREATE FUNCTION
+Time: 4.231 ms
+
+Configuration:
+  Sample size: 50 rows per table/view
+  Output format: CSV with headers
+  Extraction strategy: Diverse sampling with DISTINCT for key columns
+
+
+==========================================
+=== EXTRACTING TABLE SAMPLE DATA      ===
+==========================================
+
+Output format is unaligned.
+Time: 17442.879 ms (00:17.443)
+Output format is aligned.
+Extracting table: public.against_proposal_container (50 rows sampled of 3972 rows total)
+COPY 50
+Time: 0.181 ms
+Extracting table: public.against_proposal_data (50 rows sampled of 38728 rows total)
+COPY 50
+Time: 7.405 ms
+Extracting table: public.agency (1 rows sampled of 1 rows total)
+COPY 1
+Time: 0.157 ms
+Extracting table: public.application_action_event (50 rows sampled of 267 rows total)
+COPY 50
+Time: 0.266 ms
+Extracting table: public.application_configuration (14 rows sampled of 14 rows total)
+COPY 14
+Time: 6.653 ms
+Extracting table: public.application_session (34 rows sampled of 34 rows total)
+COPY 34
+Time: 0.288 ms
+Extracting table: public.assignment_data (50 rows sampled of 31351 rows total)
+COPY 50
+Time: 2.380 ms
+Extracting table: public.committee_document_data (50 rows sampled of 6570 rows total)
+COPY 50
+Time: 2.391 ms
+Extracting table: public.committee_proposal_component_0 (50 rows sampled of 6570 rows total)
+COPY 50
+Time: 0.187 ms
+Extracting table: public.committee_proposal_container (50 rows sampled of 5863 rows total)
+COPY 50
+Time: 0.128 ms
+Extracting table: public.committee_proposal_data (50 rows sampled of 44716 rows total)
+COPY 50
+Time: 4.471 ms
+Extracting table: public.country_element (50 rows sampled of 211 rows total)
+COPY 50
+Time: 1.994 ms
+Extracting table: public.databasechangelog (50 rows sampled of 412 rows total)
+COPY 50
+Time: 2.439 ms
+Extracting table: public.databasechangeloglock (1 rows sampled of 1 rows total)
+COPY 1
+Time: 0.140 ms
+Extracting table: public.detail_data (50 rows sampled of 17509 rows total)
+COPY 50
+Time: 2.970 ms
+Extracting table: public.document_activity_container (50 rows sampled of 88147 rows total)
+COPY 50
+Time: 0.504 ms
+Extracting table: public.document_activity_data (50 rows sampled of 321282 rows total)
+COPY 50
+Time: 0.353 ms
+Extracting table: public.document_attachment (50 rows sampled of 125413 rows total)
+COPY 50
+Time: 1.999 ms
+Extracting table: public.document_attachment_container (50 rows sampled of 68688 rows total)
+COPY 50
+Time: 0.154 ms
+Extracting table: public.document_content_data (50 rows sampled of 231397 rows total)
+COPY 50
+Time: 28.626 ms
+Extracting table: public.document_data (50 rows sampled of 89044 rows total)
+COPY 50
+Time: 4.048 ms
+Extracting table: public.document_detail_container (50 rows sampled of 88011 rows total)
+COPY 50
+Time: 0.833 ms
+Extracting table: public.document_detail_data (50 rows sampled of 299079 rows total)
+COPY 50
+Time: 0.326 ms
+Extracting table: public.document_element (50 rows sampled of 238083 rows total)
+COPY 50
+Time: 13.689 ms
+Extracting table: public.document_person_reference_co_0 (50 rows sampled of 78584 rows total)
+COPY 50
+Time: 0.882 ms
+Extracting table: public.document_person_reference_da_0 (50 rows sampled of 217493 rows total)
+COPY 50
+Time: 0.286 ms
+Extracting table: public.document_proposal_container (50 rows sampled of 80376 rows total)
+COPY 50
+Time: 0.186 ms
+Extracting table: public.document_proposal_data (50 rows sampled of 80376 rows total)
+COPY 50
+Time: 0.359 ms
+Extracting table: public.document_reference_container (50 rows sampled of 35669 rows total)
+COPY 50
+Time: 2.819 ms
+Extracting table: public.document_reference_data (50 rows sampled of 190176 rows total)
+COPY 50
+Time: 0.247 ms
+Extracting table: public.document_status_container (50 rows sampled of 89044 rows total)
+COPY 50
+Time: 0.297 ms
+Extracting table: public.indicator_element (50 rows sampled of 25000 rows total)
+COPY 50
+Time: 5.152 ms
+Extracting table: public.jv_commit (50 rows sampled of 4778182 rows total)
+COPY 50
+Time: 0.219 ms
+Extracting table: public.jv_commit_property (50 rows sampled of 4778182 rows total)
+COPY 50
+Time: 0.796 ms
+Extracting table: public.jv_global_id (50 rows sampled of 11405039 rows total)
+COPY 50
+Time: 1.579 ms
+Extracting table: public.jv_snapshot (50 rows sampled of 11472827 rows total)
+COPY 50
+Time: 0.648 ms
+Extracting table: public.language_data (50 rows sampled of 135 rows total)
+COPY 50
+Time: 0.209 ms
+Extracting table: public.person_assignment_data (50 rows sampled of 2490 rows total)
+COPY 50
+Time: 1.559 ms
+Extracting table: public.person_data (50 rows sampled of 2490 rows total)
+COPY 50
+Time: 14.809 ms
+Extracting table: public.person_detail_data (50 rows sampled of 2490 rows total)
+COPY 50
+Time: 0.771 ms
+Extracting table: public.portal (2 rows sampled of 2 rows total)
+COPY 2
+Time: 0.684 ms
+Extracting table: public.qrtz_cron_triggers (4 rows sampled of 4 rows total)
+COPY 4
+Time: 0.273 ms
+Extracting table: public.qrtz_job_details (4 rows sampled of 4 rows total)
+COPY 4
+Time: 0.175 ms
+Extracting table: public.qrtz_locks (2 rows sampled of 2 rows total)
+COPY 2
+Time: 1.439 ms
+Extracting table: public.qrtz_scheduler_state (1 rows sampled of 1 rows total)
+COPY 1
+Time: 1.210 ms
+Extracting table: public.qrtz_triggers (4 rows sampled of 4 rows total)
+COPY 4
+Time: 3.842 ms
+Extracting table: public.rule_violation (50 rows sampled of 2250 rows total)
+COPY 50
+Time: 13.649 ms
+Extracting table: public.sweden_political_party (40 rows sampled of 40 rows total)
+COPY 40
+Time: 0.309 ms
+Extracting table: public.topic (50 rows sampled of 4608 rows total)
+COPY 50
+Time: 0.809 ms
+Extracting table: public.topics (50 rows sampled of 25000 rows total)
+COPY 50
+Time: 0.832 ms
+Extracting table: public.user_account (1 rows sampled of 1 rows total)
+COPY 1
+Time: 6.757 ms
+Extracting table: public.vote_data (50 rows sampled of 3518618 rows total)
+COPY 50
+Time: 0.406 ms
+Extracting table: public.world_bank_data (50 rows sampled of 598009 rows total)
+COPY 50
+Time: 0.245 ms
+
+==========================================
+=== EXTRACTING VIEW SAMPLE DATA       ===
+==========================================
+
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  Analyzing views for sample data extraction...
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View pg_stat_statements: 9912 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View pg_stat_statements_info: 1 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_annual_summary: 20 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_daily_summary: 48 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_element_annual_summary: 22 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_element_daily_summary: 35 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_element_hourly_summary: 55 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_element_weekly_summary: 26 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_hourly_summary: 129 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_modes_annual_summary: 30 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_modes_daily_summary: 61 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_modes_hourly_summary: 147 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_modes_weekly_summary: 38 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_application_action_event_page_weekly_summary: 27 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_audit_author_summary: 6 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_audit_data_summary: 121 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_committee_productivity: 28 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_committee_productivity_matrix: 170 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_decision_temporal_trends: 189 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_document_data_committee_report_url: 6570 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_ministry_decision_impact: 1177 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  Skipping view_ministry_effectiveness_trends: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  Skipping view_ministry_productivity_matrix: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  Skipping view_ministry_risk_evolution: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_party_effectiveness_trends: 115 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_party_performance_metrics: 40 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_politician_behavioral_trends: 9457 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  Skipping view_politician_risk_summary: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  Skipping view_riksdagen_coalition_alignment_matrix: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_committee: 28 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_committee_ballot_decision_party_summary: 34558 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_committee_ballot_decision_politician_summary: 1578178 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_committee_ballot_decision_summary: 4522 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_committee_decision_type_org_summary: 7186 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_committee_decision_type_summary: 3330 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_committee_decisions: 44772 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_committee_parliament_member_proposal: 77314 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_committee_role_member: 19034 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_committee_roles: 152 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  Skipping view_riksdagen_crisis_resilience_indicators: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_document_type_daily_summary: 32353 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_goverment: 20 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_goverment_proposals: 4575 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_goverment_role_member: 500 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_goverment_roles: 76 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_intelligence_dashboard: 1 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_member_proposals: 77759 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_org_document_daily_summary: 66292 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party: 12 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party_ballot_support_annual_summary: 13056 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party_coalation_against_annual_summary: 278 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party_decision_flow: 13830 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party_document_daily_summary: 8550 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party_document_summary: 10 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party_member: 2429 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party_momentum_analysis: 441 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party_role_member: 299 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party_signatures_document_summary: 9 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_party_summary: 13 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_person_signed_document_summary: 1712 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_politician: 2076 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_politician_ballot_summary: 2429 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_politician_decision_pattern: 96891 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_politician_document: 227953 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_politician_document_daily_summary: 58583 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_politician_document_summary: 1346 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_politician_experience_summary: 2090 rows available (VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  Skipping view_riksdagen_politician_influence_metrics: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary: 83381 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_annual: 201 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_daily: 10592 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_monthly: 1795 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_party_summary_weekly: 5443 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary: 3518618 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_annual: 9653 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_daily: 457929 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_monthly: 76984 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_politician_summary_weekly: 233205 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_summary: 10082 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_summary_annual: 24 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_summary_daily: 1311 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_summary_monthly: 219 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_riksdagen_vote_data_ballot_summary_weekly: 667 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  Skipping view_riksdagen_voting_anomaly_detection: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  Skipping view_risk_score_evolution: empty VIEW
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View view_worldbank_indicator_data_country_summary: 4111 rows available (MATERIALIZED VIEW)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  View analysis summary:
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:    Views with data: 77
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:    Empty views: 9
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:164: NOTICE:  
+DO
+Time: 14905.039 ms (00:14.905)
+Extracting sample data from regular views...
+
+Output format is unaligned.
+Time: 14550.757 ms (00:14.551)
+Output format is aligned.
+Extracting view: pg_stat_statements
+COPY 50
+Time: 23.636 ms
+Extracting view: pg_stat_statements_info
+COPY 1
+Time: 0.247 ms
+Extracting view: view_application_action_event_page_annual_summary
+COPY 20
+Time: 0.493 ms
+Extracting view: view_application_action_event_page_daily_summary
+COPY 48
+Time: 0.387 ms
+Extracting view: view_application_action_event_page_element_annual_summary
+COPY 22
+Time: 0.389 ms
+Extracting view: view_application_action_event_page_element_daily_summary
+COPY 35
+Time: 0.372 ms
+Extracting view: view_application_action_event_page_element_hourly_summary
+COPY 50
+Time: 0.429 ms
+Extracting view: view_application_action_event_page_element_weekly_summary
+COPY 26
+Time: 0.354 ms
+Extracting view: view_application_action_event_page_hourly_summary
+COPY 50
+Time: 0.491 ms
+Extracting view: view_application_action_event_page_modes_annual_summary
+COPY 30
+Time: 0.390 ms
+Extracting view: view_application_action_event_page_modes_daily_summary
+COPY 50
+Time: 0.462 ms
+Extracting view: view_application_action_event_page_modes_hourly_summary
+COPY 50
+Time: 0.524 ms
+Extracting view: view_application_action_event_page_modes_weekly_summary
+COPY 38
+Time: 0.404 ms
+Extracting view: view_application_action_event_page_weekly_summary
+COPY 27
+Time: 0.352 ms
+Extracting view: view_audit_author_summary
+COPY 6
+Time: 351.728 ms
+Extracting view: view_audit_data_summary
+COPY 50
+Time: 1.595 ms
+Extracting view: view_committee_productivity
+COPY 28
+Time: 442.468 ms
+Extracting view: view_committee_productivity_matrix
+COPY 50
+Time: 478.132 ms
+Extracting view: view_decision_temporal_trends
+COPY 50
+Time: 263.097 ms
+Extracting view: view_document_data_committee_report_url
+COPY 50
+Time: 18.737 ms
+Extracting view: view_ministry_decision_impact
+COPY 50
+Time: 240.382 ms
+Extracting view: view_party_effectiveness_trends
+COPY 50
+Time: 116.433 ms
+Extracting view: view_party_performance_metrics
+COPY 40
+Time: 28.601 ms
+Extracting view: view_politician_behavioral_trends
+COPY 50
+Time: 152.511 ms
+Extracting view: view_riksdagen_committee
+COPY 28
+Time: 460.729 ms
+Extracting materialized view: view_riksdagen_committee_ballot_decision_party_summary
+COPY 50
+Time: 64.784 ms
+Extracting materialized view: view_riksdagen_committee_ballot_decision_politician_summary
+COPY 50
+Time: 3315.566 ms (00:03.316)
+Extracting materialized view: view_riksdagen_committee_ballot_decision_summary
+COPY 50
+Time: 6.558 ms
+Extracting materialized view: view_riksdagen_committee_decision_type_org_summary
+COPY 50
+Time: 2.056 ms
+Extracting materialized view: view_riksdagen_committee_decision_type_summary
+COPY 50
+Time: 1.011 ms
+Extracting materialized view: view_riksdagen_committee_decisions
+COPY 50
+Time: 24.696 ms
+Extracting view: view_riksdagen_committee_parliament_member_proposal
+COPY 50
+Time: 533.351 ms
+Extracting view: view_riksdagen_committee_role_member
+COPY 50
+Time: 111.253 ms
+Extracting view: view_riksdagen_committee_roles
+COPY 50
+Time: 7.908 ms
+Extracting materialized view: view_riksdagen_document_type_daily_summary
+COPY 50
+Time: 6.520 ms
+Extracting view: view_riksdagen_goverment
+COPY 20
+Time: 405.695 ms
+Extracting view: view_riksdagen_goverment_proposals
+COPY 50
+Time: 30.959 ms
+Extracting view: view_riksdagen_goverment_role_member
+COPY 50
+Time: 26.246 ms
+Extracting view: view_riksdagen_goverment_roles
+COPY 50
+Time: 6.758 ms
+Extracting view: view_riksdagen_intelligence_dashboard
+COPY 1
+Time: 9179.950 ms (00:09.180)
+Extracting view: view_riksdagen_member_proposals
+COPY 50
+Time: 173.755 ms
+Extracting materialized view: view_riksdagen_org_document_daily_summary
+COPY 50
+Time: 14.289 ms
+Extracting view: view_riksdagen_party
+COPY 12
+Time: 10.661 ms
+Extracting view: view_riksdagen_party_ballot_support_annual_summary
+COPY 50
+Time: 1546.436 ms (00:01.546)
+Extracting view: view_riksdagen_party_coalation_against_annual_summary
+COPY 50
+Time: 15.788 ms
+Extracting view: view_riksdagen_party_decision_flow
+COPY 50
+Time: 627.115 ms
+Extracting materialized view: view_riksdagen_party_document_daily_summary
+COPY 50
+Time: 2.406 ms
+Extracting view: view_riksdagen_party_document_summary
+COPY 10
+Time: 19.557 ms
+Extracting view: view_riksdagen_party_member
+COPY 50
+Time: 4.775 ms
+Extracting view: view_riksdagen_party_momentum_analysis
+COPY 50
+Time: 3995.536 ms (00:03.996)
+Extracting view: view_riksdagen_party_role_member
+COPY 50
+Time: 25.806 ms
+Extracting view: view_riksdagen_party_signatures_document_summary
+COPY 9
+Time: 53.416 ms
+Extracting view: view_riksdagen_party_summary
+COPY 13
+Time: 130.074 ms
+Extracting view: view_riksdagen_person_signed_document_summary
+COPY 50
+Time: 65.443 ms
+Extracting view: view_riksdagen_politician
+COPY 50
+Time: 126.094 ms
+Extracting view: view_riksdagen_politician_ballot_summary
+COPY 50
+Time: 28.958 ms
+Extracting view: view_riksdagen_politician_decision_pattern
+COPY 50
+Time: 1104.554 ms (00:01.105)
+Extracting materialized view: view_riksdagen_politician_document
+COPY 50
+Time: 131.109 ms
+Extracting materialized view: view_riksdagen_politician_document_daily_summary
+COPY 50
+Time: 12.263 ms
+Extracting materialized view: view_riksdagen_politician_document_summary
+COPY 50
+Time: 1.343 ms
+Extracting view: view_riksdagen_politician_experience_summary
+COPY 50
+Time: 453.967 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_party_summary
+COPY 50
+Time: 66.768 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_party_summary_annual
+COPY 50
+Time: 1.458 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_party_summary_daily
+COPY 50
+Time: 20.373 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_party_summary_monthly
+COPY 50
+Time: 9.903 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_party_summary_weekly
+COPY 50
+Time: 11.695 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_politician_summary
+COPY 50
+Time: 7413.441 ms (00:07.413)
+Extracting materialized view: view_riksdagen_vote_data_ballot_politician_summary_annual
+COPY 50
+Time: 11.407 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_politician_summary_daily
+COPY 50
+Time: 736.683 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_politician_summary_monthly
+COPY 50
+Time: 89.226 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_politician_summary_weekly
+COPY 50
+Time: 704.490 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_summary
+COPY 50
+Time: 22.357 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_summary_annual
+COPY 24
+Time: 0.422 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_summary_daily
+COPY 50
+Time: 1.423 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_summary_monthly
+COPY 50
+Time: 1.021 ms
+Extracting materialized view: view_riksdagen_vote_data_ballot_summary_weekly
+COPY 50
+Time: 1.017 ms
+Extracting materialized view: view_worldbank_indicator_data_country_summary
+COPY 50
+Time: 6.026 ms
+
+==========================================
+=== GENERATING MANIFEST FILE          ===
+==========================================
+COPY 126
+Time: 12.241 ms
+
+==========================================
+=== GENERATING VIEW COLUMN MAPPING    ===
+==========================================
+COPY 922
+Time: 28.518 ms
+
+==========================================
+=== EXTRACTING DISTINCT VALUE SETS    ===
+==========================================
+Extracting distinct party values...
+COPY 17
+Time: 1.380 ms
+Extracting distinct org_code values...
+COPY 91
+Time: 7.171 ms
+Extracting distinct role_code values...
+COPY 75
+Time: 6.211 ms
+Extracting distinct assignment status values...
+COPY 5
+Time: 6.066 ms
+Extracting distinct document types...
+COPY 4
+Time: 20.464 ms
+Extracting distinct document org values...
+COPY 76
+Time: 23.998 ms
+Extracting distinct vote values...
+COPY 36
+Time: 422.143 ms
+Extracting political party list...
+COPY 40
+Time: 0.283 ms
+
+Distinct value extraction summary:
+  - distinct_party_values.csv: Party distribution
+  - distinct_org_code_values.csv: Organization codes
+  - distinct_role_code_values.csv: Role codes
+  - distinct_assignment_status_values.csv: Assignment statuses
+  - distinct_document_type_values.csv: Document types
+  - distinct_document_org_values.csv: Document organizations
+  - distinct_vote_values.csv: Vote patterns by party
+  - distinct_political_parties.csv: Complete party list
+
+
+==========================================
+=== EXTRACTION STATISTICS              ===
+==========================================
+
+COPY 4
+Time: 8.607 ms
+Extraction statistics saved to: extraction_statistics.csv
+
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:  Coverage Summary:
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:    Total Tables: 93 (80 extracted, 13 excluded)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:    Regular Views: 58 (all extracted)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:    Materialized Views: 28 (all extracted)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:    Total Objects: 179 (166 extracted = 92.74%)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:  
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:  Expected CSV Files:
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:    Table CSVs: 80
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:    View CSVs: 86
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:    Distinct value CSVs: 8
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:    Metadata CSVs: 3 (manifest + column mapping + statistics)
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:348: NOTICE:    Total Expected: 177
+DO
+Time: 2.834 ms
+
+==================================================
+Sample data extraction completed
+Finished: Thu Nov 27 05:31:30 PM CET 2025
+==================================================
+
+Generated files:
+  - table_*_sample.csv: Sample data from tables
+  - view_*_sample.csv: Sample data from views
+  - sample_data_manifest.csv: Metadata about extracted files
+  - view_column_mapping.csv: Column mappings for views
+  - extraction_statistics.csv: Coverage statistics
+  - distinct_*_values.csv: Distinct values with counts for important columns
+
+To reload sample data:
+  1. Review the CSV files
+  2. Use copy FROM to import: 
+     copy table_name FROM 'table_name_sample.csv' WITH CSV HEADER;
+
+For troubleshooting empty views, see:
+  - TROUBLESHOOTING_EMPTY_VIEWS.md
+  - view_column_mapping.csv for required columns
+
+DROP FUNCTION
+Time: 4.676 ms
+Timing is off.
+
+==================================================
+Extraction Complete!
+==================================================
+
+==================================================
+=== VALIDATION                                 ===
+==================================================
+
+Expected vs Actual CSV Files:
+  Tables: 87 / 80 expected
+  Views: 77 / 84 expected
+  Distinct value sets: 8 / 8 expected
+  Metadata files: 3 / 3 expected
+  Total: 175 / 175 expected
+
+✅ All expected tables extracted
+⚠️  WARNING: Missing view extractions!
+    Missing: 7 view CSV files
+✅ All distinct value sets extracted
+✅ All metadata files generated
+
+Checking for empty CSV files...
+✅ No empty CSV files found
+
+Validating CSV headers...
+✅ All CSV files have valid headers
+
+Checking file sizes...
+⚠️  INFO: Found suspiciously small CSV files (< 100 bytes):
+    ./view_pg_stat_statements_info_sample.csv - 54
+    ./table_user_account_address_sample.csv - 21
+    ./table_sweden_county_electoral_regi_0_sample.csv - 5
+    ./table_indicators_element_sample.csv - 31
+    ./table_operational_information_cont_0_sample.csv - 42
+    ./table_data_source_content_sample.csv - 42
+    ./table_sweden_county_data_container_sample.csv - 5
+    ./table_target_profile_content_sample.csv - 42
+    ./table_domain_portal_sample.csv - 17
+    ./table_person_detail_element_sample.csv - 36
+    ./table_data_element_sample.csv - 31
+    ./table_detail_element_sample.csv - 43
+    ./table_sweden_parliament_electoral__0_sample.csv - 5
+    ./table_sweden_election_region_sample.csv - 40
+    ./table_vote_meta_data_sample.csv - 70
+    ./table_sweden_county_data_sample.csv - 53
+    ./table_performance_indicator_content_sample.csv - 42
+    ./table_sweden_election_type_sample.csv - 95
+    ./view_riksdagen_party_signatures_document_summary_sample.csv - 85
+    ./table_countries_element_sample.csv - 31
+    ./table_person_assignment_element_sample.csv - 5
+    ./table_quality_assurance_content_sample.csv - 42
+    ./table_person_container_data_sample.csv - 36
+    ./table_databasechangeloglock_sample.csv - 37
+    ./table_sweden_county_electoral_regi_1_sample.csv - 59
+    ./table_sweden_municipality_data_sample.csv - 56
+    ./table_person_container_element_sample.csv - 5
+    ./table_sweden_election_type_contain_0_sample.csv - 5
+    ./table_qrtz_locks_sample.csv - 81
+    (These may be from empty tables/views)
+
+Coverage Statistics (from extraction_statistics.csv):
+  category            total_in_schema  extracted_count  excluded_count  coverage_pct
+  TABLES              93               80               13              86.02
+  REGULAR_VIEWS       58               58               0               100.00
+  MATERIALIZED_VIEWS  28               28               0               100.00
+  TOTAL               179              166              13              92.74
+
+
+==================================================
+⚠️  Validation Completed with Warnings
+    Review warnings above for details
+==================================================
+
+
+Files generated in: /workspaces/cia/service.data.impl/sample-data/
+
+Sample of generated files:
+-rwxrwxrwx 1 vscode   root       89 Nov 27 17:31 distinct_assignment_status_values.csv
+-rwxrwxrwx 1 vscode   root     1.1K Nov 27 17:31 distinct_document_org_values.csv
+-rwxrwxrwx 1 vscode   root       61 Nov 27 17:31 distinct_document_type_values.csv
+-rwxrwxrwx 1 vscode   root      712 Nov 27 17:31 distinct_org_code_values.csv
+-rwxrwxrwx 1 vscode   root      127 Nov 27 17:31 distinct_party_values.csv
+-rwxrwxrwx 1 vscode   root     1.2K Nov 27 17:31 distinct_political_parties.csv
+-rwxrwxrwx 1 vscode   root     1.9K Nov 27 17:31 distinct_role_code_values.csv
+-rwxrwxrwx 1 vscode   root      574 Nov 27 17:31 distinct_vote_values.csv
+-rw-rw-rw- 1 postgres postgres  177 Nov 27 17:31 extraction_statistics.csv
+-rwxrwxrwx 1 vscode   root      16K Nov 27 17:31 sample_data_manifest.csv
+-rwxrwxrwx 1 vscode   root      347 Nov 27 17:30 table_against_proposal_container_sample.csv
+-rwxrwxrwx 1 vscode   root      347 Nov 27 17:30 table_against_proposal_container_sample.csv
+-rwxrwxrwx 1 vscode   root     4.0K Nov 27 17:30 table_against_proposal_data_sample.csv
+-rwxrwxrwx 1 vscode   root     4.0K Nov 27 17:30 table_against_proposal_data_sample.csv
+-rwxrwxrwx 1 vscode   root      131 Nov 27 17:30 table_agency_sample.csv
+-rwxrwxrwx 1 vscode   root      131 Nov 27 17:30 table_agency_sample.csv
+-rwxrwxrwx 1 vscode   root      11K Nov 27 17:30 table_application_action_event_sample.csv
+-rwxrwxrwx 1 vscode   root      11K Nov 27 17:30 table_application_action_event_sample.csv
+-rwxrwxrwx 1 vscode   root     3.6K Nov 27 17:30 table_application_configuration_sample.csv
+-rwxrwxrwx 1 vscode   root     3.6K Nov 27 17:30 table_application_configuration_sample.csv
+-rwxrwxrwx 1 vscode   root     9.4K Nov 27 17:30 table_application_session_sample.csv
+-rwxrwxrwx 1 vscode   root     9.4K Nov 27 17:30 table_application_session_sample.csv
+-rwxrwxrwx 1 vscode   root      172 Nov 23 15:25 table_application_view_sample.csv
+-rwxrwxrwx 1 vscode   root      172 Nov 23 15:25 table_application_view_sample.csv
+-rwxrwxrwx 1 vscode   root     4.9K Nov 27 17:30 table_assignment_data_sample.csv
+-rwxrwxrwx 1 vscode   root     4.9K Nov 27 17:30 table_assignment_data_sample.csv
+-rwxrwxrwx 1 vscode   root      130 Nov 23 15:25 table_assignment_element_sample.csv
+-rwxrwxrwx 1 vscode   root      130 Nov 23 15:25 table_assignment_element_sample.csv
+-rwxrwxrwx 1 vscode   root      16K Nov 27 17:30 table_committee_document_data_sample.csv
+-rwxrwxrwx 1 vscode   root      16K Nov 27 17:30 table_committee_document_data_sample.csv
+
+Total CSV files: 175
+  - Tables: 87
+  - Views: 77
+  - Distinct value sets: 8
+  - Other: 2
+

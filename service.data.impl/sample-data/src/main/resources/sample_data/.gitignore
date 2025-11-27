@@ -1,0 +1,11 @@
+# Ignore all CSV files by default (may contain sensitive data)
+*.csv
+
+# Allow README
+!README.md
+
+# Optionally allow specific anonymized sample files
+# Uncomment these lines after reviewing and anonymizing the data:
+# !table_sweden_political_party_sample.csv
+# !view_column_mapping.csv
+# !sample_data_manifest.csv

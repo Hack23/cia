@@ -1,51 +1,51 @@
 embedded_id_detail,role_code,total_assignments,first_assignment_date,last_assignment_date
-Socialdepartementet,Sjukvårdsminister,1,2025-09-08,2025-09-09
-Miljö- och energidepartementet,Miljöminister,3,2016-05-25,2019-01-21
-Infrastrukturdepartementet,Infrastrukturminister,8,2019-04-01,2022-10-18
-Statsrådsberedningen,Statsminister,10,1991-10-04,2026-09-21
-Näringsdepartementet,Statsråd,31,1994-10-07,2022-10-18
-Miljö- och samhällsbyggnadsdepartementet,Statsråd,3,2002-09-30,2006-10-06
-Infrastrukturdepartementet,Landsbygdsminister,2,2022-10-18,2022-10-18
-Socialdepartementet,Socialtjänstminister,4,2014-10-03,2026-09-28
-Miljö- och energidepartementet,Klimat- och miljöminister,1,2015-01-01,2016-05-25
-Justitiedepartementet,Justitieminister,8,1991-10-04,2026-09-28
-Statsrådsberedningen,Vice statsminister,1,2006-03-27,2006-10-06
-Finansdepartementet,Statsråd,34,1991-10-04,2025-09-07
-Miljödepartementet,Miljö- och klimatminister,3,2019-04-01,2021-11-30
-Infrastrukturdepartementet,Statsråd,9,2019-04-01,2022-12-31
-Utbildningsdepartementet,"Gymnasie-, högskole- och forskningsminister",2,2025-09-08,2026-09-28
-Socialdepartementet,Statsråd,31,1991-10-04,2025-09-07
-Landsbygds- och infrastrukturdepartementet,Landsbygdsminister,5,2022-10-18,2026-09-28
-Näringsdepartementet,Infrastruktur- och försvarsminister,1,2012-03-30,2012-04-17
-Utbildningsdepartementet,Utbildnings- och integrationsminister,2,2025-06-28,2026-09-28
-Miljö- och samhällsbyggnadsdepartementet,Samhällsbyggnadsminister,2,2004-11-01,2006-10-06
-Justitiedepartementet,Justitie- och migrationsminister,4,2014-10-03,2021-11-30
-Statsrådsberedningen,Statsråd,24,1994-10-07,2025-09-07
-Finansdepartementet,Finansmarknadsminister,2,2025-09-08,2026-09-28
-Justitiedepartementet,Justitie- och inrikesminister,2,2017-07-27,2022-10-18
-Finansdepartementet,Finansminister,14,1991-10-04,2026-09-21
-Jordbruksdepartementet,Landsbygdsminister,1,2010-10-06,2010-12-31
-Arbetsmarknadsdepartementet,Arbetsmarknads- och integrationsminister,2,2022-10-18,2025-06-27
-Finansdepartementet,Civilminister,2,2025-09-08,2026-09-28
-Näringsdepartementet,Landsbygdsminister,1,2014-10-03,2014-12-31
-Miljödepartementet,Statsråd,1,2014-10-03,2014-12-31
-Kulturdepartementet,Kulturminister,7,2007-01-01,2026-09-28
-Utbildningsdepartementet,Statsråd,24,1994-10-07,2025-09-07
-Näringsdepartementet,Energi- och näringsminister,2,2010-10-06,2022-12-31
-Justitiedepartementet,Migrations- och arbetsmarknadsminister,1,2010-07-07,2010-10-05
-Försvarsdepartementet,Försvarsminister,19,1991-10-04,2026-09-28
-Utbildnings- och kulturdepartementet,Kulturminister,1,2006-10-06,2006-10-16
-Socialdepartementet,Äldre- och socialförsäkringsminister,2,2025-09-08,2026-09-28
-Utbildnings- och kulturdepartementet,Utbildningsminister,2,2006-10-02,2006-12-31
-Arbetsmarknadsdepartementet,Arbetsmarknads- och etableringsminister,1,2016-05-25,2019-01-21
-Miljö- och samhällsbyggnadsdepartementet,Miljöminister,1,2006-10-06,2006-12-31
-Socialdepartementet,Socialminister,15,1990-02-27,2026-09-28
 Jordbruksdepartementet,Statsråd,1,2002-09-30,2006-10-02
-Justitiedepartementet,Statsråd,21,1991-10-04,2025-09-07
-Miljödepartementet,Miljöminister,2,2007-01-01,2014-10-03
-Integrations- och jämställdhetsdepartementet,Statsråd,1,2010-10-06,2010-12-31
+Arbetsmarknadsdepartementet,Jämställdhetsminister,2,2025-09-08,2026-09-28
+Miljödepartementet,Statsråd,1,2014-10-03,2014-12-31
+Utbildningsdepartementet,Statsråd,24,1994-10-07,2025-09-07
+Utbildningsdepartementet,Utbildnings- och integrationsminister,2,2025-06-28,2026-09-28
+Justitiedepartementet,Justitieminister,8,1991-10-04,2026-09-28
 Arbetsmarknadsdepartementet,Migrations- och arbetsmarknadsminister,1,2010-07-07,2010-10-05
-Näringsdepartementet,Näringsminister,11,1991-10-04,2022-10-18
-Landsbygds- och infrastrukturdepartementet,Statsråd,5,2022-10-18,2025-09-07
-Landsbygds- och infrastrukturdepartementet,Infrastruktur- och bostadsminister,2,2025-09-08,2026-09-28
+Klimat- och näringslivsdepartementet,Statsråd,6,2022-10-18,2025-09-07
+Utbildnings- och kulturdepartementet,Kulturminister,1,2006-10-06,2006-10-16
+Statsrådsberedningen,EU-minister,2,2025-09-08,2026-09-28
+Socialdepartementet,Sjukvårdsminister,2,2025-09-08,2026-09-28
+Miljö- och energidepartementet,Miljöminister,3,2016-05-25,2019-01-21
+Utbildnings- och kulturdepartementet,Statsråd,7,2002-09-30,2006-12-31
+Finansdepartementet,Finansmarknadsminister,2,2025-09-08,2026-09-28
+Arbetsmarknadsdepartementet,Arbetsmarknads- och integrationsminister,2,2022-10-18,2025-06-27
+Utbildningsdepartementet,Utbildningsminister,16,1994-10-07,2025-06-27
+Försvarsdepartementet,Försvarsminister,19,1991-10-04,2026-09-28
+Arbetsmarknadsdepartementet,Statsråd,15,1994-10-07,2025-09-07
+Miljö- och samhällsbyggnadsdepartementet,Miljöminister,1,2006-10-06,2006-12-31
+Utbildningsdepartementet,"Gymnasie-, högskole- och forskningsminister",2,2025-09-08,2026-09-28
+Justitiedepartementet,Statsråd,21,1991-10-04,2025-09-07
+Justitiedepartementet,Migrations- och arbetsmarknadsminister,1,2010-07-07,2010-10-05
+Jordbruksdepartementet,Landsbygdsminister,1,2010-10-06,2010-12-31
+Kulturdepartementet,Kulturminister,7,2007-01-01,2026-09-28
+Miljö- och energidepartementet,Klimat- och miljöminister,1,2015-01-01,2016-05-25
+Jordbruksdepartementet,Jordbruksminister,2,2006-10-02,2010-10-05
+Socialdepartementet,Socialminister,15,1990-02-27,2026-09-28
+Arbetsmarknadsdepartementet,Arbetsmarknads- och jämställdhetsministe,2,2021-11-30,2022-10-18
+Näringsdepartementet,Närings- och innovationsminister,3,2014-10-03,2019-01-21
+Försvarsdepartementet,Minister för civilt försvar,2,2025-09-08,2026-09-28
+Kulturdepartementet,Kultur- och demokratiminister,10,2014-10-03,2021-11-30
+Landsbygdsdepartementet,Landsbygdsminister,2,2011-01-01,2014-12-31
+Statsrådsberedningen,Statsminister,10,1991-10-04,2026-09-21
+Arbetsmarknadsdepartementet,Arbetsmarknadsminister,15,1987-10-20,2026-09-28
+Klimat- och näringslivsdepartementet,Klimat- och miljöminister,2,2025-09-08,2026-09-28
+Finansdepartementet,Statsråd,34,1991-10-04,2025-09-07
 Miljö- och energidepartementet,Statsråd,1,2015-01-01,2016-05-25
+Utbildnings- och kulturdepartementet,Utbildningsminister,2,2006-10-02,2006-12-31
+Infrastrukturdepartementet,Statsråd,9,2019-04-01,2022-12-31
+Miljö- och energidepartementet,Miljö- och klimatminister,1,2019-01-21,2019-03-31
+Justitiedepartementet,Migrationsminister,2,2025-09-08,2026-09-28
+Justitiedepartementet,Justitie- och inrikesminister,2,2017-07-27,2022-10-18
+Näringsdepartementet,Landsbygdsminister,1,2014-10-03,2014-12-31
+Miljö- och samhällsbyggnadsdepartementet,Samhällsbyggnadsminister,2,2004-11-01,2006-10-06
+Näringsdepartementet,Statsråd,31,1994-10-07,2022-10-18
+Landsbygds- och infrastrukturdepartementet,Infrastruktur- och bostadsminister,2,2025-09-08,2026-09-28
+Integrations- och jämställdhetsdepartementet,Statsråd,1,2010-10-06,2010-12-31
+Miljödepartementet,Klimat- och miljöminister,4,2014-10-03,2022-12-31
+Socialdepartementet,Äldre- och socialförsäkringsminister,2,2025-09-08,2026-09-28
+Socialdepartementet,Social- och socialförsäkringsminister,1,2022-10-07,2022-10-18

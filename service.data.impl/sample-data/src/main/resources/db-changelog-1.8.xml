@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+	<changeSet author="pether (generated)" id="1414872417007-285">
+		 <addColumn tableName="language_data">
+			<column name="created_date" type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="language_enabled" type="boolean" />
+			<column name="auto_translation_enabled" type="boolean" />
+			<column name="language_code" type="varchar(255)"/>
+			<column name="translation_status" type="varchar(255)"/>
+    	</addColumn>
+	</changeSet>
+
+	<changeSet author="pether (generated)" id="1414872417007-286">
+		 <addColumn tableName="language_content_data">
+		 	<column name="last_modified_date" type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="key_group" type="varchar(255)"/>
+			<column name="location_context" type="varchar(255)"/>
+    	</addColumn>
+	</changeSet>
+
+</databaseChangeLog>

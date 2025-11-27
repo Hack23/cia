@@ -1,0 +1,244 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+	<persistence-unit name="ciaPersistenceUnit"
+		transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<class>com.hack23.cia.model.external.val.partier.impl.SwedenElectionRegion</class>
+		<class>com.hack23.cia.model.external.val.partier.impl.SwedenElectionType</class>
+		<class>com.hack23.cia.model.external.val.partier.impl.SwedenElectionTypeContainerElement</class>
+		<class>com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty</class>
+
+		<class>com.hack23.cia.model.external.val.riksdagsvalkrets.impl.SwedenParliamentElectoralRegion</class>
+		<class>com.hack23.cia.model.external.val.riksdagsvalkrets.impl.SwedenParliamentElectoralRegionContainer</class>
+
+		<class>com.hack23.cia.model.external.val.landstingvalkrets.impl.SwedenCountyElectoralArea</class>
+		<class>com.hack23.cia.model.external.val.landstingvalkrets.impl.SwedenCountyElectoralRegion</class>
+		<class>com.hack23.cia.model.external.val.landstingvalkrets.impl.SwedenCountyElectoralRegionContainer</class>
+
+		<class>com.hack23.cia.model.external.val.kommunvalkrets.impl.SwedenCountyData</class>
+		<class>com.hack23.cia.model.external.val.kommunvalkrets.impl.SwedenCountyDataContainer</class>
+		<class>com.hack23.cia.model.external.val.kommunvalkrets.impl.SwedenMunicipalityData</class>
+		<class>com.hack23.cia.model.external.val.kommunvalkrets.impl.SwedenMunicipalityElectionRegionData</class>
+
+		<class>com.hack23.cia.model.external.worldbank.countries.impl.CountriesElement</class>
+		<class>com.hack23.cia.model.external.worldbank.countries.impl.CountryElement</class>
+		<class>com.hack23.cia.model.external.worldbank.countries.impl.IncomeLevel</class>
+		<class>com.hack23.cia.model.external.worldbank.countries.impl.LendingType</class>
+		<class>com.hack23.cia.model.external.worldbank.countries.impl.Region</class>
+
+		<class>com.hack23.cia.model.external.worldbank.data.impl.Country</class>
+		<class>com.hack23.cia.model.external.worldbank.data.impl.WorldBankData</class>
+		<class>com.hack23.cia.model.external.worldbank.data.impl.DataElement</class>
+		<class>com.hack23.cia.model.external.worldbank.data.impl.Indicator</class>
+
+		<class>com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement</class>
+		<class>com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorsElement</class>
+		<class>com.hack23.cia.model.external.worldbank.indicators.impl.Source</class>
+		<class>com.hack23.cia.model.external.worldbank.indicators.impl.Topic</class>
+		<class>com.hack23.cia.model.external.worldbank.indicators.impl.Topics</class>
+
+		<class>com.hack23.cia.model.external.riksdagen.personlista.impl.AssignmentElement</class>
+		<class>com.hack23.cia.model.external.riksdagen.personlista.impl.DetailElement</class>
+		<class>com.hack23.cia.model.external.riksdagen.personlista.impl.PersonAssignmentElement</class>
+		<class>com.hack23.cia.model.external.riksdagen.personlista.impl.PersonContainerElement</class>
+		<class>com.hack23.cia.model.external.riksdagen.personlista.impl.PersonDetailElement</class>
+		<class>com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement</class>
+
+		<class>com.hack23.cia.model.external.riksdagen.person.impl.AssignmentData</class>
+		<class>com.hack23.cia.model.external.riksdagen.person.impl.DetailData</class>
+		<class>com.hack23.cia.model.external.riksdagen.person.impl.PersonAssignmentData</class>
+		<class>com.hack23.cia.model.external.riksdagen.person.impl.PersonContainerData</class>
+		<class>com.hack23.cia.model.external.riksdagen.person.impl.PersonData</class>
+		<class>com.hack23.cia.model.external.riksdagen.person.impl.PersonDetailData</class>
+
+		<class>com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentContainerElement</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement</class>
+
+		<class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalContainer</class>
+		<class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.AgainstProposalData</class>
+		<class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeDocumentData</class>
+		<class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData</class>
+		<class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalContainer</class>
+		<class>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalData</class>
+
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityContainer</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentAttachment</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentAttachmentContainer</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailContainer</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceContainer</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentReferenceContainer</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentReferenceData</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalContainer</class>
+		<class>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData</class>
+		<class>com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData</class>
+
+		<class>com.hack23.cia.model.external.riksdagen.votering.impl.VoteData</class>
+		<class>com.hack23.cia.model.external.riksdagen.votering.impl.VoteDataEmbeddedId</class>
+
+		<class>com.hack23.cia.model.internal.application.user.impl.UserAccount</class>
+		<class>com.hack23.cia.model.internal.application.secure.impl.EncryptedValue</class>
+
+		<class>com.hack23.cia.model.internal.application.view.impl.DataSourceContent</class>
+		<class>com.hack23.cia.model.internal.application.view.impl.OperationalInformationContent</class>
+		<class>com.hack23.cia.model.internal.application.view.impl.PerformanceIndicatorContent</class>
+		<class>com.hack23.cia.model.internal.application.view.impl.QualityAssuranceContent</class>
+		<class>com.hack23.cia.model.internal.application.view.impl.TargetProfileContent</class>
+		<class>com.hack23.cia.model.internal.application.view.impl.ApplicationView</class>
+
+		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry</class>
+		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember</class>
+
+
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember</class>
+
+
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyRoleMember</class>
+
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalationAgainstAnnualSummary</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary</class>
+
+		<!-- V1.30 OSINT Performance Tracking Views -->
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewPartyEffectivenessTrends</class>
+
+		<!-- V1.29 Intelligence Operations Enhancement Views -->
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMomentumAnalysis</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrix</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId</class>
+
+
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary</class>
+
+		<!-- V1.30 OSINT Performance Tracking Views -->
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewPoliticianBehavioralTrends</class>
+
+		<!-- V1.29 Intelligence Operations Enhancement Views -->
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenVotingAnomalyDetection</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianInfluenceMetrics</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenCrisisResilienceIndicators</class>
+
+		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument</class>
+		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary</class>
+
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryDaily</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryWeekly</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryMonthly</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryAnnual</class>
+
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryWeekly</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual</class>
+
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummary</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryWeekly</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual</class>
+
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisionTypeOrgDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionSummary</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPartySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeBallotDecisionPoliticianSummary</class>
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeDecisions</class>
+
+		<!-- V1.30 OSINT Performance Tracking Views -->
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewCommitteeProductivityMatrix</class>
+
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation</class>
+
+		<!-- V1.29 Intelligence Operations Enhancement Views -->
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewRiksdagenIntelligenceDashboard</class>
+
+		<!-- V1.30 OSINT Performance Tracking Views -->
+		<class>com.hack23.cia.model.internal.application.data.rules.impl.ViewRiskScoreEvolution</class>
+
+		<class>com.hack23.cia.model.internal.application.system.impl.Agency</class>
+		<class>com.hack23.cia.model.internal.application.system.impl.Portal</class>
+		<class>com.hack23.cia.model.internal.application.system.impl.DomainPortal</class>
+		<class>com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration</class>
+
+		<class>com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent</class>
+		<class>com.hack23.cia.model.internal.application.system.impl.LanguageContentData</class>
+		<class>com.hack23.cia.model.internal.application.system.impl.LanguageData</class>
+		<class>com.hack23.cia.model.internal.application.system.impl.ApplicationSession</class>
+
+
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageHourlySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageWeeklySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageAnnualSummary</class>
+
+
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeHourlySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeWeeklySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageModeAnnualSummary</class>
+
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementHourlySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementWeeklySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.impl.ViewApplicationActionEventPageElementAnnualSummary</class>
+
+		<class>com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary</class>
+		<class>com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary</class>
+
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+
+		<shared-cache-mode>ALL</shared-cache-mode>
+		<properties>
+			<!-- <property name="hibernate.hbm2ddl.auto" value="${database.ddl}" />
+				Do not support materialized views in postgres -->
+			<property name="hibernate.dialect"
+				value="${hibernate.dialect}" />
+			<property name="hibernate.implicit_naming_strategy"
+				value="legacy-hbm" />
+			<property name="hibernate.bytecode.provider"
+				value="bytebuddy" />
+			<property name="hibernate.archive.autodetection"
+				value="class" />
+			<property name="hibernate.connection.characterEncoding"
+				value="UTF-8" />
+			<property name="hibernate.session.events.log" value="false" />
+			<property name="hibernate.connection.charSet" value="UTF-8" />
+			<property name="hibernate.enable_lazy_load_no_trans"
+				value="true" />
+
+			<property name="hibernate.javax.cache.missing_cache_strategy" value="create" />
+			<property name="hibernate.search.automatic_indexing.strategy" value="none" />
+
+			<property name="hibernate.search.mapping.configurer"
+				value="com.hack23.cia.service.data.impl.DataSearchMapping" />
+			<property name="hibernate.search.backend.directory.root"
+				value="${database.search.index.location}" />
+
+			<property name="hibernate.search.backend.lucene_version" value="8.7.0" />
+			<property name="hibernate.search.backend.analysis.configurer"
+				value="com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer" />
+
+
+		</properties>
+	</persistence-unit>
+</persistence>

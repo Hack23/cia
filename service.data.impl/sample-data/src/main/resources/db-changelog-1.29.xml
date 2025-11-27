@@ -1,0 +1,1507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Intelligence Operations Enhancement Package v1.29
+  Author: Intelligence Operations Analyst
+  Date: 2025-11-11
+  
+  This changelog implements strategic intelligence views based on comprehensive
+  analysis of the platform's OSINT and political intelligence capabilities.
+  
+  Focus Areas:
+  1. Temporal Pattern Detection - Momentum and acceleration metrics
+  2. Coalition Behavior Analysis - Voting alignment patterns
+  3. Political Risk Indicators - Anomaly detection
+  4. Network Influence Metrics - Basic centrality measures
+  5. Crisis & Resilience Tracking - Performance under pressure
+  
+  Time Window Strategy:
+  - 2-year window (Coalition Alignment): Captures medium-term coalition patterns while
+    remaining relevant to current political landscape. Coalitions form over time and 
+    require stable patterns to be meaningful.
+  - 1-year window (Anomaly Detection, Crisis Resilience): Recent behavior is most 
+    indicative of current political risks and performance under pressure. Focuses on 
+    immediate threats and current behavioral patterns.
+  - Historical window (Momentum Analysis): Uses data from 2010+ to establish long-term
+    trends while quarterly aggregation provides granularity.
+  
+  Note: CURRENT_DATE-based filters ensure views always reflect most recent data, though
+  this means results will evolve over time. For reproducible historical analysis, these
+  filters can be replaced with fixed dates.
+-->
+
+<!-- ========================================================================= -->
+<!-- 1. TEMPORAL MOMENTUM ANALYSIS VIEW                                        -->
+<!-- Intelligence Value: HIGH - Early warning indicators                       -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-ops" id="intops-2025111101-temporal-momentum" failOnError="true">
+    <comment>
+        Temporal Momentum Analysis View
+        
+        Intelligence Purpose:
+        - Detect momentum shifts in party support
+        - Identify acceleration/deceleration patterns
+        - Calculate moving averages for trend smoothing
+        - Measure volatility as stability indicator
+        
+        Use Cases:
+        - Election forecasting
+        - Coalition stability assessment
+        - Early warning of political shifts
+    </comment>
+    
+    <createView viewName="view_riksdagen_party_momentum_analysis">
+        <![CDATA[
+WITH quarterly_support AS (
+    SELECT
+        party,
+        EXTRACT(YEAR FROM vote_date) AS year,
+        EXTRACT(QUARTER FROM vote_date) AS quarter,
+        COUNT(DISTINCT embedded_id_ballot_id) AS ballots_participated,
+        COUNT(CASE WHEN vote = 'Ja' THEN 1 END) AS yes_votes,
+        COUNT(CASE WHEN vote = 'Nej' THEN 1 END) AS no_votes,
+        COUNT(CASE WHEN vote = 'Avstår' THEN 1 END) AS abstain_votes,
+        COUNT(CASE WHEN vote = 'Frånvarande' THEN 1 END) AS absent_votes,
+        CAST(COUNT(CASE WHEN vote = 'Ja' THEN 1 END) AS FLOAT) / 
+            NULLIF(COUNT(*), 0) AS participation_rate
+    FROM vote_data
+    WHERE vote_date >= '2010-01-01'  -- Focus on recent decade
+    GROUP BY party, EXTRACT(YEAR FROM vote_date), EXTRACT(QUARTER FROM vote_date)
+),
+momentum_calc AS (
+    SELECT
+        party,
+        year,
+        quarter,
+        ballots_participated,
+        participation_rate,
+        
+        -- Previous quarter for momentum calculation
+        LAG(participation_rate, 1) OVER (PARTITION BY party ORDER BY year, quarter) AS prev_quarter_rate,
+        
+        -- Momentum: change from previous quarter
+        participation_rate - LAG(participation_rate, 1) OVER (PARTITION BY party ORDER BY year, quarter) AS momentum,
+        
+        -- 4-quarter moving average for smoothing
+        AVG(participation_rate) OVER (
+            PARTITION BY party 
+            ORDER BY year, quarter 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ) AS ma_4quarter,
+        
+        -- Volatility: standard deviation over last 4 quarters
+        STDDEV(participation_rate) OVER (
+            PARTITION BY party 
+            ORDER BY year, quarter 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ) AS volatility_4quarter
+    FROM quarterly_support
+),
+acceleration_calc AS (
+    SELECT
+        party,
+        year,
+        quarter,
+        ballots_participated,
+        participation_rate,
+        prev_quarter_rate,
+        momentum,
+        ma_4quarter,
+        volatility_4quarter,
+        
+        -- Acceleration: rate of change of momentum (calculated in CTE to avoid window function in final SELECT)
+        COALESCE(momentum, 0) - COALESCE(LAG(momentum, 1) OVER (PARTITION BY party ORDER BY year, quarter), 0) AS acceleration
+    FROM momentum_calc
+)
+SELECT
+    party,
+    year,
+    quarter,
+    CONCAT(year, '-Q', quarter) AS period,
+    ballots_participated,
+    ROUND(participation_rate::NUMERIC, 4) AS participation_rate,
+    ROUND(prev_quarter_rate::NUMERIC, 4) AS prev_quarter_rate,
+    ROUND(momentum::NUMERIC, 4) AS momentum,
+    ROUND(ma_4quarter::NUMERIC, 4) AS moving_avg_4q,
+    ROUND(volatility_4quarter::NUMERIC, 4) AS volatility,
+    ROUND(acceleration::NUMERIC, 4) AS acceleration,
+    
+    -- Trend classification
+    CASE
+        WHEN COALESCE(momentum, 0) > 0.05 THEN 'STRONG_POSITIVE'
+        WHEN COALESCE(momentum, 0) > 0.02 THEN 'POSITIVE'
+        WHEN COALESCE(momentum, 0) > -0.02 THEN 'STABLE'
+        WHEN COALESCE(momentum, 0) > -0.05 THEN 'NEGATIVE'
+        ELSE 'STRONG_NEGATIVE'
+    END AS trend_direction,
+    
+    -- Stability classification
+    CASE
+        WHEN COALESCE(volatility_4quarter, 0) < 0.02 THEN 'VERY_STABLE'
+        WHEN COALESCE(volatility_4quarter, 0) < 0.05 THEN 'STABLE'
+        WHEN COALESCE(volatility_4quarter, 0) < 0.10 THEN 'MODERATE'
+        WHEN COALESCE(volatility_4quarter, 0) < 0.15 THEN 'VOLATILE'
+        ELSE 'HIGHLY_VOLATILE'
+    END AS stability_classification,
+    
+    -- Intelligence assessment
+    CASE
+        WHEN COALESCE(momentum, 0) > 0 AND COALESCE(volatility_4quarter, 0) < 0.05 THEN 'SUSTAINED_GROWTH'
+        WHEN COALESCE(momentum, 0) > 0 AND COALESCE(volatility_4quarter, 0) >= 0.05 THEN 'UNSTABLE_GROWTH'
+        WHEN COALESCE(momentum, 0) < 0 AND COALESCE(volatility_4quarter, 0) < 0.05 THEN 'STEADY_DECLINE'
+        WHEN COALESCE(momentum, 0) < 0 AND COALESCE(volatility_4quarter, 0) >= 0.05 THEN 'VOLATILE_DECLINE'
+        ELSE 'STABLE'
+    END AS intelligence_assessment
+    
+FROM acceleration_calc
+WHERE ballots_participated >= 5  -- Filter out periods with minimal activity
+ORDER BY party, year DESC, quarter DESC;
+        ]]>
+    </createView>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 2. COALITION VOTING ALIGNMENT MATRIX                                      -->
+<!-- Intelligence Value: VERY HIGH - Coalition formation prediction            -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-ops" id="intops-2025111102-coalition-alignment" failOnError="true">
+    <comment>
+        Coalition Voting Alignment Matrix
+        
+        Intelligence Purpose:
+        - Measure voting alignment between party pairs
+        - Identify natural coalition partners
+        - Detect coalition stress or breaking
+        - Predict coalition formation probability
+        
+        Use Cases:
+        - Government formation forecasting
+        - Coalition stability monitoring
+        - Political realignment detection
+    </comment>
+    
+    <createView viewName="view_riksdagen_coalition_alignment_matrix">
+        <![CDATA[
+WITH party_votes AS (
+    SELECT
+        vd.embedded_id_ballot_id,
+        vd.party,
+        vd.vote,
+        vd.vote_date,
+        EXTRACT(YEAR FROM vd.vote_date) AS vote_year
+    FROM vote_data vd
+    WHERE vd.vote_date >= CURRENT_DATE - INTERVAL '2 years'  -- Recent alignment matters most
+        AND vd.vote IN ('Ja', 'Nej')  -- Only definitive votes
+        AND vd.party IS NOT NULL
+),
+alignment_calc AS (
+    SELECT
+        p1.party AS party_1,
+        p2.party AS party_2,
+        COUNT(DISTINCT p1.embedded_id_ballot_id) AS shared_votes,
+        SUM(CASE WHEN p1.vote = p2.vote THEN 1 ELSE 0 END) AS aligned_votes,
+        SUM(CASE WHEN p1.vote != p2.vote THEN 1 ELSE 0 END) AS opposed_votes,
+        CAST(SUM(CASE WHEN p1.vote = p2.vote THEN 1 ELSE 0 END) AS FLOAT) / 
+            NULLIF(COUNT(*), 0) AS alignment_rate,
+        MIN(p1.vote_year) AS first_year,
+        MAX(p1.vote_year) AS last_year
+    FROM party_votes p1
+    INNER JOIN party_votes p2 
+        ON p1.embedded_id_ballot_id = p2.embedded_id_ballot_id
+        AND p1.party < p2.party  -- Avoid duplicate pairs and self-comparison
+    GROUP BY p1.party, p2.party
+)
+SELECT
+    party_1,
+    party_2,
+    shared_votes,
+    aligned_votes,
+    opposed_votes,
+    ROUND(alignment_rate::NUMERIC, 4) AS alignment_rate,
+    
+    -- Coalition likelihood assessment
+    CASE
+        WHEN alignment_rate >= 0.80 THEN 'VERY_HIGH'
+        WHEN alignment_rate >= 0.65 THEN 'HIGH'
+        WHEN alignment_rate >= 0.50 THEN 'MEDIUM'
+        WHEN alignment_rate >= 0.35 THEN 'LOW'
+        ELSE 'VERY_LOW'
+    END AS coalition_likelihood,
+    
+    -- Historical bloc classification (Swedish context)
+    CASE
+        WHEN (party_1 IN ('S', 'V', 'MP') AND party_2 IN ('S', 'V', 'MP'))
+            THEN 'LEFT_BLOC_INTERNAL'
+        WHEN (party_1 IN ('M', 'KD', 'L', 'C') AND party_2 IN ('M', 'KD', 'L', 'C'))
+            THEN 'RIGHT_BLOC_INTERNAL'
+        WHEN (party_1 IN ('S', 'V', 'MP') AND party_2 IN ('M', 'KD', 'L', 'C'))
+            OR (party_1 IN ('M', 'KD', 'L', 'C') AND party_2 IN ('S', 'V', 'MP'))
+            THEN 'CROSS_BLOC'
+        WHEN party_1 = 'SD' OR party_2 = 'SD'
+            THEN 'SWEDEN_DEMOCRATS_RELATED'
+        ELSE 'OTHER'
+    END AS bloc_relationship,
+    
+    -- Intelligence comment
+    CASE
+        WHEN alignment_rate >= 0.80 AND shared_votes >= 100
+            THEN 'Strong natural coalition partners with consistent alignment'
+        WHEN alignment_rate >= 0.65 AND shared_votes >= 100
+            THEN 'Viable coalition partners with good compatibility'
+        WHEN alignment_rate >= 0.50
+            THEN 'Potential coalition partners, issue-by-issue cooperation likely'
+        WHEN alignment_rate < 0.35
+            THEN 'Coalition unlikely, fundamental policy disagreements'
+        ELSE 'Insufficient data for reliable assessment'
+    END AS intelligence_comment,
+    
+    first_year,
+    last_year,
+    last_year - first_year AS years_observed
+    
+FROM alignment_calc
+WHERE shared_votes >= 20  -- Minimum sample size for reliability
+ORDER BY alignment_rate DESC, shared_votes DESC;
+        ]]>
+    </createView>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 3. POLITICAL ANOMALY DETECTION VIEW                                       -->
+<!-- Intelligence Value: HIGH - Risk assessment and unusual behavior detection -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-ops" id="intops-2025111103-anomaly-detection" failOnError="true">
+    <comment>
+        Political Anomaly Detection View
+        
+        Intelligence Purpose:
+        - Detect unusual voting behavior by politicians
+        - Identify party discipline breakdowns
+        - Flag potential defection risks
+        - Monitor conscience vote patterns
+        
+        Use Cases:
+        - Political risk assessment
+        - Party cohesion monitoring
+        - Individual politician reliability scoring
+    </comment>
+    
+    <createView viewName="view_riksdagen_voting_anomaly_detection">
+        <![CDATA[
+WITH party_consensus AS (
+    SELECT
+        embedded_id_ballot_id,
+        party,
+        vote,
+        COUNT(*) AS vote_count,
+        ROW_NUMBER() OVER (PARTITION BY embedded_id_ballot_id, party ORDER BY COUNT(*) DESC) AS rank
+    FROM vote_data
+    WHERE vote IN ('Ja', 'Nej', 'Avstår')
+        AND party IS NOT NULL
+        AND vote_date >= CURRENT_DATE - INTERVAL '1 year'
+    GROUP BY embedded_id_ballot_id, party, vote
+),
+party_majority_vote AS (
+    SELECT
+        embedded_id_ballot_id,
+        party,
+        vote AS party_consensus_vote,
+        vote_count AS consensus_count
+    FROM party_consensus
+    WHERE rank = 1
+),
+party_vote_counts AS (
+    SELECT
+        embedded_id_ballot_id,
+        party,
+        COUNT(*) AS total_party_votes
+    FROM vote_data
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '1 year'
+    GROUP BY embedded_id_ballot_id, party
+),
+individual_vs_party AS (
+    SELECT
+        vd.embedded_id_intressent_id AS person_id,
+        vd.party,
+        vd.embedded_id_ballot_id AS ballot_id,
+        vd.vote AS individual_vote,
+        pmv.party_consensus_vote,
+        pmv.consensus_count,
+        vd.vote_date,
+        CASE 
+            WHEN vd.vote = pmv.party_consensus_vote THEN 'ALIGNED'
+            WHEN vd.vote IN ('Ja', 'Nej') AND pmv.party_consensus_vote IN ('Ja', 'Nej') 
+                AND vd.vote != pmv.party_consensus_vote THEN 'OPPOSED'
+            WHEN vd.vote = 'Avstår' AND pmv.party_consensus_vote IN ('Ja', 'Nej') THEN 'ABSTAINED'
+            ELSE 'OTHER'
+        END AS alignment_status,
+        CASE
+            WHEN pmv.consensus_count >= pvc.total_party_votes * 0.9
+                THEN 'UNANIMOUS'
+            WHEN pmv.consensus_count >= pvc.total_party_votes * 0.75
+                THEN 'STRONG_MAJORITY'
+            ELSE 'SPLIT'
+        END AS party_cohesion
+    FROM vote_data vd
+    INNER JOIN party_majority_vote pmv 
+        ON vd.embedded_id_ballot_id = pmv.embedded_id_ballot_id
+        AND vd.party = pmv.party
+    INNER JOIN party_vote_counts pvc
+        ON vd.embedded_id_ballot_id = pvc.embedded_id_ballot_id
+        AND vd.party = pvc.party
+    WHERE vd.vote IN ('Ja', 'Nej', 'Avstår')
+        AND vd.vote_date >= CURRENT_DATE - INTERVAL '1 year'
+)
+SELECT
+    ivp.person_id,
+    pd.first_name,
+    pd.last_name,
+    ivp.party,
+    COUNT(*) AS total_votes,
+    SUM(CASE WHEN ivp.alignment_status = 'ALIGNED' THEN 1 ELSE 0 END) AS aligned_votes,
+    SUM(CASE WHEN ivp.alignment_status = 'OPPOSED' THEN 1 ELSE 0 END) AS opposed_votes,
+    SUM(CASE WHEN ivp.alignment_status = 'ABSTAINED' THEN 1 ELSE 0 END) AS abstained_votes,
+    
+    -- Party discipline score (higher is more disciplined)
+    ROUND(
+        (CAST(SUM(CASE WHEN ivp.alignment_status = 'ALIGNED' THEN 1 ELSE 0 END) AS FLOAT) / 
+        NULLIF(COUNT(*), 0))::NUMERIC, 
+        4
+    ) AS party_discipline_score,
+    
+    -- Rebellion rate
+    ROUND(
+        (CAST(SUM(CASE WHEN ivp.alignment_status = 'OPPOSED' THEN 1 ELSE 0 END) AS FLOAT) / 
+        NULLIF(COUNT(*), 0))::NUMERIC, 
+        4
+    ) AS rebellion_rate,
+    
+    -- High cohesion deviations (most significant anomalies)
+    SUM(CASE 
+        WHEN ivp.alignment_status = 'OPPOSED' AND ivp.party_cohesion = 'UNANIMOUS' 
+        THEN 1 ELSE 0 
+    END) AS unanimous_deviations,
+    
+    -- Discipline classification
+    CASE
+        WHEN CAST(SUM(CASE WHEN ivp.alignment_status = 'ALIGNED' THEN 1 ELSE 0 END) AS FLOAT) / 
+             NULLIF(COUNT(*), 0) >= 0.95 THEN 'VERY_HIGH_DISCIPLINE'
+        WHEN CAST(SUM(CASE WHEN ivp.alignment_status = 'ALIGNED' THEN 1 ELSE 0 END) AS FLOAT) / 
+             NULLIF(COUNT(*), 0) >= 0.85 THEN 'HIGH_DISCIPLINE'
+        WHEN CAST(SUM(CASE WHEN ivp.alignment_status = 'ALIGNED' THEN 1 ELSE 0 END) AS FLOAT) / 
+             NULLIF(COUNT(*), 0) >= 0.70 THEN 'MODERATE_DISCIPLINE'
+        ELSE 'LOW_DISCIPLINE'
+    END AS discipline_classification,
+    
+    -- Risk assessment
+    CASE
+        WHEN SUM(CASE WHEN ivp.alignment_status = 'OPPOSED' AND ivp.party_cohesion = 'UNANIMOUS' 
+                 THEN 1 ELSE 0 END) >= 3
+            THEN 'HIGH_DEFECTION_RISK'
+        WHEN CAST(SUM(CASE WHEN ivp.alignment_status = 'OPPOSED' THEN 1 ELSE 0 END) AS FLOAT) / 
+             NULLIF(COUNT(*), 0) >= 0.20
+            THEN 'MODERATE_DEFECTION_RISK'
+        WHEN CAST(SUM(CASE WHEN ivp.alignment_status = 'ALIGNED' THEN 1 ELSE 0 END) AS FLOAT) / 
+             NULLIF(COUNT(*), 0) >= 0.95
+            THEN 'VERY_RELIABLE'
+        ELSE 'RELIABLE'
+    END AS defection_risk_assessment,
+    
+    MIN(ivp.vote_date) AS first_vote_date,
+    MAX(ivp.vote_date) AS last_vote_date
+    
+FROM individual_vs_party ivp
+LEFT JOIN person_data pd ON pd.id = ivp.person_id
+GROUP BY ivp.person_id, pd.first_name, pd.last_name, ivp.party
+HAVING COUNT(*) >= 10  -- Minimum votes for statistical significance
+ORDER BY rebellion_rate DESC, unanimous_deviations DESC;
+        ]]>
+    </createView>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 4. POLITICIAN INFLUENCE NETWORK METRICS                                   -->
+<!-- Intelligence Value: VERY HIGH - Power structure mapping                   -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-ops" id="intops-2025111104-influence-metrics" failOnError="true">
+    <comment>
+        Politician Influence Network Metrics
+        
+        Intelligence Purpose:
+        - Calculate basic network centrality measures
+        - Identify key brokers and connectors
+        - Map informal influence beyond formal roles
+        - Detect power concentration patterns
+        
+        Use Cases:
+        - Power structure analysis
+        - Coalition negotiation prediction
+        - Leadership succession forecasting
+        
+        Note: This is a simplified network analysis based on co-voting patterns.
+        Full network analysis would require additional relationship data.
+    </comment>
+    
+    <createView viewName="view_riksdagen_politician_influence_metrics">
+        <![CDATA[
+WITH co_voting_pairs AS (
+    -- Identify politicians who vote together on issues
+    SELECT
+        v1.embedded_id_intressent_id AS person_1,
+        v2.embedded_id_intressent_id AS person_2,
+        COUNT(*) AS co_votes,
+        SUM(CASE WHEN v1.vote = v2.vote THEN 1 ELSE 0 END) AS aligned_votes,
+        CAST(SUM(CASE WHEN v1.vote = v2.vote THEN 1 ELSE 0 END) AS FLOAT) / 
+            NULLIF(COUNT(*), 0) AS alignment_rate
+    FROM vote_data v1
+    INNER JOIN vote_data v2 
+        ON v1.embedded_id_ballot_id = v2.embedded_id_ballot_id
+        AND v1.embedded_id_intressent_id < v2.embedded_id_intressent_id  -- Avoid duplicates
+    WHERE v1.vote_date >= CURRENT_DATE - INTERVAL '1 year'
+        AND v1.vote IN ('Ja', 'Nej')
+        AND v2.vote IN ('Ja', 'Nej')
+    GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
+    HAVING COUNT(*) >= 20  -- Minimum co-votes for meaningful connection
+),
+network_connections AS (
+    SELECT person_1 AS person_id FROM co_voting_pairs WHERE alignment_rate >= 0.7
+    UNION ALL
+    SELECT person_2 AS person_id FROM co_voting_pairs WHERE alignment_rate >= 0.7
+),
+degree_centrality AS (
+    SELECT
+        person_id,
+        COUNT(*) AS connection_count
+    FROM network_connections
+    GROUP BY person_id
+),
+cross_party_bridges AS (
+    -- Identify politicians who align with other parties (potential brokers)
+    SELECT
+        cvp.person_1 AS person_id,
+        COUNT(DISTINCT p2.party) AS parties_connected
+    FROM co_voting_pairs cvp
+    INNER JOIN person_data p1 ON p1.id = cvp.person_1
+    INNER JOIN person_data p2 ON p2.id = cvp.person_2
+    WHERE cvp.alignment_rate >= 0.6
+        AND p1.party != p2.party
+    GROUP BY cvp.person_1
+    
+    UNION ALL
+    
+    SELECT
+        cvp.person_2 AS person_id,
+        COUNT(DISTINCT p1.party) AS parties_connected
+    FROM co_voting_pairs cvp
+    INNER JOIN person_data p1 ON p1.id = cvp.person_1
+    INNER JOIN person_data p2 ON p2.id = cvp.person_2
+    WHERE cvp.alignment_rate >= 0.6
+        AND p1.party != p2.party
+    GROUP BY cvp.person_2
+),
+broker_score AS (
+    SELECT
+        person_id,
+        MAX(parties_connected) AS cross_party_connections
+    FROM cross_party_bridges
+    GROUP BY person_id
+),
+influence_max_values AS (
+    SELECT
+        MAX(dc.connection_count) AS max_connections,
+        MAX(dc.connection_count) + MAX(COALESCE(bs.cross_party_connections, 0)) * 10 AS max_influence_denominator
+    FROM degree_centrality dc
+    LEFT JOIN broker_score bs ON dc.person_id = bs.person_id
+)
+SELECT
+    pd.id AS person_id,
+    pd.first_name,
+    pd.last_name,
+    pd.party,
+    pd.status,
+    COALESCE(dc.connection_count, 0) AS network_connections,
+    COALESCE(bs.cross_party_connections, 0) AS cross_party_bridges,
+    
+    -- Normalized degree centrality (0-1 scale, relative to max in dataset)
+    ROUND(
+        (CAST(COALESCE(dc.connection_count, 0) AS FLOAT) / 
+        NULLIF(imv.max_connections, 0))::NUMERIC,
+        4
+    ) AS normalized_centrality,
+    
+    -- Influence classification
+    CASE
+        WHEN COALESCE(dc.connection_count, 0) >= 50 THEN 'HIGHLY_CONNECTED'
+        WHEN COALESCE(dc.connection_count, 0) >= 30 THEN 'WELL_CONNECTED'
+        WHEN COALESCE(dc.connection_count, 0) >= 15 THEN 'MODERATELY_CONNECTED'
+        WHEN COALESCE(dc.connection_count, 0) >= 5 THEN 'CONNECTED'
+        ELSE 'ISOLATED'
+    END AS connectivity_level,
+    
+    -- Broker potential (cross-party influence)
+    CASE
+        WHEN COALESCE(bs.cross_party_connections, 0) >= 4 THEN 'STRONG_BROKER'
+        WHEN COALESCE(bs.cross_party_connections, 0) >= 2 THEN 'MODERATE_BROKER'
+        WHEN COALESCE(bs.cross_party_connections, 0) >= 1 THEN 'WEAK_BROKER'
+        ELSE 'NON_BROKER'
+    END AS broker_classification,
+    
+    -- Combined influence score (connections + broker role)
+    ROUND(
+        ((COALESCE(dc.connection_count, 0) * 1.0 + 
+         COALESCE(bs.cross_party_connections, 0) * 10.0) / 
+        NULLIF(imv.max_influence_denominator, 0))::NUMERIC,
+        4
+    ) AS influence_score,
+    
+    -- Intelligence assessment
+    CASE
+        WHEN COALESCE(bs.cross_party_connections, 0) >= 3 AND COALESCE(dc.connection_count, 0) >= 30
+            THEN 'Key power broker with cross-bloc influence'
+        WHEN COALESCE(dc.connection_count, 0) >= 50
+            THEN 'Highly influential within party/bloc'
+        WHEN COALESCE(bs.cross_party_connections, 0) >= 2
+            THEN 'Valuable bridge builder between parties'
+        WHEN COALESCE(dc.connection_count, 0) >= 20
+            THEN 'Moderate influence within network'
+        ELSE 'Limited network influence'
+    END AS influence_assessment
+
+FROM person_data pd
+-- influence_max_values is a single-row CTE containing max values; CROSS JOIN attaches these to every person row
+CROSS JOIN influence_max_values imv
+LEFT JOIN degree_centrality dc ON dc.person_id = pd.id
+LEFT JOIN broker_score bs ON bs.person_id = pd.id
+WHERE pd.status = 'active'  -- Focus on currently active politicians
+ORDER BY influence_score DESC, network_connections DESC;
+        ]]>
+    </createView>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 5. POLITICAL CRISIS RESILIENCE INDICATORS                                 -->
+<!-- Intelligence Value: MEDIUM-HIGH - Leadership assessment under pressure    -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-ops" id="intops-2025111105-crisis-resilience" failOnError="true">
+    <comment>
+        Political Crisis Resilience Indicators
+        
+        Intelligence Purpose:
+        - Assess politician performance during high-pressure periods
+        - Identify crisis-tested leaders
+        - Measure consistency under stress
+        - Evaluate decision quality during challenges
+        
+        Use Cases:
+        - Leadership capability assessment
+        - Crisis team selection
+        - Succession planning
+        
+        Note: This uses voting consistency during high-activity periods as a proxy
+        for crisis performance, as specific crisis event data is not available.
+    </comment>
+    
+    <createView viewName="view_riksdagen_crisis_resilience_indicators">
+        <![CDATA[
+WITH high_activity_periods AS (
+    -- Identify periods of high legislative activity (proxy for crisis/important issues)
+    SELECT
+        DATE_TRUNC('month', vote_date) AS activity_month,
+        COUNT(DISTINCT embedded_id_ballot_id) AS ballot_count,
+        AVG(COUNT(DISTINCT embedded_id_ballot_id)) OVER () AS avg_monthly_ballots
+    FROM vote_data
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '2 years'
+    GROUP BY DATE_TRUNC('month', vote_date)
+),
+crisis_periods AS (
+    -- Identify crisis/high-pressure periods as months with ballot activity 50% above average
+    -- Rationale: 1.5x multiplier selected based on Swedish parliamentary patterns where significant
+    -- legislative activity spikes indicate major policy debates, coalition negotiations, or urgent issues
+    -- requiring intense political engagement. This threshold balances sensitivity (catching real crises)
+    -- with specificity (avoiding false positives from normal busy periods).
+    SELECT activity_month
+    FROM high_activity_periods
+    WHERE ballot_count > avg_monthly_ballots * 1.5  -- 50% above average = high pressure
+),
+normal_periods AS (
+    SELECT activity_month
+    FROM high_activity_periods
+    WHERE ballot_count <= avg_monthly_ballots
+),
+crisis_voting AS (
+    SELECT
+        vd.embedded_id_intressent_id AS person_id,
+        vd.party,
+        COUNT(*) AS crisis_votes,
+        SUM(CASE WHEN vd.vote IN ('Ja', 'Nej') THEN 1 ELSE 0 END) AS crisis_definitive_votes,
+        SUM(CASE WHEN vd.vote = 'Frånvarande' THEN 1 ELSE 0 END) AS crisis_absences,
+        CAST(SUM(CASE WHEN vd.vote = 'Frånvarande' THEN 1 ELSE 0 END) AS FLOAT) / 
+            NULLIF(COUNT(*), 0) AS crisis_absence_rate
+    FROM vote_data vd
+    INNER JOIN crisis_periods cp ON DATE_TRUNC('month', vd.vote_date) = cp.activity_month
+    GROUP BY vd.embedded_id_intressent_id, vd.party
+),
+normal_voting AS (
+    SELECT
+        vd.embedded_id_intressent_id AS person_id,
+        COUNT(*) AS normal_votes,
+        SUM(CASE WHEN vd.vote = 'Frånvarande' THEN 1 ELSE 0 END) AS normal_absences,
+        CAST(SUM(CASE WHEN vd.vote = 'Frånvarande' THEN 1 ELSE 0 END) AS FLOAT) / 
+            NULLIF(COUNT(*), 0) AS normal_absence_rate
+    FROM vote_data vd
+    INNER JOIN normal_periods np ON DATE_TRUNC('month', vd.vote_date) = np.activity_month
+    GROUP BY vd.embedded_id_intressent_id
+),
+party_discipline_crisis AS (
+    -- Check if they maintain party discipline during crisis
+    SELECT
+        vd.embedded_id_intressent_id AS person_id,
+        COUNT(*) AS party_votes,
+        SUM(CASE WHEN vd.vote = majority.vote THEN 1 ELSE 0 END) AS aligned_crisis_votes
+    FROM vote_data vd
+    INNER JOIN crisis_periods cp ON DATE_TRUNC('month', vd.vote_date) = cp.activity_month
+    INNER JOIN (
+        SELECT
+            embedded_id_ballot_id,
+            party,
+            vote,
+            COUNT(*) AS vote_count,
+            ROW_NUMBER() OVER (PARTITION BY embedded_id_ballot_id, party ORDER BY COUNT(*) DESC) AS rank
+        FROM vote_data
+        WHERE vote IN ('Ja', 'Nej')
+        GROUP BY embedded_id_ballot_id, party, vote
+    ) majority ON majority.embedded_id_ballot_id = vd.embedded_id_ballot_id
+        AND majority.party = vd.party
+        AND majority.rank = 1
+    WHERE vd.vote IN ('Ja', 'Nej')
+    GROUP BY vd.embedded_id_intressent_id
+)
+SELECT
+    pd.id AS person_id,
+    pd.first_name,
+    pd.last_name,
+    pd.party,
+    pd.status,
+    
+    -- Crisis participation metrics
+    COALESCE(cv.crisis_votes, 0) AS crisis_period_votes,
+    COALESCE(cv.crisis_definitive_votes, 0) AS crisis_definitive_votes,
+    COALESCE(nv.normal_votes, 0) AS normal_period_votes,
+    
+    -- Absence rate comparison
+    ROUND(COALESCE(cv.crisis_absence_rate, 0)::NUMERIC, 4) AS crisis_absence_rate,
+    ROUND(COALESCE(nv.normal_absence_rate, 0)::NUMERIC, 4) AS normal_absence_rate,
+    ROUND((COALESCE(cv.crisis_absence_rate, 0) - COALESCE(nv.normal_absence_rate, 0))::NUMERIC, 4) 
+        AS absence_rate_change,
+    
+    -- Party discipline under pressure
+    ROUND(
+        (CAST(COALESCE(pdc.aligned_crisis_votes, 0) AS FLOAT) / 
+        NULLIF(COALESCE(pdc.party_votes, 0), 0))::NUMERIC,
+        4
+    ) AS crisis_party_discipline,
+    
+    -- Resilience score (lower absence increase + maintained discipline = higher resilience)
+    ROUND(
+        ((1.0 - COALESCE(cv.crisis_absence_rate, 0)) * 0.6 +
+        (CAST(COALESCE(pdc.aligned_crisis_votes, 0) AS FLOAT) / 
+         NULLIF(COALESCE(pdc.party_votes, 0), 0)) * 0.4)::NUMERIC,
+        4
+    ) AS resilience_score,
+    
+    -- Resilience classification
+    CASE
+        WHEN COALESCE(cv.crisis_absence_rate, 1) <= COALESCE(nv.normal_absence_rate, 0.5)
+            AND (CAST(COALESCE(pdc.aligned_crisis_votes, 0) AS FLOAT) / 
+                 NULLIF(COALESCE(pdc.party_votes, 0), 0)) >= 0.9
+            THEN 'HIGHLY_RESILIENT'
+        WHEN COALESCE(cv.crisis_absence_rate, 1) <= COALESCE(nv.normal_absence_rate, 0.5) + 0.1
+            AND (CAST(COALESCE(pdc.aligned_crisis_votes, 0) AS FLOAT) / 
+                 NULLIF(COALESCE(pdc.party_votes, 0), 0)) >= 0.8
+            THEN 'RESILIENT'
+        WHEN COALESCE(cv.crisis_absence_rate, 1) > COALESCE(nv.normal_absence_rate, 0) + 0.2
+            THEN 'LOW_RESILIENCE'
+        ELSE 'MODERATE_RESILIENCE'
+    END AS resilience_classification,
+    
+    -- Performance under pressure assessment
+    CASE
+        WHEN COALESCE(cv.crisis_absence_rate, 1) < 0.1 
+            AND COALESCE(cv.crisis_definitive_votes, 0) >= 20
+            THEN 'Excellent attendance and decisiveness under pressure'
+        WHEN COALESCE(cv.crisis_absence_rate, 1) <= COALESCE(nv.normal_absence_rate, 0.5)
+            THEN 'Maintains performance during high-pressure periods'
+        WHEN COALESCE(cv.crisis_absence_rate, 1) > COALESCE(nv.normal_absence_rate, 0) + 0.15
+            THEN 'Performance deteriorates under pressure'
+        ELSE 'Limited data for crisis performance assessment'
+    END AS pressure_performance_assessment
+
+FROM person_data pd
+LEFT JOIN crisis_voting cv ON cv.person_id = pd.id
+LEFT JOIN normal_voting nv ON nv.person_id = pd.id
+LEFT JOIN party_discipline_crisis pdc ON pdc.person_id = pd.id
+WHERE pd.status = 'active'
+    AND (COALESCE(cv.crisis_votes, 0) >= 10 OR COALESCE(nv.normal_votes, 0) >= 20)
+ORDER BY resilience_score DESC, crisis_definitive_votes DESC;
+        ]]>
+    </createView>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 6. INTELLIGENCE OPERATIONS SUMMARY DASHBOARD VIEW                         -->
+<!-- Intelligence Value: VERY HIGH - Executive-level intelligence briefing     -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-ops" id="intops-2025111106-intelligence-dashboard" failOnError="true">
+    <comment>
+        Intelligence Operations Summary Dashboard
+        
+        Intelligence Purpose:
+        - Provide executive-level overview of political landscape
+        - Aggregate key intelligence indicators
+        - Enable rapid situation assessment
+        - Support strategic decision-making
+        
+        Use Cases:
+        - Daily intelligence briefings
+        - Situation room dashboards
+        - Strategic planning sessions
+    </comment>
+    
+    <createView viewName="view_riksdagen_intelligence_dashboard">
+        <![CDATA[
+WITH momentum_summary AS (
+    -- Aggregate momentum indicators independently
+    SELECT
+        COUNT(DISTINCT party) FILTER (WHERE trend_direction IN ('STRONG_POSITIVE', 'POSITIVE')) AS parties_gaining_momentum,
+        COUNT(DISTINCT party) FILTER (WHERE trend_direction IN ('STRONG_NEGATIVE', 'NEGATIVE')) AS parties_losing_momentum,
+        COUNT(DISTINCT party) FILTER (WHERE stability_classification IN ('VOLATILE', 'HIGHLY_VOLATILE')) AS volatile_parties
+    FROM view_riksdagen_party_momentum_analysis
+),
+coalition_summary AS (
+    -- Aggregate coalition indicators independently
+    SELECT
+        COUNT(*) FILTER (WHERE coalition_likelihood = 'VERY_HIGH') AS high_probability_coalitions,
+        COUNT(*) FILTER (WHERE bloc_relationship = 'CROSS_BLOC' AND coalition_likelihood IN ('HIGH', 'VERY_HIGH')) AS cross_bloc_alliances
+    FROM view_riksdagen_coalition_alignment_matrix
+),
+anomaly_summary AS (
+    -- Aggregate risk indicators independently
+    SELECT
+        COUNT(*) FILTER (WHERE defection_risk_assessment = 'HIGH_DEFECTION_RISK') AS high_defection_risks,
+        COUNT(*) FILTER (WHERE discipline_classification = 'LOW_DISCIPLINE') AS low_discipline_politicians
+    FROM view_riksdagen_voting_anomaly_detection
+),
+influence_summary AS (
+    -- Aggregate influence indicators independently
+    SELECT
+        COUNT(*) FILTER (WHERE broker_classification IN ('STRONG_BROKER', 'MODERATE_BROKER')) AS power_brokers,
+        COUNT(*) FILTER (WHERE connectivity_level = 'HIGHLY_CONNECTED') AS highly_connected_politicians
+    FROM view_riksdagen_politician_influence_metrics
+),
+resilience_summary AS (
+    -- Aggregate resilience indicators independently
+    SELECT
+        COUNT(*) FILTER (WHERE resilience_classification = 'HIGHLY_RESILIENT') AS crisis_ready_politicians,
+        COUNT(*) FILTER (WHERE resilience_classification = 'LOW_RESILIENCE') AS low_resilience_politicians
+    FROM view_riksdagen_crisis_resilience_indicators
+),
+vote_stats AS (
+    SELECT
+        MAX(vote_date) AS latest_vote_data,
+        COUNT(DISTINCT embedded_id_ballot_id) FILTER (WHERE vote_date >= CURRENT_DATE - INTERVAL '30 days') AS ballots_last_30_days
+    FROM vote_data
+)
+SELECT
+    -- Temporal indicators
+    ms.parties_gaining_momentum,
+    ms.parties_losing_momentum,
+    ms.volatile_parties,
+    
+    -- Coalition indicators
+    cs.high_probability_coalitions,
+    cs.cross_bloc_alliances,
+    
+    -- Risk indicators
+    ans.high_defection_risks,
+    ans.low_discipline_politicians,
+    
+    -- Influence indicators
+    ins.power_brokers,
+    ins.highly_connected_politicians,
+    
+    -- Resilience indicators
+    rs.crisis_ready_politicians,
+    rs.low_resilience_politicians,
+    
+    -- Overall assessment flags
+    CASE
+        WHEN ans.high_defection_risks >= 5
+            THEN 'HIGH_POLITICAL_INSTABILITY_RISK'
+        WHEN ms.volatile_parties >= 3
+            THEN 'MODERATE_POLITICAL_INSTABILITY_RISK'
+        ELSE 'STABLE_POLITICAL_ENVIRONMENT'
+    END AS stability_assessment,
+    
+    CASE
+        WHEN cs.cross_bloc_alliances >= 2
+            THEN 'POTENTIAL_REALIGNMENT_DETECTED'
+        WHEN cs.high_probability_coalitions >= 5
+            THEN 'STABLE_COALITION_PATTERNS'
+        ELSE 'UNCERTAIN_COALITION_LANDSCAPE'
+    END AS coalition_assessment,
+    
+    -- Data freshness
+    vs.latest_vote_data,
+    vs.ballots_last_30_days,
+    
+    -- Intelligence report timestamp
+    CURRENT_TIMESTAMP AS intelligence_report_timestamp
+FROM momentum_summary ms
+CROSS JOIN coalition_summary cs
+CROSS JOIN anomaly_summary ans
+CROSS JOIN influence_summary ins
+CROSS JOIN resilience_summary rs
+CROSS JOIN vote_stats vs;
+        ]]>
+    </createView>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 7. POLITICIAN RISK SUMMARY VIEW                                          -->
+<!-- Intelligence Value: VERY HIGH - Comprehensive risk profiling             -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="intops-2025111107-politician-risk-summary" failOnError="true">
+    <comment>
+        Politician Risk Summary View
+        
+        Intelligence Purpose:
+        - Aggregate all risk indicators for each politician
+        - Provide comprehensive risk score based on rule violations, attendance (absence rates), voting effectiveness (win rates), rebel rates, and document productivity
+        - Enable rapid risk assessment and prioritization
+        - Support Drools rules integration with risk metrics
+        
+        Use Cases:
+        - Risk-based monitoring and alerting
+        - Accountability dashboard displays
+        - Investigative journalism targeting
+        - Electoral candidate vetting
+    </comment>
+    
+    <createView viewName="view_politician_risk_summary" replaceIfExists="true">
+        <![CDATA[
+WITH risk_calculations AS (
+    SELECT
+        p.id AS person_id,
+        p.first_name,
+        p.last_name,
+        p.party,
+        p.status,
+        
+        -- Rule Violation Metrics
+        COUNT(DISTINCT rv.id) AS total_violations,
+        MAX(rv.detected_date) AS latest_violation_date,
+        
+        -- Violation Breakdown by Severity/Group
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'ABSENTEEISM') AS absenteeism_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'EFFECTIVENESS') AS effectiveness_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'DISCIPLINE') AS discipline_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'PRODUCTIVITY') AS productivity_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'COLLABORATION') AS collaboration_violations,
+        
+        -- Current Performance Metrics (last year)
+        COALESCE(vps_annual.avg_percentage_absent, 0) AS annual_absence_rate,
+        COALESCE(vps_annual.won_percentage, 0) AS annual_win_rate,
+        COALESCE(vps_annual.rebel_percentage, 0) AS annual_rebel_rate,
+        COALESCE(vps_annual.total_votes, 0) AS annual_vote_count,
+        
+        -- Document Activity
+        COUNT(DISTINCT vpd.id) AS documents_last_year,
+        
+        -- Risk Score Calculation (0-100 scale) - Higher score = higher risk
+        (
+            -- Violation component (0-40 points)
+            LEAST(COUNT(DISTINCT rv.id) * 2, 40) +
+            
+            -- Absence component (0-20 points)
+            (COALESCE(vps_annual.avg_percentage_absent, 0) * 20 / 100.0) +
+            
+            -- Ineffectiveness component (0-20 points)
+            ((100 - COALESCE(vps_annual.won_percentage, 50)) * 20 / 100.0) +
+            
+            -- Rebel component (0-10 points)
+            (COALESCE(vps_annual.rebel_percentage, 0) * 10 / 100.0) +
+            
+            -- Low productivity component (0-10 points)
+            (CASE 
+                WHEN COUNT(DISTINCT vpd.id) < 5 
+                THEN 10 
+                ELSE 0 
+            END)
+        ) AS calculated_risk_score
+        
+    FROM person_data p
+    LEFT JOIN rule_violation rv 
+        ON rv.reference_id = p.id 
+        AND rv.resource_type = 'POLITICIAN'
+        AND rv.status = 'ACTIVE'
+    LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_annual vps_annual
+        ON vps_annual.embedded_id_intressent_id = p.id
+        AND vps_annual.embedded_id_vote_date = date_trunc('year', CURRENT_DATE - INTERVAL '1 year')
+    LEFT JOIN view_riksdagen_politician_document vpd 
+        ON vpd.person_reference_id = p.id 
+        AND vpd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
+    
+    WHERE p.status = 'active'
+    
+    GROUP BY 
+        p.id, p.first_name, p.last_name, p.party, p.status,
+        vps_annual.avg_percentage_absent,
+        vps_annual.won_percentage,
+        vps_annual.rebel_percentage,
+        vps_annual.total_votes
+)
+SELECT
+    person_id,
+    first_name,
+    last_name,
+    party,
+    status,
+    total_violations,
+    latest_violation_date,
+    absenteeism_violations,
+    effectiveness_violations,
+    discipline_violations,
+    productivity_violations,
+    collaboration_violations,
+    annual_absence_rate,
+    annual_win_rate,
+    annual_rebel_rate,
+    annual_vote_count,
+    documents_last_year,
+    
+    ROUND(calculated_risk_score::NUMERIC, 2) AS risk_score,
+    
+    -- Risk Classification
+    CASE
+        WHEN calculated_risk_score >= 70 THEN 'CRITICAL'
+        WHEN calculated_risk_score >= 50 THEN 'HIGH'
+        WHEN calculated_risk_score >= 30 THEN 'MEDIUM'
+        ELSE 'LOW'
+    END AS risk_level,
+    
+    -- Intelligence Assessment
+    CASE
+        WHEN total_violations >= 5 AND annual_absence_rate >= 20
+            THEN 'Chronic accountability failure - multiple violations with high absenteeism'
+        WHEN total_violations >= 5
+            THEN 'Multiple rule violations detected - requires investigation'
+        WHEN annual_absence_rate >= 25
+            THEN 'Severe absenteeism - constituent representation failure'
+        WHEN annual_win_rate < 20
+            THEN 'Critically low effectiveness - marginalized in policy process'
+        WHEN annual_rebel_rate >= 15
+            THEN 'High rebel rate - party discipline breakdown'
+        WHEN documents_last_year < 3
+            THEN 'Minimal legislative activity - lack of policy initiative'
+        ELSE 'Standard performance - no significant risk indicators'
+    END AS risk_assessment,
+    
+    -- Days since last violation
+    COALESCE(EXTRACT(DAY FROM (CURRENT_DATE - latest_violation_date))::INTEGER, NULL) AS days_since_last_violation
+
+FROM risk_calculations
+ORDER BY risk_score DESC, total_violations DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_politician_risk_summary"/>
+    </rollback>
+</changeSet>
+
+<!-- Add index for performance -->
+<changeSet author="intelligence-operative" id="intops-2025111107-politician-risk-idx" failOnError="true">
+    <comment>
+        Performance Indexes for Politician Risk Queries
+        
+        Indexes on frequently queried columns to support rapid risk assessment
+        and dashboard queries.
+    </comment>
+    
+    <sql>
+        -- NOTE: The following indexes assume that rule_violation.reference_id and person_data.id
+        -- are of the same type (e.g., VARCHAR/TEXT) and store person IDs in the same format.
+        -- This ensures that the join in the risk summary view (rv.reference_id = p.id) is valid
+        -- and that the index will be used efficiently. If the schema changes, verify this assumption.
+        
+        CREATE INDEX IF NOT EXISTS idx_rule_violation_resource 
+        ON rule_violation(reference_id, resource_type, status) 
+        WHERE resource_type = 'POLITICIAN';
+        
+        CREATE INDEX IF NOT EXISTS idx_rule_violation_detected_date 
+        ON rule_violation(detected_date DESC);
+        
+        CREATE INDEX IF NOT EXISTS idx_person_status 
+        ON person_data(status, party) 
+        WHERE status = 'active';
+    </sql>
+    
+    <rollback>
+        <sql>
+            DROP INDEX IF EXISTS idx_rule_violation_resource;
+            DROP INDEX IF EXISTS idx_rule_violation_detected_date;
+            DROP INDEX IF EXISTS idx_person_status;
+        </sql>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 8. PARTY PERFORMANCE METRICS VIEW                                        -->
+<!-- Intelligence Value: HIGH - Party-level assessment and comparison         -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="intops-2025111108-party-performance-metrics" failOnError="true">
+    <comment>
+        Party Performance Metrics View
+        
+        Intelligence Purpose:
+        - Aggregate party-wide performance indicators
+        - Enable comparative party analysis
+        - Track organizational effectiveness
+        - Support coalition formation assessment
+        
+        Use Cases:
+        - Electoral forecasting
+        - Government effectiveness assessment
+        - Opposition strategy analysis
+        - Coalition viability prediction
+    </comment>
+    
+    <createView viewName="view_party_performance_metrics" replaceIfExists="true">
+        <![CDATA[
+WITH party_member_counts AS (
+    SELECT 
+        party,
+        COUNT(*) FILTER (WHERE status = 'active') AS active_members,
+        COUNT(*) FILTER (WHERE status = 'inactive') AS inactive_members
+    FROM person_data
+    WHERE party IS NOT NULL
+    GROUP BY party
+),
+party_violations AS (
+    SELECT
+        p.party,
+        COUNT(DISTINCT rv.id) AS total_violations,
+        COUNT(DISTINCT rv.reference_id) AS members_with_violations,
+        MAX(rv.detected_date) AS latest_violation
+    FROM person_data p
+    INNER JOIN rule_violation rv 
+        ON rv.reference_id = p.id 
+        AND rv.resource_type = 'POLITICIAN'
+        AND rv.status = 'ACTIVE'
+    WHERE p.party IS NOT NULL
+    GROUP BY p.party
+),
+party_voting_annual AS (
+    SELECT
+        party,
+        SUM(total_votes) AS total_party_votes,
+        AVG(avg_percentage_absent) AS avg_absence_rate,
+        AVG(won_percentage) AS avg_win_rate,
+        AVG(rebel_percentage) AS avg_rebel_rate,
+        AVG(100 - avg_percentage_absent) AS avg_participation_rate
+    FROM view_riksdagen_vote_data_ballot_politician_summary_annual
+    WHERE embedded_id_vote_date >= date_trunc('year', CURRENT_DATE - INTERVAL '1 year')
+        AND embedded_id_vote_date < date_trunc('year', CURRENT_DATE)
+        AND party IS NOT NULL
+    GROUP BY party
+),
+party_documents AS (
+    SELECT
+        p.party,
+        COUNT(DISTINCT vpd.id) AS documents_produced,
+        COUNT(DISTINCT vpd.id) FILTER (WHERE vpd.document_type = 'Motion') AS motions_produced,
+        COUNT(DISTINCT vpd.id) FILTER (WHERE vpd.document_type = 'Proposition') AS propositions_produced
+    FROM person_data p
+    INNER JOIN view_riksdagen_politician_document vpd 
+        ON vpd.person_reference_id = p.id
+        AND vpd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
+    WHERE p.party IS NOT NULL
+    GROUP BY p.party
+),
+party_government_roles AS (
+    SELECT
+        p.party,
+        COUNT(DISTINCT p.id) FILTER (WHERE ad.assignment_type = 'Departement') AS ministers_count,
+        COUNT(DISTINCT p.id) FILTER (WHERE ad.assignment_type = 'Riksdagsorgan' AND ad.role_code = 'Ordförande') AS committee_chairs_count
+    FROM person_data p
+    INNER JOIN assignment_data ad ON ad.intressent_id = p.id
+    WHERE ad.to_date IS NULL OR ad.to_date >= CURRENT_DATE
+        AND p.party IS NOT NULL
+    GROUP BY p.party
+),
+performance_calculations AS (
+    SELECT
+        pp.short_code AS party,
+        pp.party_name,
+        pp.registered_date AS registration_date,
+        pmc.active_members,
+        pmc.inactive_members,
+        pv.total_violations,
+        pv.members_with_violations,
+        pv.latest_violation,
+        pva.total_party_votes,
+        pva.avg_absence_rate,
+        pva.avg_win_rate,
+        pva.avg_rebel_rate,
+        pva.avg_participation_rate,
+        pd.documents_produced,
+        pd.motions_produced,
+        pd.propositions_produced,
+        pgr.ministers_count,
+        pgr.committee_chairs_count,
+        
+        -- Performance Score Calculation (0-100 scale)
+        (
+            -- Participation component (0-25 points)
+            (COALESCE(pva.avg_participation_rate, 0) * 25 / 100.0) +
+            
+            -- Effectiveness component (0-25 points)
+            (COALESCE(pva.avg_win_rate, 0) * 25 / 100.0) +
+            
+            -- Discipline component (0-20 points) - lower rebel rate is better
+            ((100 - COALESCE(pva.avg_rebel_rate, 0)) * 20 / 100.0) +
+            
+            -- Productivity component (0-15 points)
+            (LEAST(CASE WHEN COALESCE(pmc.active_members, 0) > 0 
+                   THEN COALESCE(pd.documents_produced, 0)::NUMERIC / pmc.active_members 
+                   ELSE 0 END * 3, 15)) +
+            
+            -- Violation penalty (0-15 points deduction)
+            (15 - LEAST(COALESCE(pv.total_violations, 0) * 0.5, 15))
+        ) AS calculated_performance_score
+        
+    FROM sweden_political_party pp
+    LEFT JOIN party_member_counts pmc ON pmc.party = pp.short_code
+    LEFT JOIN party_violations pv ON pv.party = pp.short_code
+    LEFT JOIN party_voting_annual pva ON pva.party = pp.short_code
+    LEFT JOIN party_documents pd ON pd.party = pp.short_code
+    LEFT JOIN party_government_roles pgr ON pgr.party = pp.short_code
+    WHERE pp.short_code IS NOT NULL
+)
+SELECT
+    party,
+    party_name,
+    registration_date,
+    
+    -- Membership Metrics
+    COALESCE(active_members, 0) AS active_members,
+    COALESCE(inactive_members, 0) AS inactive_members,
+    
+    -- Rule Violation Metrics
+    COALESCE(total_violations, 0) AS total_violations,
+    COALESCE(members_with_violations, 0) AS members_with_violations,
+    CASE 
+        WHEN COALESCE(active_members, 0) > 0 
+        THEN ROUND((COALESCE(members_with_violations, 0)::NUMERIC / active_members) * 100, 2)
+        ELSE 0 
+    END AS violation_rate_percentage,
+    latest_violation AS latest_member_violation,
+    
+    -- Voting Performance (Annual)
+    COALESCE(total_party_votes, 0) AS total_votes_last_year,
+    ROUND(COALESCE(avg_absence_rate, 0)::NUMERIC, 2) AS avg_absence_rate,
+    ROUND(COALESCE(avg_win_rate, 0)::NUMERIC, 2) AS avg_win_rate,
+    ROUND(COALESCE(avg_rebel_rate, 0)::NUMERIC, 2) AS avg_rebel_rate,
+    ROUND(COALESCE(avg_participation_rate, 0)::NUMERIC, 2) AS avg_participation_rate,
+    
+    -- Legislative Productivity
+    COALESCE(documents_produced, 0) AS documents_last_year,
+    COALESCE(motions_produced, 0) AS motions_last_year,
+    COALESCE(propositions_produced, 0) AS propositions_last_year,
+    CASE 
+        WHEN COALESCE(active_members, 0) > 0 
+        THEN ROUND(COALESCE(documents_produced, 0)::NUMERIC / active_members, 2)
+        ELSE 0 
+    END AS docs_per_member,
+    
+    -- Government Participation
+    COALESCE(ministers_count, 0) AS current_ministers,
+    COALESCE(committee_chairs_count, 0) AS current_committee_chairs,
+    
+    -- Performance Score
+    ROUND(calculated_performance_score::NUMERIC, 2) AS performance_score,
+    
+    -- Performance Classification
+    CASE
+        WHEN calculated_performance_score >= 75 THEN 'EXCELLENT'
+        WHEN calculated_performance_score >= 60 THEN 'GOOD'
+        WHEN calculated_performance_score >= 40 THEN 'AVERAGE'
+        ELSE 'BELOW_AVERAGE'
+    END AS performance_level,
+    
+    -- Strengths and Weaknesses Assessment
+    CONCAT_WS(' | ',
+        CASE WHEN COALESCE(avg_participation_rate, 0) >= 85 THEN 'High participation' END,
+        CASE WHEN COALESCE(avg_win_rate, 0) >= 60 THEN 'Effective voting' END,
+        CASE WHEN COALESCE(avg_rebel_rate, 0) <= 5 THEN 'Strong discipline' END,
+        CASE WHEN COALESCE(documents_produced, 0) >= 50 THEN 'High productivity' END,
+        CASE WHEN COALESCE(ministers_count, 0) >= 1 THEN 'Government representation' END
+    ) AS strengths,
+    
+    CONCAT_WS(' | ',
+        CASE WHEN COALESCE(avg_absence_rate, 0) >= 15 THEN 'High absenteeism' END,
+        CASE WHEN COALESCE(avg_win_rate, 0) < 30 THEN 'Low effectiveness' END,
+        CASE WHEN COALESCE(avg_rebel_rate, 0) >= 15 THEN 'Discipline issues' END,
+        CASE WHEN COALESCE(documents_produced, 0) < 10 THEN 'Low productivity' END,
+        CASE WHEN COALESCE(total_violations, 0) >= 10 THEN 'Multiple violations' END
+    ) AS weaknesses
+
+FROM performance_calculations
+
+ORDER BY performance_score DESC, active_members DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_party_performance_metrics"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 9. COMMITTEE PRODUCTIVITY VIEW                                           -->
+<!-- Intelligence Value: MEDIUM-HIGH - Legislative capacity assessment        -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="intops-2025111109-committee-productivity" failOnError="true">
+    <comment>
+        Committee Productivity View
+        
+        Intelligence Purpose:
+        - Track committee legislative output
+        - Measure committee effectiveness
+        - Identify underperforming committees
+        - Support resource allocation decisions
+        
+        Use Cases:
+        - Parliamentary efficiency monitoring
+        - Committee reform prioritization
+        - Policy area capacity assessment
+        - Legislative bottleneck identification
+    </comment>
+    
+    <createView viewName="view_committee_productivity" replaceIfExists="true">
+        <![CDATA[
+WITH committee_membership AS (
+    SELECT
+        rc.embedded_id_org_code AS committee_code,
+        rc.embedded_id_detail AS committee_name,
+        COUNT(DISTINCT ad.intressent_id) AS total_members,
+        COUNT(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code = 'Ordförande') AS chairs_count,
+        COUNT(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code = 'Vice ordförande') AS vice_chairs_count,
+        COUNT(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code = 'Ledamot') AS regular_members,
+        COUNT(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code ILIKE '%suppleant%' OR ad.role_code ILIKE '%ersättare%') AS substitutes
+    FROM view_riksdagen_committee rc
+    LEFT JOIN assignment_data ad 
+        ON ad.org_code = rc.embedded_id_org_code
+        AND ad.assignment_type IN ('uppdrag', 'Riksdagsorgan')
+        AND (ad.to_date IS NULL OR ad.to_date >= CURRENT_DATE)
+    GROUP BY rc.embedded_id_org_code, rc.embedded_id_detail
+),
+committee_decisions AS (
+    SELECT
+        org AS committee_code,
+        COUNT(DISTINCT embedded_id_id) AS total_decisions,
+        COUNT(DISTINCT embedded_id_id) FILTER (WHERE public_date >= CURRENT_DATE - INTERVAL '1 year') AS decisions_last_year,
+        COUNT(DISTINCT embedded_id_id) FILTER (WHERE public_date >= CURRENT_DATE - INTERVAL '1 month') AS decisions_last_month,
+        MAX(public_date) AS latest_decision_date,
+        MIN(public_date) FILTER (WHERE public_date >= CURRENT_DATE - INTERVAL '1 year') AS first_decision_last_year
+    FROM view_riksdagen_committee_decisions
+    GROUP BY org
+),
+committee_documents AS (
+    SELECT
+        UPPER(cdd.org) AS committee_code,
+        COUNT(DISTINCT cdd.id) AS total_documents,
+        COUNT(DISTINCT cdd.id) FILTER (WHERE cdd.public_date >= CURRENT_DATE - INTERVAL '1 year') AS documents_last_year,
+        COUNT(DISTINCT cdd.id) FILTER (WHERE cdd.sub_type = 'mot') AS motions,
+        COUNT(DISTINCT cdd.id) FILTER (WHERE cdd.sub_type = 'prop') AS propositions,
+        COUNT(DISTINCT cdd.id) FILTER (WHERE cdd.label LIKE '%bet%') AS reports
+    FROM committee_document_data cdd
+    WHERE cdd.public_date >= CURRENT_DATE - INTERVAL '2 years'
+    GROUP BY UPPER(cdd.org)
+),
+committee_ballots AS (
+    SELECT
+        org AS committee_code,
+        COUNT(DISTINCT ballot_id) AS total_ballots_decided,
+        AVG(percentage_yes) AS avg_yes_percentage,
+        AVG(percentage_no) AS avg_no_percentage
+    FROM view_riksdagen_committee_ballot_decision_summary
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '1 year'
+    GROUP BY org
+),
+productivity_calculations AS (
+    SELECT
+        cm.committee_code,
+        cm.committee_name,
+        cm.total_members,
+        cm.chairs_count,
+        cm.vice_chairs_count,
+        cm.regular_members,
+        cm.substitutes,
+        cd.total_decisions,
+        cd.decisions_last_year,
+        cd.decisions_last_month,
+        cd.latest_decision_date,
+        cdoc.total_documents,
+        cdoc.documents_last_year,
+        cdoc.motions,
+        cdoc.propositions,
+        cdoc.reports,
+        cb.total_ballots_decided,
+        cb.avg_yes_percentage,
+        
+        -- Productivity Score Calculation (0-100 scale)
+        (
+            -- Decision volume component (0-30 points)
+            (LEAST(COALESCE(cd.decisions_last_year, 0) / 20.0, 1.0) * 30) +
+            
+            -- Document production component (0-25 points)
+            (LEAST(COALESCE(cdoc.documents_last_year, 0) / 30.0, 1.0) * 25) +
+            
+            -- Recent activity component (0-20 points)
+            (CASE 
+                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '1 month' THEN 20
+                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '3 months' THEN 15
+                WHEN cd.latest_decision_date >= CURRENT_DATE - INTERVAL '6 months' THEN 10
+                ELSE 0 
+            END) +
+            
+            -- Staffing component (0-15 points)
+            (CASE 
+                WHEN cm.chairs_count > 0 AND cm.total_members >= 10 THEN 15
+                WHEN cm.chairs_count > 0 AND cm.total_members >= 5 THEN 10
+                WHEN cm.total_members >= 5 THEN 5
+                ELSE 0 
+            END) +
+            
+            -- Per-member productivity component (0-10 points)
+            (LEAST(
+                CASE WHEN cm.total_members > 0 
+                THEN (COALESCE(cd.decisions_last_year, 0)::NUMERIC / cm.total_members) / 2.0
+                ELSE 0 END, 1.0
+            ) * 10)
+        ) AS calculated_productivity_score
+        
+    FROM committee_membership cm
+    LEFT JOIN committee_decisions cd ON cd.committee_code = cm.committee_code
+    LEFT JOIN committee_documents cdoc ON cdoc.committee_code = cm.committee_code
+    LEFT JOIN committee_ballots cb ON cb.committee_code = cm.committee_code
+)
+SELECT
+    committee_code,
+    committee_name,
+    
+    -- Membership Metrics
+    total_members,
+    chairs_count,
+    vice_chairs_count,
+    regular_members,
+    substitutes,
+    
+    -- Structural Health Assessment
+    CASE
+        WHEN chairs_count = 0 THEN 'NO_LEADERSHIP'
+        WHEN total_members < 10 THEN 'UNDERSTAFFED'
+        WHEN total_members >= 15 THEN 'WELL_STAFFED'
+        ELSE 'ADEQUATE_STAFFING'
+    END AS staffing_status,
+    
+    -- Decision Making Metrics
+    COALESCE(total_decisions, 0) AS total_decisions_all_time,
+    COALESCE(decisions_last_year, 0) AS decisions_last_year,
+    COALESCE(decisions_last_month, 0) AS decisions_last_month,
+    latest_decision_date,
+    COALESCE((CURRENT_DATE - latest_decision_date)::INTEGER, -1) AS days_since_last_decision,
+    
+    -- Document Production Metrics
+    COALESCE(total_documents, 0) AS total_documents,
+    COALESCE(documents_last_year, 0) AS documents_last_year,
+    COALESCE(motions, 0) AS motions_count,
+    COALESCE(propositions, 0) AS propositions_count,
+    COALESCE(reports, 0) AS reports_count,
+    
+    -- Productivity per Member
+    CASE 
+        WHEN total_members > 0 
+        THEN ROUND(COALESCE(decisions_last_year, 0)::NUMERIC / total_members, 2)
+        ELSE 0 
+    END AS decisions_per_member,
+    
+    CASE 
+        WHEN total_members > 0 
+        THEN ROUND(COALESCE(documents_last_year, 0)::NUMERIC / total_members, 2)
+        ELSE 0 
+    END AS documents_per_member,
+    
+    -- Ballot Decision Metrics
+    COALESCE(total_ballots_decided, 0) AS ballots_decided_last_year,
+    ROUND(COALESCE(avg_yes_percentage, 0)::NUMERIC, 2) AS avg_approval_rate,
+    
+    -- Productivity Score
+    ROUND(calculated_productivity_score::NUMERIC, 2) AS productivity_score,
+    
+    -- Productivity Classification
+    CASE
+        WHEN calculated_productivity_score >= 70 THEN 'HIGHLY_PRODUCTIVE'
+        WHEN calculated_productivity_score >= 50 THEN 'PRODUCTIVE'
+        WHEN calculated_productivity_score >= 30 THEN 'BELOW_AVERAGE'
+        ELSE 'INACTIVE'
+    END AS productivity_level,
+    
+    -- Performance Issues Identification
+    CONCAT_WS(' | ',
+        CASE WHEN chairs_count = 0 THEN 'Missing leadership' END,
+        CASE WHEN total_members < 10 THEN 'Understaffed' END,
+        CASE WHEN COALESCE(decisions_last_year, 0) < 10 THEN 'Low decision output' END,
+        CASE WHEN COALESCE(documents_last_year, 0) < 5 THEN 'Low document production' END,
+        CASE WHEN latest_decision_date IS NOT NULL AND latest_decision_date < CURRENT_DATE - INTERVAL '3 months' THEN 'Stagnant activity' END
+    ) AS performance_concerns,
+    
+    -- Recommendations
+    CASE
+        WHEN chairs_count = 0 THEN 'Appoint committee leadership immediately'
+        WHEN total_members < 10 AND COALESCE(decisions_last_year, 0) < 10 
+            THEN 'Increase staffing and provide resources'
+        WHEN COALESCE(decisions_last_year, 0) < 10 
+            THEN 'Review committee mandate and workload'
+        WHEN latest_decision_date IS NOT NULL AND latest_decision_date < CURRENT_DATE - INTERVAL '3 months' 
+            THEN 'Investigate inactivity causes'
+        ELSE 'Maintain current operations'
+    END AS recommendation
+
+FROM productivity_calculations
+
+ORDER BY productivity_score DESC, decisions_last_year DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_committee_productivity"/>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
