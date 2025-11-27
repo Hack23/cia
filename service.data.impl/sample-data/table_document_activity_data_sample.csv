@@ -1,51 +1,51 @@
 hjid,activity_name,code,created_date,order_number,process,status,document_activities_document_0
-69872,Inlämning,INL,2004-10-05,13,hantering,inträffat,69871
-69873,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69871
-69874,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69871
-69890,Inlämning,INL,2004-10-05,13,hantering,inträffat,69889
-69891,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69889
-69892,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69889
-69903,Inlämning,INL,2004-10-05,13,hantering,inträffat,69902
-69904,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69902
-69905,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69902
-69921,Inlämning,INL,2004-10-05,13,hantering,inträffat,69920
-69922,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69920
-69923,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69920
-69939,Inlämning,INL,2004-10-05,13,hantering,inträffat,69938
-69940,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69938
-69941,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69938
-69952,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69951
-69953,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69951
-69954,Återkallande,ÅTE,2004-10-21,10,hantering,inträffat,69951
-69966,Inlämning,INL,2004-10-05,13,hantering,inträffat,69965
-69967,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69965
-69968,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69965
-69980,Inlämning,INL,2004-10-05,13,hantering,inträffat,69979
-69981,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69979
-69982,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69979
-69994,Inlämning,INL,2004-10-05,13,hantering,inträffat,69993
-69995,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69993
-69996,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69993
-70014,Inlämning,INL,2004-10-05,13,hantering,inträffat,70013
-70015,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,70013
-70016,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,70013
-70072,Inlämning,INL,2004-10-05,13,hantering,inträffat,70071
-70073,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,70071
-70074,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,70071
-70097,Inlämning,INL,2004-10-05,13,hantering,inträffat,70096
-70098,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,70096
-70099,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,70096
-70119,Inlämning,INL,2004-10-05,13,hantering,inträffat,70118
-70120,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,70118
-70121,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,70118
-70139,Inlämning,INL,2004-10-05,13,hantering,inträffat,70138
-70140,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,70138
-70141,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,70138
-70154,Under beredning,UBE,2001-10-23,30,beredning,inträffat,70153
-70155,Justering,JUS,2001-11-20,40,beredning,planerat,70153
-70156,Justering,JUS,2001-11-27,40,beredning,inträffat,70153
-70157,Trycklov,TRY,2001-11-29,60,beredning,inträffat,70153
-70158,Bordläggning 1,B1,2001-12-05,1,avgorande,inträffat,70153
-70159,Bordläggning 2,B2,2001-12-06,2,avgorande,inträffat,70153
-70160,Avgörande,AVG,2001-12-07,5,avgorande,inträffat,70153
-70161,Behandling,BEH,2001-12-07,3,avgorande,inträffat,70153
+1597502,Utfärdande av riksdagsskrivelse,RSKR,2010-12-20,6,avgorande,inträffat,1597492
+1597611,Inlämning,INL,2013-12-11,13,hantering,inträffat,1597610
+1597612,Bordläggning,B,2013-12-17,1,hanvisning,inträffat,1597610
+1597613,Hänvisning,HÄN,2013-12-18,2,hanvisning,inträffat,1597610
+1597675,Inlämning,INL,2014-01-16,13,hantering,inträffat,1597674
+1597676,Bordläggning,B,2014-02-04,1,hanvisning,inträffat,1597674
+1597677,Hänvisning,HÄN,2014-02-05,2,hanvisning,inträffat,1597674
+1597793,Inlämning,INL,2005-10-05,13,hantering,inträffat,1597792
+1597794,Bordläggning,B,2005-10-13,1,hanvisning,inträffat,1597792
+1597795,Hänvisning,HÄN,2005-10-13,2,hanvisning,inträffat,1597792
+1598035,Under beredning,UBE,2010-11-09,30,beredning,planerat,1598034
+1598036,Under beredning,UBE,2010-11-16,30,beredning,inträffat,1598034
+1598037,Justering,JUS,2010-11-23,40,beredning,inträffat,1598034
+1598038,Trycklov,TRY,2010-11-23,60,beredning,planerat,1598034
+1598039,Trycklov till Gotab och webb,TROWE,2010-11-24,70,beredning,inträffat,1598034
+1598040,Trycklov,TRY,2010-11-24,60,beredning,inträffat,1598034
+1598041,Trycklov till Gotab och webb,TROWE,2010-11-25,70,beredning,inträffat,1598034
+1598042,Bordläggning 1,B1,2010-11-29,1,avgorande,inträffat,1598034
+1598043,Bordläggning 2,B2,2010-11-30,2,avgorande,inträffat,1598034
+1598044,Avgörande,AVG,2010-12-01,5,avgorande,inträffat,1598034
+1598045,Behandling,BEH,2010-12-01,3,avgorande,inträffat,1598034
+1598046,Beslut,BES,2010-12-01,4,avgorande,inträffat,1598034
+1598047,Utfärdande av riksdagsskrivelse,RSKR,2010-12-01,6,avgorande,inträffat,1598034
+1598048,Planerat ikraftträdande,LAG,2011-01-01,12,avgorande,planerat,1598034
+1598134,Inlämning,INL,2005-10-05,13,hantering,inträffat,1598133
+1598135,Bordläggning,B,2005-10-13,1,hanvisning,inträffat,1598133
+1598136,Hänvisning,HÄN,2005-10-13,2,hanvisning,inträffat,1598133
+1598180,Inlämning,INL,2009-11-13,60,hantering,inträffat,1598179
+1598181,Registrering,REG,2009-11-13,70,hantering,inträffat,1598179
+1598182,Bordläggning,B,2009-11-16,2,hanvisning,inträffat,1598179
+1598183,Hänvisning,HÄN,2009-11-17,3,hanvisning,inträffat,1598179
+1598184,Inlämning,INL,2009-11-17,60,hantering,planerat,1598179
+1598185,Motionstid slutar,MOT,2009-12-01,4,hanvisning,inträffat,1598179
+1598306,Inlämning,INL,2013-10-03,13,hantering,inträffat,1598305
+1598307,Numrering,NUM,2013-10-07,7,hantering,inträffat,1598305
+1598325,Bordläggning,B,2009-10-21,2,hanvisning,inträffat,1598324
+1598326,Inlämning,INL,2009-10-21,60,hantering,inträffat,1598324
+1598327,Registrering,REG,2009-10-21,70,hantering,inträffat,1598324
+1598328,Hänvisning,HÄN,2009-10-22,3,hanvisning,inträffat,1598324
+1598329,Motionstid slutar,MOT,2009-11-05,4,hanvisning,inträffat,1598324
+1598342,Inlämning,INL,2013-10-04,13,hantering,inträffat,1598341
+1598343,Numrering,NUM,2013-10-08,7,hantering,inträffat,1598341
+1598357,Inlämning,INL,2013-10-04,13,hantering,inträffat,1598356
+1598358,Numrering,NUM,2013-10-08,7,hantering,inträffat,1598356
+1598435,Inlämning,INL,2006-10-31,13,hantering,inträffat,1598434
+1598436,Numrering,NUM,2006-11-02,7,hantering,inträffat,1598434
+1598437,Bordläggning,B,2006-11-07,1,hanvisning,inträffat,1598434
+1598438,Hänvisning,HÄN,2006-11-07,2,hanvisning,inträffat,1598434
+1598711,Bordläggning,B,2010-02-09,2,hanvisning,inträffat,1598710
+1598712,Inlämning,INL,2010-02-09,60,hantering,inträffat,1598710

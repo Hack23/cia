@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+	<changeSet author="pether" id="1414872417007-290">
+
+		<dropView viewName="view_riksdagen_party" />
+		<dropView viewName="view_riksdagen_party_summary" />
+		<dropView viewName="view_riksdagen_politician" />
+
+		<dropView viewName="view_riksdagen_party_member" /> <createView viewName="view_riksdagen_party_member">select * from sweden_political_party LEFT JOIN person_data ON person_data.party = sweden_political_party.short_code where person_data.party = sweden_political_party.short_code</createView>
+
+		<createView viewName="view_riksdagen_party">select distinct party_id as party_number,party_name,short_code as party_id,website,registered_date,count(party_id) as head_count from view_riksdagen_party_member group by party_id,party_name,short_code,website,registered_date</createView>
+
+		<createView viewName="view_riksdagen_politician">select
+				view_riksdagen_party_member.id as person_id,
+				max(first_name) as first_name,
+				max(last_name) as last_name,
+				max(party) as party,
+				max(born_year) as born_year,
+				max(gender) as gender,
+				COALESCE(min(assignment_data.from_date),CURRENT_DATE) as first_assignment_date,
+				COALESCE(max(assignment_data.to_date),CURRENT_DATE) as last_assignment_date,
+				sum(CASE WHEN assignment_data.status like 'Ledig%' THEN 0 else (CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE THEN CURRENT_DATE ELSE COALESCE(to_date,CURRENT_DATE)END) - (CASE WHEN from_date >= CURRENT_DATE THEN CURRENT_DATE ELSE from_date END) end) as total_days_served,
+				sum( CASE WHEN assignment_type='kammaruppdrag' and assignment_data.status not like 'Ledig%' THEN ((CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE THEN CURRENT_DATE ELSE COALESCE(to_date,CURRENT_DATE)END) - (CASE WHEN from_date > CURRENT_DATE THEN CURRENT_DATE ELSE from_date END)) ELSE 0 END) as total_days_served_parliament,
+				sum( CASE WHEN (org_code is not null and assignment_type='uppdrag') THEN (  (CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE THEN CURRENT_DATE ELSE COALESCE(to_date,CURRENT_DATE)END) - (CASE WHEN from_date >= CURRENT_DATE THEN CURRENT_DATE ELSE from_date END)) ELSE 0 END) as total_days_served_committee,
+				sum( CASE WHEN (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN (  (CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE THEN CURRENT_DATE ELSE COALESCE(to_date,CURRENT_DATE)END) - (CASE WHEN from_date >= CURRENT_DATE THEN CURRENT_DATE ELSE from_date END)) ELSE 0 END) as total_days_served_government,
+				sum( CASE WHEN (detail='Europaparlamentet') THEN (  (CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE THEN CURRENT_DATE ELSE COALESCE(to_date,CURRENT_DATE)END) - (CASE WHEN from_date >= CURRENT_DATE THEN CURRENT_DATE ELSE from_date END)) ELSE 0 END) as total_days_served_eu,
+				(CASE WHEN max(to_date) >= CURRENT_DATE THEN true ELSE false END) as active,
+				count(*) total_assignments,
+				sum((CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE THEN 1 ELSE 0 END)) as current_assignments,
+				sum( CASE WHEN (assignment_type='talmansuppdrag') THEN (  (CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE THEN CURRENT_DATE ELSE COALESCE(to_date,CURRENT_DATE)END) - (CASE WHEN from_date >= CURRENT_DATE THEN CURRENT_DATE ELSE from_date END)) ELSE 0 END) as total_days_served_speaker,
+				CASE WHEN sum(CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE AND (assignment_type='talmansuppdrag') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END as active_speaker,
+				sum( CASE WHEN (assignment_type='partiuppdrag') THEN (  (CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE THEN CURRENT_DATE ELSE COALESCE(to_date,CURRENT_DATE)END) - (CASE WHEN from_date >= CURRENT_DATE THEN CURRENT_DATE ELSE from_date END)) ELSE 0 END) as total_days_served_party,
+				CASE WHEN sum(CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE AND (assignment_type='partiuppdrag') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END as active_party,
+				sum((CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE and org_code is not null and assignment_type='uppdrag' THEN 1 ELSE 0 END)) as current_committee_assignments,
+				sum((CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE and (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN 1 ELSE 0 END)) as current_ministry_assignments,
+				sum((CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE and assignment_type='partiuppdrag' THEN 1 ELSE 0 END)) as current_party_assignments,
+				sum((CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE and assignment_type='talmansuppdrag' THEN 1 ELSE 0 END)) as current_speaker_assignments,
+				sum((CASE WHEN org_code is not null and assignment_type='uppdrag' THEN 1 ELSE 0 END)) as total_committee_assignments,
+				sum((CASE WHEN assignment_type='partiuppdrag' THEN 1 ELSE 0 END)) as total_party_assignments,
+				sum((CASE WHEN assignment_type='talmansuppdrag' THEN 1 ELSE 0 END)) as total_speaker_assignments,
+				sum((CASE WHEN (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN 1 ELSE 0 END)) as total_ministry_assignments,
+				(CASE WHEN sum(CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE AND detail='Europaparlamentet' THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_eu,
+				(CASE WHEN sum(CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE AND (role_code like'%MINISTER' or detail like '%departementet' or detail='Statsrådsberedningen') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END) as active_government,(
+				(CASE WHEN sum(CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE AND (org_code is not null and assignment_type='uppdrag') THEN 1 ELSE 0 END) > 0 THEN true ELSE false END)) as active_committee,
+				(CASE WHEN sum(CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE AND assignment_type='kammaruppdrag' and assignment_data.status not like 'Ledig%' THEN 1 ELSE (CASE WHEN COALESCE(to_date,CURRENT_DATE)>= CURRENT_DATE AND from_date &lt;= CURRENT_DATE AND assignment_type='kammaruppdrag' and assignment_data.status  like 'Ledig%' THEN 0 ELSE 0 END) END) > 0 THEN true ELSE false END) as active_parliament
+					 from assignment_data left join view_riksdagen_party_member on assignment_data.intressent_id = view_riksdagen_party_member.id group by view_riksdagen_party_member.id</createView>
+
+
+
+		<createView viewName="view_riksdagen_party_summary">select
+			party,
+			min(first_assignment_date) as first_assignment_date,
+			max(last_assignment_date) as last_assignment_date,
+			sum(total_days_served::int8)::int8 as total_days_served,
+			sum(total_days_served_parliament::int8)::int8 as total_days_served_parliament,
+			sum(total_days_served_committee::int8)::int8 as total_days_served_committee,
+			sum(total_days_served_government::int8)::int8 as total_days_served_government,
+			sum(total_days_served_eu::int8)::int8 as total_days_served_eu,
+			sum(total_days_served_speaker::int8)::int8 as total_days_served_speaker,
+			sum(total_days_served_party::int8)::int8 as total_days_served_party,
+			bool_or(active)	as active,
+			bool_or(active_eu) as active_eu,
+			bool_or(active_government) as active_government,
+			bool_or(active_committee) as active_committee,
+			bool_or(active_parliament) as active_parliament,
+			bool_or(active_speaker) as active_speaker,
+			bool_or(active_party) as active_party,
+			sum(CASE WHEN active THEN 1 ELSE 0 END)	as total_active,
+			sum(CASE WHEN active_eu THEN 1 ELSE 0 END) as total_active_eu,
+			sum(CASE WHEN active_government THEN 1 ELSE 0 END) as total_active_government,
+			sum(CASE WHEN active_committee THEN 1 ELSE 0 END) as total_active_committee,
+			sum(CASE WHEN active_parliament THEN 1 ELSE 0 END) as total_active_parliament,
+			sum(total_assignments::int8)::int8 as total_assignments,
+			sum(total_party_assignments::int8)::int8 as total_party_assignments,
+			sum(total_committee_assignments::int8)::int8 as total_committee_assignments,
+			sum(total_ministry_assignments::int8)::int8 as total_ministry_assignments,
+			sum(total_speaker_assignments::int8)::int8 as total_speaker_assignments,
+			sum(current_assignments::int8)::int8 as current_assignments,
+			sum(current_party_assignments::int8)::int8 as current_party_assignments,
+			sum(current_committee_assignments::int8)::int8 as current_committee_assignments,
+			sum(current_ministry_assignments::int8)::int8 as current_ministry_assignments,
+			sum(current_speaker_assignments::int8)::int8 as current_speaker_assignments
+			from view_riksdagen_politician group by party</createView>
+
+	</changeSet>
+
+</databaseChangeLog>

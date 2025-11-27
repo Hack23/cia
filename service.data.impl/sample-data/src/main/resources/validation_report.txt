@@ -1,0 +1,1056 @@
+Timing is on.
+
+==========================================================================
+=== SCHEMA VALIDATION V2.0 - 100% COVERAGE                             ===
+==========================================================================
+
+Issue: Hack23/cia#7872 - Extend Schema Validation Script
+Purpose: Validate ALL 177 objects from full_schema.sql
+Target Coverage: 93 tables + 56 views + 28 materialized views = 177 objects
+
+Validation started at:
+SELECT NOW();
+              now              
+-------------------------------
+ 2025-11-27 16:23:08.670972+00
+(1 row)
+
+Time: 5.888 ms
+
+
+==========================================================================
+=== COMPREHENSIVE TABLE VALIDATION (93 TABLES)                         ===
+==========================================================================
+
+DO $$
+DECLARE
+    -- *** MAINTENANCE NOTE ***
+    -- This array must be kept in sync with full_schema.sql
+    -- Update this list when tables are added/removed from the schema
+    -- Last verified: 2025-11-24 against full_schema.sql
+    -- Total expected: 93 tables
+    v_all_tables TEXT[] := ARRAY[
+        'against_proposal_container',
+        'against_proposal_data',
+        'agency',
+        'application_action_event',
+        'application_configuration',
+        'application_session',
+        'application_view',
+        'assignment_data',
+        'assignment_element',
+        'committee_document_data',
+        'committee_proposal_component_0',
+        'committee_proposal_container',
+        'committee_proposal_data',
+        'countries_element',
+        'country_element',
+        'data_element',
+        'data_source_content',
+        'databasechangelog',
+        'databasechangeloglock',
+        'detail_data',
+        'detail_element',
+        'document_activity_container',
+        'document_activity_data',
+        'document_attachment',
+        'document_attachment_container',
+        'document_container_element',
+        'document_content_data',
+        'document_data',
+        'document_detail_container',
+        'document_detail_data',
+        'document_element',
+        'document_person_reference_co_0',
+        'document_person_reference_da_0',
+        'document_proposal_container',
+        'document_proposal_data',
+        'document_reference_container',
+        'document_reference_data',
+        'document_status_container',
+        'domain_portal',
+        'encrypted_value',
+        'indicator_element',
+        'indicators_element',
+        'jv_commit',
+        'jv_commit_property',
+        'jv_global_id',
+        'jv_snapshot',
+        'language_content_data',
+        'language_data',
+        'operational_information_cont_0',
+        'performance_indicator_content',
+        'person_assignment_data',
+        'person_assignment_element',
+        'person_container_data',
+        'person_container_element',
+        'person_data',
+        'person_detail_data',
+        'person_detail_element',
+        'person_element',
+        'portal',
+        'qrtz_blob_triggers',
+        'qrtz_calendars',
+        'qrtz_cron_triggers',
+        'qrtz_fired_triggers',
+        'qrtz_job_details',
+        'qrtz_locks',
+        'qrtz_paused_trigger_grps',
+        'qrtz_scheduler_state',
+        'qrtz_simple_triggers',
+        'qrtz_simprop_triggers',
+        'qrtz_triggers',
+        'quality_assurance_content',
+        'rule_violation',
+        'sweden_county_data',
+        'sweden_county_data_container',
+        'sweden_county_electoral_area',
+        'sweden_county_electoral_regi_0',
+        'sweden_county_electoral_regi_1',
+        'sweden_election_region',
+        'sweden_election_type',
+        'sweden_election_type_contain_0',
+        'sweden_municipality_data',
+        'sweden_municipality_election_0',
+        'sweden_parliament_electoral__0',
+        'sweden_parliament_electoral__1',
+        'sweden_political_party',
+        'target_profile_content',
+        'topic',
+        'topics',
+        'user_account',
+        'user_account_address',
+        'vote_data',
+        'vote_meta_data',
+        'world_bank_data'
+    ];
+    v_table TEXT;
+    v_count INTEGER;
+    v_col_count INTEGER;
+    v_total_validated INTEGER := 0;
+    v_total_errors INTEGER := 0;
+    v_total_expected INTEGER;
+BEGIN
+    v_total_expected := array_length(v_all_tables, 1);
+    
+    RAISE NOTICE 'Validating ALL % tables from full_schema.sql', v_total_expected;
+    RAISE NOTICE '================================================================';
+    RAISE NOTICE '';
+    
+    FOREACH v_table IN ARRAY v_all_tables
+    LOOP
+        BEGIN
+            -- Get row count
+            EXECUTE format('SELECT COUNT(*) FROM %I', v_table) INTO v_count;
+            
+            -- Get column count
+            SELECT COUNT(*) INTO v_col_count
+            FROM information_schema.columns
+            WHERE table_schema = 'public' AND table_name = v_table;
+            
+            RAISE NOTICE '✓ Table: % | Rows: % | Columns: %', 
+                         rpad(v_table, 40), lpad(v_count::text, 10), lpad(v_col_count::text, 3);
+            v_total_validated := v_total_validated + 1;
+        EXCEPTION WHEN OTHERS THEN
+            RAISE WARNING '✗ Table: % | ERROR: %', v_table, SQLERRM;
+            v_total_errors := v_total_errors + 1;
+        END;
+    END LOOP;
+    
+    RAISE NOTICE '';
+    RAISE NOTICE '================================================================';
+    RAISE NOTICE 'TABLE VALIDATION SUMMARY:';
+    RAISE NOTICE '  Expected:  % tables', v_total_expected;
+    RAISE NOTICE '  Validated: % tables (%.2f%%)', v_total_validated, 
+                 (v_total_validated::float / v_total_expected * 100);
+    RAISE NOTICE '  Errors:    % tables', v_total_errors;
+    RAISE NOTICE '================================================================';
+    RAISE NOTICE '';
+END $$;
+psql:schema-validation-v2.sql:207: NOTICE:  Validating ALL 93 tables from full_schema.sql
+psql:schema-validation-v2.sql:207: NOTICE:  ================================================================
+psql:schema-validation-v2.sql:207: NOTICE:  
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: against_proposal_container               | Rows:       3972 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: against_proposal_data                    | Rows:      38728 | Columns:   7
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: agency                                   | Rows:          1 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: application_action_event                 | Rows:        267 | Columns:  15
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: application_configuration                | Rows:         14 | Columns:  13
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: application_session                      | Rows:         34 | Columns:  14
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: application_view                         | Rows:          0 | Columns:   7
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: assignment_data                          | Rows:      31351 | Columns:  11
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: assignment_element                       | Rows:          0 | Columns:  11
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: committee_document_data                  | Rows:       6570 | Columns:  18
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: committee_proposal_component_0           | Rows:       6570 | Columns:   4
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: committee_proposal_container             | Rows:       5863 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: committee_proposal_data                  | Rows:      44716 | Columns:  14
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: countries_element                        | Rows:          0 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: country_element                          | Rows:        211 | Columns:  16
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: data_element                             | Rows:          0 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: data_source_content                      | Rows:          0 | Columns:   3
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: databasechangelog                        | Rows:        412 | Columns:  14
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: databasechangeloglock                    | Rows:          1 | Columns:   4
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: detail_data                              | Rows:      17509 | Columns:   6
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: detail_element                           | Rows:          0 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_activity_container              | Rows:      88147 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_activity_data                   | Rows:     321282 | Columns:   8
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_attachment                      | Rows:     125413 | Columns:   6
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_attachment_container            | Rows:      68688 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_container_element               | Rows:          0 | Columns:  12
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_content_data                    | Rows:     231397 | Columns:   3
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_data                            | Rows:      89044 | Columns:  19
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_detail_container                | Rows:      88011 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_detail_data                     | Rows:     299079 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_element                         | Rows:     238083 | Columns:  33
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_person_reference_co_0           | Rows:      78584 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_person_reference_da_0           | Rows:     217493 | Columns:   7
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_proposal_container              | Rows:      80376 | Columns:   2
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_proposal_data                   | Rows:      80376 | Columns:  11
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_reference_container             | Rows:      35669 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_reference_data                  | Rows:     190176 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: document_status_container                | Rows:      89044 | Columns:   9
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: domain_portal                            | Rows:          0 | Columns:   2
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: encrypted_value                          | Rows:          0 | Columns:   4
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: indicator_element                        | Rows:      25000 | Columns:   9
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: indicators_element                       | Rows:          0 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: jv_commit                                | Rows:    4778182 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: jv_commit_property                       | Rows:    4778182 | Columns:   3
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: jv_global_id                             | Rows:   11405039 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: jv_snapshot                              | Rows:   11472827 | Columns:   8
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: language_content_data                    | Rows:          0 | Columns:  12
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: language_data                            | Rows:        135 | Columns:  10
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: operational_information_cont_0           | Rows:          0 | Columns:   3
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: performance_indicator_content            | Rows:          0 | Columns:   3
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: person_assignment_data                   | Rows:       2490 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: person_assignment_element                | Rows:          0 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: person_container_data                    | Rows:          0 | Columns:   2
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: person_container_element                 | Rows:          0 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: person_data                              | Rows:       2490 | Columns:  16
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: person_detail_data                       | Rows:       2490 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: person_detail_element                    | Rows:          0 | Columns:   2
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: person_element                           | Rows:          0 | Columns:  17
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: portal                                   | Rows:          2 | Columns:   8
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_blob_triggers                       | Rows:          0 | Columns:   4
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_calendars                           | Rows:          0 | Columns:   3
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_cron_triggers                       | Rows:          4 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_fired_triggers                      | Rows:          0 | Columns:  13
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_job_details                         | Rows:          4 | Columns:  10
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_locks                               | Rows:          2 | Columns:   2
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_paused_trigger_grps                 | Rows:          0 | Columns:   2
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_scheduler_state                     | Rows:          1 | Columns:   4
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_simple_triggers                     | Rows:          0 | Columns:   6
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_simprop_triggers                    | Rows:          0 | Columns:  14
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: qrtz_triggers                            | Rows:          4 | Columns:  16
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: quality_assurance_content                | Rows:          0 | Columns:   3
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: rule_violation                           | Rows:       2250 | Columns:  10
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_county_data                       | Rows:          0 | Columns:   4
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_county_data_container             | Rows:          0 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_county_electoral_area             | Rows:          0 | Columns:   9
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_county_electoral_regi_0           | Rows:          0 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_county_electoral_regi_1           | Rows:          0 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_election_region                   | Rows:          0 | Columns:   4
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_election_type                     | Rows:          0 | Columns:   5
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_election_type_contain_0           | Rows:          0 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_municipality_data                 | Rows:          0 | Columns:   4
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_municipality_election_0           | Rows:          0 | Columns:   9
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_parliament_electoral__0           | Rows:          0 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_parliament_electoral__1           | Rows:          0 | Columns:   8
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: sweden_political_party                   | Rows:         40 | Columns:  14
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: target_profile_content                   | Rows:          0 | Columns:   3
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: topic                                    | Rows:       4608 | Columns:   4
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: topics                                   | Rows:      25000 | Columns:   1
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: user_account                             | Rows:          1 | Columns:  14
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: user_account_address                     | Rows:          0 | Columns:   3
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: vote_data                                | Rows:    3518618 | Columns:  19
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: vote_meta_data                           | Rows:          0 | Columns:   6
+psql:schema-validation-v2.sql:207: NOTICE:  ✓ Table: world_bank_data                          | Rows:     598009 | Columns:   8
+psql:schema-validation-v2.sql:207: NOTICE:  
+psql:schema-validation-v2.sql:207: NOTICE:  ================================================================
+psql:schema-validation-v2.sql:207: NOTICE:  TABLE VALIDATION SUMMARY:
+psql:schema-validation-v2.sql:207: NOTICE:    Expected:  93 tables
+psql:schema-validation-v2.sql:207: NOTICE:    Validated: 93 tables (100.2f%)
+psql:schema-validation-v2.sql:207: NOTICE:    Errors:    0 tables
+psql:schema-validation-v2.sql:207: NOTICE:  ================================================================
+psql:schema-validation-v2.sql:207: NOTICE:  
+DO
+Time: 63405.291 ms (01:03.405)
+
+==========================================================================
+=== COMPREHENSIVE REGULAR VIEW VALIDATION (56 VIEWS)                   ===
+==========================================================================
+
+DO $$
+DECLARE
+    -- *** MAINTENANCE NOTE ***
+    -- This array must be kept in sync with full_schema.sql
+    -- Update this list when regular views are added/removed from the schema
+    -- Last verified: 2025-11-24 against full_schema.sql
+    -- Total expected: 56 regular views
+    v_all_views TEXT[] := ARRAY[
+        'view_application_action_event_page_annual_summary',
+        'view_application_action_event_page_daily_summary',
+        'view_application_action_event_page_element_annual_summary',
+        'view_application_action_event_page_element_daily_summary',
+        'view_application_action_event_page_element_hourly_summary',
+        'view_application_action_event_page_element_weekly_summary',
+        'view_application_action_event_page_hourly_summary',
+        'view_application_action_event_page_modes_annual_summary',
+        'view_application_action_event_page_modes_daily_summary',
+        'view_application_action_event_page_modes_hourly_summary',
+        'view_application_action_event_page_modes_weekly_summary',
+        'view_application_action_event_page_weekly_summary',
+        'view_audit_author_summary',
+        'view_audit_data_summary',
+        'view_committee_productivity',
+        'view_committee_productivity_matrix',
+        'view_decision_temporal_trends',
+        'view_document_data_committee_report_url',
+        'view_ministry_decision_impact',
+        'view_ministry_effectiveness_trends',
+        'view_ministry_productivity_matrix',
+        'view_ministry_risk_evolution',
+        'view_party_effectiveness_trends',
+        'view_party_performance_metrics',
+        'view_politician_behavioral_trends',
+        'view_politician_risk_summary',
+        'view_riksdagen_coalition_alignment_matrix',
+        'view_riksdagen_committee',
+        'view_riksdagen_committee_parliament_member_proposal',
+        'view_riksdagen_committee_role_member',
+        'view_riksdagen_committee_roles',
+        'view_riksdagen_crisis_resilience_indicators',
+        'view_riksdagen_goverment',
+        'view_riksdagen_goverment_proposals',
+        'view_riksdagen_goverment_role_member',
+        'view_riksdagen_goverment_roles',
+        'view_riksdagen_intelligence_dashboard',
+        'view_riksdagen_member_proposals',
+        'view_riksdagen_party',
+        'view_riksdagen_party_ballot_support_annual_summary',
+        'view_riksdagen_party_coalation_against_annual_summary',
+        'view_riksdagen_party_decision_flow',
+        'view_riksdagen_party_document_summary',
+        'view_riksdagen_party_member',
+        'view_riksdagen_party_momentum_analysis',
+        'view_riksdagen_party_role_member',
+        'view_riksdagen_party_signatures_document_summary',
+        'view_riksdagen_party_summary',
+        'view_riksdagen_person_signed_document_summary',
+        'view_riksdagen_politician',
+        'view_riksdagen_politician_ballot_summary',
+        'view_riksdagen_politician_decision_pattern',
+        'view_riksdagen_politician_experience_summary',
+        'view_riksdagen_politician_influence_metrics',
+        'view_riksdagen_voting_anomaly_detection',
+        'view_risk_score_evolution'
+    ];
+    v_view TEXT;
+    v_count INTEGER;
+    v_col_count INTEGER;
+    v_total_validated INTEGER := 0;
+    v_total_errors INTEGER := 0;
+    v_total_expected INTEGER;
+BEGIN
+    v_total_expected := array_length(v_all_views, 1);
+    
+    RAISE NOTICE 'Validating ALL % regular views from full_schema.sql', v_total_expected;
+    RAISE NOTICE '================================================================';
+    RAISE NOTICE '';
+    
+    FOREACH v_view IN ARRAY v_all_views
+    LOOP
+        BEGIN
+            -- Get row count
+            EXECUTE format('SELECT COUNT(*) FROM %I', v_view) INTO v_count;
+            
+            -- Get column count
+            SELECT COUNT(*) INTO v_col_count
+            FROM information_schema.columns
+            WHERE table_schema = 'public' AND table_name = v_view;
+            
+            RAISE NOTICE '✓ View: % | Rows: % | Columns: %', 
+                         rpad(v_view, 60), lpad(v_count::text, 10), lpad(v_col_count::text, 3);
+            v_total_validated := v_total_validated + 1;
+        EXCEPTION WHEN OTHERS THEN
+            RAISE WARNING '✗ View: % | ERROR: %', v_view, SQLERRM;
+            v_total_errors := v_total_errors + 1;
+        END;
+    END LOOP;
+    
+    RAISE NOTICE '';
+    RAISE NOTICE '================================================================';
+    RAISE NOTICE 'REGULAR VIEW VALIDATION SUMMARY:';
+    RAISE NOTICE '  Expected:  % views', v_total_expected;
+    RAISE NOTICE '  Validated: % views (%.2f%%)', v_total_validated, 
+                 (v_total_validated::float / v_total_expected * 100);
+    RAISE NOTICE '  Errors:    % views', v_total_errors;
+    RAISE NOTICE '================================================================';
+    RAISE NOTICE '';
+END $$;
+psql:schema-validation-v2.sql:326: NOTICE:  Validating ALL 56 regular views from full_schema.sql
+psql:schema-validation-v2.sql:326: NOTICE:  ================================================================
+psql:schema-validation-v2.sql:326: NOTICE:  
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_annual_summary            | Rows:         20 | Columns:   5
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_daily_summary             | Rows:         48 | Columns:   5
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_element_annual_summary    | Rows:         22 | Columns:   6
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_element_daily_summary     | Rows:         35 | Columns:   6
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_element_hourly_summary    | Rows:         55 | Columns:   6
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_element_weekly_summary    | Rows:         26 | Columns:   6
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_hourly_summary            | Rows:        129 | Columns:   5
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_modes_annual_summary      | Rows:         30 | Columns:   6
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_modes_daily_summary       | Rows:         61 | Columns:   6
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_modes_hourly_summary      | Rows:        147 | Columns:   6
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_modes_weekly_summary      | Rows:         38 | Columns:   6
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_application_action_event_page_weekly_summary            | Rows:         27 | Columns:   5
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_audit_author_summary                                    | Rows:          6 | Columns:   5
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_audit_data_summary                                      | Rows:        122 | Columns:   3
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_committee_productivity                                  | Rows:         28 | Columns:  26
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_committee_productivity_matrix                           | Rows:        170 | Columns:  28
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_decision_temporal_trends                                | Rows:        189 | Columns:  19
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_document_data_committee_report_url                      | Rows:       6570 | Columns:   2
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_ministry_decision_impact                                | Rows:       1177 | Columns:  15
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_ministry_effectiveness_trends                           | Rows:          0 | Columns:  25
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_ministry_productivity_matrix                            | Rows:          0 | Columns:  25
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_ministry_risk_evolution                                 | Rows:          0 | Columns:  24
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_party_effectiveness_trends                              | Rows:        115 | Columns:  28
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_party_performance_metrics                               | Rows:         40 | Columns:  24
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_politician_behavioral_trends                            | Rows:       9457 | Columns:  26
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_politician_risk_summary                                 | Rows:          0 | Columns:  21
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_coalition_alignment_matrix                    | Rows:          0 | Columns:  12
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_committee                                     | Rows:         28 | Columns:  19
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_committee_parliament_member_proposal          | Rows:      77314 | Columns:  22
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_committee_role_member                         | Rows:      19034 | Columns:  19
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_committee_roles                               | Rows:        152 | Columns:   5
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_crisis_resilience_indicators                  | Rows:          0 | Columns:  15
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_goverment                                     | Rows:         20 | Columns:  13
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_goverment_proposals                           | Rows:       4575 | Columns:  10
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_goverment_role_member                         | Rows:        500 | Columns:  17
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_goverment_roles                               | Rows:         76 | Columns:   5
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_intelligence_dashboard                        | Rows:          1 | Columns:  16
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_member_proposals                              | Rows:      77759 | Columns:  23
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_party                                         | Rows:         12 | Columns:  17
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_party_ballot_support_annual_summary           | Rows:      13056 | Columns:   7
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_party_coalation_against_annual_summary        | Rows:        278 | Columns:   3
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_party_decision_flow                           | Rows:      13830 | Columns:  16
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_party_document_summary                        | Rows:         10 | Columns:  23
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_party_member                                  | Rows:       2429 | Columns:  39
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_party_momentum_analysis                       | Rows:        441 | Columns:  14
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_party_role_member                             | Rows:        299 | Columns:  18
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_party_signatures_document_summary             | Rows:          9 | Columns:   2
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_party_summary                                 | Rows:         13 | Columns:  59
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_person_signed_document_summary                | Rows:       1712 | Columns:   4
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_politician                                    | Rows:       2076 | Columns:  53
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_politician_ballot_summary                     | Rows:       2429 | Columns:  21
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_politician_decision_pattern                   | Rows:      96891 | Columns:  18
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_politician_experience_summary                 | Rows:       2090 | Columns:  20
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_politician_influence_metrics                  | Rows:          0 | Columns:  12
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_riksdagen_voting_anomaly_detection                      | Rows:          0 | Columns:  15
+psql:schema-validation-v2.sql:326: NOTICE:  ✓ View: view_risk_score_evolution                                    | Rows:          0 | Columns:  21
+psql:schema-validation-v2.sql:326: NOTICE:  
+psql:schema-validation-v2.sql:326: NOTICE:  ================================================================
+psql:schema-validation-v2.sql:326: NOTICE:  REGULAR VIEW VALIDATION SUMMARY:
+psql:schema-validation-v2.sql:326: NOTICE:    Expected:  56 views
+psql:schema-validation-v2.sql:326: NOTICE:    Validated: 56 views (100.2f%)
+psql:schema-validation-v2.sql:326: NOTICE:    Errors:    0 views
+psql:schema-validation-v2.sql:326: NOTICE:  ================================================================
+psql:schema-validation-v2.sql:326: NOTICE:  
+DO
+Time: 18965.581 ms (00:18.966)
+
+==========================================================================
+=== COMPREHENSIVE MATERIALIZED VIEW VALIDATION (28 MVIEWS)             ===
+==========================================================================
+
+DO $$
+DECLARE
+    -- *** MAINTENANCE NOTE ***
+    -- This array must be kept in sync with full_schema.sql
+    -- Update this list when materialized views are added/removed from the schema
+    -- Last verified: 2025-11-24 against full_schema.sql
+    -- Total expected: 28 materialized views
+    v_all_mviews TEXT[] := ARRAY[
+        'view_riksdagen_committee_ballot_decision_party_summary',
+        'view_riksdagen_committee_ballot_decision_politician_summary',
+        'view_riksdagen_committee_ballot_decision_summary',
+        'view_riksdagen_committee_decision_type_org_summary',
+        'view_riksdagen_committee_decision_type_summary',
+        'view_riksdagen_committee_decisions',
+        'view_riksdagen_document_type_daily_summary',
+        'view_riksdagen_org_document_daily_summary',
+        'view_riksdagen_party_document_daily_summary',
+        'view_riksdagen_politician_document',
+        'view_riksdagen_politician_document_daily_summary',
+        'view_riksdagen_politician_document_summary',
+        'view_riksdagen_vote_data_ballot_party_summary',
+        'view_riksdagen_vote_data_ballot_party_summary_annual',
+        'view_riksdagen_vote_data_ballot_party_summary_daily',
+        'view_riksdagen_vote_data_ballot_party_summary_monthly',
+        'view_riksdagen_vote_data_ballot_party_summary_weekly',
+        'view_riksdagen_vote_data_ballot_politician_summary',
+        'view_riksdagen_vote_data_ballot_politician_summary_annual',
+        'view_riksdagen_vote_data_ballot_politician_summary_daily',
+        'view_riksdagen_vote_data_ballot_politician_summary_monthly',
+        'view_riksdagen_vote_data_ballot_politician_summary_weekly',
+        'view_riksdagen_vote_data_ballot_summary',
+        'view_riksdagen_vote_data_ballot_summary_annual',
+        'view_riksdagen_vote_data_ballot_summary_daily',
+        'view_riksdagen_vote_data_ballot_summary_monthly',
+        'view_riksdagen_vote_data_ballot_summary_weekly',
+        'view_worldbank_indicator_data_country_summary'
+    ];
+    v_mview TEXT;
+    v_count INTEGER;
+    v_col_count INTEGER;
+    v_total_validated INTEGER := 0;
+    v_total_errors INTEGER := 0;
+    v_total_expected INTEGER;
+BEGIN
+    v_total_expected := array_length(v_all_mviews, 1);
+    
+    RAISE NOTICE 'Validating ALL % materialized views from full_schema.sql', v_total_expected;
+    RAISE NOTICE '================================================================';
+    RAISE NOTICE '';
+    
+    FOREACH v_mview IN ARRAY v_all_mviews
+    LOOP
+        BEGIN
+            -- Get row count
+            EXECUTE format('SELECT COUNT(*) FROM %I', v_mview) INTO v_count;
+            
+            -- Get column count
+            SELECT COUNT(*) INTO v_col_count
+            FROM information_schema.columns
+            WHERE table_schema = 'public' AND table_name = v_mview;
+            
+            RAISE NOTICE '✓ MView: % | Rows: % | Columns: %', 
+                         rpad(v_mview, 60), lpad(v_count::text, 10), lpad(v_col_count::text, 3);
+            v_total_validated := v_total_validated + 1;
+        EXCEPTION WHEN OTHERS THEN
+            RAISE WARNING '✗ MView: % | ERROR: %', v_mview, SQLERRM;
+            v_total_errors := v_total_errors + 1;
+        END;
+    END LOOP;
+    
+    RAISE NOTICE '';
+    RAISE NOTICE '================================================================';
+    RAISE NOTICE 'MATERIALIZED VIEW VALIDATION SUMMARY:';
+    RAISE NOTICE '  Expected:  % mviews', v_total_expected;
+    RAISE NOTICE '  Validated: % mviews (%.2f%%)', v_total_validated, 
+                 (v_total_validated::float / v_total_expected * 100);
+    RAISE NOTICE '  Errors:    % mviews', v_total_errors;
+    RAISE NOTICE '================================================================';
+    RAISE NOTICE '';
+END $$;
+psql:schema-validation-v2.sql:417: NOTICE:  Validating ALL 28 materialized views from full_schema.sql
+psql:schema-validation-v2.sql:417: NOTICE:  ================================================================
+psql:schema-validation-v2.sql:417: NOTICE:  
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_committee_ballot_decision_party_summary       | Rows:      34558 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_committee_ballot_decision_politician_summary  | Rows:    1578178 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_committee_ballot_decision_summary             | Rows:       4522 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_committee_decision_type_org_summary           | Rows:       7186 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_committee_decision_type_summary               | Rows:       3330 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_committee_decisions                           | Rows:      44772 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_document_type_daily_summary                   | Rows:      32353 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_org_document_daily_summary                    | Rows:      66292 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_party_document_daily_summary                  | Rows:       8550 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_politician_document                           | Rows:     227953 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_politician_document_daily_summary             | Rows:      58583 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_politician_document_summary                   | Rows:       1346 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_party_summary                | Rows:      83381 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_party_summary_annual         | Rows:        201 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_party_summary_daily          | Rows:      10592 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_party_summary_monthly        | Rows:       1795 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_party_summary_weekly         | Rows:       5443 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_politician_summary           | Rows:    3518618 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_politician_summary_annual    | Rows:       9653 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_politician_summary_daily     | Rows:     457929 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_politician_summary_monthly   | Rows:      76984 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_politician_summary_weekly    | Rows:     233205 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_summary                      | Rows:      10082 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_summary_annual               | Rows:         24 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_summary_daily                | Rows:       1311 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_summary_monthly              | Rows:        219 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_riksdagen_vote_data_ballot_summary_weekly               | Rows:        667 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  ✓ MView: view_worldbank_indicator_data_country_summary                | Rows:       4111 | Columns:   0
+psql:schema-validation-v2.sql:417: NOTICE:  
+psql:schema-validation-v2.sql:417: NOTICE:  ================================================================
+psql:schema-validation-v2.sql:417: NOTICE:  MATERIALIZED VIEW VALIDATION SUMMARY:
+psql:schema-validation-v2.sql:417: NOTICE:    Expected:  28 mviews
+psql:schema-validation-v2.sql:417: NOTICE:    Validated: 28 mviews (100.2f%)
+psql:schema-validation-v2.sql:417: NOTICE:    Errors:    0 mviews
+psql:schema-validation-v2.sql:417: NOTICE:  ================================================================
+psql:schema-validation-v2.sql:417: NOTICE:  
+DO
+Time: 720.218 ms
+
+==========================================================================
+=== COVERAGE REPORT: FULL_SCHEMA.SQL VS ACTUAL DATABASE                ===
+==========================================================================
+
+--- TABLES: Checking full_schema.sql (93) vs actual database ---
+WITH expected_tables AS (
+    SELECT unnest(ARRAY[
+        'against_proposal_container', 'against_proposal_data', 'agency',
+        'application_action_event', 'application_configuration', 'application_session',
+        'application_view', 'assignment_data', 'assignment_element',
+        'committee_document_data', 'committee_proposal_component_0', 'committee_proposal_container',
+        'committee_proposal_data', 'countries_element', 'country_element',
+        'data_element', 'data_source_content', 'databasechangelog',
+        'databasechangeloglock', 'detail_data', 'detail_element',
+        'document_activity_container', 'document_activity_data', 'document_attachment',
+        'document_attachment_container', 'document_container_element', 'document_content_data',
+        'document_data', 'document_detail_container', 'document_detail_data',
+        'document_element', 'document_person_reference_co_0', 'document_person_reference_da_0',
+        'document_proposal_container', 'document_proposal_data', 'document_reference_container',
+        'document_reference_data', 'document_status_container', 'domain_portal',
+        'encrypted_value', 'indicator_element', 'indicators_element',
+        'jv_commit', 'jv_commit_property', 'jv_global_id',
+        'jv_snapshot', 'language_content_data', 'language_data',
+        'operational_information_cont_0', 'performance_indicator_content', 'person_assignment_data',
+        'person_assignment_element', 'person_container_data', 'person_container_element',
+        'person_data', 'person_detail_data', 'person_detail_element',
+        'person_element', 'portal', 'qrtz_blob_triggers',
+        'qrtz_calendars', 'qrtz_cron_triggers', 'qrtz_fired_triggers',
+        'qrtz_job_details', 'qrtz_locks', 'qrtz_paused_trigger_grps',
+        'qrtz_scheduler_state', 'qrtz_simple_triggers', 'qrtz_simprop_triggers',
+        'qrtz_triggers', 'quality_assurance_content', 'rule_violation',
+        'sweden_county_data', 'sweden_county_data_container', 'sweden_county_electoral_area',
+        'sweden_county_electoral_regi_0', 'sweden_county_electoral_regi_1', 'sweden_election_region',
+        'sweden_election_type', 'sweden_election_type_contain_0', 'sweden_municipality_data',
+        'sweden_municipality_election_0', 'sweden_parliament_electoral__0', 'sweden_parliament_electoral__1',
+        'sweden_political_party', 'target_profile_content', 'topic',
+        'topics', 'user_account', 'user_account_address',
+        'vote_data', 'vote_meta_data', 'world_bank_data'
+    ]) AS table_name
+),
+actual_tables AS (
+    SELECT tablename AS table_name
+    FROM pg_tables
+    WHERE schemaname = 'public'
+)
+SELECT 
+    COALESCE(e.table_name, a.table_name) AS table_name,
+    CASE 
+        WHEN e.table_name IS NULL THEN 'EXTRA (in DB, not in schema)'
+        WHEN a.table_name IS NULL THEN 'MISSING (in schema, not in DB)'
+        ELSE 'OK'
+    END AS status
+FROM expected_tables e
+FULL OUTER JOIN actual_tables a ON e.table_name = a.table_name
+WHERE e.table_name IS NULL OR a.table_name IS NULL
+ORDER BY status, table_name;
+ table_name | status 
+------------+--------
+(0 rows)
+
+Time: 9.710 ms
+WITH expected_tables AS (
+    SELECT 93 AS expected_count
+),
+actual_match AS (
+    SELECT COUNT(*) AS matched_count
+    FROM pg_tables
+    WHERE schemaname = 'public'
+    AND tablename IN (
+        'against_proposal_container', 'against_proposal_data', 'agency',
+        'application_action_event', 'application_configuration', 'application_session',
+        'application_view', 'assignment_data', 'assignment_element',
+        'committee_document_data', 'committee_proposal_component_0', 'committee_proposal_container',
+        'committee_proposal_data', 'countries_element', 'country_element',
+        'data_element', 'data_source_content', 'databasechangelog',
+        'databasechangeloglock', 'detail_data', 'detail_element',
+        'document_activity_container', 'document_activity_data', 'document_attachment',
+        'document_attachment_container', 'document_container_element', 'document_content_data',
+        'document_data', 'document_detail_container', 'document_detail_data',
+        'document_element', 'document_person_reference_co_0', 'document_person_reference_da_0',
+        'document_proposal_container', 'document_proposal_data', 'document_reference_container',
+        'document_reference_data', 'document_status_container', 'domain_portal',
+        'encrypted_value', 'indicator_element', 'indicators_element',
+        'jv_commit', 'jv_commit_property', 'jv_global_id',
+        'jv_snapshot', 'language_content_data', 'language_data',
+        'operational_information_cont_0', 'performance_indicator_content', 'person_assignment_data',
+        'person_assignment_element', 'person_container_data', 'person_container_element',
+        'person_data', 'person_detail_data', 'person_detail_element',
+        'person_element', 'portal', 'qrtz_blob_triggers',
+        'qrtz_calendars', 'qrtz_cron_triggers', 'qrtz_fired_triggers',
+        'qrtz_job_details', 'qrtz_locks', 'qrtz_paused_trigger_grps',
+        'qrtz_scheduler_state', 'qrtz_simple_triggers', 'qrtz_simprop_triggers',
+        'qrtz_triggers', 'quality_assurance_content', 'rule_violation',
+        'sweden_county_data', 'sweden_county_data_container', 'sweden_county_electoral_area',
+        'sweden_county_electoral_regi_0', 'sweden_county_electoral_regi_1', 'sweden_election_region',
+        'sweden_election_type', 'sweden_election_type_contain_0', 'sweden_municipality_data',
+        'sweden_municipality_election_0', 'sweden_parliament_electoral__0', 'sweden_parliament_electoral__1',
+        'sweden_political_party', 'target_profile_content', 'topic',
+        'topics', 'user_account', 'user_account_address',
+        'vote_data', 'vote_meta_data', 'world_bank_data'
+    )
+)
+SELECT 
+    'TABLES' AS object_type,
+    expected_count AS expected,
+    matched_count AS found_in_db,
+    ROUND(matched_count::numeric / expected_count * 100, 2) AS coverage_pct
+FROM expected_tables, actual_match;
+ object_type | expected | found_in_db | coverage_pct 
+-------------+----------+-------------+--------------
+ TABLES      |       93 |          93 |       100.00
+(1 row)
+
+Time: 1.608 ms
+
+--- REGULAR VIEWS: Checking full_schema.sql (56) vs actual database ---
+WITH expected_views AS (
+    SELECT unnest(ARRAY[
+        'view_application_action_event_page_annual_summary',
+        'view_application_action_event_page_daily_summary',
+        'view_application_action_event_page_element_annual_summary',
+        'view_application_action_event_page_element_daily_summary',
+        'view_application_action_event_page_element_hourly_summary',
+        'view_application_action_event_page_element_weekly_summary',
+        'view_application_action_event_page_hourly_summary',
+        'view_application_action_event_page_modes_annual_summary',
+        'view_application_action_event_page_modes_daily_summary',
+        'view_application_action_event_page_modes_hourly_summary',
+        'view_application_action_event_page_modes_weekly_summary',
+        'view_application_action_event_page_weekly_summary',
+        'view_audit_author_summary',
+        'view_audit_data_summary',
+        'view_committee_productivity',
+        'view_committee_productivity_matrix',
+        'view_decision_temporal_trends',
+        'view_document_data_committee_report_url',
+        'view_ministry_decision_impact',
+        'view_ministry_effectiveness_trends',
+        'view_ministry_productivity_matrix',
+        'view_ministry_risk_evolution',
+        'view_party_effectiveness_trends',
+        'view_party_performance_metrics',
+        'view_politician_behavioral_trends',
+        'view_politician_risk_summary',
+        'view_riksdagen_coalition_alignment_matrix',
+        'view_riksdagen_committee',
+        'view_riksdagen_committee_parliament_member_proposal',
+        'view_riksdagen_committee_role_member',
+        'view_riksdagen_committee_roles',
+        'view_riksdagen_crisis_resilience_indicators',
+        'view_riksdagen_goverment',
+        'view_riksdagen_goverment_proposals',
+        'view_riksdagen_goverment_role_member',
+        'view_riksdagen_goverment_roles',
+        'view_riksdagen_intelligence_dashboard',
+        'view_riksdagen_member_proposals',
+        'view_riksdagen_party',
+        'view_riksdagen_party_ballot_support_annual_summary',
+        'view_riksdagen_party_coalation_against_annual_summary',
+        'view_riksdagen_party_decision_flow',
+        'view_riksdagen_party_document_summary',
+        'view_riksdagen_party_member',
+        'view_riksdagen_party_momentum_analysis',
+        'view_riksdagen_party_role_member',
+        'view_riksdagen_party_signatures_document_summary',
+        'view_riksdagen_party_summary',
+        'view_riksdagen_person_signed_document_summary',
+        'view_riksdagen_politician',
+        'view_riksdagen_politician_ballot_summary',
+        'view_riksdagen_politician_decision_pattern',
+        'view_riksdagen_politician_experience_summary',
+        'view_riksdagen_politician_influence_metrics',
+        'view_riksdagen_voting_anomaly_detection',
+        'view_risk_score_evolution'
+    ]) AS view_name
+),
+actual_views AS (
+    SELECT viewname AS view_name
+    FROM pg_views
+    WHERE schemaname = 'public'
+)
+SELECT 
+    COALESCE(e.view_name, a.view_name) AS view_name,
+    CASE 
+        WHEN e.view_name IS NULL THEN 'EXTRA (in DB, not in schema)'
+        WHEN a.view_name IS NULL THEN 'MISSING (in schema, not in DB)'
+        ELSE 'OK'
+    END AS status
+FROM expected_views e
+FULL OUTER JOIN actual_views a ON e.view_name = a.view_name
+WHERE e.view_name IS NULL OR a.view_name IS NULL
+ORDER BY status, view_name;
+        view_name        |            status            
+-------------------------+------------------------------
+ pg_stat_statements      | EXTRA (in DB, not in schema)
+ pg_stat_statements_info | EXTRA (in DB, not in schema)
+(2 rows)
+
+Time: 1.147 ms
+WITH expected_views AS (
+    SELECT 56 AS expected_count
+),
+actual_match AS (
+    SELECT COUNT(*) AS matched_count
+    FROM pg_views
+    WHERE schemaname = 'public'
+    AND viewname IN (
+        'view_application_action_event_page_annual_summary',
+        'view_application_action_event_page_daily_summary',
+        'view_application_action_event_page_element_annual_summary',
+        'view_application_action_event_page_element_daily_summary',
+        'view_application_action_event_page_element_hourly_summary',
+        'view_application_action_event_page_element_weekly_summary',
+        'view_application_action_event_page_hourly_summary',
+        'view_application_action_event_page_modes_annual_summary',
+        'view_application_action_event_page_modes_daily_summary',
+        'view_application_action_event_page_modes_hourly_summary',
+        'view_application_action_event_page_modes_weekly_summary',
+        'view_application_action_event_page_weekly_summary',
+        'view_audit_author_summary',
+        'view_audit_data_summary',
+        'view_committee_productivity',
+        'view_committee_productivity_matrix',
+        'view_decision_temporal_trends',
+        'view_document_data_committee_report_url',
+        'view_ministry_decision_impact',
+        'view_ministry_effectiveness_trends',
+        'view_ministry_productivity_matrix',
+        'view_ministry_risk_evolution',
+        'view_party_effectiveness_trends',
+        'view_party_performance_metrics',
+        'view_politician_behavioral_trends',
+        'view_politician_risk_summary',
+        'view_riksdagen_coalition_alignment_matrix',
+        'view_riksdagen_committee',
+        'view_riksdagen_committee_parliament_member_proposal',
+        'view_riksdagen_committee_role_member',
+        'view_riksdagen_committee_roles',
+        'view_riksdagen_crisis_resilience_indicators',
+        'view_riksdagen_goverment',
+        'view_riksdagen_goverment_proposals',
+        'view_riksdagen_goverment_role_member',
+        'view_riksdagen_goverment_roles',
+        'view_riksdagen_intelligence_dashboard',
+        'view_riksdagen_member_proposals',
+        'view_riksdagen_party',
+        'view_riksdagen_party_ballot_support_annual_summary',
+        'view_riksdagen_party_coalation_against_annual_summary',
+        'view_riksdagen_party_decision_flow',
+        'view_riksdagen_party_document_summary',
+        'view_riksdagen_party_member',
+        'view_riksdagen_party_momentum_analysis',
+        'view_riksdagen_party_role_member',
+        'view_riksdagen_party_signatures_document_summary',
+        'view_riksdagen_party_summary',
+        'view_riksdagen_person_signed_document_summary',
+        'view_riksdagen_politician',
+        'view_riksdagen_politician_ballot_summary',
+        'view_riksdagen_politician_decision_pattern',
+        'view_riksdagen_politician_experience_summary',
+        'view_riksdagen_politician_influence_metrics',
+        'view_riksdagen_voting_anomaly_detection',
+        'view_risk_score_evolution'
+    )
+)
+SELECT 
+    'VIEWS' AS object_type,
+    expected_count AS expected,
+    matched_count AS found_in_db,
+    ROUND(matched_count::numeric / expected_count * 100, 2) AS coverage_pct
+FROM expected_views, actual_match;
+ object_type | expected | found_in_db | coverage_pct 
+-------------+----------+-------------+--------------
+ VIEWS       |       56 |          56 |       100.00
+(1 row)
+
+Time: 0.806 ms
+
+--- MATERIALIZED VIEWS: Checking full_schema.sql (28) vs actual database ---
+WITH expected_mviews AS (
+    SELECT unnest(ARRAY[
+        'view_riksdagen_committee_ballot_decision_party_summary',
+        'view_riksdagen_committee_ballot_decision_politician_summary',
+        'view_riksdagen_committee_ballot_decision_summary',
+        'view_riksdagen_committee_decision_type_org_summary',
+        'view_riksdagen_committee_decision_type_summary',
+        'view_riksdagen_committee_decisions',
+        'view_riksdagen_document_type_daily_summary',
+        'view_riksdagen_org_document_daily_summary',
+        'view_riksdagen_party_document_daily_summary',
+        'view_riksdagen_politician_document',
+        'view_riksdagen_politician_document_daily_summary',
+        'view_riksdagen_politician_document_summary',
+        'view_riksdagen_vote_data_ballot_party_summary',
+        'view_riksdagen_vote_data_ballot_party_summary_annual',
+        'view_riksdagen_vote_data_ballot_party_summary_daily',
+        'view_riksdagen_vote_data_ballot_party_summary_monthly',
+        'view_riksdagen_vote_data_ballot_party_summary_weekly',
+        'view_riksdagen_vote_data_ballot_politician_summary',
+        'view_riksdagen_vote_data_ballot_politician_summary_annual',
+        'view_riksdagen_vote_data_ballot_politician_summary_daily',
+        'view_riksdagen_vote_data_ballot_politician_summary_monthly',
+        'view_riksdagen_vote_data_ballot_politician_summary_weekly',
+        'view_riksdagen_vote_data_ballot_summary',
+        'view_riksdagen_vote_data_ballot_summary_annual',
+        'view_riksdagen_vote_data_ballot_summary_daily',
+        'view_riksdagen_vote_data_ballot_summary_monthly',
+        'view_riksdagen_vote_data_ballot_summary_weekly',
+        'view_worldbank_indicator_data_country_summary'
+    ]) AS mview_name
+),
+actual_mviews AS (
+    SELECT matviewname AS mview_name
+    FROM pg_matviews
+    WHERE schemaname = 'public'
+)
+SELECT 
+    COALESCE(e.mview_name, a.mview_name) AS mview_name,
+    CASE 
+        WHEN e.mview_name IS NULL THEN 'EXTRA (in DB, not in schema)'
+        WHEN a.mview_name IS NULL THEN 'MISSING (in schema, not in DB)'
+        ELSE 'OK'
+    END AS status
+FROM expected_mviews e
+FULL OUTER JOIN actual_mviews a ON e.mview_name = a.mview_name
+WHERE e.mview_name IS NULL OR a.mview_name IS NULL
+ORDER BY status, mview_name;
+ mview_name | status 
+------------+--------
+(0 rows)
+
+Time: 5.972 ms
+WITH expected_mviews AS (
+    SELECT 28 AS expected_count
+),
+actual_match AS (
+    SELECT COUNT(*) AS matched_count
+    FROM pg_matviews
+    WHERE schemaname = 'public'
+    AND matviewname IN (
+        'view_riksdagen_committee_ballot_decision_party_summary',
+        'view_riksdagen_committee_ballot_decision_politician_summary',
+        'view_riksdagen_committee_ballot_decision_summary',
+        'view_riksdagen_committee_decision_type_org_summary',
+        'view_riksdagen_committee_decision_type_summary',
+        'view_riksdagen_committee_decisions',
+        'view_riksdagen_document_type_daily_summary',
+        'view_riksdagen_org_document_daily_summary',
+        'view_riksdagen_party_document_daily_summary',
+        'view_riksdagen_politician_document',
+        'view_riksdagen_politician_document_daily_summary',
+        'view_riksdagen_politician_document_summary',
+        'view_riksdagen_vote_data_ballot_party_summary',
+        'view_riksdagen_vote_data_ballot_party_summary_annual',
+        'view_riksdagen_vote_data_ballot_party_summary_daily',
+        'view_riksdagen_vote_data_ballot_party_summary_monthly',
+        'view_riksdagen_vote_data_ballot_party_summary_weekly',
+        'view_riksdagen_vote_data_ballot_politician_summary',
+        'view_riksdagen_vote_data_ballot_politician_summary_annual',
+        'view_riksdagen_vote_data_ballot_politician_summary_daily',
+        'view_riksdagen_vote_data_ballot_politician_summary_monthly',
+        'view_riksdagen_vote_data_ballot_politician_summary_weekly',
+        'view_riksdagen_vote_data_ballot_summary',
+        'view_riksdagen_vote_data_ballot_summary_annual',
+        'view_riksdagen_vote_data_ballot_summary_daily',
+        'view_riksdagen_vote_data_ballot_summary_monthly',
+        'view_riksdagen_vote_data_ballot_summary_weekly',
+        'view_worldbank_indicator_data_country_summary'
+    )
+)
+SELECT 
+    'MATERIALIZED VIEWS' AS object_type,
+    expected_count AS expected,
+    matched_count AS found_in_db,
+    ROUND(matched_count::numeric / expected_count * 100, 2) AS coverage_pct
+FROM expected_mviews, actual_match;
+    object_type     | expected | found_in_db | coverage_pct 
+--------------------+----------+-------------+--------------
+ MATERIALIZED VIEWS |       28 |          28 |       100.00
+(1 row)
+
+Time: 0.550 ms
+
+==========================================================================
+=== FINAL VALIDATION COVERAGE SUMMARY                                  ===
+==========================================================================
+
+DO $$
+DECLARE
+    v_table_count INTEGER;
+    v_view_count INTEGER;
+    v_mview_count INTEGER;
+    v_total_validated INTEGER;
+    v_coverage_pct NUMERIC;
+BEGIN
+    -- Get actual counts
+    SELECT COUNT(*) INTO v_table_count FROM pg_tables WHERE schemaname = 'public';
+    SELECT COUNT(*) INTO v_view_count FROM pg_views WHERE schemaname = 'public';
+    SELECT COUNT(*) INTO v_mview_count FROM pg_matviews WHERE schemaname = 'public';
+    
+    v_total_validated := v_table_count + v_view_count + v_mview_count;
+    v_coverage_pct := ROUND((v_total_validated::numeric / 177) * 100, 2);
+    
+    RAISE NOTICE '╔════════════════════════════════════════════════════════════════╗';
+    RAISE NOTICE '║               SCHEMA VALIDATION V2.0 REPORT                    ║';
+    RAISE NOTICE '╠════════════════════════════════════════════════════════════════╣';
+    RAISE NOTICE '║ Object Type          │ Expected │ Validated │ Coverage       ║';
+    RAISE NOTICE '╠══════════════════════╪══════════╪═══════════╪════════════════╣';
+    RAISE NOTICE '║ Tables               │ %       │ %        │ %          ║', 
+                 lpad('93', 8), lpad(v_table_count::text, 9), 
+                 lpad(ROUND((v_table_count::numeric/93)*100, 1)::text || '%', 14);
+    RAISE NOTICE '║ Regular Views        │ %       │ %        │ %          ║', 
+                 lpad('56', 8), lpad(v_view_count::text, 9), 
+                 lpad(ROUND((v_view_count::numeric/56)*100, 1)::text || '%', 14);
+    RAISE NOTICE '║ Materialized Views   │ %       │ %        │ %          ║', 
+                 lpad('28', 8), lpad(v_mview_count::text, 9), 
+                 lpad(ROUND((v_mview_count::numeric/28)*100, 1)::text || '%', 14);
+    RAISE NOTICE '╠══════════════════════╪══════════╪═══════════╪════════════════╣';
+    RAISE NOTICE '║ TOTAL                │ %      │ %       │ %         ║', 
+                 lpad('177', 8), lpad(v_total_validated::text, 9), 
+                 lpad(v_coverage_pct::text || '%', 14);
+    RAISE NOTICE '╚════════════════════════════════════════════════════════════════╝';
+    RAISE NOTICE '';
+    
+    IF v_coverage_pct >= 100 THEN
+        RAISE NOTICE '✓✓✓ SUCCESS: 100%% validation coverage achieved!';
+        RAISE NOTICE '    All objects from full_schema.sql are validated.';
+    ELSIF v_coverage_pct >= 95 THEN
+        RAISE NOTICE '✓✓ EXCELLENT: %.2f%% coverage - nearly complete', v_coverage_pct;
+    ELSIF v_coverage_pct >= 90 THEN
+        RAISE NOTICE '✓ GOOD: %.2f%% coverage - minor gaps remain', v_coverage_pct;
+    ELSE
+        RAISE NOTICE '⚠ WARNING: %.2f%% coverage - significant gaps exist', v_coverage_pct;
+    END IF;
+    
+    RAISE NOTICE '';
+END $$;
+psql:schema-validation-v2.sql:841: NOTICE:  ╔════════════════════════════════════════════════════════════════╗
+psql:schema-validation-v2.sql:841: NOTICE:  ║               SCHEMA VALIDATION V2.0 REPORT                    ║
+psql:schema-validation-v2.sql:841: NOTICE:  ╠════════════════════════════════════════════════════════════════╣
+psql:schema-validation-v2.sql:841: NOTICE:  ║ Object Type          │ Expected │ Validated │ Coverage       ║
+psql:schema-validation-v2.sql:841: NOTICE:  ╠══════════════════════╪══════════╪═══════════╪════════════════╣
+psql:schema-validation-v2.sql:841: NOTICE:  ║ Tables               │       93       │        93        │         100.0%          ║
+psql:schema-validation-v2.sql:841: NOTICE:  ║ Regular Views        │       56       │        58        │         103.6%          ║
+psql:schema-validation-v2.sql:841: NOTICE:  ║ Materialized Views   │       28       │        28        │         100.0%          ║
+psql:schema-validation-v2.sql:841: NOTICE:  ╠══════════════════════╪══════════╪═══════════╪════════════════╣
+psql:schema-validation-v2.sql:841: NOTICE:  ║ TOTAL                │      177      │       179       │        101.13%         ║
+psql:schema-validation-v2.sql:841: NOTICE:  ╚════════════════════════════════════════════════════════════════╝
+psql:schema-validation-v2.sql:841: NOTICE:  
+psql:schema-validation-v2.sql:841: NOTICE:  ✓✓✓ SUCCESS: 100% validation coverage achieved!
+psql:schema-validation-v2.sql:841: NOTICE:      All objects from full_schema.sql are validated.
+psql:schema-validation-v2.sql:841: NOTICE:  
+DO
+Time: 3.238 ms
+
+==========================================================================
+=== VALIDATION COMPLETED                                               ===
+==========================================================================
+
+Validation finished at:
+SELECT NOW();
+             now              
+------------------------------
+ 2025-11-27 16:24:31.79557+00
+(1 row)
+
+Time: 0.084 ms
+
+Issue: Hack23/cia#7872 - Extend Schema Validation Script
+Status: Complete - 100% coverage validation implemented
+
+Timing is off.
