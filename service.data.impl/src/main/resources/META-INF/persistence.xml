@@ -136,6 +136,7 @@
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenOrgDocumentDailySummary</class>
+		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewDocumentDataCommitteeReportUrl</class>
 
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotSummaryDaily</class>
