@@ -44,17 +44,17 @@ public final class ViewRiksdagenCoalitionAlignmentMatrix implements ModelObject 
 	@EmbeddedId
 	private ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId embeddedId;
 
-	@Column(name = "total_ballots")
-	private Long totalBallots;
+	@Column(name = "shared_votes")
+	private Long sharedVotes;
 
-	@Column(name = "agreement_count")
-	private Long agreementCount;
+	@Column(name = "aligned_votes")
+	private Long alignedVotes;
 
-	@Column(name = "disagreement_count")
-	private Long disagreementCount;
+	@Column(name = "opposed_votes")
+	private Long opposedVotes;
 
-	@Column(name = "agreement_percentage")
-	private Double agreementPercentage;
+	@Column(name = "alignment_rate")
+	private Double alignmentRate;
 
 	@Column(name = "coalition_likelihood")
 	private String coalitionLikelihood;
@@ -86,36 +86,36 @@ public final class ViewRiksdagenCoalitionAlignmentMatrix implements ModelObject 
 		this.embeddedId = embeddedId;
 	}
 
-	public Long getTotalBallots() {
-		return totalBallots;
+	public Long getSharedVotes() {
+		return sharedVotes;
 	}
 
-	public void setTotalBallots(final Long totalBallots) {
-		this.totalBallots = totalBallots;
+	public void setSharedVotes(final Long sharedVotes) {
+		this.sharedVotes = sharedVotes;
 	}
 
-	public Long getAgreementCount() {
-		return agreementCount;
+	public Long getAlignedVotes() {
+		return alignedVotes;
 	}
 
-	public void setAgreementCount(final Long agreementCount) {
-		this.agreementCount = agreementCount;
+	public void setAlignedVotes(final Long alignedVotes) {
+		this.alignedVotes = alignedVotes;
 	}
 
-	public Long getDisagreementCount() {
-		return disagreementCount;
+	public Long getOpposedVotes() {
+		return opposedVotes;
 	}
 
-	public void setDisagreementCount(final Long disagreementCount) {
-		this.disagreementCount = disagreementCount;
+	public void setOpposedVotes(final Long opposedVotes) {
+		this.opposedVotes = opposedVotes;
 	}
 
-	public Double getAgreementPercentage() {
-		return agreementPercentage;
+	public Double getAlignmentRate() {
+		return alignmentRate;
 	}
 
-	public void setAgreementPercentage(final Double agreementPercentage) {
-		this.agreementPercentage = agreementPercentage;
+	public void setAlignmentRate(final Double alignmentRate) {
+		this.alignmentRate = alignmentRate;
 	}
 
 	public String getCoalitionLikelihood() {
