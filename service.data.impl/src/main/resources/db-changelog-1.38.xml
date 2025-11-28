@@ -131,7 +131,9 @@ risk_calculations AS (
         COALESCE(mv.violation_categories, 0) AS violation_categories,
         COALESCE(mv.violation_types, '') AS violation_types,
         
-        -- Risk score calculation (simplified without win_rate)
+        -- Risk score calculation (adjusted formula - removed win_rate due to data availability)
+        -- Original formula included win_rate, but direct vote_data doesn't track individual ballot outcomes
+        -- New weights: violations (40 max) + absence (30%) + rebel (20%) + low productivity (10)
         ROUND(
             LEAST(COALESCE(mv.violation_count, 0) * 2, 40) +
             (COALESCE(mrb.absence_rate, 0) * 30 / 100.0) +
@@ -239,6 +241,12 @@ ORDER BY person_id, assessment_period DESC;
         
         Solution: Expand from 2 years to 5 years to capture more legislative activity
         patterns and crisis response behaviors over multiple electoral cycles.
+        
+        Rationale for 5-year window:
+        - Swedish electoral cycle is 4 years, so 5 years captures >1 cycle
+        - Crisis patterns may span multiple years and require longer historical context
+        - Matches coalition alignment view (also 5 years) for consistency in cross-party analysis
+        - 3-year window (used for individual politician metrics) too short for systemic crisis detection
         
         Changes:
         - Change date filter from INTERVAL '2 years' to INTERVAL '5 years'
