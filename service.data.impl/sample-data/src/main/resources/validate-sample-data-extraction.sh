@@ -24,8 +24,10 @@ echo ""
 cd "$VALIDATE_DIR"
 
 # Expected counts based on schema analysis
+# Note: Schema has 93 tables, but 13 are empty/excluded (javers audit, empty config tables)
+# Views: 58 regular + 28 materialized = 86 total view CSV files
 EXPECTED_TABLES=80
-EXPECTED_VIEWS=84
+EXPECTED_VIEWS=86
 EXPECTED_DISTINCT=8
 EXPECTED_METADATA=3
 EXPECTED_TOTAL=$((EXPECTED_TABLES + EXPECTED_VIEWS + EXPECTED_DISTINCT + EXPECTED_METADATA))
