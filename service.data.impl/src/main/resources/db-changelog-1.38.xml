@@ -630,4 +630,108 @@ ORDER BY
     </createView>
 </changeSet>
 
+
+
+<changeSet author="intelligence-operative" id="fix-coalition-alignment-1.38-0022" failOnError="true">
+    <comment>
+        Transformed coalition alignment view to match existing Java entity structure.
+        Maps new analytical logic to legacy column names for backwards compatibility.
+        
+        Mapping:
+        - total_votes -> shared_votes
+        - aligned_votes -> aligned_votes (unchanged)
+        - total_votes - aligned_votes -> opposed_votes
+        - alignment_percentage / 100 -> alignment_rate
+        - coalition_strength -> coalition_likelihood
+        - 'N/A' -> bloc_relationship (deprecated field)
+        - coalition_assessment -> intelligence_comment
+        - EXTRACT(YEAR FROM earliest_vote) -> first_year
+        - EXTRACT(YEAR FROM latest_vote) -> last_year
+        - last_year - first_year + 1 -> years_observed
+    </comment>
+    
+    <sql>DROP VIEW IF EXISTS view_riksdagen_coalition_alignment_matrix CASCADE;</sql>
+    
+    <createView viewName="view_riksdagen_coalition_alignment_matrix">
+        <![CDATA[
+WITH party_votes AS (
+    SELECT
+        party,
+        embedded_id_ballot_id AS ballot_id,
+        vote,
+        vote_date
+    FROM vote_data
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '5 years'
+        AND party IS NOT NULL
+        AND vote IS NOT NULL
+),
+party_pairs AS (
+    SELECT DISTINCT
+        p1.party AS party1,
+        p2.party AS party2
+    FROM party_votes p1
+    CROSS JOIN party_votes p2
+    WHERE p1.party < p2.party
+),
+alignment_metrics AS (
+    SELECT
+        pp.party1,
+        pp.party2,
+        COUNT(DISTINCT pv1.ballot_id) AS total_votes,
+        COUNT(DISTINCT CASE WHEN pv1.vote = pv2.vote THEN pv1.ballot_id END) AS aligned_votes,
+        COUNT(DISTINCT CASE WHEN pv1.vote = 'Ja' AND pv2.vote = 'Ja' THEN pv1.ballot_id END) AS both_yes,
+        COUNT(DISTINCT CASE WHEN pv1.vote = 'Nej' AND pv2.vote = 'Nej' THEN pv1.ballot_id END) AS both_no,
+        COUNT(DISTINCT CASE WHEN pv1.vote = 'Avstå' OR pv2.vote = 'Avstå' THEN pv1.ballot_id END) AS abstention_count,
+        MIN(pv1.vote_date) AS earliest_vote,
+        MAX(pv1.vote_date) AS latest_vote
+    FROM party_pairs pp
+    INNER JOIN party_votes pv1 ON pv1.party = pp.party1
+    INNER JOIN party_votes pv2 ON pv2.party = pp.party2 AND pv2.ballot_id = pv1.ballot_id
+    GROUP BY pp.party1, pp.party2
+)
+SELECT
+    party1,
+    party2,
+    
+    -- Map to existing Java entity fields
+    total_votes AS shared_votes,
+    aligned_votes,
+    (total_votes - aligned_votes) AS opposed_votes,
+    ROUND(aligned_votes::NUMERIC / NULLIF(total_votes, 0), 4) AS alignment_rate,
+    
+    -- Coalition classification
+    CASE
+        WHEN aligned_votes::NUMERIC / NULLIF(total_votes, 0) >= 0.80 THEN 'STRONG_COALITION'
+        WHEN aligned_votes::NUMERIC / NULLIF(total_votes, 0) >= 0.60 THEN 'MODERATE_COALITION'
+        WHEN aligned_votes::NUMERIC / NULLIF(total_votes, 0) >= 0.40 THEN 'WEAK_ALIGNMENT'
+        ELSE 'OPPOSITION'
+    END AS coalition_likelihood,
+    
+    -- Deprecated field - kept for backwards compatibility
+    'N/A' AS bloc_relationship,
+    
+    -- Intelligence assessment
+    CASE
+        WHEN aligned_votes::NUMERIC / NULLIF(total_votes, 0) >= 0.80 
+            THEN 'Strong coalition partnership - consistent aligned voting'
+        WHEN aligned_votes::NUMERIC / NULLIF(total_votes, 0) >= 0.60 
+            THEN 'Moderate coalition alignment - generally cooperative'
+        WHEN aligned_votes::NUMERIC / NULLIF(total_votes, 0) <= 0.40 
+            THEN 'Opposition positioning - frequently divergent votes'
+        ELSE 'Neutral relationship - mixed voting patterns'
+    END AS intelligence_comment,
+    
+    -- Time period analysis
+    EXTRACT(YEAR FROM earliest_vote)::INTEGER AS first_year,
+    EXTRACT(YEAR FROM latest_vote)::INTEGER AS last_year,
+    (EXTRACT(YEAR FROM latest_vote) - EXTRACT(YEAR FROM earliest_vote) + 1)::INTEGER AS years_observed
+    
+FROM alignment_metrics
+WHERE total_votes >= 10
+ORDER BY alignment_rate DESC, total_votes DESC;
+        ]]>
+    </createView>
+</changeSet>
+
+
 </databaseChangeLog>
