@@ -59,7 +59,7 @@
         - Keep all other logic unchanged
     </comment>
     
-    <dropView viewName="view_ministry_effectiveness_trends" ifExists="true"/>
+    <dropView viewName="view_ministry_effectiveness_trends" ifExists="true" cascadeConstraints="true"/>
     
     <createView viewName="view_ministry_effectiveness_trends">
         <![CDATA[
@@ -215,7 +215,7 @@ ORDER BY org_code, period_start DESC;
         Same root cause and solution as effectiveness trends view.
     </comment>
     
-    <dropView viewName="view_ministry_productivity_matrix" ifExists="true"/>
+    <dropView viewName="view_ministry_productivity_matrix" ifExists="true" cascadeConstraints="true"/>
     
     <createView viewName="view_ministry_productivity_matrix">
         <![CDATA[
@@ -310,7 +310,7 @@ ORDER BY mam.year DESC, mam.documents_produced DESC;
         Same root cause and solution as other ministry views.
     </comment>
     
-    <dropView viewName="view_ministry_risk_evolution" ifExists="true"/>
+    <dropView viewName="view_ministry_risk_evolution" ifExists="true" cascadeConstraints="true"/>
     
     <createView viewName="view_ministry_risk_evolution">
         <![CDATA[
@@ -416,14 +416,14 @@ ORDER BY org_code, assessment_period DESC;
         - Keep all other logic unchanged
     </comment>
     
-    <dropView viewName="view_riksdagen_coalition_alignment_matrix" ifExists="true"/>
+    <sql>DROP VIEW IF EXISTS view_riksdagen_coalition_alignment_matrix CASCADE;</sql>
     
     <createView viewName="view_riksdagen_coalition_alignment_matrix">
         <![CDATA[
 WITH party_votes AS (
     SELECT
         party,
-        ballot_id,
+        embedded_id_ballot_id AS ballot_id,
         vote,
         vote_date
     FROM vote_data
@@ -514,20 +514,18 @@ ORDER BY alignment_percentage DESC, total_votes DESC;
         - Maintain all risk calculation logic
     </comment>
     
-    <dropView viewName="view_politician_risk_summary" ifExists="true"/>
+    <dropView viewName="view_politician_risk_summary" ifExists="true" cascadeConstraints="true"/>
     
     <createView viewName="view_politician_risk_summary">
         <![CDATA[
 WITH politician_vote_metrics AS (
     SELECT
         p.id AS person_id,
-        COUNT(DISTINCT vd.ballot_id) AS total_votes,
-        COUNT(DISTINCT vd.ballot_id) FILTER (WHERE vd.vote = 'Frånvarande') AS absent_votes,
-        COUNT(DISTINCT vd.ballot_id) FILTER (WHERE vd.vote = 'Ja' AND vd.winner = 'Ja') AS won_votes,
-        COUNT(DISTINCT vd.ballot_id) FILTER (WHERE vd.vote = 'Nej' AND vd.winner = 'Nej') AS won_votes_no,
-        COUNT(DISTINCT vd.ballot_id) FILTER (WHERE vd.vote != vd.party) AS rebel_votes
+        COUNT(DISTINCT vd.embedded_id_ballot_id) AS total_votes,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) FILTER (WHERE vd.vote = 'Frånvarande') AS absent_votes,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) FILTER (WHERE vd.vote != vd.party AND vd.vote != 'Frånvarande') AS rebel_votes
     FROM person_data p
-    LEFT JOIN vote_data vd ON vd.intressent_id = p.id
+    LEFT JOIN vote_data vd ON vd.embedded_id_intressent_id = p.id
         AND vd.vote_date >= CURRENT_DATE - INTERVAL '2 years'
     WHERE p.status = 'active'
     GROUP BY p.id
@@ -550,7 +548,6 @@ risk_calculations AS (
         COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'COLLABORATION') AS collaboration_violations,
         
         COALESCE(ROUND(pvm.absent_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) AS annual_absence_rate,
-        COALESCE(ROUND((pvm.won_votes + pvm.won_votes_no)::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) AS annual_win_rate,
         COALESCE(ROUND(pvm.rebel_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) AS annual_rebel_rate,
         COALESCE(pvm.total_votes, 0) AS annual_vote_count,
         
@@ -558,9 +555,8 @@ risk_calculations AS (
         
         (
             LEAST(COUNT(DISTINCT rv.id) * 2, 40) +
-            (COALESCE(ROUND(pvm.absent_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) * 20 / 100.0) +
-            ((100 - COALESCE(ROUND((pvm.won_votes + pvm.won_votes_no)::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 50)) * 20 / 100.0) +
-            (COALESCE(ROUND(pvm.rebel_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) * 10 / 100.0) +
+            (COALESCE(ROUND(pvm.absent_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) * 30 / 100.0) +
+            (COALESCE(ROUND(pvm.rebel_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) * 20 / 100.0) +
             (CASE WHEN COUNT(DISTINCT vpd.id) < 5 THEN 10 ELSE 0 END)
         ) AS calculated_risk_score
         
@@ -578,7 +574,7 @@ risk_calculations AS (
     
     GROUP BY 
         p.id, p.first_name, p.last_name, p.party, p.status,
-        pvm.absent_votes, pvm.total_votes, pvm.won_votes, pvm.won_votes_no, pvm.rebel_votes
+        pvm.absent_votes, pvm.total_votes, pvm.rebel_votes
 )
 SELECT
     person_id,
@@ -597,7 +593,6 @@ SELECT
     collaboration_violations,
     
     annual_absence_rate,
-    annual_win_rate,
     annual_rebel_rate,
     annual_vote_count,
     documents_last_year,
