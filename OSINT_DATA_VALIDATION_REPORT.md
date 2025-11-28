@@ -11,7 +11,7 @@
 ✅ **Post-Fix Status (2025-11-28):**
 - **5 critical views FIXED and deployed** (ministry analysis, coalition analysis, politician risk summary)
 - **View definitions validated** - All SQL logic corrected
-- **Risk rule coverage improved**: 88% → 98% (49/50 rules unblocked)
+- **Risk rule coverage improved**: 88% → 98% (5 rules unblocked: 4 ministry + 1 coalition)
 - **Database deployment complete**: Changelog 1.37 applied successfully
 - **Schema updated**: full_schema.sql now contains all fixes
 
@@ -35,8 +35,6 @@
 - 13 tables excluded from extraction (empty/audit tables)
 
 ---
-
-## 📊 Data Coverage Analysis
 
 ## ⚡ Deployment Summary (2025-11-28)
 
@@ -119,7 +117,7 @@
 | **Other Rules** | 3 | 3 | 0 | 100% |
 | **TOTAL** | **50** | **49** | **1*** | **98%** |
 
-_* 1 rule (advanced anomaly detection) requires data science implementation, not a view fix_
+_* 1 remaining rule requires advanced ML-based anomaly detection implementation. The 4 empty views (crisis_resilience, politician_influence, voting_anomaly, risk_score_evolution) support advanced analytics features, not core risk rules._
 
 ### Original Pre-Fix Status (2025-11-27)
 
@@ -636,7 +634,7 @@ The CIA OSINT platform has achieved **major improvements** with the deployment o
 
 | Criteria | Status | Details |
 |----------|--------|---------|
-| All 50 risk rules validated | ✅ 98% | 49/50 rules operational (was 88%); 6 rules unblocked |
+| All 50 risk rules validated | ✅ 98% | 49/50 rules operational (was 88%); 5 rules unblocked (4 ministry + 1 coalition) |
 | 6 analysis frameworks verified | ✅ 97% | All frameworks functional (significant improvements) |
 | Missing data identified | ✅ Complete | All gaps documented with root causes and fixes |
 | Validation report generated | ✅ Complete | This report (updated post-fix) |
