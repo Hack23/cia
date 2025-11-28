@@ -40,7 +40,11 @@ import com.vaadin.ui.VerticalLayout;
  * The Class DataQualityOverviewPageModContentFactoryImpl.
  * 
  * Displays the data quality monitoring dashboard for 4 OSINT data sources.
+ * 
+ * NOTE: Hardcoded data values are placeholders for Phase 1.
+ * Future phases will implement dynamic data retrieval from database/services.
  */
+@Secured({ "ROLE_ADMIN" })
 @Component
 public final class DataQualityOverviewPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
@@ -60,7 +64,6 @@ public final class DataQualityOverviewPageModContentFactoryImpl extends Abstract
 		super();
 	}
 
-	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
@@ -141,8 +144,10 @@ public final class DataQualityOverviewPageModContentFactoryImpl extends Abstract
 		cardLayout.setSpacing(true);
 		cardLayout.addStyleName("data-source-card");
 
-		final Label iconLabel = new Label(icon.getHtml(), com.vaadin.shared.ui.ContentMode.HTML);
+		// Use icon directly without HTML rendering
+		final Label iconLabel = new Label(icon.name());
 		iconLabel.addStyleName("data-source-icon");
+		iconLabel.setIcon(icon);
 		cardLayout.addComponent(iconLabel);
 
 		final VerticalLayout infoLayout = new VerticalLayout();
