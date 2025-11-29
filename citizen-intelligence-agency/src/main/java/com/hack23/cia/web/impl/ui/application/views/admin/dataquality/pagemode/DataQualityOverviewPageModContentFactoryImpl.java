@@ -44,7 +44,6 @@ import com.vaadin.ui.VerticalLayout;
  * NOTE: Hardcoded data values are placeholders for Phase 1.
  * Future phases will implement dynamic data retrieval from database/services.
  */
-@Secured({ "ROLE_ADMIN" })
 @Component
 public final class DataQualityOverviewPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
 
@@ -64,6 +63,7 @@ public final class DataQualityOverviewPageModContentFactoryImpl extends Abstract
 		super();
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
 		final VerticalLayout content = createPanelContent();
@@ -145,7 +145,7 @@ public final class DataQualityOverviewPageModContentFactoryImpl extends Abstract
 		cardLayout.addStyleName("data-source-card");
 
 		// Use icon directly without HTML rendering
-		final Label iconLabel = new Label(icon.name());
+		final Label iconLabel = new Label("");
 		iconLabel.addStyleName("data-source-icon");
 		iconLabel.setIcon(icon);
 		cardLayout.addComponent(iconLabel);

@@ -67,6 +67,9 @@ public final class AdminSecurityTest extends AbstractAdminTest {
 		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_AUTHOR_DATASUMMARY);
 		pageVisit.verifyPageContent(AdminViewConstants.ACCESS_DENIED + AdminViews.ADMIN_DATA_SUMMARY_VIEW_NAME);
 
+		pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATA_QUALITY);
+		pageVisit.verifyPageContent(AdminViewConstants.ACCESS_DENIED + AdminViews.ADMIN_DATA_QUALITY_VIEW_NAME);
+
 
 	}
 
