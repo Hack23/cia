@@ -6,6 +6,7 @@ import org.junit.experimental.categories.Category;
 import com.hack23.cia.systemintegrationtest.admin.AbstractAdminTest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.admin.dataquality.pagemode.DataQualityOverviewPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 
 /**
@@ -41,10 +42,10 @@ public final class AdminDataQualityTest extends AbstractAdminTest {
         pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATA_QUALITY);
         
         // Verify data source names are present
-        pageVisit.verifyViewContent("Riksdagen API");
-        pageVisit.verifyViewContent("Election Authority");
-        pageVisit.verifyViewContent("World Bank");
-        pageVisit.verifyViewContent("Financial Authority");
+        pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.RIKSDAGEN_API);
+        pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.ELECTION_AUTHORITY);
+        pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.WORLD_BANK);
+        pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.FINANCIAL_AUTHORITY);
     }
 
     /**
@@ -57,10 +58,10 @@ public final class AdminDataQualityTest extends AbstractAdminTest {
         pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATA_QUALITY);
         
         // Verify metric names are present
-        pageVisit.verifyViewContent("Data Freshness");
-        pageVisit.verifyViewContent("Data Completeness");
-        pageVisit.verifyViewContent("Data Accuracy");
-        pageVisit.verifyViewContent("Active Alerts");
+        pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.DATA_FRESHNESS);
+        pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.DATA_COMPLETENESS);
+        pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.DATA_ACCURACY);
+        pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.ACTIVE_ALERTS);
     }
 
 }

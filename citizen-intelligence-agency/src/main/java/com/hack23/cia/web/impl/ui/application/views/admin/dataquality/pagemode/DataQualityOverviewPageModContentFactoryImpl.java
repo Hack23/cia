@@ -56,6 +56,30 @@ public final class DataQualityOverviewPageModContentFactoryImpl extends Abstract
 	/** The Constant OVERVIEW_DESCRIPTION. */
 	private static final String OVERVIEW_DESCRIPTION = "Monitor data quality metrics for 4 OSINT data sources: Riksdagen API, Election Authority, World Bank, and Financial Authority";
 
+	/** The Constant RIKSDAGEN_API. */
+	public static final String RIKSDAGEN_API = "Riksdagen API";
+
+	/** The Constant ELECTION_AUTHORITY. */
+	public static final String ELECTION_AUTHORITY = "Election Authority";
+
+	/** The Constant WORLD_BANK. */
+	public static final String WORLD_BANK = "World Bank";
+
+	/** The Constant FINANCIAL_AUTHORITY. */
+	public static final String FINANCIAL_AUTHORITY = "Financial Authority";
+
+	/** The Constant DATA_FRESHNESS. */
+	public static final String DATA_FRESHNESS = "Data Freshness";
+
+	/** The Constant DATA_COMPLETENESS. */
+	public static final String DATA_COMPLETENESS = "Data Completeness";
+
+	/** The Constant DATA_ACCURACY. */
+	public static final String DATA_ACCURACY = "Data Accuracy";
+
+	/** The Constant ACTIVE_ALERTS. */
+	public static final String ACTIVE_ALERTS = "Active Alerts";
+
 	/**
 	 * Instantiates a new data quality overview page mod content factory impl.
 	 */
@@ -113,16 +137,16 @@ public final class DataQualityOverviewPageModContentFactoryImpl extends Abstract
 		statusLayout.addComponent(titleLabel);
 
 		// Riksdagen API status
-		createDataSourceStatusCard(statusLayout, "Riksdagen API", "Swedish Parliament", VaadinIcons.INSTITUTION, "✓ Active", "Last update: 2 hours ago");
+		createDataSourceStatusCard(statusLayout, RIKSDAGEN_API, "Swedish Parliament", VaadinIcons.INSTITUTION, "✓ Active", "Last update: 2 hours ago");
 
 		// Election Authority status
-		createDataSourceStatusCard(statusLayout, "Election Authority", "Valmyndigheten", VaadinIcons.CHECK_SQUARE, "✓ Active", "Last update: 12 hours ago");
+		createDataSourceStatusCard(statusLayout, ELECTION_AUTHORITY, "Valmyndigheten", VaadinIcons.CHECK_SQUARE, "✓ Active", "Last update: 12 hours ago");
 
 		// World Bank status
-		createDataSourceStatusCard(statusLayout, "World Bank", "Open Data", VaadinIcons.GLOBE, "✓ Active", "Last update: 24 hours ago");
+		createDataSourceStatusCard(statusLayout, WORLD_BANK, "Open Data", VaadinIcons.GLOBE, "✓ Active", "Last update: 24 hours ago");
 
 		// Financial Authority status
-		createDataSourceStatusCard(statusLayout, "Financial Authority", "ESV", VaadinIcons.MONEY, "✓ Active", "Last update: 6 hours ago");
+		createDataSourceStatusCard(statusLayout, FINANCIAL_AUTHORITY, "ESV", VaadinIcons.MONEY, "✓ Active", "Last update: 6 hours ago");
 
 		layout.addComponent(statusLayout);
 	}
@@ -188,7 +212,7 @@ public final class DataQualityOverviewPageModContentFactoryImpl extends Abstract
 		freshnessCard.setMargin(true);
 		freshnessCard.addStyleName("metric-card");
 
-		final Label freshnessTitle = new Label("Data Freshness");
+		final Label freshnessTitle = new Label(DATA_FRESHNESS);
 		freshnessTitle.addStyleName("h3");
 		freshnessCard.addComponent(freshnessTitle);
 
@@ -208,7 +232,7 @@ public final class DataQualityOverviewPageModContentFactoryImpl extends Abstract
 		completenessCard.setMargin(true);
 		completenessCard.addStyleName("metric-card");
 
-		final Label completenessTitle = new Label("Data Completeness");
+		final Label completenessTitle = new Label(DATA_COMPLETENESS);
 		completenessTitle.addStyleName("h3");
 		completenessCard.addComponent(completenessTitle);
 
@@ -228,7 +252,7 @@ public final class DataQualityOverviewPageModContentFactoryImpl extends Abstract
 		accuracyCard.setMargin(true);
 		accuracyCard.addStyleName("metric-card");
 
-		final Label accuracyTitle = new Label("Data Accuracy");
+		final Label accuracyTitle = new Label(DATA_ACCURACY);
 		accuracyTitle.addStyleName("h3");
 		accuracyCard.addComponent(accuracyTitle);
 
@@ -248,7 +272,7 @@ public final class DataQualityOverviewPageModContentFactoryImpl extends Abstract
 		alertsCard.setMargin(true);
 		alertsCard.addStyleName("metric-card");
 
-		final Label alertsTitle = new Label("Active Alerts");
+		final Label alertsTitle = new Label(ACTIVE_ALERTS);
 		alertsTitle.addStyleName("h3");
 		alertsCard.addComponent(alertsTitle);
 
