@@ -7378,15 +7378,6 @@ CREATE VIEW public.view_politician_risk_summary AS
              LEFT JOIN public.vote_data vd ON ((((vd.embedded_id_intressent_id)::text = (p.id)::text) AND (vd.vote_date >= (CURRENT_DATE - '2 years'::interval)))))
           WHERE ((p.status)::text = 'active'::text)
           GROUP BY p.id
-        ), politician_document_metrics AS (
-         SELECT dpr.person_reference_id,
-            count(DISTINCT dsc.hjid) AS documents_last_year
-           FROM (((public.document_person_reference_da_0 dpr
-             JOIN public.document_person_reference_co_0 dprc ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
-             JOIN public.document_status_container dsc ON ((dprc.hjid = dsc.document_person_reference_co_1)))
-             JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
-          WHERE (dd.made_public_date >= (CURRENT_DATE - '1 year'::interval))
-          GROUP BY dpr.person_reference_id
         ), risk_calculations AS (
          SELECT p.id AS person_id,
             p.first_name,
@@ -7403,18 +7394,18 @@ CREATE VIEW public.view_politician_risk_summary AS
             COALESCE(round((((pvm.absent_votes)::numeric / (NULLIF(pvm.total_votes, 0))::numeric) * (100)::numeric), 2), (0)::numeric) AS annual_absence_rate,
             COALESCE(round((((pvm.rebel_votes)::numeric / (NULLIF(pvm.total_votes, 0))::numeric) * (100)::numeric), 2), (0)::numeric) AS annual_rebel_rate,
             COALESCE(pvm.total_votes, (0)::bigint) AS annual_vote_count,
-            COALESCE(pdm.documents_last_year, (0)::bigint) AS documents_last_year,
-            (((LEAST((count(DISTINCT rv.id) * 2), (40)::bigint))::numeric + ((COALESCE(round((((pvm.absent_votes)::numeric / (NULLIF(pvm.total_votes, 0))::numeric) * (100)::numeric), 2), (0)::numeric) * (30)::numeric) / 100.0)) + ((COALESCE(round((((pvm.rebel_votes)::numeric / (NULLIF(pvm.total_votes, 0))::numeric) * (100)::numeric), 2), (0)::numeric) * (20)::numeric) / 100.0)) + (
+            count(DISTINCT vpd.id) AS documents_last_year,
+            ((((LEAST((count(DISTINCT rv.id) * 2), (40)::bigint))::numeric + ((COALESCE(round((((pvm.absent_votes)::numeric / (NULLIF(pvm.total_votes, 0))::numeric) * (100)::numeric), 2), (0)::numeric) * (30)::numeric) / 100.0)) + ((COALESCE(round((((pvm.rebel_votes)::numeric / (NULLIF(pvm.total_votes, 0))::numeric) * (100)::numeric), 2), (0)::numeric) * (20)::numeric) / 100.0)) + (
                 CASE
-                    WHEN (COALESCE(pdm.documents_last_year, (0)::bigint) < 5) THEN 10
+                    WHEN (count(DISTINCT vpd.id) < 5) THEN 10
                     ELSE 0
-                END)::numeric AS calculated_risk_score
+                END)::numeric) AS calculated_risk_score
            FROM (((public.person_data p
              LEFT JOIN politician_vote_metrics pvm ON (((pvm.person_id)::text = (p.id)::text)))
-             LEFT JOIN politician_document_metrics pdm ON (((pdm.person_reference_id)::text = (p.id)::text)))
              LEFT JOIN public.rule_violation rv ON ((((rv.reference_id)::text = (p.id)::text) AND ((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = 'ACTIVE'::text))))
+             LEFT JOIN public.view_riksdagen_politician_document vpd ON ((((vpd.person_reference_id)::text = (p.id)::text) AND (vpd.made_public_date >= (CURRENT_DATE - '1 year'::interval)))))
           WHERE ((p.status)::text = 'active'::text)
-          GROUP BY p.id, p.first_name, p.last_name, p.party, p.status, pvm.absent_votes, pvm.total_votes, pvm.rebel_votes, pdm.documents_last_year
+          GROUP BY p.id, p.first_name, p.last_name, p.party, p.status, pvm.absent_votes, pvm.total_votes, pvm.rebel_votes
         )
  SELECT person_id,
     first_name,

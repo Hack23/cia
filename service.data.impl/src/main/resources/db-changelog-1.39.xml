@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Fix Empty View: view_politician_risk_summary v1.39
+  Author: Intelligence Operative & Political Analyst
+  Date: 2025-12-01
+  GitHub Issue: #8025 - Fix Empty View: view_politician_risk_summary
+  
+  This changelog fixes view_politician_risk_summary which returns 0 rows due to
+  materialized view dependency that hasn't been populated.
+  
+  Root Cause Identified:
+  The view depends on view_riksdagen_politician_document (materialized view) via LEFT JOIN.
+  Even though it's a LEFT JOIN, PostgreSQL cannot execute the query if the materialized
+  view hasn't been populated (REFRESH MATERIALIZED VIEW never run).
+  
+  Error: "materialized view 'view_riksdagen_politician_document' has not been populated"
+  
+  Previous Fix Attempts:
+  - Changelog v1.32: Changed from annual summary to direct vote_data - INCOMPLETE (still had mat view dep)
+  - Changelog v1.37: Improved vote metrics calculation - INCOMPLETE (still had mat view dep)
+  - Issue #7884: Closed prematurely without fixing materialized view dependency
+  - Issue #7886: Related fix that didn't address root cause
+  
+  Solution:
+  Replace materialized view reference with direct query to base tables:
+  - document_person_reference_da_0 (person-document associations)
+  - document_person_reference_co_0 (container)
+  - document_status_container (status)
+  - document_data (metadata including made_public_date)
+  
+  This ensures the view works in schema-only databases and eliminates the need
+  for materialized view population before risk assessment can be performed.
+  
+  Impact:
+  - Enables politician risk assessment in fresh database installations
+  - Removes dependency on materialized view refresh schedule
+  - Maintains all existing risk calculation logic unchanged
+  - Performance: Slightly slower but ensures data availability
+-->
+
+<!-- ========================================================================= -->
+<!-- FIX: view_politician_risk_summary - Remove Materialized View Dependency -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="fix-politician-risk-summary-matview-1.39-001" failOnError="true">
+    <comment>
+        Fix view_politician_risk_summary by removing materialized view dependency
+        
+        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document
+        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the
+        query if the materialized view hasn't been populated with REFRESH MATERIALIZED VIEW.
+        
+        Solution: Replace the materialized view reference with a direct query to
+        the underlying base tables (document_person_reference_da_0, document_data,
+        document_status_container) to calculate document counts inline.
+        
+        Changes:
+        - Remove view_riksdagen_politician_document reference
+        - Add direct base table joins for document counting
+        - Maintain all risk calculation logic unchanged
+        - Keep LEFT JOIN semantics to handle missing documents gracefully
+        
+        Performance Note: This adds JOINs to 3-4 base tables instead of 1 materialized
+        view, which may be slightly slower but ensures the view always works regardless
+        of materialized view population status.
+    </comment>
+    
+    <dropView viewName="view_politician_risk_summary" ifExists="true" cascadeConstraints="true"/>
+    
+    <createView viewName="view_politician_risk_summary">
+        <![CDATA[
+WITH politician_vote_metrics AS (
+    SELECT
+        p.id AS person_id,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) AS total_votes,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) FILTER (WHERE vd.vote = 'Frånvarande') AS absent_votes,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) FILTER (WHERE vd.vote != vd.party AND vd.vote != 'Frånvarande') AS rebel_votes
+    FROM person_data p
+    LEFT JOIN vote_data vd ON vd.embedded_id_intressent_id = p.id
+        AND vd.vote_date >= CURRENT_DATE - INTERVAL '2 years'
+    WHERE p.status = 'active'
+    GROUP BY p.id
+),
+politician_document_metrics AS (
+    -- Calculate document counts directly from base tables instead of materialized view
+    -- This avoids the "materialized view not populated" error
+    SELECT
+        dpr.person_reference_id,
+        COUNT(DISTINCT dsc.hjid) AS documents_last_year
+    FROM document_person_reference_da_0 dpr
+    INNER JOIN document_person_reference_co_0 dprc 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    INNER JOIN document_status_container dsc 
+        ON dprc.hjid = dsc.document_person_reference_co_1
+    INNER JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
+    GROUP BY dpr.person_reference_id
+),
+risk_calculations AS (
+    SELECT
+        p.id AS person_id,
+        p.first_name,
+        p.last_name,
+        p.party,
+        p.status,
+        
+        COUNT(DISTINCT rv.id) AS total_violations,
+        MAX(rv.detected_date) AS latest_violation_date,
+        
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'ABSENTEEISM') AS absenteeism_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'EFFECTIVENESS') AS effectiveness_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'DISCIPLINE') AS discipline_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'PRODUCTIVITY') AS productivity_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'COLLABORATION') AS collaboration_violations,
+        
+        COALESCE(ROUND(pvm.absent_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) AS annual_absence_rate,
+        COALESCE(ROUND(pvm.rebel_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) AS annual_rebel_rate,
+        COALESCE(pvm.total_votes, 0) AS annual_vote_count,
+        
+        COALESCE(pdm.documents_last_year, 0) AS documents_last_year,
+        
+        -- Risk Score Calculation (0-100 scale) - Higher score = higher risk
+        (
+            -- Violation component (0-40 points) - 2 points per violation up to 20 violations
+            LEAST(COUNT(DISTINCT rv.id) * 2, 40) +
+            
+            -- Absence component (0-30 points) - Scaled from absence rate percentage
+            (COALESCE(ROUND(pvm.absent_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) * 30 / 100.0) +
+            
+            -- Rebel component (0-20 points) - Scaled from rebel rate percentage
+            (COALESCE(ROUND(pvm.rebel_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) * 20 / 100.0) +
+            
+            -- Low productivity component (0-10 points) - Binary flag for < 5 documents
+            (CASE WHEN COALESCE(pdm.documents_last_year, 0) < 5 THEN 10 ELSE 0 END)
+        ) AS calculated_risk_score
+        
+    FROM person_data p
+    LEFT JOIN politician_vote_metrics pvm ON pvm.person_id = p.id
+    LEFT JOIN politician_document_metrics pdm ON pdm.person_reference_id = p.id
+    LEFT JOIN rule_violation rv 
+        ON rv.reference_id = p.id 
+        AND rv.resource_type = 'POLITICIAN'
+        AND rv.status = 'ACTIVE'
+    
+    WHERE p.status = 'active'
+    
+    GROUP BY 
+        p.id, p.first_name, p.last_name, p.party, p.status,
+        pvm.absent_votes, pvm.total_votes, pvm.rebel_votes,
+        pdm.documents_last_year
+)
+SELECT
+    person_id,
+    first_name,
+    last_name,
+    party,
+    status,
+    
+    total_violations,
+    latest_violation_date,
+    
+    absenteeism_violations,
+    effectiveness_violations,
+    discipline_violations,
+    productivity_violations,
+    collaboration_violations,
+    
+    annual_absence_rate,
+    annual_rebel_rate,
+    annual_vote_count,
+    documents_last_year,
+    
+    ROUND(calculated_risk_score, 2) AS risk_score,
+    
+    -- Risk Classification
+    CASE
+        WHEN calculated_risk_score >= 70 THEN 'CRITICAL'
+        WHEN calculated_risk_score >= 50 THEN 'HIGH'
+        WHEN calculated_risk_score >= 30 THEN 'MEDIUM'
+        WHEN calculated_risk_score >= 10 THEN 'LOW'
+        ELSE 'MINIMAL'
+    END AS risk_level,
+    
+    -- Intelligence Assessment
+    CASE
+        WHEN calculated_risk_score >= 70 THEN 'Critical risk politician - immediate investigation required'
+        WHEN calculated_risk_score >= 50 THEN 'High risk politician - performance concerns warrant review'
+        WHEN calculated_risk_score >= 30 THEN 'Moderate risk - monitor for declining performance'
+        WHEN calculated_risk_score < 10 THEN 'Low risk - performing within acceptable standards'
+        ELSE 'Standard risk profile'
+    END AS risk_assessment
+    
+FROM risk_calculations
+ORDER BY calculated_risk_score DESC, total_violations DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_politician_risk_summary"/>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
