@@ -29,6 +29,12 @@ public interface AdminViewConstants {
     /** The Constant DATA_SUMMARY_OVERVIEW. */
     String DATA_SUMMARY_OVERVIEW = "Comprehensive data summaries for administrative oversight.";
 
+    /** The Constant ADMIN_DATA_QUALITY. */
+    String ADMIN_DATA_QUALITY = "Data Quality Monitoring Dashboard for OSINT Sources";
+
+    /** The Constant DATA_QUALITY_OVERVIEW. */
+    String DATA_QUALITY_OVERVIEW = "Monitor data quality metrics for Riksdagen, Election Authority, World Bank, and ESV";
+
     /** The Constant ADMIN_EMAIL_MANAGEMENT. */
     String ADMIN_EMAIL_MANAGEMENT = "Administrative control of email templates and settings.";
 

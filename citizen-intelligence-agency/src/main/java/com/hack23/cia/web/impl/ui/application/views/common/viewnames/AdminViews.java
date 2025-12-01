@@ -44,6 +44,9 @@ public interface AdminViews {
 	/** The Constant ADMIN_DATA_SUMMARY_VIEW_NAME. */
 	String ADMIN_DATA_SUMMARY_VIEW_NAME = "admindatasummary";
 
+	/** The Constant ADMIN_DATA_QUALITY_VIEW_NAME. */
+	String ADMIN_DATA_QUALITY_VIEW_NAME = "admindataquality";
+
 	/** The Constant ADMIN_EMAIL_VIEW_NAME. */
 	String ADMIN_EMAIL_VIEW_NAME = "adminemail";
 
