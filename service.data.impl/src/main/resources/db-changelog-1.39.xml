@@ -9,7 +9,7 @@
   Fix Empty Views: Ministry Intelligence Views v1.39
   Author: Intelligence Operative
   Date: 2025-12-01
-  GitHub Issue: #7983 (Fix Empty View: view_ministry_effectiveness_trends)
+  GitHub Issue: #8009 (Fix Empty View: view_ministry_effectiveness_trends)
   
   This changelog fixes three ministry intelligence views which have returned 0 rows
   despite previous fix attempts in issues #7883 and changelogs v1.31, v1.32, v1.37.
