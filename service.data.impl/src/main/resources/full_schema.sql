@@ -7383,7 +7383,7 @@ CREATE VIEW public.view_politician_risk_summary AS
             count(DISTINCT dsc.hjid) AS documents_last_year
            FROM (((public.document_status_container dsc
              LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
-             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.document_person_reference_co_1 = dprc.hjid)))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
              LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
           WHERE ((dd.made_public_date >= (CURRENT_DATE - '1 year'::interval)) AND (dpr.person_reference_id IS NOT NULL))
           GROUP BY dpr.person_reference_id

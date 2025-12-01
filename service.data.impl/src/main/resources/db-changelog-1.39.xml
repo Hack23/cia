@@ -98,7 +98,7 @@ politician_document_metrics AS (
     LEFT JOIN document_data dd 
         ON dsc.document_document_status_con_0 = dd.id
     LEFT JOIN document_person_reference_co_0 dprc 
-        ON dsc.document_person_reference_co_1 = dprc.hjid
+        ON dsc.hjid = dprc.hjid
     LEFT JOIN document_person_reference_da_0 dpr 
         ON dpr.document_person_reference_li_1 = dprc.hjid
     WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
