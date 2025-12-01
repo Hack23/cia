@@ -1,51 +1,51 @@
 id,detected_date,reference_id,name,resource_type,rule_description,rule_group,status,positive,rule_name
-2807574,2025-11-27 00:00:00,0538387395826,Mats Green (M),POLITICIAN,Politician currently active in committee leadership,Role,MINOR,Active Committee Leader,PoliticianLeadershipRole
-2807715,2025-11-27 00:00:00,0262411569110,Helene Odenjung (L),POLITICIAN,We have an politician with leading role in the party,Behavior,MINOR,Influential,PoliticianPartyLeader
-2807756,2025-11-27 00:00:00,V,V,PARTY,Party showing disorganization - high daily and monthly absence variation,Behavior,MAJOR,InconsistentAttendance,PartyDecliningPerformance
-2807757,2025-11-27 00:00:00,V,V,PARTY,We have an active Party with no government experience,Experience,MINOR,ExperienceNoGuaranteeOfSuccess,PartyNoGovernmentExperience
-2809395,2025-11-27 00:00:00,0888807074321,Amanda Lind (MP),POLITICIAN,We have an politician with leading role in the party,Behavior,MINOR,Influential,PoliticianPartyLeader
-2809505,2025-11-27 00:00:00,0411459873625,Hanna Gunnarsson (V),POLITICIAN,We have an politician with leading role in the party,Behavior,MINOR,Influential,PoliticianPartyLeader
-2807575,2025-11-27 00:00:00,0538387395826,Mats Green (M),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
-2807576,2025-11-27 00:00:00,0538387395826,Mats Green (M),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
-2807577,2025-11-27 00:00:00,0538387395826,Mats Green (M),POLITICIAN,Politician with more than 900 days served in committee leadership,Experience,CRITICAL,Extremely Experienced Committee Leader,PoliticianExperience
-2807578,2025-11-27 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,Politician with more than 6 current assignments,Assignments,CRITICAL,More than 6 Current Assignments,PoliticianBalancedRules
-2807579,2025-11-27 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,"We have an politician with busy schedule, more than 5 current roles and busy past",Behavior,MAJOR,Influential,PoliticianBusySchedule
-2807580,2025-11-27 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,"We have an politician older than 65, retirement age in Sweden",Attribute,MINOR,LongTimer,PoliticianTimeToRetire
-2807581,2025-11-27 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
-2807582,2025-11-27 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
-2807583,2025-11-27 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
-2807584,2025-11-27 00:00:00,084624777218,Helena Lindahl (C),POLITICIAN,Politician with very low collaboration - below 10%,Behavior,MAJOR,VeryLowCollaboration,PoliticianIsolatedBehavior
-2807585,2025-11-27 00:00:00,084624777218,Helena Lindahl (C),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
-2807586,2025-11-27 00:00:00,084624777218,Helena Lindahl (C),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
-2807587,2025-11-27 00:00:00,0800956862429,Gulan Avci (L),POLITICIAN,Politician with more than 6 current assignments,Assignments,CRITICAL,More than 6 Current Assignments,PoliticianBalancedRules
-2807588,2025-11-27 00:00:00,0800956862429,Gulan Avci (L),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
-2807589,2025-11-27 00:00:00,0800956862429,Gulan Avci (L),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
-2807590,2025-11-27 00:00:00,0800956862429,Gulan Avci (L),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
-2807591,2025-11-27 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,Politician with more than 6 current assignments,Assignments,CRITICAL,More than 6 Current Assignments,PoliticianBalancedRules
-2807592,2025-11-27 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,"We have an politician with busy schedule, more than 5 current roles and busy past",Behavior,MAJOR,Influential,PoliticianBusySchedule
-2807593,2025-11-27 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,Politician with strategic abstention - high abstention but high presence,Behavior,MAJOR,StrategicAbstentionPresent,PoliticianAbstentionPattern
-2807594,2025-11-27 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
-2807595,2025-11-27 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
-2807596,2025-11-27 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
-2807597,2025-11-27 00:00:00,0519740099915,Saila Quicklund (M),POLITICIAN,Politician with multiple current assignments,Assignments,MINOR,Multiple Current Assignments,PoliticianBalancedRules
-2807598,2025-11-27 00:00:00,0519740099915,Saila Quicklund (M),POLITICIAN,Politician with very low collaboration - below 10%,Behavior,MAJOR,VeryLowCollaboration,PoliticianIsolatedBehavior
-2807599,2025-11-27 00:00:00,0519740099915,Saila Quicklund (M),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
-2807600,2025-11-27 00:00:00,0519740099915,Saila Quicklund (M),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
-2807601,2025-11-27 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,Politician showing avoidance pattern - high combined absence and abstention,Behavior,CRITICAL,AvoidancePattern,PoliticianLowEngagement
-2807602,2025-11-27 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,"We have a lazy politician, absent more than 20 % of ballots last year",Behavior,CRITICAL,NA,PoliticianLazy
-2807603,2025-11-27 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,Politician with declining engagement - monthly absence worse than annual,Behavior,MAJOR,WorseningAbsenteeism,PoliticianDecliningEngagement
-2807604,2025-11-27 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
-2807605,2025-11-27 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
-2807606,2025-11-27 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
-2807607,2025-11-27 00:00:00,0665485817222,Daniel Bäckström (C),POLITICIAN,Politician with very low collaboration - below 10%,Behavior,MAJOR,VeryLowCollaboration,PoliticianIsolatedBehavior
-2807608,2025-11-27 00:00:00,0665485817222,Daniel Bäckström (C),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
-2807609,2025-11-27 00:00:00,0665485817222,Daniel Bäckström (C),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
-2807610,2025-11-27 00:00:00,0157618290428,Rashid Farivar (SD),POLITICIAN,Politician with declining effectiveness - monthly win rate much lower than annual,Behavior,MAJOR,DecreasingEffectiveness,PoliticianDecliningEngagement
-2807611,2025-11-27 00:00:00,0157618290428,Rashid Farivar (SD),POLITICIAN,"We have a lazy politician, absent more than 20 % of ballots last month",Behavior,MAJOR,NA,PoliticianLazy
-2807612,2025-11-27 00:00:00,0157618290428,Rashid Farivar (SD),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
-2807613,2025-11-27 00:00:00,0157618290428,Rashid Farivar (SD),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
-2807614,2025-11-27 00:00:00,0157618290428,Rashid Farivar (SD),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
-2807615,2025-11-27 00:00:00,0576122429317,Martin Melin (L),POLITICIAN,Politician with more than 6 current assignments,Assignments,CRITICAL,More than 6 Current Assignments,PoliticianBalancedRules
-2807616,2025-11-27 00:00:00,0576122429317,Martin Melin (L),POLITICIAN,"We have an politician with busy schedule, more than 5 current roles and busy past",Behavior,MAJOR,Influential,PoliticianBusySchedule
-2807617,2025-11-27 00:00:00,0576122429317,Martin Melin (L),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
-2807618,2025-11-27 00:00:00,0576122429317,Martin Melin (L),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
+2812201,2025-11-30 00:00:00,0538387395826,Mats Green (M),POLITICIAN,Politician currently active in committee leadership,Role,MINOR,Active Committee Leader,PoliticianLeadershipRole
+2812444,2025-11-30 00:00:00,0729710260118,Helena Bouveng (M),POLITICIAN,Politician with no documents last year,Behavior,MAJOR,NoProductivity,PoliticianLowDocumentActivity
+2812844,2025-11-30 00:00:00,0126797549328,Johan Forssell (M),POLITICIAN,We have an politician part of government,Behavior,MAJOR,Influential,PoliticianPartyLeader
+2812202,2025-11-30 00:00:00,0538387395826,Mats Green (M),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
+2812203,2025-11-30 00:00:00,0538387395826,Mats Green (M),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812204,2025-11-30 00:00:00,0538387395826,Mats Green (M),POLITICIAN,Politician with more than 900 days served in committee leadership,Experience,CRITICAL,Extremely Experienced Committee Leader,PoliticianExperience
+2812205,2025-11-30 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,Politician with more than 6 current assignments,Assignments,CRITICAL,More than 6 Current Assignments,PoliticianBalancedRules
+2812206,2025-11-30 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,"We have an politician with busy schedule, more than 5 current roles and busy past",Behavior,MAJOR,Influential,PoliticianBusySchedule
+2812207,2025-11-30 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,"We have an politician older than 65, retirement age in Sweden",Attribute,MINOR,LongTimer,PoliticianTimeToRetire
+2812208,2025-11-30 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
+2812209,2025-11-30 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812210,2025-11-30 00:00:00,0502688311316,Anna Vikström (S),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
+2812211,2025-11-30 00:00:00,084624777218,Helena Lindahl (C),POLITICIAN,Politician with very low collaboration - below 10%,Behavior,MAJOR,VeryLowCollaboration,PoliticianIsolatedBehavior
+2812212,2025-11-30 00:00:00,084624777218,Helena Lindahl (C),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812213,2025-11-30 00:00:00,084624777218,Helena Lindahl (C),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
+2812214,2025-11-30 00:00:00,0800956862429,Gulan Avci (L),POLITICIAN,Politician with more than 6 current assignments,Assignments,CRITICAL,More than 6 Current Assignments,PoliticianBalancedRules
+2812215,2025-11-30 00:00:00,0800956862429,Gulan Avci (L),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
+2812216,2025-11-30 00:00:00,0800956862429,Gulan Avci (L),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812217,2025-11-30 00:00:00,0800956862429,Gulan Avci (L),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
+2812218,2025-11-30 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,Politician with more than 6 current assignments,Assignments,CRITICAL,More than 6 Current Assignments,PoliticianBalancedRules
+2812219,2025-11-30 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,"We have an politician with busy schedule, more than 5 current roles and busy past",Behavior,MAJOR,Influential,PoliticianBusySchedule
+2812220,2025-11-30 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,Politician with strategic abstention - high abstention but high presence,Behavior,MAJOR,StrategicAbstentionPresent,PoliticianAbstentionPattern
+2812221,2025-11-30 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
+2812222,2025-11-30 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812223,2025-11-30 00:00:00,0546731406922,Rebecka Le Moine (MP),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
+2812224,2025-11-30 00:00:00,0519740099915,Saila Quicklund (M),POLITICIAN,Politician with multiple current assignments,Assignments,MINOR,Multiple Current Assignments,PoliticianBalancedRules
+2812225,2025-11-30 00:00:00,0519740099915,Saila Quicklund (M),POLITICIAN,Politician with very low collaboration - below 10%,Behavior,MAJOR,VeryLowCollaboration,PoliticianIsolatedBehavior
+2812226,2025-11-30 00:00:00,0519740099915,Saila Quicklund (M),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812227,2025-11-30 00:00:00,0519740099915,Saila Quicklund (M),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
+2812228,2025-11-30 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,Politician showing avoidance pattern - high combined absence and abstention,Behavior,CRITICAL,AvoidancePattern,PoliticianLowEngagement
+2812229,2025-11-30 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,"We have a lazy politician, absent more than 20 % of ballots last year",Behavior,CRITICAL,NA,PoliticianLazy
+2812230,2025-11-30 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,Politician with declining engagement - monthly absence worse than annual,Behavior,MAJOR,WorseningAbsenteeism,PoliticianDecliningEngagement
+2812231,2025-11-30 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
+2812232,2025-11-30 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812233,2025-11-30 00:00:00,098329342620,Jennie Wernäng (M),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
+2812234,2025-11-30 00:00:00,0665485817222,Daniel Bäckström (C),POLITICIAN,Politician with very low collaboration - below 10%,Behavior,MAJOR,VeryLowCollaboration,PoliticianIsolatedBehavior
+2812235,2025-11-30 00:00:00,0665485817222,Daniel Bäckström (C),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812236,2025-11-30 00:00:00,0665485817222,Daniel Bäckström (C),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
+2812237,2025-11-30 00:00:00,0157618290428,Rashid Farivar (SD),POLITICIAN,Politician with declining effectiveness - monthly win rate much lower than annual,Behavior,MAJOR,DecreasingEffectiveness,PoliticianDecliningEngagement
+2812238,2025-11-30 00:00:00,0157618290428,Rashid Farivar (SD),POLITICIAN,"We have a lazy politician, absent more than 20 % of ballots last month",Behavior,MAJOR,NA,PoliticianLazy
+2812239,2025-11-30 00:00:00,0157618290428,Rashid Farivar (SD),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
+2812240,2025-11-30 00:00:00,0157618290428,Rashid Farivar (SD),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812241,2025-11-30 00:00:00,0157618290428,Rashid Farivar (SD),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
+2812242,2025-11-30 00:00:00,0576122429317,Martin Melin (L),POLITICIAN,Politician with more than 6 current assignments,Assignments,CRITICAL,More than 6 Current Assignments,PoliticianBalancedRules
+2812243,2025-11-30 00:00:00,0576122429317,Martin Melin (L),POLITICIAN,"We have an politician with busy schedule, more than 5 current roles and busy past",Behavior,MAJOR,Influential,PoliticianBusySchedule
+2812244,2025-11-30 00:00:00,0576122429317,Martin Melin (L),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812245,2025-11-30 00:00:00,0576122429317,Martin Melin (L),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
+2812246,2025-11-30 00:00:00,075747847023,Gustaf Lantz (S),POLITICIAN,Politician with no multi-party collaboration,Behavior,CRITICAL,NoMultiPartyCollaboration,PoliticianIsolatedBehavior
+2812247,2025-11-30 00:00:00,075747847023,Gustaf Lantz (S),POLITICIAN,Politician with high committee substitute ratio,CommitteeExperience,MINOR,Primarily Serving as Committee Substitute,PoliticianInfluence
+2812248,2025-11-30 00:00:00,075747847023,Gustaf Lantz (S),POLITICIAN,Politician with more than 600 days served as committee substitute,Experience,CRITICAL,Extremely Experienced Committee Substitute,PoliticianExperience
