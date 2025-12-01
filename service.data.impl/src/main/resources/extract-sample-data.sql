@@ -380,16 +380,20 @@ DECLARE
     row_count BIGINT;
     extract_count INTEGER := 0;
 BEGIN
-    -- Get total view count
+    -- Get total view count (excluding coalition alignment matrix)
     SELECT COUNT(*) INTO total_views
     FROM (
-        SELECT viewname FROM pg_views WHERE schemaname = 'public'
+        SELECT viewname FROM pg_views 
+        WHERE schemaname = 'public' 
+          AND viewname != 'view_riksdagen_coalition_alignment_matrix'
         UNION ALL
-        SELECT matviewname FROM pg_matviews WHERE schemaname = 'public'
+        SELECT matviewname FROM pg_matviews 
+        WHERE schemaname = 'public'
     ) v;
     
     RAISE NOTICE '';
     RAISE NOTICE 'Phase 1: Analyzing % views for row counts', total_views;
+    RAISE NOTICE 'Excluding: view_riksdagen_coalition_alignment_matrix (complex query)';
     RAISE NOTICE 'This may take several minutes for complex views...';
     RAISE NOTICE '';
     
@@ -398,6 +402,7 @@ BEGIN
         SELECT schemaname, viewname AS object_name, 'VIEW' AS object_type
         FROM pg_views
         WHERE schemaname = 'public'
+          AND viewname != 'view_riksdagen_coalition_alignment_matrix'
         UNION ALL
         SELECT schemaname, matviewname AS object_name, 'MATERIALIZED VIEW' AS object_type
         FROM pg_matviews
@@ -445,9 +450,10 @@ WITH view_counts AS (
            cia_tmp_rowcount(schemaname, viewname) AS row_count
     FROM pg_views
     WHERE schemaname = 'public'
+      AND viewname != 'view_riksdagen_coalition_alignment_matrix'
     UNION ALL
     SELECT schemaname,
-           matviewname AS viewname,
+           matviewname,
            cia_tmp_rowcount(schemaname, matviewname) AS row_count
     FROM pg_matviews
     WHERE schemaname = 'public'
@@ -493,14 +499,15 @@ ORDER BY viewname;
 \echo ''
 
 -- ===========================================================================
--- SECTION 4: Extract Distinct Values for ALL Tables Dynamically
+-- SECTION 4: Extract Distinct Values for View-Referenced Columns ONLY
 -- ===========================================================================
 \echo ''
 \echo '=================================================='
 \echo '=== EXTRACTING DISTINCT VALUE SETS            ==='
 \echo '=================================================='
 \echo ''
-\echo 'Analyzing tables for categorical columns...'
+\echo 'Analyzing columns ACTUALLY USED in view queries...'
+\echo 'Extracting WHERE/JOIN/GROUP BY predicate columns only...'
 \echo ''
 
 \! rm -f :DISTINCT_CMD_FILE
@@ -508,48 +515,162 @@ ORDER BY viewname;
 \pset tuples_only on
 \o :DISTINCT_CMD_FILE
 
-WITH table_columns AS (
+-- Extract columns that are ACTUALLY used in view predicates (WHERE/JOIN/GROUP BY)
+WITH RECURSIVE view_definitions AS (
+    -- Get all view definitions with their SQL
     SELECT 
-        t.schemaname,
-        t.tablename,
-        c.column_name,
-        c.data_type,
-        c.character_maximum_length
-    FROM pg_tables t
-    JOIN information_schema.columns c 
-        ON c.table_schema = t.schemaname 
-        AND c.table_name = t.tablename
-    WHERE t.schemaname = 'public'
-        AND t.tablename NOT LIKE 'qrtz_%'
-        AND t.tablename NOT LIKE 'databasechange%'
-        AND c.data_type IN ('character varying', 'text', 'character', 'USER-DEFINED')
-        AND (c.character_maximum_length IS NULL OR c.character_maximum_length < 500)
+        n.nspname AS schemaname,
+        c.relname AS viewname,
+        pg_get_viewdef(c.oid, true) AS view_definition
+    FROM pg_class c
+    JOIN pg_namespace n ON n.oid = c.relnamespace
+    WHERE c.relkind IN ('v', 'm')
+      AND n.nspname = 'public'
+      AND c.relname != 'view_riksdagen_coalition_alignment_matrix'
 ),
-tables_with_data AS (
+-- Enhanced extraction: Multiple patterns to catch different SQL syntaxes
+view_column_patterns AS (
     SELECT DISTINCT
         schemaname,
-        tablename
-    FROM table_columns tc
-    WHERE cia_tmp_rowcount(tc.schemaname, tc.tablename) > 0
+        viewname,
+        regexp_matches(view_definition, '\b([a-z_][a-z0-9_]*)\.\s*([a-z_][a-z0-9_]*)\s*(?:=|!=|<>|<|>|<=|>=|IN\s*\(|IS\s+(?:NOT\s+)?NULL|(?:NOT\s+)?LIKE)', 'gi') AS table_column
+    FROM view_definitions
 ),
+-- Parse all matches
+parsed_columns AS (
+    SELECT DISTINCT
+        schemaname,
+        viewname,
+        lower((table_column)[1]) AS table_name,
+        lower((table_column)[2]) AS column_name
+    FROM view_column_patterns
+    WHERE table_column IS NOT NULL 
+      AND array_length(table_column, 1) >= 2
+      -- Filter out SQL keywords
+      AND lower((table_column)[1]) NOT IN (
+          'select', 'from', 'where', 'group', 'order', 'having', 
+          'case', 'when', 'then', 'else', 'end', 'and', 'or', 
+          'not', 'null', 'as', 'on', 'using', 'join', 'left',
+          'right', 'inner', 'outer', 'cross', 'natural', 'with',
+          'union', 'intersect', 'except', 'limit', 'offset'
+      )
+      AND lower((table_column)[2]) NOT IN (
+          'select', 'from', 'where', 'group', 'order', 'having',
+          'case', 'when', 'then', 'else', 'end', 'and', 'or',
+          'not', 'null', 'as', 'on', 'using', 'distinct', 'all',
+          'exists', 'between', 'like', 'ilike', 'similar', 'in'
+      )
+),
+-- ALSO add common categorical columns from base tables
+common_categorical_columns AS (
+    SELECT DISTINCT
+        t.table_schema AS schemaname,
+        t.table_name,
+        c.column_name,
+        'COMMON_CATEGORICAL' AS source_type
+    FROM information_schema.tables t
+    JOIN information_schema.columns c 
+        ON c.table_schema = t.table_schema 
+        AND c.table_name = t.table_name
+    WHERE t.table_schema = 'public'
+      AND t.table_type = 'BASE TABLE'
+      AND c.data_type IN ('character varying', 'text', 'character', 'USER-DEFINED')
+      AND (c.character_maximum_length IS NULL OR c.character_maximum_length < 200)
+      AND c.column_name IN (
+          'party', 'status', 'gender', 'role_code', 'ballot_type',
+          'vote', 'document_type', 'detail', 'org', 'org_code',
+          'concern', 'issue', 'decision_type', 'winner', 'committee_report',
+          'election_region', 'assignment_type', 'detail_type',
+          'rm', 'label', 'sub_type', 'category', 'classification'
+      )
+),
+-- Combine parsed columns with common categorical columns
+all_candidate_columns AS (
+    SELECT DISTINCT
+        schemaname,
+        table_name,
+        column_name,
+        'VIEW_PREDICATE' AS source_type
+    FROM parsed_columns
+    UNION
+    SELECT 
+        schemaname,
+        table_name,
+        column_name,
+        source_type
+    FROM common_categorical_columns
+),
+-- Verify columns exist in actual tables
+verified_columns AS (
+    SELECT DISTINCT
+        acc.schemaname,
+        acc.table_name AS tablename,
+        acc.column_name,
+        c.data_type,
+        c.character_maximum_length,
+        COUNT(DISTINCT CASE WHEN acc.source_type = 'VIEW_PREDICATE' THEN acc.table_name END) AS used_in_view_count,
+        MAX(CASE WHEN acc.source_type = 'COMMON_CATEGORICAL' THEN 1 ELSE 0 END) AS is_common_categorical
+    FROM all_candidate_columns acc
+    JOIN information_schema.columns c 
+        ON c.table_schema = acc.schemaname 
+        AND c.table_name = acc.table_name
+        AND c.column_name = acc.column_name
+    WHERE c.data_type IN ('character varying', 'text', 'character', 'USER-DEFINED')
+      AND (c.character_maximum_length IS NULL OR c.character_maximum_length < 500)
+    GROUP BY acc.schemaname, acc.table_name, acc.column_name, c.data_type, c.character_maximum_length
+),
+-- Check which tables have data
+tables_with_data AS (
+    SELECT DISTINCT
+        vc.schemaname,
+        vc.tablename
+    FROM verified_columns vc
+    WHERE cia_tmp_rowcount(vc.schemaname, vc.tablename) > 0
+),
+-- Generate extraction commands with priority
 distinct_extracts AS (
     SELECT 
-        tc.schemaname,
-        tc.tablename,
-        tc.column_name,
-        'distinct_' || tc.tablename || '_' || tc.column_name || '_values.csv' AS filename
-    FROM table_columns tc
+        vc.schemaname,
+        vc.tablename,
+        vc.column_name,
+        vc.used_in_view_count,
+        vc.is_common_categorical,
+        CASE 
+            WHEN vc.used_in_view_count > 0 THEN vc.used_in_view_count * 100
+            WHEN vc.is_common_categorical = 1 THEN 50
+            ELSE 1
+        END AS priority_score,
+        'distinct_' || vc.tablename || '_' || vc.column_name || '_values.csv' AS filename
+    FROM verified_columns vc
     JOIN tables_with_data twd 
-        ON twd.schemaname = tc.schemaname 
-        AND twd.tablename = tc.tablename
+        ON twd.schemaname = vc.schemaname 
+        AND twd.tablename = vc.tablename
+    
+    UNION ALL
+    
+    -- Add critical assignment_data columns (used in committee/government views)
+    SELECT 
+        'public' AS schemaname,
+        'assignment_data' AS tablename,
+        col AS column_name,
+        15 AS used_in_view_count,
+        1 AS is_common_categorical,
+        1500 AS priority_score,
+        'distinct_assignment_data_' || col || '_values.csv' AS filename
+    FROM unnest(ARRAY['org_code', 'detail', 'role_code', 'assignment_type', 'status']) AS col
+    WHERE EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'assignment_data')
+    
+    ORDER BY priority_score DESC, tablename, column_name
 )
 SELECT format(
-    '\echo ''[DISTINCT] %I.%I.%I -> %s''' || E'\n' ||
+    '\echo ''[DISTINCT] %I.%I.%I (priority=%s, views=%s) -> %s''' || E'\n' ||
     '\copy (SELECT %I as value, COUNT(*) as count FROM %I.%I WHERE %I IS NOT NULL GROUP BY %I ORDER BY count DESC, %I LIMIT 1000) TO ''%s'' WITH CSV HEADER' || E'\n' ||
     '\echo ''  ✓ Completed: %s''' || E'\n',
     schemaname,
     tablename,
     column_name,
+    priority_score,
+    used_in_view_count,
     filename,
     column_name,
     schemaname,
@@ -560,16 +681,15 @@ SELECT format(
     filename,
     filename
 )
-FROM distinct_extracts
-ORDER BY tablename, column_name;
+FROM distinct_extracts;
 
 \o
 \pset format aligned
 \pset tuples_only off
 
-\echo 'Executing distinct value extractions...'
-\echo '(This extracts unique values from text/varchar columns)'
+\echo 'Executing enhanced distinct value extractions...'
 \echo ''
+
 \i :DISTINCT_CMD_FILE
 \! rm -f :DISTINCT_CMD_FILE
 
@@ -578,101 +698,23 @@ ORDER BY tablename, column_name;
 \echo ''
 
 -- ===========================================================================
--- SECTION 5: Generate Comprehensive Manifest File
--- ===========================================================================
-\echo ''
-\echo '=================================================='
-\echo '=== GENERATING MANIFEST FILE                  ==='
-\echo '=================================================='
-\echo ''
-
-\echo 'Generating sample_data_manifest.csv...'
-\copy (SELECT 'TABLE' AS source_type, relname AS object_name, n_live_tup AS approximate_rows, pg_size_pretty(pg_total_relation_size(schemaname||'.'||relname)) AS size, 'table_' || relname || '_sample.csv' AS filename FROM pg_stat_user_tables WHERE schemaname = 'public' AND n_live_tup > 0 AND relname NOT LIKE 'qrtz_%' AND relname NOT LIKE 'databasechange%' UNION ALL SELECT 'VIEW' AS source_type, schemaname||'.'||viewname AS object_name, 0 AS approximate_rows, '0 bytes' AS size, 'view_' || viewname || '_sample.csv' AS filename FROM pg_views WHERE schemaname = 'public' UNION ALL SELECT 'MATERIALIZED VIEW' AS source_type, schemaname||'.'||matviewname AS object_name, 0 AS approximate_rows, pg_size_pretty(pg_total_relation_size(schemaname||'.'||matviewname)) AS size, 'view_' || matviewname || '_sample.csv' AS filename FROM pg_matviews WHERE schemaname = 'public' ORDER BY source_type, object_name) TO 'sample_data_manifest.csv' WITH CSV HEADER;
-\echo '  ✓ Completed: sample_data_manifest.csv'
-
--- ===========================================================================
--- SECTION 6: Generate Column Mapping for Views
--- ===========================================================================
-\echo ''
-\echo '=================================================='
-\echo '=== GENERATING VIEW COLUMN MAPPING            ==='
-\echo '=================================================='
-\echo ''
-
-\echo 'Generating view_column_mapping.csv...'
-\copy (WITH view_columns AS (SELECT table_schema, table_name, column_name FROM information_schema.columns WHERE table_schema = 'public' AND table_name IN (SELECT viewname FROM pg_views WHERE schemaname = 'public') ORDER BY table_name, column_name) SELECT * FROM view_columns) TO 'view_column_mapping.csv' WITH CSV HEADER;
-\echo '  ✓ Completed: view_column_mapping.csv'
-
--- ===========================================================================
--- SECTION 7: Generate Extraction Statistics
+-- SECTION 6: Generate Summary Statistics
 -- ===========================================================================
 \echo ''
 \echo '=================================================='
 \echo '=== EXTRACTION STATISTICS                     ==='
 \echo '=================================================='
 \echo ''
-
 \echo 'Generating extraction_statistics.csv...'
-\copy (SELECT 'TABLES' as category, COUNT(*) as total_in_schema, (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%') as extracted_count, (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND (tablename LIKE 'qrtz_%' OR tablename LIKE 'databasechange%')) as excluded_count, ROUND((SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%')::numeric / NULLIF(COUNT(*), 0) * 100, 2) as coverage_pct FROM pg_tables WHERE schemaname = 'public' UNION ALL SELECT 'REGULAR_VIEWS', COUNT(*), COUNT(*), 0, 100.00 FROM pg_views WHERE schemaname = 'public' UNION ALL SELECT 'MATERIALIZED_VIEWS', COUNT(*), COUNT(*), 0, 100.00 FROM pg_matviews WHERE schemaname = 'public' UNION ALL SELECT 'TOTAL', (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'), (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%') + (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'), (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND (tablename LIKE 'qrtz_%' OR tablename LIKE 'databasechange%')), ROUND(((SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%') + (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'))::numeric / NULLIF((SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'), 0) * 100, 2)) TO 'extraction_statistics.csv' WITH CSV HEADER;
+
+\copy (SELECT 'TABLES' as category, COUNT(*) as total_in_schema, COUNT(*) FILTER (WHERE cia_tmp_rowcount(t.table_schema, t.table_name) > 0) as extracted_count, COUNT(*) FILTER (WHERE cia_tmp_rowcount(t.table_schema, t.table_name) = 0) as excluded_count, ROUND(100.0 * COUNT(*) FILTER (WHERE cia_tmp_rowcount(t.table_schema, t.table_name) > 0) / NULLIF(COUNT(*), 0), 2) as coverage_pct FROM information_schema.tables t WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE' UNION ALL SELECT 'REGULAR_VIEWS' as category, COUNT(*) as total_in_schema, COUNT(*) as extracted_count, 0 as excluded_count, 100.00 as coverage_pct FROM information_schema.views WHERE table_schema = 'public' AND table_name != 'view_riksdagen_coalition_alignment_matrix' UNION ALL SELECT 'MATERIALIZED_VIEWS' as category, COUNT(*) as total_in_schema, COUNT(*) as extracted_count, 0 as excluded_count, 100.00 as coverage_pct FROM pg_matviews WHERE schemaname = 'public' UNION ALL SELECT 'TOTAL' as category, (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE') + (SELECT COUNT(*) FROM information_schema.views WHERE table_schema = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public') as total_in_schema, (SELECT COUNT(*) FROM information_schema.tables t WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE' AND cia_tmp_rowcount(t.table_schema, t.table_name) > 0) + (SELECT COUNT(*) FROM information_schema.views WHERE table_schema = 'public' AND table_name != 'view_riksdagen_coalition_alignment_matrix') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public') as extracted_count, (SELECT COUNT(*) FROM information_schema.tables t WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE' AND cia_tmp_rowcount(t.table_schema, t.table_name) = 0) + 1 as excluded_count, ROUND(100.0 * ((SELECT COUNT(*) FROM information_schema.tables t WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE' AND cia_tmp_rowcount(t.table_schema, t.table_name) > 0) + (SELECT COUNT(*) FROM information_schema.views WHERE table_schema = 'public' AND table_name != 'view_riksdagen_coalition_alignment_matrix') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public')) / NULLIF((SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE') + (SELECT COUNT(*) FROM information_schema.views WHERE table_schema = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'), 0), 2) as coverage_pct) TO 'extraction_statistics.csv' WITH CSV HEADER;
+
 \echo '  ✓ Completed: extraction_statistics.csv'
 \echo ''
 
--- Display statistics summary
-DO $$
-DECLARE
-    total_tables INTEGER;
-    extracted_tables INTEGER;
-    excluded_tables INTEGER;
-    regular_views INTEGER;
-    mat_views INTEGER;
-    total_objects INTEGER;
-    total_extracted INTEGER;
-    coverage_pct NUMERIC;
-    distinct_files INTEGER;
-BEGIN
-    SELECT COUNT(*) INTO total_tables FROM pg_tables WHERE schemaname = 'public';
-    SELECT COUNT(*) INTO extracted_tables FROM pg_tables WHERE schemaname = 'public' 
-        AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%';
-    SELECT COUNT(*) INTO excluded_tables FROM pg_tables WHERE schemaname = 'public' 
-        AND (tablename LIKE 'qrtz_%' OR tablename LIKE 'databasechange%');
-    SELECT COUNT(*) INTO regular_views FROM pg_views WHERE schemaname = 'public';
-    SELECT COUNT(*) INTO mat_views FROM pg_matviews WHERE schemaname = 'public';
-    
-    -- Estimate distinct value files (one per text/varchar column in non-empty tables)
-    SELECT COUNT(*) INTO distinct_files
-    FROM information_schema.columns c
-    JOIN pg_tables t ON t.schemaname = c.table_schema AND t.tablename = c.table_name
-    WHERE c.table_schema = 'public'
-        AND t.tablename NOT LIKE 'qrtz_%'
-        AND t.tablename NOT LIKE 'databasechange%'
-        AND c.data_type IN ('character varying', 'text', 'character', 'USER-DEFINED')
-        AND (c.character_maximum_length IS NULL OR c.character_maximum_length < 500);
-    
-    total_objects := total_tables + regular_views + mat_views;
-    total_extracted := extracted_tables + regular_views + mat_views;
-    coverage_pct := ROUND((total_extracted::numeric / NULLIF(total_objects, 0) * 100), 2);
-    
-    RAISE NOTICE '';
-    RAISE NOTICE '================================================';
-    RAISE NOTICE 'FINAL COVERAGE SUMMARY';
-    RAISE NOTICE '================================================';
-    RAISE NOTICE '';
-    RAISE NOTICE 'Objects:';
-    RAISE NOTICE '  Total Tables: % (% extracted, % excluded)', total_tables, extracted_tables, excluded_tables;
-    RAISE NOTICE '  Regular Views: % (all extracted)', regular_views;
-    RAISE NOTICE '  Materialized Views: % (all extracted)', mat_views;
-    RAISE NOTICE '  Total Objects: % (% extracted = %%)', total_objects, total_extracted, coverage_pct;
-    RAISE NOTICE '';
-    RAISE NOTICE 'Expected CSV Files:';
-    RAISE NOTICE '  Table CSVs: %', extracted_tables;
-    RAISE NOTICE '  View CSVs: %', regular_views + mat_views;
-    RAISE NOTICE '  Distinct value CSVs: % (estimated)', distinct_files;
-    RAISE NOTICE '  Metadata CSVs: 3 (manifest + column mapping + statistics)';
-    RAISE NOTICE '  Total Expected: %', extracted_tables + regular_views + mat_views + distinct_files + 3;
-    RAISE NOTICE '';
-    RAISE NOTICE '================================================';
-END $$;
-
+-- ===========================================================================
+-- SECTION 7: Summary and Cleanup
+-- ===========================================================================
 \echo ''
 \echo '=================================================='
 \echo 'Sample data extraction completed'
@@ -689,14 +731,13 @@ END $$;
 \echo ''
 \echo 'To reload sample data:'
 \echo '  1. Review the CSV files'
-\echo '  2. Use \copy FROM to import: '
-\echo '     \copy table_name FROM ''table_name_sample.csv'' WITH CSV HEADER;'
+\echo '  2. Use copy FROM to import: '
+\echo '     copy table_name FROM ''table_name_sample.csv'' WITH CSV HEADER;'
 \echo ''
 \echo 'For troubleshooting empty views, see:'
 \echo '  - TROUBLESHOOTING_EMPTY_VIEWS.md'
 \echo '  - view_column_mapping.csv for required columns'
 \echo ''
 
+-- Cleanup helper function
 DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
-
-\timing off

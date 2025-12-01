@@ -30,6 +30,8 @@ echo "  PostgreSQL user: $PSQL_USER"
 echo "  SQL script: $SQL_SCRIPT"
 echo "  Sample size: 50 rows per table/view"
 echo "  Verbosity: Enhanced debug logging"
+echo "  Exclusions: view_riksdagen_coalition_alignment_matrix (complex query)"
+echo "  Distinct values: Only columns used in view WHERE/JOIN/GROUP BY clauses"
 echo ""
 
 # Create output directory if it doesn't exist
