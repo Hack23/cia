@@ -21,6 +21,8 @@ Our initiative remains strictly independent and non-partisan, focused on fosteri
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Hack23/cia)
+
 
 **Coverage Policy:** Per [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md), we maintain minimum 80% line coverage and 70% branch coverage across all modules.
 
