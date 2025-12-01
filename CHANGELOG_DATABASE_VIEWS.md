@@ -68,7 +68,7 @@ org_code AS short_code
 - View will now return data once ministry assignments are imported
 - Related views also fixed: view_ministry_productivity_matrix, view_ministry_risk_evolution
 
-**GitHub Issue**: #7983  
+**GitHub Issue**: #8009  
 **Changelog**: db-changelog-1.39.xml  
 **Intelligence Value**: ⭐⭐⭐⭐⭐ VERY HIGH - Critical for government oversight
 
