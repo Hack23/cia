@@ -7380,12 +7380,15 @@ CREATE VIEW public.view_politician_risk_summary AS
           GROUP BY p.id
         ), politician_document_metrics AS (
          SELECT dpr.person_reference_id,
-            count(DISTINCT dsc.hjid) AS documents_last_year
+            count(DISTINCT
+                CASE
+                    WHEN (dd.made_public_date >= (CURRENT_DATE - '1 year'::interval)) THEN dsc.hjid
+                    ELSE NULL::bigint
+                END) AS documents_last_year
            FROM (((public.document_person_reference_da_0 dpr
-             JOIN public.document_person_reference_co_0 dprc ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
-             JOIN public.document_status_container dsc ON ((dprc.hjid = dsc.document_person_reference_co_1)))
-             JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
-          WHERE (dd.made_public_date >= (CURRENT_DATE - '1 year'::interval))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
+             LEFT JOIN public.document_status_container dsc ON ((dprc.hjid = dsc.document_person_reference_co_1)))
+             LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
           GROUP BY dpr.person_reference_id
         ), risk_calculations AS (
          SELECT p.id AS person_id,

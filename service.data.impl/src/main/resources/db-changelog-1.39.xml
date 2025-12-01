@@ -90,17 +90,21 @@ WITH politician_vote_metrics AS (
 politician_document_metrics AS (
     -- Calculate document counts directly from base tables instead of materialized view
     -- This avoids the "materialized view not populated" error
+    -- Using LEFT JOINs to preserve all person_reference_ids even if no documents exist
     SELECT
         dpr.person_reference_id,
-        COUNT(DISTINCT dsc.hjid) AS documents_last_year
+        COUNT(DISTINCT CASE 
+            WHEN dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year' 
+            THEN dsc.hjid 
+            ELSE NULL 
+        END) AS documents_last_year
     FROM document_person_reference_da_0 dpr
-    INNER JOIN document_person_reference_co_0 dprc 
+    LEFT JOIN document_person_reference_co_0 dprc 
         ON dpr.document_person_reference_li_1 = dprc.hjid
-    INNER JOIN document_status_container dsc 
+    LEFT JOIN document_status_container dsc 
         ON dprc.hjid = dsc.document_person_reference_co_1
-    INNER JOIN document_data dd 
+    LEFT JOIN document_data dd 
         ON dsc.document_document_status_con_0 = dd.id
-    WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
     GROUP BY dpr.person_reference_id
 ),
 risk_calculations AS (
