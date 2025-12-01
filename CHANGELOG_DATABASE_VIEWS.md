@@ -13,14 +13,78 @@ Detailed tracking of database view changes for the CIA intelligence platform. Th
 
 | View Count | Category | Latest Version |
 |------------|----------|----------------|
-| 85 Total | All Views | v1.36.0 |
-| 57 Regular | Standard SQL Views | v1.36.0 |
+| 85 Total | All Views | v1.39.0 |
+| 57 Regular | Standard SQL Views | v1.39.0 |
 | 28 Materialized | Performance-Optimized | v1.32.0 |
 
 **Related Documentation**:
 - [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Complete view reference
 - [Intelligence Data Flow](INTELLIGENCE_DATA_FLOW.md) - View usage in data pipeline
 - [Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md) - Analytical usage
+
+---
+
+## [1.39.0] - 2025-12-01
+
+### Fixed Views (3)
+
+#### 1. view_ministry_effectiveness_trends ⚠️ CRITICAL FIX
+**Issue**: View returned 0 rows despite previous fix attempts in v1.31, v1.32, v1.37  
+**Root Cause**: Incorrect filter `WHERE LOWER(org_code) LIKE '%departement%'`
+
+**Problem Details**:
+- Ministry org_codes in assignment_data are SHORT CODES like 'KN', 'N', 'UD', 'F'
+- The text "departement" appears in the `detail` field (full ministry name), NOT in `org_code`
+- Previous fixes attempted case-insensitive matching but didn't address the fundamental filter mismatch
+- Filter excluded ALL ministry assignments, making view permanently empty
+
+**Solution**: Remove `LIKE '%departement%'` filter, rely solely on `assignment_type = 'Departement'`
+
+**Changes**:
+```sql
+-- BEFORE (incorrect):
+WHERE assignment_type = 'Departement' 
+  AND org_code IS NOT NULL 
+  AND LOWER(org_code) LIKE '%departement%'  -- ❌ Always false for 'KN', 'N', etc.
+
+-- AFTER (correct):
+WHERE assignment_type = 'Departement' 
+  AND org_code IS NOT NULL
+  -- ✅ Removed LIKE filter, assignment_type is sufficient
+```
+
+**Additional Fix**: Changed short_code extraction
+```sql
+-- BEFORE: Tried to extract substring from org_code containing 'departement'
+SUBSTRING(org_code FROM 1 FOR position('departement' IN LOWER(org_code)) + 10) AS short_code
+
+-- AFTER: Use org_code directly as it's already the short code
+org_code AS short_code
+```
+
+**Impact**:
+- Unblocks ministry effectiveness tracking for Product Line 4 (Ministry & Government Intelligence)
+- Enables 4 ministry risk rules (M-01 through M-04)
+- View will now return data once ministry assignments are imported
+- Related views also fixed: view_ministry_productivity_matrix, view_ministry_risk_evolution
+
+**GitHub Issue**: #7983  
+**Changelog**: db-changelog-1.39.xml  
+**Intelligence Value**: ⭐⭐⭐⭐⭐ VERY HIGH - Critical for government oversight
+
+---
+
+#### 2. view_ministry_productivity_matrix ⚠️ SAME FIX
+**Issue**: Identical root cause as view_ministry_effectiveness_trends  
+**Solution**: Applied same filter correction  
+**Impact**: Ministry productivity benchmarking now functional
+
+---
+
+#### 3. view_ministry_risk_evolution ⚠️ SAME FIX  
+**Issue**: Identical root cause as view_ministry_effectiveness_trends  
+**Solution**: Applied same filter correction  
+**Impact**: Ministry risk tracking over time now functional
 
 ---
 

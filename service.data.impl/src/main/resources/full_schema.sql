@@ -6364,10 +6364,10 @@ CREATE VIEW public.view_ministry_effectiveness_trends AS
  WITH ministry_base AS (
          SELECT DISTINCT assignment_data.org_code,
             lower((assignment_data.org_code)::text) AS org_code_lower,
-            SUBSTRING(assignment_data.org_code FROM 1 FOR (POSITION(('departement'::text) IN (lower((assignment_data.org_code)::text))) + 10)) AS short_code,
+            assignment_data.org_code AS short_code,
             assignment_data.detail AS name
            FROM public.assignment_data
-          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL) AND (lower((assignment_data.org_code)::text) ~~ '%departement%'::text))
+          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL))
         ), ministry_quarterly_metrics AS (
          SELECT m.org_code,
             m.short_code,
@@ -6477,10 +6477,10 @@ CREATE VIEW public.view_ministry_productivity_matrix AS
  WITH ministry_base AS (
          SELECT DISTINCT assignment_data.org_code,
             lower((assignment_data.org_code)::text) AS org_code_lower,
-            SUBSTRING(assignment_data.org_code FROM 1 FOR (POSITION(('departement'::text) IN (lower((assignment_data.org_code)::text))) + 10)) AS short_code,
+            assignment_data.org_code AS short_code,
             assignment_data.detail AS name
            FROM public.assignment_data
-          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL) AND (lower((assignment_data.org_code)::text) ~~ '%departement%'::text))
+          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL))
         ), ministry_annual_metrics AS (
          SELECT m.org_code,
             m.short_code,
@@ -6555,7 +6555,7 @@ CREATE VIEW public.view_ministry_risk_evolution AS
             lower((assignment_data.org_code)::text) AS org_code_lower,
             assignment_data.detail AS name
            FROM public.assignment_data
-          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL) AND (lower((assignment_data.org_code)::text) ~~ '%departement%'::text))
+          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL))
         ), quarterly_performance AS (
          SELECT m.org_code,
             m.name,
@@ -12870,6 +12870,10 @@ fix-ministry-productivity-1.37-002	intelligence-operative	db-changelog-1.37.xml	
 fix-ministry-risk-evolution-1.37-003	intelligence-operative	db-changelog-1.37.xml	2025-11-28 00:30:06.894862	418	EXECUTED	9:1e6651e08f0b89e129e0ad572f056309	dropView viewName=view_ministry_risk_evolution; createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution with case-insensitive org_code matching\n        \n        Same root cause and solution as other ministry views.	\N	5.0.1	\N	\N	4289804533
 fix-coalition-alignment-1.37-004	intelligence-operative	db-changelog-1.37.xml	2025-11-28 00:32:20.75051	419	EXECUTED	9:71d9f34b8fc38a50bff1687da325dcdb	sql; createView viewName=view_riksdagen_coalition_alignment_matrix	Fix view_riksdagen_coalition_alignment_matrix with expanded date range\n        \n        Root Cause: 2-year date filter too restrictive - many parties only have older vote data.\n        \n        Solution: Expand from 2 years to 5 years to capture m...	\N	5.0.1	\N	\N	4289938199
 fix-politician-risk-summary-1.37-005	intelligence-operative	db-changelog-1.37.xml	2025-11-28 00:35:39.329071	420	EXECUTED	9:a50ccc76324b132113a20f9eb3fcc4d6	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary using direct vote_data aggregation\n        \n        Root Cause: Dependency on materialized view annual summary creates timing issues\n        where data may not exist for specific year calculations.\n        \n       ...	\N	5.0.1	\N	\N	4290136742
+fix-coalition-alignment-1.38-0022	intelligence-operative	db-changelog-1.38.xml	2025-12-01 17:46:19.915894	425	EXECUTED	9:b42090e12f46e72e2b50fd7a7dd26e7a	sql; createView viewName=view_riksdagen_coalition_alignment_matrix	Fix view_riksdagen_coalition_alignment_matrix - expand date range to 5 years\n        \n        Root Cause: 2-year filter too restrictive, many parties only have older data\n        Solution: Expand to 5 years to capture more party interactions\n        Impact: Ena...	\N	5.0.1	\N	\N	4611177598
+fix-ministry-effectiveness-1.39-001	intelligence-operative	db-changelog-1.39.xml	2025-12-01 17:48:07.609436	426	EXECUTED	9:ebd5c2f743b97d91375d1814fed3d0bb	dropView viewName=view_ministry_effectiveness_trends; createView viewName=view_ministry_effectiveness_trends	Fix view_ministry_effectiveness_trends to return actual ministry data\n        \n        Root Cause: View filtered by LOWER(org_code) LIKE '%departement%' but actual\n        ministry org_codes are short codes ('KN', 'N', etc.) that don't contain 'departement'.\n        Solution: Remove the LIKE '%departement%' filter, rely only on assignment_type = 'Departement'	\N	5.0.1	\N	\N	4611285124
+verify-ministry-effectiveness-1.39-002	intelligence-operative	db-changelog-1.39.xml	2025-12-01 17:48:07.622898	427	EXECUTED	9:dcfb7bb1b82844c30dc366171730b4a7	sql	Post-flight verification for view_ministry_effectiveness_trends	\N	5.0.1	\N	\N	4611285124
+document-ministry-fix-1.39-003	intelligence-operative	db-changelog-1.39.xml	2025-12-01 17:48:07.627326	428	EXECUTED	9:b2971f28e315c0bad03afef39eef26ee	sql	Documentation for v1.39 ministry effectiveness trends fix	\N	5.0.1	\N	\N	4611285124
 \.
 
 
