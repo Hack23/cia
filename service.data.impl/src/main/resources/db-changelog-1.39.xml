@@ -9,7 +9,7 @@
   Fix Empty View: view_politician_risk_summary v1.39
   Author: Intelligence Operative & Political Analyst
   Date: 2025-12-01
-  GitHub Issue: #8025 - Fix Empty View: view_politician_risk_summary
+  GitHub Issue: #8010 - Fix Empty View: view_politician_risk_summary
   
   This changelog fixes view_politician_risk_summary which returns 0 rows due to
   materialized view dependency that hasn't been populated.
