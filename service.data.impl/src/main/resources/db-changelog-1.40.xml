@@ -356,9 +356,11 @@ coalition_summary AS (
 ),
 anomaly_summary AS (
     -- Aggregate risk indicators independently using current column names
+    -- high_defection_risks: Only the most severe rebels (high defection risk)
+    -- low_discipline_politicians: Broader category including moderate rebels (low discipline)
     SELECT
         COUNT(*) FILTER (WHERE anomaly_classification IN ('FREQUENT_STRONG_REBEL', 'CONSISTENT_REBEL')) AS high_defection_risks,
-        COUNT(*) FILTER (WHERE anomaly_classification IN ('FREQUENT_STRONG_REBEL', 'CONSISTENT_REBEL')) AS low_discipline_politicians
+        COUNT(*) FILTER (WHERE anomaly_classification IN ('FREQUENT_STRONG_REBEL', 'CONSISTENT_REBEL', 'MODERATE_REBEL', 'OCCASIONAL_REBEL')) AS low_discipline_politicians
     FROM view_riksdagen_voting_anomaly_detection
 ),
 influence_summary AS (
