@@ -1,29 +1,29 @@
 embedded_id_detail,embedded_id_org_code,total_assignments,first_assignment_date,last_assignment_date,current_member_size,active,total_days_served,total_leadership_positions,current_leadership_positions,total_substitute_positions,current_substitute_positions,current_regular_members,total_documents,documents_last_year,avg_documents_per_member,total_committee_motions,total_follow_up_motions,activity_level
-Civilutskottet,CU,728,2006-10-10,2026-09-28,44,t,554822,20,2,573,27,15,9518,694,11.7,2329,0,Very High
-Sammansatta konstitutions- och utrikesutskottet,KUU,189,2001-03-27,2009-05-06,0,f,41999,12,0,102,0,0,8,0,0,0,0,Inactive
-Skatteutskottet,sku,2,1988-10-11,1991-09-29,0,f,1083,0,0,1,0,0,0,0,0,0,0,Inactive
-Skatteutskottet,SkU,1073,1976-10-04,2026-09-28,44,t,825402,33,2,794,27,15,12971,440,12.5,3478,0,Very High
-Utbildningsutskottet,UbU,1051,1979-10-01,2026-09-28,46,t,857252,39,2,771,29,15,19480,739,17.6,5232,0,Very High
-Socialutskottet,SoU,1026,1976-10-04,2026-09-28,44,t,850573,29,2,774,27,15,24446,1234,21.3,6532,5,Very High
-Trafikutskottet,TU,999,1976-10-04,2026-09-28,47,t,841013,29,2,762,30,15,18044,977,15.9,2981,0,Very High
-"Sammansatta utrikes-, miljö- och jordbruksutskottet",UMJU,35,2003-02-18,2003-05-21,0,f,3218,3,0,18,0,0,1,0,0,0,0,Inactive
-Lagutskottet,LU,257,1976-10-04,2006-10-02,0,f,252407,12,0,158,0,0,3933,0,9.6,1915,0,Inactive
-Kulturutskottet,KrU,987,1976-10-04,2026-09-28,46,t,844457,33,2,744,29,15,10394,389,10.6,3762,0,Very High
-Socialförsäkringsutskottet,SfU,1006,1976-10-04,2026-09-28,42,t,834520,31,2,763,25,15,13926,505,13.8,5362,8,Very High
-Näringsutskottet,nu,1,1988-11-07,1991-09-29,0,f,1056,0,0,1,0,0,0,0,0,0,0,Inactive
-Miljö- och jordbruksutskottet,MJU,994,1976-10-04,2026-09-28,47,t,844473,38,2,739,30,15,17991,964,16.9,5493,0,Very High
-Bostadsutskottet,BoU,281,1983-10-04,2006-10-02,0,f,260797,11,0,169,0,0,2875,0,7.6,1339,0,Inactive
-Konstitutionsutskottet,KU,1018,1976-10-04,2026-09-28,48,t,618399,34,2,756,31,15,12846,604,12.1,4040,0,Very High
-EU-nämnden,EUN,1209,1995-01-01,2026-09-28,102,t,959792,35,2,959,85,15,0,0,0,0,0,Inactive
-Näringsutskottet,NU,1046,1976-10-04,2026-09-28,45,t,864918,42,2,769,28,15,15842,666,14.7,5035,5,Very High
-Utrikesutskottet,UU,1103,1976-10-04,2026-09-28,54,t,678685,39,3,818,35,16,13293,474,14.2,5780,0,Very High
-Sammansatta justitie- och socialutskottet,JuSoU,64,2006-02-09,2008-05-07,0,f,5248,5,0,28,0,0,0,0,0,0,0,Inactive
-Finansutskottet,FiU,1062,1976-10-04,2026-09-28,48,t,857326,37,2,787,31,15,11457,506,11.3,3429,72,Very High
-Justitieutskottet,JuU,1013,1982-10-04,2026-09-28,45,t,829147,39,2,751,28,15,15905,716,14.6,5471,0,Very High
-Försvarsutskottet,FöU,927,1976-10-04,2026-09-28,49,t,632052,30,2,704,32,15,4901,287,6.2,1989,0,Very High
-Sammansatta civil- och kulturutskottet,CKrU,38,2018-03-13,2018-05-24,0,f,2670,2,0,21,0,0,0,0,0,0,0,Inactive
 Socialutskottet,sou,1,1989-01-13,1989-01-13,0,f,0,0,0,0,0,0,0,0,0,0,0,Inactive
-Arbetsmarknadsutskottet,AU,1029,1976-10-04,2026-09-28,41,t,857283,39,2,766,25,14,12797,391,13.2,3280,1,Very High
-Sammansatta utrikes- och socialutskottet,USoU,31,2005-02-15,2005-03-16,0,f,899,2,0,14,0,0,0,0,0,0,0,Inactive
-Sammansatta utrikes- och försvarsutskottet,UFöU,1784,1995-10-26,2025-12-10,34,t,106470,116,2,898,17,15,50,3,0,0,0,Low
+Kulturutskottet,KrU,987,1976-10-04,2026-09-28,46,t,844503,33,2,744,29,15,10394,389,10.6,3762,0,Very High
+Arbetsmarknadsutskottet,AU,1029,1976-10-04,2026-09-28,41,t,857324,39,2,766,25,14,12797,391,13.2,3280,1,Very High
+Sammansatta konstitutions- och utrikesutskottet,KUU,189,2001-03-27,2009-05-06,0,f,41999,12,0,102,0,0,8,0,0,0,0,Inactive
+Miljö- och jordbruksutskottet,MJU,994,1976-10-04,2026-09-28,47,t,844520,38,2,739,30,15,17991,964,16.9,5493,0,Very High
+Skatteutskottet,SkU,1073,1976-10-04,2026-09-28,44,t,825446,33,2,794,27,15,12971,440,12.5,3478,0,Very High
+Lagutskottet,LU,257,1976-10-04,2006-10-02,0,f,252407,12,0,158,0,0,3933,0,9.6,1915,0,Inactive
+Civilutskottet,CU,728,2006-10-10,2026-09-28,44,t,554866,20,2,573,27,15,9518,694,11.7,2329,0,Very High
+Sammansatta utrikes- och försvarsutskottet,UFöU,1784,1995-10-26,2025-12-10,34,t,106504,116,2,898,17,15,50,3,0,0,0,Low
+Bostadsutskottet,BoU,281,1983-10-04,2006-10-02,0,f,260797,11,0,169,0,0,2875,0,7.6,1339,0,Inactive
+Socialutskottet,SoU,1026,1976-10-04,2026-09-28,44,t,850617,29,2,774,27,15,24446,1234,21.3,6532,5,Very High
+Finansutskottet,FiU,1062,1976-10-04,2026-09-28,48,t,857374,37,2,787,31,15,11457,506,11.3,3429,72,Very High
+Konstitutionsutskottet,KU,1018,1976-10-04,2026-09-28,48,t,618447,34,2,756,31,15,12846,604,12.1,4040,0,Very High
+Socialförsäkringsutskottet,SfU,1006,1976-10-04,2026-09-28,42,t,834562,31,2,763,25,15,13926,505,13.8,5362,8,Very High
+Näringsutskottet,nu,1,1988-11-07,1991-09-29,0,f,1056,0,0,1,0,0,0,0,0,0,0,Inactive
+"Sammansatta utrikes-, miljö- och jordbruksutskottet",UMJU,35,2003-02-18,2003-05-21,0,f,3218,3,0,18,0,0,1,0,0,0,0,Inactive
+Sammansatta justitie- och socialutskottet,JuSoU,64,2006-02-09,2008-05-07,0,f,5248,5,0,28,0,0,0,0,0,0,0,Inactive
+Justitieutskottet,JuU,1013,1982-10-04,2026-09-28,45,t,829192,39,2,751,28,15,15905,716,14.6,5471,0,Very High
+Utbildningsutskottet,UbU,1051,1979-10-01,2026-09-28,46,t,857298,39,2,771,29,15,19480,739,17.6,5232,0,Very High
+Näringsutskottet,NU,1046,1976-10-04,2026-09-28,45,t,864963,42,2,769,28,15,15842,666,14.7,5035,5,Very High
+Skatteutskottet,sku,2,1988-10-11,1991-09-29,0,f,1083,0,0,1,0,0,0,0,0,0,0,Inactive
 EES-utskottet,EU,80,1992-05-26,1993-06-04,0,f,28184,4,0,48,0,0,0,0,0,0,0,Inactive
+Försvarsutskottet,FöU,927,1976-10-04,2026-09-28,49,t,632101,30,2,704,32,15,4901,287,6.2,1989,0,Very High
+Trafikutskottet,TU,999,1976-10-04,2026-09-28,47,t,841060,29,2,762,30,15,18044,977,15.9,2981,0,Very High
+EU-nämnden,EUN,1209,1995-01-01,2026-09-28,102,t,959894,35,2,959,85,15,0,0,0,0,0,Inactive
+Sammansatta civil- och kulturutskottet,CKrU,38,2018-03-13,2018-05-24,0,f,2670,2,0,21,0,0,0,0,0,0,0,Inactive
+Utrikesutskottet,UU,1103,1976-10-04,2026-09-28,54,t,678737,39,3,818,35,16,13293,474,14.2,5780,0,Very High
+Sammansatta utrikes- och socialutskottet,USoU,31,2005-02-15,2005-03-16,0,f,899,2,0,14,0,0,0,0,0,0,0,Inactive

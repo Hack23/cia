@@ -1,221 +1,209 @@
 userid,dbid,toplevel,queryid,query,plans,total_plan_time,min_plan_time,max_plan_time,mean_plan_time,stddev_plan_time,calls,total_exec_time,min_exec_time,max_exec_time,mean_exec_time,stddev_exec_time,rows,shared_blks_hit,shared_blks_read,shared_blks_dirtied,shared_blks_written,local_blks_hit,local_blks_read,local_blks_dirtied,local_blks_written,temp_blks_read,temp_blks_written,blk_read_time,blk_write_time,temp_blk_read_time,temp_blk_write_time,wal_records,wal_fpi,wal_bytes,jit_functions,jit_generation_time,jit_inlining_count,jit_inlining_time,jit_optimization_count,jit_optimization_time,jit_emission_count,jit_emission_time
-10,16385,f,6139422482636859215,SELECT COUNT(*) FROM public.view_worldbank_indicator_data_country_summary,0,0,0,0,0,0,16,64.726375,1.279659,19.062611,4.045398437500001,5.099423477631318,16,0,7408,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,3624565515965497762,REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_summary,0,0,0,0,0,0,1,286.448368,286.448368,286.448368,286.448368,0,4522,4874,384,217,257,0,0,0,0,0,0,0,0,0,0,4796,28,1828379,0,0,0,0,0,0,0,0
-10,16385,f,-8275329383268783594,"SELECT CASE WHEN cia_tmp_rowcount($1, tablename) > $2 THEN $3 ELSE $4 END AS has_data
-        FROM pg_tables 
-        WHERE schemaname = $5",0,0,0,0,0,0,1,13509.119304,13509.119304,13509.119304,13509.119304,0,93,161845,1225823,0,273,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-3738529302446609664,COPY (SELECT * FROM public.view_riksdagen_party LIMIT $1) TO '/workspaces/cia/service.data.impl/sample-data/view_riksdagen_party_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,9.153456,9.153456,9.153456,9.153456,0,12,341,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,5038269931624129412,"COPY  ( SELECT lending_type_value as value, COUNT ( * ) as count FROM public.country_element WHERE lending_type_value IS NOT NULL GROUP BY lending_type_value ORDER BY count DESC, lending_type_value LIMIT 1000 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,0.1765,0.1765,0.1765,0.1765,0,1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,8025256661819257358,SELECT COUNT(*) FROM public.language_data,0,0,0,0,0,0,66,50.46168200000001,0.007474,4.604394,0.7645709393939393,0.7794676128383432,66,10,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,2335504473783869095,EXPLAIN (FORMAT JSON) SELECT * FROM public.view_application_action_event_page_element_daily_summary,0,0,0,0,0,0,1,0.197869,0.197869,0.197869,0.197869,0,0,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,6871313277478933065,"COPY  ( SELECT temp_label as value, COUNT ( * ) as count FROM public.document_data WHERE temp_label IS NOT NULL GROUP BY temp_label ORDER BY count DESC, temp_label LIMIT $1 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,35.831611,35.831611,35.831611,35.831611,0,1000,3722,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-4356928150333797654,COPY  ( SELECT * FROM public.view_riksdagen_politician ORDER BY random ( ) LIMIT $1 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,7,860.4616510000001,117.83259,140.788579,122.923093,7.410373629713074,350,6048,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,832677833726255119,COPY  ( SELECT * FROM assignment_element LIMIT $1 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,2,0.005711,0.002745,0.002966,0.0028555,0.00011049999999999992,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,4871070616775744481,COPY  ( SELECT * FROM view_riksdagen_vote_data_ballot_politician_summary_annual LIMIT 50 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,1,1.372021,1.372021,1.372021,1.372021,0,50,1234,57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-8122037492133023898,COPY  ( SELECT * FROM document_reference_container LIMIT 50 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,2,63.27523600000001,0.173945,63.101291,31.637618000000003,31.463673,100,80,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-1219882789468135311,COPY  ( SELECT * FROM public.view_riksdagen_vote_data_ballot_politician_summary_monthly ORDER BY random ( ) LIMIT 50 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,7,1038.416839,82.631295,509.820044,148.3452627142857,147.64356646946695,350,10441,24490,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,4009932099540590736,COPY  ( SELECT * FROM document_proposal_data LIMIT 50 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,2,0.766821,0.340295,0.426526,0.3834105,0.043115500000000015,100,247,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,1374167934537462652,"COPY  ( SELECT sub_title as value, COUNT ( * ) as count FROM public.document_data WHERE sub_title IS NOT NULL GROUP BY sub_title ORDER BY count DESC, sub_title LIMIT 1000 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,37.761914,37.761914,37.761914,37.761914,0,1000,3722,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,8574416491844127116,"COPY  ( SELECT schemaname AS schema, matviewname AS view_name, ( SELECT n_live_tup FROM pg_stat_all_tables WHERE schemaname = m.schemaname AND relname = m.matviewname ) AS estimated_rows, ( SELECT n_dead_tup FROM pg_stat_all_tables WHERE schemaname = m.schemaname AND relname = m.matviewname ) AS dead_rows, ( SELECT last_analyze FROM pg_stat_all_tables WHERE schemaname = m.schemaname AND relname = m.matviewname ) AS last_analyzed, ( SELECT last_autoanalyze FROM pg_stat_all_tables WHERE schemaname = m.schemaname AND relname = m.matviewname ) AS last_auto_analyzed FROM pg_matviews m WHERE schemaname = $1 ORDER BY estimated_rows DESC NULLS LAST ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,17,31.781993999999997,1.668134,2.9637819999999997,1.8695290588235294,0.3386665141302195,476,59005,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-8933575161477069516,"COPY (SELECT * FROM public.view_riksdagen_party_document_summary) TO '/workspaces/cia/service.data.impl/sample-data/view_%I_sample.csv' WITH (FORMAT CSV, HEADER)",0,0,0,0,0,0,1,19.151578,19.151578,19.151578,19.151578,0,10,1174,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-3535312626587099065,COPY  ( SELECT * FROM public.view_application_action_event_page_modes_weekly_summary ORDER BY random ( ) LIMIT $1 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,7,1.7135090000000002,0.19307100000000002,0.36707500000000004,0.244787,0.06562512976640232,266,126,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-3838167651283793550,"COPY  ( SELECT 'TABLES' as category, COUNT ( * ) as total_in_schema, ( SELECT COUNT ( * ) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%' ) as extracted_count, ( SELECT COUNT ( * ) FROM pg_tables WHERE schemaname = 'public' AND ( tablename LIKE 'qrtz_%' OR tablename LIKE 'databasechange%' ) ) as excluded_count, ROUND ( ( SELECT COUNT ( * ) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%' ) ::numeric / NULLIF ( COUNT ( * ) , 0 ) * 100, 2 ) as coverage_pct FROM pg_tables WHERE schemaname = 'public' UNION ALL SELECT 'REGULAR_VIEWS' , COUNT ( * ) , COUNT ( * ) , 0, 100.00 FROM pg_views WHERE schemaname = 'public' UNION ALL SELECT 'MATERIALIZED_VIEWS' , COUNT ( * ) , COUNT ( * ) , 0, 100.00 FROM pg_matviews WHERE schemaname = 'public' UNION ALL SELECT 'TOTAL' , ( SELECT COUNT ( * ) FROM pg_tables WHERE schemaname = 'public' ) + ( SELECT COUNT ( * ) FROM pg_views WHERE schemaname = 'public' ) + ( SELECT COUNT ( * ) FROM pg_matviews WHERE schemaname = 'public' ) , ( SELECT COUNT ( * ) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%' ) + ( SELECT COUNT ( * ) FROM pg_views WHERE schemaname = 'public' ) + ( SELECT COUNT ( * ) FROM pg_matviews WHERE schemaname = 'public' ) , ( SELECT COUNT ( * ) FROM pg_tables WHERE schemaname = 'public' AND ( tablename LIKE 'qrtz_%' OR tablename LIKE 'databasechange%' ) ) , ROUND ( ( ( SELECT COUNT ( * ) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%' ) + ( SELECT COUNT ( * ) FROM pg_views WHERE schemaname = 'public' ) + ( SELECT COUNT ( * ) FROM pg_matviews WHERE schemaname = 'public' ) ) ::numeric / NULLIF ( ( SELECT COUNT ( * ) FROM pg_tables WHERE schemaname = 'public' ) + ( SELECT COUNT ( * ) FROM pg_views WHERE schemaname = 'public' ) + ( SELECT COUNT ( * ) FROM pg_matviews WHERE schemaname = 'public' ) , 0 ) * 100, 2 ) ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,6,76.558897,9.442215,24.624142,12.759816166666667,5.406723246302249,24,19646,35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-5660427397818242039,COPY (SELECT * FROM public.document_attachment_container TABLESAMPLE SYSTEM (1) LIMIT 50) TO '/workspaces/cia/service.data.impl/sample-data/table_document_attachment_container_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,3,54.303121999999995,0.973467,51.735077,18.101040666666663,23.784206871683715,150,108,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-8152647009651529817,COPY  ( SELECT * FROM public.view_riksdagen_vote_data_ballot_summary_weekly ORDER BY random ( ) LIMIT $1 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,7,11.460341999999999,0.42790900000000004,4.733566,1.6371917142857142,1.8580211356675538,350,0,112,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-6522921027280230841,COPY (SELECT * FROM public.view_application_action_event_page_weekly_summary LIMIT $1) TO 'view_application_action_event_page_weekly_summary_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,5,0.757115,0.14652400000000002,0.16603,0.151423,0.007370097041423545,135,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,7570441287660340905,COPY (SELECT * FROM public.view_riksdagen_committee_decision_type_org_summary LIMIT 50) TO '/workspaces/cia/service.data.impl/sample-data/view_riksdagen_committee_decision_type_org_summary_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,0.264855,0.264855,0.264855,0.264855,0,50,81,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,7074649749198617243,"DO $$
+16384,16385,t,-4023799147964286847,SELECT * FROM QRTZ_TRIGGERS WHERE SCHED_NAME = $3 AND TRIGGER_NAME = $1 AND TRIGGER_GROUP = $2,0,0,0,0,0,0,605,320.6181879999996,0.040677,263.337535,0.5299474181818176,10.693547600044392,605,22689,42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,1331866976495389350,SELECT COUNT(*) FROM public.sweden_parliament_electoral__1,0,0,0,0,0,0,2,0.010189,0.0045379999999999995,0.005651,0.0050945,0.0005565000000000004,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-4431046026996336314,SELECT COUNT(*) FROM public.view_application_action_event_page_hourly_summary,0,0,0,0,0,0,2,0.39885400000000004,0.189243,0.20961100000000002,0.19942700000000002,0.010184000000000006,2,18,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,-8721161682570981801,PREPARE TRANSACTION '131077_AAAAAAAAAAAAAP//fwAAAQAAowVpLjK4AAAF/DE=_AAAAAAAAAAAAAP//fwAAAQAAowVpLjK4AAAGHQAAAAAAAAAA',0,0,0,0,0,0,1,0.002475,0.002475,0.002475,0.002475,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,5913624183980581240,COPY  ( SELECT * FROM public.document_content_data LIMIT $1 ) TO STDOUT CSV HEADER,0,0,0,0,0,0,1,487.269852,487.269852,487.269852,487.269852,0,50,166,520,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,-1953414026337854989,"SET SEARCH_PATH TO public, ""$user"",""public""",0,0,0,0,0,0,3,0.065592,0.007314,0.048891,0.021863999999999998,0.019129704284175434,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,t,3533948455092144136,"DO $$
 DECLARE
-    table_rec RECORD;
-    row_count BIGINT;
-    sample_rows INT := 50;
-    file_name TEXT;
-    output_dir TEXT;
-    copy_query TEXT;
-    extracted_count INT := 0;
-    skipped_count INT := 0;
-    failed_count INT := 0;
-    start_time TIMESTAMP;
-    end_time TIMESTAMP;
-    duration INTERVAL;
-    total_duration INTERVAL := '0 seconds'::INTERVAL;
-    slowest_table TEXT;
-    slowest_duration INTERVAL := '0 seconds'::INTERVAL;
+    v_views TEXT[] := ARRAY[
+        -- TIER 1: Base materialized views (no dependencies on other materialized views)
+        'view_worldbank_indicator_data_country_summary',
+        'view_riksdagen_politician_document',
+        'view_riksdagen_org_document_daily_summary',
+        'view_riksdagen_document_type_daily_summary',
+        'view_riksdagen_committee_decisions',
+        'view_riksdagen_vote_data_ballot_summary',
+        'view_riksdagen_committee_ballot_decision_summary',
+        'view_riksdagen_vote_data_ballot_party_summary',
+        'view_riksdagen_vote_data_ballot_politician_summary',
+        -- TIER 2: Daily/summary views that depend on base materialized views
+        'view_riksdagen_vote_data_ballot_summary_daily',
+        'view_riksdagen_vote_data_ballot_summary_weekly',
+        'view_riksdagen_vote_data_ballot_summary_monthly',
+        'view_riksdagen_vote_data_ballot_summary_annual',
+        'view_riksdagen_vote_data_ballot_party_summary_daily',
+        'view_riksdagen_vote_data_ballot_party_summary_weekly',
+        'view_riksdagen_vote_data_ballot_party_summary_monthly',
+        'view_riksdagen_vote_data_ballot_party_summary_annual',
+        'view_riksdagen_vote_data_ballot_politician_summary_daily',
+        'view_riksdagen_vote_data_ballot_politician_summary_weekly',
+        'view_riksdagen_vote_data_ballot_politician_summary_monthly',
+        'view_riksdagen_vote_data_ballot_politician_summary_annual',
+        'view_riksdagen_committee_ballot_decision_party_summary',
+        'view_riksdagen_committee_ballot_decision_politician_summary',
+        'view_riksdagen_committee_decision_type_org_summary',
+        'view_riksdagen_committee_decision_type_summary',
+        'view_riksdagen_party_document_daily_summary',
+        'view_riksdagen_politician_document_daily_summary',
+        'view_riksdagen_politician_document_summary'
+    ];
+    v_view TEXT;
+    v_success INT := 0;
+    v_failed INT := 0;
+    v_start TIMESTAMP;
+    v_duration INTERVAL;
 BEGIN
-    -- FIXED: Get output directory from current_setting (set by shell wrapper)
-    -- If not set, fall back to current directory
-    output_dir := COALESCE(current_setting('extract.output_dir', true), '.');
-    
-    -- Ensure output directory ends without trailing slash for consistency
-    output_dir := rtrim(output_dir, '/');
-    
-    start_time := clock_timestamp();
-    RAISE NOTICE 'Starting table extraction...';
-    RAISE NOTICE 'Output directory: %', output_dir;
-    RAISE NOTICE '';
-    
-    FOR table_rec IN
-        SELECT schemaname, tablename
-        FROM pg_tables
-        WHERE schemaname = 'public'
-          AND tablename NOT LIKE 'qrtz_%'
-          AND tablename NOT LIKE 'databasechange%'
-        ORDER BY tablename
+    FOREACH v_view IN ARRAY v_views
     LOOP
         BEGIN
-            -- Get row count efficiently
-            row_count := cia_extract_get_row_count(table_rec.schemaname, table_rec.tablename);
+            v_start := clock_timestamp();
+            RAISE NOTICE 'Refreshing: %...', v_view;
             
-            IF row_count = 0 THEN
-                RAISE NOTICE 'Skipping empty table: %', table_rec.tablename;
-                skipped_count := skipped_count + 1;
-                CONTINUE;
-            END IF;
+            EXECUTE format('REFRESH MATERIALIZED VIEW %I', v_view);
             
-            -- Generate filename with output directory
-            file_name := output_dir || '/' || CASE 
-                WHEN table_rec.tablename LIKE 'table_%' THEN table_rec.tablename
-                ELSE 'table_' || table_rec.tablename
-            END || '_sample.csv';
-            
-            -- Build optimized COPY query
-            IF row_count > sample_rows * 10 THEN
-                copy_query := format(
-                    'COPY (SELECT * FROM %I.%I TABLESAMPLE SYSTEM (1) LIMIT %s) TO %L WITH CSV HEADER',
-                    table_rec.schemaname,
-                    table_rec.tablename,
-                    sample_rows,
-                    file_name
-                );
-            ELSE
-                copy_query := format(
-                    'COPY (SELECT * FROM %I.%I LIMIT %s) TO %L WITH CSV HEADER',
-                    table_rec.schemaname,
-                    table_rec.tablename,
-                    sample_rows,
-                    file_name
-                );
-            END IF;
-            
-            -- Time the extraction
-            start_time := clock_timestamp();
-            
-            -- Execute extraction
-            EXECUTE copy_query;
-            
-            end_time := clock_timestamp();
-            duration := end_time - start_time;
-            total_duration := total_duration + duration;
-            
-            -- Track slowest table
-            IF duration > slowest_duration THEN
-                slowest_duration := duration;
-                slowest_table := table_rec.tablename;
-            END IF;
-            
-            RAISE NOTICE 'Extracted: % (% rows of % total) in %', 
-                         table_rec.tablename, 
-                         LEAST(sample_rows, row_count), 
-                         row_count,
-                         to_char(extract(epoch from duration), 'FM999990.999') || 's';
-            extracted_count := extracted_count + 1;
-            
+            v_duration := clock_timestamp() - v_start;
+            RAISE NOTICE '✓ Refreshed % in %', v_view, v_duration;
+            v_success := v_success + 1;
         EXCEPTION WHEN OTHERS THEN
-            RAISE WARNING 'Failed to extract %: %', table_rec.tablename, SQLERRM;
-            failed_count := failed_count + 1;
+            RAISE WARNING '✗ Failed to refresh %: %', v_view, SQLERRM;
+            v_failed := v_failed + 1;
         END;
     END LOOP;
     
     RAISE NOTICE '';
-    RAISE NOTICE '================================================================';
-    RAISE NOTICE 'Table extraction summary:';
-    RAISE NOTICE '  Extracted: % tables', extracted_count;
-    RAISE NOTICE '  Skipped: % empty tables', skipped_count;
-    RAISE NOTICE '  Failed: % tables', failed_count;
-    RAISE NOTICE '  Total duration: %', to_char(extract(epoch from total_duration), 'FM999990.999') || 's';
-    IF slowest_table IS NOT NULL THEN
-        RAISE NOTICE '  Slowest table: % (% seconds)', slowest_table, 
-                     to_char(extract(epoch from slowest_duration), 'FM999990.999');
+    RAISE NOTICE '===========================================';
+    RAISE NOTICE '--- REFRESH SUMMARY ---';
+    RAISE NOTICE '===========================================';
+    RAISE NOTICE 'Total views: %', array_length(v_views, 1);
+    RAISE NOTICE 'Successful: %', v_success;
+    RAISE NOTICE 'Failed: %', v_failed;
+    RAISE NOTICE '===========================================';
+    
+    IF v_failed > 0 THEN
+        RAISE WARNING 'Some view refreshes failed. Check logs above for details.';
     END IF;
-    RAISE NOTICE '================================================================';
-    RAISE NOTICE '';
-END $$",0,0,0,0,0,0,3,4543.010273,841.104925,2464.09341,1514.3367576666667,690.8315701767982,0,19087,3390,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-2013281149812042543,REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_org_summary,0,0,0,0,0,0,1,57.376366,57.376366,57.376366,57.376366,0,7186,3226,35,72,129,0,0,0,0,0,0,0,0,0,0,7380,12,810703,0,0,0,0,0,0,0,0
-10,16385,t,293272526732923873,"COPY  ( SELECT author as value, COUNT ( * ) as count FROM public.jv_commit WHERE author IS NOT NULL GROUP BY author ORDER BY count DESC, author LIMIT 1000 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,326.856342,326.856342,326.856342,326.856342,0,6,16,59304,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-2866517818332160278,"COPY  ( SELECT id as value, COUNT ( * ) as count FROM public.person_data WHERE id IS NOT NULL GROUP BY id ORDER BY count DESC, id LIMIT 1000 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,2.951669,2.951669,2.951669,2.951669,0,1000,294,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-1892439070252925311,COPY  ( SELECT * FROM document_data LIMIT $1 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,22,2.814879999999999,0.09636,0.18634799999999999,0.12794909090909093,0.028717401010709822,1100,3,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-2317302976279203935,"COPY  ( SELECT last_name as value, COUNT ( * ) as count FROM public.person_data WHERE last_name IS NOT NULL GROUP BY last_name ORDER BY count DESC, last_name LIMIT 1000 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,3.576385,3.576385,3.576385,3.576385,0,1000,294,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,7370097928047368021,COPY (SELECT * FROM public.view_riksdagen_goverment_role_member LIMIT 50) TO '/workspaces/cia/service.data.impl/sample-data/view_riksdagen_goverment_role_member_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,1,30.036104,30.036104,30.036104,30.036104,0,50,3904,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-5956001291832371923,COPY (SELECT * FROM public.document_attachment TABLESAMPLE SYSTEM ($1) LIMIT $2) TO 'table_document_attachment_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,3,106.54857799999999,0.8638520000000001,56.385547,35.51619266666667,24.673098550403655,150,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-8120765448555331227,COPY (SELECT * FROM public.application_configuration LIMIT $1) TO 'table_application_configuration_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,25,0.7624560000000001,0.022352,0.07819599999999999,0.03049824,0.011923178647592255,350,0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,8904604552326850737,COPY  ( SELECT * FROM view_riksdagen_politician_document_daily_summary LIMIT 50 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,1,0.19302,0.19302,0.19302,0.19302,0,50,166,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,6535923800047720446,COPY  ( SELECT * FROM public.topics LIMIT 50 ) TO STDOUT CSV HEADER,0,0,0,0,0,0,20,1.2136319999999998,0.049322,0.078506,0.060681599999999995,0.00865604573347438,1000,0,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,2148248341908822863,"COPY  ( SELECT id as value, COUNT ( * ) as count FROM public.document_element WHERE id IS NOT NULL GROUP BY id ORDER BY count DESC, id LIMIT $1 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,252.98073,252.98073,252.98073,252.98073,0,1000,130953,42437,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,8823583164741688515,"COPY  ( SELECT event_group as value, COUNT ( * ) as count FROM public.application_action_event WHERE event_group IS NOT NULL GROUP BY event_group ORDER BY count DESC, event_group LIMIT $1 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,0.068858,0.068858,0.068858,0.068858,0,3,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,6353569807880122590,SELECT COUNT(*) FROM public.sweden_election_region,0,0,0,0,0,0,74,0.17307899999999998,0.001341,0.006622,0.002338905405405405,0.0008564841105311899,74,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-9210492085577772525,COPY  ( SELECT * FROM against_proposal_container LIMIT 50 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,2,1.3144239999999998,0.609849,0.704575,0.6572119999999999,0.04736299999999996,100,215,17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-5823545616614092715,COPY  ( SELECT * FROM view_riksdagen_vote_data_ballot_summary_annual LIMIT 50 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,1,0.38041,0.38041,0.38041,0.38041,0,24,199,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,-4082995994889150557,COPY  ( SELECT * FROM document_content_data LIMIT 50 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,2,425.58923300000004,51.308619,374.280614,212.79461650000002,161.4859975,100,426,1032,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-6351344904674427500,COPY (SELECT * FROM public.view_committee_productivity_matrix LIMIT 50) TO '/workspaces/cia/service.data.impl/sample-data/view_committee_productivity_matrix_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,3,1412.965889,460.056437,487.860155,470.98862966666667,12.102849197603065,150,15492,13611,0,0,0,0,0,0,4182,4197,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,7930955514076375472,"WITH RECURSIVE dep_tree AS (
-    -- Level 0: views with no dependencies on other materialized views
-    SELECT DISTINCT v.view_name, $1 AS depth
-    FROM view_dependencies v
-    WHERE NOT EXISTS (
-        SELECT $2 FROM unnest(v.depends_on) dep
-        WHERE dep IN (SELECT matviewname FROM pg_matviews WHERE schemaname = $3)
-    )
-    
-    UNION ALL
-    
-    -- Level N+1: views depending on level N views
-    SELECT DISTINCT v.view_name, d.depth + $4
-    FROM view_dependencies v
-    JOIN dep_tree d ON d.view_name = ANY(v.depends_on)
-    WHERE v.view_name != d.view_name
-)
-UPDATE view_dependencies vd
-SET depth = (
-    SELECT MAX(dt.depth)
-    FROM dep_tree dt
-    WHERE dt.view_name = vd.view_name
-)",0,0,0,0,0,0,1,328.599402,328.599402,328.599402,328.599402,0,28,709,2,0,0,76,0,1,4,0,0,0,0,0,0,0,0,0,46,1.386512,1,134.823489,1,113.508939,1,79.282686
-10,16385,t,-3441206917425559042,"WITH table_counts AS (
-    SELECT schemaname,
-           tablename,
-           cia_tmp_rowcount(schemaname, tablename) AS row_count
-    FROM pg_tables
-    WHERE schemaname = $1
+END $$",0,0,0,0,0,0,1,259409.721175,259409.721175,259409.721175,259409.721175,0,0,809569,1372630,283351,550671,0,0,0,0,917165,920669,0,0,0,0,6505725,17078,2539583901,0,0,0,0,0,0,0,0
+10,16385,f,958260660910104363,COPY  ( SELECT * FROM public.document_element LIMIT $1 ) TO STDOUT CSV HEADER,0,0,0,0,0,0,1,61.028612,61.028612,61.028612,61.028612,0,50,23,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,-8341804269983947832,"update application_session set created_date=$1, destroyed_date=$2, ip_information=$3, locale=$4, model_object_id=$5, model_object_version=$6, operating_system=$7, screen_size=$8, session_id=$9, session_type=$10, time_zone=$11, user_agent_information=$12, user_id=$13 where hjid=$14 and model_object_version=$15",0,0,0,0,0,0,1,0.033002000000000004,0.033002000000000004,0.033002000000000004,0.033002000000000004,0,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,79,0,0,0,0,0,0,0,0
+10,16385,f,-4000242897518258165,SELECT COUNT(*) FROM public.view_riksdagen_vote_data_ballot_politician_summary_weekly,0,0,0,0,0,0,2,89.010069,23.990088,65.019981,44.5050345,20.5149465,2,2,406,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-2153630556584715378,ANALYZE public.view_application_action_event_page_element_annual_summary,0,0,0,0,0,0,1,0.090609,0.090609,0.090609,0.090609,0,0,17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,4657953789397675476,"SELECT * FROM public.databasechangelog ORDER BY DATEEXECUTED ASC, ORDEREXECUTED ASC",0,0,0,0,0,0,2,1.616606,0.6717230000000001,0.944883,0.808303,0.13658,844,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,-5839289712908526357,PREPARE TRANSACTION '131077_AAAAAAAAAAAAAP//fwAAAQAAowVpLjK4AAAFKjE=_AAAAAAAAAAAAAP//fwAAAQAAowVpLjK4AAAFQAAAAAAAAAAA',0,0,0,0,0,0,1,0.002184,0.002184,0.002184,0.002184,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,6035531942033281810,ANALYZE public.view_riksdagen_org_document_daily_summary,0,0,0,0,0,0,1,70.478469,70.478469,70.478469,70.478469,0,0,516,512,2,0,0,0,0,0,0,0,0,0,0,0,15,3,30841,0,0,0,0,0,0,0,0
+16384,16385,t,-2661236621137201057,"SELECT     tmp.TABLE_CAT AS ""TABLE_CAT"",     tmp.TABLE_SCHEM AS ""TABLE_SCHEM"",     tmp.TABLE_NAME AS ""TABLE_NAME"",     tmp.NON_UNIQUE AS ""NON_UNIQUE"",     tmp.INDEX_QUALIFIER AS ""INDEX_QUALIFIER"",     tmp.INDEX_NAME AS ""INDEX_NAME"",     tmp.TYPE AS ""TYPE"",     tmp.ORDINAL_POSITION AS ""ORDINAL_POSITION"",     trim(both $2 from pg_catalog.pg_get_indexdef(tmp.CI_OID, tmp.ORDINAL_POSITION, $3)) AS ""COLUMN_NAME"",   CASE tmp.AM_NAME     WHEN $4 THEN CASE tmp.I_INDOPTION[tmp.ORDINAL_POSITION - $5] & $6::smallint       WHEN $7 THEN $8       ELSE $9     END     ELSE $10   END AS ""ASC_OR_DESC"",     tmp.CARDINALITY AS ""CARDINALITY"",     tmp.PAGES AS ""PAGES"",     tmp.FILTER_CONDITION AS ""FILTER_CONDITION"",     tmp.REMARKS AS ""REMARKS""FROM (SELECT current_database() AS TABLE_CAT,  n.nspname AS TABLE_SCHEM,   ct.relname AS TABLE_NAME, NOT i.indisunique AS NON_UNIQUE,   $11 AS INDEX_QUALIFIER, ci.relname AS INDEX_NAME,   CASE i.indisclustered     WHEN $12 THEN $13    ELSE CASE am.amname       WHEN $14 THEN $15      ELSE $16    END   END AS TYPE,   (information_schema._pg_expandarray(i.indkey)).n AS ORDINAL_POSITION,   ci.reltuples AS CARDINALITY,   ci.relpages AS PAGES,   pg_catalog.pg_get_expr(i.indpred, i.indrelid) AS FILTER_CONDITION,   ci.oid AS CI_OID,   i.indoption AS I_INDOPTION,   am.amname AS AM_NAME,   d.description AS REMARKS FROM pg_catalog.pg_class ct   JOIN pg_catalog.pg_namespace n ON (ct.relnamespace = n.oid)   JOIN pg_catalog.pg_index i ON (ct.oid = i.indrelid)   JOIN pg_catalog.pg_class ci ON (ci.oid = i.indexrelid)   JOIN pg_catalog.pg_am am ON (ci.relam = am.oid)   LEFT JOIN pg_catalog.pg_description d ON (ci.oid = d.objoid) WHERE $17  AND ct.relname = $1) AS tmp ORDER BY ""NON_UNIQUE"", ""TYPE"", ""INDEX_NAME"", ""ORDINAL_POSITION""",0,0,0,0,0,0,1,0.630938,0.630938,0.630938,0.630938,0,3,102,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-8881653396863016651,SELECT COUNT(*) FROM public.view_riksdagen_goverment_roles,0,0,0,0,0,0,2,12.912866,6.388196,6.5246699999999995,6.456433,0.06823699999999988,2,952,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,t,3709295168840717779,COPY  ( SELECT * FROM public.sweden_political_party LIMIT 40 ) TO STDOUT CSV HEADER,0,0,0,0,0,0,1,0.227675,0.227675,0.227675,0.227675,0,40,37,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,-3615233853319991859,SELECT TRIGGER_GROUP FROM QRTZ_PAUSED_TRIGGER_GRPS WHERE SCHED_NAME = $2 AND TRIGGER_GROUP = $1,0,0,0,0,0,0,1200,3.1399769999999996,0.001433,0.022793,0.0026166475000000003,0.0013596297896524697,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,-7365961848139521725,SELECT DISTINCT INSTANCE_NAME FROM QRTZ_FIRED_TRIGGERS WHERE SCHED_NAME = $1,0,0,0,0,0,0,1,1.228302,1.228302,1.228302,1.228302,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,3253083052894592554,SELECT COUNT(*) FROM public.pg_stat_statements_info,0,0,0,0,0,0,2,0.011262000000000001,0.005561,0.005701,0.005631000000000001,6.999999999999997e-05,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,6869552047163727147,ANALYZE public.view_riksdagen_vote_data_ballot_politician_summary_daily,0,0,0,0,0,0,1,966.345015,966.345015,966.345015,966.345015,0,0,5372,22592,10,9,0,0,0,0,0,0,0,0,0,0,171,0,80455,0,0,0,0,0,0,0,0
+10,16385,t,522192662697518026,COPY  ( SELECT * FROM public.qrtz_triggers LIMIT 4 ) TO STDOUT CSV HEADER,0,0,0,0,0,0,1,0.803368,0.803368,0.803368,0.803368,0,4,80,104,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-5589404338644200396,SELECT COUNT(*) FROM public.sweden_political_party,0,0,0,0,0,0,2,6.775677,0.009538000000000001,6.766139,3.3878385,3.3783005,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,t,454902312091663868,COPY  ( SELECT * FROM public.committee_proposal_container LIMIT 50 ) TO STDOUT CSV HEADER,0,0,0,0,0,0,1,0.072455,0.072455,0.072455,0.072455,0,50,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,147348836072383447,SELECT global_id_pk FROM jv_global_id WHERE $3 = $4 AND local_id = $1 AND type_name = $2,0,0,0,0,0,0,359,7742.867468000001,0.008055,678.451631,21.567875955431763,82.26543767702044,357,1719,75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,4204809875005436716,SELECT COUNT(*) FROM public.view_riksdagen_org_document_daily_summary,0,0,0,0,0,0,2,7.701494,3.687678,4.013816,3.850747,0.16306900000000013,2,0,1024,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,t,-7804205345724209605,COPY  ( SELECT * FROM public.person_data LIMIT 50 ) TO STDOUT CSV HEADER,0,0,0,0,0,0,1,10.771345,10.771345,10.771345,10.771345,0,50,90,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-2764614766070554851,SELECT COUNT(*) FROM public.jv_commit_property,0,0,0,0,0,0,2,13821.022463000001,447.528388,13373.494075,6910.511231500001,6462.982843500001,2,0,52156,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,677368353939115898,"CREATE VIEW public.view_ministry_risk_evolution AS WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        LOWER(org_code) AS org_code_lower,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+        -- Removed: AND LOWER(org_code) LIKE '%departement%'
+        -- Reason: org_code contains short codes like 'KN', 'N', not full names
 ),
-table_extract AS (
-    SELECT schemaname,
-           tablename,
-           row_count,
-           LEAST($2::int, row_count) AS sample_rows,
-           CASE WHEN tablename LIKE $3 THEN tablename ELSE $4 || tablename END AS file_prefix
-    FROM table_counts
-    WHERE row_count > $5
+quarterly_performance AS (
+    SELECT
+        m.org_code,
+        m.name,
+        DATE_TRUNC('quarter', doc.made_public_date) AS assessment_period,
+        COUNT(DISTINCT doc.id) AS documents_produced,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) IN ('prop', 'ds') THEN doc.id END) AS legislative_count,
+        COUNT(DISTINCT doc.person_reference_id) AS active_members
+    FROM ministry_base m
+    LEFT JOIN view_riksdagen_politician_document doc 
+        ON LOWER(doc.org) = m.org_code_lower
+        AND doc.made_public_date >= CURRENT_DATE - INTERVAL '2 years'
+    GROUP BY m.org_code, m.name, DATE_TRUNC('quarter', doc.made_public_date)
+),
+risk_calculations AS (
+    SELECT
+        org_code,
+        name,
+        assessment_period,
+        documents_produced,
+        legislative_count,
+        active_members,
+        
+        LAG(documents_produced, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_documents,
+        LAG(legislative_count, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_legislative,
+        LAG(active_members, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_members,
+        
+        AVG(documents_produced) OVER (
+            PARTITION BY org_code 
+            ORDER BY assessment_period 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ) AS rolling_avg_documents
+    FROM quarterly_performance
+    WHERE assessment_period IS NOT NULL
 )
-SELECT format(
-    $6 || $7 ||
-    $8 || $9 ||
-    $10 || $11,
-    schemaname,
-    tablename,
-    sample_rows,
-    row_count,
-    schemaname,
-    tablename,
-    sample_rows,
-    file_prefix,
-    file_prefix
-)
-FROM table_extract
-ORDER BY tablename",0,0,0,0,0,0,1,13038.677952,13038.677952,13038.677952,13038.677952,0,53,157883,1225191,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,4492622989336635884,"COPY  ( SELECT rm as value, COUNT ( * ) as count FROM public.document_element WHERE rm IS NOT NULL GROUP BY rm ORDER BY count DESC, rm LIMIT 1000 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,62.444937,62.444937,62.444937,62.444937,0,59,16205,18847,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,1654433949642033856,"COPY  ( SELECT party_short_code as value, COUNT ( * ) as count FROM public.document_person_reference_da_0 WHERE party_short_code IS NOT NULL GROUP BY party_short_code ORDER BY count DESC, party_short_code LIMIT 1000 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,35.708873,35.708873,35.708873,35.708873,0,16,16,3573,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,817151056516733947,SELECT COUNT(*) FROM public.language_content_data,0,0,0,0,0,0,76,0.22777999999999995,0.0013319999999999999,0.021921,0.0029971052631578943,0.0025243480689338773,76,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,3756605543398954317,COPY  ( SELECT * FROM public.view_riksdagen_party_decision_flow ORDER BY random ( ) LIMIT 50 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,7,4445.465383,606.944912,670.089593,635.0664832857143,19.5653395246269,350,3365209,61970,0,14,0,0,0,0,11706,11727,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,-8181876754241576801,COPY (SELECT * FROM public.view_ministry_productivity_matrix LIMIT $1) TO '/workspaces/cia/service.data.impl/sample-data/view_ministry_productivity_matrix_sample.csv' WITH CSV HEADER,0,0,0,0,0,0,3,0.7921389999999999,0.25733100000000003,0.27073499999999995,0.2640463333333333,0.0054721925729597,0,462,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,f,184040486183645838,"COPY  ( SELECT id as value, COUNT ( * ) as count FROM public.committee_document_data WHERE id IS NOT NULL GROUP BY id ORDER BY count DESC, id LIMIT $1 ) TO STDOUT WITH CSV HEADER",0,0,0,0,0,0,1,5.960344999999999,5.960344999999999,5.960344999999999,5.960344999999999,0,1000,0,298,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-10,16385,t,4779890692499469351,COPY  ( SELECT * FROM public.view_riksdagen_committee_decision_type_org_summary ORDER BY random ( ) LIMIT 50 ) TO STDOUT WITH CSV HEADER,0,0,0,0,0,0,7,14.445411,2.001085,2.198924,2.0636301428571424,0.06433023506303469,350,937,799,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+SELECT
+    org_code,
+    name,
+    assessment_period,
+    (assessment_period + INTERVAL '3 months' - INTERVAL '1 day')::DATE AS period_end,
+    EXTRACT(YEAR FROM assessment_period) AS year,
+    EXTRACT(QUARTER FROM assessment_period) AS quarter,
+    documents_produced,
+    legislative_count,
+    active_members,
+    
+    documents_produced - COALESCE(prev_documents, documents_produced) AS document_trend,
+    legislative_count - COALESCE(prev_legislative, legislative_count) AS legislative_trend,
+    active_members - COALESCE(prev_members, active_members) AS staffing_trend,
+    
+    rolling_avg_documents,
+    
+    CASE
+        WHEN documents_produced = 0 AND active_members = 0 THEN 'CRITICAL'
+        WHEN documents_produced < 5 OR active_members <= 1 THEN 'HIGH'
+        WHEN documents_produced < 10 OR active_members <= 2 THEN 'MEDIUM'
+        WHEN documents_produced - COALESCE(prev_documents, documents_produced) < -5 THEN 'ELEVATED'
+        ELSE 'LOW'
+    END AS risk_level,
+    
+    CASE
+        WHEN documents_produced = 0 AND active_members = 0 
+            THEN 'Critical: No activity detected - immediate review required'
+        WHEN documents_produced < 5 
+            THEN 'High Risk: Minimal document production - capacity concerns'
+        WHEN active_members <= 1 
+            THEN 'High Risk: Critically understaffed ministry'
+        WHEN documents_produced - COALESCE(prev_documents, documents_produced) < -5 
+            THEN 'Elevated Risk: Significant production decline detected'
+        WHEN documents_produced >= 20 AND active_members >= 5 
+            THEN 'Low Risk: Healthy ministry operations'
+        ELSE 'Medium Risk: Standard operations with minor concerns'
+    END AS risk_assessment
+FROM risk_calculations
+ORDER BY org_code, assessment_period DESC",0,0,0,0,0,0,1,2.607572,2.607572,2.607572,2.607572,0,0,214,1,4,5,0,0,0,0,0,0,0,0,0,0,89,1,19191,0,0,0,0,0,0,0,0
+16384,16385,t,-7961991686218000006,SELECT * FROM QRTZ_SCHEDULER_STATE WHERE SCHED_NAME = $1,0,0,0,0,0,0,5,464.161251,0.459717,462.176681,92.8322502,184.67221773847805,5,460,115,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-6199310323040239320,SELECT COUNT(*) FROM public.against_proposal_container,0,0,0,0,0,0,2,158.721205,7.892421000000001,150.82878399999998,79.3606025,71.46818149999999,2,0,78,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,1255500683556144466,SELECT COUNT(*) FROM public.view_application_action_event_page_modes_hourly_summary,0,0,0,0,0,0,2,0.35277899999999995,0.175588,0.177191,0.17638949999999998,0.0008015000000000036,2,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-1671562105936939534,ANALYZE public.view_riksdagen_vote_data_ballot_party_summary_monthly,0,0,0,0,0,0,1,25.033814,25.033814,25.033814,25.033814,0,0,3245,50,6,6,0,0,0,0,0,0,0,0,0,0,94,0,53072,0,0,0,0,0,0,0,0
+10,16385,f,1737004526226145689,COPY  ( SELECT * FROM public.committee_proposal_data LIMIT $1 ) TO STDOUT CSV HEADER,0,0,0,0,0,0,1,0.112569,0.112569,0.112569,0.112569,0,50,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,t,5689777601850251182,COPY  ( SELECT * FROM public.qrtz_cron_triggers LIMIT 4 ) TO STDOUT CSV HEADER,0,0,0,0,0,0,1,0.841008,0.841008,0.841008,0.841008,0,4,16,52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,3663159472755784967,"select applicatio0_.hjid as hjid1_5_, applicatio0_.created_date as created_2_5_, applicatio0_.destroyed_date as destroye3_5_, applicatio0_.ip_information as ip_infor4_5_, applicatio0_.locale as locale5_5_, applicatio0_.model_object_id as model_ob6_5_, applicatio0_.model_object_version as model_ob7_5_, applicatio0_.operating_system as operatin8_5_, applicatio0_.screen_size as screen_s9_5_, applicatio0_.session_id as session10_5_, applicatio0_.session_type as session11_5_, applicatio0_.time_zone as time_zo12_5_, applicatio0_.user_agent_information as user_ag13_5_, applicatio0_.user_id as user_id14_5_ from application_session applicatio0_ where applicatio0_.session_id=$1",0,0,0,0,0,0,1,133.65152899999998,133.65152899999998,133.65152899999998,133.65152899999998,0,1,1,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-1483776823850605213,SELECT COUNT(*) FROM public.document_container_element,0,0,0,0,0,0,2,0.013434999999999999,0.005931,0.007503999999999999,0.0067174999999999995,0.0007864999999999999,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,4465815642113580105,SELECT COUNT(*) FROM public.view_riksdagen_committee_ballot_decision_party_summary,0,0,0,0,0,0,2,4.30425,1.738484,2.565766,2.152125,0.413641,2,0,64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-8482561184163264767,ANALYZE public.view_riksdagen_politician_document_daily_summary,0,0,0,0,0,0,1,53.420592,53.420592,53.420592,53.420592,0,0,936,0,1,1,0,0,0,0,0,0,0,0,0,0,15,0,6636,0,0,0,0,0,0,0,0
+16384,16385,t,3148451291888447785,"-- Check view_ministry_productivity_matrix row count
+        SELECT 
+            COUNT(*) AS view_row_count,
+            $1 AS description
+        FROM view_ministry_productivity_matrix",0,0,0,0,0,0,1,3101.417094,3101.417094,3101.417094,3101.417094,0,1,160,2712,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,1.649404,0,0,1,5.174955,1,334.991279
+16384,16385,t,627985056819811788,"INSERT INTO QRTZ_SCHEDULER_STATE (SCHED_NAME, INSTANCE_NAME, LAST_CHECKIN_TIME, CHECKIN_INTERVAL) VALUES($4, $1, $2, $3)",0,0,0,0,0,0,1,45.777774,45.777774,45.777774,45.777774,0,1,3,3,2,0,0,0,0,0,0,0,0,0,0,0,2,2,3419,0,0,0,0,0,0,0,0
+10,16385,f,-8254785788120526402,ANALYZE public.view_riksdagen_goverment,0,0,0,0,0,0,1,0.345133,0.345133,0.345133,0.345133,0,0,16,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-7732840200481392493,ANALYZE public.view_riksdagen_politician_influence_metrics,0,0,0,0,0,0,1,0.309287,0.309287,0.309287,0.309287,0,0,19,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-4046393317850338209,SELECT COUNT(*) FROM public.indicator_element,0,0,0,0,0,0,2,25.685829000000002,3.9319230000000003,21.753906,12.8429145,8.9109915,2,0,2382,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,6656517196204771148,SELECT COUNT(*) FROM public.view_riksdagen_vote_data_ballot_summary_monthly,0,0,0,0,0,0,2,0.079249,0.037700000000000004,0.041548999999999996,0.0396245,0.0019244999999999957,2,0,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,16385,f,-1923446517179082014,COPY  ( SELECT * FROM public.assignment_data LIMIT $1 ) TO STDOUT CSV HEADER,0,0,0,0,0,0,1,0.048350000000000004,0.048350000000000004,0.048350000000000004,0.048350000000000004,0,50,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16384,16385,t,3951418802997374546,"INSERT INTO public.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE, DEPLOYMENT_ID) VALUES ($1, $2, $3, NOW(), $4, $5, $6, $7, $8, $9, $10, $11, $12)",0,0,0,0,0,0,6,1.2106819999999998,0.015669,1.036519,0.2017803333333333,0.3744245747199591,6,6,1,1,0,0,0,0,0,0,0,0,0,0,0,6,1,5560,0,0,0,0,0,0,0,0
+10,16385,f,1684364791864405861,SELECT COUNT(*) FROM public.view_riksdagen_committee_parliament_member_proposal,0,0,0,0,0,0,2,924.5514679999999,452.667423,471.88404499999996,462.27573399999994,9.608310999999972,2,28125,20979,0,0,0,0,0,0,8372,8402,0,0,0,0,0,0,0,78,4.2001159999999995,0,0,2,2.56848,2,40.856491
+10,16385,f,3624565515965497762,REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_summary,0,0,0,0,0,0,1,116.843685,116.843685,116.843685,116.843685,0,4522,3652,1774,221,261,0,0,0,0,0,0,0,0,0,0,4798,11,1726696,0,0,0,0,0,0,0,0
+16384,16385,t,-6180884955224297669,update application_action_event set events_application_session_h_0=$1 where hjid=$2,0,0,0,0,0,0,1,0.232654,0.232654,0.232654,0.232654,0,1,10,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,144,0,0,0,0,0,0,0,0

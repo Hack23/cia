@@ -1,51 +1,51 @@
 hjid,activity_name,code,created_date,order_number,process,status,document_activities_document_0
-69872,Inlämning,INL,2004-10-05,13,hantering,inträffat,69871
-69873,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69871
-69874,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69871
-69890,Inlämning,INL,2004-10-05,13,hantering,inträffat,69889
-69891,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69889
-69892,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69889
-69903,Inlämning,INL,2004-10-05,13,hantering,inträffat,69902
-69904,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69902
-69905,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69902
-69921,Inlämning,INL,2004-10-05,13,hantering,inträffat,69920
-69922,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69920
-69923,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69920
-69939,Inlämning,INL,2004-10-05,13,hantering,inträffat,69938
-69940,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69938
-69941,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69938
-69952,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69951
-69953,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69951
-69954,Återkallande,ÅTE,2004-10-21,10,hantering,inträffat,69951
-69966,Inlämning,INL,2004-10-05,13,hantering,inträffat,69965
-69967,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69965
-69968,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69965
-69980,Inlämning,INL,2004-10-05,13,hantering,inträffat,69979
-69981,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69979
-69982,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69979
-69994,Inlämning,INL,2004-10-05,13,hantering,inträffat,69993
-69995,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,69993
-69996,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,69993
-70014,Inlämning,INL,2004-10-05,13,hantering,inträffat,70013
-70015,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,70013
-70016,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,70013
-70072,Inlämning,INL,2004-10-05,13,hantering,inträffat,70071
-70073,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,70071
-70074,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,70071
-70097,Inlämning,INL,2004-10-05,13,hantering,inträffat,70096
-70098,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,70096
-70099,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,70096
-70119,Inlämning,INL,2004-10-05,13,hantering,inträffat,70118
-70120,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,70118
-70121,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,70118
-70139,Inlämning,INL,2004-10-05,13,hantering,inträffat,70138
-70140,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,70138
-70141,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,70138
-70154,Under beredning,UBE,2001-10-23,30,beredning,inträffat,70153
-70155,Justering,JUS,2001-11-20,40,beredning,planerat,70153
-70156,Justering,JUS,2001-11-27,40,beredning,inträffat,70153
-70157,Trycklov,TRY,2001-11-29,60,beredning,inträffat,70153
-70158,Bordläggning 1,B1,2001-12-05,1,avgorande,inträffat,70153
-70159,Bordläggning 2,B2,2001-12-06,2,avgorande,inträffat,70153
-70160,Avgörande,AVG,2001-12-07,5,avgorande,inträffat,70153
-70161,Behandling,BEH,2001-12-07,3,avgorande,inträffat,70153
+526458,Granskning,GKD,2002-02-08,3,hantering,inträffat,526455
+526459,Hänvisningsförslag,HFÖR,2002-02-08,6,hantering,inträffat,526455
+526460,Numrering,NUM,2002-02-08,7,hantering,inträffat,526455
+526461,Registrering,REG,2002-02-08,2,hantering,inträffat,526455
+526462,Utskottsförslag,UFÖR,2002-02-08,4,hantering,inträffat,526455
+526463,Hänvisning,HÄN,2002-02-12,2,hanvisning,inträffat,526455
+526495,Inlämning,INL,2000-10-05,13,hantering,inträffat,526494
+526496,Bordläggning,B,2000-10-11,1,hanvisning,inträffat,526494
+526497,Granskning,GKD,2000-10-11,3,hantering,inträffat,526494
+526498,Hänvisning,HÄN,2000-10-11,2,hanvisning,inträffat,526494
+526510,Inlämning,INL,2000-10-05,13,hantering,inträffat,526509
+526511,Bordläggning,B,2000-10-11,1,hanvisning,inträffat,526509
+526512,Granskning,GKD,2000-10-11,3,hantering,inträffat,526509
+526513,Hänvisning,HÄN,2000-10-11,2,hanvisning,inträffat,526509
+526548,Inlämning,INL,2000-10-05,13,hantering,inträffat,526547
+526549,Bordläggning,B,2000-10-11,1,hanvisning,inträffat,526547
+526550,Granskning,GKD,2000-10-11,3,hantering,inträffat,526547
+526551,Hänvisning,HÄN,2000-10-11,2,hanvisning,inträffat,526547
+915573,Hänvisning,HÄN,2005-10-13,2,hanvisning,inträffat,915570
+559594,Under beredning,UBE,2004-03-09,30,beredning,planerat,559592
+525371,Inlämning,INL,2001-10-05,13,hantering,inträffat,525368
+525372,Numrering,NUM,2001-10-05,7,hantering,inträffat,525368
+525373,Registrering,REG,2001-10-05,2,hantering,inträffat,525368
+525374,Utskottsförslag,UFÖR,2001-10-05,4,hantering,inträffat,525368
+525375,Bordläggning,B,2001-10-11,1,hanvisning,inträffat,525368
+525376,Hänvisning,HÄN,2001-10-11,2,hanvisning,inträffat,525368
+525387,Inlämning,INL,2004-10-05,13,hantering,inträffat,525386
+525388,Bordläggning,B,2004-10-14,1,hanvisning,inträffat,525386
+525389,Hänvisning,HÄN,2004-10-14,2,hanvisning,inträffat,525386
+525401,Under beredning,UBE,2003-04-10,30,beredning,inträffat,525400
+525402,Justering,JUS,2003-05-13,40,beredning,inträffat,525400
+525403,Trycklov,TRY,2003-05-22,60,beredning,inträffat,525400
+525404,Bordläggning 1,B1,2003-06-02,1,avgorande,inträffat,525400
+525405,Behandling,BEH,2003-06-04,3,avgorande,inträffat,525400
+525406,Avgörande,AVG,2003-06-05,5,avgorande,inträffat,525400
+525407,Beslut,BES,2003-06-05,4,avgorande,inträffat,525400
+525408,Utfärdande av riksdagsskrivelse,RSKR,2003-06-05,6,avgorande,inträffat,525400
+525409,Trycklov till Gotab och webb,TROWE,2003-12-22,70,beredning,inträffat,525400
+525410,Planerat ikraftträdande,LAG,2004-01-01,12,avgorande,planerat,525400
+525631,Inlämning,INL,2000-10-05,13,hantering,inträffat,525630
+525632,Bordläggning,B,2000-10-11,1,hanvisning,inträffat,525630
+525633,Granskning,GKD,2000-10-11,3,hantering,inträffat,525630
+525634,Hänvisning,HÄN,2000-10-11,2,hanvisning,inträffat,525630
+525647,Granskning,GKD,2001-10-05,3,hantering,inträffat,525646
+525648,Hänvisningsförslag,HFÖR,2001-10-05,6,hantering,inträffat,525646
+525649,Inlämning,INL,2001-10-05,13,hantering,inträffat,525646
+525650,Numrering,NUM,2001-10-05,7,hantering,inträffat,525646
+525651,Registrering,REG,2001-10-05,2,hantering,inträffat,525646
+525652,Utskottsförslag,UFÖR,2001-10-05,4,hantering,inträffat,525646
+525653,Bordläggning,B,2001-10-11,1,hanvisning,inträffat,525646

@@ -1,0 +1,8 @@
+org_code,name,assessment_period,period_end,year,quarter,documents_produced,legislative_count,active_members,document_trend,legislative_trend,staffing_trend,rolling_avg_documents,risk_level,risk_assessment
+Ku,Kulturdepartementet,2025-10-01 00:00:00+00,2025-12-31,2025,4,214,0,170,138,0,117,79.7500000000000000,LOW,Low Risk: Healthy ministry operations
+Ku,Kulturdepartementet,2025-07-01 00:00:00+00,2025-09-30,2025,3,76,0,53,64,0,35,58.5000000000000000,LOW,Low Risk: Healthy ministry operations
+Ku,Kulturdepartementet,2025-01-01 00:00:00+00,2025-03-31,2025,1,17,0,11,-112,0,-127,42.7500000000000000,ELEVATED,Elevated Risk: Significant production decline detected
+Ku,Kulturdepartementet,2024-10-01 00:00:00+00,2024-12-31,2024,4,129,0,138,109,0,116,51.3333333333333333,LOW,Low Risk: Healthy ministry operations
+Ku,Kulturdepartementet,2024-07-01 00:00:00+00,2024-09-30,2024,3,20,0,22,15,0,22,12.5000000000000000,LOW,Low Risk: Healthy ministry operations
+Ku,Kulturdepartementet,2024-01-01 00:00:00+00,2024-03-31,2024,1,5,0,0,0,0,0,5.0000000000000000,HIGH,High Risk: Critically understaffed ministry
+Ku,Kulturdepartementet,2025-04-01 00:00:00+00,2025-06-30,2025,2,12,0,18,-5,0,7,44.5000000000000000,LOW,Medium Risk: Standard operations with minor concerns
