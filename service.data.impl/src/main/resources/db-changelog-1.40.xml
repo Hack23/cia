@@ -154,7 +154,7 @@ normal_voting AS (
 ),
 all_voting_politicians AS (
     -- Get all politicians who have ANY voting activity in the 5-year window
-    -- This ensures we capture politicians even if they only voted in "gap" periods
+    -- This ensures we capture all active politicians, regardless of which period types they voted in
     SELECT DISTINCT embedded_id_intressent_id AS person_id
     FROM vote_data
     WHERE vote_date >= CURRENT_DATE - INTERVAL '5 years'
@@ -166,36 +166,50 @@ SELECT
     p.party,
     
     COALESCE(cv.crisis_votes, 0) AS crisis_period_votes,
-    COALESCE(cv.crisis_absent, 0) AS crisis_period_absent,
-    COALESCE(cv.crisis_yes, 0) AS crisis_period_yes_votes,
-    COALESCE(cv.crisis_no, 0) AS crisis_period_no_votes,
-    COALESCE(cv.crisis_rebellions, 0) AS crisis_period_rebellions,
-    
-    COALESCE(nv.normal_votes, 0) AS normal_period_votes,
-    COALESCE(nv.normal_absent, 0) AS normal_period_absent,
-    COALESCE(nv.normal_yes, 0) AS normal_period_yes_votes,
-    COALESCE(nv.normal_no, 0) AS normal_period_no_votes,
-    COALESCE(nv.normal_rebellions, 0) AS normal_period_rebellions,
     
     ROUND(
         COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100,
         2
     ) AS crisis_absence_rate,
     
+    -- crisis_party_discipline: 100 - rebellion rate during crisis (higher = more disciplined)
+    ROUND(
+        100 - (COALESCE(cv.crisis_rebellions, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100),
+        2
+    ) AS crisis_party_discipline,
+    
+    COALESCE(nv.normal_votes, 0) AS normal_period_votes,
+    
     ROUND(
         COALESCE(nv.normal_absent, 0)::NUMERIC / NULLIF(nv.normal_votes, 0) * 100,
         2
     ) AS normal_absence_rate,
     
+    -- absence_rate_change: crisis absence rate - normal absence rate (positive = worse under pressure)
     ROUND(
-        COALESCE(cv.crisis_rebellions, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100,
+        (COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100) -
+        (COALESCE(nv.normal_absent, 0)::NUMERIC / NULLIF(nv.normal_votes, 0) * 100),
         2
-    ) AS crisis_rebellion_rate,
+    ) AS absence_rate_change,
     
+    -- resilience_score: 0-100 scale combining attendance and consistency under pressure
+    -- Higher score = more resilient (low absence change, high discipline, good attendance)
     ROUND(
-        COALESCE(nv.normal_rebellions, 0)::NUMERIC / NULLIF(nv.normal_votes, 0) * 100,
-        2
-    ) AS normal_rebellion_rate,
+        CASE 
+            WHEN COALESCE(cv.crisis_votes, 0) < 5 THEN NULL  -- Insufficient data
+            ELSE
+                -- Base score from crisis attendance (0-50 points)
+                (50 - LEAST(50, COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100)) +
+                -- Bonus for stability under pressure (0-30 points, lower absence change is better)
+                (30 - LEAST(30, ABS(
+                    (COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100) -
+                    (COALESCE(nv.normal_absent, 0)::NUMERIC / NULLIF(nv.normal_votes, 0) * 100)
+                ))) +
+                -- Discipline component (0-20 points)
+                (20 - LEAST(20, COALESCE(cv.crisis_rebellions, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100))
+        END,
+        4
+    ) AS resilience_score,
     
     CASE
         WHEN COALESCE(cv.crisis_votes, 0) >= 10 
@@ -225,7 +239,7 @@ SELECT
         WHEN COALESCE(cv.crisis_votes, 0) < 5
             THEN 'Insufficient crisis period data for assessment'
         ELSE 'Poor crisis response - high absence during high-activity periods'
-    END AS resilience_assessment
+    END AS pressure_performance_assessment
 
 FROM person_data p
 INNER JOIN all_voting_politicians avp ON avp.person_id = p.id

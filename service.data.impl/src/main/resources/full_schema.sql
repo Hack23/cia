@@ -7837,6 +7837,7 @@ CREATE VIEW public.view_riksdagen_committee_roles AS
 --
 -- Fixed in v1.40: Use robust period classification with PERCENTILE thresholds
 -- Root cause: Original view had gaps in period classification (months between 1x and 1.5x average were not classified)
+-- Updated to match JPA entity ViewRiksdagenCrisisResilienceIndicators with all expected columns
 --
 
 CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
@@ -7892,19 +7893,20 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
     p.last_name,
     p.party,
     COALESCE(cv.crisis_votes, (0)::bigint) AS crisis_period_votes,
-    COALESCE(cv.crisis_absent, (0)::bigint) AS crisis_period_absent,
-    COALESCE(cv.crisis_yes, (0)::bigint) AS crisis_period_yes_votes,
-    COALESCE(cv.crisis_no, (0)::bigint) AS crisis_period_no_votes,
-    COALESCE(cv.crisis_rebellions, (0)::bigint) AS crisis_period_rebellions,
-    COALESCE(nv.normal_votes, (0)::bigint) AS normal_period_votes,
-    COALESCE(nv.normal_absent, (0)::bigint) AS normal_period_absent,
-    COALESCE(nv.normal_yes, (0)::bigint) AS normal_period_yes_votes,
-    COALESCE(nv.normal_no, (0)::bigint) AS normal_period_no_votes,
-    COALESCE(nv.normal_rebellions, (0)::bigint) AS normal_period_rebellions,
     round((((COALESCE(cv.crisis_absent, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) * (100)::numeric), 2) AS crisis_absence_rate,
+    round(((100)::numeric - (((COALESCE(cv.crisis_rebellions, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) * (100)::numeric)), 2) AS crisis_party_discipline,
+    COALESCE(nv.normal_votes, (0)::bigint) AS normal_period_votes,
     round((((COALESCE(nv.normal_absent, (0)::bigint))::numeric / (NULLIF(nv.normal_votes, 0))::numeric) * (100)::numeric), 2) AS normal_absence_rate,
-    round((((COALESCE(cv.crisis_rebellions, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) * (100)::numeric), 2) AS crisis_rebellion_rate,
-    round((((COALESCE(nv.normal_rebellions, (0)::bigint))::numeric / (NULLIF(nv.normal_votes, 0))::numeric) * (100)::numeric), 2) AS normal_rebellion_rate,
+    round(((((COALESCE(cv.crisis_absent, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) * (100)::numeric) - (((COALESCE(nv.normal_absent, (0)::bigint))::numeric / (NULLIF(nv.normal_votes, 0))::numeric) * (100)::numeric)), 2) AS absence_rate_change,
+    round(
+        CASE
+            WHEN (COALESCE(cv.crisis_votes, (0)::bigint) < 5) THEN NULL::numeric
+            ELSE (
+                ((50)::numeric - LEAST((50)::numeric, (((COALESCE(cv.crisis_absent, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) * (100)::numeric))) +
+                ((30)::numeric - LEAST((30)::numeric, abs((((COALESCE(cv.crisis_absent, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) * (100)::numeric) - (((COALESCE(nv.normal_absent, (0)::bigint))::numeric / (NULLIF(nv.normal_votes, 0))::numeric) * (100)::numeric)))) +
+                ((20)::numeric - LEAST((20)::numeric, (((COALESCE(cv.crisis_rebellions, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) * (100)::numeric)))
+            )
+        END, 4) AS resilience_score,
         CASE
             WHEN ((COALESCE(cv.crisis_votes, (0)::bigint) >= 10) AND (((COALESCE(cv.crisis_absent, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) < 0.1)) THEN 'HIGHLY_RESILIENT'::text
             WHEN ((COALESCE(cv.crisis_votes, (0)::bigint) >= 5) AND (((COALESCE(cv.crisis_absent, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) < 0.2)) THEN 'RESILIENT'::text
@@ -7918,7 +7920,7 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
             WHEN ((COALESCE(cv.crisis_votes, (0)::bigint) >= 5) AND (((COALESCE(cv.crisis_absent, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) < 0.4)) THEN 'Moderate crisis engagement - some absence during critical votes'::text
             WHEN (COALESCE(cv.crisis_votes, (0)::bigint) < 5) THEN 'Insufficient crisis period data for assessment'::text
             ELSE 'Poor crisis response - high absence during high-activity periods'::text
-        END AS resilience_assessment
+        END AS pressure_performance_assessment
    FROM (((public.person_data p
      JOIN all_voting_politicians avp ON (((avp.person_id)::text = (p.id)::text)))
      LEFT JOIN crisis_voting cv ON (((cv.person_id)::text = (p.id)::text)))
