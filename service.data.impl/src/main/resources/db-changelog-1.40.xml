@@ -65,16 +65,19 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         1x and 1.5x average were not classified as either crisis or normal periods.
         Combined with INNER JOINs in CTEs, this caused empty results.
         
-        Solution: Use median-based classification that covers ALL periods:
-        - high_activity_periods: months with ballots >= median (top 50% of activity)
-        - low_activity_periods: months with ballots < median (bottom 50% of activity)
+        Solution: Use percentile-based three-tier classification that covers ALL periods:
+        - CRISIS: months with ballots >= P75 (top 25% of activity - high-pressure periods)
+        - ELEVATED: months with ballots >= median but &lt; P75 (above average but not crisis)
+        - NORMAL: months with ballots &lt; median (bottom 50% of activity)
         
         This ensures no classification gaps and robust detection even without
-        dramatic crisis periods.
+        dramatic crisis periods. The CASE statement evaluates top-to-bottom so
+        P75 is checked first, ensuring correct classification when values overlap.
         
         Changes:
-        - Use PERCENTILE_CONT(0.5) for median instead of AVG for threshold
-        - Classify ALL months as either high or low activity (no gaps)
+        - Use PERCENTILE_CONT(0.75) for crisis threshold (P75)
+        - Use PERCENTILE_CONT(0.5) for elevated threshold (median)
+        - Classify ALL months as CRISIS, ELEVATED, or NORMAL (no gaps)
         - Keep all resilience calculation logic and metrics unchanged
         - Keep all column names unchanged for backwards compatibility
     </comment>
