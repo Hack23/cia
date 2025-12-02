@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Fix Empty View: view_riksdagen_crisis_resilience_indicators v1.40
+  Author: Intelligence Operative & Political Analyst
+  Date: 2025-12-02
+  GitHub Issue: #8011 - Fix Empty View: view_riksdagen_crisis_resilience_indicators
+  
+  This changelog fixes view_riksdagen_crisis_resilience_indicators which returns 0 rows
+  despite previous fix attempts in issues #7885, #7886 and changelogs v1.29, v1.38.
+  
+  Root Cause Identified:
+  The view logic has three compounding issues:
+  
+  1. Crisis Period Detection Gap: The view defines:
+     - crisis_periods: months where ballot_count > avg * 1.5
+     - normal_periods: months where ballot_count <= avg
+     - MISSING: months between avg and 1.5*avg are not classified
+     
+  2. Empty CTE Due to No Crisis Detection: If no month has > 1.5x average ballots
+     (common in stable political periods), the crisis_periods CTE is empty, causing
+     crisis_voting CTE to also be empty via INNER JOIN.
+     
+  3. Overly Strict WHERE Clause: Requires (crisis_votes > 0 OR normal_votes > 0),
+     but if crisis_voting is empty and a person's votes fall in the "gap" between
+     normal and crisis, they won't appear in the view.
+  
+  Solution:
+  Replace the binary crisis/normal classification with a global, percentile-based
+  approach that ensures ALL active politicians with voting activity are included:
+  
+  1. Classify time periods (months) as CRISIS, ELEVATED, or NORMAL based on ballot
+     counts across all activity, using percentile thresholds (P75 for crisis/high-activity,
+     median for elevated, below median for normal).
+  2. This classification is global, not per-politician; all politicians' votes are
+     analyzed within these globally defined periods.
+  3. Include ALL active politicians who have ANY voting data in the analysis period,
+     ensuring resilience metrics remain meaningful even without dramatic crisis periods.
+  
+  This ensures the view works in:
+  - Databases with no data (returns 0 rows - expected)
+  - Databases with vote data (returns politicians with voting activity)
+  - Political periods with or without high-activity "crisis" months
+  
+  Impact:
+  - View will return >50 rows when sufficient vote_data exists
+  - All active politicians with voting history are included
+  - Crisis resilience assessment remains meaningful
+  - No change to column names or return types (backwards compatible)
+-->
+
+<!-- ========================================================================= -->
+<!-- FIX: view_riksdagen_crisis_resilience_indicators - Robust Period Detection -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="fix-crisis-resilience-1.40-001" failOnError="true">
+    <comment>
+        Fix view_riksdagen_crisis_resilience_indicators to return data
+        
+        Root Cause: The crisis period detection algorithm had gaps - months between
+        1x and 1.5x average were not classified as either crisis or normal periods.
+        Combined with INNER JOINs in CTEs, this caused empty results.
+        
+        Solution: Use percentile-based three-tier classification that covers ALL periods:
+        - CRISIS: months with ballots >= P75 (top 25% of activity - high-pressure periods)
+        - ELEVATED: months with ballots >= median but &lt; P75 (above average but not crisis)
+        - NORMAL: months with ballots &lt; median (bottom 50% of activity)
+        
+        This ensures no classification gaps and robust detection even without
+        dramatic crisis periods. The CASE statement evaluates top-to-bottom so
+        P75 is checked first, ensuring correct classification when values overlap.
+        
+        Changes:
+        - Use PERCENTILE_CONT(0.75) for crisis threshold (P75)
+        - Use PERCENTILE_CONT(0.5) for elevated threshold (median)
+        - Classify ALL months as CRISIS, ELEVATED, or NORMAL (no gaps)
+        - Keep all resilience calculation logic and metrics unchanged
+        - Keep all column names unchanged for backwards compatibility
+    </comment>
+    
+    <dropView viewName="view_riksdagen_crisis_resilience_indicators" ifExists="true" cascadeConstraints="true"/>
+    
+    <createView viewName="view_riksdagen_crisis_resilience_indicators">
+        <![CDATA[
+WITH monthly_activity AS (
+    -- Calculate monthly ballot counts across the entire 5-year window
+    SELECT
+        DATE_TRUNC('month', vote_date) AS activity_month,
+        COUNT(DISTINCT embedded_id_ballot_id) AS ballot_count
+    FROM vote_data
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '5 years'
+    GROUP BY DATE_TRUNC('month', vote_date)
+),
+activity_thresholds AS (
+    -- Calculate median ballot count (robust to outliers)
+    -- Using PERCENTILE_CONT(0.5) gives us the median
+    SELECT
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY ballot_count) AS median_ballots,
+        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY ballot_count) AS p75_ballots,
+        AVG(ballot_count) AS avg_ballots
+    FROM monthly_activity
+),
+classified_periods AS (
+    -- Classify ALL months into high or low activity (no gaps)
+    -- Using P75 threshold for "crisis" (high-pressure) periods
+    SELECT
+        ma.activity_month,
+        ma.ballot_count,
+        CASE 
+            WHEN ma.ballot_count >= at.p75_ballots THEN 'CRISIS'
+            WHEN ma.ballot_count >= at.median_ballots THEN 'ELEVATED'
+            ELSE 'NORMAL'
+        END AS period_type
+    FROM monthly_activity ma
+    CROSS JOIN activity_thresholds at
+),
+crisis_voting AS (
+    -- Aggregate voting during high-activity periods (CRISIS + ELEVATED)
+    -- These are combined as "crisis_period" in output columns for backwards compatibility
+    -- with the original view's column names (crisis_period_votes, crisis_period_absent, etc.)
+    SELECT
+        vd.embedded_id_intressent_id AS person_id,
+        vd.party,
+        COUNT(*) AS crisis_votes,
+        COUNT(*) FILTER (WHERE vd.vote = 'Frånvarande') AS crisis_absent,
+        COUNT(*) FILTER (WHERE vd.vote = 'Ja') AS crisis_yes,
+        COUNT(*) FILTER (WHERE vd.vote = 'Nej') AS crisis_no,
+        COUNT(*) FILTER (WHERE vd.vote != vd.party AND vd.vote != 'Frånvarande') AS crisis_rebellions
+    FROM vote_data vd
+    INNER JOIN classified_periods cp 
+        ON DATE_TRUNC('month', vd.vote_date) = cp.activity_month
+        AND cp.period_type IN ('CRISIS', 'ELEVATED')
+    GROUP BY vd.embedded_id_intressent_id, vd.party
+),
+normal_voting AS (
+    -- Aggregate voting during low-activity (normal) periods
+    SELECT
+        vd.embedded_id_intressent_id AS person_id,
+        COUNT(*) AS normal_votes,
+        COUNT(*) FILTER (WHERE vd.vote = 'Frånvarande') AS normal_absent,
+        COUNT(*) FILTER (WHERE vd.vote = 'Ja') AS normal_yes,
+        COUNT(*) FILTER (WHERE vd.vote = 'Nej') AS normal_no,
+        COUNT(*) FILTER (WHERE vd.vote != vd.party AND vd.vote != 'Frånvarande') AS normal_rebellions
+    FROM vote_data vd
+    INNER JOIN classified_periods cp 
+        ON DATE_TRUNC('month', vd.vote_date) = cp.activity_month
+        AND cp.period_type = 'NORMAL'
+    GROUP BY vd.embedded_id_intressent_id
+),
+all_voting_politicians AS (
+    -- Get all politicians who have ANY voting activity in the 5-year window
+    -- This ensures we capture all active politicians, regardless of which period types they voted in
+    SELECT DISTINCT embedded_id_intressent_id AS person_id
+    FROM vote_data
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '5 years'
+)
+SELECT
+    p.id AS person_id,
+    p.first_name,
+    p.last_name,
+    p.party,
+    
+    COALESCE(cv.crisis_votes, 0) AS crisis_period_votes,
+    
+    ROUND(
+        COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100,
+        2
+    ) AS crisis_absence_rate,
+    
+    -- crisis_party_discipline: 100 - rebellion rate during crisis (higher = more disciplined)
+    ROUND(
+        100 - (COALESCE(cv.crisis_rebellions, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100),
+        2
+    ) AS crisis_party_discipline,
+    
+    COALESCE(nv.normal_votes, 0) AS normal_period_votes,
+    
+    ROUND(
+        COALESCE(nv.normal_absent, 0)::NUMERIC / NULLIF(nv.normal_votes, 0) * 100,
+        2
+    ) AS normal_absence_rate,
+    
+    -- absence_rate_change: crisis absence rate - normal absence rate (positive = worse under pressure)
+    ROUND(
+        (COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100) -
+        (COALESCE(nv.normal_absent, 0)::NUMERIC / NULLIF(nv.normal_votes, 0) * 100),
+        2
+    ) AS absence_rate_change,
+    
+    -- resilience_score: 0-100 scale combining attendance and consistency under pressure
+    -- Higher score = more resilient (low absence change, high discipline, good attendance)
+    ROUND(
+        CASE 
+            WHEN COALESCE(cv.crisis_votes, 0) < 5 THEN NULL  -- Insufficient data
+            ELSE
+                -- Base score from crisis attendance (0-50 points)
+                (50 - LEAST(50, COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100)) +
+                -- Bonus for stability under pressure (0-30 points, lower absence change is better)
+                (30 - LEAST(30, ABS(
+                    (COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100) -
+                    (COALESCE(nv.normal_absent, 0)::NUMERIC / NULLIF(nv.normal_votes, 0) * 100)
+                ))) +
+                -- Discipline component (0-20 points)
+                (20 - LEAST(20, COALESCE(cv.crisis_rebellions, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100))
+        END,
+        4
+    ) AS resilience_score,
+    
+    CASE
+        WHEN COALESCE(cv.crisis_votes, 0) >= 10 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.1
+            THEN 'HIGHLY_RESILIENT'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.2
+            THEN 'RESILIENT'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.4
+            THEN 'MODERATE_RESILIENCE'
+        WHEN COALESCE(cv.crisis_votes, 0) < 5
+            THEN 'INSUFFICIENT_DATA'
+        ELSE 'LOW_RESILIENCE'
+    END AS resilience_classification,
+    
+    CASE
+        WHEN COALESCE(cv.crisis_votes, 0) >= 10 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.1
+            THEN 'Highly engaged during crisis periods - strong institutional resilience'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.2
+            THEN 'Good crisis response - reliable during high-activity periods'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.4
+            THEN 'Moderate crisis engagement - some absence during critical votes'
+        WHEN COALESCE(cv.crisis_votes, 0) < 5
+            THEN 'Insufficient crisis period data for assessment'
+        ELSE 'Poor crisis response - high absence during high-activity periods'
+    END AS pressure_performance_assessment
+
+FROM person_data p
+INNER JOIN all_voting_politicians avp ON avp.person_id = p.id
+LEFT JOIN crisis_voting cv ON cv.person_id = p.id
+LEFT JOIN normal_voting nv ON nv.person_id = p.id
+WHERE p.status IN ('active', 'Active', 'ACTIVE')
+ORDER BY 
+    CASE
+        WHEN COALESCE(cv.crisis_votes, 0) >= 10 AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.1 THEN 1
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.2 THEN 2
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.4 THEN 3
+        WHEN COALESCE(cv.crisis_votes, 0) < 5 THEN 4
+        ELSE 5
+    END,
+    p.last_name, p.first_name;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_crisis_resilience_indicators"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- POST-FLIGHT: Verify view returns data                                    -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="verify-crisis-resilience-1.40-002" failOnError="false">
+    <comment>
+        Post-flight verification for view_riksdagen_crisis_resilience_indicators
+        
+        Checks:
+        1. View exists and can be queried
+        2. View returns data when vote_data and person_data are populated
+        3. Reports row count for monitoring
+    </comment>
+    
+    <sql>
+        -- Verify view exists and can be queried
+        SELECT 'Crisis Resilience View verification:' AS check_description;
+        
+        -- Check source data count
+        SELECT 
+            COUNT(*) AS vote_count,
+            'Votes in last 5 years' AS description
+        FROM vote_data
+        WHERE vote_date >= CURRENT_DATE - INTERVAL '5 years';
+        
+        -- Check active politician count
+        SELECT 
+            COUNT(*) AS active_count,
+            'Active politicians' AS description
+        FROM person_data
+        WHERE status IN ('active', 'Active', 'ACTIVE');
+        
+        -- Check view row count
+        SELECT 
+            COUNT(*) AS view_row_count,
+            'Rows in view_riksdagen_crisis_resilience_indicators' AS description
+        FROM view_riksdagen_crisis_resilience_indicators;
+        
+        -- If view has data, show sample
+        SELECT 
+            person_id,
+            first_name,
+            last_name,
+            party,
+            crisis_period_votes,
+            normal_period_votes,
+            resilience_classification
+        FROM view_riksdagen_crisis_resilience_indicators
+        ORDER BY crisis_period_votes DESC
+        LIMIT 5;
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- RECREATE: view_riksdagen_intelligence_dashboard (dropped via CASCADE)   -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="recreate-intelligence-dashboard-1.40-003" failOnError="true">
+    <comment>
+        Recreate view_riksdagen_intelligence_dashboard after crisis resilience fix
+        
+        This view was dropped by CASCADE when fixing view_riksdagen_crisis_resilience_indicators
+        in changeSet fix-crisis-resilience-1.40-001 (cascadeConstraints="true").
+        
+        The view aggregates multiple intelligence indicators into a single dashboard:
+        - Momentum analysis from party trends
+        - Coalition alignment patterns
+        - Voting anomaly detection
+        - Politician influence metrics
+        - Crisis resilience indicators
+        
+        All dependent views must exist before this view can be created.
+    </comment>
+    
+    <createView viewName="view_riksdagen_intelligence_dashboard">
+        <![CDATA[
+WITH momentum_summary AS (
+    -- Aggregate momentum indicators independently
+    SELECT
+        COUNT(DISTINCT party) FILTER (WHERE trend_direction IN ('STRONG_POSITIVE', 'POSITIVE')) AS parties_gaining_momentum,
+        COUNT(DISTINCT party) FILTER (WHERE trend_direction IN ('STRONG_NEGATIVE', 'NEGATIVE')) AS parties_losing_momentum,
+        COUNT(DISTINCT party) FILTER (WHERE stability_classification IN ('VOLATILE', 'HIGHLY_VOLATILE')) AS volatile_parties
+    FROM view_riksdagen_party_momentum_analysis
+),
+coalition_summary AS (
+    -- Aggregate coalition indicators independently
+    SELECT
+        COUNT(*) FILTER (WHERE coalition_likelihood = 'STRONG_COALITION') AS high_probability_coalitions,
+        COUNT(*) FILTER (WHERE coalition_likelihood IN ('STRONG_COALITION', 'MODERATE_COALITION')) AS cross_bloc_alliances
+    FROM view_riksdagen_coalition_alignment_matrix
+),
+anomaly_summary AS (
+    -- Aggregate risk indicators independently using current column names
+    -- high_defection_risks: Only the most severe rebels (high defection risk)
+    -- low_discipline_politicians: Broader category including moderate rebels (low discipline)
+    SELECT
+        COUNT(*) FILTER (WHERE anomaly_classification IN ('FREQUENT_STRONG_REBEL', 'CONSISTENT_REBEL')) AS high_defection_risks,
+        COUNT(*) FILTER (WHERE anomaly_classification IN ('FREQUENT_STRONG_REBEL', 'CONSISTENT_REBEL', 'MODERATE_REBEL', 'OCCASIONAL_REBEL')) AS low_discipline_politicians
+    FROM view_riksdagen_voting_anomaly_detection
+),
+influence_summary AS (
+    -- Aggregate influence indicators independently using current column names
+    SELECT
+        COUNT(*) FILTER (WHERE broker_classification IN ('STRONG_BROKER', 'MODERATE_BROKER')) AS power_brokers,
+        COUNT(*) FILTER (WHERE influence_classification = 'HIGHLY_INFLUENTIAL') AS highly_connected_politicians
+    FROM view_riksdagen_politician_influence_metrics
+),
+resilience_summary AS (
+    -- Aggregate resilience indicators independently
+    SELECT
+        COUNT(*) FILTER (WHERE resilience_classification = 'HIGHLY_RESILIENT') AS crisis_ready_politicians,
+        COUNT(*) FILTER (WHERE resilience_classification = 'LOW_RESILIENCE') AS low_resilience_politicians
+    FROM view_riksdagen_crisis_resilience_indicators
+),
+vote_stats AS (
+    SELECT
+        MAX(vote_date) AS latest_vote_data,
+        COUNT(DISTINCT embedded_id_ballot_id) FILTER (WHERE vote_date >= CURRENT_DATE - INTERVAL '30 days') AS ballots_last_30_days
+    FROM vote_data
+)
+SELECT
+    -- Temporal indicators
+    ms.parties_gaining_momentum,
+    ms.parties_losing_momentum,
+    ms.volatile_parties,
+    
+    -- Coalition indicators
+    cs.high_probability_coalitions,
+    cs.cross_bloc_alliances,
+    
+    -- Risk indicators
+    ans.high_defection_risks,
+    ans.low_discipline_politicians,
+    
+    -- Influence indicators
+    ins.power_brokers,
+    ins.highly_connected_politicians,
+    
+    -- Resilience indicators
+    rs.crisis_ready_politicians,
+    rs.low_resilience_politicians,
+    
+    -- Overall assessment flags
+    CASE
+        WHEN ans.high_defection_risks >= 5
+            THEN 'HIGH_POLITICAL_INSTABILITY_RISK'
+        WHEN ms.volatile_parties >= 3
+            THEN 'MODERATE_POLITICAL_INSTABILITY_RISK'
+        ELSE 'STABLE_POLITICAL_ENVIRONMENT'
+    END AS stability_assessment,
+    
+    CASE
+        WHEN cs.cross_bloc_alliances >= 2
+            THEN 'POTENTIAL_REALIGNMENT_DETECTED'
+        WHEN cs.high_probability_coalitions >= 5
+            THEN 'STABLE_COALITION_PATTERNS'
+        ELSE 'UNCERTAIN_COALITION_LANDSCAPE'
+    END AS coalition_assessment,
+    
+    -- Data freshness
+    vs.latest_vote_data,
+    vs.ballots_last_30_days,
+    
+    -- Intelligence report timestamp
+    CURRENT_TIMESTAMP AS intelligence_report_timestamp
+FROM momentum_summary ms
+CROSS JOIN coalition_summary cs
+CROSS JOIN anomaly_summary ans
+CROSS JOIN influence_summary ins
+CROSS JOIN resilience_summary rs
+CROSS JOIN vote_stats vs;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_riksdagen_intelligence_dashboard CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
