@@ -7835,23 +7835,32 @@ CREATE VIEW public.view_riksdagen_committee_roles AS
 --
 -- Name: view_riksdagen_crisis_resilience_indicators; Type: VIEW; Schema: public; Owner: -
 --
+-- Fixed in v1.40: Use robust period classification with PERCENTILE thresholds
+-- Root cause: Original view had gaps in period classification (months between 1x and 1.5x average were not classified)
+--
 
 CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
- WITH high_activity_periods AS (
+ WITH monthly_activity AS (
          SELECT date_trunc('month'::text, (vote_data.vote_date)::timestamp with time zone) AS activity_month,
-            count(DISTINCT vote_data.embedded_id_ballot_id) AS ballot_count,
-            avg(count(DISTINCT vote_data.embedded_id_ballot_id)) OVER () AS avg_monthly_ballots
+            count(DISTINCT vote_data.embedded_id_ballot_id) AS ballot_count
            FROM public.vote_data
           WHERE (vote_data.vote_date >= (CURRENT_DATE - '5 years'::interval))
           GROUP BY (date_trunc('month'::text, (vote_data.vote_date)::timestamp with time zone))
-        ), crisis_periods AS (
-         SELECT high_activity_periods.activity_month
-           FROM high_activity_periods
-          WHERE ((high_activity_periods.ballot_count)::numeric > (high_activity_periods.avg_monthly_ballots * 1.5))
-        ), normal_periods AS (
-         SELECT high_activity_periods.activity_month
-           FROM high_activity_periods
-          WHERE ((high_activity_periods.ballot_count)::numeric <= high_activity_periods.avg_monthly_ballots)
+        ), activity_thresholds AS (
+         SELECT percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY monthly_activity.ballot_count) AS median_ballots,
+            percentile_cont((0.75)::double precision) WITHIN GROUP (ORDER BY monthly_activity.ballot_count) AS p75_ballots,
+            avg(monthly_activity.ballot_count) AS avg_ballots
+           FROM monthly_activity
+        ), classified_periods AS (
+         SELECT ma.activity_month,
+            ma.ballot_count,
+                CASE
+                    WHEN ((ma.ballot_count)::double precision >= at.p75_ballots) THEN 'CRISIS'::text
+                    WHEN ((ma.ballot_count)::double precision >= at.median_ballots) THEN 'ELEVATED'::text
+                    ELSE 'NORMAL'::text
+                END AS period_type
+           FROM monthly_activity ma
+           CROSS JOIN activity_thresholds at
         ), crisis_voting AS (
          SELECT vd.embedded_id_intressent_id AS person_id,
             vd.party,
@@ -7861,7 +7870,7 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
             count(*) FILTER (WHERE ((vd.vote)::text = 'Nej'::text)) AS crisis_no,
             count(*) FILTER (WHERE (((vd.vote)::text <> (vd.party)::text) AND ((vd.vote)::text <> 'Frånvarande'::text))) AS crisis_rebellions
            FROM (public.vote_data vd
-             JOIN crisis_periods cp ON ((date_trunc('month'::text, (vd.vote_date)::timestamp with time zone) = cp.activity_month)))
+             JOIN classified_periods cp ON (((date_trunc('month'::text, (vd.vote_date)::timestamp with time zone) = cp.activity_month) AND (cp.period_type = ANY (ARRAY['CRISIS'::text, 'ELEVATED'::text])))))
           GROUP BY vd.embedded_id_intressent_id, vd.party
         ), normal_voting AS (
          SELECT vd.embedded_id_intressent_id AS person_id,
@@ -7871,8 +7880,12 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
             count(*) FILTER (WHERE ((vd.vote)::text = 'Nej'::text)) AS normal_no,
             count(*) FILTER (WHERE (((vd.vote)::text <> (vd.party)::text) AND ((vd.vote)::text <> 'Frånvarande'::text))) AS normal_rebellions
            FROM (public.vote_data vd
-             JOIN normal_periods np ON ((date_trunc('month'::text, (vd.vote_date)::timestamp with time zone) = np.activity_month)))
+             JOIN classified_periods cp ON (((date_trunc('month'::text, (vd.vote_date)::timestamp with time zone) = cp.activity_month) AND (cp.period_type = 'NORMAL'::text))))
           GROUP BY vd.embedded_id_intressent_id
+        ), all_voting_politicians AS (
+         SELECT DISTINCT vote_data.embedded_id_intressent_id AS person_id
+           FROM public.vote_data
+          WHERE (vote_data.vote_date >= (CURRENT_DATE - '5 years'::interval))
         )
  SELECT p.id AS person_id,
     p.first_name,
@@ -7906,10 +7919,11 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
             WHEN (COALESCE(cv.crisis_votes, (0)::bigint) < 5) THEN 'Insufficient crisis period data for assessment'::text
             ELSE 'Poor crisis response - high absence during high-activity periods'::text
         END AS resilience_assessment
-   FROM ((public.person_data p
+   FROM (((public.person_data p
+     JOIN all_voting_politicians avp ON (((avp.person_id)::text = (p.id)::text)))
      LEFT JOIN crisis_voting cv ON (((cv.person_id)::text = (p.id)::text)))
      LEFT JOIN normal_voting nv ON (((nv.person_id)::text = (p.id)::text)))
-  WHERE (((p.status)::text = ANY ((ARRAY['active'::character varying, 'Active'::character varying, 'ACTIVE'::character varying])::text[])) AND ((COALESCE(cv.crisis_votes, (0)::bigint) > 0) OR (COALESCE(nv.normal_votes, (0)::bigint) > 0)))
+  WHERE ((p.status)::text = ANY ((ARRAY['active'::character varying, 'Active'::character varying, 'ACTIVE'::character varying])::text[]))
   ORDER BY
         CASE
             WHEN ((COALESCE(cv.crisis_votes, (0)::bigint) >= 10) AND (((COALESCE(cv.crisis_absent, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) < 0.1)) THEN 1

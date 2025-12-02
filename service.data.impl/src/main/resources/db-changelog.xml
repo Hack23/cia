@@ -44,5 +44,6 @@
   <include file="db-changelog-1.37.xml" />
   <include file="db-changelog-1.38.xml" />
   <include file="db-changelog-1.39.xml" />
+  <include file="db-changelog-1.40.xml" />
 
 </databaseChangeLog>
