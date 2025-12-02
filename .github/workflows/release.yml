@@ -101,7 +101,7 @@ jobs:
       run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget
 
     - name: Install PostgreSQL
-      run: sudo apt-get install -y postgresql-16 postgresql-contrib-16 postgresql-16-pgaudit
+      run: sudo apt-get install -y postgresql-16 postgresql-contrib-16 postgresql-16-pgaudit postgresql-16-pgvector
 
     - name: Configure PostgreSQL
       run: |
