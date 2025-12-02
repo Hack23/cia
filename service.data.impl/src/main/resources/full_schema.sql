@@ -10336,21 +10336,44 @@ CREATE VIEW public.view_riksdagen_voting_anomaly_detection AS
 --
 
 CREATE VIEW public.view_risk_score_evolution AS
- WITH monthly_risk_base AS (
+ WITH party_ballot_majority AS (
+         SELECT vote_data.embedded_id_ballot_id,
+            vote_data.party,
+            sum(CASE WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1 ELSE 0 END) AS party_yes_count,
+            sum(CASE WHEN ((vote_data.vote)::text = 'Nej'::text) THEN 1 ELSE 0 END) AS party_no_count,
+            (sum(CASE WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1 ELSE 0 END) > sum(CASE WHEN ((vote_data.vote)::text = 'Nej'::text) THEN 1 ELSE 0 END)) AS party_approved
+           FROM public.vote_data
+          WHERE ((vote_data.vote_date >= (CURRENT_DATE - '3 years'::interval)) AND (vote_data.party IS NOT NULL))
+          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party
+        ), politician_votes_with_rebel AS (
+         SELECT vd.embedded_id_intressent_id,
+            vd.vote_date,
+            vd.vote,
+            vd.party,
+            pbm.party_approved,
+            CASE
+                WHEN (((vd.vote)::text = 'Nej'::text) AND (pbm.party_approved = true)) THEN true
+                WHEN (((vd.vote)::text = 'Ja'::text) AND (pbm.party_approved = false)) THEN true
+                ELSE false
+            END AS is_rebel
+           FROM (public.vote_data vd
+             JOIN party_ballot_majority pbm ON ((((vd.embedded_id_ballot_id)::text = (pbm.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pbm.party)::text))))
+          WHERE (vd.vote_date >= (CURRENT_DATE - '3 years'::interval))
+        ), monthly_risk_base AS (
          SELECT p.id AS person_id,
             p.first_name,
             p.last_name,
             p.party,
-            date_trunc('month'::text, (vd.vote_date)::timestamp with time zone) AS assessment_period,
-            round((((count(*) FILTER (WHERE ((vd.vote)::text = 'Frånvarande'::text)))::numeric / (NULLIF(count(*), 0))::numeric) * (100)::numeric), 2) AS absence_rate,
-            round((((count(*) FILTER (WHERE (((vd.vote)::text <> (vd.party)::text) AND ((vd.vote)::text <> 'Frånvarande'::text))))::numeric / (NULLIF(count(*), 0))::numeric) * (100)::numeric), 2) AS rebel_rate,
+            date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone) AS assessment_period,
+            round((((count(*) FILTER (WHERE ((pvr.vote)::text = 'Frånvarande'::text)))::numeric / (NULLIF(count(*), 0))::numeric) * (100)::numeric), 2) AS absence_rate,
+            round((((count(*) FILTER (WHERE (pvr.is_rebel = true)))::numeric / (NULLIF(count(*) FILTER (WHERE ((pvr.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[]))), 0))::numeric) * (100)::numeric), 2) AS rebel_rate,
             count(*) AS ballot_count,
             count(DISTINCT vpd.id) AS document_count
            FROM ((public.person_data p
-             LEFT JOIN public.vote_data vd ON ((((vd.embedded_id_intressent_id)::text = (p.id)::text) AND (vd.vote_date >= (CURRENT_DATE - '3 years'::interval)))))
-             LEFT JOIN public.view_riksdagen_politician_document vpd ON ((((vpd.person_reference_id)::text = (p.id)::text) AND (vpd.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (date_trunc('month'::text, (vpd.made_public_date)::timestamp with time zone) = date_trunc('month'::text, (vd.vote_date)::timestamp with time zone)))))
+             LEFT JOIN politician_votes_with_rebel pvr ON (((pvr.embedded_id_intressent_id)::text = (p.id)::text)))
+             LEFT JOIN public.view_riksdagen_politician_document vpd ON ((((vpd.person_reference_id)::text = (p.id)::text) AND (vpd.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (date_trunc('month'::text, (vpd.made_public_date)::timestamp with time zone) = date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone)))))
           WHERE ((p.status)::text = ANY ((ARRAY['active'::character varying, 'Active'::character varying, 'ACTIVE'::character varying])::text[]))
-          GROUP BY p.id, p.first_name, p.last_name, p.party, (date_trunc('month'::text, (vd.vote_date)::timestamp with time zone))
+          GROUP BY p.id, p.first_name, p.last_name, p.party, (date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone))
         ), monthly_violations AS (
          SELECT rule_violation.reference_id AS person_id,
             date_trunc('month'::text, rule_violation.detected_date) AS assessment_period,
