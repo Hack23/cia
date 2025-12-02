@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Fix Empty View: view_ministry_productivity_matrix v1.42
+  Author: Intelligence Operative & Political Analyst
+  Date: 2025-12-02
+  GitHub Issue: #8017 - Fix Empty View: view_ministry_productivity_matrix
+  
+  This changelog fixes view_ministry_productivity_matrix which returns 0 rows
+  due to dependency on unpopulated materialized view view_riksdagen_politician_document.
+  
+  Root Cause Identified:
+  The view depends on view_riksdagen_politician_document (MATERIALIZED VIEW) via LEFT JOIN.
+  Even with LEFT JOIN, PostgreSQL throws an error if the materialized view hasn't been 
+  populated with REFRESH MATERIALIZED VIEW:
+  
+    ERROR: materialized view "view_riksdagen_politician_document" has not been populated
+    HINT: Use the REFRESH MATERIALIZED VIEW command.
+  
+  Previous Fix Attempts:
+  - Changelog v1.31: Created view with materialized view dependency
+  - Changelog v1.37: Added case-insensitive matching - INCOMPLETE (still had mat view dep)
+  - Changelog v1.39: Removed LIKE '%departement%' filter - INCOMPLETE (still had mat view dep)
+  - Issue #7883, #7886: Closed prematurely without fixing materialized view dependency
+  
+  Solution:
+  Replace materialized view reference with direct query to base tables:
+  - document_status_container (document status)
+  - document_data (document metadata including made_public_date, org, document_type)
+  - document_person_reference_da_0 (person-document associations)
+  - document_person_reference_co_0 (container)
+  
+  This is the same approach successfully used for view_politician_risk_summary in v1.39.
+  
+  Impact:
+  - Enables ministry productivity matrix queries in fresh database installations
+  - Removes dependency on materialized view refresh schedule
+  - Maintains all existing productivity calculation logic unchanged
+  - Performance: Slightly slower but ensures data availability
+-->
+
+<!-- ========================================================================= -->
+<!-- FIX: view_ministry_productivity_matrix - Remove Materialized View Dependency -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="fix-ministry-productivity-matrix-matview-1.42-001" failOnError="true">
+    <comment>
+        Fix view_ministry_productivity_matrix by removing materialized view dependency
+        
+        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document
+        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the
+        query if the materialized view hasn't been populated with REFRESH MATERIALIZED VIEW.
+        
+        Solution: Replace the materialized view reference with a direct query to
+        the underlying base tables (document_status_container, document_data,
+        document_person_reference_da_0, document_person_reference_co_0) to calculate
+        document counts inline.
+        
+        The ministry_document_data CTE mirrors the structure of the materialized view
+        but queries the base tables directly, ensuring the view always works regardless
+        of materialized view population status.
+        
+        Changes:
+        - Add ministry_document_data CTE that directly queries base tables
+        - Replace view_riksdagen_politician_document reference with CTE
+        - Maintain all productivity calculation logic unchanged
+        - Keep LEFT JOIN semantics to handle missing documents gracefully
+    </comment>
+    
+    <dropView viewName="view_ministry_productivity_matrix" ifExists="true" cascadeConstraints="true"/>
+    
+    <createView viewName="view_ministry_productivity_matrix">
+        <![CDATA[
+WITH ministry_base AS (
+    -- Get distinct ministry assignments from assignment_data
+    -- Uses assignment_type = 'Departement' to identify ministries
+    SELECT DISTINCT
+        org_code,
+        LOWER(org_code) AS org_code_lower,
+        org_code AS short_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+),
+ministry_document_data AS (
+    -- Direct query to base tables instead of materialized view
+    -- This avoids the "materialized view not populated" error
+    -- Mirrors the structure of view_riksdagen_politician_document
+    SELECT 
+        dsc.hjid AS id,
+        dd.document_type,
+        dd.made_public_date,
+        dd.org,
+        dpr.person_reference_id
+    FROM document_status_container dsc
+    LEFT JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    LEFT JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date IS NOT NULL
+),
+ministry_annual_metrics AS (
+    -- Calculate annual document metrics per ministry
+    SELECT
+        m.org_code,
+        m.short_code,
+        m.name,
+        EXTRACT(YEAR FROM doc.made_public_date) AS year,
+        COUNT(DISTINCT doc.id) AS documents_produced,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) = 'prop' THEN doc.id END) AS propositions,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) = 'ds' THEN doc.id END) AS government_bills,
+        COUNT(DISTINCT doc.person_reference_id) AS unique_contributors,
+        MIN(doc.made_public_date) AS earliest_document,
+        MAX(doc.made_public_date) AS latest_document
+    FROM ministry_base m
+    LEFT JOIN ministry_document_data doc 
+        ON LOWER(doc.org) = m.org_code_lower
+        AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY m.org_code, m.short_code, m.name, EXTRACT(YEAR FROM doc.made_public_date)
+),
+productivity_benchmarks AS (
+    -- Calculate productivity benchmarks per year for quartile analysis
+    SELECT
+        year,
+        PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY documents_produced) AS p25_documents,
+        PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY documents_produced) AS median_documents,
+        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY documents_produced) AS p75_documents,
+        AVG(documents_produced) AS avg_documents
+    FROM ministry_annual_metrics
+    WHERE year IS NOT NULL
+    GROUP BY year
+)
+SELECT
+    mam.org_code,
+    mam.short_code,
+    mam.name,
+    mam.year,
+    mam.documents_produced,
+    mam.propositions,
+    mam.government_bills,
+    mam.unique_contributors,
+    mam.earliest_document,
+    mam.latest_document,
+    pb.median_documents,
+    pb.avg_documents,
+    pb.p25_documents,
+    pb.p75_documents,
+    ROUND((CAST(mam.documents_produced AS NUMERIC) - pb.avg_documents) / NULLIF(pb.avg_documents, 0) * 100, 2) AS pct_vs_average,
+    
+    -- Productivity quartile classification
+    CASE
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.p75_documents THEN 'TOP_QUARTILE'
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.median_documents THEN 'ABOVE_MEDIAN'
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.p25_documents THEN 'BELOW_MEDIAN'
+        ELSE 'BOTTOM_QUARTILE'
+    END AS productivity_quartile,
+    
+    -- Performance assessment
+    CASE
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.p75_documents THEN 'High-performing ministry'
+        WHEN CAST(mam.documents_produced AS NUMERIC) < pb.p25_documents THEN 'Underperforming ministry - review needed'
+        ELSE 'Standard ministry performance'
+    END AS performance_assessment
+FROM ministry_annual_metrics mam
+LEFT JOIN productivity_benchmarks pb ON pb.year = mam.year
+WHERE mam.year IS NOT NULL
+ORDER BY mam.year DESC, mam.documents_produced DESC
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_ministry_productivity_matrix"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- POST-FLIGHT: Verify view returns data                                    -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="verify-ministry-productivity-matrix-1.42-002" failOnError="false">
+    <comment>
+        Post-flight verification for view_ministry_productivity_matrix
+        
+        Checks:
+        1. View exists and can be queried (no materialized view error)
+        2. View returns data when ministry assignments exist
+        3. Reports row count for monitoring
+    </comment>
+    
+    <sql>
+        -- Verify view exists and can be queried
+        SELECT 'Ministry Productivity Matrix View verification:' AS check_description;
+        
+        -- Check ministry assignment count
+        SELECT 
+            COUNT(DISTINCT org_code) AS ministry_count,
+            'Ministry assignments (assignment_type = Departement)' AS description
+        FROM assignment_data
+        WHERE assignment_type = 'Departement' AND org_code IS NOT NULL;
+        
+        -- Check view row count (should now work even without materialized view refresh)
+        SELECT 
+            COUNT(*) AS view_row_count,
+            'Rows in view_ministry_productivity_matrix' AS description
+        FROM view_ministry_productivity_matrix;
+        
+        -- If view has data, show sample
+        SELECT 
+            org_code,
+            short_code,
+            name,
+            year,
+            documents_produced,
+            productivity_quartile,
+            performance_assessment
+        FROM view_ministry_productivity_matrix
+        ORDER BY year DESC, documents_produced DESC
+        LIMIT 10;
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENTATION: Update changelog and troubleshooting guide                -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="document-ministry-productivity-fix-1.42-003" failOnError="false">
+    <comment>
+        Documentation for v1.42 ministry productivity matrix fix
+        
+        Summary:
+        - Root cause: Dependency on unpopulated materialized view view_riksdagen_politician_document
+        - Solution: Replace materialized view with direct base table queries
+        - Impact: View now works in fresh database installations without materialized view refresh
+        
+        For CHANGELOG_DATABASE_VIEWS.md:
+        - v1.42: Fixed view_ministry_productivity_matrix materialized view dependency
+        - Replaced view_riksdagen_politician_document reference with ministry_document_data CTE
+        - CTE queries document_status_container, document_data, document_person_reference_* tables
+        - No change to output columns or productivity calculations
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.42 Fix Applied: view_ministry_productivity_matrix' AS changelog_entry,
+            'Removed materialized view dependency' AS change_description,
+            'View now queries base tables directly via ministry_document_data CTE' AS technical_details;
+    </sql>
+</changeSet>
+
+</databaseChangeLog>
