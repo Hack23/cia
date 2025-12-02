@@ -350,15 +350,15 @@ WITH momentum_summary AS (
 coalition_summary AS (
     -- Aggregate coalition indicators independently
     SELECT
-        COUNT(*) FILTER (WHERE coalition_likelihood IN ('STRONG_COALITION', 'VERY_HIGH')) AS high_probability_coalitions,
-        COUNT(*) FILTER (WHERE coalition_likelihood IN ('MODERATE_COALITION', 'HIGH', 'VERY_HIGH')) AS cross_bloc_alliances
+        COUNT(*) FILTER (WHERE coalition_likelihood = 'STRONG_COALITION') AS high_probability_coalitions,
+        COUNT(*) FILTER (WHERE coalition_likelihood IN ('STRONG_COALITION', 'MODERATE_COALITION')) AS cross_bloc_alliances
     FROM view_riksdagen_coalition_alignment_matrix
 ),
 anomaly_summary AS (
     -- Aggregate risk indicators independently using current column names
     SELECT
         COUNT(*) FILTER (WHERE anomaly_classification IN ('FREQUENT_STRONG_REBEL', 'CONSISTENT_REBEL')) AS high_defection_risks,
-        COUNT(*) FILTER (WHERE anomaly_classification = 'PARTY_ALIGNED') AS low_discipline_politicians
+        COUNT(*) FILTER (WHERE anomaly_classification IN ('FREQUENT_STRONG_REBEL', 'CONSISTENT_REBEL')) AS low_discipline_politicians
     FROM view_riksdagen_voting_anomaly_detection
 ),
 influence_summary AS (
