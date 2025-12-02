@@ -1,876 +1,1337 @@
 snapshot_pk,type,version,state,changed_properties,managed_type,global_id_fk,commit_fk
-865530700,INITIAL,1,"{
-  ""note"": ""den 21 mars\n Svar på fråga\n 2011/12:466 Ideellt arbete med sjukersättning\n Statsrådet Ulf Kristersson\n Wiwi-Anne Johansson har frågat mig om jag kommer  att ta initiativ till en sådan lagstiftning som möjliggör ideellt arbete utan  anmälningsplikt eller förlust av ersättning.\n En grundläggande princip i sjukförsäkringen"",
-  ""noteTitle"": ""Ideellt arbete med sjukersättning"",
-  ""documentType"": ""frs"",
-  ""origin"": """",
-  ""documentUrlHtml"": ""//data.riksdagen.se/dokument/GZ12466.html"",
-  ""title"": ""Ideellt arbete med sjukersättning"",
-  ""hit"": 77,
-  ""subTitle"": ""Statsrådet Ulf Kristersson"",
-  ""debateName"": ""Svar på skriftlig fråga"",
-  ""databaseSource"": ""dokument"",
-  ""tempLabel"": """",
-  ""numberValue"": 466,
-  ""id"": ""gz12466"",
-  ""lang"": """",
-  ""summary"": ""den 21 mars\n Svar på fråga\n 2011/12:466 Ideellt arbete med sjukersättning\n Statsrådet Ulf Kristersson\n Wiwi-Anne Johansson har frågat mig om jag kommer  att ta initiativ till en sådan lagstiftning som möjliggör ideellt arbete utan  anmälningsplikt eller förlust av ersättning.\n En grundläggande princip i sjukförsäkringen"",
-  ""org"": """",
-  ""domainOrg"": ""rdwebb"",
-  ""docType"": ""frs"",
-  ""documentName"": ""Svar på skriftlig fråga"",
-  ""label"": ""466"",
-  ""madePublicDate"": ""2012-03-21"",
-  ""relatedId"": """",
-  ""kallId"": """",
-  ""createdDate"": ""2012-03-21"",
-  ""systemDate"": ""2012-03-21 10:35:02"",
-  ""documentUrlText"": ""//data.riksdagen.se/dokument/GZ12466.text"",
-  ""subType"": """",
-  ""rm"": ""2011/12"",
-  ""documentFormat"": """",
-  ""status"": ""korrekturläst""
+100,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": """",
+  ""address"": """",
+  ""registeredDate"": ""1971-01-01T00:00:00"",
+  ""city"": """",
+  ""hjid"": 1,
+  ""phoneNumber"": """",
+  ""partyName"": ""Politiskt Vilde"",
+  ""faxNumber"": """",
+  ""postCode"": """",
+  ""partyId"": ""232323"",
+  ""shortCode"": ""-"",
+  ""email"": """"
 }","[
-  ""note"",
-  ""noteTitle"",
-  ""documentType"",
-  ""origin"",
-  ""documentUrlHtml"",
-  ""title"",
-  ""hit"",
-  ""subTitle"",
-  ""debateName"",
-  ""databaseSource"",
-  ""tempLabel"",
-  ""numberValue"",
-  ""id"",
-  ""lang"",
-  ""summary"",
-  ""org"",
-  ""domainOrg"",
-  ""docType"",
-  ""documentName"",
-  ""label"",
-  ""madePublicDate"",
-  ""relatedId"",
-  ""kallId"",
-  ""createdDate"",
-  ""systemDate"",
-  ""documentUrlText"",
-  ""subType"",
-  ""rm"",
-  ""documentFormat"",
-  ""status""
-]",com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement,8657147,3972754
-865532300,INITIAL,1,"{
-  ""note"": ""den 21 mars\n Svar på fråga\n 2011/12:469 Ökad arbetsbörda för Antidiskrimineringsbyråerna\n Statsrådet Erik Ullenhag\n Josefin Brink har frågat mig om jag avser att verka  för att kompensera Antidiskrimineringsbyråerna för den förväntade ökningen av  antalet ärenden.\n Antidiskrimineringsbyråerna  fyller i dag en viktig funktion"",
-  ""noteTitle"": ""Ökad arbetsbörda för Antidiskrimineringsbyråerna"",
-  ""documentType"": ""frs"",
-  ""origin"": """",
-  ""documentUrlHtml"": ""//data.riksdagen.se/dokument/GZ12469.html"",
-  ""title"": ""Ökad arbetsbörda för Antidiskrimineringsbyråerna"",
-  ""hit"": 78,
-  ""subTitle"": ""Statsrådet Erik Ullenhag"",
-  ""debateName"": ""Svar på skriftlig fråga"",
-  ""databaseSource"": ""dokument"",
-  ""tempLabel"": """",
-  ""numberValue"": 469,
-  ""id"": ""gz12469"",
-  ""lang"": """",
-  ""summary"": ""den 21 mars\n Svar på fråga\n 2011/12:469 Ökad arbetsbörda för Antidiskrimineringsbyråerna\n Statsrådet Erik Ullenhag\n Josefin Brink har frågat mig om jag avser att verka  för att kompensera Antidiskrimineringsbyråerna för den förväntade ökningen av  antalet ärenden.\n Antidiskrimineringsbyråerna  fyller i dag en viktig funktion"",
-  ""org"": """",
-  ""domainOrg"": ""rdwebb"",
-  ""docType"": ""frs"",
-  ""documentName"": ""Svar på skriftlig fråga"",
-  ""label"": ""469"",
-  ""madePublicDate"": ""2012-03-21"",
-  ""relatedId"": """",
-  ""kallId"": """",
-  ""createdDate"": ""2012-03-21"",
-  ""systemDate"": ""2012-03-21 10:58:46"",
-  ""documentUrlText"": ""//data.riksdagen.se/dokument/GZ12469.text"",
-  ""subType"": """",
-  ""rm"": ""2011/12"",
-  ""documentFormat"": """",
-  ""status"": ""korrekturläst""
-}","[
-  ""note"",
-  ""noteTitle"",
-  ""documentType"",
-  ""origin"",
-  ""documentUrlHtml"",
-  ""title"",
-  ""hit"",
-  ""subTitle"",
-  ""debateName"",
-  ""databaseSource"",
-  ""tempLabel"",
-  ""numberValue"",
-  ""id"",
-  ""lang"",
-  ""summary"",
-  ""org"",
-  ""domainOrg"",
-  ""docType"",
-  ""documentName"",
-  ""label"",
-  ""madePublicDate"",
-  ""relatedId"",
-  ""kallId"",
-  ""createdDate"",
-  ""systemDate"",
-  ""documentUrlText"",
-  ""subType"",
-  ""rm"",
-  ""documentFormat"",
-  ""status""
-]",com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement,8657163,3972757
-865532400,INITIAL,1,"{
-  ""topic"": [],
-  ""hjid"": 908165
-}","[
-  ""topic"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Topics,8657164,3972758
-865532500,INITIAL,1,"{
-  ""sourceNote"": ""Percentage of firms identifying corruption as a \""major\"" or \""very severe\"" obstacle."",
-  ""indicatorName"": ""Percent of firms identifying corruption as a major constraint"",
-  ""topics"": {
-    ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Topics"",
-    ""cdoId"": 908165
-  },
-  ""sourceOrganization"": ""World Bank, Enterprise Surveys (http://www.enterprisesurveys.org/)."",
-  ""id"": ""IC.FRM.CORR.CORR11"",
-  ""source"": {
-    ""valueObject"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Source"",
-    ""ownerId"": {
-      ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"",
-      ""cdoId"": 908164
-    },
-    ""fragment"": ""source""
-  },
-  ""hjid"": 908164
-}","[
-  ""sourceNote"",
-  ""indicatorName"",
-  ""topics"",
-  ""sourceOrganization"",
-  ""id"",
-  ""source"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement,8657165,3972758
-865532600,INITIAL,1,"{
-  ""id"": ""13"",
-  ""value"": ""Enterprise Surveys""
-}","[
-  ""id"",
-  ""value""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Source,8657166,3972758
-865532700,INITIAL,1,"{
-  ""topic"": [],
-  ""hjid"": 908167
-}","[
-  ""topic"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Topics,8657167,3972759
-865532800,INITIAL,1,"{
-  ""sourceNote"": ""Percentage of establishments that consider that firms with characteristics similar to theirs are making informal payments or giving gifts to public officials to secure government contract."",
-  ""indicatorName"": ""Percent of firms expected to give gifts to secure government contract"",
-  ""topics"": {
-    ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Topics"",
-    ""cdoId"": 908167
-  },
-  ""sourceOrganization"": ""World Bank, Enterprise Surveys (http://www.enterprisesurveys.org/)."",
-  ""id"": ""IC.FRM.CORR.CORR2"",
-  ""source"": {
-    ""valueObject"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Source"",
-    ""ownerId"": {
-      ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"",
-      ""cdoId"": 908166
-    },
-    ""fragment"": ""source""
-  },
-  ""hjid"": 908166
-}","[
-  ""sourceNote"",
-  ""indicatorName"",
-  ""topics"",
-  ""sourceOrganization"",
-  ""id"",
-  ""source"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement,8657168,3972759
-865532900,INITIAL,1,"{
-  ""id"": ""13"",
-  ""value"": ""Enterprise Surveys""
-}","[
-  ""id"",
-  ""value""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Source,8657169,3972759
-865533000,INITIAL,1,"{
-  ""topic"": [],
-  ""hjid"": 908169
-}","[
-  ""topic"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Topics,8657170,3972760
-865533100,INITIAL,1,"{
-  ""sourceNote"": ""Percentage of contract value expected as a gift to secure government contract. Only firms that have confirmed that they have secured or attempted to secure a government contract in the last 12 months were required to answer this question."",
-  ""indicatorName"": ""Value of gift expected to secure a government contract (% of contract value)"",
-  ""topics"": {
-    ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Topics"",
-    ""cdoId"": 908169
-  },
-  ""sourceOrganization"": ""World Bank, Enterprise Surveys (http://www.enterprisesurveys.org/)."",
-  ""id"": ""IC.FRM.CORR.CORR3"",
-  ""source"": {
-    ""valueObject"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Source"",
-    ""ownerId"": {
-      ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"",
-      ""cdoId"": 908168
-    },
-    ""fragment"": ""source""
-  },
-  ""hjid"": 908168
-}","[
-  ""sourceNote"",
-  ""indicatorName"",
-  ""topics"",
-  ""sourceOrganization"",
-  ""id"",
-  ""source"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement,8657171,3972760
-865533200,INITIAL,1,"{
-  ""id"": ""13"",
-  ""value"": ""Enterprise Surveys""
-}","[
-  ""id"",
-  ""value""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Source,8657172,3972760
-865539400,INITIAL,1,"{
-  ""wording2"": """",
-  ""committee"": "" Avslag"",
-  ""chamber"": ""Avslag"",
-  ""proposalNumber"": 2,
-  ""decisionType"": ""Acklamation"",
-  ""processedIn"": ""2003/04:SoU1"",
-  ""designation"": 2,
-  ""wording"": ""Riksdagen anvisar med följande ändringar i förhållande till regeringens förslag anslagen under utgiftsområde 9 Hälsovård sjukvård och social omsorg enligt uppställning: Anslag (tkr) 13:3 Bidrag till hälso- och sjukvård 5 000 kr, 13:6 Socialstyrelsen -50 000 kr, 14:4 Folkhälsoinstitutet -8 000 kr, 14:5 Smittskyddsinstitutet -6 000kr, 26:2 Forskningsrådet för arbetslivs- och social vetenskap -61 000kr, nytt anslag, Vårdgaranti 500 000 kr."",
-  ""hjid"": 908224
-}","[
-  ""wording2"",
-  ""committee"",
-  ""chamber"",
-  ""proposalNumber"",
-  ""decisionType"",
-  ""processedIn"",
-  ""designation"",
-  ""wording"",
-  ""hjid""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData,8657234,3972774
-865532000,INITIAL,1,"{
-  ""documentType"": ""mot"",
-  ""org"": ""SoU"",
-  ""finalNumber"": 0,
-  ""documentUrlHtml"": ""https://data.riksdagen.se/dokument/GR02So624/text"",
-  ""label"": ""So624"",
-  ""title"": ""Organisationsstöd och demokrati"",
-  ""madePublicDate"": ""2003-10-07T00:00:00"",
-  ""documentStatusUrlXml"": ""https://data.riksdagen.se/dokument/GR02So624/text"",
-  ""subTitle"": ""av Gustav Fridolin (mp)"",
-  ""documentUrlText"": ""https://data.riksdagen.se/dokument/GR02So624/text"",
-  ""subType"": ""Enskild motion"",
-  ""rm"": ""2003/04"",
-  ""tempLabel"": ""mp408"",
-  ""hangarId"": ""2241253"",
-  ""numberValue"": 624,
-  ""id"": ""GR02So624"",
-  ""status"": """"
-}","[
-  ""documentType"",
-  ""org"",
-  ""finalNumber"",
-  ""documentUrlHtml"",
-  ""label"",
-  ""title"",
-  ""madePublicDate"",
-  ""documentStatusUrlXml"",
-  ""subTitle"",
-  ""documentUrlText"",
-  ""subType"",
-  ""rm"",
-  ""tempLabel"",
-  ""hangarId"",
-  ""numberValue"",
-  ""id"",
-  ""status""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData,8657160,3972755
-865532100,INITIAL,1,"{
-  ""hjid"": 908151,
-  ""documentActivities"": [
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData"",
-      ""cdoId"": 908152
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData"",
-      ""cdoId"": 908153
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData"",
-      ""cdoId"": 908154
-    }
-  ]
-}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
   ""hjid"",
-  ""documentActivities""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityContainer,8657161,3972755
-865533300,INITIAL,1,"{
-  ""id"": ""gqa1ljd2trf"",
-  ""hjid"": 908170,
-  ""content"": ""\u003cdokumentstatus\u003e\u003cdokument\u003e\n \u003changar_id\u003e2405442\u003c/hangar_id\u003e\n \u003cdok_id\u003eGQA1LJD2TRF\u003c/dok_id\u003e\n \u003crm\u003e2004/05\u003c/rm\u003e\n \u003cbeteckning\u003eLJD2TRF\u003c/beteckning\u003e\n \u003ctyp\u003eutskottsdokument\u003c/typ\u003e\n \u003csubtyp\u003eProtokoll\u003c/subtyp\u003e\n \u003cdoktyp\u003euprotokoll\u003c/doktyp\u003e\n \u003ctyprubrik\u003eUtrikesutskottets protokoll 2004/05:20\u003c/typrubrik\u003e\n \u003cdokumentnamn\u003eUtskottens protokoll\u003c/dokumentnamn\u003e\n \u003cdebattnamn\u003eUtskottens protokoll\u003c/debattnamn\u003e\n \u003ctempbeteckning\u003e\u003c/tempbeteckning\u003e\n \u003corgan\u003eUU\u003c/organ\u003e\n \u003cmottagare\u003e\u003c/mottagare\u003e\n \u003cnummer\u003e20\u003c/nummer\u003e\n \u003cslutnummer\u003e0\u003c/slutnummer\u003e\n \u003cdatum\u003e2004-02-08 00:00:00\u003c/datum\u003e\n \u003csystemdatum\u003e2007-02-19 17:33:06\u003c/systemdatum\u003e\n \u003cpublicerad\u003e2005-02-17 09:43:26\u003c/publicerad\u003e\n \u003ctitel\u003eProtokoll utskottssammanträde 2004/05:20\u003c/titel\u003e\n \u003csubtitel\u003e\u003c/subtitel\u003e\n \u003cstatus\u003e\u003c/status\u003e\n \u003chtmlformat\u003e\u003c/htmlformat\u003e\n \u003crelaterat_id\u003e\u003c/relaterat_id\u003e\n \u003csource\u003e\u003c/source\u003e\n \u003csourceid\u003e\u003c/sourceid\u003e\n \u003cdokument_url_text\u003ehttps://data.riksdagen.se/dokument/GQA1LJD2TRF/text\u003c/dokument_url_text\u003e\n \u003cdokument_url_html\u003ehttps://data.riksdagen.se/dokument/GQA1LJD2TRF/text\u003c/dokument_url_html\u003e\n \u003cdokumentstatus_url_xml\u003ehttps://data.riksdagen.se/dokument/GQA1LJD2TRF/text\u003c/dokumentstatus_url_xml\u003e\n \u003chtml\u003e\u0026lt;TABLE CELLSPACING\u003d0 BORDER\u003d0 CELLPADDING\u003d4 WIDTH\u003d563\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""23%\"" VALIGN\u003d\""TOP\"" HEIGHT\u003d49\u0026gt;\u0026lt;B\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;PROTOKOLL \u0026lt;/B\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""77%\"" VALIGN\u003d\""TOP\"" HEIGHT\u003d49\u0026gt;\u0026lt;B\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;UTSKOTTSSAMMANTR\u0026amp;Auml;DE 2004/05:20\u0026lt;/P\u0026gt;\u0026lt;/B\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""23%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;DATUM\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""77%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;2004-02-08\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""23%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;TID\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""77%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;11.00-11.50\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""23%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;N\u0026amp;Auml;RVARANDE\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""77%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;Se bilaga 1\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;/TABLE\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;\u0026amp;nbsp;\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;\u0026amp;nbsp;\u0026lt;/P\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;P ALIGN\u003d\""RIGHT\""\u0026gt;\u0026lt;TABLE CELLSPACING\u003d0 BORDER\u003d0 CELLPADDING\u003d4 WIDTH\u003d500\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;B\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;§ 1\u0026lt;/B\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""92%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;Kabinettsekreterare Hans Dahlgren, departementsr\u0026amp;aring;det Hans Lundborg, kanslir\u0026amp;aring;det Anders Wallberg, departementssekreterare Annelie Almkvist, samtliga UD, departementsr\u0026amp;aring;det Johan Raeder, departementssekreterare Anja Glavinic, departementssekreterare Petra Anger, samtliga F\u0026amp;ouml;, generalmajor CG Fant, \u0026amp;ouml;verstel\u0026amp;ouml;jtnant Bo Holmberg och kommend\u0026amp;ouml;rkapten Magnus J\u0026amp;ouml;nsson, samtliga F\u0026amp;ouml;rsvarsmakten, l\u0026amp;auml;mnar f\u0026amp;ouml;redragning inf\u0026amp;ouml;r behandling av prop. 2004/05:61 Fortsatt svenskt deltagande i F\u0026amp;ouml;renta nationernas mission i Liberia.\u0026lt;/P\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;B\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;§ 2\u0026lt;/B\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""92%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;Justeras protokoll nr 2004/05:\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;B\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;§ 3\u0026lt;/B\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""92%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;Beslutas att ta emot Manuel Da Silva, FN:s humanit\u0026amp;auml;re samordnare f\u0026amp;ouml;r Sudan, fredagen den 11 februari. \u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;Beslutas inbjuda Iraks ambassad\u0026amp;ouml;r i Stockholm m.fl. att bes\u0026amp;ouml;ka utskottet f\u0026amp;ouml;r diskussion ang\u0026amp;aring;ende valet i Irak. \u0026lt;/P\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;B\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;§ 4\u0026lt;/B\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""92%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;Ordf\u0026amp;ouml;randen f\u0026amp;ouml;rklarar sammantr\u0026amp;auml;det avslutat.\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""92%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""92%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;Vid protokollet\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;\u0026amp;nbsp;\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;Hannah Bjernb\u0026amp;auml;ck\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;\u0026amp;nbsp;\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;Justeras torsdagen den 10 februari 2005\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;\u0026amp;nbsp;\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;Urban Ahlin\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;/TABLE\u0026gt;\u0026lt;/P\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;\u0026amp;nbsp;\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;\u0026amp;nbsp;\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;\u0026amp;nbsp;\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;\u0026amp;nbsp;\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;\u0026amp;nbsp;\u0026lt;/P\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;P ALIGN\u003d\""RIGHT\""\u0026gt;\u0026lt;TABLE BORDER CELLSPACING\u003d1 CELLPADDING\u003d4 WIDTH\u003d562\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""35%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;UTRIKESUTSKOTTET\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""47%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d12\u0026gt;\u0026lt;B\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P ALIGN\u003d\""CENTER\""\u0026gt;N\u0026amp;Auml;RVAROF\u0026amp;Ouml;RTECKNING\u0026lt;/B\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""18%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d5\u0026gt;\u0026lt;B\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;P\u0026gt;Bilaga 1\u0026lt;/P\u0026gt;\u0026lt;/B\u0026gt;\u0026lt;P\u0026gt;till protokoll\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;2004/05:20\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;§ 1-4\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""8%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;N\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;V\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;N\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;V\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;N\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;V\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;N\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;V\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;N\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;V\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;N\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;V\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;B\u0026gt;\u0026lt;I\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;LEDAM\u0026amp;Ouml;TER\u0026lt;/B\u0026gt;\u0026lt;/I\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Urban Ahlin (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Berndt Ekholm (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Gunilla Carlsson i Tyres\u0026amp;ouml; (m)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Cecilia Wigstr\u0026amp;ouml;m (fp)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Carina H\u0026amp;auml;gg (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Birgitta Ahlqvist (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Holger Gustafsson (kd)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Alice \u0026amp;Aring;str\u0026amp;ouml;m (v)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Kent H\u0026amp;auml;rstedt (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;G\u0026amp;ouml;ran Lindblad (m)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Kaj Nordquist (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Birgitta Ohlsson (fp)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Agne Hansson (c)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Kenneth G Forslund (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Ewa Bj\u0026amp;ouml;rling (m)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Veronica Palm (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Lotta Hedstr\u0026amp;ouml;m (mp)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;B\u0026gt;\u0026lt;I\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;SUPPLEANTER\u0026lt;/B\u0026gt;\u0026lt;/I\u0026gt;\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Anita Johansson (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Mariam Osman Sherifay (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Bj\u0026amp;ouml;rn Hamilton (m)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Cecilia Wikstr\u0026amp;ouml;m (fp)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;P\u0026amp;auml;r Axel Sahlberg (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Anne Ludvigsson (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Rosita Runegrund (kd)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;X\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Sermin \u0026amp;Ouml;z\u0026amp;uuml;rk\u0026amp;uuml;t (v)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;O\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Yilmaz Kerimo (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Karin Enstr\u0026amp;ouml;m (m)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Ronny Olander (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Gabriel Romanus (pf)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Maud Olofsson (c)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Tommy Waidelich (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Rolf Gunnarsson (m)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Agneta Gille (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Yvonne Ruwaida (mp)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Henrik S J\u0026amp;auml;rrel (m)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;G\u0026amp;ouml;ran Lennmarker (m)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Nina Lundstr\u0026amp;ouml;m (fp)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Allan Widman (fp)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Alf Svensson (kd)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Annika Qarlsson  (c)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Lars \u0026amp;Aring;ngstr\u0026amp;ouml;m (mp)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Inger Lundberg (s)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""41%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d3\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d3\u0026gt;\u0026lt;P\u0026gt;Lars Ohly (v)\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""4%\"" VALIGN\u003d\""TOP\""\u0026gt;\u0026amp;nbsp;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""40%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2 HEIGHT\u003d17\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d1\u0026gt;\u0026lt;P\u0026gt;N \u003d N\u0026amp;auml;rvarande\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""60%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d16 HEIGHT\u003d17\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d1\u0026gt;\u0026lt;P\u0026gt;x \u003d ledam\u0026amp;ouml;ter som deltagit i handl\u0026amp;auml;ggningen\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;TR\u0026gt;\u0026lt;TD WIDTH\u003d\""40%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d2 HEIGHT\u003d17\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d1\u0026gt;\u0026lt;P\u0026gt;V \u003d Votering\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;TD WIDTH\u003d\""60%\"" VALIGN\u003d\""TOP\"" COLSPAN\u003d16 HEIGHT\u003d17\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d1\u0026gt;\u0026lt;P\u0026gt;o \u003d ledam\u0026amp;ouml;ter som h\u0026amp;auml;rut\u0026amp;ouml;ver har varit n\u0026amp;auml;rvarande\u0026lt;/FONT\u0026gt;\u0026lt;/TD\u0026gt;\u0026lt;/TR\u0026gt;\u0026lt;/TABLE\u0026gt;\u0026lt;/P\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\""\u0026gt;\u0026lt;/FONT\u0026gt;\u003c/html\u003e\n\u003c/dokument\u003e\n\u003c/dokumentstatus\u003e\n""
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,100,100
+200,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": """",
+  ""address"": ""Box 10185"",
+  ""registeredDate"": ""1991-02-15T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 2,
+  ""phoneNumber"": ""08-16 09 30"",
+  ""partyName"": ""NyDemokrati"",
+  ""faxNumber"": """",
+  ""postCode"": ""10055"",
+  ""partyId"": ""170"",
+  ""shortCode"": ""NYD"",
+  ""email"": """"
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,101,101
+300,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": """",
+  ""address"": ""Kyrkogatan 9"",
+  ""registeredDate"": ""2009-06-12T00:00:00"",
+  ""city"": ""Arlöv"",
+  ""hjid"": 3,
+  ""phoneNumber"": ""040-43 45 46"",
+  ""partyName"": ""Allianspartiet/Medborgarens röst"",
+  ""faxNumber"": ""040-43 00 75"",
+  ""postCode"": ""23234"",
+  ""partyId"": ""14"",
+  ""shortCode"": ""ALP"",
+  ""email"": """"
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,102,102
+400,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.socialdemokraterna.se"",
+  ""address"": "" "",
+  ""registeredDate"": ""1956-08-02T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 4,
+  ""phoneNumber"": ""08-700 26 00"",
+  ""partyName"": ""Arbetarepartiet-Socialdemokraterna"",
+  ""faxNumber"": ""08-20 42 57"",
+  ""postCode"": ""10560"",
+  ""partyId"": ""2"",
+  ""shortCode"": ""S"",
+  ""email"": ""info@sap.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,103,103
+500,INITIAL,1,"{
+  ""coAddress"": ""c/o Anders Königsson"",
+  ""website"": """",
+  ""phoneNumber"": ""073-694 13 14"",
+  ""address"": ""Kumminvägen 19"",
+  ""city"": ""Farsta"",
+  ""partyName"": ""Borgerlig Framtid"",
+  ""faxNumber"": """",
+  ""postCode"": ""12355"",
+  ""partyId"": ""1147"",
+  ""hjid"": 5,
+  ""shortCode"": ""---"",
+  ""email"": """"
+}","[
+  ""coAddress"",
+  ""website"",
+  ""phoneNumber"",
+  ""address"",
+  ""city"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""hjid"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,104,104
+600,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.centerpartiet.se"",
+  ""address"": ""Box 2200"",
+  ""registeredDate"": ""1995-05-18T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 6,
+  ""phoneNumber"": ""08-617 38 00"",
+  ""partyName"": ""Centerpartiet"",
+  ""faxNumber"": ""08-617 38 10"",
+  ""postCode"": ""10315"",
+  ""partyId"": ""4"",
+  ""shortCode"": ""C"",
+  ""email"": ""centerpartiet@centerpartiet.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,105,105
+700,INITIAL,1,"{
+  ""coAddress"": ""c/o Johan Liljegren"",
+  ""website"": ""www.direktdemokraterna.se"",
+  ""address"": ""Jägaregatan 9 A"",
+  ""registeredDate"": ""2014-07-01T00:00:00"",
+  ""city"": ""Göteborg"",
+  ""hjid"": 7,
+  ""phoneNumber"": ""070-670 85 68"",
+  ""partyName"": ""Direktdemokraterna"",
+  ""faxNumber"": """",
+  ""postCode"": ""41701"",
+  ""partyId"": ""1150"",
+  ""shortCode"": ""---"",
+  ""email"": ""info@direktdemokraterna.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,106,106
+800,INITIAL,1,"{
+  ""coAddress"": ""c/o Johanna Parikka Altenstedt"",
+  ""website"": ""www.djurensparti.se"",
+  ""address"": ""Mariagatan 9"",
+  ""registeredDate"": ""2014-02-19T00:00:00"",
+  ""city"": ""Lund"",
+  ""hjid"": 8,
+  ""phoneNumber"": ""0708-66 18 12"",
+  ""partyName"": ""Djurens parti"",
+  ""faxNumber"": """",
+  ""postCode"": ""22353"",
+  ""partyId"": ""1136"",
+  ""shortCode"": ""DjuP"",
+  ""email"": ""djurensparti@gmail.com""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,107,107
+900,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.enhet.se"",
+  ""address"": ""Abbedissavägen 27"",
+  ""registeredDate"": ""2014-03-12T00:00:00"",
+  ""city"": ""Skokloster"",
+  ""hjid"": 9,
+  ""phoneNumber"": ""076-148 12 00"",
+  ""partyName"": ""Enhet"",
+  ""faxNumber"": """",
+  ""postCode"": ""74695"",
+  ""partyId"": ""189"",
+  ""shortCode"": ""ENH"",
+  ""email"": ""info@enhet.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,108,108
+1000,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.larouche.se"",
+  ""address"": ""Box 6057"",
+  ""registeredDate"": ""1985-03-22T00:00:00"",
+  ""city"": ""Hägersten"",
+  ""hjid"": 10,
+  ""phoneNumber"": ""08-98 30 10"",
+  ""partyName"": ""Europeiska Arbetarpartiet-EAP"",
+  ""faxNumber"": ""08-98 30 90"",
+  ""postCode"": ""12906"",
+  ""partyId"": ""29"",
+  ""shortCode"": ""EAP"",
+  ""email"": ""larouche@nysol.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,109,109
+1100,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.feministisktinitiativ.se"",
+  ""address"": ""Box 498"",
+  ""registeredDate"": ""2006-03-07T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 11,
+  ""phoneNumber"": ""070-610 01 91"",
+  ""partyName"": ""Feministiskt initiativ"",
+  ""faxNumber"": """",
+  ""postCode"": ""10129"",
+  ""partyId"": ""532"",
+  ""shortCode"": ""FI"",
+  ""email"": ""info@feministisktinitiativ.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,110,110
+1200,INITIAL,1,"{
+  ""coAddress"": ""c/o Mellie Wahlberg"",
+  ""website"": ""www.frihets-partiet.se"",
+  ""address"": ""Sommaren 6 C, nb"",
+  ""registeredDate"": ""2010-02-15T00:00:00"",
+  ""city"": ""Bjuv"",
+  ""hjid"": 12,
+  ""phoneNumber"": ""0733-85 34 78"",
+  ""partyName"": ""Frihetspartiet"",
+  ""faxNumber"": """",
+  ""postCode"": ""26733"",
+  ""partyId"": ""979"",
+  ""shortCode"": ""---"",
+  ""email"": ""info@frihets-partiet.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,111,111
+1300,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": """",
+  ""address"": ""Adressuppgift saknas"",
+  ""registeredDate"": ""2004-03-11T00:00:00"",
+  ""city"": """",
+  ""hjid"": 13,
+  ""phoneNumber"": ""070-460 97 07"",
+  ""partyName"": ""Högerpartiet de konservativa"",
+  ""faxNumber"": """",
+  ""postCode"": """",
+  ""partyId"": ""452"",
+  ""shortCode"": ""---"",
+  ""email"": """"
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,112,112
+1400,INITIAL,1,"{
+  ""coAddress"": ""c/o Eva Nisser"",
+  ""website"": ""www.junilistan.se"",
+  ""address"": ""Fiskarbacken 12"",
+  ""registeredDate"": ""2004-02-27T00:00:00"",
+  ""city"": ""Saltsjö-Duvnäs"",
+  ""hjid"": 14,
+  ""phoneNumber"": """",
+  ""partyName"": ""Junilistan"",
+  ""faxNumber"": """",
+  ""postCode"": ""13150"",
+  ""partyId"": ""451"",
+  ""shortCode"": ""JL"",
+  ""email"": ""info@junilistan.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,113,113
+1500,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.liberalapartiet.se"",
+  ""address"": ""Box 38021"",
+  ""registeredDate"": ""2015-03-25T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 15,
+  ""phoneNumber"": ""070-608 10 89"",
+  ""partyName"": ""Klassiskt liberala partiet"",
+  ""faxNumber"": """",
+  ""postCode"": ""10064"",
+  ""partyId"": ""638"",
+  ""shortCode"": ""KLP"",
+  ""email"": ""info@liberalapartiet.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,114,114
+1600,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.kommunisterna.org"",
+  ""address"": ""Box 31187"",
+  ""registeredDate"": ""2005-01-12T00:00:00"",
+  ""city"": ""Göteborg"",
+  ""hjid"": 16,
+  ""phoneNumber"": ""031-12 26 31"",
+  ""partyName"": ""Kommunistiska Partiet"",
+  ""faxNumber"": ""031-24 51 72"",
+  ""postCode"": ""40032"",
+  ""partyId"": ""471"",
+  ""shortCode"": ""K"",
+  ""email"": ""info@kommunisterna.org""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,115,115
+1700,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.kristdemokraterna.se"",
+  ""address"": ""Box 2373"",
+  ""registeredDate"": ""1996-08-29T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 17,
+  ""phoneNumber"": ""08-723 25 00"",
+  ""partyName"": ""Kristdemokraterna"",
+  ""faxNumber"": ""08-723 25 10"",
+  ""postCode"": ""10318"",
+  ""partyId"": ""68"",
+  ""shortCode"": ""KD"",
+  ""email"": ""info@kristdemokraterna.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,116,116
+1800,INITIAL,1,"{
+  ""coAddress"": ""c/o Annette Westöö"",
+  ""website"": ""www.kristnavardepartiet.se"",
+  ""address"": ""Briljantgatan 77"",
+  ""registeredDate"": ""2014-02-24T00:00:00"",
+  ""city"": ""Västra Frölunda"",
+  ""hjid"": 18,
+  ""phoneNumber"": ""0706-23 12 11"",
+  ""partyName"": ""Kristna Värdepartiet"",
+  ""faxNumber"": """",
+  ""postCode"": ""42149"",
+  ""partyId"": ""1140"",
+  ""shortCode"": ""KrVP"",
+  ""email"": ""annette.westoo@kristnavardepartiet.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,117,117
+1900,INITIAL,1,"{
+  ""coAddress"": ""c/o Claes Littorin"",
+  ""website"": ""www.landsbygdspartiet.org"",
+  ""address"": ""Rungarns säteri 4"",
+  ""registeredDate"": ""2012-10-31T00:00:00"",
+  ""city"": ""Knutby"",
+  ""hjid"": 19,
+  ""phoneNumber"": ""0708-56 96 92"",
+  ""partyName"": ""Landsbygdspartiet Oberoende"",
+  ""faxNumber"": """",
+  ""postCode"": ""74012"",
+  ""partyId"": ""1011"",
+  ""shortCode"": ""LBPO"",
+  ""email"": ""c.littorin@telia.com""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,118,118
+2000,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.liberalerna.se"",
+  ""address"": ""Box 2253"",
+  ""registeredDate"": ""2015-11-30T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 20,
+  ""phoneNumber"": ""08-410 242 00"",
+  ""partyName"": ""Liberalerna"",
+  ""faxNumber"": ""08-509 116 60"",
+  ""postCode"": ""10316"",
+  ""partyId"": ""3"",
+  ""shortCode"": ""L"",
+  ""email"": ""info@liberalerna.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,119,119
+2100,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.folkpartiet.se"",
+  ""address"": ""Box 2253"",
+  ""registeredDate"": ""1990-12-17T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 21,
+  ""phoneNumber"": ""08-410 242 00"",
+  ""partyName"": ""Folkpartiet liberalerna"",
+  ""faxNumber"": ""08-509 116 60"",
+  ""postCode"": ""10316"",
+  ""partyId"": ""3"",
+  ""shortCode"": ""FP"",
+  ""email"": ""info@liberal.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,120,120
+2200,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.nordiskunion.nu"",
+  ""address"": ""Norregatan 5"",
+  ""registeredDate"": ""2015-11-13T00:00:00"",
+  ""city"": ""Skånes Fagerhult"",
+  ""hjid"": 22,
+  ""phoneNumber"": ""070-52 47 433"",
+  ""partyName"": ""LOTTOKRATIN"",
+  ""faxNumber"": """",
+  ""postCode"": ""28040"",
+  ""partyId"": ""518"",
+  ""shortCode"": ""---"",
+  ""email"": ""lottokratin@gmail.com""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,121,121
+2300,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.mp.se"",
+  ""address"": ""Pustegränd 1-3"",
+  ""registeredDate"": ""1985-02-04T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 23,
+  ""phoneNumber"": ""08-545 224 50"",
+  ""partyName"": ""Miljöpartiet de gröna"",
+  ""faxNumber"": ""08-545 224 60"",
+  ""postCode"": ""11820"",
+  ""partyId"": ""55"",
+  ""shortCode"": ""MP"",
+  ""email"": """"
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,122,122
+5700,INITIAL,1,"{
+  ""createdDate"": ""2025-11-23T16:56:33.883"",
+  ""languageEnabled"": false,
+  ""languageCode"": ""yi"",
+  ""languageName"": ""Yiddish"",
+  ""hjid"": 57
+}","[
+  ""createdDate"",
+  ""languageEnabled"",
+  ""languageCode"",
+  ""languageName"",
+  ""hjid""
+]",com.hack23.cia.model.internal.application.system.impl.LanguageData,156,154
+2400,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.moderat.se"",
+  ""address"": ""Box 2080"",
+  ""registeredDate"": ""2013-09-06T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 24,
+  ""phoneNumber"": ""08-676 80 00"",
+  ""partyName"": ""Moderaterna"",
+  ""faxNumber"": ""08-676 81 30"",
+  ""postCode"": ""10312"",
+  ""partyId"": ""1"",
+  ""shortCode"": ""M"",
+  ""email"": ""info@moderat.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,123,123
+2500,INITIAL,1,"{
+  ""coAddress"": ""c/o Ercan Loströmmer"",
+  ""website"": """",
+  ""address"": ""Aprikosvägen 1 D"",
+  ""registeredDate"": ""2010-01-22T00:00:00"",
+  ""city"": ""Hässelby"",
+  ""hjid"": 25,
+  ""phoneNumber"": ""0738-93 23 53"",
+  ""partyName"": ""Mosebackedemokraterna"",
+  ""faxNumber"": """",
+  ""postCode"": ""16560"",
+  ""partyId"": ""976"",
+  ""shortCode"": ""---"",
+  ""email"": """"
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,124,124
+2600,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": """",
+  ""address"": ""Box 52"",
+  ""registeredDate"": ""2015-07-09T00:00:00"",
+  ""city"": ""Grängesberg"",
+  ""hjid"": 26,
+  ""phoneNumber"": ""0738-396 301"",
+  ""partyName"": ""Nordiska motståndsrörelsen"",
+  ""faxNumber"": """",
+  ""postCode"": ""77222"",
+  ""partyId"": ""1273"",
+  ""shortCode"": ""---"",
+  ""email"": ""info@nordfront.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,125,125
+2700,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.norrlandska-samlingspartiet.se"",
+  ""address"": ""Box 272"",
+  ""registeredDate"": ""2010-02-26T00:00:00"",
+  ""city"": ""Östersund"",
+  ""hjid"": 27,
+  ""phoneNumber"": ""072-22 55 26"",
+  ""partyName"": ""Norrländska Samlingspartiet"",
+  ""faxNumber"": """",
+  ""postCode"": ""83123"",
+  ""partyId"": ""995"",
+  ""shortCode"": ""NorrS"",
+  ""email"": ""jt.lindh@norrlandspartiet""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,126,126
+2800,INITIAL,1,"{
+  ""coAddress"": ""c/o Karl Gustafson"",
+  ""website"": """",
+  ""phoneNumber"": ""0581-504 05"",
+  ""address"": ""Kvarnbergavägen 21"",
+  ""city"": ""Gusselby"",
+  ""partyName"": ""Permalogiskt Samhälle"",
+  ""faxNumber"": """",
+  ""postCode"": ""71195"",
+  ""partyId"": ""1277"",
+  ""hjid"": 28,
+  ""shortCode"": ""---"",
+  ""email"": """"
+}","[
+  ""coAddress"",
+  ""website"",
+  ""phoneNumber"",
+  ""address"",
+  ""city"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""hjid"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,127,127
+2900,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.piratpartiet.se"",
+  ""address"": ""Box 307"",
+  ""registeredDate"": ""2006-02-15T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 29,
+  ""phoneNumber"": ""08-720 04 00"",
+  ""partyName"": ""Piratpartiet"",
+  ""faxNumber"": """",
+  ""postCode"": ""10126"",
+  ""partyId"": ""524"",
+  ""shortCode"": ""PP"",
+  ""email"": ""info@piratpartiet.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,128,128
+3000,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.socialisterna.org"",
+  ""address"": ""Box 73"",
+  ""registeredDate"": ""1998-03-31T00:00:00"",
+  ""city"": ""Farsta"",
+  ""hjid"": 30,
+  ""phoneNumber"": ""08-605 94 03"",
+  ""partyName"": ""Rättvisepartiet Socialisterna"",
+  ""faxNumber"": ""08-556 252 52"",
+  ""postCode"": ""12322"",
+  ""partyId"": ""131"",
+  ""shortCode"": ""RS"",
+  ""email"": ""rs@socialisterna.org""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,129,129
+3100,INITIAL,1,"{
+  ""coAddress"": ""c/o Johan Söderlin"",
+  ""website"": """",
+  ""address"": ""Näsbyborg, Näsbyborgsvägen 202"",
+  ""registeredDate"": ""1991-03-27T00:00:00"",
+  ""city"": ""Lövestad"",
+  ""hjid"": 31,
+  ""phoneNumber"": ""0416-340 49"",
+  ""partyName"": ""Sjöbopartiet"",
+  ""faxNumber"": """",
+  ""postCode"": ""27572"",
+  ""partyId"": ""172"",
+  ""shortCode"": ""SJP"",
+  ""email"": ""soderlin@hotmail.com""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,130,130
+3200,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.skanepartiet.org"",
+  ""address"": ""S Lindholmsvägen 270-70"",
+  ""registeredDate"": ""1979-05-15T00:00:00"",
+  ""city"": ""Svedala"",
+  ""hjid"": 32,
+  ""phoneNumber"": ""040-12 02 12"",
+  ""partyName"": ""Skånepartiet"",
+  ""faxNumber"": ""040-12 32 27"",
+  ""postCode"": ""23391"",
+  ""partyId"": ""54"",
+  ""shortCode"": ""SKÅ"",
+  ""email"": ""info@skanepartiet.org""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,131,131
+3300,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.socialapartiet.se"",
+  ""address"": ""Adressuppgift saknas"",
+  ""registeredDate"": ""2009-02-11T00:00:00"",
+  ""city"": """",
+  ""hjid"": 33,
+  ""phoneNumber"": """",
+  ""partyName"": ""Sociala Partiet (SP)"",
+  ""faxNumber"": """",
+  ""postCode"": """",
+  ""partyId"": ""522"",
+  ""shortCode"": ""---"",
+  ""email"": ""info@socialapartiet.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,132,132
+3400,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""http://www.socialistiskapartiet.se"",
+  ""address"": ""Box 5073"",
+  ""registeredDate"": ""1985-02-18T00:00:00"",
+  ""city"": ""Johanneshov"",
+  ""hjid"": 34,
+  ""phoneNumber"": ""08-31 08 50"",
+  ""partyName"": ""Socialistiska Partiet"",
+  ""faxNumber"": ""08-441 45 76"",
+  ""postCode"": ""12116"",
+  ""partyId"": ""74"",
+  ""shortCode"": ""SOC.P"",
+  ""email"": ""info@socialistiskapartiet.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,133,133
+5800,INITIAL,1,"{
+  ""createdDate"": ""2025-11-23T16:56:33.883"",
+  ""languageEnabled"": false,
+  ""languageCode"": ""cs"",
+  ""languageName"": ""Czech"",
+  ""hjid"": 58
+}","[
+  ""createdDate"",
+  ""languageEnabled"",
+  ""languageCode"",
+  ""languageName"",
+  ""hjid""
+]",com.hack23.cia.model.internal.application.system.impl.LanguageData,157,155
+717615200,INITIAL,1,"{
+  ""id"": ""NY.GDP.MKTP.KN"",
+  ""value"": ""GDP (constant LCU)""
+}","[
+  ""id"",
+  ""value""
+]",com.hack23.cia.model.external.worldbank.data.impl.Indicator,7177777,3583802
+3500,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.spi-valfarden.se"",
+  ""address"": ""Orups gränd 3"",
+  ""registeredDate"": ""2013-07-02T00:00:00"",
+  ""city"": ""Halmstad"",
+  ""hjid"": 35,
+  ""phoneNumber"": ""08-550 30 333"",
+  ""partyName"": ""SPI Välfärden"",
+  ""faxNumber"": """",
+  ""postCode"": ""30243"",
+  ""partyId"": ""107"",
+  ""shortCode"": ""SPI"",
+  ""email"": ""info@spi-valfarden.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,134,134
+3600,INITIAL,1,"{
+  ""coAddress"": ""c/o Benny Haag"",
+  ""website"": ""www.spritpartiet.se"",
+  ""address"": ""Nackanäsparken 4"",
+  ""registeredDate"": ""2010-03-04T00:00:00"",
+  ""city"": ""Nacka"",
+  ""hjid"": 36,
+  ""phoneNumber"": ""073-656 44 19"",
+  ""partyName"": ""Spritpartiet"",
+  ""faxNumber"": """",
+  ""postCode"": ""13133"",
+  ""partyId"": ""1004"",
+  ""shortCode"": ""---"",
+  ""email"": ""kontakt@spritpartiet.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,135,135
+3700,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.svenskafornuftspartiet.eu"",
+  ""address"": ""Rullstensvägen 13"",
+  ""registeredDate"": ""2014-04-10T00:00:00"",
+  ""city"": ""Åby"",
+  ""hjid"": 37,
+  ""phoneNumber"": ""0739-74 20 53"",
+  ""partyName"": ""Svenska Förnufts Partiet (SFP)"",
+  ""faxNumber"": """",
+  ""postCode"": ""61634"",
+  ""partyId"": ""1187"",
+  ""shortCode"": ""---"",
+  ""email"": ""info@svenskafornuftspartiet.eu""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,136,136
+3800,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.sverigedemokraterna.se"",
+  ""address"": ""Box 20085"",
+  ""registeredDate"": ""1991-02-08T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 38,
+  ""phoneNumber"": ""08-50 00 00 50"",
+  ""partyName"": ""Sverigedemokraterna"",
+  ""faxNumber"": ""08-50 00 00 68"",
+  ""postCode"": ""10460"",
+  ""partyId"": ""110"",
+  ""shortCode"": ""SD"",
+  ""email"": ""info@sverigedemokraterna.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,137,137
+3900,INITIAL,1,"{
+  ""coAddress"": ""c/o Theo Papaioannou"",
+  ""website"": ""www.vagvaletgbg.se"",
+  ""address"": ""Bokskogsbacken 83"",
+  ""registeredDate"": ""2014-02-21T00:00:00"",
+  ""city"": ""Hisings Backa"",
+  ""hjid"": 39,
+  ""phoneNumber"": ""0730-94 95 91"",
+  ""partyName"": ""Vägvalet"",
+  ""faxNumber"": """",
+  ""postCode"": ""42256"",
+  ""partyId"": ""1138"",
+  ""shortCode"": ""VägV"",
+  ""email"": ""info@vagvaletgbg.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,138,138
+4000,INITIAL,1,"{
+  ""coAddress"": """",
+  ""website"": ""www.vansterpartiet.se"",
+  ""address"": ""Box 12660"",
+  ""registeredDate"": ""1990-06-15T00:00:00"",
+  ""city"": ""Stockholm"",
+  ""hjid"": 40,
+  ""phoneNumber"": ""08-654 08 20"",
+  ""partyName"": ""Vänsterpartiet"",
+  ""faxNumber"": ""08-653 23 85"",
+  ""postCode"": ""11293"",
+  ""partyId"": ""5"",
+  ""shortCode"": ""V"",
+  ""email"": ""info@vansterpartiet.se""
+}","[
+  ""coAddress"",
+  ""website"",
+  ""address"",
+  ""registeredDate"",
+  ""city"",
+  ""hjid"",
+  ""phoneNumber"",
+  ""partyName"",
+  ""faxNumber"",
+  ""postCode"",
+  ""partyId"",
+  ""shortCode"",
+  ""email""
+]",com.hack23.cia.model.external.val.partier.impl.SwedenPoliticalParty,139,139
+4100,INITIAL,1,"{
+  ""configurationGroup"": ""EXTERNAL_SERVICES"",
+  ""component"": ""EmailServiceImpl"",
+  ""createdDate"": ""2025-11-23T16:56:33.595"",
+  ""configDescription"": ""Send email"",
+  ""componentTitle"": ""Send email"",
+  ""componentDescription"": ""Responsible for sending email"",
+  ""propertyValue"": ""false"",
+  ""updatedDate"": ""2025-11-23T16:56:33.595"",
+  ""configTitle"": ""Email configuration send emails"",
+  ""hjid"": 41,
+  ""propertyId"": ""application.email.send.email""
+}","[
+  ""configurationGroup"",
+  ""component"",
+  ""createdDate"",
+  ""configDescription"",
+  ""componentTitle"",
+  ""componentDescription"",
+  ""propertyValue"",
+  ""updatedDate"",
+  ""configTitle"",
+  ""hjid"",
+  ""propertyId""
+]",com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration,140,140
+4200,INITIAL,1,"{
+  ""configurationGroup"": ""EXTERNAL_SERVICES"",
+  ""component"": ""EmailServiceImpl"",
+  ""createdDate"": ""2025-11-23T16:56:33.615"",
+  ""configDescription"": ""From email"",
+  ""componentTitle"": ""Send email"",
+  ""componentDescription"": ""Responsible for sending email"",
+  ""propertyValue"": ""admin@hack23.com"",
+  ""updatedDate"": ""2025-11-23T16:56:33.615"",
+  ""configTitle"": ""Email configuration from email"",
+  ""hjid"": 42,
+  ""propertyId"": ""application.email.from.email""
+}","[
+  ""configurationGroup"",
+  ""component"",
+  ""createdDate"",
+  ""configDescription"",
+  ""componentTitle"",
+  ""componentDescription"",
+  ""propertyValue"",
+  ""updatedDate"",
+  ""configTitle"",
+  ""hjid"",
+  ""propertyId""
+]",com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration,141,141
+4300,INITIAL,1,"{
+  ""configurationGroup"": ""EXTERNAL_SERVICES"",
+  ""component"": ""EmailServiceImpl"",
+  ""createdDate"": ""2025-11-23T16:56:33.629"",
+  ""configDescription"": ""Smtp Host"",
+  ""componentTitle"": ""Smtp Host"",
+  ""componentDescription"": ""Responsible for sending email"",
+  ""propertyValue"": ""localhost"",
+  ""updatedDate"": ""2025-11-23T16:56:33.629"",
+  ""configTitle"": ""Email configuration smtp host"",
+  ""hjid"": 43,
+  ""propertyId"": ""application.email.smtp.host""
+}","[
+  ""configurationGroup"",
+  ""component"",
+  ""createdDate"",
+  ""configDescription"",
+  ""componentTitle"",
+  ""componentDescription"",
+  ""propertyValue"",
+  ""updatedDate"",
+  ""configTitle"",
+  ""hjid"",
+  ""propertyId""
+]",com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration,142,142
+4400,INITIAL,1,"{
+  ""configurationGroup"": ""EXTERNAL_SERVICES"",
+  ""component"": ""EmailServiceImpl"",
+  ""createdDate"": ""2025-11-23T16:56:33.644"",
+  ""configDescription"": ""Smtp port"",
+  ""componentTitle"": ""Smtp port"",
+  ""componentDescription"": ""Responsible for sending email"",
+  ""propertyValue"": ""587"",
+  ""updatedDate"": ""2025-11-23T16:56:33.644"",
+  ""configTitle"": ""Email configuration smtp port"",
+  ""hjid"": 44,
+  ""propertyId"": ""application.email.smtp.port""
+}","[
+  ""configurationGroup"",
+  ""component"",
+  ""createdDate"",
+  ""configDescription"",
+  ""componentTitle"",
+  ""componentDescription"",
+  ""propertyValue"",
+  ""updatedDate"",
+  ""configTitle"",
+  ""hjid"",
+  ""propertyId""
+]",com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration,143,143
+5900,INITIAL,1,"{
+  ""createdDate"": ""2025-11-23T16:56:33.883"",
+  ""languageEnabled"": false,
+  ""languageCode"": ""el"",
+  ""languageName"": ""Greek"",
+  ""hjid"": 59
+}","[
+  ""createdDate"",
+  ""languageEnabled"",
+  ""languageCode"",
+  ""languageName"",
+  ""hjid""
+]",com.hack23.cia.model.internal.application.system.impl.LanguageData,158,156
+1015862400,INITIAL,1,"{
+  ""id"": ""gt121857"",
+  ""hjid"": 1643629,
+  ""content"": ""\u003cdokumentstatus\u003e\u003cdokument\u003e\n \u003changar_id\u003e2403604\u003c/hangar_id\u003e\n \u003cdok_id\u003eGT121857\u003c/dok_id\u003e\n \u003crm\u003e2005/06\u003c/rm\u003e\n \u003cbeteckning\u003e1857\u003c/beteckning\u003e\n \u003ctyp\u003efrs\u003c/typ\u003e\n \u003csubtyp\u003e\u003c/subtyp\u003e\n \u003cdoktyp\u003efrs\u003c/doktyp\u003e\n \u003ctyprubrik\u003eSvar på skriftlig fråga 2005/06:1857 besvarad av \u003c/typrubrik\u003e\n \u003cdokumentnamn\u003eSvar på skriftlig fråga\u003c/dokumentnamn\u003e\n \u003cdebattnamn\u003eSvar på skriftlig fråga\u003c/debattnamn\u003e\n \u003ctempbeteckning\u003e \u003c/tempbeteckning\u003e\n \u003corgan\u003e\u003c/organ\u003e\n \u003cmottagare\u003eFörsvarsminister Leni Björklund\u003c/mottagare\u003e\n \u003cnummer\u003e1857\u003c/nummer\u003e\n \u003cslutnummer\u003e0\u003c/slutnummer\u003e\n \u003cdatum\u003e2006-06-28 00:00:00\u003c/datum\u003e\n \u003csystemdatum\u003e2006-09-22 15:40:06\u003c/systemdatum\u003e\n \u003cpublicerad\u003e2006-06-28 00:00:00\u003c/publicerad\u003e\n \u003ctitel\u003eVisbyklassen\u003c/titel\u003e\n \u003csubtitel\u003e\u003c/subtitel\u003e\n \u003cstatus\u003e\u003c/status\u003e\n \u003chtmlformat\u003e\u003c/htmlformat\u003e\n \u003crelaterat_id\u003e\u003c/relaterat_id\u003e\n \u003csource\u003e\u003c/source\u003e\n \u003csourceid\u003e\u003c/sourceid\u003e\n \u003cdokument_url_text\u003ehttps://data.riksdagen.se/dokument/GT121857/text\u003c/dokument_url_text\u003e\n \u003cdokument_url_html\u003ehttps://data.riksdagen.se/dokument/GT121857/text\u003c/dokument_url_html\u003e\n \u003cdokumentstatus_url_xml\u003ehttps://data.riksdagen.se/dokument/GT121857/text\u003c/dokumentstatus_url_xml\u003e\n \u003chtml\u003e \n \n\u0026lt;div class\u003dSection1\u0026gt; \n \n\u0026lt;p class\u003dFrgeSvarDatum style\u003d\u0027margin-top:0cm;line-height:normal\u0027\u0026gt;\u0026lt;a \nname\u003dPassTempLäge\u0026gt;\u0026lt;/a\u0026gt;\u0026lt;i style\u003d\u0027mso-bidi-font-style:normal\u0027\u0026gt;\u0026lt;font size\u003d2 \nface\u003dVerdana\u0026gt;\u0026lt;span lang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;den 28 \njuni \u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/i\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dFrgesvar style\u003d\u0027margin-top:0cm;line-height:normal;page-break-after: \nauto\u0027\u0026gt;\u0026lt;b style\u003d\u0027mso-bidi-font-weight:normal\u0027\u0026gt;\u0026lt;font size\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span \nlang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Svar på fråga 2005/06:1857 \nom Visbyklassen\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/b\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dBeslutsfattande style\u003d\u0027line-height:normal\u0027\u0026gt;\u0026lt;font size\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span \nlang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Försvarsminister Leni \nBjörklund\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dMsoNormalIndent style\u003d\u0027line-height:normal\u0027\u0026gt;\u0026lt;a name\u003dTemp\u0026gt;\u0026lt;/a\u0026gt;\u0026lt;font \nsize\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span lang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Allan \nWidman har frågat mig vilka åtgärder jag ämnar vidta så att en korvett ur \nVisbyklassen snarast kan insättas i en multinationell sjöstridsstyrka och som \ndel av en fredsstödjande operation.\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dMsoNormalIndent style\u003d\u0027line-height:normal\u0027\u0026gt;\u0026lt;font size\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span \nlang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Det första fartyget av \nVisbyklassens fem fartyg planeras bli operativt under 2008. Samtliga fem fartyg \nplaneras vara operativa 2010.\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dMsoNormalIndent style\u003d\u0027line-height:normal\u0027\u0026gt;\u0026lt;font size\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span \nlang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Sverige har sedan några år \ntillbaka anmält en korvettstyrka, omfattande två fartyg samt ett stödfartyg, \ntill internationella styrkeregister. Förbandet kallas för internationella \nkorvettstyrkan, IKS. Förbandet har en beredskap om 30 dagar. De fartyg som nu \nutgör internationella korvettstyrkan är två fartyg ur Göteborgsklassen, \ningående i fjärde Sjöstridsflottiljen baserad vid Muskö. I takt med att \nVisbykorvetterna blir operativa kommer Göteborgskorvetterna att avvecklas. \nAvsikten är därmed att Visbykorvetterna i framtiden kommer att utgöra stommen i \nden internationella korvettstyrkan.\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;p class\u003dMsoNormalIndent style\u003d\u0027line-height:normal\u0027\u0026gt;\u0026lt;font size\u003d2 face\u003dVerdana\u0026gt;\u0026lt;span \nlang\u003dSV style\u003d\u0027font-size:10.0pt;font-family:Verdana\u0027\u0026gt;Visbysystemet är konstruerat \nför att kunna genomföra flera uppgifter samtidigt. Detta innebär att fartygen är \nmångfunktionella och kan bland annat nyttjas för att utföra sjökontroll, \nminröjning samt spaning. Samtliga dessa förmågor kan komma väl till pass vid en \neventuell internationell insats.\u0026lt;o:p\u0026gt;\u0026lt;/o:p\u0026gt;\u0026lt;/span\u0026gt;\u0026lt;/font\u0026gt;\u0026lt;/p\u0026gt; \n \n\u0026lt;/div\u0026gt; \n \n\u003c/html\u003e\n\u003c/dokument\u003e\n\u003cdokaktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eINL\u003c/kod\u003e\n\u003cnamn\u003eInlämnad\u003c/namn\u003e\n\u003cdatum\u003e2006-06-19 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eBESV\u003c/kod\u003e\n\u003cnamn\u003eBesvarad\u003c/namn\u003e\n\u003cdatum\u003e2006-06-28 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eBESV\u003c/kod\u003e\n\u003cnamn\u003eBesvarad\u003c/namn\u003e\n\u003cdatum\u003e2006-07-03 00:00:00\u003c/datum\u003e\n\u003cstatus\u003eplanerad\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eANM\u003c/kod\u003e\n\u003cnamn\u003eAnmäld\u003c/namn\u003e\n\u003cdatum\u003e2006-10-02 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eSA\u003c/kod\u003e\n\u003cnamn\u003eSvar anmält\u003c/namn\u003e\n\u003cdatum\u003e2006-10-02 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003c/dokaktivitet\u003e\n\u003cdokintressent\u003e\n\u003cintressent\u003e\n\u003cintressent_id\u003e0286593079005\u003c/intressent_id\u003e\n\u003cnamn\u003eLeni Björklund\u003c/namn\u003e\n\u003cpartibet\u003eS\u003c/partibet\u003e\n\u003cordning\u003e1\u003c/ordning\u003e\n\u003croll\u003ebesvarare\u003c/roll\u003e\n\u003c/intressent\u003e\n\u003cintressent\u003e\n\u003cintressent_id\u003e0446541913415\u003c/intressent_id\u003e\n\u003cnamn\u003eAllan Widman\u003c/namn\u003e\n\u003cpartibet\u003eFP\u003c/partibet\u003e\n\u003cordning\u003e1\u003c/ordning\u003e\n\u003croll\u003efragestallare\u003c/roll\u003e\n\u003c/intressent\u003e\n\u003c/dokintressent\u003e\n\u003cdokreferens\u003e\n\u003creferens\u003e\n\u003creferenstyp\u003efråga\u003c/referenstyp\u003e\n\u003cuppgift\u003eSkriftlig fråga 2005/06:1857 Visbyklassen\u003c/uppgift\u003e\n\u003cref_dok_id\u003eGT111857\u003c/ref_dok_id\u003e\n\u003cref_dok_typ\u003efr\u003c/ref_dok_typ\u003e\n\u003cref_dok_rm\u003e2005/06\u003c/ref_dok_rm\u003e\n\u003cref_dok_bet\u003e1857\u003c/ref_dok_bet\u003e\n\u003cref_dok_titel\u003eVisbyklassen\u003c/ref_dok_titel\u003e\n\u003cref_dok_subtitel\u003e\u003c/ref_dok_subtitel\u003e\n\u003cref_dok_subtyp\u003e\u003c/ref_dok_subtyp\u003e\n\u003cref_dok_dokumentnamn\u003eSkriftlig fråga\u003c/ref_dok_dokumentnamn\u003e\n\u003c/referens\u003e\n\u003c/dokreferens\u003e\n\u003c/dokumentstatus\u003e\n""
 }","[
   ""id"",
   ""hjid"",
   ""content""
-]",com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData,8657173,3972761
-865534300,INITIAL,1,"{
-  ""topic"": [],
-  ""hjid"": 908178
+]",com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData,10156779,4492000
+4500,INITIAL,1,"{
+  ""configurationGroup"": ""EXTERNAL_SERVICES"",
+  ""component"": ""EmailServiceImpl"",
+  ""createdDate"": ""2025-11-23T16:56:33.658"",
+  ""configDescription"": ""Smtp username"",
+  ""componentTitle"": ""Smtp username"",
+  ""componentDescription"": ""Responsible for sending email"",
+  ""propertyValue"": ""username"",
+  ""updatedDate"": ""2025-11-23T16:56:33.658"",
+  ""configTitle"": ""Email configuration smtp username"",
+  ""hjid"": 45,
+  ""propertyId"": ""application.email.smtp.username""
 }","[
-  ""topic"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Topics,8657183,3972765
-865534400,INITIAL,1,"{
-  ""sourceNote"": ""Percentage of firms expected to give gifts or informal payments to get a construction permit."",
-  ""indicatorName"": ""Percent of firms expected to give gifts to get a construction permit"",
-  ""topics"": {
-    ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Topics"",
-    ""cdoId"": 908178
-  },
-  ""sourceOrganization"": ""World Bank, Enterprise Surveys (http://www.enterprisesurveys.org/)."",
-  ""id"": ""IC.FRM.CORR.CORR8"",
-  ""source"": {
-    ""valueObject"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Source"",
-    ""ownerId"": {
-      ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"",
-      ""cdoId"": 908177
-    },
-    ""fragment"": ""source""
-  },
-  ""hjid"": 908177
-}","[
-  ""sourceNote"",
-  ""indicatorName"",
-  ""topics"",
-  ""sourceOrganization"",
-  ""id"",
-  ""source"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement,8657184,3972765
-865534500,INITIAL,1,"{
-  ""id"": ""13"",
-  ""value"": ""Enterprise Surveys""
-}","[
-  ""id"",
-  ""value""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Source,8657185,3972765
-865534700,INITIAL,1,"{
-  ""topic"": [],
-  ""hjid"": 908181
-}","[
-  ""topic"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Topics,8657187,3972767
-865534800,INITIAL,1,"{
-  ""sourceNote"": ""Percentage of firms expected to give gifts or informal payments to get an import license."",
-  ""indicatorName"": ""Percent of firms expected to give gifts to get an import license "",
-  ""topics"": {
-    ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Topics"",
-    ""cdoId"": 908181
-  },
-  ""sourceOrganization"": ""World Bank, Enterprise Surveys (http://www.enterprisesurveys.org/)."",
-  ""id"": ""IC.FRM.CORR.CORR9"",
-  ""source"": {
-    ""valueObject"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Source"",
-    ""ownerId"": {
-      ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"",
-      ""cdoId"": 908180
-    },
-    ""fragment"": ""source""
-  },
-  ""hjid"": 908180
-}","[
-  ""sourceNote"",
-  ""indicatorName"",
-  ""topics"",
-  ""sourceOrganization"",
-  ""id"",
-  ""source"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement,8657188,3972767
-865534900,INITIAL,1,"{
-  ""id"": ""13"",
-  ""value"": ""Enterprise Surveys""
-}","[
-  ""id"",
-  ""value""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Source,8657189,3972767
-865535000,INITIAL,1,"{
-  ""sourceNote"": ""Percentage of firms identifying functioning of the courts as major constraint. The computation of the indicator is based on the rating of the obstacle as a potential constraint to the current operations of the establishment."",
-  ""indicatorName"": ""Percent of firms identifying the courts system as a major constraint                         "",
-  ""topics"": {
-    ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Topics"",
-    ""cdoId"": 908199
-  },
-  ""sourceOrganization"": ""World Bank, Enterprise Surveys (http://www.enterprisesurveys.org/)."",
-  ""id"": ""IC.FRM.CORR.CRIME9"",
-  ""source"": {
-    ""valueObject"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Source"",
-    ""ownerId"": {
-      ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"",
-      ""cdoId"": 908198
-    },
-    ""fragment"": ""source""
-  },
-  ""hjid"": 908198
-}","[
-  ""sourceNote"",
-  ""indicatorName"",
-  ""topics"",
-  ""sourceOrganization"",
-  ""id"",
-  ""source"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement,8657190,3972768
-865535100,INITIAL,1,"{
-  ""topic"": [],
-  ""hjid"": 908199
-}","[
-  ""topic"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Topics,8657191,3972768
-865535300,INITIAL,1,"{
-  ""id"": ""13"",
-  ""value"": ""Enterprise Surveys""
-}","[
-  ""id"",
-  ""value""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Source,8657193,3972768
-865537400,INITIAL,1,"{
-  ""id"": ""gr10290"",
-  ""hjid"": 908203,
-  ""content"": ""\u003cdokumentstatus\u003e\u003cdokument\u003e\n \u003changar_id\u003e2329285\u003c/hangar_id\u003e\n \u003cdok_id\u003eGR10290\u003c/dok_id\u003e\n \u003crm\u003e2003/04\u003c/rm\u003e\n \u003cbeteckning\u003e290\u003c/beteckning\u003e\n \u003ctyp\u003eip\u003c/typ\u003e\n \u003csubtyp\u003e\u003c/subtyp\u003e\n \u003cdoktyp\u003eip\u003c/doktyp\u003e\n \u003ctyprubrik\u003eInterpellation 2003/04:290 av Narti, Ana Maria (fp)\u003c/typrubrik\u003e\n \u003cdokumentnamn\u003eInterpellation\u003c/dokumentnamn\u003e\n \u003cdebattnamn\u003eInterpellationsdebatt\u003c/debattnamn\u003e\n \u003ctempbeteckning\u003efp\u003c/tempbeteckning\u003e\n \u003corgan\u003efp\u003c/organ\u003e\n \u003cmottagare\u003eutbildningsminister Thomas Östros\u003c/mottagare\u003e\n \u003cnummer\u003e290\u003c/nummer\u003e\n \u003cslutnummer\u003e0\u003c/slutnummer\u003e\n \u003cdatum\u003e2004-02-09 00:00:00\u003c/datum\u003e\n \u003csystemdatum\u003e2009-03-31 13:44:27\u003c/systemdatum\u003e\n \u003cpublicerad\u003e2004-02-09 00:00:00\u003c/publicerad\u003e\n \u003ctitel\u003eåtgärder för integration på högskola och universitet\u003c/titel\u003e\n \u003csubtitel\u003eNarti, Ana Maria (fp)\u003c/subtitel\u003e\n \u003cstatus\u003e\u003c/status\u003e\n \u003chtmlformat\u003e\u003c/htmlformat\u003e\n \u003crelaterat_id\u003e\u003c/relaterat_id\u003e\n \u003csource\u003e\u003c/source\u003e\n \u003csourceid\u003e\u003c/sourceid\u003e\n \u003cdokument_url_text\u003ehttps://data.riksdagen.se/dokument/GR10290/text\u003c/dokument_url_text\u003e\n \u003cdokument_url_html\u003ehttps://data.riksdagen.se/dokument/GR10290/text\u003c/dokument_url_html\u003e\n \u003cdokumentstatus_url_xml\u003ehttps://data.riksdagen.se/dokument/GR10290/text\u003c/dokumentstatus_url_xml\u003e\n \u003chtml\u003e\u0026lt;I\u0026gt;\u0026lt;FONT FACE\u003d\""Verdana,Tahoma\"" SIZE\u003d2\u0026gt;\u0026lt;P\u0026gt;den 9 februari\u0026lt;/P\u0026gt;\u0026lt;/I\u0026gt;\u0026lt;B\u0026gt;\u0026lt;P\u0026gt;Interpellation 2003/04:290\u0026lt;/B\u0026gt; av \u0026lt;I\u0026gt;Ana Maria Narti\u0026lt;/I\u0026gt; (fp) till utbildningsminister Thomas \u0026amp;Ouml;stros om \u0026amp;aring;tg\u0026amp;auml;rder f\u0026amp;ouml;r integration p\u0026amp;aring; h\u0026amp;ouml;gskola och universitet\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;\u0026lt;A NAME\u003d\""Temp\""\u0026gt;\u0026lt;/A\u0026gt;I sitt anf\u0026amp;ouml;rande under partiledardebatten den 21 januari talade statsminister G\u0026amp;ouml;ran Persson om den v\u0026amp;auml;xande arbetsl\u0026amp;ouml;sheten och om en \u0026amp;ouml;kning av volymerna i arbetsmarknads\u0026amp;aring;tg\u0026amp;auml;rder. Statsministern sade att uppg\u0026amp;aring;ngen i den \u0026amp;ouml;ppna arbetsl\u0026amp;ouml;sheten \u0026amp;ouml;verraskade regeringen som tidigare hade gjort en annan konjunkturbed\u0026amp;ouml;mning: Med en b\u0026amp;auml;ttre konjunktur skulle en l\u0026amp;aring;sning av arbetskraften i omfattande arbetsmarknadspolitiska program ha varit ett misstag. \u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;\u0026amp;quot;Konjunkturuppg\u0026amp;aring;ngen har l\u0026amp;aring;tit v\u0026amp;auml;nta p\u0026amp;aring; sig. I takt med att den har v\u0026amp;auml;ntat p\u0026amp;aring; att komma har arbetsl\u0026amp;ouml;sheten stigit. Detta kan vi inte acceptera. D\u0026amp;auml;rf\u0026amp;ouml;r l\u0026amp;auml;gger vi tillsammans med v\u0026amp;aring;ra samarbetspartier fram en satsning p\u0026amp;aring; 2 miljarder kronor som inneb\u0026amp;auml;r 15\u0026amp;nbsp;000 nya platser i arbetsmarknadspolitiken, i huvudsak riktad mot kommuner och landsting. D\u0026amp;auml;r vet vi n\u0026amp;auml;mligen att en f\u0026amp;ouml;r tidig nedg\u0026amp;aring;ng i arbetskraften snart kommer att m\u0026amp;ouml;tas av ett v\u0026amp;auml;xande behov av nyrekrytering.\u0026amp;quot; \u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;Med dessa ord signalerade G\u0026amp;ouml;ran Persson en kurs\u0026amp;auml;ndring i arbetsmarknadspolitiken: fr\u0026amp;aring;n ett l\u0026amp;auml;ge d\u0026amp;aring; man hade stramat \u0026amp;aring;t de olika utbildningsinsatserna till en fas med intensifierade program avsedda att f\u0026amp;ouml;rb\u0026amp;auml;ttra de arbetsl\u0026amp;ouml;sas kompetens.\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;Det \u0026amp;auml;r allts\u0026amp;aring; l\u0026amp;auml;mpligt att ompr\u0026amp;ouml;va vissa st\u0026amp;auml;llningstaganden inom Arbetsmarknadsverket och p\u0026amp;aring; nytt analysera de insatser som v\u0026amp;auml;sentligt skulle f\u0026amp;ouml;rb\u0026amp;auml;ttra de l\u0026amp;aring;ngtidsarbetsl\u0026amp;ouml;sas chanser att f\u0026amp;aring; intr\u0026amp;auml;de i arbetslivet. En s\u0026amp;aring;dan insats \u0026amp;auml;r den aspirantutbildning f\u0026amp;ouml;r utl\u0026amp;auml;ndska akademiker som sedan tre terminer bedrivs vid Link\u0026amp;ouml;pings universitet och Malm\u0026amp;ouml; h\u0026amp;ouml;gskola. En del av studenterna som f\u0026amp;ouml;ljer denna utbildning riskerar att inte kunna fullf\u0026amp;ouml;lja sina studier d\u0026amp;auml;rf\u0026amp;ouml;r att de tidigare ber\u0026amp;auml;knade arbetsmarknads\u0026amp;aring;tg\u0026amp;auml;rderna @ mest aktivitetsst\u0026amp;ouml;d @ som finansierar deras vardag under studietiden inte omfattar hela perioden de beh\u0026amp;ouml;ver \u0026amp;auml;gna \u0026amp;aring;t studier och praktik innan de f\u0026amp;aring;r beh\u0026amp;ouml;righet till exempel som l\u0026amp;auml;rare, eller tar en annan yrkesexamen. \u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;Aspirantutbildningen lovar ge mycket goda resultat. Akademiker som har varit arbetsl\u0026amp;ouml;sa eller arbetat med mycket l\u0026amp;aring;gt kvalificerade uppgifter har f\u0026amp;aring;tt en chans att komplettera sina kunskaper fr\u0026amp;aring;n hemlandet samtidigt som de praktiserar p\u0026amp;aring; m\u0026amp;aring;nga arbetsplatser och skaffar sig n\u0026amp;auml;tverk inom sina yrken. Reaktioner och omd\u0026amp;ouml;me fr\u0026amp;aring;n b\u0026amp;aring;de l\u0026amp;auml;rare och arbetskamrater vid praktikplatserna \u0026amp;auml;r positiva. M\u0026amp;aring;nga av dessa studenter arbetar mera intensivt och tar flera po\u0026amp;auml;ng per termin \u0026amp;auml;n vanliga studenter. Men m\u0026amp;aring;nga av dem beh\u0026amp;ouml;ver en l\u0026amp;auml;ngre studietid \u0026amp;auml;n ett \u0026amp;aring;r @ f\u0026amp;ouml;r att helt \u0026amp;ouml;vervinna sv\u0026amp;aring;righeter orsakade av den l\u0026amp;aring;nga arbetsl\u0026amp;ouml;sheten och av den isolering som vardagen utanf\u0026amp;ouml;r yrkeslivet gav upphov till. \u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;M\u0026amp;aring;nga aspiranter har f\u0026amp;aring; m\u0026amp;ouml;jligheter att kommande terminer finansiera fortsatta studier via CSN. En del av dem har passerat 50-\u0026amp;aring;rs gr\u0026amp;auml;nsen men kan sj\u0026amp;auml;lvklart arbeta 10 eller 15 \u0026amp;aring;r efter avslutad utbildning. Andra betalar i dag ur sitt blygsamma aktivitetsst\u0026amp;ouml;d skulder fr\u0026amp;aring;n tidigare f\u0026amp;ouml;rs\u0026amp;ouml;k att etablera sig i arbetslivet (hemutrustningsl\u0026amp;aring;n, studiel\u0026amp;aring;n f\u0026amp;ouml;r f\u0026amp;ouml;rdjupade kurser i svenska, andra l\u0026amp;aring;n tagna f\u0026amp;ouml;r att finansiera AMS-utbildningar som kommunerna inte betalade f\u0026amp;ouml;r). Att f\u0026amp;ouml;rs\u0026amp;ouml;ka f\u0026amp;aring; bankl\u0026amp;aring;n i en s\u0026amp;aring;dan situation \u0026amp;auml;r orealistiskt, bankerna granskar de blivande l\u0026amp;aring;ntagarnas inkomst innan de beviljar l\u0026amp;aring;n och de personer det g\u0026amp;auml;ller saknar egen inkomst sedan flera \u0026amp;aring;r.\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;Det \u0026amp;auml;r viktigt att arbetet med aspirantutbildningar vid Malm\u0026amp;ouml; h\u0026amp;ouml;gskola och Link\u0026amp;ouml;pings universitet f\u0026amp;aring;r forts\u0026amp;auml;tta @ inte bara d\u0026amp;auml;rf\u0026amp;ouml;r att varje invandrad akademiker som f\u0026amp;aring;r intr\u0026amp;auml;de i det svenska yrkeslivet \u0026amp;auml;r en direkt social, ekonomisk och politisk vinst f\u0026amp;ouml;r hela samh\u0026amp;auml;llet, utan ocks\u0026amp;aring; d\u0026amp;auml;rf\u0026amp;ouml;r att dessa kurser utg\u0026amp;ouml;r en f\u0026amp;ouml;rebild, en symbol f\u0026amp;ouml;r lyckad integration i yrkeslivet av m\u0026amp;auml;nniskor som b\u0026amp;auml;r med sig kultur fr\u0026amp;aring;n hela v\u0026amp;auml;rlden. I Malm\u0026amp;ouml; har h\u0026amp;ouml;gskolan f\u0026amp;aring;tt l\u0026amp;ouml;fte fr\u0026amp;aring;n l\u0026amp;auml;nsarbetsn\u0026amp;auml;mnden om finansiering av 80 studieveckor men aspiranterna i Link\u0026amp;ouml;ping vet fortfarande inte hur de ska f\u0026amp;aring; ekonomi f\u0026amp;ouml;r h\u0026amp;ouml;stterminen 2004. Liknande oklarhet drabbar ocks\u0026amp;aring; de studerande samlade kring de mycket positiva erfarenheterna fr\u0026amp;aring;n Invandrarakademien vid Bor\u0026amp;aring;s h\u0026amp;ouml;gskola. \u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;Det g\u0026amp;auml;ller m\u0026amp;auml;nniskor som efter m\u0026amp;aring;nga motg\u0026amp;aring;ngar h\u0026amp;aring;ller p\u0026amp;aring; att f\u0026amp;aring; tillbaka tron p\u0026amp;aring; det svenska samh\u0026amp;auml;llet. Att ta ifr\u0026amp;aring;n dem m\u0026amp;ouml;jligheten att fullf\u0026amp;ouml;lja sina studier och b\u0026amp;ouml;rja arbeta inom sina yrken betyder en enorm social och psykologisk f\u0026amp;ouml;rlust f\u0026amp;ouml;r alla @ samtidigt som detta inneb\u0026amp;auml;r att Utbildningsdepartementet f\u0026amp;ouml;rg\u0026amp;auml;ves satsade tiotals miljoner p\u0026amp;aring; kurserna.\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;D\u0026amp;auml;rf\u0026amp;ouml;r v\u0026amp;auml;nder jag mig till utbildningsministern med f\u0026amp;ouml;ljande fr\u0026amp;aring;gor: \u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;T\u0026amp;auml;nker utbildningsministern inom regeringen ta upp problemet f\u0026amp;ouml;r att garantera en lyckad forts\u0026amp;auml;ttning p\u0026amp;aring; detta viktiga initiativ som kan bli f\u0026amp;ouml;rebild f\u0026amp;ouml;r m\u0026amp;aring;nga h\u0026amp;ouml;gskolor och universitet i framtiden?\u0026lt;/P\u0026gt;\u0026lt;P\u0026gt;Vad avser ministern att g\u0026amp;ouml;ra f\u0026amp;ouml;r samverkan mellan Utbildningsdepartementet, N\u0026amp;auml;ringsdepartementet och Justitiedepartementet intensifieras och effektiviseras s\u0026amp;aring; att on\u0026amp;ouml;diga hinder f\u0026amp;ouml;r integrationen en g\u0026amp;aring;ng f\u0026amp;ouml;r alla undanr\u0026amp;ouml;js? \u0026lt;/P\u0026gt;\u0026lt;/FONT\u0026gt;\u003c/html\u003e\n\u003c/dokument\u003e\n\u003cdokaktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eINL\u003c/kod\u003e\n\u003cnamn\u003eInlämnad\u003c/namn\u003e\n\u003cdatum\u003e2004-02-09 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eANM\u003c/kod\u003e\n\u003cnamn\u003eAnmäld\u003c/namn\u003e\n\u003cdatum\u003e2004-02-10 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eFD\u003c/kod\u003e\n\u003cnamn\u003eFördröjd\u003c/namn\u003e\n\u003cdatum\u003e2004-02-11 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eSFA\u003c/kod\u003e\n\u003cnamn\u003eSvar fördröjt anmält\u003c/namn\u003e\n\u003cdatum\u003e2004-02-13 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eSISVA\u003c/kod\u003e\n\u003cnamn\u003eSista svarsdatum\u003c/namn\u003e\n\u003cdatum\u003e2004-03-01 00:00:00\u003c/datum\u003e\n\u003cstatus\u003eplanerad\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003caktivitet\u003e\n\u003ckod\u003eBESV\u003c/kod\u003e\n\u003cnamn\u003eBesvarad\u003c/namn\u003e\n\u003cdatum\u003e2004-03-16 00:00:00\u003c/datum\u003e\n\u003cstatus\u003einträffat\u003c/status\u003e\n\u003cordning\u003e0\u003c/ordning\u003e\n\u003cprocess\u003ebehandling\u003c/process\u003e\n\u003c/aktivitet\u003e\n\u003c/dokaktivitet\u003e\n\u003cdokintressent\u003e\n\u003cintressent\u003e\n\u003cintressent_id\u003e0283009944701\u003c/intressent_id\u003e\n\u003cnamn\u003eAna Maria Narti\u003c/namn\u003e\n\u003cpartibet\u003eFP\u003c/partibet\u003e\n\u003cordning\u003e1\u003c/ordning\u003e\n\u003croll\u003eundertecknare\u003c/roll\u003e\n\u003c/intressent\u003e\n\u003cintressent\u003e\n\u003cintressent_id\u003e0977281927618\u003c/intressent_id\u003e\n\u003cnamn\u003eThomas Östros\u003c/namn\u003e\n\u003cpartibet\u003eS\u003c/partibet\u003e\n\u003cordning\u003e1\u003c/ordning\u003e\n\u003croll\u003ebesvaradav\u003c/roll\u003e\n\u003c/intressent\u003e\n\u003cintressent\u003e\n\u003cintressent_id\u003e0977281927618\u003c/intressent_id\u003e\n\u003cnamn\u003eThomas Östros\u003c/namn\u003e\n\u003cpartibet\u003eS\u003c/partibet\u003e\n\u003cordning\u003e1\u003c/ordning\u003e\n\u003croll\u003estalldtill\u003c/roll\u003e\n\u003c/intressent\u003e\n\u003c/dokintressent\u003e\n\u003cdokuppgift\u003e\n\u003cuppgift\u003e\n\u003ckod\u003estatustext\u003c/kod\u003e\n\u003cnamn\u003estatustext\u003c/namn\u003e\n\u003ctext\u003eInterpellationen är besvarad\u003c/text\u003e\n\u003cdok_id\u003eGR10290\u003c/dok_id\u003e\n\u003csystemdatum\u003e2017-10-20 10:11:54\u003c/systemdatum\u003e\n\u003c/uppgift\u003e\n\u003c/dokuppgift\u003e\n\u003cdokreferens\u003e\n\u003creferens\u003e\n\u003creferenstyp\u003eipsvarid\u003c/referenstyp\u003e\n\u003cuppgift\u003e{54F782C9-85F9-4325-9467-D02D3D1FE4D0}\u003c/uppgift\u003e\n\u003cref_dok_id\u003eGR0983\u003c/ref_dok_id\u003e\n\u003cref_dok_typ\u003eprot\u003c/ref_dok_typ\u003e\n\u003cref_dok_rm\u003e2003/04\u003c/ref_dok_rm\u003e\n\u003cref_dok_bet\u003e83\u003c/ref_dok_bet\u003e\n\u003cref_dok_titel\u003eRiksdagens protokoll 2003/04:83 Tisdagen den 16 mars\u003c/ref_dok_titel\u003e\n\u003cref_dok_subtitel\u003e5 § Svar på interpellation 2003/04:290 om åtgärder för integration på högskola och universitet\u003c/ref_dok_subtitel\u003e\n\u003cref_dok_subtyp\u003e\u003c/ref_dok_subtyp\u003e\n\u003cref_dok_dokumentnamn\u003eProtokoll\u003c/ref_dok_dokumentnamn\u003e\n\u003c/referens\u003e\n\u003c/dokreferens\u003e\n\u003c/dokumentstatus\u003e\n""
-}","[
-  ""id"",
-  ""hjid"",
-  ""content""
-]",com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData,8657214,3972771
-865537700,INITIAL,1,"{
-  ""documentPersonReferenceList"": [
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908216
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908217
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908218
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908219
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908220
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908221
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908222
-    }
-  ],
-  ""hjid"": 908215
-}","[
-  ""documentPersonReferenceList"",
-  ""hjid""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceContainer,8657217,3972774
-865537800,INITIAL,1,"{
-  ""orderNumber"": 5,
-  ""partyShortCode"": ""C"",
-  ""personReferenceId"": ""0673622610409"",
-  ""hjid"": 908220,
-  ""roleDescription"": ""UNDERTECKNARE"",
-  ""referenceName"": ""Birgitta Carlsson""
-}","[
-  ""orderNumber"",
-  ""partyShortCode"",
-  ""personReferenceId"",
-  ""hjid"",
-  ""roleDescription"",
-  ""referenceName""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData,8657218,3972774
-865532200,INITIAL,1,"{
-  ""id"": ""gra3ubu10"",
-  ""hjid"": 908163,
-  ""content"": ""\u003cdokumentstatus\u003e\u003cdokument\u003e\n \u003changar_id\u003e2725774\u003c/hangar_id\u003e\n \u003cdok_id\u003eGRA3UbU10\u003c/dok_id\u003e\n \u003crm\u003e2003/04\u003c/rm\u003e\n \u003cbeteckning\u003e10\u003c/beteckning\u003e\n \u003ctyp\u003eutskottsmöte\u003c/typ\u003e\n \u003csubtyp\u003eföredragningslista\u003c/subtyp\u003e\n \u003cdoktyp\u003eutskottsmöte\u003c/doktyp\u003e\n \u003ctyprubrik\u003eUtskottens kallelser och föredragningslistor 2003/04:10\u003c/typrubrik\u003e\n \u003cdokumentnamn\u003eUtskottens kallelser och föredragningslistor\u003c/dokumentnamn\u003e\n \u003cdebattnamn\u003eUtskottens kallelser och föredragningslistor\u003c/debattnamn\u003e\n \u003ctempbeteckning\u003e\u003c/tempbeteckning\u003e\n \u003corgan\u003eUbU\u003c/organ\u003e\n \u003cmottagare\u003e\u003c/mottagare\u003e\n \u003cnummer\u003e10\u003c/nummer\u003e\n \u003cslutnummer\u003e0\u003c/slutnummer\u003e\n \u003cdatum\u003e2004-02-05 09:00:00\u003c/datum\u003e\n \u003csystemdatum\u003e2010-06-17 16:22:31\u003c/systemdatum\u003e\n \u003cpublicerad\u003e2004-02-02 09:00:00\u003c/publicerad\u003e\n \u003ctitel\u003eUtbildningsutskottets sammanträde Torsdag   2004-02-05  kl. 09:00\u003c/titel\u003e\n \u003csubtitel\u003e\u003c/subtitel\u003e\n \u003cstatus\u003einträffat\u003c/status\u003e\n \u003chtmlformat\u003ehtml\u003c/htmlformat\u003e\n \u003crelaterat_id\u003e\u003c/relaterat_id\u003e\n \u003csource\u003enotes\u003c/source\u003e\n \u003csourceid\u003e\u003c/sourceid\u003e\n \u003cdokument_url_text\u003ehttps://data.riksdagen.se/dokument/GRA3UbU10/text\u003c/dokument_url_text\u003e\n \u003cdokument_url_html\u003ehttps://data.riksdagen.se/dokument/GRA3UbU10/text\u003c/dokument_url_html\u003e\n \u003cdokumentstatus_url_xml\u003ehttps://data.riksdagen.se/dokument/GRA3UbU10/text\u003c/dokumentstatus_url_xml\u003e\n \u003chtml\u003e\u0026lt;h2\u0026gt;Föredragningslista\u0026lt;/h2\u0026gt;\u0026lt;h3\u0026gt;Utbildningsutskottet 2003/04:10\u0026lt;/h3\u0026gt;\u0026lt;h4\u0026gt;Kallelse\u0026lt;/h4\u0026gt;\n\u0026lt;span class\u003d\""fet\""\u0026gt;Kallelse\u0026lt;/span\u0026gt;: Utskottssammanträde 2003/04:10\u0026lt;br/\u0026gt;\u0026lt;span class\u003d\""fet\""\u0026gt;Datum och tid\u0026lt;/span\u0026gt;: 09:00\u0026lt;br/\u0026gt;\u0026lt;span class\u003d\""fet\""\u0026gt;Plats\u0026lt;/span\u0026gt;: L4-17\u0026lt;br/\u0026gt;\u0026lt;h4\u0026gt;Föredragningslista\u0026lt;/h4\u0026gt; \n\n\u0026lt;p\u0026gt;Seminarium kring uppföljningsrapporten om Vetenskapsrådet.\u0026lt;br\u0026gt;\n\u0026lt;br\u0026gt;\n\u0026lt;br\u0026gt;\n\u0026lt;br\u0026gt;\n\u0026lt;br\u0026gt;\n\u0026lt;br\u0026gt;\n\u0026lt;br\u0026gt;\n\u0026lt;br\u0026gt;\n\u0026lt;br\u0026gt;\n\u0026lt;br/\u0026gt;\u0026lt;br/\u0026gt;\n\u0026lt;h4\u0026gt;Bilagor\u0026lt;/h4\u0026gt; \u0026lt;br/\u0026gt;\nProgram [i basen + på papper]\u0026lt;br/\u0026gt;\nDeltagarförteckning [i basen + på papper]\u0026lt;br/\u0026gt;\nUppföljningsrapporten - 2003/04:URD2 [på papper]\u003c/html\u003e\n\u003c/dokument\u003e\n\u003c/dokumentstatus\u003e\n""
-}","[
-  ""id"",
-  ""hjid"",
-  ""content""
-]",com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData,8657162,3972756
-865535200,INITIAL,1,"{
-  ""orderNumber"": 3,
-  ""partyShortCode"": ""MP"",
-  ""personReferenceId"": ""0710863816703"",
-  ""hjid"": 908194,
-  ""roleDescription"": ""UNDERTECKNARE"",
-  ""referenceName"": ""Helena Hillar Rosenqvist""
-}","[
-  ""orderNumber"",
-  ""partyShortCode"",
-  ""personReferenceId"",
-  ""hjid"",
-  ""roleDescription"",
-  ""referenceName""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData,8657192,3972769
-865535400,INITIAL,1,"{
-  ""proposal"": {
-    ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData"",
-    ""cdoId"": 908197
-  },
-  ""hjid"": 908196
-}","[
-  ""proposal"",
-  ""hjid""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalContainer,8657194,3972769
-865535500,INITIAL,1,"{
-  ""code"": ""tilldelat"",
-  ""detailName"": ""Tilldelat"",
-  ""text"": ""Utbildningsutskottet"",
-  ""hjid"": 908190
-}","[
-  ""code"",
-  ""detailName"",
-  ""text"",
-  ""hjid""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData,8657195,3972769
-865535600,INITIAL,1,"{
-  ""orderNumber"": 2,
-  ""partyShortCode"": ""MP"",
-  ""personReferenceId"": ""0641486384014"",
-  ""hjid"": 908193,
-  ""roleDescription"": ""UNDERTECKNARE"",
-  ""referenceName"": ""Jan Lindholm""
-}","[
-  ""orderNumber"",
-  ""partyShortCode"",
-  ""personReferenceId"",
-  ""hjid"",
-  ""roleDescription"",
-  ""referenceName""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData,8657196,3972769
-865535700,INITIAL,1,"{
-  ""process"": ""hanvisning"",
-  ""code"": ""HÄN"",
-  ""createdDate"": ""2004-10-14T00:00:00"",
-  ""orderNumber"": 2,
-  ""activityName"": ""Hänvisning"",
-  ""hjid"": 908186,
-  ""status"": ""inträffat""
-}","[
-  ""process"",
-  ""code"",
+  ""configurationGroup"",
+  ""component"",
   ""createdDate"",
-  ""orderNumber"",
-  ""activityName"",
+  ""configDescription"",
+  ""componentTitle"",
+  ""componentDescription"",
+  ""propertyValue"",
+  ""updatedDate"",
+  ""configTitle"",
   ""hjid"",
-  ""status""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData,8657197,3972769
-865535800,INITIAL,1,"{
-  ""orderNumber"": 4,
-  ""partyShortCode"": ""MP"",
-  ""personReferenceId"": ""0584183916016"",
-  ""hjid"": 908195,
-  ""roleDescription"": ""UNDERTECKNARE"",
-  ""referenceName"": ""Ulf Holm""
-}","[
-  ""orderNumber"",
-  ""partyShortCode"",
-  ""personReferenceId"",
-  ""hjid"",
-  ""roleDescription"",
-  ""referenceName""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData,8657198,3972769
-865535900,INITIAL,1,"{
-  ""documentPersonReferenceList"": [
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908192
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908193
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908194
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceData"",
-      ""cdoId"": 908195
-    }
-  ],
-  ""hjid"": 908191
-}","[
-  ""documentPersonReferenceList"",
-  ""hjid""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentPersonReferenceContainer,8657199,3972769
-865536000,INITIAL,1,"{
-  ""wording2"": """",
-  ""committee"": "" Avslag"",
-  ""chamber"": ""Avslag"",
-  ""proposalNumber"": 4,
-  ""decisionType"": ""Acklamation"",
-  ""processedIn"": ""2005/06:UbU4"",
-  ""designation"": 4,
-  ""wording"": ""Riksdagen tillkännager för regeringen som sin mening vad i motionen anförs om att verka för att elevers möjligheter att utkräva skadestånd av huvudman som ej vidtagit tillräckliga åtgärder mot mobbning stärks."",
-  ""hjid"": 908197
-}","[
-  ""wording2"",
-  ""committee"",
-  ""chamber"",
-  ""proposalNumber"",
-  ""decisionType"",
-  ""processedIn"",
-  ""designation"",
-  ""wording"",
-  ""hjid""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentProposalData,8657200,3972769
-865536100,INITIAL,1,"{
-  ""process"": ""hantering"",
-  ""code"": ""INL"",
-  ""createdDate"": ""2004-10-05T00:00:00"",
-  ""orderNumber"": 13,
-  ""activityName"": ""Inlämning"",
-  ""hjid"": 908184,
-  ""status"": ""inträffat""
-}","[
-  ""process"",
-  ""code"",
-  ""createdDate"",
-  ""orderNumber"",
-  ""activityName"",
-  ""hjid"",
-  ""status""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentActivityData,8657201,3972769
-865536200,INITIAL,1,"{
-  ""documentType"": ""mot"",
-  ""org"": ""UbU"",
-  ""finalNumber"": 0,
-  ""documentUrlHtml"": ""https://data.riksdagen.se/dokument/GS02Ub343/text"",
-  ""label"": ""Ub343"",
-  ""title"": ""Mobbning"",
-  ""madePublicDate"": ""2004-10-06T00:00:00"",
-  ""documentStatusUrlXml"": ""https://data.riksdagen.se/dokument/GS02Ub343/text"",
-  ""subTitle"": ""av Mikaela Valtersson m.fl. (mp)"",
-  ""documentUrlText"": ""https://data.riksdagen.se/dokument/GS02Ub343/text"",
-  ""subType"": ""Enskild motion"",
-  ""rm"": ""2004/05"",
-  ""tempLabel"": ""mp668"",
-  ""hangarId"": ""2238154"",
-  ""numberValue"": 343,
-  ""id"": ""GS02Ub343"",
-  ""status"": ""Trycklov""
-}","[
-  ""documentType"",
-  ""org"",
-  ""finalNumber"",
-  ""documentUrlHtml"",
-  ""label"",
-  ""title"",
-  ""madePublicDate"",
-  ""documentStatusUrlXml"",
-  ""subTitle"",
-  ""documentUrlText"",
-  ""subType"",
-  ""rm"",
-  ""tempLabel"",
-  ""hangarId"",
-  ""numberValue"",
-  ""id"",
-  ""status""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentData,8657202,3972769
-865536300,INITIAL,1,"{
-  ""code"": ""statustext"",
-  ""detailName"": ""statustext"",
-  ""text"": ""Ärendet är avslutat"",
-  ""hjid"": 908189
-}","[
-  ""code"",
-  ""detailName"",
-  ""text"",
-  ""hjid""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData,8657203,3972769
-865536400,INITIAL,1,"{
-  ""documentDetailList"": [
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData"",
-      ""cdoId"": 908188
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData"",
-      ""cdoId"": 908189
-    },
-    {
-      ""entity"": ""com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData"",
-      ""cdoId"": 908190
-    }
-  ],
-  ""hjid"": 908187
-}","[
-  ""documentDetailList"",
-  ""hjid""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailContainer,8657204,3972769
-865536500,INITIAL,1,"{
-  ""code"": ""motkat"",
-  ""detailName"": ""Motionskategori"",
-  ""text"": ""Fristående motion"",
-  ""hjid"": 908188
-}","[
-  ""code"",
-  ""detailName"",
-  ""text"",
-  ""hjid""
-]",com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentDetailData,8657205,3972769
-865533400,INITIAL,1,"{
-  ""sourceNote"": ""Percentage of establishments that consider that firms with characteristics similar to theirs are making informal payments or giving gifts to public officials to \""get things done\"" with regard to customs, taxes, licenses, regulations, services etc."",
-  ""indicatorName"": ""Percent of firms expected to give gifts to public officials \""to get things done\"" "",
-  ""topics"": {
-    ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Topics"",
-    ""cdoId"": 908172
-  },
-  ""sourceOrganization"": ""World Bank, Enterprise Surveys (http://www.enterprisesurveys.org/)."",
-  ""id"": ""IC.FRM.CORR.CORR4"",
-  ""source"": {
-    ""valueObject"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Source"",
-    ""ownerId"": {
-      ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"",
-      ""cdoId"": 908171
-    },
-    ""fragment"": ""source""
-  },
-  ""hjid"": 908171
-}","[
-  ""sourceNote"",
-  ""indicatorName"",
-  ""topics"",
-  ""sourceOrganization"",
-  ""id"",
-  ""source"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement,8657174,3972762
-865533500,INITIAL,1,"{
-  ""topic"": [],
-  ""hjid"": 908172
-}","[
-  ""topic"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Topics,8657175,3972762
-865533600,INITIAL,1,"{
-  ""id"": ""13"",
-  ""value"": ""Enterprise Surveys""
-}","[
-  ""id"",
-  ""value""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Source,8657176,3972762
-865533700,INITIAL,1,"{
-  ""topic"": [],
-  ""hjid"": 908174
-}","[
-  ""topic"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Topics,8657177,3972763
-865533800,INITIAL,1,"{
-  ""sourceNote"": ""Percentage of firms expected to give gifts or informal payments to get an electrical connection."",
-  ""indicatorName"": ""Percent of firms expected to give gifts to get an electrical connection"",
-  ""topics"": {
-    ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Topics"",
-    ""cdoId"": 908174
-  },
-  ""sourceOrganization"": ""World Bank, Enterprise Surveys (http://www.enterprisesurveys.org/)."",
-  ""id"": ""IC.FRM.CORR.CORR6"",
-  ""source"": {
-    ""valueObject"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Source"",
-    ""ownerId"": {
-      ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"",
-      ""cdoId"": 908173
-    },
-    ""fragment"": ""source""
-  },
-  ""hjid"": 908173
-}","[
-  ""sourceNote"",
-  ""indicatorName"",
-  ""topics"",
-  ""sourceOrganization"",
-  ""id"",
-  ""source"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement,8657178,3972763
-865533900,INITIAL,1,"{
-  ""id"": ""13"",
-  ""value"": ""Enterprise Surveys""
-}","[
-  ""id"",
-  ""value""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Source,8657179,3972763
-865534000,INITIAL,1,"{
-  ""topic"": [],
-  ""hjid"": 908176
-}","[
-  ""topic"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Topics,8657180,3972764
-865534100,INITIAL,1,"{
-  ""sourceNote"": ""Percentage of firms expected to give gifts or informal payments to get a water connection."",
-  ""indicatorName"": ""Percent of firms expected to give gifts to get a water connection"",
-  ""topics"": {
-    ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Topics"",
-    ""cdoId"": 908176
-  },
-  ""sourceOrganization"": ""World Bank, Enterprise Surveys (http://www.enterprisesurveys.org/)."",
-  ""id"": ""IC.FRM.CORR.CORR7"",
-  ""source"": {
-    ""valueObject"": ""com.hack23.cia.model.external.worldbank.indicators.impl.Source"",
-    ""ownerId"": {
-      ""entity"": ""com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"",
-      ""cdoId"": 908175
-    },
-    ""fragment"": ""source""
-  },
-  ""hjid"": 908175
-}","[
-  ""sourceNote"",
-  ""indicatorName"",
-  ""topics"",
-  ""sourceOrganization"",
-  ""id"",
-  ""source"",
-  ""hjid""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement,8657181,3972764
-865534200,INITIAL,1,"{
-  ""id"": ""13"",
-  ""value"": ""Enterprise Surveys""
-}","[
-  ""id"",
-  ""value""
-]",com.hack23.cia.model.external.worldbank.indicators.impl.Source,8657182,3972764
+  ""propertyId""
+]",com.hack23.cia.model.internal.application.system.impl.ApplicationConfiguration,144,144
