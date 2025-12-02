@@ -7935,6 +7935,72 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
 
 
 --
+-- Name: view_riksdagen_intelligence_dashboard; Type: VIEW; Schema: public; Owner: -
+--
+-- Recreated in v1.40: Dropped via CASCADE when fixing crisis resilience view
+-- Updated to use current column names from dependent views modified in v1.38
+--
+
+CREATE VIEW public.view_riksdagen_intelligence_dashboard AS
+ WITH momentum_summary AS (
+         SELECT count(DISTINCT view_riksdagen_party_momentum_analysis.party) FILTER (WHERE ((view_riksdagen_party_momentum_analysis.trend_direction)::text = ANY ((ARRAY['STRONG_POSITIVE'::character varying, 'POSITIVE'::character varying])::text[]))) AS parties_gaining_momentum,
+            count(DISTINCT view_riksdagen_party_momentum_analysis.party) FILTER (WHERE ((view_riksdagen_party_momentum_analysis.trend_direction)::text = ANY ((ARRAY['STRONG_NEGATIVE'::character varying, 'NEGATIVE'::character varying])::text[]))) AS parties_losing_momentum,
+            count(DISTINCT view_riksdagen_party_momentum_analysis.party) FILTER (WHERE ((view_riksdagen_party_momentum_analysis.stability_classification)::text = ANY ((ARRAY['VOLATILE'::character varying, 'HIGHLY_VOLATILE'::character varying])::text[]))) AS volatile_parties
+           FROM public.view_riksdagen_party_momentum_analysis
+        ), coalition_summary AS (
+         SELECT count(*) FILTER (WHERE ((view_riksdagen_coalition_alignment_matrix.coalition_likelihood)::text = ANY ((ARRAY['STRONG_COALITION'::character varying, 'VERY_HIGH'::character varying])::text[]))) AS high_probability_coalitions,
+            count(*) FILTER (WHERE ((view_riksdagen_coalition_alignment_matrix.coalition_likelihood)::text = ANY ((ARRAY['MODERATE_COALITION'::character varying, 'HIGH'::character varying, 'VERY_HIGH'::character varying])::text[]))) AS cross_bloc_alliances
+           FROM public.view_riksdagen_coalition_alignment_matrix
+        ), anomaly_summary AS (
+         SELECT count(*) FILTER (WHERE (view_riksdagen_voting_anomaly_detection.anomaly_classification = ANY (ARRAY['FREQUENT_STRONG_REBEL'::text, 'CONSISTENT_REBEL'::text]))) AS high_defection_risks,
+            count(*) FILTER (WHERE (view_riksdagen_voting_anomaly_detection.anomaly_classification = 'PARTY_ALIGNED'::text)) AS low_discipline_politicians
+           FROM public.view_riksdagen_voting_anomaly_detection
+        ), influence_summary AS (
+         SELECT count(*) FILTER (WHERE (view_riksdagen_politician_influence_metrics.broker_classification = ANY (ARRAY['STRONG_BROKER'::text, 'MODERATE_BROKER'::text]))) AS power_brokers,
+            count(*) FILTER (WHERE (view_riksdagen_politician_influence_metrics.influence_classification = 'HIGHLY_INFLUENTIAL'::text)) AS highly_connected_politicians
+           FROM public.view_riksdagen_politician_influence_metrics
+        ), resilience_summary AS (
+         SELECT count(*) FILTER (WHERE (view_riksdagen_crisis_resilience_indicators.resilience_classification = 'HIGHLY_RESILIENT'::text)) AS crisis_ready_politicians,
+            count(*) FILTER (WHERE (view_riksdagen_crisis_resilience_indicators.resilience_classification = 'LOW_RESILIENCE'::text)) AS low_resilience_politicians
+           FROM public.view_riksdagen_crisis_resilience_indicators
+        ), vote_stats AS (
+         SELECT max(vote_data.vote_date) AS latest_vote_data,
+            count(DISTINCT vote_data.embedded_id_ballot_id) FILTER (WHERE (vote_data.vote_date >= (CURRENT_DATE - '30 days'::interval))) AS ballots_last_30_days
+           FROM public.vote_data
+        )
+ SELECT ms.parties_gaining_momentum,
+    ms.parties_losing_momentum,
+    ms.volatile_parties,
+    cs.high_probability_coalitions,
+    cs.cross_bloc_alliances,
+    ans.high_defection_risks,
+    ans.low_discipline_politicians,
+    ins.power_brokers,
+    ins.highly_connected_politicians,
+    rs.crisis_ready_politicians,
+    rs.low_resilience_politicians,
+        CASE
+            WHEN (ans.high_defection_risks >= 5) THEN 'HIGH_POLITICAL_INSTABILITY_RISK'::text
+            WHEN (ms.volatile_parties >= 3) THEN 'MODERATE_POLITICAL_INSTABILITY_RISK'::text
+            ELSE 'STABLE_POLITICAL_ENVIRONMENT'::text
+        END AS stability_assessment,
+        CASE
+            WHEN (cs.cross_bloc_alliances >= 2) THEN 'POTENTIAL_REALIGNMENT_DETECTED'::text
+            WHEN (cs.high_probability_coalitions >= 5) THEN 'STABLE_COALITION_PATTERNS'::text
+            ELSE 'UNCERTAIN_COALITION_LANDSCAPE'::text
+        END AS coalition_assessment,
+    vs.latest_vote_data,
+    vs.ballots_last_30_days,
+    CURRENT_TIMESTAMP AS intelligence_report_timestamp
+   FROM (((((momentum_summary ms
+     CROSS JOIN coalition_summary cs)
+     CROSS JOIN anomaly_summary ans)
+     CROSS JOIN influence_summary ins)
+     CROSS JOIN resilience_summary rs)
+     CROSS JOIN vote_stats vs);
+
+
+--
 -- Name: view_riksdagen_document_type_daily_summary; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
