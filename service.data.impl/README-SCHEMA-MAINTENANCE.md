@@ -3,30 +3,105 @@
 Comprehensive guide for database schema maintenance, validation, health monitoring, and sample data extraction for the CIA intelligence platform.
 
 **Maintained by**: Intelligence Operative Agent (@intelligence-operative)  
-**Last Updated**: 2025-11-25  
+**Last Updated**: 2025-12-03  
 **Target Audience**: Database Administrators, Intelligence Operatives, DevOps Engineers
 
 ---
 
-## 🚀 Quick Start (5 Minutes)
+## 🚀 Quick Reference Commands
 
-Get up and running with schema maintenance in 5 minutes:
+Essential commands for schema maintenance - copy and use immediately:
+
+### Updating full_schema.sql
+
+To update the `full_schema.sql` file with the latest schema and Liquibase changelog data, use the following command:
 
 ```bash
-# 1. Navigate to schema maintenance directory
+cd /path/to/cia/repository
+
+sudo -u postgres bash -c "(pg_dump -U postgres -d cia_dev --schema-only --no-owner --no-privileges; \
+  pg_dump -U postgres -d cia_dev --data-only --no-owner --no-privileges \
+    --table=public.databasechangelog \
+    --table=public.databasechangeloglock)" > service.data.impl/src/main/resources/full_schema.sql
+```
+
+**What This Command Does:**
+1. **First pg_dump**: Exports the complete database schema (tables, views, indexes, constraints) without owner or privilege information
+2. **Second pg_dump**: Exports only data from Liquibase tracking tables (`databasechangelog` and `databasechangeloglock`)
+
+**When to Update:**
+- After adding new Liquibase migrations (`db-changelog-*.xml` files)
+- After schema changes (table structures, views, indexes)
+- Before major releases
+- After database refactoring
+
+### Liquibase Changelog Testing (Maven Commands)
+
+Test and validate Liquibase changelogs directly against the database without starting the application:
+
+```bash
+# Check changelog status - shows which changesets have been applied
+cd /path/to/cia/repository
+mvn liquibase:status -pl service.data.impl
+
+# Validate changelog syntax and structure
+mvn liquibase:validate -pl service.data.impl
+
+# Apply pending changesets to database
+mvn liquibase:update -pl service.data.impl
+
+# Preview SQL that would be executed (dry-run)
+mvn liquibase:updateSQL -pl service.data.impl
+
+# Rollback last changeset
+mvn liquibase:rollback -Dliquibase.rollbackCount=1 -pl service.data.impl
+
+# Generate database documentation
+mvn liquibase:dbDoc -pl service.data.impl
+```
+
+**Prerequisites:**
+- PostgreSQL database must be running with `cia_dev` database created
+- Database credentials configured in `service.data.impl/pom.xml` (default: `eris`/`discord`)
+
+**When to Use:**
+- **status**: Verify which migrations are pending before/after updates
+- **validate**: Check changelog XML syntax before committing new migrations
+- **update**: Apply migrations directly without starting the application
+- **updateSQL**: Review SQL before applying (safe preview mode)
+- **rollback**: Undo recent changes during development/testing
+
+> **Tip for Copilot Agent:** With database available, use `mvn liquibase:status` and `mvn liquibase:validate` to verify changelog integrity before running application tests.
+
+### Health Check and Validation
+
+```bash
+# Navigate to schema maintenance directory
 cd service.data.impl/src/main/resources/
 
-# 2. Run health check (2 min)
+# Run health check (2 min)
 psql -U postgres -d cia_dev -f schema-health-check.sql > health_report.txt 2>&1
 
-# 3. Validate schema coverage (1 min)
+# Validate schema coverage (1 min)
 psql -U postgres -d cia_dev -f schema-validation-v2.sql > validation_report.txt 2>&1
 
-# 4. Review reports
+# Review reports
 grep "HEALTH SCORE" health_report.txt  # Should be >80/100
 grep "SUCCESS" validation_report.txt   # Should show 100% coverage
+```
 
-# 5. If health score <80 or validation fails, proceed to detailed troubleshooting below
+### Materialized View Refresh
+
+```bash
+# Refresh all materialized views
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/refresh-all-views.sql
+```
+
+### Sample Data Extraction
+
+```bash
+# Extract sample data for testing/debugging
+./service.data.impl/src/main/resources/extract-sample-data.sh /tmp/sample_data
 ```
 
 **Expected Results:**
@@ -34,7 +109,88 @@ grep "SUCCESS" validation_report.txt   # Should show 100% coverage
 - Validation: 100% coverage (177 objects: 93 tables + 56 views + 28 materialized views)
 - Execution Time: ~2-3 minutes
 
-**If issues detected**: See [Troubleshooting](#troubleshooting) section below.
+**If issues detected**: See [Troubleshooting](#-troubleshooting) section below.
+
+---
+
+## 🔧 Copilot Agent Setup
+
+The Copilot agent environment uses a specific PostgreSQL setup defined in `.github/workflows/copilot-setup-steps.yml`. This section documents the database configuration for development and CI/CD environments.
+
+### PostgreSQL 16 Configuration
+
+The setup includes:
+
+- **PostgreSQL Version**: 16 with extensions
+- **Extensions Enabled**: `pg_stat_statements`, `pgaudit`, `pgcrypto`
+- **Extensions Installed (Available)**: `pgvector` (installed but not enabled by default)
+- **Prepared Transactions**: `max_prepared_transactions = 100`
+- **SSL**: Enabled with self-signed certificates (4096-bit RSA, SHA-256)
+
+### Database Credentials (Development Environment)
+
+> **Note:** These are development/CI environment credentials only. Never use these in production. For production environments, use strong passwords stored in secure secret management systems.
+
+| Setting | Value |
+|---------|-------|
+| Database | `cia_dev` |
+| User | `eris` |
+| Password | `discord` |
+| Host | `localhost` |
+| SSL Mode | `require` |
+
+### Extensions Configuration
+
+```sql
+-- Extensions enabled in cia_dev database
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+CREATE EXTENSION IF NOT EXISTS pgaudit;
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+```
+
+**PostgreSQL Configuration (`postgresql.conf`):**
+```
+max_prepared_transactions = 100
+shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'
+pgaudit.log = ddl
+pg_stat_statements.track = all
+pg_stat_statements.max = 10000
+ssl = on
+```
+
+### Schema Loading
+
+The full schema is loaded during setup:
+
+```bash
+sudo -u postgres psql -d cia_dev -f service.data.impl/src/main/resources/full_schema.sql
+```
+
+### Application Startup Validation
+
+After schema loading, the setup validates:
+1. Database changelog entries exist (Liquibase migrations applied)
+2. Application starts successfully on port 28443
+3. HTTPS endpoint responds at `https://localhost:28443/cia/`
+
+### SSL Certificate Setup
+
+The Copilot setup generates self-signed SSL certificates:
+- 4096-bit RSA keys
+- SHA-256 signature
+- Subject Alternative Names for `localhost` and `127.0.0.1`
+- 10-year validity
+
+For local development, copy the root certificate:
+```bash
+mkdir -p $HOME/.postgresql
+cp server.crt $HOME/.postgresql/root.crt
+chmod 600 $HOME/.postgresql/root.crt
+```
+
+### Reference
+
+See the complete workflow at `.github/workflows/copilot-setup-steps.yml` for full implementation details.
 
 ---
 
@@ -190,7 +346,7 @@ cd service.data.impl/src/main/resources/
 
 ## 📊 Daily Operations Checklist
 
-Intelligence Operatives should perform these tasks regularly:
+Intelligence Operatives should perform these tasks regularly. For commands, see [Quick Reference Commands](#-quick-reference-commands).
 
 ### Morning Health Check (10 min) - Daily
 - [ ] Run `schema-health-check.sql`
@@ -620,9 +776,11 @@ CREATE INDEX CONCURRENTLY idx_document_element_doc_id ON document_element(docume
 
 ## 🔄 CI/CD Integration
 
-### GitHub Actions Workflow
+> **Note:** The primary CI/CD database setup is documented in [Copilot Agent Setup](#-copilot-agent-setup). This section provides example workflows for automated schema maintenance.
 
-Create `.github/workflows/schema-maintenance.yml`:
+### GitHub Actions Workflow for Schema Maintenance
+
+Create `.github/workflows/schema-maintenance.yml` for automated daily schema health checks:
 
 ```yaml
 name: Schema Maintenance
@@ -875,7 +1033,7 @@ START: What do you need to do?
 │      └─ Update CHANGELOG_INTELLIGENCE_ANALYSIS.md
 │
 ├─ Need to update full_schema.sql?
-│  └─> See "Updating full_schema.sql" section below
+│  └─> See [Quick Reference Commands](#-quick-reference-commands)
 │
 └─ Regular maintenance schedule?
    ├─ Daily: Health check (10 min)
@@ -885,54 +1043,9 @@ START: What do you need to do?
 
 ---
 
-## 📚 Original Schema Maintenance Guide
+## 📚 Testing Schema Updates
 
-### Overview
-
-The `full_schema.sql` file contains the complete database schema including:
-- All table definitions
-- All view definitions
-- Database extensions
-- Liquibase changelog tracking (databasechangelog and databasechangeloglock tables)
-
-## Prerequisites
-
-- PostgreSQL 16 installed and running
-- Database user with appropriate permissions
-- CIA application database (`cia_dev`) set up and populated
-
-## Updating full_schema.sql
-
-### Automated Update Script
-
-To update the `full_schema.sql` file with the latest schema and Liquibase changelog data, use the following command:
-
-```bash
-cd /path/to/cia/repository
-
-sudo -u postgres bash -c "(pg_dump -U postgres -d cia_dev --schema-only --no-owner --no-privileges; \
-  pg_dump -U postgres -d cia_dev --data-only --no-owner --no-privileges \
-    --table=public.databasechangelog \
-    --table=public.databasechangeloglock)" > service.data.impl/src/main/resources/full_schema.sql
-```
-
-### What This Command Does
-
-1. **First pg_dump**: Exports the complete database schema (tables, views, indexes, constraints, etc.) without owner or privilege information
-2. **Second pg_dump**: Exports only the data from the Liquibase tracking tables:
-   - `public.databasechangelog` - tracks all applied database migrations
-   - `public.databasechangeloglock` - tracks migration lock status
-
-### When to Update
-
-Update the `full_schema.sql` file when:
-
-1. **New Liquibase migrations are added** - After adding new db-changelog-*.xml files
-2. **Schema changes are made** - After modifying table structures, views, or indexes
-3. **Before major releases** - To ensure the schema file reflects the current state
-4. **After database refactoring** - When optimizing or restructuring the database
-
-## Testing the Schema
+After updating `full_schema.sql` (see [Quick Reference Commands](#-quick-reference-commands)), verify it works correctly:
 
 ### 1. Test Fresh Database Creation
 
@@ -979,22 +1092,9 @@ mvn liquibase:status -pl ../service.data.impl
 
 Expected output: All changesets should show as "Previously executed"
 
-## Automation in CI/CD
+> **Note:** For CI/CD automation details, see the [Copilot Agent Setup](#-copilot-agent-setup) section which references `.github/workflows/copilot-setup-steps.yml`.
 
-The schema setup is automated in `.github/workflows/copilot-setup-steps.yml`:
-
-```yaml
-- name: Load database schema
-  run: |
-    sudo -u postgres psql -d cia_dev -f service.data.impl/src/main/resources/full_schema.sql
-```
-
-This ensures that:
-- CI/CD environments have a consistent database state
-- Tests run against the correct schema version
-- Application startup tests work correctly
-
-## Best Practices
+## Best Practices for Schema Updates
 
 1. **Always test the schema file** after updating it
 2. **Commit the updated schema** alongside any Liquibase migration files
@@ -1002,9 +1102,9 @@ This ensures that:
 4. **Keep the schema in sync** with the latest migrations
 5. **Use version control** to track schema evolution over time
 
-## Troubleshooting
+### Troubleshooting Schema Loading Issues
 
-### Schema Load Fails
+#### Schema Load Fails
 
 If loading the schema fails:
 
@@ -1022,7 +1122,7 @@ Required extensions:
 - `pgcrypto`
 - `vector` (if available)
 
-### Liquibase Shows Pending Changes
+#### Liquibase Shows Pending Changes
 
 If Liquibase shows pending changes after loading the schema:
 
@@ -1030,7 +1130,7 @@ If Liquibase shows pending changes after loading the schema:
 2. Check that all migrations are listed in the changelog
 3. Verify the schema was loaded from the correct file
 
-### Missing Data in databasechangelog
+#### Missing Data in databasechangelog
 
 If the changelog is empty:
 
@@ -2879,7 +2979,7 @@ psql -U postgres -d cia_dev -f analyze-view-dependencies.sql > deps.csv
 ## 🎯 Next Steps for Intelligence Operatives
 
 ### Getting Started (First Time)
-1. Review [Quick Start](#-quick-start-5-minutes) section
+1. Review [Quick Reference Commands](#-quick-reference-commands) section
 2. Run first health check and validation
 3. Familiarize yourself with [Decision Tree](#-decision-tree-selecting-maintenance-tasks)
 4. Set up [Daily Operations](#-daily-operations-checklist) routine
