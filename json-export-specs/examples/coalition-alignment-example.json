@@ -1,0 +1,314 @@
+{
+  "metadata": {
+    "version": "1.1.0",
+    "generated": "2024-11-24T02:23:58Z",
+    "source": "Citizen Intelligence Agency",
+    "schema": "coalition-alignment-matrix",
+    "productType": "intelligence",
+    "updateFrequency": "daily",
+    "confidenceLevel": 0.88,
+    "dataDate": "2024-11-23",
+    "parliamentaryTerm": "2022-2026",
+    "government": "Tidö Coalition",
+    "attribution": "Data derived from Riksdagen Open Data API voting records",
+    "license": "Apache-2.0"
+  },
+  "summary": {
+    "totalParties": 8,
+    "governmentParties": 3,
+    "supportParties": 1,
+    "oppositionParties": 4,
+    "overallCoalitionCohesion": 94.3,
+    "overallOppositionCohesion": 78.5,
+    "crossBlockVotingRate": 8.7,
+    "totalVotesAnalyzed": 45821,
+    "analysisTimeframe": "2022-10-01 to 2024-11-23"
+  },
+  "currentGovernment": {
+    "name": "Tidö Coalition",
+    "formed": "2022-10-18",
+    "daysInPower": 768,
+    "type": "minority",
+    "primeMinister": "Ulf Kristersson",
+    "totalSeats": 176,
+    "majorityThreshold": 175,
+    "margin": 1,
+    "coalitionParties": ["M", "KD", "L"],
+    "supportParties": ["SD"],
+    "oppositionParties": ["S", "V", "MP", "C"]
+  },
+  "alignmentMatrix": {
+    "description": "Party-to-party voting alignment percentages based on all ballots in current parliamentary term",
+    "parties": ["S", "M", "SD", "V", "C", "KD", "L", "MP"],
+    "matrix": [
+      { "party": "S", "alignments": { "S": 100.0, "M": 23.4, "SD": 18.2, "V": 78.5, "C": 52.3, "KD": 25.1, "L": 31.2, "MP": 72.1 }},
+      { "party": "M", "alignments": { "S": 23.4, "M": 100.0, "SD": 87.3, "V": 12.1, "C": 34.5, "KD": 92.1, "L": 89.4, "MP": 18.3 }},
+      { "party": "SD", "alignments": { "S": 18.2, "M": 87.3, "SD": 100.0, "V": 8.5, "C": 22.1, "KD": 85.6, "L": 82.3, "MP": 12.4 }},
+      { "party": "V", "alignments": { "S": 78.5, "M": 12.1, "SD": 8.5, "V": 100.0, "C": 38.2, "KD": 14.3, "L": 19.1, "MP": 81.2 }},
+      { "party": "C", "alignments": { "S": 52.3, "M": 34.5, "SD": 22.1, "V": 38.2, "C": 100.0, "KD": 38.9, "L": 45.2, "MP": 48.5 }},
+      { "party": "KD", "alignments": { "S": 25.1, "M": 92.1, "SD": 85.6, "V": 14.3, "C": 38.9, "KD": 100.0, "L": 88.7, "MP": 19.8 }},
+      { "party": "L", "alignments": { "S": 31.2, "M": 89.4, "SD": 82.3, "V": 19.1, "C": 45.2, "KD": 88.7, "L": 100.0, "MP": 25.3 }},
+      { "party": "MP", "alignments": { "S": 72.1, "M": 18.3, "SD": 12.4, "V": 81.2, "C": 48.5, "KD": 19.8, "L": 25.3, "MP": 100.0 }}
+    ]
+  },
+  "coalitionBlocks": {
+    "government": {
+      "parties": ["M", "KD", "L"],
+      "internalCohesion": 89.4,
+      "withSupportParty": 84.2,
+      "seats": 103,
+      "ministers": 11
+    },
+    "support": {
+      "parties": ["SD"],
+      "reliabilityScore": 85.6,
+      "seats": 73,
+      "keyDemands": [
+        "Immigration policy influence",
+        "Justice ministry consultation",
+        "Budget priorities"
+      ]
+    },
+    "leftOpposition": {
+      "parties": ["S", "V", "MP"],
+      "internalCohesion": 77.3,
+      "seats": 134,
+      "counterVoteSuccess": 32.1
+    },
+    "center": {
+      "parties": ["C"],
+      "swingVoteFrequency": 18.5,
+      "seats": 24,
+      "crossBlockAlignments": {
+        "withGovernment": 34.5,
+        "withLeftOpposition": 52.3
+      }
+    }
+  },
+  "votingPatterns": {
+    "byPolicyArea": [
+      {
+        "area": "economic-policy",
+        "votes": 8234,
+        "coalitionCohesion": 96.2,
+        "oppositionCohesion": 82.1,
+        "crossBlockVoting": 4.3,
+        "keyDecisions": [
+          { "id": "H901FiU12", "topic": "Budget 2025", "passed": true, "margin": 12 }
+        ]
+      },
+      {
+        "area": "immigration",
+        "votes": 3421,
+        "coalitionCohesion": 98.1,
+        "oppositionCohesion": 89.5,
+        "crossBlockVoting": 2.1,
+        "keyDecisions": [
+          { "id": "H901JuU05", "topic": "Border Control Act", "passed": true, "margin": 8 }
+        ]
+      },
+      {
+        "area": "environment",
+        "votes": 2876,
+        "coalitionCohesion": 87.3,
+        "oppositionCohesion": 91.2,
+        "crossBlockVoting": 12.8,
+        "keyDecisions": [
+          { "id": "H901MjU08", "topic": "Climate Investment Fund", "passed": false, "margin": -3 }
+        ]
+      },
+      {
+        "area": "social-welfare",
+        "votes": 4521,
+        "coalitionCohesion": 92.1,
+        "oppositionCohesion": 85.4,
+        "crossBlockVoting": 7.2,
+        "keyDecisions": [
+          { "id": "H901SoU15", "topic": "Pension Reform", "passed": true, "margin": 15 }
+        ]
+      },
+      {
+        "area": "defense",
+        "votes": 1234,
+        "coalitionCohesion": 99.2,
+        "oppositionCohesion": 78.3,
+        "crossBlockVoting": 15.4,
+        "keyDecisions": [
+          { "id": "H901FoU03", "topic": "NATO Integration", "passed": true, "margin": 45 }
+        ]
+      }
+    ],
+    "temporalTrends": {
+      "quarterly": [
+        { "period": "2024-Q3", "coalitionCohesion": 94.3, "crossBlockVoting": 8.7 },
+        { "period": "2024-Q2", "coalitionCohesion": 95.1, "crossBlockVoting": 7.9 },
+        { "period": "2024-Q1", "coalitionCohesion": 93.8, "crossBlockVoting": 9.2 },
+        { "period": "2023-Q4", "coalitionCohesion": 96.2, "crossBlockVoting": 6.1 }
+      ],
+      "trend": "declining",
+      "trendMagnitude": -1.9
+    }
+  },
+  "stabilityIndicators": [
+    {
+      "metric": "voting-cohesion",
+      "value": 94.3,
+      "threshold": 90.0,
+      "status": "healthy",
+      "trend": "declining"
+    },
+    {
+      "metric": "policy-agreement",
+      "value": 78.5,
+      "threshold": 75.0,
+      "status": "healthy",
+      "trend": "stable"
+    },
+    {
+      "metric": "support-party-reliability",
+      "value": 85.6,
+      "threshold": 80.0,
+      "status": "healthy",
+      "trend": "stable"
+    },
+    {
+      "metric": "cross-block-consensus",
+      "value": 8.7,
+      "threshold": 15.0,
+      "status": "low",
+      "trend": "declining"
+    }
+  ],
+  "predictions": {
+    "coalitionSurvival": {
+      "6months": 0.92,
+      "12months": 0.78,
+      "untilElection": 0.65
+    },
+    "alternativeFormations": [
+      {
+        "scenario": "current-coalition-continues",
+        "probability": 0.65,
+        "parties": ["M", "KD", "L", "SD"],
+        "conditions": ["SD maintains support", "No major scandals"]
+      },
+      {
+        "scenario": "grand-coalition",
+        "probability": 0.12,
+        "parties": ["S", "M", "C"],
+        "trigger": "Major crisis requiring cross-block cooperation"
+      },
+      {
+        "scenario": "left-green-coalition",
+        "probability": 0.18,
+        "parties": ["S", "V", "MP", "C"],
+        "trigger": "SD withdraws support, snap election"
+      },
+      {
+        "scenario": "minority-government",
+        "probability": 0.05,
+        "parties": ["M", "KD", "L"],
+        "trigger": "SD withdraws support, no snap election"
+      }
+    ],
+    "nextElection": {
+      "date": "2026-09-13",
+      "daysUntil": 658,
+      "projectedSeats": {
+        "government": { "M": 74, "KD": 18, "L": 15, "SD": 78, "total": 185 },
+        "opposition": { "S": 97, "V": 28, "MP": 19, "C": 20, "total": 164 }
+      },
+      "projectedMargin": 21,
+      "confidence": 0.72
+    }
+  },
+  "partyDetails": [
+    {
+      "code": "S",
+      "name": "Socialdemokraterna",
+      "seats": 107,
+      "role": "opposition-leader",
+      "cohesionScore": 96.8,
+      "rebellionRate": 0.68,
+      "keyAlignments": ["V", "MP"],
+      "swingPotential": "low"
+    },
+    {
+      "code": "M",
+      "name": "Moderaterna",
+      "seats": 68,
+      "role": "government-leader",
+      "cohesionScore": 97.2,
+      "rebellionRate": 0.45,
+      "keyAlignments": ["KD", "L", "SD"],
+      "swingPotential": "very-low"
+    },
+    {
+      "code": "SD",
+      "name": "Sverigedemokraterna",
+      "seats": 73,
+      "role": "support-party",
+      "cohesionScore": 98.5,
+      "rebellionRate": 0.21,
+      "keyAlignments": ["M", "KD"],
+      "swingPotential": "low"
+    },
+    {
+      "code": "V",
+      "name": "Vänsterpartiet",
+      "seats": 24,
+      "role": "opposition",
+      "cohesionScore": 95.3,
+      "rebellionRate": 0.89,
+      "keyAlignments": ["S", "MP"],
+      "swingPotential": "very-low"
+    },
+    {
+      "code": "C",
+      "name": "Centerpartiet",
+      "seats": 24,
+      "role": "opposition-swing",
+      "cohesionScore": 89.2,
+      "rebellionRate": 2.34,
+      "keyAlignments": ["varies"],
+      "swingPotential": "high"
+    },
+    {
+      "code": "KD",
+      "name": "Kristdemokraterna",
+      "seats": 19,
+      "role": "government-partner",
+      "cohesionScore": 96.1,
+      "rebellionRate": 0.52,
+      "keyAlignments": ["M", "L"],
+      "swingPotential": "very-low"
+    },
+    {
+      "code": "L",
+      "name": "Liberalerna",
+      "seats": 16,
+      "role": "government-partner",
+      "cohesionScore": 91.4,
+      "rebellionRate": 1.87,
+      "keyAlignments": ["M", "KD"],
+      "swingPotential": "moderate"
+    },
+    {
+      "code": "MP",
+      "name": "Miljöpartiet",
+      "seats": 18,
+      "role": "opposition",
+      "cohesionScore": 94.7,
+      "rebellionRate": 0.92,
+      "keyAlignments": ["S", "V"],
+      "swingPotential": "low"
+    }
+  ],
+  "visualization": {
+    "recommendedCharts": ["heatmap", "chord-diagram", "network-graph", "sankey"],
+    "colorScheme": "political-spectrum",
+    "dataFormat": "matrix",
+    "interactive": true,
+    "exports": ["png", "svg", "pdf", "csv"]
+  }
+}

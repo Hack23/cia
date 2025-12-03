@@ -14,7 +14,7 @@ The Citizen Intelligence Agency (CIA) platform has developed comprehensive intel
 
 ### Key Value Propositions
 
-- **🎯 45 Behavioral Risk Rules**: Systematic monitoring across politicians, parties, committees, and ministries
+- **🎯 50 Behavioral Risk Rules**: Systematic monitoring across politicians, parties, committees, and ministries
 - **📊 5 Analytical Frameworks**: Temporal, comparative, pattern recognition, predictive, and network analysis
 - **🔒 Enterprise-Grade Security**: STRIDE threat modeling, MITRE ATT&CK framework integration
 - **🌐 Open Data Foundation**: Built on authoritative Swedish government sources
@@ -183,7 +183,7 @@ flowchart LR
 | Feature Category | Included Components | Data Granularity |
 |-----------------|-------------------|------------------|
 | **Parliamentary Data** | Politician profiles, voting records, attendance, documents | Real-time + historical |
-| **Risk Assessment** | All 45 risk rules, severity classification, trend analysis | Daily updates |
+| **Risk Assessment** | All 50 risk rules, severity classification, trend analysis | Daily updates |
 | **Analytical Insights** | Scorecards, coalition analysis, effectiveness metrics | Monthly aggregations |
 | **Predictive Intelligence** | Trend forecasting, risk escalation probability | Quarterly models |
 | **Network Analysis** | Collaboration patterns, influence mapping | Annual baseline |
@@ -378,7 +378,7 @@ Data Format:
 #### Features & Capabilities
 
 **Real-Time Risk Monitoring**
-- Continuous evaluation of 45 risk rules
+- Continuous evaluation of 50 risk rules
 - Severity-based classification (MINOR/MAJOR/CRITICAL)
 - Multi-dimensional risk profiling
 - Pattern recognition algorithms
@@ -439,7 +439,7 @@ Data Format:
 #### Technical Specifications
 
 **🔗 JSON Data Specifications:**
-- **Risk Assessment**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Complete risk rule evaluation with 45 behavioral rules
+- **Risk Assessment**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Complete risk rule evaluation with 50 behavioral rules
 - **Violation Tracking**: [politician-schema.md#intelligence-section](json-export-specs/schemas/politician-schema.md#intelligence-section) - Compliance violations and risk scores
 - **Predictive Models**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) - Risk escalation probability and crisis forecasting
 - **Database Views**: `view_rule_violation`, `view_riksdagen_politician_summary`, `view_riksdagen_party_summary`
@@ -1219,7 +1219,7 @@ flowchart TB
 ### Competitive Advantages
 
 **1. Comprehensive Risk Intelligence**
-- 45 behavioral risk rules (unique to CIA)
+- 50 behavioral risk rules (unique to CIA)
 - Multi-dimensional risk assessment
 - Predictive risk modeling
 - No competitor offers systematic risk framework
@@ -1564,7 +1564,7 @@ This appendix provides comprehensive traceability from business product features
 - **Product Value**: €15M TAM (Political Consulting segment)
 - **Data Sources**:
   - `view_riksdagen_politician` - Core politician profiles, attendance metrics
-  - `view_rule_violation` - 45 risk rules with MINOR/MAJOR/CRITICAL severity
+  - `view_rule_violation` - 50 risk rules with MINOR/MAJOR/CRITICAL severity
   - `view_riksdagen_vote_data_ballot_politician_summary` - Voting patterns and consistency
   - `view_riksdagen_politician_summary` - Aggregated activity and performance
 - **JSON Specifications**:
@@ -1651,7 +1651,7 @@ This appendix provides comprehensive traceability from business product features
 - **User Story**: "As a CRO at an investment firm, I want instant alerts on critical political risks to protect portfolio investments"
 - **Product Value**: €20M+ TAM (Financial Services segment)
 - **Data Sources**:
-  - `view_rule_violation` - All 45 risk rules with severity and timestamps
+  - `view_rule_violation` - All 50 risk rules with severity and timestamps
   - `view_riksdagen_politician_summary` - Real-time politician metrics
   - `view_riksdagen_party_summary` - Real-time party metrics
 - **JSON Specifications**:

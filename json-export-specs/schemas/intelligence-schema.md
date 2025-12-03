@@ -1,9 +1,9 @@
 # 🎯 Intelligence Products JSON Schema Specification
 ## Political Intelligence Analytics and Risk Assessment Format
 
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Schema ID**: `intelligence-products`  
-**Last Updated**: 2024-11-24
+**Last Updated**: 2024-12-03
 
 ---
 
@@ -11,9 +11,19 @@
 
 This JSON schema is the **highest-value** data specification, powering **5 product lines** serving €38M+ Total Addressable Market:
 
+> **v1.1.0 Update**: Added comprehensive JSON export examples for risk assessments (50 rules), coalition alignment matrix, and temporal trend analysis (daily/weekly/monthly/annual) to enable CDN-ready static JSON file generation.
+
+### JSON Export Examples (CDN-Ready)
+
+| Export Type | Example File | Update Frequency | File Size |
+|------------|--------------|------------------|-----------|
+| **Risk Assessments** | [risk-assessment-example.json](../examples/risk-assessment-example.json) | Daily | ~15 KB |
+| **Coalition Alignment** | [coalition-alignment-example.json](../examples/coalition-alignment-example.json) | Daily | ~10 KB |
+| **Temporal Trends** | [temporal-trends-example.json](../examples/temporal-trends-example.json) | Daily | ~13 KB |
+
 ### Product Integration (Revenue-Ranked)
 1. **[Risk Intelligence Feed](../../BUSINESS_PRODUCT_DOCUMENT.md#product-line-3-risk-intelligence-feed)** - Premium risk monitoring (€1.77M/year)
-   - Real-time risk assessment with 45 behavioral rules
+   - Real-time risk assessment with 50 behavioral rules
    - Early warning system for political instability
    - Compliance and governance reporting
    - **Primary Market**: Financial services (€20M+ TAM), Corporate risk (€12M TAM)
@@ -720,6 +730,57 @@ async function monitorCoalition() {
 
 ---
 
-**Schema Version**: 1.0.0  
-**Last Updated**: 2024-11-24  
+## 📁 CDN File Structure
+
+The intelligence products are exported to static JSON files following this structure:
+
+```
+json-export/
+├── v1.1.0/
+│   ├── intelligence/
+│   │   ├── risk-assessments.json          # 50-rule risk assessment catalog
+│   │   ├── coalition-alignment-matrix.json # Party voting alignment matrix
+│   │   ├── temporal-trends.json           # Multi-timeframe trend analysis
+│   │   ├── voting-patterns.json           # Parliamentary voting behavior
+│   │   ├── predictive-analytics.json      # Election forecasts
+│   │   └── coalition-stability.json       # Government stability metrics
+│   └── metadata.json
+└── latest/                                 # Symlink to current version
+```
+
+### CDN URLs
+
+| Product | URL Pattern | Update Frequency |
+|---------|------------|------------------|
+| Risk Assessments | `/v1.1.0/intelligence/risk-assessments.json` | Daily |
+| Coalition Alignment | `/v1.1.0/intelligence/coalition-alignment-matrix.json` | Daily |
+| Temporal Trends | `/v1.1.0/intelligence/temporal-trends.json` | Daily |
+| Voting Patterns | `/v1.1.0/intelligence/voting-patterns.json` | Weekly |
+| Predictive Analytics | `/v1.1.0/intelligence/predictive-analytics.json` | Weekly |
+
+---
+
+## 📋 Risk Rules Complete Catalog (50 Rules)
+
+### Rule Categories
+
+| Category | Count | Severity Distribution | Primary Data Source |
+|----------|-------|----------------------|---------------------|
+| **Politician** | 24 | 8 MINOR, 8 MAJOR, 8 CRITICAL | view_riksdagen_politician, view_rule_violation |
+| **Party** | 10 | 3 MINOR, 4 MAJOR, 3 CRITICAL | view_riksdagen_party_summary |
+| **Committee** | 4 | 2 MINOR, 2 MAJOR | view_riksdagen_committee |
+| **Ministry** | 4 | 1 MINOR, 2 MAJOR, 1 CRITICAL | view_ministry_effectiveness_trends |
+| **Decision** | 5 | 1 MINOR, 3 MAJOR, 1 CRITICAL | view_party_decision_flow |
+| **Other** | 3 | 1 MINOR, 1 MAJOR, 1 CRITICAL | Application monitoring |
+
+### Severity Classification
+
+- 🟡 **MINOR** (Salience 10-49): Early indicators, trend monitoring, preventive intelligence
+- 🟠 **MAJOR** (Salience 50-99): Established patterns, accountability concerns, tactical intelligence  
+- 🔴 **CRITICAL** (Salience 100+): Severe risks, democratic accountability failure, strategic intelligence
+
+---
+
+**Schema Version**: 1.1.0  
+**Last Updated**: 2024-12-03  
 **Maintained By**: Citizen Intelligence Agency Development Team
