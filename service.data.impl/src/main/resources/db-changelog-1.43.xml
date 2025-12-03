@@ -211,7 +211,7 @@ ORDER BY org_code, assessment_period DESC
         3. Reports row count for validation
     </comment>
     
-    <sql>
+    <sql><![CDATA[
         -- Verify view returns data
         SELECT 'view_ministry_risk_evolution verification:' AS check_description;
         
@@ -239,7 +239,7 @@ ORDER BY org_code, assessment_period DESC
                 THEN 'PARTIAL: View returns some rows but < 10'
                 ELSE 'ERROR: View returns 0 rows despite ministry assignments'
             END AS validation_status;
-    </sql>
+    ]]></sql>
 </changeSet>
 
 <!-- ========================================================================= -->
