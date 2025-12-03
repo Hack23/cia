@@ -684,7 +684,7 @@ BEGIN
     FROM (
         SELECT viewname FROM pg_views 
         WHERE schemaname = 'public' 
-          AND viewname != 'view_riksdagen_coalition_alignment_matrix'
+          AND viewname != 'view_riksdagen_intelligence_dashboard'
         UNION ALL
         SELECT matviewname FROM pg_matviews 
         WHERE schemaname = 'public'
@@ -702,6 +702,7 @@ BEGIN
         FROM pg_views
         WHERE schemaname = 'public'
           AND viewname != 'view_riksdagen_coalition_alignment_matrix'
+          AND viewname != 'view_riksdagen_intelligence_dashboard'
         UNION ALL
         SELECT schemaname, matviewname AS object_name, 'MATERIALIZED VIEW' AS object_type
         FROM pg_matviews
@@ -750,6 +751,7 @@ WITH view_counts AS (
     FROM pg_views
     WHERE schemaname = 'public'
       AND viewname != 'view_riksdagen_coalition_alignment_matrix'
+      AND viewname != 'view_riksdagen_intelligence_dashboard'
     UNION ALL
     SELECT schemaname,
            matviewname,

@@ -1,51 +1,51 @@
 role_id,detail,role_code,first_name,last_name,from_date,to_date,person_id,party,total_days_served,active,total_documents,documents_last_year,total_motions,total_interpellations,total_written_questions,activity_level,role_type
-34800,Folkpartiet liberalerna,Förste vice gruppledare,Allan,Widman,2010-10-04,2012-09-16,0446541913415,L,713,f,20,0,20,0,0,Inactive,First Deputy Group Leader
-29871,Moderaterna,Kvittningsperson,Cecilia,Magnusson,2010-10-06,2014-09-29,0522460069116,M,1454,f,0,0,0,0,0,Inactive,Pairing Representative
-22944,Folkpartiet liberalerna,Kvittningsperson,Emma,Carlsson Löfdahl,2010-10-14,2014-09-29,0737073162411,-,1446,f,0,0,0,0,0,Inactive,Pairing Representative
-43255,Miljöpartiet,Partisekreterare,Katrin,Wissing,2021-05-13,,0414277569620,MP,1664,t,0,0,0,0,0,Inactive,Party Secretary
-11369,Sverigedemokraterna,Förste vice gruppledare,Henrik,Vinge,2019-04-01,2019-11-24,0406831930624,SD,237,f,1,1,1,0,0,Low,First Deputy Group Leader
-31479,Vänsterpartiet,Kvittningsperson,Wiwi-Anne,Johansson,2010-10-05,2014-09-29,0995355603410,V,1455,f,0,0,0,0,0,Inactive,Pairing Representative
-41214,Moderaterna,Förste vice gruppledare,Jessika,Roswall,2020-09-29,2022-10-18,0718034011110,M,749,f,13,0,7,0,0,Inactive,First Deputy Group Leader
-20656,Liberalerna,Gruppledare,Lina,Nordquist,2022-10-20,,0161616238120,L,1139,t,56,22,56,0,0,Medium,Group Leader
-27859,Liberalerna,Gruppledare,Johan,Pehrson,2019-06-28,2022-04-08,0224712677012,L,1015,f,22,4,16,0,0,Low,Group Leader
-39777,Centerpartiet,Kvittningsperson,Catarina,Deremar,2021-01-01,,0986091320811,C,1796,t,110,39,110,0,0,High,Pairing Representative
-44365,Miljöpartiet de gröna,Förste vice gruppledare,Janine,Alm Ericson,2019-02-07,2019-02-15,0316505710324,MP,8,f,205,94,205,0,0,Very High,First Deputy Group Leader
-3707,Liberalerna,Kvittningsperson,Bengt,Eliasson,2018-09-24,2022-09-26,0116759114313,L,1463,f,4,0,4,0,0,Inactive,Pairing Representative
-33093,Centerpartiet,Kvittningsperson,Martina,Johansson,2021-01-01,,033935884729,C,1796,t,153,59,153,0,0,Very High,Pairing Representative
-21270,Socialdemokraterna,Kvittningsperson,Johanna,Haraldsson,2019-02-27,,0652497579621,S,2470,t,110,34,110,0,0,High,Pairing Representative
-47837,Sverigedemokraterna,Gruppledare,Björn,Söder,2010-10-04,2014-09-29,0452755722723,SD,1456,f,75,31,75,0,0,High,Group Leader
-20651,Liberalerna,Förste vice gruppledare,Lina,Nordquist,2022-04-19,2022-10-21,0161616238120,L,185,f,56,22,56,0,0,Medium,First Deputy Group Leader
-25537,Moderaterna,Förste vice gruppledare,Jessica,Rosencrantz,2022-10-25,2024-09-10,0992420223820,M,686,f,16,4,12,0,0,Low,First Deputy Group Leader
-54115,Liberalerna,Partisekreterare,Simona,Mohamsson,2025-04-04,2025-06-24,0277853016020,L,81,f,1,1,0,0,0,Low,Party Secretary
-14008,Vänsterpartiet,Kvittningsperson,Egon,Frid,2006-10-02,2010-10-04,0979278953316,V,1463,f,0,0,0,0,0,Inactive,Pairing Representative
-32518,Kristdemokraterna,Förste vice gruppledare,Inger,Davidson,2009-02-09,2010-10-04,0820673454606,KD,602,f,0,0,0,0,0,Inactive,First Deputy Group Leader
-3533,Kristdemokraterna,Gruppledare,Stefan,Attefall,2010-10-04,2010-10-06,0745549193810,KD,2,f,0,0,0,0,0,Inactive,Group Leader
-11339,Vänsterpartiet,Gruppledare,Samuel,Gonzalez Westling,2022-09-26,,0939158389321,V,1163,t,138,59,138,0,0,Very High,Group Leader
-31660,Sverigedemokraterna,Kvittningsperson,Bo,Broman,2025-03-01,,0333193598116,SD,276,t,70,19,70,0,0,Medium,Pairing Representative
-50129,Centerpartiet,Förste vice gruppledare,Jonny,Cato,2025-09-01,2025-11-29,0475643059428,C,89,f,91,32,91,0,0,High,First Deputy Group Leader
-41146,Miljöpartiet de gröna,Gruppledare,Annika,Hirvonen,2022-11-07,2023-09-03,0819601620927,MP,300,f,234,123,234,0,0,Very High,Group Leader
-13018,Moderaterna,Gruppledare,Lars,Lindblad,2006-10-11,2010-10-04,0371414788216,M,1454,f,0,0,0,0,0,Inactive,Group Leader
-19348,Centerpartiet,Förste vice gruppledare,Ulrika,Heie,2018-10-09,2023-12-31,0836001490919,C,1909,f,77,25,77,0,0,Medium,First Deputy Group Leader
-34671,Moderaterna,Partiledare,Ulf,Kristersson,2017-10-01,,0222691314314,M,2984,t,235,132,0,0,0,Very High,Party Leader
-26050,Vänsterpartiet,Kvittningsperson,Malin,Östh,2025-03-14,,0388994689418,V,263,t,31,28,31,0,0,High,Pairing Representative
-24159,Miljöpartiet de gröna,Språkrör,Märta,Stenevi,2021-01-31,2024-04-28,0349986646724,MP,1183,f,125,20,123,0,0,Medium,Party Spokesperson
-42037,Liberalerna,Partisekreterare,Fredrik,Brange,2025-06-25,,0616131020021,L,160,t,0,0,0,0,0,Inactive,Party Secretary
-37715,Centerpartiet,Partiledare,Elisabeth,Thand Ringqvist,2025-11-13,,0602744999917,C,19,t,98,39,98,0,0,High,Party Leader
-54774,Miljöpartiet de gröna,Språkrör,Gustav,Fridolin,2011-05-21,2019-05-04,0238588409223,MP,2905,f,0,0,0,0,0,Inactive,Party Spokesperson
-31422,Kristdemokraterna,Förste vice gruppledare,Hans,Eklind,2022-12-06,,0494242537816,KD,1092,t,49,19,49,0,0,Medium,First Deputy Group Leader
-47961,Centerpartiet,Partiledare,Anna-Karin,Hatt,2025-05-03,2025-11-12,0646954957610,C,193,f,0,0,0,0,0,Inactive,Party Leader
-2216,Socialdemokraterna,Förste vice gruppledare,Leif,Jakobsson,2008-06-05,2010-10-04,0482927154110,S,851,f,0,0,0,0,0,Inactive,First Deputy Group Leader
-43781,Moderaterna,Gruppledare,Jessica,Polfjärd,2015-01-13,2017-10-03,0630824497414,M,994,f,0,0,0,0,0,Inactive,Group Leader
-44220,Sverigedemokraterna,Partiledare,Jimmie,Åkesson,2005-05-07,,051207517226,SD,7514,t,1,0,1,0,0,Inactive,Party Leader
-45718,Liberalerna,Kvittningsperson,Helene,Odenjung,2025-10-14,,0262411569110,L,49,t,24,24,24,0,0,Medium,Pairing Representative
-39314,Miljöpartiet de gröna,Kvittningsperson,Elisabeth,Falkhaven,2018-09-24,2022-09-26,0640627133410,MP,1463,f,1,0,1,0,0,Inactive,Pairing Representative
-37711,Centerpartiet,Förste vice gruppledare,Elisabeth,Thand Ringqvist,2024-09-09,2025-08-31,0602744999917,C,356,f,98,39,98,0,0,High,First Deputy Group Leader
-20799,Liberalerna,Kvittningsperson,Lars,Tysklind,2015-11-24,2018-09-24,0535526562910,L,1035,f,0,0,0,0,0,Inactive,Pairing Representative
-48885,Miljöpartiet de gröna,Förste vice gruppledare,Maria,Ferm,2018-09-24,2019-02-06,0462699892622,MP,135,f,0,0,0,0,0,Inactive,First Deputy Group Leader
-657,Vänsterpartiet,Kvittningsperson,Gunilla,Wahlén,2006-10-02,2010-10-04,0814945477312,V,1463,f,0,0,0,0,0,Inactive,Pairing Representative
+51968,Kristdemokraterna,Partisekreterare,Liza-Maria,Norlin,2023-04-27,,0301987597720,KD,951,t,0,0,0,0,0,Inactive,Party Secretary
+41151,Miljöpartiet de gröna,Gruppledare,Annika,Hirvonen,2024-06-14,,0819601620927,MP,537,t,234,123,234,0,0,Very High,Group Leader
+51623,Vänsterpartiet,Andre vice gruppledare,Andrea,Andersson Tay,2025-10-21,,0802091197024,V,43,t,148,65,148,0,0,Very High,Second Deputy Group Leader
 43292,Socialdemokraterna,Förste vice gruppledare,Annelie,Karlsson,2018-10-09,2019-01-31,0199751900210,S,114,f,5,0,5,0,0,Inactive,First Deputy Group Leader
-1037,Vänsterpartiet,Kvittningsperson,Hanna,Gunnarsson,2022-11-24,,0411459873625,V,1104,t,77,40,77,0,0,High,Pairing Representative
-38782,Miljöpartiet de gröna,Språkrör,Per,Bolund,2019-05-04,2023-11-18,0956444284814,MP,1659,f,7,0,7,0,0,Inactive,Party Spokesperson
-40915,Sverigedemokraterna,Gruppledare,Mattias,Karlsson,2014-09-29,2019-11-24,0831636664429,SD,1882,f,1,0,1,0,0,Inactive,Group Leader
-37714,Centerpartiet,Andre vice gruppledare,Elisabeth,Thand Ringqvist,2022-09-26,2023-12-31,0602744999917,C,461,f,98,39,98,0,0,High,Second Deputy Group Leader
-40186,Kristdemokraterna,Gruppledare,Mats,Odell,2010-10-07,2012-02-20,0700424025906,KD,501,f,0,0,0,0,0,Inactive,Group Leader
+9336,Socialdemokraterna,Kvittningsperson,Kurt,Kvarnström,2010-10-04,2014-09-29,0262124593702,S,1456,f,0,0,0,0,0,Inactive,Pairing Representative
+40043,Centerpartiet,Gruppledare,Anders,W Jonsson,2011-10-11,2014-09-29,0229760896014,C,1084,f,115,44,115,0,0,High,Group Leader
+53277,Miljöpartiet de gröna,Språkrör,Amanda,Lind,2024-04-28,,0888807074321,MP,584,t,65,9,64,0,0,Low,Party Spokesperson
+51750,Socialdemokraterna,Kvittningsperson,Erik,Ezelius,2017-03-14,2019-02-27,0667220767927,S,715,f,22,7,22,0,0,Low,Pairing Representative
+42806,Moderaterna,Gruppledare,Tobias,Billström,2017-10-03,2022-10-18,0956595590924,M,1841,f,12,0,8,0,0,Inactive,Group Leader
+50374,Moderaterna,Partisekreterare,Karin,Enström,2022-10-19,,0607691439013,M,1141,t,12,5,12,0,0,Low,Party Secretary
+51938,Miljöpartiet de gröna,Språkrör,Daniel,Helldén,2023-11-18,,0504851635310,MP,746,t,56,6,56,0,0,Low,Party Spokesperson
+8114,Miljöpartiet de gröna,Förste vice gruppledare,Rasmus,Ling,2022-11-07,2023-09-03,0744139167426,MP,300,f,67,3,67,0,0,Low,First Deputy Group Leader
+39854,Miljöpartiet de gröna,Andre vice gruppledare,Camilla,Hansén,2022-11-08,2024-06-14,0692076685824,MP,584,f,149,76,149,0,0,Very High,Second Deputy Group Leader
+22942,Folkpartiet liberalerna,Kvittningsperson,Emma,Carlsson Löfdahl,2014-09-29,2015-11-24,0737073162411,-,421,f,0,0,0,0,0,Inactive,Pairing Representative
+11369,Sverigedemokraterna,Förste vice gruppledare,Henrik,Vinge,2019-04-01,2019-11-24,0406831930624,SD,237,f,1,1,1,0,0,Low,First Deputy Group Leader
+32518,Kristdemokraterna,Förste vice gruppledare,Inger,Davidson,2009-02-09,2010-10-04,0820673454606,KD,602,f,0,0,0,0,0,Inactive,First Deputy Group Leader
+33208,Moderaterna,Förste vice gruppledare,Hans,Wallmark,2015-01-20,2020-09-28,0980681611418,M,2078,f,26,0,26,0,0,Inactive,First Deputy Group Leader
+53103,Vänsterpartiet,Förste vice gruppledare,Ulla,Andersson,2010-10-05,2012-02-13,0628190530410,V,496,f,16,0,16,0,0,Inactive,First Deputy Group Leader
+45618,Miljöpartiet de gröna,Gruppledare,Jonas,Eriksson,2015-05-18,2015-12-31,0157062733618,MP,227,f,0,0,0,0,0,Inactive,Group Leader
+27855,Liberalerna,Partiledare,Johan,Pehrson,2022-11-26,2025-06-24,0224712677012,L,941,f,22,4,16,0,0,Low,Party Leader
+45621,Miljöpartiet de gröna,Förste vice gruppledare,Jonas,Eriksson,2014-09-29,2015-01-01,0157062733618,MP,94,f,0,0,0,0,0,Inactive,First Deputy Group Leader
+47596,Miljöpartiet de gröna,Språkrör,Åsa,Romson,2011-05-21,2016-05-13,0951854268017,MP,1819,f,0,0,0,0,0,Inactive,Party Spokesperson
+37164,Centerpartiet,Gruppledare,Roger,Tiefensee,2010-10-04,2011-10-11,0959102638818,C,372,f,0,0,0,0,0,Inactive,Group Leader
+37123,Socialdemokraterna,Gruppledare,Lena,Hallengren,2022-10-07,,0853395328224,S,1153,t,19,5,16,0,0,Low,Group Leader
+903,Centerpartiet,Partisekreterare,Michael,Arthursson,2010-11-17,2023-02-17,0618278689611,C,4475,f,0,0,0,0,0,Inactive,Party Secretary
+2215,Socialdemokraterna,Förste vice gruppledare,Leif,Jakobsson,2010-10-19,2012-02-28,0482927154110,S,497,f,0,0,0,0,0,Inactive,First Deputy Group Leader
+40611,Miljöpartiet de gröna,Gruppledare,Ulf,Holm,2008-10-01,2010-10-04,0584183916016,MP,733,f,2,1,2,0,0,Low,Group Leader
+34801,Folkpartiet liberalerna,Förste vice gruppledare,Allan,Widman,2006-10-11,2010-10-04,0446541913415,L,1454,f,20,0,20,0,0,Inactive,First Deputy Group Leader
+26154,Centerpartiet,Kvittningsperson,Åsa,Torstensson,2010-10-25,2014-09-29,0183788551910,C,1435,f,0,0,0,0,0,Inactive,Pairing Representative
+48887,Miljöpartiet de gröna,Förste vice gruppledare,Maria,Ferm,2016-11-01,2018-01-15,0462699892622,MP,440,f,0,0,0,0,0,Inactive,First Deputy Group Leader
+13911,Vänsterpartiet,Gruppledare,Lars,Ohly,2010-10-04,2010-10-04,0371688419616,V,0,f,0,0,0,0,0,Inactive,Group Leader
+8776,Vänsterpartiet,Partisekreterare,Aron,Etzler,2012-02-04,2024-12-31,092274509611,V,4714,f,0,0,0,0,0,Inactive,Party Secretary
+41145,Miljöpartiet de gröna,Förste vice gruppledare,Annika,Hirvonen,2023-09-04,2024-06-14,0819601620927,MP,284,f,234,123,234,0,0,Very High,First Deputy Group Leader
+37711,Centerpartiet,Förste vice gruppledare,Elisabeth,Thand Ringqvist,2024-09-09,2025-08-31,0602744999917,C,356,f,98,39,98,0,0,High,First Deputy Group Leader
+44121,Socialdemokraterna,Gruppledare,Gunilla,Carlsson,2022-09-26,2022-10-06,0875221317013,S,10,f,67,28,67,0,0,High,Group Leader
+45615,Miljöpartiet de gröna,Förste vice gruppledare,Jonas,Eriksson,2018-01-16,2018-09-24,0157062733618,MP,251,f,0,0,0,0,0,Inactive,First Deputy Group Leader
+51648,Socialdemokraterna,Partiledare,Magdalena,Andersson,2021-11-04,,098412828516,S,1490,t,40,2,4,0,0,Low,Party Leader
+8619,Liberalerna,Kvittningsperson,Helena,Gellerman,2019-09-24,,0899169869710,L,2262,t,32,13,32,0,0,Medium,Pairing Representative
+30212,Kristdemokraterna,Kvittningsperson,Larry,Söder,2022-11-24,,0992473266516,KD,1105,t,76,21,76,0,0,Medium,Pairing Representative
+34990,Moderaterna,Andre vice gruppledare,Noria,Manouchi,2022-10-25,,0793372891224,M,1135,t,81,25,81,0,0,Medium,Second Deputy Group Leader
+37715,Centerpartiet,Partiledare,Elisabeth,Thand Ringqvist,2025-11-13,,0602744999917,C,20,t,98,39,98,0,0,High,Party Leader
+31478,Vänsterpartiet,Kvittningsperson,Wiwi-Anne,Johansson,2014-09-29,2017-10-31,0995355603410,V,1128,f,0,0,0,0,0,Inactive,Pairing Representative
+43293,Socialdemokraterna,Förste vice gruppledare,Annelie,Karlsson,2018-03-27,2018-09-24,0199751900210,S,181,f,5,0,5,0,0,Inactive,First Deputy Group Leader
+48885,Miljöpartiet de gröna,Förste vice gruppledare,Maria,Ferm,2018-09-24,2019-02-06,0462699892622,MP,135,f,0,0,0,0,0,Inactive,First Deputy Group Leader
+27857,Liberalerna,Tillförordnad partiledare,Johan,Pehrson,2022-04-08,2022-11-26,0224712677012,L,232,f,22,4,16,0,0,Low,Other
+52245,Vänsterpartiet,Kvittningsperson,Isabell,Mixter,2022-11-24,2025-03-13,048561486727,V,840,f,151,68,151,0,0,Very High,Pairing Representative
+31479,Vänsterpartiet,Kvittningsperson,Wiwi-Anne,Johansson,2010-10-05,2014-09-29,0995355603410,V,1455,f,0,0,0,0,0,Inactive,Pairing Representative
+35506,Centerpartiet,Partiledare,Annie,Lööf,2011-09-23,2023-02-02,0862868280923,C,4150,f,0,0,0,0,0,Inactive,Party Leader
+39978,Moderaterna,Gruppledare,Anna,Kinberg Batra,2010-10-04,2014-09-29,012053331219,M,1456,f,0,0,0,0,0,Inactive,Group Leader
+5812,Socialdemokraterna,Gruppledare,Anders,Ygeman,2017-08-08,2019-01-31,0744993950910,S,541,f,48,12,44,0,0,Medium,Group Leader
