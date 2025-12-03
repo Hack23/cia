@@ -6625,7 +6625,7 @@ CREATE VIEW public.view_ministry_risk_evolution AS
                 END) AS legislative_count,
             count(DISTINCT doc.person_reference_id) AS active_members
            FROM (ministry_quarters mq
-             LEFT JOIN ministry_document_data doc ON (((lower((doc.org)::text) = mq.org_code_lower) AND (date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone) = mq.assessment_period))))
+             LEFT JOIN ministry_document_data doc ON (((lower((doc.org)::text) = mq.org_code_lower) AND (date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone) = mq.assessment_period) AND (doc.made_public_date >= (CURRENT_DATE - '2 years'::interval)))))
           GROUP BY mq.org_code, mq.name, mq.assessment_period
         ), risk_calculations AS (
          SELECT quarterly_performance.org_code,

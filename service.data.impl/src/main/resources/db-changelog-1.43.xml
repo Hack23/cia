@@ -126,6 +126,7 @@ quarterly_performance AS (
     LEFT JOIN ministry_document_data doc 
         ON LOWER(doc.org) = mq.org_code_lower
         AND DATE_TRUNC('quarter', doc.made_public_date) = mq.assessment_period
+        AND doc.made_public_date >= CURRENT_DATE - INTERVAL '2 years'
     GROUP BY mq.org_code, mq.name, mq.assessment_period
 ),
 risk_calculations AS (
