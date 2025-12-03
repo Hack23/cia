@@ -35,6 +35,44 @@ sudo -u postgres bash -c "(pg_dump -U postgres -d cia_dev --schema-only --no-own
 - Before major releases
 - After database refactoring
 
+### Liquibase Changelog Testing (Maven Commands)
+
+Test and validate Liquibase changelogs directly against the database without starting the application:
+
+```bash
+# Check changelog status - shows which changesets have been applied
+cd /path/to/cia/repository
+mvn liquibase:status -pl service.data.impl
+
+# Validate changelog syntax and structure
+mvn liquibase:validate -pl service.data.impl
+
+# Apply pending changesets to database
+mvn liquibase:update -pl service.data.impl
+
+# Preview SQL that would be executed (dry-run)
+mvn liquibase:updateSQL -pl service.data.impl
+
+# Rollback last changeset
+mvn liquibase:rollback -Dliquibase.rollbackCount=1 -pl service.data.impl
+
+# Generate database documentation
+mvn liquibase:dbDoc -pl service.data.impl
+```
+
+**Prerequisites:**
+- PostgreSQL database must be running with `cia_dev` database created
+- Database credentials configured in `service.data.impl/pom.xml` (default: `eris`/`discord`)
+
+**When to Use:**
+- **status**: Verify which migrations are pending before/after updates
+- **validate**: Check changelog XML syntax before committing new migrations
+- **update**: Apply migrations directly without starting the application
+- **updateSQL**: Review SQL before applying (safe preview mode)
+- **rollback**: Undo recent changes during development/testing
+
+> **Tip for Copilot Agent:** With database available, use `mvn liquibase:status` and `mvn liquibase:validate` to verify changelog integrity before running application tests.
+
 ### Health Check and Validation
 
 ```bash
