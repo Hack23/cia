@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Fix: Add committee referral pattern to Decision Intelligence Views v1.45
+  Author: Intelligence Operative
+  Date: 2025-12-03
+  
+  Documentation References:
+  - Analysis: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Business Requirements: BUSINESS_PRODUCT_DOCUMENT.md
+  
+  Issue Identified:
+  The views view_decision_temporal_trends and view_ministry_decision_impact were not
+  capturing committee referral decisions with values like:
+  - =utskottet (6,501 records)
+  - = utskottet (517 records)
+  - utskottet (12 records)
+  - =utskott (19 records)
+  
+  Total: 7,049 records falling into other_decisions instead of proper classification
+  
+  Fix: Add '%UTSKOTT%' pattern to capture committee referrals
+-->
+
+<changeSet author="intelligence-operative" id="fix-committee-referral-1.45-001" failOnError="true">
+    <comment>
+        Fix view_decision_temporal_trends to include committee_referral_decisions column.
+        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records previously uncategorized.
+    </comment>
+    
+    <sqlFile path="view_decision_temporal_trends_v1.45.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_decision_temporal_trends CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+<changeSet author="intelligence-operative" id="fix-committee-referral-1.45-002" failOnError="true">
+    <comment>
+        Fix view_ministry_decision_impact to include committee_referral_proposals column
+        and committee_referral_rate. Also updates other_decisions to exclude committee referrals.
+        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records previously in other_decisions.
+    </comment>
+    
+    <sqlFile path="view_ministry_decision_impact_v1.45.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_ministry_decision_impact CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>

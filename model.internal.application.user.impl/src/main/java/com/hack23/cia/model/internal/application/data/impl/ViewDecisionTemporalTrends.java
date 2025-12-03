@@ -84,6 +84,7 @@ import com.hack23.cia.model.common.api.ModelObject;
     "approvedDecisions",
     "rejectedDecisions",
     "referredBackDecisions",
+    "committeeReferralDecisions",
     "ma7dayDecisions",
     "ma30dayDecisions",
     "ma90dayDecisions",
@@ -120,6 +121,9 @@ public class ViewDecisionTemporalTrends implements ModelObject {
 
 	@XmlElement(name = "referred_back_decisions")
 	protected long referredBackDecisions;
+
+	@XmlElement(name = "committee_referral_decisions")
+	protected long committeeReferralDecisions;
 
 	@XmlElement(name = "ma_7day_decisions")
 	protected BigDecimal ma7dayDecisions;
@@ -273,6 +277,26 @@ public class ViewDecisionTemporalTrends implements ModelObject {
 	 */
 	public void setReferredBackDecisions(final long value) {
 		this.referredBackDecisions = value;
+	}
+
+	/**
+	 * Gets the committee referral decisions.
+	 *
+	 * @return the committee referral decisions
+	 */
+	@Basic
+	@Column(name = "COMMITTEE_REFERRAL_DECISIONS", precision = 20)
+	public long getCommitteeReferralDecisions() {
+		return committeeReferralDecisions;
+	}
+
+	/**
+	 * Sets the committee referral decisions.
+	 *
+	 * @param value the new committee referral decisions
+	 */
+	public void setCommitteeReferralDecisions(final long value) {
+		this.committeeReferralDecisions = value;
 	}
 
 	/**
@@ -558,6 +582,17 @@ public class ViewDecisionTemporalTrends implements ModelObject {
 	 */
 	public ViewDecisionTemporalTrends withReferredBackDecisions(final long value) {
 		setReferredBackDecisions(value);
+		return this;
+	}
+
+	/**
+	 * With committee referral decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withCommitteeReferralDecisions(final long value) {
+		setCommitteeReferralDecisions(value);
 		return this;
 	}
 
