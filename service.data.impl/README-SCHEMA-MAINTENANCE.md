@@ -84,7 +84,8 @@ The Copilot agent environment uses a specific PostgreSQL setup defined in `.gith
 The setup includes:
 
 - **PostgreSQL Version**: 16 with extensions
-- **Extensions Enabled**: `pg_stat_statements`, `pgaudit`, `pgcrypto`, `pgvector`
+- **Extensions Enabled**: `pg_stat_statements`, `pgaudit`, `pgcrypto`
+- **Extensions Installed (Available)**: `pgvector` (installed but not enabled by default)
 - **Prepared Transactions**: `max_prepared_transactions = 100`
 - **SSL**: Enabled with self-signed certificates (4096-bit RSA, SHA-256)
 
