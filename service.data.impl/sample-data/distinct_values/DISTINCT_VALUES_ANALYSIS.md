@@ -222,15 +222,15 @@ The following views from [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../../DATABA
 ### Ministry Views (Key Product Features)
 | View Name | Intelligence Value | Data Quality | Issues |
 |-----------|-------------------|--------------|--------|
-| `view_ministry_decision_impact` | ⭐⭐⭐⭐⭐ | ✅ Good | None |
+| `view_ministry_decision_impact` | ⭐⭐⭐⭐⭐ | ✅ Fixed | Committee referral pattern added (fixed in v1.45) |
 | `view_ministry_productivity_matrix` | ⭐⭐⭐⭐ | ✅ Good | None |
 | `view_ministry_risk_evolution` | ⭐⭐⭐⭐ | ✅ Fixed | Fixed in v1.43 |
 
 ### Decision Intelligence Views (Key Product Features)
 | View Name | Intelligence Value | Data Quality | Issues |
 |-----------|-------------------|--------------|--------|
-| `view_decision_temporal_trends` | ⭐⭐⭐⭐ | ⚠️ Partial | Committee referral pattern improvement suggested |
-| `view_riksdagen_goverment_proposals` | ⭐⭐⭐⭐ | ⚠️ Partial | Committee referral pattern improvement suggested |
+| `view_decision_temporal_trends` | ⭐⭐⭐⭐ | ✅ Fixed | Committee referral pattern added (fixed in v1.45) |
+| `view_riksdagen_goverment_proposals` | ⭐⭐⭐⭐ | ✅ Good | Simple data selection view - no pattern matching needed |
 
 ---
 
@@ -239,6 +239,15 @@ The following views from [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../../DATABA
 **db-changelog-1.44.xml** was created to address the identified issue:
 - Fixed `view_riksdagen_politician_experience_summary` to include 'Förste vice talman' in talmansuppdrag role scoring
 - All three Deputy Speaker roles (Förste, Andre, Tredje vice talman) now weighted equally at 750.0
+
+**db-changelog-1.45.xml** was created to address committee referral patterns:
+- Fixed `view_decision_temporal_trends` to include `committee_referral_decisions` column
+- Fixed `view_ministry_decision_impact` to include `committee_referral_proposals` and `committee_referral_rate` columns
+- Pattern `%UTSKOTT%` now captures 7,049 records previously in `other_decisions`:
+  - =utskottet (6,501 records)
+  - = utskottet (517 records)
+  - utskottet (12 records)
+  - =utskott (19 records)
 
 ### Verification
 After Liquibase execution:
