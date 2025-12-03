@@ -89,7 +89,9 @@ The setup includes:
 - **Prepared Transactions**: `max_prepared_transactions = 100`
 - **SSL**: Enabled with self-signed certificates (4096-bit RSA, SHA-256)
 
-### Database Credentials
+### Database Credentials (Development Environment)
+
+> **Note:** These are development/CI environment credentials only. Never use these in production. For production environments, use strong passwords stored in secure secret management systems.
 
 | Setting | Value |
 |---------|-------|
@@ -2939,7 +2941,7 @@ psql -U postgres -d cia_dev -f analyze-view-dependencies.sql > deps.csv
 ## 🎯 Next Steps for Intelligence Operatives
 
 ### Getting Started (First Time)
-1. Review [Quick Start](#-quick-start-5-minutes) section
+1. Review [Quick Reference Commands](#-quick-reference-commands) section
 2. Run first health check and validation
 3. Familiarize yourself with [Decision Tree](#-decision-tree-selecting-maintenance-tasks)
 4. Set up [Daily Operations](#-daily-operations-checklist) routine
