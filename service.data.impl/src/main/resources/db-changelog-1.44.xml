@@ -28,10 +28,6 @@
   
   All three Deputy Speaker roles should be weighted equally at 750.0 for consistency.
   
-  Additionally this changelog improves decision classification by:
-  - Adding '%UTSKOTT%' pattern for committee referrals (6,501+ records misclassified)
-  - Adding 'COMMITTEE_REFERRAL' decision type for better analytics
-  
   This fix affects:
   1. view_riksdagen_politician_experience_summary - Fixed role scoring
   
