@@ -1,0 +1,338 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2024-11-24T02:23:58Z",
+    "source": "Citizen Intelligence Agency",
+    "schema": "risk-assessment",
+    "productType": "intelligence",
+    "updateFrequency": "daily",
+    "confidenceLevel": 0.85,
+    "dataDate": "2024-11-23",
+    "totalRiskRules": 50,
+    "ruleCategories": {
+      "politician": 24,
+      "party": 10,
+      "committee": 4,
+      "ministry": 4,
+      "decision": 5,
+      "other": 3
+    },
+    "attribution": "Data derived from Riksdagen Open Data API and CIA Risk Analysis Framework",
+    "license": "Apache-2.0"
+  },
+  "riskRuleCatalog": {
+    "politician": [
+      { "id": "POL-001", "name": "Low Document Activity", "severity": "MINOR", "salience": 10, "category": "productivity" },
+      { "id": "POL-002", "name": "No Documents Last Year", "severity": "MAJOR", "salience": 50, "category": "productivity" },
+      { "id": "POL-003", "name": "Very Low Average Document Activity", "severity": "CRITICAL", "salience": 100, "category": "productivity" },
+      { "id": "POL-004", "name": "Low Collaboration Below 20%", "severity": "MINOR", "salience": 10, "category": "collaboration" },
+      { "id": "POL-005", "name": "Very Low Collaboration Below 10%", "severity": "MAJOR", "salience": 50, "category": "collaboration" },
+      { "id": "POL-006", "name": "No Multi-Party Collaboration", "severity": "CRITICAL", "salience": 100, "category": "collaboration" },
+      { "id": "POL-007", "name": "Low Win Rate Below 30%", "severity": "MINOR", "salience": 10, "category": "effectiveness" },
+      { "id": "POL-008", "name": "Very Low Win Rate Below 20%", "severity": "MAJOR", "salience": 50, "category": "effectiveness" },
+      { "id": "POL-009", "name": "Critical Win Rate Below 10%", "severity": "CRITICAL", "salience": 100, "category": "effectiveness" },
+      { "id": "POL-010", "name": "High Rebel Rate 5-10%", "severity": "MINOR", "salience": 10, "category": "loyalty" },
+      { "id": "POL-011", "name": "Very High Rebel Rate 10-20%", "severity": "MAJOR", "salience": 50, "category": "loyalty" },
+      { "id": "POL-012", "name": "Extreme Rebel Rate Above 20%", "severity": "CRITICAL", "salience": 100, "category": "loyalty" },
+      { "id": "POL-013", "name": "High Absence Rate 20-30%", "severity": "MINOR", "salience": 10, "category": "attendance" },
+      { "id": "POL-014", "name": "Very High Absence Rate 30-40%", "severity": "MAJOR", "salience": 50, "category": "attendance" },
+      { "id": "POL-015", "name": "Chronic Absence Above 40%", "severity": "CRITICAL", "salience": 100, "category": "attendance" },
+      { "id": "POL-016", "name": "Attendance Decline", "severity": "MINOR", "salience": 10, "category": "attendance" },
+      { "id": "POL-017", "name": "Sudden Attendance Drop", "severity": "MAJOR", "salience": 50, "category": "attendance" },
+      { "id": "POL-018", "name": "Pattern Absence Specific Days", "severity": "MINOR", "salience": 10, "category": "attendance" },
+      { "id": "POL-019", "name": "Committee Role Without Activity", "severity": "MINOR", "salience": 10, "category": "engagement" },
+      { "id": "POL-020", "name": "Ministry Role Low Performance", "severity": "MAJOR", "salience": 50, "category": "performance" },
+      { "id": "POL-021", "name": "Ethics Investigation Pending", "severity": "MAJOR", "salience": 50, "category": "ethics" },
+      { "id": "POL-022", "name": "Financial Disclosure Issue", "severity": "MAJOR", "salience": 50, "category": "ethics" },
+      { "id": "POL-023", "name": "Constituency Disconnect", "severity": "MINOR", "salience": 10, "category": "representation" },
+      { "id": "POL-024", "name": "Media Negative Coverage Spike", "severity": "MINOR", "salience": 10, "category": "reputation" }
+    ],
+    "party": [
+      { "id": "PARTY-001", "name": "Low Coalition Cohesion", "severity": "MINOR", "salience": 10, "category": "cohesion" },
+      { "id": "PARTY-002", "name": "Coalition Breakdown Risk", "severity": "CRITICAL", "salience": 100, "category": "stability" },
+      { "id": "PARTY-003", "name": "Electoral Support Decline 5-10%", "severity": "MINOR", "salience": 10, "category": "electoral" },
+      { "id": "PARTY-004", "name": "Electoral Support Decline Above 10%", "severity": "MAJOR", "salience": 50, "category": "electoral" },
+      { "id": "PARTY-005", "name": "Electoral Support Collapse Above 20%", "severity": "CRITICAL", "salience": 100, "category": "electoral" },
+      { "id": "PARTY-006", "name": "Internal Faction Conflict", "severity": "MAJOR", "salience": 50, "category": "unity" },
+      { "id": "PARTY-007", "name": "Leadership Challenge", "severity": "MAJOR", "salience": 50, "category": "leadership" },
+      { "id": "PARTY-008", "name": "Policy Reversal", "severity": "MINOR", "salience": 10, "category": "policy" },
+      { "id": "PARTY-009", "name": "Member Defection Pattern", "severity": "MAJOR", "salience": 50, "category": "membership" },
+      { "id": "PARTY-010", "name": "Financial Irregularity", "severity": "CRITICAL", "salience": 100, "category": "financial" }
+    ],
+    "committee": [
+      { "id": "COM-001", "name": "Low Committee Productivity", "severity": "MINOR", "salience": 10, "category": "productivity" },
+      { "id": "COM-002", "name": "Committee Decision Bottleneck", "severity": "MAJOR", "salience": 50, "category": "efficiency" },
+      { "id": "COM-003", "name": "Partisan Committee Operation", "severity": "MINOR", "salience": 10, "category": "objectivity" },
+      { "id": "COM-004", "name": "Chair Dominance Pattern", "severity": "MAJOR", "salience": 50, "category": "governance" }
+    ],
+    "ministry": [
+      { "id": "MIN-001", "name": "Ministry Budget Overrun", "severity": "MAJOR", "salience": 50, "category": "financial" },
+      { "id": "MIN-002", "name": "Ministry Policy Implementation Failure", "severity": "MAJOR", "salience": 50, "category": "effectiveness" },
+      { "id": "MIN-003", "name": "Ministry Staff Turnover", "severity": "MINOR", "salience": 10, "category": "operations" },
+      { "id": "MIN-004", "name": "Ministry Scandal", "severity": "CRITICAL", "salience": 100, "category": "reputation" }
+    ],
+    "decision": [
+      { "id": "D-01", "name": "Party Decision Ineffectiveness", "severity": "MAJOR", "salience": 70, "category": "strategic" },
+      { "id": "D-02", "name": "Politician Decision Passivity", "severity": "MAJOR", "salience": 60, "category": "engagement" },
+      { "id": "D-03", "name": "Ministry Legislative Weakness", "severity": "MAJOR", "salience": 70, "category": "effectiveness" },
+      { "id": "D-04", "name": "Committee Decision Paralysis", "severity": "MAJOR", "salience": 60, "category": "efficiency" },
+      { "id": "D-05", "name": "Cross-Party Consensus Collapse", "severity": "CRITICAL", "salience": 90, "category": "governance" }
+    ],
+    "other": [
+      { "id": "APP-001", "name": "Application Security Alert", "severity": "CRITICAL", "salience": 100, "category": "security" },
+      { "id": "APP-002", "name": "User Access Anomaly", "severity": "MAJOR", "salience": 50, "category": "security" },
+      { "id": "APP-003", "name": "Data Quality Degradation", "severity": "MINOR", "salience": 10, "category": "quality" }
+    ]
+  },
+  "summary": {
+    "totalEntities": 349,
+    "entitiesAssessed": {
+      "politicians": 349,
+      "parties": 8,
+      "committees": 15,
+      "ministries": 12
+    },
+    "riskDistribution": {
+      "critical": 3,
+      "high": 12,
+      "moderate": 45,
+      "low": 289
+    },
+    "criticalAlerts": 3,
+    "activeViolations": 156,
+    "violationsByCategory": {
+      "attendance": 45,
+      "productivity": 38,
+      "collaboration": 28,
+      "effectiveness": 22,
+      "loyalty": 12,
+      "ethics": 5,
+      "other": 6
+    },
+    "trendComparison": {
+      "vs7DaysAgo": -2.3,
+      "vs30DaysAgo": +5.1,
+      "vs90DaysAgo": -1.8
+    }
+  },
+  "data": [
+    {
+      "entityId": "0123456789",
+      "entityType": "politician",
+      "entityName": "Erik Eriksson",
+      "party": "S",
+      "constituency": "Stockholm",
+      "riskProfile": {
+        "overallScore": 72.5,
+        "level": "high",
+        "trend": "increasing",
+        "lastUpdated": "2024-11-24T02:23:58Z"
+      },
+      "riskFactors": [
+        {
+          "ruleId": "POL-014",
+          "category": "attendance",
+          "factor": "excessive-absence",
+          "severity": "MAJOR",
+          "salience": 50,
+          "description": "Attendance dropped from 92% to 67% in last 6 months",
+          "detected": "2024-11-15T10:23:00Z",
+          "trend": "worsening",
+          "evidence": {
+            "previousAttendance": 92.0,
+            "currentAttendance": 67.0,
+            "absenceDays": 45,
+            "period": "6 months"
+          }
+        },
+        {
+          "ruleId": "POL-021",
+          "category": "ethics",
+          "factor": "investigation-pending",
+          "severity": "MAJOR",
+          "salience": 50,
+          "description": "Subject of ongoing ethics investigation",
+          "detected": "2024-11-10T14:30:00Z",
+          "status": "active",
+          "details": {
+            "investigationType": "conflict-of-interest",
+            "agency": "Riksdag Ethics Committee",
+            "publiclyDisclosed": true
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2024-11-15",
+          "event": "Attendance threshold breached",
+          "riskScore": 72.5,
+          "change": 15.2
+        },
+        {
+          "date": "2024-10-01",
+          "event": "Ethics investigation initiated",
+          "riskScore": 57.3,
+          "change": 12.0
+        }
+      ],
+      "recommendations": [
+        "Monitor attendance patterns closely",
+        "Track ethics investigation developments",
+        "Compare with constituency expectations"
+      ],
+      "predictions": {
+        "nextElection": {
+          "reelectionProbability": 0.45,
+          "confidenceInterval": [0.32, 0.58]
+        },
+        "partyAction": {
+          "disciplinaryAction": 0.68,
+          "replacementProbability": 0.32
+        }
+      }
+    },
+    {
+      "entityId": "0234567890",
+      "entityType": "politician",
+      "entityName": "Maria Svensson",
+      "party": "M",
+      "constituency": "Göteborg",
+      "riskProfile": {
+        "overallScore": 35.2,
+        "level": "moderate",
+        "trend": "stable",
+        "lastUpdated": "2024-11-24T02:23:58Z"
+      },
+      "riskFactors": [
+        {
+          "ruleId": "POL-004",
+          "category": "collaboration",
+          "factor": "low-collaboration",
+          "severity": "MINOR",
+          "salience": 10,
+          "description": "Cross-party collaboration rate at 18%, below 20% threshold",
+          "detected": "2024-11-20T08:15:00Z",
+          "trend": "stable",
+          "evidence": {
+            "collaborationRate": 18.0,
+            "partyAverageCollaboration": 32.5,
+            "documentsCoAuthored": 12,
+            "totalDocuments": 67
+          }
+        },
+        {
+          "ruleId": "POL-007",
+          "category": "effectiveness",
+          "factor": "low-win-rate",
+          "severity": "MINOR",
+          "salience": 10,
+          "description": "Vote win rate at 28%, below 30% threshold",
+          "detected": "2024-11-18T14:00:00Z",
+          "trend": "declining",
+          "evidence": {
+            "winRate": 28.0,
+            "totalVotes": 234,
+            "winningVotes": 66,
+            "period": "last 12 months"
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2024-11-20",
+          "event": "Low collaboration flag triggered",
+          "riskScore": 35.2,
+          "change": 5.2
+        }
+      ],
+      "recommendations": [
+        "Encourage cross-party motion sponsorship",
+        "Review committee assignment opportunities"
+      ],
+      "predictions": {
+        "nextElection": {
+          "reelectionProbability": 0.72,
+          "confidenceInterval": [0.65, 0.79]
+        },
+        "partyAction": {
+          "disciplinaryAction": 0.05,
+          "replacementProbability": 0.12
+        }
+      }
+    },
+    {
+      "entityId": "s",
+      "entityType": "party",
+      "entityName": "Socialdemokraterna",
+      "riskProfile": {
+        "overallScore": 42.8,
+        "level": "moderate",
+        "trend": "declining",
+        "lastUpdated": "2024-11-24T02:23:58Z"
+      },
+      "riskFactors": [
+        {
+          "ruleId": "PARTY-003",
+          "category": "electoral",
+          "factor": "support-decline",
+          "severity": "MINOR",
+          "salience": 10,
+          "description": "Electoral support declined 5.8% from peak",
+          "detected": "2024-11-01T00:00:00Z",
+          "trend": "declining",
+          "evidence": {
+            "currentSupport": 28.5,
+            "peakSupport": 34.3,
+            "declinePercentage": 5.8,
+            "period": "3 years"
+          }
+        },
+        {
+          "ruleId": "PARTY-006",
+          "category": "unity",
+          "factor": "faction-conflict",
+          "severity": "MAJOR",
+          "salience": 50,
+          "description": "Internal disagreement between traditional and reform factions",
+          "detected": "2024-10-15T12:00:00Z",
+          "trend": "worsening",
+          "evidence": {
+            "rebelVotesLastMonth": 23,
+            "publicDisagreements": 4,
+            "leadershipChallenges": 0
+          }
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2024-11-01",
+          "event": "Electoral support decline threshold crossed",
+          "riskScore": 42.8,
+          "change": 8.5
+        }
+      ],
+      "recommendations": [
+        "Monitor youth vote trends",
+        "Assess faction reconciliation strategies",
+        "Evaluate coalition partner relations"
+      ],
+      "predictions": {
+        "nextElection": {
+          "seatProjection": 97,
+          "confidenceInterval": [89, 105]
+        },
+        "coalitionStatus": {
+          "governmentFormation": 0.42,
+          "oppositionRole": 0.58
+        }
+      }
+    }
+  ],
+  "visualization": {
+    "recommendedCharts": ["heatmap", "treemap", "timeline", "radar"],
+    "colorScheme": "risk-gradient",
+    "dataFormat": "hierarchical",
+    "interactive": true,
+    "exports": ["png", "svg", "pdf", "csv"]
+  }
+}

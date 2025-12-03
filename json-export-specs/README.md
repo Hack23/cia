@@ -1,8 +1,8 @@
 # 📊 CIA JSON Export System - Static CDN Deployment
 ## Comprehensive Political Intelligence Data for JavaScript Applications
 
-**Version:** 1.0.0  
-**Date:** 2024-11-24  
+**Version:** 1.1.0  
+**Date:** 2024-12-03  
 **Purpose:** Static JSON data exports for CDN hosting and JavaScript consumption  
 **Update Frequency:** Daily automated updates
 
@@ -235,6 +235,25 @@ All schemas are documented in Markdown format with:
 5. **[schemas/intelligence-schema.md](schemas/intelligence-schema.md)** - 17,122 bytes, risk assessment and predictive models
 
 **Database View Integration**: All schemas map to specific database views documented in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) (85 views total).
+
+### Example JSON Files (CDN-Ready)
+
+The following example files demonstrate the complete JSON export format for each intelligence product:
+
+| Example File | Schema | Description | File Size | Update Frequency |
+|-------------|--------|-------------|-----------|------------------|
+| **[politician-example.json](examples/politician-example.json)** | politician-schema.md | Comprehensive politician profiles with voting, activity, and risk data | ~2.5 KB | Daily |
+| **[party-example.json](examples/party-example.json)** | party-schema.md | Party performance, coalition, and electoral analytics | ~3.5 KB | Daily |
+| **[risk-assessment-example.json](examples/risk-assessment-example.json)** | intelligence-schema.md | Risk assessment with 50 behavioral rules catalog | ~15 KB | Daily |
+| **[coalition-alignment-example.json](examples/coalition-alignment-example.json)** | intelligence-schema.md | Coalition alignment matrix and party voting patterns | ~10 KB | Daily |
+| **[temporal-trends-example.json](examples/temporal-trends-example.json)** | intelligence-schema.md | Temporal trend analysis (daily/weekly/monthly/annual) | ~13 KB | Daily |
+
+**Intelligence Products Coverage**:
+- ✅ **Risk Assessments**: Complete 50-rule risk catalog with entity-level assessments
+- ✅ **Coalition Analysis**: Party alignment matrix with voting cohesion metrics
+- ✅ **Temporal Trends**: Multi-timeframe trend analysis for intelligence monitoring
+- ✅ **Politician Profiles**: Individual politician data with risk and performance scores
+- ✅ **Party Analytics**: Party-level performance and coalition stability metrics
 
 ---
 

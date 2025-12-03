@@ -1,0 +1,410 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2024-11-24T02:23:58Z",
+    "source": "Citizen Intelligence Agency",
+    "schema": "temporal-trend-analysis",
+    "productType": "intelligence",
+    "updateFrequency": "daily",
+    "confidenceLevel": 0.85,
+    "dataDate": "2024-11-23",
+    "analysisTimeframes": ["daily", "weekly", "monthly", "annual"],
+    "attribution": "Data derived from Riksdagen Open Data API",
+    "license": "Apache-2.0"
+  },
+  "summary": {
+    "totalDataPoints": 1825,
+    "analyzedEntities": {
+      "politicians": 349,
+      "parties": 8,
+      "committees": 15,
+      "ministries": 12
+    },
+    "detectedTrends": 23,
+    "significantChanges": 8,
+    "alerts": 3,
+    "analysisHorizon": {
+      "start": "2019-11-24",
+      "end": "2024-11-23",
+      "years": 5
+    }
+  },
+  "dailyTrends": {
+    "description": "Day-over-day changes in key political metrics",
+    "latestDate": "2024-11-23",
+    "metrics": [
+      {
+        "metric": "parliamentary-activity",
+        "today": 145,
+        "yesterday": 132,
+        "change": 9.8,
+        "changeDirection": "increasing",
+        "average7Day": 128.5,
+        "percentile": 78
+      },
+      {
+        "metric": "documents-submitted",
+        "today": 23,
+        "yesterday": 18,
+        "change": 27.8,
+        "changeDirection": "increasing",
+        "average7Day": 19.2,
+        "percentile": 82
+      },
+      {
+        "metric": "votes-cast",
+        "today": 12,
+        "yesterday": 8,
+        "change": 50.0,
+        "changeDirection": "increasing",
+        "average7Day": 9.4,
+        "percentile": 71
+      },
+      {
+        "metric": "risk-alerts",
+        "today": 2,
+        "yesterday": 1,
+        "change": 100.0,
+        "changeDirection": "increasing",
+        "average7Day": 1.3,
+        "percentile": 85
+      }
+    ],
+    "topMovers": {
+      "politicians": [
+        { "id": "0123456789", "name": "Anna Andersson", "metric": "activity", "change": 45.2 },
+        { "id": "0234567890", "name": "Erik Eriksson", "metric": "documents", "change": -32.1 }
+      ],
+      "parties": [
+        { "code": "M", "name": "Moderaterna", "metric": "cohesion", "change": 2.3 },
+        { "code": "S", "name": "Socialdemokraterna", "metric": "support", "change": -1.2 }
+      ]
+    }
+  },
+  "weeklyTrends": {
+    "description": "Week-over-week changes with 7-day rolling averages",
+    "currentWeek": "2024-W47",
+    "metrics": [
+      {
+        "metric": "attendance-rate",
+        "thisWeek": 87.3,
+        "lastWeek": 85.1,
+        "change": 2.6,
+        "changeDirection": "improving",
+        "average4Week": 86.2,
+        "historicalComparison": {
+          "vsLastYear": -1.2,
+          "vsAverage": -0.8
+        }
+      },
+      {
+        "metric": "coalition-cohesion",
+        "thisWeek": 94.3,
+        "lastWeek": 95.1,
+        "change": -0.8,
+        "changeDirection": "declining",
+        "average4Week": 94.8,
+        "historicalComparison": {
+          "vsLastYear": -2.1,
+          "vsAverage": -1.5
+        }
+      },
+      {
+        "metric": "cross-party-motions",
+        "thisWeek": 8,
+        "lastWeek": 5,
+        "change": 60.0,
+        "changeDirection": "increasing",
+        "average4Week": 6.5,
+        "historicalComparison": {
+          "vsLastYear": 23.1,
+          "vsAverage": 15.4
+        }
+      },
+      {
+        "metric": "rebellion-rate",
+        "thisWeek": 3.2,
+        "lastWeek": 2.8,
+        "change": 14.3,
+        "changeDirection": "increasing",
+        "average4Week": 2.9,
+        "historicalComparison": {
+          "vsLastYear": 8.5,
+          "vsAverage": 12.1
+        }
+      }
+    ],
+    "weeklyTimeline": [
+      { "week": "2024-W47", "activity": 145, "attendance": 87.3, "cohesion": 94.3 },
+      { "week": "2024-W46", "activity": 132, "attendance": 85.1, "cohesion": 95.1 },
+      { "week": "2024-W45", "activity": 128, "attendance": 86.5, "cohesion": 94.8 },
+      { "week": "2024-W44", "activity": 135, "attendance": 86.8, "cohesion": 95.2 },
+      { "week": "2024-W43", "activity": 142, "attendance": 85.9, "cohesion": 94.5 },
+      { "week": "2024-W42", "activity": 118, "attendance": 84.2, "cohesion": 95.8 },
+      { "week": "2024-W41", "activity": 125, "attendance": 85.5, "cohesion": 95.3 },
+      { "week": "2024-W40", "activity": 138, "attendance": 87.1, "cohesion": 94.9 }
+    ]
+  },
+  "monthlyTrends": {
+    "description": "Month-over-month changes with seasonal adjustments",
+    "currentMonth": "2024-11",
+    "metrics": [
+      {
+        "metric": "legislative-productivity",
+        "thisMonth": 234,
+        "lastMonth": 198,
+        "change": 18.2,
+        "changeDirection": "increasing",
+        "seasonallyAdjusted": 215,
+        "yearOverYear": 12.3,
+        "trend": "positive"
+      },
+      {
+        "metric": "committee-decisions",
+        "thisMonth": 45,
+        "lastMonth": 52,
+        "change": -13.5,
+        "changeDirection": "declining",
+        "seasonallyAdjusted": 48,
+        "yearOverYear": -5.2,
+        "trend": "negative"
+      },
+      {
+        "metric": "government-bills-passed",
+        "thisMonth": 12,
+        "lastMonth": 8,
+        "change": 50.0,
+        "changeDirection": "increasing",
+        "seasonallyAdjusted": 11,
+        "yearOverYear": 20.0,
+        "trend": "positive"
+      },
+      {
+        "metric": "average-risk-score",
+        "thisMonth": 28.5,
+        "lastMonth": 26.2,
+        "change": 8.8,
+        "changeDirection": "increasing",
+        "seasonallyAdjusted": 27.8,
+        "yearOverYear": 5.1,
+        "trend": "negative"
+      }
+    ],
+    "monthlyTimeline": [
+      { "month": "2024-11", "productivity": 234, "decisions": 45, "riskScore": 28.5 },
+      { "month": "2024-10", "productivity": 198, "decisions": 52, "riskScore": 26.2 },
+      { "month": "2024-09", "productivity": 185, "decisions": 48, "riskScore": 25.8 },
+      { "month": "2024-08", "productivity": 95, "decisions": 28, "riskScore": 24.1 },
+      { "month": "2024-07", "productivity": 78, "decisions": 22, "riskScore": 23.5 },
+      { "month": "2024-06", "productivity": 212, "decisions": 55, "riskScore": 27.2 },
+      { "month": "2024-05", "productivity": 245, "decisions": 58, "riskScore": 26.8 },
+      { "month": "2024-04", "productivity": 228, "decisions": 51, "riskScore": 25.5 },
+      { "month": "2024-03", "productivity": 215, "decisions": 49, "riskScore": 26.1 },
+      { "month": "2024-02", "productivity": 198, "decisions": 45, "riskScore": 25.2 },
+      { "month": "2024-01", "productivity": 178, "decisions": 42, "riskScore": 24.8 },
+      { "month": "2023-12", "productivity": 125, "decisions": 35, "riskScore": 25.5 }
+    ],
+    "seasonalPatterns": {
+      "highActivityMonths": ["March", "May", "October", "November"],
+      "lowActivityMonths": ["July", "August", "December"],
+      "budgetCycleImpact": {
+        "budgetPresentationMonth": "September",
+        "budgetVoteMonth": "November",
+        "activitySpike": 35.2
+      }
+    }
+  },
+  "annualTrends": {
+    "description": "Year-over-year analysis with long-term pattern detection",
+    "currentYear": 2024,
+    "metrics": [
+      {
+        "metric": "total-parliamentary-activity",
+        "currentYear": 2456,
+        "previousYear": 2312,
+        "change": 6.2,
+        "fiveYearAverage": 2285,
+        "fiveYearTrend": "increasing",
+        "compoundGrowthRate": 2.8
+      },
+      {
+        "metric": "legislation-passed",
+        "currentYear": 145,
+        "previousYear": 138,
+        "change": 5.1,
+        "fiveYearAverage": 132,
+        "fiveYearTrend": "increasing",
+        "compoundGrowthRate": 3.2
+      },
+      {
+        "metric": "average-attendance",
+        "currentYear": 86.5,
+        "previousYear": 87.2,
+        "change": -0.8,
+        "fiveYearAverage": 87.8,
+        "fiveYearTrend": "declining",
+        "compoundGrowthRate": -0.5
+      },
+      {
+        "metric": "coalition-stability-index",
+        "currentYear": 72.3,
+        "previousYear": 78.5,
+        "change": -7.9,
+        "fiveYearAverage": 75.2,
+        "fiveYearTrend": "declining",
+        "compoundGrowthRate": -1.8
+      }
+    ],
+    "annualTimeline": [
+      { "year": 2024, "activity": 2456, "legislation": 145, "attendance": 86.5, "stability": 72.3 },
+      { "year": 2023, "activity": 2312, "legislation": 138, "attendance": 87.2, "stability": 78.5 },
+      { "year": 2022, "activity": 2198, "legislation": 125, "attendance": 88.1, "stability": 82.1 },
+      { "year": 2021, "activity": 2345, "legislation": 142, "attendance": 87.8, "stability": 68.5 },
+      { "year": 2020, "activity": 1985, "legislation": 118, "attendance": 89.2, "stability": 75.3 }
+    ],
+    "electoralCycleImpact": {
+      "currentPhase": "mid-term",
+      "nextElection": "2026-09-13",
+      "daysUntil": 658,
+      "historicalPattern": {
+        "preCampaign": "Activity increases 40% in 12 months before election",
+        "postElection": "Activity decreases 25% in 3 months after election"
+      }
+    }
+  },
+  "trendDetection": {
+    "significantTrends": [
+      {
+        "trendId": "TREND-2024-001",
+        "type": "declining",
+        "metric": "coalition-cohesion",
+        "magnitude": -2.1,
+        "confidence": 0.85,
+        "startDate": "2024-06-01",
+        "currentValue": 94.3,
+        "baselineValue": 96.4,
+        "projectedValue6Months": 92.8,
+        "significance": "high",
+        "intelligence": "Coalition voting cohesion declining, potential instability indicator"
+      },
+      {
+        "trendId": "TREND-2024-002",
+        "type": "increasing",
+        "metric": "cross-party-cooperation",
+        "magnitude": 18.5,
+        "confidence": 0.78,
+        "startDate": "2024-09-01",
+        "currentValue": 8.7,
+        "baselineValue": 7.3,
+        "projectedValue6Months": 10.2,
+        "significance": "moderate",
+        "intelligence": "Cross-party motions increasing, possible consensus building on key issues"
+      },
+      {
+        "trendId": "TREND-2024-003",
+        "type": "cyclical",
+        "metric": "parliamentary-activity",
+        "pattern": "seasonal",
+        "peakMonths": ["March", "November"],
+        "troughMonths": ["July", "August"],
+        "amplitude": 35.2,
+        "confidence": 0.92,
+        "intelligence": "Normal seasonal pattern, activity peaks around budget cycle"
+      }
+    ],
+    "anomalies": [
+      {
+        "anomalyId": "ANOM-2024-001",
+        "date": "2024-11-15",
+        "metric": "rebellion-rate",
+        "expectedValue": 2.5,
+        "actualValue": 5.8,
+        "deviation": 132.0,
+        "severity": "high",
+        "affectedParties": ["L", "C"],
+        "context": "Environment bill vote showed unusual cross-party voting"
+      }
+    ]
+  },
+  "forecasts": {
+    "shortTerm": {
+      "horizon": "30-days",
+      "predictions": [
+        {
+          "metric": "coalition-cohesion",
+          "predicted": 93.8,
+          "confidenceInterval": [92.5, 95.1],
+          "confidence": 0.82
+        },
+        {
+          "metric": "attendance-rate",
+          "predicted": 87.5,
+          "confidenceInterval": [86.0, 89.0],
+          "confidence": 0.85
+        }
+      ]
+    },
+    "mediumTerm": {
+      "horizon": "6-months",
+      "predictions": [
+        {
+          "metric": "coalition-stability",
+          "predicted": 68.5,
+          "confidenceInterval": [62.0, 75.0],
+          "confidence": 0.72
+        },
+        {
+          "metric": "legislative-output",
+          "predicted": 142,
+          "confidenceInterval": [128, 156],
+          "confidence": 0.78
+        }
+      ]
+    },
+    "longTerm": {
+      "horizon": "12-months",
+      "predictions": [
+        {
+          "metric": "government-survival",
+          "predicted": 0.78,
+          "confidenceInterval": [0.65, 0.91],
+          "confidence": 0.68
+        }
+      ]
+    }
+  },
+  "entityTrends": {
+    "politicians": {
+      "risingStars": [
+        { "id": "0345678901", "name": "Lars Larsson", "party": "M", "trendScore": 85.2, "metrics": ["activity", "influence"] }
+      ],
+      "declining": [
+        { "id": "0456789012", "name": "Karin Karlsson", "party": "S", "trendScore": -42.1, "metrics": ["attendance", "productivity"] }
+      ],
+      "stable": [
+        { "id": "0567890123", "name": "Per Persson", "party": "KD", "trendScore": 2.3, "metrics": ["all"] }
+      ]
+    },
+    "parties": {
+      "gaining": [
+        { "code": "SD", "name": "Sverigedemokraterna", "pollChange": 3.2, "cohesionChange": 1.5 }
+      ],
+      "losing": [
+        { "code": "S", "name": "Socialdemokraterna", "pollChange": -2.1, "cohesionChange": -0.8 }
+      ]
+    }
+  },
+  "visualization": {
+    "recommendedCharts": ["line", "area", "candlestick", "heatmap-calendar"],
+    "colorScheme": "temporal-gradient",
+    "dataFormat": "time-series",
+    "interactive": true,
+    "exports": ["png", "svg", "pdf", "csv"],
+    "dashboardWidgets": [
+      "sparkline-grid",
+      "trend-cards",
+      "calendar-heatmap",
+      "forecast-cone"
+    ]
+  }
+}
