@@ -9,7 +9,13 @@
   Fix: Missing 'Förste vice talman' in talmansuppdrag role scoring v1.44
   Author: Intelligence Operative & Political Analyst
   Date: 2025-12-03
-  Analysis Reference: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  
+  Related Documentation:
+  - Analysis Reference: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Business Requirements: BUSINESS_PRODUCT_DOCUMENT.md
+  - Data Analysis Methods: DATA_ANALYSIS_INTOP_OSINT.md
   
   Issue Identified:
   The view_riksdagen_politician_experience_summary was missing 'Förste vice talman' 
@@ -35,6 +41,11 @@
   - Politicians who served as Förste vice talman will now have correct experience weighting
   - Experience rankings may shift slightly for affected politicians
   - No breaking changes to view schema or column names
+  
+  Post-Liquibase Actions (per README-SCHEMA-MAINTENANCE.md):
+  1. Run schema-validation-v2.sql to verify schema integrity
+  2. Run schema-health-check.sql for health validation
+  3. Update full_schema.sql using pg_dump command
 -->
 
 <!-- ========================================================================= -->

@@ -4,6 +4,21 @@
 **Author**: Intelligence Operative  
 **Purpose**: Identify discrepancies between actual data values in distinct_values CSVs and conditional checks in full_schema.sql views
 
+## Related Documentation
+
+- [DATA_ANALYSIS_INTOP_OSINT.md](../../../DATA_ANALYSIS_INTOP_OSINT.md) - Analytical frameworks and methodologies
+- [BUSINESS_PRODUCT_DOCUMENT.md](../../../BUSINESS_PRODUCT_DOCUMENT.md) - Product requirements and view usage
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Complete catalog of 85 database views
+- [README-SCHEMA-MAINTENANCE.md](../README-SCHEMA-MAINTENANCE.md) - Schema maintenance guidelines
+
+## Schema Maintenance Compliance
+
+This analysis follows the schema maintenance procedures documented in [README-SCHEMA-MAINTENANCE.md](../README-SCHEMA-MAINTENANCE.md):
+- ✅ Analyzed 91 distinct value CSV files extracted from database
+- ✅ Compared conditional checks in `full_schema.sql` against actual data values
+- ✅ Created Liquibase changelog (`db-changelog-1.44.xml`) for identified fix
+- ⏳ `full_schema.sql` update pending after Liquibase execution
+
 ---
 
 ## Executive Summary
@@ -182,3 +197,51 @@ All ministry org codes in views are valid:
 - view_riksdagen_goverment_proposals
 - view_ministry_productivity_matrix
 - view_ministry_effectiveness_trends
+
+---
+
+## View Analysis Summary (Referenced in Documentation)
+
+The following views from [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) were analyzed:
+
+### Politician Views (Key Product Features)
+| View Name | Intelligence Value | Data Quality | Issues |
+|-----------|-------------------|--------------|--------|
+| `view_riksdagen_politician` | ⭐⭐⭐⭐⭐ | ✅ Good | None |
+| `view_riksdagen_politician_experience_summary` | ⭐⭐⭐⭐⭐ | ⚠️ Fixed | Missing 'Förste vice talman' (now fixed in v1.44) |
+| `view_riksdagen_politician_ballot_summary` | ⭐⭐⭐⭐⭐ | ✅ Good | None |
+| `view_riksdagen_politician_influence_metrics` | ⭐⭐⭐⭐⭐ | ✅ Good | None |
+
+### Party Views (Key Product Features)
+| View Name | Intelligence Value | Data Quality | Issues |
+|-----------|-------------------|--------------|--------|
+| `view_riksdagen_party_summary` | ⭐⭐⭐⭐ | ✅ Good | None |
+| `view_riksdagen_party_ballot_support_annual_summary` | ⭐⭐⭐⭐ | ✅ Good | None |
+| `view_riksdagen_party_decision_flow` | ⭐⭐⭐⭐⭐ | ✅ Good | None |
+
+### Ministry Views (Key Product Features)
+| View Name | Intelligence Value | Data Quality | Issues |
+|-----------|-------------------|--------------|--------|
+| `view_ministry_decision_impact` | ⭐⭐⭐⭐⭐ | ✅ Good | None |
+| `view_ministry_productivity_matrix` | ⭐⭐⭐⭐ | ✅ Good | None |
+| `view_ministry_risk_evolution` | ⭐⭐⭐⭐ | ✅ Fixed | Fixed in v1.43 |
+
+### Decision Intelligence Views (Key Product Features)
+| View Name | Intelligence Value | Data Quality | Issues |
+|-----------|-------------------|--------------|--------|
+| `view_decision_temporal_trends` | ⭐⭐⭐⭐ | ⚠️ Partial | Committee referral pattern improvement suggested |
+| `view_riksdagen_goverment_proposals` | ⭐⭐⭐⭐ | ⚠️ Partial | Committee referral pattern improvement suggested |
+
+---
+
+## Liquibase Changelog
+
+**db-changelog-1.44.xml** was created to address the identified issue:
+- Fixed `view_riksdagen_politician_experience_summary` to include 'Förste vice talman' in talmansuppdrag role scoring
+- All three Deputy Speaker roles (Förste, Andre, Tredje vice talman) now weighted equally at 750.0
+
+### Verification
+After Liquibase execution:
+1. Run `psql -U postgres -d cia_dev -f schema-validation-v2.sql` to verify schema integrity
+2. Run `psql -U postgres -d cia_dev -f schema-health-check.sql` for health validation
+3. Update `full_schema.sql` as per [README-SCHEMA-MAINTENANCE.md](../README-SCHEMA-MAINTENANCE.md)
