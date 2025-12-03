@@ -10392,6 +10392,17 @@ CREATE VIEW public.view_risk_score_evolution AS
            FROM (public.vote_data vd
              JOIN party_ballot_majority pbm ON ((((vd.embedded_id_ballot_id)::text = (pbm.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pbm.party)::text))))
           WHERE (vd.vote_date >= (CURRENT_DATE - '3 years'::interval))
+        ), politician_document_data AS (
+         SELECT dsc.hjid AS id,
+            dd.document_type,
+            dd.made_public_date,
+            dd.org,
+            dpr.person_reference_id
+           FROM (((public.document_status_container dsc
+             LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
+             LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
+          WHERE (dd.made_public_date IS NOT NULL)
         ), monthly_risk_base AS (
          SELECT p.id AS person_id,
             p.first_name,
@@ -10404,7 +10415,7 @@ CREATE VIEW public.view_risk_score_evolution AS
             count(DISTINCT vpd.id) AS document_count
            FROM ((public.person_data p
              LEFT JOIN politician_votes_with_rebel pvr ON (((pvr.embedded_id_intressent_id)::text = (p.id)::text)))
-             LEFT JOIN public.view_riksdagen_politician_document vpd ON ((((vpd.person_reference_id)::text = (p.id)::text) AND (vpd.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (date_trunc('month'::text, (vpd.made_public_date)::timestamp with time zone) = date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone)))))
+             LEFT JOIN politician_document_data vpd ON ((((vpd.person_reference_id)::text = (p.id)::text) AND (vpd.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (date_trunc('month'::text, (vpd.made_public_date)::timestamp with time zone) = date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone)))))
           WHERE ((p.status)::text = ANY ((ARRAY['active'::character varying, 'Active'::character varying, 'ACTIVE'::character varying])::text[]))
           GROUP BY p.id, p.first_name, p.last_name, p.party, (date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone))
         ), monthly_violations AS (
