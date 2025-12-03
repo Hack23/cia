@@ -6,16 +6,21 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
 <!-- 
-  Fix Empty View: view_ministry_productivity_matrix v1.42
+  Fix Empty Ministry Views v1.42
   Author: Intelligence Operative & Political Analyst
   Date: 2025-12-02
-  GitHub Issue: #8017 - Fix Empty View: view_ministry_productivity_matrix
+  GitHub Issue: #8007 - Fix Empty View: view_ministry_productivity_matrix
   
-  This changelog fixes view_ministry_productivity_matrix which returns 0 rows
-  due to dependency on unpopulated materialized view view_riksdagen_politician_document.
+  This changelog fixes THREE ministry views which return 0 rows or fail with
+  "materialized view not populated" error due to dependency on unpopulated 
+  materialized view view_riksdagen_politician_document:
+  
+  1. view_ministry_productivity_matrix
+  2. view_ministry_effectiveness_trends
+  3. view_ministry_risk_evolution
   
   Root Cause Identified:
-  The view depends on view_riksdagen_politician_document (MATERIALIZED VIEW) via LEFT JOIN.
+  All three views depend on view_riksdagen_politician_document (MATERIALIZED VIEW) via LEFT JOIN.
   Even with LEFT JOIN, PostgreSQL throws an error if the materialized view hasn't been 
   populated with REFRESH MATERIALIZED VIEW:
   
@@ -23,7 +28,7 @@
     HINT: Use the REFRESH MATERIALIZED VIEW command.
   
   Previous Fix Attempts:
-  - Changelog v1.31: Created view with materialized view dependency
+  - Changelog v1.31: Created views with materialized view dependency
   - Changelog v1.37: Added case-insensitive matching - INCOMPLETE (still had mat view dep)
   - Changelog v1.39: Removed LIKE '%departement%' filter - INCOMPLETE (still had mat view dep)
   - Issue #7883, #7886: Closed prematurely without fixing materialized view dependency
@@ -38,9 +43,9 @@
   This is the same approach successfully used for view_politician_risk_summary in v1.39.
   
   Impact:
-  - Enables ministry productivity matrix queries in fresh database installations
+  - Enables all ministry views in fresh database installations
   - Removes dependency on materialized view refresh schedule
-  - Maintains all existing productivity calculation logic unchanged
+  - Maintains all existing calculation logic unchanged
   - Performance: Slightly slower but ensures data availability
 -->
 
@@ -182,22 +187,331 @@ ORDER BY mam.year DESC, mam.documents_produced DESC
 </changeSet>
 
 <!-- ========================================================================= -->
-<!-- POST-FLIGHT: Verify view returns data                                    -->
+<!-- FIX: view_ministry_effectiveness_trends - Remove Materialized View Dependency -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="verify-ministry-productivity-matrix-1.42-002" failOnError="false">
+<changeSet author="intelligence-operative" id="fix-ministry-effectiveness-trends-matview-1.42-002" failOnError="true">
     <comment>
-        Post-flight verification for view_ministry_productivity_matrix
+        Fix view_ministry_effectiveness_trends by removing materialized view dependency
+        
+        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document
+        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the
+        query if the materialized view hasn't been populated.
+        
+        Solution: Replace the materialized view reference with a direct query to
+        the underlying base tables using ministry_document_data CTE.
+    </comment>
+    
+    <dropView viewName="view_ministry_effectiveness_trends" ifExists="true" cascadeConstraints="true"/>
+    
+    <createView viewName="view_ministry_effectiveness_trends">
+        <![CDATA[
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        LOWER(org_code) AS org_code_lower,
+        org_code AS short_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+),
+ministry_document_data AS (
+    -- Direct query to base tables instead of materialized view
+    SELECT 
+        dsc.hjid AS id,
+        dd.document_type,
+        dd.made_public_date,
+        dd.org,
+        dpr.person_reference_id
+    FROM document_status_container dsc
+    LEFT JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    LEFT JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date IS NOT NULL
+),
+ministry_quarterly_metrics AS (
+    SELECT
+        m.org_code,
+        m.short_code,
+        m.name,
+        DATE_TRUNC('quarter', doc.made_public_date) AS period_start,
+        COUNT(DISTINCT doc.id) AS documents_produced,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) = 'prop' THEN doc.id END) AS propositions,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) = 'ds' THEN doc.id END) AS government_bills,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) IN ('prop', 'ds') THEN doc.id END) AS legislative_documents,
+        COUNT(DISTINCT doc.person_reference_id) AS active_members
+    FROM ministry_base m
+    LEFT JOIN ministry_document_data doc 
+        ON LOWER(doc.org) = m.org_code_lower
+        AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY m.org_code, m.short_code, m.name, DATE_TRUNC('quarter', doc.made_public_date)
+),
+trend_calculations AS (
+    SELECT
+        org_code,
+        short_code,
+        name,
+        period_start,
+        documents_produced,
+        propositions,
+        government_bills,
+        legislative_documents,
+        active_members,
+        
+        LAG(documents_produced, 1) OVER (PARTITION BY org_code ORDER BY period_start) AS prev_documents,
+        LAG(active_members, 1) OVER (PARTITION BY org_code ORDER BY period_start) AS prev_members,
+        LAG(legislative_documents, 1) OVER (PARTITION BY org_code ORDER BY period_start) AS prev_legislative,
+        
+        ROUND(AVG(documents_produced) OVER (
+            PARTITION BY org_code 
+            ORDER BY period_start 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ), 2) AS ma_4quarter_documents,
+        
+        ROUND(AVG(legislative_documents) OVER (
+            PARTITION BY org_code 
+            ORDER BY period_start 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ), 2) AS ma_4quarter_legislative,
+        
+        ROUND(AVG(CAST(active_members AS NUMERIC)) OVER (
+            PARTITION BY org_code 
+            ORDER BY period_start 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ), 2) AS ma_4quarter_members
+    FROM ministry_quarterly_metrics
+    WHERE period_start IS NOT NULL
+)
+SELECT
+    org_code,
+    short_code,
+    name,
+    period_start,
+    (period_start + INTERVAL '3 months' - INTERVAL '1 day')::DATE AS period_end,
+    EXTRACT(YEAR FROM period_start) AS year,
+    EXTRACT(QUARTER FROM period_start) AS quarter,
+    documents_produced,
+    propositions,
+    government_bills,
+    legislative_documents,
+    active_members,
+    
+    documents_produced - COALESCE(prev_documents, documents_produced) AS document_change,
+    active_members - COALESCE(prev_members, active_members) AS member_change,
+    legislative_documents - COALESCE(prev_legislative, legislative_documents) AS legislative_change,
+    
+    ma_4quarter_documents,
+    ma_4quarter_legislative,
+    ma_4quarter_members,
+    
+    ROUND(CAST(documents_produced AS NUMERIC) / NULLIF(active_members, 0), 2) AS documents_per_member,
+    ROUND(CAST(legislative_documents AS NUMERIC) / NULLIF(active_members, 0), 2) AS legislative_per_member,
+    
+    CASE
+        WHEN documents_produced >= 50 THEN 'HIGHLY_PRODUCTIVE'
+        WHEN documents_produced >= 30 THEN 'PRODUCTIVE'
+        WHEN documents_produced >= 15 THEN 'MODERATE'
+        ELSE 'LOW_PRODUCTIVITY'
+    END AS productivity_level,
+    
+    CASE
+        WHEN legislative_documents = 0 THEN 'INACTIVE_LEGISLATION'
+        WHEN legislative_documents >= 10 THEN 'HIGH_LEGISLATIVE_OUTPUT'
+        WHEN legislative_documents >= 5 THEN 'MODERATE_LEGISLATIVE_OUTPUT'
+        ELSE 'LOW_LEGISLATIVE_OUTPUT'
+    END AS legislative_status,
+    
+    CASE
+        WHEN active_members = 0 THEN 'NO_ACTIVE_STAFF'
+        WHEN active_members = 1 THEN 'CRITICALLY_UNDERSTAFFED'
+        WHEN active_members <= 3 THEN 'UNDERSTAFFED'
+        WHEN active_members <= 10 THEN 'ADEQUATELY_STAFFED'
+        ELSE 'WELL_STAFFED'
+    END AS staffing_status,
+    
+    CASE
+        WHEN ma_4quarter_documents < 10 AND documents_produced - COALESCE(prev_documents, documents_produced) <= -5
+            THEN 'SEVERE_DECLINE'
+        WHEN ma_4quarter_documents < 20 AND documents_produced - COALESCE(prev_documents, documents_produced) <= -3
+            THEN 'MODERATE_DECLINE'
+        WHEN documents_produced - COALESCE(prev_documents, documents_produced) < 0
+            THEN 'SLIGHT_DECLINE'
+        WHEN documents_produced - COALESCE(prev_documents, documents_produced) > 0
+            THEN 'IMPROVING'
+        ELSE 'STABLE'
+    END AS stagnation_indicator,
+    
+    CASE
+        WHEN documents_produced >= 50 AND active_members >= 10 AND legislative_documents >= 10
+            THEN 'Exceptional ministry performance - high output and capacity'
+        WHEN documents_produced >= 30 AND active_members >= 5
+            THEN 'Strong ministry effectiveness'
+        WHEN documents_produced < 15 OR active_members <= 3 OR legislative_documents = 0
+            THEN 'Ministry performance concerns - investigation recommended'
+        WHEN ma_4quarter_documents < 20 AND documents_produced - COALESCE(prev_documents, documents_produced) <= -5
+            THEN 'Significant ministry decline detected - intervention needed'
+        ELSE 'Standard ministry operations'
+    END AS effectiveness_assessment
+FROM trend_calculations
+ORDER BY org_code, period_start DESC
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_ministry_effectiveness_trends"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- FIX: view_ministry_risk_evolution - Remove Materialized View Dependency -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="fix-ministry-risk-evolution-matview-1.42-003" failOnError="true">
+    <comment>
+        Fix view_ministry_risk_evolution by removing materialized view dependency
+        
+        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document
+        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the
+        query if the materialized view hasn't been populated.
+        
+        Solution: Replace the materialized view reference with a direct query to
+        the underlying base tables using ministry_document_data CTE.
+    </comment>
+    
+    <dropView viewName="view_ministry_risk_evolution" ifExists="true" cascadeConstraints="true"/>
+    
+    <createView viewName="view_ministry_risk_evolution">
+        <![CDATA[
+WITH ministry_base AS (
+    SELECT DISTINCT
+        org_code,
+        LOWER(org_code) AS org_code_lower,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+),
+ministry_document_data AS (
+    -- Direct query to base tables instead of materialized view
+    SELECT 
+        dsc.hjid AS id,
+        dd.document_type,
+        dd.made_public_date,
+        dd.org,
+        dpr.person_reference_id
+    FROM document_status_container dsc
+    LEFT JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    LEFT JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date IS NOT NULL
+),
+quarterly_performance AS (
+    SELECT
+        m.org_code,
+        m.name,
+        DATE_TRUNC('quarter', doc.made_public_date) AS assessment_period,
+        COUNT(DISTINCT doc.id) AS documents_produced,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) IN ('prop', 'ds') THEN doc.id END) AS legislative_count,
+        COUNT(DISTINCT doc.person_reference_id) AS active_members
+    FROM ministry_base m
+    LEFT JOIN ministry_document_data doc 
+        ON LOWER(doc.org) = m.org_code_lower
+        AND doc.made_public_date >= CURRENT_DATE - INTERVAL '2 years'
+    GROUP BY m.org_code, m.name, DATE_TRUNC('quarter', doc.made_public_date)
+),
+risk_calculations AS (
+    SELECT
+        org_code,
+        name,
+        assessment_period,
+        documents_produced,
+        legislative_count,
+        active_members,
+        
+        LAG(documents_produced, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_documents,
+        LAG(legislative_count, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_legislative,
+        LAG(active_members, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_members,
+        
+        AVG(documents_produced) OVER (
+            PARTITION BY org_code 
+            ORDER BY assessment_period 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ) AS rolling_avg_documents
+    FROM quarterly_performance
+    WHERE assessment_period IS NOT NULL
+)
+SELECT
+    org_code,
+    name,
+    assessment_period,
+    (assessment_period + INTERVAL '3 months' - INTERVAL '1 day')::DATE AS period_end,
+    EXTRACT(YEAR FROM assessment_period) AS year,
+    EXTRACT(QUARTER FROM assessment_period) AS quarter,
+    documents_produced,
+    legislative_count,
+    active_members,
+    
+    documents_produced - COALESCE(prev_documents, documents_produced) AS document_trend,
+    legislative_count - COALESCE(prev_legislative, legislative_count) AS legislative_trend,
+    active_members - COALESCE(prev_members, active_members) AS staffing_trend,
+    
+    rolling_avg_documents,
+    
+    CASE
+        WHEN documents_produced = 0 AND active_members = 0 THEN 'CRITICAL'
+        WHEN documents_produced < 5 OR active_members <= 1 THEN 'HIGH'
+        WHEN documents_produced < 10 OR active_members <= 2 THEN 'MEDIUM'
+        WHEN documents_produced - COALESCE(prev_documents, documents_produced) < -5 THEN 'ELEVATED'
+        ELSE 'LOW'
+    END AS risk_level,
+    
+    CASE
+        WHEN documents_produced = 0 AND active_members = 0 
+            THEN 'Critical: No activity detected - immediate review required'
+        WHEN documents_produced < 5 
+            THEN 'High Risk: Minimal document production - capacity concerns'
+        WHEN active_members <= 1 
+            THEN 'High Risk: Critically understaffed ministry'
+        WHEN documents_produced - COALESCE(prev_documents, documents_produced) < -5 
+            THEN 'Elevated Risk: Significant production decline detected'
+        WHEN documents_produced >= 20 AND active_members >= 5 
+            THEN 'Low Risk: Healthy ministry operations'
+        ELSE 'Medium Risk: Standard operations with minor concerns'
+    END AS risk_assessment
+FROM risk_calculations
+ORDER BY org_code, assessment_period DESC
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_ministry_risk_evolution"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- POST-FLIGHT: Verify views return data                                    -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="verify-ministry-views-1.42-004" failOnError="false">
+    <comment>
+        Post-flight verification for all three ministry views
         
         Checks:
-        1. View exists and can be queried (no materialized view error)
-        2. View returns data when ministry assignments exist
-        3. Reports row count for monitoring
+        1. Views exist and can be queried (no materialized view error)
+        2. Views return data when ministry assignments exist
+        3. Reports row counts for monitoring
     </comment>
     
     <sql>
-        -- Verify view exists and can be queried
-        SELECT 'Ministry Productivity Matrix View verification:' AS check_description;
+        -- Verify views exist and can be queried
+        SELECT 'Ministry Views verification:' AS check_description;
         
         -- Check ministry assignment count
         SELECT 
@@ -206,24 +520,23 @@ ORDER BY mam.year DESC, mam.documents_produced DESC
         FROM assignment_data
         WHERE assignment_type = 'Departement' AND org_code IS NOT NULL;
         
-        -- Check view row count (should now work even without materialized view refresh)
+        -- Check view_ministry_productivity_matrix row count
         SELECT 
             COUNT(*) AS view_row_count,
             'Rows in view_ministry_productivity_matrix' AS description
         FROM view_ministry_productivity_matrix;
         
-        -- If view has data, show sample
+        -- Check view_ministry_effectiveness_trends row count
         SELECT 
-            org_code,
-            short_code,
-            name,
-            year,
-            documents_produced,
-            productivity_quartile,
-            performance_assessment
-        FROM view_ministry_productivity_matrix
-        ORDER BY year DESC, documents_produced DESC
-        LIMIT 10;
+            COUNT(*) AS view_row_count,
+            'Rows in view_ministry_effectiveness_trends' AS description
+        FROM view_ministry_effectiveness_trends;
+        
+        -- Check view_ministry_risk_evolution row count
+        SELECT 
+            COUNT(*) AS view_row_count,
+            'Rows in view_ministry_risk_evolution' AS description
+        FROM view_ministry_risk_evolution;
     </sql>
 </changeSet>
 
@@ -231,27 +544,32 @@ ORDER BY mam.year DESC, mam.documents_produced DESC
 <!-- DOCUMENTATION: Update changelog and troubleshooting guide                -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="document-ministry-productivity-fix-1.42-003" failOnError="false">
+<changeSet author="intelligence-operative" id="document-ministry-views-fix-1.42-005" failOnError="false">
     <comment>
-        Documentation for v1.42 ministry productivity matrix fix
+        Documentation for v1.42 ministry views fix
         
         Summary:
         - Root cause: Dependency on unpopulated materialized view view_riksdagen_politician_document
-        - Solution: Replace materialized view with direct base table queries
-        - Impact: View now works in fresh database installations without materialized view refresh
+        - Solution: Replace materialized view with direct base table queries in all three ministry views
+        - Impact: Views now work in fresh database installations without materialized view refresh
+        
+        Views Fixed:
+        1. view_ministry_productivity_matrix - Annual productivity benchmarking
+        2. view_ministry_effectiveness_trends - Quarterly effectiveness trends
+        3. view_ministry_risk_evolution - Quarterly risk assessment
         
         For CHANGELOG_DATABASE_VIEWS.md:
-        - v1.42: Fixed view_ministry_productivity_matrix materialized view dependency
+        - v1.42: Fixed all three ministry views materialized view dependency
         - Replaced view_riksdagen_politician_document reference with ministry_document_data CTE
         - CTE queries document_status_container, document_data, document_person_reference_* tables
-        - No change to output columns or productivity calculations
+        - No change to output columns or calculations
     </comment>
     
     <sql>
         SELECT 
-            'v1.42 Fix Applied: view_ministry_productivity_matrix' AS changelog_entry,
-            'Removed materialized view dependency' AS change_description,
-            'View now queries base tables directly via ministry_document_data CTE' AS technical_details;
+            'v1.42 Fix Applied: All Ministry Views' AS changelog_entry,
+            'Removed materialized view dependency from 3 views' AS change_description,
+            'Views now query base tables directly via ministry_document_data CTE' AS technical_details;
     </sql>
 </changeSet>
 

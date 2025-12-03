@@ -6354,6 +6354,17 @@ CREATE VIEW public.view_ministry_effectiveness_trends AS
             assignment_data.detail AS name
            FROM public.assignment_data
           WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL))
+        ), ministry_document_data AS (
+         SELECT dsc.hjid AS id,
+            dd.document_type,
+            dd.made_public_date,
+            dd.org,
+            dpr.person_reference_id
+           FROM (((public.document_status_container dsc
+             LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
+             LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
+          WHERE (dd.made_public_date IS NOT NULL)
         ), ministry_quarterly_metrics AS (
          SELECT m.org_code,
             m.short_code,
@@ -6377,7 +6388,7 @@ CREATE VIEW public.view_ministry_effectiveness_trends AS
                 END) AS legislative_documents,
             count(DISTINCT doc.person_reference_id) AS active_members
            FROM (ministry_base m
-             LEFT JOIN public.view_riksdagen_politician_document doc ON (((lower((doc.org)::text) = m.org_code_lower) AND (doc.made_public_date >= (CURRENT_DATE - '3 years'::interval)))))
+             LEFT JOIN ministry_document_data doc ON (((lower((doc.org)::text) = m.org_code_lower) AND (doc.made_public_date >= (CURRENT_DATE - '3 years'::interval)))))
           GROUP BY m.org_code, m.short_code, m.name, (date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone))
         ), trend_calculations AS (
          SELECT ministry_quarterly_metrics.org_code,
@@ -6553,6 +6564,17 @@ CREATE VIEW public.view_ministry_risk_evolution AS
             assignment_data.detail AS name
            FROM public.assignment_data
           WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL))
+        ), ministry_document_data AS (
+         SELECT dsc.hjid AS id,
+            dd.document_type,
+            dd.made_public_date,
+            dd.org,
+            dpr.person_reference_id
+           FROM (((public.document_status_container dsc
+             LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
+             LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
+          WHERE (dd.made_public_date IS NOT NULL)
         ), quarterly_performance AS (
          SELECT m.org_code,
             m.name,
@@ -6565,7 +6587,7 @@ CREATE VIEW public.view_ministry_risk_evolution AS
                 END) AS legislative_count,
             count(DISTINCT doc.person_reference_id) AS active_members
            FROM (ministry_base m
-             LEFT JOIN public.view_riksdagen_politician_document doc ON (((lower((doc.org)::text) = m.org_code_lower) AND (doc.made_public_date >= (CURRENT_DATE - '2 years'::interval)))))
+             LEFT JOIN ministry_document_data doc ON (((lower((doc.org)::text) = m.org_code_lower) AND (doc.made_public_date >= (CURRENT_DATE - '2 years'::interval)))))
           GROUP BY m.org_code, m.name, (date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone))
         ), risk_calculations AS (
          SELECT quarterly_performance.org_code,
