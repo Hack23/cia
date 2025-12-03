@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        uses: step-security/harden-runner@df199fb7be9f65074067a9eb93f12bb4c5547cf2 # v2.13.3
         with:
           egress-policy: audit
           allowed-endpoints: >
@@ -73,7 +73,7 @@ jobs:
             java.sun.com:443
             jetty.org:443
       - name: Checkout repository
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           # We must fetch at least the immediate parents so that if this is
           # a pull request then we can checkout the head.
@@ -120,7 +120,7 @@ jobs:
           cache: "maven"
 
       - name: Cache Maven and Sonar artifacts
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: |
             ~/.m2/repository
@@ -133,7 +133,7 @@ jobs:
         run: sudo apt-get update
 
       - name: Install buildtools and PostgreSQL
-        run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget ant postgresql-16 postgresql-contrib-16 postgresql-16-pgaudit
+        run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget ant postgresql-16 postgresql-contrib-16 postgresql-16-pgaudit postgresql-16-pgvector
 
       - name: Configure PostgreSQL
         run: |
