@@ -6593,7 +6593,7 @@ CREATE VIEW public.view_ministry_risk_evolution AS
            FROM public.assignment_data
           WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL))
         ), quarterly_periods AS (
-         SELECT date_trunc('quarter'::text, (CURRENT_DATE - ((n.n)::text || ' months'::text)::interval)) AS period_start
+         SELECT date_trunc('quarter'::text, (CURRENT_DATE - MAKE_INTERVAL(months => n.n))) AS period_start
            FROM generate_series(0, 21, 3) n(n)
         ), ministry_quarters AS (
          SELECT m.org_code,

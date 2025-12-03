@@ -82,7 +82,7 @@ WITH ministry_base AS (
 ),
 quarterly_periods AS (
     -- Generate last 8 quarters (2 years) for analysis
-    SELECT DATE_TRUNC('quarter', CURRENT_DATE - (n || ' months')::INTERVAL) AS period_start
+    SELECT DATE_TRUNC('quarter', CURRENT_DATE - MAKE_INTERVAL(months => n)) AS period_start
     FROM generate_series(0, 21, 3) AS n
 ),
 ministry_quarters AS (
