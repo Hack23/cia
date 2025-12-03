@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict o4oMvF3Qo0AIvwVfBvJWsr6BFKO2U0crt7fGIY3cDxTck7YgqpeRhUiHjTlqKei
+\restrict sSbRwMbXg29J0gGf7hc3hMBsIChEIf4LCJ5tdUkrLlNEs0nd8gvBCaElG4RPyaW
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -19,10 +19,24 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
+-- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
 --
 
-CREATE SCHEMA public;
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
+
+
+--
+-- Name: pgaudit; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pgaudit WITH SCHEMA public;
+
+
+--
+-- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
 
 
 SET default_table_access_method = heap;
@@ -5500,7 +5514,7 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     ELSE (a.to_date - a.from_date)
                 END AS days_in_role,
                 CASE
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text, ('JuU'::character varying)::text])) THEN 'Key Parliamentary Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying, 'JuU'::character varying])::text[])) THEN 'Key Parliamentary Committees'::text
                     WHEN ((a.org_code)::text = 'Statsrådsberedningen'::text) THEN 'Prime Minister''s Office'::text
                     WHEN ((a.org_code)::text = 'AU'::text) THEN 'Arbetsmarknad (Committee)'::text
                     WHEN ((a.org_code)::text = 'SoU'::text) THEN 'Social (Committee)'::text
@@ -5539,41 +5553,41 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.org_code)::text = 'IJ'::text)) THEN 'Integration and Gender Equality Ministry'::text
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.org_code)::text = 'KN'::text)) THEN 'Climate and Business Ministry'::text
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.org_code)::text = 'Ku'::text)) THEN 'Culture Ministry'::text
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Partiledare'::character varying)::text, ('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text, ('Kvittningsperson'::character varying)::text]))) THEN 'Party Leadership'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('BSPC'::character varying)::text, ('EFTA'::character varying)::text, ('EG'::character varying)::text, ('OSSE'::character varying)::text, ('PA-UfM'::character varying)::text, ('Europol'::character varying)::text])) THEN 'International Affairs'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('NR'::character varying)::text, ('RFK'::character varying)::text, ('RJ'::character varying)::text, ('RRS'::character varying)::text])) THEN 'Regional and National Cooperation'::text
-                    WHEN (((a.org_code)::text = ANY (ARRAY[('BN'::character varying)::text, ('CPAR'::character varying)::text, ('DEM'::character varying)::text, ('DN'::character varying)::text, ('EES'::character varying)::text, ('ER'::character varying)::text, ('ESK'::character varying)::text, ('RB'::character varying)::text, ('RGK'::character varying)::text, ('UN'::character varying)::text])) AND ((a.role_code)::text = ANY (ARRAY[('Ledamot'::character varying)::text, ('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text]))) THEN 'Legislative and Oversight Committees'::text
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Partiledare'::character varying, 'Gruppledare'::character varying, 'Partisekreterare'::character varying, 'Kvittningsperson'::character varying])::text[]))) THEN 'Party Leadership'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['BSPC'::character varying, 'EFTA'::character varying, 'EG'::character varying, 'OSSE'::character varying, 'PA-UfM'::character varying, 'Europol'::character varying])::text[])) THEN 'International Affairs'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['NR'::character varying, 'RFK'::character varying, 'RJ'::character varying, 'RRS'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
+                    WHEN (((a.org_code)::text = ANY ((ARRAY['BN'::character varying, 'CPAR'::character varying, 'DEM'::character varying, 'DN'::character varying, 'EES'::character varying, 'ER'::character varying, 'ESK'::character varying, 'RB'::character varying, 'RGK'::character varying, 'UN'::character varying])::text[])) AND ((a.role_code)::text = ANY ((ARRAY['Ledamot'::character varying, 'Ordförande'::character varying, 'Vice ordförande'::character varying])::text[]))) THEN 'Legislative and Oversight Committees'::text
                     WHEN ((a.org_code)::text = 'FöU'::text) THEN 'Defense (Committee)'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('NSÖ'::character varying)::text, ('ÖN'::character varying)::text, ('RS'::character varying)::text])) THEN 'Regional and National Cooperation'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['NSÖ'::character varying, 'ÖN'::character varying, 'RS'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
                     WHEN ((a.org_code)::text = 'UFöU'::text) THEN 'Foreign & Defense (Committee)'::text
                     WHEN ((a.org_code)::text = 'EP'::text) THEN 'European Parliament'::text
-                    WHEN (((a.org_code)::text = ANY (ARRAY[('BN'::character varying)::text, ('CPAR'::character varying)::text, ('DEM'::character varying)::text, ('DN'::character varying)::text, ('EES'::character varying)::text, ('ER'::character varying)::text, ('ESK'::character varying)::text, ('RB'::character varying)::text, ('RGK'::character varying)::text, ('UN'::character varying)::text])) AND ((a.role_code)::text = ANY (ARRAY[('Ledamot'::character varying)::text, ('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text]))) THEN 'Legislative and Oversight Committees'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('CU'::character varying)::text, ('LU'::character varying)::text, ('KD'::character varying)::text, ('FÖU'::character varying)::text, ('JuSoU'::character varying)::text, ('VB'::character varying)::text])) THEN 'Legislative and Oversight Committees'::text
+                    WHEN (((a.org_code)::text = ANY ((ARRAY['BN'::character varying, 'CPAR'::character varying, 'DEM'::character varying, 'DN'::character varying, 'EES'::character varying, 'ER'::character varying, 'ESK'::character varying, 'RB'::character varying, 'RGK'::character varying, 'UN'::character varying])::text[])) AND ((a.role_code)::text = ANY ((ARRAY['Ledamot'::character varying, 'Ordförande'::character varying, 'Vice ordförande'::character varying])::text[]))) THEN 'Legislative and Oversight Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['CU'::character varying, 'LU'::character varying, 'KD'::character varying, 'FÖU'::character varying, 'JuSoU'::character varying, 'VB'::character varying])::text[])) THEN 'Legislative and Oversight Committees'::text
                     WHEN ((a.org_code)::text = 'kam'::text) THEN 'Speaker''s Office'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('RJ'::character varying)::text, ('Systembolaget'::character varying)::text])) THEN 'Special Oversight Roles'::text
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text, ('Ersättare'::character varying)::text, ('Personlig suppleant'::character varying)::text])) THEN 'Substitute Roles'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['RJ'::character varying, 'Systembolaget'::character varying])::text[])) THEN 'Special Oversight Roles'::text
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying, 'Ersättare'::character varying, 'Personlig suppleant'::character varying])::text[])) THEN 'Substitute Roles'::text
                     WHEN ((a.org_code)::text = 'UFÖU'::text) THEN 'Foreign & Defense (Committee)'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('TK'::character varying)::text, ('sku'::character varying)::text])) THEN 'Other Legislative Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['TK'::character varying, 'sku'::character varying])::text[])) THEN 'Other Legislative Committees'::text
                     WHEN ((a.assignment_type)::text = 'partiuppdrag'::text) THEN 'Party Leadership'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('VPN'::character varying)::text, ('RRPR'::character varying)::text, ('RRR'::character varying)::text])) THEN 'Regional and National Cooperation'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'VPN'::character varying, 'RRPR'::character varying, 'RRR'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
                     WHEN ((a.org_code)::text = 'Systembolaget'::text) THEN 'Special Oversight Roles'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('EMPA'::character varying)::text, ('IPU'::character varying)::text, ('NATO'::character varying)::text])) THEN 'International Affairs'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('JU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text])) THEN 'Legislative Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['EMPA'::character varying, 'IPU'::character varying, 'NATO'::character varying])::text[])) THEN 'International Affairs'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'JU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[])) THEN 'Legislative Committees'::text
                     WHEN ((a.assignment_type)::text = 'Departement'::text) THEN 'Ministry'::text
                     WHEN ((a.role_code)::text = 'Personlig ersättare'::text) THEN 'Substitute Roles'::text
                     WHEN ((a.org_code)::text = 'EU'::text) THEN 'EU Affairs (Committee)'::text
                     WHEN ((a.org_code)::text = 'LR'::text) THEN 'Regional and National Cooperation'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('RAN'::character varying)::text, ('RAR'::character varying)::text])) THEN 'Legislative and Oversight Committees'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text, ('JuU'::character varying)::text])) THEN 'Key Parliamentary Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['RAN'::character varying, 'RAR'::character varying])::text[])) THEN 'Legislative and Oversight Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying, 'JuU'::character varying])::text[])) THEN 'Key Parliamentary Committees'::text
                     WHEN ((a.org_code)::text = 'Statsrådsberedningen'::text) THEN 'Prime Ministers Office'::text
                     WHEN ((a.org_code)::text = 'UFÖU'::text) THEN 'Foreign & Defense (Committee)'::text
                     WHEN ((a.org_code)::text = 'EU'::text) THEN 'EU Affairs (Committee)'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('EFTA'::character varying)::text, ('EG'::character varying)::text, ('OSSE'::character varying)::text, ('PA-UfM'::character varying)::text, ('BSPC'::character varying)::text])) THEN 'International Affairs'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('NR'::character varying)::text, ('RFK'::character varying)::text, ('RJ'::character varying)::text, ('RRS'::character varying)::text])) THEN 'Regional and National Cooperation'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('MJU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text])) THEN 'Other Legislative Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['EFTA'::character varying, 'EG'::character varying, 'OSSE'::character varying, 'PA-UfM'::character varying, 'BSPC'::character varying])::text[])) THEN 'International Affairs'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['NR'::character varying, 'RFK'::character varying, 'RJ'::character varying, 'RRS'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['MJU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[])) THEN 'Other Legislative Committees'::text
                     WHEN ((a.assignment_type)::text = 'partiuppdrag'::text) THEN 'Party Leadership'::text
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text, ('Ersättare'::character varying)::text, ('Personlig suppleant'::character varying)::text])) THEN 'Substitute Roles'::text
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text])) THEN 'Substitute Roles'::text
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying, 'Ersättare'::character varying, 'Personlig suppleant'::character varying])::text[])) THEN 'Substitute Roles'::text
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying])::text[])) THEN 'Substitute Roles'::text
                     ELSE 'Other'::text
                 END AS knowledge_area,
                 CASE
@@ -5583,19 +5597,19 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Talman'::text)) THEN 40000
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.role_code)::text ~~* '%minister%'::text)) THEN 40000
                     WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 35000
-                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ordförande'::text) AND ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text, ('JuU'::character varying)::text]))) THEN 35000
+                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ordförande'::text) AND ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying, 'JuU'::character varying])::text[]))) THEN 35000
                     WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 30000
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text]))) THEN 30000
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Gruppledare'::character varying, 'Partisekreterare'::character varying])::text[]))) THEN 30000
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Riksdagsledamot'::text)) THEN 20000
                     WHEN (((a.assignment_type)::text = 'Europaparlamentet'::text) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 20000
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 15000
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text]))) THEN 18000
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Ersättare'::character varying)::text])) THEN 10000
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Suppleant'::text) AND ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text]))) THEN 12000
-                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY (ARRAY[('RJ'::character varying)::text, ('NR'::character varying)::text, ('RFK'::character varying)::text, ('RRS'::character varying)::text]))) THEN 7000
-                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY (ARRAY[('MJU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text]))) THEN 6000
-                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY (ARRAY[('Systembolaget'::character varying)::text, ('EUN'::character varying)::text]))) THEN 4000
-                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Adjungerad'::character varying)::text, ('Sekreterare'::character varying)::text]))) THEN 3000
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 15000
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying])::text[]))) THEN 18000
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Ersättare'::character varying])::text[])) THEN 10000
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Suppleant'::text) AND ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying])::text[]))) THEN 12000
+                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY ((ARRAY['RJ'::character varying, 'NR'::character varying, 'RFK'::character varying, 'RRS'::character varying])::text[]))) THEN 7000
+                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY ((ARRAY['MJU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[]))) THEN 6000
+                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY ((ARRAY['Systembolaget'::character varying, 'EUN'::character varying])::text[]))) THEN 4000
+                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Adjungerad'::character varying, 'Sekreterare'::character varying])::text[]))) THEN 3000
                     ELSE 1000
                 END AS role_weight,
                 CASE
@@ -5603,7 +5617,7 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     ELSE 0
                 END AS is_substitute,
                 CASE
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text, ('Gruppledare'::character varying)::text, ('Partiledare'::character varying)::text, ('Partisekreterare'::character varying)::text, ('Förste vice gruppledare'::character varying)::text, ('Andre vice gruppledare'::character varying)::text])) THEN 1
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Ordförande'::character varying, 'Vice ordförande'::character varying, 'Gruppledare'::character varying, 'Partiledare'::character varying, 'Partisekreterare'::character varying, 'Förste vice gruppledare'::character varying, 'Andre vice gruppledare'::character varying])::text[])) THEN 1
                     ELSE 0
                 END AS is_leadership,
                 CASE
@@ -5612,21 +5626,21 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.role_code)::text = 'Vice statsminister'::text)) THEN 900.0
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND (((a.role_code)::text ~~* '%minister%'::text) OR ((a.role_code)::text = 'Statsråd'::text))) THEN 850.0
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Talman'::text)) THEN (800)::numeric
-                    WHEN (((a.assignment_type)::text = 'talmansuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Förste vice talman'::character varying)::text, ('Andre vice talman'::character varying)::text, ('Tredje vice talman'::character varying)::text]))) THEN 750.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 700.0
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text]))) THEN 650.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 600.0
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Förste vice gruppledare'::character varying)::text, ('Andre vice gruppledare'::character varying)::text]))) THEN 550.0
+                    WHEN (((a.assignment_type)::text = 'talmansuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Förste vice talman'::character varying, 'Andre vice talman'::character varying, 'Tredje vice talman'::character varying])::text[]))) THEN 750.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 700.0
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Gruppledare'::character varying, 'Partisekreterare'::character varying])::text[]))) THEN 650.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 600.0
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Förste vice gruppledare'::character varying, 'Andre vice gruppledare'::character varying])::text[]))) THEN 550.0
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Riksdagsledamot'::text)) THEN 500.0
                     WHEN (((a.assignment_type)::text = 'Europaparlamentet'::text) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 450.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 400.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('EU'::character varying)::text])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 350.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('EU'::character varying)::text])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 300.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('EU'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 250.0
-                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY (ARRAY[('RJ'::character varying)::text, ('Systembolaget'::character varying)::text, ('NR'::character varying)::text, ('RFK'::character varying)::text, ('RRS'::character varying)::text]))) THEN 200.0
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Ersättare'::character varying)::text, ('Statsrådsersättare'::character varying)::text])) THEN 150.0
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text])) THEN 100.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('MJU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text]))) THEN 50.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 400.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'EU'::character varying])::text[])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 350.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'EU'::character varying])::text[])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 300.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'EU'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 250.0
+                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY ((ARRAY['RJ'::character varying, 'Systembolaget'::character varying, 'NR'::character varying, 'RFK'::character varying, 'RRS'::character varying])::text[]))) THEN 200.0
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Ersättare'::character varying, 'Statsrådsersättare'::character varying])::text[])) THEN 150.0
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying])::text[])) THEN 100.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['MJU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[]))) THEN 50.0
                     ELSE 10.0
                 END AS area_weight
            FROM public.assignment_data a
@@ -5677,7 +5691,7 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                 END) AS party_days,
             sum(
                 CASE
-                    WHEN ((per_role_stats.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) THEN per_role_stats.total_days
+                    WHEN ((per_role_stats.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) THEN per_role_stats.total_days
                     ELSE (0)::bigint
                 END) AS committee_days,
             sum(per_role_stats.substitute_days) AS total_substitute_days,
@@ -6509,762 +6523,6 @@ CREATE TABLE public.vote_meta_data (
     proffessional_behavior character varying(255),
     target character varying(255)
 );
-
-
---
--- Data for Name: against_proposal_container; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.against_proposal_container (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: against_proposal_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.against_proposal_data (hjid, header, number_value, parties, proposal_issue_number, proposal_type, against_proposal_list_agains_0) FROM stdin;
-\.
-
-
---
--- Data for Name: agency; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.agency (hjid, agency_name, description, model_object_id, model_object_version) FROM stdin;
-\.
-
-
---
--- Data for Name: application_action_event; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.application_action_event (hjid, application_operation, created_date, event_group, model_object_id, model_object_version, events_application_session_h_0, session_id, page, page_mode, element_id, action_name, user_id, error_message, application_message) FROM stdin;
-\.
-
-
---
--- Data for Name: application_configuration; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.application_configuration (hjid, model_object_id, model_object_version, config_title, config_description, configuration_group, component, component_title, component_description, property_id, property_value, created_date, updated_date) FROM stdin;
-\.
-
-
---
--- Data for Name: application_session; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.application_session (hjid, created_date, ip_information, model_object_id, model_object_version, session_type, user_agent_information, session_id, locale, operating_system, user_id, destroyed_date, screen_size, time_zone) FROM stdin;
-\.
-
-
---
--- Data for Name: application_view; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.application_view (hjid, perspective, data_source_information_appl_0, operational_information_appl_0, performance_indicators_appli_0, quality_assurance_applicatio_0, target_profile_application_v_0) FROM stdin;
-\.
-
-
---
--- Data for Name: assignment_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.assignment_data (hjid, assignment_type, detail, from_date, intressent_id, order_number, org_code, role_code, status, to_date, assignment_list_person_assig_0) FROM stdin;
-\.
-
-
---
--- Data for Name: assignment_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.assignment_element (hjid, assignment_type, detail, from_date, intressent_id, order_number, org_code, role_code, status, to_date, uppdrag_person_assignment_el_0) FROM stdin;
-\.
-
-
---
--- Data for Name: committee_document_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.committee_document_data (id, committee_proposal_url_xml, created_date, document_status_url_www, document_status_url_xml, document_url_html, document_url_text, end_number, hangar_id, label, org, public_date, rm, status, sub_title, sub_type, temp_label, title) FROM stdin;
-\.
-
-
---
--- Data for Name: committee_proposal_component_0; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.committee_proposal_component_0 (hjid, against_proposal_container_c_0, committee_proposal_container_0, document_committee_proposal__0) FROM stdin;
-\.
-
-
---
--- Data for Name: committee_proposal_container; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.committee_proposal_container (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: committee_proposal_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.committee_proposal_data (hjid, against_proposal_number, against_proposal_parties, ballot_id, ballot_summary_item, ballot_url_xml, committee_report, decision_type, header, issue_number, proposal, rm, winner, committee_proposal_list_comm_0) FROM stdin;
-\.
-
-
---
--- Data for Name: countries_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.countries_element (hjid, page, pages, per_page, total) FROM stdin;
-\.
-
-
---
--- Data for Name: country_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.country_element (hjid, adminregion_id, adminregion_value, capital_city, country_name, id, income_level_id, income_level_value, iso_2code, latitude, lending_type_id, lending_type_value, longitude, region_id, region_value, country_countries_element_hj_0) FROM stdin;
-\.
-
-
---
--- Data for Name: data_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.data_element (hjid, page, pages, per_page, total) FROM stdin;
-\.
-
-
---
--- Data for Name: data_source_content; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.data_source_content (hjid, model_object_id, model_object_version) FROM stdin;
-\.
-
-
---
--- Data for Name: detail_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.detail_data (hjid, code, detail, detail_type, intressent_id, detail_list_person_detail_da_0) FROM stdin;
-\.
-
-
---
--- Data for Name: detail_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.detail_element (hjid, code, detail, detail_type, intressent_id) FROM stdin;
-\.
-
-
---
--- Data for Name: document_activity_container; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_activity_container (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: document_activity_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_activity_data (hjid, activity_name, code, created_date, order_number, process, status, document_activities_document_0) FROM stdin;
-\.
-
-
---
--- Data for Name: document_attachment; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_attachment (hjid, file_name, file_size, file_type, file_url, document_attachment_list_doc_0) FROM stdin;
-\.
-
-
---
--- Data for Name: document_attachment_container; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_attachment_container (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: document_container_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_container_element (hjid, created, datum, debug, document_version, hits, hits_from, hits_to, next_page, page, total_pages, warning) FROM stdin;
-\.
-
-
---
--- Data for Name: document_content_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_content_data (hjid, content, id) FROM stdin;
-\.
-
-
---
--- Data for Name: document_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_data (id, committee_report_url_xml, document_status_url_www, document_status_url_xml, document_type, document_url_html, document_url_text, final_number, hangar_id, label, made_public_date, number_value, org, rm, status, sub_title, sub_type, temp_label, title) FROM stdin;
-\.
-
-
---
--- Data for Name: document_detail_container; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_detail_container (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: document_detail_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_detail_data (hjid, code, detail_name, text, document_detail_list_documen_0) FROM stdin;
-\.
-
-
---
--- Data for Name: document_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_element (id, committee_report_url_xml, created_date, document_format, document_status_url_xml, document_type, document_url_html, document_url_text, hit, kall_id, label, made_public_date, number_value, org, related_id, rm, status, sub_title, sub_type, system_date, temp_label, title, dokument_document_container__0, domain_org, database_source, origin, lang, summary, note, note_title, debate_name, document_name, doc_type) FROM stdin;
-\.
-
-
---
--- Data for Name: document_person_reference_co_0; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_person_reference_co_0 (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: document_person_reference_da_0; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_person_reference_da_0 (hjid, order_number, party_short_code, person_reference_id, reference_name, role_description, document_person_reference_li_1) FROM stdin;
-\.
-
-
---
--- Data for Name: document_proposal_container; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_proposal_container (hjid, proposal_document_proposal_c_0) FROM stdin;
-\.
-
-
---
--- Data for Name: document_proposal_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_proposal_data (hjid, chamber, committee, decision_type, designation, processed_in, proposal_number, wording, wording_2, wording_3, wording_4) FROM stdin;
-\.
-
-
---
--- Data for Name: document_reference_container; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_reference_container (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: document_reference_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_reference_data (hjid, detail, reference_document_id, reference_type, document_reference_list_docu_0) FROM stdin;
-\.
-
-
---
--- Data for Name: document_status_container; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.document_status_container (hjid, document_category, document_document_status_con_0, document_activity_container__0, document_attachment_containe_0, document_detail_container_do_0, document_person_reference_co_1, document_reference_container_0, document_proposal_document_s_0) FROM stdin;
-\.
-
-
---
--- Data for Name: domain_portal; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.domain_portal (domain_name, hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: encrypted_value; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.encrypted_value (id, storage, user_id, vault_name) FROM stdin;
-\.
-
-
---
--- Data for Name: indicator_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.indicator_element (hjid, id, indicator_name, source_id, source_value, source_note, source_organization, topics_indicator_element_hjid, indicator__indicators_elemen_0) FROM stdin;
-\.
-
-
---
--- Data for Name: indicators_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.indicators_element (hjid, page, pages, per_page, total) FROM stdin;
-\.
-
-
---
--- Data for Name: jv_commit; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.jv_commit (commit_pk, author, commit_date, commit_id, commit_date_instant) FROM stdin;
-\.
-
-
---
--- Data for Name: jv_commit_property; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.jv_commit_property (property_name, property_value, commit_fk) FROM stdin;
-\.
-
-
---
--- Data for Name: jv_global_id; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.jv_global_id (global_id_pk, local_id, fragment, type_name, owner_id_fk) FROM stdin;
-\.
-
-
---
--- Data for Name: jv_snapshot; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.jv_snapshot (snapshot_pk, type, version, state, changed_properties, managed_type, global_id_fk, commit_fk) FROM stdin;
-\.
-
-
---
--- Data for Name: language_content_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.language_content_data (hjid, created_date, from_language, language_content_type, language_value, model_object_id, model_object_version, ref_key, to_language, last_modified_date, key_group, location_context) FROM stdin;
-\.
-
-
---
--- Data for Name: language_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.language_data (hjid, language_name, model_object_id, model_object_version, created_date, last_modified_date, language_enabled, auto_translation_enabled, language_code, translation_status) FROM stdin;
-\.
-
-
---
--- Data for Name: operational_information_cont_0; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.operational_information_cont_0 (hjid, model_object_id, model_object_version) FROM stdin;
-\.
-
-
---
--- Data for Name: performance_indicator_content; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.performance_indicator_content (hjid, model_object_id, model_object_version) FROM stdin;
-\.
-
-
---
--- Data for Name: person_assignment_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.person_assignment_data (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: person_assignment_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.person_assignment_element (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: person_container_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.person_container_data (hjid, person_person_container_data_0) FROM stdin;
-\.
-
-
---
--- Data for Name: person_container_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.person_container_element (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: person_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.person_data (id, born_year, election_region, first_name, gender, hangar_guid, image_url_192, image_url_80, image_url_max, last_name, party, person_url_xml, place, status, person_assignment_data_perso_0, person_detail_data_person_da_0) FROM stdin;
-\.
-
-
---
--- Data for Name: person_detail_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.person_detail_data (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: person_detail_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.person_detail_element (hjid, detail_list_person_detail_el_0) FROM stdin;
-\.
-
-
---
--- Data for Name: person_element; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.person_element (id, born_year, election_region, first_name, gender, hangar_guid, image_url_192, image_url_80, image_url_max, last_name, party, person_url_xml, place, status, person_assignment_element_pe_0, person_detail_element_person_0, person_person_container_elem_0) FROM stdin;
-\.
-
-
---
--- Data for Name: portal; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.portal (hjid, description, google_map_api_key, model_object_id, model_object_version, portal_name, portal_type, portals_agency_hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_blob_triggers; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_blob_triggers (sched_name, trigger_name, trigger_group, job_data) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_calendars; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_calendars (sched_name, calendar_name, calendar) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_cron_triggers; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_cron_triggers (sched_name, trigger_name, trigger_group, cron_expression, time_zone_id) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_fired_triggers; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_fired_triggers (sched_name, entry_id, trigger_name, trigger_group, instance_name, fired_time, sched_time, priority, state, job_name, job_group, is_nonconcurrent, requests_recovery) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_job_details; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_job_details (sched_name, job_name, job_group, description, job_class_name, is_durable, is_nonconcurrent, is_update_data, requests_recovery, job_data) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_locks; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_locks (sched_name, lock_name) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_paused_trigger_grps; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_paused_trigger_grps (sched_name, trigger_group) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_scheduler_state; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_scheduler_state (sched_name, instance_name, last_checkin_time, checkin_interval) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_simple_triggers; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_simple_triggers (sched_name, trigger_name, trigger_group, repeat_count, repeat_interval, times_triggered) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_simprop_triggers; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_simprop_triggers (sched_name, trigger_name, trigger_group, str_prop_1, str_prop_2, str_prop_3, int_prop_1, int_prop_2, long_prop_1, long_prop_2, dec_prop_1, dec_prop_2, bool_prop_1, bool_prop_2) FROM stdin;
-\.
-
-
---
--- Data for Name: qrtz_triggers; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.qrtz_triggers (sched_name, trigger_name, trigger_group, job_name, job_group, description, next_fire_time, prev_fire_time, priority, trigger_state, trigger_type, start_time, end_time, calendar_name, misfire_instr, job_data) FROM stdin;
-\.
-
-
---
--- Data for Name: quality_assurance_content; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.quality_assurance_content (hjid, model_object_id, model_object_version) FROM stdin;
-\.
-
-
---
--- Data for Name: rule_violation; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.rule_violation (id, detected_date, reference_id, name, resource_type, rule_description, rule_group, status, positive, rule_name) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_county_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_county_data (hjid, code, county_name, county_regions_sweden_county_0) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_county_data_container; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_county_data_container (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_county_electoral_area; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_county_electoral_area (hjid, code, electoral_area_name, first_round, number_of_seats, number_of_voters, rest, second_round, landstingsvalkrets_sweden_co_0) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_county_electoral_regi_0; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_county_electoral_regi_0 (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_county_electoral_regi_1; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_county_electoral_regi_1 (hjid, code, county_name, seats, county_electoral_regions_swe_0) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_election_region; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_election_region (hjid, county_id, municipal_id, region_name) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_election_type; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_election_type (hjid, election_code, election_type, region_sweden_election_type__0, election_types_sweden_electi_0) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_election_type_contain_0; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_election_type_contain_0 (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_municipality_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_municipality_data (hjid, code, municipal_name, kommun_sweden_county_data_hj_0) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_municipality_election_0; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_municipality_election_0 (hjid, code, election_region_name, first_round, number_of_seats, number_of_voters, rest, second_round, kommunvalkrets_sweden_munici_0) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_parliament_electoral__0; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_parliament_electoral__0 (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_parliament_electoral__1; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_parliament_electoral__1 (hjid, election_region_name, first_round, number_of_seats, number_of_voters, rest, second_round, parliament_electoral_regions_0) FROM stdin;
-\.
-
-
---
--- Data for Name: sweden_political_party; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.sweden_political_party (hjid, address, city, co_address, email, fax_number, party_id, party_name, phone_number, post_code, registered_date, short_code, website, parties_sweden_election_regi_0) FROM stdin;
-\.
-
-
---
--- Data for Name: target_profile_content; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.target_profile_content (hjid, model_object_id, model_object_version) FROM stdin;
-\.
-
-
---
--- Data for Name: topic; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.topic (hjid, id, value_, topic_topics_hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: topics; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.topics (hjid) FROM stdin;
-\.
-
-
---
--- Data for Name: user_account; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.user_account (hjid, email, model_object_id, model_object_version, number_of_visits, user_id, user_role, user_type, username, userpassword, country, created_date, user_lock_status, user_email_status) FROM stdin;
-\.
-
-
---
--- Data for Name: user_account_address; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.user_account_address (hjid, hjvalue, hjindex) FROM stdin;
-\.
-
-
---
--- Data for Name: vote_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.vote_data (embedded_id_ballot_id, embedded_id_concern, embedded_id_intressent_id, embedded_id_issue, ballot_type, bank_number, born_year, electoral_region, electoral_region_number, first_name, full_name, gender, label, last_name, party, place, rm, vote, vote_date) FROM stdin;
-\.
-
-
---
--- Data for Name: vote_meta_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.vote_meta_data (hjid, ballot_type, group_behavior, outcome, proffessional_behavior, target) FROM stdin;
-\.
-
-
---
--- Data for Name: world_bank_data; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.world_bank_data (hjid, country_id, country_value, data_value, indicator_id, indicator_value, year_date, data__data_element_hjid) FROM stdin;
-\.
-
-
---
--- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.hibernate_sequence', 1, false);
-
-
---
--- Name: jv_commit_pk_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.jv_commit_pk_seq', 1, false);
-
-
---
--- Name: jv_global_id_pk_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.jv_global_id_pk_seq', 1, false);
-
-
---
--- Name: jv_snapshot_pk_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public.jv_snapshot_pk_seq', 1, false);
 
 
 --
@@ -9121,5 +8379,5 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict o4oMvF3Qo0AIvwVfBvJWsr6BFKO2U0crt7fGIY3cDxTck7YgqpeRhUiHjTlqKei
+\unrestrict sSbRwMbXg29J0gGf7hc3hMBsIChEIf4LCJ5tdUkrLlNEs0nd8gvBCaElG4RPyaW
 

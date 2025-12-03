@@ -195,7 +195,7 @@ WITH role_day_spans AS (
 	    WHEN assignment_type = 'kammaruppdrag' AND role_code = 'Talman' THEN 40000 -- Speaker of the Parliament
 	
 	    -- Level 3: Ministers, Key Committee Chairs
-	    WHEN assignment_type = 'Departement' AND role_code ILIKE '%minister%' THEN 40000 -- Ministers
+	    WHEN assignment_type = 'Departement' AND role_code ~~* '%minister%' THEN 40000 -- Ministers
 	    WHEN assignment_type = 'Riksdagsorgan' AND role_code = 'Ordförande' THEN 35000 -- Key Committee Chairs
 	    WHEN assignment_type = 'uppdrag' AND role_code = 'Ordförande' AND org_code IN ('FiU', 'KU', 'UU', 'FÖU', 'JuU') THEN 35000 -- Critical Committees
 	
@@ -226,7 +226,7 @@ WITH role_day_spans AS (
             ELSE 1000 -- Other roles
         END AS role_weight,
         
-        CASE WHEN (a.role_code ILIKE '%ersättare%' OR a.role_code ILIKE '%suppleant%')
+        CASE WHEN (a.role_code ~~* '%ersättare%' OR a.role_code ~~* '%suppleant%')
             THEN 1 ELSE 0
         END AS is_substitute,
 
@@ -242,7 +242,7 @@ WITH role_day_spans AS (
             WHEN assignment_type = 'Departement' AND role_code = 'Vice statsminister' THEN 900.0
 
             /* Level 2: Senior Government (Ministers, Speaker) */
-            WHEN assignment_type = 'Departement' AND (role_code ILIKE '%minister%' OR role_code = 'Statsråd') THEN 850.0
+            WHEN assignment_type = 'Departement' AND (role_code ~~* '%minister%' OR role_code = 'Statsråd') THEN 850.0
             WHEN assignment_type = 'kammaruppdrag' AND role_code = 'Talman' THEN 800
             WHEN assignment_type = 'talmansuppdrag' AND role_code IN ('Förste vice talman', 'Andre vice talman', 'Tredje vice talman') THEN 750.0
 
