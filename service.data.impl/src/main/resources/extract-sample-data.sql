@@ -17,6 +17,7 @@
 --   - Creates CSV files for each table: table_<tablename>_sample.csv
 --   - Creates CSV files for each view: view_<viewname>_sample.csv
 --   - Creates manifest file: sample_data_manifest.csv
+--   - Creates distinct value files: distinct_<table>_<column>_values.csv
 
 \set ON_ERROR_STOP off
 \timing on
@@ -59,17 +60,315 @@ $$;
 \echo 'Configuration:'
 \echo '  Sample size: 50 rows per table/view'
 \echo '  Output format: CSV with headers'
-\echo '  Extraction strategy: Diverse sampling with DISTINCT for key columns'
-\echo '  Distinct value extraction: All tables/views with categorical columns'
-\echo '  View analysis: ANALYZE will be run on all views before extraction'
 \echo ''
 
 -- ===========================================================================
--- SECTION 1: Analyze All Views for Statistics
+-- SECTION 1: EARLY DISTINCT VALUE EXTRACTION (Before View Analysis)
+-- ===========================================================================
+-- This section extracts ALL distinct values from columns likely used in 
+-- view predicates (WHERE, JOIN, GROUP BY, HAVING conditions)
+-- ===========================================================================
+
+\echo ''
+\echo '=================================================='
+\echo '=== PHASE 1: DISTINCT VALUE EXTRACTION        ==='
+\echo '=== (Early extraction for view debugging)     ==='
+\echo '=================================================='
+\echo ''
+
+-- Create output directory marker
+\! mkdir -p distinct_values
+
+\echo 'Extracting distinct values from all categorical/predicate columns...'
+\echo 'This runs BEFORE view row counting to capture all possible filter values.'
+\echo ''
+
+-- Generate distinct value extraction commands
+\! rm -f :DISTINCT_CMD_FILE
+\pset format unaligned
+\pset tuples_only on
+\o :DISTINCT_CMD_FILE
+
+-- ============================================================================
+-- KNOWN CRITICAL COLUMNS: Hardcoded list of columns used in views
+-- These are extracted from analyzing view definitions in the schema
+-- ============================================================================
+
+SELECT E'-- Critical predicate columns from view analysis\n' ||
+       E'\\echo ''Extracting critical predicate columns...''\n';
+
+-- assignment_data columns (used in committee/government/ministry views)
+SELECT format(
+    '\echo ''  [CRITICAL] assignment_data.%s''' || E'\n' ||
+    '\copy (SELECT %s AS value, COUNT(*) AS count FROM assignment_data WHERE %s IS NOT NULL GROUP BY %s ORDER BY count DESC, %s LIMIT 2000) TO ''distinct_values/assignment_data_%s.csv'' WITH CSV HEADER' || E'\n',
+    col, col, col, col, col, col
+)
+FROM unnest(ARRAY['org_code', 'role_code', 'status', 'detail', 'assignment_type', 'intressent_id']) AS col
+WHERE EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'assignment_data' AND column_name = col);
+
+-- person_data columns
+SELECT format(
+    '\echo ''  [CRITICAL] person_data.%s''' || E'\n' ||
+    '\copy (SELECT %s AS value, COUNT(*) AS count FROM person_data WHERE %s IS NOT NULL GROUP BY %s ORDER BY count DESC, %s LIMIT 2000) TO ''distinct_values/person_data_%s.csv'' WITH CSV HEADER' || E'\n',
+    col, col, col, col, col, col
+)
+FROM unnest(ARRAY['party', 'status', 'gender', 'election_region']) AS col
+WHERE EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'person_data' AND column_name = col);
+
+-- vote_data columns  
+SELECT format(
+    '\echo ''  [CRITICAL] vote_data.%s''' || E'\n' ||
+    '\copy (SELECT %s AS value, COUNT(*) AS count FROM vote_data WHERE %s IS NOT NULL GROUP BY %s ORDER BY count DESC, %s LIMIT 2000) TO ''distinct_values/vote_data_%s.csv'' WITH CSV HEADER' || E'\n',
+    col, col, col, col, col, col
+)
+FROM unnest(ARRAY['vote', 'ballot_type', 'party', 'gender']) AS col
+WHERE EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'vote_data' AND column_name = col);
+
+-- document_data columns
+SELECT format(
+    '\echo ''  [CRITICAL] document_data.%s''' || E'\n' ||
+    '\copy (SELECT %s AS value, COUNT(*) AS count FROM document_data WHERE %s IS NOT NULL GROUP BY %s ORDER BY count DESC, %s LIMIT 2000) TO ''distinct_values/document_data_%s.csv'' WITH CSV HEADER' || E'\n',
+    col, col, col, col, col, col
+)
+FROM unnest(ARRAY['document_type', 'status', 'org', 'rm', 'sub_type']) AS col
+WHERE EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'document_data' AND column_name = col);
+
+-- committee_document_data columns
+SELECT format(
+    '\echo ''  [CRITICAL] committee_document_data.%s''' || E'\n' ||
+    '\copy (SELECT %s AS value, COUNT(*) AS count FROM committee_document_data WHERE %s IS NOT NULL GROUP BY %s ORDER BY count DESC, %s LIMIT 2000) TO ''distinct_values/committee_document_data_%s.csv'' WITH CSV HEADER' || E'\n',
+    col, col, col, col, col, col
+)
+FROM unnest(ARRAY['org', 'status', 'rm', 'sub_type']) AS col
+WHERE EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'committee_document_data' AND column_name = col);
+
+-- committee_proposal_data columns
+SELECT format(
+    '\echo ''  [CRITICAL] committee_proposal_data.%s''' || E'\n' ||
+    '\copy (SELECT %s AS value, COUNT(*) AS count FROM committee_proposal_data WHERE %s IS NOT NULL GROUP BY %s ORDER BY count DESC, %s LIMIT 2000) TO ''distinct_values/committee_proposal_data_%s.csv'' WITH CSV HEADER' || E'\n',
+    col, col, col, col, col, col
+)
+FROM unnest(ARRAY['decision_type', 'winner', 'committee_report', 'rm']) AS col
+WHERE EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'committee_proposal_data' AND column_name = col);
+
+-- document_status_container columns
+SELECT format(
+    '\echo ''  [CRITICAL] document_status_container.%s''' || E'\n' ||
+    '\copy (SELECT %s AS value, COUNT(*) AS count FROM document_status_container WHERE %s IS NOT NULL GROUP BY %s ORDER BY count DESC, %s LIMIT 2000) TO ''distinct_values/document_status_container_%s.csv'' WITH CSV HEADER' || E'\n',
+    col, col, col, col, col, col
+)
+FROM unnest(ARRAY['document_category']) AS col
+WHERE EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'document_status_container' AND column_name = col);
+
+-- document_element columns
+SELECT format(
+    '\echo ''  [CRITICAL] document_element.%s''' || E'\n' ||
+    '\copy (SELECT %s AS value, COUNT(*) AS count FROM document_element WHERE %s IS NOT NULL GROUP BY %s ORDER BY count DESC, %s LIMIT 2000) TO ''distinct_values/document_element_%s.csv'' WITH CSV HEADER' || E'\n',
+    col, col, col, col, col, col
+)
+FROM unnest(ARRAY['document_type', 'status', 'org', 'rm', 'sub_type', 'doc_type', 'database_source']) AS col
+WHERE EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'document_element' AND column_name = col);
+
+-- detail_data columns
+SELECT format(
+    '\echo ''  [CRITICAL] detail_data.%s''' || E'\n' ||
+    '\copy (SELECT %s AS value, COUNT(*) AS count FROM detail_data WHERE %s IS NOT NULL GROUP BY %s ORDER BY count DESC, %s LIMIT 2000) TO ''distinct_values/detail_data_%s.csv'' WITH CSV HEADER' || E'\n',
+    col, col, col, col, col, col
+)
+FROM unnest(ARRAY['code', 'detail_type']) AS col
+WHERE EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'detail_data' AND column_name = col);
+
+-- ============================================================================
+-- DYNAMIC EXTRACTION: All varchar/text columns with low cardinality
+-- ============================================================================
+
+SELECT E'\n-- Dynamic extraction of all categorical columns\n' ||
+       E'\\echo ''''\n' ||
+       E'\\echo ''Extracting additional categorical columns dynamically...''\n';
+
+-- Extract all text/varchar columns that likely contain categorical data
+WITH categorical_columns AS (
+    SELECT 
+        c.table_name,
+        c.column_name,
+        c.data_type,
+        c.character_maximum_length
+    FROM information_schema.columns c
+    JOIN information_schema.tables t 
+        ON t.table_schema = c.table_schema 
+        AND t.table_name = c.table_name
+    WHERE c.table_schema = 'public'
+      AND t.table_type = 'BASE TABLE'
+      AND c.data_type IN ('character varying', 'text', 'character')
+      -- Exclude large text fields and known non-categorical columns
+      AND (c.character_maximum_length IS NULL OR c.character_maximum_length <= 255)
+      -- ========================================================================
+      -- EXCLUDE CONTENT/TEXT FIELDS (long text, descriptions, etc.)
+      -- ========================================================================
+      AND c.column_name NOT IN ('content', 'title', 'sub_title', 'description', 'text', 
+                                 'summary', 'note', 'header', 'proposal', 'wording',
+                                 'wording_2', 'wording_3', 'wording_4', 'source_note',
+                                 'reference_name', 'detail_name', 'activity_name',
+                                 'config_description', 'component_description',
+                                 'error_message', 'application_message', 'storage')
+      -- ========================================================================
+      -- EXCLUDE URL FIELDS
+      -- ========================================================================
+      AND c.column_name NOT IN ('file_url', 'file_name', 'image_url_192', 'image_url_80', 
+                                 'image_url_max', 'person_url_xml', 'document_url_html',
+                                 'document_url_text', 'document_status_url_xml',
+                                 'document_status_url_www', 'committee_proposal_url_xml',
+                                 'committee_report_url_xml', 'ballot_url_xml', 'website')
+      -- ========================================================================
+      -- EXCLUDE NAME FIELDS (person names, full names, etc.)
+      -- ========================================================================
+      AND c.column_name NOT IN ('first_name', 'last_name', 'full_name', 'name',
+                                 'party_name', 'country_name', 'indicator_name',
+                                 'county_name', 'municipal_name', 'region_name',
+                                 'electoral_area_name', 'election_region_name',
+                                 'capital_city', 'place', 'city', 'address',
+                                 'co_address', 'source_organization', 'adminregion_value', 
+                                 'region_value', 'property_value')
+      -- ========================================================================
+      -- EXCLUDE ID FIELDS (unique identifiers, foreign keys, etc.)
+      -- ========================================================================
+      AND c.column_name NOT LIKE '%_id'
+      AND c.column_name NOT LIKE '%_id_%'
+      AND c.column_name NOT LIKE 'id_%'
+      AND c.column_name != 'id'
+      AND c.column_name NOT LIKE 'hjid%'
+      AND c.column_name NOT LIKE '%intressent_id%'
+      AND c.column_name NOT LIKE '%person_reference_id%'
+      AND c.column_name NOT LIKE '%document_id%'
+      AND c.column_name NOT LIKE '%ballot_id%'
+      AND c.column_name NOT LIKE '%hangar%'
+      AND c.column_name NOT LIKE '%guid%'
+      -- ========================================================================
+      -- EXCLUDE SESSION/USER TRACKING FIELDS
+      -- ========================================================================
+      AND c.column_name NOT IN ('ip_information', 'user_agent_information', 'session_id',
+                                 'user_id', 'user_password', 'email', 'username')
+      -- ========================================================================
+      -- EXCLUDE DATE/TIME STRING FIELDS
+      -- ========================================================================
+      AND c.column_name NOT LIKE '%_date'
+      AND c.column_name NOT LIKE '%date_%'
+      AND c.column_name NOT IN ('created', 'datum', 'created_date', 'made_public_date',
+                                 'system_date')
+      -- ========================================================================
+      -- EXCLUDE TECHNICAL/INFRASTRUCTURE TABLES (not domain data)
+      -- ========================================================================
+      -- Javers audit tables (jv_*)
+      AND c.table_name NOT LIKE 'jv_%'
+      -- Quartz scheduler tables (qrtz_*)
+      AND c.table_name NOT LIKE 'qrtz_%'
+      -- Liquibase migration tables
+      AND c.table_name NOT IN ('databasechangelog', 'databasechangeloglock')
+      -- Hibernate sequence table
+      AND c.table_name != 'hibernate_sequence'
+      -- Encrypted value storage (sensitive)
+      AND c.table_name != 'encrypted_value'
+      -- Application session/event tables (user tracking, not political data)
+      AND c.table_name NOT IN ('application_session', 'application_action_event', 
+                                'application_configuration', 'application_view')
+      -- User account tables (sensitive)
+      AND c.table_name NOT IN ('user_account', 'user_account_address')
+      -- Portal configuration tables
+      AND c.table_name NOT IN ('portal', 'domain_portal', 'agency')
+      -- Rule violation tracking
+      AND c.table_name != 'rule_violation'
+      -- Data source metadata
+      AND c.table_name != 'data_source_content'
+      -- Language/translation tables (not political data)
+      AND c.table_name NOT IN ('language_data', 'language_content_data')
+      -- ========================================================================
+      -- EXCLUDE OTHER HIGH-CARDINALITY OR NON-CATEGORICAL COLUMNS
+      -- ========================================================================
+      AND c.column_name NOT IN ('label', 'temp_label', 'kall_id', 'related_id',
+                                 'next_page', 'debug', 'warning', 'document_version',
+                                 'order_number', 'bank_number', 'phone_number', 
+                                 'fax_number', 'post_code', 'latitude', 'longitude',
+                                 'rest', 'value_', 'data_value')
+      -- ========================================================================
+      -- Skip columns already extracted above (critical columns)
+      -- ========================================================================
+      AND NOT (c.table_name = 'assignment_data' AND c.column_name IN ('org_code', 'role_code', 'status', 'detail', 'assignment_type', 'intressent_id'))
+      AND NOT (c.table_name = 'person_data' AND c.column_name IN ('party', 'status', 'gender', 'election_region'))
+      AND NOT (c.table_name = 'vote_data' AND c.column_name IN ('vote', 'ballot_type', 'party', 'gender'))
+      AND NOT (c.table_name = 'document_data' AND c.column_name IN ('document_type', 'status', 'org', 'rm', 'sub_type'))
+      AND NOT (c.table_name = 'committee_document_data' AND c.column_name IN ('org', 'status', 'rm', 'sub_type'))
+      AND NOT (c.table_name = 'committee_proposal_data' AND c.column_name IN ('decision_type', 'winner', 'committee_report', 'rm'))
+      AND NOT (c.table_name = 'document_status_container' AND c.column_name IN ('document_category'))
+      AND NOT (c.table_name = 'document_element' AND c.column_name IN ('document_type', 'status', 'org', 'rm', 'sub_type', 'doc_type', 'database_source'))
+      AND NOT (c.table_name = 'detail_data' AND c.column_name IN ('code', 'detail_type'))
+    ORDER BY c.table_name, c.column_name
+)
+SELECT format(
+    '\echo ''  [AUTO] %s.%s''' || E'\n' ||
+    '\copy (SELECT %s AS value, COUNT(*) AS count FROM %s WHERE %s IS NOT NULL GROUP BY %s ORDER BY count DESC, %s LIMIT 1000) TO ''distinct_values/%s_%s.csv'' WITH CSV HEADER' || E'\n',
+    table_name, column_name,
+    column_name, table_name, column_name, column_name, column_name,
+    table_name, column_name
+)
+FROM categorical_columns;
+
+-- ============================================================================
+-- CROSS-TABLE VALUE ANALYSIS: Values that appear in JOINs
+-- ============================================================================
+
+SELECT E'\n-- Cross-table join key analysis\n' ||
+       E'\\echo ''''\n' ||
+       E'\\echo ''Extracting cross-table join key distributions...''\n';
+
+-- Extract ID distributions for common join patterns
+SELECT E'\\echo ''  [JOIN] person_data IDs in assignment_data''' || E'\n' ||
+       E'\\copy (SELECT intressent_id AS value, COUNT(*) AS count FROM assignment_data WHERE intressent_id IS NOT NULL GROUP BY intressent_id ORDER BY count DESC LIMIT 500) TO ''distinct_values/join_assignment_to_person.csv'' WITH CSV HEADER' || E'\n'
+WHERE EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'assignment_data');
+
+SELECT E'\\echo ''  [JOIN] document IDs in document_status_container''' || E'\n' ||
+       E'\\copy (SELECT document_document_status_con_0 AS value, COUNT(*) AS count FROM document_status_container WHERE document_document_status_con_0 IS NOT NULL GROUP BY document_document_status_con_0 ORDER BY count DESC LIMIT 500) TO ''distinct_values/join_docstatus_to_document.csv'' WITH CSV HEADER' || E'\n'
+WHERE EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'document_status_container' AND column_name = 'document_document_status_con_0');
+
+-- ============================================================================
+-- SUMMARY STATISTICS
+-- ============================================================================
+
+SELECT E'\n\\echo ''''\n' ||
+       E'\\echo ''==================================================''\n' ||
+       E'\\echo ''Distinct value extraction complete.''\n' ||
+       E'\\echo ''Files saved to: distinct_values/''\n' ||
+       E'\\echo ''==================================================''\n';
+
+\o
+\pset format aligned
+\pset tuples_only off
+
+-- Execute the distinct value extractions
+\echo ''
+\echo 'Executing distinct value extractions...'
+\i :DISTINCT_CMD_FILE
+\! rm -f :DISTINCT_CMD_FILE
+
+-- Create a summary of extracted distinct values
+\echo ''
+\echo 'Creating distinct value summary...'
+
+\copy (SELECT 'Summary of Distinct Value Extractions' AS info, COUNT(*) AS file_count FROM (SELECT 1) x) TO 'distinct_values/_extraction_summary.csv' WITH CSV HEADER
+
+\! ls -la distinct_values/ 2>/dev/null | head -50 || echo "distinct_values directory listing"
+
+\echo ''
+\echo '=================================================='
+\echo '=== PHASE 1 COMPLETE: Distinct Values Extracted ==='
+\echo '=================================================='
+\echo ''
+
+-- ===========================================================================
+-- SECTION 2: Analyze All Views for Statistics
 -- ===========================================================================
 \echo ''
 \echo '=================================================='
-\echo '=== ANALYZING ALL VIEWS                       ==='
+\echo '=== PHASE 2: ANALYZING ALL VIEWS              ==='
 \echo '=================================================='
 \echo ''
 \echo 'Running ANALYZE on all views (regular and materialized)...'
@@ -270,7 +569,7 @@ END $$;
 -- ===========================================================================
 \echo ''
 \echo '=================================================='
-\echo '=== EXTRACTING TABLE SAMPLE DATA              ==='
+\echo '=== PHASE 3: EXTRACTING TABLE SAMPLE DATA     ==='
 \echo '=================================================='
 \echo ''
 
@@ -364,11 +663,11 @@ ORDER BY tablename;
 \echo ''
 
 -- ===========================================================================
--- SECTION 3: Extract Sample Data from ALL Views Dynamically
+-- SECTION 4: Extract Sample Data from ALL Views Dynamically  
 -- ===========================================================================
 \echo ''
 \echo '=================================================='
-\echo '=== EXTRACTING VIEW SAMPLE DATA               ==='
+\echo '=== PHASE 4: EXTRACTING VIEW SAMPLE DATA      ==='
 \echo '=================================================='
 \echo ''
 
@@ -385,7 +684,7 @@ BEGIN
     FROM (
         SELECT viewname FROM pg_views 
         WHERE schemaname = 'public' 
-          AND viewname != 'view_riksdagen_coalition_alignment_matrix'
+          AND viewname != 'view_riksdagen_intelligence_dashboard'
         UNION ALL
         SELECT matviewname FROM pg_matviews 
         WHERE schemaname = 'public'
@@ -403,6 +702,7 @@ BEGIN
         FROM pg_views
         WHERE schemaname = 'public'
           AND viewname != 'view_riksdagen_coalition_alignment_matrix'
+          AND viewname != 'view_riksdagen_intelligence_dashboard'
         UNION ALL
         SELECT schemaname, matviewname AS object_name, 'MATERIALIZED VIEW' AS object_type
         FROM pg_matviews
@@ -451,6 +751,7 @@ WITH view_counts AS (
     FROM pg_views
     WHERE schemaname = 'public'
       AND viewname != 'view_riksdagen_coalition_alignment_matrix'
+      AND viewname != 'view_riksdagen_intelligence_dashboard'
     UNION ALL
     SELECT schemaname,
            matviewname,
@@ -499,245 +800,24 @@ ORDER BY viewname;
 \echo ''
 
 -- ===========================================================================
--- SECTION 4: Extract Distinct Values for View-Referenced Columns ONLY
+-- CLEANUP
 -- ===========================================================================
 \echo ''
 \echo '=================================================='
-\echo '=== EXTRACTING DISTINCT VALUE SETS            ==='
+\echo '=== CLEANUP                                    ==='
 \echo '=================================================='
-\echo ''
-\echo 'Analyzing columns ACTUALLY USED in view queries...'
-\echo 'Extracting WHERE/JOIN/GROUP BY predicate columns only...'
-\echo ''
 
-\! rm -f :DISTINCT_CMD_FILE
-\pset format unaligned
-\pset tuples_only on
-\o :DISTINCT_CMD_FILE
+DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
+\echo 'Dropped helper function: cia_tmp_rowcount'
 
--- Extract columns that are ACTUALLY used in view predicates (WHERE/JOIN/GROUP BY)
-WITH RECURSIVE view_definitions AS (
-    -- Get all view definitions with their SQL
-    SELECT 
-        n.nspname AS schemaname,
-        c.relname AS viewname,
-        pg_get_viewdef(c.oid, true) AS view_definition
-    FROM pg_class c
-    JOIN pg_namespace n ON n.oid = c.relnamespace
-    WHERE c.relkind IN ('v', 'm')
-      AND n.nspname = 'public'
-      AND c.relname != 'view_riksdagen_coalition_alignment_matrix'
-),
--- Enhanced extraction: Multiple patterns to catch different SQL syntaxes
-view_column_patterns AS (
-    SELECT DISTINCT
-        schemaname,
-        viewname,
-        regexp_matches(view_definition, '\b([a-z_][a-z0-9_]*)\.\s*([a-z_][a-z0-9_]*)\s*(?:=|!=|<>|<|>|<=|>=|IN\s*\(|IS\s+(?:NOT\s+)?NULL|(?:NOT\s+)?LIKE)', 'gi') AS table_column
-    FROM view_definitions
-),
--- Parse all matches
-parsed_columns AS (
-    SELECT DISTINCT
-        schemaname,
-        viewname,
-        lower((table_column)[1]) AS table_name,
-        lower((table_column)[2]) AS column_name
-    FROM view_column_patterns
-    WHERE table_column IS NOT NULL 
-      AND array_length(table_column, 1) >= 2
-      -- Filter out SQL keywords
-      AND lower((table_column)[1]) NOT IN (
-          'select', 'from', 'where', 'group', 'order', 'having', 
-          'case', 'when', 'then', 'else', 'end', 'and', 'or', 
-          'not', 'null', 'as', 'on', 'using', 'join', 'left',
-          'right', 'inner', 'outer', 'cross', 'natural', 'with',
-          'union', 'intersect', 'except', 'limit', 'offset'
-      )
-      AND lower((table_column)[2]) NOT IN (
-          'select', 'from', 'where', 'group', 'order', 'having',
-          'case', 'when', 'then', 'else', 'end', 'and', 'or',
-          'not', 'null', 'as', 'on', 'using', 'distinct', 'all',
-          'exists', 'between', 'like', 'ilike', 'similar', 'in'
-      )
-),
--- ALSO add common categorical columns from base tables
-common_categorical_columns AS (
-    SELECT DISTINCT
-        t.table_schema AS schemaname,
-        t.table_name,
-        c.column_name,
-        'COMMON_CATEGORICAL' AS source_type
-    FROM information_schema.tables t
-    JOIN information_schema.columns c 
-        ON c.table_schema = t.table_schema 
-        AND c.table_name = t.table_name
-    WHERE t.table_schema = 'public'
-      AND t.table_type = 'BASE TABLE'
-      AND c.data_type IN ('character varying', 'text', 'character', 'USER-DEFINED')
-      AND (c.character_maximum_length IS NULL OR c.character_maximum_length < 200)
-      AND c.column_name IN (
-          'party', 'status', 'gender', 'role_code', 'ballot_type',
-          'vote', 'document_type', 'detail', 'org', 'org_code',
-          'concern', 'issue', 'decision_type', 'winner', 'committee_report',
-          'election_region', 'assignment_type', 'detail_type',
-          'rm', 'label', 'sub_type', 'category', 'classification'
-      )
-),
--- Combine parsed columns with common categorical columns
-all_candidate_columns AS (
-    SELECT DISTINCT
-        schemaname,
-        table_name,
-        column_name,
-        'VIEW_PREDICATE' AS source_type
-    FROM parsed_columns
-    UNION
-    SELECT 
-        schemaname,
-        table_name,
-        column_name,
-        source_type
-    FROM common_categorical_columns
-),
--- Verify columns exist in actual tables
-verified_columns AS (
-    SELECT DISTINCT
-        acc.schemaname,
-        acc.table_name AS tablename,
-        acc.column_name,
-        c.data_type,
-        c.character_maximum_length,
-        COUNT(DISTINCT CASE WHEN acc.source_type = 'VIEW_PREDICATE' THEN acc.table_name END) AS used_in_view_count,
-        MAX(CASE WHEN acc.source_type = 'COMMON_CATEGORICAL' THEN 1 ELSE 0 END) AS is_common_categorical
-    FROM all_candidate_columns acc
-    JOIN information_schema.columns c 
-        ON c.table_schema = acc.schemaname 
-        AND c.table_name = acc.table_name
-        AND c.column_name = acc.column_name
-    WHERE c.data_type IN ('character varying', 'text', 'character', 'USER-DEFINED')
-      AND (c.character_maximum_length IS NULL OR c.character_maximum_length < 500)
-    GROUP BY acc.schemaname, acc.table_name, acc.column_name, c.data_type, c.character_maximum_length
-),
--- Check which tables have data
-tables_with_data AS (
-    SELECT DISTINCT
-        vc.schemaname,
-        vc.tablename
-    FROM verified_columns vc
-    WHERE cia_tmp_rowcount(vc.schemaname, vc.tablename) > 0
-),
--- Generate extraction commands with priority
-distinct_extracts AS (
-    SELECT 
-        vc.schemaname,
-        vc.tablename,
-        vc.column_name,
-        vc.used_in_view_count,
-        vc.is_common_categorical,
-        CASE 
-            WHEN vc.used_in_view_count > 0 THEN vc.used_in_view_count * 100
-            WHEN vc.is_common_categorical = 1 THEN 50
-            ELSE 1
-        END AS priority_score,
-        'distinct_' || vc.tablename || '_' || vc.column_name || '_values.csv' AS filename
-    FROM verified_columns vc
-    JOIN tables_with_data twd 
-        ON twd.schemaname = vc.schemaname 
-        AND twd.tablename = vc.tablename
-    
-    UNION ALL
-    
-    -- Add critical assignment_data columns (used in committee/government views)
-    SELECT 
-        'public' AS schemaname,
-        'assignment_data' AS tablename,
-        col AS column_name,
-        15 AS used_in_view_count,
-        1 AS is_common_categorical,
-        1500 AS priority_score,
-        'distinct_assignment_data_' || col || '_values.csv' AS filename
-    FROM unnest(ARRAY['org_code', 'detail', 'role_code', 'assignment_type', 'status']) AS col
-    WHERE EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'assignment_data')
-    
-    ORDER BY priority_score DESC, tablename, column_name
-)
-SELECT format(
-    '\echo ''[DISTINCT] %I.%I.%I (priority=%s, views=%s) -> %s''' || E'\n' ||
-    '\copy (SELECT %I as value, COUNT(*) as count FROM %I.%I WHERE %I IS NOT NULL GROUP BY %I ORDER BY count DESC, %I LIMIT 1000) TO ''%s'' WITH CSV HEADER' || E'\n' ||
-    '\echo ''  ✓ Completed: %s''' || E'\n',
-    schemaname,
-    tablename,
-    column_name,
-    priority_score,
-    used_in_view_count,
-    filename,
-    column_name,
-    schemaname,
-    tablename,
-    column_name,
-    column_name,
-    column_name,
-    filename,
-    filename
-)
-FROM distinct_extracts;
-
-\o
-\pset format aligned
-\pset tuples_only off
-
-\echo 'Executing enhanced distinct value extractions...'
-\echo ''
-
-\i :DISTINCT_CMD_FILE
-\! rm -f :DISTINCT_CMD_FILE
-
-\echo ''
-\echo 'Distinct value extraction completed'
-\echo ''
-
--- ===========================================================================
--- SECTION 6: Generate Summary Statistics
--- ===========================================================================
 \echo ''
 \echo '=================================================='
-\echo '=== EXTRACTION STATISTICS                     ==='
-\echo '=================================================='
-\echo ''
-\echo 'Generating extraction_statistics.csv...'
-
-\copy (SELECT 'TABLES' as category, COUNT(*) as total_in_schema, COUNT(*) FILTER (WHERE cia_tmp_rowcount(t.table_schema, t.table_name) > 0) as extracted_count, COUNT(*) FILTER (WHERE cia_tmp_rowcount(t.table_schema, t.table_name) = 0) as excluded_count, ROUND(100.0 * COUNT(*) FILTER (WHERE cia_tmp_rowcount(t.table_schema, t.table_name) > 0) / NULLIF(COUNT(*), 0), 2) as coverage_pct FROM information_schema.tables t WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE' UNION ALL SELECT 'REGULAR_VIEWS' as category, COUNT(*) as total_in_schema, COUNT(*) as extracted_count, 0 as excluded_count, 100.00 as coverage_pct FROM information_schema.views WHERE table_schema = 'public' AND table_name != 'view_riksdagen_coalition_alignment_matrix' UNION ALL SELECT 'MATERIALIZED_VIEWS' as category, COUNT(*) as total_in_schema, COUNT(*) as extracted_count, 0 as excluded_count, 100.00 as coverage_pct FROM pg_matviews WHERE schemaname = 'public' UNION ALL SELECT 'TOTAL' as category, (SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE') + (SELECT COUNT(*) FROM information_schema.views WHERE table_schema = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public') as total_in_schema, (SELECT COUNT(*) FROM information_schema.tables t WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE' AND cia_tmp_rowcount(t.table_schema, t.table_name) > 0) + (SELECT COUNT(*) FROM information_schema.views WHERE table_schema = 'public' AND table_name != 'view_riksdagen_coalition_alignment_matrix') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public') as extracted_count, (SELECT COUNT(*) FROM information_schema.tables t WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE' AND cia_tmp_rowcount(t.table_schema, t.table_name) = 0) + 1 as excluded_count, ROUND(100.0 * ((SELECT COUNT(*) FROM information_schema.tables t WHERE t.table_schema = 'public' AND t.table_type = 'BASE TABLE' AND cia_tmp_rowcount(t.table_schema, t.table_name) > 0) + (SELECT COUNT(*) FROM information_schema.views WHERE table_schema = 'public' AND table_name != 'view_riksdagen_coalition_alignment_matrix') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public')) / NULLIF((SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE') + (SELECT COUNT(*) FROM information_schema.views WHERE table_schema = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'), 0), 2) as coverage_pct) TO 'extraction_statistics.csv' WITH CSV HEADER;
-
-\echo '  ✓ Completed: extraction_statistics.csv'
-\echo ''
-
--- ===========================================================================
--- SECTION 7: Summary and Cleanup
--- ===========================================================================
-\echo ''
-\echo '=================================================='
-\echo 'Sample data extraction completed'
+\echo 'CIA Sample Data Extraction COMPLETE'
 \echo 'Finished:' `date`
 \echo '=================================================='
 \echo ''
-\echo 'Generated files:'
-\echo '  - table_*_sample.csv: Sample data from tables'
-\echo '  - view_*_sample.csv: Sample data from views'
-\echo '  - distinct_*_values.csv: Distinct values for all text/varchar columns'
-\echo '  - sample_data_manifest.csv: Metadata about extracted files'
-\echo '  - view_column_mapping.csv: Column mappings for views'
-\echo '  - extraction_statistics.csv: Coverage statistics'
+\echo 'Output files:'
+\echo '  - distinct_values/*.csv  : All distinct values for predicate columns'
+\echo '  - table_*.csv            : Sample data from tables'
+\echo '  - view_*.csv             : Sample data from views'
 \echo ''
-\echo 'To reload sample data:'
-\echo '  1. Review the CSV files'
-\echo '  2. Use copy FROM to import: '
-\echo '     copy table_name FROM ''table_name_sample.csv'' WITH CSV HEADER;'
-\echo ''
-\echo 'For troubleshooting empty views, see:'
-\echo '  - TROUBLESHOOTING_EMPTY_VIEWS.md'
-\echo '  - view_column_mapping.csv for required columns'
-\echo ''
-
--- Cleanup helper function
-DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
