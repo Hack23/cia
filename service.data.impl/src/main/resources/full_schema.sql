@@ -6592,6 +6592,16 @@ CREATE VIEW public.view_ministry_risk_evolution AS
             assignment_data.detail AS name
            FROM public.assignment_data
           WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL))
+        ), quarterly_periods AS (
+         SELECT date_trunc('quarter'::text, (CURRENT_DATE - ((n.n)::text || ' months'::text)::interval)) AS period_start
+           FROM generate_series(0, 21, 3) n(n)
+        ), ministry_quarters AS (
+         SELECT m.org_code,
+            m.org_code_lower,
+            m.name,
+            qp.period_start AS assessment_period
+           FROM (ministry_base m
+             CROSS JOIN quarterly_periods qp)
         ), ministry_document_data AS (
          SELECT dsc.hjid AS id,
             dd.document_type,
@@ -6604,9 +6614,9 @@ CREATE VIEW public.view_ministry_risk_evolution AS
              LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
           WHERE (dd.made_public_date IS NOT NULL)
         ), quarterly_performance AS (
-         SELECT m.org_code,
-            m.name,
-            date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone) AS assessment_period,
+         SELECT mq.org_code,
+            mq.name,
+            mq.assessment_period,
             count(DISTINCT doc.id) AS documents_produced,
             count(DISTINCT
                 CASE
@@ -6614,9 +6624,9 @@ CREATE VIEW public.view_ministry_risk_evolution AS
                     ELSE NULL::bigint
                 END) AS legislative_count,
             count(DISTINCT doc.person_reference_id) AS active_members
-           FROM (ministry_base m
-             LEFT JOIN ministry_document_data doc ON (((lower((doc.org)::text) = m.org_code_lower) AND (doc.made_public_date >= (CURRENT_DATE - '2 years'::interval)))))
-          GROUP BY m.org_code, m.name, (date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone))
+           FROM (ministry_quarters mq
+             LEFT JOIN ministry_document_data doc ON (((lower((doc.org)::text) = mq.org_code_lower) AND (date_trunc('quarter'::text, (doc.made_public_date)::timestamp with time zone) = mq.assessment_period))))
+          GROUP BY mq.org_code, mq.name, mq.assessment_period
         ), risk_calculations AS (
          SELECT quarterly_performance.org_code,
             quarterly_performance.name,
@@ -6629,7 +6639,6 @@ CREATE VIEW public.view_ministry_risk_evolution AS
             lag(quarterly_performance.active_members, 1) OVER (PARTITION BY quarterly_performance.org_code ORDER BY quarterly_performance.assessment_period) AS prev_members,
             avg(quarterly_performance.documents_produced) OVER (PARTITION BY quarterly_performance.org_code ORDER BY quarterly_performance.assessment_period ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg_documents
            FROM quarterly_performance
-          WHERE (quarterly_performance.assessment_period IS NOT NULL)
         )
  SELECT org_code,
     name,

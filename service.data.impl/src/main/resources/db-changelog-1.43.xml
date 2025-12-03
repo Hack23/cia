@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Fix Empty View: view_ministry_risk_evolution v1.43
+  Author: Intelligence Operative & Political Analyst
+  Date: 2025-12-03
+  GitHub Issue: #8077 - Fix Empty View: view_ministry_risk_evolution
+  
+  This changelog fixes the view_ministry_risk_evolution which returns 0 rows
+  even when ministry assignment data exists.
+  
+  Root Cause Identified:
+  The view's logic filters out rows where assessment_period IS NOT NULL in 
+  the risk_calculations CTE. However, when ministry assignments exist but no
+  corresponding document data exists, the DATE_TRUNC('quarter', doc.made_public_date)
+  will be NULL (due to LEFT JOIN), and those rows are filtered out.
+  
+  Previous Fix Attempts:
+  - v1.31: Created view with materialized view dependency
+  - v1.37: Added case-insensitive matching
+  - v1.39: Removed '%departement%' filter  
+  - v1.42: Replaced materialized view with direct base table queries
+  - All fixes addressed different issues but didn't fix the core logic problem
+  
+  Solution:
+  Generate time periods (quarters) independently and cross-join with ministries,
+  then LEFT JOIN with document data. This ensures every ministry has rows for
+  each quarter in the analysis period, even if they have no documents.
+  
+  Changes:
+  1. Add quarterly_periods CTE to generate last 8 quarters
+  2. Cross-join ministry_base with quarterly_periods
+  3. LEFT JOIN document data to this cross-joined set
+  4. Remove WHERE assessment_period IS NOT NULL filter (no longer needed)
+  
+  Impact:
+  - View now returns rows for all ministries across all quarters
+  - Ministries with no documents show risk_level='CRITICAL' appropriately
+  - View satisfies >10 rows requirement when ministry data exists
+-->
+
+<!-- ========================================================================= -->
+<!-- FIX: view_ministry_risk_evolution - Generate Time Periods Independently  -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="fix-ministry-risk-evolution-periods-1.43-001" failOnError="true">
+    <comment>
+        Fix view_ministry_risk_evolution to return data for all ministries
+        
+        Root Cause: The view was filtering out rows where assessment_period IS NULL.
+        When ministries have no document data, the DATE_TRUNC from LEFT JOIN results
+        in NULL, causing all ministry rows to be excluded.
+        
+        Solution: Generate quarterly periods independently and cross-join with
+        ministries, ensuring every ministry has entries for each quarter regardless
+        of document activity.
+        
+        This is the definitive fix that ensures:
+        1. Ministries with no documents appear with risk_level='CRITICAL'
+        2. All quarters in the 2-year window are represented
+        3. Risk assessments reflect actual ministry activity (or lack thereof)
+    </comment>
+    
+    <dropView viewName="view_ministry_risk_evolution" ifExists="true" cascadeConstraints="true"/>
+    
+    <createView viewName="view_ministry_risk_evolution">
+        <![CDATA[
+WITH ministry_base AS (
+    -- Get distinct ministry assignments from assignment_data
+    SELECT DISTINCT
+        org_code,
+        LOWER(org_code) AS org_code_lower,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+),
+quarterly_periods AS (
+    -- Generate last 8 quarters (2 years) for analysis
+    SELECT DATE_TRUNC('quarter', CURRENT_DATE - (n || ' months')::INTERVAL) AS period_start
+    FROM generate_series(0, 21, 3) AS n
+),
+ministry_quarters AS (
+    -- Cross-join ministries with quarterly periods
+    -- This ensures every ministry has a row for each quarter
+    SELECT 
+        m.org_code,
+        m.org_code_lower,
+        m.name,
+        qp.period_start AS assessment_period
+    FROM ministry_base m
+    CROSS JOIN quarterly_periods qp
+),
+ministry_document_data AS (
+    -- Direct query to base tables instead of materialized view
+    SELECT 
+        dsc.hjid AS id,
+        dd.document_type,
+        dd.made_public_date,
+        dd.org,
+        dpr.person_reference_id
+    FROM document_status_container dsc
+    LEFT JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    LEFT JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date IS NOT NULL
+),
+quarterly_performance AS (
+    -- Calculate document metrics per ministry per quarter
+    SELECT
+        mq.org_code,
+        mq.name,
+        mq.assessment_period,
+        COUNT(DISTINCT doc.id) AS documents_produced,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) IN ('prop', 'ds') THEN doc.id END) AS legislative_count,
+        COUNT(DISTINCT doc.person_reference_id) AS active_members
+    FROM ministry_quarters mq
+    LEFT JOIN ministry_document_data doc 
+        ON LOWER(doc.org) = mq.org_code_lower
+        AND DATE_TRUNC('quarter', doc.made_public_date) = mq.assessment_period
+    GROUP BY mq.org_code, mq.name, mq.assessment_period
+),
+risk_calculations AS (
+    SELECT
+        org_code,
+        name,
+        assessment_period,
+        documents_produced,
+        legislative_count,
+        active_members,
+        
+        LAG(documents_produced, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_documents,
+        LAG(legislative_count, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_legislative,
+        LAG(active_members, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_members,
+        
+        AVG(documents_produced) OVER (
+            PARTITION BY org_code 
+            ORDER BY assessment_period 
+            ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
+        ) AS rolling_avg_documents
+    FROM quarterly_performance
+)
+SELECT
+    org_code,
+    name,
+    assessment_period,
+    (assessment_period + INTERVAL '3 months' - INTERVAL '1 day')::DATE AS period_end,
+    EXTRACT(YEAR FROM assessment_period) AS year,
+    EXTRACT(QUARTER FROM assessment_period) AS quarter,
+    documents_produced,
+    legislative_count,
+    active_members,
+    
+    documents_produced - COALESCE(prev_documents, documents_produced) AS document_trend,
+    legislative_count - COALESCE(prev_legislative, legislative_count) AS legislative_trend,
+    active_members - COALESCE(prev_members, active_members) AS staffing_trend,
+    
+    rolling_avg_documents,
+    
+    CASE
+        WHEN documents_produced = 0 AND active_members = 0 THEN 'CRITICAL'
+        WHEN documents_produced < 5 OR active_members <= 1 THEN 'HIGH'
+        WHEN documents_produced < 10 OR active_members <= 2 THEN 'MEDIUM'
+        WHEN documents_produced - COALESCE(prev_documents, documents_produced) < -5 THEN 'ELEVATED'
+        ELSE 'LOW'
+    END AS risk_level,
+    
+    CASE
+        WHEN documents_produced = 0 AND active_members = 0 
+            THEN 'Critical: No activity detected - immediate review required'
+        WHEN documents_produced < 5 
+            THEN 'High Risk: Minimal document production - capacity concerns'
+        WHEN active_members <= 1 
+            THEN 'High Risk: Critically understaffed ministry'
+        WHEN documents_produced - COALESCE(prev_documents, documents_produced) < -5 
+            THEN 'Elevated Risk: Significant production decline detected'
+        WHEN documents_produced >= 20 AND active_members >= 5 
+            THEN 'Low Risk: Healthy ministry operations'
+        ELSE 'Medium Risk: Standard operations with minor concerns'
+    END AS risk_assessment
+FROM risk_calculations
+ORDER BY org_code, assessment_period DESC
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_ministry_risk_evolution"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- POST-FLIGHT: Verify view returns data                                    -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="verify-ministry-risk-evolution-1.43-002" failOnError="false">
+    <comment>
+        Post-flight verification for view_ministry_risk_evolution
+        
+        Checks:
+        1. View exists and can be queried
+        2. View returns rows when ministry assignments exist
+        3. Reports row count for validation
+    </comment>
+    
+    <sql>
+        -- Verify view returns data
+        SELECT 'view_ministry_risk_evolution verification:' AS check_description;
+        
+        -- Check ministry assignment count
+        SELECT 
+            COUNT(DISTINCT org_code) AS ministry_count,
+            'Ministry assignments (assignment_type = Departement)' AS description
+        FROM assignment_data
+        WHERE assignment_type = 'Departement' AND org_code IS NOT NULL;
+        
+        -- Check view row count
+        SELECT 
+            COUNT(*) AS view_row_count,
+            'Rows in view_ministry_risk_evolution' AS description
+        FROM view_ministry_risk_evolution;
+        
+        -- Verify expected behavior
+        SELECT 
+            CASE 
+                WHEN (SELECT COUNT(DISTINCT org_code) FROM assignment_data WHERE assignment_type = 'Departement') = 0 
+                THEN 'WARNING: No ministry assignments - view will be empty (expected)'
+                WHEN (SELECT COUNT(*) FROM view_ministry_risk_evolution) >= 10 
+                THEN 'SUCCESS: View returns >= 10 rows as expected'
+                WHEN (SELECT COUNT(*) FROM view_ministry_risk_evolution) > 0 
+                THEN 'PARTIAL: View returns some rows but < 10'
+                ELSE 'ERROR: View returns 0 rows despite ministry assignments'
+            END AS validation_status;
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENTATION: Update changelog notes                                    -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="document-ministry-risk-evolution-fix-1.43-003" failOnError="false">
+    <comment>
+        Documentation for v1.43 view_ministry_risk_evolution fix
+        
+        Summary:
+        - Root cause: View filtered out ministries with no documents due to NULL assessment_period
+        - Solution: Generate quarterly periods independently and cross-join with ministries
+        - Impact: All ministries now appear for all quarters with appropriate risk assessments
+        
+        GitHub Issue: #8077
+        
+        For CHANGELOG_DATABASE_VIEWS.md:
+        - v1.43: Fixed view_ministry_risk_evolution time period generation
+        - Added quarterly_periods CTE to generate last 8 quarters
+        - Used CROSS JOIN to ensure all ministries have entries for each quarter
+        - Removed WHERE assessment_period IS NOT NULL filter
+        - Ministries with no documents now show risk_level='CRITICAL' appropriately
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.43 Fix Applied: view_ministry_risk_evolution' AS changelog_entry,
+            'Fixed time period generation to include all ministries' AS change_description,
+            'Ministries with no documents now correctly show CRITICAL risk level' AS technical_details;
+    </sql>
+</changeSet>
+
+</databaseChangeLog>
