@@ -31,7 +31,7 @@ WITH daily_decisions AS (
         -- NEW: Committee referral decisions (captures =utskottet, = utskottet, utskottet, =utskott)
         COUNT(*) FILTER (
             WHERE UPPER(dpd.chamber) ~~ '%UTSKOTT%'
-              AND UPPER(dpd.chamber) NOT LIKE '%ÅTERFÖRVISNING%'
+              AND UPPER(dpd.chamber) !~~ '%ÅTERFÖRVISNING%'
         ) AS committee_referral_decisions
     FROM document_proposal_data dpd
     JOIN document_proposal_container dpc ON dpc.proposal_document_proposal_c_0 = dpd.hjid

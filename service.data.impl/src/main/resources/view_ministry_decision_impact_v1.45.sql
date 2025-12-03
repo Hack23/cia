@@ -30,18 +30,18 @@ SELECT
     -- NEW: Committee referral proposals (captures =utskottet, = utskottet, utskottet, =utskott)
     COUNT(*) FILTER (
         WHERE UPPER(dpd.chamber) ~~ '%UTSKOTT%'
-          AND UPPER(dpd.chamber) NOT LIKE '%ÅTERFÖRVISNING%'
+          AND UPPER(dpd.chamber) !~~ '%ÅTERFÖRVISNING%'
     ) AS committee_referral_proposals,
     -- UPDATED: Exclude committee referrals from other_decisions
     COUNT(*) FILTER (
-        WHERE UPPER(dpd.chamber) NOT LIKE '%BIFALL%'
-          AND UPPER(dpd.chamber) NOT LIKE '%AVSLAG%'
-          AND UPPER(dpd.chamber) NOT LIKE '%GODKÄNT%'
-          AND UPPER(dpd.chamber) NOT LIKE '%BIFALLA%'
-          AND UPPER(dpd.chamber) NOT LIKE '%AVSLÅ%'
-          AND UPPER(dpd.chamber) NOT LIKE '%ÅTERFÖRVISNING%'
-          AND UPPER(dpd.chamber) NOT LIKE '%ÅTERFÖRVISA%'
-          AND UPPER(dpd.chamber) NOT LIKE '%UTSKOTT%'
+        WHERE UPPER(dpd.chamber) !~~ '%BIFALL%'
+          AND UPPER(dpd.chamber) !~~ '%AVSLAG%'
+          AND UPPER(dpd.chamber) !~~ '%GODKÄNT%'
+          AND UPPER(dpd.chamber) !~~ '%BIFALLA%'
+          AND UPPER(dpd.chamber) !~~ '%AVSLÅ%'
+          AND UPPER(dpd.chamber) !~~ '%ÅTERFÖRVISNING%'
+          AND UPPER(dpd.chamber) !~~ '%ÅTERFÖRVISA%'
+          AND UPPER(dpd.chamber) !~~ '%UTSKOTT%'
     ) AS other_decisions,
     ROUND(100.0 * COUNT(*) FILTER (
         WHERE UPPER(dpd.chamber) ~~ '%BIFALL%' 
@@ -55,7 +55,7 @@ SELECT
     -- NEW: Committee referral rate
     ROUND(100.0 * COUNT(*) FILTER (
         WHERE UPPER(dpd.chamber) ~~ '%UTSKOTT%'
-          AND UPPER(dpd.chamber) NOT LIKE '%ÅTERFÖRVISNING%'
+          AND UPPER(dpd.chamber) !~~ '%ÅTERFÖRVISNING%'
     )::NUMERIC / NULLIF(COUNT(*), 0)::NUMERIC, 2) AS committee_referral_rate,
     MIN(dd.made_public_date) AS earliest_proposal_date,
     MAX(dd.made_public_date) AS latest_proposal_date
