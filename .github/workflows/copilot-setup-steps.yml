@@ -72,6 +72,26 @@ jobs:
           echo "pg_stat_statements.track = all" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
           echo "pg_stat_statements.max = 10000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
 
+          # Performance optimization settings per README-SCHEMA-MAINTENANCE.md
+          # Memory settings (optimized for GitHub Actions ~7GB RAM)
+          echo "shared_buffers = '1GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "effective_cache_size = '4GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "work_mem = '32MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "maintenance_work_mem = '256MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          
+          # Checkpoint settings for write performance
+          echo "checkpoint_completion_target = 0.9" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "wal_buffers = '16MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "max_wal_size = '2GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "min_wal_size = '512MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          
+          # Query planning optimizations (SSD storage on GitHub Actions)
+          echo "random_page_cost = 1.1" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "effective_io_concurrency = 200" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          
+          # Connection settings
+          echo "max_connections = 100" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
           # Add IPv6 loopback access
           echo "host all all ::1/128 md5" | sudo tee -a /etc/postgresql/16/main/pg_hba.conf
 
