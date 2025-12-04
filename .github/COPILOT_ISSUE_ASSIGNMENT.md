@@ -212,40 +212,203 @@ Once assigned, Copilot will:
 4. Create a pull request
 5. Request review
 
-## 📊 Real-World Example
+## 📊 Real-World Example: PR #8032 - PostgreSQL Optimization Issues
 
-### Creating PostgreSQL Optimization Issues
+This section documents exactly what was done in PR #8032 to create 4 issues and assign them to Copilot.
 
-Here's how we created 4 issues for PostgreSQL optimization and assigned them to Copilot:
+### Context and Environment
+
+**PR**: [#8032](https://github.com/Hack23/cia/pull/8032) - Create 4 GitHub issues for optimized PostgreSQL setup  
+**Date**: December 3, 2025  
+**Custom Agent Used**: `hack23-cia-taskagent`
+
+#### PAT Access Configuration
+
+The PAT was configured via the MCP (Model Context Protocol) server system:
+
+1. **Secret Storage**: `COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN` stored in:
+   - Repository Settings → Environments → "copilot" environment
+   - Environment secrets section
+
+2. **Secret Injection**: The PAT is injected into MCP servers via:
+   ```
+   COPILOT_AGENT_INJECTED_SECRET_NAMES=COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN
+   ```
+
+3. **MCP Configuration** (from `.github/copilot-mcp-config.json`):
+   ```json
+   {
+     "mcpServers": {
+       "github": {
+         "command": "npx",
+         "args": ["-y", "@modelcontextprotocol/server-github"],
+         "env": {
+           "GITHUB_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
+           "GITHUB_PERSONAL_ACCESS_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}"
+         }
+       }
+     }
+   }
+   ```
+
+### Step 1: Issue Creation (Using Task Agent)
+
+The 4 issues were created by the `hack23-cia-taskagent` custom agent, which analyzed:
+- `service.data.impl/README-SCHEMA-MAINTENANCE.md` for PostgreSQL best practices
+- Current PostgreSQL configurations in target files
+- Missing performance optimizations
 
 #### Issues Created
 
-| Issue | Target File | Purpose |
-|-------|-------------|---------|
-| #8033 | `.devcontainer/init-postgresql.sh` | Codespaces PostgreSQL tuning |
-| #8034 | `.github/workflows/copilot-setup-steps.yml` | Copilot workflow PostgreSQL tuning |
-| #8035 | `.github/workflows/release.yml` | Release workflow PostgreSQL tuning |
-| #8036 | `README.md` | Documentation for PostgreSQL setup |
+| Issue | Target File | Node ID | Purpose |
+|-------|-------------|---------|---------|
+| [#8033](https://github.com/Hack23/cia/issues/8033) | `.devcontainer/init-postgresql.sh` | `I_kwDOAmMR6M7cEDQY` | Codespaces PostgreSQL tuning |
+| [#8034](https://github.com/Hack23/cia/issues/8034) | `.github/workflows/copilot-setup-steps.yml` | `I_kwDOAmMR6M7cEDiV` | Copilot workflow PostgreSQL tuning |
+| [#8035](https://github.com/Hack23/cia/issues/8035) | `.github/workflows/release.yml` | `I_kwDOAmMR6M7cED26` | Release workflow PostgreSQL tuning |
+| [#8036](https://github.com/Hack23/cia/issues/8036) | `README.md` | `I_kwDOAmMR6M7cEERw` | Documentation for PostgreSQL setup |
 
-#### Assignment Command
+### Step 2: Issue Assignment to Copilot
+
+#### Initial Attempts (Failed)
+
+**Attempt 1**: REST API with `copilot-swe-agent`
+```javascript
+github-update_issue({
+  owner: "Hack23",
+  repo: "cia", 
+  issue_number: 8033,
+  assignees: ["copilot-swe-agent"]
+})
+```
+**Result**: `Validation Error: Validation Failed - "copilot-swe-agent" is invalid`
+
+**Attempt 2**: REST API with `copilot`
+```javascript
+github-update_issue({
+  owner: "Hack23",
+  repo: "cia",
+  issue_number: 8033, 
+  assignees: ["copilot"]
+})
+```
+**Result**: `Validation Error: Validation Failed - "copilot" is invalid`
+
+#### Successful Method: REST API with `copilot-swe-agent[bot]`
+
+The correct assignee username is `copilot-swe-agent[bot]` (with `[bot]` suffix):
 
 ```javascript
-// Assign all 4 issues to Copilot
-for (const issueNumber of [8033, 8034, 8035, 8036]) {
-  github-update_issue({
-    owner: "Hack23",
-    repo: "cia",
-    issue_number: issueNumber,
-    assignees: ["copilot-swe-agent[bot]"]
-  })
+// MCP Tool Call - github-update_issue
+github-update_issue({
+  owner: "Hack23",
+  repo: "cia",
+  issue_number: 8033,
+  assignees: ["copilot-swe-agent[bot]"]
+})
+```
+
+#### Actual MCP Tool Calls Made
+
+All 4 issues were assigned in parallel using the `github-update_issue` MCP tool:
+
+```javascript
+// Issue #8033
+github-update_issue({
+  owner: "Hack23",
+  repo: "cia",
+  issue_number: 8033,
+  assignees: ["copilot-swe-agent[bot]"]
+})
+
+// Issue #8034
+github-update_issue({
+  owner: "Hack23",
+  repo: "cia",
+  issue_number: 8034,
+  assignees: ["copilot-swe-agent[bot]"]
+})
+
+// Issue #8035
+github-update_issue({
+  owner: "Hack23",
+  repo: "cia",
+  issue_number: 8035,
+  assignees: ["copilot-swe-agent[bot]"]
+})
+
+// Issue #8036
+github-update_issue({
+  owner: "Hack23",
+  repo: "cia",
+  issue_number: 8036,
+  assignees: ["copilot-swe-agent[bot]"]
+})
+```
+
+#### API Response (Truncated Example for #8033)
+
+```json
+{
+  "url": "https://api.github.com/repos/Hack23/cia/issues/8033",
+  "html_url": "https://github.com/Hack23/cia/issues/8033",
+  "id": 3692049432,
+  "node_id": "I_kwDOAmMR6M7cEDQY",
+  "number": 8033,
+  "title": "Optimize PostgreSQL Configuration for GitHub Codespaces Development Environment",
+  "state": "open",
+  "assignee": {
+    "login": "Copilot",
+    "id": 198982749,
+    "node_id": "BOT_kgDOC9w8XQ",
+    "avatar_url": "https://avatars.githubusercontent.com/in/1143301?v=4",
+    "html_url": "https://github.com/apps/copilot-swe-agent",
+    "type": "Bot"
+  },
+  "assignees": [
+    {
+      "login": "Copilot",
+      "id": 198982749,
+      "type": "Bot"
+    }
+  ],
+  "updated_at": "2025-12-03T23:18:57Z"
 }
 ```
 
-#### Verification
+### Step 3: Verification
 
-Each issue now shows:
-- **Assignee**: Copilot (type: Bot)
-- **Status**: Open, ready for implementation
+After assignment, each issue shows:
+- **Assignee**: `Copilot` (type: `Bot`, id: `198982749`)
+- **Assignee URL**: `https://github.com/apps/copilot-swe-agent`
+- **Status**: Open, ready for Copilot to pick up
+
+### Key Findings
+
+1. **Correct Assignee Username**: Must use `copilot-swe-agent[bot]` (with `[bot]` suffix)
+2. **REST API Works**: The GitHub REST API now supports Copilot assignment directly
+3. **MCP Tool**: The `github-update_issue` MCP tool uses REST API under the hood
+4. **PAT Injection**: PAT is automatically injected via `COPILOT_AGENT_INJECTED_SECRET_NAMES`
+5. **Bot Metadata**: Copilot appears as `type: "Bot"` with id `198982749`
+
+### Timeline
+
+| Time (UTC) | Action |
+|------------|--------|
+| 21:55:12 | Issue #8033 created |
+| 21:55:43 | Issue #8034 created |
+| 21:56:12 | Issue #8035 created |
+| 21:56:49 | Issue #8036 created |
+| 23:18:57 | All 4 issues assigned to Copilot |
+
+### Labels Applied
+
+All issues received these labels:
+- `type: feature`
+- `priority: medium`
+- `domain: infrastructure`
+- `size: small`
+
+Exception: #8036 (README) also has `type: docs` instead of `type: feature`
 
 ## 🔐 Security Considerations
 
