@@ -555,6 +555,93 @@ A step-by-step guide to configure PostgreSQL 16 with SSL, prepared transactions,
    rm server.crt
    ```
 
+### 6. Performance Tuning (Recommended)
+
+For optimal performance with the CIA platform's 85+ views and 93 tables, add the following settings to `/etc/postgresql/16/main/postgresql.conf`. Values should be adjusted based on your server's available RAM.
+
+#### Memory Settings
+
+Configure memory settings proportionally to your system RAM:
+
+| Setting                  | 4GB RAM | 8GB RAM | 16GB+ RAM (Production) |
+|--------------------------|---------|---------|------------------------|
+| `shared_buffers`         | 1GB     | 2GB     | 4GB                    |
+| `effective_cache_size`   | 3GB     | 6GB     | 12GB                   |
+| `maintenance_work_mem`   | 256MB   | 512MB   | 1GB                    |
+| `work_mem`               | 16MB    | 32MB    | 50MB                   |
+
+Apply settings using SQL commands (use values from the table above for your RAM configuration):
+
+```sql
+-- Example for 8GB RAM server - adjust values from the table above for your configuration
+-- shared_buffers: ~25% of RAM
+-- effective_cache_size: ~75% of RAM
+-- maintenance_work_mem: For VACUUM, CREATE INDEX operations
+-- work_mem: Per-operation memory for sorts, joins
+
+ALTER SYSTEM SET shared_buffers = '2GB';
+ALTER SYSTEM SET effective_cache_size = '6GB';
+ALTER SYSTEM SET maintenance_work_mem = '512MB';
+ALTER SYSTEM SET work_mem = '32MB';
+```
+
+#### Checkpoint Settings
+
+Configure checkpoint settings for optimal write performance:
+
+```sql
+ALTER SYSTEM SET checkpoint_completion_target = 0.9;
+ALTER SYSTEM SET wal_buffers = '16MB';
+ALTER SYSTEM SET max_wal_size = '4GB';
+ALTER SYSTEM SET min_wal_size = '1GB';
+```
+
+#### Query Planning Optimizations
+
+For SSD storage (recommended), optimize query planning:
+
+```sql
+ALTER SYSTEM SET random_page_cost = 1.1;        -- For SSD storage
+ALTER SYSTEM SET effective_io_concurrency = 200; -- For SSD storage
+```
+
+#### Connection Settings
+
+Configure connection limits:
+
+```sql
+ALTER SYSTEM SET max_connections = 200;
+```
+
+#### Apply Settings
+
+After making changes, apply them:
+
+```bash
+# Reload configuration (for settings that don't require restart)
+sudo -u postgres psql -c "SELECT pg_reload_conf();"
+
+# For settings requiring restart (shared_buffers, max_connections):
+sudo systemctl restart postgresql
+```
+
+#### Verify Settings
+
+Confirm settings are applied:
+
+```sql
+-- Check current settings
+SHOW shared_buffers;
+SHOW effective_cache_size;
+SHOW work_mem;
+SHOW maintenance_work_mem;
+SHOW checkpoint_completion_target;
+SHOW random_page_cost;
+SHOW max_connections;
+```
+
+> **📚 Note:** For detailed performance tuning guidelines, database health monitoring, and advanced configuration options, see [service.data.impl/README-SCHEMA-MAINTENANCE.md](service.data.impl/README-SCHEMA-MAINTENANCE.md).
+
 ### Final Steps
 
 1. **Restart PostgreSQL** to apply all changes:
