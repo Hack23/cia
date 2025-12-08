@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # No additional dependencies needed for this script
+          # No external pip packages required - script uses only Python standard library
       
       - name: Run schema validation
         id: validate

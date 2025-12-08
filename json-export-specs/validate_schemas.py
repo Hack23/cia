@@ -16,7 +16,7 @@ import os
 import re
 import sys
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Set, Tuple, Any
 
@@ -30,7 +30,7 @@ class SchemaValidator:
         self.schemas = {}
         self.sample_data = {}
         self.validation_results = {
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "schemas_validated": 0,
             "files_analyzed": 0,
             "total_mismatches": 0,
@@ -73,10 +73,11 @@ class SchemaValidator:
         schema_info["database_views"] = list(set(re.findall(view_pattern, content)))
         
         # Extract field definitions from mermaid diagrams
+        # Pattern matches: +Type fieldName
         mermaid_pattern = r'\+(\w+)\s+(\w+)'
         for match in re.finditer(mermaid_pattern, content):
-            field_name = match.group(2)
             field_type = match.group(1)
+            field_name = match.group(2)
             schema_info["fields"][field_name] = {
                 "type": field_type,
                 "required": True  # Default assumption
@@ -210,7 +211,7 @@ class SchemaValidator:
                      "riksdagen_party_document_summary", "riksdagen_party_ballot"],
             "committee": ["riksdagen_committee", "riksdagen_committee_decisions",
                          "riksdagen_committee_roles", "riksdagen_committee_ballot_decision"],
-            "ministry": ["riksdagen_goverment", "riksdagen_goverment_roles",
+            "ministry": ["riksdagen_government", "riksdagen_government_roles",
                         "ministry_decision_impact", "ministry_effectiveness_trends"],
             "intelligence": ["politician_risk_summary", "party_performance_metrics",
                            "decision_temporal_trends", "committee_productivity"]
@@ -300,13 +301,13 @@ class SchemaValidator:
         unmapped_data_columns = list(all_columns)
         
         for field in schema_fields:
-            # Try various naming conventions
-            possible_names = [
+            # Try various naming conventions (using set to avoid duplicates)
+            possible_names = list(set([
                 field,
                 self._camel_to_snake(field),
                 field.lower(),
                 field.upper()
-            ]
+            ]))
             
             matched = False
             for possible_name in possible_names:
@@ -482,7 +483,7 @@ class SchemaValidator:
             "- Coverage analysis (schema fields vs. actual columns)",
             "- Missing view detection",
             "",
-            f"**Report Generated:** {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC",
+            f"**Report Generated:** {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')} UTC",
             ""
         ])
         

@@ -1,8 +1,8 @@
 {
-  "timestamp": "2025-12-08T11:08:21.189931Z",
+  "timestamp": "2025-12-08T11:15:06.392882+00:00",
   "schemas_validated": 5,
   "files_analyzed": 132,
-  "total_mismatches": 126,
+  "total_mismatches": 127,
   "schemas": {
     "politician": {
       "views_referenced": 5,
@@ -17,159 +17,52 @@
         "view_riksdagen_politician_sample.csv"
       ],
       "missing_views": [
+        "riksdagen_politician_summary",
         "riksdagen_politician_vote_summary",
-        "riksdagen_politician_ranking",
-        "riksdagen_politician_summary"
+        "riksdagen_politician_ranking"
       ],
       "field_mismatches": [
         {
-          "field": "committees",
+          "field": "activity",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "committees",
-            "committees",
-            "committees",
-            "COMMITTEES"
-          ]
-        },
-        {
-          "field": "rebellions",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "rebellions",
-            "rebellions",
-            "rebellions",
-            "REBELLIONS"
-          ]
-        },
-        {
-          "field": "descriptions",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "descriptions",
-            "descriptions",
-            "descriptions",
-            "DESCRIPTIONS"
-          ]
-        },
-        {
-          "field": "amendments",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "amendments",
-            "amendments",
-            "amendments",
-            "AMENDMENTS"
+            "ACTIVITY",
+            "activity"
           ]
         },
         {
           "field": "8",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "8",
-            "8",
-            "8",
             "8"
           ]
         },
         {
-          "field": "period",
+          "field": "amendments",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "period",
-            "period",
-            "period",
-            "PERIOD"
+            "AMENDMENTS",
+            "amendments"
           ]
         },
         {
-          "field": "riskLevel",
+          "field": "partyLoyalty",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "riskLevel",
-            "risk_level",
-            "risklevel",
-            "RISKLEVEL"
-          ]
-        },
-        {
-          "field": "trendDirection",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "trendDirection",
-            "trend_direction",
-            "trenddirection",
-            "TRENDDIRECTION"
-          ]
-        },
-        {
-          "field": "absences",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "absences",
-            "absences",
-            "absences",
-            "ABSENCES"
-          ]
-        },
-        {
-          "field": "questions",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "questions",
-            "questions",
-            "questions",
-            "QUESTIONS"
-          ]
-        },
-        {
-          "field": "relationships",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "relationships",
-            "relationships",
-            "relationships",
-            "RELATIONSHIPS"
-          ]
-        },
-        {
-          "field": "attendanceRate",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "attendanceRate",
-            "attendance_rate",
-            "attendancerate",
-            "ATTENDANCERATE"
-          ]
-        },
-        {
-          "field": "ministry",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "ministry",
-            "ministry",
-            "ministry",
-            "MINISTRY"
+            "partyloyalty",
+            "partyLoyalty",
+            "PARTYLOYALTY",
+            "party_loyalty"
           ]
         },
         {
           "field": "rankingPosition",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "rankingPosition",
-            "ranking_position",
             "rankingposition",
-            "RANKINGPOSITION"
-          ]
-        },
-        {
-          "field": "long",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "long",
-            "long",
-            "long",
-            "LONG"
+            "ranking_position",
+            "RANKINGPOSITION",
+            "rankingPosition"
           ]
         },
         {
@@ -177,99 +70,23 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "category",
-            "category",
-            "category",
             "CATEGORY"
-          ]
-        },
-        {
-          "field": "imageUrl",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "imageUrl",
-            "image_url",
-            "imageurl",
-            "IMAGEURL"
-          ]
-        },
-        {
-          "field": "breakdown",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "breakdown",
-            "breakdown",
-            "breakdown",
-            "BREAKDOWN"
-          ]
-        },
-        {
-          "field": "byType",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "byType",
-            "by_type",
-            "bytype",
-            "BYTYPE"
-          ]
-        },
-        {
-          "field": "detailed",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "detailed",
-            "detailed",
-            "detailed",
-            "DETAILED"
-          ]
-        },
-        {
-          "field": "fullName",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "fullName",
-            "full_name",
-            "fullname",
-            "FULLNAME"
-          ]
-        },
-        {
-          "field": "short",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "short",
-            "short",
-            "short",
-            "SHORT"
-          ]
-        },
-        {
-          "field": "district",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "district",
-            "district",
-            "district",
-            "DISTRICT"
-          ]
-        },
-        {
-          "field": "motions",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "motions",
-            "motions",
-            "motions",
-            "MOTIONS"
           ]
         },
         {
           "field": "attributes",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "attributes",
-            "attributes",
-            "attributes",
-            "ATTRIBUTES"
+            "ATTRIBUTES",
+            "attributes"
+          ]
+        },
+        {
+          "field": "voting",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "VOTING",
+            "voting"
           ]
         },
         {
@@ -277,19 +94,49 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "documents",
-            "documents",
-            "documents",
             "DOCUMENTS"
           ]
         },
         {
-          "field": "partyLoyalty",
+          "field": "district",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "partyLoyalty",
-            "party_loyalty",
-            "partyloyalty",
-            "PARTYLOYALTY"
+            "district",
+            "DISTRICT"
+          ]
+        },
+        {
+          "field": "detailed",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "DETAILED",
+            "detailed"
+          ]
+        },
+        {
+          "field": "attendanceRate",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "attendancerate",
+            "ATTENDANCERATE",
+            "attendance_rate",
+            "attendanceRate"
+          ]
+        },
+        {
+          "field": "descriptions",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "DESCRIPTIONS",
+            "descriptions"
+          ]
+        },
+        {
+          "field": "short",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "SHORT",
+            "short"
           ]
         },
         {
@@ -298,18 +145,44 @@
           "suggestions": [
             "activeDays",
             "active_days",
-            "activedays",
-            "ACTIVEDAYS"
+            "ACTIVEDAYS",
+            "activedays"
           ]
         },
         {
-          "field": "activity",
+          "field": "trendDirection",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "activity",
-            "activity",
-            "activity",
-            "ACTIVITY"
+            "TRENDDIRECTION",
+            "trenddirection",
+            "trend_direction",
+            "trendDirection"
+          ]
+        },
+        {
+          "field": "motions",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "MOTIONS",
+            "motions"
+          ]
+        },
+        {
+          "field": "labels",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "LABELS",
+            "labels"
+          ]
+        },
+        {
+          "field": "byType",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "by_type",
+            "byType",
+            "BYTYPE",
+            "bytype"
           ]
         },
         {
@@ -317,49 +190,103 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "intelligence",
-            "intelligence",
-            "intelligence",
             "INTELLIGENCE"
           ]
         },
         {
-          "field": "labels",
+          "field": "questions",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "labels",
-            "labels",
-            "labels",
-            "LABELS"
+            "questions",
+            "QUESTIONS"
           ]
         },
         {
-          "field": "voting",
+          "field": "riskLevel",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "voting",
-            "voting",
-            "voting",
-            "VOTING"
+            "risklevel",
+            "riskLevel",
+            "risk_level",
+            "RISKLEVEL"
           ]
         },
         {
-          "field": "performance",
+          "field": "fullName",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "performance",
-            "performance",
-            "performance",
-            "PERFORMANCE"
+            "fullname",
+            "full_name",
+            "FULLNAME",
+            "fullName"
+          ]
+        },
+        {
+          "field": "rebellions",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "rebellions",
+            "REBELLIONS"
+          ]
+        },
+        {
+          "field": "absences",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "ABSENCES",
+            "absences"
           ]
         },
         {
           "field": "riskScore",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "riskScore",
-            "risk_score",
             "riskscore",
-            "RISKSCORE"
+            "risk_score",
+            "RISKSCORE",
+            "riskScore"
+          ]
+        },
+        {
+          "field": "period",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "period",
+            "PERIOD"
+          ]
+        },
+        {
+          "field": "long",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "LONG",
+            "long"
+          ]
+        },
+        {
+          "field": "breakdown",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "breakdown",
+            "BREAKDOWN"
+          ]
+        },
+        {
+          "field": "committees",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "COMMITTEES",
+            "committees"
+          ]
+        },
+        {
+          "field": "imageUrl",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "imageUrl",
+            "imageurl",
+            "image_url",
+            "IMAGEURL"
           ]
         },
         {
@@ -367,14 +294,38 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "influenceScore",
-            "influence_score",
             "influencescore",
-            "INFLUENCESCORE"
+            "INFLUENCESCORE",
+            "influence_score"
+          ]
+        },
+        {
+          "field": "performance",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "performance",
+            "PERFORMANCE"
+          ]
+        },
+        {
+          "field": "relationships",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "RELATIONSHIPS",
+            "relationships"
+          ]
+        },
+        {
+          "field": "ministry",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "MINISTRY",
+            "ministry"
           ]
         }
       ],
       "recommendations": [
-        "Consider adding 20 data columns to schema: current_ministry_assignments, doc_activity_profile, sub_type, no_percentage, referred_back_decisions"
+        "Consider adding 20 data columns to schema: rm, role_description, person_id, approved_decisions, total_days_served_party"
       ]
     },
     "party": {
@@ -394,158 +345,25 @@
         "view_riksdagen_party_document_summary_sample.csv"
       ],
       "missing_views": [
-        "riksdagen_party_ballot_support_summary",
-        "riksdagen_party_vote_summary"
+        "riksdagen_party_vote_summary",
+        "riksdagen_party_ballot_support_summary"
       ],
       "field_mismatches": [
         {
-          "field": "stability",
+          "field": "8",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "stability",
-            "stability",
-            "stability",
-            "STABILITY"
-          ]
-        },
-        {
-          "field": "foundedYear",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "foundedYear",
-            "founded_year",
-            "foundedyear",
-            "FOUNDEDYEAR"
-          ]
-        },
-        {
-          "field": "descriptions",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "descriptions",
-            "descriptions",
-            "descriptions",
-            "DESCRIPTIONS"
-          ]
-        },
-        {
-          "field": "ministries",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "ministries",
-            "ministries",
-            "ministries",
-            "MINISTRIES"
+            "8"
           ]
         },
         {
           "field": "votePercentage",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "votePercentage",
             "vote_percentage",
+            "votePercentage",
             "votepercentage",
             "VOTEPERCENTAGE"
-          ]
-        },
-        {
-          "field": "8",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "8",
-            "8",
-            "8",
-            "8"
-          ]
-        },
-        {
-          "field": "committeeChairs",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "committeeChairs",
-            "committee_chairs",
-            "committeechairs",
-            "COMMITTEECHAIRS"
-          ]
-        },
-        {
-          "field": "nameEn",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "nameEn",
-            "name_en",
-            "nameen",
-            "NAMEEN"
-          ]
-        },
-        {
-          "field": "spectrum",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "spectrum",
-            "spectrum",
-            "spectrum",
-            "SPECTRUM"
-          ]
-        },
-        {
-          "field": "strengthScore",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "strengthScore",
-            "strength_score",
-            "strengthscore",
-            "STRENGTHSCORE"
-          ]
-        },
-        {
-          "field": "predictions",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "predictions",
-            "predictions",
-            "predictions",
-            "PREDICTIONS"
-          ]
-        },
-        {
-          "field": "relationships",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "relationships",
-            "relationships",
-            "relationships",
-            "RELATIONSHIPS"
-          ]
-        },
-        {
-          "field": "color",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "color",
-            "color",
-            "color",
-            "COLOR"
-          ]
-        },
-        {
-          "field": "cohesionScore",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "cohesionScore",
-            "cohesion_score",
-            "cohesionscore",
-            "COHESIONSCORE"
-          ]
-        },
-        {
-          "field": "activityRate",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "activityRate",
-            "activity_rate",
-            "activityrate",
-            "ACTIVITYRATE"
           ]
         },
         {
@@ -553,169 +371,23 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "category",
-            "category",
-            "category",
             "CATEGORY"
-          ]
-        },
-        {
-          "field": "logoUrl",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "logoUrl",
-            "logo_url",
-            "logourl",
-            "LOGOURL"
-          ]
-        },
-        {
-          "field": "totalMembers",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "totalMembers",
-            "total_members",
-            "totalmembers",
-            "TOTALMEMBERS"
-          ]
-        },
-        {
-          "field": "productivity",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "productivity",
-            "productivity",
-            "productivity",
-            "PRODUCTIVITY"
-          ]
-        },
-        {
-          "field": "fullName",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "fullName",
-            "full_name",
-            "fullname",
-            "FULLNAME"
-          ]
-        },
-        {
-          "field": "alignment",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "alignment",
-            "alignment",
-            "alignment",
-            "ALIGNMENT"
-          ]
-        },
-        {
-          "field": "members",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "members",
-            "members",
-            "members",
-            "MEMBERS"
-          ]
-        },
-        {
-          "field": "policy",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "policy",
-            "policy",
-            "policy",
-            "POLICY"
-          ]
-        },
-        {
-          "field": "parliamentary",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "parliamentary",
-            "parliamentary",
-            "parliamentary",
-            "PARLIAMENTARY"
-          ]
-        },
-        {
-          "field": "ideology",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "ideology",
-            "ideology",
-            "ideology",
-            "IDEOLOGY"
-          ]
-        },
-        {
-          "field": "riskScore",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "riskScore",
-            "risk_score",
-            "riskscore",
-            "RISKSCORE"
           ]
         },
         {
           "field": "attributes",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "attributes",
-            "attributes",
-            "attributes",
-            "ATTRIBUTES"
+            "ATTRIBUTES",
+            "attributes"
           ]
         },
         {
-          "field": "trend",
+          "field": "voting",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "trend",
-            "trend",
-            "trend",
-            "TREND"
-          ]
-        },
-        {
-          "field": "documents",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "documents",
-            "documents",
-            "documents",
-            "DOCUMENTS"
-          ]
-        },
-        {
-          "field": "currentSupport",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "currentSupport",
-            "current_support",
-            "currentsupport",
-            "CURRENTSUPPORT"
-          ]
-        },
-        {
-          "field": "intelligence",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "intelligence",
-            "intelligence",
-            "intelligence",
-            "INTELLIGENCE"
-          ]
-        },
-        {
-          "field": "labels",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "labels",
-            "labels",
-            "labels",
-            "LABELS"
+            "VOTING",
+            "voting"
           ]
         },
         {
@@ -723,69 +395,51 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "electoral",
-            "electoral",
-            "electoral",
             "ELECTORAL"
           ]
         },
         {
-          "field": "voting",
+          "field": "committeeChairs",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "voting",
-            "voting",
-            "voting",
-            "VOTING"
+            "committeechairs",
+            "committee_chairs",
+            "COMMITTEECHAIRS",
+            "committeeChairs"
           ]
         },
         {
-          "field": "disciplineRate",
+          "field": "ministries",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "disciplineRate",
-            "discipline_rate",
-            "disciplinerate",
-            "DISCIPLINERATE"
+            "ministries",
+            "MINISTRIES"
           ]
         },
         {
-          "field": "totalVotes",
+          "field": "documents",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "totalVotes",
-            "total_votes",
-            "totalvotes",
-            "TOTALVOTES"
+            "documents",
+            "DOCUMENTS"
           ]
         },
         {
-          "field": "coalition",
+          "field": "totalMembers",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "coalition",
-            "coalition",
-            "coalition",
-            "COALITION"
+            "totalmembers",
+            "TOTALMEMBERS",
+            "totalMembers",
+            "total_members"
           ]
         },
         {
-          "field": "seats",
+          "field": "descriptions",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "seats",
-            "seats",
-            "seats",
-            "SEATS"
-          ]
-        },
-        {
-          "field": "websiteUrl",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "websiteUrl",
-            "website_url",
-            "websiteurl",
-            "WEBSITEURL"
+            "DESCRIPTIONS",
+            "descriptions"
           ]
         },
         {
@@ -797,10 +451,258 @@
             "legislativesuccess",
             "LEGISLATIVESUCCESS"
           ]
+        },
+        {
+          "field": "policy",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "policy",
+            "POLICY"
+          ]
+        },
+        {
+          "field": "logoUrl",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "LOGOURL",
+            "logoUrl",
+            "logo_url",
+            "logourl"
+          ]
+        },
+        {
+          "field": "trend",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "trend",
+            "TREND"
+          ]
+        },
+        {
+          "field": "predictions",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "PREDICTIONS",
+            "predictions"
+          ]
+        },
+        {
+          "field": "labels",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "LABELS",
+            "labels"
+          ]
+        },
+        {
+          "field": "cohesionScore",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "cohesionscore",
+            "cohesionScore",
+            "cohesion_score",
+            "COHESIONSCORE"
+          ]
+        },
+        {
+          "field": "intelligence",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "intelligence",
+            "INTELLIGENCE"
+          ]
+        },
+        {
+          "field": "members",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "MEMBERS",
+            "members"
+          ]
+        },
+        {
+          "field": "currentSupport",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "current_support",
+            "currentsupport",
+            "CURRENTSUPPORT",
+            "currentSupport"
+          ]
+        },
+        {
+          "field": "seats",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "seats",
+            "SEATS"
+          ]
+        },
+        {
+          "field": "totalVotes",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "totalVotes",
+            "totalvotes",
+            "total_votes",
+            "TOTALVOTES"
+          ]
+        },
+        {
+          "field": "websiteUrl",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "websiteurl",
+            "websiteUrl",
+            "website_url",
+            "WEBSITEURL"
+          ]
+        },
+        {
+          "field": "alignment",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "alignment",
+            "ALIGNMENT"
+          ]
+        },
+        {
+          "field": "strengthScore",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "strength_score",
+            "strengthScore",
+            "strengthscore",
+            "STRENGTHSCORE"
+          ]
+        },
+        {
+          "field": "fullName",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "fullname",
+            "full_name",
+            "FULLNAME",
+            "fullName"
+          ]
+        },
+        {
+          "field": "foundedYear",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "founded_year",
+            "foundedYear",
+            "foundedyear",
+            "FOUNDEDYEAR"
+          ]
+        },
+        {
+          "field": "riskScore",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "riskscore",
+            "risk_score",
+            "RISKSCORE",
+            "riskScore"
+          ]
+        },
+        {
+          "field": "activityRate",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "ACTIVITYRATE",
+            "activityrate",
+            "activityRate",
+            "activity_rate"
+          ]
+        },
+        {
+          "field": "disciplineRate",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "DISCIPLINERATE",
+            "disciplineRate",
+            "disciplinerate",
+            "discipline_rate"
+          ]
+        },
+        {
+          "field": "stability",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "stability",
+            "STABILITY"
+          ]
+        },
+        {
+          "field": "parliamentary",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "parliamentary",
+            "PARLIAMENTARY"
+          ]
+        },
+        {
+          "field": "coalition",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "coalition",
+            "COALITION"
+          ]
+        },
+        {
+          "field": "ideology",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "IDEOLOGY",
+            "ideology"
+          ]
+        },
+        {
+          "field": "color",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "color",
+            "COLOR"
+          ]
+        },
+        {
+          "field": "spectrum",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "spectrum",
+            "SPECTRUM"
+          ]
+        },
+        {
+          "field": "productivity",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "productivity",
+            "PRODUCTIVITY"
+          ]
+        },
+        {
+          "field": "nameEn",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "NAMEEN",
+            "nameEn",
+            "nameen",
+            "name_en"
+          ]
+        },
+        {
+          "field": "relationships",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "RELATIONSHIPS",
+            "relationships"
+          ]
         }
       ],
       "recommendations": [
-        "Consider adding 20 data columns to schema: total_motions, party_focused_members, total_propositions, email, current_ministry_assignments"
+        "Consider adding 20 data columns to schema: person_id, total_follow_up_motions, total_active_parliament, website, embedded_id_party"
       ]
     },
     "committee": {
@@ -824,133 +726,73 @@
       ],
       "field_mismatches": [
         {
-          "field": "deputyMembers",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "deputyMembers",
-            "deputy_members",
-            "deputymembers",
-            "DEPUTYMEMBERS"
-          ]
-        },
-        {
           "field": "type",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "type",
-            "type",
-            "type",
             "TYPE"
-          ]
-        },
-        {
-          "field": "established",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "established",
-            "established",
-            "established",
-            "ESTABLISHED"
-          ]
-        },
-        {
-          "field": "membership",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "membership",
-            "membership",
-            "membership",
-            "MEMBERSHIP"
           ]
         },
         {
           "field": "amendments",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "amendments",
-            "amendments",
-            "amendments",
-            "AMENDMENTS"
-          ]
-        },
-        {
-          "field": "code",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "code",
-            "code",
-            "code",
-            "CODE"
-          ]
-        },
-        {
-          "field": "nameEn",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "nameEn",
-            "name_en",
-            "nameen",
-            "NAMEEN"
-          ]
-        },
-        {
-          "field": "decisions",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "decisions",
-            "decisions",
-            "decisions",
-            "DECISIONS"
+            "AMENDMENTS",
+            "amendments"
           ]
         },
         {
           "field": "meetings",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "meetings",
-            "meetings",
-            "meetings",
-            "MEETINGS"
+            "MEETINGS",
+            "meetings"
           ]
         },
         {
-          "field": "hearings",
+          "field": "attributes",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "hearings",
-            "hearings",
-            "hearings",
-            "HEARINGS"
+            "ATTRIBUTES",
+            "attributes"
           ]
         },
         {
-          "field": "relationships",
+          "field": "deputyMembers",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "relationships",
-            "relationships",
-            "relationships",
-            "RELATIONSHIPS"
+            "deputy_members",
+            "deputymembers",
+            "DEPUTYMEMBERS",
+            "deputyMembers"
           ]
         },
         {
           "field": "attendanceRate",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "attendanceRate",
-            "attendance_rate",
             "attendancerate",
-            "ATTENDANCERATE"
+            "ATTENDANCERATE",
+            "attendance_rate",
+            "attendanceRate"
           ]
         },
         {
-          "field": "influence",
+          "field": "totalMembers",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "influence",
-            "influence",
-            "influence",
-            "INFLUENCE"
+            "totalmembers",
+            "TOTALMEMBERS",
+            "totalMembers",
+            "total_members"
+          ]
+        },
+        {
+          "field": "membership",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "MEMBERSHIP",
+            "membership"
           ]
         },
         {
@@ -958,19 +800,19 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "performanceScore",
-            "performance_score",
+            "PERFORMANCESCORE",
             "performancescore",
-            "PERFORMANCESCORE"
+            "performance_score"
           ]
         },
         {
-          "field": "productivity",
+          "field": "policyDomain",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "productivity",
-            "productivity",
-            "productivity",
-            "PRODUCTIVITY"
+            "policy_domain",
+            "POLICYDOMAIN",
+            "policydomain",
+            "policyDomain"
           ]
         },
         {
@@ -978,19 +820,23 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "policy",
-            "policy",
-            "policy",
             "POLICY"
           ]
         },
         {
-          "field": "attributes",
+          "field": "labels",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "attributes",
-            "attributes",
-            "attributes",
-            "ATTRIBUTES"
+            "LABELS",
+            "labels"
+          ]
+        },
+        {
+          "field": "intelligence",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "intelligence",
+            "INTELLIGENCE"
           ]
         },
         {
@@ -998,119 +844,31 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "reports",
-            "reports",
-            "reports",
             "REPORTS"
           ]
         },
         {
-          "field": "regularMembers",
+          "field": "influence",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "regularMembers",
-            "regular_members",
-            "regularmembers",
-            "REGULARMEMBERS"
+            "influence",
+            "INFLUENCE"
           ]
         },
         {
-          "field": "name",
+          "field": "code",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "name",
-            "name",
-            "name",
-            "NAME"
+            "CODE",
+            "code"
           ]
         },
         {
-          "field": "intelligence",
+          "field": "decisions",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "intelligence",
-            "intelligence",
-            "intelligence",
-            "INTELLIGENCE"
-          ]
-        },
-        {
-          "field": "labels",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "labels",
-            "labels",
-            "labels",
-            "LABELS"
-          ]
-        },
-        {
-          "field": "policyDomain",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "policyDomain",
-            "policy_domain",
-            "policydomain",
-            "POLICYDOMAIN"
-          ]
-        },
-        {
-          "field": "totalMembers",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "totalMembers",
-            "total_members",
-            "totalmembers",
-            "TOTALMEMBERS"
-          ]
-        }
-      ],
-      "recommendations": [
-        "Consider adding 20 data columns to schema: embedded_id_org, party_approved, party, sub_type, against_proposal_number"
-      ]
-    },
-    "ministry": {
-      "views_referenced": 2,
-      "fields_defined": 29,
-      "matched_views": [
-        "view_riksdagen_goverment_role_member_sample.csv",
-        "view_ministry_effectiveness_trends_sample.csv",
-        "view_riksdagen_goverment_proposals_sample.csv",
-        "view_ministry_decision_impact_sample.csv",
-        "view_riksdagen_goverment_sample.csv",
-        "view_riksdagen_goverment_roles_sample.csv"
-      ],
-      "missing_views": [
-        "riksdagen_government_role_member_summary"
-      ],
-      "field_mismatches": [
-        {
-          "field": "executionRate",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "executionRate",
-            "execution_rate",
-            "executionrate",
-            "EXECUTIONRATE"
-          ]
-        },
-        {
-          "field": "spent",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "spent",
-            "spent",
-            "spent",
-            "SPENT"
-          ]
-        },
-        {
-          "field": "headquarters",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "headquarters",
-            "headquarters",
-            "headquarters",
-            "HEADQUARTERS"
+            "DECISIONS",
+            "decisions"
           ]
         },
         {
@@ -1118,199 +876,125 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "established",
-            "established",
-            "established",
             "ESTABLISHED"
           ]
         },
         {
-          "field": "portfolio",
+          "field": "productivity",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "portfolio",
-            "portfolio",
-            "portfolio",
-            "PORTFOLIO"
+            "productivity",
+            "PRODUCTIVITY"
           ]
         },
         {
-          "field": "publicSatisfaction",
+          "field": "name",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "publicSatisfaction",
-            "public_satisfaction",
-            "publicsatisfaction",
-            "PUBLICSATISFACTION"
-          ]
-        },
-        {
-          "field": "code",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "code",
-            "code",
-            "code",
-            "CODE"
+            "NAME",
+            "name"
           ]
         },
         {
           "field": "nameEn",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
+            "NAMEEN",
             "nameEn",
-            "name_en",
             "nameen",
-            "NAMEEN"
-          ]
-        },
-        {
-          "field": "decisions",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "decisions",
-            "decisions",
-            "decisions",
-            "DECISIONS"
-          ]
-        },
-        {
-          "field": "civilServants",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "civilServants",
-            "civil_servants",
-            "civilservants",
-            "CIVILSERVANTS"
-          ]
-        },
-        {
-          "field": "ministers",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "ministers",
-            "ministers",
-            "ministers",
-            "MINISTERS"
-          ]
-        },
-        {
-          "field": "predictions",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "predictions",
-            "predictions",
-            "predictions",
-            "PREDICTIONS"
+            "name_en"
           ]
         },
         {
           "field": "relationships",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "relationships",
-            "relationships",
-            "relationships",
-            "RELATIONSHIPS"
+            "RELATIONSHIPS",
+            "relationships"
           ]
         },
         {
-          "field": "personnel",
+          "field": "hearings",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "personnel",
-            "personnel",
-            "personnel",
-            "PERSONNEL"
+            "hearings",
+            "HEARINGS"
           ]
         },
         {
-          "field": "allocation",
+          "field": "regularMembers",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "allocation",
-            "allocation",
-            "allocation",
-            "ALLOCATION"
+            "REGULARMEMBERS",
+            "regularmembers",
+            "regular_members",
+            "regularMembers"
           ]
-        },
+        }
+      ],
+      "recommendations": [
+        "Consider adding 20 data columns to schema: rm, abstain_votes, embedded_id_issue_nummer, person_id, final_number"
+      ]
+    },
+    "ministry": {
+      "views_referenced": 2,
+      "fields_defined": 29,
+      "matched_views": [
+        "view_ministry_effectiveness_trends_sample.csv",
+        "view_ministry_decision_impact_sample.csv"
+      ],
+      "missing_views": [
+        "riksdagen_government_role_member_summary"
+      ],
+      "field_mismatches": [
         {
-          "field": "performanceScore",
+          "field": "performance",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "performanceScore",
-            "performance_score",
-            "performancescore",
-            "PERFORMANCESCORE"
+            "performance",
+            "PERFORMANCE"
           ]
         },
         {
           "field": "decisionsImplemented",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "decisionsImplemented",
             "decisions_implemented",
             "decisionsimplemented",
+            "decisionsImplemented",
             "DECISIONSIMPLEMENTED"
           ]
         },
         {
-          "field": "efficiency",
+          "field": "allocation",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "efficiency",
-            "efficiency",
-            "efficiency",
-            "EFFICIENCY"
+            "ALLOCATION",
+            "allocation"
           ]
         },
         {
-          "field": "policy",
+          "field": "headquarters",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "policy",
-            "policy",
-            "policy",
-            "POLICY"
+            "HEADQUARTERS",
+            "headquarters"
           ]
         },
         {
           "field": "attributes",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "attributes",
-            "attributes",
-            "attributes",
-            "ATTRIBUTES"
+            "ATTRIBUTES",
+            "attributes"
           ]
         },
         {
-          "field": "effectiveness",
+          "field": "ministers",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "effectiveness",
-            "effectiveness",
-            "effectiveness",
-            "EFFECTIVENESS"
-          ]
-        },
-        {
-          "field": "trend",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "trend",
-            "trend",
-            "trend",
-            "TREND"
-          ]
-        },
-        {
-          "field": "stateSecretaries",
-          "issue": "Field defined in schema but not found in data",
-          "suggestions": [
-            "stateSecretaries",
-            "state_secretaries",
-            "statesecretaries",
-            "STATESECRETARIES"
+            "MINISTERS",
+            "ministers"
           ]
         },
         {
@@ -1318,9 +1002,85 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "budget",
-            "budget",
-            "budget",
             "BUDGET"
+          ]
+        },
+        {
+          "field": "publicSatisfaction",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "public_satisfaction",
+            "PUBLICSATISFACTION",
+            "publicSatisfaction",
+            "publicsatisfaction"
+          ]
+        },
+        {
+          "field": "civilServants",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "civilServants",
+            "civilservants",
+            "civil_servants",
+            "CIVILSERVANTS"
+          ]
+        },
+        {
+          "field": "performanceScore",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "performanceScore",
+            "PERFORMANCESCORE",
+            "performancescore",
+            "performance_score"
+          ]
+        },
+        {
+          "field": "policy",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "policy",
+            "POLICY"
+          ]
+        },
+        {
+          "field": "trend",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "trend",
+            "TREND"
+          ]
+        },
+        {
+          "field": "predictions",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "PREDICTIONS",
+            "predictions"
+          ]
+        },
+        {
+          "field": "labels",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "LABELS",
+            "labels"
+          ]
+        },
+        {
+          "field": "portfolio",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "portfolio",
+            "PORTFOLIO"
+          ]
+        },
+        {
+          "field": "efficiency",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "efficiency",
+            "EFFICIENCY"
           ]
         },
         {
@@ -1328,34 +1088,106 @@
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
             "intelligence",
-            "intelligence",
-            "intelligence",
             "INTELLIGENCE"
           ]
         },
         {
-          "field": "labels",
+          "field": "spent",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "labels",
-            "labels",
-            "labels",
-            "LABELS"
+            "spent",
+            "SPENT"
           ]
         },
         {
-          "field": "performance",
+          "field": "code",
           "issue": "Field defined in schema but not found in data",
           "suggestions": [
-            "performance",
-            "performance",
-            "performance",
-            "PERFORMANCE"
+            "CODE",
+            "code"
+          ]
+        },
+        {
+          "field": "decisions",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "DECISIONS",
+            "decisions"
+          ]
+        },
+        {
+          "field": "stateSecretaries",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "STATESECRETARIES",
+            "statesecretaries",
+            "state_secretaries",
+            "stateSecretaries"
+          ]
+        },
+        {
+          "field": "established",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "established",
+            "ESTABLISHED"
+          ]
+        },
+        {
+          "field": "personnel",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "PERSONNEL",
+            "personnel"
+          ]
+        },
+        {
+          "field": "effectiveness",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "EFFECTIVENESS",
+            "effectiveness"
+          ]
+        },
+        {
+          "field": "executionRate",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "EXECUTIONRATE",
+            "executionRate",
+            "execution_rate",
+            "executionrate"
+          ]
+        },
+        {
+          "field": "id",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "id",
+            "ID"
+          ]
+        },
+        {
+          "field": "nameEn",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "NAMEEN",
+            "nameEn",
+            "nameen",
+            "name_en"
+          ]
+        },
+        {
+          "field": "relationships",
+          "issue": "Field defined in schema but not found in data",
+          "suggestions": [
+            "RELATIONSHIPS",
+            "relationships"
           ]
         }
       ],
       "recommendations": [
-        "Consider adding 20 data columns to schema: legislative_change, total_propositions, ministry_code, total_government_bills, productivity_level"
+        "Consider adding 20 data columns to schema: org_code, ma_4quarter_documents, total_proposals, rejection_rate, quarter_num"
       ]
     },
     "intelligence": {
@@ -1370,7 +1202,7 @@
       "missing_views": [],
       "field_mismatches": [],
       "recommendations": [
-        "Consider adding 20 data columns to schema: avg_approval_rate, avg_rebel_rate, daily_approval_rate, party, decision_day"
+        "Consider adding 20 data columns to schema: latest_member_violation, motions_last_year, documents_per_member, approved_decisions, period_max_documents"
       ]
     }
   }
