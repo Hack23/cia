@@ -55,7 +55,7 @@ import com.hack23.cia.service.data.impl.export.TemporalTrendsExportDTO.TrendData
  */
 @Service
 @Transactional(readOnly = true)
-public class IntelligenceExportServiceImpl implements IntelligenceExportService {
+final class IntelligenceExportServiceImpl implements IntelligenceExportService {
 
 	@Autowired
 	private RuleViolationDAO ruleViolationDAO;
@@ -86,7 +86,7 @@ public class IntelligenceExportServiceImpl implements IntelligenceExportService 
 		metadata.setDataDate(new Date());
 		dto.setMetadata(metadata);
 
-		for (final com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation violation : violations) {
+		for (final RuleViolation violation : violations) {
 			final RiskViolation riskViolation = new RiskViolation();
 			riskViolation.setId(violation.getId());
 			riskViolation.setDetectedDate(violation.getDetectedDate());
@@ -172,9 +172,14 @@ public class IntelligenceExportServiceImpl implements IntelligenceExportService 
 	@Override
 	public void writeJsonToFile(final String jsonContent, final String fileName, final String outputDirectory)
 			throws IOException {
+		// Validate fileName doesn't contain path separators or traversal sequences
+		if (fileName.contains("/") || fileName.contains("\\") || fileName.contains("..")) {
+			throw new IllegalArgumentException("Invalid file name: must not contain path separators or traversal sequences");
+		}
+
 		final File directory = new File(outputDirectory);
-		if (!directory.exists()) {
-			directory.mkdirs();
+		if (!directory.exists() && !directory.mkdirs()) {
+			throw new IOException("Failed to create directory: " + outputDirectory);
 		}
 
 		final String filePath = outputDirectory + File.separator + fileName;

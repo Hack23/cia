@@ -19,14 +19,20 @@
 package com.hack23.cia.service.data.impl;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -63,9 +69,28 @@ class IntelligenceExportServiceImplTest {
 	@InjectMocks
 	private IntelligenceExportServiceImpl service;
 
+	private Path tempDir;
+
 	@BeforeEach
-	void setUp() {
+	void setUp() throws IOException {
 		MockitoAnnotations.openMocks(this);
+		tempDir = Files.createTempDirectory("test-json-export");
+	}
+
+	@AfterEach
+	void tearDown() throws IOException {
+		// Clean up temp directory
+		if (tempDir != null && Files.exists(tempDir)) {
+			Files.walk(tempDir)
+				.sorted((a, b) -> b.compareTo(a))
+				.forEach(path -> {
+					try {
+						Files.deleteIfExists(path);
+					} catch (IOException e) {
+						// Ignore cleanup errors
+					}
+				});
+		}
 	}
 
 	@Test
@@ -103,7 +128,9 @@ class IntelligenceExportServiceImplTest {
 		final List<ViewRiksdagenCoalitionAlignmentMatrix> alignments = new ArrayList<>();
 		final ViewRiksdagenCoalitionAlignmentMatrix alignment = new ViewRiksdagenCoalitionAlignmentMatrix();
 		final ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId embeddedId = 
-			new ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId("S", "V");
+			new ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId();
+		embeddedId.setParty1("S");
+		embeddedId.setParty2("V");
 		alignment.setEmbeddedId(embeddedId);
 		alignment.setAlignmentRate(0.75);
 		alignment.setSharedVotes(100L);
@@ -148,5 +175,56 @@ class IntelligenceExportServiceImplTest {
 		assertTrue(json.contains("trends"));
 		assertTrue(json.contains("dailyDecisions"));
 		assertTrue(json.contains("dailyApprovalRate"));
+	}
+
+	@Test
+	void testWriteJsonToFile() throws Exception {
+		// Arrange
+		final String jsonContent = "{\"test\": \"data\"}";
+		final String fileName = "test-output.json";
+
+		// Act
+		service.writeJsonToFile(jsonContent, fileName, tempDir.toString());
+
+		// Assert
+		final Path filePath = tempDir.resolve(fileName);
+		assertTrue(Files.exists(filePath));
+		final String content = Files.readString(filePath);
+		assertTrue(content.equals(jsonContent));
+	}
+
+	@Test
+	void testWriteJsonToFileCreatesDirectory() throws Exception {
+		// Arrange
+		final String jsonContent = "{\"test\": \"data\"}";
+		final String fileName = "test-output.json";
+		final Path newDir = tempDir.resolve("newdir");
+
+		// Act
+		service.writeJsonToFile(jsonContent, fileName, newDir.toString());
+
+		// Assert
+		assertTrue(Files.exists(newDir));
+		final Path filePath = newDir.resolve(fileName);
+		assertTrue(Files.exists(filePath));
+	}
+
+	@Test
+	void testWriteJsonToFileRejectsPathTraversal() {
+		// Arrange
+		final String jsonContent = "{\"test\": \"data\"}";
+
+		// Act & Assert - Test various path traversal attempts
+		assertThrows(IllegalArgumentException.class, () -> 
+			service.writeJsonToFile(jsonContent, "../etc/passwd", tempDir.toString()));
+		
+		assertThrows(IllegalArgumentException.class, () -> 
+			service.writeJsonToFile(jsonContent, "..\\windows\\system32\\config", tempDir.toString()));
+		
+		assertThrows(IllegalArgumentException.class, () -> 
+			service.writeJsonToFile(jsonContent, "path/to/file.json", tempDir.toString()));
+		
+		assertThrows(IllegalArgumentException.class, () -> 
+			service.writeJsonToFile(jsonContent, "path\\to\\file.json", tempDir.toString()));
 	}
 }
