@@ -118,10 +118,12 @@ public class IntelligenceExportServiceImpl implements IntelligenceExportService 
 
 		for (final ViewRiksdagenCoalitionAlignmentMatrix alignment : alignments) {
 			final PartyAlignment partyAlignment = new PartyAlignment();
-			partyAlignment.setParty1(alignment.getParty1());
-			partyAlignment.setParty2(alignment.getParty2());
+			if (alignment.getEmbeddedId() != null) {
+				partyAlignment.setParty1(alignment.getEmbeddedId().getParty1());
+				partyAlignment.setParty2(alignment.getEmbeddedId().getParty2());
+			}
 			partyAlignment.setAlignmentRate(alignment.getAlignmentRate());
-			partyAlignment.setTotalVotes(alignment.getTotalVotes());
+			partyAlignment.setSharedVotes(alignment.getSharedVotes());
 			partyAlignment.setAlignedVotes(alignment.getAlignedVotes());
 			dto.getAlignments().add(partyAlignment);
 		}

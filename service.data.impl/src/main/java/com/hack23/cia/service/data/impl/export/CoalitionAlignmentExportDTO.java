@@ -77,10 +77,10 @@ public class CoalitionAlignmentExportDTO implements Serializable {
 		private String party2;
 
 		@JsonProperty("alignmentRate")
-		private BigDecimal alignmentRate;
+		private Double alignmentRate;
 
-		@JsonProperty("totalVotes")
-		private Long totalVotes;
+		@JsonProperty("sharedVotes")
+		private Long sharedVotes;
 
 		@JsonProperty("alignedVotes")
 		private Long alignedVotes;
@@ -102,20 +102,20 @@ public class CoalitionAlignmentExportDTO implements Serializable {
 			this.party2 = party2;
 		}
 
-		public BigDecimal getAlignmentRate() {
+		public Double getAlignmentRate() {
 			return alignmentRate;
 		}
 
-		public void setAlignmentRate(final BigDecimal alignmentRate) {
+		public void setAlignmentRate(final Double alignmentRate) {
 			this.alignmentRate = alignmentRate;
 		}
 
-		public Long getTotalVotes() {
-			return totalVotes;
+		public Long getSharedVotes() {
+			return sharedVotes;
 		}
 
-		public void setTotalVotes(final Long totalVotes) {
-			this.totalVotes = totalVotes;
+		public void setSharedVotes(final Long sharedVotes) {
+			this.sharedVotes = sharedVotes;
 		}
 
 		public Long getAlignedVotes() {
