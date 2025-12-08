@@ -18,6 +18,7 @@
  */
 package com.hack23.cia.service.data.impl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -190,7 +191,7 @@ class IntelligenceExportServiceImplTest {
 		final Path filePath = tempDir.resolve(fileName);
 		assertTrue(Files.exists(filePath));
 		final String content = Files.readString(filePath);
-		assertTrue(content.equals(jsonContent));
+		assertEquals(jsonContent, content);
 	}
 
 	@Test
