@@ -20,6 +20,7 @@ package com.hack23.cia.service.data.impl.export;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class RiskAssessmentExportDTO implements Serializable {
 	}
 
 	public List<RiskViolation> getViolations() {
-		return violations;
+		return Collections.unmodifiableList(violations);
 	}
 
 	public void setViolations(final List<RiskViolation> violations) {

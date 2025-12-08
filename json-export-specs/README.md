@@ -71,7 +71,7 @@ The CIA JSON Export System transforms the comprehensive political intelligence d
 - ✅ **IntelligenceExportService** - Service interface for JSON exports (`service.data.api`)
 - ✅ **IntelligenceExportServiceImpl** - Jackson-based JSON serialization (`service.data.impl`)
 - ✅ **Export DTOs** - Data transfer objects for risk assessments, coalition alignment, temporal trends
-- ✅ **Unit Tests** - Comprehensive tests with Mockito (3/3 passing)
+- ✅ **Unit Tests** - Comprehensive tests with Mockito (6/6 passing)
 - ✅ **Build Integration** - Clean compile and test pass in CI/CD pipeline
 
 **Ready for Integration**:

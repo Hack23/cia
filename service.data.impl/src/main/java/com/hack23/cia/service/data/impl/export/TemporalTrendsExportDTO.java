@@ -21,6 +21,7 @@ package com.hack23.cia.service.data.impl.export;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class TemporalTrendsExportDTO implements Serializable {
 	}
 
 	public List<TrendDataPoint> getTrends() {
-		return trends;
+		return Collections.unmodifiableList(trends);
 	}
 
 	public void setTrends(final List<TrendDataPoint> trends) {

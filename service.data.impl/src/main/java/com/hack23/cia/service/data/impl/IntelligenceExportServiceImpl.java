@@ -22,7 +22,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -72,6 +74,7 @@ final class IntelligenceExportServiceImpl implements IntelligenceExportService {
 		this.objectMapper = new ObjectMapper();
 		this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 		this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+		this.objectMapper.setDateFormat(new com.fasterxml.jackson.databind.util.StdDateFormat().withColonInTimeZone(true));
 	}
 
 	@Override
@@ -86,6 +89,7 @@ final class IntelligenceExportServiceImpl implements IntelligenceExportService {
 		metadata.setDataDate(new Date());
 		dto.setMetadata(metadata);
 
+		final List<RiskViolation> riskViolations = new ArrayList<>();
 		for (final RuleViolation violation : violations) {
 			final RiskViolation riskViolation = new RiskViolation();
 			riskViolation.setId(violation.getId());
@@ -98,8 +102,9 @@ final class IntelligenceExportServiceImpl implements IntelligenceExportService {
 			riskViolation.setRuleGroup(violation.getRuleGroup());
 			riskViolation.setStatus(violation.getStatus() != null ? violation.getStatus().toString() : null);
 			riskViolation.setPositive(violation.getPositive());
-			dto.getViolations().add(riskViolation);
+			riskViolations.add(riskViolation);
 		}
+		dto.setViolations(riskViolations);
 
 		return objectMapper.writeValueAsString(dto);
 	}
@@ -116,6 +121,7 @@ final class IntelligenceExportServiceImpl implements IntelligenceExportService {
 		metadata.setDataDate(new Date());
 		dto.setMetadata(metadata);
 
+		final List<PartyAlignment> partyAlignments = new ArrayList<>();
 		for (final ViewRiksdagenCoalitionAlignmentMatrix alignment : alignments) {
 			final PartyAlignment partyAlignment = new PartyAlignment();
 			if (alignment.getEmbeddedId() != null) {
@@ -125,8 +131,9 @@ final class IntelligenceExportServiceImpl implements IntelligenceExportService {
 			partyAlignment.setAlignmentRate(alignment.getAlignmentRate());
 			partyAlignment.setSharedVotes(alignment.getSharedVotes());
 			partyAlignment.setAlignedVotes(alignment.getAlignedVotes());
-			dto.getAlignments().add(partyAlignment);
+			partyAlignments.add(partyAlignment);
 		}
+		dto.setAlignments(partyAlignments);
 
 		return objectMapper.writeValueAsString(dto);
 	}
@@ -143,6 +150,7 @@ final class IntelligenceExportServiceImpl implements IntelligenceExportService {
 		metadata.setDataDate(new Date());
 		dto.setMetadata(metadata);
 
+		final List<TrendDataPoint> dataPoints = new ArrayList<>();
 		for (final ViewDecisionTemporalTrends trend : trends) {
 			final TrendDataPoint dataPoint = new TrendDataPoint();
 			dataPoint.setDecisionDay(trend.getDecisionDay());
@@ -163,8 +171,9 @@ final class IntelligenceExportServiceImpl implements IntelligenceExportService {
 			dataPoint.setDecisionMonth(trend.getDecisionMonth());
 			dataPoint.setDecisionWeek(trend.getDecisionWeek());
 			dataPoint.setDayOfWeek(trend.getDayOfWeek());
-			dto.getTrends().add(dataPoint);
+			dataPoints.add(dataPoint);
 		}
+		dto.setTrends(dataPoints);
 
 		return objectMapper.writeValueAsString(dto);
 	}
@@ -172,9 +181,16 @@ final class IntelligenceExportServiceImpl implements IntelligenceExportService {
 	@Override
 	public void writeJsonToFile(final String jsonContent, final String fileName, final String outputDirectory)
 			throws IOException {
-		// Validate fileName doesn't contain path separators or traversal sequences
-		if (fileName.contains("/") || fileName.contains("\\") || fileName.contains("..")) {
-			throw new IllegalArgumentException("Invalid file name: must not contain path separators or traversal sequences");
+		// Validate fileName doesn't contain path separators (subdirectories not supported)
+		if (fileName.contains("/") || fileName.contains("\\")) {
+			throw new IllegalArgumentException("Invalid file name: subdirectories not supported, must be a flat file name");
+		}
+
+		// Validate against path traversal by ensuring resolved path stays within target directory
+		final Path targetDir = Paths.get(outputDirectory).toAbsolutePath().normalize();
+		final Path resolvedPath = targetDir.resolve(fileName).normalize();
+		if (!resolvedPath.startsWith(targetDir)) {
+			throw new IllegalArgumentException("Invalid file name: path traversal detected");
 		}
 
 		final File directory = new File(outputDirectory);
@@ -182,7 +198,6 @@ final class IntelligenceExportServiceImpl implements IntelligenceExportService {
 			throw new IOException("Failed to create directory: " + outputDirectory);
 		}
 
-		final String filePath = outputDirectory + File.separator + fileName;
-		Files.write(Paths.get(filePath), jsonContent.getBytes(StandardCharsets.UTF_8));
+		Files.write(resolvedPath, jsonContent.getBytes(StandardCharsets.UTF_8));
 	}
 }

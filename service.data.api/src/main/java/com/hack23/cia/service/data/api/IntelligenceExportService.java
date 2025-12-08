@@ -67,10 +67,14 @@ public interface IntelligenceExportService {
 	/**
 	 * Write JSON export to file for CDN deployment.
 	 * 
+	 * Note: Subdirectories are not supported. The fileName parameter must be a flat
+	 * file name without path separators. Path traversal sequences are validated and rejected.
+	 * 
 	 * @param jsonContent the JSON content to write
-	 * @param fileName the file name (e.g., "risk-assessments.json")
+	 * @param fileName the file name (e.g., "risk-assessments.json") - must not contain path separators
 	 * @param outputDirectory the output directory path
-	 * @throws IOException if file write fails
+	 * @throws IOException if file write fails or directory creation fails
+	 * @throws IllegalArgumentException if fileName contains path separators or path traversal is detected
 	 */
 	void writeJsonToFile(String jsonContent, String fileName, String outputDirectory) throws IOException;
 }

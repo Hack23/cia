@@ -21,6 +21,7 @@ package com.hack23.cia.service.data.impl.export;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -56,7 +57,7 @@ public class CoalitionAlignmentExportDTO implements Serializable {
 	}
 
 	public List<PartyAlignment> getAlignments() {
-		return alignments;
+		return Collections.unmodifiableList(alignments);
 	}
 
 	public void setAlignments(final List<PartyAlignment> alignments) {
