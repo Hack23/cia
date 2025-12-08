@@ -146,9 +146,9 @@ This document provides explicit mappings between JSON schema fields and their co
 
 | JSON Field | Database Column | Data Type | Source View |
 |------------|-----------------|-----------|-------------|
-| `id` | `ministry_code` | string | `view_riksdagen_goverment` |
-| `name` | `details` | string | `view_riksdagen_goverment` |
-| `minister` | - | string | `view_riksdagen_goverment_role_member` |
+| `id` | `ministry_code` | string | `view_riksdagen_government` |
+| `name` | `details` | string | `view_riksdagen_government` |
+| `minister` | - | string | `view_riksdagen_government_role_member` |
 | `portfolio` | - | string | Missing |
 
 ### Computed Fields

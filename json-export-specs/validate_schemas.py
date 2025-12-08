@@ -12,13 +12,12 @@ Version: 1.0.0
 
 import csv
 import json
-import os
 import re
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, List, Set, Tuple, Any
+from typing import Dict, List, Tuple, Any
 
 
 class SchemaValidator:
@@ -78,10 +77,12 @@ class SchemaValidator:
         for match in re.finditer(mermaid_pattern, content):
             field_type = match.group(1)
             field_name = match.group(2)
-            schema_info["fields"][field_name] = {
-                "type": field_type,
-                "required": True  # Default assumption
-            }
+            # Only add field if it starts with a letter and is not numeric-only
+            if re.match(r'^[A-Za-z]\w*$', field_name):
+                schema_info["fields"][field_name] = {
+                    "type": field_type,
+                    "required": True  # Default assumption
+                }
         
         # Extract JSON examples to identify field paths
         json_code_pattern = r'```json\s*(.*?)\s*```'
@@ -93,6 +94,7 @@ class SchemaValidator:
                     # This is a data structure example
                     schema_info["example_json_paths"].append(self._extract_paths(parsed.get("data", [])))
             except json.JSONDecodeError:
+                # Skip invalid JSON examples in markdown
                 pass
         
         return schema_info
@@ -146,7 +148,7 @@ class SchemaValidator:
                         "column_types": self._infer_column_types(rows, columns)
                     }
                     
-            except Exception as e:
+            except (IOError, csv.Error, UnicodeDecodeError) as e:
                 print(f"  ✗ Error reading {csv_file.name}: {e}")
         
         print(f"✓ Loaded {len(self.sample_data)} sample data files")
@@ -375,8 +377,8 @@ class SchemaValidator:
             "",
             "## Executive Summary",
             "",
-            "This report validates the 5 JSON export schemas against 142 real CSV sample data files "
-            "from the CIA database to ensure schema correctness and identify gaps between "
+            "This report validates the 5 JSON export schemas against 142 real CSV sample data files ",
+            "from the CIA database to ensure schema correctness and identify gaps between ",
             "schema definitions and actual data structure.",
             "",
             "### Validation Scope",

@@ -81,7 +81,7 @@ Each schema is mapped to relevant database views:
 | **Politician** | `view_riksdagen_politician`, `view_riksdagen_politician_summary`, `view_riksdagen_politician_document`, `view_riksdagen_politician_ballot` |
 | **Party** | `view_riksdagen_party`, `view_riksdagen_party_summary`, `view_riksdagen_party_document_summary`, `view_riksdagen_party_ballot` |
 | **Committee** | `view_riksdagen_committee`, `view_riksdagen_committee_decisions`, `view_riksdagen_committee_roles`, `view_riksdagen_committee_ballot_decision` |
-| **Ministry** | `view_riksdagen_goverment`, `view_riksdagen_goverment_roles`, `view_ministry_decision_impact`, `view_ministry_effectiveness_trends` |
+| **Ministry** | `view_riksdagen_government`, `view_riksdagen_government_roles`, `view_ministry_decision_impact`, `view_ministry_effectiveness_trends` |
 | **Intelligence** | `view_politician_risk_summary`, `view_party_performance_metrics`, `view_decision_temporal_trends`, `view_committee_productivity` |
 
 ### Data Type Inference
