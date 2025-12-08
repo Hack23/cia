@@ -1,0 +1,209 @@
+name: Validate JSON Schemas
+
+on:
+  push:
+    paths:
+      - 'json-export-specs/schemas/*.md'
+      - 'json-export-specs/validate_schemas.py'
+      - 'service.data.impl/sample-data/*.csv'
+      - '.github/workflows/validate-json-schemas.yml'
+  pull_request:
+    paths:
+      - 'json-export-specs/schemas/*.md'
+      - 'json-export-specs/validate_schemas.py'
+      - 'service.data.impl/sample-data/*.csv'
+  workflow_dispatch:
+  schedule:
+    # Run daily at 02:00 UTC to catch data changes
+    - cron: '0 2 * * *'
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  validate-schemas:
+    runs-on: ubuntu-latest
+    name: Validate JSON Schemas Against Sample Data
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # No additional dependencies needed for this script
+      
+      - name: Run schema validation
+        id: validate
+        run: |
+          cd json-export-specs
+          python3 validate_schemas.py > validation_output.txt 2>&1
+          EXIT_CODE=$?
+          cat validation_output.txt
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+          exit $EXIT_CODE
+        continue-on-error: true
+      
+      - name: Upload validation report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: schema-validation-report
+          path: |
+            json-export-specs/schemas/SCHEMA_VALIDATION_REPORT.md
+            json-export-specs/schemas/validation-results.json
+            json-export-specs/validation_output.txt
+          retention-days: 30
+      
+      - name: Check validation results
+        id: check_results
+        run: |
+          if [ -f json-export-specs/schemas/validation-results.json ]; then
+            MISMATCHES=$(jq -r '.total_mismatches' json-export-specs/schemas/validation-results.json)
+            echo "total_mismatches=$MISMATCHES" >> $GITHUB_OUTPUT
+            
+            if [ "$MISMATCHES" -gt 0 ]; then
+              echo "⚠️ Found $MISMATCHES field mismatches between schemas and data"
+              exit 1
+            else
+              echo "✅ All schemas validated successfully"
+              exit 0
+            fi
+          else
+            echo "❌ Validation failed to generate results"
+            exit 1
+          fi
+      
+      - name: Comment on PR with validation results
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            let comment = '## 📊 JSON Schema Validation Results\n\n';
+            
+            try {
+              const results = JSON.parse(fs.readFileSync('json-export-specs/schemas/validation-results.json', 'utf8'));
+              
+              comment += `**Validation Summary:**\n`;
+              comment += `- ⏰ Generated: ${results.timestamp}\n`;
+              comment += `- 📋 Schemas Validated: ${results.schemas_validated}\n`;
+              comment += `- 📁 Sample Files Analyzed: ${results.files_analyzed}\n`;
+              comment += `- ⚠️ Total Mismatches: ${results.total_mismatches}\n\n`;
+              
+              comment += `### Schema Status\n\n`;
+              comment += `| Schema | Fields | Views Matched | Mismatches | Status |\n`;
+              comment += `|--------|--------|---------------|------------|--------|\n`;
+              
+              for (const [schemaName, schemaResult] of Object.entries(results.schemas)) {
+                const status = schemaResult.field_mismatches.length === 0 ? '✅ PASS' : '⚠️ REVIEW';
+                comment += `| ${schemaName.charAt(0).toUpperCase() + schemaName.slice(1)} | `;
+                comment += `${schemaResult.fields_defined} | `;
+                comment += `${schemaResult.matched_views.length} | `;
+                comment += `${schemaResult.field_mismatches.length} | `;
+                comment += `${status} |\n`;
+              }
+              
+              comment += `\n📄 **Full Report:** See uploaded artifacts for detailed validation report\n`;
+              
+              if (results.total_mismatches > 0) {
+                comment += `\n⚠️ **Action Required:** Please review the field mismatches and update schemas to match actual data structure.\n`;
+              } else {
+                comment += `\n✅ **All schemas validated successfully!**\n`;
+              }
+            } catch (error) {
+              comment += `❌ **Validation Failed:** ${error.message}\n`;
+              comment += `\nCheck the workflow logs for details.\n`;
+            }
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: comment
+            });
+      
+      - name: Create issue on validation failure
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            let issueTitle = '⚠️ JSON Schema Validation Failed';
+            let issueBody = '## JSON Schema Validation Report\n\n';
+            issueBody += `**Workflow Run:** [${context.runNumber}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n\n`;
+            
+            try {
+              const results = JSON.parse(fs.readFileSync('json-export-specs/schemas/validation-results.json', 'utf8'));
+              
+              issueBody += `### Summary\n\n`;
+              issueBody += `- **Timestamp:** ${results.timestamp}\n`;
+              issueBody += `- **Total Mismatches:** ${results.total_mismatches}\n`;
+              issueBody += `- **Schemas Validated:** ${results.schemas_validated}\n`;
+              issueBody += `- **Files Analyzed:** ${results.files_analyzed}\n\n`;
+              
+              issueBody += `### Schema Status\n\n`;
+              for (const [schemaName, schemaResult] of Object.entries(results.schemas)) {
+                if (schemaResult.field_mismatches.length > 0) {
+                  issueBody += `#### ${schemaName.charAt(0).toUpperCase() + schemaName.slice(1)} Schema\n\n`;
+                  issueBody += `- **Field Mismatches:** ${schemaResult.field_mismatches.length}\n`;
+                  issueBody += `- **Missing Views:** ${schemaResult.missing_views.length}\n`;
+                  
+                  if (schemaResult.recommendations.length > 0) {
+                    issueBody += `- **Recommendations:**\n`;
+                    schemaResult.recommendations.forEach(rec => {
+                      issueBody += `  - ${rec}\n`;
+                    });
+                  }
+                  issueBody += `\n`;
+                }
+              }
+              
+              issueBody += `\n### Next Steps\n\n`;
+              issueBody += `1. Review the [validation report](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})\n`;
+              issueBody += `2. Update schemas to match actual data structure\n`;
+              issueBody += `3. Verify field mappings between JSON and database columns\n`;
+              issueBody += `4. Re-run validation to confirm fixes\n`;
+            } catch (error) {
+              issueBody += `\n❌ **Error reading validation results:** ${error.message}\n`;
+            }
+            
+            // Check if issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'schema-validation'
+            });
+            
+            const existingIssue = issues.data.find(issue => issue.title === issueTitle);
+            
+            if (existingIssue) {
+              // Update existing issue
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existingIssue.number,
+                body: `## Validation Update\n\n${issueBody}`
+              });
+            } else {
+              // Create new issue
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: issueTitle,
+                body: issueBody,
+                labels: ['schema-validation', 'data-quality', 'automated']
+              });
+            }
