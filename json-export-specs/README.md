@@ -63,6 +63,33 @@ The CIA JSON Export System transforms the comprehensive political intelligence d
 | **Committees** | 15 riksdag | Daily | ~600 KB |
 | **Intelligence Products** | Risk scores, trends | Daily | ~1.2 MB |
 
+### Implementation Status
+
+> **✅ v1.36 Update (2024-12-08)**: Core JSON export service layer completed
+
+**Implemented Components**:
+- ✅ **IntelligenceExportService** - Service interface for JSON exports (`service.data.api`)
+- ✅ **IntelligenceExportServiceImpl** - Jackson-based JSON serialization (`service.data.impl`)
+- ✅ **Export DTOs** - Data transfer objects for risk assessments, coalition alignment, temporal trends
+- ✅ **Unit Tests** - Comprehensive tests with Mockito (3/3 passing)
+- ✅ **Build Integration** - Clean compile and test pass in CI/CD pipeline
+
+**Ready for Integration**:
+1. `exportRiskAssessments()` - Exports all rule violations with severity and metadata
+2. `exportCoalitionAlignment()` - Exports party alignment matrix with voting cohesion
+3. `exportTemporalTrends()` - Exports decision trends with daily/weekly/monthly moving averages
+4. `writeJsonToFile()` - File writer for CDN-ready static JSON generation
+
+**Next Steps**:
+- REST endpoint integration (planned)
+- Scheduled daily export job (planned)
+- CDN deployment automation (planned)
+
+**Technical Foundation**: Service layer built on Spring Framework with JPA/Hibernate, using existing DAO layer for database access to:
+- `RuleViolationDAO` → Risk assessment data (50 behavioral rules)
+- `ViewRiksdagenCoalitionAlignmentMatrixDAO` → Coalition alignment data
+- `ViewDecisionTemporalTrendsDAO` → Temporal trend analysis data
+
 ---
 
 ## 📋 Table of Contents
