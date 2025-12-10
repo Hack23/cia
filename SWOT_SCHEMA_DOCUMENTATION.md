@@ -2018,11 +2018,10 @@ WITH (FORMAT csv, HEADER);
 - [📊 DATABASE_VIEW_INTELLIGENCE_CATALOG.md](./DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Comprehensive view catalog documentation
 - [🔍 DATA_ANALYSIS_INTOP_OSINT.md](./DATA_ANALYSIS_INTOP_OSINT.md) - Intelligence analysis frameworks and methodologies
 - [⚠️ RISK_RULES_INTOP_OSINT.md](./RISK_RULES_INTOP_OSINT.md) - 45 behavioral risk detection rules
-- [🛠️ service.data.impl/README-SCHEMA-MAINTENANCE.md](./service.data.impl/README-SCHEMA-MAINTENANCE.md) - Schema maintenance procedures
+- [🛠️ service.data.impl/README-SCHEMA-MAINTENANCE.md](./service.data.impl/README-SCHEMA-MAINTENANCE.md) - Schema maintenance and SQL validation procedures
 - [💼 BUSINESS_PRODUCT_DOCUMENT.md](./BUSINESS_PRODUCT_DOCUMENT.md) - Product strategy and commercial opportunities
 - [🏗️ ARCHITECTURE.md](./ARCHITECTURE.md) - System architecture documentation
 - [📐 DATA_MODEL.md](./DATA_MODEL.md) - Database schema and entity relationships
-- [✅ SQL_VALIDATION_REPORT.md](./SQL_VALIDATION_REPORT.md) - SQL query validation results
 - [🔒 THREAT_MODEL.md](./THREAT_MODEL.md) - Security threat assessment
 
 ---

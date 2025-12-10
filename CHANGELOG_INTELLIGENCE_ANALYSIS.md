@@ -90,9 +90,10 @@ This changelog documents changes to intelligence operations (INTOP), Open-Source
 - Updated data pipeline diagrams
 
 ### Fixed
-- DATABASE_VIEW_VALIDATION_REPORT.md: Achieved 100% documentation coverage
-- Corrected view counts in multiple documents (previously reported 82, now accurate 85)
+- DATABASE_VIEW_INTELLIGENCE_CATALOG.md: Achieved 100% documentation coverage with Validation History section
+- Corrected view counts in multiple documents (previously reported 82, now accurate 84)
 - Fixed ministry view documentation discrepancies
+- Consolidated validation reports into authoritative documentation
 
 ### Security
 - Enhanced user permission validation in health check script
@@ -583,11 +584,11 @@ Changes are categorized as follows to facilitate tracking:
 - **Main Database Changelog**: [LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) - Database schema evolution from intelligence perspective
 - **Risk Rules**: [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) - Complete risk rule catalog (50 rules)
 - **Analysis Frameworks**: [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) - Framework documentation (6 frameworks)
-- **Database Views**: [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View catalog (85 views)
+- **Database Views**: [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Complete view catalog (84 views) with validation history
 - **Data Flow**: [INTELLIGENCE_DATA_FLOW.md](INTELLIGENCE_DATA_FLOW.md) - Data pipeline and mappings
 
 ### Validation & Quality
-- **View Validation**: [DATABASE_VIEW_VALIDATION_REPORT.md](DATABASE_VIEW_VALIDATION_REPORT.md) - Coverage reports
+- **Schema Maintenance**: [service.data.impl/README-SCHEMA-MAINTENANCE.md](service.data.impl/README-SCHEMA-MAINTENANCE.md) - SQL validation and health checks
 - **SQL Validation**: [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md) - Query validation
 - **Entity Mapping**: [ENTITY_VIEW_MAPPING.md](ENTITY_VIEW_MAPPING.md) - JPA entity to view mapping
 

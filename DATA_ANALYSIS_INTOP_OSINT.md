@@ -9,7 +9,7 @@ This document provides comprehensive documentation of data analysis methodologie
 - **Analysis Frameworks**: 6 core methodologies ✅ VERIFIED (Temporal, Comparative, Pattern Recognition, Predictive, Network Analysis, Decision Intelligence)
 - **Risk Detection Rules**: 50 behavioral assessment rules ✅ VERIFIED (24 politician + 10 party + 4 committee + 4 ministry + 5 decision pattern + 3 other)
 - **Intelligence Products**: 5 core products ✅ VERIFIED (Political scorecards, Coalition analysis, Risk assessments, Trend reports, Decision effectiveness tracking)
-- **Database Views**: 85 views (57 regular + 28 materialized) ✅ VERIFIED per DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+- **Database Views**: 84 views (56 regular + 28 materialized) ✅ VERIFIED per DATABASE_VIEW_INTELLIGENCE_CATALOG.md (2025-12-10)
 - **Temporal Granularity**: Daily, Monthly, Annual, Cross-Temporal ✅ VERIFIED (20+ vote summary views at different granularities)
 - **Severity Levels**: 3-tier classification (MINOR: 10-49, MAJOR: 50-99, CRITICAL: 100+) ✅ VERIFIED per RISK_RULES_INTOP_OSINT.md
 
@@ -5523,7 +5523,7 @@ These views provide metadata, usage tracking, and audit trails supporting all an
 
 ### Complete View Inventory Cross-Reference
 
-For complete documentation of all 85 views, see:
+For complete documentation of all 84 views, see:
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - Complete View Inventory](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#complete-view-inventory)
 - [INTELLIGENCE_DATA_FLOW.md - View-to-Analysis Framework Mapping](INTELLIGENCE_DATA_FLOW.md#view--analysis-framework-mapping)
 
@@ -5990,13 +5990,12 @@ ROUND(value1 / value2, 4)
 
 All SQL queries in this document have been designed to work with the actual database schema. They reference views documented in:
 - `full_schema.sql` - Source of truth for schema
-- `DATABASE_VIEW_INTELLIGENCE_CATALOG.md` - View documentation
-- `SQL_VALIDATION_REPORT.md` - v1.29 views validation
+- `DATABASE_VIEW_INTELLIGENCE_CATALOG.md` - Complete view documentation with validation history
+- `service.data.impl/README-SCHEMA-MAINTENANCE.md` - SQL validation procedures and deployment guidelines
 
 **View Dependencies**:
-- 80+ database views available
-- 25+ materialized views for performance
-- 15+ intelligence-specific views (v1.29-v1.30)
+- 84 database views available (56 regular + 28 materialized)
+- 7 intelligence-specific views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends)
 
 **Performance Characteristics**:
 - Simple queries (single view, filtered): 100-500ms
