@@ -639,6 +639,193 @@ Maintain database health with regular validation:
 
 ---
 
+## 🔍 Data Quality Analysis
+
+This section documents procedures for analyzing data quality by comparing actual database values against SQL conditional checks in views. The analysis helps identify mismatches, missing patterns, and data quality issues.
+
+### Running Distinct Values Analysis
+
+The distinct values analysis compares actual database values against SQL conditional checks to identify mismatches and data quality issues. This analysis was performed on **91 distinct value CSV files** (dated 2025-12-03) and identified **2 critical issues** affecting data quality.
+
+**Extract distinct values:**
+```bash
+cd service.data.impl/sample-data/distinct_values
+./extract-distinct-values.sh
+```
+
+This script extracts unique values from key database columns into CSV files for analysis.
+
+**Review analysis results:**
+```bash
+cat DISTINCT_VALUES_ANALYSIS.md
+```
+
+**Analysis Scope:**
+- **Files Analyzed**: 91 distinct value CSV files
+- **Database Records Affected**: 7,057 records (8 + 7,049)
+- **Views Affected**: 3 views (politician experience, decision classification)
+- **Location**: `service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md`
+
+**Reference**: See [DISTINCT_VALUES_ANALYSIS.md](sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md) for complete analysis findings.
+
+---
+
+### Current Known Issues
+
+The following data quality issues have been identified through distinct values analysis:
+
+#### Issue #1: Missing 'Förste vice talman' in talmansuppdrag role scoring
+
+**View**: `view_riksdagen_politician_experience_summary` (line 9693 in full_schema.sql)  
+**Impact**: 8 politician roles not properly weighted in experience calculations  
+**Status**: ✅ Fixed in Liquibase changeset db-changelog-1.44.xml
+
+**Description**: The view originally only scored 'Andre vice talman' and 'Tredje vice talman' roles, missing 'Förste vice talman' which occurs 8 times in the database.
+
+**Verification Query**:
+```sql
+-- Check all talmansuppdrag roles in database
+SELECT role_code, COUNT(*) 
+FROM assignment_data 
+WHERE assignment_type = 'talmansuppdrag' 
+GROUP BY role_code
+ORDER BY COUNT(*) DESC;
+```
+
+**Expected Results**:
+```
+     role_code      | count
+--------------------+-------
+ Talman             |    12
+ Förste vice talman |     8
+ Andre vice talman  |     6
+ Tredje vice talman |     7
+```
+
+**Fix Applied**: All three Deputy Speaker roles (Förste, Andre, Tredje vice talman) are now weighted equally at 750.0 in the experience scoring.
+
+---
+
+#### Issue #2: Decision Chamber Pattern Matching
+
+**Views**: Decision classification views (lines 6291-6294, 6355-6360 in full_schema.sql)  
+  - `view_decision_temporal_trends`
+  - `view_ministry_decision_impact`
+
+**Impact**: 7,049 decision records misclassified as "other_decisions" instead of proper classification  
+**Status**: ✅ Fixed in Liquibase changeset db-changelog-1.45.xml
+
+**Description**: Committee referral patterns were not matched, causing 7,049 records with values like '=utskottet', '= utskottet', 'utskottet', '=utskott' to fall into the "other_decisions" category.
+
+**Verification Query**:
+```sql
+-- Check unmatched committee referral patterns
+SELECT processed_in, COUNT(*) 
+FROM document_proposal_data 
+WHERE processed_in LIKE '%utskott%' 
+GROUP BY processed_in
+ORDER BY COUNT(*) DESC;
+```
+
+**Expected Problem Records** (before fix):
+```
+  processed_in  | count
+----------------+-------
+ =utskottet     |  6501
+ = utskottet    |   517
+ utskottet      |    12
+ =utskott       |    19
+```
+
+**Fix Applied**: Added '%UTSKOTT%' pattern to capture committee referrals:
+- `view_decision_temporal_trends`: Added `committee_referral_decisions` column
+- `view_ministry_decision_impact`: Added `committee_referral_proposals` and `committee_referral_rate` columns
+- Pattern now captures 7,049 records previously in `other_decisions`
+
+**Post-Fix Verification**:
+```sql
+-- Verify committee referrals are now properly classified
+SELECT 
+    COUNT(*) FILTER (WHERE processed_in LIKE '%UTSKOTT%') AS committee_referrals,
+    COUNT(*) FILTER (WHERE processed_in NOT LIKE '%UTSKOTT%' 
+                     AND processed_in NOT LIKE '%BIFALL%' 
+                     AND processed_in NOT LIKE '%AVSLAG%') AS other_decisions
+FROM document_proposal_data;
+```
+
+---
+
+### Data Quality Checklist
+
+Use this checklist when making schema changes or after major data imports:
+
+**Before Schema Changes:**
+- [ ] Run distinct values extraction: `./extract-distinct-values.sh`
+- [ ] Review CSV files for new patterns or unexpected values
+- [ ] Identify columns used in view conditional checks
+- [ ] Document any new patterns discovered
+
+**After Schema Changes:**
+- [ ] Re-run distinct values extraction
+- [ ] Compare new values against view conditional checks
+- [ ] Verify all patterns are matched (no records fall into "other" categories unintentionally)
+- [ ] Run verification queries for affected views
+- [ ] Create Liquibase changesets for view modifications if needed
+
+**Regular Maintenance:**
+- [ ] Run distinct values analysis monthly
+- [ ] Review DISTINCT_VALUES_ANALYSIS.md for pattern evolution
+- [ ] Monitor "other" categories in views for unexpected growth
+- [ ] Update conditional patterns when new data values appear
+- [ ] Document pattern changes in Liquibase changelogs
+
+**View Pattern Validation:**
+- [ ] Check that all distinct values from CSV files have corresponding patterns in views
+- [ ] Verify CASE statements cover all possible values
+- [ ] Ensure no hardcoded values are outdated
+- [ ] Test with actual data samples
+- [ ] Consider case sensitivity in pattern matching (use UPPER/LOWER if needed)
+- [ ] Account for Swedish character encoding (å, ä, ö)
+
+**Quality Metrics:**
+- [ ] No more than 5% of records should fall into "other" categories
+- [ ] All known patterns should be explicitly handled
+- [ ] View results should match data dictionary expectations
+- [ ] Conditional checks should be documented in view comments
+
+---
+
+### Edge Cases and Considerations
+
+**Swedish Character Encoding:**
+- Patterns must handle Swedish characters: å, ä, ö, Å, Ä, Ö
+- Use Unicode-aware pattern matching
+- Consider both upper and lower case variants
+
+**Pattern Matching Strategies:**
+- Use `LIKE '%pattern%'` for substring matching
+- Use `= 'exact_value'` for exact matching
+- Use `UPPER()` or `LOWER()` for case-insensitive matching
+- Use `ANY (ARRAY[...])` for multiple exact values
+
+**Typo Handling:**
+Example typos found in data:
+- 'ubtskottet' (typo for 'utskottet')
+- '=utkottet' (typo for '=utskottet')
+
+**Decision**: Document typos but generally don't add patterns for them unless they occur frequently (>100 times).
+
+**Testing Strategy:**
+1. Run verification queries before applying fixes
+2. Apply Liquibase changeset in development environment
+3. Run verification queries after fixes
+4. Validate that new patterns don't create false positives
+5. Confirm affected views return expected results
+6. Compare record counts before and after
+7. Refresh materialized views that depend on changed views
+
+---
+
 ## 📊 Daily Operations Checklist
 
 Intelligence Operatives should perform these tasks regularly. For commands, see [Quick Reference Commands](#-quick-reference-commands).

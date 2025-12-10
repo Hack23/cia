@@ -686,6 +686,11 @@ From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
 
 Sophisticated experience scoring system that calculates weighted experience based on assignment types, durations, and roles. Provides standardized experience classification from NOVICE to VETERAN, enabling experience-based analysis and comparative assessments.
 
+> **⚠️ Data Quality Note**: This view was affected by a missing role pattern issue that has been resolved.  
+> **Issue**: Missing 'Förste vice talman' in talmansuppdrag scoring (affected 8 records)  
+> **Status**: ✅ Fixed in Liquibase changeset db-changelog-1.44.xml  
+> **Details**: See [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-data-quality-analysis) in README-SCHEMA-MAINTENANCE.md
+
 #### Key Columns
 
 | Column | Type | Description | Example |
@@ -2023,6 +2028,11 @@ LIMIT 50;
 
 Evaluates ministry-level legislative performance by tracking government proposal outcomes, approval rates, and processing times. Critical for assessing executive branch effectiveness, minister performance, and coalition stability.
 
+> **⚠️ Data Quality Note**: This view was affected by missing pattern matching for committee referrals.  
+> **Issue**: Decision chamber pattern matching - 7,049 records were misclassified as "other"  
+> **Status**: ✅ Fixed in Liquibase changeset db-changelog-1.45.xml (added committee referral tracking)  
+> **Details**: See [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-data-quality-analysis) in README-SCHEMA-MAINTENANCE.md
+
 #### Key Metrics
 
 - **Ministry Approval Rate**: Success rate of ministry proposals
@@ -2097,6 +2107,11 @@ ORDER BY decision_year DESC, decision_quarter DESC, approval_rate DESC;
 #### Purpose
 
 Provides time-series analysis of legislative decision patterns with moving averages for trend detection. Enables identification of seasonal patterns, decision volume anomalies, and processing efficiency trends.
+
+> **⚠️ Data Quality Note**: This view was affected by missing pattern matching for committee referrals.  
+> **Issue**: Decision chamber pattern matching - 7,049 records were misclassified as "other"  
+> **Status**: ✅ Fixed in Liquibase changeset db-changelog-1.45.xml (added committee referral tracking)  
+> **Details**: See [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-data-quality-analysis) in README-SCHEMA-MAINTENANCE.md
 
 #### Key Metrics
 
