@@ -97,6 +97,7 @@ Views are classified by intelligence value for analytical operations:
 | **Business Product Document** | [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md) | Commercial product strategy and market analysis |
 | **JSON Export Specifications** | [json-export-specs/](json-export-specs/) | API schemas and data format specifications |
 | **Intelligence Data Flow Map** | [INTELLIGENCE_DATA_FLOW.md](INTELLIGENCE_DATA_FLOW.md) | Central cross-reference hub showing data pipeline |
+| **Intelligence Evolution Changelog** | [CHANGELOG_INTELLIGENCE.md](CHANGELOG_INTELLIGENCE.md) | Unified intelligence capability tracking |
 | **Intelligence Frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) | Analysis methodologies and OSINT techniques |
 | **Risk Rules** | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) | 45 behavioral detection rules |
 | **Changelog Analysis** | [LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) | Schema evolution analysis |

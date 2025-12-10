@@ -21,6 +21,7 @@ This document provides comprehensive intelligence analysis documentation for all
 | I Want To... | Navigate To |
 |--------------|-------------|
 | **See complete data flow pipeline** | [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) |
+| **Track risk rule evolution** | [Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md) |
 | **Find which views support risk rules** | [Risk Rule → View Mapping](INTELLIGENCE_DATA_FLOW.md#risk-rule--view-mapping) |
 | **Understand analytical frameworks** | [Data Analysis Documentation](DATA_ANALYSIS_INTOP_OSINT.md) |
 | **Browse all database views** | [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |

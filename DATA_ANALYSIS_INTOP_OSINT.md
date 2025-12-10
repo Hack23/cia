@@ -48,6 +48,7 @@ This document provides comprehensive documentation of data analysis methodologie
 | Document | Focus | Description | Link |
 |----------|-------|-------------|------|
 | **[Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md)** | 🗺️ Navigation | Central cross-reference hub | [View](https://github.com/Hack23/cia/blob/master/INTELLIGENCE_DATA_FLOW.md) |
+| **[Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md)** | 📜 Changelog | Unified intelligence capability tracking | [View](https://github.com/Hack23/cia/blob/master/CHANGELOG_INTELLIGENCE.md) |
 | **[Database View Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | 82 database views catalog | [View](https://github.com/Hack23/cia/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
 | **[Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md)** | 🔴 Risk Rules | 45 behavioral detection rules | [View](https://github.com/Hack23/cia/blob/master/RISK_RULES_INTOP_OSINT.md) |
 | **[Liquibase Intelligence Analysis](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 🗄️ Database | Schema evolution intelligence analysis | [View](https://github.com/Hack23/cia/blob/master/LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) |

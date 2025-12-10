@@ -286,15 +286,15 @@ For details on our technology lifecycle management, see the [End-of-Life Strateg
 
 The CIA platform provides comprehensive intelligence operations (INTOP) and open-source intelligence (OSINT) capabilities. Our intelligence documentation tracks the evolution of analytical frameworks, risk assessment rules, and database views that power political intelligence products.
 
-### 📋 Intelligence Changelogs
+### 📋 Intelligence Changelog
 
-Track the evolution of intelligence capabilities and analytical infrastructure:
+Unified tracking of intelligence evolution across all capabilities:
 
 | Document | Focus | Description | Documentation Link |
 |----------|-------|-------------|-------------------|
-| **[Intelligence Analysis Changelog](CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 📊 Intelligence | Complete history of intelligence capabilities, frameworks, and OSINT enhancements | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
-| **[Database Views Changelog](CHANGELOG_DATABASE_VIEWS.md)** | 🗄️ Views | Detailed tracking of all 85 database views with schema specifications | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_DATABASE_VIEWS.md) |
-| **[Risk Rules Changelog](CHANGELOG_RISK_RULES.md)** | 🔴 Risk Rules | Evolution of 50 behavioral assessment rules across 5 domains | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_RISK_RULES.md) |
+| **[Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md)** | 🎯 Unified | Comprehensive tracking of intelligence capabilities, database views, risk rules, and analytical frameworks | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_INTELLIGENCE.md) |
+
+**Historical Changelogs** (Archived): [Intelligence Analysis](docs/archive/CHANGELOG_INTELLIGENCE_ANALYSIS.md), [Database Views](docs/archive/CHANGELOG_DATABASE_VIEWS.md), [Risk Rules](docs/archive/CHANGELOG_RISK_RULES.md)
 
 ### 📚 Core Intelligence Documentation
 
