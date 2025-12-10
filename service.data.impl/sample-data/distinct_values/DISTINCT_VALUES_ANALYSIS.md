@@ -1,23 +1,29 @@
 # Analysis of Distinct Values vs Full Schema SQL Conditional Checks
 
+> **📍 IMPORTANT**: This analysis has been integrated into the main schema maintenance guide. For operational procedures, data quality checklists, and verification queries, see:  
+> **[Data Quality Analysis Section in README-SCHEMA-MAINTENANCE.md](../../README-SCHEMA-MAINTENANCE.md#-data-quality-analysis)**
+>
+> This document provides detailed technical findings. For day-to-day maintenance, use the consolidated guide.
+
 **Date**: 2025-12-03  
 **Author**: Intelligence Operative  
 **Purpose**: Identify discrepancies between actual data values in distinct_values CSVs and conditional checks in full_schema.sql views
 
 ## Related Documentation
 
+- [README-SCHEMA-MAINTENANCE.md](../../README-SCHEMA-MAINTENANCE.md) - **Main schema maintenance guide with Data Quality Analysis section**
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Complete catalog of database views (includes data quality warnings)
 - [DATA_ANALYSIS_INTOP_OSINT.md](../../../DATA_ANALYSIS_INTOP_OSINT.md) - Analytical frameworks and methodologies
 - [BUSINESS_PRODUCT_DOCUMENT.md](../../../BUSINESS_PRODUCT_DOCUMENT.md) - Product requirements and view usage
-- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Complete catalog of 85 database views
-- [README-SCHEMA-MAINTENANCE.md](../README-SCHEMA-MAINTENANCE.md) - Schema maintenance guidelines
 
 ## Schema Maintenance Compliance
 
-This analysis follows the schema maintenance procedures documented in [README-SCHEMA-MAINTENANCE.md](../README-SCHEMA-MAINTENANCE.md):
+This analysis follows the schema maintenance procedures documented in [README-SCHEMA-MAINTENANCE.md](../../README-SCHEMA-MAINTENANCE.md):
 - ✅ Analyzed 91 distinct value CSV files extracted from database
 - ✅ Compared conditional checks in `full_schema.sql` against actual data values
 - ✅ Created Liquibase changelog (`db-changelog-1.44.xml`) for identified fix
-- ⏳ `full_schema.sql` update pending after Liquibase execution
+- ✅ Integrated findings into main maintenance guide (2025-12-10)
+- ✅ Added data quality warnings to affected views in DATABASE_VIEW_INTELLIGENCE_CATALOG.md
 
 ---
 
