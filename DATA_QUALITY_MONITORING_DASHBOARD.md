@@ -26,7 +26,7 @@ This ensures the integrity of political intelligence analysis performed by the C
 
 ## 📊 Executive Dashboard
 
-**Overall Data Quality Score**: 94.2/100 🟢 **Healthy**  
+**Overall Data Quality Score**: 90.6/100 🟢 **Healthy**  
 **Last Updated**: 2025-12-11  
 **Status**: 🟢 All systems operational
 
@@ -51,7 +51,7 @@ Overall Score = (OSINT Sources × 0.30) + (Database Health × 0.25) +
 = 90.61/100 🟢
 ```
 
-**Note**: Adjusted to 94.2/100 factoring in operational readiness and recent fixes deployed 2025-11-28.
+**Note**: The calculated score reflects the weighted average of all components. Recent improvements include view dependencies (55→91, +65%) and resolution of 2 critical data quality issues affecting 7,057 records (2025-11-28).
 
 ---
 
@@ -460,7 +460,7 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
    curl -I https://data.riksdagen.se/personlista/
    
    # Check response time
-   curl -w "@curl-format.txt" -o /dev/null -s https://data.riksdagen.se/personlista/
+   curl -w "%{time_total}\n" -o /dev/null -s https://data.riksdagen.se/personlista/
    ```
 
 2. **Review Import Logs**:
@@ -519,22 +519,35 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 
 2. **Review Missing Indexes**:
    ```sql
-   -- Find tables without FK indexes
-   SELECT 
+   -- Find foreign key columns without supporting indexes (precise, no substring false positives)
+   SELECT
+       tc.table_schema,
        tc.table_name,
        kcu.column_name,
-       ccu.table_name AS foreign_table_name
+       ccu.table_name AS foreign_table_name,
+       ccu.column_name AS foreign_column_name
    FROM information_schema.table_constraints AS tc
    JOIN information_schema.key_column_usage AS kcu
        ON tc.constraint_name = kcu.constraint_name
+       AND tc.table_schema = kcu.table_schema
    JOIN information_schema.constraint_column_usage AS ccu
        ON ccu.constraint_name = tc.constraint_name
+       AND ccu.table_schema = tc.table_schema
    WHERE tc.constraint_type = 'FOREIGN KEY'
-   AND NOT EXISTS (
-       SELECT 1 FROM pg_indexes
-       WHERE tablename = tc.table_name
-       AND indexdef LIKE '%' || kcu.column_name || '%'
-   );
+     AND NOT EXISTS (
+       SELECT 1
+       FROM pg_index i
+       JOIN pg_class c ON c.oid = i.indrelid
+       JOIN pg_namespace n ON n.oid = c.relnamespace
+       JOIN pg_attribute a ON a.attrelid = c.oid
+       WHERE c.relname = tc.table_name
+         AND n.nspname = tc.table_schema
+         AND a.attname = kcu.column_name
+         AND a.attnum = ANY(i.indkey)
+         AND i.indisvalid
+         AND i.indisready
+         AND NOT i.indisprimary
+     );
    ```
 
 3. **Check Materialized View Refresh Status**:
@@ -552,6 +565,8 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 4. **Analyze Slow Queries**:
    ```sql
    -- Find slow running queries (PostgreSQL 16)
+   -- Note: Requires pg_stat_statements extension to be enabled
+   -- Enable with: CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
    SELECT 
        query,
        mean_exec_time,
@@ -617,13 +632,14 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 4. **Review View Dependencies**:
    ```sql
    -- Find dependent objects
+   -- Replace 'view_name' with actual view name (e.g., 'view_riksdagen_politician_summary')
    SELECT DISTINCT dependent_ns.nspname as dependent_schema,
           dependent_view.relname as dependent_view 
    FROM pg_depend 
    JOIN pg_rewrite ON pg_depend.objid = pg_rewrite.oid 
    JOIN pg_class as dependent_view ON pg_rewrite.ev_class = dependent_view.oid 
    JOIN pg_namespace dependent_ns ON dependent_ns.oid = dependent_view.relnamespace
-   WHERE pg_depend.refobjid = 'view_name'::regclass;
+   WHERE pg_depend.refobjid = 'view_riksdagen_politician_summary'::regclass;
    ```
 
 **Resolution**:
@@ -698,19 +714,21 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 - Alert emails not received
 - Dashboard not showing alert indicators
 
-**Diagnostic Steps**:
+> ⚠️ **Note**: The alerting system is a **future enhancement (Phase 4)**. The diagnostic steps below are placeholder examples for future implementation. Currently, monitoring must be performed manually using the health check and validation scripts documented in this guide.
+
+**Diagnostic Steps** (Future Implementation):
 1. **Check Monitoring Service**:
    ```bash
-   # Verify monitoring service running
+   # Verify monitoring service running (future implementation)
    systemctl status cia-monitoring
    
-   # Check monitoring logs
+   # Check monitoring logs (future implementation)
    tail -f /var/log/cia/monitoring.log
    ```
 
 2. **Verify Alert Configuration**:
    ```bash
-   # Review alert threshold configuration
+   # Review alert threshold configuration (future implementation)
    cat /etc/cia/alert-config.yml
    
    # Test email notification
@@ -719,7 +737,8 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 
 3. **Check Alert History**:
    ```sql
-   -- Review recent alerts (if alert table exists)
+   -- Review recent alerts (future implementation)
+   -- Note: The data_quality_alerts table does not exist yet
    SELECT alert_type, alert_level, created_at, resolved_at
    FROM data_quality_alerts
    ORDER BY created_at DESC
@@ -1148,7 +1167,7 @@ Licensed under the Apache License, Version 2.0. See [LICENSE.txt](LICENSE.txt) f
 
 ### At a Glance
 
-**Overall Data Quality**: 94.2/100 🟢 Healthy  
+**Overall Data Quality**: 90.6/100 🟢 Healthy  
 **OSINT Sources**: 97.4% completeness ✅  
 **Database Health**: 85.2/100 🟢 Good  
 **View Validation**: 100% (84/84) ✅  
