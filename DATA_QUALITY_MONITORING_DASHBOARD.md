@@ -776,6 +776,57 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 
 ---
 
+## 📚 Related Documentation
+
+This dashboard integrates with comprehensive intelligence documentation across the CIA platform.
+
+### Data Quality & Validation
+
+| Document | Focus | Description | Link |
+|----------|-------|-------------|------|
+| **[OSINT Data Analysis](DATA_ANALYSIS_INTOP_OSINT.md)** | 🎯 OSINT Quality | Source data quality metrics, 6 analytical frameworks | [View](DATA_ANALYSIS_INTOP_OSINT.md#core-platform-metrics-verified-2025-11-28) |
+| **[Schema Maintenance Guide](service.data.impl/README-SCHEMA-MAINTENANCE.md)** | 🔧 Health Checks | Database health check procedures, validation scripts | [View](service.data.impl/README-SCHEMA-MAINTENANCE.md#health-check-and-validation) |
+| **[View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ View Validation | 84 database views catalog with validation status | [View](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#key-statistics-reverified-2025-11-25) |
+| **[Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-data-quality-analysis)** | 📊 Analysis | Distinct values analysis, known issues, fixes | [View](service.data.impl/README-SCHEMA-MAINTENANCE.md#-data-quality-analysis) |
+
+### Data Pipeline & Architecture
+
+| Document | Focus | Description | Link |
+|----------|-------|-------------|------|
+| **[Intelligence Data Flow](INTELLIGENCE_DATA_FLOW.md)** | 🗺️ Pipeline | Complete data pipeline from OSINT to intelligence products | [View](INTELLIGENCE_DATA_FLOW.md#complete-data-flow-diagram) |
+| **[Architecture Documentation](ARCHITECTURE.md)** | 🏛️ Architecture | System architecture (C4 model), container diagrams | [View](ARCHITECTURE.md) |
+| **[Data Model](DATA_MODEL.md)** | 📊 Schema | Database schema relationships, entity diagrams | [View](DATA_MODEL.md) |
+| **[Liquibase Intelligence Analysis](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 🗄️ Schema Evolution | Schema evolution tracking, changelog analysis | [View](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
+
+### Intelligence Operations
+
+| Document | Focus | Description | Link |
+|----------|-------|-------------|------|
+| **[Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md)** | 🔴 Risk Detection | 50 behavioral detection rules with accuracy metrics | [View](RISK_RULES_INTOP_OSINT.md) |
+| **[Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md)** | 📜 Changelog | Unified intelligence capability tracking | [View](CHANGELOG_INTELLIGENCE.md) |
+| **[Drools Risk Rules](DROOLS_RISK_RULES.md)** | ⚙️ Rules Engine | Technical rule documentation and implementation | [View](DROOLS_RISK_RULES.md) |
+
+### External Data Sources
+
+| Source | Documentation | Description |
+|--------|---------------|-------------|
+| **Riksdagen API** | [data.riksdagen.se](https://data.riksdagen.se/) | Swedish Parliament open data API |
+| **Election Authority** | [val.se](https://www.val.se/) | Swedish Election Authority data |
+| **World Bank** | [data.worldbank.org](https://data.worldbank.org/) | World Bank Open Data portal |
+| **Financial Authority** | [esv.se](https://www.esv.se/) | Swedish Financial Management Authority |
+
+### ISMS & Security
+
+| Document | Focus | Link |
+|----------|-------|------|
+| **[Security Policy](SECURITY.md)** | Security | Platform security policy and reporting |
+| **[ISMS Compliance Mapping](ISMS_COMPLIANCE_MAPPING.md)** | ISMS | Policy mapping to security controls |
+| **[Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)** | ISMS | Development security standards |
+| **[Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md)** | ISMS | Vulnerability handling procedures |
+| **[Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md)** | ISMS | Security incident response |
+
+---
+
 ## 🏗️ Architecture
 
 ### Component Overview
