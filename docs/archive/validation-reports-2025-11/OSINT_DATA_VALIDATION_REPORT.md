@@ -1,5 +1,29 @@
 # OSINT Data Validation Report
 
+> **⚠️ ARCHIVED DOCUMENT - 2025-12-11**
+> 
+> This document has been archived as its content has been fully integrated into the primary authoritative document:
+> **[DATA_ANALYSIS_INTOP_OSINT.md](../../DATA_ANALYSIS_INTOP_OSINT.md)**
+> 
+> All validation metrics, OSINT source quality assessments, and framework coverage analysis documented here
+> are now consolidated in DATA_ANALYSIS_INTOP_OSINT.md with comprehensive "Validation Evidence ✅" sections
+> for each of the 6 analysis frameworks.
+> 
+> **For current validation information, please refer to:**
+> - [DATA_ANALYSIS_INTOP_OSINT.md - Executive Summary](../../DATA_ANALYSIS_INTOP_OSINT.md#-executive-summary-verified-2025-11-28)
+> - [Temporal Analysis Framework Validation](../../DATA_ANALYSIS_INTOP_OSINT.md#validation-evidence-)
+> - [Comparative Analysis Framework Validation](../../DATA_ANALYSIS_INTOP_OSINT.md#validation-evidence--1)
+> - [Pattern Recognition Framework Validation](../../DATA_ANALYSIS_INTOP_OSINT.md#validation-evidence--2)
+> - [Predictive Intelligence Framework Validation](../../DATA_ANALYSIS_INTOP_OSINT.md#validation-evidence--3)
+> - [Network Analysis Framework Validation](../../DATA_ANALYSIS_INTOP_OSINT.md#validation-evidence--4)
+> - [Decision Intelligence Framework Validation](../../DATA_ANALYSIS_INTOP_OSINT.md#validation-evidence--5)
+> 
+> **Archive Reason:** Content consolidated into primary document (Issue: docs: Enhance DATA_ANALYSIS_INTOP_OSINT.md with consolidated validation metrics)
+> **Archive Date:** 2025-12-11
+> **Archived By:** Copilot Intelligence Operative Agent
+
+---
+
 ## 🎯 Executive Summary
 
 **Date**: 2025-11-27 (Updated: 2025-11-28)  

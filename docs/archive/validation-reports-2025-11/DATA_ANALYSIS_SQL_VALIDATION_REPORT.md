@@ -1,5 +1,33 @@
 # DATA_ANALYSIS_INTOP_OSINT.md SQL Query Enhancement Report
 
+> **⚠️ ARCHIVED DOCUMENT - 2025-12-11**
+> 
+> This document has been archived as its content has been fully integrated into the primary authoritative document:
+> **[DATA_ANALYSIS_INTOP_OSINT.md](../../DATA_ANALYSIS_INTOP_OSINT.md)**
+> 
+> All SQL query validation results, performance metrics, and query examples documented here are now
+> consolidated in DATA_ANALYSIS_INTOP_OSINT.md with comprehensive "Validation Evidence ✅" sections
+> for each of the 6 analysis frameworks, including query execution times and edge case handling.
+> 
+> **For current SQL validation information, please refer to:**
+> - [DATA_ANALYSIS_INTOP_OSINT.md - Executive Summary](../../DATA_ANALYSIS_INTOP_OSINT.md#-executive-summary-verified-2025-11-28)
+> - [Performance Metrics Section](../../DATA_ANALYSIS_INTOP_OSINT.md#performance-metrics)
+> - [SQL Query Best Practices](../../DATA_ANALYSIS_INTOP_OSINT.md#-sql-query-best-practices)
+> - [Framework Validation Evidence Sections](../../DATA_ANALYSIS_INTOP_OSINT.md#validation-evidence-)
+> 
+> **SQL Query Examples Now Located In:**
+> - [Temporal Analysis Queries](../../DATA_ANALYSIS_INTOP_OSINT.md#sql-example-daily-voting-activity-monitoring)
+> - [Comparative Analysis Queries](../../DATA_ANALYSIS_INTOP_OSINT.md#sql-example-peer-benchmarking-within-party)
+> - [Pattern Recognition Queries](../../DATA_ANALYSIS_INTOP_OSINT.md#sql-example-behavioral-clustering-with-risk-classification)
+> - [Predictive Intelligence Queries](../../DATA_ANALYSIS_INTOP_OSINT.md#-coalition-stability-prediction)
+> - [Network Analysis Queries](../../DATA_ANALYSIS_INTOP_OSINT.md#-politician-influence-network-query-performance)
+> 
+> **Archive Reason:** Content consolidated into primary document (Issue: docs: Enhance DATA_ANALYSIS_INTOP_OSINT.md with consolidated validation metrics)
+> **Archive Date:** 2025-12-11
+> **Archived By:** Copilot Intelligence Operative Agent
+
+---
+
 **Date:** 2025-11-21 (Updated)  
 **Validator:** Copilot Intelligence Operative Agent  
 **Database:** PostgreSQL 16.10  
