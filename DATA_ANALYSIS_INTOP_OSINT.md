@@ -1,5 +1,14 @@
 # Data Analysis - Intelligence Operations & OSINT Perspective
 
+**Document Type:** Framework (Living Document)  
+**Status:** Active - Continuously Updated  
+**Last Updated:** 2025-12-11  
+**Classification:** Public Documentation  
+**Purpose:** Comprehensive documentation of data analysis methodologies, OSINT techniques, and intelligence operations frameworks  
+**External References:** Yes - Referenced in hack23.com blog posts and technical documentation
+
+---
+
 ## 🎯 Executive Summary (VERIFIED 2025-11-28)
 
 This document provides comprehensive documentation of data analysis methodologies, Open-Source Intelligence (OSINT) techniques, and intelligence operations frameworks employed by the Citizen Intelligence Agency platform. It bridges the gap between technical data collection, analytical frameworks, and intelligence product generation.
