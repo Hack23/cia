@@ -4,7 +4,7 @@
 
 This document provides comprehensive documentation of data analysis methodologies, Open-Source Intelligence (OSINT) techniques, and intelligence operations frameworks employed by the Citizen Intelligence Agency platform. It bridges the gap between technical data collection, analytical frameworks, and intelligence product generation.
 
-**This document has been enhanced with consolidated validation evidence from OSINT_DATA_VALIDATION_REPORT.md and DATA_ANALYSIS_SQL_VALIDATION_REPORT.md, providing comprehensive validation metrics for all 6 analysis frameworks.**
+**This document now integrates comprehensive validation evidence for all 6 analysis frameworks, providing verified metrics on data quality, SQL performance, risk rule coverage, and detection accuracy.**
 
 ### Core Platform Metrics (Verified 2025-11-28)
 
@@ -62,8 +62,6 @@ This document provides comprehensive documentation of data analysis methodologie
 - full_schema.sql (schema v1.37 with fixes)
 - DATABASE_VIEW_INTELLIGENCE_CATALOG.md (84 views)
 - RISK_RULES_INTOP_OSINT.md (50 rules)
-- OSINT_DATA_VALIDATION_REPORT.md (data quality metrics)
-- DATA_ANALYSIS_SQL_VALIDATION_REPORT.md (query performance)
 
 **Database Health**: 85.20/100 ✅ IMPROVED (from 78.55/100 pre-fix)
 - **Schema Integrity**: 92.13/100 (12 FK violations in qrtz_* tables only)
@@ -682,7 +680,7 @@ pie title "Resignation Probability - Lars Andersson"
 #### Validation Evidence ✅
 
 **Last Validated**: 2025-11-28  
-**Validation Source**: [OSINT_DATA_VALIDATION_REPORT.md](OSINT_DATA_VALIDATION_REPORT.md) and [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md)
+**Validation Source**: Consolidated validation evidence (see Executive Summary above)
 
 ##### Database Views (Verified 2025-11-25)
 
@@ -712,7 +710,7 @@ pie title "Resignation Probability - Lars Andersson"
 - `view_temporal_trends` (189 rows) ✅
 - 3 additional temporal trend views
 
-##### Data Quality (per OSINT_DATA_VALIDATION_REPORT.md)
+##### Data Quality (Validated 2025-11-28)
 
 **Primary Source: Riksdagen API**
 - **Status**: ✅ Operational
@@ -733,7 +731,7 @@ pie title "Resignation Probability - Lars Andersson"
 - NULL handling: Validated - All temporal queries use NULLIF for division safety
 - Date range consistency: ✅ All views validated for continuous date coverage
 
-##### SQL Validation (per DATA_ANALYSIS_SQL_VALIDATION_REPORT.md)
+##### SQL Validation (Validated 2025-11-28)
 
 **Temporal Queries Validated**: 7 queries across all granularities
 
@@ -1138,7 +1136,7 @@ pie title "Coalition Stability Forecast - Next 6 Months"
 #### Validation Evidence ✅
 
 **Last Validated**: 2025-11-28  
-**Validation Source**: [OSINT_DATA_VALIDATION_REPORT.md](OSINT_DATA_VALIDATION_REPORT.md) and [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md)
+**Validation Source**: Consolidated validation evidence (see Executive Summary above)
 
 ##### Database Views (Verified 2025-11-25)
 
@@ -1164,7 +1162,7 @@ pie title "Coalition Stability Forecast - Next 6 Months"
 - `view_riksdagen_vote_data_ballot_party_summary` ✅
 - 3 additional coalition analysis views
 
-##### Data Quality (per OSINT_DATA_VALIDATION_REPORT.md)
+##### Data Quality (Validated 2025-11-28)
 
 **Primary Sources**:
 
@@ -1189,7 +1187,7 @@ pie title "Coalition Stability Forecast - Next 6 Months"
 - Party aggregations: ✅ Validated (correct GROUP BY, accurate averages)
 - Cross-party alignment: ✅ Validated (fixed coalition matrix date range issue)
 
-##### SQL Validation (per DATA_ANALYSIS_SQL_VALIDATION_REPORT.md)
+##### SQL Validation (Validated 2025-11-28)
 
 **Comparative Queries Validated**: 3 queries (peer benchmarking, coalition analysis, party alignment)
 
@@ -1322,9 +1320,7 @@ pie title "Coalition Stability Forecast - Next 6 Months"
 **Data Flow Pipeline**:
 - [INTELLIGENCE_DATA_FLOW.md - Comparative Analysis Data Flow](INTELLIGENCE_DATA_FLOW.md#comparative-analysis-framework)
 
-**Validation Reports**:
-- [OSINT_DATA_VALIDATION_REPORT.md - Framework Coverage Analysis](OSINT_DATA_VALIDATION_REPORT.md#-analysis-framework-coverage)
-- [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md - Query #3: Peer Benchmarking](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md#query-3-comparative-analysis---peer-benchmarking)
+- (query validation integrated above)
 
 ---
 
@@ -2383,7 +2379,7 @@ WHERE pattern_persistence_pct >= 50  -- Pattern must persist in ≥50% of months
 #### Validation Evidence ✅
 
 **Last Validated**: 2025-11-28  
-**Validation Source**: [OSINT_DATA_VALIDATION_REPORT.md](OSINT_DATA_VALIDATION_REPORT.md) and [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md)
+**Validation Source**: Consolidated validation evidence (see Executive Summary above)
 
 ##### Database Views (Verified 2025-11-25)
 
@@ -2412,7 +2408,7 @@ WHERE pattern_persistence_pct >= 50  -- Pattern must persist in ≥50% of months
 - `view_riksdagen_coalition_alignment_matrix` ✅ (FIXED 2025-11-28)
 - Coalition and collaboration pattern views ✅
 
-##### Data Quality (per OSINT_DATA_VALIDATION_REPORT.md)
+##### Data Quality (Validated 2025-11-28)
 
 **Pattern Recognition Data Coverage**: 95% (improved from 88% pre-fix)
 
@@ -2434,7 +2430,7 @@ WHERE pattern_persistence_pct >= 50  -- Pattern must persist in ≥50% of months
 - Behavioral clustering: ✅ Validated (4 distinct clusters identified)
 - Temporal pattern consistency: ✅ Validated (patterns persist across aggregations)
 
-##### SQL Validation (per DATA_ANALYSIS_SQL_VALIDATION_REPORT.md)
+##### SQL Validation (Validated 2025-11-28)
 
 **Pattern Recognition Queries Validated**: 2 complex queries
 
@@ -2562,9 +2558,7 @@ WHERE pattern_persistence_pct >= 50  -- Pattern must persist in ≥50% of months
 **Data Flow Pipeline**:
 - [INTELLIGENCE_DATA_FLOW.md - Pattern Recognition Data Flow](INTELLIGENCE_DATA_FLOW.md#pattern-recognition-framework)
 
-**Validation Reports**:
-- [OSINT_DATA_VALIDATION_REPORT.md - Pattern Recognition Framework Coverage](OSINT_DATA_VALIDATION_REPORT.md#3-pattern-recognition-framework--95-coverage-improved)
-- [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md - Query #4: Behavioral Clustering](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md#query-4-pattern-recognition---behavioral-clustering)
+- (query validation integrated above)
 
 ---
 
@@ -3559,7 +3553,7 @@ print(f"Model should be used with caution if test MAE > 10% higher than CV MAE")
 #### Validation Evidence ✅
 
 **Last Validated**: 2025-11-28  
-**Validation Source**: [OSINT_DATA_VALIDATION_REPORT.md](OSINT_DATA_VALIDATION_REPORT.md) and [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md)
+**Validation Source**: Consolidated validation evidence (see Executive Summary above)
 
 ##### Database Views (Verified 2025-11-25)
 
@@ -3587,7 +3581,7 @@ print(f"Model should be used with caution if test MAE > 10% higher than CV MAE")
 - `view_riksdagen_vote_data_ballot_party_summary` (voting trends) ✅
 - `view_riksdagen_committee_decision_summary` (productivity trends) ✅
 
-##### Data Quality (per OSINT_DATA_VALIDATION_REPORT.md)
+##### Data Quality (Validated 2025-11-28)
 
 **Predictive Framework Coverage**: 100% (improved from 60% pre-fix) ✅
 
@@ -3619,7 +3613,7 @@ print(f"Model should be used with caution if test MAE > 10% higher than CV MAE")
 - Trend calculation accuracy: ✅ Validated (REGR_SLOPE functions)
 - Forecasting baseline quality: ✅ Validated (statistical significance thresholds)
 
-##### SQL Validation (per DATA_ANALYSIS_SQL_VALIDATION_REPORT.md)
+##### SQL Validation (Validated 2025-11-28)
 
 **Predictive Queries Validated**: 1 complex coalition stability query
 
@@ -3760,9 +3754,7 @@ print(f"Model should be used with caution if test MAE > 10% higher than CV MAE")
 **Data Flow Pipeline**:
 - [INTELLIGENCE_DATA_FLOW.md - Predictive Intelligence Data Flow](INTELLIGENCE_DATA_FLOW.md#predictive-intelligence-framework)
 
-**Validation Reports**:
-- [OSINT_DATA_VALIDATION_REPORT.md - Predictive Framework Coverage](OSINT_DATA_VALIDATION_REPORT.md#4-predictive-intelligence-framework--100-coverage-fixed)
-- [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md - Query #5: Coalition Stability](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md#query-5-predictive-intelligence---coalition-stability)
+- (query validation integrated above)
 
 **Schema Updates**:
 - [LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md - Changelog 1.37 View Fixes](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)
@@ -4865,7 +4857,7 @@ validate_network(G)
 #### Validation Evidence ✅
 
 **Last Validated**: 2025-11-28  
-**Validation Source**: [OSINT_DATA_VALIDATION_REPORT.md](OSINT_DATA_VALIDATION_REPORT.md) and [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md)
+**Validation Source**: Consolidated validation evidence (see Executive Summary above)
 
 ##### Database Views (Verified 2025-11-25)
 
@@ -4898,7 +4890,7 @@ validate_network(G)
   - **Future Capability**: Degree centrality, betweenness, eigenvector centrality
   - **Priority**: Medium (collaboration metrics currently functional)
 
-##### Data Quality (per OSINT_DATA_VALIDATION_REPORT.md)
+##### Data Quality (Validated 2025-11-28)
 
 **Network Analysis Framework Coverage**: 60% (core functional, advanced pending)
 
@@ -4925,7 +4917,7 @@ validate_network(G)
 - Temporal consistency: ✅ Validated (committee membership date ranges)
 - Network completeness: ✅ All active politicians have network data
 
-##### SQL Validation (per DATA_ANALYSIS_SQL_VALIDATION_REPORT.md)
+##### SQL Validation (Validated 2025-11-28)
 
 **Network Analysis Queries Validated**: 1 complex influence metrics query
 
@@ -5064,9 +5056,7 @@ validate_network(G)
 **Data Flow Pipeline**:
 - [INTELLIGENCE_DATA_FLOW.md - Network Analysis Data Flow](INTELLIGENCE_DATA_FLOW.md#network-analysis-framework)
 
-**Validation Reports**:
-- [OSINT_DATA_VALIDATION_REPORT.md - Network Analysis Coverage](OSINT_DATA_VALIDATION_REPORT.md#5-network-analysis-framework--60-coverage-improved)
-- [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md - Query #6: Network Analysis](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md#query-6-network-analysis---influence-mapping)
+- (query validation integrated above)
 
 **External Tools for Network Visualization**:
 - **Gephi**: Force-directed layouts, community detection
@@ -5664,7 +5654,7 @@ The Decision Intelligence Framework provides unique analytical capabilities not 
 #### Validation Evidence ✅
 
 **Last Validated**: 2025-11-28  
-**Validation Source**: [OSINT_DATA_VALIDATION_REPORT.md](OSINT_DATA_VALIDATION_REPORT.md) - Decision Intelligence Framework Section
+**Validation Source**: Consolidated validation evidence (see Executive Summary above)
 
 ##### Database Views (Verified 2025-11-28)
 
@@ -5679,7 +5669,7 @@ The Decision Intelligence Framework provides unique analytical capabilities not 
 
 **Framework Status**: All 5 core views operational (100% coverage)
 
-##### Data Quality (per OSINT_DATA_VALIDATION_REPORT.md)
+##### Data Quality (Validated 2025-11-28)
 
 **Decision Intelligence Framework Coverage**: 100% (fully operational post-2025-11-28 fixes) ✅
 
@@ -5882,10 +5872,6 @@ The Decision Intelligence Framework provides unique analytical capabilities not 
 
 **Data Flow Pipeline**:
 - [INTELLIGENCE_DATA_FLOW.md - Decision Intelligence Data Flow](INTELLIGENCE_DATA_FLOW.md#decision-intelligence-framework)
-
-**Validation Reports**:
-- [OSINT_DATA_VALIDATION_REPORT.md - Decision Intelligence Framework Coverage](OSINT_DATA_VALIDATION_REPORT.md#6-decision-intelligence-framework--100-coverage-fixed)
-- [OSINT_DATA_VALIDATION_REPORT.md - Ministry View Fixes](OSINT_DATA_VALIDATION_REPORT.md#-deployment-summary-2025-11-28)
 
 **Schema Evolution**:
 - [LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md - Changelog 1.37](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)
