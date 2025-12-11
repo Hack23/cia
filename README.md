@@ -305,6 +305,7 @@ Comprehensive documentation of analytical capabilities and methodologies:
 | **[Data Analysis - INTOP OSINT](DATA_ANALYSIS_INTOP_OSINT.md)** | 🎯 Frameworks | 6 analysis frameworks (Temporal, Comparative, Pattern Recognition, Predictive, Network, Decision) | [View Source](https://github.com/Hack23/cia/blob/master/DATA_ANALYSIS_INTOP_OSINT.md) |
 | **[Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md)** | 🔴 Risk Rules | 50 behavioral detection rules (24 politician, 10 party, 4 committee, 4 ministry, 5 decision, 3 other) | [View Source](https://github.com/Hack23/cia/blob/master/RISK_RULES_INTOP_OSINT.md) |
 | **[Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | Complete catalog of 85 database views (57 regular + 28 materialized) | [View Source](https://github.com/Hack23/cia/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **[Data Quality Monitoring Dashboard](DATA_QUALITY_MONITORING_DASHBOARD.md)** | 📊 Quality | Unified data quality monitoring with OSINT, database health, and view validation metrics | [View Source](https://github.com/Hack23/cia/blob/master/DATA_QUALITY_MONITORING_DASHBOARD.md) |
 | **[Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md)** | 🗺️ Pipeline | Data pipeline mappings and framework-to-view relationships | [View Source](https://github.com/Hack23/cia/blob/master/INTELLIGENCE_DATA_FLOW.md) |
 | **[Liquibase Intelligence Analysis](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 🗄️ Schema | Database schema evolution from intelligence perspective | [View Source](https://github.com/Hack23/cia/blob/master/LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
 
@@ -378,10 +379,12 @@ Navigate intelligence documentation efficiently based on your role:
 **Goal:** Maintain schema and optimize performance
 
 1. **Start**: [Schema Maintenance Guide](service.data.impl/README-SCHEMA-MAINTENANCE.md) - Database maintenance procedures
-2. **Then**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View documentation and optimization
-3. **Track Changes**: [Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md) - Schema evolution history
+2. **Then**: [Data Quality Monitoring Dashboard](DATA_QUALITY_MONITORING_DASHBOARD.md) - Monitor database health and quality metrics
+3. **Reference**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View documentation and optimization
+4. **Track Changes**: [Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md) - Schema evolution history
 
 **Key Use Cases:**
+- Monitoring database health and data quality metrics
 - Refreshing materialized views
 - Running health checks and validation
 - Understanding view dependencies and usage patterns
