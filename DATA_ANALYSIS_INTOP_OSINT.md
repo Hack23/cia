@@ -684,6 +684,7 @@ pie title "Resignation Probability - Lars Andersson"
 
 ##### Database Views (Verified 2025-11-25)
 
+> **Note:** Database views were last individually verified on 2025-11-25. The comprehensive validation for the entire analysis framework was completed on 2025-11-28 (see "Last Validated" above).
 **Total Views Supporting Temporal Analysis**: 35 views
 
 **Daily Granularity Views** (13 views):
