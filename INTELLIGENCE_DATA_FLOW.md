@@ -60,17 +60,17 @@ This document serves as the **central navigation hub** for the CIA platform's in
 
 ## 📋 Quick Navigation
 
-| I Want To... | Navigate To | Description |
-|--------------|-------------|-------------|
-| **See the complete data pipeline** | [Complete Data Flow Diagram](#complete-data-flow-diagram) | Visual overview of entire intelligence pipeline |
-| **Find views for an analysis type** | [Analysis Framework → View Mapping](#analysis-framework--view-mapping) | Framework-to-view relationships |
-| **Find analysis types for a view** | [View → Analysis Framework Mapping](#view--analysis-framework-mapping) | View-to-framework relationships |
-| **Understand risk rule data sources** | [Risk Rule → View Mapping](#risk-rule--view-mapping) | Rules and their data dependencies |
-| **Explore intelligence products** | [Intelligence Products](#intelligence-products) | How products are generated from views |
-| **Learn about analytical frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) | Deep dive into 6 analysis methodologies |
-| **Browse all database views** | [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) | Complete view catalog with examples |
-| **Review risk detection rules** | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) | All 50 behavioral detection rules |
-| **Maintain database schema** | [README-SCHEMA-MAINTENANCE.md](service.data.impl/README-SCHEMA-MAINTENANCE.md) | Schema maintenance procedures |
+| I Want To...                          | Navigate To                                                                                      | Description                                  |
+|---------------------------------------|--------------------------------------------------------------------------------------------------|----------------------------------------------|
+| **See the complete data pipeline**    | [Complete Data Flow Diagram](#complete-data-flow-diagram)                                        | Visual overview of entire intelligence pipeline |
+| **Find views for an analysis type**  | [Analysis Framework → View Mapping](#analysis-framework--view-mapping)                           | Framework-to-view relationships              |
+| **Find analysis types for a view**   | [View → Analysis Framework Mapping](#view--analysis-framework-mapping)                           | View-to-framework relationships              |
+| **Understand risk rule data sources** | [Risk Rule → View Mapping](#risk-rule--view-mapping)                                             | Rules and their data dependencies            |
+| **Explore intelligence products**     | [Intelligence Products](#intelligence-products)                                                  | How products are generated from views        |
+| **Learn about analytical frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md)                                    | Deep dive into 6 analysis methodologies      |
+| **Browse all database views**         | [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)                   | Complete view catalog with examples          |
+| **Review risk detection rules**       | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md)                                          | All 50 behavioral detection rules            |
+| **Maintain database schema**          | [README-SCHEMA-MAINTENANCE.md](service.data.impl/README-SCHEMA-MAINTENANCE.md)                   | Schema maintenance procedures                |
 
 ---
 

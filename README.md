@@ -397,6 +397,8 @@ Navigate intelligence documentation efficiently based on your role:
 2. **Then**: [Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md) - Analytical capabilities overview
 3. **Explore**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Data products inventory
 
+> _Note: See [Related Documentation in Intelligence Data Flow](INTELLIGENCE_DATA_FLOW.md#-related-documentation) for complete document cross-references._
+
 **Key Use Cases:**
 - Understanding product capabilities and intelligence products
 - Identifying feature gaps and opportunities
