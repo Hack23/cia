@@ -334,6 +334,86 @@ Comprehensive documentation of analytical capabilities and methodologies:
 | **OSINT Data Sources** | 4 | Riksdagen API, Election Authority, World Bank, Financial Authority |
 | **Intelligence Products** | 10+ | Scorecards, Coalition Analysis, Risk Assessments, Trend Reports, Decision Tracking |
 
+### 📖 Documentation Navigation Guide
+
+Navigate intelligence documentation efficiently based on your role:
+
+<table>
+<tr>
+<td width="50%">
+
+#### 📊 For Data Analysts
+**Goal:** Find views and analytical capabilities
+
+1. **Start**: [Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md) - Explore 6 analytical frameworks
+2. **Then**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Discover 84 database views
+3. **Reference**: [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) - Understand data pipelines
+
+**Key Use Cases:**
+- Finding views for specific analysis types (temporal, comparative, pattern recognition)
+- Understanding view relationships and dependencies
+- Accessing sample queries and usage patterns
+
+</td>
+<td width="50%">
+
+#### 🕵️ For Intelligence Operatives
+**Goal:** Understand complete intelligence pipeline
+
+1. **Start**: [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) - Complete data pipeline overview
+2. **Then**: [Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md) - OSINT methodologies and frameworks
+3. **Deep Dive**: [Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md) - 50 behavioral detection rules
+
+**Key Use Cases:**
+- Understanding OSINT collection methods
+- Analyzing behavioral patterns and anomalies
+- Generating intelligence products and assessments
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+#### 🗄️ For Database Administrators
+**Goal:** Maintain schema and optimize performance
+
+1. **Start**: [Schema Maintenance Guide](service.data.impl/README-SCHEMA-MAINTENANCE.md) - Database maintenance procedures
+2. **Then**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View documentation and optimization
+3. **Track Changes**: [Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md) - Schema evolution history
+
+**Key Use Cases:**
+- Refreshing materialized views
+- Running health checks and validation
+- Understanding view dependencies and usage patterns
+- Performance tuning and index optimization
+
+</td>
+<td width="50%">
+
+#### 📈 For Product Managers
+**Goal:** Understand capabilities and product features
+
+1. **Start**: [Business Product Document](BUSINESS_PRODUCT_DOCUMENT.md) - Product strategy and market positioning
+2. **Then**: [Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md) - Analytical capabilities overview
+3. **Explore**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Data products inventory
+
+> _Note: See [Related Documentation in Intelligence Data Flow](INTELLIGENCE_DATA_FLOW.md#-related-documentation) for complete document cross-references._
+
+**Key Use Cases:**
+- Understanding product capabilities and intelligence products
+- Identifying feature gaps and opportunities
+- Planning roadmap and prioritizing enhancements
+
+</td>
+</tr>
+</table>
+
+**Quick Links:**
+- 🗺️ [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) - Central navigation hub
+- 📜 [Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md) - Capability tracking over time
+- 🔍 [OSINT Data Sources](#-data-sources) - External API integrations
+- 📊 [Intelligence Metrics](#-intelligence-metrics-v1360) - Current capability counts
+
 </div>
 
 ## 🔒 Reporting Security Issues

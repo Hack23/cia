@@ -8,6 +8,27 @@ Comprehensive guide for database schema maintenance, validation, health monitori
 
 ---
 
+## 📋 Related Documentation
+
+This schema maintenance guide is part of a comprehensive intelligence documentation ecosystem:
+
+| Document | Focus | Description | Link |
+|----------|-------|-------------|------|
+| **[Database View Intelligence Catalog](../DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | Complete catalog of 84 database views | [View](../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **[Intelligence Data Flow Map](../INTELLIGENCE_DATA_FLOW.md)** | 🗺️ Pipeline | Complete data pipeline and cross-references | [View](../INTELLIGENCE_DATA_FLOW.md) |
+| **[Data Analysis Frameworks](../DATA_ANALYSIS_INTOP_OSINT.md)** | 🎯 Analysis | 6 analytical frameworks using database views | [View](../DATA_ANALYSIS_INTOP_OSINT.md) |
+| **[Risk Rules Documentation](../RISK_RULES_INTOP_OSINT.md)** | 🔴 Rules | 50 behavioral detection rules leveraging views | [View](../RISK_RULES_INTOP_OSINT.md) |
+| **[Intelligence Evolution Changelog](../CHANGELOG_INTELLIGENCE.md)** | 📜 History | Unified intelligence capability tracking | [View](../CHANGELOG_INTELLIGENCE.md) |
+| **[Liquibase Intelligence Analysis](../LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 🗄️ Schema | Schema evolution intelligence analysis | [View](../LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
+
+**Why Schema Maintenance Matters for Intelligence Operations:**
+- Database views documented in [Database View Intelligence Catalog](../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) depend on properly maintained schema
+- Analysis frameworks in [DATA_ANALYSIS_INTOP_OSINT.md](../DATA_ANALYSIS_INTOP_OSINT.md) require performant, validated views
+- Risk rules in [RISK_RULES_INTOP_OSINT.md](../RISK_RULES_INTOP_OSINT.md) depend on accurate, optimized database views
+- Schema changes must be tracked in [CHANGELOG_INTELLIGENCE.md](../CHANGELOG_INTELLIGENCE.md) for intelligence capability evolution
+
+---
+
 ## 🚀 Quick Reference Commands
 
 Essential commands for schema maintenance - copy and use immediately:
