@@ -8,17 +8,69 @@
 
 ---
 
+## 🎯 How to Use This Document
+
+This document serves as the **central navigation hub** for the CIA platform's intelligence documentation. It provides comprehensive mappings between:
+
+- **OSINT Data Sources** → Database Views → Analysis Frameworks → Intelligence Products
+- **Analysis Frameworks** ↔ **Database Views** (bidirectional mapping)
+- **Risk Rules** → **Database Views** (data source mapping)
+- **Database Views** → **Analysis Frameworks** (usage patterns)
+
+**Navigation Strategies:**
+- **Top-Down Approach**: Start with [Complete Data Flow Diagram](#complete-data-flow-diagram) to understand the entire pipeline
+- **Bottom-Up Approach**: Start with [View → Analysis Framework Mapping](#view--analysis-framework-mapping) to see how specific views are used
+- **Framework-Centric**: Use [Analysis Framework → View Mapping](#analysis-framework--view-mapping) to find views for your analysis type
+- **Risk-Centric**: Use [Risk Rule → View Mapping](#risk-rule--view-mapping) to understand risk detection data sources
+
+---
+
+## 📚 Related Documentation
+
+<table>
+<tr>
+<td width="50%">
+
+### 📊 Core Documentation
+
+| Document | Focus | Link |
+|----------|-------|------|
+| **[Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md)** | 🎯 Analysis | 6 analytical frameworks with methodologies |
+| **[Database View Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | 84 database views with complete documentation |
+| **[Risk Rules](RISK_RULES_INTOP_OSINT.md)** | 🔴 Rules | 50 behavioral detection rules |
+| **[Schema Maintenance](service.data.impl/README-SCHEMA-MAINTENANCE.md)** | 🔧 Maintenance | Database maintenance and optimization |
+
+</td>
+<td width="50%">
+
+### 📜 Supporting Documentation
+
+| Document | Focus | Link |
+|----------|-------|------|
+| **[Intelligence Changelog](CHANGELOG_INTELLIGENCE.md)** | 📜 History | Unified capability tracking |
+| **[Liquibase Analysis](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 🗄️ Schema | Schema evolution analysis |
+| **[Data Model](DATA_MODEL.md)** | 📊 Structure | Database schema relationships |
+| **[Business Product Doc](BUSINESS_PRODUCT_DOCUMENT.md)** | 💼 Strategy | Product strategy and features |
+
+</td>
+</tr>
+</table>
+
+---
+
 ## 📋 Quick Navigation
 
-| I Want To... | Navigate To |
-|--------------|-------------|
-| **See the complete data pipeline** | [Complete Data Flow Diagram](#complete-data-flow-diagram) |
-| **Find views for an analysis type** | [Analysis Framework → View Mapping](#analysis-framework--view-mapping) |
-| **Find analysis types for a view** | [View → Analysis Framework Mapping](#view--analysis-framework-mapping) |
-| **Understand risk rule data sources** | [Risk Rule → View Mapping](#risk-rule--view-mapping) |
-| **Learn about analytical frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) |
-| **Browse all database views** | [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
-| **Review risk detection rules** | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) |
+| I Want To... | Navigate To | Description |
+|--------------|-------------|-------------|
+| **See the complete data pipeline** | [Complete Data Flow Diagram](#complete-data-flow-diagram) | Visual overview of entire intelligence pipeline |
+| **Find views for an analysis type** | [Analysis Framework → View Mapping](#analysis-framework--view-mapping) | Framework-to-view relationships |
+| **Find analysis types for a view** | [View → Analysis Framework Mapping](#view--analysis-framework-mapping) | View-to-framework relationships |
+| **Understand risk rule data sources** | [Risk Rule → View Mapping](#risk-rule--view-mapping) | Rules and their data dependencies |
+| **Explore intelligence products** | [Intelligence Products](#intelligence-products) | How products are generated from views |
+| **Learn about analytical frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) | Deep dive into 6 analysis methodologies |
+| **Browse all database views** | [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) | Complete view catalog with examples |
+| **Review risk detection rules** | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) | All 50 behavioral detection rules |
+| **Maintain database schema** | [README-SCHEMA-MAINTENANCE.md](service.data.impl/README-SCHEMA-MAINTENANCE.md) | Schema maintenance procedures |
 
 ---
 
