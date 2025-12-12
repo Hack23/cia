@@ -6,11 +6,7 @@
 **Purpose:** Comprehensive guide for database schema maintenance, validation, health monitoring, and sample data extraction  
 **Target Audience:** Database Administrators, Intelligence Operatives, DevOps Engineers  
 **External References:** Yes - Referenced in CI/CD workflows  
-**Maintained by:** Intelligence Operative Agent (@intelligence-operative)
-
----
-
-Comprehensive guide for database schema maintenance, validation, health monitoring, and sample data extraction for the CIA intelligence platform.
+**Maintained By:** Intelligence Operative Agent (@intelligence-operative)
 
 ---
 

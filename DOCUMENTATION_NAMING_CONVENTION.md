@@ -22,6 +22,69 @@ This document establishes standardized naming conventions for **NEW** CIA projec
 
 ---
 
+## 📋 Standardized Metadata Headers
+
+All documentation files should include a standardized metadata header following this format:
+
+### Standard Metadata Fields (in order)
+
+```markdown
+# Document Title
+
+**Document Type:** [Catalog|Guide|Framework|Dashboard|Policy|Report|Summary|Assessment] (Living Document|Point-in-Time Snapshot)
+**Status:** [Active - Continuously Updated|Archived|Deprecated]
+**Last Updated:** YYYY-MM-DD
+**Version:** [Optional - for versioned documents, e.g., 1.0, 2.0.0]
+**Purpose:** [One-line description of document purpose]
+**Classification:** [Optional - e.g., Public Documentation, Internal]
+**Target Audience:** [Optional - e.g., Database Administrators, Developers]
+**External References:** [Yes/No - Details if Yes]
+**Maintained By:** [Optional - Team or person responsible]
+```
+
+### Field Descriptions
+
+| Field | Required | Description | Example |
+|-------|----------|-------------|---------|
+| **Document Type** | Yes | Type and lifecycle status | `Catalog (Living Document)` |
+| **Status** | Yes | Current document status | `Active - Continuously Updated` |
+| **Last Updated** | Yes | Date of last significant update | `2025-12-11` |
+| **Version** | Optional | Version number for versioned docs | `1.0` or `2.0.0` |
+| **Purpose** | Yes | Brief description of purpose | `Comprehensive catalog of database views` |
+| **Classification** | Optional | Access/visibility level | `Public Documentation` |
+| **Target Audience** | Optional | Intended readers | `Database Administrators, DevOps` |
+| **External References** | Yes | Whether externally linked | `Yes - Referenced in blog posts` |
+| **Maintained By** | Optional | Responsible party | `Intelligence Operations Team` |
+
+### Examples
+
+**Living Document Example:**
+```markdown
+# Database View Intelligence Catalog
+
+**Document Type:** Catalog (Living Document)  
+**Status:** Active - Continuously Updated  
+**Last Updated:** 2025-12-11  
+**Version:** 1.0  
+**Purpose:** Single source of truth for database view definitions and usage patterns  
+**Classification:** Public Documentation  
+**External References:** Yes - Referenced in hack23.com blog posts  
+**Maintained By:** Intelligence Operations Team
+```
+
+**Point-in-Time Report Example:**
+```markdown
+# OSINT Validation Report - November 2025
+
+**Document Type:** Report (Point-in-Time Snapshot)  
+**Status:** Archived  
+**Last Updated:** 2025-11-25  
+**Purpose:** Validation results for OSINT data sources as of November 2025  
+**External References:** No
+```
+
+---
+
 ## 📋 Document Type Prefixes
 
 ### Living Documents (Current State - Always Up-to-Date)
@@ -86,7 +149,7 @@ Standard repository files that follow GitHub/industry conventions:
 ### 4. Version Indicators
 
 - **Major Versions**: `_v1`, `_v2`, etc. at end of base filename
-  - Example: `CHANGELOG_INTELLIGENCE.md`
+  - Example: `CHANGELOG_INTELLIGENCE_v1.md`
 - **Semantic Versioning**: When detailed versioning needed in content, not filename
 - **Version History**: Track in changelog, not duplicate files
 
@@ -153,22 +216,24 @@ Standard repository files that follow GitHub/industry conventions:
 
 ---
 
-## ❌ Bad Naming Examples
+## ❌ Bad Naming Examples (For NEW Files)
 
-### Avoid These Patterns
+### Avoid These Patterns for NEW Documentation
+
+> **Note**: The examples below show naming patterns to AVOID when creating NEW documentation files. These are NOT recommendations to rename existing files, which must be preserved to maintain external link integrity.
 
 ```
-❌ DATABASE_VIEW_INTELLIGENCE_CATALOG.md
-   - No type prefix, ambiguous document type, subject buried
+❌ database_view_catalog.md
+   - Lowercase (inconsistent), no type prefix
 
-❌ DATA_ANALYSIS_INTOP_OSINT.md
-   - No type prefix, unclear abbreviation (INTOP)
+❌ Analysis_Data_OSINT.md
+   - Mixed case (inconsistent), no type prefix, unclear structure
 
-❌ MINISTRY_VIEW_FIXES_SUMMARY.md
-   - No date stamp for historical document, confusing order
+❌ ministry_fixes_summary.md
+   - No date stamp for point-in-time document, lowercase, no type prefix
 
-❌ VALIDATION_REPORT.md
-   - No date stamp, unclear if current or historical
+❌ validation_report.md
+   - No date stamp, unclear if current or historical, lowercase, no type prefix
 
 ❌ view_catalog.md
    - Lowercase (inconsistent), no prefix
@@ -182,63 +247,57 @@ Standard repository files that follow GitHub/industry conventions:
 
 ---
 
-## 🔄 Migration Strategy
+## 📝 Naming Process for NEW Files
 
-### Step 1: Assess Current Document
+> **IMPORTANT**: This section applies ONLY to creating NEW documentation files. DO NOT use these steps to rename existing files.
+
+### Step 1: Assess Document Requirements
 
 1. **Determine Document Type**:
    - Is it continuously updated (living) or point-in-time (historical)?
    - What category does it fit (catalog, guide, framework, report)?
 
-2. **Check for Dependencies**:
-   - What documents reference this file?
-   - Are there hardcoded paths in code or workflows?
+2. **Check Naming Conflicts**:
+   - Does a similar file already exist?
+   - Would this name conflict with existing documentation?
 
-### Step 2: Choose New Name
+### Step 2: Choose Appropriate Name
 
-Apply the appropriate prefix and structure:
+Apply the appropriate prefix and structure for NEW files:
+
+**Examples for NEW Files:**
 
 ```
-Old: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
-Analysis: Living catalog of database views
-New: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+Scenario: Creating a new database views catalog
+Recommended: CATALOG_DATABASE_VIEWS.md
 
-Old: DATA_ANALYSIS_INTOP_OSINT.md
-Analysis: Analytical framework document
-New: DATA_ANALYSIS_INTOP_OSINT.md
+Scenario: Creating a new OSINT analysis framework
+Recommended: FRAMEWORK_DATA_ANALYSIS_OSINT.md
 
-Old: MINISTRY_VIEW_FIXES_SUMMARY.md
-Analysis: Historical summary from 2025-12-01
-New: SUMMARY_20251201_MINISTRY_FIXES.md
+Scenario: Creating a point-in-time validation report
+Recommended: REPORT_20251201_OSINT_VALIDATION.md
 ```
 
-### Step 3: Execute Rename
+### Step 3: Create File with Metadata Header
 
-**Always use `git mv` to preserve history:**
+Include standardized metadata at the top:
 
-```bash
-git mv old-filename.md new-filename.md
+```markdown
+# Document Title
+
+**Document Type:** [Catalog|Guide|Framework|Dashboard|Report|Summary]
+**Status:** [Active - Continuously Updated|Point-in-Time Snapshot]
+**Last Updated:** YYYY-MM-DD
+**Purpose:** [Brief description]
+**External References:** [Yes/No - Details if applicable]
 ```
 
-### Step 4: Update Cross-References
+### Step 4: Register in Documentation Index
 
-Search for all references and update systematically:
-
-```bash
-# Find all references to old filename
-grep -r "old-filename.md" --include="*.md"
-
-# Update references (review before committing)
-find . -name "*.md" -type f -exec sed -i 's|old-filename\.md|new-filename.md|g' {} +
-```
-
-### Step 5: Update Workflows
-
-Check and update any GitHub Actions or CI/CD references:
-
-```bash
-find .github/workflows -name "*.yml" -type f -exec grep -l "old-filename" {} \;
-```
+Add reference to the new file in:
+- README.md (if appropriate)
+- Relevant documentation index files
+- Cross-reference from related documents
 
 ---
 
@@ -304,39 +363,36 @@ graph TD
 
 ---
 
-## 📚 Complete Migration Mapping
+## 📚 Existing Files - Reference Only
 
-### Living Documents
+**These files have established names with external references. DO NOT rename:**
 
-| Current Name | New Name | Rationale |
-|--------------|----------|-----------|
-| `DATABASE_VIEW_INTELLIGENCE_CATALOG.md` | `DATABASE_VIEW_INTELLIGENCE_CATALOG.md` | Catalog of database views |
-| `DATA_ANALYSIS_INTOP_OSINT.md` | `DATA_ANALYSIS_INTOP_OSINT.md` | Analytical framework |
-| `RISK_RULES_INTOP_OSINT.md` | `RISK_RULES_INTOP_OSINT.md` | Catalog of risk rules |
-| `service.data.impl/README-SCHEMA-MAINTENANCE.md` | `service.data.impl/README-SCHEMA-MAINTENANCE.md` | Procedural guide |
-| `INTELLIGENCE_DATA_FLOW.md` | `FRAMEWORK_INTELLIGENCE_DATA_FLOW.md` | Data flow framework |
-| `DATA_QUALITY_MONITORING_DASHBOARD.md` | `DATA_QUALITY_MONITORING_DASHBOARD.md` | Monitoring dashboard |
-| `ENTITY_VIEW_MAPPING.md` | `ENTITY_VIEW_MAPPING.md` | Cross-reference mapping |
-| `LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md` | `LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md` | Analysis of changelog |
+| Current Name | Document Type | Status | External Links |
+|--------------|---------------|--------|----------------|
+| `DATABASE_VIEW_INTELLIGENCE_CATALOG.md` | Catalog | Living | Yes - Blog posts |
+| `DATA_ANALYSIS_INTOP_OSINT.md` | Framework | Living | Yes - Blog posts |
+| `RISK_RULES_INTOP_OSINT.md` | Catalog | Living | Yes - Blog posts |
+| `service.data.impl/README-SCHEMA-MAINTENANCE.md` | Guide | Living | Yes - Workflows |
+| `INTELLIGENCE_DATA_FLOW.md` | Framework | Living | Yes - Documentation |
+| `DATA_QUALITY_MONITORING_DASHBOARD.md` | Dashboard | Living | Yes - Documentation |
+| `ENTITY_VIEW_MAPPING.md` | Mapping | Living | Yes - Documentation |
+| `LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md` | Analysis | Living | Yes - Documentation |
+| `CHANGELOG_INTELLIGENCE.md` | Changelog | Versioned | Yes - Release notes |
 
-### Changelog Documents
+### What These Names Would Be If Creating NEW Files
 
-| Current Name | New Name | Rationale |
-|--------------|----------|-----------|
-| `CHANGELOG_INTELLIGENCE.md` | `CHANGELOG_INTELLIGENCE.md` | Add version indicator |
+> **For reference only** - showing what ideal names would be for NEW files with similar purpose:
 
-### No Change Required
+| Existing File (Keep As-Is) | Ideal Name for NEW Similar File | Rationale |
+|----------------------------|----------------------------------|-----------|
+| `DATABASE_VIEW_INTELLIGENCE_CATALOG.md` | `CATALOG_DATABASE_VIEWS.md` | Type prefix first |
+| `DATA_ANALYSIS_INTOP_OSINT.md` | `FRAMEWORK_DATA_ANALYSIS_OSINT.md` | Clear framework type |
+| `RISK_RULES_INTOP_OSINT.md` | `CATALOG_RISK_RULES.md` | Type prefix first |
+| `INTELLIGENCE_DATA_FLOW.md` | `FRAMEWORK_INTELLIGENCE_DATA_FLOW.md` | Clear framework type |
+| `DATA_QUALITY_MONITORING_DASHBOARD.md` | `DASHBOARD_DATA_QUALITY.md` | Type prefix first |
+| `ENTITY_VIEW_MAPPING.md` | `MAPPING_ENTITY_VIEW.md` | Type prefix first |
 
-| Document | Reason |
-|----------|--------|
-| `README.md` | Standard GitHub convention |
-| `ARCHITECTURE.md` | Industry standard |
-| `SECURITY.md` | GitHub security policy |
-| `CONTRIBUTING.md` | Standard convention |
-| `CODE_OF_CONDUCT.md` | Standard convention |
-| `SWOT.md` | Established document |
-| `DATA_MODEL.md` | Established document |
-| `THREAT_MODEL.md` | Established document |
+**These are examples only - existing files are preserved to maintain external link integrity.**
 
 ---
 

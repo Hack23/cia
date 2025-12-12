@@ -3,8 +3,8 @@
 **Document Type:** Catalog (Living Document)  
 **Status:** Active - Continuously Updated  
 **Last Updated:** 2025-12-11  
-**Classification:** Public Documentation  
 **Purpose:** Comprehensive catalog of 50 risk assessment rules for behavioral analysis and threat detection  
+**Classification:** Public Documentation  
 **External References:** Yes - Referenced in hack23.com blog posts and technical documentation
 
 ---

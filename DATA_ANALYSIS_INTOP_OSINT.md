@@ -3,8 +3,8 @@
 **Document Type:** Framework (Living Document)  
 **Status:** Active - Continuously Updated  
 **Last Updated:** 2025-12-11  
-**Classification:** Public Documentation  
 **Purpose:** Comprehensive documentation of data analysis methodologies, OSINT techniques, and intelligence operations frameworks  
+**Classification:** Public Documentation  
 **External References:** Yes - Referenced in hack23.com blog posts and technical documentation
 
 ---

@@ -2,8 +2,8 @@
 
 **Document Type:** Dashboard (Living Document)  
 **Status:** Active - Continuously Updated  
-**Version:** 2.0.0  
 **Last Updated:** 2025-12-11  
+**Version:** 2.0.0  
 **Purpose:** Central hub for data quality monitoring across all intelligence operations  
 **External References:** Yes - Referenced in technical documentation
 
