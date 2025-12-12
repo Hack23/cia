@@ -57,8 +57,6 @@ The table of contents in CHANGELOG_INTELLIGENCE.md should be updated to include:
 - [Appendix A: Database View Schema Details](#appendix-a-database-view-schema-details)
 - [Appendix B: Risk Rule Specifications](#appendix-b-risk-rule-specifications)
 
-```
-
 
 ## [1.45.0] - 2025-12-03
 
