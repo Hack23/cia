@@ -410,7 +410,7 @@ mvn clean compile -pl service.data.impl -am -DskipTests
 
 ### Documentation
 - **ENTITY_VIEW_MAPPING.md**: Complete entity specifications
-- **IMPLEMENTATION_SUMMARY.md**: Project overview and status
+- **JPA_ENTITY_IMPLEMENTATION_STATUS.md**: Current implementation status (this document)
 - **RISK_RULES_INTOP_OSINT.md**: 45-rule framework definitions
 
 ### SQL Definitions
