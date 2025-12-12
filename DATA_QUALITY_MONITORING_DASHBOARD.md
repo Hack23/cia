@@ -1,12 +1,17 @@
 # CIA Platform Data Quality Monitoring Dashboard
 
+**Document Type:** Dashboard (Living Document)  
+**Status:** Active - Continuously Updated  
+**Last Updated:** 2025-12-11  
+**Version:** 2.0.0  
+**Purpose:** Central hub for data quality monitoring across all intelligence operations  
+**External References:** Yes - Referenced in technical documentation
+
+---
+
 ## 📋 Overview
 
 The Data Quality Monitoring Dashboard provides comprehensive, unified monitoring of data quality across all CIA platform intelligence operations, consolidating metrics from OSINT sources, database health checks, view validation, and operational performance into a single source of truth for platform data quality status.
-
-**Version**: 2.0.0  
-**Status**: Comprehensive Integration (Phase 2 Complete)  
-**Last Updated**: 2025-12-11
 
 ---
 

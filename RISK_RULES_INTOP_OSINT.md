@@ -1,5 +1,14 @@
 # Risk Rules Documentation - Intelligence Operations & OSINT Perspective
 
+**Document Type:** Catalog (Living Document)  
+**Status:** Active - Continuously Updated  
+**Last Updated:** 2025-12-11  
+**Purpose:** Comprehensive catalog of 50 risk assessment rules for behavioral analysis and threat detection  
+**Classification:** Public Documentation  
+**External References:** Yes - Referenced in hack23.com blog posts and technical documentation
+
+---
+
 ## 🎯 Executive Summary
 
 This document provides comprehensive intelligence analysis documentation for all risk assessment rules in the Citizen Intelligence Agency platform. From an **Intelligence Operations (INTOP)** and **Open-Source Intelligence (OSINT)** perspective, these rules form a sophisticated behavioral analysis framework for monitoring political actors, detecting anomalies, and identifying threats to democratic accountability.

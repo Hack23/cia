@@ -277,6 +277,7 @@ For details on our technology lifecycle management, see the [End-of-Life Strateg
 | **[CIA Features](https://hack23.com/cia-features.html)** | 🚀 Features | Platform features overview                | [View on hack23.com](https://hack23.com/cia-features.html)                     |
 | **[Threat Model](THREAT_MODEL.md)**                 | 🛡️ Security     | STRIDE / MITRE risk analysis              | [View Source](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md)        |
 | **[Unit Test Plan](UnitTestPlan.md)**               | 🧪 Testing      | Comprehensive testing strategy & coverage | [View Source](https://github.com/Hack23/cia/blob/master/UnitTestPlan.md)        |
+| **[Documentation Naming Convention](DOCUMENTATION_NAMING_CONVENTION.md)** | 📝 Standards | Naming standards for new documentation | [View Source](https://github.com/Hack23/cia/blob/master/DOCUMENTATION_NAMING_CONVENTION.md) |
 
 </div>
 

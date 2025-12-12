@@ -1,10 +1,12 @@
 # Schema Maintenance & Automation Guide
 
-Comprehensive guide for database schema maintenance, validation, health monitoring, and sample data extraction for the CIA intelligence platform.
-
-**Maintained by**: Intelligence Operative Agent (@intelligence-operative)  
-**Last Updated**: 2025-12-10  
-**Target Audience**: Database Administrators, Intelligence Operatives, DevOps Engineers
+**Document Type:** Guide (Living Document)  
+**Status:** Active - Continuously Updated  
+**Last Updated:** 2025-12-11  
+**Purpose:** Comprehensive guide for database schema maintenance, validation, health monitoring, and sample data extraction  
+**Target Audience:** Database Administrators, Intelligence Operatives, DevOps Engineers  
+**External References:** Yes - Referenced in CI/CD workflows  
+**Maintained By:** Intelligence Operative Agent (@intelligence-operative)
 
 ---
 
