@@ -76,6 +76,16 @@ Comprehensive tracking of intelligence capabilities, database views, risk rules,
 - [1.3.0](#130---2019-09-04) - Database refinements
 - [1.2.0](#120---2019-09-04) - Schema updates
 - [1.1.0](#110---2019-09-04) - Database improvements
+- [1.0.9]() - Database improvements
+- [1.0.9]() - Database improvements
+- [1.0.8]() - Database improvements
+- [1.0.7]() - Database improvements
+- [1.0.6]() - Database improvements
+- [1.0.5]() - Database improvements
+- [1.0.4]() - Database improvements
+- [1.0.3]() - Database improvements
+- [1.0.2]() - Database improvements
+- [1.0.1]() - Database improvements
 - [1.0.0](#100---2016-04-23) - Initial Release, based on changelog.xml refactor since 2013-07-08.
 
 **Appendices:**
