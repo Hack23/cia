@@ -31,7 +31,6 @@ Comprehensive tracking of intelligence capabilities, database views, risk rules,
 
 The table of contents in CHANGELOG_INTELLIGENCE.md should be updated to include:
 
-```markdown
 **Versions** (Most Recent First):
 - [1.45.0](#1450---2025-12-03) - Committee referral pattern added to Decision Intelligence views
 - [1.44.0](#1440---2025-12-03) - Deputy Speaker role scoring fix
@@ -40,7 +39,24 @@ The table of contents in CHANGELOG_INTELLIGENCE.md should be updated to include:
 - [1.41.0](#1410---2025-12-02) - Risk score rebel rate calculation fix
 - [1.40.0](#1400---2025-12-02) - Crisis resilience indicators fix, percentile-based detection
 - [1.39.0](#1390---2025-12-01) - Database view fixes (ministry effectiveness)
-[... existing entries continue ...]
+- [1.39.0](#1390---2025-12-01) - Database view fixes (ministry effectiveness)
+- [1.36.0](#1360---2025-11-24) - Decision Intelligence Framework, 3 new views
+- [1.35.0](#1350---2025-11-22) - 5 decision pattern risk rules, documentation enhancement
+- [1.34.0](#1340---2025-11-18) - 3 temporal views, OSINT improvements
+- [1.33.0](#1330---2025-11-10) - 10 behavioral risk rules, pg_audit integration
+- [1.32.0](#1320---2025-11-01) - Network & Predictive frameworks, 2 new views
+- [1.31.0](#1310---2025-10-15) - 4 ministry risk rules, ministry views
+- [1.30.0](#1300---2025-09-01) - 12 politician risk rules
+- [1.20.0](#1200---2024-06-01) - Initial risk assessment system
+- [1.13.0](#1130---2023-03-15) - Pattern Recognition Framework
+- [1.10.0](#1100---2022-06-01) - Temporal & Comparative Frameworks
+- [1.0.0](#100---2014-11-01) - Initial Release
+- [Unreleased](#unreleased) - In development
+
+**Appendices:**
+- [Appendix A: Database View Schema Details](#appendix-a-database-view-schema-details)
+- [Appendix B: Risk Rule Specifications](#appendix-b-risk-rule-specifications)
+
 ```
 
 
