@@ -76,7 +76,7 @@ Comprehensive tracking of intelligence capabilities, database views, risk rules,
 - [1.3.0](#130---2019-09-04) - Database refinements
 - [1.2.0](#120---2019-09-04) - Schema updates
 - [1.1.0](#110---2019-09-04) - Database improvements
-- [1.0.0](#100---2016-04-23) - Initial Release
+- [1.0.0](#100---2016-04-23) - Initial Release, based on changelog.xml refactor since 2013-07-08.
 
 **Appendices:**
 - [Appendix A: Database View Schema Details](#appendix-a-database-view-schema-details)
