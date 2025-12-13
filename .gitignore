@@ -31,3 +31,11 @@ service.data.impl/DocumentContentData/write.lock
 service.data.impl/DocumentElement/segments_1
 citizen-intelligence-agency/data
 citizen-intelligence-agency/data/
+
+# Backup files
+*.bak
+*~
+
+# Temporary report files (prefer living documentation)
+*_SUMMARY.md
+*_FIXES_*.md
