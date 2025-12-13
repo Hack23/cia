@@ -277,6 +277,7 @@ For details on our technology lifecycle management, see the [End-of-Life Strateg
 | **[CIA Features](https://hack23.com/cia-features.html)** | 🚀 Features | Platform features overview                | [View on hack23.com](https://hack23.com/cia-features.html)                     |
 | **[Threat Model](THREAT_MODEL.md)**                 | 🛡️ Security     | STRIDE / MITRE risk analysis              | [View Source](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md)        |
 | **[Unit Test Plan](UnitTestPlan.md)**               | 🧪 Testing      | Comprehensive testing strategy & coverage | [View Source](https://github.com/Hack23/cia/blob/master/UnitTestPlan.md)        |
+| **[Documentation Naming Convention](DOCUMENTATION_NAMING_CONVENTION.md)** | 📝 Standards | Naming standards for new documentation | [View Source](https://github.com/Hack23/cia/blob/master/DOCUMENTATION_NAMING_CONVENTION.md) |
 
 </div>
 
@@ -286,15 +287,15 @@ For details on our technology lifecycle management, see the [End-of-Life Strateg
 
 The CIA platform provides comprehensive intelligence operations (INTOP) and open-source intelligence (OSINT) capabilities. Our intelligence documentation tracks the evolution of analytical frameworks, risk assessment rules, and database views that power political intelligence products.
 
-### 📋 Intelligence Changelogs
+### 📋 Intelligence Changelog
 
-Track the evolution of intelligence capabilities and analytical infrastructure:
+Unified tracking of intelligence evolution across all capabilities:
 
 | Document | Focus | Description | Documentation Link |
 |----------|-------|-------------|-------------------|
-| **[Intelligence Analysis Changelog](CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 📊 Intelligence | Complete history of intelligence capabilities, frameworks, and OSINT enhancements | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
-| **[Database Views Changelog](CHANGELOG_DATABASE_VIEWS.md)** | 🗄️ Views | Detailed tracking of all 85 database views with schema specifications | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_DATABASE_VIEWS.md) |
-| **[Risk Rules Changelog](CHANGELOG_RISK_RULES.md)** | 🔴 Risk Rules | Evolution of 50 behavioral assessment rules across 5 domains | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_RISK_RULES.md) |
+| **[Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md)** | 🎯 Unified | Comprehensive tracking of intelligence capabilities, database views, risk rules, and analytical frameworks | [View Source](https://github.com/Hack23/cia/blob/master/CHANGELOG_INTELLIGENCE.md) |
+
+**Historical Changelogs** (Archived): [Intelligence Analysis](docs/archive/CHANGELOG_INTELLIGENCE_ANALYSIS.md), [Database Views](docs/archive/CHANGELOG_DATABASE_VIEWS.md), [Risk Rules](docs/archive/CHANGELOG_RISK_RULES.md)
 
 ### 📚 Core Intelligence Documentation
 
@@ -305,6 +306,7 @@ Comprehensive documentation of analytical capabilities and methodologies:
 | **[Data Analysis - INTOP OSINT](DATA_ANALYSIS_INTOP_OSINT.md)** | 🎯 Frameworks | 6 analysis frameworks (Temporal, Comparative, Pattern Recognition, Predictive, Network, Decision) | [View Source](https://github.com/Hack23/cia/blob/master/DATA_ANALYSIS_INTOP_OSINT.md) |
 | **[Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md)** | 🔴 Risk Rules | 50 behavioral detection rules (24 politician, 10 party, 4 committee, 4 ministry, 5 decision, 3 other) | [View Source](https://github.com/Hack23/cia/blob/master/RISK_RULES_INTOP_OSINT.md) |
 | **[Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | Complete catalog of 85 database views (57 regular + 28 materialized) | [View Source](https://github.com/Hack23/cia/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **[Data Quality Monitoring Dashboard](DATA_QUALITY_MONITORING_DASHBOARD.md)** | 📊 Quality | Unified data quality monitoring with OSINT, database health, and view validation metrics | [View Source](https://github.com/Hack23/cia/blob/master/DATA_QUALITY_MONITORING_DASHBOARD.md) |
 | **[Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md)** | 🗺️ Pipeline | Data pipeline mappings and framework-to-view relationships | [View Source](https://github.com/Hack23/cia/blob/master/INTELLIGENCE_DATA_FLOW.md) |
 | **[Liquibase Intelligence Analysis](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 🗄️ Schema | Database schema evolution from intelligence perspective | [View Source](https://github.com/Hack23/cia/blob/master/LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
 
@@ -333,6 +335,88 @@ Comprehensive documentation of analytical capabilities and methodologies:
 | **Database Views** | 85 | 57 regular views + 28 materialized views |
 | **OSINT Data Sources** | 4 | Riksdagen API, Election Authority, World Bank, Financial Authority |
 | **Intelligence Products** | 10+ | Scorecards, Coalition Analysis, Risk Assessments, Trend Reports, Decision Tracking |
+
+### 📖 Documentation Navigation Guide
+
+Navigate intelligence documentation efficiently based on your role:
+
+<table>
+<tr>
+<td width="50%">
+
+#### 📊 For Data Analysts
+**Goal:** Find views and analytical capabilities
+
+1. **Start**: [Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md) - Explore 6 analytical frameworks
+2. **Then**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Discover 84 database views
+3. **Reference**: [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) - Understand data pipelines
+
+**Key Use Cases:**
+- Finding views for specific analysis types (temporal, comparative, pattern recognition)
+- Understanding view relationships and dependencies
+- Accessing sample queries and usage patterns
+
+</td>
+<td width="50%">
+
+#### 🕵️ For Intelligence Operatives
+**Goal:** Understand complete intelligence pipeline
+
+1. **Start**: [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) - Complete data pipeline overview
+2. **Then**: [Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md) - OSINT methodologies and frameworks
+3. **Deep Dive**: [Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md) - 50 behavioral detection rules
+
+**Key Use Cases:**
+- Understanding OSINT collection methods
+- Analyzing behavioral patterns and anomalies
+- Generating intelligence products and assessments
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+#### 🗄️ For Database Administrators
+**Goal:** Maintain schema and optimize performance
+
+1. **Start**: [Schema Maintenance Guide](service.data.impl/README-SCHEMA-MAINTENANCE.md) - Database maintenance procedures
+2. **Then**: [Data Quality Monitoring Dashboard](DATA_QUALITY_MONITORING_DASHBOARD.md) - Monitor database health and quality metrics
+3. **Reference**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View documentation and optimization
+4. **Track Changes**: [Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md) - Schema evolution history
+
+**Key Use Cases:**
+- Monitoring database health and data quality metrics
+- Refreshing materialized views
+- Running health checks and validation
+- Understanding view dependencies and usage patterns
+- Performance tuning and index optimization
+
+</td>
+<td width="50%">
+
+#### 📈 For Product Managers
+**Goal:** Understand capabilities and product features
+
+1. **Start**: [Business Product Document](BUSINESS_PRODUCT_DOCUMENT.md) - Product strategy and market positioning
+2. **Then**: [Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md) - Analytical capabilities overview
+3. **Explore**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Data products inventory
+
+> _Note: See [Related Documentation in Intelligence Data Flow](INTELLIGENCE_DATA_FLOW.md#-related-documentation) for complete document cross-references._
+
+**Key Use Cases:**
+- Understanding product capabilities and intelligence products
+- Identifying feature gaps and opportunities
+- Planning roadmap and prioritizing enhancements
+
+</td>
+</tr>
+</table>
+
+**Quick Links:**
+- 🗺️ [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) - Central navigation hub
+- 📜 [Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md) - Capability tracking over time
+- 🔍 [OSINT Data Sources](#-data-sources) - External API integrations
+- 📊 [Intelligence Metrics](#-intelligence-metrics-v1360) - Current capability counts
 
 </div>
 

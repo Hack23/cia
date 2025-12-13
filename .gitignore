@@ -32,3 +32,6 @@ service.data.impl/DocumentElement/segments_1
 citizen-intelligence-agency/data
 citizen-intelligence-agency/data/
 json-export-specs/__pycache__/
+
+# Backup files
+*.bak
