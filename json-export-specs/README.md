@@ -8,6 +8,16 @@
 
 ---
 
+## ✅ Schema Validation Status
+
+[![Validate JSON Schemas](https://github.com/Hack23/cia/actions/workflows/validate-json-schemas.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/validate-json-schemas.yml)
+
+The 5 JSON export schemas are continuously validated against 142 real CSV sample data files to ensure correctness. See [VALIDATION_README.md](VALIDATION_README.md) for details.
+
+**Latest Validation:** 5 schemas validated, 132 files analyzed ([View Report](schemas/SCHEMA_VALIDATION_REPORT.md))
+
+---
+
 ## 🔗 Business Context & Product Integration
 
 These JSON specifications are the **technical foundation** for the CIA product portfolio, enabling all 6 product lines with structured political intelligence data.
