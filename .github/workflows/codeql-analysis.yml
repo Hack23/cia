@@ -129,6 +129,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Cache APT packages
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+        with:
+          path: /var/cache/apt/archives
+          key: ${{ runner.os }}-apt-${{ hashFiles('.github/workflows/codeql-analysis.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-apt-
+
       - name: APT update
         run: sudo apt-get update
 

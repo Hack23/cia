@@ -94,6 +94,24 @@ jobs:
         server-id: 'github' # Optional: For GitHub Packages authentication
         architecture: 'x64'  # Explicitly specify architecture
 
+    - name: Cache Maven and Sonar artifacts
+      uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+      with:
+        path: |
+          ~/.m2/repository
+          ~/.sonar/cache
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+
+    - name: Cache APT packages
+      uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+      with:
+        path: /var/cache/apt/archives
+        key: ${{ runner.os }}-apt-${{ hashFiles('.github/workflows/release.yml') }}
+        restore-keys: |
+          ${{ runner.os }}-apt-
+
     - name: APT update
       run: sudo apt-get update
 
