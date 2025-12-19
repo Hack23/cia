@@ -84,11 +84,11 @@
     <cia.project.versions.spring.security>5.8.16</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.18</cia.project.versions.spring.data>
     <cia.project.versions.aws>1.12.795</cia.project.versions.aws>
-    <cia.project.versions.aspectj>1.9.25</cia.project.versions.aspectj>
+    <cia.project.versions.aspectj>1.9.25.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.30.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>7.9.0</cia.project.versions.javers>
     <cia.project.versions.narayana>5.13.1.Final</cia.project.versions.narayana>
-    <cia.project.versions.asm>9.9</cia.project.versions.asm>
+    <cia.project.versions.asm>9.9.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.3.0</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.20.0</cia.project.versions.commonslang3>
@@ -97,7 +97,7 @@
     <cia.project.versions.commons.codec>1.20.0</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.83</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.17</cia.project.versions.slf4j>
-    <cia.project.versions.logback>1.5.21</cia.project.versions.logback>
+    <cia.project.versions.logback>1.5.22</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>10.1.0</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.2.4.Final</cia.project.versions.hibernate.search>
@@ -143,13 +143,13 @@
     <cia.project.versions.httpclient>4.5.14</cia.project.versions.httpclient>
     <cia.project.versions.guava>33.5.0-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.20.1</cia.project.versions.jackson>
-    <cia.project.versions.netty>4.2.8.Final</cia.project.versions.netty>
+    <cia.project.versions.netty>4.2.9.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.2</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.28.0</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.26</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
-    <cia.project.versions.javamelody>1.99.3</cia.project.versions.javamelody>
+    <cia.project.versions.javamelody>1.99.4</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>8.14.4</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.9.0</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.gwt.user.run>2.10.0</cia.project.versions.vaadin.gwt.user.run>
@@ -199,7 +199,7 @@
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-bom</artifactId>
-        <version>2.25.2</version>
+        <version>2.25.3</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -945,7 +945,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.3.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
