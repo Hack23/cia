@@ -83,7 +83,7 @@
     <cia.project.versions.spring>5.3.39.hack23java25</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.8.16</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.18</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.12.795</cia.project.versions.aws>
+    <cia.project.versions.aws>1.12.796</cia.project.versions.aws>
     <cia.project.versions.aspectj>1.9.25.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.30.2-GA</cia.project.versions.javassist>
     <cia.project.versions.javers>7.9.0</cia.project.versions.javers>
@@ -108,7 +108,7 @@
     <cia.project.versions.hibernate.jpa2>1.0.2.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.2.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.validator>6.2.5.Final</cia.project.versions.hibernate.validator>
-    <cia.project.versions.bytebuddy>1.18.2</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.18.3</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>2.4.240</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.7.8</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
