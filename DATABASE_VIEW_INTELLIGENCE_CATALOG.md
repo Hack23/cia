@@ -35,29 +35,29 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **85 database views** (57 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views (100% coverage). **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 85 database views (100% coverage). **12 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
-**Last Validated**: 2025-11-25  
+**Last Validated**: 2025-12-21  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (84/84 views)  
+**Documentation Coverage**: 100% (85/85 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
+**Note**: Total view count increased from 84 to 85 with addition of `view_role_hierarchy_classification` (v1.52) for comprehensive role hierarchy and power structure analysis.
 
-### Key Statistics (REVERIFIED 2025-11-25)
+### Key Statistics (UPDATED 2025-12-21)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 84 | ✅ VERIFIED against full_schema.sql (2025-11-25) |
-| **Regular Views** | 56 | ✅ VERIFIED standard SQL views |
+| **Total Views** | 85 | ✅ VERIFIED with addition of v1.52 (2025-12-21) |
+| **Regular Views** | 57 | ✅ VERIFIED standard SQL views (includes v1.52) |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
-| **Views Documented (Detailed)** | 11 | Complex examples with business context |
+| **Views Documented (Detailed)** | 12 | Complex examples with business context (includes v1.52) |
 | **Views Documented (Structured)** | 73 | Purpose, metrics, queries, product mappings |
-| **Documentation Coverage** | 100% | All 84 views documented |
-| **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
+| **Documentation Coverage** | 100% | All 85 views documented |
+| **Intelligence Views** | 8 | Advanced analytical views (v1.52 added role hierarchy) |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Application Event Views** | 12 | User behavior tracking (daily, weekly, monthly, annual) |
@@ -110,10 +110,10 @@ Views are classified by intelligence value for analytical operations:
 
 ### Current Status
 
-**Last Validated**: 2025-11-25  
+**Last Validated**: 2025-12-21  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Coverage**: 100% (84/84 views documented)  
+**Coverage**: 100% (85/85 views documented)  
 **Health Score**: 82/100 (per schema-health-check.sql)
 
 ### Validation Methodology
@@ -181,6 +181,7 @@ To validate documentation coverage manually:
 | 2025-11-20 | 10.98% | 82 | 73 | ⚠️ Initial | Identified major documentation gap |
 | 2025-11-21 | 100% | 82 | 0 | ✅ Complete | Added all 73 missing views |
 | 2025-11-25 | 100% | 84 | 0 | ✅ Current | Corrected count, validated integrity |
+| 2025-12-21 | 100% | 85 | 0 | ✅ Current | Added v1.52 role hierarchy view |
 
 ### Coverage Progression
 
@@ -189,6 +190,7 @@ The documentation achieved 100% coverage through systematic validation and remed
 - **2025-11-20**: Initial validation revealed 10.98% coverage (9/82 views)
 - **2025-11-21**: Complete documentation added for 73 missing views
 - **2025-11-25**: Reverified counts (82→84 views), maintained 100% coverage
+- **2025-12-21**: Added v1.52 role hierarchy view (84→85 views), 100% coverage maintained
 
 ### Health Metrics
 
@@ -297,7 +299,7 @@ graph TB
 
 ## Complete View Inventory
 
-This section provides a complete alphabetical inventory of all 82 database views with brief descriptions. All views are now documented in this catalog with structured information including purpose, key metrics, sample queries, and intelligence applications.
+This section provides a complete alphabetical inventory of all 85 database views with brief descriptions. All views are now documented in this catalog with structured information including purpose, key metrics, sample queries, and intelligence applications.
 
 **Legend:**
 - 📖 = Detailed documentation (comprehensive examples, performance characteristics)
@@ -369,7 +371,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_goverment_role_member | Standard | ⭐⭐⭐⭐ | Government role assignments |
 | view_riksdagen_goverment_roles | Standard | ⭐⭐⭐⭐ | Government role definitions |
 
-### Intelligence & Risk Views (6 views)
+### Intelligence & Risk Views (7 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
@@ -380,6 +382,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_intelligence_dashboard | Standard | ⭐⭐⭐⭐⭐ | Unified intelligence dashboard with key metrics |
 | 📖 view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Voting anomaly and defection risk detection |
 | 📖 view_risk_score_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of risk scores over time |
+| 📖 view_role_hierarchy_classification | Standard | ⭐⭐⭐⭐⭐ | Role hierarchy & power structure analysis (NEW v1.52) |
 
 ### Party Views (13 views)
 
@@ -4850,6 +4853,279 @@ From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
 - **All Politician Risk Rules (P-01 to P-24)**: Unified risk scoring
 - **PoliticianCombinedRisk (P-05)**: Primary implementation view
 - **Risk Trending Rules**: Temporal risk evolution tracking
+
+---
+
+### view_role_hierarchy_classification ⭐⭐⭐⭐⭐
+
+**Category:** Intelligence Views (v1.52)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Role Hierarchy & Power Structure Analysis  
+**Changelog:** v1.52 Role Hierarchy and Classification View
+
+#### Purpose
+
+Comprehensive role hierarchy and power structure analysis view for all 76 distinct role codes in the Swedish political system. Provides hierarchical classification with formal authority (constitutional/legal power) and informal power (political influence) scoring on a 1-10 scale. Maps roles to institutional power centers, decision-making authority, prestige levels, and strategic career value. Essential for politician experience scoring, power distribution analysis, career progression modeling, and institutional authority mapping.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `role_code` | VARCHAR(255) | Swedish role name | 'Statsminister' |
+| `role_name_en` | VARCHAR(255) | English role translation | 'Prime Minister' |
+| `role_category` | VARCHAR(50) | Role category classification | 'GOVERNMENT' |
+| `institutional_power_center` | VARCHAR(50) | Power center mapping | 'EXECUTIVE' |
+| `decision_authority_type` | VARCHAR(50) | Decision-making authority | 'PRIMARY_DECISION_MAKER' |
+| `prestige_level` | VARCHAR(50) | Prestige classification | 'HIGHEST_PRESTIGE' |
+| `formal_authority_score` | INTEGER | Constitutional/legal power (1-10) | 10 |
+| `informal_power_score` | INTEGER | Political influence (1-10) | 10 |
+| `aggregate_power_score` | NUMERIC(10,2) | Combined power metric | 10.00 |
+| `power_type` | VARCHAR(50) | Power balance classification | 'BALANCED_POWER' |
+| `strategic_value` | VARCHAR(50) | Career progression value | 'STRATEGIC_APEX' |
+| `authority_level` | INTEGER | Legacy authority scale (1-10) | 10 |
+| `experience_weight` | NUMERIC(10,2) | Experience scoring weight | 1000.0 |
+| `similar_roles_count` | BIGINT | Count of similar roles | 8 |
+| `category_avg_power` | NUMERIC(10,2) | Average power in category | 8.50 |
+| `current_holders` | BIGINT | Politicians currently in role | 1 |
+| `current_assignments` | BIGINT | Active assignments | 1 |
+| `power_rank` | BIGINT | Overall power ranking | 1 |
+| `power_rank_within_institution` | BIGINT | Ranking within institution | 1 |
+
+#### Role Categories
+
+**Government Roles (EXECUTIVE):**
+- `GOVERNMENT`: Ministers and government leadership (Statsminister, Ministers)
+- `GOVERNMENT_SUBSTITUTE`: Government backup roles (Statsrådsersättare)
+
+**Parliamentary Leadership (LEGISLATIVE_LEADERSHIP):**
+- `SPEAKER`: Speaker and deputy speakers (Talman, Vice talman)
+- `SPEAKER_SUBSTITUTE`: Speaker backup (Talmansersättare)
+
+**Committee Leadership (LEGISLATIVE_COMMITTEE):**
+- `COMMITTEE_LEADERSHIP`: Committee chairs and vice chairs (Ordförande, Vice ordförande)
+
+**Party Leadership (PARTY_ORGANIZATION):**
+- `PARTY_LEADERSHIP`: Party leaders, group leaders, secretaries (Partiledare, Gruppledare, Partisekreterare, Språkrör)
+
+**Parliamentary Membership (LEGISLATIVE_MEMBERSHIP):**
+- `PARLIAMENTARY`: Members of parliament (Riksdagsledamot, Ledamot)
+
+**Administrative & Support:**
+- `BOARD`: Board and oversight (Revisor)
+- `ADMINISTRATIVE_SUPPORT`: Administrative roles (Kvittningsperson)
+- `SUBSTITUTE`: Substitute/backup roles (Suppleant, Ersättare, Deputerad)
+
+#### Power Score Classification
+
+**Formal Authority Score (1-10):** Constitutional and legal power
+- **10**: Prime Minister
+- **9**: Deputy PM, Key Ministers (Finance, Foreign Affairs, Defense), Speaker
+- **8**: Other Ministers, Party Leaders, First Deputy Speaker
+- **7**: Government Ministers, Parliamentary Group Leaders, Deputy Speakers
+- **6**: Committee Chairs, Party Deputy Leaders, Party Spokespersons
+- **5**: Committee Vice Chairs, Party Secretaries
+- **4**: MPs, Members, Auditors
+- **3**: Deputies, Alternates, Administrative roles
+- **2**: Substitutes
+- **1**: Other roles
+
+**Informal Power Score (1-10):** Political influence and real-world impact
+- **10**: Prime Minister
+- **9**: Party Leaders, Deputy PM
+- **8**: Key Ministers (Finance, Foreign Affairs)
+- **7**: Other Ministers, Speaker, Group Leaders
+- **6**: Party Secretaries, Committee Chairs, Spokespersons
+- **5**: Deputy Speakers, Vice Chairs, Deputy Group Leaders
+- **3**: MPs, Members, Auditors
+- **2**: Support and substitute roles
+
+**Aggregate Power Score:** Average of formal authority and informal power (1-10 scale, rounded to 2 decimals)
+
+#### Strategic Value Classification
+
+Based on combined formal authority + informal power scores:
+- **STRATEGIC_APEX** (16-20 points): Top leadership positions (PM, Party Leaders, Key Ministers)
+- **STRATEGIC_HIGH** (12-15 points): Senior leadership (Ministers, Speaker, Group Leaders)
+- **STRATEGIC_MEDIUM** (8-11 points): Mid-level leadership (Committee Chairs, MPs)
+- **STRATEGIC_LOW** (<8 points): Support and substitute roles
+
+#### Power Type Classification
+
+- **FORMAL_AUTHORITY_DOMINANT**: Role has higher constitutional power than political influence (e.g., Speaker)
+- **INFORMAL_POWER_DOMINANT**: Role has higher political influence than constitutional power (e.g., Party Leaders)
+- **BALANCED_POWER**: Equal formal and informal power (e.g., Prime Minister, Key Ministers)
+
+#### Prestige Level Classification
+
+- **HIGHEST_PRESTIGE**: PM, Speaker, Party Leaders, Deputy PM, Key Ministers
+- **HIGH_PRESTIGE**: Other Ministers, Group Leaders, Committee Chairs, First Deputy Speaker
+- **MEDIUM_PRESTIGE**: Deputy Speakers, Vice Chairs, Party Secretaries, Deputy Group Leaders
+- **STANDARD_PRESTIGE**: MPs, Members, Auditors
+- **SUPPORT_ROLE**: Substitutes, administrative, backup roles
+
+#### Example Queries
+
+**1. Top 10 Most Powerful Roles**
+
+```sql
+SELECT 
+    role_name_en,
+    institutional_power_center,
+    formal_authority_score,
+    informal_power_score,
+    aggregate_power_score,
+    power_type,
+    strategic_value,
+    current_holders,
+    power_rank
+FROM view_role_hierarchy_classification
+WHERE power_rank <= 10
+ORDER BY power_rank;
+```
+
+**2. Power Distribution Across Institutional Centers**
+
+```sql
+SELECT 
+    institutional_power_center,
+    COUNT(*) AS role_count,
+    ROUND(AVG(aggregate_power_score), 2) AS avg_power,
+    ROUND(AVG(experience_weight), 2) AS avg_experience_weight,
+    SUM(current_holders) AS total_politicians
+FROM view_role_hierarchy_classification
+GROUP BY institutional_power_center
+ORDER BY avg_power DESC;
+```
+
+**3. Roles with Balanced Formal/Informal Power**
+
+```sql
+SELECT 
+    role_name_en,
+    role_category,
+    formal_authority_score,
+    informal_power_score,
+    aggregate_power_score,
+    prestige_level,
+    current_holders
+FROM view_role_hierarchy_classification
+WHERE power_type = 'BALANCED_POWER'
+    AND aggregate_power_score >= 7.0
+ORDER BY aggregate_power_score DESC;
+```
+
+**4. Strategic Apex Roles (Highest Career Value)**
+
+```sql
+SELECT 
+    role_name_en,
+    institutional_power_center,
+    decision_authority_type,
+    aggregate_power_score,
+    experience_weight,
+    current_holders,
+    current_assignments
+FROM view_role_hierarchy_classification
+WHERE strategic_value = 'STRATEGIC_APEX'
+ORDER BY aggregate_power_score DESC;
+```
+
+**5. Power Concentration Analysis**
+
+```sql
+SELECT 
+    institutional_power_center,
+    decision_authority_type,
+    COUNT(*) AS role_types,
+    SUM(current_holders) AS total_holders,
+    ROUND(AVG(aggregate_power_score), 2) AS avg_power,
+    ROUND(SUM(current_holders * aggregate_power_score), 2) AS weighted_power_concentration
+FROM view_role_hierarchy_classification
+GROUP BY institutional_power_center, decision_authority_type
+ORDER BY weighted_power_concentration DESC;
+```
+
+**6. Compare Government vs Party Leadership Power**
+
+```sql
+SELECT 
+    CASE 
+        WHEN role_category IN ('GOVERNMENT', 'GOVERNMENT_SUBSTITUTE') THEN 'Government'
+        WHEN role_category = 'PARTY_LEADERSHIP' THEN 'Party Leadership'
+        ELSE 'Other'
+    END AS leadership_type,
+    COUNT(*) AS role_count,
+    ROUND(AVG(formal_authority_score), 2) AS avg_formal_authority,
+    ROUND(AVG(informal_power_score), 2) AS avg_informal_power,
+    ROUND(AVG(aggregate_power_score), 2) AS avg_aggregate_power,
+    SUM(current_holders) AS total_holders
+FROM view_role_hierarchy_classification
+WHERE role_category IN ('GOVERNMENT', 'GOVERNMENT_SUBSTITUTE', 'PARTY_LEADERSHIP')
+GROUP BY leadership_type
+ORDER BY avg_aggregate_power DESC;
+```
+
+#### Data Sources
+
+- **assignment_data**: Base table containing all role assignments with 76 distinct role codes
+- **Inline Classification**: All role taxonomies, power scores, and classifications defined within view logic
+
+#### Performance Characteristics
+
+- **Query Time:** 50-150ms (processes 76 distinct roles, aggregates assignments)
+- **Refresh Frequency:** Real-time (recalculates on each query)
+- **Data Volume:** 76 rows (one per distinct role code)
+- **Optimization:** Efficient due to small result set and role code distinctness
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Hierarchical Analysis**: Power structure and authority mapping
+- **Experience Scoring**: Weighted role value for politician ranking
+- **Career Progression**: Strategic path modeling and mobility analysis
+- **Institutional Analysis**: Power distribution across government branches
+- **Comparative Analysis**: Cross-institutional power benchmarking
+
+#### Integration with Product Features
+
+From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
+- **Political Scorecards** (Product Line 1): Experience scoring foundation
+- **Risk Assessment** (Product Line 2): Authority-based risk weighting
+- **Intelligence Dashboard** (Product Line 3): Power distribution metrics
+- **Career Analytics**: Progression path optimization
+- **Coalition Analysis**: Power structure for formation forecasting
+
+#### Related Views
+
+- **view_riksdagen_politician_experience_summary**: Uses experience_weight from this classification
+- **view_riksdagen_politician**: Can be joined for current role power analysis
+- **view_riksdagen_politician_influence_metrics**: Network analysis complemented by positional power
+- **view_riksdagen_party_summary**: Party-level power aggregation
+
+#### Use Cases
+
+1. **Politician Experience Scoring**: Weight role tenure by power and prestige
+2. **Power Distribution Analysis**: Track concentration of authority across institutions
+3. **Career Progression Modeling**: Identify strategic role sequences and mobility patterns
+4. **Risk Assessment**: Authority-weighted risk scoring (high-power roles = higher risk impact)
+5. **Coalition Power Analysis**: Calculate governing coalition aggregate power
+6. **Institutional Balance**: Monitor executive vs legislative power distribution
+7. **Historical Power Shifts**: Track role power evolution over electoral periods
+8. **Comparative Politics**: Benchmark Swedish system against other parliamentary democracies
+
+#### Validation Notes
+
+- All 76 distinct role codes from `assignment_data_role_code.csv` are classified
+- Power scores align with Swedish constitutional hierarchy and political science analysis
+- Experience weights consistent with `view_riksdagen_politician_experience_summary` v1.44
+- Classifications validated against DISTINCT_VALUES_ANALYSIS.md
+
+#### Documentation References
+
+- **DISTINCT_VALUES_ANALYSIS.md**: Source data analysis for 76 role codes
+- **DATABASE_VIEW_INTELLIGENCE_CATALOG.md**: This document
+- **BUSINESS_PRODUCT_DOCUMENT.md**: Product feature integration
+- **DATA_ANALYSIS_INTOP_OSINT.md**: Intelligence framework applications
 
 ---
 

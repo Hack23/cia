@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Create Role Hierarchy and Classification View v1.52
+  Author: Intelligence Operative
+  Date: 2025-12-21
+  
+  Documentation References:
+  - Analysis: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Business Requirements: BUSINESS_PRODUCT_DOCUMENT.md
+  
+  Purpose:
+  Create comprehensive role hierarchy and power structure analysis view for all 76 distinct 
+  role codes in the Swedish political system. This view provides:
+  
+  1. Hierarchical Classification: Formal authority (1-10) and informal power (1-10) scores
+  2. Institutional Power Centers: Executive, Legislative, Party, Administrative mapping
+  3. Decision Authority: Primary/Secondary decision maker, voting member, substitute classification
+  4. Prestige Levels: From highest prestige (PM, Speaker, Party Leader) to support roles
+  5. Power Analysis: Aggregate power scores, power type (formal vs informal dominant)
+  6. Strategic Value: Career progression value (Strategic Apex to Strategic Low)
+  7. Current Distribution: Politicians currently holding each role type
+  
+  Intelligence Applications:
+  - Experience scoring and politician ranking
+  - Power distribution analysis across institutions
+  - Career progression path modeling
+  - Institutional authority mapping
+  - Political influence measurement
+  - Coalition power structure analysis
+  
+  Data Source:
+  - assignment_data table (76 distinct role codes)
+  - All role codes classified inline in view logic
+-->
+
+<changeSet author="intelligence-operative" id="create-role-hierarchy-classification-1.52-001" failOnError="true">
+    <comment>
+        Create view_role_hierarchy_classification for comprehensive role hierarchy, power structure 
+        analysis, and formal/informal authority classification of all 76 Swedish political role codes.
+        
+        This view enables:
+        - Politician experience scoring with power-weighted metrics
+        - Institutional power distribution analysis
+        - Career progression path modeling
+        - Political influence measurement
+        - Coalition power structure analysis
+        
+        Includes formal authority scores (constitutional/legal power 1-10), informal power scores
+        (political influence 1-10), aggregate power metrics, decision authority classification,
+        prestige levels, and current role holder statistics.
+    </comment>
+    
+    <sqlFile path="view_role_hierarchy_classification_v1.52.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_role_hierarchy_classification CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
