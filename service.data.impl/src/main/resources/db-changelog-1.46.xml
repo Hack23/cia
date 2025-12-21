@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Create Government Cabinet Roles View v1.46
+  Author: Intelligence Operative
+  Date: 2025-12-21
+  
+  Documentation References:
+  - Analysis: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Business Requirements: BUSINESS_PRODUCT_DOCUMENT.md
+  
+  Purpose:
+  Create comprehensive view for tracking and temporal analysis of cabinet minister 
+  positions, government formations, and ministerial transitions in Swedish government.
+  
+  Key Features:
+  - Tracks all minister types (Statsminister, Vice statsminister, 20+ minister titles)
+  - Tracks Statsråd (259) and Statsrådsersättare (295) appointments
+  - Tracks Departement assignments (500)
+  - Calculates minister tenure duration
+  - Identifies government formations by appointment year
+  - Calculates cabinet stability metrics
+  - Tracks minister career progression and portfolio changes
+  - Joins with person_data for demographic analysis
+  - Supports temporal queries for ministers active on specific dates
+  
+  Data Volumes:
+  - Statsminister: 10 occurrences
+  - Vice statsminister: 1 occurrence
+  - Minister roles: 20+ distinct titles
+  - Statsråd: 259 appointments
+  - Statsrådsersättare: 295 deputy minister roles
+  - Departement assignments: 500
+-->
+
+<changeSet author="intelligence-operative" id="create-cabinet-roles-view-1.46-001" failOnError="true">
+    <comment>
+        Create view_government_cabinet_roles to track cabinet minister positions, 
+        government formations, and ministerial transitions. Includes temporal analysis,
+        career progression metrics, and cabinet stability indicators.
+    </comment>
+    
+    <sqlFile path="view_government_cabinet_roles_v1.46.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_government_cabinet_roles CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>

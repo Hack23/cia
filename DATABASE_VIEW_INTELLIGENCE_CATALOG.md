@@ -35,35 +35,35 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **85 database views** (57 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views (100% coverage). **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 85 database views (100% coverage). **11 views** have detailed examples with complex queries, while **74 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
-**Last Validated**: 2025-11-25  
+**Last Validated**: 2025-12-21  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (84/84 views)  
+**Documentation Coverage**: 100% (85/85 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
+**Note**: Total view count increased from 84 to 85 with addition of `view_government_cabinet_roles` (v1.46) for comprehensive cabinet minister tracking and government formation analysis.
 
-### Key Statistics (REVERIFIED 2025-11-25)
+### Key Statistics (UPDATED 2025-12-21)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 84 | ✅ VERIFIED against full_schema.sql (2025-11-25) |
-| **Regular Views** | 56 | ✅ VERIFIED standard SQL views |
+| **Total Views** | 85 | ✅ VERIFIED against full_schema.sql (2025-12-21) |
+| **Regular Views** | 57 | ✅ VERIFIED standard SQL views |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
 | **Views Documented (Detailed)** | 11 | Complex examples with business context |
-| **Views Documented (Structured)** | 73 | Purpose, metrics, queries, product mappings |
-| **Documentation Coverage** | 100% | All 84 views documented |
+| **Views Documented (Structured)** | 74 | Purpose, metrics, queries, product mappings |
+| **Documentation Coverage** | 100% | All 85 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Application Event Views** | 12 | User behavior tracking (daily, weekly, monthly, annual) |
 | **Document Views** | 7 | Politician and party document productivity |
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
-| **Government/Ministry Views** | 7 | Government and ministry performance tracking |
+| **Government/Ministry Views** | 9 | Government and ministry performance tracking (includes cabinet roles v1.46) |
 | **Party Views** | 13 | Party performance, decision flow, effectiveness |
 | **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
 | **Database Size** | 20 GB | Total database size (validated 2025-11-21) |
@@ -297,7 +297,7 @@ graph TB
 
 ## Complete View Inventory
 
-This section provides a complete alphabetical inventory of all 82 database views with brief descriptions. All views are now documented in this catalog with structured information including purpose, key metrics, sample queries, and intelligence applications.
+This section provides a complete alphabetical inventory of all 85 database views with brief descriptions. All views are now documented in this catalog with structured information including purpose, key metrics, sample queries, and intelligence applications.
 
 **Legend:**
 - 📖 = Detailed documentation (comprehensive examples, performance characteristics)
@@ -356,10 +356,11 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
 | view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |
 
-### Government/Ministry Views (8 views)
+### Government/Ministry Views (9 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_government_cabinet_roles | Standard | ⭐⭐⭐⭐⭐ | Cabinet minister positions, government formations, and ministerial transitions (NEW v1.46) |
 | view_ministry_effectiveness_trends | Standard | ⭐⭐⭐⭐⭐ | Ministry performance trends over time |
 | view_ministry_productivity_matrix | Standard | ⭐⭐⭐⭐⭐ | Comparative ministry productivity analysis |
 | view_ministry_risk_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of ministry risk indicators |
@@ -2613,6 +2614,237 @@ This view complements the existing ministry effectiveness views by adding decisi
 - **view_ministry_decision_impact**: Adds proposal success/failure outcomes ← **NEW**
 
 Together, these views provide comprehensive government performance intelligence spanning productivity, risk, and legislative effectiveness.
+
+---
+
+### view_government_cabinet_roles ⭐⭐⭐⭐⭐
+
+**Category:** Government Cabinet & Minister Tracking (v1.46)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Executive Leadership & Government Formation Analysis  
+
+#### Purpose
+
+Comprehensive tracking and temporal analysis of cabinet minister positions, government formations, and ministerial transitions. Provides detailed insights into Swedish government composition, minister tenure patterns, cabinet stability, and career progression of government officials.
+
+#### Key Metrics
+
+- **person_id**: Unique person identifier
+- **full_name**: Minister's full name (first_name + last_name)
+- **role_code**: Swedish role title (e.g., 'Statsminister', 'Finansminister')
+- **role_name_en**: English role translation (e.g., 'Prime Minister', 'Minister of Finance')
+- **ministry_code**: Ministry/department code (e.g., 'SB', 'Fi', 'UD')
+- **assignment_type**: Type of assignment ('Departement', 'uppdrag')
+- **from_date**: Appointment start date
+- **to_date**: Appointment end date (NULL if current)
+- **tenure_days**: Duration in days
+- **tenure_years**: Duration in years (rounded)
+- **authority_level**: Hierarchical level (10=Statsminister, 9=Vice statsminister, 8=Minister, 7=Statsråd, 6=Statsrådsersättare)
+- **is_current**: Boolean indicating active minister
+- **party_affiliation**: Political party
+- **gender**: Minister gender
+- **born_year**: Birth year
+- **age_at_appointment**: Age when appointed
+- **appointment_year**: Year of appointment (used for government formation grouping)
+- **formation_start**: Government formation start date
+- **formation_end**: Government formation end date
+- **cabinet_size**: Total ministers in that government formation
+- **avg_minister_tenure_days**: Average tenure for all ministers in formation
+- **coalition_parties**: Comma-separated list of coalition parties
+- **current_ministers**: Number of currently active ministers from formation
+- **total_appointments**: Career total appointments for this person
+- **distinct_roles**: Number of different roles held
+- **portfolios_held**: Number of different ministries/portfolios held
+- **first_appointment**: Person's first cabinet appointment date
+- **last_role_end**: Person's most recent role end date
+- **total_minister_days**: Cumulative days as minister (all appointments)
+- **total_minister_years**: Cumulative years as minister
+- **tenure_classification**: 'SHORT_TERM' (<1yr), 'FULL_TERM' (1-4yrs), 'LONG_TERM' (>4yrs)
+- **portfolio_changed**: Boolean indicating if person held multiple portfolios
+
+#### Data Coverage
+
+Based on DISTINCT_VALUES_ANALYSIS.md findings:
+- **Statsminister**: 10 occurrences
+- **Vice statsminister**: 1 occurrence
+- **Minister roles**: 20+ distinct titles (Finansminister, Utrikesminister, etc.)
+- **Statsråd**: 259 general minister appointments
+- **Statsrådsersättare**: 295 deputy minister roles
+- **Departement assignments**: 500 across all ministries
+
+#### Sample Query: Current Cabinet Composition
+
+```sql
+-- Current Swedish cabinet with tenure and demographics
+SELECT 
+    full_name,
+    role_name_en,
+    ministry_code,
+    party_affiliation,
+    tenure_years,
+    age_at_appointment,
+    gender
+FROM view_government_cabinet_roles
+WHERE is_current = true
+ORDER BY authority_level DESC, tenure_years DESC;
+```
+
+#### Sample Query: Minister Turnover Rate by Electoral Period
+
+```sql
+-- Government formation stability analysis
+SELECT 
+    appointment_year,
+    cabinet_size,
+    COUNT(DISTINCT person_id) AS unique_ministers,
+    ROUND(AVG(tenure_days), 0) AS avg_tenure_days,
+    ROUND(AVG(tenure_days) / 365.25, 1) AS avg_tenure_years,
+    coalition_parties,
+    current_ministers
+FROM view_government_cabinet_roles
+GROUP BY appointment_year, cabinet_size, coalition_parties, current_ministers
+ORDER BY appointment_year DESC;
+```
+
+#### Sample Query: Ministers Who Changed Portfolios
+
+```sql
+-- Career progression: ministers who held multiple portfolios
+SELECT 
+    full_name,
+    party_affiliation,
+    portfolios_held,
+    distinct_roles,
+    total_appointments,
+    total_minister_years,
+    first_appointment,
+    last_role_end
+FROM view_government_cabinet_roles
+WHERE portfolio_changed = true
+GROUP BY full_name, party_affiliation, portfolios_held, distinct_roles, 
+         total_appointments, total_minister_years, first_appointment, last_role_end
+ORDER BY portfolios_held DESC, total_minister_years DESC;
+```
+
+#### Sample Query: Cabinet Stability by Government Formation
+
+```sql
+-- Compare cabinet stability across different government formations
+SELECT 
+    appointment_year,
+    coalition_parties,
+    cabinet_size,
+    avg_minister_tenure_days,
+    COUNT(*) FILTER (WHERE tenure_classification = 'LONG_TERM') AS long_term_ministers,
+    COUNT(*) FILTER (WHERE tenure_classification = 'SHORT_TERM') AS short_term_ministers,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE tenure_classification = 'LONG_TERM') / 
+          COUNT(*)::numeric, 1) AS stability_percentage
+FROM view_government_cabinet_roles
+GROUP BY appointment_year, coalition_parties, cabinet_size, avg_minister_tenure_days
+ORDER BY appointment_year DESC;
+```
+
+#### Sample Query: Ministers Active on Specific Date (Temporal Query)
+
+```sql
+-- Who was in cabinet on a specific date (e.g., 2020-06-01)
+SELECT 
+    full_name,
+    role_name_en,
+    ministry_code,
+    party_affiliation,
+    from_date,
+    to_date,
+    tenure_years
+FROM view_government_cabinet_roles
+WHERE from_date::date <= '2020-06-01'
+  AND (to_date IS NULL OR to_date::date >= '2020-06-01')
+ORDER BY authority_level DESC;
+```
+
+#### Sample Query: Youngest and Oldest Cabinet Appointments
+
+```sql
+-- Age demographics at appointment
+SELECT 
+    full_name,
+    role_name_en,
+    age_at_appointment,
+    appointment_year,
+    from_date,
+    party_affiliation
+FROM view_government_cabinet_roles
+WHERE age_at_appointment IS NOT NULL
+ORDER BY age_at_appointment ASC
+LIMIT 10;  -- Youngest 10
+```
+
+#### Intelligence Applications
+
+1. **Government Formation Analysis**:
+   - Track government reshuffles and cabinet changes
+   - Analyze coalition stability over time
+   - Identify patterns in government formation timing
+   - Compare cabinet composition across electoral periods
+
+2. **Minister Career Progression**:
+   - Track individual minister career paths
+   - Identify ministers who progressed to multiple portfolios
+   - Analyze career longevity patterns
+   - Detect fast-track vs. gradual advancement patterns
+
+3. **Cabinet Stability Metrics**:
+   - Measure average minister tenure by government
+   - Identify high-turnover periods
+   - Compare stability across different coalition types
+   - Detect cabinet crisis indicators (short tenures, rapid changes)
+
+4. **Portfolio Continuity Analysis**:
+   - Track which ministries have high turnover
+   - Identify stable vs. volatile portfolio assignments
+   - Analyze impact of portfolio changes on policy continuity
+   - Detect ministry-specific retention problems
+
+5. **Demographic Insights**:
+   - Analyze gender distribution in cabinet over time
+   - Track age trends in minister appointments
+   - Compare party representation in government
+   - Identify demographic shifts in executive leadership
+
+6. **Temporal Intelligence**:
+   - Query historical cabinet composition at any date
+   - Track minister transitions during critical events
+   - Analyze government response to crises (personnel changes)
+   - Support historical research and analysis
+
+#### Related Views
+
+- **view_riksdagen_goverment**: Current government structure
+- **view_riksdagen_goverment_role_member**: Government role membership tracking
+- **view_riksdagen_goverment_roles**: Government role definitions
+- **view_riksdagen_goverment_proposals**: Government legislative proposals
+- **view_ministry_effectiveness_trends**: Ministry productivity tracking
+- **view_ministry_decision_impact**: Ministry legislative success rates
+- **view_riksdagen_politician_experience_summary**: Comprehensive politician experience (includes minister weights)
+
+#### Complementary Analysis
+
+This view complements the existing government and ministry views by adding:
+- **Cabinet-level temporal analysis** (formations, transitions, stability)
+- **Individual minister career tracking** (progression, portfolio changes)
+- **Demographic breakdowns** (age, gender, party representation)
+- **Tenure and turnover metrics** (short-term vs. long-term appointments)
+
+Together with ministry effectiveness and decision impact views, this provides complete executive branch intelligence.
+
+#### Real-World Use Cases
+
+1. **Political Journalism**: Track minister appointments, cabinet reshuffles, government stability
+2. **Academic Research**: Analyze Swedish government formation patterns, coalition dynamics
+3. **Policy Analysis**: Understand ministry leadership continuity and its impact on policy outcomes
+4. **Electoral Forecasting**: Predict government formation scenarios based on historical patterns
+5. **Democratic Accountability**: Monitor minister tenure, career progression, demographic representation
+6. **Historical Analysis**: Research Swedish government composition across decades
 
 ---
 
