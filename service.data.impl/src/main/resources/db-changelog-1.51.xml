@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Feature: Create Substitute and Deputy Roles View with Coverage Analysis v1.51
+  Author: Intelligence Operative
+  Date: 2025-12-21
+  
+  Documentation References:
+  - Analysis: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Business Requirements: BUSINESS_PRODUCT_DOCUMENT.md
+  
+  Background:
+  Substitute and deputy roles represent a critical component of Swedish political system resilience,
+  ensuring continuous governance and parliamentary function when primary role holders are unavailable.
+  
+  Current Data (from DISTINCT_VALUES_ANALYSIS.md):
+  - Suppleant: 14,757 positions (largest single role category)
+  - Ersättare: 933 substitute positions
+  - Deputerad: 920 deputy positions
+  - Statsrådsersättare: 295 deputy minister positions
+  - Total substitute/deputy roles: 16,905 positions (54% of all assignments!)
+  
+  View Capabilities:
+  - Track all substitute/deputy role types with categorization
+  - Map substitutes to their primary roles where possible
+  - Calculate substitute tenure and activation frequency
+  - Analyze coverage ratios (substitutes per primary role)
+  - Track substitute career progression (substitute → primary role)
+  - Identify politicians serving as substitutes for multiple roles
+  - Calculate substitute utilization metrics
+  - Support temporal queries (substitutes active on specific date)
+-->
+
+<changeSet author="intelligence-operative" id="create-substitute-deputy-roles-view-1.51-001" failOnError="true">
+    <comment>
+        Create view_substitute_deputy_roles for comprehensive tracking of all substitute and deputy positions
+        (suppleant, ersättare, deputerad, statsrådsersättare) with coverage analysis and primary role relationships.
+        
+        This view tracks 16,905 substitute/deputy positions (54% of all assignments), providing:
+        - Substitute type classification and authority levels
+        - Primary role mapping for substitutes
+        - Career progression tracking (substitute → primary)
+        - Coverage analysis (substitutes per primary role)
+        - Portfolio metrics (multiple substitute roles per person)
+        - Tenure analysis and utilization patterns
+    </comment>
+    
+    <sqlFile path="view_substitute_deputy_roles_v1.51.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_substitute_deputy_roles CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>

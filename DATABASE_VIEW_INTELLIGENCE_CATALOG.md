@@ -51,13 +51,13 @@ The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 84 | ✅ VERIFIED against full_schema.sql (2025-11-25) |
-| **Regular Views** | 56 | ✅ VERIFIED standard SQL views |
+| **Total Views** | 85 | ✅ UPDATED: Added view_substitute_deputy_roles v1.51 (2025-12-21) |
+| **Regular Views** | 57 | ✅ UPDATED: Added 1 new standard view |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
-| **Views Documented (Detailed)** | 11 | Complex examples with business context |
+| **Views Documented (Detailed)** | 12 | Complex examples with business context (added substitute roles) |
 | **Views Documented (Structured)** | 73 | Purpose, metrics, queries, product mappings |
-| **Documentation Coverage** | 100% | All 84 views documented |
-| **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
+| **Documentation Coverage** | 100% | All 85 views documented |
+| **Intelligence Views** | 8 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends, substitute roles) |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Application Event Views** | 12 | User behavior tracking (daily, weekly, monthly, annual) |
@@ -4293,11 +4293,11 @@ From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
 
 ### Overview
 
-Intelligence views (v1.29-v1.30) represent advanced analytical capabilities combining multiple data sources for risk assessment, trend analysis, and predictive intelligence. These views implement sophisticated algorithms for behavioral classification, anomaly detection, and coalition analysis.
+Intelligence views (v1.29-v1.51) represent advanced analytical capabilities combining multiple data sources for risk assessment, trend analysis, and predictive intelligence. These views implement sophisticated algorithms for behavioral classification, anomaly detection, coalition analysis, and substitute role tracking.
 
-**Total Intelligence Views:** 15+  
+**Total Intelligence Views:** 16 (updated 2025-12-21)  
 **Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH  
-**Primary Use Cases:** Risk assessment, trend forecasting, coalition analysis, anomaly detection, dashboard aggregation
+**Primary Use Cases:** Risk assessment, trend forecasting, coalition analysis, anomaly detection, dashboard aggregation, substitute role analysis
 
 ### View Categories
 
@@ -4310,6 +4310,7 @@ Intelligence views (v1.29-v1.30) represent advanced analytical capabilities comb
 | **Dashboard Aggregation** | riksdagen_intelligence_dashboard | Unified intelligence products |
 | **Crisis Analysis** | crisis_resilience_indicators | Crisis period performance assessment |
 | **Anomaly Detection** | voting_anomaly_detection | Behavioral outlier identification |
+| **Substitute Role Analysis** | substitute_deputy_roles | System resilience and career progression tracking |
 
 ---
 
@@ -5177,6 +5178,310 @@ From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
 - **view_riksdagen_party_decision_flow**: Party-level decision aggregation (v1.35)
 - **view_riksdagen_politician_decision_pattern**: Individual politician decision patterns (v1.35)
 - **view_politician_behavioral_trends**: Behavioral time-series analysis (v1.30)
+
+---
+
+### view_substitute_deputy_roles ⭐⭐⭐⭐⭐
+
+**Category:** Intelligence Views (v1.51)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Substitute Role Analysis & Coverage Assessment  
+**Changelog:** v1.51 Substitute and Deputy Roles View with Coverage Analysis
+
+#### Purpose
+
+Comprehensive tracking view for all substitute and deputy positions in Swedish political system, tracking 16,905 substitute/deputy roles (54% of all assignments). Analyzes substitute role distribution, primary-substitute relationships, career progression from substitute to primary roles, coverage ratios, and substitute utilization patterns. Critical for understanding political system resilience and governance continuity.
+
+#### Key Role Types Tracked
+
+| Role Type (Swedish) | Role Type (Classification) | Count | Authority Level | Description |
+|---------------------|---------------------------|-------|-----------------|-------------|
+| Suppleant | COMMITTEE_SUBSTITUTE | 14,757 | 3 | Committee deputy members (largest category) |
+| Ersättare | GENERAL_SUBSTITUTE | 933 | 4 | General substitute positions |
+| Deputerad | DEPUTY | 920 | 5 | Deputy positions |
+| Statsrådsersättare | MINISTER_DEPUTY | 295 | 6 | Deputy minister positions (highest authority) |
+| Extra suppleant | COMMITTEE_SUBSTITUTE_EXTRA | Variable | 2 | Extra committee deputies |
+| Personlig suppleant | PERSONAL_SUBSTITUTE | Variable | 2 | Personal substitutes |
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR | Unique politician identifier | 'Q123456' |
+| `full_name` | TEXT | Politician full name | 'Anna Andersson' |
+| `role_code` | VARCHAR | Swedish role code | 'Suppleant' |
+| `role_name_en` | TEXT | English role name | 'Deputy Member' |
+| `substitute_type` | TEXT | Classification category | 'COMMITTEE_SUBSTITUTE' |
+| `org_code` | VARCHAR | Organization code | 'FiU' (Finance Committee) |
+| `role_description` | TEXT | Detailed role description | 'Suppleant i finansutskottet' |
+| `assignment_type` | VARCHAR | Assignment type | 'Riksdagsorgan', 'Departement' |
+| `from_date` | DATE | Role start date | '2022-10-01' |
+| `to_date` | DATE | Role end date (NULL if current) | '2024-09-30' or NULL |
+| `tenure_days` | NUMERIC | Days in substitute role | 730 |
+| `tenure_years` | NUMERIC | Years in substitute role (rounded) | 2.00 |
+| `authority_level` | INTEGER | Authority ranking (1-6, higher=more) | 3 |
+| `experience_weight` | NUMERIC | Experience scoring weight | 100.0 |
+| `is_current` | BOOLEAN | Currently active role | true |
+| `party_affiliation` | VARCHAR | Political party | 'S' (Social Democrats) |
+| `gender` | VARCHAR | Gender | 'Kvinna' (Woman) |
+| `age_at_appointment` | INTEGER | Age when appointed | 45 |
+| `appointment_year` | INTEGER | Year of appointment | 2022 |
+| `primary_role_code` | VARCHAR | Primary role being substituted | 'Ledamot' (Member) |
+| `substitutes_for_primary` | INTEGER | Number of substitutes for this primary role | 3 |
+| `progressed_to_primary` | BOOLEAN | Later held non-substitute role | true |
+| `substitute_types_held` | BIGINT | Different substitute types held | 2 |
+| `total_substitute_years` | NUMERIC | Total years as substitute (all roles) | 5.23 |
+| `substitute_coverage_ratio` | NUMERIC | Substitutes per primary role in org | 1.50 |
+| `org_avg_substitute_years` | NUMERIC | Average substitute tenure in org | 3.25 |
+| `org_current_substitutes` | BIGINT | Current substitutes in organization | 12 |
+| `total_substitute_roles` | BIGINT | Total substitute positions held | 3 |
+| `organizations_substituted` | BIGINT | Number of organizations | 2 |
+| `substitute_types` | TEXT | Concatenated substitute types | 'COMMITTEE_SUBSTITUTE + DEPUTY' |
+| `substitute_tenure_class` | TEXT | Tenure classification | 'REGULAR' |
+
+#### Tenure Classifications
+
+| Classification | Criteria | Description |
+|----------------|----------|-------------|
+| `SHORT_TERM` | < 365 days | Short-term or temporary substitutes |
+| `REGULAR` | 365-1,459 days (1-4 years) | Standard substitute tenure |
+| `LONG_TERM` | ≥ 1,460 days (4+ years) | Long-serving substitutes |
+
+#### Data Sources
+
+Aggregates from multiple sources:
+1. **assignment_data**: All substitute role assignments
+2. **person_data**: Personal information and party affiliation
+3. **Primary role mapping**: Temporal overlap analysis with non-substitute roles
+4. **Career progression**: Cross-time analysis of role transitions
+5. **Coverage analysis**: Substitute-to-primary ratios per organization
+
+#### Example Queries
+
+**1. Current Substitutes by Type and Coverage**
+
+```sql
+SELECT 
+    substitute_type,
+    COUNT(*) AS current_count,
+    ROUND(AVG(tenure_years), 2) AS avg_years,
+    ROUND(AVG(substitute_coverage_ratio), 2) AS avg_coverage_ratio,
+    COUNT(CASE WHEN progressed_to_primary THEN 1 END) AS progressed_count
+FROM view_substitute_deputy_roles
+WHERE is_current = true
+GROUP BY substitute_type
+ORDER BY current_count DESC;
+```
+
+**Sample Output:**
+
+```
+substitute_type          | current_count | avg_years | avg_coverage_ratio | progressed_count
+------------------------+--------------+-----------+--------------------+-----------------
+COMMITTEE_SUBSTITUTE    |          892 |      2.45 |               1.25 |              127
+GENERAL_SUBSTITUTE      |           67 |      3.12 |               0.85 |               15
+DEPUTY                  |           54 |      4.23 |               0.50 |               23
+MINISTER_DEPUTY         |           18 |      2.87 |               0.33 |               12
+```
+
+**Intelligence Application**: Identifies substitute type distribution, average tenure patterns, coverage adequacy, and career progression rates for each substitute category.
+
+---
+
+**2. Substitutes Who Progressed to Primary Roles**
+
+```sql
+SELECT 
+    full_name,
+    substitute_types,
+    ROUND(total_substitute_years, 1) AS years_as_substitute,
+    organizations_substituted,
+    party_affiliation,
+    first_substitute_role,
+    progressed_to_primary
+FROM view_substitute_deputy_roles
+WHERE progressed_to_primary = true
+GROUP BY full_name, substitute_types, total_substitute_years, 
+         organizations_substituted, party_affiliation, first_substitute_role, progressed_to_primary
+ORDER BY total_substitute_years DESC
+LIMIT 20;
+```
+
+**Sample Output:**
+
+```
+full_name       | substitute_types                | years_as_substitute | organizations | party | first_role  | progressed
+----------------+--------------------------------+--------------------+--------------+-------+------------+------------
+Per Johansson  | COMMITTEE_SUBSTITUTE + DEPUTY  |               8.5  |            3 | M     | 2010-10-01 | true
+Eva Svensson   | COMMITTEE_SUBSTITUTE           |               6.2  |            2 | S     | 2014-10-01 | true
+...
+```
+
+**Intelligence Application**: Identifies politicians who used substitute roles as stepping stones to primary positions, revealing career progression patterns and political development pathways.
+
+---
+
+**3. Coverage Analysis by Organization**
+
+```sql
+SELECT 
+    org_code,
+    role_description,
+    org_current_substitutes,
+    ROUND(substitute_coverage_ratio, 2) AS coverage_ratio,
+    ROUND(org_avg_substitute_years, 2) AS avg_tenure_years,
+    COUNT(DISTINCT person_id) AS unique_substitutes
+FROM view_substitute_deputy_roles
+WHERE is_current = true
+GROUP BY org_code, role_description, org_current_substitutes, 
+         substitute_coverage_ratio, org_avg_substitute_years
+HAVING org_current_substitutes > 5
+ORDER BY coverage_ratio DESC
+LIMIT 15;
+```
+
+**Sample Output:**
+
+```
+org_code | role_description           | current_substitutes | coverage_ratio | avg_tenure | unique
+---------+---------------------------+--------------------+----------------+------------+--------
+FiU      | Suppleant i finansutskott |                 25 |           2.50 |       3.45 |     25
+KU       | Suppleant i KU            |                 22 |           2.20 |       2.87 |     22
+UU       | Suppleant i UU            |                 20 |           2.00 |       3.12 |     20
+...
+```
+
+**Intelligence Application**: Evaluates substitute coverage adequacy across key committees and organizations. High coverage ratios indicate robust backup systems; low ratios may signal resilience gaps.
+
+---
+
+**4. Politicians with Multiple Substitute Roles**
+
+```sql
+SELECT 
+    full_name,
+    total_substitute_roles,
+    organizations_substituted,
+    substitute_types,
+    ROUND(total_substitute_years, 1) AS years_as_substitute,
+    party_affiliation,
+    is_current
+FROM view_substitute_deputy_roles
+WHERE organizations_substituted > 2
+GROUP BY full_name, total_substitute_roles, organizations_substituted, 
+         substitute_types, total_substitute_years, party_affiliation, is_current
+ORDER BY organizations_substituted DESC, total_substitute_roles DESC
+LIMIT 20;
+```
+
+**Sample Output:**
+
+```
+full_name       | total_roles | organizations | substitute_types              | years | party | current
+----------------+-------------+--------------+------------------------------+-------+-------+--------
+Maria Karlsson |           5 |            4 | COMMITTEE_SUBSTITUTE + DEPUTY |   7.2 | C     | true
+Lars Nilsson   |           4 |            3 | COMMITTEE_SUBSTITUTE          |   5.8 | M     | false
+...
+```
+
+**Intelligence Application**: Identifies versatile politicians serving as substitutes across multiple organizations, indicating broad expertise and high trust from party leadership.
+
+---
+
+**5. Substitute Utilization by Party and Tenure**
+
+```sql
+SELECT 
+    party_affiliation,
+    substitute_tenure_class,
+    COUNT(*) AS substitute_count,
+    ROUND(AVG(tenure_years), 2) AS avg_tenure,
+    COUNT(CASE WHEN progressed_to_primary THEN 1 END) AS progressed,
+    ROUND(100.0 * COUNT(CASE WHEN progressed_to_primary THEN 1 END) / COUNT(*), 1) AS progression_rate
+FROM view_substitute_deputy_roles
+WHERE party_affiliation IS NOT NULL
+GROUP BY party_affiliation, substitute_tenure_class
+ORDER BY party_affiliation, 
+         CASE substitute_tenure_class 
+             WHEN 'SHORT_TERM' THEN 1 
+             WHEN 'REGULAR' THEN 2 
+             WHEN 'LONG_TERM' THEN 3 
+         END;
+```
+
+**Sample Output:**
+
+```
+party | tenure_class | count | avg_tenure | progressed | progression_rate
+------+--------------+-------+------------+------------+-----------------
+C     | SHORT_TERM   |   145 |       0.52 |          8 |             5.5
+C     | REGULAR      |   324 |       2.35 |         45 |            13.9
+C     | LONG_TERM    |    87 |       6.12 |         23 |            26.4
+M     | SHORT_TERM   |   198 |       0.48 |         12 |             6.1
+M     | REGULAR      |   412 |       2.41 |         58 |            14.1
+...
+```
+
+**Intelligence Application**: Analyzes party-specific substitute utilization patterns and career progression rates. Long-term substitutes show higher progression rates, suggesting experience leads to advancement.
+
+---
+
+**6. High-Authority Substitutes (Deputies and Minister Deputies)**
+
+```sql
+SELECT 
+    full_name,
+    role_name_en,
+    substitute_type,
+    authority_level,
+    org_code,
+    role_description,
+    tenure_years,
+    party_affiliation,
+    is_current,
+    progressed_to_primary
+FROM view_substitute_deputy_roles
+WHERE authority_level >= 5  -- Deputy and Minister Deputy only
+ORDER BY authority_level DESC, tenure_years DESC
+LIMIT 25;
+```
+
+**Sample Output:**
+
+```
+full_name        | role_name_en   | type           | authority | org_code | tenure | party | current | progressed
+-----------------+----------------+----------------+-----------+----------+--------+-------+---------+-----------
+Anna Bergström  | Deputy Minister| MINISTER_DEPUTY|     6     | Fi       |   3.5  | S     | true    | false
+Erik Lundqvist  | Deputy Minister| MINISTER_DEPUTY|     6     | UD       |   2.8  | M     | false   | true
+Sofia Andersson | Deputy         | DEPUTY         |     5     | FiU      |   4.2  | C     | true    | false
+...
+```
+
+**Intelligence Application**: Tracks high-authority substitute positions critical for government continuity. Minister deputies and organizational deputies represent key backup leadership.
+
+---
+
+#### Intelligence Applications
+
+1. **System Resilience Assessment**: Evaluate political system continuity through substitute coverage ratios
+2. **Career Path Analysis**: Track progression from substitute to primary roles
+3. **Coverage Gap Identification**: Identify organizations with insufficient substitute backup
+4. **Party Strategy Analysis**: Compare substitute utilization patterns across parties
+5. **Succession Planning**: Identify long-term substitutes likely to advance to primary roles
+6. **Governance Continuity**: Monitor high-authority substitute positions for crisis preparedness
+7. **Experience Tracking**: Aggregate substitute experience for politician scoring systems
+
+#### Related Views
+
+- **view_riksdagen_politician_experience_summary**: Includes substitute experience in overall scoring (v1.44)
+- **view_riksdagen_politician**: Core politician data and current positions
+- **view_riksdagen_politician_decision_pattern**: Decision-making patterns for substitutes who progressed
+
+#### View Dependencies
+
+- Depends on: `assignment_data`, `person_data`
+- Used by: Experience scoring systems, career progression analytics, resilience dashboards
+- Complements: `view_riksdagen_politician_experience_summary`, committee productivity views
 
 ---
 
