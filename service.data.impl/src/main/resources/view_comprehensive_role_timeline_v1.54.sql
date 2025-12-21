@@ -1,4 +1,4 @@
-DROP VIEW IF EXISTS view_comprehensive_role_timeline CASCADE;
+DROP VIEW IF EXISTS view_comprehensive_role_timeline;
 CREATE VIEW view_comprehensive_role_timeline AS
 
 WITH role_timeline AS (
@@ -112,9 +112,9 @@ concurrent_roles_analysis AS (
     FROM role_timeline rt1
     INNER JOIN role_timeline rt2 
         ON rt1.person_id = rt2.person_id
-        -- Use unique identifier to avoid duplicates
-        AND (rt1.from_date::text || rt1.role_code || COALESCE(rt1.org_code, '')) < 
-            (rt2.from_date::text || rt2.role_code || COALESCE(rt2.org_code, ''))
+        -- Use tuple comparison for unique ordering (more efficient than string concat)
+        AND (rt1.from_date, rt1.role_code, COALESCE(rt1.org_code, '')) < 
+            (rt2.from_date, rt2.role_code, COALESCE(rt2.org_code, ''))
         -- Proper overlap detection: roles overlap if one starts before the other ends
         AND rt1.start_date <= rt2.end_date
         AND rt2.start_date <= rt1.end_date
@@ -196,6 +196,8 @@ person_timeline_metrics AS (
            AND rg.gap_days > 0) AS avg_gap_days,
         
         -- Activity metrics (handle edge cases with short careers)
+        -- For careers shorter than 1 day, set activity ratio to 1.0 (100% active)
+        -- to avoid division by zero and represent single-day assignments accurately
         CASE 
             WHEN DATE_PART('day', MAX(rt.end_date) - MIN(rt.start_date)) < 1 THEN 1.0
             ELSE SUM(rt.duration_days) / DATE_PART('day', MAX(rt.end_date) - MIN(rt.start_date))
