@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Create: Comprehensive Role Timeline View v1.54
+  Author: Copilot (Intelligence Operative)
+  Date: 2025-12-21
+  
+  Documentation References:
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - Intelligence Changelog: CHANGELOG_INTELLIGENCE.md
+  
+  Purpose:
+  Complete temporal analysis of all political role assignments including concurrent roles,
+  time gaps, role overlaps, and complete politician career timelines.
+  
+  Key Features:
+  - Track complete timeline for each politician with all roles
+  - Identify concurrent role holdings with overlap periods
+  - Calculate time gaps between assignments
+  - Detect potential temporal conflicts (same assignment_type overlaps)
+  - Measure role accumulation over time
+  - Support temporal range queries (roles active during specific period)
+  - Calculate workload intensity scores
+  - Track career continuity and interruptions
+  
+  Business Value:
+  - Workload analysis: Identify role concentration and capacity issues
+  - Conflict of interest detection: Track potentially conflicting concurrent roles
+  - Career continuity assessment: Analyze gaps in political activity
+  - Time utilization patterns: Understand role commitment levels
+  - Historical accuracy: Ensure complete temporal accuracy of political records
+-->
+
+<changeSet author="intelligence-operative" id="create-comprehensive-role-timeline-1.54-001" failOnError="true">
+    <comment>
+        Create view_comprehensive_role_timeline for complete temporal analysis of political 
+        role assignments. Tracks concurrent roles, time gaps, role overlaps, and career timelines
+        across all political roles. Supports workload analysis, conflict detection, and career
+        continuity assessment.
+    </comment>
+    
+    <sqlFile path="view_comprehensive_role_timeline_v1.54.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_comprehensive_role_timeline CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>

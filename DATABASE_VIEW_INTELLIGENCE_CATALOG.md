@@ -35,28 +35,28 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **85 database views** (57 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views (100% coverage). **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 85 database views (100% coverage). **12 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
-**Last Validated**: 2025-11-25  
+**Last Validated**: 2025-12-21  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (84/84 views)  
+**Documentation Coverage**: 100% (85/85 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
+**Note**: Total view count increased from 84 to 85 with addition of `view_comprehensive_role_timeline` (v1.54) for temporal role analysis.
 
-### Key Statistics (REVERIFIED 2025-11-25)
+### Key Statistics (UPDATED 2025-12-21)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 84 | ✅ VERIFIED against full_schema.sql (2025-11-25) |
-| **Regular Views** | 56 | ✅ VERIFIED standard SQL views |
+| **Total Views** | 85 | ✅ UPDATED with v1.54 role timeline view (2025-12-21) |
+| **Regular Views** | 57 | ✅ UPDATED standard SQL views (+1) |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
-| **Views Documented (Detailed)** | 11 | Complex examples with business context |
+| **Views Documented (Detailed)** | 12 | Complex examples with business context (+1) |
 | **Views Documented (Structured)** | 73 | Purpose, metrics, queries, product mappings |
-| **Documentation Coverage** | 100% | All 84 views documented |
+| **Documentation Coverage** | 100% | All 85 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
@@ -65,6 +65,7 @@ The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
 | **Government/Ministry Views** | 7 | Government and ministry performance tracking |
 | **Party Views** | 13 | Party performance, decision flow, effectiveness |
+| **Politician Views** | 16 | Politician timeline, experience, and performance (+1) |
 | **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
 | **Database Size** | 20 GB | Total database size (validated 2025-11-21) |
 | **Total Rows** | 5.6M | Total rows across all tables |
@@ -398,13 +399,14 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_party_summary | Standard | ⭐⭐⭐⭐ | Aggregated party statistics |
 | view_riksdagen_person_signed_document_summary | Standard | ⭐⭐⭐ | Individual document signature summary |
 
-### Politician Views (8 views)
+### Politician Views (9 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
 | 📖 view_riksdagen_politician | Standard | ⭐⭐⭐⭐⭐ | Core politician information and demographics |
 | 📖 view_riksdagen_politician_document | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Politician document authorship and productivity |
 | 📖 view_riksdagen_politician_experience_summary | Standard | ⭐⭐⭐⭐⭐ | Politician experience scoring and classification |
+| 📖 view_comprehensive_role_timeline | Standard | ⭐⭐⭐⭐⭐ | Complete role timeline with concurrent role analysis (NEW v1.54) |
 | view_riksdagen_politician_ballot_summary | Standard | ⭐⭐⭐⭐⭐ | Politician voting record summary |
 | view_riksdagen_politician_influence_metrics | Standard | ⭐⭐⭐⭐⭐ | Politician influence and network analysis |
 | 📖 view_riksdagen_politician_decision_pattern | Standard | ⭐⭐⭐⭐⭐ | Politician decision effectiveness and committee specialization (NEW v1.35) |
@@ -471,11 +473,11 @@ This section provides a complete alphabetical inventory of all 82 database views
 
 ### Overview
 
-Politician views provide comprehensive intelligence on individual parliamentary members, tracking their experience, behavioral patterns, voting records, document productivity, and risk indicators. These views form the foundation for individual performance scorecards and behavioral analysis.
+Politician views provide comprehensive intelligence on individual parliamentary members, tracking their experience, behavioral patterns, voting records, document productivity, role timelines, and risk indicators. These views form the foundation for individual performance scorecards and behavioral analysis.
 
-**Total Politician Views:** 15+  
+**Total Politician Views:** 16+  
 **Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH  
-**Primary Use Cases:** Performance monitoring, risk assessment, experience tracking, productivity analysis
+**Primary Use Cases:** Performance monitoring, risk assessment, experience tracking, productivity analysis, temporal role analysis
 
 ---
 
@@ -880,6 +882,251 @@ From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
 - **Politician Dashboard** (Product Line 1): Experience metrics
 - **Advanced Analytics** (Product Line 2): Experience distribution
 - **Comparative Tools** (Product Line 2): Experience benchmarking
+
+---
+
+### view_comprehensive_role_timeline ⭐⭐⭐⭐⭐
+
+**Category:** Politician Intelligence Views (v1.54)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Temporal Role Analysis & Career Timeline  
+**Changelog:** v1.54 Comprehensive Role Timeline View
+
+#### Purpose
+
+Complete temporal analysis of all political role assignments including concurrent roles, time gaps, role overlaps, and complete politician career timelines. Tracks workload intensity, career continuity, and identifies potential conflicts of interest through concurrent role analysis.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Unique politician identifier | '0532213467925' |
+| `full_name` | VARCHAR(512) | Politician full name | 'Anna Andersson' |
+| `party` | VARCHAR(50) | Political party | 'S' |
+| `role_code` | VARCHAR(255) | Role code | 'Riksdagsledamot' |
+| `role_name_en` | VARCHAR(255) | Role name in English | 'Riksdagsledamot' |
+| `role_category` | VARCHAR(50) | Role classification | 'MEMBER_OF_PARLIAMENT' |
+| `institutional_power_center` | VARCHAR(50) | Power center | 'PARLIAMENT' |
+| `org_code` | VARCHAR(255) | Organization code | 'kam' |
+| `assignment_type` | VARCHAR(255) | Assignment type | 'kammaruppdrag' |
+| `start_date` | DATE | Role start date | '2018-09-24' |
+| `end_date` | DATE | Role end date (NULL if active) | '2022-09-26' |
+| `duration_years` | NUMERIC | Role duration in years | 4.01 |
+| `is_active` | BOOLEAN | Currently active role | true |
+| `aggregate_power_score` | NUMERIC | Role power score | 500.0 |
+| `career_first_role` | DATE | First role start date | '2010-10-04' |
+| `career_last_role` | DATE | Most recent role end | '2024-11-17' |
+| `career_span_years` | NUMERIC | Total career span | 14.12 |
+| `total_roles` | INTEGER | Total roles held | 18 |
+| `total_active_years` | NUMERIC | Total active years | 12.45 |
+| `activity_ratio` | NUMERIC | Active time / career span | 0.88 |
+| `career_continuity` | VARCHAR(50) | Continuity classification | 'MOSTLY_ACTIVE' |
+| `total_concurrent_periods` | INTEGER | Number of concurrent role periods | 8 |
+| `avg_concurrent_overlap_years` | NUMERIC | Average overlap duration | 1.25 |
+| `peak_concurrent_power` | NUMERIC | Maximum combined power score | 1200.0 |
+| `workload_pattern` | VARCHAR(50) | Workload classification | 'MODERATE_MULTITASKER' |
+| `significant_gaps` | INTEGER | Medium/long gaps count | 2 |
+| `avg_gap_years` | NUMERIC | Average gap duration | 0.45 |
+| `career_stability` | VARCHAR(50) | Stability classification | 'MODERATE_STABILITY' |
+| `assignment_types_served` | INTEGER | Distinct assignment types | 4 |
+| `power_centers_served` | INTEGER | Distinct power centers | 3 |
+| `currently_active` | INTEGER | Currently active (1/0) | 1 |
+| `roles_during_same_year` | INTEGER | Concurrent roles in year | 3 |
+| `concurrent_during_role` | INTEGER | Concurrent roles during this role | 2 |
+| `year_total_power` | NUMERIC | Total power score for year | 1850.0 |
+
+#### Key Features
+
+**Temporal Analysis:**
+- Complete career timeline with all role assignments
+- Date range tracking (start_date, end_date, duration)
+- Career span and continuity metrics
+- Time gap identification between roles
+
+**Concurrent Role Analysis:**
+- Identifies simultaneous role holdings
+- Calculates overlap periods and durations
+- Detects potential conflicts (same assignment_type in same org)
+- Measures power accumulation through concurrent roles
+- Peak concurrent power score tracking
+
+**Workload Intensity:**
+- Annual role count tracking
+- Concurrent role count per year
+- Power score aggregation by year
+- Workload pattern classification
+
+**Career Continuity:**
+- Activity ratio (active time / career span)
+- Gap classification (SHORT_GAP, MEDIUM_GAP, LONG_GAP)
+- Career stability assessment
+- Continuity pattern classification
+
+**Role Diversity:**
+- Assignment types served count
+- Power centers served count
+- Institutional diversity metrics
+
+#### Example Queries
+
+**1. Politicians with Most Concurrent Roles**
+
+```sql
+SELECT 
+    full_name,
+    party,
+    total_concurrent_periods,
+    peak_concurrent_power,
+    workload_pattern,
+    career_span_years
+FROM view_comprehensive_role_timeline
+WHERE total_concurrent_periods > 0
+GROUP BY full_name, party, total_concurrent_periods, peak_concurrent_power, 
+         workload_pattern, career_span_years
+ORDER BY total_concurrent_periods DESC
+LIMIT 20;
+```
+
+**2. Career Continuity Analysis by Party**
+
+```sql
+SELECT 
+    party,
+    career_continuity,
+    COUNT(DISTINCT person_id) AS politicians,
+    AVG(activity_ratio) AS avg_activity,
+    AVG(career_span_years) AS avg_span_years,
+    AVG(significant_gaps) AS avg_gaps
+FROM view_comprehensive_role_timeline
+GROUP BY party, career_continuity
+ORDER BY party, avg_activity DESC;
+```
+
+**3. Roles Active During Specific Period**
+
+```sql
+SELECT 
+    full_name,
+    role_name_en,
+    institutional_power_center,
+    start_date,
+    end_date,
+    aggregate_power_score
+FROM view_comprehensive_role_timeline
+WHERE start_date <= '2023-12-31'::date
+    AND end_date >= '2023-01-01'::date
+ORDER BY aggregate_power_score DESC;
+```
+
+**4. High Workload Politicians (Heavy Multitaskers)**
+
+```sql
+SELECT 
+    full_name,
+    party,
+    total_concurrent_periods,
+    peak_concurrent_power,
+    workload_pattern,
+    career_continuity,
+    AVG(concurrent_during_role) AS avg_concurrent_roles
+FROM view_comprehensive_role_timeline
+WHERE workload_pattern IN ('HEAVY_MULTITASKER', 'MODERATE_MULTITASKER')
+GROUP BY full_name, party, total_concurrent_periods, peak_concurrent_power,
+         workload_pattern, career_continuity
+ORDER BY total_concurrent_periods DESC;
+```
+
+**5. Career Gap Analysis**
+
+```sql
+SELECT 
+    full_name,
+    party,
+    career_span_years,
+    total_active_years,
+    significant_gaps,
+    avg_gap_years,
+    career_stability,
+    activity_ratio
+FROM view_comprehensive_role_timeline
+WHERE significant_gaps > 0
+GROUP BY full_name, party, career_span_years, total_active_years,
+         significant_gaps, avg_gap_years, career_stability, activity_ratio
+ORDER BY significant_gaps DESC, avg_gap_years DESC
+LIMIT 30;
+```
+
+**6. Temporal Workload Intensity Trends**
+
+```sql
+SELECT 
+    DATE_TRUNC('year', start_date) AS year,
+    AVG(roles_during_same_year) AS avg_roles_per_person,
+    AVG(concurrent_during_role) AS avg_concurrent,
+    AVG(year_total_power) AS avg_power_accumulation
+FROM view_comprehensive_role_timeline
+WHERE start_date >= '2000-01-01'::date
+GROUP BY DATE_TRUNC('year', start_date)
+ORDER BY year DESC;
+```
+
+#### Performance Characteristics
+
+- **Query Time:** 100-200ms (complex multi-CTE analysis)
+- **Indexes Used:** `idx_assignment_data_person`, `idx_assignment_data_dates`
+- **Data Volume:** ~31,000+ rows (all role assignments)
+- **Refresh Frequency:** Real-time (standard view)
+- **Common Filters:** `person_id`, `party`, `start_date`, `end_date`, `is_active`
+
+#### Data Sources
+
+- **Primary Table:** `assignment_data` (role assignments with temporal data)
+- **Joined Tables:** `person_data` (politician identification)
+
+#### Dependencies
+
+- No view dependencies (built directly on source tables)
+- Complements: `view_riksdagen_politician_experience_summary`
+
+#### Risk Rules Supported
+
+From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
+- **PoliticianOvercommitted (NEW)**: Identifies excessive concurrent roles
+- **PoliticianCareerGap (NEW)**: Tracks significant career interruptions
+- **ConflictOfInterest (NEW)**: Detects conflicting concurrent roles
+- Workload capacity analysis for all politician risk rules
+
+#### Intelligence Applications
+
+This view supports multiple analytical frameworks:
+
+| Analysis Framework | Use Case | Example Application |
+|--------------------|----------|-------------------|
+| **Temporal Analysis** | Career timeline and continuity tracking | Monitor career interruptions and role transitions |
+| **Workload Analysis** | Concurrent role tracking and capacity assessment | Identify overcommitted politicians |
+| **Conflict Detection** | Simultaneous role conflicts | Detect potential conflicts of interest |
+| **Pattern Recognition** | Career pattern clustering | Identify career trajectory patterns |
+| **Predictive Intelligence** | Career stability forecasting | Predict career interruptions |
+
+**Intelligence Products Generated:**
+- 🏆 Workload Capacity Reports - Concurrent role analysis
+- 📊 Career Timeline Visualizations - Complete career history
+- 🎯 Conflict of Interest Detection - Simultaneous role conflicts
+- 📈 Career Continuity Assessment - Gap and stability analysis
+
+**Business Use Cases:**
+- **Workload analysis**: Identify role concentration and capacity issues
+- **Conflict of interest detection**: Track potentially conflicting concurrent roles
+- **Career continuity assessment**: Analyze gaps in political activity
+- **Time utilization patterns**: Understand role commitment levels
+- **Historical accuracy**: Ensure complete temporal accuracy of political records
+
+#### Integration with Product Features
+
+From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
+- **Politician Timeline Dashboard** (Product Line 2): Career visualization
+- **Workload Analytics** (Product Line 2): Concurrent role analysis
+- **Risk Assessment** (Product Line 2): Conflict detection
 
 ---
 
