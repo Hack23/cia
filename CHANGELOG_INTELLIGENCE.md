@@ -1433,6 +1433,7 @@ No new risk rules in this version (views enable rules added in v1.35)
 **Database Views**:
 - View-to-product mapping improvements
 - Intelligence-focused view optimizations
+- ✅ **NEW v1.50**: EU Parliament Representatives view - Swedish MEP tracking with career path analysis (85 Europaparlamentet assignments)
 
 **Risk Rules**:
 - Machine learning-enhanced rule calibration
