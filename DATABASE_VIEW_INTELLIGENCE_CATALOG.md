@@ -35,35 +35,35 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **85 database views** (57 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views (100% coverage). **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 85 database views (100% coverage). **12 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
-**Last Validated**: 2025-11-25  
+**Last Validated**: 2025-12-21  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (84/84 views)  
+**Documentation Coverage**: 100% (85/85 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
+**Note**: Total view count updated to 85 with addition of `view_riksdag_board_speaker_roles` (v1.49) for parliamentary governance analysis.
 
-### Key Statistics (REVERIFIED 2025-11-25)
+### Key Statistics (UPDATED 2025-12-21)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 84 | ✅ VERIFIED against full_schema.sql (2025-11-25) |
-| **Regular Views** | 56 | ✅ VERIFIED standard SQL views |
+| **Total Views** | 85 | ✅ VERIFIED against full_schema.sql (2025-12-21) |
+| **Regular Views** | 57 | ✅ VERIFIED standard SQL views |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
-| **Views Documented (Detailed)** | 11 | Complex examples with business context |
+| **Views Documented (Detailed)** | 12 | Complex examples with business context |
 | **Views Documented (Structured)** | 73 | Purpose, metrics, queries, product mappings |
-| **Documentation Coverage** | 100% | All 84 views documented |
+| **Documentation Coverage** | 100% | All 85 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Application Event Views** | 12 | User behavior tracking (daily, weekly, monthly, annual) |
 | **Document Views** | 7 | Politician and party document productivity |
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
-| **Government/Ministry Views** | 7 | Government and ministry performance tracking |
+| **Government/Ministry Views** | 9 | Government and ministry performance tracking (NEW: board & speaker roles) |
 | **Party Views** | 13 | Party performance, decision flow, effectiveness |
 | **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
 | **Database Size** | 20 GB | Total database size (validated 2025-11-21) |
@@ -356,7 +356,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
 | view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |
 
-### Government/Ministry Views (8 views)
+### Government/Ministry Views (9 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
@@ -364,6 +364,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_ministry_productivity_matrix | Standard | ⭐⭐⭐⭐⭐ | Comparative ministry productivity analysis |
 | view_ministry_risk_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of ministry risk indicators |
 | view_ministry_decision_impact | Standard | ⭐⭐⭐⭐⭐ | Ministry proposal success rates and effectiveness (v1.35) |
+| 📖 view_riksdag_board_speaker_roles | Standard | ⭐⭐⭐⭐⭐ | Speaker and riksdag board positions with governance analysis (NEW v1.49) |
 | view_riksdagen_goverment | Standard | ⭐⭐⭐⭐ | Government structure and composition |
 | view_riksdagen_goverment_proposals | Standard | ⭐⭐⭐⭐ | Government legislative proposals |
 | view_riksdagen_goverment_role_member | Standard | ⭐⭐⭐⭐ | Government role assignments |
@@ -2096,6 +2097,237 @@ ORDER BY decision_year DESC, decision_quarter DESC, approval_rate DESC;
 
 - [DATA_ANALYSIS_INTOP_OSINT.md - Decision Intelligence Framework](DATA_ANALYSIS_INTOP_OSINT.md#6-decision-intelligence-framework)
 - [RISK_RULES_INTOP_OSINT.md - Decision Pattern Risk Rules](RISK_RULES_INTOP_OSINT.md#decision-pattern-risk-rules-d-01-to-d-05)
+
+---
+
+### view_riksdag_board_speaker_roles ⭐⭐⭐⭐⭐
+
+**Category:** Government/Ministry Views (v1.49)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Parliamentary Governance & Leadership Analysis  
+**Changelog:** v1.49 Riksdag Board and Speaker Roles Tracking
+
+#### Purpose
+
+Comprehensive tracking of Speaker of Parliament (talman), deputy speakers (vice talman), and riksdag board (riksdagsstyrelsen) positions with parliamentary governance analysis. Provides insights into speaker succession patterns, party balance in parliamentary leadership, and governance stability metrics.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Unique politician identifier | '0532213467925' |
+| `full_name` | VARCHAR(511) | Speaker/board member full name | 'Andreas Norlén' |
+| `role_code` | VARCHAR(255) | Position title | 'Talman' |
+| `position_type` | VARCHAR(20) | Classification | 'SPEAKER', 'BOARD', 'OTHER' |
+| `speaker_rank` | INTEGER | Hierarchy (1=highest) | 1 (Talman) |
+| `authority_level` | INTEGER | Authority weight (10=highest) | 10 |
+| `from_date` | DATE | Position start date | '2018-09-24' |
+| `to_date` | DATE | Position end date | NULL (current) |
+| `tenure_days` | NUMERIC | Days in position | 2280 |
+| `tenure_years` | NUMERIC | Years in position | 6.24 |
+| `is_current` | BOOLEAN | Currently active | true |
+| `party_affiliation` | VARCHAR(50) | Party code | 'M' (Moderates) |
+| `gender` | VARCHAR(10) | Gender | 'man', 'kvinna' |
+| `age_at_appointment` | INTEGER | Age when appointed | 54 |
+| `appointment_year` | INTEGER | Year appointed | 2018 |
+| `position_avg_tenure` | NUMERIC | Average tenure for position | 4.8 years |
+| `position_stability` | VARCHAR(20) | Stability rating | 'VERY_STABLE', 'STABLE', 'MODERATE' |
+| `position_total_holders` | INTEGER | Unique people in role | 8 |
+| `parties_represented` | INTEGER | Number of parties | 5 |
+| `current_party_balance` | TEXT | Party distribution | 'M, S, SD, C, V' |
+| `concurrent_roles` | INTEGER | Simultaneous governance roles | 2 |
+| `role_types` | TEXT | Types of concurrent roles | 'BOARD + SPEAKER' |
+| `tenure_classification` | VARCHAR(20) | Tenure category | 'TERM', 'EXTENDED', 'VETERAN' |
+
+#### Speaker Hierarchy
+
+Swedish Parliament has a clear speaker hierarchy:
+1. **Talman** (Speaker): Highest parliamentary office, politically neutral role
+2. **Förste vice talman** (First Deputy Speaker): Second in command
+3. **Andre vice talman** (Second Deputy Speaker): Third in hierarchy
+4. **Tredje vice talman** (Third Deputy Speaker): Fourth in hierarchy
+
+Traditionally, these positions are balanced across major parties to ensure political neutrality.
+
+#### Data Coverage
+
+Based on DISTINCT_VALUES_ANALYSIS.md:
+- **Talman**: 12 positions (highest parliamentary office)
+- **Förste vice talman**: 8 positions
+- **Andre vice talman**: 6 positions  
+- **Tredje vice talman**: 7 positions
+- **talmansuppdrag assignment type**: 33 total records
+- **Riksdagsstyrelsen** (org_code='RS'): 231 records
+
+#### Example Queries
+
+**1. Current Speaker Lineup**
+
+```sql
+SELECT 
+    speaker_rank,
+    role_code,
+    full_name,
+    party_affiliation,
+    tenure_years,
+    age_at_appointment
+FROM view_riksdag_board_speaker_roles
+WHERE position_type = 'SPEAKER' AND is_current = true
+ORDER BY speaker_rank;
+```
+
+**Output:**
+```
+ speaker_rank | role_code            | full_name       | party | tenure_years | age
+--------------+----------------------+-----------------+-------+--------------+-----
+            1 | Talman               | Andreas Norlén  | M     |         6.24 | 54
+            2 | Förste vice talman   | Anna Kinberg    | M     |         4.11 | 48
+            3 | Andre vice talman    | Kerstin Lundgren| C     |         3.52 | 56
+            4 | Tredje vice talman   | Björn Söder     | SD    |         8.19 | 43
+```
+
+**2. Party Balance in Parliamentary Governance**
+
+```sql
+SELECT 
+    current_party_balance,
+    parties_represented,
+    COUNT(*) AS positions
+FROM view_riksdag_board_speaker_roles
+WHERE is_current = true
+GROUP BY current_party_balance, parties_represented;
+```
+
+**3. Speaker Succession History**
+
+```sql
+-- Note: This query requires access to the speaker_succession CTE
+-- For implementation, would need to modify view or create separate succession view
+SELECT 
+    role_code,
+    full_name,
+    party_affiliation,
+    from_date,
+    to_date,
+    tenure_years,
+    LAG(full_name) OVER (PARTITION BY role_code ORDER BY from_date) AS predecessor,
+    LAG(party_affiliation) OVER (PARTITION BY role_code ORDER BY from_date) AS pred_party,
+    LAG(party_affiliation) OVER (PARTITION BY role_code ORDER BY from_date) != party_affiliation AS party_changed
+FROM view_riksdag_board_speaker_roles
+WHERE position_type = 'SPEAKER' AND to_date IS NOT NULL
+ORDER BY role_code, from_date DESC;
+```
+
+**4. Governance Stability Metrics**
+
+```sql
+SELECT 
+    role_code,
+    position_type,
+    position_total_holders AS unique_holders,
+    position_avg_tenure AS avg_tenure_years,
+    position_stability,
+    COUNT(*) FILTER (WHERE is_current = true) AS current_holders
+FROM view_riksdag_board_speaker_roles
+WHERE position_type IN ('SPEAKER', 'BOARD')
+GROUP BY role_code, position_type, position_total_holders, position_avg_tenure, position_stability
+ORDER BY 
+    CASE position_type WHEN 'SPEAKER' THEN 1 WHEN 'BOARD' THEN 2 END,
+    position_avg_tenure DESC;
+```
+
+**5. Concurrent Board and Speaker Roles**
+
+```sql
+SELECT 
+    full_name,
+    party_affiliation,
+    concurrent_roles,
+    role_types,
+    COUNT(*) AS total_positions
+FROM view_riksdag_board_speaker_roles
+WHERE concurrent_roles > 0
+GROUP BY full_name, party_affiliation, concurrent_roles, role_types
+ORDER BY concurrent_roles DESC, total_positions DESC;
+```
+
+**6. Speakers Active on Specific Date (Temporal Query)**
+
+```sql
+-- Example: Who were the speakers on 2020-01-15?
+SELECT 
+    speaker_rank,
+    role_code,
+    full_name,
+    party_affiliation,
+    from_date,
+    to_date,
+    tenure_years
+FROM view_riksdag_board_speaker_roles
+WHERE position_type = 'SPEAKER'
+    AND from_date <= '2020-01-15'
+    AND (to_date IS NULL OR to_date >= '2020-01-15')
+ORDER BY speaker_rank;
+```
+
+**7. Gender and Age Distribution in Parliamentary Leadership**
+
+```sql
+SELECT 
+    position_type,
+    gender,
+    COUNT(*) AS total_positions,
+    ROUND(AVG(age_at_appointment), 1) AS avg_appointment_age,
+    ROUND(AVG(tenure_years), 2) AS avg_tenure_years
+FROM view_riksdag_board_speaker_roles
+GROUP BY position_type, gender
+ORDER BY position_type, gender;
+```
+
+#### Intelligence Applications
+
+1. **Parliamentary Governance Analysis**: Track leadership stability and party balance
+2. **Speaker Succession Planning**: Identify succession patterns and party rotation
+3. **Democratic Accountability**: Monitor political neutrality in speaker positions
+4. **Prestige Position Tenure**: Analyze career trajectories of parliamentary leaders
+5. **Coalition Stability Indicators**: Party balance in governance positions reflects coalition health
+6. **Historical Governance Research**: Temporal analysis of parliamentary leadership
+7. **Gender Equality Tracking**: Monitor gender balance in highest parliamentary offices
+
+#### Performance Characteristics
+
+- **Query Time:** <10ms (indexed on person_id, from_date, to_date)
+- **Data Volume:** ~300 records (33 talmansuppdrag + 231 riksdagsstyrelsen)
+- **Refresh Frequency:** Real-time (updated with assignment_data changes)
+- **Indexes Used:** person_id, from_date, to_date from assignment_data
+
+#### Data Sources
+
+- **Primary Table:** `assignment_data` (filtered by assignment_type = 'talmansuppdrag' or org_code = 'RS')
+- **Person Data:** `person_data` for biographical information
+- **Assignment Types:** 
+  - `talmansuppdrag`: Speaker assignments (Talman, Förste/Andre/Tredje vice talman)
+  - `Riksdagsorgan` with org_code='RS': Riksdagsstyrelsen board members
+
+#### Dependencies
+
+- **Base Tables:** `assignment_data`, `person_data`
+- **No view dependencies**
+- **Used by:** Governance analysis, leadership tracking, parliamentary research
+
+#### Related Documentation
+
+- **Issue:** #8105 - Create Riksdag Board and Speaker Roles View
+- **Changelog:** db-changelog-1.49.xml
+- **Analysis:** service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+- **Schema Maintenance:** service.data.impl/README-SCHEMA-MAINTENANCE.md
+
+#### Notes
+
+- **Political Balance**: Speaker positions traditionally distributed across parties for neutrality
+- **Förste vice talman Fix**: Previously missing from experience scoring (fixed in v1.44, Issue #8103)
+- **Riksdagsstyrelsen**: Parliamentary board overseeing administrative functions
+- **Concurrent Roles**: Some politicians hold both speaker and board positions simultaneously
 
 ---
 

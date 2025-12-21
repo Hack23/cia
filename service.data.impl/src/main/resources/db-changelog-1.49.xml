@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Feature: Create Riksdag Board and Speaker Roles View v1.49
+  Author: Intelligence Operative
+  Date: 2025-12-21
+  
+  Documentation References:
+  - Analysis: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Business Requirements: BUSINESS_PRODUCT_DOCUMENT.md
+  - Issue: #8105
+  
+  Purpose:
+  Create comprehensive view for tracking Speaker of Parliament (talman), deputy speakers 
+  (vice talman), and riksdag board (riksdagsstyrelsen) positions with parliamentary 
+  governance analysis.
+  
+  Data Coverage:
+  - Talman: 12 positions (highest parliamentary office)
+  - Förste vice talman: 8 positions
+  - Andre vice talman: 6 positions
+  - Tredje vice talman: 7 positions
+  - talmansuppdrag assignment type: 33 total records
+  - Riksdagsstyrelsen (Riksdagsorgan with org_code='RS'): 231 records
+  
+  Key Features:
+  - Track all talman and vice talman positions with hierarchy
+  - Include riksdagsstyrelsen board membership
+  - Calculate speaker tenure and succession patterns
+  - Analyze party balance in speaker positions
+  - Track concurrent riksdagsstyrelsen + other roles
+  - Calculate parliamentary governance stability metrics
+  - Support temporal queries (speakers active on specific date)
+  
+  Intelligence Value:
+  - Parliamentary governance structure analysis
+  - Speaker succession and political balance tracking
+  - Democratic accountability monitoring
+  - Prestige position tenure analysis
+-->
+
+<changeSet author="intelligence-operative" id="create-board-speaker-roles-1.49-001" failOnError="true">
+    <comment>
+        Create view_riksdag_board_speaker_roles for tracking Speaker of Parliament (talman),
+        deputy speakers (vice talman), and riksdag board (riksdagsstyrelsen) positions 
+        with parliamentary governance analysis including tenure, succession, party balance,
+        and stability metrics.
+    </comment>
+    
+    <sqlFile path="view_riksdag_board_speaker_roles_v1.49.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_riksdag_board_speaker_roles CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
