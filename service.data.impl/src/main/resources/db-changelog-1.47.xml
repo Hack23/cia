@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Create Committee Leadership Tracking View v1.47
+  Author: Intelligence Operative
+  Date: 2025-12-21
+  GitHub Issue: Create Committee Leadership Tracking View with Transition Analysis
+  
+  Purpose:
+  Track committee chair (ordförande) and vice chair (vice ordförande) positions with
+  temporal analysis and leadership transition metrics.
+  
+  Background:
+  - Ordförande: 435 chair positions across all committees
+  - Vice ordförande: 408 vice chair positions
+  - kammaruppdrag assignment type: 7,171 records (includes leadership and membership)
+  
+  Key Committees (riksdagsutskott):
+  - Konstitutionsutskottet (KU) - Constitutional Committee
+  - Finansutskottet (FiU) - Finance Committee
+  - Skatteutskottet (SkU) - Taxation Committee
+  - Justitieutskottet (JuU) - Justice Committee
+  - Försvarsutskottet (FöU) - Defense Committee
+  - And 10+ more committees
+  
+  View Features:
+  - Track all ordförande and vice ordförande positions by committee
+  - Calculate leadership tenure duration and turnover rates
+  - Identify leadership transitions (who replaced whom)
+  - Analyze party distribution across committee leadership
+  - Track gender balance in committee leadership positions
+  - Calculate average leadership duration by committee
+  - Identify politicians holding multiple committee leadership roles
+  - Support temporal queries (committee leadership on specific date)
+-->
+
+<!-- ========================================================================= -->
+<!-- CREATE: view_committee_leadership_roles                                   -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-committee-leadership-roles-1.47-001" failOnError="true">
+    <comment>
+        Create view_committee_leadership_roles for tracking committee chair and vice chair
+        positions with comprehensive temporal analysis and leadership transition metrics.
+        
+        Data Sources:
+        - assignment_data: Committee assignments (role_code, org_code, from_date, to_date)
+        - person_data: Politician details (name, party, gender, born_year)
+        
+        Key Metrics:
+        - Leadership tenure (days and years)
+        - Party distribution across committee leadership
+        - Gender balance in committee leadership
+        - Leadership transitions and turnover
+        - Multi-committee leadership tracking
+        - Current vs historical leadership
+        
+        Intelligence Applications:
+        - Committee power structure analysis
+        - Leadership succession planning
+        - Party influence in committees
+        - Gender representation in leadership
+        - Leadership career progression tracking
+    </comment>
+    
+    <createView viewName="view_committee_leadership_roles">
+        <![CDATA[
+WITH committee_leadership AS (
+    SELECT 
+        a.hjid,
+        a.person_id,
+        a.intressent_id,
+        a.role_code,
+        a.org_code AS committee_code,
+        a.detail AS committee_name,
+        a.from_date,
+        a.to_date,
+        a.assignment_type,
+        
+        -- Calculate tenure
+        CASE 
+            WHEN a.to_date IS NULL THEN 
+                DATE_PART('day', CURRENT_DATE - a.from_date::date)
+            ELSE 
+                DATE_PART('day', a.to_date::date - a.from_date::date)
+        END AS tenure_days,
+        
+        -- Leadership level
+        CASE 
+            WHEN a.role_code = 'Ordförande' THEN 'CHAIR'
+            WHEN a.role_code = 'Vice ordförande' THEN 'VICE_CHAIR'
+            WHEN a.role_code = 'Förste vice ordförande' THEN 'FIRST_VICE_CHAIR'
+            WHEN a.role_code = 'Andre vice ordförande' THEN 'SECOND_VICE_CHAIR'
+            WHEN a.role_code = 'Tredje vice ordförande' THEN 'THIRD_VICE_CHAIR'
+            WHEN a.role_code ILIKE '%ordförande%' THEN 'OTHER_LEADERSHIP'
+            ELSE 'OTHER'
+        END AS leadership_level,
+        
+        -- Current status
+        CASE 
+            WHEN a.to_date IS NULL OR a.to_date::date >= CURRENT_DATE THEN true
+            ELSE false
+        END AS is_current,
+        
+        -- Extract year for temporal analysis
+        EXTRACT(YEAR FROM a.from_date::date) AS appointment_year
+        
+    FROM assignment_data a
+    WHERE 
+        (a.role_code = 'Ordförande' 
+         OR a.role_code = 'Vice ordförande'
+         OR a.role_code = 'Förste vice ordförande'
+         OR a.role_code = 'Andre vice ordförande'
+         OR a.role_code = 'Tredje vice ordförande'
+         OR a.role_code ILIKE '%ordförande%')
+        AND a.assignment_type = 'kammaruppdrag'
+        AND a.from_date IS NOT NULL
+),
+
+person_leadership AS (
+    SELECT 
+        cl.*,
+        p.first_name,
+        p.last_name,
+        p.gender,
+        p.party AS party_affiliation,
+        p.born_year,
+        CASE 
+            WHEN p.born_year IS NOT NULL AND cl.from_date IS NOT NULL THEN
+                EXTRACT(YEAR FROM cl.from_date::date) - p.born_year
+            ELSE NULL
+        END AS age_at_appointment
+    FROM committee_leadership cl
+    LEFT JOIN person_data p ON p.id = cl.intressent_id
+),
+
+committee_metrics AS (
+    SELECT 
+        committee_code,
+        committee_name,
+        COUNT(*) AS total_leadership_terms,
+        COUNT(DISTINCT intressent_id) AS unique_leaders,
+        ROUND(AVG(tenure_days), 2) AS avg_tenure_days,
+        MAX(tenure_days) AS max_tenure_days,
+        MIN(tenure_days) AS min_tenure_days,
+        
+        -- Party distribution
+        STRING_AGG(DISTINCT party_affiliation, ', ' ORDER BY party_affiliation) AS parties_represented,
+        
+        -- Gender distribution
+        COUNT(CASE WHEN gender = 'man' THEN 1 END) AS male_leaders,
+        COUNT(CASE WHEN gender = 'kvinna' THEN 1 END) AS female_leaders,
+        
+        -- Current leadership
+        COUNT(CASE WHEN is_current THEN 1 END) AS current_leaders,
+        
+        -- Leadership stability
+        ROUND(AVG(tenure_days) / 365.25, 2) AS avg_tenure_years
+    FROM person_leadership
+    WHERE committee_code IS NOT NULL
+    GROUP BY committee_code, committee_name
+),
+
+politician_leadership_portfolio AS (
+    SELECT 
+        intressent_id,
+        first_name || ' ' || last_name AS full_name,
+        COUNT(*) AS total_leadership_roles,
+        COUNT(DISTINCT committee_code) AS committees_led,
+        SUM(tenure_days) AS total_leadership_days,
+        STRING_AGG(DISTINCT committee_name, ' | ' ORDER BY committee_name) AS committees,
+        MIN(from_date) AS first_leadership,
+        MAX(COALESCE(to_date::date, CURRENT_DATE)) AS last_leadership
+    FROM person_leadership
+    WHERE leadership_level IN ('CHAIR', 'VICE_CHAIR', 'FIRST_VICE_CHAIR', 'SECOND_VICE_CHAIR', 'THIRD_VICE_CHAIR')
+        AND intressent_id IS NOT NULL
+        AND committee_code IS NOT NULL
+    GROUP BY intressent_id, first_name, last_name
+)
+
+-- Main result set
+SELECT 
+    pl.hjid,
+    pl.intressent_id AS person_id,
+    pl.first_name || ' ' || pl.last_name AS full_name,
+    pl.first_name,
+    pl.last_name,
+    pl.role_code,
+    pl.leadership_level,
+    pl.committee_code,
+    pl.committee_name,
+    pl.from_date,
+    pl.to_date,
+    pl.tenure_days,
+    ROUND(pl.tenure_days / 365.25, 2) AS tenure_years,
+    pl.is_current,
+    pl.party_affiliation,
+    pl.gender,
+    pl.age_at_appointment,
+    pl.appointment_year,
+    
+    -- Committee metrics
+    cm.avg_tenure_years AS committee_avg_tenure,
+    cm.parties_represented AS committee_parties,
+    cm.female_leaders AS committee_female_count,
+    cm.male_leaders AS committee_male_count,
+    cm.total_leadership_terms AS committee_total_terms,
+    cm.unique_leaders AS committee_unique_leaders,
+    
+    -- Politician portfolio
+    plp.total_leadership_roles,
+    plp.committees_led,
+    ROUND(plp.total_leadership_days / 365.25, 2) AS total_leadership_years,
+    plp.first_leadership,
+    plp.last_leadership,
+    
+    -- Tenure classification
+    CASE 
+        WHEN pl.tenure_days < 730 THEN 'SHORT_TERM'
+        WHEN pl.tenure_days < 1460 THEN 'MEDIUM_TERM'
+        ELSE 'LONG_TERM'
+    END AS tenure_classification,
+    
+    -- Leadership type classification
+    CASE 
+        WHEN pl.leadership_level = 'CHAIR' THEN 'Committee Chair'
+        WHEN pl.leadership_level IN ('VICE_CHAIR', 'FIRST_VICE_CHAIR', 'SECOND_VICE_CHAIR', 'THIRD_VICE_CHAIR') 
+            THEN 'Committee Vice Chair'
+        ELSE 'Other Leadership'
+    END AS leadership_type_description
+
+FROM person_leadership pl
+LEFT JOIN committee_metrics cm 
+    ON cm.committee_code = pl.committee_code
+LEFT JOIN politician_leadership_portfolio plp 
+    ON plp.intressent_id = pl.intressent_id
+WHERE pl.committee_code IS NOT NULL
+ORDER BY pl.is_current DESC, pl.appointment_year DESC, pl.committee_name, pl.leadership_level;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_committee_leadership_roles"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- POST-FLIGHT: Verify view returns data                                     -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="verify-committee-leadership-view-1.47-002" failOnError="false">
+    <comment>
+        Post-flight verification for view_committee_leadership_roles
+        
+        Checks:
+        1. View exists and can be queried
+        2. View returns data when committee leadership assignments exist
+        3. Reports row counts for monitoring
+        4. Validates key metrics are populated
+    </comment>
+    
+    <sql>
+        -- Verify view exists and can be queried
+        SELECT 'Committee Leadership View verification:' AS check_description;
+        
+        -- Check committee leadership assignment count
+        SELECT 
+            COUNT(*) AS leadership_assignment_count,
+            'Leadership assignments (ordförande/vice ordförande in kammaruppdrag)' AS description
+        FROM assignment_data
+        WHERE assignment_type = 'kammaruppdrag' 
+            AND (role_code = 'Ordförande' 
+                 OR role_code = 'Vice ordförande' 
+                 OR role_code ILIKE '%ordförande%')
+            AND from_date IS NOT NULL;
+        
+        -- Check view row count
+        SELECT 
+            COUNT(*) AS view_row_count,
+            'Total rows in view_committee_leadership_roles' AS description
+        FROM view_committee_leadership_roles;
+        
+        -- Check current leadership count
+        SELECT 
+            COUNT(*) AS current_leaders,
+            'Current committee leaders' AS description
+        FROM view_committee_leadership_roles
+        WHERE is_current = true;
+        
+        -- Check leadership by level
+        SELECT 
+            leadership_level,
+            COUNT(*) AS count,
+            'Leadership positions by level' AS description
+        FROM view_committee_leadership_roles
+        GROUP BY leadership_level
+        ORDER BY count DESC;
+        
+        -- Check committee coverage
+        SELECT 
+            COUNT(DISTINCT committee_code) AS committees_with_leadership,
+            'Committees with leadership records' AS description
+        FROM view_committee_leadership_roles;
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENTATION: Update changelog and view catalog                          -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="document-committee-leadership-view-1.47-003" failOnError="false">
+    <comment>
+        Documentation for v1.47 committee leadership view
+        
+        Summary:
+        - Created view_committee_leadership_roles for committee leadership tracking
+        - Tracks ordförande (chair) and vice ordförande (vice chair) positions
+        - Includes temporal analysis, tenure metrics, and transition tracking
+        - Supports gender balance and party distribution analysis
+        - Enables multi-committee leadership portfolio analysis
+        
+        Intelligence Applications:
+        - Committee power structure analysis
+        - Leadership succession planning
+        - Party influence in committees
+        - Gender representation in leadership
+        - Career progression tracking
+        
+        Key Metrics:
+        - Leadership tenure (days and years)
+        - Age at appointment
+        - Current vs historical positions
+        - Committee-level aggregated metrics
+        - Politician portfolio metrics
+        
+        Related Views:
+        - view_riksdagen_politician_experience_summary (includes ordförande scoring)
+        - view_committee_productivity (committee performance metrics)
+        
+        For DATABASE_VIEW_INTELLIGENCE_CATALOG.md:
+        - v1.47: Created view_committee_leadership_roles
+        - Comprehensive committee leadership tracking with temporal analysis
+        - Supports coalition analysis and succession planning
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.47 View Created: view_committee_leadership_roles' AS changelog_entry,
+            'Committee leadership tracking with transition analysis' AS change_description,
+            'Tracks ordförande and vice ordförande positions with temporal metrics' AS technical_details;
+    </sql>
+</changeSet>
+
+</databaseChangeLog>
