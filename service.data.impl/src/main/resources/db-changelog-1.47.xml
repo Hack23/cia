@@ -37,6 +37,13 @@
   - Calculate average leadership duration by committee
   - Identify politicians holding multiple committee leadership roles
   - Support temporal queries (committee leadership on specific date)
+  
+  Technical Notes:
+  - CURRENT_DATE usage: Consistent with existing views (view_committee_productivity,
+    view_ministry_productivity_matrix, view_risk_score_evolution) for dynamic tenure
+    calculation. This is a conscious design decision to provide real-time metrics.
+  - NULL handling: Explicit FILTER clauses added to STRING_AGG functions to prevent
+    incomplete aggregation results.
 -->
 
 <!-- ========================================================================= -->
@@ -150,7 +157,8 @@ committee_metrics AS (
         MIN(tenure_days) AS min_tenure_days,
         
         -- Party distribution
-        STRING_AGG(DISTINCT party_affiliation, ', ' ORDER BY party_affiliation) AS parties_represented,
+        STRING_AGG(DISTINCT party_affiliation, ', ' ORDER BY party_affiliation) 
+            FILTER (WHERE party_affiliation IS NOT NULL) AS parties_represented,
         
         -- Gender distribution
         COUNT(CASE WHEN gender = 'man' THEN 1 END) AS male_leaders,
@@ -173,7 +181,8 @@ politician_leadership_portfolio AS (
         COUNT(*) AS total_leadership_roles,
         COUNT(DISTINCT committee_code) AS committees_led,
         SUM(tenure_days) AS total_leadership_days,
-        STRING_AGG(DISTINCT committee_name, ' | ' ORDER BY committee_name) AS committees,
+        STRING_AGG(DISTINCT committee_name, ' | ' ORDER BY committee_name) 
+            FILTER (WHERE committee_name IS NOT NULL) AS committees,
         MIN(from_date) AS first_leadership,
         MAX(COALESCE(to_date::date, CURRENT_DATE)) AS last_leadership
     FROM person_leadership

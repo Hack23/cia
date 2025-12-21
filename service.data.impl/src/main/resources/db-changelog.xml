@@ -50,6 +50,7 @@
   <include file="db-changelog-1.43.xml" />
   <include file="db-changelog-1.44.xml" />
   <include file="db-changelog-1.45.xml" />
+  <!-- Version 1.46 intentionally skipped - reserved for future use -->
   <include file="db-changelog-1.47.xml" />
 
 </databaseChangeLog>
