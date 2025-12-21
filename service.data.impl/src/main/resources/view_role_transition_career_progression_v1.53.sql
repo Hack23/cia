@@ -155,15 +155,20 @@ career_metrics AS (
             SUM(CASE WHEN transition_type = 'PROMOTION' THEN 1 ELSE 0 END)::decimal / 
             NULLIF((MAX(COALESCE(to_date::date, CURRENT_DATE)) - MIN(from_date))::numeric / 365.25, 0),
             2
-        ) AS promotions_per_year,
-        
-        -- Peak achievement age
-        MIN(CASE WHEN aggregate_power_score = MAX(aggregate_power_score) 
-                  THEN age_at_role_start 
-                  ELSE NULL END) OVER (PARTITION BY person_id) AS age_at_peak_role
+        ) AS promotions_per_year
         
     FROM role_transitions
     GROUP BY person_id, first_name, last_name, party, gender
+),
+
+peak_role_ages AS (
+    SELECT 
+        rt.person_id,
+        MIN(rt.age_at_role_start) AS age_at_peak_role
+    FROM role_transitions rt
+    INNER JOIN career_metrics cm ON cm.person_id = rt.person_id
+    WHERE rt.aggregate_power_score = cm.peak_power_score
+    GROUP BY rt.person_id
 ),
 
 career_path_patterns AS (
@@ -195,6 +200,7 @@ common_progressions AS (
 politician_classification AS (
     SELECT 
         cm.*,
+        pra.age_at_peak_role,
         
         -- Career type classification
         CASE 
@@ -222,6 +228,7 @@ politician_classification AS (
         END AS career_trajectory
         
     FROM career_metrics cm
+    LEFT JOIN peak_role_ages pra ON pra.person_id = cm.person_id
 )
 
 -- Main result set
