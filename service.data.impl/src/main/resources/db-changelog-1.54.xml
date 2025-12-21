@@ -51,7 +51,7 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
              encoding="UTF-8"/>
     
     <rollback>
-        <sql>DROP VIEW IF EXISTS view_comprehensive_role_timeline CASCADE;</sql>
+        <sql>DROP VIEW IF EXISTS view_comprehensive_role_timeline;</sql>
     </rollback>
 </changeSet>
 

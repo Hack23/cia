@@ -13,6 +13,9 @@ WITH role_timeline AS (
         a.to_date,
         
         -- Normalize dates for calculations
+        -- Note: Using CURRENT_DATE for active roles (NULL to_date) allows
+        -- real-time duration tracking. For historical analysis, consider
+        -- filtering by specific date ranges in queries.
         a.from_date::date AS start_date,
         COALESCE(a.to_date::date, CURRENT_DATE) AS end_date,
         
@@ -90,11 +93,11 @@ concurrent_roles_analysis AS (
         GREATEST(rt1.start_date, rt2.start_date) AS overlap_start,
         LEAST(rt1.end_date, rt2.end_date) AS overlap_end,
         
-        -- Overlap duration
-        DATE_PART('day', 
+        -- Overlap duration (only positive overlaps)
+        GREATEST(0, DATE_PART('day', 
             LEAST(rt1.end_date, rt2.end_date) - 
             GREATEST(rt1.start_date, rt2.start_date)
-        ) AS overlap_days,
+        )) AS overlap_days,
         
         -- Conflict detection (same assignment type in same org)
         CASE 
@@ -109,9 +112,12 @@ concurrent_roles_analysis AS (
     FROM role_timeline rt1
     INNER JOIN role_timeline rt2 
         ON rt1.person_id = rt2.person_id
-        AND rt1.start_date < rt2.start_date  -- Avoid duplicates (use < instead of role_code comparison)
+        -- Use unique identifier to avoid duplicates
+        AND (rt1.from_date::text || rt1.role_code || COALESCE(rt1.org_code, '')) < 
+            (rt2.from_date::text || rt2.role_code || COALESCE(rt2.org_code, ''))
+        -- Proper overlap detection: roles overlap if one starts before the other ends
         AND rt1.start_date <= rt2.end_date
-        AND rt2.start_date <= rt1.end_date  -- Overlapping periods
+        AND rt2.start_date <= rt1.end_date
 ),
 
 role_gaps AS (
@@ -164,6 +170,8 @@ person_timeline_metrics AS (
         COUNT(DISTINCT rt.institutional_power_center) AS power_centers_served,
         
         -- Concurrent role analysis
+        -- Note: These subqueries reference pre-computed CTEs (concurrent_roles_analysis, role_gaps)
+        -- which are materialized once. Performance impact is minimal compared to table scans.
         (SELECT COUNT(*) 
          FROM concurrent_roles_analysis cra 
          WHERE cra.person_id = rt.person_id) AS total_concurrent_periods,
@@ -187,8 +195,11 @@ person_timeline_metrics AS (
          WHERE rg.person_id = rt.person_id 
            AND rg.gap_days > 0) AS avg_gap_days,
         
-        -- Activity metrics
-        SUM(rt.duration_days) / NULLIF(DATE_PART('day', MAX(rt.end_date) - MIN(rt.start_date)), 0) AS activity_ratio,
+        -- Activity metrics (handle edge cases with short careers)
+        CASE 
+            WHEN DATE_PART('day', MAX(rt.end_date) - MIN(rt.start_date)) < 1 THEN 1.0
+            ELSE SUM(rt.duration_days) / DATE_PART('day', MAX(rt.end_date) - MIN(rt.start_date))
+        END AS activity_ratio,
         
         -- Current status
         MAX(CASE WHEN rt.is_active THEN 1 ELSE 0 END) AS currently_active
