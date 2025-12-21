@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- 
+      Comprehensive Political Role Taxonomy for Swedish Parliament v1.46
+      Author: Intelligence Operative
+      Date: 2025-12-21
+      
+      Documentation References:
+      - Analysis: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+      - Role Data: service.data.impl/sample-data/distinct_values/assignment_data_role_code.csv
+      - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+      - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+      
+      Purpose:
+      This changelog documents all 76 distinct political role codes from assignment_data,
+      providing multilingual descriptions, categorical classification, and scoring weights
+      for experience calculations and role hierarchy analysis.
+      
+      Role Categories:
+      1. GOVERNMENT (24 roles) - Cabinet ministers and government positions
+      2. SPEAKER (4 roles) - Speaker of parliament and deputy speakers
+      3. PARTY_LEADERSHIP (5 roles) - Party leaders and group leaders
+      4. COMMITTEE_LEADERSHIP (6 roles) - Committee chairs and vice chairs
+      5. PARLIAMENTARY (3 roles) - Regular parliament members
+      6. SUBSTITUTE (8 roles) - Deputy and substitute roles
+      7. BOARD (4 roles) - Riksdag board and administrative roles
+      8. EU_REPRESENTATIVE (1 role) - European Parliament roles
+      
+      Total: 76 distinct political role codes
+      Database Records: 31,351 assignment_data records
+    -->
+
+    <changeSet id="1.46-001-create-role-taxonomy-table" author="intelligence-operative">
+        <comment>
+            Create role_code_taxonomy table for comprehensive political role documentation.
+            
+            This table provides a complete reference for all 76 distinct role codes found in
+            assignment_data, with multilingual descriptions, hierarchical classification, and
+            experience weighting for political career analysis.
+        </comment>
+        
+        <createTable tableName="role_code_taxonomy">
+            <column name="role_code" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="role_name_sv" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_name_en" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_category" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_level" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="experience_weight" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description_sv" type="TEXT"/>
+            <column name="description_en" type="TEXT"/>
+            <column name="created_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="role_code_taxonomy"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.46-002-populate-government-roles" author="intelligence-operative">
+        <comment>Government Cabinet Minister Roles (Authority Level 9-10) - 24 roles</comment>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Statsminister"/>
+            <column name="role_name_sv" value="Statsminister"/>
+            <column name="role_name_en" value="Prime Minister"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="10"/>
+            <column name="experience_weight" valueNumeric="2000.00"/>
+            <column name="description_sv" value="Regeringschef, högsta politiska ämbetet i Sverige"/>
+            <column name="description_en" value="Head of Government, highest political office in Sweden"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Vice statsminister"/>
+            <column name="role_name_sv" value="Vice statsminister"/>
+            <column name="role_name_en" value="Deputy Prime Minister"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1800.00"/>
+            <column name="description_sv" value="Statsministerns ställföreträdare"/>
+            <column name="description_en" value="Deputy to the Prime Minister"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Statsråd"/>
+            <column name="role_name_sv" value="Statsråd"/>
+            <column name="role_name_en" value="Cabinet Minister"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Medlem av regeringen, departementschef"/>
+            <column name="description_en" value="Member of the Government, head of ministry"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Statsrådsersättare"/>
+            <column name="role_name_sv" value="Statsrådsersättare"/>
+            <column name="role_name_en" value="Acting Cabinet Minister"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="8"/>
+            <column name="experience_weight" valueNumeric="1400.00"/>
+            <column name="description_sv" value="Ställföreträdare för statsråd"/>
+            <column name="description_en" value="Deputy to Cabinet Minister"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Utrikesminister"/>
+            <column name="role_name_sv" value="Utrikesminister"/>
+            <column name="role_name_en" value="Minister for Foreign Affairs"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1600.00"/>
+            <column name="description_sv" value="Ansvarig för utrikespolitik och internationella relationer"/>
+            <column name="description_en" value="Responsible for foreign policy and international relations"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Finansminister"/>
+            <column name="role_name_sv" value="Finansminister"/>
+            <column name="role_name_en" value="Minister for Finance"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1600.00"/>
+            <column name="description_sv" value="Ansvarig för statens finanser och budget"/>
+            <column name="description_en" value="Responsible for state finances and budget"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Justitieminister"/>
+            <column name="role_name_sv" value="Justitieminister"/>
+            <column name="role_name_en" value="Minister for Justice"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för rättsväsendet och domstolar"/>
+            <column name="description_en" value="Responsible for justice system and courts"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Försvarsminister"/>
+            <column name="role_name_sv" value="Försvarsminister"/>
+            <column name="role_name_en" value="Minister for Defence"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för försvaret och säkerhetspolitik"/>
+            <column name="description_en" value="Responsible for defence and security policy"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Utbildningsminister"/>
+            <column name="role_name_sv" value="Utbildningsminister"/>
+            <column name="role_name_en" value="Minister for Education"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för skola och utbildning"/>
+            <column name="description_en" value="Responsible for schools and education"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Arbetsmarknadsminister"/>
+            <column name="role_name_sv" value="Arbetsmarknadsminister"/>
+            <column name="role_name_en" value="Minister for Employment"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för arbetsmarknad och sysselsättning"/>
+            <column name="description_en" value="Responsible for labour market and employment"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Socialminister"/>
+            <column name="role_name_sv" value="Socialminister"/>
+            <column name="role_name_en" value="Minister for Health and Social Affairs"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för hälsa, vård och sociala frågor"/>
+            <column name="description_en" value="Responsible for health, healthcare and social issues"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Landsbygdsminister"/>
+            <column name="role_name_sv" value="Landsbygdsminister"/>
+            <column name="role_name_en" value="Minister for Rural Affairs"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för landsbygd och jordbruk"/>
+            <column name="description_en" value="Responsible for rural affairs and agriculture"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Näringsminister"/>
+            <column name="role_name_sv" value="Näringsminister"/>
+            <column name="role_name_en" value="Minister for Enterprise"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för näringsliv och företagande"/>
+            <column name="description_en" value="Responsible for business and enterprise"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Kultur- och demokratiminister"/>
+            <column name="role_name_sv" value="Kultur- och demokratiminister"/>
+            <column name="role_name_en" value="Minister for Culture and Democracy"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för kultur, medier och demokrati"/>
+            <column name="description_en" value="Responsible for culture, media and democracy"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Infrastrukturminister"/>
+            <column name="role_name_sv" value="Infrastrukturminister"/>
+            <column name="role_name_en" value="Minister for Infrastructure"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för infrastruktur och transportpolitik"/>
+            <column name="description_en" value="Responsible for infrastructure and transport policy"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Kulturminister"/>
+            <column name="role_name_sv" value="Kulturminister"/>
+            <column name="role_name_en" value="Minister for Culture"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för kultur och kulturpolitik"/>
+            <column name="description_en" value="Responsible for culture and cultural policy"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Klimat- och miljöminister"/>
+            <column name="role_name_sv" value="Klimat- och miljöminister"/>
+            <column name="role_name_en" value="Minister for Climate and Environment"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för klimat och miljöfrågor"/>
+            <column name="description_en" value="Responsible for climate and environmental issues"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Miljöminister"/>
+            <column name="role_name_sv" value="Miljöminister"/>
+            <column name="role_name_en" value="Minister for Environment"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för miljöfrågor"/>
+            <column name="description_en" value="Responsible for environmental issues"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Justitie- och migrationsminister"/>
+            <column name="role_name_sv" value="Justitie- och migrationsminister"/>
+            <column name="role_name_en" value="Minister for Justice and Migration"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för rättsväsende och migration"/>
+            <column name="description_en" value="Responsible for justice and migration"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Miljö- och klimatminister"/>
+            <column name="role_name_sv" value="Miljö- och klimatminister"/>
+            <column name="role_name_en" value="Minister for Environment and Climate"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för miljö- och klimatfrågor"/>
+            <column name="description_en" value="Responsible for environment and climate issues"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Socialtjänstminister"/>
+            <column name="role_name_sv" value="Socialtjänstminister"/>
+            <column name="role_name_en" value="Minister for Social Services"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för socialtjänst och äldreomsorg"/>
+            <column name="description_en" value="Responsible for social services and elderly care"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Energi- och näringsminister"/>
+            <column name="role_name_sv" value="Energi- och näringsminister"/>
+            <column name="role_name_en" value="Minister for Energy and Enterprise"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för energi och näringsliv"/>
+            <column name="description_en" value="Responsible for energy and business"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Närings- och innovationsminister"/>
+            <column name="role_name_sv" value="Närings- och innovationsminister"/>
+            <column name="role_name_en" value="Minister for Enterprise and Innovation"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för näringsliv och innovation"/>
+            <column name="description_en" value="Responsible for business and innovation"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Arbetsmarknads- och integrationsminister"/>
+            <column name="role_name_sv" value="Arbetsmarknads- och integrationsminister"/>
+            <column name="role_name_en" value="Minister for Employment and Integration"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för arbetsmarknad och integration"/>
+            <column name="description_en" value="Responsible for labour market and integration"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="role_code_taxonomy">
+                <where>role_category = 'GOVERNMENT'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.46-003-populate-government-roles-continued" author="intelligence-operative">
+        <comment>Additional Government Minister Roles (Authority Level 9) - Continued from previous changeset</comment>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Arbetsmarknads- och jämställdhetsministe"/>
+            <column name="role_name_sv" value="Arbetsmarknads- och jämställdhetsminister"/>
+            <column name="role_name_en" value="Minister for Employment and Gender Equality"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för arbetsmarknad och jämställdhet"/>
+            <column name="description_en" value="Responsible for labour market and gender equality"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Bistånds- och utrikeshandelsminister"/>
+            <column name="role_name_sv" value="Bistånds- och utrikeshandelsminister"/>
+            <column name="role_name_en" value="Minister for International Development and Foreign Trade"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för internationellt bistånd och utrikeshandel"/>
+            <column name="description_en" value="Responsible for international aid and foreign trade"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Civilminister"/>
+            <column name="role_name_sv" value="Civilminister"/>
+            <column name="role_name_en" value="Minister for Civil Affairs"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för civila frågor"/>
+            <column name="description_en" value="Responsible for civil affairs"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="EU-minister"/>
+            <column name="role_name_sv" value="EU-minister"/>
+            <column name="role_name_en" value="Minister for EU Affairs"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för EU-frågor och samarbete"/>
+            <column name="description_en" value="Responsible for EU affairs and cooperation"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Finansmarknadsminister"/>
+            <column name="role_name_sv" value="Finansmarknadsminister"/>
+            <column name="role_name_en" value="Minister for Financial Markets"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för finansmarknader"/>
+            <column name="description_en" value="Responsible for financial markets"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Gymnasie-, högskole- och forskningsminister"/>
+            <column name="role_name_sv" value="Gymnasie-, högskole- och forskningsminister"/>
+            <column name="role_name_en" value="Minister for Upper Secondary School, Higher Education and Research"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för gymnasie-, högskole- och forskningsfrågor"/>
+            <column name="description_en" value="Responsible for upper secondary school, higher education and research"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Infrastruktur- och bostadsminister"/>
+            <column name="role_name_sv" value="Infrastruktur- och bostadsminister"/>
+            <column name="role_name_en" value="Minister for Infrastructure and Housing"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för infrastruktur och bostäder"/>
+            <column name="description_en" value="Responsible for infrastructure and housing"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Infrastruktur- och försvarsminister"/>
+            <column name="role_name_sv" value="Infrastruktur- och försvarsminister"/>
+            <column name="role_name_en" value="Minister for Infrastructure and Defence"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för infrastruktur och försvar"/>
+            <column name="description_en" value="Responsible for infrastructure and defence"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Jordbruksminister"/>
+            <column name="role_name_sv" value="Jordbruksminister"/>
+            <column name="role_name_en" value="Minister for Agriculture"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för jordbruk"/>
+            <column name="description_en" value="Responsible for agriculture"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Justitie- och inrikesminister"/>
+            <column name="role_name_sv" value="Justitie- och inrikesminister"/>
+            <column name="role_name_en" value="Minister for Justice and Home Affairs"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för rättsväsende och inrikes frågor"/>
+            <column name="description_en" value="Responsible for justice and home affairs"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Jämställdhetsminister"/>
+            <column name="role_name_sv" value="Jämställdhetsminister"/>
+            <column name="role_name_en" value="Minister for Gender Equality"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för jämställdhetsfrågor"/>
+            <column name="description_en" value="Responsible for gender equality issues"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Migrations- och arbetsmarknadsminister"/>
+            <column name="role_name_sv" value="Migrations- och arbetsmarknadsminister"/>
+            <column name="role_name_en" value="Minister for Migration and Labour Market"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för migration och arbetsmarknad"/>
+            <column name="description_en" value="Responsible for migration and labour market"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Migrationsminister"/>
+            <column name="role_name_sv" value="Migrationsminister"/>
+            <column name="role_name_en" value="Minister for Migration"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för migrationsfrågor"/>
+            <column name="description_en" value="Responsible for migration issues"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Minister för civilt försvar"/>
+            <column name="role_name_sv" value="Minister för civilt försvar"/>
+            <column name="role_name_en" value="Minister for Civil Defence"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för civilt försvar"/>
+            <column name="description_en" value="Responsible for civil defence"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Samhällsbyggnadsminister"/>
+            <column name="role_name_sv" value="Samhällsbyggnadsminister"/>
+            <column name="role_name_en" value="Minister for Housing and Urban Development"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för samhällsbyggnad och bostäder"/>
+            <column name="description_en" value="Responsible for housing and urban development"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Sjukvårdsminister"/>
+            <column name="role_name_sv" value="Sjukvårdsminister"/>
+            <column name="role_name_en" value="Minister for Healthcare"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för sjukvård och hälsa"/>
+            <column name="description_en" value="Responsible for healthcare and health"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Utbildnings- och integrationsminister"/>
+            <column name="role_name_sv" value="Utbildnings- och integrationsminister"/>
+            <column name="role_name_en" value="Minister for Education and Integration"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för utbildning och integration"/>
+            <column name="description_en" value="Responsible for education and integration"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Äldre- och socialförsäkringsminister"/>
+            <column name="role_name_sv" value="Äldre- och socialförsäkringsminister"/>
+            <column name="role_name_en" value="Minister for Elderly Care and Social Insurance"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för äldreomsorg och socialförsäkring"/>
+            <column name="description_en" value="Responsible for elderly care and social insurance"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Arbetsmarknads- och etableringsminister"/>
+            <column name="role_name_sv" value="Arbetsmarknads- och etableringsminister"/>
+            <column name="role_name_en" value="Minister for Labour Market and Establishment"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för arbetsmarknad och etablering av nyanlända"/>
+            <column name="description_en" value="Responsible for labour market and integration of newcomers"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Integrations- och jämställdhetsminister"/>
+            <column name="role_name_sv" value="Integrations- och jämställdhetsminister"/>
+            <column name="role_name_en" value="Minister for Integration and Gender Equality"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för integration och jämställdhet"/>
+            <column name="description_en" value="Responsible for integration and gender equality"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Kultur- och idrottsminister"/>
+            <column name="role_name_sv" value="Kultur- och idrottsminister"/>
+            <column name="role_name_en" value="Minister for Culture and Sports"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för kultur och idrott"/>
+            <column name="description_en" value="Responsible for culture and sports"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Social- och socialförsäkringsminister"/>
+            <column name="role_name_sv" value="Social- och socialförsäkringsminister"/>
+            <column name="role_name_en" value="Minister for Social Affairs and Social Insurance"/>
+            <column name="role_category" value="GOVERNMENT"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1500.00"/>
+            <column name="description_sv" value="Ansvarig för sociala frågor och socialförsäkring"/>
+            <column name="description_en" value="Responsible for social affairs and social insurance"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="role_code_taxonomy">
+                <where>role_code IN ('Arbetsmarknads- och jämställdhetsministe', 'Bistånds- och utrikeshandelsminister', 'Civilminister', 'EU-minister', 'Finansmarknadsminister', 'Gymnasie-, högskole- och forskningsminister', 'Infrastruktur- och bostadsminister', 'Infrastruktur- och försvarsminister', 'Jordbruksminister', 'Justitie- och inrikesminister', 'Jämställdhetsminister', 'Migrations- och arbetsmarknadsminister', 'Migrationsminister', 'Minister för civilt försvar', 'Samhällsbyggnadsminister', 'Sjukvårdsminister', 'Utbildnings- och integrationsminister', 'Äldre- och socialförsäkringsminister', 'Arbetsmarknads- och etableringsminister', 'Integrations- och jämställdhetsminister', 'Kultur- och idrottsminister', 'Social- och socialförsäkringsminister')</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.46-004-populate-speaker-roles" author="intelligence-operative">
+        <comment>Speaker and Deputy Speaker Roles (Authority Level 8-9) - 4 roles</comment>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Talman"/>
+            <column name="role_name_sv" value="Talman"/>
+            <column name="role_name_en" value="Speaker of Parliament"/>
+            <column name="role_category" value="SPEAKER"/>
+            <column name="authority_level" valueNumeric="9"/>
+            <column name="experience_weight" valueNumeric="1000.00"/>
+            <column name="description_sv" value="Riksdagens ordförande, leder parlamentets arbete"/>
+            <column name="description_en" value="Presiding officer of the Riksdag, leads parliamentary work"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Talmansersättare"/>
+            <column name="role_name_sv" value="Talmansersättare"/>
+            <column name="role_name_en" value="Acting Speaker"/>
+            <column name="role_category" value="SPEAKER"/>
+            <column name="authority_level" valueNumeric="8"/>
+            <column name="experience_weight" valueNumeric="850.00"/>
+            <column name="description_sv" value="Ställföreträdare för talmannen"/>
+            <column name="description_en" value="Deputy to the Speaker"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Förste vice talman"/>
+            <column name="role_name_sv" value="Förste vice talman"/>
+            <column name="role_name_en" value="First Deputy Speaker"/>
+            <column name="role_category" value="SPEAKER"/>
+            <column name="authority_level" valueNumeric="8"/>
+            <column name="experience_weight" valueNumeric="750.00"/>
+            <column name="description_sv" value="Talmans förste ställföreträdare"/>
+            <column name="description_en" value="First Deputy to the Speaker"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Andre vice talman"/>
+            <column name="role_name_sv" value="Andre vice talman"/>
+            <column name="role_name_en" value="Second Deputy Speaker"/>
+            <column name="role_category" value="SPEAKER"/>
+            <column name="authority_level" valueNumeric="8"/>
+            <column name="experience_weight" valueNumeric="750.00"/>
+            <column name="description_sv" value="Talmans andre ställföreträdare"/>
+            <column name="description_en" value="Second Deputy to the Speaker"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Tredje vice talman"/>
+            <column name="role_name_sv" value="Tredje vice talman"/>
+            <column name="role_name_en" value="Third Deputy Speaker"/>
+            <column name="role_category" value="SPEAKER"/>
+            <column name="authority_level" valueNumeric="8"/>
+            <column name="experience_weight" valueNumeric="750.00"/>
+            <column name="description_sv" value="Talmans tredje ställföreträdare"/>
+            <column name="description_en" value="Third Deputy to the Speaker"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="role_code_taxonomy">
+                <where>role_category = 'SPEAKER'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.46-005-populate-party-leadership-roles" author="intelligence-operative">
+        <comment>Party Leadership Roles (Authority Level 7-8) - 6 roles</comment>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Partiledare"/>
+            <column name="role_name_sv" value="Partiledare"/>
+            <column name="role_name_en" value="Party Leader"/>
+            <column name="role_category" value="PARTY_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="8"/>
+            <column name="experience_weight" valueNumeric="800.00"/>
+            <column name="description_sv" value="Partiets högsta ledare"/>
+            <column name="description_en" value="Highest leader of the party"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Tillförordnad partiledare"/>
+            <column name="role_name_sv" value="Tillförordnad partiledare"/>
+            <column name="role_name_en" value="Acting Party Leader"/>
+            <column name="role_category" value="PARTY_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="8"/>
+            <column name="experience_weight" valueNumeric="750.00"/>
+            <column name="description_sv" value="Tillfällig partiledare"/>
+            <column name="description_en" value="Temporary party leader"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Språkrör"/>
+            <column name="role_name_sv" value="Språkrör"/>
+            <column name="role_name_en" value="Spokesperson (Green Party co-leader)"/>
+            <column name="role_category" value="PARTY_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="8"/>
+            <column name="experience_weight" valueNumeric="800.00"/>
+            <column name="description_sv" value="Miljöpartiets toppledare (delad ledning)"/>
+            <column name="description_en" value="Green Party top leader (shared leadership)"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Gruppledare"/>
+            <column name="role_name_sv" value="Gruppledare"/>
+            <column name="role_name_en" value="Parliamentary Group Leader"/>
+            <column name="role_category" value="PARTY_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="7"/>
+            <column name="experience_weight" valueNumeric="600.00"/>
+            <column name="description_sv" value="Ledare för partiets riksdagsgrupp"/>
+            <column name="description_en" value="Leader of party's parliamentary group"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Förste vice gruppledare"/>
+            <column name="role_name_sv" value="Förste vice gruppledare"/>
+            <column name="role_name_en" value="First Deputy Parliamentary Group Leader"/>
+            <column name="role_category" value="PARTY_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="7"/>
+            <column name="experience_weight" valueNumeric="500.00"/>
+            <column name="description_sv" value="Förste ställföreträdare för gruppledare"/>
+            <column name="description_en" value="First deputy to parliamentary group leader"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Andre vice gruppledare"/>
+            <column name="role_name_sv" value="Andre vice gruppledare"/>
+            <column name="role_name_en" value="Second Deputy Parliamentary Group Leader"/>
+            <column name="role_category" value="PARTY_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="7"/>
+            <column name="experience_weight" valueNumeric="500.00"/>
+            <column name="description_sv" value="Andre ställföreträdare för gruppledare"/>
+            <column name="description_en" value="Second deputy to parliamentary group leader"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Partisekreterare"/>
+            <column name="role_name_sv" value="Partisekreterare"/>
+            <column name="role_name_en" value="Party Secretary"/>
+            <column name="role_category" value="PARTY_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="7"/>
+            <column name="experience_weight" valueNumeric="500.00"/>
+            <column name="description_sv" value="Ansvarig för partiets administration"/>
+            <column name="description_en" value="Responsible for party administration"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Tillförordnad partisekreterare"/>
+            <column name="role_name_sv" value="Tillförordnad partisekreterare"/>
+            <column name="role_name_en" value="Acting Party Secretary"/>
+            <column name="role_category" value="PARTY_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="7"/>
+            <column name="experience_weight" valueNumeric="450.00"/>
+            <column name="description_sv" value="Tillfällig partisekreterare"/>
+            <column name="description_en" value="Temporary party secretary"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="role_code_taxonomy">
+                <where>role_category = 'PARTY_LEADERSHIP'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.46-006-populate-committee-leadership-roles" author="intelligence-operative">
+        <comment>Committee Leadership Roles (Authority Level 6-7) - 6 roles</comment>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Ordförande"/>
+            <column name="role_name_sv" value="Ordförande"/>
+            <column name="role_name_en" value="Chairperson"/>
+            <column name="role_category" value="COMMITTEE_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="7"/>
+            <column name="experience_weight" valueNumeric="500.00"/>
+            <column name="description_sv" value="Ordförande för utskott eller organ"/>
+            <column name="description_en" value="Chair of committee or body"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Vice ordförande"/>
+            <column name="role_name_sv" value="Vice ordförande"/>
+            <column name="role_name_en" value="Vice Chairperson"/>
+            <column name="role_category" value="COMMITTEE_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="6"/>
+            <column name="experience_weight" valueNumeric="400.00"/>
+            <column name="description_sv" value="Vice ordförande för utskott eller organ"/>
+            <column name="description_en" value="Vice chair of committee or body"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Förste vice ordförande"/>
+            <column name="role_name_sv" value="Förste vice ordförande"/>
+            <column name="role_name_en" value="First Vice Chairperson"/>
+            <column name="role_category" value="COMMITTEE_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="6"/>
+            <column name="experience_weight" valueNumeric="400.00"/>
+            <column name="description_sv" value="Förste vice ordförande för utskott eller organ"/>
+            <column name="description_en" value="First vice chair of committee or body"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Andre vice ordförande"/>
+            <column name="role_name_sv" value="Andre vice ordförande"/>
+            <column name="role_name_en" value="Second Vice Chairperson"/>
+            <column name="role_category" value="COMMITTEE_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="6"/>
+            <column name="experience_weight" valueNumeric="400.00"/>
+            <column name="description_sv" value="Andre vice ordförande för utskott eller organ"/>
+            <column name="description_en" value="Second vice chair of committee or body"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Tredje vice ordförande"/>
+            <column name="role_name_sv" value="Tredje vice ordförande"/>
+            <column name="role_name_en" value="Third Vice Chairperson"/>
+            <column name="role_category" value="COMMITTEE_LEADERSHIP"/>
+            <column name="authority_level" valueNumeric="6"/>
+            <column name="experience_weight" valueNumeric="400.00"/>
+            <column name="description_sv" value="Tredje vice ordförande för utskott eller organ"/>
+            <column name="description_en" value="Third vice chair of committee or body"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="role_code_taxonomy">
+                <where>role_category = 'COMMITTEE_LEADERSHIP'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.46-007-populate-parliamentary-roles" author="intelligence-operative">
+        <comment>Parliamentary Member Roles (Authority Level 5) - 2 roles</comment>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Riksdagsledamot"/>
+            <column name="role_name_sv" value="Riksdagsledamot"/>
+            <column name="role_name_en" value="Member of Parliament"/>
+            <column name="role_category" value="PARLIAMENTARY"/>
+            <column name="authority_level" valueNumeric="5"/>
+            <column name="experience_weight" valueNumeric="100.00"/>
+            <column name="description_sv" value="Ledamot av Sveriges riksdag"/>
+            <column name="description_en" value="Member of the Swedish Parliament"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Ledamot"/>
+            <column name="role_name_sv" value="Ledamot"/>
+            <column name="role_name_en" value="Member"/>
+            <column name="role_category" value="PARLIAMENTARY"/>
+            <column name="authority_level" valueNumeric="5"/>
+            <column name="experience_weight" valueNumeric="100.00"/>
+            <column name="description_sv" value="Ledamot i utskott eller organ"/>
+            <column name="description_en" value="Member of committee or body"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="role_code_taxonomy">
+                <where>role_category = 'PARLIAMENTARY'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.46-008-populate-substitute-roles" author="intelligence-operative">
+        <comment>Substitute and Deputy Roles (Authority Level 3-4) - 8 roles</comment>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Suppleant"/>
+            <column name="role_name_sv" value="Suppleant"/>
+            <column name="role_name_en" value="Deputy Member"/>
+            <column name="role_category" value="SUBSTITUTE"/>
+            <column name="authority_level" valueNumeric="4"/>
+            <column name="experience_weight" valueNumeric="50.00"/>
+            <column name="description_sv" value="Suppleant i utskott eller organ"/>
+            <column name="description_en" value="Deputy in committee or body"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Extra suppleant"/>
+            <column name="role_name_sv" value="Extra suppleant"/>
+            <column name="role_name_en" value="Extra Deputy Member"/>
+            <column name="role_category" value="SUBSTITUTE"/>
+            <column name="authority_level" valueNumeric="3"/>
+            <column name="experience_weight" valueNumeric="40.00"/>
+            <column name="description_sv" value="Extra suppleant i utskott eller organ"/>
+            <column name="description_en" value="Extra deputy in committee or body"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Personlig suppleant"/>
+            <column name="role_name_sv" value="Personlig suppleant"/>
+            <column name="role_name_en" value="Personal Deputy"/>
+            <column name="role_category" value="SUBSTITUTE"/>
+            <column name="authority_level" valueNumeric="4"/>
+            <column name="experience_weight" valueNumeric="50.00"/>
+            <column name="description_sv" value="Personlig suppleant för riksdagsledamot"/>
+            <column name="description_en" value="Personal deputy for MP"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Ersättare"/>
+            <column name="role_name_sv" value="Ersättare"/>
+            <column name="role_name_en" value="Substitute"/>
+            <column name="role_category" value="SUBSTITUTE"/>
+            <column name="authority_level" valueNumeric="4"/>
+            <column name="experience_weight" valueNumeric="50.00"/>
+            <column name="description_sv" value="Ersättare i utskott eller organ"/>
+            <column name="description_en" value="Substitute in committee or body"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Personlig ersättare"/>
+            <column name="role_name_sv" value="Personlig ersättare"/>
+            <column name="role_name_en" value="Personal Substitute"/>
+            <column name="role_category" value="SUBSTITUTE"/>
+            <column name="authority_level" valueNumeric="4"/>
+            <column name="experience_weight" valueNumeric="50.00"/>
+            <column name="description_sv" value="Personlig ersättare för riksdagsledamot"/>
+            <column name="description_en" value="Personal substitute for MP"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Deputerad"/>
+            <column name="role_name_sv" value="Deputerad"/>
+            <column name="role_name_en" value="Deputy"/>
+            <column name="role_category" value="SUBSTITUTE"/>
+            <column name="authority_level" valueNumeric="4"/>
+            <column name="experience_weight" valueNumeric="50.00"/>
+            <column name="description_sv" value="Deputerad i fullmäktige eller styrelse"/>
+            <column name="description_en" value="Deputy in assembly or board"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Kvittningsperson"/>
+            <column name="role_name_sv" value="Kvittningsperson"/>
+            <column name="role_name_en" value="Offset Person"/>
+            <column name="role_category" value="SUBSTITUTE"/>
+            <column name="authority_level" valueNumeric="3"/>
+            <column name="experience_weight" valueNumeric="30.00"/>
+            <column name="description_sv" value="Kvittningsperson för röstning i riksdagen"/>
+            <column name="description_en" value="Offset person for voting in parliament"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="role_code_taxonomy">
+                <where>role_category = 'SUBSTITUTE'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.46-009-populate-board-roles" author="intelligence-operative">
+        <comment>Board and Administrative Roles (Authority Level 4-5) - 2 roles</comment>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Revisor"/>
+            <column name="role_name_sv" value="Revisor"/>
+            <column name="role_name_en" value="Auditor"/>
+            <column name="role_category" value="BOARD"/>
+            <column name="authority_level" valueNumeric="5"/>
+            <column name="experience_weight" valueNumeric="200.00"/>
+            <column name="description_sv" value="Revisor för riksdagens räkenskaper"/>
+            <column name="description_en" value="Auditor of parliament accounts"/>
+        </insert>
+        
+        <insert tableName="role_code_taxonomy">
+            <column name="role_code" value="Revisorssuppleant"/>
+            <column name="role_name_sv" value="Revisorssuppleant"/>
+            <column name="role_name_en" value="Deputy Auditor"/>
+            <column name="role_category" value="BOARD"/>
+            <column name="authority_level" valueNumeric="4"/>
+            <column name="experience_weight" valueNumeric="150.00"/>
+            <column name="description_sv" value="Suppleant för revisor"/>
+            <column name="description_en" value="Deputy for auditor"/>
+        </insert>
+        
+        <rollback>
+            <delete tableName="role_code_taxonomy">
+                <where>role_category = 'BOARD'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

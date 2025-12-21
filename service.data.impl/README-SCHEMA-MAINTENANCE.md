@@ -778,6 +778,88 @@ FROM document_proposal_data;
 
 ---
 
+### Political Role Taxonomy Reference
+
+**Reference Table**: `role_code_taxonomy`  
+**Changelog**: db-changelog-1.46-role-taxonomy.xml  
+**Status**: ✅ Complete - All 76 distinct political role codes documented  
+**Purpose**: Comprehensive multilingual reference for Swedish political roles with experience weighting
+
+**Table Schema:**
+```sql
+CREATE TABLE role_code_taxonomy (
+    role_code VARCHAR(255) PRIMARY KEY,
+    role_name_sv VARCHAR(255) NOT NULL,
+    role_name_en VARCHAR(255) NOT NULL,
+    role_category VARCHAR(50) NOT NULL,
+    authority_level INTEGER NOT NULL,
+    experience_weight DECIMAL(10,2) NOT NULL,
+    description_sv TEXT,
+    description_en TEXT,
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+**Role Categories (76 total roles):**
+
+| Category | Count | Authority Level | Example Roles | Experience Weight Range |
+|----------|-------|----------------|---------------|------------------------|
+| GOVERNMENT | 46 | 9-10 | Statsminister, Ministers | 1500.00 - 2000.00 |
+| SPEAKER | 5 | 8-9 | Talman, Vice talman | 750.00 - 1000.00 |
+| PARTY_LEADERSHIP | 8 | 7-8 | Partiledare, Gruppledare | 450.00 - 800.00 |
+| COMMITTEE_LEADERSHIP | 5 | 6-7 | Ordförande, Vice ordförande | 400.00 - 500.00 |
+| PARLIAMENTARY | 2 | 5 | Riksdagsledamot, Ledamot | 100.00 |
+| SUBSTITUTE | 7 | 3-4 | Suppleant, Ersättare | 30.00 - 50.00 |
+| BOARD | 2 | 4-5 | Revisor, Revisorssuppleant | 150.00 - 200.00 |
+
+**Usage Examples:**
+
+```sql
+-- Get all government roles ordered by authority
+SELECT role_code, role_name_en, authority_level, experience_weight
+FROM role_code_taxonomy
+WHERE role_category = 'GOVERNMENT'
+ORDER BY authority_level DESC, experience_weight DESC;
+
+-- Find role details by code
+SELECT role_name_sv, role_name_en, role_category, description_en
+FROM role_code_taxonomy
+WHERE role_code = 'Statsminister';
+
+-- Compare role weights for experience calculations
+SELECT role_category, 
+       MIN(experience_weight) as min_weight,
+       MAX(experience_weight) as max_weight,
+       AVG(experience_weight) as avg_weight,
+       COUNT(*) as role_count
+FROM role_code_taxonomy
+GROUP BY role_category
+ORDER BY avg_weight DESC;
+
+-- Verify all assignment_data roles are documented
+SELECT DISTINCT a.role_code
+FROM assignment_data a
+LEFT JOIN role_code_taxonomy r ON r.role_code = a.role_code
+WHERE r.role_code IS NULL;
+-- Should return 0 rows
+```
+
+**Integration with Views:**
+
+The taxonomy aligns with experience weighting patterns in `view_riksdagen_politician_experience_summary`:
+- Government roles: 1500.00 - 2000.00 (matches existing minister patterns)
+- Speaker roles: 750.00 - 1000.00 (matches existing talman patterns)
+- Committee leadership: 400.00 - 500.00 (matches existing ordförande patterns)
+- Parliamentary members: 100.00 (base member weight)
+- Substitutes: 30.00 - 50.00 (lower weight for deputy roles)
+
+**Reference Documentation:**
+- Source Data: `service.data.impl/sample-data/distinct_values/assignment_data_role_code.csv`
+- Analysis: `service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md`
+- Changelog: `service.data.impl/src/main/resources/db-changelog-1.46-role-taxonomy.xml`
+
+---
+
 ### Data Quality Checklist
 
 Use this checklist when making schema changes or after major data imports:
