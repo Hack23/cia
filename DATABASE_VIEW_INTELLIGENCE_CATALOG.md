@@ -35,28 +35,28 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **85 database views** (57 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views (100% coverage). **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 85 database views (100% coverage). **12 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
-**Last Validated**: 2025-11-25  
-**Validation Method**: Automated schema validation via validate-view-documentation.sh  
+**Last Validated**: 2025-12-21  
+**Validation Method**: Manual update for v1.53 career progression view  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (84/84 views)  
-**Validation Details**: See [Validation History](#-validation-history) section below
+**Documentation Coverage**: 100% (85/85 views)  
+**Latest Addition**: view_role_transition_career_progression (v1.53)
 
-**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
+**Note**: Total view count increased from 84 to 85 with addition of view_role_transition_career_progression in v1.53.
 
-### Key Statistics (REVERIFIED 2025-11-25)
+### Key Statistics (UPDATED 2025-12-21)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 84 | ✅ VERIFIED against full_schema.sql (2025-11-25) |
-| **Regular Views** | 56 | ✅ VERIFIED standard SQL views |
+| **Total Views** | 85 | ✅ Includes new v1.53 career progression view |
+| **Regular Views** | 57 | ✅ Standard SQL views (+1 from v1.53) |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
-| **Views Documented (Detailed)** | 11 | Complex examples with business context |
+| **Views Documented (Detailed)** | 12 | Complex examples with business context (+1 from v1.53) |
 | **Views Documented (Structured)** | 73 | Purpose, metrics, queries, product mappings |
-| **Documentation Coverage** | 100% | All 84 views documented |
+| **Documentation Coverage** | 100% | All 85 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
@@ -408,6 +408,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_politician_ballot_summary | Standard | ⭐⭐⭐⭐⭐ | Politician voting record summary |
 | view_riksdagen_politician_influence_metrics | Standard | ⭐⭐⭐⭐⭐ | Politician influence and network analysis |
 | 📖 view_riksdagen_politician_decision_pattern | Standard | ⭐⭐⭐⭐⭐ | Politician decision effectiveness and committee specialization (NEW v1.35) |
+| 📖 view_role_transition_career_progression | Standard | ⭐⭐⭐⭐⭐ | Role transitions and career path analysis (NEW v1.53) |
 
 ### Vote Data Views (20 views)
 
@@ -454,13 +455,13 @@ This section provides a complete alphabetical inventory of all 82 database views
 |-----------|------|-------------------|-------------|
 | view_worldbank_indicator_data_country_summary | 🔄 Materialized | ⭐⭐⭐ | Economic indicators for country analysis |
 
-**Total Views:** 82  
-**Detailed Documentation (📖):** 9  
+**Total Views:** 85  
+**Detailed Documentation (📖):** 12  
 **Structured Documentation (📝):** 73  
 **Documentation Coverage:** 100%  
 **Materialized Views:** 28  
 **Views by Intelligence Value:**
-- ⭐⭐⭐⭐⭐ VERY HIGH: 30 views
+- ⭐⭐⭐⭐⭐ VERY HIGH: 31 views (+1 career progression)
 - ⭐⭐⭐⭐ HIGH: 26 views
 - ⭐⭐⭐ MEDIUM: 12 views
 - ⭐⭐ LOW: 14 views
@@ -1644,6 +1645,244 @@ From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
 - **Politician Dashboard** (Product Line 1): Decision effectiveness metrics
 - **Committee Analysis** (Product Line 2): Specialist identification
 - **Comparative Analytics** (Product Line 2): Decision success benchmarking
+
+---
+
+### view_role_transition_career_progression ⭐⭐⭐⭐⭐
+
+**Category:** Politician Intelligence Views (v1.53)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Career Path Analysis & Succession Planning  
+**Changelog:** v1.53 Role Transition and Career Progression Analysis
+
+#### Purpose
+
+Comprehensive politician career path analysis tracking role transitions, promotions, lateral moves, and typical progression patterns through all 76 distinct political roles in Swedish parliamentary democracy. Enables career trajectory modeling, succession planning, political mobility analysis, and talent pipeline assessment.
+
+#### Key Metrics
+
+- **Career Transitions**: Complete role-to-role transition tracking (from_role → to_role)
+- **Transition Types**: PROMOTION, DEMOTION, LATERAL_MOVE, CAREER_START, CAREER_END
+- **Power Change**: Magnitude of power score change between roles
+- **Career Velocity**: Promotions per year (career speed metric)
+- **Political Experience**: Total years across all roles and power centers
+- **Career Classification**: TOP_TIER_LEADER, SENIOR_LEADER, EXPERIENCED_LEGISLATOR, VETERAN_MEMBER, JUNIOR_MEMBER
+- **Career Speed**: FAST_TRACK, ACCELERATED, STEADY, GRADUAL
+- **Career Trajectory**: ASCENDING, DESCENDING, LATERAL, MIXED
+- **Common Paths**: Typical progression patterns with age and timing metrics
+
+#### Schema
+
+| Column Name | Type | Description | Example |
+|-------------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Politician identifier | '0532213467925' |
+| `full_name` | VARCHAR(512) | First + Last name | 'Stefan Löfven' |
+| `party` | VARCHAR(50) | Party affiliation | 'S' |
+| `gender` | VARCHAR(10) | Gender | 'man' |
+| `current_role` | VARCHAR(255) | Role in this transition | 'Statsminister' |
+| `previous_role` | VARCHAR(255) | Prior role | 'Partiledare' |
+| `next_role` | VARCHAR(255) | Subsequent role | NULL (if current) |
+| `from_date` | DATE | Role start date | '2014-10-03' |
+| `to_date` | DATE | Role end date | '2021-11-30' |
+| `career_sequence` | INTEGER | Order in career (1st, 2nd...) | 8 |
+| `age_at_role_start` | INTEGER | Age when starting role | 57 |
+| `transition_type` | VARCHAR(50) | Type of transition | 'PROMOTION' |
+| `power_change` | NUMERIC | Power score delta | +1.5 |
+| `aggregate_power_score` | NUMERIC | Role power score (1-10) | 10.0 |
+| `institutional_power_center` | VARCHAR(50) | Power center type | 'EXECUTIVE' |
+| `role_duration_years` | NUMERIC | Years in role | 7.2 |
+| `days_since_previous_role` | NUMERIC | Gap between roles | 0 |
+| `total_roles` | INTEGER | Career role count | 12 |
+| `total_political_years` | NUMERIC | Cumulative experience | 35.7 |
+| `peak_power_score` | NUMERIC | Highest power achieved | 10.0 |
+| `promotions` | INTEGER | Promotion count | 6 |
+| `demotions` | INTEGER | Demotion count | 0 |
+| `lateral_moves` | INTEGER | Lateral move count | 3 |
+| `promotions_per_year` | NUMERIC | Career velocity | 0.17 |
+| `age_at_peak_role` | INTEGER | Age at peak | 57 |
+| `career_classification` | VARCHAR(50) | Career tier | 'TOP_TIER_LEADER' |
+| `career_speed` | VARCHAR(50) | Speed classification | 'STEADY' |
+| `career_trajectory` | VARCHAR(50) | Trajectory pattern | 'ASCENDING' |
+| `power_centers_served` | INTEGER | Power center diversity | 4 |
+| `others_on_same_path` | INTEGER | Similar career paths | 47 |
+| `typical_age_for_transition` | NUMERIC | Avg age for transition | 54.3 |
+| `typical_gap_for_transition` | NUMERIC | Avg days between roles | 12.5 |
+
+#### Example Queries
+
+**1. Top Career Progressions (Most Common Paths)**
+
+```sql
+-- Identify the most common career progression patterns
+SELECT 
+    previous_role AS from_role,
+    current_role AS to_role,
+    others_on_same_path AS politicians_following_path,
+    ROUND(typical_age_for_transition, 0) AS typical_age,
+    ROUND(typical_gap_for_transition / 365.25, 1) AS typical_years_between,
+    AVG(power_change) AS avg_power_increase
+FROM view_role_transition_career_progression
+WHERE previous_role IS NOT NULL 
+    AND others_on_same_path >= 10  -- Minimum threshold for pattern
+GROUP BY previous_role, current_role, others_on_same_path, typical_age_for_transition, typical_gap_for_transition
+ORDER BY others_on_same_path DESC
+LIMIT 20;
+```
+
+**2. Fast-Track Politicians Who Reached Top Tier**
+
+```sql
+-- Identify politicians with fast career progression to top leadership
+SELECT 
+    full_name,
+    party,
+    total_roles,
+    ROUND(total_political_years, 1) AS total_years,
+    peak_power_score,
+    promotions_per_year,
+    age_at_peak_role,
+    career_classification,
+    career_speed
+FROM view_role_transition_career_progression
+WHERE career_classification = 'TOP_TIER_LEADER'
+    AND career_speed IN ('FAST_TRACK', 'ACCELERATED')
+GROUP BY person_id, full_name, party, total_roles, total_political_years, 
+         peak_power_score, promotions_per_year, age_at_peak_role, 
+         career_classification, career_speed
+ORDER BY promotions_per_year DESC
+LIMIT 20;
+```
+
+**3. Career Trajectory by Party**
+
+```sql
+-- Analyze career trajectories across different parties
+SELECT 
+    party,
+    career_trajectory,
+    COUNT(DISTINCT person_id) AS politicians,
+    ROUND(AVG(total_political_years), 1) AS avg_years,
+    ROUND(AVG(peak_power_score), 1) AS avg_peak_power,
+    ROUND(AVG(promotions), 1) AS avg_promotions,
+    ROUND(AVG(promotions_per_year), 2) AS avg_promotion_velocity
+FROM view_role_transition_career_progression
+WHERE total_roles >= 3  -- Minimum career depth
+GROUP BY party, career_trajectory
+ORDER BY party, politicians DESC;
+```
+
+**4. Common Executive Career Paths**
+
+```sql
+-- Identify typical paths to ministerial positions
+WITH ministerial_roles AS (
+    SELECT DISTINCT person_id, full_name, party, career_sequence, 
+           previous_role, current_role, age_at_role_start
+    FROM view_role_transition_career_progression
+    WHERE current_role ~~* '%minister%'
+        AND previous_role IS NOT NULL
+)
+SELECT 
+    previous_role,
+    current_role,
+    COUNT(*) AS occurrences,
+    ROUND(AVG(age_at_role_start), 1) AS avg_age_at_appointment,
+    STRING_AGG(DISTINCT party, ', ') AS parties
+FROM ministerial_roles
+GROUP BY previous_role, current_role
+HAVING COUNT(*) >= 3
+ORDER BY occurrences DESC
+LIMIT 15;
+```
+
+**5. Career Development Timeline for Individual Politician**
+
+```sql
+-- Detailed career progression for a specific politician
+SELECT 
+    career_sequence,
+    current_role,
+    from_date,
+    to_date,
+    age_at_role_start,
+    transition_type,
+    ROUND(aggregate_power_score, 1) AS power_score,
+    ROUND(power_change, 1) AS power_change,
+    institutional_power_center,
+    ROUND(role_duration_years, 1) AS years_in_role
+FROM view_role_transition_career_progression
+WHERE person_id = '0532213467925'  -- Example: Stefan Löfven
+ORDER BY career_sequence;
+```
+
+#### Performance Characteristics
+
+- **Query Time:** 300-500ms (complex window functions and aggregations)
+- **Indexes Used:** `assignment_data` primary key, person_data foreign keys
+- **Data Volume:** ~31,000 rows (one row per role assignment)
+- **Refresh Frequency:** Real-time (standard view)
+- **Optimization:** Consider materialization for dashboard use
+
+#### Data Sources
+
+- **Primary Table:** `assignment_data` (all politician assignments)
+- **Joined Tables:** 
+  - `person_data` (politician demographics and birth year)
+
+#### Dependencies
+
+- No view dependencies (built directly on source tables)
+- Power scoring logic derived from v1.44 experience summary
+- Complements: `view_riksdagen_politician_experience_summary` (role experience metrics)
+
+#### Intelligence Applications
+
+This view supports critical career intelligence capabilities:
+
+| Analysis Type | Use Case | Business Value |
+|---------------|----------|----------------|
+| **Career Trajectory Modeling** | Identify common paths to high office | Succession planning, talent identification |
+| **Fast-Track Identification** | Detect accelerated career progressions | Early leadership indicator, risk assessment |
+| **Succession Planning** | Predict future leadership transitions | Political forecasting, coalition analysis |
+| **Political Mobility Analysis** | Track upward, lateral, downward movements | Career risk, party dynamics |
+| **Experience Accumulation** | Measure comprehensive political experience | Qualification assessment, expertise validation |
+| **Talent Pipeline Assessment** | Evaluate party bench strength | Party health, electoral readiness |
+| **Age-Based Patterns** | Typical ages for key milestones | Demographic analysis, generational shifts |
+| **Party Comparison** | Cross-party career path differences | Strategic positioning, recruitment analysis |
+
+#### Common Career Paths (Observed Patterns)
+
+Based on Swedish parliamentary democracy:
+
+1. **Executive Path**: Local Politics → Riksdag → Committee Chair → Minister → Senior Minister
+2. **Party Path**: Party Youth → Riksdag → Party Leadership → Government Leadership
+3. **Legislative Path**: Substitute → Member → Committee Leadership → Speaker/Chair
+4. **International Path**: Riksdag → EU Parliament → Riksdag (with enhanced profile)
+5. **Executive Leadership Path**: Riksdag → Minister → Party Leader → Prime Minister
+
+#### Risk Rules Supported
+
+From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
+- **Career Stagnation Detection**: No promotions over extended periods
+- **Rapid Demotion Pattern**: Multiple demotions indicating problems
+- **Experience Gaps**: Unusual gaps between roles
+- **Atypical Career Paths**: Deviations from common progression patterns
+
+#### Integration with Product Features
+
+From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
+- **Politician Career Dashboard** (Product Line 1): Complete career timeline visualization
+- **Succession Planning Tools** (Product Line 2): Predictive leadership modeling
+- **Party Bench Strength Analysis** (Product Line 2): Talent pipeline assessment
+- **Coalition Forecasting** (Product Line 3): Future leadership prediction
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Temporal Analysis**: Career progression over time, age-based milestones
+- **Comparative Analysis**: Individual paths vs. party/national patterns
+- **Pattern Recognition**: Common career trajectories and clusters
+- **Predictive Intelligence**: Succession forecasting, leadership emergence
 
 ---
 

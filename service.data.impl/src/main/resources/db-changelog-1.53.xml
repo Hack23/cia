@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Create Role Transition and Career Progression Analysis View v1.53
+  Author: Copilot Agent
+  Date: 2025-12-21
+  
+  Documentation References:
+  - Analysis: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Business Requirements: BUSINESS_PRODUCT_DOCUMENT.md
+  
+  Purpose:
+  Create comprehensive politician career path analysis tracking role transitions, promotions,
+  lateral moves, and typical progression patterns through all 76 distinct political roles.
+  
+  Key Features:
+  - Tracks all role transitions for each politician (from_role → to_role)
+  - Calculates transition types (promotion, lateral, demotion, career start/end)
+  - Identifies career progression paths and patterns
+  - Measures time between role transitions
+  - Calculates total political experience across all roles
+  - Tracks typical age at key career milestones
+  - Identifies fast-track vs. traditional career paths
+  - Analyzes party-specific progression patterns
+  - Supports temporal analysis of career trajectories
+  
+  Intelligence Value:
+  - Career trajectory modeling: Identify common paths to high office
+  - Succession planning: Predict future leadership transitions
+  - Political mobility analysis: Track upward, lateral, and downward movements
+  - Experience accumulation: Measure comprehensive political experience
+  - Talent pipeline assessment: Evaluate party bench strength
+-->
+
+<changeSet author="copilot-agent" id="career-progression-view-1.53-001" failOnError="true">
+    <comment>
+        Create view_role_transition_career_progression for comprehensive politician career path analysis.
+        Tracks role transitions, promotions, lateral moves, and career progression patterns.
+        Power scores calculated inline (based on v1.44 logic) for role hierarchy.
+        Supports analysis of ~6,000 politicians with ~31,000 role assignments.
+    </comment>
+    
+    <sqlFile path="view_role_transition_career_progression_v1.53.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_role_transition_career_progression CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
