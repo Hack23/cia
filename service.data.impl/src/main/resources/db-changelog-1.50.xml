@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Feature: Create EU Parliament Representatives View v1.50
+  Author: Intelligence Operative
+  Date: 2025-12-21
+  
+  Documentation References:
+  - Analysis: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Business Requirements: BUSINESS_PRODUCT_DOCUMENT.md
+  
+  Objective:
+  Create database view for tracking Swedish Members of the European Parliament (MEPs)
+  with EU parliamentary activity analysis and cross-referencing with Swedish Riksdag service.
+  
+  Background:
+  - 85 Europaparlamentet assignment records in database
+  - Many MEPs have prior or subsequent Riksdag service
+  - Creates interesting career progression patterns
+  - No dedicated view for MEP tracking existed
+  
+  Features:
+  - Tracks all Europaparlamentet assignments with person details
+  - Calculates MEP tenure duration and service periods
+  - Identifies politicians serving in both Riksdag and EP
+  - Analyzes party representation in European Parliament
+  - Tracks temporal changes in Swedish MEP composition
+  - Calculates career progression patterns (local → EU → local)
+  - Joins with person_data for demographic analysis
+  - Supports temporal queries (MEPs active on specific date)
+-->
+
+<changeSet author="intelligence-operative" id="create-eu-parliament-view-1.50-001" failOnError="true">
+    <comment>
+        Create view_eu_parliament_representatives to track Swedish MEPs with career path analysis.
+        Includes tenure tracking, party representation, gender balance, and Riksdag service correlation.
+        Covers 85 Europaparlamentet assignment records with full demographic and temporal analysis.
+    </comment>
+    
+    <sqlFile path="view_eu_parliament_representatives_v1.50.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_eu_parliament_representatives CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>

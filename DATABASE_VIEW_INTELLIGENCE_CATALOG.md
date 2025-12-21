@@ -35,28 +35,28 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **85 database views** (57 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views (100% coverage). **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 85 database views (100% coverage). **11 views** have detailed examples with complex queries, while **74 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
-**Last Validated**: 2025-11-25  
+**Last Validated**: 2025-12-21  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (84/84 views)  
+**Documentation Coverage**: 100% (85/85 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
+**Note**: Added `view_eu_parliament_representatives` (v1.50) for tracking Swedish Members of the European Parliament with career path analysis.
 
 ### Key Statistics (REVERIFIED 2025-11-25)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 84 | ✅ VERIFIED against full_schema.sql (2025-11-25) |
-| **Regular Views** | 56 | ✅ VERIFIED standard SQL views |
+| **Total Views** | 85 | ✅ VERIFIED against full_schema.sql (2025-12-21) |
+| **Regular Views** | 57 | ✅ VERIFIED standard SQL views |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
 | **Views Documented (Detailed)** | 11 | Complex examples with business context |
-| **Views Documented (Structured)** | 73 | Purpose, metrics, queries, product mappings |
-| **Documentation Coverage** | 100% | All 84 views documented |
+| **Views Documented (Structured)** | 74 | Purpose, metrics, queries, product mappings |
+| **Documentation Coverage** | 100% | All 85 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
@@ -398,7 +398,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_party_summary | Standard | ⭐⭐⭐⭐ | Aggregated party statistics |
 | view_riksdagen_person_signed_document_summary | Standard | ⭐⭐⭐ | Individual document signature summary |
 
-### Politician Views (8 views)
+### Politician Views (9 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
@@ -408,6 +408,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_politician_ballot_summary | Standard | ⭐⭐⭐⭐⭐ | Politician voting record summary |
 | view_riksdagen_politician_influence_metrics | Standard | ⭐⭐⭐⭐⭐ | Politician influence and network analysis |
 | 📖 view_riksdagen_politician_decision_pattern | Standard | ⭐⭐⭐⭐⭐ | Politician decision effectiveness and committee specialization (NEW v1.35) |
+| view_eu_parliament_representatives | Standard | ⭐⭐⭐⭐⭐ | Swedish MEPs with EU parliamentary activity and career path analysis (NEW v1.50) |
 
 ### Vote Data Views (20 views)
 
@@ -1644,6 +1645,182 @@ From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
 - **Politician Dashboard** (Product Line 1): Decision effectiveness metrics
 - **Committee Analysis** (Product Line 2): Specialist identification
 - **Comparative Analytics** (Product Line 2): Decision success benchmarking
+
+---
+
+### view_eu_parliament_representatives ⭐⭐⭐⭐⭐
+
+**Category:** Politician Intelligence Views (v1.50)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - EU Parliament Career Path Analysis  
+**Changelog:** v1.50 EU Parliament Representatives with Career Path Analysis
+
+#### Purpose
+
+Tracks Swedish Members of the European Parliament (MEPs) with comprehensive EU parliamentary activity analysis and cross-referencing with Swedish Riksdag service. Enables analysis of career progression patterns between Swedish national politics and EU representation, including tenure tracking, party representation evolution, and gender balance in Swedish EP delegation.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Unique politician identifier | '0532213467925' |
+| `intressent_id` | VARCHAR(255) | Alternative person identifier | '0532213467925' |
+| `full_name` | TEXT | Complete name (first + last) | 'Anna Andersson' |
+| `first_name` | VARCHAR(255) | MEP first name | 'Anna' |
+| `last_name` | VARCHAR(255) | MEP last name | 'Andersson' |
+| `role_code` | VARCHAR(255) | Assignment role code | 'Ledamot' |
+| `role_description` | TEXT | Role details | 'Europaparlamentet' |
+| `mep_start_date` | DATE | MEP service start date | '2019-07-02' |
+| `mep_end_date` | DATE | MEP service end date (NULL if current) | NULL |
+| `mep_tenure_days` | NUMERIC | Total days as MEP | 1985 |
+| `mep_tenure_years` | NUMERIC(10,2) | Years as MEP (calculated) | 5.44 |
+| `is_current_mep` | BOOLEAN | Currently serving as MEP | true |
+| `swedish_party_affiliation` | VARCHAR(255) | Swedish party membership | 'S' (Social Democrats) |
+| `gender` | VARCHAR(255) | Gender | 'kvinna' (woman) |
+| `age_when_elected_mep` | INTEGER | Age at first MEP election | 45 |
+| `mep_start_year` | INTEGER | Year elected to EP | 2019 |
+| `mep_end_year` | INTEGER | Year leaving EP (current year if active) | 2025 |
+| `career_progression_type` | TEXT | Career path classification | 'RIKSDAG_TO_EU' |
+| `years_in_riksdag` | NUMERIC | Years served in Swedish Riksdag | 8.5 |
+| `riksdag_assignments` | BIGINT | Number of Riksdag assignments | 3 |
+| `concurrent_riksdag_eu_service` | BOOLEAN | Serving in both simultaneously | false |
+| `party_avg_mep_tenure` | NUMERIC(10,2) | Average party MEP tenure in years | 6.2 |
+| `party_current_meps` | BIGINT | Current MEPs from same party | 5 |
+| `year_total_meps` | BIGINT | Total Swedish MEPs in start year | 21 |
+| `year_parties_count` | BIGINT | Parties represented in start year | 7 |
+| `year_female_percentage` | NUMERIC(4,1) | Female percentage in start year | 47.6 |
+| `mep_tenure_classification` | TEXT | Tenure category | 'TWO_TERMS' |
+
+> **Note:** View aggregates 85 Europaparlamentet assignment records. Career progression types: EU_ONLY, RIKSDAG_TO_EU, EU_TO_RIKSDAG, RIKSDAG_EU_RIKSDAG, CONCURRENT_SERVICE, COMPLEX_PATH.
+
+#### Example Queries
+
+**1. Current Swedish MEPs with Career Background**
+
+```sql
+SELECT 
+    full_name,
+    swedish_party_affiliation,
+    mep_tenure_years,
+    career_progression_type,
+    years_in_riksdag,
+    concurrent_riksdag_eu_service
+FROM view_eu_parliament_representatives
+WHERE is_current_mep = true
+ORDER BY mep_tenure_years DESC;
+```
+
+**2. Career Progression Pattern Analysis**
+
+```sql
+SELECT 
+    career_progression_type,
+    COUNT(*) AS politicians_count,
+    ROUND(AVG(mep_tenure_years), 2) AS avg_mep_years,
+    ROUND(AVG(years_in_riksdag), 2) AS avg_riksdag_years,
+    COUNT(CASE WHEN is_current_mep THEN 1 END) AS currently_active
+FROM view_eu_parliament_representatives
+GROUP BY career_progression_type
+ORDER BY politicians_count DESC;
+```
+
+**3. Party Representation Evolution in European Parliament**
+
+```sql
+SELECT 
+    mep_start_year,
+    swedish_party_affiliation,
+    COUNT(*) AS meps_elected,
+    ROUND(AVG(mep_tenure_years), 2) AS avg_tenure,
+    COUNT(CASE WHEN is_current_mep THEN 1 END) AS still_serving
+FROM view_eu_parliament_representatives
+WHERE swedish_party_affiliation IS NOT NULL
+GROUP BY mep_start_year, swedish_party_affiliation
+ORDER BY mep_start_year DESC, meps_elected DESC;
+```
+
+**4. Gender Balance in Swedish EP Delegation Over Time**
+
+```sql
+SELECT 
+    mep_start_year,
+    year_total_meps,
+    COUNT(CASE WHEN gender = 'kvinna' THEN 1 END) AS female_meps,
+    COUNT(CASE WHEN gender = 'man' THEN 1 END) AS male_meps,
+    ROUND(AVG(year_female_percentage), 1) AS female_percentage
+FROM view_eu_parliament_representatives
+GROUP BY mep_start_year, year_total_meps, year_female_percentage
+ORDER BY mep_start_year DESC;
+```
+
+**5. MEPs with Riksdag Experience (Crossover Politicians)**
+
+```sql
+SELECT 
+    full_name,
+    swedish_party_affiliation,
+    mep_tenure_years,
+    years_in_riksdag,
+    riksdag_assignments,
+    career_progression_type
+FROM view_eu_parliament_representatives
+WHERE years_in_riksdag > 0
+ORDER BY (mep_tenure_years + years_in_riksdag) DESC;
+```
+
+#### Source Tables
+
+- **Primary:**
+  - `assignment_data` (Europaparlamentet assignments)
+  - `person_data` (politician demographics)
+
+#### Dependencies
+
+- No view dependencies (built directly on source tables)
+- Complements: `view_riksdagen_politician`, `view_riksdagen_politician_experience_summary`
+- Used by: Politician career tracking, EU representation analysis dashboards
+
+#### Risk Rules Supported
+
+From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
+- **PoliticianCareerTracking**: Career progression monitoring
+- **RepresentationBalance**: Gender and party balance analysis
+- **ElectedOfficialTenure**: Tenure and retention patterns
+
+#### Intelligence Applications
+
+This view supports multiple analytical frameworks from [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+
+| Analysis Framework | Use Case | Example Application | Link |
+|--------------------|----------|-------------------|------|
+| **Temporal Analysis** | Track Swedish MEP composition over time | Monitor party representation changes across EP elections | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
+| **Comparative Analysis** | Swedish representation vs. other nations | Compare tenure patterns and career paths | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
+| **Pattern Recognition** | Career progression clustering | Identify typical paths: local → EU → local | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#3-pattern-recognition-framework) |
+| **Network Analysis** | Cross-border political influence | Map Swedish-EU political networks | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#5-network-analysis-framework) |
+
+**Intelligence Products Generated:**
+- 🇪🇺 EU Representation Dashboard - Swedish MEP tracking
+- 📈 Career Path Analysis - Political progression patterns
+- ⚖️ Gender Balance Reports - Swedish EP delegation demographics
+- 🏛️ Party EU Strategy - Party representation evolution in EP
+
+**Data Flow:** See [Intelligence Data Flow Map - View to Analysis Mapping](INTELLIGENCE_DATA_FLOW.md#view--analysis-framework-mapping) for complete data pipeline.
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Career Path Analysis**: Riksdag ↔ EP progression patterns
+- **Representation Analysis**: Party and gender balance tracking
+- **Temporal Analysis**: MEP composition evolution over time
+- **Comparative Analysis**: Party MEP tenure benchmarking
+
+#### Integration with Product Features
+
+From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
+- **Politician Dashboard** (Product Line 1): EU career tracking
+- **Party Analysis** (Product Line 2): EU representation strategy
+- **Comparative Analytics** (Product Line 2): Cross-delegation benchmarks
+- **Democratic Accountability** (Product Line 3): EU representative tracking
 
 ---
 
