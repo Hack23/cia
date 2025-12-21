@@ -5,6 +5,7 @@
 --             significant influence over legislative agenda
 -- Data Source: assignment_data table with assignment_type = 'partiuppdrag'
 -- Key Metrics: 23 partiledare, 71 gruppledare, 28 partisekreterare positions tracked
+-- Version Note: Numbered 1.48 per issue requirements (intentional version jump)
 
 DROP VIEW IF EXISTS view_party_leadership_roles CASCADE;
 
@@ -114,37 +115,6 @@ concurrent_leadership AS (
             )
     )
     GROUP BY pl1.intressent_id, pl1.first_name, pl1.last_name, pl1.party_code
-),
-
-leadership_succession AS (
-    SELECT 
-        pl1.party_code,
-        pl1.party_name,
-        pl1.leadership_type,
-        pl1.intressent_id AS outgoing_leader,
-        pl1.first_name || ' ' || pl1.last_name AS outgoing_name,
-        pl1.to_date AS succession_date,
-        pl2.intressent_id AS incoming_leader,
-        pl2.first_name || ' ' || pl2.last_name AS incoming_name,
-        pl2.from_date AS new_leader_start,
-        CASE 
-            WHEN pl1.to_date::date = pl2.from_date::date THEN 'IMMEDIATE'
-            WHEN DATE_PART('day', pl2.from_date::date - pl1.to_date::date) <= 30 THEN 'RAPID'
-            ELSE 'DELAYED'
-        END AS transition_type
-    FROM person_party_leadership pl1
-    INNER JOIN person_party_leadership pl2 
-        ON pl1.party_code = pl2.party_code
-        AND pl1.leadership_type = pl2.leadership_type
-        AND pl1.to_date IS NOT NULL
-        AND pl2.from_date::date > pl1.to_date::date
-    WHERE NOT EXISTS (
-        SELECT 1 FROM person_party_leadership pl3
-        WHERE pl3.party_code = pl1.party_code
-            AND pl3.leadership_type = pl1.leadership_type
-            AND pl3.from_date::date > pl1.to_date::date
-            AND pl3.from_date::date < pl2.from_date::date
-    )
 )
 
 -- Main result set
