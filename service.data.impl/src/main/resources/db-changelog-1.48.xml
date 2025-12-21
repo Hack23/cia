@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Create Party Leadership Roles View v1.48
+  Author: Copilot
+  Date: 2025-12-21
+  
+  Documentation References:
+  - Analysis: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Business Requirements: BUSINESS_PRODUCT_DOCUMENT.md
+  
+  Objective:
+  Track parliamentary group leaders (gruppledare), party leaders (partiledare), 
+  and party secretaries (partisekreterare) with party organization analysis.
+  
+  Key Features:
+  - Tracks all partiledare (23), gruppledare (71), partisekreterare (28) positions
+  - Calculates leadership tenure by party and role type
+  - Identifies concurrent leadership roles (party + group leader)
+  - Analyzes leadership transition patterns by party
+  - Tracks party organizational stability metrics
+  - Supports temporal queries (party leadership on specific date)
+  
+  Data Source:
+  - assignment_data with assignment_type = 'partiuppdrag'
+  - role_code IN ('Partiledare', 'Gruppledare', 'Partisekreterare')
+-->
+
+<changeSet author="copilot" id="create-party-leadership-roles-view-1.48-001" failOnError="true">
+    <comment>
+        Create view_party_leadership_roles to track party leadership hierarchy,
+        organizational stability, concurrent roles, and leadership succession patterns.
+        This view provides comprehensive analysis of party organizational structures.
+    </comment>
+    
+    <sqlFile path="view_party_leadership_roles_v1.48.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_party_leadership_roles CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>

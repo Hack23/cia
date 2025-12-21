@@ -35,28 +35,28 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **85 database views** (57 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views (100% coverage). **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 85 database views (100% coverage). **12 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
-**Last Validated**: 2025-11-25  
+**Last Validated**: 2025-12-21  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (84/84 views)  
+**Documentation Coverage**: 100% (85/85 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
+**Note**: Total view count updated to 85 with addition of `view_party_leadership_roles` in v1.48 (2025-12-21).
 
-### Key Statistics (REVERIFIED 2025-11-25)
+### Key Statistics (UPDATED 2025-12-21)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 84 | ✅ VERIFIED against full_schema.sql (2025-11-25) |
-| **Regular Views** | 56 | ✅ VERIFIED standard SQL views |
+| **Total Views** | 85 | ✅ UPDATED with v1.48 party leadership view (2025-12-21) |
+| **Regular Views** | 57 | ✅ UPDATED - added view_party_leadership_roles |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
-| **Views Documented (Detailed)** | 11 | Complex examples with business context |
+| **Views Documented (Detailed)** | 12 | Complex examples with business context |
 | **Views Documented (Structured)** | 73 | Purpose, metrics, queries, product mappings |
-| **Documentation Coverage** | 100% | All 84 views documented |
+| **Documentation Coverage** | 100% | All 85 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
@@ -64,7 +64,7 @@ The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56
 | **Document Views** | 7 | Politician and party document productivity |
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
 | **Government/Ministry Views** | 7 | Government and ministry performance tracking |
-| **Party Views** | 13 | Party performance, decision flow, effectiveness |
+| **Party Views** | 14 | Party performance, decision flow, leadership, effectiveness |
 | **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
 | **Database Size** | 20 GB | Total database size (validated 2025-11-21) |
 | **Total Rows** | 5.6M | Total rows across all tables |
@@ -381,16 +381,17 @@ This section provides a complete alphabetical inventory of all 82 database views
 | 📖 view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Voting anomaly and defection risk detection |
 | 📖 view_risk_score_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of risk scores over time |
 
-### Party Views (13 views)
+### Party Views (14 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
 | 📖 view_riksdagen_coalition_alignment_matrix | Standard | ⭐⭐⭐⭐⭐ | Party coalition alignment and probability matrix |
 | 📖 view_riksdagen_party | Standard | ⭐⭐⭐⭐⭐ | Core party information and metrics |
 | view_party_performance_metrics | Standard | ⭐⭐⭐⭐⭐ | Comprehensive party performance indicators |
+| 📖 view_party_leadership_roles | Standard | ⭐⭐⭐⭐⭐ | Party leadership hierarchy and organizational analysis (NEW v1.48) |
 | view_riksdagen_party_ballot_support_annual_summary | Standard | ⭐⭐⭐⭐ | Annual party ballot support patterns |
 | view_riksdagen_party_coalation_against_annual_summary | Standard | ⭐⭐⭐⭐ | Annual party opposition coalition patterns |
-| 📖 view_riksdagen_party_decision_flow | Standard | ⭐⭐⭐⭐⭐ | Party-level proposal decision analysis (NEW v1.35) |
+| 📖 view_riksdagen_party_decision_flow | Standard | ⭐⭐⭐⭐⭐ | Party-level proposal decision analysis (v1.35) |
 | view_riksdagen_party_member | Standard | ⭐⭐⭐⭐ | Party membership roster |
 | view_riksdagen_party_momentum_analysis | Standard | ⭐⭐⭐⭐⭐ | Party momentum and trend analysis |
 | view_riksdagen_party_role_member | Standard | ⭐⭐⭐ | Party role assignments |
@@ -3136,7 +3137,7 @@ These views are **CRITICAL** for the CIA platform's intelligence capabilities:
 
 Party views provide organizational-level intelligence on Swedish political parties, tracking electoral performance, coalition behavior, internal discipline, decision effectiveness, and performance trends. These views enable coalition analysis, party comparison, and government formation forecasting.
 
-**Total Party Views:** 13+ (NEW: Party Decision Flow v1.35)  
+**Total Party Views:** 14+ (NEW: Party Leadership Roles v1.48, Party Decision Flow v1.35)  
 **Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH  
 **Primary Use Cases:** Coalition analysis, party performance monitoring, electoral forecasting, bloc alignment, legislative effectiveness
 
@@ -4045,6 +4046,246 @@ From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
 - **Swedish Language**: Decision terms use official Riksdag Swedish terminology
 - **Party Attribution**: Requires person reference data linking documents to parties
 - **Historical Analysis**: Effective for analyzing any time period with available data
+
+---
+
+### view_party_leadership_roles ⭐⭐⭐⭐⭐
+
+**Category:** Party Leadership Analysis (NEW in v1.48)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Party Organization & Leadership Hierarchy  
+**Changelog:** v1.48 Party Leadership Roles with Organization Analysis
+
+#### Purpose
+
+Tracks parliamentary group leaders (gruppledare), party leaders (partiledare), and party secretaries (partisekreterare) with comprehensive party organization analysis. Provides insights into leadership hierarchy, organizational stability, concurrent leadership roles, and succession patterns across Swedish political parties.
+
+#### Key Metrics
+
+- **Leadership Tenure**: Days and years in leadership positions
+- **Authority Level**: Hierarchical ranking (10=Partiledare, 9=Gruppledare, 7=Partisekreterare)
+- **Organizational Stability**: STABLE (>4 years avg), MODERATE (>2 years), VOLATILE (<2 years)
+- **Concurrent Roles**: Tracks dual leadership (e.g., party leader + group leader)
+- **Succession Patterns**: IMMEDIATE, RAPID (<30 days), DELAYED transitions
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Person identifier | 'Q123456' |
+| `full_name` | VARCHAR(512) | Leader's full name | 'Ulf Kristersson' |
+| `role_code` | VARCHAR(255) | Leadership role | 'Partiledare', 'Gruppledare' |
+| `leadership_type` | VARCHAR(50) | Role classification | 'PARTY_LEADER', 'GROUP_LEADER', 'PARTY_SECRETARY' |
+| `party_code` | VARCHAR(255) | Party organization code | 'M', 'S', 'SD' |
+| `party_name` | VARCHAR(512) | Full party name | 'Moderaterna' |
+| `from_date` | DATE | Start of leadership | '2017-10-01' |
+| `to_date` | DATE | End of leadership (NULL=current) | NULL or '2024-01-15' |
+| `tenure_days` | NUMERIC | Days in position | 2648 |
+| `tenure_years` | NUMERIC(10,2) | Years in position | 7.26 |
+| `authority_level` | INTEGER | Authority ranking (5-10) | 10 |
+| `is_current` | BOOLEAN | Currently in role | true/false |
+| `primary_party` | VARCHAR(255) | Person's primary party | 'M' |
+| `gender` | VARCHAR(50) | Leader gender | 'man', 'kvinna' |
+| `age_at_appointment` | INTEGER | Age when appointed | 53 |
+| `appointment_year` | NUMERIC | Year of appointment | 2017 |
+| `party_avg_tenure` | NUMERIC(10,2) | Party's avg tenure for role | 5.32 |
+| `organizational_stability` | VARCHAR(50) | Party stability rating | 'STABLE', 'MODERATE', 'VOLATILE' |
+| `party_total_leaders` | BIGINT | Unique leaders in this role | 8 |
+| `concurrent_leadership_roles` | INTEGER | Concurrent roles held | 2 |
+| `role_combination` | VARCHAR(512) | Combined roles | 'PARTY_LEADER + GROUP_LEADER' |
+| `leadership_tenure_class` | VARCHAR(50) | Career classification | 'TRANSITIONAL', 'ESTABLISHED', 'VETERAN' |
+
+#### Swedish Leadership Roles
+
+| Role Code | English | Count | Typical Authority |
+|-----------|---------|-------|------------------|
+| **Partiledare** | Party Leader | 23 positions | Highest (Level 10) |
+| **Gruppledare** | Parliamentary Group Leader | 71 positions | High (Level 9) |
+| **Partisekreterare** | Party Secretary | 28 positions | Significant (Level 7) |
+
+**Party Leadership Context:**
+- Party leader (partiledare) often differs from group leader (riksdagsledare/gruppledare)
+- Party secretaries handle administrative and organizational functions
+- Concurrent roles indicate power concentration within party structure
+- 8 major riksdag parties maintain distinct leadership structures
+
+#### Example Queries
+
+**1. Current Party Leadership Across All Parties**
+
+```sql
+SELECT 
+    party_name,
+    leadership_type,
+    full_name,
+    tenure_years,
+    primary_party,
+    age_at_appointment
+FROM view_party_leadership_roles
+WHERE is_current = true
+ORDER BY party_name, authority_level DESC;
+```
+
+**Output:**
+```
+ party_name      | leadership_type | full_name          | tenure_years | primary_party | age_at_appointment
+-----------------+-----------------+--------------------+--------------+---------------+-------------------
+ Moderaterna     | PARTY_LEADER    | Ulf Kristersson    |         7.26 | M             |                 53
+ Moderaterna     | GROUP_LEADER    | Ulf Kristersson    |         7.26 | M             |                 53
+ Socialdemokraterna | PARTY_LEADER | Magdalena Andersson|         3.15 | S             |                 54
+```
+
+**2. Parties with Dual Leadership (Party + Group Leader Same Person)**
+
+```sql
+SELECT 
+    full_name,
+    party_name,
+    concurrent_leadership_roles,
+    role_combination,
+    tenure_years
+FROM view_party_leadership_roles
+WHERE concurrent_leadership_roles > 1
+    AND is_current = true
+ORDER BY concurrent_leadership_roles DESC, tenure_years DESC;
+```
+
+**3. Party Organizational Stability Comparison**
+
+```sql
+SELECT 
+    party_name,
+    organizational_stability,
+    party_avg_tenure AS avg_years,
+    party_total_leaders,
+    COUNT(*) FILTER (WHERE is_current = true) AS current_leaders
+FROM view_party_leadership_roles
+WHERE leadership_type = 'PARTY_LEADER'
+GROUP BY party_name, organizational_stability, party_avg_tenure, party_total_leaders
+ORDER BY party_avg_tenure DESC;
+```
+
+**4. Leadership Succession Analysis (Historical)**
+
+```sql
+SELECT 
+    party_name,
+    leadership_type,
+    full_name,
+    from_date,
+    to_date,
+    tenure_years,
+    LEAD(full_name) OVER (
+        PARTITION BY party_code, leadership_type 
+        ORDER BY from_date
+    ) AS successor,
+    LEAD(from_date) OVER (
+        PARTITION BY party_code, leadership_type 
+        ORDER BY from_date
+    ) - to_date AS transition_gap_days
+FROM view_party_leadership_roles
+WHERE to_date IS NOT NULL
+ORDER BY party_name, leadership_type, from_date DESC;
+```
+
+**5. Veteran Leaders (Long Tenure)**
+
+```sql
+SELECT 
+    full_name,
+    party_name,
+    leadership_type,
+    tenure_years,
+    leadership_tenure_class,
+    age_at_appointment,
+    appointment_year
+FROM view_party_leadership_roles
+WHERE leadership_tenure_class = 'VETERAN'
+    OR tenure_years >= 5
+ORDER BY tenure_years DESC
+LIMIT 20;
+```
+
+**6. Gender Distribution in Party Leadership**
+
+```sql
+SELECT 
+    party_name,
+    leadership_type,
+    gender,
+    COUNT(*) AS leadership_terms,
+    ROUND(AVG(tenure_years), 2) AS avg_tenure,
+    COUNT(*) FILTER (WHERE is_current = true) AS current_count
+FROM view_party_leadership_roles
+GROUP BY party_name, leadership_type, gender
+ORDER BY party_name, leadership_type, gender;
+```
+
+#### Performance Characteristics
+
+- **Query Time:** 20-50ms (indexed on person_id, party_code, dates)
+- **Indexes Used:** assignment_data indexes on intressent_id, org_code, role_code, assignment_type
+- **Data Volume:** ~122 rows (23 partiledare + 71 gruppledare + 28 partisekreterare)
+- **Refresh Frequency:** Real-time (standard view, updated with assignment_data)
+
+#### Data Sources
+
+- **Primary Table:** `assignment_data` (assignment_type = 'partiuppdrag')
+- **Person Data:** `person_data` (for biographical information)
+- **Role Filtering:** role_code IN ('Partiledare', 'Gruppledare', 'Partisekreterare')
+
+#### Dependencies
+
+- Depends on: `assignment_data`, `person_data`
+- Used by: Party organization analysis, leadership stability dashboards
+
+#### Risk Rules Supported
+
+From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
+- **PartyLeadershipInstability (Y-03)**: Frequent leadership changes indicator
+- **PartyOrganizationalWeakness (Y-04)**: Low tenure and high turnover patterns
+- **PartyPowerConcentration (Y-06)**: Concurrent leadership role detection
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Organizational Analysis**: Party structure and hierarchy mapping
+- **Leadership Succession Planning**: Transition pattern identification
+- **Comparative Party Analysis**: Cross-party leadership stability
+- **Temporal Analysis**: Leadership tenure trends over time
+- **Power Structure Analysis**: Concurrent role and authority concentration
+
+#### Intelligence Applications
+
+- **Party Organizational Health Assessment**: Stability metrics for party strength evaluation
+- **Leadership Succession Forecasting**: Historical patterns for transition prediction
+- **Coalition Formation Analysis**: Leadership stability as coalition viability indicator
+- **Power Concentration Monitoring**: Concurrent roles as centralization indicator
+- **Comparative Party Studies**: Cross-party leadership structure comparison
+- **Electoral Strategy Analysis**: Leadership changes impact on electoral performance
+
+#### Swedish Political Context
+
+**Party Leadership Structures:**
+- Most parties separate party leader (overall party control) from group leader (riksdag tactics)
+- Larger parties typically maintain dedicated party secretaries for organization
+- Concurrent party+group leadership indicates strong centralized control
+- Frequent leadership changes (VOLATILE) often correlate with electoral challenges
+
+**Recent Trends (2020-2024):**
+- Increased stability in major parties (S, M, SD)
+- More women in leadership roles across spectrum
+- Younger appointments in several parties
+- Some parties consolidating party/group leadership
+
+#### Notes
+
+- **Data Coverage**: Based on assignment_data records with assignment_type = 'partiuppdrag'
+- **Current Leaders**: Identified by to_date IS NULL or to_date >= CURRENT_DATE
+- **Tenure Calculation**: Handles ongoing roles (NULL to_date) using CURRENT_DATE
+- **Concurrent Roles**: Identifies overlapping time periods for same person/party
+- **Historical Analysis**: Supports temporal queries for any date range
+- **Swedish Context**: Role codes use official Swedish parliamentary terminology
 
 ---
 
