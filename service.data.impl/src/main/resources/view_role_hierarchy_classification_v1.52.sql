@@ -130,7 +130,7 @@ role_hierarchy AS (
             WHEN rt.role_code = 'Statsminister' THEN 10
             WHEN rt.role_code = 'Vice statsminister' THEN 9
             WHEN rt.role_code IN ('Finansminister', 'Utrikesminister', 'Försvarsminister') THEN 9
-            WHEN rt.role_code ILIKE '%minister%' AND rt.role_code NOT ILIKE '%vice%' AND rt.role_code NOT LIKE 'Statsrådsersättare' THEN 8
+            WHEN rt.role_code ILIKE '%minister%' AND rt.role_code NOT ILIKE '%vice%' AND rt.role_code NOT ILIKE 'Statsrådsersättare' THEN 8
             WHEN rt.role_code = 'Talman' THEN 9
             WHEN rt.role_code = 'Förste vice talman' THEN 8
             WHEN rt.role_code IN ('Andre vice talman', 'Tredje vice talman') THEN 7
@@ -162,7 +162,7 @@ role_hierarchy AS (
             WHEN rt.role_code = 'Tillförordnad partiledare' THEN 8
             WHEN rt.role_code = 'Vice statsminister' THEN 9
             WHEN rt.role_code IN ('Finansminister', 'Utrikesminister') THEN 8
-            WHEN rt.role_code ILIKE '%minister%' AND rt.role_code NOT LIKE 'Statsrådsersättare' THEN 7
+            WHEN rt.role_code ILIKE '%minister%' AND rt.role_code NOT ILIKE 'Statsrådsersättare' THEN 7
             WHEN rt.role_code = 'Talman' THEN 7
             WHEN rt.role_code = 'Gruppledare' THEN 7
             WHEN rt.role_code = 'Partisekreterare' THEN 6
@@ -200,7 +200,7 @@ role_hierarchy AS (
         CASE 
             WHEN rt.role_code IN ('Statsminister', 'Talman', 'Ordförande', 'Partiledare', 'Tillförordnad partiledare') THEN 'PRIMARY_DECISION_MAKER'
             WHEN rt.role_code ILIKE '%vice talman' OR rt.role_code ILIKE '%vice ordförande' OR rt.role_code ILIKE '%vice gruppledare' THEN 'SECONDARY_DECISION_MAKER'
-            WHEN rt.role_code ILIKE '%minister%' AND rt.role_code NOT LIKE 'Statsrådsersättare' THEN 'PRIMARY_DECISION_MAKER'
+            WHEN rt.role_code ILIKE '%minister%' AND rt.role_code NOT ILIKE 'Statsrådsersättare' THEN 'PRIMARY_DECISION_MAKER'
             WHEN rt.role_code = 'Vice statsminister' THEN 'SECONDARY_DECISION_MAKER'
             WHEN rt.role_code = 'Gruppledare' THEN 'PRIMARY_DECISION_MAKER'
             WHEN rt.role_code IN ('Partisekreterare', 'Tillförordnad partisekreterare', 'Språkrör') THEN 'SECONDARY_DECISION_MAKER'
@@ -216,7 +216,7 @@ role_hierarchy AS (
         CASE 
             WHEN rt.role_code IN ('Statsminister', 'Talman', 'Partiledare') THEN 'HIGHEST_PRESTIGE'
             WHEN rt.role_code IN ('Vice statsminister', 'Finansminister', 'Utrikesminister', 'Försvarsminister', 'Tillförordnad partiledare') THEN 'HIGHEST_PRESTIGE'
-            WHEN rt.role_code ILIKE '%minister%' AND rt.role_code NOT LIKE 'Statsrådsersättare' THEN 'HIGH_PRESTIGE'
+            WHEN rt.role_code ILIKE '%minister%' AND rt.role_code NOT ILIKE 'Statsrådsersättare' THEN 'HIGH_PRESTIGE'
             WHEN rt.role_code IN ('Gruppledare', 'Ordförande', 'Förste vice talman') THEN 'HIGH_PRESTIGE'
             WHEN rt.role_code ILIKE '%vice talman' OR rt.role_code ILIKE '%vice ordförande' OR rt.role_code ILIKE '%vice gruppledare' THEN 'MEDIUM_PRESTIGE'
             WHEN rt.role_code IN ('Partisekreterare', 'Tillförordnad partisekreterare', 'Språkrör', 'Statsråd') THEN 'MEDIUM_PRESTIGE'
