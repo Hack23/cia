@@ -11,7 +11,6 @@ DROP VIEW IF EXISTS view_party_leadership_roles CASCADE;
 CREATE VIEW view_party_leadership_roles AS
 WITH party_leadership AS (
     SELECT 
-        a.person_id,
         a.intressent_id,
         a.role_code,
         a.org_code AS party_code,
