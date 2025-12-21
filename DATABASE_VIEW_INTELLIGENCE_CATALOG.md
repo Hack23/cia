@@ -35,17 +35,17 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **84 database views** (56 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **85 database views** (57 regular views + 28 materialized views) across 9 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 84 database views (100% coverage). **11 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 85 database views (100% coverage). **12 views** have detailed examples with complex queries, while **73 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications. All views are now documented and discoverable.
 
-**Last Validated**: 2025-11-25  
+**Last Validated**: 2025-12-21  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (84/84 views)  
+**Documentation Coverage**: 100% (85/85 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
+**Note**: Total view count updated to 85 with addition of `view_substitute_deputy_roles` v1.51 (2025-12-21) for comprehensive substitute and deputy role tracking.
 
 ### Key Statistics (REVERIFIED 2025-11-25)
 
@@ -180,7 +180,8 @@ To validate documentation coverage manually:
 |------|----------|-------------|---------|--------|-------------|
 | 2025-11-20 | 10.98% | 82 | 73 | ⚠️ Initial | Identified major documentation gap |
 | 2025-11-21 | 100% | 82 | 0 | ✅ Complete | Added all 73 missing views |
-| 2025-11-25 | 100% | 84 | 0 | ✅ Current | Corrected count, validated integrity |
+| 2025-11-25 | 100% | 84 | 0 | ✅ Complete | Corrected count, validated integrity |
+| 2025-12-21 | 100% | 85 | 0 | ✅ Current | Added view_substitute_deputy_roles v1.51 |
 
 ### Coverage Progression
 
@@ -297,7 +298,7 @@ graph TB
 
 ## Complete View Inventory
 
-This section provides a complete alphabetical inventory of all 82 database views with brief descriptions. All views are now documented in this catalog with structured information including purpose, key metrics, sample queries, and intelligence applications.
+This section provides a complete alphabetical inventory of all 85 database views with brief descriptions. All views are now documented in this catalog with structured information including purpose, key metrics, sample queries, and intelligence applications.
 
 **Legend:**
 - 📖 = Detailed documentation (comprehensive examples, performance characteristics)
@@ -369,7 +370,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_goverment_role_member | Standard | ⭐⭐⭐⭐ | Government role assignments |
 | view_riksdagen_goverment_roles | Standard | ⭐⭐⭐⭐ | Government role definitions |
 
-### Intelligence & Risk Views (6 views)
+### Intelligence & Risk Views (7 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
@@ -380,6 +381,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_intelligence_dashboard | Standard | ⭐⭐⭐⭐⭐ | Unified intelligence dashboard with key metrics |
 | 📖 view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Voting anomaly and defection risk detection |
 | 📖 view_risk_score_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of risk scores over time |
+| 📖 view_substitute_deputy_roles | Standard | ⭐⭐⭐⭐⭐ | Substitute and deputy role tracking with coverage analysis (NEW v1.51) |
 
 ### Party Views (13 views)
 
@@ -6899,6 +6901,63 @@ See [Validation History](#-validation-history) section for complete validation m
 - Update product mappings as new features launch
 - Maintain alignment between view documentation and business strategy
 - Quarterly review of TAM estimates and revenue projections
+
+---
+
+### 2025-12-21: Substitute and Deputy Roles View Creation (v1.51)
+
+**New View Added:** `view_substitute_deputy_roles` - Comprehensive tracking of substitute and deputy positions
+
+**Key Additions:**
+- ✅ **Total Views**: Updated from 84 to 85 (added 1 new standard view)
+- ✅ **Regular Views**: Updated from 56 to 57
+- ✅ **Intelligence Views**: Updated from 7 to 8 (added substitute role analysis)
+- ✅ **Documentation Coverage**: Maintained 100% (85/85 views documented)
+- ✅ **Detailed Documentation**: Updated from 11 to 12 views with comprehensive examples
+
+**View Capabilities:**
+1. **Role Tracking**: Comprehensive tracking of 16,905 substitute/deputy positions (54% of all assignments)
+   - Suppleant: 14,757 positions (Committee substitutes)
+   - Ersättare: 933 positions (General substitutes)
+   - Deputerad: 920 positions (Deputies)
+   - Statsrådsersättare: 295 positions (Deputy ministers)
+   - Extra suppleant & Personlig suppleant: Variable positions
+
+2. **Analytics Provided**:
+   - Substitute type classification and authority levels
+   - Primary role mapping (substitute-to-primary relationships)
+   - Career progression tracking (substitute → primary role advancement)
+   - Coverage analysis (substitute-to-primary ratios per organization)
+   - Portfolio metrics (politicians with multiple substitute roles)
+   - Tenure analysis and utilization patterns
+   - Party-specific substitute utilization patterns
+
+3. **Documentation Components**:
+   - 📖 Detailed view documentation with 6 comprehensive example queries
+   - Role type reference table with authority levels
+   - Tenure classification framework (SHORT_TERM, REGULAR, LONG_TERM)
+   - Intelligence applications for system resilience assessment
+   - Related views and dependency mapping
+
+**Database Changes:**
+- Created: `service.data.impl/src/main/resources/view_substitute_deputy_roles_v1.51.sql`
+- Created: `service.data.impl/src/main/resources/db-changelog-1.51.xml`
+- Updated: `service.data.impl/src/main/resources/db-changelog.xml` (added include for 1.51)
+
+**Intelligence Value:**
+- ⭐⭐⭐⭐⭐ VERY HIGH - Critical for understanding political system resilience
+- Enables system resilience assessment and governance continuity analysis
+- Supports career path analysis and succession planning
+- Identifies coverage gaps in political system backup structure
+
+**Impact:**
+- **System Resilience**: First comprehensive view of substitute role distribution
+- **Career Intelligence**: Tracks progression pathways from substitute to primary roles
+- **Coverage Assessment**: Identifies organizations with adequate vs. insufficient backup
+- **Party Strategy**: Reveals substitute utilization patterns across political parties
+- **Governance Continuity**: Monitors high-authority substitute positions for crisis preparedness
+
+**Related Issue:** #[issue-number] - Create Substitute and Deputy Roles View with Coverage Analysis
 
 ---
 
