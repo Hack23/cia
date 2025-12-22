@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
-\restrict cF2dIjkycQRzinXJKL9jjeEUUHOVpRBeOYrMAtbOeZSR0vowt1fnuml8qMrPdf9
+\restrict 8yERHXwjXhyemA2fb9V9jw7AnStmByc1d4zGAU4zZ5u0q0LE3Gn32Q8QVBGcmaT
 
--- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
--- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
+-- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
+-- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -8850,6 +8850,114 @@ CREATE MATERIALIZED VIEW public.view_riksdagen_party_document_daily_summary AS
 
 
 --
+-- Name: view_riksdagen_party_role_member; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_role_member AS
+ SELECT a.hjid AS role_id,
+    a.detail,
+    a.role_code,
+    p.first_name,
+    p.last_name,
+    a.from_date,
+    a.to_date,
+    p.id AS person_id,
+    p.party,
+    (
+        CASE
+            WHEN ((a.to_date > CURRENT_DATE) OR (a.to_date IS NULL)) THEN CURRENT_DATE
+            ELSE a.to_date
+        END -
+        CASE
+            WHEN (a.from_date > CURRENT_DATE) THEN CURRENT_DATE
+            ELSE a.from_date
+        END) AS total_days_served,
+        CASE
+            WHEN ((a.to_date IS NULL) OR ((a.to_date > CURRENT_DATE) AND (a.from_date < CURRENT_DATE))) THEN true
+            ELSE false
+        END AS active,
+    COALESCE(doc_stats.total_documents, (0)::bigint) AS total_documents,
+    COALESCE(doc_stats.documents_last_year, (0)::bigint) AS documents_last_year,
+    COALESCE(doc_stats.motions, (0)::bigint) AS total_motions,
+    COALESCE(doc_stats.interpellations, (0)::bigint) AS total_interpellations,
+    COALESCE(doc_stats.written_questions, (0)::bigint) AS total_written_questions,
+        CASE
+            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 50) THEN 'Very High'::text
+            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 25) THEN 'High'::text
+            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 10) THEN 'Medium'::text
+            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 0) THEN 'Low'::text
+            ELSE 'Inactive'::text
+        END AS activity_level,
+        CASE
+            WHEN ((a.role_code)::text = 'Partiledare'::text) THEN 'Party Leader'::text
+            WHEN ((a.role_code)::text = 'Språkrör'::text) THEN 'Party Spokesperson'::text
+            WHEN ((a.role_code)::text = 'Gruppledare'::text) THEN 'Group Leader'::text
+            WHEN ((a.role_code)::text ~~ '%Förste vice gruppledare%'::text) THEN 'First Deputy Group Leader'::text
+            WHEN ((a.role_code)::text ~~ '%Andre vice gruppledare%'::text) THEN 'Second Deputy Group Leader'::text
+            WHEN ((a.role_code)::text = 'Partisekreterare'::text) THEN 'Party Secretary'::text
+            WHEN ((a.role_code)::text = 'Tillförordnad partisekreterare'::text) THEN 'Acting Party Secretary'::text
+            WHEN ((a.role_code)::text = 'Kvittningsperson'::text) THEN 'Pairing Representative'::text
+            ELSE 'Other'::text
+        END AS role_type
+   FROM ((public.assignment_data a
+     LEFT JOIN public.person_data p ON (((a.intressent_id)::text = (p.id)::text)))
+     LEFT JOIN LATERAL ( SELECT view_riksdagen_politician_document.person_reference_id,
+            count(*) AS total_documents,
+            count(
+                CASE
+                    WHEN (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '1 year'::interval)) THEN 1
+                    ELSE NULL::integer
+                END) AS documents_last_year,
+            count(
+                CASE
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'mot'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS motions,
+            count(
+                CASE
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'ip'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS interpellations,
+            count(
+                CASE
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'frs'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS written_questions
+           FROM public.view_riksdagen_politician_document
+          WHERE (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '5 years'::interval))
+          GROUP BY view_riksdagen_politician_document.person_reference_id) doc_stats ON (((doc_stats.person_reference_id)::text = (p.id)::text)))
+  WHERE ((a.assignment_type)::text = 'partiuppdrag'::text)
+  ORDER BY a.detail, a.role_code, a.from_date DESC;
+
+
+--
+-- Name: view_riksdagen_party_signatures_document_summary; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_signatures_document_summary AS
+ SELECT upper((party_short_code)::text) AS party,
+    count(*) AS total
+   FROM public.document_person_reference_da_0
+  WHERE (NOT ((party_short_code)::text = ''::text))
+  GROUP BY (upper((party_short_code)::text))
+  ORDER BY (count(*));
+
+
+--
+-- Name: view_riksdagen_person_signed_document_summary; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_person_signed_document_summary AS
+ SELECT person_reference_id AS person_id,
+    reference_name AS person_name,
+    max((party_short_code)::text) AS party,
+    count(*) AS total
+   FROM public.document_person_reference_da_0
+  GROUP BY person_reference_id, reference_name
+  ORDER BY (count(*));
+
+
+--
 -- Name: view_riksdagen_politician; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -8892,6 +9000,18 @@ CREATE VIEW public.view_riksdagen_politician AS
     base.total_committee_leadership_assignments,
     base.current_committee_leadership_assignments,
     base.total_days_served_committee_leadership,
+    base.total_committee_chair_assignments,
+    base.current_committee_chair_assignments,
+    base.total_committee_vice_chair_all_assignments,
+    base.current_committee_vice_chair_all_assignments,
+    base.total_suppleant_assignments,
+    base.current_suppleant_assignments,
+    base.total_statsminister_assignments,
+    base.current_statsminister_assignments,
+    base.total_party_leader_assignments,
+    base.current_party_leader_assignments,
+    base.total_party_secretary_assignments,
+    base.current_party_secretary_assignments,
     COALESCE(ds.total_documents, (0)::bigint) AS total_documents,
     COALESCE(ds.party_motions, (0)::bigint) AS party_motions,
     COALESCE(ds.individual_motions, (0)::bigint) AS individual_motions,
@@ -9149,310 +9269,71 @@ CREATE VIEW public.view_riksdagen_politician AS
                         ELSE assignment_data.from_date
                     END)
                     ELSE 0
-                END) AS total_days_served_committee_leadership
+                END) AS total_days_served_committee_leadership,
+            sum(
+                CASE
+                    WHEN ((assignment_data.role_code)::text = 'Ordförande'::text) THEN 1
+                    ELSE 0
+                END) AS total_committee_chair_assignments,
+            sum(
+                CASE
+                    WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) AND (assignment_data.from_date <= CURRENT_DATE) AND ((assignment_data.role_code)::text = 'Ordförande'::text)) THEN 1
+                    ELSE 0
+                END) AS current_committee_chair_assignments,
+            sum(
+                CASE
+                    WHEN ((assignment_data.role_code)::text = ANY (ARRAY['Vice ordförande'::text, 'Förste vice ordförande'::text, 'Andre vice ordförande'::text, 'Tredje vice ordförande'::text])) THEN 1
+                    ELSE 0
+                END) AS total_committee_vice_chair_all_assignments,
+            sum(
+                CASE
+                    WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) AND (assignment_data.from_date <= CURRENT_DATE) AND ((assignment_data.role_code)::text = ANY (ARRAY['Vice ordförande'::text, 'Förste vice ordförande'::text, 'Andre vice ordförande'::text, 'Tredje vice ordförande'::text]))) THEN 1
+                    ELSE 0
+                END) AS current_committee_vice_chair_all_assignments,
+            sum(
+                CASE
+                    WHEN ((assignment_data.role_code)::text = 'Suppleant'::text) THEN 1
+                    ELSE 0
+                END) AS total_suppleant_assignments,
+            sum(
+                CASE
+                    WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) AND (assignment_data.from_date <= CURRENT_DATE) AND ((assignment_data.role_code)::text = 'Suppleant'::text)) THEN 1
+                    ELSE 0
+                END) AS current_suppleant_assignments,
+            sum(
+                CASE
+                    WHEN ((assignment_data.role_code)::text = 'Statsminister'::text) THEN 1
+                    ELSE 0
+                END) AS total_statsminister_assignments,
+            sum(
+                CASE
+                    WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) AND (assignment_data.from_date <= CURRENT_DATE) AND ((assignment_data.role_code)::text = 'Statsminister'::text)) THEN 1
+                    ELSE 0
+                END) AS current_statsminister_assignments,
+            sum(
+                CASE
+                    WHEN ((assignment_data.role_code)::text = ANY (ARRAY['Partiledare'::text, 'Tillförordnad partiledare'::text])) THEN 1
+                    ELSE 0
+                END) AS total_party_leader_assignments,
+            sum(
+                CASE
+                    WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) AND (assignment_data.from_date <= CURRENT_DATE) AND ((assignment_data.role_code)::text = ANY (ARRAY['Partiledare'::text, 'Tillförordnad partiledare'::text]))) THEN 1
+                    ELSE 0
+                END) AS current_party_leader_assignments,
+            sum(
+                CASE
+                    WHEN ((assignment_data.role_code)::text = ANY (ARRAY['Partisekreterare'::text, 'Tillförordnad partisekreterare'::text])) THEN 1
+                    ELSE 0
+                END) AS total_party_secretary_assignments,
+            sum(
+                CASE
+                    WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) AND (assignment_data.from_date <= CURRENT_DATE) AND ((assignment_data.role_code)::text = ANY (ARRAY['Partisekreterare'::text, 'Tillförordnad partisekreterare'::text]))) THEN 1
+                    ELSE 0
+                END) AS current_party_secretary_assignments
            FROM (public.assignment_data
              LEFT JOIN public.view_riksdagen_party_member ON (((assignment_data.intressent_id)::text = (view_riksdagen_party_member.id)::text)))
           GROUP BY view_riksdagen_party_member.id) base
      LEFT JOIN public.view_riksdagen_politician_document_summary ds ON (((base.person_id)::text = (ds.person_reference_id)::text)));
-
-
---
--- Name: view_riksdagen_party_document_summary; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_party_document_summary AS
- SELECT p.party,
-    count(DISTINCT pds.person_reference_id) AS total_contributing_members,
-    sum(pds.total_documents) AS total_party_documents,
-    round(avg(pds.total_documents), 1) AS avg_documents_per_member,
-    sum(pds.party_motions) AS total_party_motions,
-    sum(pds.individual_motions) AS total_individual_motions,
-    sum(pds.committee_motions) AS total_committee_motions,
-    sum(pds.multi_party_motions) AS total_collaborative_motions,
-    count(
-        CASE
-            WHEN (pds.activity_level = 'Very High'::text) THEN 1
-            ELSE NULL::integer
-        END) AS very_high_activity_members,
-    count(
-        CASE
-            WHEN (pds.activity_level = 'High'::text) THEN 1
-            ELSE NULL::integer
-        END) AS high_activity_members,
-    count(
-        CASE
-            WHEN (pds.activity_level = 'Medium'::text) THEN 1
-            ELSE NULL::integer
-        END) AS medium_activity_members,
-    count(
-        CASE
-            WHEN (pds.activity_level = 'Low'::text) THEN 1
-            ELSE NULL::integer
-        END) AS low_activity_members,
-    count(
-        CASE
-            WHEN (pds.activity_profile = 'Party-focused'::text) THEN 1
-            ELSE NULL::integer
-        END) AS party_focused_members,
-    count(
-        CASE
-            WHEN (pds.activity_profile = 'Committee-focused'::text) THEN 1
-            ELSE NULL::integer
-        END) AS committee_focused_members,
-    count(
-        CASE
-            WHEN (pds.activity_profile = 'Individual-focused'::text) THEN 1
-            ELSE NULL::integer
-        END) AS individual_focused_members,
-    min(pds.first_document_date) AS first_party_document,
-    max(pds.last_document_date) AS last_party_document,
-    sum(pds.documents_last_year) AS total_documents_last_year,
-    count(
-        CASE
-            WHEN (pds.documents_last_year > 0) THEN 1
-            ELSE NULL::integer
-        END) AS active_members_last_year,
-    round(avg(pds.docs_per_year), 1) AS avg_docs_per_year,
-    round(avg(pds.collaboration_percentage), 1) AS avg_collaboration_pct,
-    sum(pds.propositions) AS total_propositions,
-    sum(pds.government_communications) AS total_government_communications
-   FROM (public.view_riksdagen_politician_document_summary pds
-     JOIN public.view_riksdagen_politician p ON (((pds.person_reference_id)::text = (p.person_id)::text)))
-  GROUP BY p.party;
-
-
---
--- Name: view_riksdagen_party_role_member; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_party_role_member AS
- SELECT a.hjid AS role_id,
-    a.detail,
-    a.role_code,
-    p.first_name,
-    p.last_name,
-    a.from_date,
-    a.to_date,
-    p.id AS person_id,
-    p.party,
-    (
-        CASE
-            WHEN ((a.to_date > CURRENT_DATE) OR (a.to_date IS NULL)) THEN CURRENT_DATE
-            ELSE a.to_date
-        END -
-        CASE
-            WHEN (a.from_date > CURRENT_DATE) THEN CURRENT_DATE
-            ELSE a.from_date
-        END) AS total_days_served,
-        CASE
-            WHEN ((a.to_date IS NULL) OR ((a.to_date > CURRENT_DATE) AND (a.from_date < CURRENT_DATE))) THEN true
-            ELSE false
-        END AS active,
-    COALESCE(doc_stats.total_documents, (0)::bigint) AS total_documents,
-    COALESCE(doc_stats.documents_last_year, (0)::bigint) AS documents_last_year,
-    COALESCE(doc_stats.motions, (0)::bigint) AS total_motions,
-    COALESCE(doc_stats.interpellations, (0)::bigint) AS total_interpellations,
-    COALESCE(doc_stats.written_questions, (0)::bigint) AS total_written_questions,
-        CASE
-            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 50) THEN 'Very High'::text
-            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 25) THEN 'High'::text
-            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 10) THEN 'Medium'::text
-            WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 0) THEN 'Low'::text
-            ELSE 'Inactive'::text
-        END AS activity_level,
-        CASE
-            WHEN ((a.role_code)::text = 'Partiledare'::text) THEN 'Party Leader'::text
-            WHEN ((a.role_code)::text = 'Språkrör'::text) THEN 'Party Spokesperson'::text
-            WHEN ((a.role_code)::text = 'Gruppledare'::text) THEN 'Group Leader'::text
-            WHEN ((a.role_code)::text ~~ '%Förste vice gruppledare%'::text) THEN 'First Deputy Group Leader'::text
-            WHEN ((a.role_code)::text ~~ '%Andre vice gruppledare%'::text) THEN 'Second Deputy Group Leader'::text
-            WHEN ((a.role_code)::text = 'Partisekreterare'::text) THEN 'Party Secretary'::text
-            WHEN ((a.role_code)::text = 'Tillförordnad partisekreterare'::text) THEN 'Acting Party Secretary'::text
-            WHEN ((a.role_code)::text = 'Kvittningsperson'::text) THEN 'Pairing Representative'::text
-            ELSE 'Other'::text
-        END AS role_type
-   FROM ((public.assignment_data a
-     LEFT JOIN public.person_data p ON (((a.intressent_id)::text = (p.id)::text)))
-     LEFT JOIN LATERAL ( SELECT view_riksdagen_politician_document.person_reference_id,
-            count(*) AS total_documents,
-            count(
-                CASE
-                    WHEN (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '1 year'::interval)) THEN 1
-                    ELSE NULL::integer
-                END) AS documents_last_year,
-            count(
-                CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'mot'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS motions,
-            count(
-                CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'ip'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS interpellations,
-            count(
-                CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'frs'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS written_questions
-           FROM public.view_riksdagen_politician_document
-          WHERE (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '5 years'::interval))
-          GROUP BY view_riksdagen_politician_document.person_reference_id) doc_stats ON (((doc_stats.person_reference_id)::text = (p.id)::text)))
-  WHERE ((a.assignment_type)::text = 'partiuppdrag'::text)
-  ORDER BY a.detail, a.role_code, a.from_date DESC;
-
-
---
--- Name: view_riksdagen_party_signatures_document_summary; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_party_signatures_document_summary AS
- SELECT upper((party_short_code)::text) AS party,
-    count(*) AS total
-   FROM public.document_person_reference_da_0
-  WHERE (NOT ((party_short_code)::text = ''::text))
-  GROUP BY (upper((party_short_code)::text))
-  ORDER BY (count(*));
-
-
---
--- Name: view_riksdagen_party_summary; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_party_summary AS
- SELECT p.party,
-    min(p.first_assignment_date) AS first_assignment_date,
-    max(p.last_assignment_date) AS last_assignment_date,
-    (sum(p.total_days_served))::bigint AS total_days_served,
-    (sum(p.total_days_served_parliament))::bigint AS total_days_served_parliament,
-    (sum(p.total_days_served_committee))::bigint AS total_days_served_committee,
-    (sum(p.total_days_served_government))::bigint AS total_days_served_government,
-    (sum(p.total_days_served_eu))::bigint AS total_days_served_eu,
-    (sum(p.total_days_served_speaker))::bigint AS total_days_served_speaker,
-    (sum(p.total_days_served_party))::bigint AS total_days_served_party,
-    bool_or(p.active) AS active,
-    bool_or(p.active_eu) AS active_eu,
-    bool_or(p.active_government) AS active_government,
-    bool_or(p.active_committee) AS active_committee,
-    bool_or(p.active_parliament) AS active_parliament,
-    bool_or(p.active_speaker) AS active_speaker,
-    bool_or(p.active_party) AS active_party,
-    sum(
-        CASE
-            WHEN p.active THEN 1
-            ELSE 0
-        END) AS total_active,
-    sum(
-        CASE
-            WHEN p.active_eu THEN 1
-            ELSE 0
-        END) AS total_active_eu,
-    sum(
-        CASE
-            WHEN p.active_government THEN 1
-            ELSE 0
-        END) AS total_active_government,
-    sum(
-        CASE
-            WHEN p.active_committee THEN 1
-            ELSE 0
-        END) AS total_active_committee,
-    sum(
-        CASE
-            WHEN p.active_parliament THEN 1
-            ELSE 0
-        END) AS total_active_parliament,
-    (sum(p.total_assignments))::bigint AS total_assignments,
-    (sum(p.total_party_assignments))::bigint AS total_party_assignments,
-    (sum(p.total_committee_assignments))::bigint AS total_committee_assignments,
-    (sum(p.total_ministry_assignments))::bigint AS total_ministry_assignments,
-    (sum(p.total_speaker_assignments))::bigint AS total_speaker_assignments,
-    (sum(p.current_assignments))::bigint AS current_assignments,
-    (sum(p.current_party_assignments))::bigint AS current_party_assignments,
-    (sum(p.current_committee_assignments))::bigint AS current_committee_assignments,
-    (sum(p.current_ministry_assignments))::bigint AS current_ministry_assignments,
-    (sum(p.current_speaker_assignments))::bigint AS current_speaker_assignments,
-    (sum(p.total_committee_substitute_assignments))::bigint AS total_committee_substitute_assignments,
-    (sum(p.current_committee_substitute_assignments))::bigint AS current_committee_substitute_assignments,
-    (sum(p.total_days_served_committee_substitute))::bigint AS total_days_served_committee_substitute,
-    (sum(p.total_committee_leadership_assignments))::bigint AS total_committee_leadership_assignments,
-    (sum(p.current_committee_leadership_assignments))::bigint AS current_committee_leadership_assignments,
-    (sum(p.total_days_served_committee_leadership))::bigint AS total_days_served_committee_leadership,
-    sum(COALESCE(ds.total_documents, (0)::bigint)) AS total_documents,
-    round(avg(COALESCE(ds.total_documents, (0)::bigint)), 1) AS avg_documents_per_member,
-    sum(COALESCE(ds.party_motions, (0)::bigint)) AS total_party_motions,
-    sum(COALESCE(ds.individual_motions, (0)::bigint)) AS total_individual_motions,
-    sum(COALESCE(ds.committee_motions, (0)::bigint)) AS total_committee_motions,
-    sum(COALESCE(ds.multi_party_motions, (0)::bigint)) AS total_collaborative_motions,
-    sum(COALESCE(ds.follow_up_motions, (0)::bigint)) AS total_follow_up_motions,
-    count(
-        CASE
-            WHEN (ds.activity_level = 'Very High'::text) THEN 1
-            ELSE NULL::integer
-        END) AS very_high_activity_members,
-    count(
-        CASE
-            WHEN (ds.activity_level = 'High'::text) THEN 1
-            ELSE NULL::integer
-        END) AS high_activity_members,
-    count(
-        CASE
-            WHEN (ds.activity_level = 'Medium'::text) THEN 1
-            ELSE NULL::integer
-        END) AS medium_activity_members,
-    count(
-        CASE
-            WHEN (ds.activity_level = 'Low'::text) THEN 1
-            ELSE NULL::integer
-        END) AS low_activity_members,
-    count(
-        CASE
-            WHEN (ds.activity_profile = 'Party-focused'::text) THEN 1
-            ELSE NULL::integer
-        END) AS party_focused_members,
-    count(
-        CASE
-            WHEN (ds.activity_profile = 'Committee-focused'::text) THEN 1
-            ELSE NULL::integer
-        END) AS committee_focused_members,
-    count(
-        CASE
-            WHEN (ds.activity_profile = 'Individual-focused'::text) THEN 1
-            ELSE NULL::integer
-        END) AS individual_focused_members,
-    count(
-        CASE
-            WHEN (ds.documents_last_year > 0) THEN 1
-            ELSE NULL::integer
-        END) AS currently_active_members,
-    sum(COALESCE(ds.documents_last_year, (0)::bigint)) AS total_documents_last_year,
-    round(avg(COALESCE(ds.documents_last_year, (0)::bigint)), 1) AS avg_documents_last_year,
-    min(ds.first_document_date) AS first_party_document,
-    max(ds.last_document_date) AS last_party_document,
-    round(avg(COALESCE(ds.collaboration_percentage, (0)::numeric)), 1) AS avg_collaboration_percentage,
-    sum(
-        CASE
-            WHEN (ds.collaboration_percentage > (50)::numeric) THEN 1
-            ELSE 0
-        END) AS highly_collaborative_members
-   FROM (public.view_riksdagen_politician p
-     LEFT JOIN public.view_riksdagen_politician_document_summary ds ON (((p.person_id)::text = (ds.person_reference_id)::text)))
-  GROUP BY p.party
-  ORDER BY p.party;
-
-
---
--- Name: view_riksdagen_person_signed_document_summary; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_person_signed_document_summary AS
- SELECT person_reference_id AS person_id,
-    reference_name AS person_name,
-    max((party_short_code)::text) AS party,
-    count(*) AS total
-   FROM public.document_person_reference_da_0
-  GROUP BY person_reference_id, reference_name
-  ORDER BY (count(*));
 
 
 --
@@ -9582,8 +9463,8 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     ELSE (a.to_date - a.from_date)
                 END AS days_in_role,
                 CASE
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text, ('JuU'::character varying)::text])) THEN 'Key Parliamentary Committees'::text
-                    WHEN ((a.org_code)::text = 'Statsrådsberedningen'::text) THEN 'Prime Minister’s Office'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying, 'JuU'::character varying])::text[])) THEN 'Key Parliamentary Committees'::text
+                    WHEN ((a.org_code)::text = 'Statsrådsberedningen'::text) THEN 'Prime Minister''s Office'::text
                     WHEN ((a.org_code)::text = 'AU'::text) THEN 'Arbetsmarknad (Committee)'::text
                     WHEN ((a.org_code)::text = 'SoU'::text) THEN 'Social (Committee)'::text
                     WHEN ((a.org_code)::text = 'sou'::text) THEN 'Social (Committee)'::text
@@ -9621,41 +9502,41 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.org_code)::text = 'IJ'::text)) THEN 'Integration and Gender Equality Ministry'::text
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.org_code)::text = 'KN'::text)) THEN 'Climate and Business Ministry'::text
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.org_code)::text = 'Ku'::text)) THEN 'Culture Ministry'::text
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Partiledare'::character varying)::text, ('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text, ('Kvittningsperson'::character varying)::text]))) THEN 'Party Leadership'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('BSPC'::character varying)::text, ('EFTA'::character varying)::text, ('EG'::character varying)::text, ('OSSE'::character varying)::text, ('PA-UfM'::character varying)::text, ('Europol'::character varying)::text])) THEN 'International Affairs'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('NR'::character varying)::text, ('RFK'::character varying)::text, ('RJ'::character varying)::text, ('RRS'::character varying)::text])) THEN 'Regional and National Cooperation'::text
-                    WHEN (((a.org_code)::text = ANY (ARRAY[('BN'::character varying)::text, ('CPAR'::character varying)::text, ('DEM'::character varying)::text, ('DN'::character varying)::text, ('EES'::character varying)::text, ('ER'::character varying)::text, ('ESK'::character varying)::text, ('RB'::character varying)::text, ('RGK'::character varying)::text, ('UN'::character varying)::text])) AND ((a.role_code)::text = ANY (ARRAY[('Ledamot'::character varying)::text, ('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text]))) THEN 'Legislative and Oversight Committees'::text
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Partiledare'::character varying, 'Gruppledare'::character varying, 'Partisekreterare'::character varying, 'Kvittningsperson'::character varying])::text[]))) THEN 'Party Leadership'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['BSPC'::character varying, 'EFTA'::character varying, 'EG'::character varying, 'OSSE'::character varying, 'PA-UfM'::character varying, 'Europol'::character varying])::text[])) THEN 'International Affairs'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['NR'::character varying, 'RFK'::character varying, 'RJ'::character varying, 'RRS'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
+                    WHEN (((a.org_code)::text = ANY ((ARRAY['BN'::character varying, 'CPAR'::character varying, 'DEM'::character varying, 'DN'::character varying, 'EES'::character varying, 'ER'::character varying, 'ESK'::character varying, 'RB'::character varying, 'RGK'::character varying, 'UN'::character varying])::text[])) AND ((a.role_code)::text = ANY ((ARRAY['Ledamot'::character varying, 'Ordförande'::character varying, 'Vice ordförande'::character varying])::text[]))) THEN 'Legislative and Oversight Committees'::text
                     WHEN ((a.org_code)::text = 'FöU'::text) THEN 'Defense (Committee)'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('NSÖ'::character varying)::text, ('ÖN'::character varying)::text, ('RS'::character varying)::text])) THEN 'Regional and National Cooperation'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['NSÖ'::character varying, 'ÖN'::character varying, 'RS'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
                     WHEN ((a.org_code)::text = 'UFöU'::text) THEN 'Foreign & Defense (Committee)'::text
                     WHEN ((a.org_code)::text = 'EP'::text) THEN 'European Parliament'::text
-                    WHEN (((a.org_code)::text = ANY (ARRAY[('BN'::character varying)::text, ('CPAR'::character varying)::text, ('DEM'::character varying)::text, ('DN'::character varying)::text, ('EES'::character varying)::text, ('ER'::character varying)::text, ('ESK'::character varying)::text, ('RB'::character varying)::text, ('RGK'::character varying)::text, ('UN'::character varying)::text])) AND ((a.role_code)::text = ANY (ARRAY[('Ledamot'::character varying)::text, ('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text]))) THEN 'Legislative and Oversight Committees'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('CU'::character varying)::text, ('LU'::character varying)::text, ('KD'::character varying)::text, ('FÖU'::character varying)::text, ('JuSoU'::character varying)::text, ('VB'::character varying)::text])) THEN 'Legislative and Oversight Committees'::text
-                    WHEN ((a.org_code)::text = 'kam'::text) THEN 'Speaker’s Office'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('RJ'::character varying)::text, ('Systembolaget'::character varying)::text])) THEN 'Special Oversight Roles'::text
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text, ('Ersättare'::character varying)::text, ('Personlig suppleant'::character varying)::text])) THEN 'Substitute Roles'::text
+                    WHEN (((a.org_code)::text = ANY ((ARRAY['BN'::character varying, 'CPAR'::character varying, 'DEM'::character varying, 'DN'::character varying, 'EES'::character varying, 'ER'::character varying, 'ESK'::character varying, 'RB'::character varying, 'RGK'::character varying, 'UN'::character varying])::text[])) AND ((a.role_code)::text = ANY ((ARRAY['Ledamot'::character varying, 'Ordförande'::character varying, 'Vice ordförande'::character varying])::text[]))) THEN 'Legislative and Oversight Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['CU'::character varying, 'LU'::character varying, 'KD'::character varying, 'FÖU'::character varying, 'JuSoU'::character varying, 'VB'::character varying])::text[])) THEN 'Legislative and Oversight Committees'::text
+                    WHEN ((a.org_code)::text = 'kam'::text) THEN 'Speaker''s Office'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['RJ'::character varying, 'Systembolaget'::character varying])::text[])) THEN 'Special Oversight Roles'::text
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying, 'Ersättare'::character varying, 'Personlig suppleant'::character varying])::text[])) THEN 'Substitute Roles'::text
                     WHEN ((a.org_code)::text = 'UFÖU'::text) THEN 'Foreign & Defense (Committee)'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('TK'::character varying)::text, ('sku'::character varying)::text])) THEN 'Other Legislative Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['TK'::character varying, 'sku'::character varying])::text[])) THEN 'Other Legislative Committees'::text
                     WHEN ((a.assignment_type)::text = 'partiuppdrag'::text) THEN 'Party Leadership'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('VPN'::character varying)::text, ('RRPR'::character varying)::text, ('RRR'::character varying)::text])) THEN 'Regional and National Cooperation'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'VPN'::character varying, 'RRPR'::character varying, 'RRR'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
                     WHEN ((a.org_code)::text = 'Systembolaget'::text) THEN 'Special Oversight Roles'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('EMPA'::character varying)::text, ('IPU'::character varying)::text, ('NATO'::character varying)::text])) THEN 'International Affairs'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('JU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text])) THEN 'Legislative Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['EMPA'::character varying, 'IPU'::character varying, 'NATO'::character varying])::text[])) THEN 'International Affairs'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'JU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[])) THEN 'Legislative Committees'::text
                     WHEN ((a.assignment_type)::text = 'Departement'::text) THEN 'Ministry'::text
                     WHEN ((a.role_code)::text = 'Personlig ersättare'::text) THEN 'Substitute Roles'::text
                     WHEN ((a.org_code)::text = 'EU'::text) THEN 'EU Affairs (Committee)'::text
                     WHEN ((a.org_code)::text = 'LR'::text) THEN 'Regional and National Cooperation'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('RAN'::character varying)::text, ('RAR'::character varying)::text])) THEN 'Legislative and Oversight Committees'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text, ('JuU'::character varying)::text])) THEN 'Key Parliamentary Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['RAN'::character varying, 'RAR'::character varying])::text[])) THEN 'Legislative and Oversight Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying, 'JuU'::character varying])::text[])) THEN 'Key Parliamentary Committees'::text
                     WHEN ((a.org_code)::text = 'Statsrådsberedningen'::text) THEN 'Prime Ministers Office'::text
                     WHEN ((a.org_code)::text = 'UFÖU'::text) THEN 'Foreign & Defense (Committee)'::text
                     WHEN ((a.org_code)::text = 'EU'::text) THEN 'EU Affairs (Committee)'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('EFTA'::character varying)::text, ('EG'::character varying)::text, ('OSSE'::character varying)::text, ('PA-UfM'::character varying)::text, ('BSPC'::character varying)::text])) THEN 'International Affairs'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('NR'::character varying)::text, ('RFK'::character varying)::text, ('RJ'::character varying)::text, ('RRS'::character varying)::text])) THEN 'Regional and National Cooperation'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('MJU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text])) THEN 'Other Legislative Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['EFTA'::character varying, 'EG'::character varying, 'OSSE'::character varying, 'PA-UfM'::character varying, 'BSPC'::character varying])::text[])) THEN 'International Affairs'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['NR'::character varying, 'RFK'::character varying, 'RJ'::character varying, 'RRS'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['MJU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[])) THEN 'Other Legislative Committees'::text
                     WHEN ((a.assignment_type)::text = 'partiuppdrag'::text) THEN 'Party Leadership'::text
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text, ('Ersättare'::character varying)::text, ('Personlig suppleant'::character varying)::text])) THEN 'Substitute Roles'::text
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text])) THEN 'Substitute Roles'::text
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying, 'Ersättare'::character varying, 'Personlig suppleant'::character varying])::text[])) THEN 'Substitute Roles'::text
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying])::text[])) THEN 'Substitute Roles'::text
                     ELSE 'Other'::text
                 END AS knowledge_area,
                 CASE
@@ -9665,19 +9546,19 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Talman'::text)) THEN 40000
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.role_code)::text ~~* '%minister%'::text)) THEN 40000
                     WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 35000
-                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ordförande'::text) AND ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text, ('JuU'::character varying)::text]))) THEN 35000
+                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ordförande'::text) AND ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying, 'JuU'::character varying])::text[]))) THEN 35000
                     WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 30000
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text]))) THEN 30000
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Gruppledare'::character varying, 'Partisekreterare'::character varying])::text[]))) THEN 30000
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Riksdagsledamot'::text)) THEN 20000
                     WHEN (((a.assignment_type)::text = 'Europaparlamentet'::text) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 20000
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 15000
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text]))) THEN 18000
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Ersättare'::character varying)::text])) THEN 10000
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Suppleant'::text) AND ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text]))) THEN 12000
-                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY (ARRAY[('RJ'::character varying)::text, ('NR'::character varying)::text, ('RFK'::character varying)::text, ('RRS'::character varying)::text]))) THEN 7000
-                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY (ARRAY[('MJU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text]))) THEN 6000
-                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY (ARRAY[('Systembolaget'::character varying)::text, ('EUN'::character varying)::text]))) THEN 4000
-                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Adjungerad'::character varying)::text, ('Sekreterare'::character varying)::text]))) THEN 3000
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 15000
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying])::text[]))) THEN 18000
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Ersättare'::character varying])::text[])) THEN 10000
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Suppleant'::text) AND ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying])::text[]))) THEN 12000
+                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY ((ARRAY['RJ'::character varying, 'NR'::character varying, 'RFK'::character varying, 'RRS'::character varying])::text[]))) THEN 7000
+                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY ((ARRAY['MJU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[]))) THEN 6000
+                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY ((ARRAY['Systembolaget'::character varying, 'EUN'::character varying])::text[]))) THEN 4000
+                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Adjungerad'::character varying, 'Sekreterare'::character varying])::text[]))) THEN 3000
                     ELSE 1000
                 END AS role_weight,
                 CASE
@@ -9685,7 +9566,7 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     ELSE 0
                 END AS is_substitute,
                 CASE
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text, ('Gruppledare'::character varying)::text, ('Partiledare'::character varying)::text, ('Partisekreterare'::character varying)::text, ('Förste vice gruppledare'::character varying)::text, ('Andre vice gruppledare'::character varying)::text])) THEN 1
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Ordförande'::character varying, 'Vice ordförande'::character varying, 'Gruppledare'::character varying, 'Partiledare'::character varying, 'Partisekreterare'::character varying, 'Förste vice gruppledare'::character varying, 'Andre vice gruppledare'::character varying])::text[])) THEN 1
                     ELSE 0
                 END AS is_leadership,
                 CASE
@@ -9694,21 +9575,21 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.role_code)::text = 'Vice statsminister'::text)) THEN 900.0
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND (((a.role_code)::text ~~* '%minister%'::text) OR ((a.role_code)::text = 'Statsråd'::text))) THEN 850.0
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Talman'::text)) THEN (800)::numeric
-                    WHEN (((a.assignment_type)::text = 'talmansuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Förste vice talman'::character varying)::text, ('Andre vice talman'::character varying)::text, ('Tredje vice talman'::character varying)::text]))) THEN 750.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 700.0
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text]))) THEN 650.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 600.0
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Förste vice gruppledare'::character varying)::text, ('Andre vice gruppledare'::character varying)::text]))) THEN 550.0
+                    WHEN (((a.assignment_type)::text = 'talmansuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Förste vice talman'::character varying, 'Andre vice talman'::character varying, 'Tredje vice talman'::character varying])::text[]))) THEN 750.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 700.0
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Gruppledare'::character varying, 'Partisekreterare'::character varying])::text[]))) THEN 650.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 600.0
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Förste vice gruppledare'::character varying, 'Andre vice gruppledare'::character varying])::text[]))) THEN 550.0
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Riksdagsledamot'::text)) THEN 500.0
                     WHEN (((a.assignment_type)::text = 'Europaparlamentet'::text) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 450.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 400.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('EU'::character varying)::text])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 350.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('EU'::character varying)::text])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 300.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('EU'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 250.0
-                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY (ARRAY[('RJ'::character varying)::text, ('Systembolaget'::character varying)::text, ('NR'::character varying)::text, ('RFK'::character varying)::text, ('RRS'::character varying)::text]))) THEN 200.0
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Ersättare'::character varying)::text, ('Statsrådsersättare'::character varying)::text])) THEN 150.0
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text])) THEN 100.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('MJU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text]))) THEN 50.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 400.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'EU'::character varying])::text[])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 350.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'EU'::character varying])::text[])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 300.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'EU'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 250.0
+                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY ((ARRAY['RJ'::character varying, 'Systembolaget'::character varying, 'NR'::character varying, 'RFK'::character varying, 'RRS'::character varying])::text[]))) THEN 200.0
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Ersättare'::character varying, 'Statsrådsersättare'::character varying])::text[])) THEN 150.0
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying])::text[])) THEN 100.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['MJU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[]))) THEN 50.0
                     ELSE 10.0
                 END AS area_weight
            FROM public.assignment_data a
@@ -9759,7 +9640,7 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                 END) AS party_days,
             sum(
                 CASE
-                    WHEN ((per_role_stats.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) THEN per_role_stats.total_days
+                    WHEN ((per_role_stats.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) THEN per_role_stats.total_days
                     ELSE (0)::bigint
                 END) AS committee_days,
             sum(per_role_stats.substitute_days) AS total_substitute_days,
@@ -12091,6 +11972,13 @@ CREATE INDEX jv_global_id_local_id_idx ON public.jv_global_id USING btree (local
 
 
 --
+-- Name: jv_global_id_owner_id_fk_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX jv_global_id_owner_id_fk_idx ON public.jv_global_id USING btree (owner_id_fk);
+
+
+--
 -- Name: jv_snapshot_commit_fk_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12588,16 +12476,16 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict cF2dIjkycQRzinXJKL9jjeEUUHOVpRBeOYrMAtbOeZSR0vowt1fnuml8qMrPdf9
+\unrestrict 8yERHXwjXhyemA2fb9V9jw7AnStmByc1d4zGAU4zZ5u0q0LE3Gn32Q8QVBGcmaT
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict cdfD8dHpF44kWCkaICLMKVzgbOrdnHNQcjWMRMoaAEpRIkvsfgsB7mmjsQ43T1a
+\restrict w4iFyqk3eLHNjIXSR8D31tE0vXmqzVxL0h5werfI7G01maOFowau5XnHn6Owqzb
 
--- Dumped from database version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
--- Dumped by pg_dump version 16.10 (Ubuntu 16.10-1.pgdg24.04+1)
+-- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
+-- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -13054,6 +12942,12 @@ fix-ministry-risk-evolution-matview-1.42-003	intelligence-operative	db-changelog
 verify-ministry-views-1.42-004	intelligence-operative	db-changelog-1.42.xml	2025-12-03 01:58:35.449246	437	EXECUTED	9:5364a65df2b784a3c738ef622c551a7a	sql	Post-flight verification for all three ministry views\n        \n        Checks:\n        1. Views exist and can be queried (no materialized view error)\n        2. Views return data when ministry assignments exist\n        3. Reports row counts for mo...	\N	5.0.1	\N	\N	4727109315
 fix-risk-score-evolution-matview-1.42-005	intelligence-operative	db-changelog-1.42.xml	2025-12-03 01:58:35.459263	438	EXECUTED	9:17f7c63ce28d9c98df086fd35afa7991	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution by removing materialized view dependency\n        \n        Root Cause: The view was re-introduced in db-changelog-1.41.xml (for rebel rate fix)\n        but still referenced view_riksdagen_politician_document (materiali...	\N	5.0.1	\N	\N	4727109315
 document-ministry-views-fix-1.42-006	intelligence-operative	db-changelog-1.42.xml	2025-12-03 01:58:35.461162	439	EXECUTED	9:0f5bf4edfd8c9b20d4ace561ff91751c	sql	Documentation for v1.42 views fix\n        \n        Summary:\n        - Root cause: Dependency on unpopulated materialized view view_riksdagen_politician_document\n        - Solution: Replace materialized view with direct base table queries in all vi...	\N	5.0.1	\N	\N	4727109315
+fix-ministry-risk-evolution-periods-1.43-001	intelligence-operative	db-changelog-1.43.xml	2025-12-22 21:28:10.569106	440	EXECUTED	9:ec9451d1bc2a00638ab3ccaa919906fa	dropView viewName=view_ministry_risk_evolution; createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution to return data for all ministries\n        \n        Root Cause: The view was filtering out rows where assessment_period IS NULL.\n        When ministries have no document data, the DATE_TRUNC from LEFT JOIN results\n ...	\N	5.0.1	\N	\N	6438887950
+verify-ministry-risk-evolution-1.43-002	intelligence-operative	db-changelog-1.43.xml	2025-12-22 21:28:10.588487	441	EXECUTED	9:4db518cdbee1433304f8c27a4015d93c	sql	Post-flight verification for view_ministry_risk_evolution\n        \n        Checks:\n        1. View exists and can be queried\n        2. View returns rows when ministry assignments exist\n        3. Reports row count for validation	\N	5.0.1	\N	\N	6438887950
+document-ministry-risk-evolution-fix-1.43-003	intelligence-operative	db-changelog-1.43.xml	2025-12-22 21:28:10.594367	442	EXECUTED	9:1dde305304eb6f05cc4091cf8a4fb217	sql	Documentation for v1.43 view_ministry_risk_evolution fix\n        \n        Summary:\n        - Root cause: View filtered out ministries with no documents due to NULL assessment_period\n        - Solution: Generate quarterly periods independently and ...	\N	5.0.1	\N	\N	6438887950
+fix-forste-vice-talman-1.44-001	intelligence-operative	db-changelog-1.44.xml	2025-12-22 21:28:10.673572	443	EXECUTED	9:b279fddaf24fd37a38406eda28c39814	sqlFile path=view_riksdagen_politician_experience_summary_v1.44.sql	Fix view_riksdagen_politician_experience_summary to include Förste vice talman\n        in the talmansuppdrag role scoring alongside Andre and Tredje vice talman.\n        All three Deputy Speaker roles now weighted equally at 750.0.	\N	5.0.1	\N	\N	6438887950
+fix-committee-referral-1.45-001	intelligence-operative	db-changelog-1.45.xml	2025-12-22 21:28:10.696344	444	EXECUTED	9:d7ef57d9369d4edbe41fed03e5280238	sqlFile path=view_decision_temporal_trends_v1.45.sql	Fix view_decision_temporal_trends to include committee_referral_decisions column.\n        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records previously uncategorized.	\N	5.0.1	\N	\N	6438887950
+fix-committee-referral-1.45-002	intelligence-operative	db-changelog-1.45.xml	2025-12-22 21:28:10.716414	445	EXECUTED	9:b87b9d81c1c3c16773c3c0daddb069a3	sqlFile path=view_ministry_decision_impact_v1.45.sql	Fix view_ministry_decision_impact to include committee_referral_proposals column\n        and committee_referral_rate. Also updates other_decisions to exclude committee referrals.\n        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records...	\N	5.0.1	\N	\N	6438887950
 \.
 
 
@@ -13070,5 +12964,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict cdfD8dHpF44kWCkaICLMKVzgbOrdnHNQcjWMRMoaAEpRIkvsfgsB7mmjsQ43T1a
+\unrestrict w4iFyqk3eLHNjIXSR8D31tE0vXmqzVxL0h5werfI7G01maOFowau5XnHn6Owqzb
 
