@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict P90lYMOgYCbozjcA4O4YRMaOokzMdRRqerscSEcrZuw6QdXBLGkeEsYBgCnfmJy
+\restrict AsEmQDtQKF4vXBdNQa2reJsx49InZJPuLq5wCvUltTeNa97Y15qC5stYXFOa0Ii
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -12476,13 +12476,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict P90lYMOgYCbozjcA4O4YRMaOokzMdRRqerscSEcrZuw6QdXBLGkeEsYBgCnfmJy
+\unrestrict AsEmQDtQKF4vXBdNQa2reJsx49InZJPuLq5wCvUltTeNa97Y15qC5stYXFOa0Ii
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict eREuBF5doxmjjcg6SuDsddFhPviDMTeo04OTpsNJA5usm0XKqLSoG227TYJKjS0
+\restrict tQYlOzFJ42gkDkjF25BdT9zLqgwaaeuZoontNpIkwNUvav3akzImJeeaUr6cvBV
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -12948,7 +12948,7 @@ document-ministry-risk-evolution-fix-1.43-003	intelligence-operative	db-changelo
 fix-forste-vice-talman-1.44-001	intelligence-operative	db-changelog-1.44.xml	2025-12-22 21:28:10.673572	443	EXECUTED	9:b279fddaf24fd37a38406eda28c39814	sqlFile path=view_riksdagen_politician_experience_summary_v1.44.sql	Fix view_riksdagen_politician_experience_summary to include Förste vice talman\n        in the talmansuppdrag role scoring alongside Andre and Tredje vice talman.\n        All three Deputy Speaker roles now weighted equally at 750.0.	\N	5.0.1	\N	\N	6438887950
 fix-committee-referral-1.45-001	intelligence-operative	db-changelog-1.45.xml	2025-12-22 21:28:10.696344	444	EXECUTED	9:d7ef57d9369d4edbe41fed03e5280238	sqlFile path=view_decision_temporal_trends_v1.45.sql	Fix view_decision_temporal_trends to include committee_referral_decisions column.\n        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records previously uncategorized.	\N	5.0.1	\N	\N	6438887950
 fix-committee-referral-1.45-002	intelligence-operative	db-changelog-1.45.xml	2025-12-22 21:28:10.716414	445	EXECUTED	9:b87b9d81c1c3c16773c3c0daddb069a3	sqlFile path=view_ministry_decision_impact_v1.45.sql	Fix view_ministry_decision_impact to include committee_referral_proposals column\n        and committee_referral_rate. Also updates other_decisions to exclude committee referrals.\n        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records...	\N	5.0.1	\N	\N	6438887950
-add-grouped-role-tracking-1.46-001	intelligence-operative	db-changelog-1.46.xml	2025-12-22 22:10:49.561037	446	EXECUTED	9:9d6a12d439e9d695d79a4d1194c4bed8	sqlFile path=view_riksdagen_politician_v1.46.sql	Add grouped committee leadership role tracking to view_riksdagen_politician.\n        Adds 12 new columns organized into 6 role categories (total + current for each):\n        - Committee Chair (Ordförande only)\n        - Committee Vice Chairs (all ...	\N	5.0.1	\N	\N	6441446999
+add-grouped-role-tracking-1.46-001	intelligence-operative	db-changelog-1.46.xml	2025-12-22 23:57:12.486913	446	EXECUTED	9:24893749a205bdb277ad61e924927289	sqlFile path=view_riksdagen_politician_v1.46.sql	Add grouped committee leadership role tracking to view_riksdagen_politician.\n        Adds 12 new columns organized into 6 role categories (total + current for each):\n        - Committee Chair (Ordförande only, committee context)\n        - Committe...	\N	5.0.1	\N	\N	6447830049
 \.
 
 
@@ -12965,5 +12965,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict eREuBF5doxmjjcg6SuDsddFhPviDMTeo04OTpsNJA5usm0XKqLSoG227TYJKjS0
+\unrestrict tQYlOzFJ42gkDkjF25BdT9zLqgwaaeuZoontNpIkwNUvav3akzImJeeaUr6cvBV
 
