@@ -30,7 +30,7 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
      - total_committee_vice_chair_all_assignments (Vice, Förste, Andre, Tredje)
      - current_committee_vice_chair_all_assignments
   
-  3. Suppleant (all variants with pattern matching): 15,291 total assignments
+  3. Suppleant (all variants with committee context filters): Committee suppleant assignments
      - total_suppleant_assignments (includes Suppleant: 14,757, Extra suppleant: 480, Personlig suppleant: 54)
      - current_suppleant_assignments
   
@@ -49,8 +49,9 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
   Implementation Details:
   - Committee Chair/Vice Chair: Scoped to committee assignments with org_code IS NOT NULL 
     AND assignment_type = 'uppdrag' (consistent with existing committee leadership columns)
-  - Suppleant: Uses pattern matching (~~* '%suppleant%') to capture all variants 
-    (consistent with existing committee substitute tracking)
+  - Suppleant: Uses pattern matching (~~* '%suppleant%') with committee context filters
+    (org_code IS NOT NULL AND assignment_type = 'uppdrag'), fully consistent with existing 
+    total_committee_substitute_assignments pattern
   
   Rationale for Grouping:
   - Follows database normalization: Group similar entities
@@ -71,7 +72,7 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         Adds 12 new columns organized into 6 role categories (total + current for each):
         - Committee Chair (Ordförande only, committee context)
         - Committee Vice Chairs (all levels grouped: Vice, Förste, Andre, Tredje, committee context)
-        - Suppleant (15,291 assignments - all variants via pattern matching: Suppleant, Extra suppleant, Personlig suppleant)
+        - Suppleant (committee context with pattern matching for all variants: Suppleant, Extra suppleant, Personlig suppleant)
         - Statsminister (10 assignments - Prime Minister tracking)
         - Party Leader (24 assignments - Partiledare + Tillförordnad)
         - Party Secretary (30 assignments - Partisekreterare + Tillförordnad)
@@ -79,9 +80,11 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         Database best practice: Grouped approach reduces column proliferation from 34+ 
         individual role columns to 12 strategic columns covering key leadership positions.
         
-        Fixes applied:
-        - Committee Chair/Vice Chair scoped to committee assignments (org_code IS NOT NULL, assignment_type = 'uppdrag')
-        - Suppleant uses pattern matching (~~* '%suppleant%') to include all variants (consistent with existing substitute tracking)
+        Implementation consistency:
+        - Committee Chair/Vice Chair: Scoped to committee assignments (org_code IS NOT NULL, assignment_type = 'uppdrag')
+        - Suppleant: Uses pattern matching (~~* '%suppleant%') with same committee context filters
+          (org_code IS NOT NULL, assignment_type = 'uppdrag'), fully consistent with existing 
+          total_committee_substitute_assignments pattern
     </comment>
     
     <sqlFile path="view_riksdagen_politician_v1.46.sql" 

@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict BsW7j1BH71d6l0Ot7vA0dtGv1Mt326EKzCNjMcg4Z4Jtx9MsDP7JatnCg4pZgCr
+\restrict P90lYMOgYCbozjcA4O4YRMaOokzMdRRqerscSEcrZuw6QdXBLGkeEsYBgCnfmJy
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -9292,12 +9292,12 @@ CREATE VIEW public.view_riksdagen_politician AS
                 END) AS current_committee_vice_chair_all_assignments,
             sum(
                 CASE
-                    WHEN ((assignment_data.role_code)::text ~~* '%suppleant%'::text) THEN 1
+                    WHEN ((assignment_data.org_code IS NOT NULL) AND ((assignment_data.assignment_type)::text = 'uppdrag'::text) AND ((assignment_data.role_code)::text ~~* '%suppleant%'::text)) THEN 1
                     ELSE 0
                 END) AS total_suppleant_assignments,
             sum(
                 CASE
-                    WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) AND (assignment_data.from_date <= CURRENT_DATE) AND ((assignment_data.role_code)::text ~~* '%suppleant%'::text)) THEN 1
+                    WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) AND (assignment_data.from_date <= CURRENT_DATE) AND (assignment_data.org_code IS NOT NULL) AND ((assignment_data.assignment_type)::text = 'uppdrag'::text) AND ((assignment_data.role_code)::text ~~* '%suppleant%'::text)) THEN 1
                     ELSE 0
                 END) AS current_suppleant_assignments,
             sum(
@@ -12476,13 +12476,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict BsW7j1BH71d6l0Ot7vA0dtGv1Mt326EKzCNjMcg4Z4Jtx9MsDP7JatnCg4pZgCr
+\unrestrict P90lYMOgYCbozjcA4O4YRMaOokzMdRRqerscSEcrZuw6QdXBLGkeEsYBgCnfmJy
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict 93IoKbDXj08LC5MME2EVJAegPJRzLdmygBIvd2FDb60V3UTPWquMqGUh4VEwEP5
+\restrict eREuBF5doxmjjcg6SuDsddFhPviDMTeo04OTpsNJA5usm0XKqLSoG227TYJKjS0
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -12965,5 +12965,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 93IoKbDXj08LC5MME2EVJAegPJRzLdmygBIvd2FDb60V3UTPWquMqGUh4VEwEP5
+\unrestrict eREuBF5doxmjjcg6SuDsddFhPviDMTeo04OTpsNJA5usm0XKqLSoG227TYJKjS0
 
