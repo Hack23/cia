@@ -97,7 +97,14 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 		"currentMinistryAssignments", "currentCommitteeAssignments", "currentSpeakerAssignments",
 		"totalCommitteeSubstituteAssignments", "currentCommitteeSubstituteAssignments",
 		"totalDaysServedCommitteeSubstitute", "totalCommitteeLeadershipAssignments",
-		"currentCommitteeLeadershipAssignments", "totalDaysServedCommitteeLeadership", "totalDocuments", "partyMotions",
+		"currentCommitteeLeadershipAssignments", "totalDaysServedCommitteeLeadership",
+		"totalCommitteeChairAssignments", "currentCommitteeChairAssignments",
+		"totalCommitteeViceChairAllAssignments", "currentCommitteeViceChairAllAssignments",
+		"totalSuppleantAssignments", "currentSuppleantAssignments",
+		"totalStatsministerAssignments", "currentStatsministerAssignments",
+		"totalPartyLeaderAssignments", "currentPartyLeaderAssignments",
+		"totalPartySecretaryAssignments", "currentPartySecretaryAssignments",
+		"totalDocuments", "partyMotions",
 		"individualMotions", "committeeMotions", "multiPartyMotions", "followUpMotions", "documentsLastYear",
 		"documentYearsActive", "averageDocsPerYear", "docActivityLevel", "docActivityProfile",
 		"collaborationPercentage", "documentTypes", "firstDocumentDate", "lastDocumentDate" })
@@ -233,6 +240,42 @@ public class ViewRiksdagenPolitician implements ModelObject {
 
 	/** The total days served committee leadership. */
 	protected long totalDaysServedCommitteeLeadership;
+
+	/** The total committee chair assignments. */
+	protected long totalCommitteeChairAssignments;
+
+	/** The current committee chair assignments. */
+	protected long currentCommitteeChairAssignments;
+
+	/** The total committee vice chair all assignments. */
+	protected long totalCommitteeViceChairAllAssignments;
+
+	/** The current committee vice chair all assignments. */
+	protected long currentCommitteeViceChairAllAssignments;
+
+	/** The total suppleant assignments. */
+	protected long totalSuppleantAssignments;
+
+	/** The current suppleant assignments. */
+	protected long currentSuppleantAssignments;
+
+	/** The total statsminister assignments. */
+	protected long totalStatsministerAssignments;
+
+	/** The current statsminister assignments. */
+	protected long currentStatsministerAssignments;
+
+	/** The total party leader assignments. */
+	protected long totalPartyLeaderAssignments;
+
+	/** The current party leader assignments. */
+	protected long currentPartyLeaderAssignments;
+
+	/** The total party secretary assignments. */
+	protected long totalPartySecretaryAssignments;
+
+	/** The current party secretary assignments. */
+	protected long currentPartySecretaryAssignments;
 
 	   /** The total documents. */
     protected long totalDocuments;
@@ -1056,6 +1099,246 @@ public class ViewRiksdagenPolitician implements ModelObject {
 	 */
 	public void setTotalDaysServedCommitteeLeadership(final long value) {
 		this.totalDaysServedCommitteeLeadership = value;
+	}
+
+	/**
+	 * Gets the total committee chair assignments.
+	 *
+	 * @return the total committee chair assignments
+	 */
+	@Basic
+	@Column(name = "TOTAL_COMMITTEE_CHAIR_ASSIGNMENTS", precision = 20)
+	public long getTotalCommitteeChairAssignments() {
+		return totalCommitteeChairAssignments;
+	}
+
+	/**
+	 * Sets the total committee chair assignments.
+	 *
+	 * @param value the new total committee chair assignments
+	 */
+	public void setTotalCommitteeChairAssignments(final long value) {
+		this.totalCommitteeChairAssignments = value;
+	}
+
+	/**
+	 * Gets the current committee chair assignments.
+	 *
+	 * @return the current committee chair assignments
+	 */
+	@Basic
+	@Column(name = "CURRENT_COMMITTEE_CHAIR_ASSIGNMENTS", precision = 20)
+	public long getCurrentCommitteeChairAssignments() {
+		return currentCommitteeChairAssignments;
+	}
+
+	/**
+	 * Sets the current committee chair assignments.
+	 *
+	 * @param value the new current committee chair assignments
+	 */
+	public void setCurrentCommitteeChairAssignments(final long value) {
+		this.currentCommitteeChairAssignments = value;
+	}
+
+	/**
+	 * Gets the total committee vice chair all assignments.
+	 *
+	 * @return the total committee vice chair all assignments
+	 */
+	@Basic
+	@Column(name = "TOTAL_COMMITTEE_VICE_CHAIR_ALL_ASSIGNMENTS", precision = 20)
+	public long getTotalCommitteeViceChairAllAssignments() {
+		return totalCommitteeViceChairAllAssignments;
+	}
+
+	/**
+	 * Sets the total committee vice chair all assignments.
+	 *
+	 * @param value the new total committee vice chair all assignments
+	 */
+	public void setTotalCommitteeViceChairAllAssignments(final long value) {
+		this.totalCommitteeViceChairAllAssignments = value;
+	}
+
+	/**
+	 * Gets the current committee vice chair all assignments.
+	 *
+	 * @return the current committee vice chair all assignments
+	 */
+	@Basic
+	@Column(name = "CURRENT_COMMITTEE_VICE_CHAIR_ALL_ASSIGNMENTS", precision = 20)
+	public long getCurrentCommitteeViceChairAllAssignments() {
+		return currentCommitteeViceChairAllAssignments;
+	}
+
+	/**
+	 * Sets the current committee vice chair all assignments.
+	 *
+	 * @param value the new current committee vice chair all assignments
+	 */
+	public void setCurrentCommitteeViceChairAllAssignments(final long value) {
+		this.currentCommitteeViceChairAllAssignments = value;
+	}
+
+	/**
+	 * Gets the total suppleant assignments.
+	 *
+	 * @return the total suppleant assignments
+	 */
+	@Basic
+	@Column(name = "TOTAL_SUPPLEANT_ASSIGNMENTS", precision = 20)
+	public long getTotalSuppleantAssignments() {
+		return totalSuppleantAssignments;
+	}
+
+	/**
+	 * Sets the total suppleant assignments.
+	 *
+	 * @param value the new total suppleant assignments
+	 */
+	public void setTotalSuppleantAssignments(final long value) {
+		this.totalSuppleantAssignments = value;
+	}
+
+	/**
+	 * Gets the current suppleant assignments.
+	 *
+	 * @return the current suppleant assignments
+	 */
+	@Basic
+	@Column(name = "CURRENT_SUPPLEANT_ASSIGNMENTS", precision = 20)
+	public long getCurrentSuppleantAssignments() {
+		return currentSuppleantAssignments;
+	}
+
+	/**
+	 * Sets the current suppleant assignments.
+	 *
+	 * @param value the new current suppleant assignments
+	 */
+	public void setCurrentSuppleantAssignments(final long value) {
+		this.currentSuppleantAssignments = value;
+	}
+
+	/**
+	 * Gets the total statsminister assignments.
+	 *
+	 * @return the total statsminister assignments
+	 */
+	@Basic
+	@Column(name = "TOTAL_STATSMINISTER_ASSIGNMENTS", precision = 20)
+	public long getTotalStatsministerAssignments() {
+		return totalStatsministerAssignments;
+	}
+
+	/**
+	 * Sets the total statsminister assignments.
+	 *
+	 * @param value the new total statsminister assignments
+	 */
+	public void setTotalStatsministerAssignments(final long value) {
+		this.totalStatsministerAssignments = value;
+	}
+
+	/**
+	 * Gets the current statsminister assignments.
+	 *
+	 * @return the current statsminister assignments
+	 */
+	@Basic
+	@Column(name = "CURRENT_STATSMINISTER_ASSIGNMENTS", precision = 20)
+	public long getCurrentStatsministerAssignments() {
+		return currentStatsministerAssignments;
+	}
+
+	/**
+	 * Sets the current statsminister assignments.
+	 *
+	 * @param value the new current statsminister assignments
+	 */
+	public void setCurrentStatsministerAssignments(final long value) {
+		this.currentStatsministerAssignments = value;
+	}
+
+	/**
+	 * Gets the total party leader assignments.
+	 *
+	 * @return the total party leader assignments
+	 */
+	@Basic
+	@Column(name = "TOTAL_PARTY_LEADER_ASSIGNMENTS", precision = 20)
+	public long getTotalPartyLeaderAssignments() {
+		return totalPartyLeaderAssignments;
+	}
+
+	/**
+	 * Sets the total party leader assignments.
+	 *
+	 * @param value the new total party leader assignments
+	 */
+	public void setTotalPartyLeaderAssignments(final long value) {
+		this.totalPartyLeaderAssignments = value;
+	}
+
+	/**
+	 * Gets the current party leader assignments.
+	 *
+	 * @return the current party leader assignments
+	 */
+	@Basic
+	@Column(name = "CURRENT_PARTY_LEADER_ASSIGNMENTS", precision = 20)
+	public long getCurrentPartyLeaderAssignments() {
+		return currentPartyLeaderAssignments;
+	}
+
+	/**
+	 * Sets the current party leader assignments.
+	 *
+	 * @param value the new current party leader assignments
+	 */
+	public void setCurrentPartyLeaderAssignments(final long value) {
+		this.currentPartyLeaderAssignments = value;
+	}
+
+	/**
+	 * Gets the total party secretary assignments.
+	 *
+	 * @return the total party secretary assignments
+	 */
+	@Basic
+	@Column(name = "TOTAL_PARTY_SECRETARY_ASSIGNMENTS", precision = 20)
+	public long getTotalPartySecretaryAssignments() {
+		return totalPartySecretaryAssignments;
+	}
+
+	/**
+	 * Sets the total party secretary assignments.
+	 *
+	 * @param value the new total party secretary assignments
+	 */
+	public void setTotalPartySecretaryAssignments(final long value) {
+		this.totalPartySecretaryAssignments = value;
+	}
+
+	/**
+	 * Gets the current party secretary assignments.
+	 *
+	 * @return the current party secretary assignments
+	 */
+	@Basic
+	@Column(name = "CURRENT_PARTY_SECRETARY_ASSIGNMENTS", precision = 20)
+	public long getCurrentPartySecretaryAssignments() {
+		return currentPartySecretaryAssignments;
+	}
+
+	/**
+	 * Sets the current party secretary assignments.
+	 *
+	 * @param value the new current party secretary assignments
+	 */
+	public void setCurrentPartySecretaryAssignments(final long value) {
+		this.currentPartySecretaryAssignments = value;
 	}
 
 	/**
