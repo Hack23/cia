@@ -4,14 +4,18 @@
 -- Date: 2025-12-22
 --
 -- Changes:
--- - Add total_committee_chair_assignments / current_committee_chair_assignments
--- - Add total_committee_vice_chair_all_assignments / current_committee_vice_chair_all_assignments
--- - Add total_suppleant_assignments / current_suppleant_assignments (14,757 assignments in data)
+-- - Add total_committee_chair_assignments / current_committee_chair_assignments (committee context only)
+-- - Add total_committee_vice_chair_all_assignments / current_committee_vice_chair_all_assignments (committee context only)
+-- - Add total_suppleant_assignments / current_suppleant_assignments (all variants: Suppleant, Extra suppleant, Personlig suppleant = 15,291 total)
 -- - Add total_statsminister_assignments / current_statsminister_assignments (10 assignments)
 -- - Add total_party_leader_assignments / current_party_leader_assignments (Partiledare: 23, Tillförordnad partiledare: 1)
 -- - Add total_party_secretary_assignments / current_party_secretary_assignments (Partisekreterare: 28, Tillförordnad partisekreterare: 2)
 --
 -- Total new columns: 12 (6 role categories × 2 columns each)
+-- 
+-- Fixes applied:
+-- - Committee Chair/Vice Chair now scoped to committee assignments (org_code IS NOT NULL AND assignment_type = 'uppdrag')
+-- - Suppleant now uses pattern matching (~~* '%suppleant%') to include Extra suppleant (480) and Personlig suppleant (54)
 
 DROP VIEW IF EXISTS public.view_riksdagen_politician CASCADE;
 
@@ -326,43 +330,47 @@ CREATE VIEW public.view_riksdagen_politician AS
                     END)
                     ELSE 0
                 END) AS total_days_served_committee_leadership,
-            -- New: Committee Chair assignments (Ordförande only)
+            -- New: Committee Chair assignments (Ordförande only, scoped to committee assignments)
             sum(
                 CASE
-                    WHEN ((assignment_data.role_code)::text = 'Ordförande'::text) THEN 1
+                    WHEN ((assignment_data.org_code IS NOT NULL) AND ((assignment_data.assignment_type)::text = 'uppdrag'::text) AND ((assignment_data.role_code)::text = 'Ordförande'::text)) THEN 1
                     ELSE 0
                 END) AS total_committee_chair_assignments,
             sum(
                 CASE
                     WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) 
                       AND (assignment_data.from_date <= CURRENT_DATE)
+                      AND (assignment_data.org_code IS NOT NULL) 
+                      AND ((assignment_data.assignment_type)::text = 'uppdrag'::text)
                       AND ((assignment_data.role_code)::text = 'Ordförande'::text)) THEN 1
                     ELSE 0
                 END) AS current_committee_chair_assignments,
-            -- New: Vice Chair assignments (ALL LEVELS GROUPED: Vice, Förste, Andre, Tredje)
+            -- New: Vice Chair assignments (ALL LEVELS GROUPED: Vice, Förste, Andre, Tredje, scoped to committee assignments)
             sum(
                 CASE
-                    WHEN ((assignment_data.role_code)::text IN ('Vice ordförande', 'Förste vice ordförande', 'Andre vice ordförande', 'Tredje vice ordförande')) THEN 1
+                    WHEN ((assignment_data.org_code IS NOT NULL) AND ((assignment_data.assignment_type)::text = 'uppdrag'::text) AND ((assignment_data.role_code)::text IN ('Vice ordförande', 'Förste vice ordförande', 'Andre vice ordförande', 'Tredje vice ordförande'))) THEN 1
                     ELSE 0
                 END) AS total_committee_vice_chair_all_assignments,
             sum(
                 CASE
                     WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) 
                       AND (assignment_data.from_date <= CURRENT_DATE)
+                      AND (assignment_data.org_code IS NOT NULL) 
+                      AND ((assignment_data.assignment_type)::text = 'uppdrag'::text)
                       AND ((assignment_data.role_code)::text IN ('Vice ordförande', 'Förste vice ordförande', 'Andre vice ordförande', 'Tredje vice ordförande'))) THEN 1
                     ELSE 0
                 END) AS current_committee_vice_chair_all_assignments,
-            -- New: Suppleant assignments (any assignment with Suppleant in role_code, not limited to committee)
+            -- New: Suppleant assignments (all variants: Suppleant, Extra suppleant, Personlig suppleant)
             sum(
                 CASE
-                    WHEN ((assignment_data.role_code)::text = 'Suppleant'::text) THEN 1
+                    WHEN ((assignment_data.role_code)::text ~~* '%suppleant%'::text) THEN 1
                     ELSE 0
                 END) AS total_suppleant_assignments,
             sum(
                 CASE
                     WHEN ((COALESCE(assignment_data.to_date, CURRENT_DATE) >= CURRENT_DATE) 
                       AND (assignment_data.from_date <= CURRENT_DATE)
-                      AND ((assignment_data.role_code)::text = 'Suppleant'::text)) THEN 1
+                      AND ((assignment_data.role_code)::text ~~* '%suppleant%'::text)) THEN 1
                     ELSE 0
                 END) AS current_suppleant_assignments,
             -- New: Statsminister assignments (Prime Minister)

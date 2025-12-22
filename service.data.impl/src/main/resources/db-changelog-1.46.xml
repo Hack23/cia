@@ -22,16 +22,16 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
   grouped approach with 6 strategic role categories covering key leadership positions.
   
   New Columns (12 total = 6 categories × 2 columns each):
-  1. Committee Chair (Ordförande): 435 assignments
+  1. Committee Chair (Ordförande, scoped to committee assignments): 435 assignments
      - total_committee_chair_assignments
      - current_committee_chair_assignments
   
-  2. Committee Vice Chairs (grouped): 487 total assignments
+  2. Committee Vice Chairs (grouped, scoped to committee assignments): 487 total assignments
      - total_committee_vice_chair_all_assignments (Vice, Förste, Andre, Tredje)
      - current_committee_vice_chair_all_assignments
   
-  3. Suppleant (Substitute): 14,757 assignments (highest frequency)
-     - total_suppleant_assignments
+  3. Suppleant (all variants with pattern matching): 15,291 total assignments
+     - total_suppleant_assignments (includes Suppleant: 14,757, Extra suppleant: 480, Personlig suppleant: 54)
      - current_suppleant_assignments
   
   4. Statsminister (Prime Minister): 10 assignments
@@ -45,6 +45,12 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
   6. Party Secretary (Partisekreterare + Tillförordnad): 30 assignments (28 + 2)
      - total_party_secretary_assignments
      - current_party_secretary_assignments
+  
+  Implementation Details:
+  - Committee Chair/Vice Chair: Scoped to committee assignments with org_code IS NOT NULL 
+    AND assignment_type = 'uppdrag' (consistent with existing committee leadership columns)
+  - Suppleant: Uses pattern matching (~~* '%suppleant%') to capture all variants 
+    (consistent with existing committee substitute tracking)
   
   Rationale for Grouping:
   - Follows database normalization: Group similar entities
@@ -63,15 +69,19 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     <comment>
         Add grouped committee leadership role tracking to view_riksdagen_politician.
         Adds 12 new columns organized into 6 role categories (total + current for each):
-        - Committee Chair (Ordförande only)
-        - Committee Vice Chairs (all levels grouped: Vice, Förste, Andre, Tredje)
-        - Suppleant (14,757 assignments - enables identification of high substitute usage)
+        - Committee Chair (Ordförande only, committee context)
+        - Committee Vice Chairs (all levels grouped: Vice, Förste, Andre, Tredje, committee context)
+        - Suppleant (15,291 assignments - all variants via pattern matching: Suppleant, Extra suppleant, Personlig suppleant)
         - Statsminister (10 assignments - Prime Minister tracking)
         - Party Leader (24 assignments - Partiledare + Tillförordnad)
         - Party Secretary (30 assignments - Partisekreterare + Tillförordnad)
         
         Database best practice: Grouped approach reduces column proliferation from 34+ 
         individual role columns to 12 strategic columns covering key leadership positions.
+        
+        Fixes applied:
+        - Committee Chair/Vice Chair scoped to committee assignments (org_code IS NOT NULL, assignment_type = 'uppdrag')
+        - Suppleant uses pattern matching (~~* '%suppleant%') to include all variants (consistent with existing substitute tracking)
     </comment>
     
     <sqlFile path="view_riksdagen_politician_v1.46.sql" 
