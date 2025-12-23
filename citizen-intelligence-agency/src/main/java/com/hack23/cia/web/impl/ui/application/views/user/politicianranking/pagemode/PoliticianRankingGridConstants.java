@@ -44,9 +44,13 @@ public interface PoliticianRankingGridConstants {
         // Document Breakdown
         "totalDocuments", "individualMotions", "partyMotions",
         "committeeMotions", "multiPartyMotions",
-        // Current Roles
+        // Current Roles - Committee Leadership
         "currentAssignments", "currentMinistryAssignments",
         "currentCommitteeAssignments", "currentCommitteeLeadershipAssignments",
+        "currentCommitteeChairAssignments", "currentCommitteeViceChairAllAssignments",
+        // Current Roles - Additional Leadership
+        "currentSuppleantAssignments", "currentStatsministerAssignments",
+        "currentPartyLeaderAssignments", "currentPartySecretaryAssignments",
         // Historical Performance
         "documentYearsActive", "totalDaysServed", "totalCommitteeAssignments",
         "totalMinistryAssignments",
@@ -69,6 +73,10 @@ public interface PoliticianRankingGridConstants {
         "totalPartyAssignments", "totalSpeakerAssignments", "currentPartyAssignments",
         "currentSpeakerAssignments", "totalCommitteeSubstituteAssignments",
         "currentCommitteeSubstituteAssignments",
+        // Hidden Leadership Role Totals (show current only)
+        "totalCommitteeChairAssignments", "totalCommitteeViceChairAllAssignments",
+        "totalSuppleantAssignments", "totalStatsministerAssignments",
+        "totalPartyLeaderAssignments", "totalPartySecretaryAssignments",
         // Hidden Technical Fields
         "documentTypes", "documentTypesString"
     };
