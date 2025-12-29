@@ -458,11 +458,13 @@ Coverage Statistics:
 **Solution**: For very large tables (100M+ rows), consider using TABLESAMPLE instead
 
 ### Issue: "some materialized views are empty (0 rows)"
-**Solution**: This is expected behavior as of v2.2+. The extraction script now automatically refreshes all materialized views in Phase 0 before extraction. If views remain empty after refresh:
-- Check the source tables have data
+**Solution**: This is expected behavior as of v2.2+. The extraction script now automatically refreshes all materialized views in Phase 0 before extraction using a multi-pass approach to handle dependencies. If views remain empty after refresh:
+- **Likely cause**: Source tables are empty (common in CI/testing environments)
+- Check the source tables have data: `SELECT COUNT(*) FROM person_data, vote_data, document_data;`
 - Review view definitions for date filters or other constraints
 - Consult TROUBLESHOOTING_EMPTY_VIEWS.md for view-specific debugging
 - Some views may legitimately be empty based on data filters (e.g., date ranges)
+- The multi-pass refresh handles view dependencies automatically (up to 3 passes)
 
 ### Issue: "materialized view refresh failed"
 **Solution**: Check PostgreSQL logs for specific error messages. Common causes:
