@@ -91,7 +91,7 @@ DECLARE
     has_data BOOLEAN;
     max_passes INTEGER := 3;
     views_refreshed_this_pass INTEGER;
-    current_pass_number INTEGER := 0;
+    view_index INTEGER := 0;
     pass_number INTEGER;
 BEGIN
     start_time := clock_timestamp();
@@ -117,7 +117,7 @@ BEGIN
     -- Pass 2-3: Refresh dependent views (may fail in early passes if dependencies not ready)
     FOR pass_number IN 1..max_passes LOOP
         views_refreshed_this_pass := 0;
-        current_pass_number := 0;
+        view_index := 0;
         
         RAISE NOTICE '--- Pass % of % ---', pass_number, max_passes;
         RAISE NOTICE '';
@@ -130,7 +130,7 @@ BEGIN
             ORDER BY matviewname
         LOOP
             BEGIN
-                current_pass_number := current_pass_number + 1;
+                view_index := view_index + 1;
                 
                 -- Skip views that have already been successfully refreshed in a previous pass
                 IF EXISTS (
@@ -140,13 +140,13 @@ BEGIN
                       AND s.matviewname = mv_record.matviewname
                 ) THEN
                     RAISE NOTICE '  [%/%] SKIP %.% - already successfully refreshed in a previous pass',
-                        current_pass_number, total_mvs,
+                        view_index, total_mvs,
                         mv_record.schemaname, mv_record.matviewname;
                     CONTINUE;
                 END IF;
                 
                 RAISE NOTICE '→ [%/%] Pass % - Refreshing: %.%', 
-                    current_pass_number, total_mvs, pass_number,
+                    view_index, total_mvs, pass_number,
                     mv_record.schemaname, mv_record.matviewname;
                 
                 -- Refresh the materialized view

@@ -229,11 +229,11 @@ This is required because materialized views store cached query results.
 Found 28 materialized views to refresh
 ================================================
 
-→ [1/28] Refreshing: public.view_riksdagen_committee_ballot_decision_party_summary
-  ✓ Refreshed successfully - 34558 rows
+→ [1/28] Pass 1 - Refreshing: public.view_riksdagen_committee_ballot_decision_party_summary
+  ✓ Refreshed successfully - contains data
 
-→ [2/28] Refreshing: public.view_riksdagen_committee_ballot_decision_politician_summary
-  ✓ Refreshed successfully - 156789 rows
+→ [2/28] Pass 1 - Refreshing: public.view_riksdagen_committee_ballot_decision_politician_summary
+  ✓ Refreshed successfully - contains data
 
 ... (28 refreshes total)
 
@@ -541,7 +541,7 @@ EXTRACTION COVERAGE:
 
 - **v2.2** (2025-12-29): Added automatic materialized view refresh in Phase 0
   - Dynamically discovers and refreshes all materialized views before extraction
-  - Validates row counts after refresh
+  - Checks for data presence after refresh (via EXISTS queries)
   - Logs refresh duration and success/failure for each view
   - Eliminates empty materialized view sample files
   - Updated documentation to reflect new Phase 0 process
