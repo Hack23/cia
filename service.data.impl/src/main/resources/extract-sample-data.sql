@@ -63,6 +63,165 @@ $$;
 \echo ''
 
 -- ===========================================================================
+-- SECTION 0: REFRESH ALL MATERIALIZED VIEWS
+-- ===========================================================================
+-- This section ensures materialized views are populated before extraction
+-- Handles dependency chains by refreshing in multiple passes
+-- ===========================================================================
+
+\echo ''
+\echo '=================================================='
+\echo '=== PHASE 0: REFRESH MATERIALIZED VIEWS       ==='
+\echo '=================================================='
+\echo ''
+\echo 'Refreshing all materialized views to ensure data is available...'
+\echo 'This is required because materialized views store cached query results.'
+\echo 'Uses multi-pass approach to handle view dependencies.'
+\echo ''
+
+DO $$
+DECLARE
+    mv_record RECORD;
+    success_count INTEGER := 0;
+    error_count INTEGER := 0;
+    start_time TIMESTAMP;
+    end_time TIMESTAMP;
+    duration INTERVAL;
+    total_mvs INTEGER;
+    has_data BOOLEAN;
+    max_passes INTEGER := 3;
+    views_refreshed_this_pass INTEGER;
+    view_index INTEGER := 0;
+    pass_number INTEGER;
+BEGIN
+    start_time := clock_timestamp();
+    
+    -- Get total count for progress reporting
+    SELECT COUNT(*) INTO total_mvs FROM pg_matviews WHERE schemaname = 'public';
+    
+    RAISE NOTICE '================================================';
+    RAISE NOTICE 'Found % materialized views to refresh', total_mvs;
+    RAISE NOTICE 'Using multi-pass approach to handle dependencies';
+    RAISE NOTICE '================================================';
+    RAISE NOTICE '';
+    
+    -- Create temp table to track successfully refreshed views
+    CREATE TEMP TABLE IF NOT EXISTS tmp_mv_refresh_state (
+        schemaname  text NOT NULL,
+        matviewname text NOT NULL,
+        PRIMARY KEY (schemaname, matviewname)
+    ) ON COMMIT PRESERVE ROWS;
+    
+    -- Multi-pass refresh to handle dependencies
+    -- Pass 1: Refresh base views (no dependencies on other materialized views)
+    -- Pass 2-3: Refresh dependent views (may fail in early passes if dependencies not ready)
+    FOR pass_number IN 1..max_passes LOOP
+        views_refreshed_this_pass := 0;
+        view_index := 0;
+        
+        RAISE NOTICE '--- Pass % of % ---', pass_number, max_passes;
+        RAISE NOTICE '';
+        
+        -- Try to refresh all materialized views
+        FOR mv_record IN 
+            SELECT schemaname, matviewname
+            FROM pg_matviews
+            WHERE schemaname = 'public'
+            ORDER BY matviewname
+        LOOP
+            BEGIN
+                view_index := view_index + 1;
+                
+                -- Skip views that have already been successfully refreshed in a previous pass
+                IF EXISTS (
+                    SELECT 1
+                    FROM tmp_mv_refresh_state s
+                    WHERE s.schemaname  = mv_record.schemaname
+                      AND s.matviewname = mv_record.matviewname
+                ) THEN
+                    RAISE NOTICE '  [%/%] SKIP %.% - already successfully refreshed in a previous pass',
+                        view_index, total_mvs,
+                        mv_record.schemaname, mv_record.matviewname;
+                    CONTINUE;
+                END IF;
+                
+                RAISE NOTICE '→ [%/%] Pass % - Refreshing: %.%', 
+                    view_index, total_mvs, pass_number,
+                    mv_record.schemaname, mv_record.matviewname;
+                
+                -- Refresh the materialized view
+                EXECUTE format('REFRESH MATERIALIZED VIEW %I.%I', 
+                    mv_record.schemaname, mv_record.matviewname);
+                
+                -- Record that this view has now been successfully refreshed (even if it contains 0 rows)
+                INSERT INTO tmp_mv_refresh_state (schemaname, matviewname)
+                VALUES (mv_record.schemaname, mv_record.matviewname)
+                ON CONFLICT (schemaname, matviewname) DO NOTHING;
+                
+                -- Check if view has any data using efficient EXISTS query
+                EXECUTE format('SELECT EXISTS(SELECT 1 FROM %I.%I LIMIT 1)', 
+                    mv_record.schemaname, mv_record.matviewname) INTO has_data;
+                
+                success_count := success_count + 1;
+                views_refreshed_this_pass := views_refreshed_this_pass + 1;
+                
+                IF has_data THEN
+                    RAISE NOTICE '  ✓ Refreshed successfully - contains data';
+                ELSE
+                    RAISE NOTICE '  ✓ Refreshed successfully - 0 rows (may be expected based on data filters)';
+                END IF;
+                RAISE NOTICE '';
+                
+            EXCEPTION WHEN OTHERS THEN
+                IF pass_number < max_passes THEN
+                    RAISE NOTICE '  ⏭  Deferred (will retry in next pass): %', SQLERRM;
+                ELSE
+                    error_count := error_count + 1;
+                    RAISE WARNING '  ✗ Failed to refresh after % passes: %', max_passes, SQLERRM;
+                END IF;
+                RAISE NOTICE '';
+            END;
+        END LOOP;
+        
+        RAISE NOTICE 'Pass % complete: % views refreshed', pass_number, views_refreshed_this_pass;
+        RAISE NOTICE '';
+        
+        -- Early exit logic:
+        -- - If no views were refreshed AND all views have been accounted for (success/error), we're done
+        -- - If no views were refreshed BUT there are still unprocessed views, continue to next pass
+        --   (they were deferred and might succeed after dependencies are met)
+        -- - If views were refreshed, continue to next pass to retry deferred views
+        IF views_refreshed_this_pass = 0
+           AND (total_mvs - success_count - error_count) = 0 THEN
+            RAISE NOTICE 'No views refreshed in this pass and no remaining views to retry - stopping early';
+            EXIT;
+        END IF;
+    END LOOP;
+    
+    end_time := clock_timestamp();
+    duration := end_time - start_time;
+    
+    RAISE NOTICE '';
+    RAISE NOTICE '================================================';
+    RAISE NOTICE 'Materialized view refresh summary:';
+    RAISE NOTICE '  Total views: %', total_mvs;
+    RAISE NOTICE '  Successfully refreshed: %', success_count;
+    RAISE NOTICE '  Errors: %', error_count;
+    RAISE NOTICE '  Duration: %', duration;
+    RAISE NOTICE '================================================';
+    RAISE NOTICE '';
+    
+    IF error_count > 0 THEN
+        RAISE WARNING 'Some materialized views failed to refresh. Sample data for these views may be incomplete.';
+    END IF;
+END $$;
+
+\echo '=================================================='
+\echo '=== PHASE 0 COMPLETE: Materialized Views Refreshed ==='
+\echo '=================================================='
+\echo ''
+
+-- ===========================================================================
 -- SECTION 1: EARLY DISTINCT VALUE EXTRACTION (Before View Analysis)
 -- ===========================================================================
 -- This section extracts ALL distinct values from columns likely used in 

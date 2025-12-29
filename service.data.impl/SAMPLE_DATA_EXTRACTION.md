@@ -92,14 +92,23 @@ Automatically skips:
 - Liquibase change tracking tables (`databasechange*`)
 - Empty tables and views (no data to extract)
 
-### 6. Progress Tracking and Validation
-- Phase 1: Analysis - reports row counts for each object
-- Phase 2: Extraction - shows extraction progress with object names
-- Phase 3: Manifest generation - creates metadata
-- Phase 4: Column mapping - documents view dependencies
-- Phase 5: Distinct values - extracts important column distributions
-- Phase 6: Statistics generation - produces coverage metrics
-- Phase 7: Validation - verifies extraction completeness and file integrity
+### 6. Materialized View Refresh
+Before extraction, the script automatically refreshes all materialized views to ensure they contain up-to-date data:
+- Discovers all materialized views dynamically from pg_matviews
+- Uses multi-pass refresh strategy to handle view dependencies (up to 3 passes)
+- Tracks successfully refreshed views to avoid duplicate refreshes
+- Efficiently checks for data presence using EXISTS queries
+- Logs success/failure for each refresh operation
+- Reports total refresh duration and success rate
+- **Critical**: Without this refresh, materialized views will be empty and sample data extraction will fail
+
+### 7. Progress Tracking and Validation
+- Phase 0: Materialized view refresh - populates all materialized views
+- Phase 1: Distinct values - extracts categorical column distributions
+- Phase 2: View analysis - runs ANALYZE on all views for statistics
+- Phase 3: Table extraction - samples data from all base tables
+- Phase 4: View extraction - samples data from all views (regular and materialized)
+- Phase 5: Cleanup - removes temporary functions
 
 ## Usage
 
@@ -208,90 +217,74 @@ Started: Wed Nov 19 02:41:24 CET 2025
 Configuration:
   Sample size: 50 rows per table/view
   Output format: CSV with headers
-  Extraction strategy: Diverse sampling with DISTINCT for key columns
+
+==================================================
+=== PHASE 0: REFRESH MATERIALIZED VIEWS       ===
+==================================================
+
+Refreshing all materialized views to ensure data is available...
+This is required because materialized views store cached query results.
+
+================================================
+Found 28 materialized views to refresh
+================================================
+
+→ [1/28] Pass 1 - Refreshing: public.view_riksdagen_committee_ballot_decision_party_summary
+  ✓ Refreshed successfully - contains data
+
+→ [2/28] Pass 1 - Refreshing: public.view_riksdagen_committee_ballot_decision_politician_summary
+  ✓ Refreshed successfully - contains data
+
+... (28 refreshes total)
+
+================================================
+Materialized view refresh summary:
+  Total views: 28
+  Successfully refreshed: 28
+  Errors: 0
+  Duration: 00:02:34.567
+================================================
+
+==================================================
+=== PHASE 0 COMPLETE: Materialized Views Refreshed ===
+==================================================
 
 ==========================================
-=== EXTRACTING TABLE SAMPLE DATA      ===
+=== PHASE 1: DISTINCT VALUE EXTRACTION ===
+=== (Early extraction for view debugging) ===
+==========================================
+
+Extracting distinct values from all categorical/predicate columns...
+... (distinct value extractions)
+
+==========================================
+=== PHASE 2: ANALYZING ALL VIEWS       ===
+==========================================
+
+Running ANALYZE on all views (regular and materialized)...
+... (view analysis)
+
+==========================================
+=== PHASE 3: EXTRACTING TABLE SAMPLE DATA ===
 ==========================================
 
 Analyzing tables for sample data extraction...
 
 Table agency: 15 rows available
 Table application_action_event: 12450 rows available
-Table assignment_data: 19991 rows available
-... (77+ more tables)
-
-Table analysis summary:
-  Tables with data: 80
-  Empty tables: 0
-  Excluded tables: 13 (qrtz_* and databasechange*)
-
-Extracting sample data from tables...
-
-Extracting table: agency
-Extracting table: application_action_event
-Extracting table: assignment_data
-... (80 extractions)
+... (80+ tables)
 
 ==========================================
-=== EXTRACTING VIEW SAMPLE DATA       ===
+=== PHASE 4: EXTRACTING VIEW SAMPLE DATA ===
 ==========================================
 
-Analyzing views for sample data extraction...
+Phase 1: Analyzing views for row counts
+... (84 views)
 
-View view_riksdagen_politician: 2071 rows available (VIEW)
-View view_riksdagen_party: 11 rows available (VIEW)
-View view_riksdagen_vote_data_ballot_summary: 13456 rows available (MATERIALIZED VIEW)
-... (81+ more views)
+Phase 2: Generating extraction commands...
 
-View analysis summary:
-  Views with data: 42
-  Empty views: 42
-
-Extracting sample data from views...
-
-Extracting view: view_riksdagen_politician (VIEW)
-Extracting view: view_riksdagen_party (VIEW)
+Phase 3: Executing view extractions...
 ... (84 extractions)
-
-==========================================
-=== GENERATING MANIFEST FILE          ===
-==========================================
-
-==========================================
-=== GENERATING VIEW COLUMN MAPPING    ===
-==========================================
-
-==========================================
-=== EXTRACTING DISTINCT VALUE SETS    ===
-==========================================
-
-Extracting distinct party values...
-Extracting distinct org_code values...
-Extracting distinct role_code values...
-... (8 distinct value extractions)
-
-Distinct value extraction summary:
-  - distinct_party_values.csv: Party distribution
-  - distinct_org_code_values.csv: Organization codes
-  ... (8 files total)
-
-==========================================
-=== EXTRACTION STATISTICS              ===
-==========================================
-
-Coverage Summary:
-  Total Tables: 93 (80 extracted, 13 excluded)
-  Regular Views: 56 (all extracted)
-  Materialized Views: 28 (all extracted)
-  Total Objects: 177 (164 extracted = 92.66%)
-
-Expected CSV Files:
-  Table CSVs: 80
-  View CSVs: 84
-  Distinct value CSVs: 8
-  Metadata CSVs: 3 (manifest + column mapping + statistics)
-  Total Expected: 175
 
 ==================================================
 Sample data extraction completed
@@ -466,8 +459,21 @@ Coverage Statistics:
 ### Issue: "ORDER BY random() is slow"
 **Solution**: For very large tables (100M+ rows), consider using TABLESAMPLE instead
 
-### Issue: "some views are empty"
-**Solution**: Check TROUBLESHOOTING_EMPTY_VIEWS.md for view-specific debugging. Note that ~42 views may be empty depending on data availability - this is normal and the extraction script handles it gracefully.
+### Issue: "some materialized views are empty (0 rows)"
+**Solution**: This is expected behavior as of v2.2+. The extraction script now automatically refreshes all materialized views in Phase 0 before extraction using a multi-pass approach to handle dependencies. If views remain empty after refresh:
+- **Likely cause**: Source tables are empty (common in CI/testing environments)
+- Check the source tables have data: `SELECT COUNT(*) FROM person_data, vote_data, document_data;`
+- Review view definitions for date filters or other constraints
+- Consult TROUBLESHOOTING_EMPTY_VIEWS.md for view-specific debugging
+- Some views may legitimately be empty based on data filters (e.g., date ranges)
+- The multi-pass refresh handles view dependencies automatically (up to 3 passes)
+
+### Issue: "materialized view refresh failed"
+**Solution**: Check PostgreSQL logs for specific error messages. Common causes:
+- Insufficient memory for complex aggregations
+- Lock conflicts if other sessions are using the views
+- Invalid view definitions or missing source data
+- Ensure the database user has REFRESH privilege on materialized views
 
 ### Issue: "validation warnings about missing files"
 **Solution**: Review the validation output to identify which specific files are missing. Check the PostgreSQL logs for errors during extraction. Ensure the database user has SELECT permission on all tables and views.
@@ -533,6 +539,12 @@ EXTRACTION COVERAGE:
 
 ## Version History
 
+- **v2.2** (2025-12-29): Added automatic materialized view refresh in Phase 0
+  - Dynamically discovers and refreshes all materialized views before extraction
+  - Checks for data presence after refresh (via EXISTS queries)
+  - Logs refresh duration and success/failure for each view
+  - Eliminates empty materialized view sample files
+  - Updated documentation to reflect new Phase 0 process
 - **v2.1** (2025-11-24): Added validation, statistics, fixed \copy paths, verified 98.9% coverage
 - **v2.0** (2025-11-19): Enhanced with comprehensive extraction (50 rows, all tables/views)
 - **v1.0** (2025-11-17): Initial version (10 rows, limited tables/views)
