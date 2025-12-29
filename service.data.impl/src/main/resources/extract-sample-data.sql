@@ -89,10 +89,10 @@ DECLARE
     duration INTERVAL;
     total_mvs INTEGER;
     row_count BIGINT;
-    pass_number INTEGER := 1;
     max_passes INTEGER := 3;
     views_refreshed_this_pass INTEGER;
-    current_pass_number INTEGER := 1;
+    current_pass_number INTEGER := 0;
+    pass_number INTEGER;
 BEGIN
     start_time := clock_timestamp();
     
