@@ -186,7 +186,11 @@ BEGIN
         RAISE NOTICE 'Pass % complete: % views refreshed', pass_number, views_refreshed_this_pass;
         RAISE NOTICE '';
         
-        -- If no views were refreshed in this pass and there are no remaining views to retry, stop early
+        -- Early exit logic:
+        -- - If no views were refreshed AND all views have been accounted for (success/error), we're done
+        -- - If no views were refreshed BUT there are still unprocessed views, continue to next pass
+        --   (they were deferred and might succeed after dependencies are met)
+        -- - If views were refreshed, continue to next pass to retry deferred views
         IF views_refreshed_this_pass = 0
            AND (total_mvs - success_count - error_count) = 0 THEN
             RAISE NOTICE 'No views refreshed in this pass and no remaining views to retry - stopping early';
