@@ -35,6 +35,7 @@
 DO $$
 DECLARE
     total_mvs INTEGER;
+    mv_name TEXT;
 BEGIN
     -- Get total count dynamically
     SELECT COUNT(*) INTO total_mvs FROM pg_matviews WHERE schemaname = 'public';
