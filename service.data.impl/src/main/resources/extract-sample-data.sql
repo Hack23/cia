@@ -82,7 +82,6 @@ $$;
 DO $$
 DECLARE
     mv_record RECORD;
-    mv_count INTEGER := 0;
     success_count INTEGER := 0;
     error_count INTEGER := 0;
     start_time TIMESTAMP;
@@ -93,6 +92,7 @@ DECLARE
     pass_number INTEGER := 1;
     max_passes INTEGER := 3;
     views_refreshed_this_pass INTEGER;
+    current_pass_number INTEGER := 1;
 BEGIN
     start_time := clock_timestamp();
     
@@ -110,6 +110,7 @@ BEGIN
     -- Pass 2-3: Refresh dependent views (may fail in early passes if dependencies not ready)
     FOR pass_number IN 1..max_passes LOOP
         views_refreshed_this_pass := 0;
+        current_pass_number := 1;
         
         RAISE NOTICE '--- Pass % of % ---', pass_number, max_passes;
         RAISE NOTICE '';
@@ -122,20 +123,21 @@ BEGIN
             ORDER BY matviewname
         LOOP
             BEGIN
-                mv_count := mv_count + 1;
-                
                 -- Check if already populated (successful in previous pass)
                 EXECUTE format('SELECT COUNT(*) FROM %I.%I', 
                     mv_record.schemaname, mv_record.matviewname) INTO row_count;
                 
                 -- If view has data and this is not pass 1, skip it
                 IF row_count > 0 AND pass_number > 1 THEN
-                    RAISE NOTICE '  [SKIP] %.% - already populated (% rows)', 
+                    RAISE NOTICE '  [SKIP %/%] %.% - already populated (% rows)', 
+                        current_pass_number, total_mvs,
                         mv_record.schemaname, mv_record.matviewname, row_count;
+                    current_pass_number := current_pass_number + 1;
                     CONTINUE;
                 END IF;
                 
-                RAISE NOTICE '→ [%/%] Refreshing: %.%', mv_count, total_mvs,
+                RAISE NOTICE '→ [Pass % - View %/%] Refreshing: %.%', 
+                    pass_number, current_pass_number, total_mvs,
                     mv_record.schemaname, mv_record.matviewname;
                 
                 -- Refresh the materialized view
@@ -165,6 +167,8 @@ BEGIN
                 END IF;
                 RAISE NOTICE '';
             END;
+            
+            current_pass_number := current_pass_number + 1;
         END LOOP;
         
         RAISE NOTICE 'Pass % complete: % views refreshed', pass_number, views_refreshed_this_pass;
@@ -175,9 +179,6 @@ BEGIN
             RAISE NOTICE 'No views refreshed in this pass - stopping early';
             EXIT;
         END IF;
-        
-        -- Reset counter for next pass
-        mv_count := 0;
     END LOOP;
     
     end_time := clock_timestamp();
