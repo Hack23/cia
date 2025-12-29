@@ -95,7 +95,9 @@ Automatically skips:
 ### 6. Materialized View Refresh
 Before extraction, the script automatically refreshes all materialized views to ensure they contain up-to-date data:
 - Discovers all materialized views dynamically from pg_matviews
-- Refreshes each view and validates row counts
+- Uses multi-pass refresh strategy to handle view dependencies (up to 3 passes)
+- Tracks successfully refreshed views to avoid duplicate refreshes
+- Efficiently checks for data presence using EXISTS queries
 - Logs success/failure for each refresh operation
 - Reports total refresh duration and success rate
 - **Critical**: Without this refresh, materialized views will be empty and sample data extraction will fail

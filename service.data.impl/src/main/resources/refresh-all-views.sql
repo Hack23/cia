@@ -10,11 +10,12 @@
 --   - Error handling to continue on individual failures
 --   - Timing information for each view refresh
 --   - Progress logging and summary report
---   - Alphabetical ordering (suitable for most cases)
+--   - Single-pass alphabetical ordering (not dependency-aware; suitable for simple cases)
 --
 -- Note:
---   For complex dependency chains between materialized views,
---   consider creating a dependency-aware ordering script.
+--   This script does not resolve complex dependency chains between materialized views.
+--   For dependency-aware, multi-pass refreshes, use a dedicated script such as
+--   extract-sample-data.sql, or another dependency-aware ordering script.
 
 \set ON_ERROR_STOP off
 \timing on

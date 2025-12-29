@@ -88,7 +88,7 @@ DECLARE
     end_time TIMESTAMP;
     duration INTERVAL;
     total_mvs INTEGER;
-    row_count BIGINT;
+    has_data BOOLEAN;
     max_passes INTEGER := 3;
     views_refreshed_this_pass INTEGER;
     current_pass_number INTEGER := 0;
@@ -104,6 +104,13 @@ BEGIN
     RAISE NOTICE 'Using multi-pass approach to handle dependencies';
     RAISE NOTICE '================================================';
     RAISE NOTICE '';
+    
+    -- Create temp table to track successfully refreshed views
+    CREATE TEMP TABLE IF NOT EXISTS tmp_mv_refresh_state (
+        schemaname  text NOT NULL,
+        matviewname text NOT NULL,
+        PRIMARY KEY (schemaname, matviewname)
+    ) ON COMMIT PRESERVE ROWS;
     
     -- Multi-pass refresh to handle dependencies
     -- Pass 1: Refresh base views (no dependencies on other materialized views)
@@ -125,15 +132,16 @@ BEGIN
             BEGIN
                 current_pass_number := current_pass_number + 1;
                 
-                -- Check if already populated (successful in previous pass)
-                EXECUTE format('SELECT COUNT(*) FROM %I.%I', 
-                    mv_record.schemaname, mv_record.matviewname) INTO row_count;
-                
-                -- If view has data and this is not pass 1, skip it
-                IF row_count > 0 AND pass_number > 1 THEN
-                    RAISE NOTICE '  [%/%] SKIP %.% - already populated (% rows)', 
+                -- Skip views that have already been successfully refreshed in a previous pass
+                IF EXISTS (
+                    SELECT 1
+                    FROM tmp_mv_refresh_state s
+                    WHERE s.schemaname  = mv_record.schemaname
+                      AND s.matviewname = mv_record.matviewname
+                ) THEN
+                    RAISE NOTICE '  [%/%] SKIP %.% - already successfully refreshed in a previous pass',
                         current_pass_number, total_mvs,
-                        mv_record.schemaname, mv_record.matviewname, row_count;
+                        mv_record.schemaname, mv_record.matviewname;
                     CONTINUE;
                 END IF;
                 
@@ -145,15 +153,20 @@ BEGIN
                 EXECUTE format('REFRESH MATERIALIZED VIEW %I.%I', 
                     mv_record.schemaname, mv_record.matviewname);
                 
-                -- Check row count after refresh
-                EXECUTE format('SELECT COUNT(*) FROM %I.%I', 
-                    mv_record.schemaname, mv_record.matviewname) INTO row_count;
+                -- Record that this view has now been successfully refreshed (even if it contains 0 rows)
+                INSERT INTO tmp_mv_refresh_state (schemaname, matviewname)
+                VALUES (mv_record.schemaname, mv_record.matviewname)
+                ON CONFLICT (schemaname, matviewname) DO NOTHING;
+                
+                -- Check if view has any data using efficient EXISTS query
+                EXECUTE format('SELECT EXISTS(SELECT 1 FROM %I.%I LIMIT 1)', 
+                    mv_record.schemaname, mv_record.matviewname) INTO has_data;
                 
                 success_count := success_count + 1;
                 views_refreshed_this_pass := views_refreshed_this_pass + 1;
                 
-                IF row_count > 0 THEN
-                    RAISE NOTICE '  ✓ Refreshed successfully - % rows', row_count;
+                IF has_data THEN
+                    RAISE NOTICE '  ✓ Refreshed successfully - contains data';
                 ELSE
                     RAISE NOTICE '  ✓ Refreshed successfully - 0 rows (may be expected based on data filters)';
                 END IF;
@@ -173,9 +186,10 @@ BEGIN
         RAISE NOTICE 'Pass % complete: % views refreshed', pass_number, views_refreshed_this_pass;
         RAISE NOTICE '';
         
-        -- If no views were refreshed in this pass, stop early
-        IF views_refreshed_this_pass = 0 THEN
-            RAISE NOTICE 'No views refreshed in this pass - stopping early';
+        -- If no views were refreshed in this pass and there are no remaining views to retry, stop early
+        IF views_refreshed_this_pass = 0
+           AND (total_mvs - success_count - error_count) = 0 THEN
+            RAISE NOTICE 'No views refreshed in this pass and no remaining views to retry - stopping early';
             EXIT;
         END IF;
     END LOOP;
