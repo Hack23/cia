@@ -63,7 +63,50 @@ $$;
 \echo ''
 
 -- ===========================================================================
--- SECTION 0: REFRESH ALL MATERIALIZED VIEWS
+-- SECTION 0.1: CREATE HELPER FUNCTIONS
+-- ===========================================================================
+-- Create reusable function for temporal view classification
+-- This eliminates code duplication and ensures consistency
+-- ===========================================================================
+
+DROP FUNCTION IF EXISTS cia_classify_temporal_view(text);
+CREATE OR REPLACE FUNCTION cia_classify_temporal_view(p_viewname text)
+RETURNS TABLE (temporal_granularity text, samples_per_bucket integer)
+LANGUAGE sql
+IMMUTABLE
+AS $$
+    SELECT
+        CASE 
+            -- Daily granularity: 2 samples per day over last 30 days (60 samples max)
+            WHEN p_viewname LIKE '%_daily%' THEN 'daily'
+            -- Weekly granularity: 2 samples per week over last 6 months (52 samples max)
+            WHEN p_viewname LIKE '%_weekly%' THEN 'weekly'
+            -- Monthly granularity: 2 samples per month over last 3 years (72 samples max)
+            WHEN p_viewname LIKE '%_monthly%' THEN 'monthly'
+            -- Annual granularity: 2 samples per year over full history
+            WHEN p_viewname LIKE '%_annual%' THEN 'annual'
+            -- Temporal trend views: mixed strategy (all available time periods)
+            WHEN p_viewname LIKE '%_temporal%' OR p_viewname LIKE '%_trend%' 
+                 OR p_viewname LIKE '%_evolution%' OR p_viewname LIKE '%_momentum%' THEN 'temporal_trend'
+            -- Non-temporal views: use random sampling
+            ELSE 'non_temporal'
+        END AS temporal_granularity,
+        CASE 
+            WHEN p_viewname LIKE '%_daily%' THEN 2
+            WHEN p_viewname LIKE '%_weekly%' THEN 2
+            WHEN p_viewname LIKE '%_monthly%' THEN 2
+            WHEN p_viewname LIKE '%_annual%' THEN 2
+            WHEN p_viewname LIKE '%_temporal%' OR p_viewname LIKE '%_trend%' 
+                 OR p_viewname LIKE '%_evolution%' OR p_viewname LIKE '%_momentum%' THEN 1
+            ELSE 0
+        END AS samples_per_bucket;
+$$;
+
+\echo 'Created helper function: cia_classify_temporal_view'
+\echo ''
+
+-- ===========================================================================
+-- SECTION 0.2: REFRESH ALL MATERIALIZED VIEWS
 -- ===========================================================================
 -- This section ensures materialized views are populated before extraction
 -- Handles dependency chains by refreshing in multiple passes
@@ -918,30 +961,221 @@ WITH view_counts AS (
     FROM pg_matviews
     WHERE schemaname = 'public'
 ),
+-- ============================================================================
+-- TEMPORAL VIEW CLASSIFICATION
+-- ============================================================================
+-- Identify views by temporal granularity based on naming patterns
+-- This enables stratified sampling across time periods
+-- Uses reusable cia_classify_temporal_view() function
+-- ============================================================================
+view_temporal_classification AS (
+    SELECT 
+        vc.schemaname,
+        vc.viewname,
+        vc.row_count,
+        c.temporal_granularity,
+        c.samples_per_bucket
+    FROM view_counts vc
+    CROSS JOIN LATERAL cia_classify_temporal_view(vc.viewname) AS c
+    WHERE vc.row_count > 0
+),
+-- ============================================================================
+-- TEMPORAL COLUMN DETECTION
+-- ============================================================================
+-- Automatically detect temporal columns in each view
+-- ============================================================================
+view_temporal_columns AS (
+    SELECT 
+        c.table_schema AS schemaname,
+        c.table_name AS viewname,
+        c.column_name AS temporal_column,
+        c.data_type,
+        -- Prioritize common temporal column names
+        CASE 
+            WHEN c.column_name IN ('vote_date', 'embedded_id_vote_date') THEN 1
+            WHEN c.column_name IN ('created_date', 'ballot_date', 'document_date') THEN 2
+            WHEN c.column_name IN ('from_date', 'to_date', 'made_public_date') THEN 3
+            WHEN c.column_name LIKE '%_date' THEN 4
+            ELSE 5
+        END AS priority
+    FROM information_schema.columns c
+    WHERE c.table_schema = 'public'
+      AND c.data_type IN ('date', 'timestamp without time zone', 'timestamp with time zone')
+      AND c.column_name NOT IN ('created', 'model_object_version') -- Exclude technical columns
+),
+view_primary_temporal_column AS (
+    SELECT DISTINCT ON (schemaname, viewname)
+        schemaname,
+        viewname,
+        temporal_column
+    FROM view_temporal_columns
+    ORDER BY schemaname, viewname, priority
+),
+-- ============================================================================
+-- GENERATE STRATIFIED SAMPLING QUERIES
+-- ============================================================================
 view_extract AS (
-    SELECT schemaname,
-           viewname,
-           row_count,
-           LEAST(:SAMPLE_SIZE::int, row_count) AS sample_rows,
-           CASE WHEN viewname LIKE 'view_%' THEN viewname ELSE 'view_' || viewname END AS file_prefix
-    FROM view_counts
-    WHERE row_count > 0
+    SELECT 
+        vtc.schemaname,
+        vtc.viewname,
+        vtc.row_count,
+        vtc.temporal_granularity,
+        vtc.samples_per_bucket,
+        vptc.temporal_column,
+        LEAST(:SAMPLE_SIZE::int, vtc.row_count) AS sample_rows,
+        CASE WHEN vtc.viewname LIKE 'view_%' THEN vtc.viewname ELSE 'view_' || vtc.viewname END AS file_prefix
+    FROM view_temporal_classification vtc
+    LEFT JOIN view_primary_temporal_column vptc 
+        ON vtc.schemaname = vptc.schemaname 
+        AND vtc.viewname = vptc.viewname
 )
-SELECT format(
-    '\echo ''[VIEW] Extracting: %s (%s rows sampled of %s total)''' || E'\n' ||
-    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-    '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n',
-    viewname,
-    sample_rows,
-    row_count,
-    schemaname,
-    viewname,
-    sample_rows,
-    file_prefix,
-    file_prefix
-)
+-- ============================================================================
+-- GENERATE EXTRACTION COMMANDS WITH TEMPORAL STRATIFICATION
+-- ============================================================================
+SELECT 
+    CASE 
+        -- =====================================================================
+        -- DAILY VIEWS: Stratified sampling by day
+        -- =====================================================================
+        WHEN temporal_granularity = 'daily' AND temporal_column IS NOT NULL THEN
+            format(
+                '\echo ''[VIEW-DAILY] Extracting: %s (stratified: %s samples/day, last 30 days)''' || E'\n' ||
+                '\copy (' ||
+                'WITH temporal_strata AS (' ||
+                '  SELECT *, ' ||
+                '    ROW_NUMBER() OVER (PARTITION BY DATE(%I) ORDER BY random()) AS rn ' ||
+                '  FROM %I.%I ' ||
+                '  WHERE %I >= CURRENT_DATE - INTERVAL ''30 days'' ' ||
+                ') ' ||
+                'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
+                ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: daily)''' || E'\n',
+                viewname,
+                samples_per_bucket,
+                temporal_column, schemaname, viewname, temporal_column,
+                samples_per_bucket, sample_rows,
+                file_prefix, file_prefix
+            )
+        
+        -- =====================================================================
+        -- WEEKLY VIEWS: Stratified sampling by week
+        -- =====================================================================
+        WHEN temporal_granularity = 'weekly' AND temporal_column IS NOT NULL THEN
+            format(
+                '\echo ''[VIEW-WEEKLY] Extracting: %s (stratified: %s samples/week, last 6 months)''' || E'\n' ||
+                '\copy (' ||
+                'WITH temporal_strata AS (' ||
+                '  SELECT *, ' ||
+                '    ROW_NUMBER() OVER (PARTITION BY DATE_TRUNC(''week'', %I) ORDER BY random()) AS rn ' ||
+                '  FROM %I.%I ' ||
+                '  WHERE %I >= CURRENT_DATE - INTERVAL ''6 months'' ' ||
+                ') ' ||
+                'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
+                ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: weekly)''' || E'\n',
+                viewname,
+                samples_per_bucket,
+                temporal_column, schemaname, viewname, temporal_column,
+                samples_per_bucket, sample_rows,
+                file_prefix, file_prefix
+            )
+        
+        -- =====================================================================
+        -- MONTHLY VIEWS: Stratified sampling by month
+        -- =====================================================================
+        WHEN temporal_granularity = 'monthly' AND temporal_column IS NOT NULL THEN
+            format(
+                '\echo ''[VIEW-MONTHLY] Extracting: %s (stratified: %s samples/month, last 3 years)''' || E'\n' ||
+                '\copy (' ||
+                'WITH temporal_strata AS (' ||
+                '  SELECT *, ' ||
+                '    ROW_NUMBER() OVER (PARTITION BY DATE_TRUNC(''month'', %I) ORDER BY random()) AS rn ' ||
+                '  FROM %I.%I ' ||
+                '  WHERE %I >= CURRENT_DATE - INTERVAL ''3 years'' ' ||
+                ') ' ||
+                'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
+                ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: monthly)''' || E'\n',
+                viewname,
+                samples_per_bucket,
+                temporal_column, schemaname, viewname, temporal_column,
+                samples_per_bucket, sample_rows,
+                file_prefix, file_prefix
+            )
+        
+        -- =====================================================================
+        -- ANNUAL VIEWS: Stratified sampling by year
+        -- =====================================================================
+        WHEN temporal_granularity = 'annual' AND temporal_column IS NOT NULL THEN
+            format(
+                '\echo ''[VIEW-ANNUAL] Extracting: %s (stratified: %s samples/year, full history)''' || E'\n' ||
+                '\copy (' ||
+                'WITH temporal_strata AS (' ||
+                '  SELECT *, ' ||
+                '    ROW_NUMBER() OVER (PARTITION BY DATE_TRUNC(''year'', %I) ORDER BY random()) AS rn ' ||
+                '  FROM %I.%I ' ||
+                ') ' ||
+                'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
+                ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: annual)''' || E'\n',
+                viewname,
+                samples_per_bucket,
+                temporal_column, schemaname, viewname,
+                samples_per_bucket, sample_rows,
+                file_prefix, file_prefix
+            )
+        
+        -- =====================================================================
+        -- TEMPORAL TREND VIEWS: Sample across all time periods
+        -- =====================================================================
+        WHEN temporal_granularity = 'temporal_trend' AND temporal_column IS NOT NULL THEN
+            format(
+                '\echo ''[VIEW-TREND] Extracting: %s (stratified: 1 sample per time period)''' || E'\n' ||
+                '\copy (' ||
+                'WITH temporal_buckets AS (' ||
+                '  SELECT *, ' ||
+                '    DATE_TRUNC(''month'', %I) AS time_bucket, ' ||
+                '    ROW_NUMBER() OVER (PARTITION BY DATE_TRUNC(''month'', %I) ORDER BY random()) AS rn ' ||
+                '  FROM %I.%I ' ||
+                ') ' ||
+                'SELECT * FROM temporal_buckets WHERE rn = 1 ORDER BY time_bucket DESC LIMIT %s' ||
+                ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: trend)''' || E'\n',
+                viewname,
+                temporal_column, temporal_column, schemaname, viewname,
+                sample_rows,
+                file_prefix, file_prefix
+            )
+        
+        -- =====================================================================
+        -- NON-TEMPORAL VIEWS: Use random sampling (existing behavior)
+        -- =====================================================================
+        ELSE
+            format(
+                '\echo ''[VIEW] Extracting: %s (%s rows sampled of %s total)''' || E'\n' ||
+                '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n',
+                viewname,
+                sample_rows,
+                row_count,
+                schemaname,
+                viewname,
+                sample_rows,
+                file_prefix,
+                file_prefix
+            )
+    END AS extraction_command
 FROM view_extract
-ORDER BY viewname;
+ORDER BY 
+    CASE temporal_granularity
+        WHEN 'daily' THEN 1
+        WHEN 'weekly' THEN 2
+        WHEN 'monthly' THEN 3
+        WHEN 'annual' THEN 4
+        WHEN 'temporal_trend' THEN 5
+        ELSE 6
+    END,
+    viewname;
 \o
 \pset format aligned
 \pset tuples_only off
@@ -959,6 +1193,126 @@ ORDER BY viewname;
 \echo ''
 
 -- ===========================================================================
+-- SECTION 5: Generate Extraction Statistics with Temporal Distribution
+-- ===========================================================================
+\echo ''
+\echo '=================================================='
+\echo '=== PHASE 5: GENERATING EXTRACTION STATISTICS ==='
+\echo '=================================================='
+\echo ''
+
+-- Generate comprehensive statistics including temporal stratification info
+\copy (
+WITH view_temporal_classification AS (
+    SELECT 
+        CASE 
+            WHEN matviewname IS NOT NULL THEN matviewname
+            ELSE viewname
+        END AS view_name,
+        c.temporal_granularity
+    FROM (
+        SELECT viewname, NULL::text AS matviewname FROM pg_views WHERE schemaname = 'public'
+        UNION ALL
+        SELECT NULL::text AS viewname, matviewname FROM pg_matviews WHERE schemaname = 'public'
+    ) v
+    CROSS JOIN LATERAL cia_classify_temporal_view(COALESCE(matviewname, viewname)) AS c
+),
+temporal_summary AS (
+    SELECT 
+        temporal_granularity,
+        COUNT(*) AS view_count,
+        CASE temporal_granularity
+            WHEN 'daily' THEN 'Last 30 days, 2 samples/day'
+            WHEN 'weekly' THEN 'Last 6 months, 2 samples/week'
+            WHEN 'monthly' THEN 'Last 3 years, 2 samples/month'
+            WHEN 'annual' THEN 'Full history, 2 samples/year'
+            WHEN 'temporal_trend' THEN 'All time periods, 1 sample/period'
+            ELSE 'Random sampling (no temporal stratification)'
+        END AS sampling_strategy
+    FROM view_temporal_classification
+    GROUP BY temporal_granularity
+),
+overall_stats AS (
+    SELECT 
+        'OVERALL' AS category,
+        (SELECT COUNT(*) FROM pg_tables WHERE schemaname = 'public' AND tablename NOT LIKE 'qrtz_%' AND tablename NOT LIKE 'databasechange%') AS total_tables,
+        (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') AS total_views,
+        (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public') AS total_materialized_views,
+        (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public') AS total_views_all,
+        50 AS sample_size_per_object
+)
+SELECT 
+    'Temporal Stratification Summary' AS metric,
+    temporal_granularity AS granularity,
+    view_count AS count,
+    sampling_strategy AS strategy
+FROM temporal_summary
+UNION ALL
+SELECT 
+    'Overall Statistics' AS metric,
+    'Total Objects' AS granularity,
+    total_tables + total_views_all AS count,
+    'Tables: ' || total_tables || ', Views: ' || total_views || ', Mat Views: ' || total_materialized_views AS strategy
+FROM overall_stats
+UNION ALL
+SELECT 
+    'Sample Configuration' AS metric,
+    'Rows per Object' AS granularity,
+    sample_size_per_object AS count,
+    'Stratified sampling for temporal views, random for others' AS strategy
+FROM overall_stats
+ORDER BY metric, granularity
+) TO 'extraction_statistics.csv' WITH CSV HEADER;
+
+\echo '✓ Generated: extraction_statistics.csv'
+\echo ''
+\echo 'Temporal Distribution Summary:'
+\echo ''
+
+-- Display summary on console
+SELECT 
+    temporal_granularity AS "Granularity",
+    COUNT(*) AS "View Count",
+    CASE temporal_granularity
+        WHEN 'daily' THEN 'Last 30 days, 2 samples/day'
+        WHEN 'weekly' THEN 'Last 6 months, 2 samples/week'
+        WHEN 'monthly' THEN 'Last 3 years, 2 samples/month'
+        WHEN 'annual' THEN 'Full history, 2 samples/year'
+        WHEN 'temporal_trend' THEN 'All time periods, 1 sample/period'
+        ELSE 'Random sampling'
+    END AS "Sampling Strategy"
+FROM (
+    SELECT 
+        CASE 
+            WHEN matviewname IS NOT NULL THEN matviewname
+            ELSE viewname
+        END AS view_name,
+        c.temporal_granularity
+    FROM (
+        SELECT viewname, NULL::text AS matviewname FROM pg_views WHERE schemaname = 'public'
+        UNION ALL
+        SELECT NULL::text AS viewname, matviewname FROM pg_matviews WHERE schemaname = 'public'
+    ) v
+    CROSS JOIN LATERAL cia_classify_temporal_view(COALESCE(matviewname, viewname)) AS c
+) view_classification
+GROUP BY temporal_granularity
+ORDER BY 
+    CASE temporal_granularity
+        WHEN 'daily' THEN 1
+        WHEN 'weekly' THEN 2
+        WHEN 'monthly' THEN 3
+        WHEN 'annual' THEN 4
+        WHEN 'temporal_trend' THEN 5
+        ELSE 6
+    END;
+
+\echo ''
+\echo '=================================================='
+\echo '=== PHASE 5 COMPLETE: Statistics Generated    ==='
+\echo '=================================================='
+\echo ''
+
+-- ===========================================================================
 -- CLEANUP
 -- ===========================================================================
 \echo ''
@@ -969,6 +1323,9 @@ ORDER BY viewname;
 DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
 \echo 'Dropped helper function: cia_tmp_rowcount'
 
+DROP FUNCTION IF EXISTS cia_classify_temporal_view(text);
+\echo 'Dropped helper function: cia_classify_temporal_view'
+
 \echo ''
 \echo '=================================================='
 \echo 'CIA Sample Data Extraction COMPLETE'
@@ -976,7 +1333,16 @@ DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
 \echo '=================================================='
 \echo ''
 \echo 'Output files:'
-\echo '  - distinct_values/*.csv  : All distinct values for predicate columns'
-\echo '  - table_*.csv            : Sample data from tables'
-\echo '  - view_*.csv             : Sample data from views'
+\echo '  - distinct_values/*.csv      : All distinct values for predicate columns'
+\echo '  - table_*.csv                : Sample data from tables (random sampling)'
+\echo '  - view_*.csv                 : Sample data from views (temporal stratification applied)'
+\echo '  - extraction_statistics.csv  : Temporal distribution and coverage metrics'
+\echo ''
+\echo 'Temporal Stratification Applied:'
+\echo '  - Daily views: 2 samples per day over last 30 days'
+\echo '  - Weekly views: 2 samples per week over last 6 months'
+\echo '  - Monthly views: 2 samples per month over last 3 years'
+\echo '  - Annual views: 2 samples per year over full history'
+\echo '  - Temporal trend views: 1 sample per time period'
+\echo '  - Non-temporal views: Random sampling (existing behavior)'
 \echo ''
