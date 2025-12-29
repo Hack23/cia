@@ -66,6 +66,7 @@ $$;
 -- SECTION 0: REFRESH ALL MATERIALIZED VIEWS
 -- ===========================================================================
 -- This section ensures materialized views are populated before extraction
+-- Handles dependency chains by refreshing in multiple passes
 -- ===========================================================================
 
 \echo ''
@@ -75,6 +76,7 @@ $$;
 \echo ''
 \echo 'Refreshing all materialized views to ensure data is available...'
 \echo 'This is required because materialized views store cached query results.'
+\echo 'Uses multi-pass approach to handle view dependencies.'
 \echo ''
 
 DO $$
@@ -88,6 +90,9 @@ DECLARE
     duration INTERVAL;
     total_mvs INTEGER;
     row_count BIGINT;
+    pass_number INTEGER := 1;
+    max_passes INTEGER := 3;
+    views_refreshed_this_pass INTEGER;
 BEGIN
     start_time := clock_timestamp();
     
@@ -96,45 +101,83 @@ BEGIN
     
     RAISE NOTICE '================================================';
     RAISE NOTICE 'Found % materialized views to refresh', total_mvs;
+    RAISE NOTICE 'Using multi-pass approach to handle dependencies';
     RAISE NOTICE '================================================';
     RAISE NOTICE '';
     
-    -- Refresh all materialized views dynamically
-    -- Note: This uses a simple order based on view name
-    -- For complex dependency chains, a dependency-aware order would be better
-    FOR mv_record IN 
-        SELECT schemaname, matviewname
-        FROM pg_matviews
-        WHERE schemaname = 'public'
-        ORDER BY matviewname
-    LOOP
-        BEGIN
-            mv_count := mv_count + 1;
-            RAISE NOTICE '→ [%/%] Refreshing: %.%', mv_count, total_mvs,
-                mv_record.schemaname, mv_record.matviewname;
-            
-            -- Refresh the materialized view
-            EXECUTE format('REFRESH MATERIALIZED VIEW %I.%I', 
-                mv_record.schemaname, mv_record.matviewname);
-            
-            -- Check row count after refresh
-            EXECUTE format('SELECT COUNT(*) FROM %I.%I', 
-                mv_record.schemaname, mv_record.matviewname) INTO row_count;
-            
-            success_count := success_count + 1;
-            
-            IF row_count > 0 THEN
-                RAISE NOTICE '  ✓ Refreshed successfully - % rows', row_count;
-            ELSE
-                RAISE NOTICE '  ✓ Refreshed successfully - 0 rows (may be expected based on data filters)';
-            END IF;
-            RAISE NOTICE '';
-            
-        EXCEPTION WHEN OTHERS THEN
-            error_count := error_count + 1;
-            RAISE WARNING '  ✗ Failed to refresh: %', SQLERRM;
-            RAISE NOTICE '';
-        END;
+    -- Multi-pass refresh to handle dependencies
+    -- Pass 1: Refresh base views (no dependencies on other materialized views)
+    -- Pass 2-3: Refresh dependent views (may fail in early passes if dependencies not ready)
+    FOR pass_number IN 1..max_passes LOOP
+        views_refreshed_this_pass := 0;
+        
+        RAISE NOTICE '--- Pass % of % ---', pass_number, max_passes;
+        RAISE NOTICE '';
+        
+        -- Try to refresh all materialized views
+        FOR mv_record IN 
+            SELECT schemaname, matviewname
+            FROM pg_matviews
+            WHERE schemaname = 'public'
+            ORDER BY matviewname
+        LOOP
+            BEGIN
+                mv_count := mv_count + 1;
+                
+                -- Check if already populated (successful in previous pass)
+                EXECUTE format('SELECT COUNT(*) FROM %I.%I', 
+                    mv_record.schemaname, mv_record.matviewname) INTO row_count;
+                
+                -- If view has data and this is not pass 1, skip it
+                IF row_count > 0 AND pass_number > 1 THEN
+                    RAISE NOTICE '  [SKIP] %.% - already populated (% rows)', 
+                        mv_record.schemaname, mv_record.matviewname, row_count;
+                    CONTINUE;
+                END IF;
+                
+                RAISE NOTICE '→ [%/%] Refreshing: %.%', mv_count, total_mvs,
+                    mv_record.schemaname, mv_record.matviewname;
+                
+                -- Refresh the materialized view
+                EXECUTE format('REFRESH MATERIALIZED VIEW %I.%I', 
+                    mv_record.schemaname, mv_record.matviewname);
+                
+                -- Check row count after refresh
+                EXECUTE format('SELECT COUNT(*) FROM %I.%I', 
+                    mv_record.schemaname, mv_record.matviewname) INTO row_count;
+                
+                success_count := success_count + 1;
+                views_refreshed_this_pass := views_refreshed_this_pass + 1;
+                
+                IF row_count > 0 THEN
+                    RAISE NOTICE '  ✓ Refreshed successfully - % rows', row_count;
+                ELSE
+                    RAISE NOTICE '  ✓ Refreshed successfully - 0 rows (may be expected based on data filters)';
+                END IF;
+                RAISE NOTICE '';
+                
+            EXCEPTION WHEN OTHERS THEN
+                IF pass_number < max_passes THEN
+                    RAISE NOTICE '  ⏭  Deferred (will retry in next pass): %', SQLERRM;
+                ELSE
+                    error_count := error_count + 1;
+                    RAISE WARNING '  ✗ Failed to refresh after % passes: %', max_passes, SQLERRM;
+                END IF;
+                RAISE NOTICE '';
+            END;
+        END LOOP;
+        
+        RAISE NOTICE 'Pass % complete: % views refreshed', pass_number, views_refreshed_this_pass;
+        RAISE NOTICE '';
+        
+        -- If no views were refreshed in this pass, stop early
+        IF views_refreshed_this_pass = 0 THEN
+            RAISE NOTICE 'No views refreshed in this pass - stopping early';
+            EXIT;
+        END IF;
+        
+        -- Reset counter for next pass
+        mv_count := 0;
     END LOOP;
     
     end_time := clock_timestamp();
