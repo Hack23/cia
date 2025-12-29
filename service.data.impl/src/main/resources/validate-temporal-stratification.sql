@@ -164,20 +164,40 @@ BEGIN
     END IF;
 END $$;
 
--- Show daily temporal buckets
-SELECT 
-    DATE(embedded_id_vote_date) AS "Date",
-    COUNT(*) AS "Total Rows",
-    LEAST(2, COUNT(*)) AS "Sampled Rows"
-FROM view_riksdagen_vote_data_ballot_politician_summary_daily
-WHERE embedded_id_vote_date >= CURRENT_DATE - INTERVAL '30 days'
-GROUP BY DATE(embedded_id_vote_date)
-ORDER BY DATE(embedded_id_vote_date) DESC
-LIMIT 10;
-
-\echo ''
-\echo '(Showing last 10 days of daily view data)'
-\echo ''
+-- Show daily temporal buckets (only if view exists)
+DO $$
+DECLARE
+    view_exists BOOLEAN;
+    sql_query TEXT;
+BEGIN
+    SELECT EXISTS (
+        SELECT 1 FROM pg_matviews 
+        WHERE schemaname = 'public' 
+        AND matviewname = 'view_riksdagen_vote_data_ballot_politician_summary_daily'
+    ) INTO view_exists;
+    
+    IF view_exists THEN
+        EXECUTE '
+            SELECT 
+                DATE(embedded_id_vote_date) AS "Date",
+                COUNT(*) AS "Total Rows",
+                LEAST(2, COUNT(*)) AS "Sampled Rows"
+            FROM view_riksdagen_vote_data_ballot_politician_summary_daily
+            WHERE embedded_id_vote_date >= CURRENT_DATE - INTERVAL ''30 days''
+            GROUP BY DATE(embedded_id_vote_date)
+            ORDER BY DATE(embedded_id_vote_date) DESC
+            LIMIT 10
+        ';
+        
+        RAISE NOTICE '';
+        RAISE NOTICE '(Showing last 10 days of daily view data)';
+        RAISE NOTICE '';
+    ELSE
+        RAISE NOTICE '';
+        RAISE NOTICE 'Daily view not found - skipping preview';
+        RAISE NOTICE '';
+    END IF;
+END $$;
 
 -- Monthly view example (if exists)
 DO $$
@@ -200,20 +220,40 @@ BEGIN
     END IF;
 END $$;
 
--- Show monthly temporal buckets
-SELECT 
-    TO_CHAR(embedded_id_vote_date, 'YYYY-MM') AS "Month",
-    COUNT(*) AS "Total Rows",
-    LEAST(2, COUNT(*)) AS "Sampled Rows"
-FROM view_riksdagen_vote_data_ballot_party_summary_monthly
-WHERE embedded_id_vote_date >= CURRENT_DATE - INTERVAL '3 years'
-GROUP BY TO_CHAR(embedded_id_vote_date, 'YYYY-MM')
-ORDER BY TO_CHAR(embedded_id_vote_date, 'YYYY-MM') DESC
-LIMIT 12;
-
-\echo ''
-\echo '(Showing last 12 months of monthly view data)'
-\echo ''
+-- Show monthly temporal buckets (only if view exists)
+DO $$
+DECLARE
+    view_exists BOOLEAN;
+    sql_query TEXT;
+BEGIN
+    SELECT EXISTS (
+        SELECT 1 FROM pg_matviews 
+        WHERE schemaname = 'public' 
+        AND matviewname = 'view_riksdagen_vote_data_ballot_party_summary_monthly'
+    ) INTO view_exists;
+    
+    IF view_exists THEN
+        EXECUTE '
+            SELECT 
+                TO_CHAR(embedded_id_vote_date, ''YYYY-MM'') AS "Month",
+                COUNT(*) AS "Total Rows",
+                LEAST(2, COUNT(*)) AS "Sampled Rows"
+            FROM view_riksdagen_vote_data_ballot_party_summary_monthly
+            WHERE embedded_id_vote_date >= CURRENT_DATE - INTERVAL ''3 years''
+            GROUP BY TO_CHAR(embedded_id_vote_date, ''YYYY-MM'')
+            ORDER BY TO_CHAR(embedded_id_vote_date, ''YYYY-MM'') DESC
+            LIMIT 12
+        ';
+        
+        RAISE NOTICE '';
+        RAISE NOTICE '(Showing last 12 months of monthly view data)';
+        RAISE NOTICE '';
+    ELSE
+        RAISE NOTICE '';
+        RAISE NOTICE 'Monthly view not found - skipping preview';
+        RAISE NOTICE '';
+    END IF;
+END $$;
 
 -- ===========================================================================
 -- SECTION 4: Validation Summary
