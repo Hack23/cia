@@ -63,7 +63,50 @@ $$;
 \echo ''
 
 -- ===========================================================================
--- SECTION 0: REFRESH ALL MATERIALIZED VIEWS
+-- SECTION 0.1: CREATE HELPER FUNCTIONS
+-- ===========================================================================
+-- Create reusable function for temporal view classification
+-- This eliminates code duplication and ensures consistency
+-- ===========================================================================
+
+DROP FUNCTION IF EXISTS cia_classify_temporal_view(text);
+CREATE OR REPLACE FUNCTION cia_classify_temporal_view(p_viewname text)
+RETURNS TABLE (temporal_granularity text, samples_per_bucket integer)
+LANGUAGE sql
+IMMUTABLE
+AS $$
+    SELECT
+        CASE 
+            -- Daily granularity: 2 samples per day over last 30 days (60 samples max)
+            WHEN p_viewname LIKE '%_daily%' THEN 'daily'
+            -- Weekly granularity: 2 samples per week over last 6 months (52 samples max)
+            WHEN p_viewname LIKE '%_weekly%' THEN 'weekly'
+            -- Monthly granularity: 2 samples per month over last 3 years (72 samples max)
+            WHEN p_viewname LIKE '%_monthly%' THEN 'monthly'
+            -- Annual granularity: 2 samples per year over full history
+            WHEN p_viewname LIKE '%_annual%' THEN 'annual'
+            -- Temporal trend views: mixed strategy (all available time periods)
+            WHEN p_viewname LIKE '%_temporal%' OR p_viewname LIKE '%_trend%' 
+                 OR p_viewname LIKE '%_evolution%' OR p_viewname LIKE '%_momentum%' THEN 'temporal_trend'
+            -- Non-temporal views: use random sampling
+            ELSE 'non_temporal'
+        END AS temporal_granularity,
+        CASE 
+            WHEN p_viewname LIKE '%_daily%' THEN 2
+            WHEN p_viewname LIKE '%_weekly%' THEN 2
+            WHEN p_viewname LIKE '%_monthly%' THEN 2
+            WHEN p_viewname LIKE '%_annual%' THEN 2
+            WHEN p_viewname LIKE '%_temporal%' OR p_viewname LIKE '%_trend%' 
+                 OR p_viewname LIKE '%_evolution%' OR p_viewname LIKE '%_momentum%' THEN 1
+            ELSE 0
+        END AS samples_per_bucket;
+$$;
+
+\echo 'Created helper function: cia_classify_temporal_view'
+\echo ''
+
+-- ===========================================================================
+-- SECTION 0.2: REFRESH ALL MATERIALIZED VIEWS
 -- ===========================================================================
 -- This section ensures materialized views are populated before extraction
 -- Handles dependency chains by refreshing in multiple passes
@@ -923,38 +966,18 @@ WITH view_counts AS (
 -- ============================================================================
 -- Identify views by temporal granularity based on naming patterns
 -- This enables stratified sampling across time periods
+-- Uses reusable cia_classify_temporal_view() function
 -- ============================================================================
 view_temporal_classification AS (
     SELECT 
-        schemaname,
-        viewname,
-        row_count,
-        CASE 
-            -- Daily granularity: 2 samples per day over last 30 days (60 samples max)
-            WHEN viewname LIKE '%_daily%' THEN 'daily'
-            -- Weekly granularity: 2 samples per week over last 6 months (52 samples max)
-            WHEN viewname LIKE '%_weekly%' THEN 'weekly'
-            -- Monthly granularity: 2 samples per month over last 3 years (72 samples max)
-            WHEN viewname LIKE '%_monthly%' THEN 'monthly'
-            -- Annual granularity: 2 samples per year over full history
-            WHEN viewname LIKE '%_annual%' THEN 'annual'
-            -- Temporal trend views: mixed strategy (all available time periods)
-            WHEN viewname LIKE '%_temporal%' OR viewname LIKE '%_trend%' 
-                 OR viewname LIKE '%_evolution%' OR viewname LIKE '%_momentum%' THEN 'temporal_trend'
-            -- Non-temporal views: use random sampling
-            ELSE 'non_temporal'
-        END AS temporal_granularity,
-        CASE 
-            WHEN viewname LIKE '%_daily%' THEN 2
-            WHEN viewname LIKE '%_weekly%' THEN 2
-            WHEN viewname LIKE '%_monthly%' THEN 2
-            WHEN viewname LIKE '%_annual%' THEN 2
-            WHEN viewname LIKE '%_temporal%' OR viewname LIKE '%_trend%' 
-                 OR viewname LIKE '%_evolution%' OR viewname LIKE '%_momentum%' THEN 1
-            ELSE 0
-        END AS samples_per_bucket
-    FROM view_counts
-    WHERE row_count > 0
+        vc.schemaname,
+        vc.viewname,
+        vc.row_count,
+        c.temporal_granularity,
+        c.samples_per_bucket
+    FROM view_counts vc
+    CROSS JOIN LATERAL cia_classify_temporal_view(vc.viewname) AS c
+    WHERE vc.row_count > 0
 ),
 -- ============================================================================
 -- TEMPORAL COLUMN DETECTION
@@ -1186,22 +1209,13 @@ WITH view_temporal_classification AS (
             WHEN matviewname IS NOT NULL THEN matviewname
             ELSE viewname
         END AS view_name,
-        CASE 
-            WHEN matviewname LIKE '%_daily%' OR viewname LIKE '%_daily%' THEN 'daily'
-            WHEN matviewname LIKE '%_weekly%' OR viewname LIKE '%_weekly%' THEN 'weekly'
-            WHEN matviewname LIKE '%_monthly%' OR viewname LIKE '%_monthly%' THEN 'monthly'
-            WHEN matviewname LIKE '%_annual%' OR viewname LIKE '%_annual%' THEN 'annual'
-            WHEN matviewname LIKE '%_temporal%' OR matviewname LIKE '%_trend%' 
-                 OR matviewname LIKE '%_evolution%' OR matviewname LIKE '%_momentum%'
-                 OR viewname LIKE '%_temporal%' OR viewname LIKE '%_trend%' 
-                 OR viewname LIKE '%_evolution%' OR viewname LIKE '%_momentum%' THEN 'temporal_trend'
-            ELSE 'non_temporal'
-        END AS temporal_granularity
+        c.temporal_granularity
     FROM (
         SELECT viewname, NULL::text AS matviewname FROM pg_views WHERE schemaname = 'public'
         UNION ALL
         SELECT NULL::text AS viewname, matviewname FROM pg_matviews WHERE schemaname = 'public'
     ) v
+    CROSS JOIN LATERAL cia_classify_temporal_view(COALESCE(matviewname, viewname)) AS c
 ),
 temporal_summary AS (
     SELECT 
@@ -1273,22 +1287,13 @@ FROM (
             WHEN matviewname IS NOT NULL THEN matviewname
             ELSE viewname
         END AS view_name,
-        CASE 
-            WHEN matviewname LIKE '%_daily%' OR viewname LIKE '%_daily%' THEN 'daily'
-            WHEN matviewname LIKE '%_weekly%' OR viewname LIKE '%_weekly%' THEN 'weekly'
-            WHEN matviewname LIKE '%_monthly%' OR viewname LIKE '%_monthly%' THEN 'monthly'
-            WHEN matviewname LIKE '%_annual%' OR viewname LIKE '%_annual%' THEN 'annual'
-            WHEN matviewname LIKE '%_temporal%' OR matviewname LIKE '%_trend%' 
-                 OR matviewname LIKE '%_evolution%' OR matviewname LIKE '%_momentum%'
-                 OR viewname LIKE '%_temporal%' OR viewname LIKE '%_trend%' 
-                 OR viewname LIKE '%_evolution%' OR viewname LIKE '%_momentum%' THEN 'temporal_trend'
-            ELSE 'non_temporal'
-        END AS temporal_granularity
+        c.temporal_granularity
     FROM (
         SELECT viewname, NULL::text AS matviewname FROM pg_views WHERE schemaname = 'public'
         UNION ALL
         SELECT NULL::text AS viewname, matviewname FROM pg_matviews WHERE schemaname = 'public'
     ) v
+    CROSS JOIN LATERAL cia_classify_temporal_view(COALESCE(matviewname, viewname)) AS c
 ) view_classification
 GROUP BY temporal_granularity
 ORDER BY 
@@ -1317,6 +1322,9 @@ ORDER BY
 
 DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
 \echo 'Dropped helper function: cia_tmp_rowcount'
+
+DROP FUNCTION IF EXISTS cia_classify_temporal_view(text);
+\echo 'Dropped helper function: cia_classify_temporal_view'
 
 \echo ''
 \echo '=================================================='
