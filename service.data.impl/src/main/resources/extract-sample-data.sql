@@ -110,7 +110,7 @@ BEGIN
     -- Pass 2-3: Refresh dependent views (may fail in early passes if dependencies not ready)
     FOR pass_number IN 1..max_passes LOOP
         views_refreshed_this_pass := 0;
-        current_pass_number := 1;
+        current_pass_number := 0;
         
         RAISE NOTICE '--- Pass % of % ---', pass_number, max_passes;
         RAISE NOTICE '';
@@ -123,21 +123,22 @@ BEGIN
             ORDER BY matviewname
         LOOP
             BEGIN
+                current_pass_number := current_pass_number + 1;
+                
                 -- Check if already populated (successful in previous pass)
                 EXECUTE format('SELECT COUNT(*) FROM %I.%I', 
                     mv_record.schemaname, mv_record.matviewname) INTO row_count;
                 
                 -- If view has data and this is not pass 1, skip it
                 IF row_count > 0 AND pass_number > 1 THEN
-                    RAISE NOTICE '  [SKIP %/%] %.% - already populated (% rows)', 
+                    RAISE NOTICE '  [%/%] SKIP %.% - already populated (% rows)', 
                         current_pass_number, total_mvs,
                         mv_record.schemaname, mv_record.matviewname, row_count;
-                    current_pass_number := current_pass_number + 1;
                     CONTINUE;
                 END IF;
                 
-                RAISE NOTICE '→ [Pass % - View %/%] Refreshing: %.%', 
-                    pass_number, current_pass_number, total_mvs,
+                RAISE NOTICE '→ [%/%] Pass % - Refreshing: %.%', 
+                    current_pass_number, total_mvs, pass_number,
                     mv_record.schemaname, mv_record.matviewname;
                 
                 -- Refresh the materialized view
@@ -167,8 +168,6 @@ BEGIN
                 END IF;
                 RAISE NOTICE '';
             END;
-            
-            current_pass_number := current_pass_number + 1;
         END LOOP;
         
         RAISE NOTICE 'Pass % complete: % views refreshed', pass_number, views_refreshed_this_pass;
