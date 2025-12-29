@@ -63,6 +63,104 @@ $$;
 \echo ''
 
 -- ===========================================================================
+-- SECTION 0: REFRESH ALL MATERIALIZED VIEWS
+-- ===========================================================================
+-- This section ensures materialized views are populated before extraction
+-- ===========================================================================
+
+\echo ''
+\echo '=================================================='
+\echo '=== PHASE 0: REFRESH MATERIALIZED VIEWS       ==='
+\echo '=================================================='
+\echo ''
+\echo 'Refreshing all materialized views to ensure data is available...'
+\echo 'This is required because materialized views store cached query results.'
+\echo ''
+
+DO $$
+DECLARE
+    mv_record RECORD;
+    mv_count INTEGER := 0;
+    success_count INTEGER := 0;
+    error_count INTEGER := 0;
+    start_time TIMESTAMP;
+    end_time TIMESTAMP;
+    duration INTERVAL;
+    total_mvs INTEGER;
+    row_count BIGINT;
+BEGIN
+    start_time := clock_timestamp();
+    
+    -- Get total count for progress reporting
+    SELECT COUNT(*) INTO total_mvs FROM pg_matviews WHERE schemaname = 'public';
+    
+    RAISE NOTICE '================================================';
+    RAISE NOTICE 'Found % materialized views to refresh', total_mvs;
+    RAISE NOTICE '================================================';
+    RAISE NOTICE '';
+    
+    -- Refresh all materialized views dynamically
+    -- Note: This uses a simple order based on view name
+    -- For complex dependency chains, a dependency-aware order would be better
+    FOR mv_record IN 
+        SELECT schemaname, matviewname
+        FROM pg_matviews
+        WHERE schemaname = 'public'
+        ORDER BY matviewname
+    LOOP
+        BEGIN
+            mv_count := mv_count + 1;
+            RAISE NOTICE '→ [%/%] Refreshing: %.%', mv_count, total_mvs,
+                mv_record.schemaname, mv_record.matviewname;
+            
+            -- Refresh the materialized view
+            EXECUTE format('REFRESH MATERIALIZED VIEW %I.%I', 
+                mv_record.schemaname, mv_record.matviewname);
+            
+            -- Check row count after refresh
+            EXECUTE format('SELECT COUNT(*) FROM %I.%I', 
+                mv_record.schemaname, mv_record.matviewname) INTO row_count;
+            
+            success_count := success_count + 1;
+            
+            IF row_count > 0 THEN
+                RAISE NOTICE '  ✓ Refreshed successfully - % rows', row_count;
+            ELSE
+                RAISE NOTICE '  ✓ Refreshed successfully - 0 rows (may be expected based on data filters)';
+            END IF;
+            RAISE NOTICE '';
+            
+        EXCEPTION WHEN OTHERS THEN
+            error_count := error_count + 1;
+            RAISE WARNING '  ✗ Failed to refresh: %', SQLERRM;
+            RAISE NOTICE '';
+        END;
+    END LOOP;
+    
+    end_time := clock_timestamp();
+    duration := end_time - start_time;
+    
+    RAISE NOTICE '';
+    RAISE NOTICE '================================================';
+    RAISE NOTICE 'Materialized view refresh summary:';
+    RAISE NOTICE '  Total views: %', total_mvs;
+    RAISE NOTICE '  Successfully refreshed: %', success_count;
+    RAISE NOTICE '  Errors: %', error_count;
+    RAISE NOTICE '  Duration: %', duration;
+    RAISE NOTICE '================================================';
+    RAISE NOTICE '';
+    
+    IF error_count > 0 THEN
+        RAISE WARNING 'Some materialized views failed to refresh. Sample data for these views may be incomplete.';
+    END IF;
+END $$;
+
+\echo '=================================================='
+\echo '=== PHASE 0 COMPLETE: Materialized Views Refreshed ==='
+\echo '=================================================='
+\echo ''
+
+-- ===========================================================================
 -- SECTION 1: EARLY DISTINCT VALUE EXTRACTION (Before View Analysis)
 -- ===========================================================================
 -- This section extracts ALL distinct values from columns likely used in 
