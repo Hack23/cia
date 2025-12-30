@@ -484,7 +484,7 @@
     <dependency>
       <groupId>org.htmlunit</groupId>
       <artifactId>htmlunit</artifactId>
-      <version>4.20.0</version>
+      <version>4.21.0</version>
       <exclusions>
         <exclusion>
           <groupId>commons-codec</groupId>
@@ -602,7 +602,7 @@
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-context</artifactId>
-      <version>1.77.0</version>
+      <version>1.78.0</version>
     </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>

@@ -1,39 +1,39 @@
 value,count
-"",89425
+"",89729
 Ank T,25591
-Klar,22477
+Klar,22587
 korrekturläst,22063
-inträffat,15050
+inträffat,15135
 Trycklov,10630
-Inkommen,9852
-Besvarad,9656
+Inkommen,9953
+Besvarad,9822
 hämtad,6479
-Hänvisad,4017
+Hänvisad,3943
 hämtad_2,2565
-Webbpublicering,2207
-Skickad,1789
+Webbpublicering,2239
+Skickad,1778
+planerat,1577
 titel,1559
 ok,1527
-planerat,1477
-Publicerad,1287
-justerat,1130
-Tidigare riksdagsledamot,1117
+Publicerad,1309
+justerat,1144
+Tidigare riksdagsledamot,1116
 DokTextExtraktor,759
-Återtagen,584
+Återtagen,593
 saknas,470
 Inga uppdrag,402
-Tjänstgörande riksdagsledamot,323
+Tjänstgörande riksdagsledamot,325
 ANKT,292
 digitaliserad,283
 slutlig,283
 Avslag,273
 Original,262
-Avslutad,233
-doktextextraktor,217
+Avslutad,235
+doktextextraktor,231
 Tidigare ersättare,202
 Utgången,200
-Tillgänglig ersättare,126
-Pågående,125
+Tillgänglig ersättare,128
+Pågående,127
 Avslutad 2008,124
 Upphävd,124
 Avslutad 2005,115
@@ -61,10 +61,10 @@ Avvisat,54
 Gällande,54
 fel,53
 Inte besvarad,41
-Granskad,40
 Avslutad 2019,36
+Granskad,34
+Avgången riksdagsledamot,30
 Status saknas,30
-Avgången riksdagsledamot,29
 felkonverterat,27
 Utskick 2,25
 Avslutad 2020,24
@@ -82,9 +82,9 @@ Tidigare personlig suppleant i Styrelsen för Stiftelsen Riksbankens Jubileumsfo
 Tjänstgörande statsrådsersättare,13
 Förfallen,12
 Avskrivet,10
-Tjänstgörande ersättare,10
-Tjänstledig riksdagsledamot,9
+Tjänstgörande ersättare,8
 Delvis bifall,7
+Tjänstledig riksdagsledamot,7
 Ledamot i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,5
 Tidigare riksrevisor i Riksrevisorerna,5
 Personlig suppleant i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,4
@@ -110,6 +110,7 @@ Avliden  2021-07-07,2
 Avliden  2021-07-31,2
 Avliden  2021-12-19,2
 Avliden  2024-07-02,2
+Ledamot i Nämnden för lön till riksdagens ombudsmän och riksrevisorn,2
 Ledamot i Nämnden för prövning av statsråds och vissa andra befattningshavares övergångsrestriktione,2
 Ledamot i Partibidragsnämnden,2
 Ledamot i Riksdagens arvodesnämnd,2
@@ -421,6 +422,7 @@ Avliden  2025-09-07,1
 Avliden  2025-09-25,1
 Avliden  2025-11-01,1
 Avliden  2025-11-08,1
+Avliden  2025-11-28,1
 Avsltuad 2004,1
 "Avslutad 2008
 ",1
@@ -429,6 +431,7 @@ Avslutda 2008,1
 Avsutad 2002,1
 Bistånds- och utrikeshandelsminister,1
 Blivande ledamot i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,1
+Blivande personlig suppleant i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,1
 Bokstavskommitté,1
 Chefsjustitieombudsman i Riksdagens ombudsmän,1
 Civilminister,1
@@ -449,7 +452,6 @@ Jämställdhetsminister,1
 Klimat- och miljöminister,1
 Kulturminister,1
 Landsbygdsminister,1
-Ledamot i Nämnden för lön till riksdagens ombudsmän och riksrevisorn,1
 Ledamot i Riksdagens ansvarsnämnd,1
 Ledamot i Valprövningsnämnden,1
 Migrationsminister,1
@@ -461,7 +463,6 @@ Ordförande i Riksdagens överklagandenämnd,1
 Ordförande i Statsrådsarvodesnämnden,1
 Ordförande i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,1
 Ordförande i Valprövningsnämnden,1
-Preliminär,1
 Riksrevisionsdirektör i Riksrevisorerna,1
 Sjukvårdsminister,1
 Socialminister,1

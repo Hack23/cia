@@ -1,4 +1,30 @@
 org_code,short_code,name,year,documents_produced,propositions,government_bills,unique_contributors,earliest_document,latest_document,median_documents,avg_documents,p25_documents,p75_documents,pct_vs_average,productivity_quartile,performance_assessment
-Ku,Ku,Kulturdepartementet,2024,154,0,0,0,2024-02-07,2024-12-20,154,154.0000000000000000,154,154,0.00,TOP_QUARTILE,High-performing ministry
-Ku,Ku,Kulturdepartementet,2025,319,0,0,0,2025-01-01,2025-11-12,319,319.0000000000000000,319,319,0.00,TOP_QUARTILE,High-performing ministry
-Ku,Ku,Kulturdepartementet,2023,127,0,0,0,2023-02-08,2023-11-13,127,127.0000000000000000,127,127,0.00,TOP_QUARTILE,High-performing ministry
+LI,LI,Landsbygds- och infrastrukturdepartementet,2023,4,4,0,0,2023-03-14,2023-12-21,4,5.5555555555555556,3,5,-28.00,ABOVE_MEDIAN,Standard ministry performance
+A,A,Arbetsmarknadsdepartementet,2025,3,3,0,0,2025-03-18,2025-10-07,10,17.5454545454545455,6.5,23.5,-82.90,BOTTOM_QUARTILE,Underperforming ministry - review needed
+SB,SB,Statsrådsberedningen,2024,2,2,0,0,2024-03-19,2024-03-19,4,6.4444444444444444,3,5,-68.97,BOTTOM_QUARTILE,Underperforming ministry - review needed
+Fö,Fö,Försvarsdepartementet,2023,3,3,0,0,2023-03-14,2023-12-21,4,5.5555555555555556,3,5,-46.00,BELOW_MEDIAN,Standard ministry performance
+Ju,Ju,Justitiedepartementet,2023,12,12,0,0,2023-03-14,2023-12-21,4,5.5555555555555556,3,5,116.00,TOP_QUARTILE,High-performing ministry
+S,S,Socialdepartementet,2024,1,1,0,0,2024-09-03,2024-09-03,4,6.4444444444444444,3,5,-84.48,BOTTOM_QUARTILE,Underperforming ministry - review needed
+Fi,Fi,Finansdepartementet,2024,20,20,0,0,2024-02-01,2024-12-23,4,6.4444444444444444,3,5,210.34,TOP_QUARTILE,High-performing ministry
+S,S,Socialdepartementet,2025,26,26,0,0,2025-01-10,2025-11-25,10,17.5454545454545455,6.5,23.5,48.19,TOP_QUARTILE,High-performing ministry
+Fö,Fö,Försvarsdepartementet,2025,9,9,0,0,2025-03-20,2025-11-04,10,17.5454545454545455,6.5,23.5,-48.70,BELOW_MEDIAN,Standard ministry performance
+Fi,Fi,Finansdepartementet,2025,55,55,0,0,2025-01-21,2025-11-25,10,17.5454545454545455,6.5,23.5,213.47,TOP_QUARTILE,High-performing ministry
+LI,LI,Landsbygds- och infrastrukturdepartementet,2024,4,4,0,0,2024-04-11,2024-10-03,4,6.4444444444444444,3,5,-37.93,ABOVE_MEDIAN,Standard ministry performance
+SB,SB,Statsrådsberedningen,2023,3,3,0,0,2023-03-14,2023-03-16,4,5.5555555555555556,3,5,-46.00,BELOW_MEDIAN,Standard ministry performance
+U,U,Utbildningsdepartementet,2025,10,10,0,0,2025-02-18,2025-11-25,10,17.5454545454545455,6.5,23.5,-43.01,ABOVE_MEDIAN,Standard ministry performance
+Ju,Ju,Justitiedepartementet,2024,15,15,0,0,2024-01-08,2024-10-01,4,6.4444444444444444,3,5,132.76,TOP_QUARTILE,High-performing ministry
+S,S,Socialdepartementet,2023,3,3,0,0,2023-06-20,2023-12-19,4,5.5555555555555556,3,5,-46.00,BELOW_MEDIAN,Standard ministry performance
+Ku,Ku,Kulturdepartementet,2024,3,3,0,0,2024-03-19,2024-04-09,4,6.4444444444444444,3,5,-53.45,BELOW_MEDIAN,Standard ministry performance
+U,U,Utbildningsdepartementet,2023,4,4,0,0,2023-01-01,2023-10-03,4,5.5555555555555556,3,5,-28.00,ABOVE_MEDIAN,Standard ministry performance
+Ju,Ju,Justitiedepartementet,2025,37,37,0,0,2025-01-22,2025-11-25,10,17.5454545454545455,6.5,23.5,110.88,TOP_QUARTILE,High-performing ministry
+UD,UD,Utrikesdepartementet,2025,9,9,0,0,2025-03-06,2025-10-27,10,17.5454545454545455,6.5,23.5,-48.70,BELOW_MEDIAN,Standard ministry performance
+KN,KN,Klimat- och näringslivsdepartementet,2023,5,5,0,0,2023-10-03,2023-12-21,4,5.5555555555555556,3,5,-10.00,TOP_QUARTILE,High-performing ministry
+Ku,Ku,Kulturdepartementet,2023,1,1,0,0,2023-06-20,2023-06-20,4,5.5555555555555556,3,5,-82.00,BOTTOM_QUARTILE,Underperforming ministry - review needed
+A,A,Arbetsmarknadsdepartementet,2024,3,3,0,0,2024-04-09,2024-09-17,4,6.4444444444444444,3,5,-53.45,BELOW_MEDIAN,Standard ministry performance
+Fi,Fi,Finansdepartementet,2023,15,15,0,0,2023-03-14,2023-12-19,4,5.5555555555555556,3,5,170.00,TOP_QUARTILE,High-performing ministry
+KN,KN,Klimat- och näringslivsdepartementet,2024,5,5,0,0,2024-03-19,2024-09-17,4,6.4444444444444444,3,5,-22.41,TOP_QUARTILE,High-performing ministry
+UD,UD,Utrikesdepartementet,2024,5,5,0,0,2024-03-19,2024-09-17,4,6.4444444444444444,3,5,-22.41,TOP_QUARTILE,High-performing ministry
+Ku,Ku,Kulturdepartementet,2025,4,4,0,0,2025-04-30,2025-09-16,10,17.5454545454545455,6.5,23.5,-77.20,BOTTOM_QUARTILE,Underperforming ministry - review needed
+LI,LI,Landsbygds- och infrastrukturdepartementet,2025,21,21,0,0,2025-01-21,2025-11-18,10,17.5454545454545455,6.5,23.5,19.69,ABOVE_MEDIAN,Standard ministry performance
+KN,KN,Klimat- och näringslivsdepartementet,2025,16,16,0,0,2025-01-16,2025-11-11,10,17.5454545454545455,6.5,23.5,-8.81,ABOVE_MEDIAN,Standard ministry performance
+SB,SB,Statsrådsberedningen,2025,3,3,0,0,2025-03-06,2025-03-18,10,17.5454545454545455,6.5,23.5,-82.90,BOTTOM_QUARTILE,Underperforming ministry - review needed

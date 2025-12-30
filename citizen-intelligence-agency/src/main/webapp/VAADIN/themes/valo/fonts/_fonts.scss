@@ -1,0 +1,64 @@
+// Not included automatically, only if $v-font-family specifies them
+@import "open-sans/open-sans";
+@import "source-sans-pro/source-sans-pro";
+@import "roboto/roboto";
+@import "lato/lato";
+@import "lora/lora";
+@import "vaadin-icons/vaadin-icons.scss";
+
+/// Include VaadinIcons. They are included in Valo
+/// since Vaadin Framework version 8.0 (#7979)
+/// https://vaadin.com/icons
+
+$v-icons: true !default;
+
+/// Set the value of this variable to `false` if you want to exclude the Font Awesome icons.
+/// Only included to ease migration, and will not be updated in the future.
+/// We encourage you to use the FontAwesomeLabel add-on from the Directory instead:
+/// https://vaadin.com/directory/#!addon/fontawesomelabel
+$v-font-awesome: true !default;
+
+$font-icons-pathPrefix: null;
+
+@if $v-relative-paths == true {
+  $font-icons-pathPrefix: "../../../";
+}
+
+@mixin valo-fonts {
+  // Valo Icons
+  @include v-font(ThemeIcons, "#{$font-icons-pathPrefix}../valo/fonts/themeicons-webfont/themeicons-webfont");
+  // Vaadin Icons
+  @if $v-icons {
+      @include vaadin-icons;
+  }
+  // FontAwesome
+  @if $v-font-awesome {
+    @include v-font(FontAwesome, "#{$font-icons-pathPrefix}../valo/fonts/fontawesome-webfont/fontawesome-webfont");
+  }
+}
+
+@mixin v-font($font-family, $file-name) {
+  @include font-face($font-family, $file-name);
+
+  .#{$font-family} {
+      font-family: #{$font-family};
+      font-style: normal;
+      font-weight: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: inline-block;
+      text-align: center;
+  }
+}
+
+
+@mixin font($font-family, $file-name) {
+  @warn "The 'font' mixin is DEPRECATED. You should use the corresponding 'v-font' mixin instead.";
+  @include v-font($font-family, $file-name);
+}
+
+
+
+// Include directly to avoid trapping inside a parent selector
+// TODO move inside the theme main mixin once we can use Sass 3.3 (@at-root)
+@include valo-fonts;

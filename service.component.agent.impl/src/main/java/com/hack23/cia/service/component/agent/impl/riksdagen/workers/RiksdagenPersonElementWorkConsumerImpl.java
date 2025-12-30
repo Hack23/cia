@@ -73,8 +73,11 @@ final class RiksdagenPersonElementWorkConsumerImpl extends AbstractMessageListen
 			updateService.update(riksdagenApi
 					.getPerson(((PersonElement) ((ObjectMessage) message)
 							.getObject()).getId()));
-		} catch (final DataFailureException | JMSException e) {
-			LOGGER.warn("Error loading PersonElement",e);
+		} catch (final DataFailureException e) {
+			// Expected for non-existent persons - will retry on next scheduled run
+			LOGGER.debug("Person data not available (expected for some IDs): {}", e.getMessage());
+		} catch (final JMSException e) {
+			LOGGER.warn("JMS error processing PersonElement", e);
 		} finally {
 			clearAuthentication();
 		}

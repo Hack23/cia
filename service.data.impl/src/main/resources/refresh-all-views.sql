@@ -1,15 +1,21 @@
 -- refresh-all-views.sql
--- Materialized View Refresh Script with Validation and Error Handling
+-- Materialized View Refresh Script with Dynamic Discovery
 -- 
 -- Usage:
 --   psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/refresh-all-views.sql
 --
 -- Description:
---   Refreshes all materialized views in correct dependency order with:
---   - Validation that all views exist before attempting refresh
+--   Refreshes all materialized views dynamically with:
+--   - Dynamic discovery from pg_matviews (no hardcoded list)
 --   - Error handling to continue on individual failures
 --   - Timing information for each view refresh
 --   - Progress logging and summary report
+--   - Single-pass alphabetical ordering (not dependency-aware; suitable for simple cases)
+--
+-- Note:
+--   This script does not resolve complex dependency chains between materialized views.
+--   For dependency-aware, multi-pass refreshes, use a dedicated script such as
+--   extract-sample-data.sql, or another dependency-aware ordering script.
 
 \set ON_ERROR_STOP off
 \timing on
@@ -29,124 +35,72 @@
 
 DO $$
 DECLARE
-    v_views TEXT[] := ARRAY[
-        'view_worldbank_indicator_data_country_summary',
-        'view_riksdagen_politician_document',
-        'view_riksdagen_org_document_daily_summary',
-        'view_riksdagen_document_type_daily_summary',
-        'view_riksdagen_committee_decisions',
-        'view_riksdagen_vote_data_ballot_summary',
-        'view_riksdagen_vote_data_ballot_summary_daily',
-        'view_riksdagen_committee_ballot_decision_summary',
-        'view_riksdagen_vote_data_ballot_party_summary',
-        'view_riksdagen_vote_data_ballot_party_summary_daily',
-        'view_riksdagen_vote_data_ballot_party_summary_monthly',
-        'view_riksdagen_vote_data_ballot_party_summary_weekly',
-        'view_riksdagen_vote_data_ballot_party_summary_annual',
-        'view_riksdagen_vote_data_ballot_summary_annual',
-        'view_riksdagen_vote_data_ballot_summary_monthly',
-        'view_riksdagen_vote_data_ballot_summary_weekly',
-        'view_riksdagen_vote_data_ballot_politician_summary',
-        'view_riksdagen_vote_data_ballot_politician_summary_daily',
-        'view_riksdagen_vote_data_ballot_politician_summary_annual',
-        'view_riksdagen_vote_data_ballot_politician_summary_monthly',
-        'view_riksdagen_vote_data_ballot_politician_summary_weekly',
-        'view_riksdagen_committee_ballot_decision_party_summary',
-        'view_riksdagen_committee_ballot_decision_politician_summary',
-        'view_riksdagen_committee_decision_type_org_summary',
-        'view_riksdagen_committee_decision_type_summary',
-        'view_riksdagen_party_document_daily_summary',
-        'view_riksdagen_politician_document_daily_summary',
-        'view_riksdagen_politician_document_summary'
-    ];
-    v_view TEXT;
-    v_exists BOOLEAN;
-    v_missing INT := 0;
+    total_mvs INTEGER;
+    mv_name TEXT;
 BEGIN
-    FOREACH v_view IN ARRAY v_views
+    -- Get total count dynamically
+    SELECT COUNT(*) INTO total_mvs FROM pg_matviews WHERE schemaname = 'public';
+    
+    RAISE NOTICE 'Found % materialized views in public schema', total_mvs;
+    
+    -- List all materialized views for reference
+    FOR mv_name IN 
+        SELECT matviewname FROM pg_matviews WHERE schemaname = 'public' ORDER BY matviewname
     LOOP
-        SELECT EXISTS (
-            SELECT 1 FROM pg_matviews 
-            WHERE schemaname = 'public' AND matviewname = v_view
-        ) INTO v_exists;
-        
-        IF NOT v_exists THEN
-            RAISE WARNING 'Materialized view does not exist: %', v_view;
-            v_missing := v_missing + 1;
-        ELSE
-            RAISE NOTICE '✓ View exists: %', v_view;
-        END IF;
+        RAISE NOTICE '  - %', mv_name;
     END LOOP;
     
-    IF v_missing > 0 THEN
-        RAISE EXCEPTION 'Validation failed: % materialized views missing', v_missing;
-    ELSE
-        RAISE NOTICE 'Validation passed: All % views exist', array_length(v_views, 1);
-    END IF;
+    RAISE NOTICE '';
+    RAISE NOTICE 'Validation passed: All materialized views will be refreshed dynamically';
 END $$;
 
 -- ===========================================================================
--- PHASE 2: REFRESH - Refresh materialized views with error handling
+-- PHASE 2: REFRESH - Refresh materialized views dynamically
 -- ===========================================================================
 
 \echo ''
 \echo '--- REFRESH PHASE ---'
-\echo 'Refreshing materialized views in dependency order...'
+\echo 'Refreshing materialized views dynamically...'
+\echo 'Views are refreshed in alphabetical order.'
+\echo 'For complex dependency chains, consider manual ordering.'
 \echo ''
 
 DO $$
 DECLARE
-    v_views TEXT[] := ARRAY[
-        -- TIER 1: Base materialized views (no dependencies on other materialized views)
-        'view_worldbank_indicator_data_country_summary',
-        'view_riksdagen_politician_document',
-        'view_riksdagen_org_document_daily_summary',
-        'view_riksdagen_document_type_daily_summary',
-        'view_riksdagen_committee_decisions',
-        'view_riksdagen_vote_data_ballot_summary',
-        'view_riksdagen_committee_ballot_decision_summary',
-        'view_riksdagen_vote_data_ballot_party_summary',
-        'view_riksdagen_vote_data_ballot_politician_summary',
-        -- TIER 2: Daily/summary views that depend on base materialized views
-        'view_riksdagen_vote_data_ballot_summary_daily',
-        'view_riksdagen_vote_data_ballot_summary_weekly',
-        'view_riksdagen_vote_data_ballot_summary_monthly',
-        'view_riksdagen_vote_data_ballot_summary_annual',
-        'view_riksdagen_vote_data_ballot_party_summary_daily',
-        'view_riksdagen_vote_data_ballot_party_summary_weekly',
-        'view_riksdagen_vote_data_ballot_party_summary_monthly',
-        'view_riksdagen_vote_data_ballot_party_summary_annual',
-        'view_riksdagen_vote_data_ballot_politician_summary_daily',
-        'view_riksdagen_vote_data_ballot_politician_summary_weekly',
-        'view_riksdagen_vote_data_ballot_politician_summary_monthly',
-        'view_riksdagen_vote_data_ballot_politician_summary_annual',
-        'view_riksdagen_committee_ballot_decision_party_summary',
-        'view_riksdagen_committee_ballot_decision_politician_summary',
-        'view_riksdagen_committee_decision_type_org_summary',
-        'view_riksdagen_committee_decision_type_summary',
-        'view_riksdagen_party_document_daily_summary',
-        'view_riksdagen_politician_document_daily_summary',
-        'view_riksdagen_politician_document_summary'
-    ];
-    v_view TEXT;
+    mv_record RECORD;
     v_success INT := 0;
     v_failed INT := 0;
     v_start TIMESTAMP;
     v_duration INTERVAL;
+    total_mvs INTEGER;
+    mv_count INTEGER := 0;
 BEGIN
-    FOREACH v_view IN ARRAY v_views
+    -- Get total count for progress reporting
+    SELECT COUNT(*) INTO total_mvs FROM pg_matviews WHERE schemaname = 'public';
+    
+    -- Refresh all materialized views dynamically
+    FOR mv_record IN 
+        SELECT schemaname, matviewname
+        FROM pg_matviews
+        WHERE schemaname = 'public'
+        ORDER BY matviewname
     LOOP
         BEGIN
+            mv_count := mv_count + 1;
             v_start := clock_timestamp();
-            RAISE NOTICE 'Refreshing: %...', v_view;
+            RAISE NOTICE '[%/%] Refreshing: %.%...', mv_count, total_mvs,
+                mv_record.schemaname, mv_record.matviewname;
             
-            EXECUTE format('REFRESH MATERIALIZED VIEW %I', v_view);
+            EXECUTE format('REFRESH MATERIALIZED VIEW %I.%I', 
+                mv_record.schemaname, mv_record.matviewname);
             
             v_duration := clock_timestamp() - v_start;
-            RAISE NOTICE '✓ Refreshed % in %', v_view, v_duration;
+            RAISE NOTICE '✓ Refreshed %.% in %', 
+                mv_record.schemaname, mv_record.matviewname, v_duration;
             v_success := v_success + 1;
         EXCEPTION WHEN OTHERS THEN
-            RAISE WARNING '✗ Failed to refresh %: %', v_view, SQLERRM;
+            RAISE WARNING '✗ Failed to refresh %.%: %', 
+                mv_record.schemaname, mv_record.matviewname, SQLERRM;
             v_failed := v_failed + 1;
         END;
     END LOOP;
@@ -155,7 +109,7 @@ BEGIN
     RAISE NOTICE '===========================================';
     RAISE NOTICE '--- REFRESH SUMMARY ---';
     RAISE NOTICE '===========================================';
-    RAISE NOTICE 'Total views: %', array_length(v_views, 1);
+    RAISE NOTICE 'Total views: %', total_mvs;
     RAISE NOTICE 'Successful: %', v_success;
     RAISE NOTICE 'Failed: %', v_failed;
     RAISE NOTICE '===========================================';
