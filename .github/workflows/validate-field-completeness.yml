@@ -19,8 +19,7 @@ on:
       - '.github/workflows/validate-field-completeness.yml'
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   validate-field-completeness:
