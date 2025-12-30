@@ -1,0 +1,19 @@
+/**
+ *
+ *
+ * @param {string} $primary-stylename (v-nativebutton) - 
+ *
+ * @group nativebutton
+ */
+@mixin valo-nativebutton ($primary-stylename: v-nativebutton) {
+
+  button {
+    font: inherit;
+    font-weight: 400;
+    line-height: $v-line-height;
+  }
+
+  .#{$primary-stylename} {
+    -webkit-touch-callout: none;
+  }
+}
