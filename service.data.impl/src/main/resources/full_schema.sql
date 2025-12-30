@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict a6zv977vfOnzENoQ9Gk4IO5FOsOcqUNN0d8gQzVpnStfs0S5LzppX6NcRArSlL5
+\restrict CjlfGUTyU38yowqDUrFwNEX510Aw0eNsckp6nLe1jPGLyyBilZq8s85FTaq6yym
 
 -- Dumped from database version 16.11 (Debian 16.11-1.pgdg12+1)
 -- Dumped by pg_dump version 16.11 (Debian 16.11-1.pgdg12+1)
@@ -75,41 +75,6 @@ COMMENT ON EXTENSION vector IS 'vector data type and ivfflat and hnsw access met
 
 
 --
--- Name: cia_classify_temporal_view(text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.cia_classify_temporal_view(p_viewname text) RETURNS TABLE(temporal_granularity text, samples_per_bucket integer)
-    LANGUAGE sql IMMUTABLE
-    AS $$
-    SELECT
-        CASE 
-            -- Daily granularity: 2 samples per day over last 30 days (60 samples max)
-            WHEN p_viewname LIKE '%_daily%' THEN 'daily'
-            -- Weekly granularity: 2 samples per week over last 6 months (52 samples max)
-            WHEN p_viewname LIKE '%_weekly%' THEN 'weekly'
-            -- Monthly granularity: 2 samples per month over last 3 years (72 samples max)
-            WHEN p_viewname LIKE '%_monthly%' THEN 'monthly'
-            -- Annual granularity: 2 samples per year over full history
-            WHEN p_viewname LIKE '%_annual%' THEN 'annual'
-            -- Temporal trend views: mixed strategy (all available time periods)
-            WHEN p_viewname LIKE '%_temporal%' OR p_viewname LIKE '%_trend%' 
-                 OR p_viewname LIKE '%_evolution%' OR p_viewname LIKE '%_momentum%' THEN 'temporal_trend'
-            -- Non-temporal views: use random sampling
-            ELSE 'non_temporal'
-        END AS temporal_granularity,
-        CASE 
-            WHEN p_viewname LIKE '%_daily%' THEN 2
-            WHEN p_viewname LIKE '%_weekly%' THEN 2
-            WHEN p_viewname LIKE '%_monthly%' THEN 2
-            WHEN p_viewname LIKE '%_annual%' THEN 2
-            WHEN p_viewname LIKE '%_temporal%' OR p_viewname LIKE '%_trend%' 
-                 OR p_viewname LIKE '%_evolution%' OR p_viewname LIKE '%_momentum%' THEN 1
-            ELSE 0
-        END AS samples_per_bucket;
-$$;
-
-
---
 -- Name: cia_extract_get_row_count(text, text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -132,25 +97,6 @@ BEGIN
     END IF;
     
     RETURN COALESCE(result, 0);
-END;
-$$;
-
-
---
--- Name: cia_tmp_rowcount(text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.cia_tmp_rowcount(schema_name text, rel_name text) RETURNS bigint
-    LANGUAGE plpgsql
-    AS $$
-DECLARE
-    result bigint;
-BEGIN
-    EXECUTE format('SELECT COUNT(*) FROM %I.%I', schema_name, rel_name) INTO result;
-    RETURN COALESCE(result, 0);
-EXCEPTION WHEN OTHERS THEN
-    RAISE NOTICE 'ERROR counting rows in %.%: %', schema_name, rel_name, SQLERRM;
-    RETURN 0;
 END;
 $$;
 
@@ -6586,16 +6532,17 @@ CREATE VIEW public.view_ministry_effectiveness_trends AS
 CREATE VIEW public.view_ministry_productivity_matrix AS
  WITH ministry_base AS (
          SELECT DISTINCT assignment_data.org_code,
-            lower((assignment_data.org_code)::text) AS org_code_lower,
             assignment_data.org_code AS short_code,
-            assignment_data.detail AS name
+            assignment_data.detail AS name,
+            lower((assignment_data.detail)::text) AS name_lower
            FROM public.assignment_data
-          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL))
+          WHERE (((assignment_data.assignment_type)::text = 'Departement'::text) AND (assignment_data.org_code IS NOT NULL) AND (assignment_data.detail IS NOT NULL))
         ), ministry_document_data AS (
          SELECT dsc.hjid AS id,
             dd.document_type,
             dd.made_public_date,
             dd.org,
+            lower((dd.org)::text) AS org_lower,
             dpr.person_reference_id
            FROM (((public.document_status_container dsc
              LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
@@ -6622,7 +6569,7 @@ CREATE VIEW public.view_ministry_productivity_matrix AS
             min(doc.made_public_date) AS earliest_document,
             max(doc.made_public_date) AS latest_document
            FROM (ministry_base m
-             LEFT JOIN ministry_document_data doc ON (((lower((doc.org)::text) = m.org_code_lower) AND (doc.made_public_date >= (CURRENT_DATE - '3 years'::interval)))))
+             LEFT JOIN ministry_document_data doc ON (((doc.org_lower = m.name_lower) AND (doc.made_public_date >= (CURRENT_DATE - '3 years'::interval)))))
           GROUP BY m.org_code, m.short_code, m.name, (EXTRACT(year FROM doc.made_public_date))
         ), productivity_benchmarks AS (
          SELECT ministry_annual_metrics.year,
@@ -9653,7 +9600,7 @@ CREATE VIEW public.view_riksdagen_politician_influence_metrics AS
                 END))::double precision / (NULLIF(count(*), 0))::double precision) AS alignment_rate
            FROM (public.vote_data v1
              JOIN public.vote_data v2 ON ((((v1.embedded_id_ballot_id)::text = (v2.embedded_id_ballot_id)::text) AND ((v1.embedded_id_intressent_id)::text < (v2.embedded_id_intressent_id)::text))))
-          WHERE ((v1.vote_date >= (CURRENT_DATE - '3 years'::interval)) AND ((v1.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[])) AND ((v2.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[])))
+          WHERE ((v1.vote_date >= (CURRENT_DATE - '3 years'::interval)) AND (upper((v1.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])) AND (upper((v2.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])))
           GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
          HAVING (count(*) >= 10)
         ), network_connections AS (
@@ -9669,8 +9616,10 @@ CREATE VIEW public.view_riksdagen_politician_influence_metrics AS
             count(*) AS strong_connections
            FROM network_connections
           GROUP BY network_connections.person_id
-        ), network_median AS (
-         SELECT percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((influence_metrics.strong_connections)::double precision)) AS median_connections
+        ), network_percentiles AS (
+         SELECT percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((influence_metrics.strong_connections)::double precision)) AS p50,
+            percentile_cont((0.75)::double precision) WITHIN GROUP (ORDER BY ((influence_metrics.strong_connections)::double precision)) AS p75,
+            percentile_cont((0.9)::double precision) WITHIN GROUP (ORDER BY ((influence_metrics.strong_connections)::double precision)) AS p90
            FROM influence_metrics
         )
  SELECT p.id AS person_id,
@@ -9678,15 +9627,15 @@ CREATE VIEW public.view_riksdagen_politician_influence_metrics AS
     p.last_name,
     p.party,
     COALESCE(im.strong_connections, (0)::bigint) AS network_connections,
-    round((( SELECT network_median.median_connections
-           FROM network_median))::numeric, 2) AS network_median,
+    round((( SELECT network_percentiles.p50
+           FROM network_percentiles))::numeric, 2) AS network_median,
         CASE
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
-               FROM network_median) * (2)::double precision)) THEN 'HIGHLY_INFLUENTIAL'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
-               FROM network_median) * (1.5)::double precision)) THEN 'INFLUENTIAL'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_median.median_connections
-               FROM network_median)) THEN 'MODERATELY_INFLUENTIAL'::text
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p90
+               FROM network_percentiles)) THEN 'HIGHLY_INFLUENTIAL'::text
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p75
+               FROM network_percentiles)) THEN 'INFLUENTIAL'::text
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p50
+               FROM network_percentiles)) THEN 'MODERATELY_INFLUENTIAL'::text
             WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'LIMITED_INFLUENCE'::text
             ELSE 'MINIMAL_INFLUENCE'::text
         END AS influence_classification,
@@ -9697,13 +9646,13 @@ CREATE VIEW public.view_riksdagen_politician_influence_metrics AS
             ELSE 'NON_BROKER'::text
         END AS broker_classification,
         CASE
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
-               FROM network_median) * (2)::double precision)) THEN 'High influence - extensive cross-party network connections'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
-               FROM network_median) * (1.5)::double precision)) THEN 'Notable influence - above-average network centrality'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_median.median_connections
-               FROM network_median)) THEN 'Standard influence - typical network engagement'::text
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'Limited influence - below-average network connections'::text
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p90
+               FROM network_percentiles)) THEN 'High influence - top 10% network connections'::text
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p75
+               FROM network_percentiles)) THEN 'Notable influence - top 25% network centrality'::text
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p50
+               FROM network_percentiles)) THEN 'Standard influence - above median engagement'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'Limited influence - below median connections'::text
             ELSE 'Minimal network influence detected'::text
         END AS influence_assessment
    FROM (public.person_data p
@@ -12465,13 +12414,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict a6zv977vfOnzENoQ9Gk4IO5FOsOcqUNN0d8gQzVpnStfs0S5LzppX6NcRArSlL5
+\unrestrict CjlfGUTyU38yowqDUrFwNEX510Aw0eNsckp6nLe1jPGLyyBilZq8s85FTaq6yym
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict Q6ql6VdlEFnOkYU2nFYRB9M7aROEsFUt0cXg1vZ8dXzaqXjpEUbJsr3fmeT6J22
+\restrict Q2eTSqBB4q6Rw0jbtgAkBaNkLX3NpKSvY3bRzhes6fn3c60ZNbCm5A0fZx11XpA
 
 -- Dumped from database version 16.11 (Debian 16.11-1.pgdg12+1)
 -- Dumped by pg_dump version 16.11 (Debian 16.11-1.pgdg12+1)
@@ -12944,6 +12893,8 @@ fix-swedish-status-influence-metrics-1.47-003	intelligence-operative	db-changelo
 fix-swedish-status-voting-anomaly-1.47-004	intelligence-operative	db-changelog-1.47.xml	2025-12-30 16:33:20.289891	450	EXECUTED	9:8b18eec250b4170521adea8d2326f670	sql; createView viewName=view_riksdagen_voting_anomaly_detection	Fix view_riksdagen_voting_anomaly_detection to use Swedish status values\n        \n        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')\n        but actual data uses Swedish values\n        \n        Solution: Filter on Swedis...	\N	5.0.1	\N	\N	7108797880
 fix-swedish-status-risk-evolution-1.47-005	intelligence-operative	db-changelog-1.47.xml	2025-12-30 16:33:20.317226	451	EXECUTED	9:0f80c8ee6622ee192f99865e293d2da2	sql; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution to use Swedish status values\n        \n        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')\n        but actual data uses Swedish values\n        \n        Solution: Filter on Swedish status value...	\N	5.0.1	\N	\N	7108797880
 verify-swedish-status-fixes-1.47-006	intelligence-operative	db-changelog-1.47.xml	2025-12-30 16:33:25.231286	452	EXECUTED	9:5592a1b5dde1654d5065376cec26f06d	sql; sql; sql; sql; sql	Post-flight verification for all 5 fixed views - simple count query	\N	5.0.1	\N	\N	7108797880
+fix-vote-case-influence-metrics-1.47-007	intelligence-operative	db-changelog-1.47.xml	2025-12-30 22:48:30.700801	453	EXECUTED	9:0fcbce98a67d51b68d6b02b42f9a7579	sql; createView viewName=view_riksdagen_politician_influence_metrics	Fix view_riksdagen_politician_influence_metrics vote case sensitivity and thresholds\n        \n        Root Cause #1: View filtered on vote IN ('Ja', 'Nej') but actual data uses\n        uppercase 'JA', 'NEJ'. This resulted in 0 co-voting pairs bein...	\N	5.0.1	\N	\N	7131308209
+fix-ministry-productivity-join-1.47-008	intelligence-operative	db-changelog-1.47.xml	2025-12-30 22:48:30.76484	454	EXECUTED	9:fd90bb0cc6c9b7c763c485c0f398e7b3	sql; createView viewName=view_ministry_productivity_matrix	Fix view_ministry_productivity_matrix incorrect join condition\n        \n        Root Cause: View joined on LOWER(doc.org) = m.org_code_lower, but:\n        - Ministry org_codes are short codes like 'Ku', 'Fi', 'S'\n        - Document org values use ...	\N	5.0.1	\N	\N	7131308209
 \.
 
 
@@ -12960,5 +12911,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Q6ql6VdlEFnOkYU2nFYRB9M7aROEsFUt0cXg1vZ8dXzaqXjpEUbJsr3fmeT6J22
+\unrestrict Q2eTSqBB4q6Rw0jbtgAkBaNkLX3NpKSvY3bRzhes6fn3c60ZNbCm5A0fZx11XpA
 
