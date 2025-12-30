@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
-\restrict AsEmQDtQKF4vXBdNQa2reJsx49InZJPuLq5wCvUltTeNa97Y15qC5stYXFOa0Ii
+\restrict a6zv977vfOnzENoQ9Gk4IO5FOsOcqUNN0d8gQzVpnStfs0S5LzppX6NcRArSlL5
 
--- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
--- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
+-- Dumped from database version 16.11 (Debian 16.11-1.pgdg12+1)
+-- Dumped by pg_dump version 16.11 (Debian 16.11-1.pgdg12+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -72,6 +72,87 @@ CREATE EXTENSION IF NOT EXISTS vector WITH SCHEMA public;
 --
 
 COMMENT ON EXTENSION vector IS 'vector data type and ivfflat and hnsw access methods';
+
+
+--
+-- Name: cia_classify_temporal_view(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.cia_classify_temporal_view(p_viewname text) RETURNS TABLE(temporal_granularity text, samples_per_bucket integer)
+    LANGUAGE sql IMMUTABLE
+    AS $$
+    SELECT
+        CASE 
+            -- Daily granularity: 2 samples per day over last 30 days (60 samples max)
+            WHEN p_viewname LIKE '%_daily%' THEN 'daily'
+            -- Weekly granularity: 2 samples per week over last 6 months (52 samples max)
+            WHEN p_viewname LIKE '%_weekly%' THEN 'weekly'
+            -- Monthly granularity: 2 samples per month over last 3 years (72 samples max)
+            WHEN p_viewname LIKE '%_monthly%' THEN 'monthly'
+            -- Annual granularity: 2 samples per year over full history
+            WHEN p_viewname LIKE '%_annual%' THEN 'annual'
+            -- Temporal trend views: mixed strategy (all available time periods)
+            WHEN p_viewname LIKE '%_temporal%' OR p_viewname LIKE '%_trend%' 
+                 OR p_viewname LIKE '%_evolution%' OR p_viewname LIKE '%_momentum%' THEN 'temporal_trend'
+            -- Non-temporal views: use random sampling
+            ELSE 'non_temporal'
+        END AS temporal_granularity,
+        CASE 
+            WHEN p_viewname LIKE '%_daily%' THEN 2
+            WHEN p_viewname LIKE '%_weekly%' THEN 2
+            WHEN p_viewname LIKE '%_monthly%' THEN 2
+            WHEN p_viewname LIKE '%_annual%' THEN 2
+            WHEN p_viewname LIKE '%_temporal%' OR p_viewname LIKE '%_trend%' 
+                 OR p_viewname LIKE '%_evolution%' OR p_viewname LIKE '%_momentum%' THEN 1
+            ELSE 0
+        END AS samples_per_bucket;
+$$;
+
+
+--
+-- Name: cia_extract_get_row_count(text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.cia_extract_get_row_count(schema_name text, rel_name text) RETURNS bigint
+    LANGUAGE plpgsql STABLE
+    AS $$
+DECLARE
+    result bigint;
+BEGIN
+    -- Use pg_class statistics first (fast but approximate)
+    SELECT c.reltuples::bigint
+    INTO result
+    FROM pg_class c
+    JOIN pg_namespace n ON n.oid = c.relnamespace
+    WHERE n.nspname = schema_name AND c.relname = rel_name;
+    
+    -- If table is empty or stats are stale, do exact count
+    IF result IS NULL OR result = 0 THEN
+        EXECUTE format('SELECT COUNT(*) FROM %I.%I', schema_name, rel_name) INTO result;
+    END IF;
+    
+    RETURN COALESCE(result, 0);
+END;
+$$;
+
+
+--
+-- Name: cia_tmp_rowcount(text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.cia_tmp_rowcount(schema_name text, rel_name text) RETURNS bigint
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    result bigint;
+BEGIN
+    EXECUTE format('SELECT COUNT(*) FROM %I.%I', schema_name, rel_name) INTO result;
+    RETURN COALESCE(result, 0);
+EXCEPTION WHEN OTHERS THEN
+    RAISE NOTICE 'ERROR counting rows in %.%: %', schema_name, rel_name, SQLERRM;
+    RETURN 0;
+END;
+$$;
 
 
 SET default_tablespace = '';
@@ -6020,7 +6101,7 @@ CREATE VIEW public.view_committee_productivity AS
             count(DISTINCT ad.intressent_id) FILTER (WHERE ((ad.role_code)::text = 'Ledamot'::text)) AS regular_members,
             count(DISTINCT ad.intressent_id) FILTER (WHERE (((ad.role_code)::text ~~* '%suppleant%'::text) OR ((ad.role_code)::text ~~* '%ersättare%'::text))) AS substitutes
            FROM (public.view_riksdagen_committee rc
-             LEFT JOIN public.assignment_data ad ON ((((ad.org_code)::text = (rc.embedded_id_org_code)::text) AND ((ad.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((ad.to_date IS NULL) OR (ad.to_date >= CURRENT_DATE)))))
+             LEFT JOIN public.assignment_data ad ON ((((ad.org_code)::text = (rc.embedded_id_org_code)::text) AND ((ad.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((ad.to_date IS NULL) OR (ad.to_date >= CURRENT_DATE)))))
           GROUP BY rc.embedded_id_org_code, rc.embedded_id_detail
         ), committee_decisions AS (
          SELECT view_riksdagen_committee_decisions.org AS committee_code,
@@ -7421,7 +7502,7 @@ CREATE VIEW public.view_politician_risk_summary AS
             count(DISTINCT vd.embedded_id_ballot_id) FILTER (WHERE (((vd.vote)::text <> (vd.party)::text) AND ((vd.vote)::text <> 'Frånvarande'::text))) AS rebel_votes
            FROM (public.person_data p
              LEFT JOIN public.vote_data vd ON ((((vd.embedded_id_intressent_id)::text = (p.id)::text) AND (vd.vote_date >= (CURRENT_DATE - '2 years'::interval)))))
-          WHERE ((p.status)::text = 'active'::text)
+          WHERE ((p.status)::text = ANY ((ARRAY['Tjänstgörande riksdagsledamot'::character varying, 'Tjänstgörande ersättare'::character varying, 'Tillgänglig ersättare'::character varying])::text[]))
           GROUP BY p.id
         ), politician_document_metrics AS (
          SELECT dpr.person_reference_id,
@@ -7457,8 +7538,8 @@ CREATE VIEW public.view_politician_risk_summary AS
            FROM (((public.person_data p
              LEFT JOIN politician_vote_metrics pvm ON (((pvm.person_id)::text = (p.id)::text)))
              LEFT JOIN politician_document_metrics pdm ON (((pdm.person_reference_id)::text = (p.id)::text)))
-             LEFT JOIN public.rule_violation rv ON ((((rv.reference_id)::text = (p.id)::text) AND ((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = 'ACTIVE'::text))))
-          WHERE ((p.status)::text = 'active'::text)
+             LEFT JOIN public.rule_violation rv ON ((((rv.reference_id)::text = (p.id)::text) AND ((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = ANY ((ARRAY['MINOR'::character varying, 'MAJOR'::character varying, 'CRITICAL'::character varying])::text[])))))
+          WHERE ((p.status)::text = ANY ((ARRAY['Tjänstgörande riksdagsledamot'::character varying, 'Tjänstgörande ersättare'::character varying, 'Tillgänglig ersättare'::character varying])::text[]))
           GROUP BY p.id, p.first_name, p.last_name, p.party, p.status, pvm.absent_votes, pvm.total_votes, pvm.rebel_votes, pdm.documents_last_year
         )
  SELECT person_id,
@@ -7493,7 +7574,7 @@ CREATE VIEW public.view_politician_risk_summary AS
             ELSE 'Standard risk profile'::text
         END AS risk_assessment
    FROM risk_calculations
-  ORDER BY calculated_risk_score DESC, total_violations DESC;
+  ORDER BY calculated_risk_score DESC;
 
 
 --
@@ -7772,7 +7853,7 @@ CREATE VIEW public.view_riksdagen_committee_parliament_member_proposal AS
     document_data.title
    FROM (public.view_riksdagen_committee
      LEFT JOIN public.document_data ON (((view_riksdagen_committee.embedded_id_org_code)::text = (document_data.org)::text)))
-  WHERE (((document_data.document_type)::text = ANY (ARRAY[('mot'::character varying)::text, ('MOT'::character varying)::text, ('Motion'::character varying)::text])) OR (upper((document_data.document_type)::text) = 'MOT'::text));
+  WHERE (((document_data.document_type)::text = ANY ((ARRAY['mot'::character varying, 'MOT'::character varying, 'Motion'::character varying])::text[])) OR (upper((document_data.document_type)::text) = 'MOT'::text));
 
 
 --
@@ -7869,7 +7950,7 @@ CREATE VIEW public.view_riksdagen_committee_role_member AS
                 END) AS statements,
             count(
                 CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = ANY (ARRAY[('mot'::character varying)::text, ('prop'::character varying)::text, ('frs'::character varying)::text])) THEN 1
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = ANY ((ARRAY['mot'::character varying, 'prop'::character varying, 'frs'::character varying])::text[])) THEN 1
                     ELSE NULL::integer
                 END) AS initiatives
            FROM public.view_riksdagen_politician_document
@@ -7991,7 +8072,7 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
      JOIN all_voting_politicians avp ON (((avp.person_id)::text = (p.id)::text)))
      LEFT JOIN crisis_voting cv ON (((cv.person_id)::text = (p.id)::text)))
      LEFT JOIN normal_voting nv ON (((nv.person_id)::text = (p.id)::text)))
-  WHERE ((p.status)::text = ANY (ARRAY[('active'::character varying)::text, ('Active'::character varying)::text, ('ACTIVE'::character varying)::text]))
+  WHERE ((p.status)::text = ANY ((ARRAY['Tjänstgörande riksdagsledamot'::character varying, 'Tjänstgörande ersättare'::character varying, 'Tillgänglig ersättare'::character varying])::text[]))
   ORDER BY
         CASE
             WHEN ((COALESCE(cv.crisis_votes, (0)::bigint) >= 10) AND (((COALESCE(cv.crisis_absent, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) < 0.1)) THEN 1
@@ -8092,7 +8173,7 @@ CREATE VIEW public.view_riksdagen_goverment_proposals AS
     number_value,
     document_status_url_xml
    FROM public.document_data
-  WHERE (((document_type)::text = ANY (ARRAY[('prop'::character varying)::text, ('PROP'::character varying)::text, ('Proposition'::character varying)::text])) OR (upper((document_type)::text) = 'PROP'::text));
+  WHERE (((document_type)::text = ANY ((ARRAY['prop'::character varying, 'PROP'::character varying, 'Proposition'::character varying])::text[])) OR (upper((document_type)::text) = 'PROP'::text));
 
 
 --
@@ -8180,320 +8261,6 @@ CREATE VIEW public.view_riksdagen_goverment_roles AS
 
 
 --
--- Name: view_riksdagen_party_momentum_analysis; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_party_momentum_analysis AS
- WITH quarterly_support AS (
-         SELECT vote_data.party,
-            EXTRACT(year FROM vote_data.vote_date) AS year,
-            EXTRACT(quarter FROM vote_data.vote_date) AS quarter,
-            count(DISTINCT vote_data.embedded_id_ballot_id) AS ballots_participated,
-            count(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS yes_votes,
-            count(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Nej'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS no_votes,
-            count(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Avstår'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS abstain_votes,
-            count(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Frånvarande'::text) THEN 1
-                    ELSE NULL::integer
-                END) AS absent_votes,
-            ((count(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
-                    ELSE NULL::integer
-                END))::double precision / (NULLIF(count(*), 0))::double precision) AS participation_rate
-           FROM public.vote_data
-          WHERE (vote_data.vote_date >= '2010-01-01'::date)
-          GROUP BY vote_data.party, (EXTRACT(year FROM vote_data.vote_date)), (EXTRACT(quarter FROM vote_data.vote_date))
-        ), momentum_calc AS (
-         SELECT quarterly_support.party,
-            quarterly_support.year,
-            quarterly_support.quarter,
-            quarterly_support.ballots_participated,
-            quarterly_support.participation_rate,
-            lag(quarterly_support.participation_rate, 1) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter) AS prev_quarter_rate,
-            (quarterly_support.participation_rate - lag(quarterly_support.participation_rate, 1) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter)) AS momentum,
-            avg(quarterly_support.participation_rate) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS ma_4quarter,
-            stddev(quarterly_support.participation_rate) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS volatility_4quarter
-           FROM quarterly_support
-        ), acceleration_calc AS (
-         SELECT momentum_calc.party,
-            momentum_calc.year,
-            momentum_calc.quarter,
-            momentum_calc.ballots_participated,
-            momentum_calc.participation_rate,
-            momentum_calc.prev_quarter_rate,
-            momentum_calc.momentum,
-            momentum_calc.ma_4quarter,
-            momentum_calc.volatility_4quarter,
-            (COALESCE(momentum_calc.momentum, (0)::double precision) - COALESCE(lag(momentum_calc.momentum, 1) OVER (PARTITION BY momentum_calc.party ORDER BY momentum_calc.year, momentum_calc.quarter), (0)::double precision)) AS acceleration
-           FROM momentum_calc
-        )
- SELECT party,
-    year,
-    quarter,
-    concat(year, '-Q', quarter) AS period,
-    ballots_participated,
-    round((participation_rate)::numeric, 4) AS participation_rate,
-    round((prev_quarter_rate)::numeric, 4) AS prev_quarter_rate,
-    round((momentum)::numeric, 4) AS momentum,
-    round((ma_4quarter)::numeric, 4) AS moving_avg_4q,
-    round((volatility_4quarter)::numeric, 4) AS volatility,
-    round((acceleration)::numeric, 4) AS acceleration,
-        CASE
-            WHEN (COALESCE(momentum, (0)::double precision) > (0.05)::double precision) THEN 'STRONG_POSITIVE'::text
-            WHEN (COALESCE(momentum, (0)::double precision) > (0.02)::double precision) THEN 'POSITIVE'::text
-            WHEN (COALESCE(momentum, (0)::double precision) > ('-0.02'::numeric)::double precision) THEN 'STABLE'::text
-            WHEN (COALESCE(momentum, (0)::double precision) > ('-0.05'::numeric)::double precision) THEN 'NEGATIVE'::text
-            ELSE 'STRONG_NEGATIVE'::text
-        END AS trend_direction,
-        CASE
-            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.02)::double precision) THEN 'VERY_STABLE'::text
-            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision) THEN 'STABLE'::text
-            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.10)::double precision) THEN 'MODERATE'::text
-            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.15)::double precision) THEN 'VOLATILE'::text
-            ELSE 'HIGHLY_VOLATILE'::text
-        END AS stability_classification,
-        CASE
-            WHEN ((COALESCE(momentum, (0)::double precision) > (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision)) THEN 'SUSTAINED_GROWTH'::text
-            WHEN ((COALESCE(momentum, (0)::double precision) > (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) >= (0.05)::double precision)) THEN 'UNSTABLE_GROWTH'::text
-            WHEN ((COALESCE(momentum, (0)::double precision) < (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision)) THEN 'STEADY_DECLINE'::text
-            WHEN ((COALESCE(momentum, (0)::double precision) < (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) >= (0.05)::double precision)) THEN 'VOLATILE_DECLINE'::text
-            ELSE 'STABLE'::text
-        END AS intelligence_assessment
-   FROM acceleration_calc
-  WHERE (ballots_participated >= 5)
-  ORDER BY party, year DESC, quarter DESC;
-
-
---
--- Name: view_riksdagen_politician_influence_metrics; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_politician_influence_metrics AS
- WITH co_voting_pairs AS (
-         SELECT v1.embedded_id_intressent_id AS person_1,
-            v2.embedded_id_intressent_id AS person_2,
-            count(*) AS co_votes,
-            sum(
-                CASE
-                    WHEN ((v1.vote)::text = (v2.vote)::text) THEN 1
-                    ELSE 0
-                END) AS aligned_votes,
-            ((sum(
-                CASE
-                    WHEN ((v1.vote)::text = (v2.vote)::text) THEN 1
-                    ELSE 0
-                END))::double precision / (NULLIF(count(*), 0))::double precision) AS alignment_rate
-           FROM (public.vote_data v1
-             JOIN public.vote_data v2 ON ((((v1.embedded_id_ballot_id)::text = (v2.embedded_id_ballot_id)::text) AND ((v1.embedded_id_intressent_id)::text < (v2.embedded_id_intressent_id)::text))))
-          WHERE ((v1.vote_date >= (CURRENT_DATE - '3 years'::interval)) AND ((v1.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])) AND ((v2.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text])))
-          GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
-         HAVING (count(*) >= 10)
-        ), network_connections AS (
-         SELECT co_voting_pairs.person_1 AS person_id
-           FROM co_voting_pairs
-          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
-        UNION ALL
-         SELECT co_voting_pairs.person_2 AS person_id
-           FROM co_voting_pairs
-          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
-        ), influence_metrics AS (
-         SELECT network_connections.person_id,
-            count(*) AS strong_connections
-           FROM network_connections
-          GROUP BY network_connections.person_id
-        ), network_median AS (
-         SELECT percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((influence_metrics.strong_connections)::double precision)) AS median_connections
-           FROM influence_metrics
-        )
- SELECT p.id AS person_id,
-    p.first_name,
-    p.last_name,
-    p.party,
-    COALESCE(im.strong_connections, (0)::bigint) AS network_connections,
-    round((( SELECT network_median.median_connections
-           FROM network_median))::numeric, 2) AS network_median,
-        CASE
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
-               FROM network_median) * (2)::double precision)) THEN 'HIGHLY_INFLUENTIAL'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
-               FROM network_median) * (1.5)::double precision)) THEN 'INFLUENTIAL'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_median.median_connections
-               FROM network_median)) THEN 'MODERATELY_INFLUENTIAL'::text
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'LIMITED_INFLUENCE'::text
-            ELSE 'MINIMAL_INFLUENCE'::text
-        END AS influence_classification,
-        CASE
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 20) THEN 'STRONG_BROKER'::text
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 10) THEN 'MODERATE_BROKER'::text
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 5) THEN 'WEAK_BROKER'::text
-            ELSE 'NON_BROKER'::text
-        END AS broker_classification,
-        CASE
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
-               FROM network_median) * (2)::double precision)) THEN 'High influence - extensive cross-party network connections'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
-               FROM network_median) * (1.5)::double precision)) THEN 'Notable influence - above-average network centrality'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_median.median_connections
-               FROM network_median)) THEN 'Standard influence - typical network engagement'::text
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'Limited influence - below-average network connections'::text
-            ELSE 'Minimal network influence detected'::text
-        END AS influence_assessment
-   FROM (public.person_data p
-     LEFT JOIN influence_metrics im ON (((im.person_id)::text = (p.id)::text)))
-  WHERE ((p.status)::text = ANY (ARRAY[('active'::character varying)::text, ('Active'::character varying)::text, ('ACTIVE'::character varying)::text]))
-  ORDER BY COALESCE(im.strong_connections, (0)::bigint) DESC, p.last_name, p.first_name;
-
-
---
--- Name: view_riksdagen_voting_anomaly_detection; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_voting_anomaly_detection AS
- WITH party_consensus AS (
-         SELECT vote_data.embedded_id_ballot_id,
-            vote_data.party,
-            vote_data.vote,
-            count(*) AS vote_count,
-            row_number() OVER (PARTITION BY vote_data.embedded_id_ballot_id, vote_data.party ORDER BY (count(*)) DESC) AS rank
-           FROM public.vote_data
-          WHERE (((vote_data.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text, ('Avstår'::character varying)::text])) AND (vote_data.party IS NOT NULL) AND (vote_data.vote_date >= (CURRENT_DATE - '3 years'::interval)))
-          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party, vote_data.vote
-        ), party_majority_vote AS (
-         SELECT party_consensus.embedded_id_ballot_id,
-            party_consensus.party,
-            party_consensus.vote AS party_consensus_vote,
-            party_consensus.vote_count AS consensus_count
-           FROM party_consensus
-          WHERE (party_consensus.rank = 1)
-        ), party_vote_counts AS (
-         SELECT vote_data.embedded_id_ballot_id,
-            vote_data.party,
-            count(*) AS total_party_votes
-           FROM public.vote_data
-          WHERE ((vote_data.party IS NOT NULL) AND (vote_data.vote_date >= (CURRENT_DATE - '3 years'::interval)))
-          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party
-        ), rebel_votes AS (
-         SELECT vd.embedded_id_intressent_id AS person_id,
-            vd.embedded_id_ballot_id,
-            vd.party,
-            vd.vote AS person_vote,
-            pmv.party_consensus_vote,
-            pmv.consensus_count,
-            pvc.total_party_votes,
-            round((((pmv.consensus_count)::numeric / (NULLIF(pvc.total_party_votes, 0))::numeric) * (100)::numeric), 2) AS consensus_strength
-           FROM ((public.vote_data vd
-             JOIN party_majority_vote pmv ON ((((vd.embedded_id_ballot_id)::text = (pmv.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pmv.party)::text))))
-             JOIN party_vote_counts pvc ON ((((vd.embedded_id_ballot_id)::text = (pvc.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pvc.party)::text))))
-          WHERE (((vd.vote)::text <> (pmv.party_consensus_vote)::text) AND ((vd.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text, ('Avstår'::character varying)::text])) AND (vd.vote_date >= (CURRENT_DATE - '3 years'::interval)))
-        )
- SELECT p.id AS person_id,
-    p.first_name,
-    p.last_name,
-    p.party,
-    count(DISTINCT rv.embedded_id_ballot_id) AS total_rebellions,
-    count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (80)::numeric)) AS strong_consensus_rebellions,
-    count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (90)::numeric)) AS very_strong_consensus_rebellions,
-    round(avg(rv.consensus_strength), 2) AS avg_consensus_strength_rebelled_against,
-        CASE
-            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (90)::numeric)) >= 5) THEN 'FREQUENT_STRONG_REBEL'::text
-            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (80)::numeric)) >= 10) THEN 'CONSISTENT_REBEL'::text
-            WHEN (count(DISTINCT rv.embedded_id_ballot_id) >= 20) THEN 'MODERATE_REBEL'::text
-            WHEN (count(DISTINCT rv.embedded_id_ballot_id) >= 5) THEN 'OCCASIONAL_REBEL'::text
-            ELSE 'PARTY_ALIGNED'::text
-        END AS anomaly_classification,
-        CASE
-            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (90)::numeric)) >= 5) THEN 'HIGH ANOMALY: Frequent rebellion against very strong party consensus (90%+)'::text
-            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (80)::numeric)) >= 10) THEN 'MODERATE ANOMALY: Consistent rebellion against strong party consensus (80%+)'::text
-            WHEN (count(DISTINCT rv.embedded_id_ballot_id) >= 20) THEN 'MILD ANOMALY: Moderate pattern of voting against party majority'::text
-            WHEN (count(DISTINCT rv.embedded_id_ballot_id) >= 5) THEN 'LOW ANOMALY: Occasional independent voting behavior'::text
-            ELSE 'NO ANOMALY: Votes consistently with party consensus'::text
-        END AS anomaly_assessment
-   FROM (public.person_data p
-     LEFT JOIN rebel_votes rv ON (((rv.person_id)::text = (p.id)::text)))
-  WHERE ((p.status)::text = ANY (ARRAY[('active'::character varying)::text, ('Active'::character varying)::text, ('ACTIVE'::character varying)::text]))
-  GROUP BY p.id, p.first_name, p.last_name, p.party
- HAVING (count(DISTINCT rv.embedded_id_ballot_id) > 0)
-  ORDER BY (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (90)::numeric))) DESC, (count(DISTINCT rv.embedded_id_ballot_id)) DESC, p.last_name, p.first_name;
-
-
---
--- Name: view_riksdagen_intelligence_dashboard; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_intelligence_dashboard AS
- WITH momentum_summary AS (
-         SELECT count(DISTINCT view_riksdagen_party_momentum_analysis.party) FILTER (WHERE (view_riksdagen_party_momentum_analysis.trend_direction = ANY (ARRAY['STRONG_POSITIVE'::text, 'POSITIVE'::text]))) AS parties_gaining_momentum,
-            count(DISTINCT view_riksdagen_party_momentum_analysis.party) FILTER (WHERE (view_riksdagen_party_momentum_analysis.trend_direction = ANY (ARRAY['STRONG_NEGATIVE'::text, 'NEGATIVE'::text]))) AS parties_losing_momentum,
-            count(DISTINCT view_riksdagen_party_momentum_analysis.party) FILTER (WHERE (view_riksdagen_party_momentum_analysis.stability_classification = ANY (ARRAY['VOLATILE'::text, 'HIGHLY_VOLATILE'::text]))) AS volatile_parties
-           FROM public.view_riksdagen_party_momentum_analysis
-        ), coalition_summary AS (
-         SELECT count(*) FILTER (WHERE (view_riksdagen_coalition_alignment_matrix.coalition_likelihood = 'STRONG_COALITION'::text)) AS high_probability_coalitions,
-            count(*) FILTER (WHERE (view_riksdagen_coalition_alignment_matrix.coalition_likelihood = ANY (ARRAY['STRONG_COALITION'::text, 'MODERATE_COALITION'::text]))) AS cross_bloc_alliances
-           FROM public.view_riksdagen_coalition_alignment_matrix
-        ), anomaly_summary AS (
-         SELECT count(*) FILTER (WHERE (view_riksdagen_voting_anomaly_detection.anomaly_classification = ANY (ARRAY['FREQUENT_STRONG_REBEL'::text, 'CONSISTENT_REBEL'::text]))) AS high_defection_risks,
-            count(*) FILTER (WHERE (view_riksdagen_voting_anomaly_detection.anomaly_classification = ANY (ARRAY['FREQUENT_STRONG_REBEL'::text, 'CONSISTENT_REBEL'::text, 'MODERATE_REBEL'::text, 'OCCASIONAL_REBEL'::text]))) AS low_discipline_politicians
-           FROM public.view_riksdagen_voting_anomaly_detection
-        ), influence_summary AS (
-         SELECT count(*) FILTER (WHERE (view_riksdagen_politician_influence_metrics.broker_classification = ANY (ARRAY['STRONG_BROKER'::text, 'MODERATE_BROKER'::text]))) AS power_brokers,
-            count(*) FILTER (WHERE (view_riksdagen_politician_influence_metrics.influence_classification = 'HIGHLY_INFLUENTIAL'::text)) AS highly_connected_politicians
-           FROM public.view_riksdagen_politician_influence_metrics
-        ), resilience_summary AS (
-         SELECT count(*) FILTER (WHERE (view_riksdagen_crisis_resilience_indicators.resilience_classification = 'HIGHLY_RESILIENT'::text)) AS crisis_ready_politicians,
-            count(*) FILTER (WHERE (view_riksdagen_crisis_resilience_indicators.resilience_classification = 'LOW_RESILIENCE'::text)) AS low_resilience_politicians
-           FROM public.view_riksdagen_crisis_resilience_indicators
-        ), vote_stats AS (
-         SELECT max(vote_data.vote_date) AS latest_vote_data,
-            count(DISTINCT vote_data.embedded_id_ballot_id) FILTER (WHERE (vote_data.vote_date >= (CURRENT_DATE - '30 days'::interval))) AS ballots_last_30_days
-           FROM public.vote_data
-        )
- SELECT ms.parties_gaining_momentum,
-    ms.parties_losing_momentum,
-    ms.volatile_parties,
-    cs.high_probability_coalitions,
-    cs.cross_bloc_alliances,
-    ans.high_defection_risks,
-    ans.low_discipline_politicians,
-    ins.power_brokers,
-    ins.highly_connected_politicians,
-    rs.crisis_ready_politicians,
-    rs.low_resilience_politicians,
-        CASE
-            WHEN (ans.high_defection_risks >= 5) THEN 'HIGH_POLITICAL_INSTABILITY_RISK'::text
-            WHEN (ms.volatile_parties >= 3) THEN 'MODERATE_POLITICAL_INSTABILITY_RISK'::text
-            ELSE 'STABLE_POLITICAL_ENVIRONMENT'::text
-        END AS stability_assessment,
-        CASE
-            WHEN (cs.cross_bloc_alliances >= 2) THEN 'POTENTIAL_REALIGNMENT_DETECTED'::text
-            WHEN (cs.high_probability_coalitions >= 5) THEN 'STABLE_COALITION_PATTERNS'::text
-            ELSE 'UNCERTAIN_COALITION_LANDSCAPE'::text
-        END AS coalition_assessment,
-    vs.latest_vote_data,
-    vs.ballots_last_30_days,
-    CURRENT_TIMESTAMP AS intelligence_report_timestamp
-   FROM (((((momentum_summary ms
-     CROSS JOIN coalition_summary cs)
-     CROSS JOIN anomaly_summary ans)
-     CROSS JOIN influence_summary ins)
-     CROSS JOIN resilience_summary rs)
-     CROSS JOIN vote_stats vs);
-
-
---
 -- Name: view_riksdagen_member_proposals; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -8522,7 +8289,7 @@ CREATE VIEW public.view_riksdagen_member_proposals AS
     title,
     dokument_document_container__0
    FROM public.document_element
-  WHERE (((document_type)::text = ANY (ARRAY[('mot'::character varying)::text, ('MOT'::character varying)::text, ('Motion'::character varying)::text])) OR (upper((document_type)::text) = 'MOT'::text));
+  WHERE (((document_type)::text = ANY ((ARRAY['mot'::character varying, 'MOT'::character varying, 'Motion'::character varying])::text[])) OR (upper((document_type)::text) = 'MOT'::text));
 
 
 --
@@ -8847,6 +8614,105 @@ CREATE MATERIALIZED VIEW public.view_riksdagen_party_document_daily_summary AS
    FROM public.view_riksdagen_politician_document
   GROUP BY made_public_date, document_type, party_short_code
   WITH NO DATA;
+
+
+--
+-- Name: view_riksdagen_party_momentum_analysis; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_momentum_analysis AS
+ WITH quarterly_support AS (
+         SELECT vote_data.party,
+            EXTRACT(year FROM vote_data.vote_date) AS year,
+            EXTRACT(quarter FROM vote_data.vote_date) AS quarter,
+            count(DISTINCT vote_data.embedded_id_ballot_id) AS ballots_participated,
+            count(
+                CASE
+                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS yes_votes,
+            count(
+                CASE
+                    WHEN ((vote_data.vote)::text = 'Nej'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS no_votes,
+            count(
+                CASE
+                    WHEN ((vote_data.vote)::text = 'Avstår'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS abstain_votes,
+            count(
+                CASE
+                    WHEN ((vote_data.vote)::text = 'Frånvarande'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS absent_votes,
+            ((count(
+                CASE
+                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
+                    ELSE NULL::integer
+                END))::double precision / (NULLIF(count(*), 0))::double precision) AS participation_rate
+           FROM public.vote_data
+          WHERE (vote_data.vote_date >= '2010-01-01'::date)
+          GROUP BY vote_data.party, (EXTRACT(year FROM vote_data.vote_date)), (EXTRACT(quarter FROM vote_data.vote_date))
+        ), momentum_calc AS (
+         SELECT quarterly_support.party,
+            quarterly_support.year,
+            quarterly_support.quarter,
+            quarterly_support.ballots_participated,
+            quarterly_support.participation_rate,
+            lag(quarterly_support.participation_rate, 1) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter) AS prev_quarter_rate,
+            (quarterly_support.participation_rate - lag(quarterly_support.participation_rate, 1) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter)) AS momentum,
+            avg(quarterly_support.participation_rate) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS ma_4quarter,
+            stddev(quarterly_support.participation_rate) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS volatility_4quarter
+           FROM quarterly_support
+        ), acceleration_calc AS (
+         SELECT momentum_calc.party,
+            momentum_calc.year,
+            momentum_calc.quarter,
+            momentum_calc.ballots_participated,
+            momentum_calc.participation_rate,
+            momentum_calc.prev_quarter_rate,
+            momentum_calc.momentum,
+            momentum_calc.ma_4quarter,
+            momentum_calc.volatility_4quarter,
+            (COALESCE(momentum_calc.momentum, (0)::double precision) - COALESCE(lag(momentum_calc.momentum, 1) OVER (PARTITION BY momentum_calc.party ORDER BY momentum_calc.year, momentum_calc.quarter), (0)::double precision)) AS acceleration
+           FROM momentum_calc
+        )
+ SELECT party,
+    year,
+    quarter,
+    concat(year, '-Q', quarter) AS period,
+    ballots_participated,
+    round((participation_rate)::numeric, 4) AS participation_rate,
+    round((prev_quarter_rate)::numeric, 4) AS prev_quarter_rate,
+    round((momentum)::numeric, 4) AS momentum,
+    round((ma_4quarter)::numeric, 4) AS moving_avg_4q,
+    round((volatility_4quarter)::numeric, 4) AS volatility,
+    round((acceleration)::numeric, 4) AS acceleration,
+        CASE
+            WHEN (COALESCE(momentum, (0)::double precision) > (0.05)::double precision) THEN 'STRONG_POSITIVE'::text
+            WHEN (COALESCE(momentum, (0)::double precision) > (0.02)::double precision) THEN 'POSITIVE'::text
+            WHEN (COALESCE(momentum, (0)::double precision) > ('-0.02'::numeric)::double precision) THEN 'STABLE'::text
+            WHEN (COALESCE(momentum, (0)::double precision) > ('-0.05'::numeric)::double precision) THEN 'NEGATIVE'::text
+            ELSE 'STRONG_NEGATIVE'::text
+        END AS trend_direction,
+        CASE
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.02)::double precision) THEN 'VERY_STABLE'::text
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision) THEN 'STABLE'::text
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.10)::double precision) THEN 'MODERATE'::text
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.15)::double precision) THEN 'VOLATILE'::text
+            ELSE 'HIGHLY_VOLATILE'::text
+        END AS stability_classification,
+        CASE
+            WHEN ((COALESCE(momentum, (0)::double precision) > (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision)) THEN 'SUSTAINED_GROWTH'::text
+            WHEN ((COALESCE(momentum, (0)::double precision) > (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) >= (0.05)::double precision)) THEN 'UNSTABLE_GROWTH'::text
+            WHEN ((COALESCE(momentum, (0)::double precision) < (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision)) THEN 'STEADY_DECLINE'::text
+            WHEN ((COALESCE(momentum, (0)::double precision) < (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) >= (0.05)::double precision)) THEN 'VOLATILE_DECLINE'::text
+            ELSE 'STABLE'::text
+        END AS intelligence_assessment
+   FROM acceleration_calc
+  WHERE (ballots_participated >= 5)
+  ORDER BY party, year DESC, quarter DESC;
 
 
 --
@@ -9463,7 +9329,7 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     ELSE (a.to_date - a.from_date)
                 END AS days_in_role,
                 CASE
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text, ('JuU'::character varying)::text])) THEN 'Key Parliamentary Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying, 'JuU'::character varying])::text[])) THEN 'Key Parliamentary Committees'::text
                     WHEN ((a.org_code)::text = 'Statsrådsberedningen'::text) THEN 'Prime Minister''s Office'::text
                     WHEN ((a.org_code)::text = 'AU'::text) THEN 'Arbetsmarknad (Committee)'::text
                     WHEN ((a.org_code)::text = 'SoU'::text) THEN 'Social (Committee)'::text
@@ -9502,41 +9368,41 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.org_code)::text = 'IJ'::text)) THEN 'Integration and Gender Equality Ministry'::text
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.org_code)::text = 'KN'::text)) THEN 'Climate and Business Ministry'::text
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.org_code)::text = 'Ku'::text)) THEN 'Culture Ministry'::text
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Partiledare'::character varying)::text, ('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text, ('Kvittningsperson'::character varying)::text]))) THEN 'Party Leadership'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('BSPC'::character varying)::text, ('EFTA'::character varying)::text, ('EG'::character varying)::text, ('OSSE'::character varying)::text, ('PA-UfM'::character varying)::text, ('Europol'::character varying)::text])) THEN 'International Affairs'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('NR'::character varying)::text, ('RFK'::character varying)::text, ('RJ'::character varying)::text, ('RRS'::character varying)::text])) THEN 'Regional and National Cooperation'::text
-                    WHEN (((a.org_code)::text = ANY (ARRAY[('BN'::character varying)::text, ('CPAR'::character varying)::text, ('DEM'::character varying)::text, ('DN'::character varying)::text, ('EES'::character varying)::text, ('ER'::character varying)::text, ('ESK'::character varying)::text, ('RB'::character varying)::text, ('RGK'::character varying)::text, ('UN'::character varying)::text])) AND ((a.role_code)::text = ANY (ARRAY[('Ledamot'::character varying)::text, ('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text]))) THEN 'Legislative and Oversight Committees'::text
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Partiledare'::character varying, 'Gruppledare'::character varying, 'Partisekreterare'::character varying, 'Kvittningsperson'::character varying])::text[]))) THEN 'Party Leadership'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['BSPC'::character varying, 'EFTA'::character varying, 'EG'::character varying, 'OSSE'::character varying, 'PA-UfM'::character varying, 'Europol'::character varying])::text[])) THEN 'International Affairs'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['NR'::character varying, 'RFK'::character varying, 'RJ'::character varying, 'RRS'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
+                    WHEN (((a.org_code)::text = ANY ((ARRAY['BN'::character varying, 'CPAR'::character varying, 'DEM'::character varying, 'DN'::character varying, 'EES'::character varying, 'ER'::character varying, 'ESK'::character varying, 'RB'::character varying, 'RGK'::character varying, 'UN'::character varying])::text[])) AND ((a.role_code)::text = ANY ((ARRAY['Ledamot'::character varying, 'Ordförande'::character varying, 'Vice ordförande'::character varying])::text[]))) THEN 'Legislative and Oversight Committees'::text
                     WHEN ((a.org_code)::text = 'FöU'::text) THEN 'Defense (Committee)'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('NSÖ'::character varying)::text, ('ÖN'::character varying)::text, ('RS'::character varying)::text])) THEN 'Regional and National Cooperation'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['NSÖ'::character varying, 'ÖN'::character varying, 'RS'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
                     WHEN ((a.org_code)::text = 'UFöU'::text) THEN 'Foreign & Defense (Committee)'::text
                     WHEN ((a.org_code)::text = 'EP'::text) THEN 'European Parliament'::text
-                    WHEN (((a.org_code)::text = ANY (ARRAY[('BN'::character varying)::text, ('CPAR'::character varying)::text, ('DEM'::character varying)::text, ('DN'::character varying)::text, ('EES'::character varying)::text, ('ER'::character varying)::text, ('ESK'::character varying)::text, ('RB'::character varying)::text, ('RGK'::character varying)::text, ('UN'::character varying)::text])) AND ((a.role_code)::text = ANY (ARRAY[('Ledamot'::character varying)::text, ('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text]))) THEN 'Legislative and Oversight Committees'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('CU'::character varying)::text, ('LU'::character varying)::text, ('KD'::character varying)::text, ('FÖU'::character varying)::text, ('JuSoU'::character varying)::text, ('VB'::character varying)::text])) THEN 'Legislative and Oversight Committees'::text
+                    WHEN (((a.org_code)::text = ANY ((ARRAY['BN'::character varying, 'CPAR'::character varying, 'DEM'::character varying, 'DN'::character varying, 'EES'::character varying, 'ER'::character varying, 'ESK'::character varying, 'RB'::character varying, 'RGK'::character varying, 'UN'::character varying])::text[])) AND ((a.role_code)::text = ANY ((ARRAY['Ledamot'::character varying, 'Ordförande'::character varying, 'Vice ordförande'::character varying])::text[]))) THEN 'Legislative and Oversight Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['CU'::character varying, 'LU'::character varying, 'KD'::character varying, 'FÖU'::character varying, 'JuSoU'::character varying, 'VB'::character varying])::text[])) THEN 'Legislative and Oversight Committees'::text
                     WHEN ((a.org_code)::text = 'kam'::text) THEN 'Speaker''s Office'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('RJ'::character varying)::text, ('Systembolaget'::character varying)::text])) THEN 'Special Oversight Roles'::text
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text, ('Ersättare'::character varying)::text, ('Personlig suppleant'::character varying)::text])) THEN 'Substitute Roles'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['RJ'::character varying, 'Systembolaget'::character varying])::text[])) THEN 'Special Oversight Roles'::text
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying, 'Ersättare'::character varying, 'Personlig suppleant'::character varying])::text[])) THEN 'Substitute Roles'::text
                     WHEN ((a.org_code)::text = 'UFÖU'::text) THEN 'Foreign & Defense (Committee)'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('TK'::character varying)::text, ('sku'::character varying)::text])) THEN 'Other Legislative Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['TK'::character varying, 'sku'::character varying])::text[])) THEN 'Other Legislative Committees'::text
                     WHEN ((a.assignment_type)::text = 'partiuppdrag'::text) THEN 'Party Leadership'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('VPN'::character varying)::text, ('RRPR'::character varying)::text, ('RRR'::character varying)::text])) THEN 'Regional and National Cooperation'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'VPN'::character varying, 'RRPR'::character varying, 'RRR'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
                     WHEN ((a.org_code)::text = 'Systembolaget'::text) THEN 'Special Oversight Roles'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('EMPA'::character varying)::text, ('IPU'::character varying)::text, ('NATO'::character varying)::text])) THEN 'International Affairs'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('JU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text])) THEN 'Legislative Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['EMPA'::character varying, 'IPU'::character varying, 'NATO'::character varying])::text[])) THEN 'International Affairs'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'JU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[])) THEN 'Legislative Committees'::text
                     WHEN ((a.assignment_type)::text = 'Departement'::text) THEN 'Ministry'::text
                     WHEN ((a.role_code)::text = 'Personlig ersättare'::text) THEN 'Substitute Roles'::text
                     WHEN ((a.org_code)::text = 'EU'::text) THEN 'EU Affairs (Committee)'::text
                     WHEN ((a.org_code)::text = 'LR'::text) THEN 'Regional and National Cooperation'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('RAN'::character varying)::text, ('RAR'::character varying)::text])) THEN 'Legislative and Oversight Committees'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text, ('JuU'::character varying)::text])) THEN 'Key Parliamentary Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['RAN'::character varying, 'RAR'::character varying])::text[])) THEN 'Legislative and Oversight Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying, 'JuU'::character varying])::text[])) THEN 'Key Parliamentary Committees'::text
                     WHEN ((a.org_code)::text = 'Statsrådsberedningen'::text) THEN 'Prime Ministers Office'::text
                     WHEN ((a.org_code)::text = 'UFÖU'::text) THEN 'Foreign & Defense (Committee)'::text
                     WHEN ((a.org_code)::text = 'EU'::text) THEN 'EU Affairs (Committee)'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('EFTA'::character varying)::text, ('EG'::character varying)::text, ('OSSE'::character varying)::text, ('PA-UfM'::character varying)::text, ('BSPC'::character varying)::text])) THEN 'International Affairs'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('NR'::character varying)::text, ('RFK'::character varying)::text, ('RJ'::character varying)::text, ('RRS'::character varying)::text])) THEN 'Regional and National Cooperation'::text
-                    WHEN ((a.org_code)::text = ANY (ARRAY[('MJU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text])) THEN 'Other Legislative Committees'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['EFTA'::character varying, 'EG'::character varying, 'OSSE'::character varying, 'PA-UfM'::character varying, 'BSPC'::character varying])::text[])) THEN 'International Affairs'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['NR'::character varying, 'RFK'::character varying, 'RJ'::character varying, 'RRS'::character varying])::text[])) THEN 'Regional and National Cooperation'::text
+                    WHEN ((a.org_code)::text = ANY ((ARRAY['MJU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[])) THEN 'Other Legislative Committees'::text
                     WHEN ((a.assignment_type)::text = 'partiuppdrag'::text) THEN 'Party Leadership'::text
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text, ('Ersättare'::character varying)::text, ('Personlig suppleant'::character varying)::text])) THEN 'Substitute Roles'::text
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text])) THEN 'Substitute Roles'::text
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying, 'Ersättare'::character varying, 'Personlig suppleant'::character varying])::text[])) THEN 'Substitute Roles'::text
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying])::text[])) THEN 'Substitute Roles'::text
                     ELSE 'Other'::text
                 END AS knowledge_area,
                 CASE
@@ -9546,19 +9412,19 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Talman'::text)) THEN 40000
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.role_code)::text ~~* '%minister%'::text)) THEN 40000
                     WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 35000
-                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ordförande'::text) AND ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text, ('JuU'::character varying)::text]))) THEN 35000
+                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ordförande'::text) AND ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying, 'JuU'::character varying])::text[]))) THEN 35000
                     WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 30000
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text]))) THEN 30000
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Gruppledare'::character varying, 'Partisekreterare'::character varying])::text[]))) THEN 30000
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Riksdagsledamot'::text)) THEN 20000
                     WHEN (((a.assignment_type)::text = 'Europaparlamentet'::text) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 20000
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 15000
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text, ('FÖU'::character varying)::text]))) THEN 18000
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Ersättare'::character varying)::text])) THEN 10000
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Suppleant'::text) AND ((a.org_code)::text = ANY (ARRAY[('FiU'::character varying)::text, ('KU'::character varying)::text, ('UU'::character varying)::text]))) THEN 12000
-                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY (ARRAY[('RJ'::character varying)::text, ('NR'::character varying)::text, ('RFK'::character varying)::text, ('RRS'::character varying)::text]))) THEN 7000
-                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY (ARRAY[('MJU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text]))) THEN 6000
-                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY (ARRAY[('Systembolaget'::character varying)::text, ('EUN'::character varying)::text]))) THEN 4000
-                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Adjungerad'::character varying)::text, ('Sekreterare'::character varying)::text]))) THEN 3000
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 15000
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying, 'FÖU'::character varying])::text[]))) THEN 18000
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Ersättare'::character varying])::text[])) THEN 10000
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Suppleant'::text) AND ((a.org_code)::text = ANY ((ARRAY['FiU'::character varying, 'KU'::character varying, 'UU'::character varying])::text[]))) THEN 12000
+                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY ((ARRAY['RJ'::character varying, 'NR'::character varying, 'RFK'::character varying, 'RRS'::character varying])::text[]))) THEN 7000
+                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = 'Ledamot'::text) AND ((a.org_code)::text = ANY ((ARRAY['MJU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[]))) THEN 6000
+                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY ((ARRAY['Systembolaget'::character varying, 'EUN'::character varying])::text[]))) THEN 4000
+                    WHEN (((a.assignment_type)::text = 'uppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Adjungerad'::character varying, 'Sekreterare'::character varying])::text[]))) THEN 3000
                     ELSE 1000
                 END AS role_weight,
                 CASE
@@ -9566,7 +9432,7 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     ELSE 0
                 END AS is_substitute,
                 CASE
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text, ('Gruppledare'::character varying)::text, ('Partiledare'::character varying)::text, ('Partisekreterare'::character varying)::text, ('Förste vice gruppledare'::character varying)::text, ('Andre vice gruppledare'::character varying)::text])) THEN 1
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Ordförande'::character varying, 'Vice ordförande'::character varying, 'Gruppledare'::character varying, 'Partiledare'::character varying, 'Partisekreterare'::character varying, 'Förste vice gruppledare'::character varying, 'Andre vice gruppledare'::character varying])::text[])) THEN 1
                     ELSE 0
                 END AS is_leadership,
                 CASE
@@ -9575,21 +9441,21 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND ((a.role_code)::text = 'Vice statsminister'::text)) THEN 900.0
                     WHEN (((a.assignment_type)::text = 'Departement'::text) AND (((a.role_code)::text ~~* '%minister%'::text) OR ((a.role_code)::text = 'Statsråd'::text))) THEN 850.0
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Talman'::text)) THEN (800)::numeric
-                    WHEN (((a.assignment_type)::text = 'talmansuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Förste vice talman'::character varying)::text, ('Andre vice talman'::character varying)::text, ('Tredje vice talman'::character varying)::text]))) THEN 750.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 700.0
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text]))) THEN 650.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 600.0
-                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY (ARRAY[('Förste vice gruppledare'::character varying)::text, ('Andre vice gruppledare'::character varying)::text]))) THEN 550.0
+                    WHEN (((a.assignment_type)::text = 'talmansuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Förste vice talman'::character varying, 'Andre vice talman'::character varying, 'Tredje vice talman'::character varying])::text[]))) THEN 750.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 700.0
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Gruppledare'::character varying, 'Partisekreterare'::character varying])::text[]))) THEN 650.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 600.0
+                    WHEN (((a.assignment_type)::text = 'partiuppdrag'::text) AND ((a.role_code)::text = ANY ((ARRAY['Förste vice gruppledare'::character varying, 'Andre vice gruppledare'::character varying])::text[]))) THEN 550.0
                     WHEN (((a.assignment_type)::text = 'kammaruppdrag'::text) AND ((a.role_code)::text = 'Riksdagsledamot'::text)) THEN 500.0
                     WHEN (((a.assignment_type)::text = 'Europaparlamentet'::text) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 450.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 400.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('EU'::character varying)::text])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 350.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('EU'::character varying)::text])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 300.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('UFÖU'::character varying)::text, ('EU'::character varying)::text])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 250.0
-                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY (ARRAY[('RJ'::character varying)::text, ('Systembolaget'::character varying)::text, ('NR'::character varying)::text, ('RFK'::character varying)::text, ('RRS'::character varying)::text]))) THEN 200.0
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Ersättare'::character varying)::text, ('Statsrådsersättare'::character varying)::text])) THEN 150.0
-                    WHEN ((a.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Extra suppleant'::character varying)::text])) THEN 100.0
-                    WHEN (((a.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((a.org_code)::text = ANY (ARRAY[('MJU'::character varying)::text, ('BoU'::character varying)::text, ('TU'::character varying)::text]))) THEN 50.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 400.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'EU'::character varying])::text[])) AND ((a.role_code)::text = 'Ordförande'::text)) THEN 350.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'EU'::character varying])::text[])) AND ((a.role_code)::text = 'Vice ordförande'::text)) THEN 300.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['UFÖU'::character varying, 'EU'::character varying])::text[])) AND ((a.role_code)::text = 'Ledamot'::text)) THEN 250.0
+                    WHEN (((a.assignment_type)::text = 'Riksdagsorgan'::text) AND ((a.org_code)::text = ANY ((ARRAY['RJ'::character varying, 'Systembolaget'::character varying, 'NR'::character varying, 'RFK'::character varying, 'RRS'::character varying])::text[]))) THEN 200.0
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Ersättare'::character varying, 'Statsrådsersättare'::character varying])::text[])) THEN 150.0
+                    WHEN ((a.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Extra suppleant'::character varying])::text[])) THEN 100.0
+                    WHEN (((a.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) AND ((a.org_code)::text = ANY ((ARRAY['MJU'::character varying, 'BoU'::character varying, 'TU'::character varying])::text[]))) THEN 50.0
                     ELSE 10.0
                 END AS area_weight
            FROM public.assignment_data a
@@ -9640,7 +9506,7 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
                 END) AS party_days,
             sum(
                 CASE
-                    WHEN ((per_role_stats.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) THEN per_role_stats.total_days
+                    WHEN ((per_role_stats.assignment_type)::text = ANY ((ARRAY['uppdrag'::character varying, 'Riksdagsorgan'::character varying])::text[])) THEN per_role_stats.total_days
                     ELSE (0)::bigint
                 END) AS committee_days,
             sum(per_role_stats.substitute_days) AS total_substitute_days,
@@ -9764,6 +9630,86 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
         END) AS political_analysis_comment
    FROM political_analysis
   ORDER BY total_weighted_exp DESC;
+
+
+--
+-- Name: view_riksdagen_politician_influence_metrics; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_politician_influence_metrics AS
+ WITH co_voting_pairs AS (
+         SELECT v1.embedded_id_intressent_id AS person_1,
+            v2.embedded_id_intressent_id AS person_2,
+            count(*) AS co_votes,
+            sum(
+                CASE
+                    WHEN ((v1.vote)::text = (v2.vote)::text) THEN 1
+                    ELSE 0
+                END) AS aligned_votes,
+            ((sum(
+                CASE
+                    WHEN ((v1.vote)::text = (v2.vote)::text) THEN 1
+                    ELSE 0
+                END))::double precision / (NULLIF(count(*), 0))::double precision) AS alignment_rate
+           FROM (public.vote_data v1
+             JOIN public.vote_data v2 ON ((((v1.embedded_id_ballot_id)::text = (v2.embedded_id_ballot_id)::text) AND ((v1.embedded_id_intressent_id)::text < (v2.embedded_id_intressent_id)::text))))
+          WHERE ((v1.vote_date >= (CURRENT_DATE - '3 years'::interval)) AND ((v1.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[])) AND ((v2.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[])))
+          GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
+         HAVING (count(*) >= 10)
+        ), network_connections AS (
+         SELECT co_voting_pairs.person_1 AS person_id
+           FROM co_voting_pairs
+          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
+        UNION ALL
+         SELECT co_voting_pairs.person_2 AS person_id
+           FROM co_voting_pairs
+          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
+        ), influence_metrics AS (
+         SELECT network_connections.person_id,
+            count(*) AS strong_connections
+           FROM network_connections
+          GROUP BY network_connections.person_id
+        ), network_median AS (
+         SELECT percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((influence_metrics.strong_connections)::double precision)) AS median_connections
+           FROM influence_metrics
+        )
+ SELECT p.id AS person_id,
+    p.first_name,
+    p.last_name,
+    p.party,
+    COALESCE(im.strong_connections, (0)::bigint) AS network_connections,
+    round((( SELECT network_median.median_connections
+           FROM network_median))::numeric, 2) AS network_median,
+        CASE
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
+               FROM network_median) * (2)::double precision)) THEN 'HIGHLY_INFLUENTIAL'::text
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
+               FROM network_median) * (1.5)::double precision)) THEN 'INFLUENTIAL'::text
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_median.median_connections
+               FROM network_median)) THEN 'MODERATELY_INFLUENTIAL'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'LIMITED_INFLUENCE'::text
+            ELSE 'MINIMAL_INFLUENCE'::text
+        END AS influence_classification,
+        CASE
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 20) THEN 'STRONG_BROKER'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 10) THEN 'MODERATE_BROKER'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 5) THEN 'WEAK_BROKER'::text
+            ELSE 'NON_BROKER'::text
+        END AS broker_classification,
+        CASE
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
+               FROM network_median) * (2)::double precision)) THEN 'High influence - extensive cross-party network connections'::text
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= (( SELECT network_median.median_connections
+               FROM network_median) * (1.5)::double precision)) THEN 'Notable influence - above-average network centrality'::text
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_median.median_connections
+               FROM network_median)) THEN 'Standard influence - typical network engagement'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'Limited influence - below-average network connections'::text
+            ELSE 'Minimal network influence detected'::text
+        END AS influence_assessment
+   FROM (public.person_data p
+     LEFT JOIN influence_metrics im ON (((im.person_id)::text = (p.id)::text)))
+  WHERE ((p.status)::text = ANY ((ARRAY['Tjänstgörande riksdagsledamot'::character varying, 'Tjänstgörande ersättare'::character varying, 'Tillgänglig ersättare'::character varying])::text[]))
+  ORDER BY COALESCE(im.strong_connections, (0)::bigint) DESC, p.last_name, p.first_name;
 
 
 --
@@ -10276,60 +10222,103 @@ COMMENT ON MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_summary_week
 
 
 --
+-- Name: view_riksdagen_voting_anomaly_detection; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_voting_anomaly_detection AS
+ WITH party_consensus AS (
+         SELECT vote_data.embedded_id_ballot_id,
+            vote_data.party,
+            vote_data.vote,
+            count(*) AS vote_count,
+            row_number() OVER (PARTITION BY vote_data.embedded_id_ballot_id, vote_data.party ORDER BY (count(*)) DESC) AS rank
+           FROM public.vote_data
+          WHERE (((vote_data.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying, 'Avstår'::character varying])::text[])) AND (vote_data.party IS NOT NULL) AND (vote_data.vote_date >= (CURRENT_DATE - '3 years'::interval)))
+          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party, vote_data.vote
+        ), party_majority_vote AS (
+         SELECT party_consensus.embedded_id_ballot_id,
+            party_consensus.party,
+            party_consensus.vote AS party_consensus_vote,
+            party_consensus.vote_count AS consensus_count
+           FROM party_consensus
+          WHERE (party_consensus.rank = 1)
+        ), party_vote_counts AS (
+         SELECT vote_data.embedded_id_ballot_id,
+            vote_data.party,
+            count(*) AS total_party_votes
+           FROM public.vote_data
+          WHERE ((vote_data.party IS NOT NULL) AND (vote_data.vote_date >= (CURRENT_DATE - '3 years'::interval)))
+          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party
+        ), rebel_votes AS (
+         SELECT vd.embedded_id_intressent_id AS person_id,
+            vd.embedded_id_ballot_id,
+            vd.party,
+            vd.vote AS person_vote,
+            pmv.party_consensus_vote,
+            pmv.consensus_count,
+            pvc.total_party_votes,
+            round((((pmv.consensus_count)::numeric / (NULLIF(pvc.total_party_votes, 0))::numeric) * (100)::numeric), 2) AS consensus_strength
+           FROM ((public.vote_data vd
+             JOIN party_majority_vote pmv ON ((((vd.embedded_id_ballot_id)::text = (pmv.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pmv.party)::text))))
+             JOIN party_vote_counts pvc ON ((((vd.embedded_id_ballot_id)::text = (pvc.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pvc.party)::text))))
+          WHERE (((vd.vote)::text <> (pmv.party_consensus_vote)::text) AND ((vd.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying, 'Avstår'::character varying])::text[])) AND (vd.vote_date >= (CURRENT_DATE - '3 years'::interval)))
+        )
+ SELECT p.id AS person_id,
+    p.first_name,
+    p.last_name,
+    p.party,
+    count(DISTINCT rv.embedded_id_ballot_id) AS total_rebellions,
+    count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (80)::numeric)) AS strong_consensus_rebellions,
+    count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (90)::numeric)) AS very_strong_consensus_rebellions,
+    round(avg(rv.consensus_strength), 2) AS avg_consensus_strength_rebelled_against,
+        CASE
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (90)::numeric)) >= 5) THEN 'FREQUENT_STRONG_REBEL'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (80)::numeric)) >= 10) THEN 'CONSISTENT_REBEL'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) >= 20) THEN 'MODERATE_REBEL'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) >= 5) THEN 'OCCASIONAL_REBEL'::text
+            ELSE 'PARTY_ALIGNED'::text
+        END AS anomaly_classification,
+        CASE
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (90)::numeric)) >= 5) THEN 'HIGH ANOMALY: Frequent rebellion against very strong party consensus (90%+)'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (80)::numeric)) >= 10) THEN 'MODERATE ANOMALY: Consistent rebellion against strong party consensus (80%+)'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) >= 20) THEN 'MILD ANOMALY: Moderate pattern of voting against party majority'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) >= 5) THEN 'LOW ANOMALY: Occasional independent voting behavior'::text
+            ELSE 'NO ANOMALY: Votes consistently with party consensus'::text
+        END AS anomaly_assessment
+   FROM (public.person_data p
+     LEFT JOIN rebel_votes rv ON (((rv.person_id)::text = (p.id)::text)))
+  WHERE ((p.status)::text = ANY ((ARRAY['Tjänstgörande riksdagsledamot'::character varying, 'Tjänstgörande ersättare'::character varying, 'Tillgänglig ersättare'::character varying])::text[]))
+  GROUP BY p.id, p.first_name, p.last_name, p.party
+ HAVING (count(DISTINCT rv.embedded_id_ballot_id) > 0)
+  ORDER BY (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength >= (90)::numeric))) DESC, (count(DISTINCT rv.embedded_id_ballot_id)) DESC, p.last_name, p.first_name;
+
+
+--
 -- Name: view_risk_score_evolution; Type: VIEW; Schema: public; Owner: -
 --
 
 CREATE VIEW public.view_risk_score_evolution AS
- WITH party_ballot_majority AS (
-         SELECT vote_data.embedded_id_ballot_id,
-            vote_data.party,
-            sum(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
-                    ELSE 0
-                END) AS party_yes_count,
-            sum(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Nej'::text) THEN 1
-                    ELSE 0
-                END) AS party_no_count,
-            (sum(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
-                    ELSE 0
-                END) > sum(
-                CASE
-                    WHEN ((vote_data.vote)::text = 'Nej'::text) THEN 1
-                    ELSE 0
-                END)) AS party_approved
-           FROM public.vote_data
-          WHERE ((vote_data.vote_date >= (CURRENT_DATE - '3 years'::interval)) AND (vote_data.party IS NOT NULL))
-          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party
-        ), politician_votes_with_rebel AS (
+ WITH politician_votes_with_rebel AS (
          SELECT vd.embedded_id_intressent_id,
-            vd.vote_date,
+            vd.embedded_id_ballot_id,
             vd.vote,
+            vd.vote_date,
             vd.party,
-            pbm.party_approved,
                 CASE
-                    WHEN (((vd.vote)::text = 'Nej'::text) AND (pbm.party_approved = true)) THEN true
-                    WHEN (((vd.vote)::text = 'Ja'::text) AND (pbm.party_approved = false)) THEN true
+                    WHEN (((vd.vote)::text <> (vd.party)::text) AND ((vd.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[]))) THEN true
                     ELSE false
                 END AS is_rebel
-           FROM (public.vote_data vd
-             JOIN party_ballot_majority pbm ON ((((vd.embedded_id_ballot_id)::text = (pbm.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pbm.party)::text))))
+           FROM public.vote_data vd
           WHERE (vd.vote_date >= (CURRENT_DATE - '3 years'::interval))
         ), politician_document_data AS (
-         SELECT dsc.hjid AS id,
-            dd.document_type,
+         SELECT dpr.person_reference_id,
             dd.made_public_date,
-            dd.org,
-            dpr.person_reference_id
+            dd.id
            FROM (((public.document_status_container dsc
              LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
              LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
              LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
-          WHERE (dd.made_public_date IS NOT NULL)
+          WHERE ((dd.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (dpr.person_reference_id IS NOT NULL))
         ), monthly_risk_base AS (
          SELECT p.id AS person_id,
             p.first_name,
@@ -10337,13 +10326,13 @@ CREATE VIEW public.view_risk_score_evolution AS
             p.party,
             date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone) AS assessment_period,
             round((((count(*) FILTER (WHERE ((pvr.vote)::text = 'Frånvarande'::text)))::numeric / (NULLIF(count(*), 0))::numeric) * (100)::numeric), 2) AS absence_rate,
-            round((((count(*) FILTER (WHERE (pvr.is_rebel = true)))::numeric / (NULLIF(count(*) FILTER (WHERE ((pvr.vote)::text = ANY (ARRAY[('Ja'::character varying)::text, ('Nej'::character varying)::text]))), 0))::numeric) * (100)::numeric), 2) AS rebel_rate,
+            round((((count(*) FILTER (WHERE (pvr.is_rebel = true)))::numeric / (NULLIF(count(*) FILTER (WHERE ((pvr.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying])::text[]))), 0))::numeric) * (100)::numeric), 2) AS rebel_rate,
             count(*) AS ballot_count,
             count(DISTINCT vpd.id) AS document_count
            FROM ((public.person_data p
              LEFT JOIN politician_votes_with_rebel pvr ON (((pvr.embedded_id_intressent_id)::text = (p.id)::text)))
              LEFT JOIN politician_document_data vpd ON ((((vpd.person_reference_id)::text = (p.id)::text) AND (vpd.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (date_trunc('month'::text, (vpd.made_public_date)::timestamp with time zone) = date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone)))))
-          WHERE ((p.status)::text = ANY (ARRAY[('active'::character varying)::text, ('Active'::character varying)::text, ('ACTIVE'::character varying)::text]))
+          WHERE ((p.status)::text = ANY ((ARRAY['Tjänstgörande riksdagsledamot'::character varying, 'Tjänstgörande ersättare'::character varying, 'Tillgänglig ersättare'::character varying])::text[]))
           GROUP BY p.id, p.first_name, p.last_name, p.party, (date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone))
         ), monthly_violations AS (
          SELECT rule_violation.reference_id AS person_id,
@@ -10352,7 +10341,7 @@ CREATE VIEW public.view_risk_score_evolution AS
             count(DISTINCT rule_violation.rule_group) AS violation_categories,
             string_agg(DISTINCT (rule_violation.rule_group)::text, ', '::text ORDER BY (rule_violation.rule_group)::text) AS violation_types
            FROM public.rule_violation
-          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = 'ACTIVE'::text) AND (rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)))
+          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = ANY ((ARRAY['MINOR'::character varying, 'MAJOR'::character varying, 'CRITICAL'::character varying])::text[])) AND (rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)))
           GROUP BY rule_violation.reference_id, (date_trunc('month'::text, rule_violation.detected_date))
         ), risk_calculations AS (
          SELECT mrb.person_id,
@@ -12476,16 +12465,16 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict AsEmQDtQKF4vXBdNQa2reJsx49InZJPuLq5wCvUltTeNa97Y15qC5stYXFOa0Ii
+\unrestrict a6zv977vfOnzENoQ9Gk4IO5FOsOcqUNN0d8gQzVpnStfs0S5LzppX6NcRArSlL5
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict tQYlOzFJ42gkDkjF25BdT9zLqgwaaeuZoontNpIkwNUvav3akzImJeeaUr6cvBV
+\restrict Q6ql6VdlEFnOkYU2nFYRB9M7aROEsFUt0cXg1vZ8dXzaqXjpEUbJsr3fmeT6J22
 
--- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
--- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
+-- Dumped from database version 16.11 (Debian 16.11-1.pgdg12+1)
+-- Dumped by pg_dump version 16.11 (Debian 16.11-1.pgdg12+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12503,452 +12492,458 @@ SET row_security = off;
 --
 
 COPY public.databasechangelog (id, author, filename, dateexecuted, orderexecuted, exectype, md5sum, description, comments, tag, liquibase, contexts, labels, deployment_id) FROM stdin;
-1414872417007-1	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.703535	1	EXECUTED	9:a17731710305111df20dcfac7e5b1160	createSequence sequenceName=hibernate_sequence		\N	5.0.1	\N	\N	4727109315
-1414872417007-2	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.710651	2	EXECUTED	9:bebfee0168369dd117b920db419f5ba0	createTable tableName=against_proposal_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-3	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.716488	3	EXECUTED	9:3b16d9891a4d1d8ea22473bc46c7853c	createTable tableName=against_proposal_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-4	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.722905	4	EXECUTED	9:02e3a0b58935a93e8e22b859d6e244ff	createTable tableName=agency		\N	5.0.1	\N	\N	4727109315
-1414872417007-5	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.729686	5	EXECUTED	9:3fe4740c8b6b63adf7e6cd409d028222	createTable tableName=aggregated_bug_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-6	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.735597	6	EXECUTED	9:cb7c902d90871400b0f50e6517ae2e8b	createTable tableName=aggregated_country_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-7	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.741483	7	EXECUTED	9:54b3e671310d1733185a14870793775c	createTable tableName=application_action_event		\N	5.0.1	\N	\N	4727109315
-1414872417007-8	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.747118	8	EXECUTED	9:415d9684eeca14269142e3c4af51ef8a	createTable tableName=application_session		\N	5.0.1	\N	\N	4727109315
-1414872417007-9	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.752841	9	EXECUTED	9:4e882f95194b32ed19be40bc1c5d81db	createTable tableName=application_view		\N	5.0.1	\N	\N	4727109315
-1414872417007-10	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.75945	10	EXECUTED	9:8310007bdad3e542147e9f0c9e6280b2	createTable tableName=assignment_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-11	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.766462	11	EXECUTED	9:e2a725018be9c645cc40cee1bf741de4	createTable tableName=assignment_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-12	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.774035	12	EXECUTED	9:539351894788ad2df1f65ed4d9dc6394	createTable tableName=committee_document_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-13	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.778316	13	EXECUTED	9:0740ea87d5e697e23d68d86cded379f6	createTable tableName=committee_proposal_component_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-14	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.78185	14	EXECUTED	9:531e4b3e23b59219af608aa521c60e1d	createTable tableName=committee_proposal_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-15	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.788381	15	EXECUTED	9:0cddcb46baaa15f458ceaa0022e10daf	createTable tableName=committee_proposal_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-16	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.793415	16	EXECUTED	9:6fd8d778cf34128bd204c56041b7d25f	createTable tableName=countries_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-17	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.801656	17	EXECUTED	9:46c38f6afb69bb4d0a78fba4b029f24c	createTable tableName=country_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-18	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.807644	18	EXECUTED	9:6906125604ba9910f945c7b07fd92962	createTable tableName=data_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-19	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.81168	19	EXECUTED	9:687a141851b84ed8986487e2f3f8e4e7	createTable tableName=data_source_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-20	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.817309	20	EXECUTED	9:409c0b3f5c827c4bf3c7421647dadb6a	createTable tableName=detail_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-21	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.823003	21	EXECUTED	9:37c989d40b81428a93a2e8c29b6d8cb2	createTable tableName=detail_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-22	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.826858	22	EXECUTED	9:5553ce8a3c28a583d259d7daafa9492f	createTable tableName=document_activity_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-23	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.832663	23	EXECUTED	9:91ca8c9ef2f1a0d4038a8f00ee9cfe48	createTable tableName=document_activity_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-24	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.839078	24	EXECUTED	9:6a981fe99433f472f37d626f792fd93e	createTable tableName=document_attachment		\N	5.0.1	\N	\N	4727109315
-1414872417007-25	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.842588	25	EXECUTED	9:67651a14797870e3d71860f7886fb744	createTable tableName=document_attachment_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-26	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.848423	26	EXECUTED	9:363d579e1857630034ab68bb1ba09a54	createTable tableName=document_container_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-27	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.854284	27	EXECUTED	9:9cac16f6bb7fb5311b1c8210c62e8c6b	createTable tableName=document_content_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-28	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.861023	28	EXECUTED	9:eb4858110e94dda8090c4a09e2f019f3	createTable tableName=document_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-29	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.864525	29	EXECUTED	9:50b71c994cff70c92759390afb6d2b27	createTable tableName=document_detail_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-30	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.869857	30	EXECUTED	9:5eb7cc4f4e5da72a6d201a157ba3fed5	createTable tableName=document_detail_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-31	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.877038	31	EXECUTED	9:9d2fbddccf267f2773209465ff52cd57	createTable tableName=document_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-32	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.880435	32	EXECUTED	9:2de9b22e4860ecb9a912012f0cd0e429	createTable tableName=document_person_reference_co_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-33	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.885787	33	EXECUTED	9:81a2a16ef0155742bd93f54156b15812	createTable tableName=document_person_reference_da_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-34	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.889318	34	EXECUTED	9:65bb5a1b564a86e6817effbab9bde0d3	createTable tableName=document_reference_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-35	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.895817	35	EXECUTED	9:b6f271d72874d68d804fbbcc89bedcaa	createTable tableName=document_reference_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-36	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.901529	36	EXECUTED	9:d0adee5ea53440f01cf604c105f9aa56	createTable tableName=document_status_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-37	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.905034	37	EXECUTED	9:40d45e65bc2539a7d1faf45c6b9af3b2	createTable tableName=domain_portal		\N	5.0.1	\N	\N	4727109315
-1414872417007-38	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.910629	38	EXECUTED	9:6a1b6c5054ffe7b83bf458b6d9d63010	createTable tableName=indicator_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-39	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.916694	39	EXECUTED	9:df16293062101f9e2f2552533409513c	createTable tableName=indicators_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-40	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.921804	40	EXECUTED	9:2924e43a2bfc8ab8ece4c7b7fc886751	createTable tableName=language_content_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-41	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.925512	41	EXECUTED	9:ad01e46b6ba2c604286127713ac8dbbd	createTable tableName=language_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-42	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.928928	42	EXECUTED	9:79ef7742f91be7455bd9dfa79657131b	createTable tableName=operational_information_cont_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-43	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.93218	43	EXECUTED	9:fa41612149189e9606f6ef67cbb39911	createTable tableName=performance_indicator_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-44	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.935342	44	EXECUTED	9:0e9e417a0f56444002cbcd5958e1263e	createTable tableName=person_assignment_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-45	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.93869	45	EXECUTED	9:2fefd56ec64a6b4c49b1def045d6396a	createTable tableName=person_assignment_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-46	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.942135	46	EXECUTED	9:9a28a213df35828e2be714b4d835e8d7	createTable tableName=person_container_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-47	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.945105	47	EXECUTED	9:1c0bac7e7ad922b52a618676b42062a8	createTable tableName=person_container_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-48	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.951307	48	EXECUTED	9:10b817f4fcc09c63904d708e1461c5b7	createTable tableName=person_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-49	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.954535	49	EXECUTED	9:38d2239d109bf8b3b63dced29595a4f0	createTable tableName=person_detail_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-50	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.958294	50	EXECUTED	9:0cfe316d63aba7817bbc73a2430ff7dc	createTable tableName=person_detail_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-51	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.964736	51	EXECUTED	9:ad721b60c177dedbbc3fdf5ccbefa90c	createTable tableName=person_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-52	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.969859	52	EXECUTED	9:96452dd1a3d5f9b7484eee940aa6c845	createTable tableName=portal		\N	5.0.1	\N	\N	4727109315
-1414872417007-53	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.973152	53	EXECUTED	9:4bd5e7ade89c1e867b432998577ee25a	createTable tableName=quality_assurance_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-54	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.977683	54	EXECUTED	9:8d843eb1a26a4558446e4be5914dd5fe	createTable tableName=sweden_county_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-55	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.981306	55	EXECUTED	9:a671b76e045284f9ed125b93cd347528	createTable tableName=sweden_county_data_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-56	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.987075	56	EXECUTED	9:5d88b4f2bc6c9b00fd7dcfacb1848770	createTable tableName=sweden_county_electoral_area		\N	5.0.1	\N	\N	4727109315
-1414872417007-57	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.990354	57	EXECUTED	9:c2b1be2b1568b0adffeadb4e60e07aa4	createTable tableName=sweden_county_electoral_regi_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-58	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.994919	58	EXECUTED	9:df3cb3fdfce9bf4f6805fb84e1b9ed8a	createTable tableName=sweden_county_electoral_regi_1		\N	5.0.1	\N	\N	4727109315
-1414872417007-59	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:31.999915	59	EXECUTED	9:d14dfb21a1e78aad5fb77cb561fce391	createTable tableName=sweden_election_region		\N	5.0.1	\N	\N	4727109315
-1414872417007-60	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.005172	60	EXECUTED	9:3bba4dd4cd8837bef66ccbad72ba7e48	createTable tableName=sweden_election_type		\N	5.0.1	\N	\N	4727109315
-1414872417007-61	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.008389	61	EXECUTED	9:5324df8331f298acdc38fd7cf12b8258	createTable tableName=sweden_election_type_contain_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-62	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.013229	62	EXECUTED	9:633ea9271e4ae43b4821f604df1f59fa	createTable tableName=sweden_municipality_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-63	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.01853	63	EXECUTED	9:6d1944c67dd25f3a0648f9b1a5aa38b4	createTable tableName=sweden_municipality_election_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-64	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.021781	64	EXECUTED	9:b95825c026136a5346b16b9353ac5096	createTable tableName=sweden_parliament_electoral__0		\N	5.0.1	\N	\N	4727109315
-1414872417007-65	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.026628	65	EXECUTED	9:08c4da69bcd3b32d1f3f73121e4cf374	createTable tableName=sweden_parliament_electoral__1		\N	5.0.1	\N	\N	4727109315
-1414872417007-66	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.033512	66	EXECUTED	9:39166b5937a6de6e1e119be89a5768d4	createTable tableName=sweden_political_party		\N	5.0.1	\N	\N	4727109315
-1414872417007-67	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.03687	67	EXECUTED	9:206e57b2f1ab489aedd5f7f77b76f5e8	createTable tableName=target_profile_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-68	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.041482	68	EXECUTED	9:36d1a12fecba42815db61876f9ffee82	createTable tableName=topic		\N	5.0.1	\N	\N	4727109315
-1414872417007-69	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.044594	69	EXECUTED	9:74df0d4b5c616a83e5949698a4e5a8cc	createTable tableName=topics		\N	5.0.1	\N	\N	4727109315
-1414872417007-70	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.049661	70	EXECUTED	9:0b270579251a30288c9ed0f7ce9cff3f	createTable tableName=user_account		\N	5.0.1	\N	\N	4727109315
-1414872417007-71	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.053055	71	EXECUTED	9:d6f00140ffba825b869701ef3f17acc8	createTable tableName=user_account_address		\N	5.0.1	\N	\N	4727109315
-1414872417007-72	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.063006	72	EXECUTED	9:3daaf3a53dcab5c0643c4d341da21ec7	createTable tableName=vote_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-73	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.067963	73	EXECUTED	9:f846b11d91b49720ec2c460922d362f7	createTable tableName=vote_meta_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-74	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.072995	74	EXECUTED	9:aa5adf76544d09e8999dabd5bba4718d	createTable tableName=world_bank_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-75	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.07771	75	EXECUTED	9:5f830995c29a8f2e62b79c93b739826a	addPrimaryKey constraintName=against_proposal_container_pkey, tableName=against_proposal_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-76	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.081345	76	EXECUTED	9:bba09af773c137dde53bcec477dc7be1	addPrimaryKey constraintName=against_proposal_data_pkey, tableName=against_proposal_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-77	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.084948	77	EXECUTED	9:e1e45c8df3139a437fa9282e167b2a49	addPrimaryKey constraintName=agency_pkey, tableName=agency		\N	5.0.1	\N	\N	4727109315
-1414872417007-78	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.088707	78	EXECUTED	9:74ab57d4e742f0f890d089863fe99534	addPrimaryKey constraintName=aggregated_bug_data_pkey, tableName=aggregated_bug_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-79	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.092533	79	EXECUTED	9:43c9e9f0ca5431b8014b60e80d39d58f	addPrimaryKey constraintName=aggregated_country_data_pkey, tableName=aggregated_country_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-80	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.09632	80	EXECUTED	9:e40121efa7c2cb31c5579a83867222b9	addPrimaryKey constraintName=application_action_event_pkey, tableName=application_action_event		\N	5.0.1	\N	\N	4727109315
-1414872417007-81	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.09987	81	EXECUTED	9:5e7a0cc84a0279421abc59b37fac7cbc	addPrimaryKey constraintName=application_session_pkey, tableName=application_session		\N	5.0.1	\N	\N	4727109315
-1414872417007-82	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.103419	82	EXECUTED	9:8e761f77ad53316ecde3ae62be2f56e5	addPrimaryKey constraintName=application_view_pkey, tableName=application_view		\N	5.0.1	\N	\N	4727109315
-1414872417007-83	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.107147	83	EXECUTED	9:d65482d7b31647dc4109f47a336ca0ba	addPrimaryKey constraintName=assignment_data_pkey, tableName=assignment_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-84	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.110641	84	EXECUTED	9:5fd2d99287f3fc7dc27fdeefa086f79c	addPrimaryKey constraintName=assignment_element_pkey, tableName=assignment_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-85	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.11422	85	EXECUTED	9:ee126e8d0870490635cafe2ce677b999	addPrimaryKey constraintName=committee_document_data_pkey, tableName=committee_document_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-86	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.11745	86	EXECUTED	9:80032ba89b6bd19cfd978fa3956b3863	addPrimaryKey constraintName=committee_proposal_component_0_pkey, tableName=committee_proposal_component_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-87	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.120794	87	EXECUTED	9:233f9d1a6e53489679d9a65fe698416a	addPrimaryKey constraintName=committee_proposal_container_pkey, tableName=committee_proposal_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-88	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.124204	88	EXECUTED	9:997901d2eee29b9ec4d46710ab3131a4	addPrimaryKey constraintName=committee_proposal_data_pkey, tableName=committee_proposal_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-89	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.127862	89	EXECUTED	9:c1f8f3587b607f95154d9d70467c9c5e	addPrimaryKey constraintName=countries_element_pkey, tableName=countries_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-90	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.131435	90	EXECUTED	9:40ccd4df593a2a66cd59300c2f5c7f15	addPrimaryKey constraintName=country_element_pkey, tableName=country_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-91	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.134745	91	EXECUTED	9:8308944e4e2c08b501b936a559f8afe1	addPrimaryKey constraintName=data_element_pkey, tableName=data_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-92	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.138064	92	EXECUTED	9:dfe68f89fa66095a18d2bb701148737f	addPrimaryKey constraintName=data_source_content_pkey, tableName=data_source_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-93	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.141894	93	EXECUTED	9:100740b8d9c1ea7e9ff9e242ab5f091f	addPrimaryKey constraintName=detail_data_pkey, tableName=detail_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-94	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.14517	94	EXECUTED	9:155d55d6251bd89a8ef243dd207ff3dd	addPrimaryKey constraintName=detail_element_pkey, tableName=detail_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-95	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.148771	95	EXECUTED	9:1f5717b882823e279aab6ce2f3e14ff5	addPrimaryKey constraintName=document_activity_container_pkey, tableName=document_activity_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-96	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.15214	96	EXECUTED	9:0f77822e71c514105619468165aae6d5	addPrimaryKey constraintName=document_activity_data_pkey, tableName=document_activity_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-97	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.155341	97	EXECUTED	9:cd6f418a41124aea3c186ee765665519	addPrimaryKey constraintName=document_attachment_container_pkey, tableName=document_attachment_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-98	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.158974	98	EXECUTED	9:b5d8dffc4ae85d22f7f4787d36043f4b	addPrimaryKey constraintName=document_attachment_pkey, tableName=document_attachment		\N	5.0.1	\N	\N	4727109315
-1414872417007-99	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.162321	99	EXECUTED	9:2bfd0b28a7b11c92c03453704e522bda	addPrimaryKey constraintName=document_container_element_pkey, tableName=document_container_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-100	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.16594	100	EXECUTED	9:6395d6fc88ce72da42c56ff1c5e07867	addPrimaryKey constraintName=document_content_data_pkey, tableName=document_content_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-101	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.169542	101	EXECUTED	9:b32a6f1fe5048a5e0e85a05e111727e5	addPrimaryKey constraintName=document_data_pkey, tableName=document_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-102	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.172958	102	EXECUTED	9:2d9aaf92aee97b16ac125a5fc0e8dfcb	addPrimaryKey constraintName=document_detail_container_pkey, tableName=document_detail_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-103	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.176436	103	EXECUTED	9:860b27b44274c68226953af12bb7c2ba	addPrimaryKey constraintName=document_detail_data_pkey, tableName=document_detail_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-104	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.179985	104	EXECUTED	9:9f5914ca5b49f8cf29c24b7a85407e6d	addPrimaryKey constraintName=document_element_pkey, tableName=document_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-105	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.183386	105	EXECUTED	9:646fe77744ba782ad29a05f9758c726b	addPrimaryKey constraintName=document_person_reference_co_0_pkey, tableName=document_person_reference_co_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-106	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.18689	106	EXECUTED	9:066a0972b05e23920e12face81e6578b	addPrimaryKey constraintName=document_person_reference_da_0_pkey, tableName=document_person_reference_da_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-107	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.190148	107	EXECUTED	9:624552adc8948bf35b58b1d9ef3a543a	addPrimaryKey constraintName=document_reference_container_pkey, tableName=document_reference_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-108	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.193355	108	EXECUTED	9:9517d4a16d854bb77a5a8364e456c6fa	addPrimaryKey constraintName=document_reference_data_pkey, tableName=document_reference_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-109	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.196671	109	EXECUTED	9:9c3886a2a01a213cc0388b42cefa9c31	addPrimaryKey constraintName=document_status_container_pkey, tableName=document_status_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-110	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.199851	110	EXECUTED	9:5a47eb0ef2899df6880ccf0181487f36	addPrimaryKey constraintName=domain_portal_pkey, tableName=domain_portal		\N	5.0.1	\N	\N	4727109315
-1414872417007-111	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.203095	111	EXECUTED	9:9bb637485c9c31166e28ee005df28382	addPrimaryKey constraintName=indicator_element_pkey, tableName=indicator_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-112	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.20645	112	EXECUTED	9:94c16cc4cb00a952a848f47b4d537f35	addPrimaryKey constraintName=indicators_element_pkey, tableName=indicators_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-113	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.209821	113	EXECUTED	9:9008e44a163d1c21e27bfc226f5f3637	addPrimaryKey constraintName=language_content_data_pkey, tableName=language_content_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-114	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.213124	114	EXECUTED	9:c883a7c469d1ebb67a81bf9e174ab4cf	addPrimaryKey constraintName=language_data_pkey, tableName=language_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-115	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.216664	115	EXECUTED	9:13ceee93ff17b702a450945b3bcb3249	addPrimaryKey constraintName=operational_information_cont_0_pkey, tableName=operational_information_cont_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-116	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.219998	116	EXECUTED	9:1524d7c6bd18a8d8a719c4f573486968	addPrimaryKey constraintName=performance_indicator_content_pkey, tableName=performance_indicator_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-117	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.223451	117	EXECUTED	9:04a2103790734cfce99dff36d2609ef1	addPrimaryKey constraintName=person_assignment_data_pkey, tableName=person_assignment_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-118	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.226785	118	EXECUTED	9:1ab775e2f146e761344cdb951894eae3	addPrimaryKey constraintName=person_assignment_element_pkey, tableName=person_assignment_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-119	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.230112	119	EXECUTED	9:9b2fa87e2c12c84e1f4a6cfcbf20c839	addPrimaryKey constraintName=person_container_data_pkey, tableName=person_container_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-120	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.233261	120	EXECUTED	9:efc05607aaa1e96f1c09107d6f334c8e	addPrimaryKey constraintName=person_container_element_pkey, tableName=person_container_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-121	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.23677	121	EXECUTED	9:6e35a4dcd47a49efd33421bc9f20fb66	addPrimaryKey constraintName=person_data_pkey, tableName=person_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-122	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.240216	122	EXECUTED	9:cf067de81b62440865e1ceb695d746fa	addPrimaryKey constraintName=person_detail_data_pkey, tableName=person_detail_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-123	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.243533	123	EXECUTED	9:4ecec7b11ded214c249fa3330edac6b0	addPrimaryKey constraintName=person_detail_element_pkey, tableName=person_detail_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-124	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.247214	124	EXECUTED	9:2cad1510173ec69b6b8cb232a97eab9b	addPrimaryKey constraintName=person_element_pkey, tableName=person_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-125	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.253786	125	EXECUTED	9:0d5aa0b601f6823fdeeb80895c8f0d28	addPrimaryKey constraintName=portal_pkey, tableName=portal		\N	5.0.1	\N	\N	4727109315
-1414872417007-126	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.257533	126	EXECUTED	9:5e6770a50d8544af0afcb6c0d720715b	addPrimaryKey constraintName=quality_assurance_content_pkey, tableName=quality_assurance_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-127	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.261209	127	EXECUTED	9:b4e0e9778b2d4deeb4ece26f737744c5	addPrimaryKey constraintName=sweden_county_data_container_pkey, tableName=sweden_county_data_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-128	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.264981	128	EXECUTED	9:62edab145f5744b7ceb49858dc83eddd	addPrimaryKey constraintName=sweden_county_data_pkey, tableName=sweden_county_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-129	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.269093	129	EXECUTED	9:f29e2b6f4276458aa0d2337f97c7f320	addPrimaryKey constraintName=sweden_county_electoral_area_pkey, tableName=sweden_county_electoral_area		\N	5.0.1	\N	\N	4727109315
-1414872417007-130	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.272941	130	EXECUTED	9:adf18b3ce957d1710d3a3337a3b3f995	addPrimaryKey constraintName=sweden_county_electoral_regi_0_pkey, tableName=sweden_county_electoral_regi_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-131	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.27643	131	EXECUTED	9:b1175e4a6a86b2a7013d246073480c44	addPrimaryKey constraintName=sweden_county_electoral_regi_1_pkey, tableName=sweden_county_electoral_regi_1		\N	5.0.1	\N	\N	4727109315
-1414872417007-132	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.27981	132	EXECUTED	9:0ef7e7a7c0d5cda0a5dcbe5db56b7dfb	addPrimaryKey constraintName=sweden_election_region_pkey, tableName=sweden_election_region		\N	5.0.1	\N	\N	4727109315
-1414872417007-133	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.28296	133	EXECUTED	9:95d0312014ad80f98a928a2e1ab77b6c	addPrimaryKey constraintName=sweden_election_type_contain_0_pkey, tableName=sweden_election_type_contain_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-134	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.286287	134	EXECUTED	9:2b80a19ab63216f2135737f548649efb	addPrimaryKey constraintName=sweden_election_type_pkey, tableName=sweden_election_type		\N	5.0.1	\N	\N	4727109315
-1414872417007-135	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.289416	135	EXECUTED	9:d61ad75b5a17205bd28e961c19f9bdc4	addPrimaryKey constraintName=sweden_municipality_data_pkey, tableName=sweden_municipality_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-136	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.292858	136	EXECUTED	9:a9b60ba996dfcc86c556ecefd9434d07	addPrimaryKey constraintName=sweden_municipality_election_0_pkey, tableName=sweden_municipality_election_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-137	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.2959	137	EXECUTED	9:270f67f6d0e7885e13a29d873fb10753	addPrimaryKey constraintName=sweden_parliament_electoral__0_pkey, tableName=sweden_parliament_electoral__0		\N	5.0.1	\N	\N	4727109315
-1414872417007-138	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.299207	138	EXECUTED	9:17e8429424a5fc7b90273685a0fee7a8	addPrimaryKey constraintName=sweden_parliament_electoral__1_pkey, tableName=sweden_parliament_electoral__1		\N	5.0.1	\N	\N	4727109315
-1414872417007-139	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.302765	139	EXECUTED	9:05fc213ff95f0bacb5db6c1d213eb41a	addPrimaryKey constraintName=sweden_political_party_pkey, tableName=sweden_political_party		\N	5.0.1	\N	\N	4727109315
-1414872417007-140	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.305941	140	EXECUTED	9:09a05025b9436e9f557c7fac3ab6d6a1	addPrimaryKey constraintName=target_profile_content_pkey, tableName=target_profile_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-141	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.309345	141	EXECUTED	9:d9a0d2ae0b49b01b86000dff4c08f92c	addPrimaryKey constraintName=topic_pkey, tableName=topic		\N	5.0.1	\N	\N	4727109315
-1414872417007-142	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.312913	142	EXECUTED	9:c25699beb6697e89e15974720c428e76	addPrimaryKey constraintName=topics_pkey, tableName=topics		\N	5.0.1	\N	\N	4727109315
-1414872417007-143	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.315604	143	EXECUTED	9:af73822f902ba605fc64ad455d4719d9	addPrimaryKey constraintName=user_account_address_pkey, tableName=user_account_address		\N	5.0.1	\N	\N	4727109315
-1414872417007-144	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.318479	144	EXECUTED	9:8fcbc92628f8cba467c582d5ca7906e7	addPrimaryKey constraintName=user_account_pkey, tableName=user_account		\N	5.0.1	\N	\N	4727109315
-1414872417007-145	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.321633	145	EXECUTED	9:f0838a94de3419c7ac3df04bd792c658	addPrimaryKey constraintName=vote_data_pkey, tableName=vote_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-146	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.324508	146	EXECUTED	9:5c275b66b7eed679e55738926e5b1536	addPrimaryKey constraintName=vote_meta_data_pkey, tableName=vote_meta_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-147	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.327043	147	EXECUTED	9:c43ec2fd8137eee136dc1c20828cbd70	addPrimaryKey constraintName=world_bank_data_pkey, tableName=world_bank_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-148	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.330891	148	EXECUTED	9:4508dab76977f081c98a65d7653e84b7	addForeignKeyConstraint baseTableName=person_element, constraintName=fk_13jay3yk8opnt33758httu9kb, referencedTableName=person_detail_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-149	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.33369	149	EXECUTED	9:91b8623f7717a1df4b4a2e6ca8b36512	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_2ivjcdwosa63ant7jc5c6cojj, referencedTableName=target_profile_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-150	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.336331	150	EXECUTED	9:a42e80d7f82938b0012152684357dfbd	addForeignKeyConstraint baseTableName=country_element, constraintName=fk_3k0s1gih1msbej3bp2iotg52y, referencedTableName=countries_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-151	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.3389	151	EXECUTED	9:6590b1db53965caf6f41491e5d14069c	addForeignKeyConstraint baseTableName=person_element, constraintName=fk_3o85sqp9yss0nler1yl1umfl1, referencedTableName=person_container_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-152	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.341564	152	EXECUTED	9:5666684899b4932d7a7c5f10650b1504	addForeignKeyConstraint baseTableName=sweden_county_electoral_regi_1, constraintName=fk_4y4vi3cafmbdhvckntfn7qdps, referencedTableName=sweden_county_electoral_regi_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-153	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.344107	153	EXECUTED	9:5d7d31451a54ac259a8da618470e3019	addForeignKeyConstraint baseTableName=against_proposal_data, constraintName=fk_5u5u77qsrpa2qy6umqrph4tyf, referencedTableName=against_proposal_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-154	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.346621	154	EXECUTED	9:b5f757faef90de046c4cfeba596b2185	addForeignKeyConstraint baseTableName=person_container_data, constraintName=fk_5w4uvrhl3l7c441b7ra7p8txr, referencedTableName=person_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-155	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.348999	155	EXECUTED	9:d1716def0fa248256460135662cb0605	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_6crp887w8xy3e4i143yyydjqv, referencedTableName=document_reference_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-156	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.351528	156	EXECUTED	9:87739cc9152ce23f5b403ba407615209	addForeignKeyConstraint baseTableName=portal, constraintName=fk_7c8jfw8bnxrm2aj26w9qlx340, referencedTableName=agency		\N	5.0.1	\N	\N	4727109315
-1414872417007-157	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.353894	157	EXECUTED	9:285821ed49a91195d9d6e0f0273b0778	addForeignKeyConstraint baseTableName=sweden_county_electoral_area, constraintName=fk_7h4feuc5bwu12tyaka1nx1ln, referencedTableName=sweden_county_electoral_regi_1		\N	5.0.1	\N	\N	4727109315
-1414872417007-158	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.357002	158	EXECUTED	9:29999cfa40cbc2af86e5e6f41ce1ff4f	addForeignKeyConstraint baseTableName=assignment_data, constraintName=fk_84o1dcsfeyp1o25nfdpppa7oe, referencedTableName=person_assignment_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-159	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.359831	159	EXECUTED	9:04f0321d6a659c24367adf06b21490ec	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_86c52yf22uk0bpcs1qoc3aeyv, referencedTableName=document_attachment_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-160	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.362484	160	EXECUTED	9:cfb97bbb6da4e55006169e9879f04eea	addForeignKeyConstraint baseTableName=user_account_address, constraintName=fk_8931ymg13vy6vfkrichtst7bj, referencedTableName=user_account		\N	5.0.1	\N	\N	4727109315
-1414872417007-161	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.365453	161	EXECUTED	9:35323e79371e0ed674f60d54da88447e	addForeignKeyConstraint baseTableName=indicator_element, constraintName=fk_8l1m1pum4e3catw4443rup4q5, referencedTableName=indicators_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-162	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.367771	162	EXECUTED	9:d5d46f2c32f0828c1ad2cab7488c0ced	addForeignKeyConstraint baseTableName=user_account, constraintName=fk_8mmnmcgjut9nc7dfhrgxi598f, referencedTableName=aggregated_country_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-163	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.370472	163	EXECUTED	9:1e64c99d1c965da030f1f77b7c65d3bd	addForeignKeyConstraint baseTableName=committee_proposal_component_0, constraintName=fk_90arga58ce9bnjkc6lws04uhw, referencedTableName=committee_proposal_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-164	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.372991	164	EXECUTED	9:4ff16e8d056a87f4c3ccd13acc819aa5	addForeignKeyConstraint baseTableName=indicator_element, constraintName=fk_92h99v4i1pmr69x0y43pocv2a, referencedTableName=topics		\N	5.0.1	\N	\N	4727109315
-1414872417007-165	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.375329	165	EXECUTED	9:f030785453270c20bfdb38ca4dc425ee	addForeignKeyConstraint baseTableName=domain_portal, constraintName=fk_9ln0n5axxjuxtbpepyad69rel, referencedTableName=portal		\N	5.0.1	\N	\N	4727109315
-1414872417007-166	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.377982	166	EXECUTED	9:4dacfe145969063359c67da63be19926	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_9q1ktfb77gieq0xugoqe2fidd, referencedTableName=document_detail_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-167	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.380616	167	EXECUTED	9:f9d7c86e3c465fe6034392bcaa0261a8	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_9x5havflf3rdfkaw1hangbemd, referencedTableName=quality_assurance_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-168	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.383175	168	EXECUTED	9:120cbf4620307c3f7962a3727eea6d93	addForeignKeyConstraint baseTableName=person_detail_element, constraintName=fk_a6syxeadcisfnnfjqemog93qd, referencedTableName=detail_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-169	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.385655	169	EXECUTED	9:8ddf896e49f7932380e5ef7471892039	addForeignKeyConstraint baseTableName=sweden_political_party, constraintName=fk_c2f4dhdce9p61sg50rnww73c1, referencedTableName=sweden_election_region		\N	5.0.1	\N	\N	4727109315
-1414872417007-170	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.388017	170	EXECUTED	9:2d5e1c62af16eec4c4539ddfb9100fec	addForeignKeyConstraint baseTableName=document_reference_data, constraintName=fk_c4uqb4d6xqa5d7afwen8sny67, referencedTableName=document_reference_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-171	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.390665	171	EXECUTED	9:4e6aea0b15d2a2ed7264ed313d9547be	addForeignKeyConstraint baseTableName=detail_data, constraintName=fk_diexjlb9hdrfv7g5y06cj6nu5, referencedTableName=person_detail_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-172	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.393135	172	EXECUTED	9:e8560158fc903b2b52877dcc82cadbed	addForeignKeyConstraint baseTableName=world_bank_data, constraintName=fk_e0yghurnnhmkahpt7ydf008fo, referencedTableName=data_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-173	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.39545	173	EXECUTED	9:cbec00c068a73c3e5d6597c95e437200	addForeignKeyConstraint baseTableName=committee_proposal_component_0, constraintName=fk_eofapva6jn5k3h5gnj4whyilb, referencedTableName=against_proposal_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-174	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.397907	174	EXECUTED	9:ad7250e1d861b489dd7ca50bb3f49df2	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_f4bptktby95bygv359chn7lbn, referencedTableName=performance_indicator_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-175	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.400709	175	EXECUTED	9:818f5d9ba52f5b4b7c5e22b7880d5b31	addForeignKeyConstraint baseTableName=document_activity_data, constraintName=fk_gruc53dqu0smf6s1a0gkelvdm, referencedTableName=document_activity_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-176	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.403192	176	EXECUTED	9:2829a37686f398cbd8bde3720b9ffbcb	addForeignKeyConstraint baseTableName=sweden_municipality_data, constraintName=fk_gykahsnks6y9v8y5novlxagnf, referencedTableName=sweden_county_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-177	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.405624	177	EXECUTED	9:74506407fb2de37ce7110ed9e6e84899	addForeignKeyConstraint baseTableName=committee_proposal_data, constraintName=fk_hs04ji7kqvwd7313ryp20vo0x, referencedTableName=committee_proposal_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-178	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.408042	178	EXECUTED	9:ff2b41caa6a89d740f2df18f82af73e5	addForeignKeyConstraint baseTableName=aggregated_country_data, constraintName=fk_j7l4eldeihr8g7ax7rv2irgk1, referencedTableName=country_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-179	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.410607	179	EXECUTED	9:de72bc11dc8b5b4e708484799424e2f3	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_jjcxsqmdnjw0nbwducjyecdg4, referencedTableName=document_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-180	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.413148	180	EXECUTED	9:dd951cd80fae1d68360c4f14a0f8ae47	addForeignKeyConstraint baseTableName=person_data, constraintName=fk_jrgy7nw6n071uok8p1hkp03rh, referencedTableName=person_detail_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-181	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.41551	181	EXECUTED	9:54660e233cda4814c9a51132ed672342	addForeignKeyConstraint baseTableName=committee_proposal_component_0, constraintName=fk_k78eqmx2m3ja0267xhthfeio4, referencedTableName=committee_document_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-182	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.417842	182	EXECUTED	9:7300fd0907004ada150fc96cb7a0c74c	addForeignKeyConstraint baseTableName=assignment_element, constraintName=fk_ks1811fwuno6vqof0lskerpib, referencedTableName=person_assignment_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-183	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.420111	183	EXECUTED	9:60e718f175e5b30a169916f114881495	addForeignKeyConstraint baseTableName=document_attachment, constraintName=fk_lean1i0p0e5rv28my9297lq22, referencedTableName=document_attachment_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-184	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.422711	184	EXECUTED	9:06e2186d554b8ab401562b3ad4b848ae	addForeignKeyConstraint baseTableName=document_person_reference_da_0, constraintName=fk_lsfup3rosph7239t1idorm1cd, referencedTableName=document_person_reference_co_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-185	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.425042	185	EXECUTED	9:aa2334e93f5fe2a5ed438f52c7507776	addForeignKeyConstraint baseTableName=person_element, constraintName=fk_m6dcdojsb6iv9lrego5kurr7p, referencedTableName=person_assignment_element		\N	5.0.1	\N	\N	4727109315
-25353872417007-324	party_trends-fix	db-changelog-1.26.xml	2025-12-03 01:58:34.642264	345	EXECUTED	9:60797ca4c12b59c5f244255c0bda44cf	createView viewName=view_riksdagen_party_ballot_support_annual_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-186	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.427429	186	EXECUTED	9:cc82b3c05a5e51eedf05c87248cea759	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_ng4kjnv3cm4e6ud3fikwi6p7i, referencedTableName=document_person_reference_co_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-187	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.430045	187	EXECUTED	9:5eba99c12fbddf7df67ef71faf1a83de	addForeignKeyConstraint baseTableName=application_action_event, constraintName=fk_nlqlshlogsx2g8u5d3y28my28, referencedTableName=application_session		\N	5.0.1	\N	\N	4727109315
-1414872417007-188	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.432649	188	EXECUTED	9:09fb71b57990439cfb427066fe1efddc	addForeignKeyConstraint baseTableName=document_element, constraintName=fk_o24n54auwa2xyflis6nkrajpd, referencedTableName=document_container_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-189	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.43544	189	EXECUTED	9:6e0bce434a5e5c4d0dc628b0529264db	addForeignKeyConstraint baseTableName=topic, constraintName=fk_o7ol28sotu1r12n8txv2gigok, referencedTableName=topics		\N	5.0.1	\N	\N	4727109315
-1414872417007-190	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.438693	190	EXECUTED	9:8c38ea04b2f59bf71cf23a9896e12862	addForeignKeyConstraint baseTableName=sweden_election_type, constraintName=fk_ob50ibby6jamvitbxknoucifg, referencedTableName=sweden_election_region		\N	5.0.1	\N	\N	4727109315
-1414872417007-191	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.441463	191	EXECUTED	9:093c24624d60c39f0c07c436100f5a40	addForeignKeyConstraint baseTableName=aggregated_bug_data, constraintName=fk_osdlir1nv0m8ckb1pbipgswj, referencedTableName=person_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-192	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.444322	192	EXECUTED	9:f82186446de4769ed31f4da13061611b	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_p8b7gnxeglk71etbbql3j184s, referencedTableName=data_source_content		\N	5.0.1	\N	\N	4727109315
-1414872417007-193	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.446879	193	EXECUTED	9:0ec91f1010fa7e1204a8124d5d8f5144	addForeignKeyConstraint baseTableName=sweden_county_data, constraintName=fk_pndlg3q6ly10qbs8e3s9wikyu, referencedTableName=sweden_county_data_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-194	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.449298	194	EXECUTED	9:452c2540e89f1802c787458cf6b48cd8	addForeignKeyConstraint baseTableName=document_detail_data, constraintName=fk_quor6wesrmk9ierjyr7ni8wch, referencedTableName=document_detail_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-195	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.451662	195	EXECUTED	9:cc1d30b724e685b87c77fc853efa1bc3	addForeignKeyConstraint baseTableName=sweden_parliament_electoral__1, constraintName=fk_qvgtilwwyipbrv6b2cv6fcp27, referencedTableName=sweden_parliament_electoral__0		\N	5.0.1	\N	\N	4727109315
-1414872417007-196	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.453861	196	EXECUTED	9:ec3a97c733d887320cae227c31414d0d	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_r2dkprhp4xfhrcck9sf31b9xl, referencedTableName=document_activity_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-197	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.456212	197	EXECUTED	9:9d34aebdd2d3710bc4969a4b919b9e44	addForeignKeyConstraint baseTableName=sweden_municipality_election_0, constraintName=fk_r3jht5oci01uxhwaa39uxsg2t, referencedTableName=sweden_municipality_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-198	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.458556	198	EXECUTED	9:fc898e94f68547d5d6b575ba264843b3	addForeignKeyConstraint baseTableName=person_data, constraintName=fk_rd2pmyb4gmu2vbxklh6er8ayc, referencedTableName=person_assignment_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-199	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.460812	199	EXECUTED	9:44b8fe081629b67789129dde1fad255d	addForeignKeyConstraint baseTableName=sweden_election_type, constraintName=fk_rp3tjh4jmpmoxh05oo9fq9qh6, referencedTableName=sweden_election_type_contain_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-200	pether (generated)	db-changelog-1.0.xml	2025-12-03 01:58:32.463271	200	EXECUTED	9:538e5077d44dd97071f9d407ac8812d0	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_x8sbg6y7h0vavmun6i7h8oae, referencedTableName=operational_information_cont_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-201	pether	db-changelog-1.0.xml	2025-12-03 01:58:32.465687	201	EXECUTED	9:765cc5f3190db16a819f460b2c3a9835	modifyDataType columnName=content, tableName=document_content_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-202	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.477504	202	EXECUTED	9:08fb1bac7fdd7016ab7d47d2f70ebbfa	createView viewName=view_document_data_committee_report_url		\N	5.0.1	\N	\N	4727109315
-1414872417007-203	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.479811	203	EXECUTED	9:534ad16ef62ab2164f305d17d8fba21b	modifyDataType columnName=proposal, tableName=committee_proposal_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-204	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.48464	204	EXECUTED	9:dad3fd6230b1f6b09a7ea190314f3e75	createView viewName=view_riksdagen_committee		\N	5.0.1	\N	\N	4727109315
-1414872417007-205	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.488814	205	EXECUTED	9:cce5264c458c91c73e66133abbaca793	createView viewName=view_riksdagen_goverment		\N	5.0.1	\N	\N	4727109315
-1414872417007-206	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.493337	206	EXECUTED	9:3c85c169ae80776fcc98b8be9fb3ed04	createView viewName=view_riksdagen_goverment_roles		\N	5.0.1	\N	\N	4727109315
-1414872417007-207	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.499807	207	EXECUTED	9:e518955b8fdd65916aef6f8d2e13a803	createView viewName=view_riksdagen_committee_decisions		\N	5.0.1	\N	\N	4727109315
-1414872417007-208	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.503723	208	EXECUTED	9:b261683ab49f67d5ad404b2cd5d5ec79	createView viewName=view_riksdagen_goverment_proposals		\N	5.0.1	\N	\N	4727109315
-1414872417007-209	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.507098	209	EXECUTED	9:a14b26657c5b09346ccfe984cc94d11d	createView viewName=view_riksdagen_member_proposals		\N	5.0.1	\N	\N	4727109315
-1416258476613-210	pether (generated)	db-changelog-1.1.xml	2025-12-03 01:58:32.510193	210	EXECUTED	9:c2effec0a954d668b8fd780eb04879d6	createTable tableName=document_proposal_container		\N	5.0.1	\N	\N	4727109315
-1416258476613-211	pether (generated)	db-changelog-1.1.xml	2025-12-03 01:58:32.514505	211	EXECUTED	9:908f681226f2fb5abe4b199126d26a6b	createTable tableName=document_proposal_data		\N	5.0.1	\N	\N	4727109315
-1416258476613-212	pether (generated)	db-changelog-1.1.xml	2025-12-03 01:58:32.518032	212	EXECUTED	9:3e0f9abc6d66f9b8582632524ec3806a	addColumn tableName=document_status_container; dropColumn columnName=document_proposal, tableName=document_status_container		\N	5.0.1	\N	\N	4727109315
-1416258476613-213	pether (generated)	db-changelog-1.1.xml	2025-12-03 01:58:32.520897	213	EXECUTED	9:f866ec1b7098b04250e282bf216ce46b	addPrimaryKey constraintName=document_proposal_container_pkey, tableName=document_proposal_container		\N	5.0.1	\N	\N	4727109315
-1416258476613-214	pether (generated)	db-changelog-1.1.xml	2025-12-03 01:58:32.523785	214	EXECUTED	9:758bf9de406141115f5a3dea3f38d224	addPrimaryKey constraintName=document_proposal_data_pkey, tableName=document_proposal_data		\N	5.0.1	\N	\N	4727109315
-1416258476613-215	pether (generated)	db-changelog-1.1.xml	2025-12-03 01:58:32.526317	215	EXECUTED	9:bc8c5511c4210514433a23a9802a16ea	addForeignKeyConstraint baseTableName=document_proposal_container, constraintName=fk_m55tt4vaimgb5qk7xj9mgxmry, referencedTableName=document_proposal_data		\N	5.0.1	\N	\N	4727109315
-1416258476613-216	pether (generated)	db-changelog-1.1.xml	2025-12-03 01:58:32.528625	216	EXECUTED	9:824a2b5b89c1f8445fe03bce8a1ed4a3	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_iirofquegnrpnuonvnydf6wfb, referencedTableName=document_proposal_container		\N	5.0.1	\N	\N	4727109315
-1414872417007-217	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.532164	217	EXECUTED	9:dc12d88f692a0de46300f916366fcd3d	modifyDataType columnName=wording, tableName=document_proposal_data; modifyDataType columnName=wording_2, tableName=document_proposal_data; modifyDataType columnName=wording_3, tableName=document_proposal_data; modifyDataType columnName=wording_4,...		\N	5.0.1	\N	\N	4727109315
-1414872417007-218	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.53556	218	EXECUTED	9:bf01ae3c4a683f06ebfb04fb51534659	createView viewName=view_riksdagen_committee_roles		\N	5.0.1	\N	\N	4727109315
-1414872417007-219	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.544595	219	EXECUTED	9:40844e607d59d90e5e0cceea37549f78	dropView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee_parliament_member_proposal		\N	5.0.1	\N	\N	4727109315
-1414872417007-220	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.551438	220	EXECUTED	9:2989f55d70d91a3b877bdc4fbde2bcc7	dropView viewName=view_riksdagen_goverment_roles; createView viewName=view_riksdagen_goverment_roles; dropView viewName=view_riksdagen_committee_roles; createView viewName=view_riksdagen_committee_roles		\N	5.0.1	\N	\N	4727109315
-1414872417007-221	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.555117	221	EXECUTED	9:22e8c979c00998ab0584a65208d0070c	dropView viewName=view_riksdagen_goverment; createView viewName=view_riksdagen_goverment		\N	5.0.1	\N	\N	4727109315
-1414872417007-222	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.558686	222	EXECUTED	9:a03f84a49600f94a9947b1b8d5831149	createView viewName=view_riksdagen_party_member		\N	5.0.1	\N	\N	4727109315
-1414872417007-223	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.561487	223	EXECUTED	9:d9e3c3c85411b661c092f2f8922b9c06	createView viewName=view_riksdagen_party		\N	5.0.1	\N	\N	4727109315
-1414872417007-224	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.565256	224	EXECUTED	9:b57642b4b204201b692e94822604822c	dropView viewName=view_riksdagen_party; createView viewName=view_riksdagen_party		\N	5.0.1	\N	\N	4727109315
-1414872417007-225	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.569645	225	EXECUTED	9:ea6a0f678b722d37e8d2862d86044b1e	dropView viewName=view_riksdagen_goverment; createView viewName=view_riksdagen_goverment		\N	5.0.1	\N	\N	4727109315
-1414872417007-226	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.576882	226	EXECUTED	9:f61f477649fb8c7055d2b374748e2459	dropView viewName=view_riksdagen_committee_parliament_member_proposal; dropView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee_parliament_member_proposal		\N	5.0.1	\N	\N	4727109315
-1414872417007-227	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.583524	227	EXECUTED	9:0e86f855ff9c4aef94315ddd54a3023d	createView viewName=view_riksdagen_goverment_role_member; createView viewName=view_riksdagen_committee_role_member		\N	5.0.1	\N	\N	4727109315
-1414872417007-228	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.590192	228	EXECUTED	9:c1f77e255a88bcc694bbe19fe721d57c	createView viewName=view_riksdagen_politician		\N	5.0.1	\N	\N	4727109315
-1414872417007-229	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.597301	229	EXECUTED	9:02389fc7a55e20948a4b646d84108740	dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician		\N	5.0.1	\N	\N	4727109315
-1414872417007-230	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.606441	230	EXECUTED	9:74cca167d30b5635d5d604d621881082	dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician		\N	5.0.1	\N	\N	4727109315
-1414872417007-231	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.611801	231	EXECUTED	9:083ad5ea0ee0c5582da18d78f074043d	createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-232	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.617256	232	EXECUTED	9:8c5e85cc7b9722b6cf11cc1e2370af47	dropView viewName=view_riksdagen_party_summary; createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-233	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.629301	233	EXECUTED	9:e615358ab9818929ffe7a8d502e4bb85	dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-234	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.635908	234	EXECUTED	9:eaa93e3fb1b9d6745bc1bc4f6decb446	createView viewName=view_riksdagen_politician_document		\N	5.0.1	\N	\N	4727109315
-1414872417007-235	pether	db-changelog-1.1.xml	2025-12-03 01:58:32.654916	235	EXECUTED	9:2a4aaa3ad3c5adf40fd1e09942d17ba2	dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-236	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.673554	236	EXECUTED	9:7a212611fdd15ee2fe72ba19866e2f68	dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-237	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.682047	237	EXECUTED	9:2b9a267cae0600616bd0fab522c2210b	dropView viewName=view_riksdagen_goverment_role_member; createView viewName=view_riksdagen_goverment_role_member; dropView viewName=view_riksdagen_committee_role_member; createView viewName=view_riksdagen_committee_role_member; createView viewName...		\N	5.0.1	\N	\N	4727109315
-1414872417007-238	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.688097	238	EXECUTED	9:9b345a7e03fca2d72d77f5d6b3351409	dropForeignKeyConstraint baseTableName=user_account, constraintName=fk_8mmnmcgjut9nc7dfhrgxi598f; dropTable tableName=aggregated_bug_data; dropTable tableName=aggregated_country_data; dropColumn columnName=country_user_account_hjid, tableName=user...		\N	5.0.1	\N	\N	4727109315
-1414872417007-239	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.698617	239	EXECUTED	9:2114de6439a5fe3157a923c3d8ee36c7	dropView viewName=view_riksdagen_goverment_role_member; createView viewName=view_riksdagen_goverment_role_member; dropView viewName=view_riksdagen_committee_role_member; createView viewName=view_riksdagen_committee_role_member; dropView viewName=v...		\N	5.0.1	\N	\N	4727109315
-1414872417007-263	pether	db-changelog-1.5.xml	2025-12-03 01:58:33.155533	263	EXECUTED	9:7d34f8665567dbd826ceff8e38177cc9	dropView viewName=view_worldbank_indicator_data_country_summary; createView viewName=view_worldbank_indicator_data_country_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-240	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.708884	240	EXECUTED	9:591c6d509fe1d4dde6b41c9ecc5105c9	dropView viewName=view_riksdagen_goverment_role_member; createView viewName=view_riksdagen_goverment_role_member; dropView viewName=view_riksdagen_committee_role_member; createView viewName=view_riksdagen_committee_role_member; dropView viewName=v...		\N	5.0.1	\N	\N	4727109315
-1414872417007-241	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.723997	241	EXECUTED	9:76d4f14c8fcd7a22ede9b78231ff916b	createView viewName=view_riksdagen_vote_data_ballot_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-242	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.737626	242	EXECUTED	9:dc35246f6d762ea3fa127bf050173773	createView viewName=view_riksdagen_vote_data_ballot_party_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-243	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.759531	243	EXECUTED	9:bedaee0e37a39ab72fcf8b0a32ea1ac3	dropView viewName=view_riksdagen_vote_data_ballot_party_summary; dropView viewName=view_riksdagen_vote_data_ballot_summary; createView viewName=view_riksdagen_vote_data_ballot_summary; createView viewName=view_riksdagen_vote_data_ballot_party_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-244	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.76603	244	EXECUTED	9:475ac35a820437f1e15c480211d60234	createView viewName=view_riksdagen_vote_data_ballot_summary_daily		\N	5.0.1	\N	\N	4727109315
-1414872417007-245	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.777388	245	EXECUTED	9:5068091c96f1fd1622105bb83527a07e	createView viewName=view_riksdagen_vote_data_ballot_summary_weekly; createView viewName=view_riksdagen_vote_data_ballot_summary_monthly; createView viewName=view_riksdagen_vote_data_ballot_summary_annual		\N	5.0.1	\N	\N	4727109315
-1414872417007-246	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.801707	246	EXECUTED	9:68d9a9971d2ea9bd76d03d89521ad3d5	dropView viewName=view_riksdagen_vote_data_ballot_summary_weekly; dropView viewName=view_riksdagen_vote_data_ballot_summary_monthly; dropView viewName=view_riksdagen_vote_data_ballot_summary_annual; dropView viewName=view_riksdagen_vote_data_ballo...		\N	5.0.1	\N	\N	4727109315
-1414872417007-247	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.82455	247	EXECUTED	9:98d9c264a755b9a836390a08d33878d7	createView viewName=view_riksdagen_vote_data_ballot_party_summary_daily		\N	5.0.1	\N	\N	4727109315
-1414872417007-248	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.85086	248	EXECUTED	9:e26631ba948fed851e8ddafa9c91f959	createView viewName=view_riksdagen_vote_data_ballot_party_summary_weekly; createView viewName=view_riksdagen_vote_data_ballot_party_summary_monthly; createView viewName=view_riksdagen_vote_data_ballot_party_summary_annual		\N	5.0.1	\N	\N	4727109315
-1414872417007-249	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.858391	249	EXECUTED	9:bc3ce6e9dfc901e50afc2fafa681b95a	createView viewName=view_riksdagen_vote_data_ballot_politician_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-250	pether	db-changelog-1.2.xml	2025-12-03 01:58:32.891316	250	EXECUTED	9:91e3908e9e189208b9758c3cc6c44c71	createView viewName=view_riksdagen_vote_data_ballot_politician_summary_daily; createView viewName=view_riksdagen_vote_data_ballot_politician_summary_weekly; createView viewName=view_riksdagen_vote_data_ballot_politician_summary_monthly; createView...		\N	5.0.1	\N	\N	4727109315
-1414872417007-251	pether	db-changelog-1.3.xml	2025-12-03 01:58:32.976344	251	EXECUTED	9:ef6bbe1d06a5478a5c33db26bfd794f1	dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_weekly; dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_monthly; dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_annual; dropView viewNa...		\N	5.0.1	\N	\N	4727109315
-1414872417007-252	pether (generated)	db-changelog-1.4.xml	2025-12-03 01:58:32.982377	252	EXECUTED	9:76f1acc51844fae7e7ef064ee6c8fc08	dropView viewName=view_riksdagen_committee_decisions; modifyDataType columnName=title, tableName=committee_document_data; modifyDataType columnName=sub_title, tableName=committee_document_data; modifyDataType columnName=temp_label, tableName=commi...		\N	5.0.1	\N	\N	4727109315
-1414872417007-253	pether	db-changelog-1.4.xml	2025-12-03 01:58:33.066356	253	EXECUTED	9:4e4b64893fd4dae4fd2bffadc7163fb2	dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_weekly; dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_monthly; dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_annual; dropView viewNa...		\N	5.0.1	\N	\N	4727109315
-1414872417007-254	pether	db-changelog-1.4.xml	2025-12-03 01:58:33.073386	254	EXECUTED	9:c7d4e2eda2ed22d4092964cf1f6756ab	createView viewName=view_riksdagen_document_type_daily_summary; createView viewName=view_riksdagen_politician_document_daily_summary; createView viewName=view_riksdagen_party_document_daily_summary; createView viewName=view_riksdagen_org_document_...		\N	5.0.1	\N	\N	4727109315
-1414872417007-255	pether	db-changelog-1.4.xml	2025-12-03 01:58:33.077718	255	EXECUTED	9:de1ff4d851c9cfb6e0597760c4cfe11b	createView viewName=view_riksdagen_committee_decision_type_summary; createView viewName=view_riksdagen_committee_decision_type_org_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-256	pether	db-changelog-1.4.xml	2025-12-03 01:58:33.085531	256	EXECUTED	9:55cb855446f25c527751dcb9eda7bf1d	dropView viewName=view_riksdagen_committee_decision_type_summary; createView viewName=view_riksdagen_committee_decision_type_summary; dropView viewName=view_riksdagen_committee_decision_type_org_summary; createView viewName=view_riksdagen_committe...		\N	5.0.1	\N	\N	4727109315
-1414872417007-257	pether	db-changelog-1.5.xml	2025-12-03 01:58:33.095541	257	EXECUTED	9:505f6fa901adab3bd33ddb3ad4a44967	dropView viewName=view_riksdagen_committee_decision_type_summary; dropView viewName=view_riksdagen_committee_decision_type_org_summary; dropView viewName=view_riksdagen_committee_decisions; createView viewName=view_riksdagen_committee_decisions; c...		\N	5.0.1	\N	\N	4727109315
-1414872417007-258	pether	db-changelog-1.5.xml	2025-12-03 01:58:33.10944	258	EXECUTED	9:4939cc4cd5b64ed9cfb0305c17b1ac42	createView viewName=view_riksdagen_committee_ballot_decision_summary; createView viewName=view_riksdagen_committee_ballot_decision_party_summary; createView viewName=view_riksdagen_committee_ballot_decision_politician_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-259	pether	db-changelog-1.5.xml	2025-12-03 01:58:33.116606	259	EXECUTED	9:b574f8e847319078c295ab00b9db075a	dropView viewName=view_riksdagen_committee_decision_type_summary; createView viewName=view_riksdagen_committee_decision_type_summary; dropView viewName=view_riksdagen_committee_decision_type_org_summary; createView viewName=view_riksdagen_committe...		\N	5.0.1	\N	\N	4727109315
-1414872417007-260	pether	db-changelog-1.5.xml	2025-12-03 01:58:33.140314	260	EXECUTED	9:6b5a8faf027b4da44412ecda2cb4c87f	dropView viewName=view_riksdagen_committee_decision_type_summary; dropView viewName=view_riksdagen_committee_decision_type_org_summary; dropView viewName=view_riksdagen_committee_ballot_decision_summary; dropView viewName=view_riksdagen_committee_...		\N	5.0.1	\N	\N	4727109315
-1414872417007-261	pether	db-changelog-1.5.xml	2025-12-03 01:58:33.144754	261	EXECUTED	9:a898f1a6d116c317439ac2289b616988	createView viewName=view_worldbank_indicator_data_country_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-262	pether	db-changelog-1.5.xml	2025-12-03 01:58:33.14965	262	EXECUTED	9:943858a57243b94eab7e4150c2fcd36b	dropView viewName=view_worldbank_indicator_data_country_summary; createView viewName=view_worldbank_indicator_data_country_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-264	pether	db-changelog-1.5.xml	2025-12-03 01:58:33.319931	264	EXECUTED	9:0aa77dc47d643b3882f2a4ca3238c070	dropView viewName=view_riksdagen_committee_decision_type_summary; dropView viewName=view_riksdagen_committee_decision_type_org_summary; dropView viewName=view_riksdagen_committee_ballot_decision_summary; dropView viewName=view_riksdagen_committee_...		\N	5.0.1	\N	\N	4727109315
-1414872417007-265	pether	db-changelog-1.6.xml	2025-12-03 01:58:33.344843	265	EXECUTED	9:6c82b7bad6f5bd4c961ed3cfee42cf1b	dropView viewName=view_riksdagen_document_type_daily_summary; dropView viewName=view_riksdagen_politician_document_daily_summary; dropView viewName=view_riksdagen_party_document_daily_summary; dropView viewName=view_riksdagen_org_document_daily_su...		\N	5.0.1	\N	\N	4727109315
-1414872417007-266	pether	db-changelog-1.6.xml	2025-12-03 01:58:33.380901	266	EXECUTED	9:345962d1e2cffcbe3413eb509fd97886	sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql		\N	5.0.1	\N	\N	4727109315
-1414872417007-267	pether	db-changelog-1.6.xml	2025-12-03 01:58:33.388257	267	EXECUTED	9:9fc625a3d56571e98a8d7eea06980e65	dropView viewName=view_worldbank_indicator_data_country_summary; sql		\N	5.0.1	\N	\N	4727109315
-1414872417007-268	pether (generated)	db-changelog-1.6.xml	2025-12-03 01:58:33.393617	268	EXECUTED	9:53a2955ac5300632144a22b15a944a8e	addColumn tableName=application_session		\N	5.0.1	\N	\N	4727109315
-1414872417007-269	pether (generated)	db-changelog-1.6.xml	2025-12-03 01:58:33.400683	269	EXECUTED	9:accbf9a9a30c5dd595a667a721f2ff89	addColumn tableName=application_action_event		\N	5.0.1	\N	\N	4727109315
-1414872417007-270	pether (generated)	db-changelog-1.6.xml	2025-12-03 01:58:33.40333	270	EXECUTED	9:b415b0a981b9dfb061d94504b19b0878	addColumn tableName=user_account		\N	5.0.1	\N	\N	4727109315
-1414872417007-271	pether (generated)	db-changelog-1.6.xml	2025-12-03 01:58:33.405991	271	EXECUTED	9:522e0502d2a4e5e8cebfbe7c193cdf24	addColumn tableName=application_session		\N	5.0.1	\N	\N	4727109315
-1414872417007-272	pether (generated)	db-changelog-1.6.xml	2025-12-03 01:58:33.408811	272	EXECUTED	9:94728ce0aa674d7ef4fe9b0521b55fcb	addColumn tableName=application_session		\N	5.0.1	\N	\N	4727109315
-1414872417007-273	pether	db-changelog-1.6.xml	2025-12-03 01:58:33.418391	273	EXECUTED	9:b9bc2c08e551503123084c32e2839f50	sql; sql; sql; sql		\N	5.0.1	\N	\N	4727109315
-1414872417007-274	pether	db-changelog-1.6.xml	2025-12-03 01:58:33.427188	274	EXECUTED	9:b257435f43a13311f319b53b205ef7c1	sql; sql; sql; sql		\N	5.0.1	\N	\N	4727109315
-1414872417007-275	pether	db-changelog-1.6.xml	2025-12-03 01:58:33.435872	275	EXECUTED	9:92661264af048495b1a63824cc71e551	sql; sql; sql; sql		\N	5.0.1	\N	\N	4727109315
-1414872417007-276	pether	db-changelog-1.6.xml	2025-12-03 01:58:33.441497	276	EXECUTED	9:765d8cd0cdacd034d8a0674eaa880023	createTable tableName=application_configuration		\N	5.0.1	\N	\N	4727109315
-1414872417007-277	pether	db-changelog-1.6.xml	2025-12-03 01:58:33.458717	277	EXECUTED	9:c60c41cdca28d541fd3a2b605b711d18	dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-278	pether	db-changelog-1.6.xml	2025-12-03 01:58:33.479833	278	EXECUTED	9:302d61374938a5619b973c5f7a3fcd85	dropView viewName=view_riksdagen_party; dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView viewName=view_riksdagen_party_member; createView viewNam...		\N	5.0.1	\N	\N	4727109315
-1414872417007-279	pether (generated)	db-changelog-1.7.xml	2025-12-03 01:58:33.487996	279	EXECUTED	9:2ff509c4bb043c2b24857cb07bc3c708	addColumn tableName=document_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-280	pether (generated)	db-changelog-1.7.xml	2025-12-03 01:58:33.490452	280	EXECUTED	9:63d7fcb99c22318c78bd80ac7ad9a2cb	addColumn tableName=document_element		\N	5.0.1	\N	\N	4727109315
-1414872417007-281	pether (generated)	db-changelog-1.7.xml	2025-12-03 01:58:33.493396	281	EXECUTED	9:083be705e77430564ef073b8269b53d2	createTable tableName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-282	pether (generated)	db-changelog-1.7.xml	2025-12-03 01:58:33.497341	282	EXECUTED	9:0d24e99f24183005670d5e3d4445be97	addPrimaryKey constraintName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0_pkey, tableName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0		\N	5.0.1	\N	\N	4727109315
-1414872417007-283	pether (generated)	db-changelog-1.7.xml	2025-12-03 01:58:33.500859	283	EXECUTED	9:3db9a552cdc9cc50f060dd5a467243db	addForeignKeyConstraint baseTableName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0, constraintName=fk_8931ymg13vy6vfkrichdsd4, referencedTableName=user_account		\N	5.0.1	\N	\N	4727109315
-1414872417007-284	pether (generated)	db-changelog-1.7.xml	2025-12-03 01:58:33.504396	284	EXECUTED	9:68a1690b5c267ec324fb414df94fef1c	addColumn tableName=user_account; addColumn tableName=user_account		\N	5.0.1	\N	\N	4727109315
-1414872417007-285	pether (generated)	db-changelog-1.8.xml	2025-12-03 01:58:33.511084	285	EXECUTED	9:a28ecc2e242187c481c2726325c67bc6	addColumn tableName=language_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-286	pether (generated)	db-changelog-1.8.xml	2025-12-03 01:58:33.514724	286	EXECUTED	9:14d37229b20583fab65c4b9ccd61cbf6	addColumn tableName=language_content_data		\N	5.0.1	\N	\N	4727109315
-1414872417007-287	quartz.generated	db-changelog-1.9.xml	2025-12-03 01:58:33.5542	287	EXECUTED	9:33c854d56c17f442b136d767015a4026	createTable tableName=QRTZ_CALENDARS; createTable tableName=QRTZ_CRON_TRIGGERS; createTable tableName=QRTZ_FIRED_TRIGGERS; createTable tableName=QRTZ_PAUSED_TRIGGER_GRPS; createTable tableName=QRTZ_SCHEDULER_STATE; createTable tableName=QRTZ_LOCKS...		\N	5.0.1	\N	\N	4727109315
-1414872417007-288	quartz.generated	db-changelog-1.9.xml	2025-12-03 01:58:33.562623	288	EXECUTED	9:9e05c11d0073fe498c1b8efa9fc189ac	addForeignKeyConstraint baseTableName=QRTZ_CRON_TRIGGERS, constraintName=FK_QRTZ_CRON_TRIGGERS_QRTZ_TRIGGERS, referencedTableName=QRTZ_TRIGGERS; addForeignKeyConstraint baseTableName=QRTZ_SIMPLE_TRIGGERS, constraintName=FK_QRTZ_SIMPLE_TRIGGERS_QRT...		\N	5.0.1	\N	\N	4727109315
-1414872417007-289	quartz.generated	db-changelog-1.9.xml	2025-12-03 01:58:33.59501	289	EXECUTED	9:f018d19e4b6045fcbc2e6672c7ba873d	createIndex indexName=IDX_QRTZ_T_J, tableName=QRTZ_TRIGGERS; createIndex indexName=IDX_QRTZ_T_JG, tableName=QRTZ_TRIGGERS; createIndex indexName=IDX_QRTZ_T_C, tableName=QRTZ_TRIGGERS; createIndex indexName=IDX_QRTZ_T_G, tableName=QRTZ_TRIGGERS; cr...		\N	5.0.1	\N	\N	4727109315
-1414872417007-290	pether	db-changelog-1.10.xml	2025-12-03 01:58:33.616414	290	EXECUTED	9:3477a6ab16abd3502429f252c6f2c21a	dropView viewName=view_riksdagen_party; dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView viewName=view_riksdagen_party_member; createView viewNam...		\N	5.0.1	\N	\N	4727109315
-1414872417007-291	pether	db-changelog-1.11.xml	2025-12-03 01:58:33.61911	291	EXECUTED	9:96a236431ea32c987c4572cb54e71c19	renameTable newTableName=QRTZ_BLOB_TRIGGERS, oldTableName=QRTZ_bytea_TRIGGERS		\N	5.0.1	\N	\N	4727109315
-1414872417007-292	add-column-application-session	db-changelog-1.12.xml	2025-12-03 01:58:33.62144	292	EXECUTED	9:956bf680aea08e30a78b8d768dae529c	addColumn tableName=application_session		\N	5.0.1	\N	\N	4727109315
-1414872417007-294	gdpr-classify-data	db-changelog-1.13.xml	2025-12-03 01:58:33.90875	293	EXECUTED	9:dc2a0e2901c2d886086e508ff01826b6	sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sq...		\N	5.0.1	\N	\N	4727109315
-1414872417007-295	fix-missing-value-for-model-object-version	db-changelog-1.14.xml	2025-12-03 01:58:33.919519	294	EXECUTED	9:0eddefb0cd23c53120a00749d09808f9	update tableName=agency; update tableName=portal; update tableName=language_data; update tableName=language_content_data; update tableName=application_action_event; update tableName=application_configuration; update tableName=application_session; ...		\N	5.0.1	\N	\N	4727109315
-1414872417007-296	adduseraccountcolumns	db-changelog-1.15.xml	2025-12-03 01:58:33.92975	295	EXECUTED	9:941c29c388e300e20109c3cba3fb8945	addColumn tableName=user_account; update tableName=user_account; addColumn tableName=user_account; update tableName=user_account		\N	5.0.1	\N	\N	4727109315
-1414872417007-297	adduseraccountcolumns	db-changelog-1.15.xml	2025-12-03 01:58:33.934667	296	EXECUTED	9:fc729e50a9ac4d8481cfc0e5e615c094	update tableName=user_account		\N	5.0.1	\N	\N	4727109315
-1414872417007-300	createextenions-only-works-if-superuser-so-create-before	db-changelog-1.16.xml	2025-12-03 01:58:33.954298	297	EXECUTED	9:3e937406a4d82aec00fddeafc4c55380	sql; sql; sql		\N	5.0.1	\N	\N	4727109315
-1414872417007-301	createEncryptedValueTable	db-changelog-1.17.xml	2025-12-03 01:58:33.958898	298	EXECUTED	9:63965b31aa35ce0c2e58f92f14a071bc	createTable tableName=encrypted_value		\N	5.0.1	\N	\N	4727109315
-1414872417007-302	encryptedValueTableAddColumns	db-changelog-1.18.xml	2025-12-03 01:58:33.962673	299	EXECUTED	9:9b23ce1c3d7f2d32d2cb725996846872	addColumn tableName=encrypted_value; addColumn tableName=encrypted_value		\N	5.0.1	\N	\N	4727109315
-1414872417007-303	deleteUserAccountGoogleMFAColumns	db-changelog-1.18.xml	2025-12-03 01:58:33.969196	300	EXECUTED	9:1c6f160cd4532f7df63c6b6691d384dc	dropForeignKeyConstraint baseTableName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0, constraintName=fk_8931ymg13vy6vfkrichdsd4; dropPrimaryKey constraintName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0_pkey, tableName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0; dropTable tableName=USER...		\N	5.0.1	\N	\N	4727109315
-1414872417007-304	gdpr-classification-update-account	db-changelog-1.18.xml	2025-12-03 01:58:33.983884	301	EXECUTED	9:a785758642766d317c33f7a42de5b391	sql; sql; sql; sql; sql; sql		\N	5.0.1	\N	\N	4727109315
-1414872417007-305	encryptedValueTableChangeStorageType	db-changelog-1.18.xml	2025-12-03 01:58:33.989256	302	EXECUTED	9:91dc17b871f8f01ef34ab9ab7bf2c363	modifyDataType columnName=storage, tableName=encrypted_value		\N	5.0.1	\N	\N	4727109315
-1414872417007-312	auditViews	db-changelog-1.19.xml	2025-12-03 01:58:34.02118	303	EXECUTED	9:11cdf7f46afe7b66fc1f50bc92ec575a	createSequence sequenceName=jv_commit_pk_seq; createSequence sequenceName=jv_global_id_pk_seq; createSequence sequenceName=jv_snapshot_pk_seq; createTable tableName=jv_commit; createTable tableName=jv_commit_property; createTable tableName=jv_glob...		\N	5.0.1	\N	\N	4727109315
-1414872417007-313	auditViews	db-changelog-1.20.xml	2025-12-03 01:58:34.025444	304	EXECUTED	9:1d1f97a288995bd7b6a0004330ef9ed3	createView viewName=view_audit_data_summary; createView viewName=view_audit_author_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-314	auditViews2	db-changelog-1.20.xml	2025-12-03 01:58:34.028554	305	EXECUTED	9:bcf4660ae87b9d67626071f78bc8e9d1	dropView viewName=view_audit_data_summary; createView viewName=view_audit_data_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-315	documentSummaryViews	db-changelog-1.21.xml	2025-12-03 01:58:34.033351	306	EXECUTED	9:6bd6a54409a0ca14cd36aaaa54ae8b58	createView viewName=view_riksdagen_person_signed_document_summary; createView viewName=view_riksdagen_party_signatures_document_summary		\N	5.0.1	\N	\N	4727109315
-1414872417007-316	auditViews3	db-changelog-1.21.xml	2025-12-03 01:58:34.036627	307	EXECUTED	9:80be555ad4c46adc54270b99c8481315	dropView viewName=view_audit_data_summary; createView viewName=view_audit_data_summary		\N	5.0.1	\N	\N	4727109315
-2414872417007-317	javersAddColumn	db-changelog-1.22.xml	2025-12-03 01:58:34.038999	308	EXECUTED	9:cadb829cc1c2e0dd2941a93cdd411563	addColumn tableName=jv_commit		\N	5.0.1	\N	\N	4727109315
-2414872417007-318	javersChangeType	db-changelog-1.22.xml	2025-12-03 01:58:34.042867	309	EXECUTED	9:d795deb20b39b5a787ce1d98d48e65e5	modifyDataType columnName=commit_date_instant, tableName=jv_commit		\N	5.0.1	\N	\N	4727109315
-2414872417007-319	javersDefaultValue2	db-changelog-1.22.xml	2025-12-03 01:58:34.044636	310	EXECUTED	9:423aa876ea8cd648b2cc511580862e4f	sql		\N	5.0.1	\N	\N	4727109315
-2414872417007-320	javersDefaultValue	db-changelog-1.22.xml	2025-12-03 01:58:34.047177	311	EXECUTED	9:4e7a8dfeb87f3809922803b64ceded57	addDefaultValue columnName=commit_date_instant, tableName=jv_commit		\N	5.0.1	\N	\N	4727109315
-2414872417007-321	party_trends	db-changelog-1.23.xml	2025-12-03 01:58:34.052506	312	EXECUTED	9:8909e0c5d3ef6ecfeb4af4e93d3295ef	createView viewName=view_riksdagen_party_ballot_support_annual_summary; createView viewName=view_riksdagen_party_coalation_against_annual_summary		\N	5.0.1	\N	\N	4727109315
-2414872417007-322	party_trends	db-changelog-1.23.xml	2025-12-03 01:58:34.056532	313	EXECUTED	9:bdcfbe51f13c670188c9a003e84f7391	dropView viewName=view_riksdagen_party_ballot_support_annual_summary; createView viewName=view_riksdagen_party_ballot_support_annual_summary		\N	5.0.1	\N	\N	4727109315
-2414872417007-323	party_trends	db-changelog-1.23.xml	2025-12-03 01:58:34.06003	314	EXECUTED	9:345a31d3673a4e908c0f842854b543e7	dropView viewName=view_riksdagen_party_coalation_against_annual_summary; createView viewName=view_riksdagen_party_coalation_against_annual_summary		\N	5.0.1	\N	\N	4727109315
-2414872417007-324	party_trends	db-changelog-1.23.xml	2025-12-03 01:58:34.065939	315	EXECUTED	9:9aad9d408015cdda50e8624d708db21f	dropView viewName=view_riksdagen_party_ballot_support_annual_summary; createView viewName=view_riksdagen_party_ballot_support_annual_summary		\N	5.0.1	\N	\N	4727109315
-2414872417007-324	party_trends	db-changelog-1.24.xml	2025-12-03 01:58:34.070264	316	EXECUTED	9:9aad9d408015cdda50e8624d708db21f	dropView viewName=view_riksdagen_party_ballot_support_annual_summary; createView viewName=view_riksdagen_party_ballot_support_annual_summary		\N	5.0.1	\N	\N	4727109315
-2414872417007-325	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.074415	317	EXECUTED	9:a98bd9300cbce790409b1438eb5681ab	dropView viewName=view_riksdagen_party_role_member; createView viewName=view_riksdagen_party_role_member		\N	5.0.1	\N	\N	4727109315
-2414872417007-326	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.078176	318	EXECUTED	9:769fd2cc719f8070361d0236c2f219ca	createTable tableName=rule_violation		\N	5.0.1	\N	\N	4727109315
-2414872417007-327	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.080299	319	EXECUTED	9:49044a256f906a54d7ccb6cdf3eeba70	addColumn tableName=rule_violation		\N	5.0.1	\N	\N	4727109315
-2414872417007-328	pether (generated)	db-changelog-1.24.xml	2025-12-03 01:58:34.083283	320	EXECUTED	9:6246b135264fb22f812528142c12222c	addPrimaryKey constraintName=application_configuration_pkey, tableName=application_configuration		\N	5.0.1	\N	\N	4727109315
-1414872417007-329	pether (generated)	db-changelog-1.24.xml	2025-12-03 01:58:34.091156	321	EXECUTED	9:bbb17b2f46dd435a351912318ba127e7	sql; modifyDataType columnName=indicator_name, tableName=indicator_element; modifyDataType columnName=source_id, tableName=indicator_element; modifyDataType columnName=source_value, tableName=indicator_element; sql		\N	5.0.1	\N	\N	4727109315
-1414872417007-330	pether (generated)	db-changelog-1.24.xml	2025-12-03 01:58:34.099093	322	EXECUTED	9:5dbf93e01244ac5381aab449179bfee3	createIndex indexName=application_action_event_created_date_idx, tableName=application_action_event; createIndex indexName=application_action_event_sessionid_idx, tableName=application_action_event; createIndex indexName=application_action_event_e...		\N	5.0.1	\N	\N	4727109315
-1414872417007-331	pether (generated)	db-changelog-1.24.xml	2025-12-03 01:58:34.110776	323	EXECUTED	9:d98cea6bed923440f8c3a31871a66ca2	sql		\N	5.0.1	\N	\N	4727109315
-extend-view-riksdagen-politician-20231002	pether 	db-changelog-1.24.xml	2025-12-03 01:58:34.145031	324	EXECUTED	9:c7e51eab90afc2cec2f73cd365e799bf	dropView viewName=view_riksdagen_party; dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView viewName=view_riksdagen_party_member; createView viewNam...		\N	5.0.1	\N	\N	4727109315
-new_changeset_id_1	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.149323	325	EXECUTED	9:3111b7723aeefc1cbe0f17bb0fd23c0c	dropView viewName=view_application_action_event_page_annual_summary; createView viewName=view_application_action_event_page_annual_summary		\N	5.0.1	\N	\N	4727109315
-new_changeset_id_2	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.154396	326	EXECUTED	9:50ec6175bbb9840ff5f9a86088f4cb4b	dropView viewName=view_application_action_event_page_daily_summary; createView viewName=view_application_action_event_page_daily_summary		\N	5.0.1	\N	\N	4727109315
-new_changeset_id_3	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.159712	327	EXECUTED	9:79aafee120630bbaa7c54b9a557bc740	dropView viewName=view_application_action_event_page_element_annual_summary; createView viewName=view_application_action_event_page_element_annual_summary		\N	5.0.1	\N	\N	4727109315
-new_changeset_id_4	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.163964	328	EXECUTED	9:3b0d31d9363ad768e1180b3b988c2fec	dropView viewName=view_application_action_event_page_element_daily_summary; createView viewName=view_application_action_event_page_element_daily_summary		\N	5.0.1	\N	\N	4727109315
-new_changeset_id_5	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.170293	329	EXECUTED	9:0c64722b12c51dca3e64006372ccc5c8	createIndex indexName=application_action_event_page_idx, tableName=application_action_event; createIndex indexName=application_action_event_element_id_idx, tableName=application_action_event; createIndex indexName=application_action_event_page_cre...		\N	5.0.1	\N	\N	4727109315
-1414872417007-265-document-summary-views	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.207076	330	EXECUTED	9:acc9a8db7b3db0cd2dcb3ce083a989a7	sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; createView viewName=view_riksdagen_party_document_summary; createIndex indexName=idx_rpd_person_ref_id, tableName=view_riksdagen_politician_document; createIndex indexName=idx_rpd_doc_type_sub...		\N	5.0.1	\N	\N	4727109315
-extend-view-riksdagen-politician-party-20231223	pethers	db-changelog-1.24.xml	2025-12-03 01:58:34.246902	331	EXECUTED	9:892d39a59b866cdaf0366544ffb0d3bd	dropView viewName=view_riksdagen_party; dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_party_document_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView...		\N	5.0.1	\N	\N	4727109315
-1414872417007-204	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.261856	332	EXECUTED	9:69f5c89bfe631122c51b8dfe35022fa1	dropView viewName=view_riksdagen_committee_parliament_member_proposal; dropView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee_parliament_member_proposal; createIndex i...		\N	5.0.1	\N	\N	4727109315
-1414872417007-225	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.274228	333	EXECUTED	9:e5519073bd6d48b443777395119afafb	dropView viewName=view_riksdagen_goverment; createView viewName=view_riksdagen_goverment; dropView viewName=view_riksdagen_goverment_role_member; createView viewName=view_riksdagen_goverment_role_member		\N	5.0.1	\N	\N	4727109315
-party-role-member-1414872417007-227	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.281672	334	EXECUTED	9:fbe676dfd287959902eaeb407d2e1bd9	dropView viewName=view_riksdagen_party_role_member; createView viewName=view_riksdagen_party_role_member		\N	5.0.1	\N	\N	4727109315
-committee-role-member-1414872417007-228	pether	db-changelog-1.24.xml	2025-12-03 01:58:34.291437	335	EXECUTED	9:033dba6bbd5a8556bd1ad33d81873080	dropView viewName=view_riksdagen_committee_role_member; createView viewName=view_riksdagen_committee_role_member		\N	5.0.1	\N	\N	4727109315
-vote-data-324	pether	db-changelog-1.25.xml	2025-12-03 01:58:34.2977	336	EXECUTED	9:515f70411429a7a26e07be4b37742628	sql		\N	5.0.1	\N	\N	4727109315
-20241224-ballot-summary-view	pethers	db-changelog-1.25.xml	2025-12-03 01:58:34.488349	337	EXECUTED	9:533172c9a2e8e77072ba3d377b95406e	sql; sql; sql; sql; sql; sql; sql; sql; sql		\N	5.0.1	\N	\N	4727109315
-2024122623-extend-party-view	pethers	db-changelog-1.25.xml	2025-12-03 01:58:34.505335	338	EXECUTED	9:c0383a8d45978f6163e0ff64924f5ddc	dropView viewName=view_riksdagen_party; dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_party_document_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView...	Extend party view with additional political analysis metrics using existing data	\N	5.0.1	\N	\N	4727109315
-20241226-improve-politician-view	pethers	db-changelog-1.25.xml	2025-12-03 01:58:34.514298	339	EXECUTED	9:f13bf14c659e3df9d2ba71facc1e144a	createView viewName=view_riksdagen_politician	Enhance politician view with comprehensive metrics and committee effectiveness	\N	5.0.1	\N	\N	4727109315
-20241227-enhance-party-document-summary	pethers	db-changelog-1.25.xml	2025-12-03 01:58:34.523891	340	EXECUTED	9:ccc25367d2b7d5b9ffcbe5465066e6b0	createView viewName=view_riksdagen_party_document_summary	Enhance party document summary with comprehensive metrics while preserving existing functionality	\N	5.0.1	\N	\N	4727109315
-20241227-enhance-party-summary-performance	pethers	db-changelog-1.25.xml	2025-12-03 01:58:34.532828	341	EXECUTED	9:d14911091c781dc9028e99cac0c0e9b8	createIndex indexName=idx_assignment_data_type_dates, tableName=assignment_data; sql	Add indexes to improve party summary view performance	\N	5.0.1	\N	\N	4727109315
-2024122723-enhance-party-summary-performance	pethers	db-changelog-1.25.xml	2025-12-03 01:58:34.582411	342	EXECUTED	9:18fddfa9b12f93f8296ae4c494a712c8	sql	Add indexes to improve party summary view performance	\N	5.0.1	\N	\N	4727109315
-8774122723-enhance-party	pethers	db-changelog-1.25.xml	2025-12-03 01:58:34.587072	343	EXECUTED	9:c7d05218977bc2edb5f16e8d878af5c3	createView viewName=view_riksdagen_party	Add indexes to improve party view	\N	5.0.1	\N	\N	4727109315
-revert-jpa-model-update	pethers	db-changelog-1.26.xml	2025-12-03 01:58:34.638701	344	EXECUTED	9:ee172fa2cfbce95c78e2b983b0b507dc	dropView viewName=view_riksdagen_party; sql; dropView viewName=view_riksdagen_party_document_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView viewName=view_riksdagen_party_member; crea...		\N	5.0.1	\N	\N	4727109315
-312321-view_riksdagen_politician_ballot_summary	pethers	db-changelog-1.27.xml	2025-12-03 01:58:34.647376	346	EXECUTED	9:14219bf99de56328f50c56503b50306c	createView viewName=view_riksdagen_politician_ballot_summary		\N	5.0.1	\N	\N	4727109315
-672321-view_riksdagen_politician_experience_summary	pethers	db-changelog-1.28.xml	2025-12-03 01:58:34.671289	347	EXECUTED	9:3c2e1cfdcdcc06b9f96fd9f52d49c12a	createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	4727109315
-672321-view_riksdagen_politician_experience_summary-update	pethers	db-changelog-1.28.xml	2025-12-03 01:58:34.690156	348	EXECUTED	9:45e09b8b79cdd4f087c589f1773919f9	dropView viewName=view_riksdagen_politician_experience_summary; createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	4727109315
-672321-view_riksdagen_politician_experience_summary-update2	pethers	db-changelog-1.28.xml	2025-12-03 01:58:34.709053	349	EXECUTED	9:c47fecd951a060b4c17f34e08790d4b1	dropView viewName=view_riksdagen_politician_experience_summary; createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	4727109315
-672321-view_riksdagen_politician_experience_summary-update3	pethers	db-changelog-1.28.xml	2025-12-03 01:58:34.729852	350	EXECUTED	9:f2a8bbfb00ed3f67696a7bcca3d50c70	dropView viewName=view_riksdagen_politician_experience_summary; createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	4727109315
-672321-view_riksdagen_politician_experience_summary-update4	pethers	db-changelog-1.28.xml	2025-12-03 01:58:34.748593	351	EXECUTED	9:1126cc71ce6315bf43bcd967a39b9aa0	dropView viewName=view_riksdagen_politician_experience_summary; createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	4727109315
-67267321-view_riksdagen_politician_experience_summary-update5	pethers	db-changelog-1.28.xml	2025-12-03 01:58:34.774145	352	EXECUTED	9:dd2ca5f83bdadbb3fb61a8be06f4b873	dropView viewName=view_riksdagen_politician_experience_summary; createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	4727109315
-intops-2025111101-temporal-momentum	intelligence-ops	db-changelog-1.29.xml	2025-12-03 01:58:34.781457	353	EXECUTED	9:ebb0e4ff417fbb4dc385d74f99df287f	createView viewName=view_riksdagen_party_momentum_analysis	Temporal Momentum Analysis View\n        \n        Intelligence Purpose:\n        - Detect momentum shifts in party support\n        - Identify acceleration/deceleration patterns\n        - Calculate moving averages for trend smoothing\n        - Measur...	\N	5.0.1	\N	\N	4727109315
-intops-2025111102-coalition-alignment	intelligence-ops	db-changelog-1.29.xml	2025-12-03 01:58:34.787918	354	EXECUTED	9:4754a1d61b41149c0d4fce931959b038	createView viewName=view_riksdagen_coalition_alignment_matrix	Coalition Voting Alignment Matrix\n        \n        Intelligence Purpose:\n        - Measure voting alignment between party pairs\n        - Identify natural coalition partners\n        - Detect coalition stress or breaking\n        - Predict coalition...	\N	5.0.1	\N	\N	4727109315
-intops-2025111103-anomaly-detection	intelligence-ops	db-changelog-1.29.xml	2025-12-03 01:58:34.803426	355	EXECUTED	9:07a8006b3987714bbaf9a757605df73a	createView viewName=view_riksdagen_voting_anomaly_detection	Political Anomaly Detection View\n        \n        Intelligence Purpose:\n        - Detect unusual voting behavior by politicians\n        - Identify party discipline breakdowns\n        - Flag potential defection risks\n        - Monitor conscience vo...	\N	5.0.1	\N	\N	4727109315
-intops-2025111104-influence-metrics	intelligence-ops	db-changelog-1.29.xml	2025-12-03 01:58:34.811632	356	EXECUTED	9:c2da8e7169d2c6c0358e4217462d4d7b	createView viewName=view_riksdagen_politician_influence_metrics	Politician Influence Network Metrics\n        \n        Intelligence Purpose:\n        - Calculate basic network centrality measures\n        - Identify key brokers and connectors\n        - Map informal influence beyond formal roles\n        - Detect p...	\N	5.0.1	\N	\N	4727109315
-intops-2025111105-crisis-resilience	intelligence-ops	db-changelog-1.29.xml	2025-12-03 01:58:34.821156	357	EXECUTED	9:542aa60a4bce5eabfd5a50260a0bdf69	createView viewName=view_riksdagen_crisis_resilience_indicators	Political Crisis Resilience Indicators\n        \n        Intelligence Purpose:\n        - Assess politician performance during high-pressure periods\n        - Identify crisis-tested leaders\n        - Measure consistency under stress\n        - Evalua...	\N	5.0.1	\N	\N	4727109315
-intops-2025111106-intelligence-dashboard	intelligence-ops	db-changelog-1.29.xml	2025-12-03 01:58:34.829002	358	EXECUTED	9:cbc88852e1308329aa065d9eb411639e	createView viewName=view_riksdagen_intelligence_dashboard	Intelligence Operations Summary Dashboard\n        \n        Intelligence Purpose:\n        - Provide executive-level overview of political landscape\n        - Aggregate key intelligence indicators\n        - Enable rapid situation assessment\n        ...	\N	5.0.1	\N	\N	4727109315
-intops-2025111107-politician-risk-summary	intelligence-operative	db-changelog-1.29.xml	2025-12-03 01:58:34.837152	359	EXECUTED	9:d77a8fce731965ddc609c1104bcc0052	createView viewName=view_politician_risk_summary	Politician Risk Summary View\n        \n        Intelligence Purpose:\n        - Aggregate all risk indicators for each politician\n        - Provide comprehensive risk score based on rule violations, attendance (absence rates), voting effectiveness (...	\N	5.0.1	\N	\N	4727109315
-intops-2025111107-politician-risk-idx	intelligence-operative	db-changelog-1.29.xml	2025-12-03 01:58:34.843375	360	EXECUTED	9:cdfed1beeb97276a94e40e00dfde6057	sql	Performance Indexes for Politician Risk Queries\n        \n        Indexes on frequently queried columns to support rapid risk assessment\n        and dashboard queries.	\N	5.0.1	\N	\N	4727109315
-intops-2025111108-party-performance-metrics	intelligence-operative	db-changelog-1.29.xml	2025-12-03 01:58:34.861179	361	EXECUTED	9:001f5b3ea0c9f62f07d81f7b3e923f12	createView viewName=view_party_performance_metrics	Party Performance Metrics View\n        \n        Intelligence Purpose:\n        - Aggregate party-wide performance indicators\n        - Enable comparative party analysis\n        - Track organizational effectiveness\n        - Support coalition format...	\N	5.0.1	\N	\N	4727109315
-intops-2025111109-committee-productivity	intelligence-operative	db-changelog-1.29.xml	2025-12-03 01:58:34.87707	362	EXECUTED	9:e9a0dd593d407533c4959eae10d1b42c	createView viewName=view_committee_productivity	Committee Productivity View\n        \n        Intelligence Purpose:\n        - Track committee legislative output\n        - Measure committee effectiveness\n        - Identify underperforming committees\n        - Support resource allocation decisions...	\N	5.0.1	\N	\N	4727109315
-osint-2025111500-refresh-materialized-views	intelligence-operative	db-changelog-1.30.xml	2025-12-03 01:58:34.936555	363	EXECUTED	9:28eb73f089cc2b312024e56b87d7dd82	sql	Refresh Materialized Views for v1.30 Dependencies\n        \n        Purpose:\n        - Populate materialized views required by v1.30 OSINT views\n        - Ensure data availability for temporal analysis queries\n        - Execute in dependency order ...	\N	5.0.1	\N	\N	4727109315
-osint-2025111501-politician-behavioral-trends	intelligence-operative	db-changelog-1.30.xml	2025-12-03 01:58:34.942975	364	EXECUTED	9:5d1ec1f15e980de2297f9a1ab18db6c6	createView viewName=view_politician_behavioral_trends	Politician Behavioral Trends View\n        \n        Intelligence Purpose:\n        - Track time-series behavioral patterns for each politician\n        - Monitor absence rates, voting effectiveness, party discipline\n        - Identify behavioral chan...	\N	5.0.1	\N	\N	4727109315
-osint-2025111502-party-effectiveness-trends	intelligence-operative	db-changelog-1.30.xml	2025-12-03 01:58:34.9511	365	EXECUTED	9:e90b3cc562a26253599e50803c2ea928	createView viewName=view_party_effectiveness_trends	Party Effectiveness Trends View\n        \n        Intelligence Purpose:\n        - Monitor party-level performance metrics over time\n        - Track win rates, productivity, and collaboration patterns\n        - Identify organizational strengths and ...	\N	5.0.1	\N	\N	4727109315
-osint-2025111503-risk-score-evolution	intelligence-operative	db-changelog-1.30.xml	2025-12-03 01:58:34.959087	366	EXECUTED	9:ec6554f6fd6a4de381f8a97d46bd5663	createView viewName=view_risk_score_evolution	Risk Score Evolution View\n        \n        Intelligence Purpose:\n        - Track historical changes in politician risk scores\n        - Monitor severity transitions (escalation/de-escalation)\n        - Identify risk patterns and triggers\n        -...	\N	5.0.1	\N	\N	4727109315
-osint-2025111504-committee-productivity-matrix	intelligence-operative	db-changelog-1.30.xml	2025-12-03 01:58:34.965687	367	EXECUTED	9:07244f5572e4a6fe02140b2ee16c586f	createView viewName=view_committee_productivity_matrix	Committee Productivity Matrix View\n        \n        Intelligence Purpose:\n        - Monitor committee output and effectiveness by period\n        - Benchmark committee performance against historical data\n        - Identify productive vs. underperfo...	\N	5.0.1	\N	\N	4727109315
-osint-2025111505-performance-indexes	intelligence-operative	db-changelog-1.30.xml	2025-12-03 01:58:34.970916	368	EXECUTED	9:e98bc86dc1435e8492ffaa48d97db931	sql	Performance Indexes for OSINT Intelligence Queries\n        \n        These indexes optimize the most common temporal queries used in\n        intelligence analysis and dashboard operations.	\N	5.0.1	\N	\N	4727109315
-ministry-2025111701-effectiveness-trends	intelligence-operative	db-changelog-1.31.xml	2025-12-03 01:58:34.978804	369	EXECUTED	9:427996676625f2b8dce8395553aa0b77	createView viewName=view_ministry_effectiveness_trends	Ministry Effectiveness Trends View\n        \n        Intelligence Purpose:\n        - Track ministry-level performance metrics over time\n        - Monitor document production, legislative output, and staffing\n        - Identify productive vs. underp...	\N	5.0.1	\N	\N	4727109315
-ministry-2025111702-productivity-matrix	intelligence-operative	db-changelog-1.31.xml	2025-12-03 01:58:34.985433	370	EXECUTED	9:179ccaf2df5469f386c4f0586073cea7	createView viewName=view_ministry_productivity_matrix	Ministry Productivity Matrix View\n        \n        Intelligence Purpose:\n        - Benchmark ministry performance against peers\n        - Identify most and least productive ministries\n        - Normalize metrics for fair comparison\n        - Suppo...	\N	5.0.1	\N	\N	4727109315
-ministry-2025111703-risk-evolution	intelligence-operative	db-changelog-1.31.xml	2025-12-03 01:58:34.992613	371	EXECUTED	9:1a81b471095b1d7cb4d9c78e3393bb93	createView viewName=view_ministry_risk_evolution	Ministry Risk Evolution View\n        \n        Intelligence Purpose:\n        - Track historical changes in ministry risk scores\n        - Monitor risk severity transitions for ministries\n        - Identify risk patterns and triggers at ministry lev...	\N	5.0.1	\N	\N	4727109315
-ministry-2025111704-performance-indexes	intelligence-operative	db-changelog-1.31.xml	2025-12-03 01:58:34.998276	372	EXECUTED	9:5186a2215528e93478d78b12fc23941b	sql	Performance Indexes for Ministry Intelligence Queries\n        \n        These indexes optimize the most common temporal queries used in\n        ministry intelligence analysis and government effectiveness dashboards.	\N	5.0.1	\N	\N	4727109315
-fix-politician-risk-summary-1.32-001	intelligence-analyst	db-changelog-1.32.xml	2025-12-03 01:58:35.006929	373	EXECUTED	9:a5bd4210d7968d1004790f7d482867e8	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary to return data\n        \n        Root Cause: The JOIN condition on view_riksdagen_vote_data_ballot_politician_summary_annual\n        was filtering on an exact date (date_trunc('year', CURRENT_DATE - INTERVAL '1 year...	\N	5.0.1	\N	\N	4727109315
-verify-other-views-1.32-002	intelligence-analyst	db-changelog-1.32.xml	2025-12-03 01:58:35.009093	374	EXECUTED	9:72d8a71e1aae0b931ebd79e83a10cf1d	sql	Verification changeset for other politician intelligence views\n        \n        After investigation, the following views should work correctly as they\n        query vote_data directly without restrictive date filters on aggregated views:\n        \n...	\N	5.0.1	\N	\N	4727109315
-document-fixes-1.32-003	intelligence-analyst	db-changelog-1.32.xml	2025-12-03 01:58:35.011234	375	EXECUTED	9:8a10e26023ff9e74bf785363f03efdd6	sql	Documentation for v1.32 fixes\n        \n        This changeset documents the fixes applied to politician intelligence views\n        for inclusion in DATABASE_VIEW_INTELLIGENCE_CATALOG.md and \n        TROUBLESHOOTING_EMPTY_VIEWS.md.\n        \n       ...	\N	5.0.1	\N	\N	4727109315
-fix-goverment-proposals-1.32-004	intelligence-analyst	db-changelog-1.32.xml	2025-12-03 01:58:35.01554	376	EXECUTED	9:c881ba745964943eb175bc0ff9c55520	dropView viewName=view_riksdagen_goverment_proposals; createView viewName=view_riksdagen_goverment_proposals	Fix view_riksdagen_goverment_proposals to return data\n        \n        Root Cause: The view filters by document_type = 'PROP' (uppercase), but\n        the actual data in document_data may use different case variations:\n        - 'prop' (lowercase)...	\N	5.0.1	\N	\N	4727109315
-verify-ministry-dependencies-1.32-005	intelligence-analyst	db-changelog-1.32.xml	2025-12-03 01:58:35.018845	377	EXECUTED	9:344f3666045ec90f277df19c3812110c	sql	Verify Ministry View Dependencies\n        \n        The 3 ministry views created in v1.31 depend on:\n        1. assignment_data table with assignment_type = 'Departement'\n        2. view_riksdagen_politician_document materialized view\n        3. Ma...	\N	5.0.1	\N	\N	4727109315
-document-ministry-troubleshooting-1.32-006	intelligence-analyst	db-changelog-1.32.xml	2025-12-03 01:58:35.020955	378	EXECUTED	9:11eae01f4f5f0d419aacbe440d4b60f3	sql	Document Ministry View Troubleshooting\n        \n        This changeset provides documentation for TROUBLESHOOTING_EMPTY_VIEWS.md\n        specific to ministry views created in v1.31.\n        \n        Ministry Views Fixed in v1.32:\n        1. view_r...	\N	5.0.1	\N	\N	4727109315
-fix-member-proposals-1.33-001	intelligence-analyst	db-changelog-1.33.xml	2025-12-03 01:58:35.025458	379	EXECUTED	9:eac9e9cd1f0bd8fd4859b8d1954aa3c9	dropView viewName=view_riksdagen_member_proposals; createView viewName=view_riksdagen_member_proposals	Fix view_riksdagen_member_proposals to return data\n        \n        Root Cause: The view filters by document_type = 'MOT' (uppercase), but\n        the actual data in document_element contains 'mot' (lowercase).\n        \n        Solution: Use UPPER...	\N	5.0.1	\N	\N	4727109315
-fix-committee-member-proposals-1.33-002	intelligence-analyst	db-changelog-1.33.xml	2025-12-03 01:58:35.030656	380	EXECUTED	9:ba278abacebf49620c4f2c950652b71d	dropView viewName=view_riksdagen_committee_parliament_member_proposal; createView viewName=view_riksdagen_committee_parliament_member_proposal	Fix view_riksdagen_committee_parliament_member_proposal to return data\n        \n        Root Cause: Same as view_riksdagen_member_proposals - the view filters \n        by document_type = 'MOT' (uppercase) but data contains 'mot' (lowercase).\n     ...	\N	5.0.1	\N	\N	4727109315
-fix-crisis-resilience-indicators-1.33-003	intelligence-analyst	db-changelog-1.33.xml	2025-12-03 01:58:35.04372	381	EXECUTED	9:a9fb314829a17674f001f82a1d233f70	sql; createView viewName=view_riksdagen_crisis_resilience_indicators	Fix view_riksdagen_crisis_resilience_indicators to return data\n        \n        Root Cause: The view filters vote values using exact case matches like\n        'Ja', 'Nej', 'Frånvarande', but the actual data contains 'JA', 'NEJ', \n        'FRÅNVARA...	\N	5.0.1	\N	\N	4727109315
-recreate-intelligence-dashboard-1.33-003b	intelligence-analyst	db-changelog-1.33.xml	2025-12-03 01:58:35.051864	382	EXECUTED	9:cb8a00ecaa8b7e60d6d2420ad1992a1c	sql; createView viewName=view_riksdagen_intelligence_dashboard	Recreate view_riksdagen_intelligence_dashboard after crisis resilience fix\n        \n        This view was dropped by CASCADE when fixing view_riksdagen_crisis_resilience_indicators.\n        The view aggregates multiple intelligence indicators into...	\N	5.0.1	\N	\N	4727109315
-fix-risk-score-evolution-1.33-004	intelligence-analyst	db-changelog-1.33.xml	2025-12-03 01:58:35.065065	383	EXECUTED	9:af3c81ce2158677248721986f3adb9c9	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution to return data\n        \n        Root Cause: The view requires data from view_riksdagen_vote_data_ballot_politician_summary_daily\n        within a 3-year window, which may not always have recent data if materialized vi...	\N	5.0.1	\N	\N	4727109315
-document-fixes-1.33-005	intelligence-analyst	db-changelog-1.33.xml	2025-12-03 01:58:35.067062	384	EXECUTED	9:a18f424c14dc0f2c6d7754d7e378a882	sql	Documentation for v1.33 fixes\n        \n        This changeset documents the fixes applied to 4 empty intelligence views\n        for inclusion in TROUBLESHOOTING_EMPTY_VIEWS.md.\n        \n        Summary of Changes:\n        1. view_riksdagen_member_...	\N	5.0.1	\N	\N	4727109315
-1.34-intro	database-architect	db-changelog-1.34.xml	2025-12-03 01:58:35.068664	385	EXECUTED	9:619faeb099abb68856d15be29569099b	sql	Database Changelog v1.34 - Comprehensive Empty View Fixes with Validation\n        \n        Consolidates fixes from issues #7882-#7885 for 12 empty views.\n        Adds pre-flight and post-flight validation for data availability.	\N	5.0.1	\N	\N	4727109315
-1.34-preflight	database-architect	db-changelog-1.34.xml	2025-12-03 01:58:35.071567	386	EXECUTED	9:25a3bba16e7a992a8e29fbbe94a7bfcc	sql	Pre-flight: Verify source data exists before applying view fixes	\N	5.0.1	\N	\N	4727109315
-1.34-ministry-verify-001	intelligence-analyst	db-changelog-1.34.xml	2025-12-03 01:58:35.07455	387	EXECUTED	9:3e9501744493d58dfd62f8e4eb7ce968	sql	Ministry views - Expected to be empty without ministry assignment data	\N	5.0.1	\N	\N	4727109315
-1.34-gov-proposals-002	intelligence-analyst	db-changelog-1.34.xml	2025-12-03 01:58:35.07847	388	EXECUTED	9:98ee9cac78930ae7df9dea29166db568	dropView viewName=view_riksdagen_goverment_proposals; createView viewName=view_riksdagen_goverment_proposals	Fix view_riksdagen_goverment_proposals - broader document_type filter\n        Catches 'prop', 'PROP', 'Proposition' variations	\N	5.0.1	\N	\N	4727109315
-1.34-member-proposals-003	intelligence-analyst	db-changelog-1.34.xml	2025-12-03 01:58:35.08357	389	EXECUTED	9:b13f7b02bfd25a9791548c069dc378de	dropView viewName=view_riksdagen_member_proposals; createView viewName=view_riksdagen_member_proposals	Fix view_riksdagen_member_proposals - broader document_type filter\n        Catches 'mot', 'MOT', 'Motion' variations	\N	5.0.1	\N	\N	4727109315
-1.34-committee-proposals-004	intelligence-analyst	db-changelog-1.34.xml	2025-12-03 01:58:35.089076	390	EXECUTED	9:acfb00d23673ba2bfbcf78bc83c33bd7	dropView viewName=view_riksdagen_committee_parliament_member_proposal; createView viewName=view_riksdagen_committee_parliament_member_proposal	Fix view_riksdagen_committee_parliament_member_proposal\n        Same broader filter as member proposals	\N	5.0.1	\N	\N	4727109315
-1.34-risk-summary-005	intelligence-analyst	db-changelog-1.34.xml	2025-12-03 01:58:35.099896	391	EXECUTED	9:4692e16ed702c30c880c5bf3d6afffcb	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary - simplified version using direct vote_data\n        Removes dependency on aggregated summary views that may not have data	\N	5.0.1	\N	\N	4727109315
-1.34-verify-others-006	intelligence-analyst	db-changelog-1.34.xml	2025-12-03 01:58:35.104873	392	EXECUTED	9:7f86a1ea0b6dacdf6ce2eef8ce19ad8d	sql	Verify other politician and intelligence views exist (from v1.33)	\N	5.0.1	\N	\N	4727109315
-1.34-postflight	database-architect	db-changelog-1.34.xml	2025-12-03 01:58:35.122617	393	EXECUTED	9:24f59e1f777d8317d7fb94354be07200	sql	Post-flight: Verify all 12 views and check row counts	\N	5.0.1	\N	\N	4727109315
-1.34-documentation	database-architect	db-changelog-1.34.xml	2025-12-03 01:58:35.125252	394	EXECUTED	9:215e4217ceea39d393d357dfab47613b	sql	Documentation for v1.34 comprehensive view fixes\n        \n        Summary:\n        - Pre-flight validation checks source data\n        - Ministry views verified (expected empty without ministry data)\n        - Government proposals view fixed (broad...	\N	5.0.1	\N	\N	4727109315
-1.35-intro	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.127383	395	EXECUTED	9:32e18dd7e0d25938d04971bf2130e750	sql	Database Changelog v1.35 - Party Decision Flow View\n        \n        Creates view_riksdagen_party_decision_flow for aggregating proposal\n        decision data by party, enabling party-level legislative effectiveness\n        and coalition analysis.	\N	5.0.1	\N	\N	4727109315
-1.35-preflight	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.130902	396	EXECUTED	9:b1f1b765b24f30a4b717ee0da5b5e940	sql	Pre-flight: Verify source data exists before creating view	\N	5.0.1	\N	\N	4727109315
-1.35-party-decision-flow-001	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.140449	397	EXECUTED	9:1055961759e4cdf793808144bc58b684	createView viewName=view_riksdagen_party_decision_flow	Create view_riksdagen_party_decision_flow\n        \n        Aggregates proposal decision data by party, committee, decision type, and time period.\n        Provides comprehensive party-level decision intelligence including:\n        - Total proposals...	\N	5.0.1	\N	\N	4727109315
-1.35-party-decision-flow-index-002	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.148383	398	EXECUTED	9:1de6549e5d2e5b58509674d1ae8a55c6	sql	Create indexes on base tables for performance optimization of party decision flow queries\n        \n        Indexes on frequently joined and filtered columns:\n        - document_proposal_data.committee (for committee-specific queries)\n        - doc...	\N	5.0.1	\N	\N	4727109315
-1.35-postflight	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.156579	399	EXECUTED	9:e091dfbf1f8a01f3049f40855ae047f3	sql	Post-flight: Verify view creation and check initial data	\N	5.0.1	\N	\N	4727109315
-1.35-documentation	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.158985	400	EXECUTED	9:a995133e402948e807b1759d61b1b7c5	sql	Documentation for v1.35 party decision flow view\n        \n        Summary:\n        - Creates view_riksdagen_party_decision_flow for party-level decision aggregation\n        - Enables party scorecards, coalition analysis, committee effectiveness tr...	\N	5.0.1	\N	\N	4727109315
-1.35-politician-decision-pattern-001	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.168743	401	EXECUTED	9:5db797f3c39c8716ceb1c7fac014ad7e	createView viewName=view_riksdagen_politician_decision_pattern	Create view_riksdagen_politician_decision_pattern\n        \n        Tracks individual politician decision patterns from document_proposal_data,\n        enabling analysis of politician-level proposal success rates, committee work\n        effectivene...	\N	5.0.1	\N	\N	4727109315
-1.35-politician-decision-pattern-index-002	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.171915	402	EXECUTED	9:f3b01d3c763eaaa45863294b17329605	sql	Create indexes for performance optimization of politician decision pattern queries\n        \n        Index on person_id for efficient politician-specific queries.\n        These complement the existing base table indexes created in changeSet 002.	\N	5.0.1	\N	\N	4727109315
-1.35-politician-decision-pattern-postflight	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.182735	403	EXECUTED	9:d2d93d66a90ac420fd94af497ef5f333	sql	Post-flight: Verify politician decision pattern view creation	\N	5.0.1	\N	\N	4727109315
-1.35-decision-temporal-trends-001	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.194442	404	EXECUTED	9:edc0dbf51168562761bc8fc2c7681d44	createView viewName=view_decision_temporal_trends	Create view_decision_temporal_trends\n        \n        Temporal trends view for decision flow analysis from DOCUMENT_PROPOSAL_DATA,\n        enabling time-series analysis of decision patterns, seasonal variations,\n        and predictive forecasting ...	\N	5.0.1	\N	\N	4727109315
-1.35-decision-temporal-trends-postflight	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.201937	405	EXECUTED	9:88dd7d0ff0afee32b8e6c317ef3f0577	sql	Post-flight: Verify temporal decision trends view creation and validate data	\N	5.0.1	\N	\N	4727109315
-1.35-ministry-decision-impact-001	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.210508	406	EXECUTED	9:d2f6d28b97abf69bccd816fc3258aa8c	createView viewName=view_ministry_decision_impact	Create view_ministry_decision_impact\n        \n        Tracks ministry-initiated proposal outcomes from DOCUMENT_PROPOSAL_DATA,\n        enabling analysis of which government ministries have the highest/lowest\n        success rates for their legisla...	\N	5.0.1	\N	\N	4727109315
-1.35-ministry-decision-impact-index-002	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.215348	407	EXECUTED	9:73ef6912726a17535c1aa90fb2427261	sql	Create indexes for performance optimization of ministry decision impact queries\n        \n        Index on document_data.org (ministry_code) and document_type for efficient\n        ministry-specific and government proposal queries.	\N	5.0.1	\N	\N	4727109315
-1.35-ministry-decision-impact-postflight	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.221531	408	EXECUTED	9:2b1646700fdb341fd0c3a4e6a16fb8d9	sql	Post-flight: Verify ministry decision impact view creation and validate data	\N	5.0.1	\N	\N	4727109315
-1.35-final-summary	intelligence-operative	db-changelog-1.35.xml	2025-12-03 01:58:35.22357	409	EXECUTED	9:3438e13b3d71b2e99c0220e56a54a810	sql	Final documentation summary for v1.35 database changelog\n        \n        Summary of v1.35 views created:\n        1. view_riksdagen_party_decision_flow - Party-level decision aggregation\n        2. view_riksdagen_politician_decision_pattern - Indi...	\N	5.0.1	\N	\N	4727109315
-1736000000000-1	import-error-fix	db-changelog-1.36.xml	2025-12-03 01:58:35.226102	410	EXECUTED	9:1b1abcc812870fd0d7432002253e45f6	modifyDataType columnName=note, tableName=document_element	Increase document_element.note from VARCHAR(8192) to VARCHAR(65536) to accommodate long EU committee notes with HTML lists	\N	5.0.1	\N	\N	4727109315
-1736000000000-2	import-error-fix	db-changelog-1.36.xml	2025-12-03 01:58:35.228443	411	EXECUTED	9:c3780abe8ec3d2fe6ef55ee2d25541de	modifyDataType columnName=note_title, tableName=document_element	Increase document_element.note_title from VARCHAR(8192) to VARCHAR(16384) for consistency and future-proofing	\N	5.0.1	\N	\N	4727109315
-1736000000000-3	import-error-fix	db-changelog-1.36.xml	2025-12-03 01:58:35.231187	412	EXECUTED	9:7d4d1848977aaccfa3635879774c556e	modifyDataType columnName=summary, tableName=document_element	Increase document_element.summary from VARCHAR(8192) to VARCHAR(65536) to match note field size	\N	5.0.1	\N	\N	4727109315
-fix-ministry-effectiveness-1.37-001	intelligence-operative	db-changelog-1.37.xml	2025-12-03 01:58:35.244544	413	EXECUTED	9:2eeb05933237619abae29188032cd4d0	dropView viewName=view_ministry_effectiveness_trends; createView viewName=view_ministry_effectiveness_trends	Fix view_ministry_effectiveness_trends with case-insensitive org_code matching\n        \n        Root Cause: org_code values in assignment_data and view_riksdagen_politician_document\n        have inconsistent casing (e.g., "Departement" vs "departe...	\N	5.0.1	\N	\N	4727109315
-fix-ministry-productivity-1.37-002	intelligence-operative	db-changelog-1.37.xml	2025-12-03 01:58:35.253944	414	EXECUTED	9:ce261dfdef96131a2f75ddb6101ac655	dropView viewName=view_ministry_productivity_matrix; createView viewName=view_ministry_productivity_matrix	Fix view_ministry_productivity_matrix with case-insensitive org_code matching\n        \n        Same root cause and solution as effectiveness trends view.	\N	5.0.1	\N	\N	4727109315
-fix-ministry-risk-evolution-1.37-003	intelligence-operative	db-changelog-1.37.xml	2025-12-03 01:58:35.272862	415	EXECUTED	9:1e6651e08f0b89e129e0ad572f056309	dropView viewName=view_ministry_risk_evolution; createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution with case-insensitive org_code matching\n        \n        Same root cause and solution as other ministry views.	\N	5.0.1	\N	\N	4727109315
-fix-coalition-alignment-1.37-004	intelligence-operative	db-changelog-1.37.xml	2025-12-03 01:58:35.281842	416	EXECUTED	9:71d9f34b8fc38a50bff1687da325dcdb	sql; createView viewName=view_riksdagen_coalition_alignment_matrix	Fix view_riksdagen_coalition_alignment_matrix with expanded date range\n        \n        Root Cause: 2-year date filter too restrictive - many parties only have older vote data.\n        \n        Solution: Expand from 2 years to 5 years to capture m...	\N	5.0.1	\N	\N	4727109315
-fix-politician-risk-summary-1.37-005	intelligence-operative	db-changelog-1.37.xml	2025-12-03 01:58:35.29087	417	EXECUTED	9:a50ccc76324b132113a20f9eb3fcc4d6	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary using direct vote_data aggregation\n        \n        Root Cause: Dependency on materialized view annual summary creates timing issues\n        where data may not exist for specific year calculations.\n        \n       ...	\N	5.0.1	\N	\N	4727109315
-fix-risk-score-evolution-1.38-001	intelligence-operative	db-changelog-1.38.xml	2025-12-03 01:58:35.303544	418	EXECUTED	9:157a899e1c10d9b4e540d8749a91b376	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution by removing materialized view dependency\n        \n        Root Cause: The view depends on view_riksdagen_vote_data_ballot_politician_summary_daily\n        (materialized) which is not populated in schema-only databases...	\N	5.0.1	\N	\N	4727109315
-fix-crisis-resilience-1.38-002	intelligence-operative	db-changelog-1.38.xml	2025-12-03 01:58:35.315483	419	EXECUTED	9:0f94269ccd9de3e53cbebdcff429df4e	dropView viewName=view_riksdagen_crisis_resilience_indicators; createView viewName=view_riksdagen_crisis_resilience_indicators	Fix view_riksdagen_crisis_resilience_indicators with expanded date range\n        \n        Root Cause: 2-year date filter is too restrictive for detecting crisis patterns.\n        Similar to coalition alignment view issue (fixed in 1.37).\n        \n...	\N	5.0.1	\N	\N	4727109315
-fix-politician-influence-1.38-003	intelligence-operative	db-changelog-1.38.xml	2025-12-03 01:58:35.323819	420	EXECUTED	9:70aeb6db83f75b0e0f7fa78095c4b9d0	dropView viewName=view_riksdagen_politician_influence_metrics; createView viewName=view_riksdagen_politician_influence_metrics	Fix view_riksdagen_politician_influence_metrics with expanded parameters\n        \n        Root Cause: 1-year date filter with 20-vote minimum threshold is too restrictive,\n        filtering out meaningful network connections and influence patterns...	\N	5.0.1	\N	\N	4727109315
-fix-voting-anomaly-1.38-004	intelligence-operative	db-changelog-1.38.xml	2025-12-03 01:58:35.341785	421	EXECUTED	9:2f4ac1c1a94ad8b9487e899f0751b225	dropView viewName=view_riksdagen_voting_anomaly_detection; createView viewName=view_riksdagen_voting_anomaly_detection	Fix view_riksdagen_voting_anomaly_detection with expanded date range\n        \n        Root Cause: 1-year date filter provides insufficient historical context for\n        reliable anomaly detection. Pattern recognition benefits from longer periods....	\N	5.0.1	\N	\N	4727109315
-fix-coalition-alignment-1.38-0022	intelligence-operative	db-changelog-1.38.xml	2025-12-03 01:58:35.350421	422	EXECUTED	9:8dda1ad871d012db9cd2a4d950e07152	sql; createView viewName=view_riksdagen_coalition_alignment_matrix	Transformed coalition alignment view to match existing Java entity structure.\n        Maps new analytical logic to legacy column names for backwards compatibility.\n        \n        Mapping:\n        - total_votes -> shared_votes\n        - aligned_v...	\N	5.0.1	\N	\N	4727109315
-fix-politician-risk-summary-matview-1.39-001	intelligence-operative	db-changelog-1.39.xml	2025-12-03 01:58:35.360283	423	EXECUTED	9:4c6fe59977c8548ce3b1bcceab3115b6	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary by removing materialized view dependency\n        \n        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document\n        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the\n  ...	\N	5.0.1	\N	\N	4727109315
-fix-ministry-effectiveness-1.39-001	intelligence-operative	db-changelog-1.39.xml	2025-12-03 01:58:35.367607	424	EXECUTED	9:ebd5c2f743b97d91375d1814fed3d0bb	dropView viewName=view_ministry_effectiveness_trends; createView viewName=view_ministry_effectiveness_trends	Fix view_ministry_effectiveness_trends to return actual ministry data\n        \n        Root Cause: View filtered by LOWER(org_code) LIKE '%departement%' but actual\n        ministry org_codes are short codes ("KN", "N", etc.) that don't contain "de...	\N	5.0.1	\N	\N	4727109315
-fix-ministry-productivity-1.39-002	intelligence-operative	db-changelog-1.39.xml	2025-12-03 01:58:35.373334	425	EXECUTED	9:ce83258b81e92bd942a9f97bb9a9f197	dropView viewName=view_ministry_productivity_matrix; createView viewName=view_ministry_productivity_matrix	Fix view_ministry_productivity_matrix to return actual ministry data\n        \n        Root Cause: Same as view_ministry_effectiveness_trends - view filtered by \n        LOWER(org_code) LIKE '%departement%' but actual ministry org_codes are short \n...	\N	5.0.1	\N	\N	4727109315
-fix-ministry-risk-evolution-1.39-003	intelligence-operative	db-changelog-1.39.xml	2025-12-03 01:58:35.379067	426	EXECUTED	9:e8ee5d2c422b306e4e36882237f5a21b	dropView viewName=view_ministry_risk_evolution; createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution to return actual ministry data\n        \n        Root Cause: Same as view_ministry_effectiveness_trends - view filtered by \n        LOWER(org_code) LIKE '%departement%' but actual ministry org_codes are short \n     ...	\N	5.0.1	\N	\N	4727109315
-verify-ministry-views-1.39-004	intelligence-operative	db-changelog-1.39.xml	2025-12-03 01:58:35.384913	427	EXECUTED	9:0e011b36ae0faab2f83c753e34a86658	sql	Post-flight verification for all three ministry views\n        \n        Checks:\n        1. All three views exist and can be queried\n        2. Views return data when ministry assignments are present\n        3. Row counts are reasonable (>0 when dat...	\N	5.0.1	\N	\N	4727109315
-document-ministry-fix-1.39-005	intelligence-operative	db-changelog-1.39.xml	2025-12-03 01:58:35.386647	428	EXECUTED	9:830bb959528e4365f577fc21b94da2a8	sql	Documentation for v1.39 ministry views fix\n        \n        Summary:\n        - Root cause: Incorrect filter on org_code LIKE '%departement%'\n        - Actual data: org_code has short codes like 'KN', 'N', not full names\n        - Solution: Remove ...	\N	5.0.1	\N	\N	4727109315
-fix-crisis-resilience-1.40-001	intelligence-operative	db-changelog-1.40.xml	2025-12-03 01:58:35.396533	429	EXECUTED	9:e34edc89148de2ec4f4766d8cb341105	dropView viewName=view_riksdagen_crisis_resilience_indicators; createView viewName=view_riksdagen_crisis_resilience_indicators	Fix view_riksdagen_crisis_resilience_indicators to return data\n        \n        Root Cause: The crisis period detection algorithm had gaps - months between\n        1x and 1.5x average were not classified as either crisis or normal periods.\n       ...	\N	5.0.1	\N	\N	4727109315
-verify-crisis-resilience-1.40-002	intelligence-operative	db-changelog-1.40.xml	2025-12-03 01:58:35.401675	430	EXECUTED	9:1c92d454c7d1820ed9dc736aa6e104b1	sql	Post-flight verification for view_riksdagen_crisis_resilience_indicators\n        \n        Checks:\n        1. View exists and can be queried\n        2. View returns data when vote_data and person_data are populated\n        3. Reports row count for ...	\N	5.0.1	\N	\N	4727109315
-recreate-intelligence-dashboard-1.40-003	intelligence-operative	db-changelog-1.40.xml	2025-12-03 01:58:35.407302	431	EXECUTED	9:8817dc415e89d5760524c4ccf8b5b406	createView viewName=view_riksdagen_intelligence_dashboard	Recreate view_riksdagen_intelligence_dashboard after crisis resilience fix\n        \n        This view was dropped by CASCADE when fixing view_riksdagen_crisis_resilience_indicators\n        in changeSet fix-crisis-resilience-1.40-001 (cascadeConstr...	\N	5.0.1	\N	\N	4727109315
-fix-risk-score-evolution-1.41-001	intelligence-operative	db-changelog-1.41.xml	2025-12-03 01:58:35.41702	432	EXECUTED	9:37f6b5ea6bb65b3a4437a01391adc4a6	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution to return data with correct rebel rate calculation\n        \n        Root Cause: The v1.38 fix used incorrect logic comparing vote type to party name:\n        `vd.vote != vd.party` (e.g., 'Ja' != 'S') which is always t...	\N	5.0.1	\N	\N	4727109315
-verify-risk-score-evolution-1.41-002	intelligence-operative	db-changelog-1.41.xml	2025-12-03 01:58:35.42298	433	EXECUTED	9:aebf12c8545cfa083ec15d44c1563fb3	sql	Post-flight verification for view_risk_score_evolution\n        \n        Checks:\n        1. View exists and can be queried\n        2. View returns data when vote_data and person_data are populated\n        3. Reports row count for monitoring	\N	5.0.1	\N	\N	4727109315
-fix-ministry-productivity-matrix-matview-1.42-001	intelligence-operative	db-changelog-1.42.xml	2025-12-03 01:58:35.429281	434	EXECUTED	9:d412e3784f5066b454b4444785c9b190	dropView viewName=view_ministry_productivity_matrix; createView viewName=view_ministry_productivity_matrix	Fix view_ministry_productivity_matrix by removing materialized view dependency\n        \n        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document\n        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute t...	\N	5.0.1	\N	\N	4727109315
-fix-ministry-effectiveness-trends-matview-1.42-002	intelligence-operative	db-changelog-1.42.xml	2025-12-03 01:58:35.437025	435	EXECUTED	9:c312343fc7c7e60a7228cf621f2ef36c	dropView viewName=view_ministry_effectiveness_trends; createView viewName=view_ministry_effectiveness_trends	Fix view_ministry_effectiveness_trends by removing materialized view dependency\n        \n        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document\n        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute ...	\N	5.0.1	\N	\N	4727109315
-fix-ministry-risk-evolution-matview-1.42-003	intelligence-operative	db-changelog-1.42.xml	2025-12-03 01:58:35.443167	436	EXECUTED	9:cbb86defc0af14dbb2c2613c7a4eecb3	dropView viewName=view_ministry_risk_evolution; createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution by removing materialized view dependency\n        \n        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document\n        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the\n  ...	\N	5.0.1	\N	\N	4727109315
-verify-ministry-views-1.42-004	intelligence-operative	db-changelog-1.42.xml	2025-12-03 01:58:35.449246	437	EXECUTED	9:5364a65df2b784a3c738ef622c551a7a	sql	Post-flight verification for all three ministry views\n        \n        Checks:\n        1. Views exist and can be queried (no materialized view error)\n        2. Views return data when ministry assignments exist\n        3. Reports row counts for mo...	\N	5.0.1	\N	\N	4727109315
-fix-risk-score-evolution-matview-1.42-005	intelligence-operative	db-changelog-1.42.xml	2025-12-03 01:58:35.459263	438	EXECUTED	9:17f7c63ce28d9c98df086fd35afa7991	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution by removing materialized view dependency\n        \n        Root Cause: The view was re-introduced in db-changelog-1.41.xml (for rebel rate fix)\n        but still referenced view_riksdagen_politician_document (materiali...	\N	5.0.1	\N	\N	4727109315
-document-ministry-views-fix-1.42-006	intelligence-operative	db-changelog-1.42.xml	2025-12-03 01:58:35.461162	439	EXECUTED	9:0f5bf4edfd8c9b20d4ace561ff91751c	sql	Documentation for v1.42 views fix\n        \n        Summary:\n        - Root cause: Dependency on unpopulated materialized view view_riksdagen_politician_document\n        - Solution: Replace materialized view with direct base table queries in all vi...	\N	5.0.1	\N	\N	4727109315
-fix-ministry-risk-evolution-periods-1.43-001	intelligence-operative	db-changelog-1.43.xml	2025-12-22 21:28:10.569106	440	EXECUTED	9:ec9451d1bc2a00638ab3ccaa919906fa	dropView viewName=view_ministry_risk_evolution; createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution to return data for all ministries\n        \n        Root Cause: The view was filtering out rows where assessment_period IS NULL.\n        When ministries have no document data, the DATE_TRUNC from LEFT JOIN results\n ...	\N	5.0.1	\N	\N	6438887950
-verify-ministry-risk-evolution-1.43-002	intelligence-operative	db-changelog-1.43.xml	2025-12-22 21:28:10.588487	441	EXECUTED	9:4db518cdbee1433304f8c27a4015d93c	sql	Post-flight verification for view_ministry_risk_evolution\n        \n        Checks:\n        1. View exists and can be queried\n        2. View returns rows when ministry assignments exist\n        3. Reports row count for validation	\N	5.0.1	\N	\N	6438887950
-document-ministry-risk-evolution-fix-1.43-003	intelligence-operative	db-changelog-1.43.xml	2025-12-22 21:28:10.594367	442	EXECUTED	9:1dde305304eb6f05cc4091cf8a4fb217	sql	Documentation for v1.43 view_ministry_risk_evolution fix\n        \n        Summary:\n        - Root cause: View filtered out ministries with no documents due to NULL assessment_period\n        - Solution: Generate quarterly periods independently and ...	\N	5.0.1	\N	\N	6438887950
-fix-forste-vice-talman-1.44-001	intelligence-operative	db-changelog-1.44.xml	2025-12-22 21:28:10.673572	443	EXECUTED	9:b279fddaf24fd37a38406eda28c39814	sqlFile path=view_riksdagen_politician_experience_summary_v1.44.sql	Fix view_riksdagen_politician_experience_summary to include Förste vice talman\n        in the talmansuppdrag role scoring alongside Andre and Tredje vice talman.\n        All three Deputy Speaker roles now weighted equally at 750.0.	\N	5.0.1	\N	\N	6438887950
-fix-committee-referral-1.45-001	intelligence-operative	db-changelog-1.45.xml	2025-12-22 21:28:10.696344	444	EXECUTED	9:d7ef57d9369d4edbe41fed03e5280238	sqlFile path=view_decision_temporal_trends_v1.45.sql	Fix view_decision_temporal_trends to include committee_referral_decisions column.\n        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records previously uncategorized.	\N	5.0.1	\N	\N	6438887950
-fix-committee-referral-1.45-002	intelligence-operative	db-changelog-1.45.xml	2025-12-22 21:28:10.716414	445	EXECUTED	9:b87b9d81c1c3c16773c3c0daddb069a3	sqlFile path=view_ministry_decision_impact_v1.45.sql	Fix view_ministry_decision_impact to include committee_referral_proposals column\n        and committee_referral_rate. Also updates other_decisions to exclude committee referrals.\n        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records...	\N	5.0.1	\N	\N	6438887950
-add-grouped-role-tracking-1.46-001	intelligence-operative	db-changelog-1.46.xml	2025-12-22 23:57:12.486913	446	EXECUTED	9:24893749a205bdb277ad61e924927289	sqlFile path=view_riksdagen_politician_v1.46.sql	Add grouped committee leadership role tracking to view_riksdagen_politician.\n        Adds 12 new columns organized into 6 role categories (total + current for each):\n        - Committee Chair (Ordförande only, committee context)\n        - Committe...	\N	5.0.1	\N	\N	6447830049
+1414872417007-1	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.787158	1	EXECUTED	9:a17731710305111df20dcfac7e5b1160	createSequence sequenceName=hibernate_sequence		\N	5.0.1	\N	\N	3913381643
+1414872417007-2	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.793849	2	EXECUTED	9:bebfee0168369dd117b920db419f5ba0	createTable tableName=against_proposal_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-3	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.802766	3	EXECUTED	9:3b16d9891a4d1d8ea22473bc46c7853c	createTable tableName=against_proposal_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-4	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.810198	4	EXECUTED	9:02e3a0b58935a93e8e22b859d6e244ff	createTable tableName=agency		\N	5.0.1	\N	\N	3913381643
+1414872417007-5	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.818609	5	EXECUTED	9:3fe4740c8b6b63adf7e6cd409d028222	createTable tableName=aggregated_bug_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-6	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.823624	6	EXECUTED	9:cb7c902d90871400b0f50e6517ae2e8b	createTable tableName=aggregated_country_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-7	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.831749	7	EXECUTED	9:54b3e671310d1733185a14870793775c	createTable tableName=application_action_event		\N	5.0.1	\N	\N	3913381643
+1414872417007-8	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.840277	8	EXECUTED	9:415d9684eeca14269142e3c4af51ef8a	createTable tableName=application_session		\N	5.0.1	\N	\N	3913381643
+1414872417007-9	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.845569	9	EXECUTED	9:4e882f95194b32ed19be40bc1c5d81db	createTable tableName=application_view		\N	5.0.1	\N	\N	3913381643
+1414872417007-10	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.854173	10	EXECUTED	9:8310007bdad3e542147e9f0c9e6280b2	createTable tableName=assignment_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-11	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.862935	11	EXECUTED	9:e2a725018be9c645cc40cee1bf741de4	createTable tableName=assignment_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-12	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.871962	12	EXECUTED	9:539351894788ad2df1f65ed4d9dc6394	createTable tableName=committee_document_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-13	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.877453	13	EXECUTED	9:0740ea87d5e697e23d68d86cded379f6	createTable tableName=committee_proposal_component_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-14	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.882297	14	EXECUTED	9:531e4b3e23b59219af608aa521c60e1d	createTable tableName=committee_proposal_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-15	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.891485	15	EXECUTED	9:0cddcb46baaa15f458ceaa0022e10daf	createTable tableName=committee_proposal_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-16	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.899302	16	EXECUTED	9:6fd8d778cf34128bd204c56041b7d25f	createTable tableName=countries_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-17	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.90858	17	EXECUTED	9:46c38f6afb69bb4d0a78fba4b029f24c	createTable tableName=country_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-18	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.915982	18	EXECUTED	9:6906125604ba9910f945c7b07fd92962	createTable tableName=data_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-19	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.9209	19	EXECUTED	9:687a141851b84ed8986487e2f3f8e4e7	createTable tableName=data_source_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-20	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.929101	20	EXECUTED	9:409c0b3f5c827c4bf3c7421647dadb6a	createTable tableName=detail_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-21	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.937843	21	EXECUTED	9:37c989d40b81428a93a2e8c29b6d8cb2	createTable tableName=detail_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-22	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.943515	22	EXECUTED	9:5553ce8a3c28a583d259d7daafa9492f	createTable tableName=document_activity_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-23	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.952275	23	EXECUTED	9:91ca8c9ef2f1a0d4038a8f00ee9cfe48	createTable tableName=document_activity_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-24	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.960448	24	EXECUTED	9:6a981fe99433f472f37d626f792fd93e	createTable tableName=document_attachment		\N	5.0.1	\N	\N	3913381643
+1414872417007-25	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.965546	25	EXECUTED	9:67651a14797870e3d71860f7886fb744	createTable tableName=document_attachment_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-26	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.974996	26	EXECUTED	9:363d579e1857630034ab68bb1ba09a54	createTable tableName=document_container_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-27	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.983793	27	EXECUTED	9:9cac16f6bb7fb5311b1c8210c62e8c6b	createTable tableName=document_content_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-28	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.995452	28	EXECUTED	9:eb4858110e94dda8090c4a09e2f019f3	createTable tableName=document_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-29	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.001527	29	EXECUTED	9:50b71c994cff70c92759390afb6d2b27	createTable tableName=document_detail_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-30	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.011998	30	EXECUTED	9:5eb7cc4f4e5da72a6d201a157ba3fed5	createTable tableName=document_detail_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-31	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.024739	31	EXECUTED	9:9d2fbddccf267f2773209465ff52cd57	createTable tableName=document_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-32	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.030145	32	EXECUTED	9:2de9b22e4860ecb9a912012f0cd0e429	createTable tableName=document_person_reference_co_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-33	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.039148	33	EXECUTED	9:81a2a16ef0155742bd93f54156b15812	createTable tableName=document_person_reference_da_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-34	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.044618	34	EXECUTED	9:65bb5a1b564a86e6817effbab9bde0d3	createTable tableName=document_reference_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-35	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.055683	35	EXECUTED	9:b6f271d72874d68d804fbbcc89bedcaa	createTable tableName=document_reference_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-36	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.064994	36	EXECUTED	9:d0adee5ea53440f01cf604c105f9aa56	createTable tableName=document_status_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-37	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.070326	37	EXECUTED	9:40d45e65bc2539a7d1faf45c6b9af3b2	createTable tableName=domain_portal		\N	5.0.1	\N	\N	3913381643
+1414872417007-38	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.079569	38	EXECUTED	9:6a1b6c5054ffe7b83bf458b6d9d63010	createTable tableName=indicator_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-39	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.08755	39	EXECUTED	9:df16293062101f9e2f2552533409513c	createTable tableName=indicators_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-40	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.097382	40	EXECUTED	9:2924e43a2bfc8ab8ece4c7b7fc886751	createTable tableName=language_content_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-41	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.102673	41	EXECUTED	9:ad01e46b6ba2c604286127713ac8dbbd	createTable tableName=language_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-42	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.107723	42	EXECUTED	9:79ef7742f91be7455bd9dfa79657131b	createTable tableName=operational_information_cont_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-43	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.112844	43	EXECUTED	9:fa41612149189e9606f6ef67cbb39911	createTable tableName=performance_indicator_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-44	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.117332	44	EXECUTED	9:0e9e417a0f56444002cbcd5958e1263e	createTable tableName=person_assignment_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-45	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.122797	45	EXECUTED	9:2fefd56ec64a6b4c49b1def045d6396a	createTable tableName=person_assignment_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-46	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.127235	46	EXECUTED	9:9a28a213df35828e2be714b4d835e8d7	createTable tableName=person_container_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-47	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.131453	47	EXECUTED	9:1c0bac7e7ad922b52a618676b42062a8	createTable tableName=person_container_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-48	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.139894	48	EXECUTED	9:10b817f4fcc09c63904d708e1461c5b7	createTable tableName=person_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-49	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.143958	49	EXECUTED	9:38d2239d109bf8b3b63dced29595a4f0	createTable tableName=person_detail_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-50	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.149321	50	EXECUTED	9:0cfe316d63aba7817bbc73a2430ff7dc	createTable tableName=person_detail_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-51	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.157968	51	EXECUTED	9:ad721b60c177dedbbc3fdf5ccbefa90c	createTable tableName=person_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-52	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.165666	52	EXECUTED	9:96452dd1a3d5f9b7484eee940aa6c845	createTable tableName=portal		\N	5.0.1	\N	\N	3913381643
+1414872417007-53	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.170036	53	EXECUTED	9:4bd5e7ade89c1e867b432998577ee25a	createTable tableName=quality_assurance_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-54	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.17726	54	EXECUTED	9:8d843eb1a26a4558446e4be5914dd5fe	createTable tableName=sweden_county_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-55	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.181784	55	EXECUTED	9:a671b76e045284f9ed125b93cd347528	createTable tableName=sweden_county_data_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-56	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.189545	56	EXECUTED	9:5d88b4f2bc6c9b00fd7dcfacb1848770	createTable tableName=sweden_county_electoral_area		\N	5.0.1	\N	\N	3913381643
+1414872417007-57	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.194155	57	EXECUTED	9:c2b1be2b1568b0adffeadb4e60e07aa4	createTable tableName=sweden_county_electoral_regi_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-58	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.200939	58	EXECUTED	9:df3cb3fdfce9bf4f6805fb84e1b9ed8a	createTable tableName=sweden_county_electoral_regi_1		\N	5.0.1	\N	\N	3913381643
+1414872417007-59	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.208756	59	EXECUTED	9:d14dfb21a1e78aad5fb77cb561fce391	createTable tableName=sweden_election_region		\N	5.0.1	\N	\N	3913381643
+1414872417007-60	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.216044	60	EXECUTED	9:3bba4dd4cd8837bef66ccbad72ba7e48	createTable tableName=sweden_election_type		\N	5.0.1	\N	\N	3913381643
+1414872417007-61	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.221316	61	EXECUTED	9:5324df8331f298acdc38fd7cf12b8258	createTable tableName=sweden_election_type_contain_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-62	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.229417	62	EXECUTED	9:633ea9271e4ae43b4821f604df1f59fa	createTable tableName=sweden_municipality_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-63	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.238014	63	EXECUTED	9:6d1944c67dd25f3a0648f9b1a5aa38b4	createTable tableName=sweden_municipality_election_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-64	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.242828	64	EXECUTED	9:b95825c026136a5346b16b9353ac5096	createTable tableName=sweden_parliament_electoral__0		\N	5.0.1	\N	\N	3913381643
+1414872417007-65	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.250498	65	EXECUTED	9:08c4da69bcd3b32d1f3f73121e4cf374	createTable tableName=sweden_parliament_electoral__1		\N	5.0.1	\N	\N	3913381643
+1414872417007-66	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.258463	66	EXECUTED	9:39166b5937a6de6e1e119be89a5768d4	createTable tableName=sweden_political_party		\N	5.0.1	\N	\N	3913381643
+1414872417007-67	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.263207	67	EXECUTED	9:206e57b2f1ab489aedd5f7f77b76f5e8	createTable tableName=target_profile_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-68	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.272118	68	EXECUTED	9:36d1a12fecba42815db61876f9ffee82	createTable tableName=topic		\N	5.0.1	\N	\N	3913381643
+1414872417007-69	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.276839	69	EXECUTED	9:74df0d4b5c616a83e5949698a4e5a8cc	createTable tableName=topics		\N	5.0.1	\N	\N	3913381643
+1414872417007-70	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.284718	70	EXECUTED	9:0b270579251a30288c9ed0f7ce9cff3f	createTable tableName=user_account		\N	5.0.1	\N	\N	3913381643
+1414872417007-71	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.289914	71	EXECUTED	9:d6f00140ffba825b869701ef3f17acc8	createTable tableName=user_account_address		\N	5.0.1	\N	\N	3913381643
+1414872417007-72	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.298927	72	EXECUTED	9:3daaf3a53dcab5c0643c4d341da21ec7	createTable tableName=vote_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-73	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.3063	73	EXECUTED	9:f846b11d91b49720ec2c460922d362f7	createTable tableName=vote_meta_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-74	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.314045	74	EXECUTED	9:aa5adf76544d09e8999dabd5bba4718d	createTable tableName=world_bank_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-75	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.322235	75	EXECUTED	9:5f830995c29a8f2e62b79c93b739826a	addPrimaryKey constraintName=against_proposal_container_pkey, tableName=against_proposal_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-76	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.32925	76	EXECUTED	9:bba09af773c137dde53bcec477dc7be1	addPrimaryKey constraintName=against_proposal_data_pkey, tableName=against_proposal_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-77	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.335679	77	EXECUTED	9:e1e45c8df3139a437fa9282e167b2a49	addPrimaryKey constraintName=agency_pkey, tableName=agency		\N	5.0.1	\N	\N	3913381643
+1414872417007-78	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.342902	78	EXECUTED	9:74ab57d4e742f0f890d089863fe99534	addPrimaryKey constraintName=aggregated_bug_data_pkey, tableName=aggregated_bug_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-79	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.349651	79	EXECUTED	9:43c9e9f0ca5431b8014b60e80d39d58f	addPrimaryKey constraintName=aggregated_country_data_pkey, tableName=aggregated_country_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-80	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.356365	80	EXECUTED	9:e40121efa7c2cb31c5579a83867222b9	addPrimaryKey constraintName=application_action_event_pkey, tableName=application_action_event		\N	5.0.1	\N	\N	3913381643
+1414872417007-81	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.363545	81	EXECUTED	9:5e7a0cc84a0279421abc59b37fac7cbc	addPrimaryKey constraintName=application_session_pkey, tableName=application_session		\N	5.0.1	\N	\N	3913381643
+1414872417007-82	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.369717	82	EXECUTED	9:8e761f77ad53316ecde3ae62be2f56e5	addPrimaryKey constraintName=application_view_pkey, tableName=application_view		\N	5.0.1	\N	\N	3913381643
+1414872417007-83	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.376784	83	EXECUTED	9:d65482d7b31647dc4109f47a336ca0ba	addPrimaryKey constraintName=assignment_data_pkey, tableName=assignment_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-84	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.382971	84	EXECUTED	9:5fd2d99287f3fc7dc27fdeefa086f79c	addPrimaryKey constraintName=assignment_element_pkey, tableName=assignment_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-85	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.388968	85	EXECUTED	9:ee126e8d0870490635cafe2ce677b999	addPrimaryKey constraintName=committee_document_data_pkey, tableName=committee_document_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-86	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.395182	86	EXECUTED	9:80032ba89b6bd19cfd978fa3956b3863	addPrimaryKey constraintName=committee_proposal_component_0_pkey, tableName=committee_proposal_component_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-87	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.401118	87	EXECUTED	9:233f9d1a6e53489679d9a65fe698416a	addPrimaryKey constraintName=committee_proposal_container_pkey, tableName=committee_proposal_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-88	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.406828	88	EXECUTED	9:997901d2eee29b9ec4d46710ab3131a4	addPrimaryKey constraintName=committee_proposal_data_pkey, tableName=committee_proposal_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-89	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.411848	89	EXECUTED	9:c1f8f3587b607f95154d9d70467c9c5e	addPrimaryKey constraintName=countries_element_pkey, tableName=countries_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-90	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.417813	90	EXECUTED	9:40ccd4df593a2a66cd59300c2f5c7f15	addPrimaryKey constraintName=country_element_pkey, tableName=country_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-91	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.423938	91	EXECUTED	9:8308944e4e2c08b501b936a559f8afe1	addPrimaryKey constraintName=data_element_pkey, tableName=data_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-92	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.429936	92	EXECUTED	9:dfe68f89fa66095a18d2bb701148737f	addPrimaryKey constraintName=data_source_content_pkey, tableName=data_source_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-93	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.435938	93	EXECUTED	9:100740b8d9c1ea7e9ff9e242ab5f091f	addPrimaryKey constraintName=detail_data_pkey, tableName=detail_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-94	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.441991	94	EXECUTED	9:155d55d6251bd89a8ef243dd207ff3dd	addPrimaryKey constraintName=detail_element_pkey, tableName=detail_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-95	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.449441	95	EXECUTED	9:1f5717b882823e279aab6ce2f3e14ff5	addPrimaryKey constraintName=document_activity_container_pkey, tableName=document_activity_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-96	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.455482	96	EXECUTED	9:0f77822e71c514105619468165aae6d5	addPrimaryKey constraintName=document_activity_data_pkey, tableName=document_activity_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-97	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.460873	97	EXECUTED	9:cd6f418a41124aea3c186ee765665519	addPrimaryKey constraintName=document_attachment_container_pkey, tableName=document_attachment_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-98	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.466631	98	EXECUTED	9:b5d8dffc4ae85d22f7f4787d36043f4b	addPrimaryKey constraintName=document_attachment_pkey, tableName=document_attachment		\N	5.0.1	\N	\N	3913381643
+1414872417007-99	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.472405	99	EXECUTED	9:2bfd0b28a7b11c92c03453704e522bda	addPrimaryKey constraintName=document_container_element_pkey, tableName=document_container_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-100	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.478663	100	EXECUTED	9:6395d6fc88ce72da42c56ff1c5e07867	addPrimaryKey constraintName=document_content_data_pkey, tableName=document_content_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-101	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.484749	101	EXECUTED	9:b32a6f1fe5048a5e0e85a05e111727e5	addPrimaryKey constraintName=document_data_pkey, tableName=document_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-102	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.490676	102	EXECUTED	9:2d9aaf92aee97b16ac125a5fc0e8dfcb	addPrimaryKey constraintName=document_detail_container_pkey, tableName=document_detail_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-103	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.496684	103	EXECUTED	9:860b27b44274c68226953af12bb7c2ba	addPrimaryKey constraintName=document_detail_data_pkey, tableName=document_detail_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-104	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.502427	104	EXECUTED	9:9f5914ca5b49f8cf29c24b7a85407e6d	addPrimaryKey constraintName=document_element_pkey, tableName=document_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-105	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.507886	105	EXECUTED	9:646fe77744ba782ad29a05f9758c726b	addPrimaryKey constraintName=document_person_reference_co_0_pkey, tableName=document_person_reference_co_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-106	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.514021	106	EXECUTED	9:066a0972b05e23920e12face81e6578b	addPrimaryKey constraintName=document_person_reference_da_0_pkey, tableName=document_person_reference_da_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-107	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.519877	107	EXECUTED	9:624552adc8948bf35b58b1d9ef3a543a	addPrimaryKey constraintName=document_reference_container_pkey, tableName=document_reference_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-108	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.525568	108	EXECUTED	9:9517d4a16d854bb77a5a8364e456c6fa	addPrimaryKey constraintName=document_reference_data_pkey, tableName=document_reference_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-109	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.531594	109	EXECUTED	9:9c3886a2a01a213cc0388b42cefa9c31	addPrimaryKey constraintName=document_status_container_pkey, tableName=document_status_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-110	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.537625	110	EXECUTED	9:5a47eb0ef2899df6880ccf0181487f36	addPrimaryKey constraintName=domain_portal_pkey, tableName=domain_portal		\N	5.0.1	\N	\N	3913381643
+1414872417007-111	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.544581	111	EXECUTED	9:9bb637485c9c31166e28ee005df28382	addPrimaryKey constraintName=indicator_element_pkey, tableName=indicator_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-112	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.551657	112	EXECUTED	9:94c16cc4cb00a952a848f47b4d537f35	addPrimaryKey constraintName=indicators_element_pkey, tableName=indicators_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-113	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.55905	113	EXECUTED	9:9008e44a163d1c21e27bfc226f5f3637	addPrimaryKey constraintName=language_content_data_pkey, tableName=language_content_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-114	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.566179	114	EXECUTED	9:c883a7c469d1ebb67a81bf9e174ab4cf	addPrimaryKey constraintName=language_data_pkey, tableName=language_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-115	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.57341	115	EXECUTED	9:13ceee93ff17b702a450945b3bcb3249	addPrimaryKey constraintName=operational_information_cont_0_pkey, tableName=operational_information_cont_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-116	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.579559	116	EXECUTED	9:1524d7c6bd18a8d8a719c4f573486968	addPrimaryKey constraintName=performance_indicator_content_pkey, tableName=performance_indicator_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-117	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.585688	117	EXECUTED	9:04a2103790734cfce99dff36d2609ef1	addPrimaryKey constraintName=person_assignment_data_pkey, tableName=person_assignment_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-118	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.592348	118	EXECUTED	9:1ab775e2f146e761344cdb951894eae3	addPrimaryKey constraintName=person_assignment_element_pkey, tableName=person_assignment_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-119	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.5992	119	EXECUTED	9:9b2fa87e2c12c84e1f4a6cfcbf20c839	addPrimaryKey constraintName=person_container_data_pkey, tableName=person_container_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-120	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.605908	120	EXECUTED	9:efc05607aaa1e96f1c09107d6f334c8e	addPrimaryKey constraintName=person_container_element_pkey, tableName=person_container_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-121	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.612812	121	EXECUTED	9:6e35a4dcd47a49efd33421bc9f20fb66	addPrimaryKey constraintName=person_data_pkey, tableName=person_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-122	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.619537	122	EXECUTED	9:cf067de81b62440865e1ceb695d746fa	addPrimaryKey constraintName=person_detail_data_pkey, tableName=person_detail_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-123	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.6264	123	EXECUTED	9:4ecec7b11ded214c249fa3330edac6b0	addPrimaryKey constraintName=person_detail_element_pkey, tableName=person_detail_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-124	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.633221	124	EXECUTED	9:2cad1510173ec69b6b8cb232a97eab9b	addPrimaryKey constraintName=person_element_pkey, tableName=person_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-125	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.641522	125	EXECUTED	9:0d5aa0b601f6823fdeeb80895c8f0d28	addPrimaryKey constraintName=portal_pkey, tableName=portal		\N	5.0.1	\N	\N	3913381643
+1414872417007-126	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.648491	126	EXECUTED	9:5e6770a50d8544af0afcb6c0d720715b	addPrimaryKey constraintName=quality_assurance_content_pkey, tableName=quality_assurance_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-127	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.655434	127	EXECUTED	9:b4e0e9778b2d4deeb4ece26f737744c5	addPrimaryKey constraintName=sweden_county_data_container_pkey, tableName=sweden_county_data_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-128	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.662337	128	EXECUTED	9:62edab145f5744b7ceb49858dc83eddd	addPrimaryKey constraintName=sweden_county_data_pkey, tableName=sweden_county_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-129	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.669178	129	EXECUTED	9:f29e2b6f4276458aa0d2337f97c7f320	addPrimaryKey constraintName=sweden_county_electoral_area_pkey, tableName=sweden_county_electoral_area		\N	5.0.1	\N	\N	3913381643
+1414872417007-130	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.67505	130	EXECUTED	9:adf18b3ce957d1710d3a3337a3b3f995	addPrimaryKey constraintName=sweden_county_electoral_regi_0_pkey, tableName=sweden_county_electoral_regi_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-131	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.680747	131	EXECUTED	9:b1175e4a6a86b2a7013d246073480c44	addPrimaryKey constraintName=sweden_county_electoral_regi_1_pkey, tableName=sweden_county_electoral_regi_1		\N	5.0.1	\N	\N	3913381643
+1414872417007-132	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.686268	132	EXECUTED	9:0ef7e7a7c0d5cda0a5dcbe5db56b7dfb	addPrimaryKey constraintName=sweden_election_region_pkey, tableName=sweden_election_region		\N	5.0.1	\N	\N	3913381643
+1414872417007-133	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.692027	133	EXECUTED	9:95d0312014ad80f98a928a2e1ab77b6c	addPrimaryKey constraintName=sweden_election_type_contain_0_pkey, tableName=sweden_election_type_contain_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-134	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.697346	134	EXECUTED	9:2b80a19ab63216f2135737f548649efb	addPrimaryKey constraintName=sweden_election_type_pkey, tableName=sweden_election_type		\N	5.0.1	\N	\N	3913381643
+1414872417007-135	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.703185	135	EXECUTED	9:d61ad75b5a17205bd28e961c19f9bdc4	addPrimaryKey constraintName=sweden_municipality_data_pkey, tableName=sweden_municipality_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-136	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.709091	136	EXECUTED	9:a9b60ba996dfcc86c556ecefd9434d07	addPrimaryKey constraintName=sweden_municipality_election_0_pkey, tableName=sweden_municipality_election_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-137	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.714332	137	EXECUTED	9:270f67f6d0e7885e13a29d873fb10753	addPrimaryKey constraintName=sweden_parliament_electoral__0_pkey, tableName=sweden_parliament_electoral__0		\N	5.0.1	\N	\N	3913381643
+1414872417007-138	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.720261	138	EXECUTED	9:17e8429424a5fc7b90273685a0fee7a8	addPrimaryKey constraintName=sweden_parliament_electoral__1_pkey, tableName=sweden_parliament_electoral__1		\N	5.0.1	\N	\N	3913381643
+1414872417007-139	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.72563	139	EXECUTED	9:05fc213ff95f0bacb5db6c1d213eb41a	addPrimaryKey constraintName=sweden_political_party_pkey, tableName=sweden_political_party		\N	5.0.1	\N	\N	3913381643
+1414872417007-140	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.730937	140	EXECUTED	9:09a05025b9436e9f557c7fac3ab6d6a1	addPrimaryKey constraintName=target_profile_content_pkey, tableName=target_profile_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-141	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.736225	141	EXECUTED	9:d9a0d2ae0b49b01b86000dff4c08f92c	addPrimaryKey constraintName=topic_pkey, tableName=topic		\N	5.0.1	\N	\N	3913381643
+1414872417007-142	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.741388	142	EXECUTED	9:c25699beb6697e89e15974720c428e76	addPrimaryKey constraintName=topics_pkey, tableName=topics		\N	5.0.1	\N	\N	3913381643
+1414872417007-143	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.746466	143	EXECUTED	9:af73822f902ba605fc64ad455d4719d9	addPrimaryKey constraintName=user_account_address_pkey, tableName=user_account_address		\N	5.0.1	\N	\N	3913381643
+1414872417007-144	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.75156	144	EXECUTED	9:8fcbc92628f8cba467c582d5ca7906e7	addPrimaryKey constraintName=user_account_pkey, tableName=user_account		\N	5.0.1	\N	\N	3913381643
+1414872417007-145	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.756694	145	EXECUTED	9:f0838a94de3419c7ac3df04bd792c658	addPrimaryKey constraintName=vote_data_pkey, tableName=vote_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-146	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.761886	146	EXECUTED	9:5c275b66b7eed679e55738926e5b1536	addPrimaryKey constraintName=vote_meta_data_pkey, tableName=vote_meta_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-147	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.766802	147	EXECUTED	9:c43ec2fd8137eee136dc1c20828cbd70	addPrimaryKey constraintName=world_bank_data_pkey, tableName=world_bank_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-148	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.772053	148	EXECUTED	9:4508dab76977f081c98a65d7653e84b7	addForeignKeyConstraint baseTableName=person_element, constraintName=fk_13jay3yk8opnt33758httu9kb, referencedTableName=person_detail_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-149	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.776092	149	EXECUTED	9:91b8623f7717a1df4b4a2e6ca8b36512	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_2ivjcdwosa63ant7jc5c6cojj, referencedTableName=target_profile_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-150	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.780004	150	EXECUTED	9:a42e80d7f82938b0012152684357dfbd	addForeignKeyConstraint baseTableName=country_element, constraintName=fk_3k0s1gih1msbej3bp2iotg52y, referencedTableName=countries_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-151	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.783617	151	EXECUTED	9:6590b1db53965caf6f41491e5d14069c	addForeignKeyConstraint baseTableName=person_element, constraintName=fk_3o85sqp9yss0nler1yl1umfl1, referencedTableName=person_container_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-152	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.787376	152	EXECUTED	9:5666684899b4932d7a7c5f10650b1504	addForeignKeyConstraint baseTableName=sweden_county_electoral_regi_1, constraintName=fk_4y4vi3cafmbdhvckntfn7qdps, referencedTableName=sweden_county_electoral_regi_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-153	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.79132	153	EXECUTED	9:5d7d31451a54ac259a8da618470e3019	addForeignKeyConstraint baseTableName=against_proposal_data, constraintName=fk_5u5u77qsrpa2qy6umqrph4tyf, referencedTableName=against_proposal_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-154	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.795261	154	EXECUTED	9:b5f757faef90de046c4cfeba596b2185	addForeignKeyConstraint baseTableName=person_container_data, constraintName=fk_5w4uvrhl3l7c441b7ra7p8txr, referencedTableName=person_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-155	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.799227	155	EXECUTED	9:d1716def0fa248256460135662cb0605	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_6crp887w8xy3e4i143yyydjqv, referencedTableName=document_reference_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-156	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.803211	156	EXECUTED	9:87739cc9152ce23f5b403ba407615209	addForeignKeyConstraint baseTableName=portal, constraintName=fk_7c8jfw8bnxrm2aj26w9qlx340, referencedTableName=agency		\N	5.0.1	\N	\N	3913381643
+1414872417007-157	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.80714	157	EXECUTED	9:285821ed49a91195d9d6e0f0273b0778	addForeignKeyConstraint baseTableName=sweden_county_electoral_area, constraintName=fk_7h4feuc5bwu12tyaka1nx1ln, referencedTableName=sweden_county_electoral_regi_1		\N	5.0.1	\N	\N	3913381643
+1414872417007-158	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.811204	158	EXECUTED	9:29999cfa40cbc2af86e5e6f41ce1ff4f	addForeignKeyConstraint baseTableName=assignment_data, constraintName=fk_84o1dcsfeyp1o25nfdpppa7oe, referencedTableName=person_assignment_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-159	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.81528	159	EXECUTED	9:04f0321d6a659c24367adf06b21490ec	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_86c52yf22uk0bpcs1qoc3aeyv, referencedTableName=document_attachment_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-160	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.820215	160	EXECUTED	9:cfb97bbb6da4e55006169e9879f04eea	addForeignKeyConstraint baseTableName=user_account_address, constraintName=fk_8931ymg13vy6vfkrichtst7bj, referencedTableName=user_account		\N	5.0.1	\N	\N	3913381643
+1414872417007-161	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.823917	161	EXECUTED	9:35323e79371e0ed674f60d54da88447e	addForeignKeyConstraint baseTableName=indicator_element, constraintName=fk_8l1m1pum4e3catw4443rup4q5, referencedTableName=indicators_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-162	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.827321	162	EXECUTED	9:d5d46f2c32f0828c1ad2cab7488c0ced	addForeignKeyConstraint baseTableName=user_account, constraintName=fk_8mmnmcgjut9nc7dfhrgxi598f, referencedTableName=aggregated_country_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-163	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.830934	163	EXECUTED	9:1e64c99d1c965da030f1f77b7c65d3bd	addForeignKeyConstraint baseTableName=committee_proposal_component_0, constraintName=fk_90arga58ce9bnjkc6lws04uhw, referencedTableName=committee_proposal_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-164	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.834614	164	EXECUTED	9:4ff16e8d056a87f4c3ccd13acc819aa5	addForeignKeyConstraint baseTableName=indicator_element, constraintName=fk_92h99v4i1pmr69x0y43pocv2a, referencedTableName=topics		\N	5.0.1	\N	\N	3913381643
+1414872417007-165	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.837744	165	EXECUTED	9:f030785453270c20bfdb38ca4dc425ee	addForeignKeyConstraint baseTableName=domain_portal, constraintName=fk_9ln0n5axxjuxtbpepyad69rel, referencedTableName=portal		\N	5.0.1	\N	\N	3913381643
+1414872417007-166	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.840969	166	EXECUTED	9:4dacfe145969063359c67da63be19926	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_9q1ktfb77gieq0xugoqe2fidd, referencedTableName=document_detail_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-167	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.844395	167	EXECUTED	9:f9d7c86e3c465fe6034392bcaa0261a8	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_9x5havflf3rdfkaw1hangbemd, referencedTableName=quality_assurance_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-168	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.847768	168	EXECUTED	9:120cbf4620307c3f7962a3727eea6d93	addForeignKeyConstraint baseTableName=person_detail_element, constraintName=fk_a6syxeadcisfnnfjqemog93qd, referencedTableName=detail_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-169	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.851262	169	EXECUTED	9:8ddf896e49f7932380e5ef7471892039	addForeignKeyConstraint baseTableName=sweden_political_party, constraintName=fk_c2f4dhdce9p61sg50rnww73c1, referencedTableName=sweden_election_region		\N	5.0.1	\N	\N	3913381643
+1414872417007-170	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.854532	170	EXECUTED	9:2d5e1c62af16eec4c4539ddfb9100fec	addForeignKeyConstraint baseTableName=document_reference_data, constraintName=fk_c4uqb4d6xqa5d7afwen8sny67, referencedTableName=document_reference_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-171	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.857887	171	EXECUTED	9:4e6aea0b15d2a2ed7264ed313d9547be	addForeignKeyConstraint baseTableName=detail_data, constraintName=fk_diexjlb9hdrfv7g5y06cj6nu5, referencedTableName=person_detail_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-172	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.861068	172	EXECUTED	9:e8560158fc903b2b52877dcc82cadbed	addForeignKeyConstraint baseTableName=world_bank_data, constraintName=fk_e0yghurnnhmkahpt7ydf008fo, referencedTableName=data_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-173	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.864356	173	EXECUTED	9:cbec00c068a73c3e5d6597c95e437200	addForeignKeyConstraint baseTableName=committee_proposal_component_0, constraintName=fk_eofapva6jn5k3h5gnj4whyilb, referencedTableName=against_proposal_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-174	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.867683	174	EXECUTED	9:ad7250e1d861b489dd7ca50bb3f49df2	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_f4bptktby95bygv359chn7lbn, referencedTableName=performance_indicator_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-175	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.871095	175	EXECUTED	9:818f5d9ba52f5b4b7c5e22b7880d5b31	addForeignKeyConstraint baseTableName=document_activity_data, constraintName=fk_gruc53dqu0smf6s1a0gkelvdm, referencedTableName=document_activity_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-176	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.874409	176	EXECUTED	9:2829a37686f398cbd8bde3720b9ffbcb	addForeignKeyConstraint baseTableName=sweden_municipality_data, constraintName=fk_gykahsnks6y9v8y5novlxagnf, referencedTableName=sweden_county_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-177	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.877895	177	EXECUTED	9:74506407fb2de37ce7110ed9e6e84899	addForeignKeyConstraint baseTableName=committee_proposal_data, constraintName=fk_hs04ji7kqvwd7313ryp20vo0x, referencedTableName=committee_proposal_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-178	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.881043	178	EXECUTED	9:ff2b41caa6a89d740f2df18f82af73e5	addForeignKeyConstraint baseTableName=aggregated_country_data, constraintName=fk_j7l4eldeihr8g7ax7rv2irgk1, referencedTableName=country_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-179	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.884469	179	EXECUTED	9:de72bc11dc8b5b4e708484799424e2f3	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_jjcxsqmdnjw0nbwducjyecdg4, referencedTableName=document_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-180	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.888002	180	EXECUTED	9:dd951cd80fae1d68360c4f14a0f8ae47	addForeignKeyConstraint baseTableName=person_data, constraintName=fk_jrgy7nw6n071uok8p1hkp03rh, referencedTableName=person_detail_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-181	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.891275	181	EXECUTED	9:54660e233cda4814c9a51132ed672342	addForeignKeyConstraint baseTableName=committee_proposal_component_0, constraintName=fk_k78eqmx2m3ja0267xhthfeio4, referencedTableName=committee_document_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-182	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.89434	182	EXECUTED	9:7300fd0907004ada150fc96cb7a0c74c	addForeignKeyConstraint baseTableName=assignment_element, constraintName=fk_ks1811fwuno6vqof0lskerpib, referencedTableName=person_assignment_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-183	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.897596	183	EXECUTED	9:60e718f175e5b30a169916f114881495	addForeignKeyConstraint baseTableName=document_attachment, constraintName=fk_lean1i0p0e5rv28my9297lq22, referencedTableName=document_attachment_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-184	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.901436	184	EXECUTED	9:06e2186d554b8ab401562b3ad4b848ae	addForeignKeyConstraint baseTableName=document_person_reference_da_0, constraintName=fk_lsfup3rosph7239t1idorm1cd, referencedTableName=document_person_reference_co_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-185	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.904834	185	EXECUTED	9:aa2334e93f5fe2a5ed438f52c7507776	addForeignKeyConstraint baseTableName=person_element, constraintName=fk_m6dcdojsb6iv9lrego5kurr7p, referencedTableName=person_assignment_element		\N	5.0.1	\N	\N	3913381643
+25353872417007-324	party_trends-fix	db-changelog-1.26.xml	2025-11-23 16:56:27.605552	345	EXECUTED	9:60797ca4c12b59c5f244255c0bda44cf	createView viewName=view_riksdagen_party_ballot_support_annual_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-186	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.907878	186	EXECUTED	9:cc82b3c05a5e51eedf05c87248cea759	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_ng4kjnv3cm4e6ud3fikwi6p7i, referencedTableName=document_person_reference_co_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-187	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.911809	187	EXECUTED	9:5eba99c12fbddf7df67ef71faf1a83de	addForeignKeyConstraint baseTableName=application_action_event, constraintName=fk_nlqlshlogsx2g8u5d3y28my28, referencedTableName=application_session		\N	5.0.1	\N	\N	3913381643
+1414872417007-188	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.915116	188	EXECUTED	9:09fb71b57990439cfb427066fe1efddc	addForeignKeyConstraint baseTableName=document_element, constraintName=fk_o24n54auwa2xyflis6nkrajpd, referencedTableName=document_container_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-189	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.918364	189	EXECUTED	9:6e0bce434a5e5c4d0dc628b0529264db	addForeignKeyConstraint baseTableName=topic, constraintName=fk_o7ol28sotu1r12n8txv2gigok, referencedTableName=topics		\N	5.0.1	\N	\N	3913381643
+1414872417007-190	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.921636	190	EXECUTED	9:8c38ea04b2f59bf71cf23a9896e12862	addForeignKeyConstraint baseTableName=sweden_election_type, constraintName=fk_ob50ibby6jamvitbxknoucifg, referencedTableName=sweden_election_region		\N	5.0.1	\N	\N	3913381643
+1414872417007-191	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.925029	191	EXECUTED	9:093c24624d60c39f0c07c436100f5a40	addForeignKeyConstraint baseTableName=aggregated_bug_data, constraintName=fk_osdlir1nv0m8ckb1pbipgswj, referencedTableName=person_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-192	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.928596	192	EXECUTED	9:f82186446de4769ed31f4da13061611b	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_p8b7gnxeglk71etbbql3j184s, referencedTableName=data_source_content		\N	5.0.1	\N	\N	3913381643
+1414872417007-193	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.932145	193	EXECUTED	9:0ec91f1010fa7e1204a8124d5d8f5144	addForeignKeyConstraint baseTableName=sweden_county_data, constraintName=fk_pndlg3q6ly10qbs8e3s9wikyu, referencedTableName=sweden_county_data_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-194	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.935424	194	EXECUTED	9:452c2540e89f1802c787458cf6b48cd8	addForeignKeyConstraint baseTableName=document_detail_data, constraintName=fk_quor6wesrmk9ierjyr7ni8wch, referencedTableName=document_detail_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-195	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.938802	195	EXECUTED	9:cc1d30b724e685b87c77fc853efa1bc3	addForeignKeyConstraint baseTableName=sweden_parliament_electoral__1, constraintName=fk_qvgtilwwyipbrv6b2cv6fcp27, referencedTableName=sweden_parliament_electoral__0		\N	5.0.1	\N	\N	3913381643
+1414872417007-196	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.942267	196	EXECUTED	9:ec3a97c733d887320cae227c31414d0d	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_r2dkprhp4xfhrcck9sf31b9xl, referencedTableName=document_activity_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-197	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.945839	197	EXECUTED	9:9d34aebdd2d3710bc4969a4b919b9e44	addForeignKeyConstraint baseTableName=sweden_municipality_election_0, constraintName=fk_r3jht5oci01uxhwaa39uxsg2t, referencedTableName=sweden_municipality_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-198	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.949153	198	EXECUTED	9:fc898e94f68547d5d6b575ba264843b3	addForeignKeyConstraint baseTableName=person_data, constraintName=fk_rd2pmyb4gmu2vbxklh6er8ayc, referencedTableName=person_assignment_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-199	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.952672	199	EXECUTED	9:44b8fe081629b67789129dde1fad255d	addForeignKeyConstraint baseTableName=sweden_election_type, constraintName=fk_rp3tjh4jmpmoxh05oo9fq9qh6, referencedTableName=sweden_election_type_contain_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-200	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.956497	200	EXECUTED	9:538e5077d44dd97071f9d407ac8812d0	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_x8sbg6y7h0vavmun6i7h8oae, referencedTableName=operational_information_cont_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-201	pether	db-changelog-1.0.xml	2025-11-23 16:56:24.960139	201	EXECUTED	9:765cc5f3190db16a819f460b2c3a9835	modifyDataType columnName=content, tableName=document_content_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-202	pether	db-changelog-1.1.xml	2025-11-23 16:56:24.972419	202	EXECUTED	9:08fb1bac7fdd7016ab7d47d2f70ebbfa	createView viewName=view_document_data_committee_report_url		\N	5.0.1	\N	\N	3913381643
+1414872417007-203	pether	db-changelog-1.1.xml	2025-11-23 16:56:24.975426	203	EXECUTED	9:534ad16ef62ab2164f305d17d8fba21b	modifyDataType columnName=proposal, tableName=committee_proposal_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-204	pether	db-changelog-1.1.xml	2025-11-23 16:56:24.980886	204	EXECUTED	9:dad3fd6230b1f6b09a7ea190314f3e75	createView viewName=view_riksdagen_committee		\N	5.0.1	\N	\N	3913381643
+1414872417007-205	pether	db-changelog-1.1.xml	2025-11-23 16:56:24.98553	205	EXECUTED	9:cce5264c458c91c73e66133abbaca793	createView viewName=view_riksdagen_goverment		\N	5.0.1	\N	\N	3913381643
+1414872417007-206	pether	db-changelog-1.1.xml	2025-11-23 16:56:24.990519	206	EXECUTED	9:3c85c169ae80776fcc98b8be9fb3ed04	createView viewName=view_riksdagen_goverment_roles		\N	5.0.1	\N	\N	3913381643
+1414872417007-207	pether	db-changelog-1.1.xml	2025-11-23 16:56:24.996382	207	EXECUTED	9:e518955b8fdd65916aef6f8d2e13a803	createView viewName=view_riksdagen_committee_decisions		\N	5.0.1	\N	\N	3913381643
+1414872417007-208	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.00137	208	EXECUTED	9:b261683ab49f67d5ad404b2cd5d5ec79	createView viewName=view_riksdagen_goverment_proposals		\N	5.0.1	\N	\N	3913381643
+1414872417007-209	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.006405	209	EXECUTED	9:a14b26657c5b09346ccfe984cc94d11d	createView viewName=view_riksdagen_member_proposals		\N	5.0.1	\N	\N	3913381643
+1416258476613-210	pether (generated)	db-changelog-1.1.xml	2025-11-23 16:56:25.009974	210	EXECUTED	9:c2effec0a954d668b8fd780eb04879d6	createTable tableName=document_proposal_container		\N	5.0.1	\N	\N	3913381643
+1416258476613-211	pether (generated)	db-changelog-1.1.xml	2025-11-23 16:56:25.017538	211	EXECUTED	9:908f681226f2fb5abe4b199126d26a6b	createTable tableName=document_proposal_data		\N	5.0.1	\N	\N	3913381643
+1416258476613-212	pether (generated)	db-changelog-1.1.xml	2025-11-23 16:56:25.022097	212	EXECUTED	9:3e0f9abc6d66f9b8582632524ec3806a	addColumn tableName=document_status_container; dropColumn columnName=document_proposal, tableName=document_status_container		\N	5.0.1	\N	\N	3913381643
+1416258476613-213	pether (generated)	db-changelog-1.1.xml	2025-11-23 16:56:25.026591	213	EXECUTED	9:f866ec1b7098b04250e282bf216ce46b	addPrimaryKey constraintName=document_proposal_container_pkey, tableName=document_proposal_container		\N	5.0.1	\N	\N	3913381643
+1416258476613-214	pether (generated)	db-changelog-1.1.xml	2025-11-23 16:56:25.0311	214	EXECUTED	9:758bf9de406141115f5a3dea3f38d224	addPrimaryKey constraintName=document_proposal_data_pkey, tableName=document_proposal_data		\N	5.0.1	\N	\N	3913381643
+1416258476613-215	pether (generated)	db-changelog-1.1.xml	2025-11-23 16:56:25.034499	215	EXECUTED	9:bc8c5511c4210514433a23a9802a16ea	addForeignKeyConstraint baseTableName=document_proposal_container, constraintName=fk_m55tt4vaimgb5qk7xj9mgxmry, referencedTableName=document_proposal_data		\N	5.0.1	\N	\N	3913381643
+1416258476613-216	pether (generated)	db-changelog-1.1.xml	2025-11-23 16:56:25.037527	216	EXECUTED	9:824a2b5b89c1f8445fe03bce8a1ed4a3	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_iirofquegnrpnuonvnydf6wfb, referencedTableName=document_proposal_container		\N	5.0.1	\N	\N	3913381643
+1414872417007-217	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.042772	217	EXECUTED	9:dc12d88f692a0de46300f916366fcd3d	modifyDataType columnName=wording, tableName=document_proposal_data; modifyDataType columnName=wording_2, tableName=document_proposal_data; modifyDataType columnName=wording_3, tableName=document_proposal_data; modifyDataType columnName=wording_4,...		\N	5.0.1	\N	\N	3913381643
+1414872417007-218	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.048091	218	EXECUTED	9:bf01ae3c4a683f06ebfb04fb51534659	createView viewName=view_riksdagen_committee_roles		\N	5.0.1	\N	\N	3913381643
+1414872417007-219	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.058759	219	EXECUTED	9:40844e607d59d90e5e0cceea37549f78	dropView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee_parliament_member_proposal		\N	5.0.1	\N	\N	3913381643
+1414872417007-220	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.067895	220	EXECUTED	9:2989f55d70d91a3b877bdc4fbde2bcc7	dropView viewName=view_riksdagen_goverment_roles; createView viewName=view_riksdagen_goverment_roles; dropView viewName=view_riksdagen_committee_roles; createView viewName=view_riksdagen_committee_roles		\N	5.0.1	\N	\N	3913381643
+1414872417007-221	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.073511	221	EXECUTED	9:22e8c979c00998ab0584a65208d0070c	dropView viewName=view_riksdagen_goverment; createView viewName=view_riksdagen_goverment		\N	5.0.1	\N	\N	3913381643
+1414872417007-222	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.07879	222	EXECUTED	9:a03f84a49600f94a9947b1b8d5831149	createView viewName=view_riksdagen_party_member		\N	5.0.1	\N	\N	3913381643
+1414872417007-223	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.083549	223	EXECUTED	9:d9e3c3c85411b661c092f2f8922b9c06	createView viewName=view_riksdagen_party		\N	5.0.1	\N	\N	3913381643
+1414872417007-224	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.088821	224	EXECUTED	9:b57642b4b204201b692e94822604822c	dropView viewName=view_riksdagen_party; createView viewName=view_riksdagen_party		\N	5.0.1	\N	\N	3913381643
+1414872417007-225	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.095559	225	EXECUTED	9:ea6a0f678b722d37e8d2862d86044b1e	dropView viewName=view_riksdagen_goverment; createView viewName=view_riksdagen_goverment		\N	5.0.1	\N	\N	3913381643
+1414872417007-226	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.104007	226	EXECUTED	9:f61f477649fb8c7055d2b374748e2459	dropView viewName=view_riksdagen_committee_parliament_member_proposal; dropView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee_parliament_member_proposal		\N	5.0.1	\N	\N	3913381643
+1414872417007-227	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.110319	227	EXECUTED	9:0e86f855ff9c4aef94315ddd54a3023d	createView viewName=view_riksdagen_goverment_role_member; createView viewName=view_riksdagen_committee_role_member		\N	5.0.1	\N	\N	3913381643
+1414872417007-228	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.116944	228	EXECUTED	9:c1f77e255a88bcc694bbe19fe721d57c	createView viewName=view_riksdagen_politician		\N	5.0.1	\N	\N	3913381643
+1414872417007-229	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.125002	229	EXECUTED	9:02389fc7a55e20948a4b646d84108740	dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician		\N	5.0.1	\N	\N	3913381643
+1414872417007-230	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.138364	230	EXECUTED	9:74cca167d30b5635d5d604d621881082	dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician		\N	5.0.1	\N	\N	3913381643
+1414872417007-231	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.145956	231	EXECUTED	9:083ad5ea0ee0c5582da18d78f074043d	createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-232	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.154733	232	EXECUTED	9:8c5e85cc7b9722b6cf11cc1e2370af47	dropView viewName=view_riksdagen_party_summary; createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-233	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.175391	233	EXECUTED	9:e615358ab9818929ffe7a8d502e4bb85	dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-234	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.183174	234	EXECUTED	9:eaa93e3fb1b9d6745bc1bc4f6decb446	createView viewName=view_riksdagen_politician_document		\N	5.0.1	\N	\N	3913381643
+1414872417007-235	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.204237	235	EXECUTED	9:2a4aaa3ad3c5adf40fd1e09942d17ba2	dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-236	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.225484	236	EXECUTED	9:7a212611fdd15ee2fe72ba19866e2f68	dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-237	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.237503	237	EXECUTED	9:2b9a267cae0600616bd0fab522c2210b	dropView viewName=view_riksdagen_goverment_role_member; createView viewName=view_riksdagen_goverment_role_member; dropView viewName=view_riksdagen_committee_role_member; createView viewName=view_riksdagen_committee_role_member; createView viewName...		\N	5.0.1	\N	\N	3913381643
+1414872417007-238	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.245952	238	EXECUTED	9:9b345a7e03fca2d72d77f5d6b3351409	dropForeignKeyConstraint baseTableName=user_account, constraintName=fk_8mmnmcgjut9nc7dfhrgxi598f; dropTable tableName=aggregated_bug_data; dropTable tableName=aggregated_country_data; dropColumn columnName=country_user_account_hjid, tableName=user...		\N	5.0.1	\N	\N	3913381643
+1414872417007-239	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.258684	239	EXECUTED	9:2114de6439a5fe3157a923c3d8ee36c7	dropView viewName=view_riksdagen_goverment_role_member; createView viewName=view_riksdagen_goverment_role_member; dropView viewName=view_riksdagen_committee_role_member; createView viewName=view_riksdagen_committee_role_member; dropView viewName=v...		\N	5.0.1	\N	\N	3913381643
+1414872417007-263	pether	db-changelog-1.5.xml	2025-11-23 16:56:25.702685	263	EXECUTED	9:7d34f8665567dbd826ceff8e38177cc9	dropView viewName=view_worldbank_indicator_data_country_summary; createView viewName=view_worldbank_indicator_data_country_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-240	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.271828	240	EXECUTED	9:591c6d509fe1d4dde6b41c9ecc5105c9	dropView viewName=view_riksdagen_goverment_role_member; createView viewName=view_riksdagen_goverment_role_member; dropView viewName=view_riksdagen_committee_role_member; createView viewName=view_riksdagen_committee_role_member; dropView viewName=v...		\N	5.0.1	\N	\N	3913381643
+1414872417007-241	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.282882	241	EXECUTED	9:76d4f14c8fcd7a22ede9b78231ff916b	createView viewName=view_riksdagen_vote_data_ballot_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-242	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.295418	242	EXECUTED	9:dc35246f6d762ea3fa127bf050173773	createView viewName=view_riksdagen_vote_data_ballot_party_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-243	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.31374	243	EXECUTED	9:bedaee0e37a39ab72fcf8b0a32ea1ac3	dropView viewName=view_riksdagen_vote_data_ballot_party_summary; dropView viewName=view_riksdagen_vote_data_ballot_summary; createView viewName=view_riksdagen_vote_data_ballot_summary; createView viewName=view_riksdagen_vote_data_ballot_party_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-244	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.319497	244	EXECUTED	9:475ac35a820437f1e15c480211d60234	createView viewName=view_riksdagen_vote_data_ballot_summary_daily		\N	5.0.1	\N	\N	3913381643
+1414872417007-245	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.328568	245	EXECUTED	9:5068091c96f1fd1622105bb83527a07e	createView viewName=view_riksdagen_vote_data_ballot_summary_weekly; createView viewName=view_riksdagen_vote_data_ballot_summary_monthly; createView viewName=view_riksdagen_vote_data_ballot_summary_annual		\N	5.0.1	\N	\N	3913381643
+1414872417007-246	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.346623	246	EXECUTED	9:68d9a9971d2ea9bd76d03d89521ad3d5	dropView viewName=view_riksdagen_vote_data_ballot_summary_weekly; dropView viewName=view_riksdagen_vote_data_ballot_summary_monthly; dropView viewName=view_riksdagen_vote_data_ballot_summary_annual; dropView viewName=view_riksdagen_vote_data_ballo...		\N	5.0.1	\N	\N	3913381643
+1414872417007-247	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.355665	247	EXECUTED	9:98d9c264a755b9a836390a08d33878d7	createView viewName=view_riksdagen_vote_data_ballot_party_summary_daily		\N	5.0.1	\N	\N	3913381643
+1414872417007-248	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.373261	248	EXECUTED	9:e26631ba948fed851e8ddafa9c91f959	createView viewName=view_riksdagen_vote_data_ballot_party_summary_weekly; createView viewName=view_riksdagen_vote_data_ballot_party_summary_monthly; createView viewName=view_riksdagen_vote_data_ballot_party_summary_annual		\N	5.0.1	\N	\N	3913381643
+1414872417007-249	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.382142	249	EXECUTED	9:bc3ce6e9dfc901e50afc2fafa681b95a	createView viewName=view_riksdagen_vote_data_ballot_politician_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-250	pether	db-changelog-1.2.xml	2025-11-23 16:56:25.416001	250	EXECUTED	9:91e3908e9e189208b9758c3cc6c44c71	createView viewName=view_riksdagen_vote_data_ballot_politician_summary_daily; createView viewName=view_riksdagen_vote_data_ballot_politician_summary_weekly; createView viewName=view_riksdagen_vote_data_ballot_politician_summary_monthly; createView...		\N	5.0.1	\N	\N	3913381643
+1414872417007-251	pether	db-changelog-1.3.xml	2025-11-23 16:56:25.510221	251	EXECUTED	9:ef6bbe1d06a5478a5c33db26bfd794f1	dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_weekly; dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_monthly; dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_annual; dropView viewNa...		\N	5.0.1	\N	\N	3913381643
+1414872417007-252	pether (generated)	db-changelog-1.4.xml	2025-11-23 16:56:25.51986	252	EXECUTED	9:76f1acc51844fae7e7ef064ee6c8fc08	dropView viewName=view_riksdagen_committee_decisions; modifyDataType columnName=title, tableName=committee_document_data; modifyDataType columnName=sub_title, tableName=committee_document_data; modifyDataType columnName=temp_label, tableName=commi...		\N	5.0.1	\N	\N	3913381643
+1414872417007-253	pether	db-changelog-1.4.xml	2025-11-23 16:56:25.608388	253	EXECUTED	9:4e4b64893fd4dae4fd2bffadc7163fb2	dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_weekly; dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_monthly; dropView viewName=view_riksdagen_vote_data_ballot_politician_summary_annual; dropView viewNa...		\N	5.0.1	\N	\N	3913381643
+1414872417007-254	pether	db-changelog-1.4.xml	2025-11-23 16:56:25.617395	254	EXECUTED	9:c7d4e2eda2ed22d4092964cf1f6756ab	createView viewName=view_riksdagen_document_type_daily_summary; createView viewName=view_riksdagen_politician_document_daily_summary; createView viewName=view_riksdagen_party_document_daily_summary; createView viewName=view_riksdagen_org_document_...		\N	5.0.1	\N	\N	3913381643
+1414872417007-255	pether	db-changelog-1.4.xml	2025-11-23 16:56:25.62311	255	EXECUTED	9:de1ff4d851c9cfb6e0597760c4cfe11b	createView viewName=view_riksdagen_committee_decision_type_summary; createView viewName=view_riksdagen_committee_decision_type_org_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-256	pether	db-changelog-1.4.xml	2025-11-23 16:56:25.631072	256	EXECUTED	9:55cb855446f25c527751dcb9eda7bf1d	dropView viewName=view_riksdagen_committee_decision_type_summary; createView viewName=view_riksdagen_committee_decision_type_summary; dropView viewName=view_riksdagen_committee_decision_type_org_summary; createView viewName=view_riksdagen_committe...		\N	5.0.1	\N	\N	3913381643
+1414872417007-257	pether	db-changelog-1.5.xml	2025-11-23 16:56:25.63962	257	EXECUTED	9:505f6fa901adab3bd33ddb3ad4a44967	dropView viewName=view_riksdagen_committee_decision_type_summary; dropView viewName=view_riksdagen_committee_decision_type_org_summary; dropView viewName=view_riksdagen_committee_decisions; createView viewName=view_riksdagen_committee_decisions; c...		\N	5.0.1	\N	\N	3913381643
+1414872417007-258	pether	db-changelog-1.5.xml	2025-11-23 16:56:25.6504	258	EXECUTED	9:4939cc4cd5b64ed9cfb0305c17b1ac42	createView viewName=view_riksdagen_committee_ballot_decision_summary; createView viewName=view_riksdagen_committee_ballot_decision_party_summary; createView viewName=view_riksdagen_committee_ballot_decision_politician_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-259	pether	db-changelog-1.5.xml	2025-11-23 16:56:25.658148	259	EXECUTED	9:b574f8e847319078c295ab00b9db075a	dropView viewName=view_riksdagen_committee_decision_type_summary; createView viewName=view_riksdagen_committee_decision_type_summary; dropView viewName=view_riksdagen_committee_decision_type_org_summary; createView viewName=view_riksdagen_committe...		\N	5.0.1	\N	\N	3913381643
+1414872417007-260	pether	db-changelog-1.5.xml	2025-11-23 16:56:25.684818	260	EXECUTED	9:6b5a8faf027b4da44412ecda2cb4c87f	dropView viewName=view_riksdagen_committee_decision_type_summary; dropView viewName=view_riksdagen_committee_decision_type_org_summary; dropView viewName=view_riksdagen_committee_ballot_decision_summary; dropView viewName=view_riksdagen_committee_...		\N	5.0.1	\N	\N	3913381643
+1414872417007-261	pether	db-changelog-1.5.xml	2025-11-23 16:56:25.690508	261	EXECUTED	9:a898f1a6d116c317439ac2289b616988	createView viewName=view_worldbank_indicator_data_country_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-262	pether	db-changelog-1.5.xml	2025-11-23 16:56:25.696205	262	EXECUTED	9:943858a57243b94eab7e4150c2fcd36b	dropView viewName=view_worldbank_indicator_data_country_summary; createView viewName=view_worldbank_indicator_data_country_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-264	pether	db-changelog-1.5.xml	2025-11-23 16:56:25.892252	264	EXECUTED	9:0aa77dc47d643b3882f2a4ca3238c070	dropView viewName=view_riksdagen_committee_decision_type_summary; dropView viewName=view_riksdagen_committee_decision_type_org_summary; dropView viewName=view_riksdagen_committee_ballot_decision_summary; dropView viewName=view_riksdagen_committee_...		\N	5.0.1	\N	\N	3913381643
+1414872417007-265	pether	db-changelog-1.6.xml	2025-11-23 16:56:25.917713	265	EXECUTED	9:6c82b7bad6f5bd4c961ed3cfee42cf1b	dropView viewName=view_riksdagen_document_type_daily_summary; dropView viewName=view_riksdagen_politician_document_daily_summary; dropView viewName=view_riksdagen_party_document_daily_summary; dropView viewName=view_riksdagen_org_document_daily_su...		\N	5.0.1	\N	\N	3913381643
+1414872417007-266	pether	db-changelog-1.6.xml	2025-11-23 16:56:25.957728	266	EXECUTED	9:345962d1e2cffcbe3413eb509fd97886	sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql		\N	5.0.1	\N	\N	3913381643
+1414872417007-267	pether	db-changelog-1.6.xml	2025-11-23 16:56:25.966055	267	EXECUTED	9:9fc625a3d56571e98a8d7eea06980e65	dropView viewName=view_worldbank_indicator_data_country_summary; sql		\N	5.0.1	\N	\N	3913381643
+1414872417007-268	pether (generated)	db-changelog-1.6.xml	2025-11-23 16:56:25.970624	268	EXECUTED	9:53a2955ac5300632144a22b15a944a8e	addColumn tableName=application_session		\N	5.0.1	\N	\N	3913381643
+1414872417007-269	pether (generated)	db-changelog-1.6.xml	2025-11-23 16:56:25.97639	269	EXECUTED	9:accbf9a9a30c5dd595a667a721f2ff89	addColumn tableName=application_action_event		\N	5.0.1	\N	\N	3913381643
+1414872417007-270	pether (generated)	db-changelog-1.6.xml	2025-11-23 16:56:25.979461	270	EXECUTED	9:b415b0a981b9dfb061d94504b19b0878	addColumn tableName=user_account		\N	5.0.1	\N	\N	3913381643
+1414872417007-271	pether (generated)	db-changelog-1.6.xml	2025-11-23 16:56:25.98246	271	EXECUTED	9:522e0502d2a4e5e8cebfbe7c193cdf24	addColumn tableName=application_session		\N	5.0.1	\N	\N	3913381643
+1414872417007-272	pether (generated)	db-changelog-1.6.xml	2025-11-23 16:56:25.985269	272	EXECUTED	9:94728ce0aa674d7ef4fe9b0521b55fcb	addColumn tableName=application_session		\N	5.0.1	\N	\N	3913381643
+1414872417007-273	pether	db-changelog-1.6.xml	2025-11-23 16:56:25.993952	273	EXECUTED	9:b9bc2c08e551503123084c32e2839f50	sql; sql; sql; sql		\N	5.0.1	\N	\N	3913381643
+1414872417007-274	pether	db-changelog-1.6.xml	2025-11-23 16:56:26.002282	274	EXECUTED	9:b257435f43a13311f319b53b205ef7c1	sql; sql; sql; sql		\N	5.0.1	\N	\N	3913381643
+1414872417007-275	pether	db-changelog-1.6.xml	2025-11-23 16:56:26.011774	275	EXECUTED	9:92661264af048495b1a63824cc71e551	sql; sql; sql; sql		\N	5.0.1	\N	\N	3913381643
+1414872417007-276	pether	db-changelog-1.6.xml	2025-11-23 16:56:26.019477	276	EXECUTED	9:765d8cd0cdacd034d8a0674eaa880023	createTable tableName=application_configuration		\N	5.0.1	\N	\N	3913381643
+1414872417007-277	pether	db-changelog-1.6.xml	2025-11-23 16:56:26.035753	277	EXECUTED	9:c60c41cdca28d541fd3a2b605b711d18	dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_politician; createView viewName=view_riksdagen_party_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-278	pether	db-changelog-1.6.xml	2025-11-23 16:56:26.058489	278	EXECUTED	9:302d61374938a5619b973c5f7a3fcd85	dropView viewName=view_riksdagen_party; dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView viewName=view_riksdagen_party_member; createView viewNam...		\N	5.0.1	\N	\N	3913381643
+1414872417007-279	pether (generated)	db-changelog-1.7.xml	2025-11-23 16:56:26.067469	279	EXECUTED	9:2ff509c4bb043c2b24857cb07bc3c708	addColumn tableName=document_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-280	pether (generated)	db-changelog-1.7.xml	2025-11-23 16:56:26.071368	280	EXECUTED	9:63d7fcb99c22318c78bd80ac7ad9a2cb	addColumn tableName=document_element		\N	5.0.1	\N	\N	3913381643
+1414872417007-281	pether (generated)	db-changelog-1.7.xml	2025-11-23 16:56:26.075493	281	EXECUTED	9:083be705e77430564ef073b8269b53d2	createTable tableName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-282	pether (generated)	db-changelog-1.7.xml	2025-11-23 16:56:26.081136	282	EXECUTED	9:0d24e99f24183005670d5e3d4445be97	addPrimaryKey constraintName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0_pkey, tableName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0		\N	5.0.1	\N	\N	3913381643
+1414872417007-283	pether (generated)	db-changelog-1.7.xml	2025-11-23 16:56:26.084469	283	EXECUTED	9:3db9a552cdc9cc50f060dd5a467243db	addForeignKeyConstraint baseTableName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0, constraintName=fk_8931ymg13vy6vfkrichdsd4, referencedTableName=user_account		\N	5.0.1	\N	\N	3913381643
+1414872417007-284	pether (generated)	db-changelog-1.7.xml	2025-11-23 16:56:26.087939	284	EXECUTED	9:68a1690b5c267ec324fb414df94fef1c	addColumn tableName=user_account; addColumn tableName=user_account		\N	5.0.1	\N	\N	3913381643
+1414872417007-285	pether (generated)	db-changelog-1.8.xml	2025-11-23 16:56:26.095039	285	EXECUTED	9:a28ecc2e242187c481c2726325c67bc6	addColumn tableName=language_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-286	pether (generated)	db-changelog-1.8.xml	2025-11-23 16:56:26.098566	286	EXECUTED	9:14d37229b20583fab65c4b9ccd61cbf6	addColumn tableName=language_content_data		\N	5.0.1	\N	\N	3913381643
+1414872417007-287	quartz.generated	db-changelog-1.9.xml	2025-11-23 16:56:26.150299	287	EXECUTED	9:33c854d56c17f442b136d767015a4026	createTable tableName=QRTZ_CALENDARS; createTable tableName=QRTZ_CRON_TRIGGERS; createTable tableName=QRTZ_FIRED_TRIGGERS; createTable tableName=QRTZ_PAUSED_TRIGGER_GRPS; createTable tableName=QRTZ_SCHEDULER_STATE; createTable tableName=QRTZ_LOCKS...		\N	5.0.1	\N	\N	3913381643
+1414872417007-288	quartz.generated	db-changelog-1.9.xml	2025-11-23 16:56:26.157976	288	EXECUTED	9:9e05c11d0073fe498c1b8efa9fc189ac	addForeignKeyConstraint baseTableName=QRTZ_CRON_TRIGGERS, constraintName=FK_QRTZ_CRON_TRIGGERS_QRTZ_TRIGGERS, referencedTableName=QRTZ_TRIGGERS; addForeignKeyConstraint baseTableName=QRTZ_SIMPLE_TRIGGERS, constraintName=FK_QRTZ_SIMPLE_TRIGGERS_QRT...		\N	5.0.1	\N	\N	3913381643
+1414872417007-289	quartz.generated	db-changelog-1.9.xml	2025-11-23 16:56:26.202665	289	EXECUTED	9:f018d19e4b6045fcbc2e6672c7ba873d	createIndex indexName=IDX_QRTZ_T_J, tableName=QRTZ_TRIGGERS; createIndex indexName=IDX_QRTZ_T_JG, tableName=QRTZ_TRIGGERS; createIndex indexName=IDX_QRTZ_T_C, tableName=QRTZ_TRIGGERS; createIndex indexName=IDX_QRTZ_T_G, tableName=QRTZ_TRIGGERS; cr...		\N	5.0.1	\N	\N	3913381643
+1414872417007-290	pether	db-changelog-1.10.xml	2025-11-23 16:56:26.220905	290	EXECUTED	9:3477a6ab16abd3502429f252c6f2c21a	dropView viewName=view_riksdagen_party; dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView viewName=view_riksdagen_party_member; createView viewNam...		\N	5.0.1	\N	\N	3913381643
+1414872417007-291	pether	db-changelog-1.11.xml	2025-11-23 16:56:26.224198	291	EXECUTED	9:96a236431ea32c987c4572cb54e71c19	renameTable newTableName=QRTZ_BLOB_TRIGGERS, oldTableName=QRTZ_bytea_TRIGGERS		\N	5.0.1	\N	\N	3913381643
+1414872417007-292	add-column-application-session	db-changelog-1.12.xml	2025-11-23 16:56:26.22753	292	EXECUTED	9:956bf680aea08e30a78b8d768dae529c	addColumn tableName=application_session		\N	5.0.1	\N	\N	3913381643
+1414872417007-294	gdpr-classify-data	db-changelog-1.13.xml	2025-11-23 16:56:26.479718	293	EXECUTED	9:dc2a0e2901c2d886086e508ff01826b6	sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sq...		\N	5.0.1	\N	\N	3913381643
+1414872417007-295	fix-missing-value-for-model-object-version	db-changelog-1.14.xml	2025-11-23 16:56:26.487333	294	EXECUTED	9:0eddefb0cd23c53120a00749d09808f9	update tableName=agency; update tableName=portal; update tableName=language_data; update tableName=language_content_data; update tableName=application_action_event; update tableName=application_configuration; update tableName=application_session; ...		\N	5.0.1	\N	\N	3913381643
+1414872417007-296	adduseraccountcolumns	db-changelog-1.15.xml	2025-11-23 16:56:26.491693	295	EXECUTED	9:941c29c388e300e20109c3cba3fb8945	addColumn tableName=user_account; update tableName=user_account; addColumn tableName=user_account; update tableName=user_account		\N	5.0.1	\N	\N	3913381643
+1414872417007-297	adduseraccountcolumns	db-changelog-1.15.xml	2025-11-23 16:56:26.494069	296	EXECUTED	9:fc729e50a9ac4d8481cfc0e5e615c094	update tableName=user_account		\N	5.0.1	\N	\N	3913381643
+1414872417007-300	createextenions-only-works-if-superuser-so-create-before	db-changelog-1.16.xml	2025-11-23 16:56:26.518311	297	EXECUTED	9:3e937406a4d82aec00fddeafc4c55380	sql; sql; sql		\N	5.0.1	\N	\N	3913381643
+1414872417007-301	createEncryptedValueTable	db-changelog-1.17.xml	2025-11-23 16:56:26.524409	298	EXECUTED	9:63965b31aa35ce0c2e58f92f14a071bc	createTable tableName=encrypted_value		\N	5.0.1	\N	\N	3913381643
+1414872417007-302	encryptedValueTableAddColumns	db-changelog-1.18.xml	2025-11-23 16:56:26.527768	299	EXECUTED	9:9b23ce1c3d7f2d32d2cb725996846872	addColumn tableName=encrypted_value; addColumn tableName=encrypted_value		\N	5.0.1	\N	\N	3913381643
+1414872417007-303	deleteUserAccountGoogleMFAColumns	db-changelog-1.18.xml	2025-11-23 16:56:26.533673	300	EXECUTED	9:1c6f160cd4532f7df63c6b6691d384dc	dropForeignKeyConstraint baseTableName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0, constraintName=fk_8931ymg13vy6vfkrichdsd4; dropPrimaryKey constraintName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0_pkey, tableName=USER_ACCOUNT_GOOGLE_AUTH_SCR_0; dropTable tableName=USER...		\N	5.0.1	\N	\N	3913381643
+1414872417007-304	gdpr-classification-update-account	db-changelog-1.18.xml	2025-11-23 16:56:26.538381	301	EXECUTED	9:a785758642766d317c33f7a42de5b391	sql; sql; sql; sql; sql; sql		\N	5.0.1	\N	\N	3913381643
+1414872417007-305	encryptedValueTableChangeStorageType	db-changelog-1.18.xml	2025-11-23 16:56:26.54406	302	EXECUTED	9:91dc17b871f8f01ef34ab9ab7bf2c363	modifyDataType columnName=storage, tableName=encrypted_value		\N	5.0.1	\N	\N	3913381643
+1414872417007-312	auditViews	db-changelog-1.19.xml	2025-11-23 16:56:26.584081	303	EXECUTED	9:11cdf7f46afe7b66fc1f50bc92ec575a	createSequence sequenceName=jv_commit_pk_seq; createSequence sequenceName=jv_global_id_pk_seq; createSequence sequenceName=jv_snapshot_pk_seq; createTable tableName=jv_commit; createTable tableName=jv_commit_property; createTable tableName=jv_glob...		\N	5.0.1	\N	\N	3913381643
+1414872417007-313	auditViews	db-changelog-1.20.xml	2025-11-23 16:56:26.58878	304	EXECUTED	9:1d1f97a288995bd7b6a0004330ef9ed3	createView viewName=view_audit_data_summary; createView viewName=view_audit_author_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-314	auditViews2	db-changelog-1.20.xml	2025-11-23 16:56:26.592629	305	EXECUTED	9:bcf4660ae87b9d67626071f78bc8e9d1	dropView viewName=view_audit_data_summary; createView viewName=view_audit_data_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-315	documentSummaryViews	db-changelog-1.21.xml	2025-11-23 16:56:26.596887	306	EXECUTED	9:6bd6a54409a0ca14cd36aaaa54ae8b58	createView viewName=view_riksdagen_person_signed_document_summary; createView viewName=view_riksdagen_party_signatures_document_summary		\N	5.0.1	\N	\N	3913381643
+1414872417007-316	auditViews3	db-changelog-1.21.xml	2025-11-23 16:56:26.600687	307	EXECUTED	9:80be555ad4c46adc54270b99c8481315	dropView viewName=view_audit_data_summary; createView viewName=view_audit_data_summary		\N	5.0.1	\N	\N	3913381643
+2414872417007-317	javersAddColumn	db-changelog-1.22.xml	2025-11-23 16:56:26.603424	308	EXECUTED	9:cadb829cc1c2e0dd2941a93cdd411563	addColumn tableName=jv_commit		\N	5.0.1	\N	\N	3913381643
+2414872417007-318	javersChangeType	db-changelog-1.22.xml	2025-11-23 16:56:26.610477	309	EXECUTED	9:d795deb20b39b5a787ce1d98d48e65e5	modifyDataType columnName=commit_date_instant, tableName=jv_commit		\N	5.0.1	\N	\N	3913381643
+2414872417007-319	javersDefaultValue2	db-changelog-1.22.xml	2025-11-23 16:56:26.612623	310	EXECUTED	9:423aa876ea8cd648b2cc511580862e4f	sql		\N	5.0.1	\N	\N	3913381643
+2414872417007-320	javersDefaultValue	db-changelog-1.22.xml	2025-11-23 16:56:26.615938	311	EXECUTED	9:4e7a8dfeb87f3809922803b64ceded57	addDefaultValue columnName=commit_date_instant, tableName=jv_commit		\N	5.0.1	\N	\N	3913381643
+2414872417007-321	party_trends	db-changelog-1.23.xml	2025-11-23 16:56:26.621885	312	EXECUTED	9:8909e0c5d3ef6ecfeb4af4e93d3295ef	createView viewName=view_riksdagen_party_ballot_support_annual_summary; createView viewName=view_riksdagen_party_coalation_against_annual_summary		\N	5.0.1	\N	\N	3913381643
+2414872417007-322	party_trends	db-changelog-1.23.xml	2025-11-23 16:56:26.626845	313	EXECUTED	9:bdcfbe51f13c670188c9a003e84f7391	dropView viewName=view_riksdagen_party_ballot_support_annual_summary; createView viewName=view_riksdagen_party_ballot_support_annual_summary		\N	5.0.1	\N	\N	3913381643
+2414872417007-323	party_trends	db-changelog-1.23.xml	2025-11-23 16:56:26.630818	314	EXECUTED	9:345a31d3673a4e908c0f842854b543e7	dropView viewName=view_riksdagen_party_coalation_against_annual_summary; createView viewName=view_riksdagen_party_coalation_against_annual_summary		\N	5.0.1	\N	\N	3913381643
+2414872417007-324	party_trends	db-changelog-1.23.xml	2025-11-23 16:56:26.635649	315	EXECUTED	9:9aad9d408015cdda50e8624d708db21f	dropView viewName=view_riksdagen_party_ballot_support_annual_summary; createView viewName=view_riksdagen_party_ballot_support_annual_summary		\N	5.0.1	\N	\N	3913381643
+2414872417007-324	party_trends	db-changelog-1.24.xml	2025-11-23 16:56:26.640398	316	EXECUTED	9:9aad9d408015cdda50e8624d708db21f	dropView viewName=view_riksdagen_party_ballot_support_annual_summary; createView viewName=view_riksdagen_party_ballot_support_annual_summary		\N	5.0.1	\N	\N	3913381643
+2414872417007-325	pether	db-changelog-1.24.xml	2025-11-23 16:56:26.644877	317	EXECUTED	9:a98bd9300cbce790409b1438eb5681ab	dropView viewName=view_riksdagen_party_role_member; createView viewName=view_riksdagen_party_role_member		\N	5.0.1	\N	\N	3913381643
+2414872417007-326	pether	db-changelog-1.24.xml	2025-11-23 16:56:26.650646	318	EXECUTED	9:769fd2cc719f8070361d0236c2f219ca	createTable tableName=rule_violation		\N	5.0.1	\N	\N	3913381643
+2414872417007-327	pether	db-changelog-1.24.xml	2025-11-23 16:56:26.653451	319	EXECUTED	9:49044a256f906a54d7ccb6cdf3eeba70	addColumn tableName=rule_violation		\N	5.0.1	\N	\N	3913381643
+2414872417007-328	pether (generated)	db-changelog-1.24.xml	2025-11-23 16:56:26.657662	320	EXECUTED	9:6246b135264fb22f812528142c12222c	addPrimaryKey constraintName=application_configuration_pkey, tableName=application_configuration		\N	5.0.1	\N	\N	3913381643
+1414872417007-329	pether (generated)	db-changelog-1.24.xml	2025-11-23 16:56:26.667355	321	EXECUTED	9:bbb17b2f46dd435a351912318ba127e7	sql; modifyDataType columnName=indicator_name, tableName=indicator_element; modifyDataType columnName=source_id, tableName=indicator_element; modifyDataType columnName=source_value, tableName=indicator_element; sql		\N	5.0.1	\N	\N	3913381643
+1414872417007-330	pether (generated)	db-changelog-1.24.xml	2025-11-23 16:56:26.680507	322	EXECUTED	9:5dbf93e01244ac5381aab449179bfee3	createIndex indexName=application_action_event_created_date_idx, tableName=application_action_event; createIndex indexName=application_action_event_sessionid_idx, tableName=application_action_event; createIndex indexName=application_action_event_e...		\N	5.0.1	\N	\N	3913381643
+1414872417007-331	pether (generated)	db-changelog-1.24.xml	2025-11-23 16:56:26.91837	323	EXECUTED	9:d98cea6bed923440f8c3a31871a66ca2	sql		\N	5.0.1	\N	\N	3913381643
+extend-view-riksdagen-politician-20231002	pether 	db-changelog-1.24.xml	2025-11-23 16:56:26.950193	324	EXECUTED	9:c7e51eab90afc2cec2f73cd365e799bf	dropView viewName=view_riksdagen_party; dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView viewName=view_riksdagen_party_member; createView viewNam...		\N	5.0.1	\N	\N	3913381643
+new_changeset_id_1	pether	db-changelog-1.24.xml	2025-11-23 16:56:26.9553	325	EXECUTED	9:3111b7723aeefc1cbe0f17bb0fd23c0c	dropView viewName=view_application_action_event_page_annual_summary; createView viewName=view_application_action_event_page_annual_summary		\N	5.0.1	\N	\N	3913381643
+new_changeset_id_2	pether	db-changelog-1.24.xml	2025-11-23 16:56:26.960295	326	EXECUTED	9:50ec6175bbb9840ff5f9a86088f4cb4b	dropView viewName=view_application_action_event_page_daily_summary; createView viewName=view_application_action_event_page_daily_summary		\N	5.0.1	\N	\N	3913381643
+new_changeset_id_3	pether	db-changelog-1.24.xml	2025-11-23 16:56:26.965299	327	EXECUTED	9:79aafee120630bbaa7c54b9a557bc740	dropView viewName=view_application_action_event_page_element_annual_summary; createView viewName=view_application_action_event_page_element_annual_summary		\N	5.0.1	\N	\N	3913381643
+new_changeset_id_4	pether	db-changelog-1.24.xml	2025-11-23 16:56:26.970549	328	EXECUTED	9:3b0d31d9363ad768e1180b3b988c2fec	dropView viewName=view_application_action_event_page_element_daily_summary; createView viewName=view_application_action_event_page_element_daily_summary		\N	5.0.1	\N	\N	3913381643
+new_changeset_id_5	pether	db-changelog-1.24.xml	2025-11-23 16:56:26.982854	329	EXECUTED	9:0c64722b12c51dca3e64006372ccc5c8	createIndex indexName=application_action_event_page_idx, tableName=application_action_event; createIndex indexName=application_action_event_element_id_idx, tableName=application_action_event; createIndex indexName=application_action_event_page_cre...		\N	5.0.1	\N	\N	3913381643
+1414872417007-265-document-summary-views	pether	db-changelog-1.24.xml	2025-11-23 16:56:27.034598	330	EXECUTED	9:acc9a8db7b3db0cd2dcb3ce083a989a7	sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; sql; createView viewName=view_riksdagen_party_document_summary; createIndex indexName=idx_rpd_person_ref_id, tableName=view_riksdagen_politician_document; createIndex indexName=idx_rpd_doc_type_sub...		\N	5.0.1	\N	\N	3913381643
+extend-view-riksdagen-politician-party-20231223	pethers	db-changelog-1.24.xml	2025-11-23 16:56:27.070881	331	EXECUTED	9:892d39a59b866cdaf0366544ffb0d3bd	dropView viewName=view_riksdagen_party; dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_party_document_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView...		\N	5.0.1	\N	\N	3913381643
+1414872417007-204	pether	db-changelog-1.24.xml	2025-11-23 16:56:27.088381	332	EXECUTED	9:69f5c89bfe631122c51b8dfe35022fa1	dropView viewName=view_riksdagen_committee_parliament_member_proposal; dropView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee; createView viewName=view_riksdagen_committee_parliament_member_proposal; createIndex i...		\N	5.0.1	\N	\N	3913381643
+1414872417007-225	pether	db-changelog-1.24.xml	2025-11-23 16:56:27.098987	333	EXECUTED	9:e5519073bd6d48b443777395119afafb	dropView viewName=view_riksdagen_goverment; createView viewName=view_riksdagen_goverment; dropView viewName=view_riksdagen_goverment_role_member; createView viewName=view_riksdagen_goverment_role_member		\N	5.0.1	\N	\N	3913381643
+party-role-member-1414872417007-227	pether	db-changelog-1.24.xml	2025-11-23 16:56:27.105456	334	EXECUTED	9:fbe676dfd287959902eaeb407d2e1bd9	dropView viewName=view_riksdagen_party_role_member; createView viewName=view_riksdagen_party_role_member		\N	5.0.1	\N	\N	3913381643
+committee-role-member-1414872417007-228	pether	db-changelog-1.24.xml	2025-11-23 16:56:27.113991	335	EXECUTED	9:033dba6bbd5a8556bd1ad33d81873080	dropView viewName=view_riksdagen_committee_role_member; createView viewName=view_riksdagen_committee_role_member		\N	5.0.1	\N	\N	3913381643
+vote-data-324	pether	db-changelog-1.25.xml	2025-11-23 16:56:27.12512	336	EXECUTED	9:515f70411429a7a26e07be4b37742628	sql		\N	5.0.1	\N	\N	3913381643
+20241224-ballot-summary-view	pethers	db-changelog-1.25.xml	2025-11-23 16:56:27.410441	337	EXECUTED	9:533172c9a2e8e77072ba3d377b95406e	sql; sql; sql; sql; sql; sql; sql; sql; sql		\N	5.0.1	\N	\N	3913381643
+2024122623-extend-party-view	pethers	db-changelog-1.25.xml	2025-11-23 16:56:27.430617	338	EXECUTED	9:c0383a8d45978f6163e0ff64924f5ddc	dropView viewName=view_riksdagen_party; dropView viewName=view_riksdagen_party_summary; dropView viewName=view_riksdagen_party_document_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView...	Extend party view with additional political analysis metrics using existing data	\N	5.0.1	\N	\N	3913381643
+20241226-improve-politician-view	pethers	db-changelog-1.25.xml	2025-11-23 16:56:27.441393	339	EXECUTED	9:f13bf14c659e3df9d2ba71facc1e144a	createView viewName=view_riksdagen_politician	Enhance politician view with comprehensive metrics and committee effectiveness	\N	5.0.1	\N	\N	3913381643
+20241227-enhance-party-document-summary	pethers	db-changelog-1.25.xml	2025-11-23 16:56:27.452995	340	EXECUTED	9:ccc25367d2b7d5b9ffcbe5465066e6b0	createView viewName=view_riksdagen_party_document_summary	Enhance party document summary with comprehensive metrics while preserving existing functionality	\N	5.0.1	\N	\N	3913381643
+20241227-enhance-party-summary-performance	pethers	db-changelog-1.25.xml	2025-11-23 16:56:27.466471	341	EXECUTED	9:d14911091c781dc9028e99cac0c0e9b8	createIndex indexName=idx_assignment_data_type_dates, tableName=assignment_data; sql	Add indexes to improve party summary view performance	\N	5.0.1	\N	\N	3913381643
+2024122723-enhance-party-summary-performance	pethers	db-changelog-1.25.xml	2025-11-23 16:56:27.52012	342	EXECUTED	9:18fddfa9b12f93f8296ae4c494a712c8	sql	Add indexes to improve party summary view performance	\N	5.0.1	\N	\N	3913381643
+8774122723-enhance-party	pethers	db-changelog-1.25.xml	2025-11-23 16:56:27.525964	343	EXECUTED	9:c7d05218977bc2edb5f16e8d878af5c3	createView viewName=view_riksdagen_party	Add indexes to improve party view	\N	5.0.1	\N	\N	3913381643
+revert-jpa-model-update	pethers	db-changelog-1.26.xml	2025-11-23 16:56:27.600508	344	EXECUTED	9:ee172fa2cfbce95c78e2b983b0b507dc	dropView viewName=view_riksdagen_party; sql; dropView viewName=view_riksdagen_party_document_summary; dropView viewName=view_riksdagen_politician; dropView viewName=view_riksdagen_party_member; createView viewName=view_riksdagen_party_member; crea...		\N	5.0.1	\N	\N	3913381643
+312321-view_riksdagen_politician_ballot_summary	pethers	db-changelog-1.27.xml	2025-11-23 16:56:27.629298	346	EXECUTED	9:14219bf99de56328f50c56503b50306c	createView viewName=view_riksdagen_politician_ballot_summary		\N	5.0.1	\N	\N	3913381643
+672321-view_riksdagen_politician_experience_summary	pethers	db-changelog-1.28.xml	2025-11-23 16:56:27.650949	347	EXECUTED	9:3c2e1cfdcdcc06b9f96fd9f52d49c12a	createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	3913381643
+672321-view_riksdagen_politician_experience_summary-update	pethers	db-changelog-1.28.xml	2025-11-23 16:56:27.671184	348	EXECUTED	9:45e09b8b79cdd4f087c589f1773919f9	dropView viewName=view_riksdagen_politician_experience_summary; createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	3913381643
+672321-view_riksdagen_politician_experience_summary-update2	pethers	db-changelog-1.28.xml	2025-11-23 16:56:27.691225	349	EXECUTED	9:c47fecd951a060b4c17f34e08790d4b1	dropView viewName=view_riksdagen_politician_experience_summary; createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	3913381643
+672321-view_riksdagen_politician_experience_summary-update3	pethers	db-changelog-1.28.xml	2025-11-23 16:56:27.711294	350	EXECUTED	9:f2a8bbfb00ed3f67696a7bcca3d50c70	dropView viewName=view_riksdagen_politician_experience_summary; createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	3913381643
+672321-view_riksdagen_politician_experience_summary-update4	pethers	db-changelog-1.28.xml	2025-11-23 16:56:27.734009	351	EXECUTED	9:1126cc71ce6315bf43bcd967a39b9aa0	dropView viewName=view_riksdagen_politician_experience_summary; createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	3913381643
+67267321-view_riksdagen_politician_experience_summary-update5	pethers	db-changelog-1.28.xml	2025-11-23 16:56:27.766288	352	EXECUTED	9:dd2ca5f83bdadbb3fb61a8be06f4b873	dropView viewName=view_riksdagen_politician_experience_summary; createView viewName=view_riksdagen_politician_experience_summary		\N	5.0.1	\N	\N	3913381643
+intops-2025111101-temporal-momentum	intelligence-ops	db-changelog-1.29.xml	2025-11-23 16:56:27.775789	353	EXECUTED	9:ebb0e4ff417fbb4dc385d74f99df287f	createView viewName=view_riksdagen_party_momentum_analysis	Temporal Momentum Analysis View\n        \n        Intelligence Purpose:\n        - Detect momentum shifts in party support\n        - Identify acceleration/deceleration patterns\n        - Calculate moving averages for trend smoothing\n        - Measur...	\N	5.0.1	\N	\N	3913381643
+intops-2025111102-coalition-alignment	intelligence-ops	db-changelog-1.29.xml	2025-11-23 16:56:27.783524	354	EXECUTED	9:4754a1d61b41149c0d4fce931959b038	createView viewName=view_riksdagen_coalition_alignment_matrix	Coalition Voting Alignment Matrix\n        \n        Intelligence Purpose:\n        - Measure voting alignment between party pairs\n        - Identify natural coalition partners\n        - Detect coalition stress or breaking\n        - Predict coalition...	\N	5.0.1	\N	\N	3913381643
+intops-2025111103-anomaly-detection	intelligence-ops	db-changelog-1.29.xml	2025-11-23 16:56:27.793863	355	EXECUTED	9:07a8006b3987714bbaf9a757605df73a	createView viewName=view_riksdagen_voting_anomaly_detection	Political Anomaly Detection View\n        \n        Intelligence Purpose:\n        - Detect unusual voting behavior by politicians\n        - Identify party discipline breakdowns\n        - Flag potential defection risks\n        - Monitor conscience vo...	\N	5.0.1	\N	\N	3913381643
+intops-2025111104-influence-metrics	intelligence-ops	db-changelog-1.29.xml	2025-11-23 16:56:27.804344	356	EXECUTED	9:c2da8e7169d2c6c0358e4217462d4d7b	createView viewName=view_riksdagen_politician_influence_metrics	Politician Influence Network Metrics\n        \n        Intelligence Purpose:\n        - Calculate basic network centrality measures\n        - Identify key brokers and connectors\n        - Map informal influence beyond formal roles\n        - Detect p...	\N	5.0.1	\N	\N	3913381643
+intops-2025111105-crisis-resilience	intelligence-ops	db-changelog-1.29.xml	2025-11-23 16:56:27.816661	357	EXECUTED	9:542aa60a4bce5eabfd5a50260a0bdf69	createView viewName=view_riksdagen_crisis_resilience_indicators	Political Crisis Resilience Indicators\n        \n        Intelligence Purpose:\n        - Assess politician performance during high-pressure periods\n        - Identify crisis-tested leaders\n        - Measure consistency under stress\n        - Evalua...	\N	5.0.1	\N	\N	3913381643
+intops-2025111106-intelligence-dashboard	intelligence-ops	db-changelog-1.29.xml	2025-11-23 16:56:27.825439	358	EXECUTED	9:cbc88852e1308329aa065d9eb411639e	createView viewName=view_riksdagen_intelligence_dashboard	Intelligence Operations Summary Dashboard\n        \n        Intelligence Purpose:\n        - Provide executive-level overview of political landscape\n        - Aggregate key intelligence indicators\n        - Enable rapid situation assessment\n        ...	\N	5.0.1	\N	\N	3913381643
+intops-2025111107-politician-risk-summary	intelligence-operative	db-changelog-1.29.xml	2025-11-23 16:56:27.833575	359	EXECUTED	9:d77a8fce731965ddc609c1104bcc0052	createView viewName=view_politician_risk_summary	Politician Risk Summary View\n        \n        Intelligence Purpose:\n        - Aggregate all risk indicators for each politician\n        - Provide comprehensive risk score based on rule violations, attendance (absence rates), voting effectiveness (...	\N	5.0.1	\N	\N	3913381643
+intops-2025111107-politician-risk-idx	intelligence-operative	db-changelog-1.29.xml	2025-11-23 16:56:27.843788	360	EXECUTED	9:cdfed1beeb97276a94e40e00dfde6057	sql	Performance Indexes for Politician Risk Queries\n        \n        Indexes on frequently queried columns to support rapid risk assessment\n        and dashboard queries.	\N	5.0.1	\N	\N	3913381643
+intops-2025111108-party-performance-metrics	intelligence-operative	db-changelog-1.29.xml	2025-11-23 16:56:27.854612	361	EXECUTED	9:001f5b3ea0c9f62f07d81f7b3e923f12	createView viewName=view_party_performance_metrics	Party Performance Metrics View\n        \n        Intelligence Purpose:\n        - Aggregate party-wide performance indicators\n        - Enable comparative party analysis\n        - Track organizational effectiveness\n        - Support coalition format...	\N	5.0.1	\N	\N	3913381643
+intops-2025111109-committee-productivity	intelligence-operative	db-changelog-1.29.xml	2025-11-23 16:56:27.865622	362	EXECUTED	9:e9a0dd593d407533c4959eae10d1b42c	createView viewName=view_committee_productivity	Committee Productivity View\n        \n        Intelligence Purpose:\n        - Track committee legislative output\n        - Measure committee effectiveness\n        - Identify underperforming committees\n        - Support resource allocation decisions...	\N	5.0.1	\N	\N	3913381643
+osint-2025111500-refresh-materialized-views	intelligence-operative	db-changelog-1.30.xml	2025-11-23 16:56:27.936808	363	EXECUTED	9:28eb73f089cc2b312024e56b87d7dd82	sql	Refresh Materialized Views for v1.30 Dependencies\n        \n        Purpose:\n        - Populate materialized views required by v1.30 OSINT views\n        - Ensure data availability for temporal analysis queries\n        - Execute in dependency order ...	\N	5.0.1	\N	\N	3913381643
+osint-2025111501-politician-behavioral-trends	intelligence-operative	db-changelog-1.30.xml	2025-11-23 16:56:27.952527	364	EXECUTED	9:5d1ec1f15e980de2297f9a1ab18db6c6	createView viewName=view_politician_behavioral_trends	Politician Behavioral Trends View\n        \n        Intelligence Purpose:\n        - Track time-series behavioral patterns for each politician\n        - Monitor absence rates, voting effectiveness, party discipline\n        - Identify behavioral chan...	\N	5.0.1	\N	\N	3913381643
+osint-2025111502-party-effectiveness-trends	intelligence-operative	db-changelog-1.30.xml	2025-11-23 16:56:27.967484	365	EXECUTED	9:e90b3cc562a26253599e50803c2ea928	createView viewName=view_party_effectiveness_trends	Party Effectiveness Trends View\n        \n        Intelligence Purpose:\n        - Monitor party-level performance metrics over time\n        - Track win rates, productivity, and collaboration patterns\n        - Identify organizational strengths and ...	\N	5.0.1	\N	\N	3913381643
+osint-2025111503-risk-score-evolution	intelligence-operative	db-changelog-1.30.xml	2025-11-23 16:56:27.983105	366	EXECUTED	9:ec6554f6fd6a4de381f8a97d46bd5663	createView viewName=view_risk_score_evolution	Risk Score Evolution View\n        \n        Intelligence Purpose:\n        - Track historical changes in politician risk scores\n        - Monitor severity transitions (escalation/de-escalation)\n        - Identify risk patterns and triggers\n        -...	\N	5.0.1	\N	\N	3913381643
+osint-2025111504-committee-productivity-matrix	intelligence-operative	db-changelog-1.30.xml	2025-11-23 16:56:27.995669	367	EXECUTED	9:07244f5572e4a6fe02140b2ee16c586f	createView viewName=view_committee_productivity_matrix	Committee Productivity Matrix View\n        \n        Intelligence Purpose:\n        - Monitor committee output and effectiveness by period\n        - Benchmark committee performance against historical data\n        - Identify productive vs. underperfo...	\N	5.0.1	\N	\N	3913381643
+osint-2025111505-performance-indexes	intelligence-operative	db-changelog-1.30.xml	2025-11-23 16:56:28.006767	368	EXECUTED	9:e98bc86dc1435e8492ffaa48d97db931	sql	Performance Indexes for OSINT Intelligence Queries\n        \n        These indexes optimize the most common temporal queries used in\n        intelligence analysis and dashboard operations.	\N	5.0.1	\N	\N	3913381643
+ministry-2025111701-effectiveness-trends	intelligence-operative	db-changelog-1.31.xml	2025-11-23 16:56:28.018154	369	EXECUTED	9:427996676625f2b8dce8395553aa0b77	createView viewName=view_ministry_effectiveness_trends	Ministry Effectiveness Trends View\n        \n        Intelligence Purpose:\n        - Track ministry-level performance metrics over time\n        - Monitor document production, legislative output, and staffing\n        - Identify productive vs. underp...	\N	5.0.1	\N	\N	3913381643
+ministry-2025111702-productivity-matrix	intelligence-operative	db-changelog-1.31.xml	2025-11-23 16:56:28.029946	370	EXECUTED	9:179ccaf2df5469f386c4f0586073cea7	createView viewName=view_ministry_productivity_matrix	Ministry Productivity Matrix View\n        \n        Intelligence Purpose:\n        - Benchmark ministry performance against peers\n        - Identify most and least productive ministries\n        - Normalize metrics for fair comparison\n        - Suppo...	\N	5.0.1	\N	\N	3913381643
+ministry-2025111703-risk-evolution	intelligence-operative	db-changelog-1.31.xml	2025-11-23 16:56:28.043388	371	EXECUTED	9:1a81b471095b1d7cb4d9c78e3393bb93	createView viewName=view_ministry_risk_evolution	Ministry Risk Evolution View\n        \n        Intelligence Purpose:\n        - Track historical changes in ministry risk scores\n        - Monitor risk severity transitions for ministries\n        - Identify risk patterns and triggers at ministry lev...	\N	5.0.1	\N	\N	3913381643
+ministry-2025111704-performance-indexes	intelligence-operative	db-changelog-1.31.xml	2025-11-23 16:56:28.055035	372	EXECUTED	9:5186a2215528e93478d78b12fc23941b	sql	Performance Indexes for Ministry Intelligence Queries\n        \n        These indexes optimize the most common temporal queries used in\n        ministry intelligence analysis and government effectiveness dashboards.	\N	5.0.1	\N	\N	3913381643
+fix-politician-risk-summary-1.32-001	intelligence-analyst	db-changelog-1.32.xml	2025-11-23 16:56:28.066388	373	EXECUTED	9:a5bd4210d7968d1004790f7d482867e8	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary to return data\n        \n        Root Cause: The JOIN condition on view_riksdagen_vote_data_ballot_politician_summary_annual\n        was filtering on an exact date (date_trunc('year', CURRENT_DATE - INTERVAL '1 year...	\N	5.0.1	\N	\N	3913381643
+verify-other-views-1.32-002	intelligence-analyst	db-changelog-1.32.xml	2025-11-23 16:56:28.068826	374	EXECUTED	9:72d8a71e1aae0b931ebd79e83a10cf1d	sql	Verification changeset for other politician intelligence views\n        \n        After investigation, the following views should work correctly as they\n        query vote_data directly without restrictive date filters on aggregated views:\n        \n...	\N	5.0.1	\N	\N	3913381643
+document-fixes-1.32-003	intelligence-analyst	db-changelog-1.32.xml	2025-11-23 16:56:28.070959	375	EXECUTED	9:8a10e26023ff9e74bf785363f03efdd6	sql	Documentation for v1.32 fixes\n        \n        This changeset documents the fixes applied to politician intelligence views\n        for inclusion in DATABASE_VIEW_INTELLIGENCE_CATALOG.md and \n        TROUBLESHOOTING_EMPTY_VIEWS.md.\n        \n       ...	\N	5.0.1	\N	\N	3913381643
+fix-goverment-proposals-1.32-004	intelligence-analyst	db-changelog-1.32.xml	2025-11-23 16:56:28.075317	376	EXECUTED	9:c881ba745964943eb175bc0ff9c55520	dropView viewName=view_riksdagen_goverment_proposals; createView viewName=view_riksdagen_goverment_proposals	Fix view_riksdagen_goverment_proposals to return data\n        \n        Root Cause: The view filters by document_type = 'PROP' (uppercase), but\n        the actual data in document_data may use different case variations:\n        - 'prop' (lowercase)...	\N	5.0.1	\N	\N	3913381643
+verify-ministry-dependencies-1.32-005	intelligence-analyst	db-changelog-1.32.xml	2025-11-23 16:56:28.078829	377	EXECUTED	9:344f3666045ec90f277df19c3812110c	sql	Verify Ministry View Dependencies\n        \n        The 3 ministry views created in v1.31 depend on:\n        1. assignment_data table with assignment_type = 'Departement'\n        2. view_riksdagen_politician_document materialized view\n        3. Ma...	\N	5.0.1	\N	\N	3913381643
+document-ministry-troubleshooting-1.32-006	intelligence-analyst	db-changelog-1.32.xml	2025-11-23 16:56:28.081364	378	EXECUTED	9:11eae01f4f5f0d419aacbe440d4b60f3	sql	Document Ministry View Troubleshooting\n        \n        This changeset provides documentation for TROUBLESHOOTING_EMPTY_VIEWS.md\n        specific to ministry views created in v1.31.\n        \n        Ministry Views Fixed in v1.32:\n        1. view_r...	\N	5.0.1	\N	\N	3913381643
+fix-member-proposals-1.33-001	intelligence-analyst	db-changelog-1.33.xml	2025-11-23 16:56:28.08663	379	EXECUTED	9:eac9e9cd1f0bd8fd4859b8d1954aa3c9	dropView viewName=view_riksdagen_member_proposals; createView viewName=view_riksdagen_member_proposals	Fix view_riksdagen_member_proposals to return data\n        \n        Root Cause: The view filters by document_type = 'MOT' (uppercase), but\n        the actual data in document_element contains 'mot' (lowercase).\n        \n        Solution: Use UPPER...	\N	5.0.1	\N	\N	3913381643
+fix-committee-member-proposals-1.33-002	intelligence-analyst	db-changelog-1.33.xml	2025-11-23 16:56:28.09216	380	EXECUTED	9:ba278abacebf49620c4f2c950652b71d	dropView viewName=view_riksdagen_committee_parliament_member_proposal; createView viewName=view_riksdagen_committee_parliament_member_proposal	Fix view_riksdagen_committee_parliament_member_proposal to return data\n        \n        Root Cause: Same as view_riksdagen_member_proposals - the view filters \n        by document_type = 'MOT' (uppercase) but data contains 'mot' (lowercase).\n     ...	\N	5.0.1	\N	\N	3913381643
+fix-crisis-resilience-indicators-1.33-003	intelligence-analyst	db-changelog-1.33.xml	2025-11-23 16:56:28.102493	381	EXECUTED	9:a9fb314829a17674f001f82a1d233f70	sql; createView viewName=view_riksdagen_crisis_resilience_indicators	Fix view_riksdagen_crisis_resilience_indicators to return data\n        \n        Root Cause: The view filters vote values using exact case matches like\n        'Ja', 'Nej', 'Frånvarande', but the actual data contains 'JA', 'NEJ', \n        'FRÅNVARA...	\N	5.0.1	\N	\N	3913381643
+recreate-intelligence-dashboard-1.33-003b	intelligence-analyst	db-changelog-1.33.xml	2025-11-23 16:56:28.109181	382	EXECUTED	9:cb8a00ecaa8b7e60d6d2420ad1992a1c	sql; createView viewName=view_riksdagen_intelligence_dashboard	Recreate view_riksdagen_intelligence_dashboard after crisis resilience fix\n        \n        This view was dropped by CASCADE when fixing view_riksdagen_crisis_resilience_indicators.\n        The view aggregates multiple intelligence indicators into...	\N	5.0.1	\N	\N	3913381643
+fix-risk-score-evolution-1.33-004	intelligence-analyst	db-changelog-1.33.xml	2025-11-23 16:56:28.119517	383	EXECUTED	9:af3c81ce2158677248721986f3adb9c9	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution to return data\n        \n        Root Cause: The view requires data from view_riksdagen_vote_data_ballot_politician_summary_daily\n        within a 3-year window, which may not always have recent data if materialized vi...	\N	5.0.1	\N	\N	3913381643
+document-fixes-1.33-005	intelligence-analyst	db-changelog-1.33.xml	2025-11-23 16:56:28.121848	384	EXECUTED	9:a18f424c14dc0f2c6d7754d7e378a882	sql	Documentation for v1.33 fixes\n        \n        This changeset documents the fixes applied to 4 empty intelligence views\n        for inclusion in TROUBLESHOOTING_EMPTY_VIEWS.md.\n        \n        Summary of Changes:\n        1. view_riksdagen_member_...	\N	5.0.1	\N	\N	3913381643
+1.34-intro	database-architect	db-changelog-1.34.xml	2025-11-23 16:56:28.124053	385	EXECUTED	9:619faeb099abb68856d15be29569099b	sql	Database Changelog v1.34 - Comprehensive Empty View Fixes with Validation\n        \n        Consolidates fixes from issues #7882-#7885 for 12 empty views.\n        Adds pre-flight and post-flight validation for data availability.	\N	5.0.1	\N	\N	3913381643
+1.34-preflight	database-architect	db-changelog-1.34.xml	2025-11-23 16:56:28.127326	386	EXECUTED	9:25a3bba16e7a992a8e29fbbe94a7bfcc	sql	Pre-flight: Verify source data exists before applying view fixes	\N	5.0.1	\N	\N	3913381643
+1.34-ministry-verify-001	intelligence-analyst	db-changelog-1.34.xml	2025-11-23 16:56:28.129909	387	EXECUTED	9:3e9501744493d58dfd62f8e4eb7ce968	sql	Ministry views - Expected to be empty without ministry assignment data	\N	5.0.1	\N	\N	3913381643
+1.34-gov-proposals-002	intelligence-analyst	db-changelog-1.34.xml	2025-11-23 16:56:28.134417	388	EXECUTED	9:98ee9cac78930ae7df9dea29166db568	dropView viewName=view_riksdagen_goverment_proposals; createView viewName=view_riksdagen_goverment_proposals	Fix view_riksdagen_goverment_proposals - broader document_type filter\n        Catches 'prop', 'PROP', 'Proposition' variations	\N	5.0.1	\N	\N	3913381643
+1.34-member-proposals-003	intelligence-analyst	db-changelog-1.34.xml	2025-11-23 16:56:28.139381	389	EXECUTED	9:b13f7b02bfd25a9791548c069dc378de	dropView viewName=view_riksdagen_member_proposals; createView viewName=view_riksdagen_member_proposals	Fix view_riksdagen_member_proposals - broader document_type filter\n        Catches 'mot', 'MOT', 'Motion' variations	\N	5.0.1	\N	\N	3913381643
+1.34-committee-proposals-004	intelligence-analyst	db-changelog-1.34.xml	2025-11-23 16:56:28.144531	390	EXECUTED	9:acfb00d23673ba2bfbcf78bc83c33bd7	dropView viewName=view_riksdagen_committee_parliament_member_proposal; createView viewName=view_riksdagen_committee_parliament_member_proposal	Fix view_riksdagen_committee_parliament_member_proposal\n        Same broader filter as member proposals	\N	5.0.1	\N	\N	3913381643
+1.34-risk-summary-005	intelligence-analyst	db-changelog-1.34.xml	2025-11-23 16:56:28.152035	391	EXECUTED	9:4692e16ed702c30c880c5bf3d6afffcb	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary - simplified version using direct vote_data\n        Removes dependency on aggregated summary views that may not have data	\N	5.0.1	\N	\N	3913381643
+1.34-verify-others-006	intelligence-analyst	db-changelog-1.34.xml	2025-11-23 16:56:28.157239	392	EXECUTED	9:7f86a1ea0b6dacdf6ce2eef8ce19ad8d	sql	Verify other politician and intelligence views exist (from v1.33)	\N	5.0.1	\N	\N	3913381643
+1.34-postflight	database-architect	db-changelog-1.34.xml	2025-11-23 16:56:28.171596	393	EXECUTED	9:24f59e1f777d8317d7fb94354be07200	sql	Post-flight: Verify all 12 views and check row counts	\N	5.0.1	\N	\N	3913381643
+1.34-documentation	database-architect	db-changelog-1.34.xml	2025-11-23 16:56:28.17436	394	EXECUTED	9:215e4217ceea39d393d357dfab47613b	sql	Documentation for v1.34 comprehensive view fixes\n        \n        Summary:\n        - Pre-flight validation checks source data\n        - Ministry views verified (expected empty without ministry data)\n        - Government proposals view fixed (broad...	\N	5.0.1	\N	\N	3913381643
+1.35-intro	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.176737	395	EXECUTED	9:32e18dd7e0d25938d04971bf2130e750	sql	Database Changelog v1.35 - Party Decision Flow View\n        \n        Creates view_riksdagen_party_decision_flow for aggregating proposal\n        decision data by party, enabling party-level legislative effectiveness\n        and coalition analysis.	\N	5.0.1	\N	\N	3913381643
+1.35-preflight	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.180199	396	EXECUTED	9:b1f1b765b24f30a4b717ee0da5b5e940	sql	Pre-flight: Verify source data exists before creating view	\N	5.0.1	\N	\N	3913381643
+1.35-party-decision-flow-001	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.191433	397	EXECUTED	9:1055961759e4cdf793808144bc58b684	createView viewName=view_riksdagen_party_decision_flow	Create view_riksdagen_party_decision_flow\n        \n        Aggregates proposal decision data by party, committee, decision type, and time period.\n        Provides comprehensive party-level decision intelligence including:\n        - Total proposals...	\N	5.0.1	\N	\N	3913381643
+1.35-party-decision-flow-index-002	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.204712	398	EXECUTED	9:1de6549e5d2e5b58509674d1ae8a55c6	sql	Create indexes on base tables for performance optimization of party decision flow queries\n        \n        Indexes on frequently joined and filtered columns:\n        - document_proposal_data.committee (for committee-specific queries)\n        - doc...	\N	5.0.1	\N	\N	3913381643
+1.35-postflight	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.212799	399	EXECUTED	9:e091dfbf1f8a01f3049f40855ae047f3	sql	Post-flight: Verify view creation and check initial data	\N	5.0.1	\N	\N	3913381643
+1.35-documentation	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.215739	400	EXECUTED	9:a995133e402948e807b1759d61b1b7c5	sql	Documentation for v1.35 party decision flow view\n        \n        Summary:\n        - Creates view_riksdagen_party_decision_flow for party-level decision aggregation\n        - Enables party scorecards, coalition analysis, committee effectiveness tr...	\N	5.0.1	\N	\N	3913381643
+1.35-politician-decision-pattern-001	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.227176	401	EXECUTED	9:5db797f3c39c8716ceb1c7fac014ad7e	createView viewName=view_riksdagen_politician_decision_pattern	Create view_riksdagen_politician_decision_pattern\n        \n        Tracks individual politician decision patterns from document_proposal_data,\n        enabling analysis of politician-level proposal success rates, committee work\n        effectivene...	\N	5.0.1	\N	\N	3913381643
+1.35-politician-decision-pattern-index-002	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.232426	402	EXECUTED	9:f3b01d3c763eaaa45863294b17329605	sql	Create indexes for performance optimization of politician decision pattern queries\n        \n        Index on person_id for efficient politician-specific queries.\n        These complement the existing base table indexes created in changeSet 002.	\N	5.0.1	\N	\N	3913381643
+1.35-politician-decision-pattern-postflight	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.241363	403	EXECUTED	9:d2d93d66a90ac420fd94af497ef5f333	sql	Post-flight: Verify politician decision pattern view creation	\N	5.0.1	\N	\N	3913381643
+1.35-decision-temporal-trends-001	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.254703	404	EXECUTED	9:edc0dbf51168562761bc8fc2c7681d44	createView viewName=view_decision_temporal_trends	Create view_decision_temporal_trends\n        \n        Temporal trends view for decision flow analysis from DOCUMENT_PROPOSAL_DATA,\n        enabling time-series analysis of decision patterns, seasonal variations,\n        and predictive forecasting ...	\N	5.0.1	\N	\N	3913381643
+1.35-decision-temporal-trends-postflight	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.262628	405	EXECUTED	9:88dd7d0ff0afee32b8e6c317ef3f0577	sql	Post-flight: Verify temporal decision trends view creation and validate data	\N	5.0.1	\N	\N	3913381643
+1.35-ministry-decision-impact-001	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.273419	406	EXECUTED	9:d2f6d28b97abf69bccd816fc3258aa8c	createView viewName=view_ministry_decision_impact	Create view_ministry_decision_impact\n        \n        Tracks ministry-initiated proposal outcomes from DOCUMENT_PROPOSAL_DATA,\n        enabling analysis of which government ministries have the highest/lowest\n        success rates for their legisla...	\N	5.0.1	\N	\N	3913381643
+1.35-ministry-decision-impact-index-002	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.281958	407	EXECUTED	9:73ef6912726a17535c1aa90fb2427261	sql	Create indexes for performance optimization of ministry decision impact queries\n        \n        Index on document_data.org (ministry_code) and document_type for efficient\n        ministry-specific and government proposal queries.	\N	5.0.1	\N	\N	3913381643
+1.35-ministry-decision-impact-postflight	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.2883	408	EXECUTED	9:2b1646700fdb341fd0c3a4e6a16fb8d9	sql	Post-flight: Verify ministry decision impact view creation and validate data	\N	5.0.1	\N	\N	3913381643
+1.35-final-summary	intelligence-operative	db-changelog-1.35.xml	2025-11-23 16:56:28.29074	409	EXECUTED	9:3438e13b3d71b2e99c0220e56a54a810	sql	Final documentation summary for v1.35 database changelog\n        \n        Summary of v1.35 views created:\n        1. view_riksdagen_party_decision_flow - Party-level decision aggregation\n        2. view_riksdagen_politician_decision_pattern - Indi...	\N	5.0.1	\N	\N	3913381643
+1736000000000-1	import-error-fix	db-changelog-1.36.xml	2025-11-24 15:48:23.079021	410	EXECUTED	9:1b1abcc812870fd0d7432002253e45f6	modifyDataType columnName=note, tableName=document_element	Increase document_element.note from VARCHAR(8192) to VARCHAR(65536) to accommodate long EU committee notes with HTML lists	\N	5.0.1	\N	\N	3995696939
+1736000000000-2	import-error-fix	db-changelog-1.36.xml	2025-11-24 15:48:23.087248	411	EXECUTED	9:c3780abe8ec3d2fe6ef55ee2d25541de	modifyDataType columnName=note_title, tableName=document_element	Increase document_element.note_title from VARCHAR(8192) to VARCHAR(16384) for consistency and future-proofing	\N	5.0.1	\N	\N	3995696939
+1736000000000-3	import-error-fix	db-changelog-1.36.xml	2025-11-24 15:48:23.092854	412	EXECUTED	9:7d4d1848977aaccfa3635879774c556e	modifyDataType columnName=summary, tableName=document_element	Increase document_element.summary from VARCHAR(8192) to VARCHAR(65536) to match note field size	\N	5.0.1	\N	\N	3995696939
+fix-ministry-effectiveness-1.37-001	intelligence-operative	db-changelog-1.37.xml	2025-11-28 02:46:59.852347	413	EXECUTED	9:2eeb05933237619abae29188032cd4d0	dropView viewName=view_ministry_effectiveness_trends; createView viewName=view_ministry_effectiveness_trends	Fix view_ministry_effectiveness_trends with case-insensitive org_code matching\n        \n        Root Cause: org_code values in assignment_data and view_riksdagen_politician_document\n        have inconsistent casing (e.g., "Departement" vs "departe...	\N	5.0.1	\N	\N	4294416807
+fix-ministry-productivity-1.37-002	intelligence-operative	db-changelog-1.37.xml	2025-11-28 02:46:59.871214	414	EXECUTED	9:ce261dfdef96131a2f75ddb6101ac655	dropView viewName=view_ministry_productivity_matrix; createView viewName=view_ministry_productivity_matrix	Fix view_ministry_productivity_matrix with case-insensitive org_code matching\n        \n        Same root cause and solution as effectiveness trends view.	\N	5.0.1	\N	\N	4294416807
+fix-ministry-risk-evolution-1.37-003	intelligence-operative	db-changelog-1.37.xml	2025-11-28 02:46:59.885018	415	EXECUTED	9:1e6651e08f0b89e129e0ad572f056309	dropView viewName=view_ministry_risk_evolution; createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution with case-insensitive org_code matching\n        \n        Same root cause and solution as other ministry views.	\N	5.0.1	\N	\N	4294416807
+fix-coalition-alignment-1.37-004	intelligence-operative	db-changelog-1.37.xml	2025-11-28 02:46:59.902024	416	EXECUTED	9:71d9f34b8fc38a50bff1687da325dcdb	sql; createView viewName=view_riksdagen_coalition_alignment_matrix	Fix view_riksdagen_coalition_alignment_matrix with expanded date range\n        \n        Root Cause: 2-year date filter too restrictive - many parties only have older vote data.\n        \n        Solution: Expand from 2 years to 5 years to capture m...	\N	5.0.1	\N	\N	4294416807
+fix-politician-risk-summary-1.37-005	intelligence-operative	db-changelog-1.37.xml	2025-11-28 02:46:59.999466	417	EXECUTED	9:a50ccc76324b132113a20f9eb3fcc4d6	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary using direct vote_data aggregation\n        \n        Root Cause: Dependency on materialized view annual summary creates timing issues\n        where data may not exist for specific year calculations.\n        \n       ...	\N	5.0.1	\N	\N	4294416807
+fix-risk-score-evolution-1.38-001	intelligence-operative	db-changelog-1.38.xml	2025-11-28 10:36:16.303924	418	EXECUTED	9:157a899e1c10d9b4e540d8749a91b376	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution by removing materialized view dependency\n        \n        Root Cause: The view depends on view_riksdagen_vote_data_ballot_politician_summary_daily\n        (materialized) which is not populated in schema-only databases...	\N	5.0.1	\N	\N	4322569071
+fix-crisis-resilience-1.38-002	intelligence-operative	db-changelog-1.38.xml	2025-11-28 10:36:16.325205	419	EXECUTED	9:0f94269ccd9de3e53cbebdcff429df4e	dropView viewName=view_riksdagen_crisis_resilience_indicators; createView viewName=view_riksdagen_crisis_resilience_indicators	Fix view_riksdagen_crisis_resilience_indicators with expanded date range\n        \n        Root Cause: 2-year date filter is too restrictive for detecting crisis patterns.\n        Similar to coalition alignment view issue (fixed in 1.37).\n        \n...	\N	5.0.1	\N	\N	4322569071
+fix-politician-influence-1.38-003	intelligence-operative	db-changelog-1.38.xml	2025-11-28 10:36:16.386407	420	EXECUTED	9:70aeb6db83f75b0e0f7fa78095c4b9d0	dropView viewName=view_riksdagen_politician_influence_metrics; createView viewName=view_riksdagen_politician_influence_metrics	Fix view_riksdagen_politician_influence_metrics with expanded parameters\n        \n        Root Cause: 1-year date filter with 20-vote minimum threshold is too restrictive,\n        filtering out meaningful network connections and influence patterns...	\N	5.0.1	\N	\N	4322569071
+fix-voting-anomaly-1.38-004	intelligence-operative	db-changelog-1.38.xml	2025-11-28 10:36:16.401994	421	EXECUTED	9:2f4ac1c1a94ad8b9487e899f0751b225	dropView viewName=view_riksdagen_voting_anomaly_detection; createView viewName=view_riksdagen_voting_anomaly_detection	Fix view_riksdagen_voting_anomaly_detection with expanded date range\n        \n        Root Cause: 1-year date filter provides insufficient historical context for\n        reliable anomaly detection. Pattern recognition benefits from longer periods....	\N	5.0.1	\N	\N	4322569071
+fix-coalition-alignment-1.38-0022	intelligence-operative	db-changelog-1.38.xml	2025-11-28 11:01:15.700899	422	EXECUTED	9:8dda1ad871d012db9cd2a4d950e07152	sql; createView viewName=view_riksdagen_coalition_alignment_matrix	Transformed coalition alignment view to match existing Java entity structure.\n        Maps new analytical logic to legacy column names for backwards compatibility.\n        \n        Mapping:\n        - total_votes -> shared_votes\n        - aligned_v...	\N	5.0.1	\N	\N	4324073420
+fix-politician-risk-summary-matview-1.39-001	intelligence-operative	db-changelog-1.39.xml	2025-12-02 01:28:24.408001	423	EXECUTED	9:4c6fe59977c8548ce3b1bcceab3115b6	dropView viewName=view_politician_risk_summary; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary by removing materialized view dependency\n        \n        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document\n        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the\n  ...	\N	5.0.1	\N	\N	4635296166
+fix-ministry-effectiveness-1.39-001	intelligence-operative	db-changelog-1.39.xml	2025-12-02 01:28:24.66947	424	EXECUTED	9:ebd5c2f743b97d91375d1814fed3d0bb	dropView viewName=view_ministry_effectiveness_trends; createView viewName=view_ministry_effectiveness_trends	Fix view_ministry_effectiveness_trends to return actual ministry data\n        \n        Root Cause: View filtered by LOWER(org_code) LIKE '%departement%' but actual\n        ministry org_codes are short codes ("KN", "N", etc.) that don't contain "de...	\N	5.0.1	\N	\N	4635296166
+fix-ministry-productivity-1.39-002	intelligence-operative	db-changelog-1.39.xml	2025-12-02 01:28:24.690443	425	EXECUTED	9:ce83258b81e92bd942a9f97bb9a9f197	dropView viewName=view_ministry_productivity_matrix; createView viewName=view_ministry_productivity_matrix	Fix view_ministry_productivity_matrix to return actual ministry data\n        \n        Root Cause: Same as view_ministry_effectiveness_trends - view filtered by \n        LOWER(org_code) LIKE '%departement%' but actual ministry org_codes are short \n...	\N	5.0.1	\N	\N	4635296166
+fix-ministry-risk-evolution-1.39-003	intelligence-operative	db-changelog-1.39.xml	2025-12-02 01:28:24.718652	426	EXECUTED	9:e8ee5d2c422b306e4e36882237f5a21b	dropView viewName=view_ministry_risk_evolution; createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution to return actual ministry data\n        \n        Root Cause: Same as view_ministry_effectiveness_trends - view filtered by \n        LOWER(org_code) LIKE '%departement%' but actual ministry org_codes are short \n     ...	\N	5.0.1	\N	\N	4635296166
+verify-ministry-views-1.39-004	intelligence-operative	db-changelog-1.39.xml	2025-12-02 01:28:35.316191	427	EXECUTED	9:0e011b36ae0faab2f83c753e34a86658	sql	Post-flight verification for all three ministry views\n        \n        Checks:\n        1. All three views exist and can be queried\n        2. Views return data when ministry assignments are present\n        3. Row counts are reasonable (>0 when dat...	\N	5.0.1	\N	\N	4635296166
+document-ministry-fix-1.39-005	intelligence-operative	db-changelog-1.39.xml	2025-12-02 01:28:35.323748	428	EXECUTED	9:830bb959528e4365f577fc21b94da2a8	sql	Documentation for v1.39 ministry views fix\n        \n        Summary:\n        - Root cause: Incorrect filter on org_code LIKE '%departement%'\n        - Actual data: org_code has short codes like 'KN', 'N', not full names\n        - Solution: Remove ...	\N	5.0.1	\N	\N	4635296166
+fix-crisis-resilience-1.40-001	intelligence-operative	db-changelog-1.40.xml	2025-12-03 11:52:10.543621	429	EXECUTED	9:e34edc89148de2ec4f4766d8cb341105	dropView viewName=view_riksdagen_crisis_resilience_indicators; createView viewName=view_riksdagen_crisis_resilience_indicators	Fix view_riksdagen_crisis_resilience_indicators to return data\n        \n        Root Cause: The crisis period detection algorithm had gaps - months between\n        1x and 1.5x average were not classified as either crisis or normal periods.\n       ...	\N	5.0.1	\N	\N	4759122669
+verify-crisis-resilience-1.40-002	intelligence-operative	db-changelog-1.40.xml	2025-12-03 11:52:55.640728	430	EXECUTED	9:1c92d454c7d1820ed9dc736aa6e104b1	sql	Post-flight verification for view_riksdagen_crisis_resilience_indicators\n        \n        Checks:\n        1. View exists and can be queried\n        2. View returns data when vote_data and person_data are populated\n        3. Reports row count for ...	\N	5.0.1	\N	\N	4759122669
+recreate-intelligence-dashboard-1.40-003	intelligence-operative	db-changelog-1.40.xml	2025-12-03 11:52:55.699465	431	EXECUTED	9:8817dc415e89d5760524c4ccf8b5b406	createView viewName=view_riksdagen_intelligence_dashboard	Recreate view_riksdagen_intelligence_dashboard after crisis resilience fix\n        \n        This view was dropped by CASCADE when fixing view_riksdagen_crisis_resilience_indicators\n        in changeSet fix-crisis-resilience-1.40-001 (cascadeConstr...	\N	5.0.1	\N	\N	4759122669
+fix-risk-score-evolution-1.41-001	intelligence-operative	db-changelog-1.41.xml	2025-12-03 11:52:55.780854	432	EXECUTED	9:37f6b5ea6bb65b3a4437a01391adc4a6	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution to return data with correct rebel rate calculation\n        \n        Root Cause: The v1.38 fix used incorrect logic comparing vote type to party name:\n        `vd.vote != vd.party` (e.g., 'Ja' != 'S') which is always t...	\N	5.0.1	\N	\N	4759122669
+verify-risk-score-evolution-1.41-002	intelligence-operative	db-changelog-1.41.xml	2025-12-03 11:52:57.952885	433	EXECUTED	9:aebf12c8545cfa083ec15d44c1563fb3	sql	Post-flight verification for view_risk_score_evolution\n        \n        Checks:\n        1. View exists and can be queried\n        2. View returns data when vote_data and person_data are populated\n        3. Reports row count for monitoring	\N	5.0.1	\N	\N	4759122669
+fix-ministry-productivity-matrix-matview-1.42-001	intelligence-operative	db-changelog-1.42.xml	2025-12-03 11:52:58.013015	434	EXECUTED	9:d412e3784f5066b454b4444785c9b190	dropView viewName=view_ministry_productivity_matrix; createView viewName=view_ministry_productivity_matrix	Fix view_ministry_productivity_matrix by removing materialized view dependency\n        \n        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document\n        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute t...	\N	5.0.1	\N	\N	4759122669
+fix-ministry-effectiveness-trends-matview-1.42-002	intelligence-operative	db-changelog-1.42.xml	2025-12-03 11:52:58.030167	435	EXECUTED	9:c312343fc7c7e60a7228cf621f2ef36c	dropView viewName=view_ministry_effectiveness_trends; createView viewName=view_ministry_effectiveness_trends	Fix view_ministry_effectiveness_trends by removing materialized view dependency\n        \n        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document\n        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute ...	\N	5.0.1	\N	\N	4759122669
+fix-ministry-risk-evolution-matview-1.42-003	intelligence-operative	db-changelog-1.42.xml	2025-12-03 11:52:58.044492	436	EXECUTED	9:cbb86defc0af14dbb2c2613c7a4eecb3	dropView viewName=view_ministry_risk_evolution; createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution by removing materialized view dependency\n        \n        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document\n        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the\n  ...	\N	5.0.1	\N	\N	4759122669
+verify-ministry-views-1.42-004	intelligence-operative	db-changelog-1.42.xml	2025-12-03 11:53:04.507194	437	EXECUTED	9:5364a65df2b784a3c738ef622c551a7a	sql	Post-flight verification for all three ministry views\n        \n        Checks:\n        1. Views exist and can be queried (no materialized view error)\n        2. Views return data when ministry assignments exist\n        3. Reports row counts for mo...	\N	5.0.1	\N	\N	4759122669
+fix-risk-score-evolution-matview-1.42-005	intelligence-operative	db-changelog-1.42.xml	2025-12-03 11:53:04.526396	438	EXECUTED	9:17f7c63ce28d9c98df086fd35afa7991	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution by removing materialized view dependency\n        \n        Root Cause: The view was re-introduced in db-changelog-1.41.xml (for rebel rate fix)\n        but still referenced view_riksdagen_politician_document (materiali...	\N	5.0.1	\N	\N	4759122669
+document-ministry-views-fix-1.42-006	intelligence-operative	db-changelog-1.42.xml	2025-12-03 11:53:04.531709	439	EXECUTED	9:0f5bf4edfd8c9b20d4ace561ff91751c	sql	Documentation for v1.42 views fix\n        \n        Summary:\n        - Root cause: Dependency on unpopulated materialized view view_riksdagen_politician_document\n        - Solution: Replace materialized view with direct base table queries in all vi...	\N	5.0.1	\N	\N	4759122669
+fix-ministry-risk-evolution-periods-1.43-001	intelligence-operative	db-changelog-1.43.xml	2025-12-03 11:53:04.547083	440	EXECUTED	9:ec9451d1bc2a00638ab3ccaa919906fa	dropView viewName=view_ministry_risk_evolution; createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution to return data for all ministries\n        \n        Root Cause: The view was filtering out rows where assessment_period IS NULL.\n        When ministries have no document data, the DATE_TRUNC from LEFT JOIN results\n ...	\N	5.0.1	\N	\N	4759122669
+verify-ministry-risk-evolution-1.43-002	intelligence-operative	db-changelog-1.43.xml	2025-12-03 11:53:04.669981	441	EXECUTED	9:4db518cdbee1433304f8c27a4015d93c	sql	Post-flight verification for view_ministry_risk_evolution\n        \n        Checks:\n        1. View exists and can be queried\n        2. View returns rows when ministry assignments exist\n        3. Reports row count for validation	\N	5.0.1	\N	\N	4759122669
+document-ministry-risk-evolution-fix-1.43-003	intelligence-operative	db-changelog-1.43.xml	2025-12-03 11:53:04.674483	442	EXECUTED	9:1dde305304eb6f05cc4091cf8a4fb217	sql	Documentation for v1.43 view_ministry_risk_evolution fix\n        \n        Summary:\n        - Root cause: View filtered out ministries with no documents due to NULL assessment_period\n        - Solution: Generate quarterly periods independently and ...	\N	5.0.1	\N	\N	4759122669
+fix-forste-vice-talman-1.44-001	intelligence-operative	db-changelog-1.44.xml	2025-12-03 22:03:03.341314	443	EXECUTED	9:b279fddaf24fd37a38406eda28c39814	sqlFile path=view_riksdagen_politician_experience_summary_v1.44.sql	Fix view_riksdagen_politician_experience_summary to include Förste vice talman\n        in the talmansuppdrag role scoring alongside Andre and Tredje vice talman.\n        All three Deputy Speaker roles now weighted equally at 750.0.	\N	5.0.1	\N	\N	4795779846
+fix-committee-referral-1.45-001	intelligence-operative	db-changelog-1.45.xml	2025-12-03 22:03:03.499771	444	EXECUTED	9:d7ef57d9369d4edbe41fed03e5280238	sqlFile path=view_decision_temporal_trends_v1.45.sql	Fix view_decision_temporal_trends to include committee_referral_decisions column.\n        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records previously uncategorized.	\N	5.0.1	\N	\N	4795779846
+fix-committee-referral-1.45-002	intelligence-operative	db-changelog-1.45.xml	2025-12-03 22:03:03.516699	445	EXECUTED	9:b87b9d81c1c3c16773c3c0daddb069a3	sqlFile path=view_ministry_decision_impact_v1.45.sql	Fix view_ministry_decision_impact to include committee_referral_proposals column\n        and committee_referral_rate. Also updates other_decisions to exclude committee referrals.\n        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records...	\N	5.0.1	\N	\N	4795779846
+add-grouped-role-tracking-1.46-001	intelligence-operative	db-changelog-1.46.xml	2025-12-30 12:39:58.730253	446	EXECUTED	9:24893749a205bdb277ad61e924927289	sqlFile path=view_riksdagen_politician_v1.46.sql	Add grouped committee leadership role tracking to view_riksdagen_politician.\n        Adds 12 new columns organized into 6 role categories (total + current for each):\n        - Committee Chair (Ordförande only, committee context)\n        - Committe...	\N	5.0.1	\N	\N	7094791182
+fix-swedish-status-politician-risk-summary-1.47-001	intelligence-operative	db-changelog-1.47.xml	2025-12-30 16:33:20.198843	447	EXECUTED	9:5c5b1ee4f1ab3daed6d35bf6252a217f	sql; createView viewName=view_politician_risk_summary	Fix view_politician_risk_summary to use Swedish status values\n        \n        Root Cause: View filtered on status = 'active' but actual data uses Swedish values\n        Solution: Filter on Swedish status values for active politicians:\n          -...	\N	5.0.1	\N	\N	7108797880
+fix-swedish-status-crisis-resilience-1.47-002	intelligence-operative	db-changelog-1.47.xml	2025-12-30 16:33:20.240317	448	EXECUTED	9:3568262c4405a3fe56b1d47695f1ae7a	sql; createView viewName=view_riksdagen_crisis_resilience_indicators	Fix view_riksdagen_crisis_resilience_indicators to use Swedish status values\n        \n        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE') \n        but actual data uses Swedish values\n        \n        Solution: Filter on S...	\N	5.0.1	\N	\N	7108797880
+fix-swedish-status-influence-metrics-1.47-003	intelligence-operative	db-changelog-1.47.xml	2025-12-30 16:33:20.264455	449	EXECUTED	9:d6faabdbd6a129c32d2fb102a0635d72	sql; createView viewName=view_riksdagen_politician_influence_metrics	Fix view_riksdagen_politician_influence_metrics to use Swedish status values\n        \n        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')\n        but actual data uses Swedish values\n        \n        Solution: Filter on Sw...	\N	5.0.1	\N	\N	7108797880
+fix-swedish-status-voting-anomaly-1.47-004	intelligence-operative	db-changelog-1.47.xml	2025-12-30 16:33:20.289891	450	EXECUTED	9:8b18eec250b4170521adea8d2326f670	sql; createView viewName=view_riksdagen_voting_anomaly_detection	Fix view_riksdagen_voting_anomaly_detection to use Swedish status values\n        \n        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')\n        but actual data uses Swedish values\n        \n        Solution: Filter on Swedis...	\N	5.0.1	\N	\N	7108797880
+fix-swedish-status-risk-evolution-1.47-005	intelligence-operative	db-changelog-1.47.xml	2025-12-30 16:33:20.317226	451	EXECUTED	9:0f80c8ee6622ee192f99865e293d2da2	sql; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution to use Swedish status values\n        \n        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')\n        but actual data uses Swedish values\n        \n        Solution: Filter on Swedish status value...	\N	5.0.1	\N	\N	7108797880
+verify-swedish-status-fixes-1.47-006	intelligence-operative	db-changelog-1.47.xml	2025-12-30 16:33:25.231286	452	EXECUTED	9:5592a1b5dde1654d5065376cec26f06d	sql; sql; sql; sql; sql	Post-flight verification for all 5 fixed views - simple count query	\N	5.0.1	\N	\N	7108797880
 \.
 
 
@@ -12965,5 +12960,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict tQYlOzFJ42gkDkjF25BdT9zLqgwaaeuZoontNpIkwNUvav3akzImJeeaUr6cvBV
+\unrestrict Q6ql6VdlEFnOkYU2nFYRB9M7aROEsFUt0cXg1vZ8dXzaqXjpEUbJsr3fmeT6J22
 
