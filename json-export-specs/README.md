@@ -293,7 +293,7 @@ The JSON export system includes automated validation to ensure sample CSV files 
 
 ### Validation Script
 
-**Location**: `json-export-specs/validate-field-completeness.py`
+**Location**: `json-export-specs/validate-field-completeness.sh`
 
 **Purpose**: Validates that sample CSV files contain the required database columns to support all 5 JSON export schemas.
 
@@ -301,13 +301,13 @@ The JSON export system includes automated validation to ensure sample CSV files 
 
 ```bash
 # From json-export-specs directory
-python validate-field-completeness.py
+bash validate-field-completeness.sh
 
 # With detailed output
-python validate-field-completeness.py --verbose
+bash validate-field-completeness.sh --verbose
 
-# Generate markdown report
-python validate-field-completeness.py --output FIELD_COMPLETENESS_REPORT.md
+# Generate markdown report (automatic)
+# Report saved to: FIELD_COMPLETENESS_REPORT.md
 ```
 
 ### Validation Results
@@ -360,18 +360,21 @@ Field completeness validation runs automatically on:
 
 **Workflow**: `.github/workflows/validate-field-completeness.yml`
 
+Uses bash script validation following repository patterns with harden-runner security.
+
 ### Troubleshooting
 
 **Missing Fields**:
 1. Check database view definition for correct column names
 2. Verify sample CSV extraction query includes all required fields
 3. Re-extract sample data: `SELECT * FROM view_name LIMIT 50`
-4. Re-run validation to confirm completeness
+4. Re-run validation to confirm completeness: `bash validate-field-completeness.sh`
 
 **CSV Not Found**:
 1. Verify view exists in database schema
 2. Check sample-data directory for correct filename
 3. Extract sample if missing: `psql -d cia_dev -c "COPY (SELECT * FROM view_name LIMIT 50) TO '/path/sample.csv' CSV HEADER"`
+4. Re-run validation: `bash validate-field-completeness.sh`
 
 **Field Name Mismatch**:
 1. Database columns use snake_case (e.g., `first_name`)
