@@ -1,0 +1,387 @@
+person_id,first_name,last_name,party,crisis_period_votes,crisis_absence_rate,crisis_party_discipline,normal_period_votes,normal_absence_rate,absence_rate_change,resilience_score,resilience_classification,pressure_performance_assessment
+0323000187920,Solange,Olame Bayibsa,S,466,0.00,0.00,54,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0985426914829,Anna,Lasses,C,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0481460392727,Jessica,Wetterling,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0938171000810,Annette,Rydell,S,320,0.00,0.00,55,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0926002991620,Pontus,Andersson Garpvall,SD,1671,0.00,0.00,218,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0389795960120,Martin,Marmgren,MP,618,0.00,0.00,15,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0226631365426,Mikael,Larsson,C,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0694273653613,Margareta,Fransson,MP,395,0.00,0.00,69,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0662032691523,Amalia,Rud Stenlöf,S,745,0.00,0.00,191,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+071293048118,Thomas,Ragnarsson,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0554852839719,Mikael,Dahlqvist,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0663840649717,Anette,Rangdag,SD,507,0.00,0.00,55,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0333193598116,Bo,Broman,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0313390540217,Ingela,Nylund Watz,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0610162335824,Niklas,Sigvardsson,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0503363679811,Stefan,Plath,SD,618,0.00,0.00,67,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0222102752213,Stefan,Olsson,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0121015874810,Torsten,Elofsson,KD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0119851690521,David,Perez,SD,1848,0.00,0.00,272,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0285527517421,Caroline,Nordengrip,SD,1084,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+037781229619,Staffan,Eklöf,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0602744999917,Elisabeth,Thand Ringqvist,C,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0606863154419,Mats,Berglund,MP,1199,0.00,0.00,165,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0315499690028,Teresa,Carvalho,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0427321850912,Lars Mejern,Larsson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0559925283228,Teres,Lindberg,S,1084,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0475778011711,Hans,Ekström,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0203877548421,Malin,Larsson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0831039938224,Adam,Marttinen,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0828721176319,Sten,Bergheden,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0307835692938,Emelie,Nyman,C,337,0.00,0.00,12,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0545733815610,Patrick,Reslow,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0845133742919,Lili,André,KD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0248492534018,Pia,Trollehjelm,SD,304,0.00,0.00,50,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0339894357417,Jennie,Nilsson,S,1671,0.00,0.00,272,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0127744006318,Cecilia,Gustafsson,M,0,,,50,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0161616238120,Lina,Nordquist,L,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0819601620927,Annika,Hirvonen,MP,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+083953568015,Malin,Höglund,M,1053,0.00,0.00,225,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0254695027922,Malcolm Momodou,Jallow,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0411459873625,Hanna,Gunnarsson,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0652497579621,Johanna,Haraldsson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0150200797210,Mats,Sander,M,910,0.00,0.00,71,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0430865615328,Linda,Lindberg,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0671571847522,Mattias,Eriksson Falk,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0911067396229,Mattias,Vepsä,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0279488554424,Alexander,Christiansson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0442073683012,Zara,Leghissa,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0412502344925,Ida,Ekeroth Clausson,S,698,0.00,0.00,176,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0710595759638,Aida,Birinxhiku,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0522240580423,Arin,Karapet,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0364687971222,Alireza,Akhondi,C,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0803753212716,Richard,Jomshof,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0338088431726,Sara,Gille,SD,1442,0.00,0.00,172,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0184968091618,Jan,Riise,MP,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0245113256029,Daniel,Vencu Velasquez Castro,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0599661454115,Lena,Bäckelin,S,286,0.00,0.00,107,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0526748040023,Ludvig,Aspling,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0970709885516,Inga-Lill,Sjöblom,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0236597884217,Rose-Marie,Carlsson,S,980,0.00,0.00,174,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0105632258713,Boriana,Åberg,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+012547905113,Christina,Nilsson,SD,0,,,21,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0140985614421,Peder,Björk,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0720250789315,Mats,Wiking,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+075747847023,Gustaf,Lantz,S,1937,0.00,0.00,245,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0983984918111,Matilda,Ernkrans,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0591020192311,Ulf,Lindholm,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0619928872229,Laila,Naraghi,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0973782197017,Mikael,Oscarsson,KD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0890152141226,Nadja,Awad,V,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0837394708917,Anders,Ådahl,C,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0358278412329,Björn,Petersson,S,1551,0.00,0.00,129,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0992473266516,Larry,Söder,KD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0249730539015,Anders,Karlsson,C,1053,0.00,0.00,156,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0378597308227,Camilla,Brodin,KD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0327372175911,Fredrik,Ahlstedt,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0256404677510,Cecilia,Engström,KD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0904448094023,Linus,Lakso,MP,733,0.00,0.00,150,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0859909330720,Sanna,Backeskog,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0482689573825,Björn,Wiechel,S,1894,0.00,0.00,291,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0130789484021,Mattias,Bäckström Johansson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0990587970528,Zinaida,Kajevic,S,320,0.00,0.00,29,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0161597857912,Tuve,Skånberg,KD,1084,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0250583732424,Jesper,Skalberg Karlsson,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0122987223112,Lotta,Johnsson Fornarve,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0440225263920,Robert,Olesen,S,192,0.00,0.00,50,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0999976269027,Amanda,Palmstierna,MP,1216,0.00,0.00,141,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0832311880029,Erik,Ottoson,M,2137,0.00,0.00,272,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0506482805418,Isak,From,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0457722435319,Tomas,Kronståhl,S,1741,0.00,0.00,256,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0793372891224,Noria,Manouchi,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0426843954410,Ulrik,Bergman,M,12,0.00,0.00,31,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0964730940415,Johan,Andersson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0855286184126,Jessica,Rodén,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0512645510895,Jonathan,Svensson,S,733,0.00,0.00,148,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0706528359123,Linus,Sköld,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0880137451720,Emma,Nohrén,MP,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0496341906327,Alexandra,Völker,S,1920,0.00,0.00,225,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0694917698222,Michael,Rubbestad,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0509830681123,Ida,Karkiainen,S,1519,0.00,0.00,257,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0845783625227,Arwin,Sohrabi,S,73,0.00,0.00,0,,,50.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0468956880528,Mikael,Eskilandersson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0418929039326,Patrik,Lundqvist,S,1817,0.00,0.00,195,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0899169869710,Helena,Gellerman,L,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0466653728712,Denis,Begic,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0744993950910,Anders,Ygeman,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0905254899611,Louise,Thunström,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0220064764318,Camilla,Brunsberg,M,1027,0.00,0.00,177,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0395154929710,Anders,Frimert,S,618,0.00,0.00,37,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0348383585915,Marielle,Lahti,MP,320,0.00,0.00,53,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0825441263617,Birger,Lahti,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0410231576416,Lars,Johnsson,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+084624777218,Helena,Lindahl,C,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0838085832923,Ann-Sofie,Lifvenhage,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0309480686522,Leila,Ali Elmi,MP,2137,0.00,0.00,272,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0304498908019,Gudrun,Brunegård,KD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0612916684825,Johan,Löfstrand,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0875221317013,Gunilla,Carlsson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+011548866929,Elin,Nilsson,L,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+086684470825,Tobias,Andersson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0405594274208,Ewa,Pihl Krabbe,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+091303475611,Eric,Palmqvist,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0136268785826,Nima,Gholam Ali Pour,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0970259744617,Margareta,Cederfelt,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0920901966627,Tony,Haddou,V,1890,0.00,0.00,270,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0600069352021,Fredrik,Kärrholm,M,805,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0892978334516,Michael,Anefur,KD,1084,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0607691439013,Karin,Enström,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0828001951212,Ingemar,Kihlström,KD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0474290584024,Azadeh,Rojhan,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0588282566419,Lars,Beckman,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0146133946627,Andreas,Lennkvist Manriquez,V,733,0.00,0.00,111,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+030110584526,Caroline,Täljeblad,V,0,,,18,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+025877594729,John,Widegren,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0940980416614,Jan,Ericson,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0521260619925,Sofia,Amloh,S,1671,0.00,0.00,272,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0388994689418,Malin,Östh,V,396,0.00,0.00,99,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0764422217512,Lars,Engsund,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0262411569110,Helene,Odenjung,L,355,0.00,0.00,50,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0440673458216,Ulrika,Liljeberg,C,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0749416304126,Marie,Nicholson,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0836001490919,Ulrika,Heie,C,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0229627943828,Jytte,Guteland,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0174490514929,Marcus,Andersson,S,602,0.00,0.00,80,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0244552157217,Annelie,Sjöberg,SD,0,,,6,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0283284978818,Markus,Kallifatides,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0237055280513,Roland,Utbult,KD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0516528386117,Patrik,Björck,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0575283695521,Helena,Storckenfeldt,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0452755722723,Björn,Söder,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0358514648113,Marléne,Lund Kopparklint,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0537400268911,Caroline,Helmersson Olsson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0810852280213,Marie-Louise,Hänel Sandström,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0692076685824,Camilla,Hansén,MP,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+028954589415,Ann-Sofie,Alm,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0776705932527,Ciczie,Weidby,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0764949934324,Ulrika,Heindorff,M,1227,0.00,0.00,223,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0360160202728,Emma,Ahlström Köster,M,1336,0.00,0.00,225,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0469384565811,Anders,Alftberg,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0603366539729,Malin,Danielsson,L,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0227531635413,Lars,Püss,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0257313105220,Arber,Gashi,S,396,0.00,0.00,99,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+025158809026,Ida,Gabrielsson,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0281670919717,Jörgen,Grubb,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0397073482210,Camilla,Mårtensen,L,1053,0.00,0.00,153,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0121939297619,Jamal,El-Haj,-,724,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0331791853028,Yasmine,Eriksson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0800956862429,Gulan,Avci,L,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+051207517226,Jimmie,Åkesson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0937688366013,Peter,Hultqvist,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0240670797111,Björn,Tidland,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0371882294919,Carita,Boulwén,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0406831930624,Henrik,Vinge,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0301987597720,Liza-Maria,Norlin,KD,218,0.00,0.00,0,,,50.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0381853591928,Malte,Tängmark Roos,MP,498,0.00,0.00,50,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0504851635310,Daniel,Helldén,MP,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0161972600410,Elsa,Widding,-,878,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0641953830512,Magnus,Persson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0163772273014,Anna,Vedin,M,148,0.00,0.00,12,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+033935884729,Martina,Johansson,C,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+036926802512,Blåvitt,Elofsson,S,304,0.00,0.00,50,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0926214745119,Heléne,Björklund,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0653578338415,Agneta,Nilsson,S,304,0.00,0.00,53,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0980092192122,Joar,Forssell,L,1962,0.00,0.00,241,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0879782396219,Olle,Thorell,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0906620634423,Eleonore,Lundkvist,M,245,0.00,0.00,0,,,50.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0112806493429,Fredrik,Saweståhl,M,553,0.00,0.00,49,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0386912710815,Mats,Arkhem,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0831636664429,Mattias,Karlsson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+094145171913,Unni,Björnerfors,SD,337,0.00,0.00,42,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0834510274913,Charlotte,Nordström,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0161972600410,Elsa,Widding,-,175,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+098412828516,Magdalena,Andersson,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0628005785225,Jörgen,Berglund,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0228027853620,Vasiliki,Tsouplaki,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0376395541120,Joakim,Sandell,S,1619,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+035234573112,Anna-Lena,Hedberg,SD,987,0.00,0.00,191,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0648224557612,Åsa,Karlsson,S,1992,0.00,0.00,282,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0153782796218,Ulf,Rexefjord,SD,71,0.00,0.00,0,,,50.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0170585430421,Jimmy,Ståhl,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0502490570219,Kristina,Axén Olin,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0398471271026,Frida,Tånghag,V,247,0.00,0.00,24,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0488332307829,Abraham,Halef,S,478,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0389220391128,Christian,Carlsson,KD,1889,0.00,0.00,223,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0852475703226,Lorena,Delgado Varas,-,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0246927519019,Karin,Rågsjö,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0265240520811,Leif,Gripestam,M,0,,,30,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0630820052511,Per-Arne,Håkansson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0939158389321,Samuel,Gonzalez Westling,V,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0204240926023,Markus,Wiechel,SD,2066,0.00,0.00,273,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0717363246311,Jessica,Stegrud,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0780214960516,Eva,Lindh,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0604811710522,Ida,Drougge,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0503029811325,David,Josefsson,M,2111,0.00,0.00,225,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0178323535715,Johnny,Svedin,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+049290762318,ClasGöran,Carlsson,S,1084,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0523902030928,Aylin,Nouri,S,1800,0.00,0.00,197,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0395762282903,Elsemarie,Bjellqvist,S,618,0.00,0.00,37,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0144048894712,Ellen,Juntti,M,1989,0.00,0.00,282,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0456680171315,Charlotte,Quensel,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0522054204918,Mattias,Karlsson,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0947572086414,Anne-Li,Sjölund,C,1801,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0410640630411,Ulrik,Nilsson,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0768554866215,Katja,Nyberg,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0360187680814,Mats,Hellhoff,SD,396,0.00,0.00,99,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0598792324417,Ulrika,Jörgensen,M,1084,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0287315215921,Mona,Smedman,C,285,0.00,0.00,62,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0911916463828,Fredrik,Lundh Sammeli,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0407081382317,Anna-Caren,Sätherberg,S,1519,0.00,0.00,257,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0760500234712,Monica,Haider,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0722683622001,Lars,Jilmstad,M,1332,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0627450126815,Kajsa,Fredholm,V,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0951905661227,Christofer,Bergenblock,C,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0316505710324,Janine,Alm Ericson,MP,1689,0.00,0.00,262,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0802546764724,Åsa,Westlund,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0148424181819,Ann-Christine,Frohm,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0341628241813,Marianne,Fundahn,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0589561178823,Peter,Hedberg,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0853395328224,Lena,Hallengren,S,982,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0119672047211,Madeleine,Atlas,C,0,,,13,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0972636989226,Dzenan,Cisija,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0947134226212,Markus,Kauppinen,S,304,0.00,0.00,50,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0860364634014,Mattias,Ottosson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0822010116020,Jim,Svensk Larm,S,320,0.00,0.00,59,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0344222203323,Dennis,Dioukarev,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0955748436811,Robert,Stenkvist,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0121939297619,Jamal,El-Haj,-,1413,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0376353897112,Leif,Nysmed,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0576619284416,Aphram,Melki,C,618,0.00,0.00,62,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+048561486727,Isabell,Mixter,V,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0615175917521,Kent,Kumpula,SD,641,0.00,0.00,73,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0183544538819,Patrik,Jönsson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0412148992926,Hanna,Westerén,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0729710260118,Helena,Bouveng,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0497217816024,Markus,Selin,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0802091197024,Andrea,Andersson Tay,V,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0792733370419,Magnus,Oscarsson,KD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0340418158820,Daniel,Persson,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0371013828421,Lars,Larsson,SD,0,,,3,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0251136832626,Muharrem,Demirok,C,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+065105536026,Niklas,Karlsson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0557180142229,Fredrik,Lindahl,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0709911904721,Johanna,Rantsi,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0903081277919,Helena,Vilhelmsson,C,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0273506284025,Edward,Riedl,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0546731406922,Rebecka,Le Moine,MP,1742,0.00,0.00,225,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+025967059622,Magnus,Manhammar,S,1575,0.00,0.00,239,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0369212790927,Sofia,Skönnbrink,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0880018341619,Thomas,Morell,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0576122429317,Martin,Melin,L,908,0.00,0.00,201,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0425115010020,Kadir,Kasirga,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0992867772421,Nils,Seye Larsen,MP,396,0.00,0.00,62,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0977592683711,Magnus,Jacobsson,KD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0737824098113,Magnus,Berntsson,KD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+04571388712,Adam,Reuterskiöld,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0653904370212,Fredrik,Olovsson,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+010392780417,Marie,Olsson,S,396,0.00,0.00,99,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+037561614928,Lawen,Redar,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+010643534813,Eric,Westroth,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+027964311318,Karin,Sundin,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0926477102420,Cecilia,Rönn,L,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+066036027425,Mikael,Damsgaard,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0678597762924,Martin,Westmont,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0742883909221,John,E Weinerhall,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0604604418610,Jacob,Risberg,MP,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0202577142527,Matheus,Enholm,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+02910042914,Carina,Ödebrink,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0564126739422,Åsa,Coenraads,M,1110,0.00,0.00,117,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0973350087929,Patrik,Karlson,L,691,0.00,0.00,99,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0534870997412,Åsa,Hartzell,M,26,0.00,0.00,69,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0469084171710,Ulrika,Westerlund,MP,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0987246082523,Paula,Örn,S,337,0.00,0.00,97,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+025931369428,Jonas,Andersson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0783069490115,Mirja,Räihä,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0721509806321,Nooshi,Dadgostar,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0665360289423,Fredrik,Stenberg,S,388,0.00,0.00,15,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0847676507229,Stina,Larsson,C,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+055257333723,Oscar,Sjöstedt,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0409655917321,Jakob,Olofsgård,L,1671,0.00,0.00,272,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+065701062615,Runar,Filper,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0773497241728,Roger,Hedlund,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0640627133410,Elisabeth,Falkhaven,MP,1084,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0130640724922,Clara,Aranda,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0803790353229,Azra,Muranovic,S,749,0.00,0.00,153,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0538387395826,Mats,Green,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0132818093422,Rickard,Nordin,C,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0802606848923,Mariya,Voyvodova,S,308,0.00,0.00,12,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0111697351426,Louise,Eklund,L,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0682989845822,Håkan,Svenneling,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0519740099915,Saila,Quicklund,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0211757295524,Josef,Fransson,SD,1630,0.00,0.00,239,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0494843794418,Martin,Ådahl,C,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0294138886823,Martin,Kinnunen,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0932000030511,Maria,Stockhaus,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0613297818326,Mathias,Tegnér,S,1826,0.00,0.00,272,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0111479807829,Anna,Wallentheim,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0499755198526,Mattias,Jonsson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0910803550317,Lena,Johansson,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0922497728524,Ardalan,Shekarabi,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0296384583518,Åsa,Eriksson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0509415296421,Kjell-Arne,Ottosson,KD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0456522027421,Linnéa,Wickman,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0427836082425,Fredrik,Lindstål,C,0,,,30,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0530425150220,Annika,Strandhäll,S,1519,0.00,0.00,257,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0290003389021,Chris,Dahlqvist,SD,0,,,50,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0986091320811,Catarina,Deremar,C,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+014744660015,Mikael,Damberg,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0433422973328,Kristoffer,Lindberg,S,1053,0.00,0.00,243,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0747883322423,Amir,Jawad,L,73,0.00,0.00,0,,,50.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0930305890123,Sara-Lena,Bjälkö,SD,1053,0.00,0.00,200,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0157618290428,Rashid,Farivar,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0618938634020,Marcus,Wennerström,S,200,0.00,0.00,49,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0962410717322,Sultan,Kayhan,S,1084,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0667220767927,Erik,Ezelius,S,1890,0.00,0.00,241,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+041911485722,Magdalena,Thuresson,M,792,0.00,0.00,220,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+069534526423,Mathias,Bengtsson,KD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0965245623824,Nicklas,Attefjord,MP,448,0.00,0.00,54,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+023767922422,Mats,Persson,L,1084,0.00,0.00,141,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+07921826010,Anna-Belle,Strömberg,S,1671,0.00,0.00,272,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0515213566019,Lars,Isacsson,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0198917587520,Maj,Karlsson,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0984153507725,Gustaf,Göthberg,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0229760896014,Anders,W Jonsson,C,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0472349361027,Kalle,Olsson,S,1851,0.00,0.00,187,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0985943148917,Victoria,Tiblom,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0779329190517,Kjell,Jansson,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0877778793323,Johan,Büser,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0645111757928,Elin,Gustafsson,S,1084,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0345062474310,Mona,Olin,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0966063008623,Leonid,Yurkovskiy,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0138741628520,Angelika,Bengtsson,SD,1800,0.00,0.00,252,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+07012286624,Daniel,Riazat,-,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+088461404416,Richard,Herrey,M,618,0.00,0.00,47,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0103624617217,Helén,Pettersson,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0737666060225,Joakim,Järrebring,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0191189790215,Peter,Ollén,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0271338654822,Ola,Möller,S,2137,0.00,0.00,291,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0204443909416,Johan,Hedin,C,1040,0.00,0.00,69,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0256716955026,Serkan,Köse,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0229350341619,Ilona,Szatmári Waldau,V,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0473783431010,Morgan,Johansson,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0866055333028,Alexandra,Anstrell,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0274462857213,Petter,Löberg,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0810201628512,Ann-Charlotte,Hammar Johnsson,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0362779191527,Erik,Hellsborn,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+02658325625,Angelica,Lundberg,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0587736055221,Niels,Paarup-Petersen,C,1800,0.00,0.00,282,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0591055036519,Mauricio,Rojas,L,980,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0888807074321,Amanda,Lind,MP,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0202626512110,Lars-Ingvar,Ljungman,M,0,,,50,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0671241874717,Elisabeth,Björnsdotter Rahm,M,1084,0.00,0.00,91,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0112333043027,Rasmus,Giertz,SD,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0796312429425,Viktor,Wärnick,M,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0494242537816,Hans,Eklind,KD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0525562399327,Caroline,Högström,M,808,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0372414474424,Oskar,Svärd,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0254021157518,Lars,Andersson,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0210444373111,Katarina,Luhr,MP,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0584183916016,Ulf,Holm,MP,77,0.00,0.00,71,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0963046628824,Christian,Lindefjärd,SD,396,0.00,0.00,99,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0448973586529,Adrian,Magnusson,S,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+039102787629,Oliver,Rosengren,M,1053,0.00,0.00,203,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0492644357418,Per,Söderlund,SD,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0766496753128,Fredrik,Malm,L,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0506541436524,Sanne,Lennström,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0502688311316,Anna,Vikström,S,2137,0.00,0.00,294,0.00,0.00,80.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
