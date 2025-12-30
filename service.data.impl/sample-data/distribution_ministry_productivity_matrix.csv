@@ -1,4 +1,30 @@
 ministry_name,year,documents_produced,propositions,government_bills,unique_contributors,performance_assessment
-Kulturdepartementet,2025,319,0,0,0,High-performing ministry
-Kulturdepartementet,2024,154,0,0,0,High-performing ministry
-Kulturdepartementet,2023,127,0,0,0,High-performing ministry
+Finansdepartementet,2025,55,55,0,0,High-performing ministry
+Justitiedepartementet,2025,37,37,0,0,High-performing ministry
+Socialdepartementet,2025,26,26,0,0,High-performing ministry
+Landsbygds- och infrastrukturdepartementet,2025,21,21,0,0,Standard ministry performance
+Klimat- och näringslivsdepartementet,2025,16,16,0,0,Standard ministry performance
+Utbildningsdepartementet,2025,10,10,0,0,Standard ministry performance
+Försvarsdepartementet,2025,9,9,0,0,Standard ministry performance
+Utrikesdepartementet,2025,9,9,0,0,Standard ministry performance
+Kulturdepartementet,2025,4,4,0,0,Underperforming ministry - review needed
+Statsrådsberedningen,2025,3,3,0,0,Underperforming ministry - review needed
+Arbetsmarknadsdepartementet,2025,3,3,0,0,Underperforming ministry - review needed
+Finansdepartementet,2024,20,20,0,0,High-performing ministry
+Justitiedepartementet,2024,15,15,0,0,High-performing ministry
+Klimat- och näringslivsdepartementet,2024,5,5,0,0,High-performing ministry
+Utrikesdepartementet,2024,5,5,0,0,High-performing ministry
+Landsbygds- och infrastrukturdepartementet,2024,4,4,0,0,Standard ministry performance
+Arbetsmarknadsdepartementet,2024,3,3,0,0,Standard ministry performance
+Kulturdepartementet,2024,3,3,0,0,Standard ministry performance
+Statsrådsberedningen,2024,2,2,0,0,Underperforming ministry - review needed
+Socialdepartementet,2024,1,1,0,0,Underperforming ministry - review needed
+Finansdepartementet,2023,15,15,0,0,High-performing ministry
+Justitiedepartementet,2023,12,12,0,0,High-performing ministry
+Klimat- och näringslivsdepartementet,2023,5,5,0,0,High-performing ministry
+Landsbygds- och infrastrukturdepartementet,2023,4,4,0,0,Standard ministry performance
+Utbildningsdepartementet,2023,4,4,0,0,Standard ministry performance
+Socialdepartementet,2023,3,3,0,0,Standard ministry performance
+Statsrådsberedningen,2023,3,3,0,0,Standard ministry performance
+Försvarsdepartementet,2023,3,3,0,0,Standard ministry performance
+Kulturdepartementet,2023,1,1,0,0,Underperforming ministry - review needed

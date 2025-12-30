@@ -1,29 +1,29 @@
 schema,view_name,estimated_rows,dead_rows,last_analyzed,last_auto_analyzed
-public,view_riksdagen_vote_data_ballot_politician_summary,3523352,0,2025-12-30 17:30:39.691415+00,2025-12-30 13:36:11.369591+00
-public,view_riksdagen_committee_ballot_decision_politician_summary,1577935,0,2025-12-30 17:30:36.993843+00,2025-12-30 13:35:16.436317+00
-public,view_riksdagen_vote_data_ballot_politician_summary_daily,458976,0,2025-12-30 17:30:40.821315+00,2025-12-30 17:02:56.103514+00
-public,view_riksdagen_vote_data_ballot_politician_summary_weekly,234252,0,2025-12-30 17:30:42.350852+00,2025-12-30 17:03:09.353428+00
-public,view_riksdagen_politician_document,227973,0,2025-12-30 17:30:38.058012+00,2025-12-30 17:02:14.619047+00
-public,view_riksdagen_vote_data_ballot_party_summary,83498,0,2025-12-30 17:30:38.669104+00,2025-12-30 17:02:19.755996+00
-public,view_riksdagen_vote_data_ballot_politician_summary_monthly,77334,0,2025-12-30 17:30:41.568065+00,2025-12-30 17:02:55.127539+00
-public,view_riksdagen_org_document_daily_summary,66625,0,2025-12-30 17:30:37.587013+00,2025-12-30 17:01:54.060794+00
-public,view_riksdagen_politician_document_daily_summary,58602,0,2025-12-30 17:30:38.138418+00,2025-12-30 17:02:16.820938+00
-public,view_riksdagen_committee_decisions,44834,0,2025-12-30 17:30:37.424033+00,2025-12-30 17:01:53.630689+00
-public,view_riksdagen_committee_ballot_decision_party_summary,34558,0,2025-12-30 17:30:29.559484+00,2025-12-30 13:34:48.658148+00
-public,view_riksdagen_document_type_daily_summary,32558,0,2025-12-30 17:30:37.48834+00,2025-12-30 17:01:53.790221+00
-public,view_riksdagen_vote_data_ballot_party_summary_daily,10619,0,2025-12-30 17:30:38.853324+00,2025-12-30 17:02:20.502051+00
-public,view_riksdagen_vote_data_ballot_summary,10095,0,2025-12-30 17:30:42.418585+00,2025-12-30 17:02:56.329374+00
-public,view_riksdagen_vote_data_ballot_politician_summary_annual,9655,0,2025-12-30 17:30:39.915446+00,2025-12-30 17:02:47.376216+00
-public,view_riksdagen_party_document_daily_summary,8557,0,2025-12-30 17:30:37.615718+00,2025-12-30 17:01:54.128926+00
-public,view_riksdagen_committee_decision_type_org_summary,7210,0,2025-12-30 17:30:37.086743+00,2025-12-30 17:01:52.596511+00
-public,view_riksdagen_vote_data_ballot_party_summary_weekly,5470,0,2025-12-30 17:30:38.996057+00,2025-12-30 17:02:28.33101+00
-public,view_riksdagen_committee_ballot_decision_summary,4522,0,2025-12-30 17:30:37.066216+00,2025-12-30 17:01:52.536519+00
-public,view_worldbank_indicator_data_country_summary,4111,0,2025-12-30 17:30:42.464677+00,2025-12-30 17:02:56.717792+00
-public,view_riksdagen_committee_decision_type_summary,3343,0,2025-12-30 17:30:37.091784+00,2025-12-30 17:01:52.632432+00
-public,view_riksdagen_vote_data_ballot_party_summary_monthly,1804,0,2025-12-30 17:30:38.886317+00,2025-12-30 17:02:21.728157+00
-public,view_riksdagen_politician_document_summary,1346,0,2025-12-30 17:30:38.165204+00,2025-12-30 17:02:16.933801+00
-public,view_riksdagen_vote_data_ballot_summary_daily,1314,0,2025-12-30 17:30:42.432092+00,2025-12-30 17:02:56.391835+00
-public,view_riksdagen_vote_data_ballot_summary_weekly,670,0,2025-12-30 17:30:42.440726+00,2025-12-30 17:02:56.420665+00
-public,view_riksdagen_vote_data_ballot_summary_monthly,220,0,2025-12-30 17:30:42.435067+00,2025-12-30 17:02:56.404039+00
-public,view_riksdagen_vote_data_ballot_party_summary_annual,201,0,2025-12-30 17:30:38.675788+00,2025-12-30 17:02:19.797859+00
-public,view_riksdagen_vote_data_ballot_summary_annual,24,0,2025-12-30 17:30:42.42033+00,2025-12-30 13:36:11.464443+00
+public,view_riksdagen_vote_data_ballot_politician_summary,3522125,0,2025-12-30 21:58:06.425353+00,
+public,view_riksdagen_committee_ballot_decision_politician_summary,1578208,0,2025-12-30 21:58:03.17098+00,
+public,view_riksdagen_vote_data_ballot_politician_summary_daily,458976,0,2025-12-30 21:58:08.550551+00,
+public,view_riksdagen_vote_data_ballot_politician_summary_weekly,234252,0,2025-12-30 21:58:11.717967+00,
+public,view_riksdagen_politician_document,227973,0,2025-12-30 21:58:03.928518+00,2025-12-30 21:57:36.104236+00
+public,view_riksdagen_vote_data_ballot_party_summary,83498,0,2025-12-30 21:58:04.441872+00,2025-12-30 21:57:38.201527+00
+public,view_riksdagen_vote_data_ballot_politician_summary_monthly,77334,0,2025-12-30 21:58:09.947712+00,2025-12-30 21:58:09.228573+00
+public,view_riksdagen_org_document_daily_summary,66625,0,2025-12-30 21:58:03.599578+00,2025-12-30 21:57:33.143507+00
+public,view_riksdagen_politician_document_daily_summary,58602,0,2025-12-30 21:58:03.981982+00,2025-12-30 21:57:36.436348+00
+public,view_riksdagen_committee_decisions,44834,0,2025-12-30 21:58:03.486235+00,2025-12-30 21:57:31.075031+00
+public,view_riksdagen_committee_ballot_decision_party_summary,34558,0,2025-12-30 21:57:27.132753+00,2025-12-30 21:57:16.080414+00
+public,view_riksdagen_document_type_daily_summary,32558,0,2025-12-30 21:58:03.533471+00,2025-12-30 21:57:32.200171+00
+public,view_riksdagen_vote_data_ballot_party_summary_daily,10619,0,2025-12-30 21:58:04.650124+00,2025-12-30 21:57:39.018849+00
+public,view_riksdagen_vote_data_ballot_summary,10095,0,2025-12-30 21:58:11.778106+00,2025-12-30 21:58:11.079368+00
+public,view_riksdagen_vote_data_ballot_politician_summary_annual,9655,0,2025-12-30 21:58:06.644875+00,2025-12-30 21:58:06.175875+00
+public,view_riksdagen_party_document_daily_summary,8557,0,2025-12-30 21:58:03.610697+00,2025-12-30 21:57:33.58785+00
+public,view_riksdagen_committee_decision_type_org_summary,7210,0,2025-12-30 21:58:03.238665+00,2025-12-30 21:57:29.214525+00
+public,view_riksdagen_vote_data_ballot_party_summary_weekly,5470,0,2025-12-30 21:58:04.759639+00,2025-12-30 21:57:39.508192+00
+public,view_riksdagen_committee_ballot_decision_summary,4522,0,2025-12-30 21:58:03.22706+00,2025-12-30 21:57:29.007488+00
+public,view_worldbank_indicator_data_country_summary,4111,0,2025-12-30 21:58:11.821115+00,2025-12-30 21:58:11.707912+00
+public,view_riksdagen_committee_decision_type_summary,3343,0,2025-12-30 21:58:03.244915+00,2025-12-30 21:57:29.597866+00
+public,view_riksdagen_vote_data_ballot_party_summary_monthly,1804,0,2025-12-30 21:58:04.676796+00,2025-12-30 21:57:39.282927+00
+public,view_riksdagen_politician_document_summary,1346,0,2025-12-30 21:58:03.992452+00,2025-12-30 21:57:36.733123+00
+public,view_riksdagen_vote_data_ballot_summary_daily,1314,0,2025-12-30 21:58:11.790417+00,2025-12-30 21:58:11.539323+00
+public,view_riksdagen_vote_data_ballot_summary_weekly,670,0,2025-12-30 21:58:11.798464+00,2025-12-30 21:58:11.553587+00
+public,view_riksdagen_vote_data_ballot_summary_monthly,220,0,2025-12-30 21:58:11.793025+00,2025-12-30 21:58:11.545467+00
+public,view_riksdagen_vote_data_ballot_party_summary_annual,201,0,2025-12-30 21:58:04.491665+00,2025-12-30 21:57:38.462728+00
+public,view_riksdagen_vote_data_ballot_summary_annual,24,0,2025-12-30 21:58:11.779332+00,

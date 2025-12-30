@@ -1,7 +1,7 @@
 Timing is on.
 ==================================================
 CIA Sample Data Extraction
-Started: Tue Dec 30 06:27:29 PM CET 2025
+Started: Tue Dec 30 10:52:49 PM CET 2025
 ==================================================
 
 ==================================================
@@ -15,16 +15,20 @@ Configuration:
   Complete extraction threshold: 3000 rows (smaller datasets extracted fully)
   Output format: CSV with headers
 
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:68: NOTICE:  00000: function cia_tmp_rowcount(text,text) does not exist, skipping
+LOCATION:  does_not_exist_skipping, dropcmds.c:528
 DROP FUNCTION
-Time: 14.948 ms
+Time: 0.721 ms
 CREATE FUNCTION
-Time: 42.382 ms
+Time: 90.945 ms
 Created helper function: cia_tmp_rowcount
 
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:94: NOTICE:  00000: function cia_classify_temporal_view(text) does not exist, skipping
+LOCATION:  does_not_exist_skipping, dropcmds.c:528
 DROP FUNCTION
-Time: 0.892 ms
+Time: 0.218 ms
 CREATE FUNCTION
-Time: 1.036 ms
+Time: 1.314 ms
 Created helper function: cia_classify_temporal_view
 
 
@@ -300,14 +304,14 @@ psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sq
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:282: NOTICE:  00000:   Errors: 0
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
-psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:282: NOTICE:  00000:   Duration: 00:02:52.964967
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:282: NOTICE:  00000:   Duration: 00:04:22.453774
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:282: NOTICE:  00000: ================================================
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:282: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 DO
-Time: 173418.378 ms (02:53.418)
+Time: 262758.464 ms (04:22.758)
 ==================================================
 === PHASE 0 COMPLETE: Materialized Views Refreshed ===
 ==================================================
@@ -322,300 +326,300 @@ Extracting distinct values from all categorical/predicate columns...
 This runs BEFORE view row counting to capture all possible filter values.
 
 Output format is unaligned.
-Time: 0.612 ms
-Time: 81.089 ms
-Time: 5.252 ms
-Time: 2.147 ms
-Time: 1.903 ms
-Time: 1.689 ms
-Time: 1.637 ms
-Time: 5.831 ms
-Time: 1.897 ms
-Time: 1.685 ms
-Time: 0.098 ms
-Time: 46.936 ms
-Time: 0.145 ms
-Time: 0.552 ms
-Time: 1.647 ms
-Time: 0.104 ms
+Time: 0.704 ms
+Time: 206.243 ms
+Time: 16.666 ms
+Time: 3.504 ms
+Time: 2.728 ms
+Time: 2.144 ms
+Time: 1.866 ms
+Time: 1.831 ms
+Time: 2.118 ms
+Time: 1.723 ms
+Time: 0.126 ms
+Time: 52.934 ms
+Time: 0.133 ms
+Time: 0.683 ms
+Time: 1.787 ms
+Time: 0.122 ms
 Output format is aligned.
 
 Executing distinct value extractions...
 Extracting critical predicate columns...
   [CRITICAL] assignment_data.org_code
 COPY 91
-Time: 90.225 ms
+Time: 106.954 ms
   [CRITICAL] assignment_data.role_code
 COPY 75
-Time: 11.591 ms
+Time: 6.750 ms
   [CRITICAL] assignment_data.status
 COPY 5
-Time: 6.650 ms
+Time: 6.072 ms
   [CRITICAL] assignment_data.detail
 COPY 1329
-Time: 7.429 ms
+Time: 8.744 ms
   [CRITICAL] assignment_data.assignment_type
 COPY 7
-Time: 5.434 ms
+Time: 6.067 ms
   [CRITICAL] assignment_data.intressent_id
 COPY 2000
-Time: 7.476 ms
+Time: 8.564 ms
   [CRITICAL] person_data.party
 COPY 17
-Time: 1.883 ms
+Time: 1.950 ms
   [CRITICAL] person_data.status
 COPY 246
-Time: 1.196 ms
+Time: 1.469 ms
   [CRITICAL] person_data.gender
 COPY 2
-Time: 0.774 ms
+Time: 0.829 ms
   [CRITICAL] person_data.election_region
 COPY 63
-Time: 0.797 ms
+Time: 0.824 ms
   [CRITICAL] vote_data.vote
 COPY 4
-Time: 499.336 ms
+Time: 361.149 ms
   [CRITICAL] vote_data.ballot_type
 COPY 1
-Time: 356.182 ms
+Time: 269.476 ms
   [CRITICAL] vote_data.party
 COPY 9
-Time: 477.143 ms
+Time: 337.478 ms
   [CRITICAL] vote_data.gender
 COPY 4
-Time: 448.133 ms
+Time: 324.949 ms
   [CRITICAL] document_data.document_type
 COPY 4
-Time: 38.016 ms
+Time: 26.028 ms
   [CRITICAL] document_data.status
 COPY 134
-Time: 26.784 ms
+Time: 35.401 ms
   [CRITICAL] document_data.org
 COPY 76
-Time: 26.622 ms
+Time: 27.383 ms
   [CRITICAL] document_data.rm
 COPY 28
-Time: 27.730 ms
+Time: 25.871 ms
   [CRITICAL] document_data.sub_type
 COPY 16
-Time: 29.885 ms
+Time: 47.965 ms
   [CRITICAL] committee_document_data.org
 COPY 31
-Time: 2.563 ms
+Time: 139.489 ms
   [CRITICAL] committee_document_data.status
 COPY 113
-Time: 2.835 ms
+Time: 3.602 ms
   [CRITICAL] committee_document_data.rm
 COPY 27
-Time: 2.334 ms
+Time: 2.160 ms
   [CRITICAL] committee_document_data.sub_type
 COPY 3
-Time: 1.767 ms
+Time: 1.777 ms
   [CRITICAL] committee_proposal_data.decision_type
 COPY 7
-Time: 16.444 ms
+Time: 60.239 ms
   [CRITICAL] committee_proposal_data.winner
 COPY 44
-Time: 15.295 ms
+Time: 17.481 ms
   [CRITICAL] committee_proposal_data.committee_report
 COPY 778
-Time: 13.956 ms
+Time: 14.866 ms
   [CRITICAL] committee_proposal_data.rm
 COPY 26
-Time: 15.351 ms
+Time: 15.823 ms
   [CRITICAL] document_status_container.document_category
 COPY 0
-Time: 10.689 ms
+Time: 6.675 ms
   [CRITICAL] document_element.document_type
 COPY 43
-Time: 66.362 ms
+Time: 61.670 ms
   [CRITICAL] document_element.status
 COPY 500
-Time: 70.523 ms
+Time: 59.082 ms
   [CRITICAL] document_element.org
 COPY 311
-Time: 69.530 ms
+Time: 58.338 ms
   [CRITICAL] document_element.rm
 COPY 60
-Time: 65.512 ms
+Time: 56.425 ms
   [CRITICAL] document_element.sub_type
 COPY 98
-Time: 72.722 ms
+Time: 58.787 ms
   [CRITICAL] document_element.doc_type
 COPY 92
-Time: 82.481 ms
+Time: 64.181 ms
   [CRITICAL] document_element.database_source
 COPY 5
-Time: 76.429 ms
+Time: 58.876 ms
   [CRITICAL] detail_data.code
 COPY 17
-Time: 11.291 ms
+Time: 277.845 ms
   [CRITICAL] detail_data.detail_type
 COPY 6
-Time: 5.142 ms
+Time: 4.245 ms
 
 Extracting additional categorical columns dynamically...
   [AUTO] against_proposal_data.parties
 COPY 183
-Time: 88.587 ms
+Time: 701.762 ms
   [AUTO] against_proposal_data.proposal_type
 COPY 1
-Time: 15.322 ms
+Time: 9.579 ms
   [AUTO] assignment_element.assignment_type
 COPY 0
-Time: 4.274 ms
+Time: 7.307 ms
   [AUTO] assignment_element.org_code
 COPY 0
-Time: 0.216 ms
+Time: 0.244 ms
   [AUTO] assignment_element.role_code
 COPY 0
-Time: 0.171 ms
+Time: 0.252 ms
   [AUTO] assignment_element.status
 COPY 0
-Time: 0.164 ms
+Time: 0.250 ms
   [AUTO] committee_proposal_component_0.document_committee_proposal__0
 COPY 1000
-Time: 31.396 ms
+Time: 193.716 ms
   [AUTO] committee_proposal_data.against_proposal_parties
 COPY 205
-Time: 16.578 ms
+Time: 15.712 ms
   [AUTO] committee_proposal_data.ballot_summary_item
 COPY 1000
-Time: 36.141 ms
+Time: 37.418 ms
   [AUTO] country_element.income_level_value
 COPY 3
-Time: 4.970 ms
+Time: 47.408 ms
   [AUTO] country_element.iso_2code
 COPY 211
-Time: 0.508 ms
+Time: 0.516 ms
   [AUTO] country_element.lending_type_value
 COPY 1
-Time: 0.268 ms
+Time: 0.261 ms
   [AUTO] detail_element.code
 COPY 0
-Time: 1.952 ms
+Time: 0.957 ms
   [AUTO] detail_element.detail_type
 COPY 0
-Time: 0.202 ms
+Time: 0.257 ms
   [AUTO] document_activity_data.code
 COPY 33
-Time: 147.425 ms
+Time: 345.046 ms
   [AUTO] document_activity_data.process
 COPY 6
-Time: 50.703 ms
+Time: 41.825 ms
   [AUTO] document_activity_data.status
 COPY 2
-Time: 46.626 ms
+Time: 39.787 ms
   [AUTO] document_attachment.file_type
 COPY 4
-Time: 108.504 ms
+Time: 87.523 ms
   [AUTO] document_detail_data.code
 COPY 16
-Time: 159.962 ms
+Time: 3404.646 ms (00:03.405)
   [AUTO] document_element.debate_name
 COPY 89
-Time: 89.861 ms
+Time: 63.926 ms
   [AUTO] document_element.document_format
 COPY 1
-Time: 72.618 ms
+Time: 56.038 ms
   [AUTO] document_element.document_name
 COPY 95
-Time: 82.092 ms
+Time: 66.527 ms
   [AUTO] document_element.domain_org
 COPY 1
-Time: 83.051 ms
+Time: 60.607 ms
   [AUTO] document_element.lang
 COPY 23
-Time: 76.743 ms
+Time: 61.148 ms
   [AUTO] document_element.origin
 COPY 36
-Time: 91.817 ms
+Time: 63.197 ms
   [AUTO] document_person_reference_da_0.party_short_code
 COPY 16
-Time: 54.044 ms
+Time: 33.827 ms
   [AUTO] document_person_reference_da_0.role_description
 COPY 1
-Time: 47.392 ms
+Time: 33.551 ms
   [AUTO] document_proposal_data.chamber
 COPY 25
-Time: 27.083 ms
+Time: 2145.096 ms (00:02.145)
   [AUTO] document_proposal_data.committee
 COPY 71
-Time: 30.823 ms
+Time: 18.624 ms
   [AUTO] document_proposal_data.decision_type
 COPY 4
-Time: 21.450 ms
+Time: 17.427 ms
   [AUTO] document_proposal_data.processed_in
 COPY 1000
-Time: 29.958 ms
+Time: 21.691 ms
   [AUTO] document_reference_data.reference_type
 COPY 2
-Time: 200.600 ms
+Time: 2296.985 ms (00:02.297)
   [AUTO] document_status_container.document_document_status_con_0
 COPY 1000
-Time: 77.199 ms
+Time: 56.230 ms
   [AUTO] person_container_data.person_person_container_data_0
 COPY 0
-Time: 3.049 ms
+Time: 5.370 ms
   [AUTO] person_element.born_year
 COPY 0
-Time: 2.765 ms
+Time: 0.678 ms
   [AUTO] person_element.election_region
 COPY 0
-Time: 0.194 ms
+Time: 0.272 ms
   [AUTO] person_element.gender
 COPY 0
-Time: 0.229 ms
+Time: 0.266 ms
   [AUTO] person_element.party
 COPY 0
-Time: 0.194 ms
+Time: 0.248 ms
   [AUTO] person_element.status
 COPY 0
-Time: 0.184 ms
+Time: 0.227 ms
   [AUTO] sweden_election_type.election_code
 COPY 0
-Time: 0.480 ms
+Time: 0.714 ms
   [AUTO] sweden_election_type.election_type
 COPY 0
-Time: 0.202 ms
+Time: 0.259 ms
   [AUTO] sweden_political_party.short_code
 COPY 30
-Time: 7.337 ms
+Time: 3.628 ms
   [AUTO] vote_data.electoral_region
 COPY 30
-Time: 501.777 ms
+Time: 331.669 ms
   [AUTO] vote_data.rm
 COPY 24
-Time: 538.740 ms
+Time: 365.752 ms
   [AUTO] vote_meta_data.ballot_type
 COPY 0
-Time: 2.607 ms
+Time: 160.849 ms
   [AUTO] vote_meta_data.group_behavior
 COPY 0
-Time: 0.216 ms
+Time: 0.330 ms
   [AUTO] vote_meta_data.outcome
 COPY 0
-Time: 0.185 ms
+Time: 0.270 ms
   [AUTO] vote_meta_data.proffessional_behavior
 COPY 0
-Time: 0.204 ms
+Time: 0.240 ms
   [AUTO] vote_meta_data.target
 COPY 0
-Time: 0.156 ms
+Time: 0.243 ms
   [AUTO] world_bank_data.country_value
 COPY 6
-Time: 73.059 ms
+Time: 65.336 ms
   [AUTO] world_bank_data.indicator_value
 COPY 1000
-Time: 96.053 ms
+Time: 64.111 ms
 
 Extracting cross-table join key distributions...
   [JOIN] person_data IDs in assignment_data
 COPY 500
-Time: 8.731 ms
+Time: 7.725 ms
   [JOIN] document IDs in document_status_container
 COPY 500
-Time: 51.812 ms
+Time: 57.026 ms
 
 ==================================================
 Distinct value extraction complete.
@@ -624,57 +628,57 @@ Files saved to: distinct_values/
 
 Creating distinct value summary...
 COPY 1
-Time: 0.238 ms
+Time: 0.270 ms
 total 640
 drwxrwxrwx+ 2 vscode vscode  4096 Dec 30 12:35 .
-drwxrwxrwx+ 4 vscode root   32768 Dec 30 17:47 ..
--rw-rw-rw-  1 vscode vscode  4242 Dec 30 18:30 against_proposal_data_parties.csv
--rw-rw-rw-  1 vscode vscode    30 Dec 30 18:30 against_proposal_data_proposal_type.csv
--rw-rw-rw-  1 vscode vscode   136 Dec 30 18:30 assignment_data_assignment_type.csv
--rw-rw-rw-  1 vscode vscode 60664 Dec 30 18:30 assignment_data_detail.csv
--rw-rw-rw-  1 vscode vscode 32915 Dec 30 18:30 assignment_data_intressent_id.csv
--rw-rw-rw-  1 vscode vscode   710 Dec 30 18:30 assignment_data_org_code.csv
--rw-rw-rw-  1 vscode vscode  1908 Dec 30 18:30 assignment_data_role_code.csv
--rw-rw-rw-  1 vscode vscode    88 Dec 30 18:30 assignment_data_status.csv
--rw-rw-rw-  1 vscode vscode    12 Dec 30 18:30 assignment_element_assignment_type.csv
--rw-rw-rw-  1 vscode vscode    12 Dec 30 18:30 assignment_element_org_code.csv
--rw-rw-rw-  1 vscode vscode    12 Dec 30 18:30 assignment_element_role_code.csv
--rw-rw-rw-  1 vscode vscode    12 Dec 30 18:30 assignment_element_status.csv
--rw-rw-rw-  1 vscode vscode   245 Dec 30 18:30 committee_document_data_org.csv
--rw-rw-rw-  1 vscode vscode   332 Dec 30 18:30 committee_document_data_rm.csv
--rw-rw-rw-  1 vscode vscode   983 Dec 30 18:30 committee_document_data_status.csv
--rw-rw-rw-  1 vscode vscode    37 Dec 30 18:30 committee_document_data_sub_type.csv
--rw-rw-rw-  1 vscode vscode 11237 Dec 30 18:30 committee_proposal_component_0_document_committee_proposal__0.csv
--rw-rw-rw-  1 vscode vscode  4578 Dec 30 18:30 committee_proposal_data_against_proposal_parties.csv
--rw-rw-rw-  1 vscode vscode  9012 Dec 30 18:30 committee_proposal_data_ballot_summary_item.csv
--rw-rw-rw-  1 vscode vscode  6572 Dec 30 18:30 committee_proposal_data_committee_report.csv
--rw-rw-rw-  1 vscode vscode    94 Dec 30 18:30 committee_proposal_data_decision_type.csv
--rw-rw-rw-  1 vscode vscode   338 Dec 30 18:30 committee_proposal_data_rm.csv
--rw-rw-rw-  1 vscode vscode   756 Dec 30 18:30 committee_proposal_data_winner.csv
--rw-rw-rw-  1 vscode vscode    72 Dec 30 18:30 country_element_income_level_value.csv
--rw-rw-rw-  1 vscode vscode  1067 Dec 30 18:30 country_element_iso_2code.csv
--rw-rw-rw-  1 vscode vscode    30 Dec 30 18:30 country_element_lending_type_value.csv
--rw-rw-rw-  1 vscode vscode   379 Dec 30 18:30 detail_data_code.csv
--rw-rw-rw-  1 vscode vscode    88 Dec 30 18:30 detail_data_detail_type.csv
--rw-rw-rw-  1 vscode vscode    12 Dec 30 18:30 detail_element_code.csv
--rw-rw-rw-  1 vscode vscode    12 Dec 30 18:30 detail_element_detail_type.csv
+drwxrwxrwx+ 4 vscode root   32768 Dec 30 18:32 ..
+-rw-rw-rw-  1 vscode vscode  4242 Dec 30 22:57 against_proposal_data_parties.csv
+-rw-rw-rw-  1 vscode vscode    30 Dec 30 22:57 against_proposal_data_proposal_type.csv
+-rw-rw-rw-  1 vscode vscode   136 Dec 30 22:57 assignment_data_assignment_type.csv
+-rw-rw-rw-  1 vscode vscode 60664 Dec 30 22:57 assignment_data_detail.csv
+-rw-rw-rw-  1 vscode vscode 32915 Dec 30 22:57 assignment_data_intressent_id.csv
+-rw-rw-rw-  1 vscode vscode   710 Dec 30 22:57 assignment_data_org_code.csv
+-rw-rw-rw-  1 vscode vscode  1908 Dec 30 22:57 assignment_data_role_code.csv
+-rw-rw-rw-  1 vscode vscode    88 Dec 30 22:57 assignment_data_status.csv
+-rw-rw-rw-  1 vscode vscode    12 Dec 30 22:57 assignment_element_assignment_type.csv
+-rw-rw-rw-  1 vscode vscode    12 Dec 30 22:57 assignment_element_org_code.csv
+-rw-rw-rw-  1 vscode vscode    12 Dec 30 22:57 assignment_element_role_code.csv
+-rw-rw-rw-  1 vscode vscode    12 Dec 30 22:57 assignment_element_status.csv
+-rw-rw-rw-  1 vscode vscode   245 Dec 30 22:57 committee_document_data_org.csv
+-rw-rw-rw-  1 vscode vscode   332 Dec 30 22:57 committee_document_data_rm.csv
+-rw-rw-rw-  1 vscode vscode   983 Dec 30 22:57 committee_document_data_status.csv
+-rw-rw-rw-  1 vscode vscode    37 Dec 30 22:57 committee_document_data_sub_type.csv
+-rw-rw-rw-  1 vscode vscode 11237 Dec 30 22:57 committee_proposal_component_0_document_committee_proposal__0.csv
+-rw-rw-rw-  1 vscode vscode  4578 Dec 30 22:57 committee_proposal_data_against_proposal_parties.csv
+-rw-rw-rw-  1 vscode vscode  9012 Dec 30 22:57 committee_proposal_data_ballot_summary_item.csv
+-rw-rw-rw-  1 vscode vscode  6572 Dec 30 22:57 committee_proposal_data_committee_report.csv
+-rw-rw-rw-  1 vscode vscode    94 Dec 30 22:57 committee_proposal_data_decision_type.csv
+-rw-rw-rw-  1 vscode vscode   338 Dec 30 22:57 committee_proposal_data_rm.csv
+-rw-rw-rw-  1 vscode vscode   756 Dec 30 22:57 committee_proposal_data_winner.csv
+-rw-rw-rw-  1 vscode vscode    72 Dec 30 22:57 country_element_income_level_value.csv
+-rw-rw-rw-  1 vscode vscode  1067 Dec 30 22:57 country_element_iso_2code.csv
+-rw-rw-rw-  1 vscode vscode    30 Dec 30 22:57 country_element_lending_type_value.csv
+-rw-rw-rw-  1 vscode vscode   379 Dec 30 22:57 detail_data_code.csv
+-rw-rw-rw-  1 vscode vscode    88 Dec 30 22:57 detail_data_detail_type.csv
+-rw-rw-rw-  1 vscode vscode    12 Dec 30 22:57 detail_element_code.csv
+-rw-rw-rw-  1 vscode vscode    12 Dec 30 22:57 detail_element_detail_type.csv
 -rw-rw-rw-  1 vscode vscode 11279 Dec 30 12:35 DISTINCT_VALUES_ANALYSIS.md
--rw-rw-rw-  1 vscode vscode   335 Dec 30 18:30 document_activity_data_code.csv
--rw-rw-rw-  1 vscode vscode   104 Dec 30 18:30 document_activity_data_process.csv
--rw-rw-rw-  1 vscode vscode    44 Dec 30 18:30 document_activity_data_status.csv
--rw-rw-rw-  1 vscode vscode    50 Dec 30 18:30 document_attachment_file_type.csv
--rw-rw-rw-  1 vscode vscode    53 Dec 30 18:30 document_data_document_type.csv
--rw-rw-rw-  1 vscode vscode  1082 Dec 30 18:30 document_data_org.csv
--rw-rw-rw-  1 vscode vscode   367 Dec 30 18:30 document_data_rm.csv
--rw-rw-rw-  1 vscode vscode  1255 Dec 30 18:30 document_data_status.csv
--rw-rw-rw-  1 vscode vscode   203 Dec 30 18:30 document_data_sub_type.csv
--rw-rw-rw-  1 vscode vscode   287 Dec 30 18:30 document_detail_data_code.csv
--rw-rw-rw-  1 vscode vscode    80 Dec 30 18:30 document_element_database_source.csv
--rw-rw-rw-  1 vscode vscode  2097 Dec 30 18:30 document_element_debate_name.csv
--rw-rw-rw-  1 vscode vscode   990 Dec 30 18:30 document_element_doc_type.csv
--rw-rw-rw-  1 vscode vscode    22 Dec 30 18:30 document_element_document_format.csv
--rw-rw-rw-  1 vscode vscode  2199 Dec 30 18:30 document_element_document_name.csv
--rw-rw-rw-  1 vscode vscode   497 Dec 30 18:30 document_element_document_type.csv
+-rw-rw-rw-  1 vscode vscode   335 Dec 30 22:57 document_activity_data_code.csv
+-rw-rw-rw-  1 vscode vscode   104 Dec 30 22:57 document_activity_data_process.csv
+-rw-rw-rw-  1 vscode vscode    44 Dec 30 22:57 document_activity_data_status.csv
+-rw-rw-rw-  1 vscode vscode    50 Dec 30 22:57 document_attachment_file_type.csv
+-rw-rw-rw-  1 vscode vscode    53 Dec 30 22:57 document_data_document_type.csv
+-rw-rw-rw-  1 vscode vscode  1082 Dec 30 22:57 document_data_org.csv
+-rw-rw-rw-  1 vscode vscode   367 Dec 30 22:57 document_data_rm.csv
+-rw-rw-rw-  1 vscode vscode  1255 Dec 30 22:57 document_data_status.csv
+-rw-rw-rw-  1 vscode vscode   203 Dec 30 22:57 document_data_sub_type.csv
+-rw-rw-rw-  1 vscode vscode   287 Dec 30 22:57 document_detail_data_code.csv
+-rw-rw-rw-  1 vscode vscode    80 Dec 30 22:57 document_element_database_source.csv
+-rw-rw-rw-  1 vscode vscode  2097 Dec 30 22:57 document_element_debate_name.csv
+-rw-rw-rw-  1 vscode vscode   990 Dec 30 22:57 document_element_doc_type.csv
+-rw-rw-rw-  1 vscode vscode    22 Dec 30 22:57 document_element_document_format.csv
+-rw-rw-rw-  1 vscode vscode  2199 Dec 30 22:57 document_element_document_name.csv
+-rw-rw-rw-  1 vscode vscode   497 Dec 30 22:57 document_element_document_type.csv
 
 ==================================================
 === PHASE 1 COMPLETE: Distinct Values Extracted ===
@@ -890,7 +894,7 @@ psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sq
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:670: NOTICE:  00000:   Errors: 0
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
-psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:670: NOTICE:  00000:   Duration: 00:00:13.699085
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:670: NOTICE:  00000:   Duration: 00:00:45.281538
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:670: NOTICE:  00000:   Regular views skipped: 55 (cannot be analyzed)
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
@@ -899,7 +903,7 @@ LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:670: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 DO
-Time: 13711.568 ms (00:13.712)
+Time: 45442.464 ms (00:45.442)
 
 ==================================================
 === ANALYZE STATISTICS RESULTS                ===
@@ -908,26 +912,26 @@ Time: 13711.568 ms (00:13.712)
 Displaying sample statistics for materialized views...
 
 COPY 28
-Time: 14.849 ms
+Time: 11.847 ms
   ✓ Statistics exported to: materialized_view_statistics.csv
 
 Top 10 materialized views by estimated row count:
 
                              view_name                              | estimated_rows | total_size |         last_analyzed         
 --------------------------------------------------------------------+----------------+------------+-------------------------------
- public.view_riksdagen_vote_data_ballot_politician_summary          |        3523352 | 1174 MB    | 2025-12-30 17:30:39.691415+00
- public.view_riksdagen_committee_ballot_decision_politician_summary |        1577935 | 728 MB     | 2025-12-30 17:30:36.993843+00
- public.view_riksdagen_vote_data_ballot_politician_summary_daily    |         458976 | 194 MB     | 2025-12-30 17:30:40.821315+00
- public.view_riksdagen_vote_data_ballot_politician_summary_weekly   |         234252 | 83 MB      | 2025-12-30 17:30:42.350852+00
- public.view_riksdagen_politician_document                          |         227973 | 61 MB      | 2025-12-30 17:30:38.058012+00
- public.view_riksdagen_vote_data_ballot_party_summary               |          83498 | 26 MB      | 2025-12-30 17:30:38.669104+00
- public.view_riksdagen_vote_data_ballot_politician_summary_monthly  |          77334 | 26 MB      | 2025-12-30 17:30:41.568065+00
- public.view_riksdagen_org_document_daily_summary                   |          66625 | 4112 kB    | 2025-12-30 17:30:37.587013+00
- public.view_riksdagen_politician_document_daily_summary            |          58602 | 3600 kB    | 2025-12-30 17:30:38.138418+00
- public.view_riksdagen_committee_decisions                          |          44834 | 13 MB      | 2025-12-30 17:30:37.424033+00
+ public.view_riksdagen_vote_data_ballot_politician_summary          |        3522125 | 1174 MB    | 2025-12-30 21:58:06.425353+00
+ public.view_riksdagen_committee_ballot_decision_politician_summary |        1578208 | 728 MB     | 2025-12-30 21:58:03.17098+00
+ public.view_riksdagen_vote_data_ballot_politician_summary_daily    |         458976 | 194 MB     | 2025-12-30 21:58:08.550551+00
+ public.view_riksdagen_vote_data_ballot_politician_summary_weekly   |         234252 | 83 MB      | 2025-12-30 21:58:11.717967+00
+ public.view_riksdagen_politician_document                          |         227973 | 61 MB      | 2025-12-30 21:58:03.928518+00
+ public.view_riksdagen_vote_data_ballot_party_summary               |          83498 | 26 MB      | 2025-12-30 21:58:04.441872+00
+ public.view_riksdagen_vote_data_ballot_politician_summary_monthly  |          77334 | 26 MB      | 2025-12-30 21:58:09.947712+00
+ public.view_riksdagen_org_document_daily_summary                   |          66625 | 4136 kB    | 2025-12-30 21:58:03.599578+00
+ public.view_riksdagen_politician_document_daily_summary            |          58602 | 3624 kB    | 2025-12-30 21:58:03.981982+00
+ public.view_riksdagen_committee_decisions                          |          44834 | 13 MB      | 2025-12-30 21:58:03.486235+00
 (10 rows)
 
-Time: 14.923 ms
+Time: 17.530 ms
 
 ==================================================
 
@@ -1278,7 +1282,7 @@ LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:759: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 DO
-Time: 7.159 ms
+Time: 3.635 ms
 
 ==================================================
 === PHASE 3: EXTRACTING TABLE SAMPLE DATA     ===
@@ -1301,223 +1305,223 @@ LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:808: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 DO
-Time: 2.737 ms
+Time: 2.645 ms
 Output format is unaligned.
-Time: 2.022 ms
+Time: 2.094 ms
 Output format is aligned.
 Executing table extractions...
 
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.against_proposal_container (300 rows of 3869 total)
 COPY 300
-Time: 16.852 ms
+Time: 114.148 ms
   ✓ Completed: table_against_proposal_container_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.against_proposal_data (300 rows of 38721 total)
 COPY 300
-Time: 16.035 ms
+Time: 17.317 ms
   ✓ Completed: table_against_proposal_data_sample.csv
 [TABLE-COMPLETE] Extracting: public.agency (1 rows of 1 total)
 COPY 1
-Time: 4.888 ms
+Time: 2.412 ms
   ✓ Completed: table_agency_sample.csv
 [TABLE-COMPLETE] Extracting: public.application_action_event (241 rows of 241 total)
 COPY 241
-Time: 26.699 ms
+Time: 192.134 ms
   ✓ Completed: table_application_action_event_sample.csv
 [TABLE-COMPLETE] Extracting: public.application_configuration (14 rows of 14 total)
 COPY 14
-Time: 0.723 ms
+Time: 0.658 ms
   ✓ Completed: table_application_configuration_sample.csv
 [TABLE-COMPLETE] Extracting: public.application_session (18 rows of 18 total)
 COPY 18
-Time: 27.155 ms
+Time: 96.907 ms
   ✓ Completed: table_application_session_sample.csv
 [TABLE-SAMPLE] Extracting: public.assignment_data (200 rows of 31334 total)
 COPY 200
-Time: 12.188 ms
+Time: 11.825 ms
   ✓ Completed: table_assignment_data_sample.csv
 [TABLE-COMMITTEE-EXTENDED] Extracting: public.committee_document_data (500 rows of 6407 total)
 COPY 500
-Time: 5.787 ms
+Time: 7.190 ms
   ✓ Completed: table_committee_document_data_sample.csv
 [TABLE-COMMITTEE-EXTENDED] Extracting: public.committee_proposal_component_0 (500 rows of 6408 total)
 COPY 500
-Time: 2.536 ms
+Time: 2.168 ms
   ✓ Completed: table_committee_proposal_component_0_sample.csv
 [TABLE-COMMITTEE-EXTENDED] Extracting: public.committee_proposal_container (500 rows of 5700 total)
 COPY 500
-Time: 18.115 ms
+Time: 4.791 ms
   ✓ Completed: table_committee_proposal_container_sample.csv
 [TABLE-COMMITTEE-EXTENDED] Extracting: public.committee_proposal_data (500 rows of 43592 total)
 COPY 500
-Time: 29.343 ms
+Time: 83.622 ms
   ✓ Completed: table_committee_proposal_data_sample.csv
 [TABLE-COMPLETE] Extracting: public.country_element (211 rows of 211 total)
 COPY 211
-Time: 0.628 ms
+Time: 0.716 ms
   ✓ Completed: table_country_element_sample.csv
 [TABLE-COMPLETE] Extracting: public.databasechangelog (412 rows of 412 total)
 COPY 412
-Time: 8.311 ms
+Time: 24.482 ms
   ✓ Completed: table_databasechangelog_sample.csv
 [TABLE-COMPLETE] Extracting: public.databasechangeloglock (1 rows of 1 total)
 COPY 1
-Time: 4.938 ms
+Time: 4.595 ms
   ✓ Completed: table_databasechangeloglock_sample.csv
 [TABLE-SAMPLE] Extracting: public.detail_data (200 rows of 17504 total)
 COPY 200
-Time: 10.710 ms
+Time: 7.048 ms
   ✓ Completed: table_detail_data_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_activity_container (300 rows of 82854 total)
 COPY 300
-Time: 23.711 ms
+Time: 143.409 ms
   ✓ Completed: table_document_activity_container_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_activity_data (300 rows of 282354 total)
 COPY 300
-Time: 117.447 ms
+Time: 247.972 ms
   ✓ Completed: table_document_activity_data_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_attachment (300 rows of 117933 total)
 COPY 300
-Time: 47.435 ms
+Time: 40.285 ms
   ✓ Completed: table_document_attachment_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_attachment_container (300 rows of 65463 total)
 COPY 300
-Time: 31.087 ms
+Time: 191.922 ms
   ✓ Completed: table_document_attachment_container_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_content_data (300 rows of 202742 total)
 COPY 300
-Time: 11293.165 ms (00:11.293)
+Time: 25706.507 ms (00:25.707)
   ✓ Completed: table_document_content_data_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_data (300 rows of 84147 total)
 COPY 300
-Time: 96.421 ms
+Time: 359.542 ms
   ✓ Completed: table_document_data_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_detail_container (300 rows of 82749 total)
 COPY 300
-Time: 410.171 ms
+Time: 210.653 ms
   ✓ Completed: table_document_detail_container_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_detail_data (300 rows of 288565 total)
 COPY 300
-Time: 103.285 ms
+Time: 87.006 ms
   ✓ Completed: table_document_detail_data_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_element (300 rows of 237949 total)
 COPY 300
-Time: 349.186 ms
+Time: 319.292 ms
   ✓ Completed: table_document_element_sample.csv
 [TABLE-PERSON-EXTENDED] Extracting: public.document_person_reference_co_0 (500 rows of 73786 total)
 COPY 500
-Time: 16.140 ms
+Time: 18.304 ms
   ✓ Completed: table_document_person_reference_co_0_sample.csv
 [TABLE-PERSON-EXTENDED] Extracting: public.document_person_reference_da_0 (500 rows of 191851 total)
 COPY 500
-Time: 80.237 ms
+Time: 72.402 ms
   ✓ Completed: table_document_person_reference_da_0_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_proposal_container (300 rows of 76358 total)
 COPY 300
-Time: 23.580 ms
+Time: 141.035 ms
   ✓ Completed: table_document_proposal_container_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_proposal_data (300 rows of 76355 total)
 COPY 300
-Time: 59.147 ms
+Time: 36.494 ms
   ✓ Completed: table_document_proposal_data_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_reference_container (300 rows of 33996 total)
 COPY 300
-Time: 25.859 ms
+Time: 184.236 ms
   ✓ Completed: table_document_reference_container_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_reference_data (300 rows of 184452 total)
 COPY 300
-Time: 62.072 ms
+Time: 53.384 ms
   ✓ Completed: table_document_reference_data_sample.csv
 [TABLE-DOCUMENT-EXTENDED] Extracting: public.document_status_container (300 rows of 83714 total)
 COPY 300
-Time: 27.847 ms
+Time: 28.010 ms
   ✓ Completed: table_document_status_container_sample.csv
 [TABLE-WORLDBANK-EXTENDED] Extracting: public.indicator_element (300 rows of 25000 total)
 COPY 300
-Time: 12.906 ms
+Time: 12.596 ms
   ✓ Completed: table_indicator_element_sample.csv
 [TABLE-SAMPLE] Extracting: public.jv_commit (200 rows of 4620190 total)
 COPY 200
-Time: 1949.863 ms (00:01.950)
+Time: 23879.080 ms (00:23.879)
   ✓ Completed: table_jv_commit_sample.csv
 [TABLE-SAMPLE] Extracting: public.jv_commit_property (200 rows of 4620300 total)
 COPY 200
-Time: 1188.642 ms (00:01.189)
+Time: 13206.603 ms (00:13.207)
   ✓ Completed: table_jv_commit_property_sample.csv
 [TABLE-SAMPLE] Extracting: public.jv_global_id (200 rows of 10674203 total)
 COPY 200
-Time: 8290.457 ms (00:08.290)
+Time: 87903.826 ms (01:27.904)
   ✓ Completed: table_jv_global_id_sample.csv
 [TABLE-SAMPLE] Extracting: public.jv_snapshot (200 rows of 10687839 total)
 COPY 200
-Time: 18620.498 ms (00:18.620)
+Time: 395107.545 ms (06:35.108)
   ✓ Completed: table_jv_snapshot_sample.csv
 [TABLE-COMPLETE] Extracting: public.language_data (135 rows of 135 total)
 COPY 135
-Time: 5.152 ms
+Time: 2.426 ms
   ✓ Completed: table_language_data_sample.csv
 [TABLE-COMPLETE] Extracting: public.person_assignment_data (2487 rows of 2487 total)
 COPY 2487
-Time: 16.135 ms
+Time: 4.019 ms
   ✓ Completed: table_person_assignment_data_sample.csv
 [TABLE-COMPLETE] Extracting: public.person_data (2132 rows of 2132 total)
 COPY 2132
-Time: 35.848 ms
+Time: 16.652 ms
   ✓ Completed: table_person_data_sample.csv
 [TABLE-COMPLETE] Extracting: public.person_detail_data (2487 rows of 2487 total)
 COPY 2487
-Time: 5.605 ms
+Time: 78.525 ms
   ✓ Completed: table_person_detail_data_sample.csv
 [TABLE-COMPLETE] Extracting: public.portal (2 rows of 2 total)
 COPY 2
-Time: 5.335 ms
+Time: 3.701 ms
   ✓ Completed: table_portal_sample.csv
 [TABLE-COMPLETE] Extracting: public.qrtz_cron_triggers (4 rows of 4 total)
 COPY 4
-Time: 0.530 ms
+Time: 8.213 ms
   ✓ Completed: table_qrtz_cron_triggers_sample.csv
 [TABLE-COMPLETE] Extracting: public.qrtz_job_details (4 rows of 4 total)
 COPY 4
-Time: 11.107 ms
+Time: 3.161 ms
   ✓ Completed: table_qrtz_job_details_sample.csv
 [TABLE-COMPLETE] Extracting: public.qrtz_locks (2 rows of 2 total)
 COPY 2
-Time: 9.441 ms
+Time: 2.722 ms
   ✓ Completed: table_qrtz_locks_sample.csv
 [TABLE-COMPLETE] Extracting: public.qrtz_scheduler_state (1 rows of 1 total)
 COPY 1
-Time: 1.632 ms
+Time: 22.594 ms
   ✓ Completed: table_qrtz_scheduler_state_sample.csv
 [TABLE-COMPLETE] Extracting: public.qrtz_triggers (4 rows of 4 total)
 COPY 4
-Time: 1.061 ms
+Time: 24.369 ms
   ✓ Completed: table_qrtz_triggers_sample.csv
 [TABLE-COMPLETE] Extracting: public.rule_violation (2244 rows of 2244 total)
 COPY 2244
-Time: 16.448 ms
+Time: 218.437 ms
   ✓ Completed: table_rule_violation_sample.csv
 [TABLE-COMPLETE] Extracting: public.sweden_political_party (40 rows of 40 total)
 COPY 40
-Time: 0.351 ms
+Time: 2.035 ms
   ✓ Completed: table_sweden_political_party_sample.csv
 [TABLE-SAMPLE] Extracting: public.topic (200 rows of 4608 total)
 COPY 200
-Time: 3.068 ms
+Time: 139.411 ms
   ✓ Completed: table_topic_sample.csv
 [TABLE-SAMPLE] Extracting: public.topics (200 rows of 25000 total)
 COPY 200
-Time: 4.953 ms
+Time: 93.224 ms
   ✓ Completed: table_topics_sample.csv
 [TABLE-COMPLETE] Extracting: public.user_account (1 rows of 1 total)
 COPY 1
-Time: 8.041 ms
+Time: 9.853 ms
   ✓ Completed: table_user_account_sample.csv
 [TABLE-VOTING-EXTENDED] Extracting: public.vote_data (300 rows of 3516606 total)
 COPY 300
-Time: 2157.415 ms (00:02.157)
+Time: 1937.034 ms (00:01.937)
   ✓ Completed: table_vote_data_sample.csv
 [TABLE-SAMPLE] Extracting: public.world_bank_data (200 rows of 598009 total)
 COPY 200
-Time: 220.786 ms
+Time: 198.434 ms
   ✓ Completed: table_world_bank_data_sample.csv
 
 Table extraction completed
@@ -1530,9 +1534,9 @@ Table extraction completed
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:918: NOTICE:  00000: table "cia_view_row_counts" does not exist, skipping
 LOCATION:  DropErrorMsgNonExistent, tablecmds.c:1317
 DROP TABLE
-Time: 20.219 ms
+Time: 34.431 ms
 CREATE TABLE
-Time: 37.787 ms
+Time: 47.229 ms
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: Phase 1: Analyzing 83 views for row counts
@@ -1545,7 +1549,7 @@ psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sq
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: → [1/83] Analyzing: public.pg_stat_statements (VIEW)
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
-psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 9645 rows
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 604 rows
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
@@ -1635,7 +1639,7 @@ psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sq
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: → [16/83] Analyzing: public.view_audit_data_summary (VIEW)
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
-psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 125 rows
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 123 rows
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
@@ -1677,7 +1681,7 @@ psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sq
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: → [23/83] Analyzing: public.view_ministry_productivity_matrix (VIEW)
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
-psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 3 rows
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 29 rows
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
@@ -1725,7 +1729,7 @@ psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sq
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: → [31/83] Analyzing: public.view_riksdagen_committee_ballot_decision_politician_summary (MATERIALIZED VIEW)
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
-psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 1578178 rows
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 1578764 rows
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
@@ -1959,7 +1963,7 @@ psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sq
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: → [70/83] Analyzing: public.view_riksdagen_vote_data_ballot_politician_summary (MATERIALIZED VIEW)
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
-psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 3523352 rows
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 3518305 rows
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
@@ -1971,7 +1975,7 @@ psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sq
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: → [72/83] Analyzing: public.view_riksdagen_vote_data_ballot_politician_summary_daily (MATERIALIZED VIEW)
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
-psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 458976 rows
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 459098 rows
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
@@ -1983,7 +1987,7 @@ psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sq
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: → [74/83] Analyzing: public.view_riksdagen_vote_data_ballot_politician_summary_weekly (MATERIALIZED VIEW)
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
-psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 234252 rows
+psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000:   ✓ Contains 233692 rows
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
@@ -2042,95 +2046,95 @@ LOCATION:  exec_stmt_raise, pl_exec.c:3911
 psql:/workspaces/cia/service.data.impl/src/main/resources/extract-sample-data.sql:1002: NOTICE:  00000: 
 LOCATION:  exec_stmt_raise, pl_exec.c:3911
 DO
-Time: 16630.237 ms (00:16.630)
+Time: 58544.009 ms (00:58.544)
 
 Phase 2: Generating extraction commands (using cached row counts)...
 
 Output format is unaligned.
-Time: 11.835 ms
+Time: 2047.892 ms (00:02.048)
 Output format is aligned.
 
 Phase 3: Executing view extractions...
 
 [VIEW-DAILY] Extracting: view_application_action_event_page_daily_summary (stratified: 2 samples/day, last 30 days)
 COPY 7
-Time: 2.233 ms
+Time: 11.053 ms
   ✓ Completed: view_application_action_event_page_daily_summary_sample.csv (temporal stratification: daily)
 [VIEW-DAILY] Extracting: view_application_action_event_page_element_daily_summary (stratified: 2 samples/day, last 30 days)
 COPY 5
-Time: 0.429 ms
+Time: 0.570 ms
   ✓ Completed: view_application_action_event_page_element_daily_summary_sample.csv (temporal stratification: daily)
 [VIEW-DAILY] Extracting: view_application_action_event_page_modes_daily_summary (stratified: 2 samples/day, last 30 days)
 COPY 7
-Time: 0.497 ms
+Time: 0.608 ms
   ✓ Completed: view_application_action_event_page_modes_daily_summary_sample.csv (temporal stratification: daily)
 [VIEW-DOCUMENT-EXTENDED] Extracting: view_riksdagen_document_type_daily_summary (300 rows of 32558 total)
 COPY 300
-Time: 7.305 ms
+Time: 19.183 ms
   ✓ Completed: view_riksdagen_document_type_daily_summary_sample.csv
 [VIEW-DOCUMENT-EXTENDED] Extracting: view_riksdagen_org_document_daily_summary (300 rows of 66625 total)
 COPY 300
-Time: 15.848 ms
+Time: 56.844 ms
   ✓ Completed: view_riksdagen_org_document_daily_summary_sample.csv
 [VIEW-PARTY-EXTENDED] Extracting: view_riksdagen_party_document_daily_summary (500 rows of 8557 total)
 COPY 500
-Time: 3.108 ms
+Time: 20.709 ms
   ✓ Completed: view_riksdagen_party_document_daily_summary_sample.csv
 [VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_politician_document_daily_summary (500 rows of 58602 total)
 COPY 500
-Time: 13.077 ms
+Time: 147.960 ms
   ✓ Completed: view_riksdagen_politician_document_daily_summary_sample.csv
 [VIEW-PARTY-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_party_summary_daily (500 rows of 10619 total)
 COPY 500
-Time: 17.777 ms
+Time: 249.082 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_party_summary_daily_sample.csv
-[VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_politician_summary_daily (500 rows of 458976 total)
+[VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_politician_summary_daily (500 rows of 459098 total)
 COPY 500
-Time: 604.417 ms
+Time: 1357.209 ms (00:01.357)
   ✓ Completed: view_riksdagen_vote_data_ballot_politician_summary_daily_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_vote_data_ballot_summary_daily (1314 rows of 1314 total)
 COPY 1314
-Time: 635.350 ms
+Time: 45.220 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_summary_daily_sample.csv
 [VIEW-WEEKLY] Extracting: view_application_action_event_page_element_weekly_summary (stratified: 2 samples/week, last 6 months)
 COPY 8
-Time: 0.771 ms
+Time: 0.835 ms
   ✓ Completed: view_application_action_event_page_element_weekly_summary_sample.csv (temporal stratification: weekly)
 [VIEW-WEEKLY] Extracting: view_application_action_event_page_modes_weekly_summary (stratified: 2 samples/week, last 6 months)
 COPY 8
-Time: 0.608 ms
+Time: 0.651 ms
   ✓ Completed: view_application_action_event_page_modes_weekly_summary_sample.csv (temporal stratification: weekly)
 [VIEW-WEEKLY] Extracting: view_application_action_event_page_weekly_summary (stratified: 2 samples/week, last 6 months)
 COPY 8
-Time: 0.537 ms
+Time: 0.636 ms
   ✓ Completed: view_application_action_event_page_weekly_summary_sample.csv (temporal stratification: weekly)
 [VIEW-PARTY-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_party_summary_weekly (500 rows of 5470 total)
 COPY 500
-Time: 9.662 ms
+Time: 97.752 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_party_summary_weekly_sample.csv
-[VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_politician_summary_weekly (500 rows of 234252 total)
+[VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_politician_summary_weekly (500 rows of 233692 total)
 COPY 500
-Time: 303.952 ms
+Time: 628.154 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_politician_summary_weekly_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_vote_data_ballot_summary_weekly (670 rows of 670 total)
 COPY 670
-Time: 11.252 ms
+Time: 34.306 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_summary_weekly_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_vote_data_ballot_party_summary_monthly (1804 rows of 1804 total)
 COPY 1804
-Time: 12.318 ms
+Time: 34.070 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_party_summary_monthly_sample.csv
 [VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_politician_summary_monthly (500 rows of 77334 total)
 COPY 500
-Time: 112.634 ms
+Time: 122.690 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_politician_summary_monthly_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_vote_data_ballot_summary_monthly (220 rows of 220 total)
 COPY 220
-Time: 7.967 ms
+Time: 7.975 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_summary_monthly_sample.csv
 [VIEW-ANNUAL] Extracting: view_application_action_event_page_annual_summary (stratified: 2 samples/year, full history)
 COPY 2
-Time: 0.600 ms
+Time: 0.690 ms
   ✓ Completed: view_application_action_event_page_annual_summary_sample.csv (temporal stratification: annual)
 [VIEW-ANNUAL] Extracting: view_application_action_event_page_element_annual_summary (stratified: 2 samples/year, full history)
 COPY 2
@@ -2138,243 +2142,243 @@ Time: 0.502 ms
   ✓ Completed: view_application_action_event_page_element_annual_summary_sample.csv (temporal stratification: annual)
 [VIEW-ANNUAL] Extracting: view_application_action_event_page_modes_annual_summary (stratified: 2 samples/year, full history)
 COPY 2
-Time: 0.523 ms
+Time: 0.554 ms
   ✓ Completed: view_application_action_event_page_modes_annual_summary_sample.csv (temporal stratification: annual)
 [VIEW-PARTY-EXTENDED] Extracting: view_riksdagen_party_ballot_support_annual_summary (500 rows of 13128 total)
 COPY 500
-Time: 1774.669 ms (00:01.775)
+Time: 1564.435 ms (00:01.564)
   ✓ Completed: view_riksdagen_party_ballot_support_annual_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_party_coalation_against_annual_summary (278 rows of 278 total)
 COPY 278
-Time: 18.762 ms
+Time: 16.367 ms
   ✓ Completed: view_riksdagen_party_coalation_against_annual_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_vote_data_ballot_party_summary_annual (201 rows of 201 total)
 COPY 201
-Time: 7.107 ms
+Time: 64.540 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_party_summary_annual_sample.csv
 [VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_politician_summary_annual (500 rows of 9655 total)
 COPY 500
-Time: 27.904 ms
+Time: 87.630 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_politician_summary_annual_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_vote_data_ballot_summary_annual (24 rows of 24 total)
 COPY 24
-Time: 5.533 ms
+Time: 3.544 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_summary_annual_sample.csv
 [VIEW-TREND] Extracting: view_decision_temporal_trends (stratified: 1 sample per time period)
 COPY 40
-Time: 260.373 ms
+Time: 239.156 ms
   ✓ Completed: view_decision_temporal_trends_sample.csv (temporal stratification: trend)
 [VIEW-TREND] Extracting: view_ministry_effectiveness_trends (stratified: 1 sample per time period)
 COPY 11
-Time: 66.489 ms
+Time: 64.170 ms
   ✓ Completed: view_ministry_effectiveness_trends_sample.csv (temporal stratification: trend)
 [VIEW-TREND] Extracting: view_ministry_risk_evolution (stratified: 1 sample per time period)
 COPY 8
-Time: 65.967 ms
+Time: 63.078 ms
   ✓ Completed: view_ministry_risk_evolution_sample.csv (temporal stratification: trend)
 [VIEW-TREND] Extracting: view_party_effectiveness_trends (stratified: 1 sample per time period)
 COPY 12
-Time: 122.717 ms
+Time: 117.114 ms
   ✓ Completed: view_party_effectiveness_trends_sample.csv (temporal stratification: trend)
 [VIEW-TREND] Extracting: view_politician_behavioral_trends (stratified: 1 sample per time period)
 COPY 26
-Time: 173.828 ms
+Time: 160.583 ms
   ✓ Completed: view_politician_behavioral_trends_sample.csv (temporal stratification: trend)
 [VIEW-COMPLETE] Extracting: view_riksdagen_party_momentum_analysis (441 rows of 441 total)
 COPY 441
-Time: 4153.731 ms (00:04.154)
+Time: 3876.445 ms (00:03.876)
   ✓ Completed: view_riksdagen_party_momentum_analysis_sample.csv
 [VIEW-TREND] Extracting: view_risk_score_evolution (stratified: 1 sample per time period)
 COPY 26
-Time: 1254.870 ms (00:01.255)
+Time: 644.864 ms
   ✓ Completed: view_risk_score_evolution_sample.csv (temporal stratification: trend)
-[VIEW-SAMPLE] Extracting: pg_stat_statements (200 rows of 9645 total)
-COPY 200
-Time: 34.458 ms
+[VIEW-COMPLETE] Extracting: pg_stat_statements (604 rows of 604 total)
+COPY 604
+Time: 4.305 ms
   ✓ Completed: view_pg_stat_statements_sample.csv
 [VIEW-COMPLETE] Extracting: pg_stat_statements_info (1 rows of 1 total)
 COPY 1
-Time: 0.303 ms
+Time: 0.220 ms
   ✓ Completed: view_pg_stat_statements_info_sample.csv
 [VIEW-COMPLETE] Extracting: view_application_action_event_page_element_hourly_summary (60 rows of 60 total)
 COPY 60
-Time: 0.641 ms
+Time: 0.635 ms
   ✓ Completed: view_application_action_event_page_element_hourly_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_application_action_event_page_hourly_summary (148 rows of 148 total)
 COPY 148
-Time: 0.894 ms
+Time: 0.662 ms
   ✓ Completed: view_application_action_event_page_hourly_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_application_action_event_page_modes_hourly_summary (166 rows of 166 total)
 COPY 166
-Time: 0.982 ms
+Time: 0.737 ms
   ✓ Completed: view_application_action_event_page_modes_hourly_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_audit_author_summary (6 rows of 6 total)
 COPY 6
-Time: 550.968 ms
+Time: 342.808 ms
   ✓ Completed: view_audit_author_summary_sample.csv
-[VIEW-COMPLETE] Extracting: view_audit_data_summary (125 rows of 125 total)
-COPY 125
-Time: 3.112 ms
+[VIEW-COMPLETE] Extracting: view_audit_data_summary (123 rows of 123 total)
+COPY 123
+Time: 2.474 ms
   ✓ Completed: view_audit_data_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_committee_productivity (28 rows of 28 total)
 COPY 28
-Time: 1662.884 ms (00:01.663)
+Time: 569.902 ms
   ✓ Completed: view_committee_productivity_sample.csv
 [VIEW-COMPLETE] Extracting: view_committee_productivity_matrix (162 rows of 162 total)
 COPY 162
-Time: 515.141 ms
+Time: 473.834 ms
   ✓ Completed: view_committee_productivity_matrix_sample.csv
 [VIEW-COMMITTEE-EXTENDED] Extracting: view_document_data_committee_report_url (500 rows of 6576 total)
 COPY 500
-Time: 14.640 ms
+Time: 13.985 ms
   ✓ Completed: view_document_data_committee_report_url_sample.csv
 [VIEW-COMPLETE] Extracting: view_ministry_decision_impact (1177 rows of 1177 total)
 COPY 1177
-Time: 316.872 ms
+Time: 242.071 ms
   ✓ Completed: view_ministry_decision_impact_sample.csv
-[VIEW-COMPLETE] Extracting: view_ministry_productivity_matrix (3 rows of 3 total)
-COPY 3
-Time: 112.834 ms
+[VIEW-COMPLETE] Extracting: view_ministry_productivity_matrix (29 rows of 29 total)
+COPY 29
+Time: 106.727 ms
   ✓ Completed: view_ministry_productivity_matrix_sample.csv
 [VIEW-COMPLETE] Extracting: view_party_performance_metrics (40 rows of 40 total)
 COPY 40
-Time: 1158.161 ms (00:01.158)
+Time: 22.330 ms
   ✓ Completed: view_party_performance_metrics_sample.csv
 [VIEW-COMPLETE] Extracting: view_politician_risk_summary (400 rows of 400 total)
 COPY 400
-Time: 685.794 ms
+Time: 628.858 ms
   ✓ Completed: view_politician_risk_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_committee (28 rows of 28 total)
 COPY 28
-Time: 503.058 ms
+Time: 480.348 ms
   ✓ Completed: view_riksdagen_committee_sample.csv
 [VIEW-PARTY-EXTENDED] Extracting: view_riksdagen_committee_ballot_decision_party_summary (500 rows of 34558 total)
 COPY 500
-Time: 114.826 ms
+Time: 77.684 ms
   ✓ Completed: view_riksdagen_committee_ballot_decision_party_summary_sample.csv
-[VIEW-COMMITTEE-EXTENDED] Extracting: view_riksdagen_committee_ballot_decision_politician_summary (500 rows of 1578178 total)
+[VIEW-COMMITTEE-EXTENDED] Extracting: view_riksdagen_committee_ballot_decision_politician_summary (500 rows of 1578764 total)
 COPY 500
-Time: 3999.145 ms (00:03.999)
+Time: 5255.836 ms (00:05.256)
   ✓ Completed: view_riksdagen_committee_ballot_decision_politician_summary_sample.csv
 [VIEW-COMMITTEE-EXTENDED] Extracting: view_riksdagen_committee_ballot_decision_summary (500 rows of 4522 total)
 COPY 500
-Time: 16.149 ms
+Time: 142.785 ms
   ✓ Completed: view_riksdagen_committee_ballot_decision_summary_sample.csv
 [VIEW-COMMITTEE-EXTENDED] Extracting: view_riksdagen_committee_decision_type_org_summary (500 rows of 7210 total)
 COPY 500
-Time: 9.542 ms
+Time: 10.405 ms
   ✓ Completed: view_riksdagen_committee_decision_type_org_summary_sample.csv
 [VIEW-COMMITTEE-EXTENDED] Extracting: view_riksdagen_committee_decision_type_summary (500 rows of 3343 total)
 COPY 500
-Time: 3.580 ms
+Time: 7.396 ms
   ✓ Completed: view_riksdagen_committee_decision_type_summary_sample.csv
 [VIEW-COMMITTEE-EXTENDED] Extracting: view_riksdagen_committee_decisions (500 rows of 44834 total)
 COPY 500
-Time: 30.888 ms
+Time: 26.287 ms
   ✓ Completed: view_riksdagen_committee_decisions_sample.csv
 [VIEW-COMMITTEE-EXTENDED] Extracting: view_riksdagen_committee_parliament_member_proposal (500 rows of 77317 total)
 COPY 500
-Time: 1067.034 ms (00:01.067)
+Time: 1010.160 ms (00:01.010)
   ✓ Completed: view_riksdagen_committee_parliament_member_proposal_sample.csv
 [VIEW-COMMITTEE-EXTENDED] Extracting: view_riksdagen_committee_role_member (500 rows of 19057 total)
 COPY 500
-Time: 123.506 ms
+Time: 117.263 ms
   ✓ Completed: view_riksdagen_committee_role_member_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_committee_roles (152 rows of 152 total)
 COPY 152
-Time: 10.100 ms
+Time: 8.492 ms
   ✓ Completed: view_riksdagen_committee_roles_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_crisis_resilience_indicators (386 rows of 386 total)
 COPY 386
-Time: 5527.624 ms (00:05.528)
+Time: 4970.679 ms (00:04.971)
   ✓ Completed: view_riksdagen_crisis_resilience_indicators_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_goverment (20 rows of 20 total)
 COPY 20
-Time: 414.240 ms
+Time: 434.011 ms
   ✓ Completed: view_riksdagen_goverment_sample.csv
 [VIEW-DOCUMENT-EXTENDED] Extracting: view_riksdagen_goverment_proposals (300 rows of 4575 total)
 COPY 300
-Time: 35.042 ms
+Time: 34.304 ms
   ✓ Completed: view_riksdagen_goverment_proposals_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_goverment_role_member (500 rows of 500 total)
 COPY 500
-Time: 31.259 ms
+Time: 30.554 ms
   ✓ Completed: view_riksdagen_goverment_role_member_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_goverment_roles (76 rows of 76 total)
 COPY 76
-Time: 6.492 ms
+Time: 6.749 ms
   ✓ Completed: view_riksdagen_goverment_roles_sample.csv
 [VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_member_proposals (500 rows of 77775 total)
 COPY 500
-Time: 178.762 ms
+Time: 347.292 ms
   ✓ Completed: view_riksdagen_member_proposals_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_party (12 rows of 12 total)
 COPY 12
-Time: 10.920 ms
+Time: 11.053 ms
   ✓ Completed: view_riksdagen_party_sample.csv
 [VIEW-PARTY-EXTENDED] Extracting: view_riksdagen_party_decision_flow (500 rows of 13830 total)
 COPY 500
-Time: 692.770 ms
+Time: 624.268 ms
   ✓ Completed: view_riksdagen_party_decision_flow_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_party_member (2431 rows of 2431 total)
 COPY 2431
-Time: 16.074 ms
+Time: 13.824 ms
   ✓ Completed: view_riksdagen_party_member_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_party_role_member (299 rows of 299 total)
 COPY 299
-Time: 30.296 ms
+Time: 23.334 ms
   ✓ Completed: view_riksdagen_party_role_member_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_party_signatures_document_summary (9 rows of 9 total)
 COPY 9
-Time: 46.363 ms
+Time: 44.086 ms
   ✓ Completed: view_riksdagen_party_signatures_document_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_person_signed_document_summary (1712 rows of 1712 total)
 COPY 1712
-Time: 76.352 ms
+Time: 66.265 ms
   ✓ Completed: view_riksdagen_person_signed_document_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_politician (2078 rows of 2078 total)
 COPY 2078
-Time: 171.880 ms
+Time: 175.614 ms
   ✓ Completed: view_riksdagen_politician_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_politician_ballot_summary (2431 rows of 2431 total)
 COPY 2431
-Time: 37.133 ms
+Time: 34.637 ms
   ✓ Completed: view_riksdagen_politician_ballot_summary_sample.csv
 [VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_politician_decision_pattern (500 rows of 96891 total)
 COPY 500
-Time: 2771.133 ms (00:02.771)
+Time: 1074.795 ms (00:01.075)
   ✓ Completed: view_riksdagen_politician_decision_pattern_sample.csv
 [VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_politician_document (500 rows of 227973 total)
 COPY 500
-Time: 148.994 ms
+Time: 123.893 ms
   ✓ Completed: view_riksdagen_politician_document_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_politician_document_summary (1346 rows of 1346 total)
 COPY 1346
-Time: 5.792 ms
+Time: 6.035 ms
   ✓ Completed: view_riksdagen_politician_document_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_politician_experience_summary (2092 rows of 2092 total)
 COPY 2092
-Time: 972.875 ms
+Time: 472.990 ms
   ✓ Completed: view_riksdagen_politician_experience_summary_sample.csv
 [VIEW-COMPLETE] Extracting: view_riksdagen_politician_influence_metrics (400 rows of 400 total)
 COPY 400
-Time: 18.125 ms
+Time: 38096.908 ms (00:38.097)
   ✓ Completed: view_riksdagen_politician_influence_metrics_sample.csv
 [VIEW-PARTY-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_party_summary (500 rows of 83498 total)
 COPY 500
-Time: 68.788 ms
+Time: 9187.478 ms (00:09.187)
   ✓ Completed: view_riksdagen_vote_data_ballot_party_summary_sample.csv
-[VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_politician_summary (500 rows of 3523352 total)
+[VIEW-PERSON-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_politician_summary (500 rows of 3518305 total)
 COPY 500
-Time: 3573.103 ms (00:03.573)
+Time: 26007.925 ms (00:26.008)
   ✓ Completed: view_riksdagen_vote_data_ballot_politician_summary_sample.csv
 [VIEW-VOTING-EXTENDED] Extracting: view_riksdagen_vote_data_ballot_summary (300 rows of 10095 total)
 COPY 300
-Time: 11.186 ms
+Time: 108.946 ms
   ✓ Completed: view_riksdagen_vote_data_ballot_summary_sample.csv
 [VIEW-WORLDBANK-EXTENDED] Extracting: view_worldbank_indicator_data_country_summary (300 rows of 4111 total)
 COPY 300
-Time: 6.027 ms
+Time: 19.154 ms
   ✓ Completed: view_worldbank_indicator_data_country_summary_sample.csv
 
 ==================================================
@@ -2387,11 +2391,11 @@ View extraction completed
 ==================================================
 
 SELECT 13
-Time: 26.284 ms
+Time: 80.955 ms
 COPY 13
-Time: 0.266 ms
+Time: 0.356 ms
 DROP TABLE
-Time: 21.935 ms
+Time: 25.914 ms
 ✓ Generated: extraction_statistics.csv
 
 Temporal Distribution Summary:
@@ -2406,7 +2410,7 @@ Temporal Distribution Summary:
  non_temporal   |         49 | Random sampling
 (6 rows)
 
-Time: 2.171 ms
+Time: 2.180 ms
 
 ==================================================
 === PHASE 5 COMPLETE: Statistics Generated    ===
@@ -2419,115 +2423,115 @@ Time: 2.171 ms
 
 Generating party distribution statistics...
 COPY 17
-Time: 6.976 ms
+Time: 14.420 ms
 ✓ Generated: distribution_party_members.csv
 Generating document type distribution...
 COPY 4
-Time: 31.699 ms
+Time: 24.292 ms
 ✓ Generated: distribution_document_types.csv
 Generating committee activity distribution...
 COPY 50
-Time: 27.398 ms
+Time: 26.695 ms
 ✓ Generated: distribution_committee_activity.csv
 Generating annual document trends...
 COPY 26
-Time: 37.859 ms
+Time: 37.908 ms
 ✓ Generated: trend_annual_documents.csv
 Generating monthly document trends...
 COPY 56
-Time: 15.112 ms
+Time: 9.630 ms
 ✓ Generated: trend_monthly_documents.csv
 Generating person status distribution...
 COPY 246
-Time: 1.935 ms
+Time: 1.842 ms
 ✓ Generated: distribution_person_status.csv
 Generating gender distribution by party...
 COPY 33
-Time: 1.046 ms
+Time: 1.074 ms
 ✓ Generated: distribution_gender_by_party.csv
 Generating table size distribution...
 COPY 80
-Time: 1.210 ms
+Time: 1.204 ms
 ✓ Generated: distribution_table_sizes.csv
 Generating view size distribution...
   (Using pg_class statistics for materialized views - much faster)
 SELECT 83
-Time: 3.468 ms
+Time: 3.396 ms
 COPY 83
-Time: 0.234 ms
+Time: 0.281 ms
 DROP TABLE
-Time: 1.222 ms
+Time: 1.261 ms
 ✓ Generated: distribution_view_sizes.csv
 Generating size category summary...
 COPY 6
-Time: 0.923 ms
+Time: 1.002 ms
 ✓ Generated: summary_table_size_categories.csv
 Generating geographic distribution...
 COPY 62
-Time: 0.746 ms
+Time: 0.805 ms
 ✓ Generated: distribution_election_regions.csv
 Generating document status distribution...
 COPY 134
-Time: 27.223 ms
+Time: 26.656 ms
 ✓ Generated: distribution_document_status.csv
 Generating assignment type distribution...
 COPY 30
-Time: 7.239 ms
+Time: 7.122 ms
 ✓ Generated: distribution_assignment_roles.csv
 Generating temporal coverage analysis...
 COPY 2
-Time: 23.391 ms
+Time: 35.246 ms
 ✓ Generated: summary_temporal_coverage.csv
 Generating extraction type summary...
 COPY 3
-Time: 2.405 ms
+Time: 2.461 ms
 ✓ Generated: summary_extraction_types.csv
 
 Generating annual entity distributions for temporal analysis...
 Generating annual party member distribution...
 COPY 333
-Time: 35.974 ms
+Time: 36.414 ms
 ✓ Generated: distribution_annual_party_members.csv
 Generating annual document type distribution...
 COPY 80
-Time: 41.674 ms
+Time: 40.403 ms
 ✓ Generated: distribution_annual_document_types.csv
 Generating annual committee document distribution...
 COPY 775
-Time: 47.366 ms
+Time: 43.719 ms
 ✓ Generated: distribution_annual_committee_documents.csv
 Generating annual party voting distribution...
 COPY 201
-Time: 731.506 ms
+Time: 677.450 ms
 ✓ Generated: distribution_annual_party_votes.csv
 Generating annual committee assignment distribution...
 COPY 617
-Time: 26.445 ms
+Time: 25.072 ms
 ✓ Generated: distribution_annual_committee_assignments.csv
 Generating annual ballot summary...
 COPY 24
-Time: 3541.699 ms (00:03.542)
+Time: 3200.494 ms (00:03.200)
 ✓ Generated: distribution_annual_ballots.csv
 Generating annual ministry assignment distribution...
 COPY 186
-Time: 1.400 ms
+Time: 1.266 ms
 ✓ Generated: distribution_annual_ministry_assignments.csv
 Generating politician career start distribution...
 COPY 250
-Time: 14.962 ms
+Time: 15.998 ms
 ✓ Generated: distribution_politician_career_starts.csv
 Generating annual document status distribution...
 COPY 267
-Time: 46.110 ms
+Time: 42.896 ms
 ✓ Generated: distribution_annual_document_status.csv
 Generating empty views report...
   (Using pg_class statistics for materialized views)
 SELECT 0
-Time: 3.373 ms
+Time: 5.956 ms
 COPY 0
-Time: 0.321 ms
+Time: 0.235 ms
 DROP TABLE
-Time: 1.589 ms
+Time: 1.346 ms
 ✓ Generated: report_empty_views.csv
 
 ==================================================
@@ -2539,105 +2543,105 @@ These support debugging and improving analytical view population
 
 6.26: Politician Risk Level Distribution...
 COPY 3
-Time: 710.113 ms
+Time: 639.792 ms
 ✓ Generated: distribution_politician_risk_levels.csv
 6.27: Politician Risk by Party...
 COPY 23
-Time: 668.054 ms
+Time: 615.846 ms
 ✓ Generated: distribution_risk_by_party.csv
 6.28: Risk Score Distribution Buckets...
 COPY 3
-Time: 697.283 ms
+Time: 624.055 ms
 ✓ Generated: distribution_risk_score_buckets.csv
 6.29: Voting Anomaly Classification...
 COPY 0
-Time: 55.467 ms
+Time: 59.726 ms
 ✓ Generated: distribution_voting_anomaly_classification.csv
 6.30: Voting Anomaly by Party...
 COPY 0
-Time: 59.911 ms
+Time: 49.977 ms
 ✓ Generated: distribution_anomaly_by_party.csv
 6.31: Ministry Risk Level Evolution...
 COPY 2
-Time: 82.244 ms
+Time: 64.739 ms
 ✓ Generated: distribution_ministry_risk_levels.csv
 6.32: Ministry Risk by Quarter...
 COPY 15
-Time: 63.232 ms
+Time: 59.856 ms
 ✓ Generated: distribution_ministry_risk_quarterly.csv
 6.33: Party Performance Metrics...
 COPY 40
-Time: 51.457 ms
+Time: 27.873 ms
 ✓ Generated: distribution_party_performance.csv
 6.34: Committee Productivity...
 COPY 28
-Time: 456.354 ms
+Time: 434.188 ms
 ✓ Generated: distribution_committee_productivity.csv
 6.35: Coalition Alignment... (SKIPPED - slow view)
 ✓ Skipped: distribution_coalition_alignment.csv
 6.36: Politician Experience Levels...
 COPY 6
-Time: 132.406 ms
+Time: 138.059 ms
 ✓ Generated: distribution_experience_levels.csv
 6.37: Experience Level by Party...
 COPY 48
-Time: 157.039 ms
+Time: 167.441 ms
 ✓ Generated: distribution_experience_by_party.csv
 6.38: Politician Influence Metrics...
-COPY 1
-Time: 2.115 ms
+COPY 5
+Time: 32734.327 ms (00:32.734)
 ✓ Generated: distribution_influence_buckets.csv
 6.39: Party Effectiveness Trends...
 COPY 107
-Time: 103.260 ms
+Time: 15992.739 ms (00:15.993)
 ✓ Generated: distribution_party_effectiveness_trends.csv
 6.40: Ministry Effectiveness Trends...
 COPY 11
-Time: 50.770 ms
+Time: 48.563 ms
 ✓ Generated: distribution_ministry_effectiveness.csv
 6.41: Decision Temporal Trends...
 COPY 189
-Time: 249.141 ms
+Time: 236.143 ms
 ✓ Generated: distribution_decision_trends.csv
 6.42: Ministry Decision Impact...
 COPY 200
-Time: 248.158 ms
+Time: 232.455 ms
 ✓ Generated: distribution_ministry_decision_impact.csv
 6.43: Crisis Resilience Indicators...
 COPY 13
-Time: 5150.001 ms (00:05.150)
+Time: 5002.875 ms (00:05.003)
 ✓ Generated: distribution_crisis_resilience.csv
 6.44: Party Momentum Analysis...
 COPY 441
-Time: 4035.557 ms (00:04.036)
+Time: 3954.912 ms (00:03.955)
 ✓ Generated: distribution_party_momentum.csv
 6.45: Politician Behavioral Trends...
 COPY 20
-Time: 102.052 ms
+Time: 76.722 ms
 ✓ Generated: distribution_behavioral_patterns_by_party.csv
 6.46: Risk Score Evolution Over Time...
 COPY 28
-Time: 656.088 ms
+Time: 553.209 ms
 ✓ Generated: distribution_risk_evolution_temporal.csv
 6.47: Committee Productivity Matrix...
 COPY 162
-Time: 475.138 ms
+Time: 451.268 ms
 ✓ Generated: distribution_committee_productivity_matrix.csv
 6.48: Ministry Productivity Matrix...
-COPY 3
-Time: 65.515 ms
+COPY 29
+Time: 64.512 ms
 ✓ Generated: distribution_ministry_productivity_matrix.csv
 6.49: Politician Decision Patterns...
 COPY 69
-Time: 232.761 ms
+Time: 214.697 ms
 ✓ Generated: distribution_decision_patterns_by_party.csv
 6.50: Analytical Views Summary Statistics...
 SELECT 6
-Time: 1635.380 ms (00:01.635)
+Time: 1508.427 ms (00:01.508)
 COPY 6
-Time: 0.396 ms
+Time: 0.452 ms
 DROP TABLE
-Time: 1.326 ms
+Time: 1.387 ms
 ✓ Generated: summary_analytical_views.csv
 
 === ANALYTICAL VIEW DISTRIBUTIONS COMPLETE ===
@@ -2652,18 +2656,18 @@ Time: 1.326 ms
 === CLEANUP                                    ===
 ==================================================
 DROP FUNCTION
-Time: 7.335 ms
+Time: 7.561 ms
 Dropped helper function: cia_tmp_rowcount
 DROP FUNCTION
-Time: 2.495 ms
+Time: 0.934 ms
 Dropped helper function: cia_classify_temporal_view
 DROP TABLE
-Time: 1.199 ms
+Time: 1.212 ms
 Dropped temp table: cia_view_row_counts
 
 ==================================================
 CIA Sample Data Extraction COMPLETE
-Finished: Tue Dec 30 06:32:47 PM CET 2025
+Finished: Tue Dec 30 11:11:15 PM CET 2025
 ==================================================
 
 Output files:
@@ -2759,17 +2763,118 @@ Temporal Stratification Applied:
   - Temporal trend views: 1 sample per time period
   - Non-temporal views: Random sampling (existing behavior)
 
-w-rw- 1 postgres postgres     0 Dec 30 17:47 distribution_behavioral_patterns_by_party.csv
+ategories.csv  : Tables by size category
+  - summary_temporal_coverage.csv      : Data time range coverage
+  - summary_extraction_types.csv       : Extraction type breakdown
+  - summary_analytical_views.csv       : Analytical view statistics
+
+Sample Size Configuration:
+  - Default: 200 rows (most tables/views)
+  - Political entities (party/committee/person): 500 rows
+  - Document/Voting/Worldbank data: 300 rows
+  - Complete extraction for tables/views under 3000 rows
+
+Temporal Stratification Applied:
+  - Daily views: 2 samples per day over last 30 days
+  - Weekly views: 2 samples per week over last 6 months
+  - Monthly views: 2 samples per month over last 3 years
+  - Annual views: 2 samples per year over full history
+  - Temporal trend views: 1 sample per time period
+  - Non-temporal views: Random sampling (existing behavior)
+
+
+==================================================
+=== EXTRACTION COMPLETED                       ===
+==================================================
+
+Full log saved to: extract-sample-data.log
+
+==================================================
+=== VALIDATION                                 ===
+==================================================
+
+Generated CSV Files:
+  Table samples: 54
+  View samples: 83
+  Distinct value sets: 9
+  Metadata files: 3
+  Total CSV files: 200
+
+Checking for empty CSV files...
+✅ No empty CSV files found
+
+Validating CSV headers...
+✅ All CSV files have valid headers
+
+Checking file sizes...
+ℹ️  INFO: Found small CSV files (< 100 bytes):
+    ./view_pg_stat_statements_info_sample.csv - 51
+    ./view_riksdagen_party_signatures_document_summary_sample.csv - 85
+    ./table_databasechangeloglock_sample.csv - 37
+    ./table_qrtz_locks_sample.csv - 81
+    (These may be from nearly-empty tables/views)
+
+Coverage Statistics:
+
+metric                           granularity                    count  strategy                                                                                                                              
+Overall Statistics               Total Objects                  163    "Tables: 80                                                                    Views: 55          Mat Views: 28"                      
+Sample Configuration             Complete Extraction Threshold  3000   Tables/views under this row count are extracted completely                                                                            
+Sample Configuration             Default Sample Size            200    Standard rows per table/view (unless entity-specific or complete extraction)                                                          
+Sample Configuration             Document Sample Size           300    "Extended sample for document                                                  motion             proposition                          and bill tables/views"
+Sample Configuration             Party/Committee/Person Sample  500    "Extended sample size for political entity tables/views (parties               committees         politicians)"                       
+Sample Configuration             Voting/Ballot Sample Size      300    "Extended sample for vote                                                      ballot             and decision summary tables/views"  
+Sample Configuration             Worldbank Sample Size          300    "Extended sample for worldbank indicators                                      countries          and economic data"                  
+Temporal Stratification Summary  annual                         8      "Full history                                                                  2 samples/year"                                        
+Temporal Stratification Summary  daily                          10     "Last 30 days                                                                  2 samples/day"                                         
+Temporal Stratification Summary  monthly                        3      "Last 3 years                                                                  2 samples/month"                                       
+Temporal Stratification Summary  non_temporal                   49     Random sampling (no temporal stratification)                                                                                          
+Temporal Stratification Summary  temporal_trend                 7      "All time periods                                                              1 sample/period"                                       
+Temporal Stratification Summary  weekly                         6      "Last 6 months                                                                 2 samples/week"                                        
+
+Checking for empty view warnings in log...
+./extract-sample-data.sh: line 154: [: 0
+0: integer expression expected
+✅ No empty views detected
+
+==================================================
+✅ Validation Passed - All Checks Successful
+==================================================
+
+==================================================
+=== FILE LISTING                               ===
+==================================================
+
+Sample of generated files:
+-rw-rw-rw- 1 vscode   vscode     136 Dec  2 01:49 distinct_assignment_data_assignment_type_values.csv
+-rw-rw-rw- 1 vscode   vscode     42K Dec  2 01:49 distinct_assignment_data_detail_values.csv
+-rw-rw-rw- 1 vscode   vscode     709 Dec  2 01:49 distinct_assignment_data_org_code_values.csv
+-rw-rw-rw- 1 vscode   vscode    1.9K Dec  2 01:49 distinct_assignment_data_role_code_values.csv
+-rw-rw-rw- 1 vscode   vscode      88 Dec  2 01:49 distinct_assignment_data_status_values.csv
+-rw-rw-rw- 1 vscode   vscode     11K Dec  2 01:18 distinct_document_content_data_id_values.csv
+-rw-rw-rw- 1 vscode   vscode     287 Dec  2 01:18 distinct_document_detail_data_code_values.csv
+-rw-rw-rw- 1 vscode   vscode     358 Dec  2 01:18 distinct_document_detail_data_detail_name_values.csv
+-rw-rw-rw- 1 vscode   vscode      80 Dec  2 01:18 distinct_document_element_database_source_values.csv
+-rw-rw-rw- 1 postgres postgres   451 Dec 30 23:10 distribution_annual_ballots.csv
+-rw-rw-rw- 1 postgres postgres  8.5K Dec 30 23:10 distribution_annual_committee_assignments.csv
+-rw-rw-rw- 1 postgres postgres   13K Dec 30 23:10 distribution_annual_committee_documents.csv
+-rw-rw-rw- 1 postgres postgres  4.2K Dec 30 23:10 distribution_annual_document_status.csv
+-rw-rw-rw- 1 postgres postgres  1.1K Dec 30 23:10 distribution_annual_document_types.csv
+-rw-rw-rw- 1 postgres postgres  6.1K Dec 30 23:10 distribution_annual_ministry_assignments.csv
+-rw-rw-rw- 1 postgres postgres  3.4K Dec 30 23:10 distribution_annual_party_members.csv
+-rw-rw-rw- 1 postgres postgres  3.8K Dec 30 23:10 distribution_annual_party_votes.csv
+-rw-rw-rw- 1 postgres postgres    61 Dec 30 23:10 distribution_anomaly_by_party.csv
+-rw-rw-rw- 1 postgres postgres   609 Dec 30 23:10 distribution_assignment_roles.csv
+-rw-rw-rw- 1 postgres postgres   622 Dec 30 23:11 distribution_behavioral_patterns_by_party.csv
 -rw-rw-rw- 1 postgres postgres   109 Dec 30 18:26 distribution_coalition_alignment.csv
--rw-rw-rw- 1 postgres postgres   605 Dec 30 18:07 distribution_committee_activity.csv
--rw-rw-rw- 1 postgres postgres  1.5K Dec 30 18:07 distribution_committee_productivity.csv
--rw-rw-rw- 1 postgres postgres     0 Dec 30 17:47 distribution_committee_productivity_matrix.csv
--rw-rw-rw- 1 postgres postgres     0 Dec 30 17:47 distribution_crisis_resilience.csv
--rw-rw-rw- 1 postgres postgres     0 Dec 30 17:47 distribution_decision_patterns_by_party.csv
--rw-rw-rw- 1 postgres postgres     0 Dec 30 17:47 distribution_decision_trends.csv
--rw-rw-rw- 1 postgres postgres  1.9K Dec 30 18:07 distribution_document_status.csv
--rw-rw-rw- 1 postgres postgres    97 Dec 30 18:07 distribution_document_types.csv
--rw-rw-rw- 1 postgres postgres  2.0K Dec 30 18:07 distribution_election_regions.csv
+-rw-rw-rw- 1 postgres postgres   605 Dec 30 23:10 distribution_committee_activity.csv
+-rw-rw-rw- 1 postgres postgres  1.5K Dec 30 23:10 distribution_committee_productivity.csv
+-rw-rw-rw- 1 postgres postgres   15K Dec 30 23:11 distribution_committee_productivity_matrix.csv
+-rw-rw-rw- 1 postgres postgres   418 Dec 30 23:11 distribution_crisis_resilience.csv
+-rw-rw-rw- 1 postgres postgres  2.0K Dec 30 23:11 distribution_decision_patterns_by_party.csv
+-rw-rw-rw- 1 postgres postgres  3.7K Dec 30 23:11 distribution_decision_trends.csv
+-rw-rw-rw- 1 postgres postgres  1.9K Dec 30 23:10 distribution_document_status.csv
+-rw-rw-rw- 1 postgres postgres    97 Dec 30 23:10 distribution_document_types.csv
+-rw-rw-rw- 1 postgres postgres  2.0K Dec 30 23:10 distribution_election_regions.csv
 
 ... and 170 more files
 

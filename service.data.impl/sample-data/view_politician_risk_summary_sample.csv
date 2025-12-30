@@ -1,401 +1,401 @@
 person_id,first_name,last_name,party,status,total_violations,latest_violation_date,absenteeism_violations,effectiveness_violations,discipline_violations,productivity_violations,collaboration_violations,annual_absence_rate,annual_rebel_rate,annual_vote_count,documents_last_year,risk_score,risk_level,risk_assessment
 0482689573825,Björn,Wiechel,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0875221317013,Gunilla,Carlsson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0737666060225,Joakim,Järrebring,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0184968091618,Jan,Riise,MP,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0591020192311,Ulf,Lindholm,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0729710260118,Helena,Bouveng,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0372414474424,Oskar,Svärd,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0576619284416,Aphram,Melki,C,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0138741628520,Angelika,Bengtsson,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,465,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0992867772421,Nils,Seye Larsen,MP,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,458,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0819601620927,Annika,Hirvonen,MP,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0211757295524,Josef,Fransson,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,472,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0905254899611,Louise,Thunström,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0910803550317,Lena,Johansson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0653904370212,Fredrik,Olovsson,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0228027853620,Vasiliki,Tsouplaki,V,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0987246082523,Paula,Örn,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,380,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0111479807829,Anna,Wallentheim,S,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0388994689418,Malin,Östh,V,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0800956862429,Gulan,Avci,L,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0545733815610,Patrick,Reslow,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0456680171315,Charlotte,Quensel,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0612916684825,Johan,Löfstrand,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-014744660015,Mikael,Damberg,S,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-02658325625,Angelica,Lundberg,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0386912710815,Mats,Arkhem,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0369212790927,Sofia,Skönnbrink,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0103624617217,Helén,Pettersson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0937688366013,Peter,Hultqvist,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0602744999917,Elisabeth,Thand Ringqvist,C,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0339894357417,Jennie,Nilsson,S,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0855286184126,Jessica,Rodén,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0615175917521,Kent,Kumpula,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,714,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0254021157518,Lars,Andersson,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0222102752213,Stefan,Olsson,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0984153507725,Gustaf,Göthberg,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0296384583518,Åsa,Eriksson,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0345062474310,Mona,Olin,SD,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
-065701062615,Runar,Filper,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0926214745119,Heléne,Björklund,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0426843954410,Ulrik,Bergman,M,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0456522027421,Linnéa,Wickman,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0283284978818,Markus,Kallifatides,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0153782796218,Ulf,Rexefjord,SD,Tjänstgörande ersättare,0,,0,0,0,0,0,0.00,100.00,71,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0469084171710,Ulrika,Westerlund,MP,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0204443909416,Johan,Hedin,C,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0119851690521,David,Perez,SD,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,599,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0525562399327,Caroline,Högström,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,599,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0183544538819,Patrik,Jönsson,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0977592683711,Magnus,Jacobsson,KD,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0877778793323,Johan,Büser,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-027964311318,Karin,Sundin,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0780214960516,Eva,Lindh,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0309480686522,Leila,Ali Elmi,MP,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0290003389021,Chris,Dahlqvist,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,50,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0466653728712,Denis,Begic,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0502688311316,Anna,Vikström,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0473783431010,Morgan,Johansson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0130789484021,Mattias,Bäckström Johansson,SD,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0709911904721,Johanna,Rantsi,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0947572086414,Anne-Li,Sjölund,C,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0412148992926,Hanna,Westerén,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0694917698222,Michael,Rubbestad,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0906620634423,Eleonore,Lundkvist,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,245,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0665360289423,Fredrik,Stenberg,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,157,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0273506284025,Edward,Riedl,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0682989845822,Håkan,Svenneling,V,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0442073683012,Zara,Leghissa,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0427321850912,Lars Mejern,Larsson,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0563922839001,Katarina,Olofsson,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0904448094023,Linus,Lakso,MP,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0554852839719,Mikael,Dahlqvist,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-069534526423,Mathias,Bengtsson,KD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0600069352021,Fredrik,Kärrholm,M,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,596,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
-0333193598116,Bo,Broman,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0644591005314,Crister,Spets,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0640627133410,Elisabeth,Falkhaven,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0990587970528,Zinaida,Kajevic,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,6,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0825441263617,Birger,Lahti,V,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0652497579621,Johanna,Haraldsson,S,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-010392780417,Marie,Olsson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0588282566419,Lars,Beckman,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0376461485627,Henrik,Edin,L,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0248492534018,Pia,Trollehjelm,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,354,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0630820052511,Per-Arne,Håkansson,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0628005785225,Jörgen,Berglund,M,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0749416304126,Marie,Nicholson,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0694273653613,Margareta,Fransson,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0947134226212,Markus,Kauppinen,S,Tillgänglig ersättare,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,354,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0301987597720,Liza-Maria,Norlin,KD,Tillgänglig ersättare,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,218,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
-0697733600628,Alexander,Wasberg,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0964730940415,Johan,Andersson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0610162335824,Niklas,Sigvardsson,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0926002991620,Pontus,Andersson Garpvall,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0575283695521,Helena,Storckenfeldt,M,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0604604418610,Jacob,Risberg,MP,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-011548866929,Elin,Nilsson,L,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
-0144048894712,Ellen,Juntti,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,684,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
 0973782197017,Mikael,Oscarsson,KD,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0828721176319,Sten,Bergheden,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0655418111118,Laila,Olsen,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0584183916016,Ulf,Holm,MP,Tjänstgörande ersättare,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,47,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0744993950910,Anders,Ygeman,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0926477102420,Cecilia,Rönn,L,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0481460392727,Jessica,Wetterling,V,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0911916463828,Fredrik,Lundh Sammeli,S,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0512645510895,Jonathan,Svensson,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0378597308227,Camilla,Brodin,KD,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-083953568015,Malin,Höglund,M,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0853395328224,Lena,Hallengren,S,Tjänstgörande riksdagsledamot,12,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,773,0,54.00,HIGH,High risk politician - performance concerns warrant review
-0645111757928,Elin,Gustafsson,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0244552157217,Annelie,Sjöberg,SD,Tjänstgörande ersättare,0,,0,0,0,0,0,0.00,100.00,6,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0509415296421,Kjell-Arne,Ottosson,KD,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0526748040023,Ludvig,Aspling,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-035234573112,Anna-Lena,Hedberg,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,766,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0922497728524,Ardalan,Shekarabi,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-012547905113,Christina,Nilsson,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-025931369428,Jonas,Andersson,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0523902030928,Aylin,Nouri,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,464,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0920901966627,Tony,Haddou,V,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0951905661227,Christofer,Bergenblock,C,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0603366539729,Malin,Danielsson,L,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0832311880029,Erik,Ottoson,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0323000187920,Solange,Olame Bayibsa,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0246927519019,Karin,Rågsjö,V,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0831636664429,Mattias,Karlsson,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0879782396219,Olle,Thorell,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0381853591928,Malte,Tängmark Roos,MP,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,420,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0405594274208,Ewa,Pihl Krabbe,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0452755722723,Björn,Söder,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0492644357418,Per,Söderlund,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0810201628512,Ann-Charlotte,Hammar Johnsson,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0274462857213,Petter,Löberg,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0452784937426,Christopher,Lindvall,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0430865615328,Linda,Lindberg,SD,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0228027853620,Vasiliki,Tsouplaki,V,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0474290584024,Azadeh,Rojhan,S,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0203877548421,Malin,Larsson,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0411459873625,Hanna,Gunnarsson,V,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0610162335824,Niklas,Sigvardsson,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0418929039326,Patrik,Lundqvist,S,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0506541436524,Sanne,Lennström,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0768554866215,Katja,Nyberg,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0970259744617,Margareta,Cederfelt,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
 0157618290428,Rashid,Farivar,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0836001490919,Ulrika,Heie,C,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0281670919717,Jörgen,Grubb,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0229760896014,Anders,W Jonsson,C,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0251136832626,Muharrem,Demirok,C,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
-0202626512110,Lars-Ingvar,Ljungman,M,Tjänstgörande ersättare,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,50,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
-0226631365426,Mikael,Larsson,C,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0613297818326,Mathias,Tegnér,S,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
-0198917587520,Maj,Karlsson,V,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
-0287315215921,Mona,Smedman,C,Tjänstgörande ersättare,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,347,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0880018341619,Thomas,Morell,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0742883909221,John,E Weinerhall,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0161597857912,Tuve,Skånberg,KD,Tillgänglig ersättare,4,2025-11-30 00:00:00,0,0,0,0,0,0,0,0,0,18.00,LOW,Standard risk profile
-0515213566019,Lars,Isacsson,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0170585430421,Jimmy,Ståhl,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0331791853028,Yasmine,Eriksson,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0360187680814,Mats,Hellhoff,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0803753212716,Richard,Jomshof,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0397073482210,Camilla,Mårtensen,L,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,794,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0838085832923,Ann-Sofie,Lifvenhage,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0559925283228,Teres,Lindberg,S,Tillgänglig ersättare,3,2025-11-30 00:00:00,0,0,0,0,0,0,0,0,0,16.00,LOW,Standard risk profile
-0395762282903,Elsemarie,Bjellqvist,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0304498908019,Gudrun,Brunegård,KD,Tjänstgörande riksdagsledamot,12,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,High risk politician - performance concerns warrant review
+0210444373111,Katarina,Luhr,MP,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
+0938171000810,Annette,Rydell,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0828721176319,Sten,Bergheden,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0183544538819,Patrik,Jönsson,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0776705932527,Ciczie,Weidby,V,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0905254899611,Louise,Thunström,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0694273653613,Margareta,Fransson,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0512009811316,Lena,Malm,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0606863154419,Mats,Berglund,MP,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0410231576416,Lars,Johnsson,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0600069352021,Fredrik,Kärrholm,M,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,596,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
+0273506284025,Edward,Riedl,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0146133946627,Andreas,Lennkvist Manriquez,V,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0339894357417,Jennie,Nilsson,S,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0607691439013,Karin,Enström,M,Tjänstgörande riksdagsledamot,12,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,High risk politician - performance concerns warrant review
+049290762318,ClasGöran,Carlsson,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0309480686522,Leila,Ali Elmi,MP,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
 055257333723,Oscar,Sjöstedt,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0376353897112,Leif,Nysmed,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0184968091618,Jan,Riise,MP,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
+0506482805418,Isak,From,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0803753212716,Richard,Jomshof,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0845783625227,Arwin,Sohrabi,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0665360289423,Fredrik,Stenberg,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,157,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0229760896014,Anders,W Jonsson,C,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0588282566419,Lars,Beckman,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0836001490919,Ulrika,Heie,C,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0920901966627,Tony,Haddou,V,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0970709885516,Inga-Lill,Sjöblom,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0947134226212,Markus,Kauppinen,S,Tillgänglig ersättare,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,354,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0837394708917,Anders,Ådahl,C,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0591020192311,Ulf,Lindholm,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0360160202728,Emma,Ahlström Köster,M,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0951905661227,Christofer,Bergenblock,C,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0170585430421,Jimmy,Ståhl,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0502490570219,Kristina,Axén Olin,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+069534526423,Mathias,Bengtsson,KD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0496341906327,Alexandra,Völker,S,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
+0301987597720,Liza-Maria,Norlin,KD,Tillgänglig ersättare,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,218,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
+0852475703226,Lorena,Delgado Varas,-,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0859909330720,Sanna,Backeskog,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0880018341619,Thomas,Morell,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0333193598116,Bo,Broman,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0822010116020,Jim,Svensk Larm,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0427321850912,Lars Mejern,Larsson,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+099099202224,Paulina,Brandberg,L,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0721509806321,Nooshi,Dadgostar,V,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0987246082523,Paula,Örn,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,380,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0371882294919,Carita,Boulwén,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0105632258713,Boriana,Åberg,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0433422973328,Kristoffer,Lindberg,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0161597857912,Tuve,Skånberg,KD,Tillgänglig ersättare,4,2025-11-30 00:00:00,0,0,0,0,0,0,0,0,0,18.00,LOW,Standard risk profile
+0879782396219,Olle,Thorell,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0563922839001,Katarina,Olofsson,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0369212790927,Sofia,Skönnbrink,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0362779191527,Erik,Hellsborn,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0523902030928,Aylin,Nouri,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,464,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0922497728524,Ardalan,Shekarabi,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+07921826010,Anna-Belle,Strömberg,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0800956862429,Gulan,Avci,L,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0663840649717,Anette,Rangdag,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,372,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+088461404416,Richard,Herrey,M,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0315499690028,Teresa,Carvalho,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0405594274208,Ewa,Pihl Krabbe,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0966063008623,Leonid,Yurkovskiy,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+02910042914,Carina,Ödebrink,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0737666060225,Joakim,Järrebring,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0509415296421,Kjell-Arne,Ottosson,KD,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0178323535715,Johnny,Svedin,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0296384583518,Åsa,Eriksson,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0198917587520,Maj,Karlsson,V,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
+091303475611,Eric,Palmqvist,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0537400268911,Caroline,Helmersson Olsson,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0111479807829,Anna,Wallentheim,S,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0831636664429,Mattias,Karlsson,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0899169869710,Helena,Gellerman,L,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0144048894712,Ellen,Juntti,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,684,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0764422217512,Lars,Engsund,M,Tjänstgörande riksdagsledamot,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
+0237055280513,Roland,Utbult,KD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0244552157217,Annelie,Sjöberg,SD,Tjänstgörande ersättare,0,,0,0,0,0,0,0.00,100.00,6,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0338088431726,Sara,Gille,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0138741628520,Angelika,Bengtsson,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,465,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0427836082425,Fredrik,Lindstål,C,Tjänstgörande ersättare,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,30,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0860364634014,Mattias,Ottosson,S,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0985943148917,Victoria,Tiblom,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0323000187920,Solange,Olame Bayibsa,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0802091197024,Andrea,Andersson Tay,V,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0161972600410,Elsa,Widding,-,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0132818093422,Rickard,Nordin,C,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0880137451720,Emma,Nohrén,MP,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0764949934324,Ulrika,Heindorff,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,451,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0557180142229,Fredrik,Lindahl,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0271338654822,Ola,Möller,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0906620634423,Eleonore,Lundkvist,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,245,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+07012286624,Daniel,Riazat,-,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0939158389321,Samuel,Gonzalez Westling,V,Tjänstgörande riksdagsledamot,12,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,High risk politician - performance concerns warrant review
+0576619284416,Aphram,Melki,C,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0119851690521,David,Perez,SD,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,599,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0136268785826,Nima,Gholam Ali Pour,SD,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
+0990587970528,Zinaida,Kajevic,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,6,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+012547905113,Christina,Nilsson,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0564126739422,Åsa,Coenraads,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,52,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+010643534813,Eric,Westroth,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0287315215921,Mona,Smedman,C,Tjänstgörande ersättare,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,347,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0103624617217,Helén,Pettersson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0519740099915,Saila,Quicklund,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
 0127744006318,Cecilia,Gustafsson,M,Tjänstgörande riksdagsledamot,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,50,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
-0398471271026,Frida,Tånghag,V,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0442073683012,Zara,Leghissa,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0717363246311,Jessica,Stegrud,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0174490514929,Marcus,Andersson,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,382,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0628005785225,Jörgen,Berglund,M,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0802546764724,Åsa,Westlund,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0515213566019,Lars,Isacsson,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0227531635413,Lars,Püss,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0130789484021,Mattias,Bäckström Johansson,SD,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0694917698222,Michael,Rubbestad,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+065701062615,Runar,Filper,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0248492534018,Pia,Trollehjelm,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,354,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0682989845822,Håkan,Svenneling,V,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
+025931369428,Jonas,Andersson,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0222102752213,Stefan,Olsson,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0502688311316,Anna,Vikström,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+094145171913,Unni,Björnerfors,SD,Tillgänglig ersättare,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,379,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0512645510895,Jonathan,Svensson,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0783069490115,Mirja,Räihä,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0793372891224,Noria,Manouchi,M,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0911916463828,Fredrik,Lundh Sammeli,S,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
+0526748040023,Ludvig,Aspling,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0150200797210,Mats,Sander,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,393,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0457722435319,Tomas,Kronståhl,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,410,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0473783431010,Morgan,Johansson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0930305890123,Sara-Lena,Bjälkö,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0250583732424,Jesper,Skalberg Karlsson,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0469084171710,Ulrika,Westerlund,MP,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+025158809026,Ida,Gabrielsson,V,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0331791853028,Yasmine,Eriksson,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0256404677510,Cecilia,Engström,KD,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
+0468956880528,Mikael,Eskilandersson,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0792733370419,Magnus,Oscarsson,KD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0373223420310,Niclas,Malmberg,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0671571847522,Mattias,Eriksson Falk,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0488332307829,Abraham,Halef,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0810852280213,Marie-Louise,Hänel Sandström,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+025967059622,Magnus,Manhammar,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0202626512110,Lars-Ingvar,Ljungman,M,Tjänstgörande ersättare,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,50,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
+0983984918111,Matilda,Ernkrans,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0644591005314,Crister,Spets,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0358514648113,Marléne,Lund Kopparklint,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0140985614421,Peder,Björk,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+083953568015,Malin,Höglund,M,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
+0389220391128,Christian,Carlsson,KD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,626,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0285527517421,Caroline,Nordengrip,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0773497241728,Roger,Hedlund,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0729710260118,Helena,Bouveng,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0494242537816,Hans,Eklind,KD,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0653578338415,Agneta,Nilsson,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,354,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0986091320811,Catarina,Deremar,C,Tjänstgörande riksdagsledamot,12,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,High risk politician - performance concerns warrant review
 0294138886823,Martin,Kinnunen,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0766496753128,Fredrik,Malm,L,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0371013828421,Lars,Larsson,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+041911485722,Magdalena,Thuresson,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,347,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0603366539729,Malin,Danielsson,L,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0521260619925,Sofia,Amloh,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+037781229619,Staffan,Eklöf,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0973350087929,Patrik,Karlson,L,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,790,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0388994689418,Malin,Östh,V,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,52.00,HIGH,High risk politician - performance concerns warrant review
+0641953830512,Magnus,Persson,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0220064764318,Camilla,Brunsberg,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,792,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0472349361027,Kalle,Olsson,S,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,509,0,50.00,HIGH,High risk politician - performance concerns warrant review
+0838085832923,Ann-Sofie,Lifvenhage,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0381853591928,Malte,Tängmark Roos,MP,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,420,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0828001951212,Ingemar,Kihlström,KD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0847676507229,Stina,Larsson,C,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0448973586529,Adrian,Magnusson,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0825441263617,Birger,Lahti,V,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0720250789315,Mats,Wiking,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0112806493429,Fredrik,Saweståhl,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,323,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+023767922422,Mats,Persson,L,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,50,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0802606848923,Mariya,Voyvodova,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,320,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0344222203323,Dennis,Dioukarev,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0965245623824,Nicklas,Attefjord,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0937688366013,Peter,Hultqvist,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0564232053610,Mikael,Sandström,M,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+033935884729,Martina,Johansson,C,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0364687971222,Alireza,Akhondi,C,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0853395328224,Lena,Hallengren,S,Tjänstgörande riksdagsledamot,12,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,773,0,54.00,HIGH,High risk politician - performance concerns warrant review
+0246927519019,Karin,Rågsjö,V,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0678597762924,Martin,Westmont,SD,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
+0410640630411,Ulrik,Nilsson,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0530425150220,Annika,Strandhäll,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0589561178823,Peter,Hedberg,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0191189790215,Peter,Ollén,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+010392780417,Marie,Olsson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0819601620927,Annika,Hirvonen,MP,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0257313105220,Arber,Gashi,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0245113256029,Daniel,Vencu Velasquez Castro,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0112333043027,Rasmus,Giertz,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+011548866929,Elin,Nilsson,L,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
+0710595759638,Aida,Birinxhiku,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0358278412329,Björn,Petersson,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,505,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0469384565811,Anders,Alftberg,SD,Tjänstgörande riksdagsledamot,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
+0640627133410,Elisabeth,Falkhaven,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0440225263920,Robert,Olesen,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,242,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0877778793323,Johan,Büser,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0926002991620,Pontus,Andersson Garpvall,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0992473266516,Larry,Söder,KD,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0412148992926,Hanna,Westerén,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0316505710324,Janine,Alm Ericson,MP,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0653904370212,Fredrik,Olovsson,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0313390540217,Ingela,Nylund Watz,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0760500234712,Monica,Haider,S,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0376395541120,Joakim,Sandell,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0932000030511,Maria,Stockhaus,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0475778011711,Hans,Ekström,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0875221317013,Gunilla,Carlsson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0964730940415,Johan,Andersson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0648224557612,Åsa,Karlsson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,687,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0426843954410,Ulrik,Bergman,M,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0509830681123,Ida,Karkiainen,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0163772273014,Anna,Vedin,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,160,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0407081382317,Anna-Caren,Sätherberg,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0290003389021,Chris,Dahlqvist,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,50,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0121015874810,Torsten,Elofsson,KD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+039102787629,Oliver,Rosengren,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0892978334516,Michael,Anefur,KD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0153782796218,Ulf,Rexefjord,SD,Tjänstgörande ersättare,0,,0,0,0,0,0,0.00,100.00,71,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0511863596121,Erica,Nådin,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0503029811325,David,Josefsson,M,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,781,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
+037561614928,Lawen,Redar,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0613297818326,Mathias,Tegnér,S,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
+0866055333028,Alexandra,Anstrell,M,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0627450126815,Kajsa,Fredholm,V,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0591055036519,Mauricio,Rojas,L,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0340418158820,Daniel,Persson,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0692076685824,Camilla,Hansén,MP,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+030110584526,Caroline,Täljeblad,V,Tjänstgörande ersättare,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,18,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0240670797111,Björn,Tidland,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0671241874717,Elisabeth,Björnsdotter Rahm,M,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0499755198526,Mattias,Jonsson,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0999976269027,Amanda,Palmstierna,MP,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,182,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0554852839719,Mikael,Dahlqvist,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+035234573112,Anna-Lena,Hedberg,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,766,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0780214960516,Eva,Lindh,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0831039938224,Adam,Marttinen,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0522054204918,Mattias,Karlsson,M,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0121939297619,Jamal,El-Haj,-,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0618938634020,Marcus,Wennerström,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,212,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0576122429317,Martin,Melin,L,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0662032691523,Amalia,Rud Stenlöf,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,524,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0348383585915,Marielle,Lahti,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+084624777218,Helena,Lindahl,C,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+075747847023,Gustaf,Lantz,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,632,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0559925283228,Teres,Lindberg,S,Tillgänglig ersättare,3,2025-11-30 00:00:00,0,0,0,0,0,0,0,0,0,16.00,LOW,Standard risk profile
+0947572086414,Anne-Li,Sjölund,C,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0890152141226,Nadja,Awad,V,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0119672047211,Madeleine,Atlas,C,Tjänstgörande riksdagsledamot,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,13,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
+0984153507725,Gustaf,Göthberg,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0940980416614,Jan,Ericson,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
 0249730539015,Anders,Karlsson,C,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
 0130640724922,Clara,Aranda,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0122987223112,Lotta,Johnsson Fornarve,V,Tjänstgörande riksdagsledamot,13,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,56.00,HIGH,High risk politician - performance concerns warrant review
-0476362590123,Louise,Mörk,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0837394708917,Anders,Ådahl,C,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-025967059622,Magnus,Manhammar,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-049290762318,ClasGöran,Carlsson,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0973350087929,Patrik,Karlson,L,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,790,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0802091197024,Andrea,Andersson Tay,V,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0557180142229,Fredrik,Lindahl,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0667220767927,Erik,Ezelius,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0146133946627,Andreas,Lennkvist Manriquez,V,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0132818093422,Rickard,Nordin,C,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-010643534813,Eric,Westroth,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0341628241813,Marianne,Fundahn,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0972636989226,Dzenan,Cisija,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0496341906327,Alexandra,Völker,S,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0250583732424,Jesper,Skalberg Karlsson,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0265240520811,Leif,Gripestam,M,Tjänstgörande ersättare,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,30,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
-0499755198526,Mattias,Jonsson,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0710595759638,Aida,Birinxhiku,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0692076685824,Camilla,Hansén,MP,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0229627943828,Jytte,Guteland,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0418929039326,Patrik,Lundqvist,S,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-099099202224,Paulina,Brandberg,L,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0506541436524,Sanne,Lennström,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0760500234712,Monica,Haider,S,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0847676507229,Stina,Larsson,C,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0641953830512,Magnus,Persson,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0911067396229,Mattias,Vepsä,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0965245623824,Nicklas,Attefjord,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0161616238120,Lina,Nordquist,L,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-094145171913,Unni,Björnerfors,SD,Tillgänglig ersättare,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,379,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0389220391128,Christian,Carlsson,KD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,626,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0344222203323,Dennis,Dioukarev,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0828001951212,Ingemar,Kihlström,KD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0256716955026,Serkan,Köse,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0980092192122,Joar,Forssell,L,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0407081382317,Anna-Caren,Sätherberg,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0411459873625,Hanna,Gunnarsson,V,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0648224557612,Åsa,Karlsson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,687,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0105632258713,Boriana,Åberg,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0452784937426,Christopher,Lindvall,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0764422217512,Lars,Engsund,M,Tjänstgörande riksdagsledamot,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
-0358278412329,Björn,Petersson,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,505,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0910803550317,Lena,Johansson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
 0722683622001,Lars,Jilmstad,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,248,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0475778011711,Hans,Ekström,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0316505710324,Janine,Alm Ericson,MP,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0519740099915,Saila,Quicklund,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0469384565811,Anders,Alftberg,SD,Tjänstgörande riksdagsledamot,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
-0427836082425,Fredrik,Lindstål,C,Tjänstgörande ersättare,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,30,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0140985614421,Peder,Björk,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0970709885516,Inga-Lill,Sjöblom,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0348383585915,Marielle,Lahti,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0161972600410,Elsa,Widding,-,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0516528386117,Patrik,Björck,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0433422973328,Kristoffer,Lindberg,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0992473266516,Larry,Söder,KD,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0564232053610,Mikael,Sandström,M,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0999976269027,Amanda,Palmstierna,MP,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,182,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0591055036519,Mauricio,Rojas,L,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0150200797210,Mats,Sander,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,393,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0866055333028,Alexandra,Anstrell,M,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0619928872229,Laila,Naraghi,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0845133742919,Lili,André,KD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0564126739422,Åsa,Coenraads,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,52,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0472349361027,Kalle,Olsson,S,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,509,0,50.00,HIGH,High risk politician - performance concerns warrant review
-0720250789315,Mats,Wiking,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0888807074321,Amanda,Lind,MP,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0313390540217,Ingela,Nylund Watz,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0890152141226,Nadja,Awad,V,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0538387395826,Mats,Green,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0534870997412,Åsa,Hartzell,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,63,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0859909330720,Sanna,Backeskog,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0112806493429,Fredrik,Saweståhl,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,323,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0307835692938,Emelie,Nyman,C,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,349,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0245113256029,Daniel,Vencu Velasquez Castro,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0627450126815,Kajsa,Fredholm,V,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0822010116020,Jim,Svensk Larm,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0136268785826,Nima,Gholam Ali Pour,SD,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
-0522240580423,Arin,Karapet,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0315499690028,Teresa,Carvalho,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0257313105220,Arber,Gashi,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-07012286624,Daniel,Riazat,-,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-037561614928,Lawen,Redar,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0376395541120,Joakim,Sandell,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0237055280513,Roland,Utbult,KD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0406831930624,Henrik,Vinge,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0122987223112,Lotta,Johnsson Fornarve,V,Tjänstgörande riksdagsledamot,13,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,56.00,HIGH,High risk politician - performance concerns warrant review
+0226631365426,Mikael,Larsson,C,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0254695027922,Malcolm Momodou,Jallow,V,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
+0834510274913,Charlotte,Nordström,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0494843794418,Martin,Ådahl,C,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
 0262411569110,Helene,Odenjung,L,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,405,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+071293048118,Thomas,Ragnarsson,M,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
+0888807074321,Amanda,Lind,MP,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0111697351426,Louise,Eklund,L,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0709911904721,Johanna,Rantsi,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0796312429425,Viktor,Wärnick,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0372414474424,Oskar,Svärd,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0251136832626,Muharrem,Demirok,C,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
 0229350341619,Ilona,Szatmári Waldau,V,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0121015874810,Torsten,Elofsson,KD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0576122429317,Martin,Melin,L,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0358514648113,Marléne,Lund Kopparklint,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0880137451720,Emma,Nohrén,MP,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0430865615328,Linda,Lindberg,SD,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-098412828516,Magdalena,Andersson,S,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0410640630411,Ulrik,Nilsson,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0671241874717,Elisabeth,Björnsdotter Rahm,M,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0607691439013,Karin,Enström,M,Tjänstgörande riksdagsledamot,12,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,High risk politician - performance concerns warrant review
-0376353897112,Leif,Nysmed,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0511863596121,Erica,Nådin,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0678597762924,Martin,Westmont,SD,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
-0721509806321,Nooshi,Dadgostar,V,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0271338654822,Ola,Möller,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0191189790215,Peter,Ollén,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-048561486727,Isabell,Mixter,V,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0494242537816,Hans,Eklind,KD,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0737824098113,Magnus,Berntsson,KD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
 066036027425,Mikael,Damsgaard,M,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0932000030511,Maria,Stockhaus,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0210444373111,Katarina,Luhr,MP,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
-0468956880528,Mikael,Eskilandersson,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0962410717322,Sultan,Kayhan,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0972636989226,Dzenan,Cisija,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0534870997412,Åsa,Hartzell,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,63,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0926477102420,Cecilia,Rönn,L,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0516528386117,Patrik,Björck,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+065105536026,Niklas,Karlsson,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0604811710522,Ida,Drougge,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0904448094023,Linus,Lakso,MP,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0926214745119,Heléne,Björklund,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0412502344925,Ida,Ekeroth Clausson,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,462,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0481460392727,Jessica,Wetterling,V,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0845133742919,Lili,André,KD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0584183916016,Ulf,Holm,MP,Tjänstgörande ersättare,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,47,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0497217816024,Markus,Selin,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+051207517226,Jimmie,Åkesson,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0211757295524,Josef,Fransson,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,472,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0440673458216,Ulrika,Liljeberg,C,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0386912710815,Mats,Arkhem,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0911067396229,Mattias,Vepsä,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0575283695521,Helena,Storckenfeldt,M,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0341628241813,Marianne,Fundahn,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0955748436811,Robert,Stenkvist,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0615175917521,Kent,Kumpula,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,714,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0522240580423,Arin,Karapet,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0749416304126,Marie,Nicholson,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0265240520811,Leif,Gripestam,M,Tjänstgörande ersättare,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,30,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
+0204443909416,Johan,Hedin,C,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0525562399327,Caroline,Högström,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,599,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0281670919717,Jörgen,Grubb,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0409655917321,Jakob,Olofsgård,L,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0980092192122,Joar,Forssell,L,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0630820052511,Per-Arne,Håkansson,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0744993950910,Anders,Ygeman,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0476362590123,Louise,Mörk,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0706528359123,Linus,Sköld,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0503363679811,Stefan,Plath,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0283284978818,Markus,Kallifatides,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0256716955026,Serkan,Köse,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0832311880029,Erik,Ottoson,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+036926802512,Blåvitt,Elofsson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,354,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0667220767927,Erik,Ezelius,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0202577142527,Matheus,Enholm,SD,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+027964311318,Karin,Sundin,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0803790353229,Azra,Muranovic,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,490,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0855286184126,Jessica,Rodén,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+082139988919,Kerstin,Hermansson,C,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0397073482210,Camilla,Mårtensen,L,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,794,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0395154929710,Anders,Frimert,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0360187680814,Mats,Hellhoff,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0587736055221,Niels,Paarup-Petersen,C,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0398471271026,Frida,Tånghag,V,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+014744660015,Mikael,Damberg,S,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0229627943828,Jytte,Guteland,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+025877594729,John,Widegren,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0779329190517,Kjell,Jansson,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+098412828516,Magdalena,Andersson,S,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
+0602744999917,Elisabeth,Thand Ringqvist,C,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
+0279488554424,Alexander,Christiansson,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0619928872229,Laila,Naraghi,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
 028954589415,Ann-Sofie,Alm,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
 086684470825,Tobias,Andersson,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0962410717322,Sultan,Kayhan,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0940980416614,Jan,Ericson,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0503363679811,Stefan,Plath,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-091303475611,Eric,Palmqvist,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0119672047211,Madeleine,Atlas,C,Tjänstgörande riksdagsledamot,1,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,13,0,32.00,MEDIUM,Moderate risk - monitor for declining performance
-0938171000810,Annette,Rydell,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0970259744617,Margareta,Cederfelt,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-051207517226,Jimmie,Åkesson,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-030110584526,Caroline,Täljeblad,V,Tjänstgörande ersättare,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,18,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0497217816024,Markus,Selin,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0285527517421,Caroline,Nordengrip,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0202577142527,Matheus,Enholm,SD,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0963046628824,Christian,Lindefjärd,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0412502344925,Ida,Ekeroth Clausson,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,462,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0671571847522,Mattias,Eriksson Falk,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0240670797111,Björn,Tidland,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0985426914829,Anna,Lasses,C,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0492644357418,Per,Söderlund,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0618938634020,Marcus,Wennerström,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,212,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0406831930624,Henrik,Vinge,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0371882294919,Carita,Boulwén,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0792733370419,Magnus,Oscarsson,KD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0779329190517,Kjell,Jansson,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0236597884217,Rose-Marie,Carlsson,S,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,838,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0537400268911,Caroline,Helmersson Olsson,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0530425150220,Annika,Strandhäll,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0452755722723,Björn,Söder,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0488332307829,Abraham,Halef,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0227531635413,Lars,Püss,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0766496753128,Fredrik,Malm,L,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0457722435319,Tomas,Kronståhl,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,410,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-023767922422,Mats,Persson,L,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,50,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-071293048118,Thomas,Ragnarsson,M,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
-037781229619,Staffan,Eklöf,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0860364634014,Mattias,Ottosson,S,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
-0606863154419,Mats,Berglund,MP,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0773497241728,Roger,Hedlund,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0903081277919,Helena,Vilhelmsson,C,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
-0410231576416,Lars,Johnsson,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0256404677510,Cecilia,Engström,KD,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
-0474290584024,Azadeh,Rojhan,S,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0448973586529,Adrian,Magnusson,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0599661454115,Lena,Bäckelin,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,335,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0662032691523,Amalia,Rud Stenlöf,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,524,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0986091320811,Catarina,Deremar,C,Tjänstgörande riksdagsledamot,12,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,High risk politician - performance concerns warrant review
-0793372891224,Noria,Manouchi,M,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0522054204918,Mattias,Karlsson,M,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-041911485722,Magdalena,Thuresson,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,347,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0395154929710,Anders,Frimert,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0274462857213,Petter,Löberg,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0624994476012,Nermina,Mizimovic,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
 0275884973900,Monica,Andersson,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0279488554424,Alexander,Christiansson,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0663840649717,Anette,Rangdag,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,372,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0338088431726,Sara,Gille,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-02910042914,Carina,Ödebrink,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0834510274913,Charlotte,Nordström,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0389795960120,Martin,Marmgren,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0440673458216,Ulrika,Liljeberg,C,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0604811710522,Ida,Drougge,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0966063008623,Leonid,Yurkovskiy,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0521260619925,Sofia,Amloh,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-036926802512,Blåvitt,Elofsson,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,354,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0899169869710,Helena,Gellerman,L,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0810852280213,Marie-Louise,Hänel Sandström,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0371013828421,Lars,Larsson,SD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0506482805418,Isak,From,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0810201628512,Ann-Charlotte,Hammar Johnsson,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-088461404416,Richard,Herrey,M,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-04571388712,Adam,Reuterskiöld,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0589561178823,Peter,Hedberg,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0509830681123,Ida,Karkiainen,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-082139988919,Kerstin,Hermansson,C,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0504851635310,Daniel,Helldén,MP,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
-075747847023,Gustaf,Lantz,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,632,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0121939297619,Jamal,El-Haj,-,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-025158809026,Ida,Gabrielsson,V,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0765747165821,Marcus,Jonsson,KD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0706528359123,Linus,Sköld,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0340418158820,Daniel,Persson,SD,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0717363246311,Jessica,Stegrud,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0494843794418,Martin,Ådahl,C,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0440225263920,Robert,Olesen,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,242,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0764949934324,Ulrika,Heindorff,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,451,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-033935884729,Martina,Johansson,C,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
-0254695027922,Malcolm Momodou,Jallow,V,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
-0546731406922,Rebecka,Le Moine,MP,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0178323535715,Johnny,Svedin,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0220064764318,Camilla,Brunsberg,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,792,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0409655917321,Jakob,Olofsgård,L,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0174490514929,Marcus,Andersson,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,382,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0598792324417,Ulrika,Jörgensen,M,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0111697351426,Louise,Eklund,L,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0653578338415,Agneta,Nilsson,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,354,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0796312429425,Viktor,Wärnick,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0587736055221,Niels,Paarup-Petersen,C,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0845783625227,Arwin,Sohrabi,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0930305890123,Sara-Lena,Bjälkö,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0373223420310,Niclas,Malmberg,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0892978334516,Michael,Anefur,KD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0512009811316,Lena,Malm,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0425115010020,Kadir,Kasirga,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0503029811325,David,Josefsson,M,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,781,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
-0502490570219,Kristina,Axén Olin,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0802546764724,Åsa,Westlund,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0112333043027,Rasmus,Giertz,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0163772273014,Anna,Vedin,M,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,160,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0538387395826,Mats,Green,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
+0456680171315,Charlotte,Quensel,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0456522027421,Linnéa,Wickman,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
 0747883322423,Amir,Jawad,L,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
-0983984918111,Matilda,Ernkrans,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0768554866215,Katja,Nyberg,SD,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0803790353229,Azra,Muranovic,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,490,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0852475703226,Lorena,Delgado Varas,-,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-025877594729,John,Widegren,M,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-065105536026,Niklas,Karlsson,S,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0802606848923,Mariya,Voyvodova,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,320,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
-0360160202728,Emma,Ahlström Köster,M,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+048561486727,Isabell,Mixter,V,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0395762282903,Elsemarie,Bjellqvist,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+04571388712,Adam,Reuterskiöld,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0765747165821,Marcus,Jonsson,KD,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0546731406922,Rebecka,Le Moine,MP,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0985426914829,Anna,Lasses,C,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0545733815610,Patrick,Reslow,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
 0148424181819,Ann-Christine,Frohm,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-039102787629,Oliver,Rosengren,M,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0737824098113,Magnus,Berntsson,KD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0783069490115,Mirja,Räihä,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
-0939158389321,Samuel,Gonzalez Westling,V,Tjänstgörande riksdagsledamot,12,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,High risk politician - performance concerns warrant review
-0362779191527,Erik,Hellsborn,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-084624777218,Helena,Lindahl,C,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0831039938224,Adam,Marttinen,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0955748436811,Robert,Stenkvist,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-0776705932527,Ciczie,Weidby,V,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
-0364687971222,Alireza,Akhondi,C,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0598792324417,Ulrika,Jörgensen,M,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0645111757928,Elin,Gustafsson,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+02658325625,Angelica,Lundberg,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0307835692938,Emelie,Nyman,C,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,349,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0604604418610,Jacob,Risberg,MP,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0992867772421,Nils,Seye Larsen,MP,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,458,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0236597884217,Rose-Marie,Carlsson,S,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,838,0,52.00,HIGH,High risk politician - performance concerns warrant review
+0161616238120,Lina,Nordquist,L,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0345062474310,Mona,Olin,SD,Tjänstgörande riksdagsledamot,2,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,34.00,MEDIUM,Moderate risk - monitor for declining performance
+0624994476012,Nermina,Mizimovic,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
 0204240926023,Markus,Wiechel,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,773,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
-0985943148917,Victoria,Tiblom,SD,Tjänstgörande riksdagsledamot,7,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,44.00,MEDIUM,Moderate risk - monitor for declining performance
+0697733600628,Alexander,Wasberg,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0389795960120,Martin,Marmgren,MP,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0378597308227,Camilla,Brodin,KD,Tjänstgörande riksdagsledamot,9,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,48.00,MEDIUM,Moderate risk - monitor for declining performance
+0304498908019,Gudrun,Brunegård,KD,Tjänstgörande riksdagsledamot,12,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,High risk politician - performance concerns warrant review
+0599661454115,Lena,Bäckelin,S,Tillgänglig ersättare,0,,0,0,0,0,0,0.00,100.00,335,0,30.00,MEDIUM,Moderate risk - monitor for declining performance
+0504851635310,Daniel,Helldén,MP,Tjänstgörande riksdagsledamot,10,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,High risk politician - performance concerns warrant review
+0655418111118,Laila,Olsen,S,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0977592683711,Magnus,Jacobsson,KD,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0652497579621,Johanna,Haraldsson,S,Tjänstgörande riksdagsledamot,8,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,46.00,MEDIUM,Moderate risk - monitor for declining performance
+0903081277919,Helena,Vilhelmsson,C,Tjänstgörande riksdagsledamot,11,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,High risk politician - performance concerns warrant review
+0466653728712,Denis,Begic,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0254021157518,Lars,Andersson,SD,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0612916684825,Johan,Löfstrand,S,Tjänstgörande riksdagsledamot,6,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,42.00,MEDIUM,Moderate risk - monitor for declining performance
+0425115010020,Kadir,Kasirga,S,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
+0376461485627,Henrik,Edin,L,Tillgänglig ersättare,0,,0,0,0,0,0,0,0,0,0,10.00,LOW,Standard risk profile
+0742883909221,John,E Weinerhall,M,Tjänstgörande riksdagsledamot,5,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,40.00,MEDIUM,Moderate risk - monitor for declining performance
 0327372175911,Fredrik,Ahlstedt,M,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
-0203877548421,Malin,Larsson,S,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
-07921826010,Anna-Belle,Strömberg,S,Tjänstgörande riksdagsledamot,3,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,844,0,36.00,MEDIUM,Moderate risk - monitor for declining performance
+0963046628824,Christian,Lindefjärd,SD,Tjänstgörande riksdagsledamot,4,2025-11-30 00:00:00,0,0,0,0,0,0.00,100.00,495,0,38.00,MEDIUM,Moderate risk - monitor for declining performance
