@@ -1456,7 +1456,7 @@ ORDER BY
 -- 6.2: Document Type Distribution
 \echo 'Generating document type distribution...'
 
-\copy (SELECT doc_type, COUNT(*) AS doc_count, ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS percentage FROM document_data WHERE doc_type IS NOT NULL GROUP BY doc_type ORDER BY doc_count DESC LIMIT 50) TO 'distribution_document_types.csv' WITH CSV HEADER
+\copy (SELECT document_type, COUNT(*) AS doc_count, ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS percentage FROM document_data WHERE document_type IS NOT NULL GROUP BY document_type ORDER BY doc_count DESC LIMIT 50) TO 'distribution_document_types.csv' WITH CSV HEADER
 \echo '✓ Generated: distribution_document_types.csv'
 
 -- 6.3: Committee Activity Distribution
@@ -1557,6 +1557,84 @@ DROP TABLE tmp_view_sizes;
 \copy (SELECT extraction_type, COUNT(*) AS file_count, SUM(row_count) AS total_rows FROM extraction_manifest GROUP BY extraction_type ORDER BY total_rows DESC) TO 'summary_extraction_types.csv' WITH CSV HEADER
 \echo '✓ Generated: summary_extraction_types.csv'
 
+-- ===========================================================================
+-- 6.16-6.25: ANNUAL ENTITY DISTRIBUTIONS (for temporal view development)
+-- ===========================================================================
+\echo ''
+\echo 'Generating annual entity distributions for temporal analysis...'
+
+-- 6.16: Party Members by Year (when they were active/assigned)
+\echo 'Generating annual party member distribution...'
+\copy (SELECT EXTRACT(YEAR FROM a.from_date)::int AS year, p.party, COUNT(DISTINCT p.id) AS active_members FROM person_data p JOIN assignment_data a ON a.person_data_intressent_id = p.id WHERE a.from_date IS NOT NULL AND a.from_date >= '1990-01-01' AND p.party IS NOT NULL GROUP BY EXTRACT(YEAR FROM a.from_date)::int, p.party ORDER BY year, party) TO 'distribution_annual_party_members.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_annual_party_members.csv'
+
+-- 6.17: Documents by Year and Type (showing document type availability over time)
+\echo 'Generating annual document type distribution...'
+\copy (SELECT EXTRACT(YEAR FROM made_public_date)::int AS year, document_type, COUNT(*) AS doc_count FROM document_data WHERE made_public_date IS NOT NULL AND made_public_date >= '1990-01-01' AND document_type IS NOT NULL GROUP BY EXTRACT(YEAR FROM made_public_date)::int, document_type ORDER BY year, doc_count DESC) TO 'distribution_annual_document_types.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_annual_document_types.csv'
+
+-- 6.18: Documents by Year and Committee (showing committee activity over time)
+\echo 'Generating annual committee document distribution...'
+\copy (SELECT EXTRACT(YEAR FROM made_public_date)::int AS year, org AS committee, COUNT(*) AS doc_count FROM document_data WHERE made_public_date IS NOT NULL AND made_public_date >= '1990-01-01' AND org IS NOT NULL AND org != '' GROUP BY EXTRACT(YEAR FROM made_public_date)::int, org ORDER BY year, doc_count DESC) TO 'distribution_annual_committee_documents.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_annual_committee_documents.csv'
+
+-- 6.19: Votes by Year and Party (showing voting activity patterns)
+\echo 'Generating annual party voting distribution...'
+\copy (SELECT EXTRACT(YEAR FROM vote_date)::int AS year, party, COUNT(*) AS vote_count, SUM(CASE WHEN vote = 'Ja' THEN 1 ELSE 0 END) AS yes_votes, SUM(CASE WHEN vote = 'Nej' THEN 1 ELSE 0 END) AS no_votes, SUM(CASE WHEN vote = 'Frånvarande' THEN 1 ELSE 0 END) AS absent FROM vote_data WHERE vote_date IS NOT NULL AND vote_date >= '1990-01-01' AND party IS NOT NULL GROUP BY EXTRACT(YEAR FROM vote_date)::int, party ORDER BY year, vote_count DESC) TO 'distribution_annual_party_votes.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_annual_party_votes.csv'
+
+-- 6.20: Committee Assignments by Year (showing committee existence over time)
+\echo 'Generating annual committee assignment distribution...'
+\copy (SELECT EXTRACT(YEAR FROM from_date)::int AS year, org_code AS committee, COUNT(*) AS assignment_count, COUNT(DISTINCT intressent_id) AS unique_members FROM assignment_data WHERE from_date IS NOT NULL AND from_date >= '1990-01-01' AND assignment_type = 'uppdrag' AND org_code IS NOT NULL GROUP BY EXTRACT(YEAR FROM from_date)::int, org_code ORDER BY year, assignment_count DESC) TO 'distribution_annual_committee_assignments.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_annual_committee_assignments.csv'
+
+-- 6.21: Ballot Activity by Year (showing ballot volume and outcomes over time)
+\echo 'Generating annual ballot summary...'
+\copy (SELECT EXTRACT(YEAR FROM vote_date)::int AS year, COUNT(DISTINCT CONCAT(embedded_id_ballot_id, embedded_id_concern, embedded_id_issue)) AS unique_ballots, COUNT(*) AS total_votes, ROUND(AVG(CASE WHEN vote = 'Ja' THEN 1 WHEN vote = 'Nej' THEN 0 END)::numeric, 3) AS avg_yes_rate FROM vote_data WHERE vote_date IS NOT NULL AND vote_date >= '1990-01-01' GROUP BY EXTRACT(YEAR FROM vote_date)::int ORDER BY year) TO 'distribution_annual_ballots.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_annual_ballots.csv'
+
+-- 6.22: Ministry/Government Roles by Year
+\echo 'Generating annual ministry assignment distribution...'
+\copy (SELECT EXTRACT(YEAR FROM from_date)::int AS year, detail AS ministry, COUNT(*) AS assignment_count, COUNT(DISTINCT intressent_id) AS unique_members FROM assignment_data WHERE from_date IS NOT NULL AND from_date >= '1990-01-01' AND assignment_type = 'Departement' AND detail IS NOT NULL GROUP BY EXTRACT(YEAR FROM from_date)::int, detail ORDER BY year, assignment_count DESC) TO 'distribution_annual_ministry_assignments.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_annual_ministry_assignments.csv'
+
+-- 6.23: Politician First Appearance Year (for career analysis)
+\echo 'Generating politician career start distribution...'
+\copy (SELECT first_year, party, COUNT(*) AS politicians_started FROM (SELECT p.id, p.party, EXTRACT(YEAR FROM MIN(a.from_date))::int AS first_year FROM person_data p JOIN assignment_data a ON a.person_data_intressent_id = p.id WHERE a.from_date IS NOT NULL AND p.party IS NOT NULL GROUP BY p.id, p.party) career_starts WHERE first_year >= 1990 GROUP BY first_year, party ORDER BY first_year, politicians_started DESC) TO 'distribution_politician_career_starts.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_politician_career_starts.csv'
+
+-- 6.24: Document Status Changes by Year
+\echo 'Generating annual document status distribution...'
+\copy (SELECT EXTRACT(YEAR FROM made_public_date)::int AS year, status, COUNT(*) AS doc_count FROM document_data WHERE made_public_date IS NOT NULL AND made_public_date >= '1990-01-01' AND status IS NOT NULL GROUP BY EXTRACT(YEAR FROM made_public_date)::int, status ORDER BY year, doc_count DESC) TO 'distribution_annual_document_status.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_annual_document_status.csv'
+
+-- 6.25: Empty Views Report (views with no data that need attention)
+\echo 'Generating empty views report...'
+CREATE TEMP TABLE tmp_empty_views AS
+SELECT view_name, view_type, row_count,
+    CASE 
+        WHEN view_name LIKE '%risk%' THEN 'risk_analysis'
+        WHEN view_name LIKE '%trend%' THEN 'trend_analysis'
+        WHEN view_name LIKE '%summary%' THEN 'summary'
+        WHEN view_name LIKE '%influence%' THEN 'influence_analysis'
+        WHEN view_name LIKE '%anomaly%' THEN 'anomaly_detection'
+        WHEN view_name LIKE '%crisis%' THEN 'crisis_analysis'
+        ELSE 'other'
+    END AS view_category
+FROM (
+    SELECT viewname AS view_name, 'regular' AS view_type, cia_tmp_rowcount('public', viewname) AS row_count
+    FROM pg_views WHERE schemaname = 'public'
+    UNION ALL
+    SELECT matviewname AS view_name, 'materialized' AS view_type, cia_tmp_rowcount('public', matviewname) AS row_count
+    FROM pg_matviews WHERE schemaname = 'public'
+) v
+WHERE row_count = 0
+ORDER BY view_category, view_name;
+
+\copy (SELECT * FROM tmp_empty_views) TO 'report_empty_views.csv' WITH CSV HEADER
+DROP TABLE tmp_empty_views;
+\echo '✓ Generated: report_empty_views.csv'
+
 \echo ''
 \echo '=================================================='
 \echo '=== PHASE 6 COMPLETE: Distribution Stats Done ==='
@@ -1600,6 +1678,20 @@ DROP FUNCTION IF EXISTS cia_classify_temporal_view(text);
 \echo '  - distribution_assignment_roles.csv    : Assignment role types'
 \echo '  - distribution_table_sizes.csv         : Table row count distribution'
 \echo '  - distribution_view_sizes.csv          : View row count distribution'
+\echo ''
+\echo 'Annual Entity Distributions (for temporal view development):'
+\echo '  - distribution_annual_party_members.csv       : Active party members by year'
+\echo '  - distribution_annual_document_types.csv      : Document types by year'
+\echo '  - distribution_annual_committee_documents.csv : Committee document activity by year'
+\echo '  - distribution_annual_party_votes.csv         : Party voting patterns by year'
+\echo '  - distribution_annual_committee_assignments.csv: Committee assignments by year'
+\echo '  - distribution_annual_ballots.csv             : Ballot volume by year'
+\echo '  - distribution_annual_ministry_assignments.csv: Ministry assignments by year'
+\echo '  - distribution_politician_career_starts.csv   : When politicians started careers'
+\echo '  - distribution_annual_document_status.csv     : Document status by year'
+\echo ''
+\echo 'Reports:'
+\echo '  - report_empty_views.csv     : Views with no data (need investigation)'
 \echo ''
 \echo 'Trend Analysis:'
 \echo '  - trend_annual_documents.csv   : Yearly document volume since 1990'

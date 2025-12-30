@@ -1,13 +1,13 @@
 party_number,party_name,party_id,website,registered_date,head_count,total_documents,avg_documents_per_member,documents_last_year,very_high_activity_members,high_activity_members,medium_activity_members,low_activity_members,party_focused_members,committee_focused_members,individual_focused_members,avg_collaboration_percentage
-1,Moderaterna,M,www.moderat.se,2013-09-06,471,42413,90.0,1952,73,71,55,110,17,54,232,1.5
-3,Liberalerna,L,www.liberalerna.se,2015-11-30,72,9237,128.3,286,20,11,4,28,9,14,36,2.4
-110,Sverigedemokraterna,SD,www.sverigedemokraterna.se,1991-02-08,127,11720,92.3,1013,18,18,23,49,5,42,61,0.0
-4,Centerpartiet,C,www.centerpartiet.se,1995-05-18,256,16546,64.6,934,31,20,19,19,5,25,59,1.6
-2,Arbetarepartiet-Socialdemokraterna,S,www.socialdemokraterna.se,1956-08-02,854,64143,75.1,2684,111,87,89,125,6,5,383,0.7
-170,NyDemokrati,NYD,"",1991-02-15,24,0,0.0,0,0,0,0,0,0,0,0,0.0
-3,Folkpartiet liberalerna,FP,www.folkpartiet.se,1990-12-17,191,7373,38.6,0,16,15,4,4,8,9,22,2.3
-5,Vänsterpartiet,V,www.vansterpartiet.se,1990-06-15,139,23652,170.2,967,43,20,22,14,67,31,1,1.6
-68,Kristdemokraterna,KD,www.kristdemokraterna.se,1996-08-29,128,22442,175.3,457,45,16,13,31,8,52,40,2.9
 524,Piratpartiet,PP,www.piratpartiet.se,2006-02-15,2,0,0.0,0,0,0,0,0,0,0,0,0.0
-55,Miljöpartiet de gröna,MP,www.mp.se,1985-02-04,142,17423,122.7,1206,33,30,14,23,28,24,44,1.7
+4,Centerpartiet,C,www.centerpartiet.se,1995-05-18,256,16546,64.6,934,31,20,19,19,5,25,59,1.6
+3,Liberalerna,L,www.liberalerna.se,2015-11-30,72,9237,128.3,286,20,11,4,28,9,14,36,2.4
+170,NyDemokrati,NYD,"",1991-02-15,24,0,0.0,0,0,0,0,0,0,0,0,0.0
+5,Vänsterpartiet,V,www.vansterpartiet.se,1990-06-15,139,23652,170.2,967,43,20,22,14,67,31,1,1.6
+3,Folkpartiet liberalerna,FP,www.folkpartiet.se,1990-12-17,191,7373,38.6,0,16,15,4,4,8,9,22,2.3
 232323,Politiskt Vilde,-,"",1971-01-01,25,2524,101.0,109,4,4,7,5,3,5,12,2.0
+1,Moderaterna,M,www.moderat.se,2013-09-06,471,42413,90.0,1952,73,71,55,110,17,54,232,1.5
+110,Sverigedemokraterna,SD,www.sverigedemokraterna.se,1991-02-08,127,11720,92.3,1013,18,18,23,49,5,42,61,0.0
+55,Miljöpartiet de gröna,MP,www.mp.se,1985-02-04,142,17423,122.7,1206,33,30,14,23,28,24,44,1.7
+2,Arbetarepartiet-Socialdemokraterna,S,www.socialdemokraterna.se,1956-08-02,854,64143,75.1,2684,111,87,89,125,6,5,383,0.7
+68,Kristdemokraterna,KD,www.kristdemokraterna.se,1996-08-29,128,22442,175.3,457,45,16,13,31,8,52,40,2.9
