@@ -97,11 +97,12 @@ The CIA JSON Export System transforms the comprehensive political intelligence d
 1. [Architecture Overview](#architecture-overview)
 2. [JSON Schema Specifications](#json-schema-specifications)
 3. [Data Categories & Labels](#data-categories--labels)
-4. [File Structure & Naming](#file-structure--naming)
-5. [CDN Deployment Guide](#cdn-deployment-guide)
-6. [JavaScript Usage Examples](#javascript-usage-examples)
-7. [Update & Versioning Strategy](#update--versioning-strategy)
-8. [API Compatibility](#api-compatibility)
+4. [Field Completeness Validation](#field-completeness-validation)
+5. [File Structure & Naming](#file-structure--naming)
+6. [CDN Deployment Guide](#cdn-deployment-guide)
+7. [JavaScript Usage Examples](#javascript-usage-examples)
+8. [Update & Versioning Strategy](#update--versioning-strategy)
+9. [API Compatibility](#api-compatibility)
 
 ---
 
@@ -281,6 +282,107 @@ The following example files demonstrate the complete JSON export format for each
 - ✅ **Temporal Trends**: Multi-timeframe trend analysis for intelligence monitoring
 - ✅ **Politician Profiles**: Individual politician data with risk and performance scores
 - ✅ **Party Analytics**: Party-level performance and coalition stability metrics
+
+---
+
+## ✅ Field Completeness Validation
+
+### Overview
+
+The JSON export system includes automated validation to ensure sample CSV files contain all required fields for JSON transformation. This prevents API failures and ensures data product completeness.
+
+### Validation Script
+
+**Location**: `json-export-specs/validate-field-completeness.py`
+
+**Purpose**: Validates that sample CSV files contain the required database columns to support all 5 JSON export schemas.
+
+### Running Validation
+
+```bash
+# From json-export-specs directory
+python validate-field-completeness.py
+
+# With detailed output
+python validate-field-completeness.py --verbose
+
+# Generate markdown report
+python validate-field-completeness.py --output FIELD_COMPLETENESS_REPORT.md
+```
+
+### Validation Results
+
+| Schema | Primary CSV | Required Fields | Status |
+|--------|-------------|----------------|--------|
+| politician-schema.md | view_riksdagen_politician_sample.csv | 21 fields | ✅ 100% |
+| party-schema.md | view_riksdagen_party_sample.csv | 6 fields | ✅ 100% |
+| committee-schema.md | view_riksdagen_committee_sample.csv | 7 fields | ✅ 100% |
+| ministry-schema.md | view_riksdagen_goverment_sample.csv | 8 fields | ✅ 100% |
+| intelligence-schema.md | table_rule_violation_sample.csv | 9 fields | ✅ 100% |
+
+**Overall Completeness**: 100% (51/51 required fields present)
+
+### Schema-to-CSV Mappings
+
+Each JSON schema maps to specific database views and tables:
+
+#### Politician Schema
+- **Primary CSV**: `view_riksdagen_politician_sample.csv` (50 rows, 53 columns)
+- **Required Fields**: person_id, first_name, last_name, party, born_year, gender, total_days_served, active, and 13 more
+- **Additional CSVs**: view_riksdagen_vote_data_ballot_politician_summary_sample.csv, view_riksdagen_politician_document_summary_sample.csv
+
+#### Party Schema
+- **Primary CSV**: `view_riksdagen_party_sample.csv` (12 rows, 17 columns)
+- **Required Fields**: party_id, party_name, head_count, total_documents, documents_last_year, registered_date
+- **Additional CSVs**: view_riksdagen_party_summary_sample.csv, view_riksdagen_party_ballot_support_annual_summary_sample.csv
+
+#### Committee Schema
+- **Primary CSV**: `view_riksdagen_committee_sample.csv` (28 rows, 19 columns)
+- **Required Fields**: embedded_id_org_code, current_member_size, active, total_documents, total_assignments, first/last_assignment_date
+- **Additional CSVs**: view_committee_productivity_sample.csv
+
+#### Ministry Schema
+- **Primary CSV**: `view_riksdagen_goverment_sample.csv` (20 rows, 13 columns)
+- **Required Fields**: name_id, active, current_member_size, total_documents, total_propositions, total_government_bills, first/last_assignment_date
+- **Additional CSVs**: view_ministry_decision_impact_sample.csv
+
+#### Intelligence Schema
+- **Primary CSV**: `table_rule_violation_sample.csv` (50 rows, 10 columns)
+- **Required Fields**: rule_name, reference_id, resource_type, status, name, rule_description, rule_group, detected_date, positive
+- **Additional CSVs**: view_riksdagen_politician_summary_sample.csv, view_riksdagen_party_summary_sample.csv, and decision flow views
+
+### CI Integration
+
+Field completeness validation runs automatically on:
+- Pull requests modifying JSON schemas or sample CSV files
+- Pushes to master/develop branches
+- Changes to the validation script itself
+
+**Workflow**: `.github/workflows/validate-field-completeness.yml`
+
+### Troubleshooting
+
+**Missing Fields**:
+1. Check database view definition for correct column names
+2. Verify sample CSV extraction query includes all required fields
+3. Re-extract sample data: `SELECT * FROM view_name LIMIT 50`
+4. Re-run validation to confirm completeness
+
+**CSV Not Found**:
+1. Verify view exists in database schema
+2. Check sample-data directory for correct filename
+3. Extract sample if missing: `psql -d cia_dev -c "COPY (SELECT * FROM view_name LIMIT 50) TO '/path/sample.csv' CSV HEADER"`
+
+**Field Name Mismatch**:
+1. Database columns use snake_case (e.g., `first_name`)
+2. JSON schemas use camelCase (e.g., `firstName`)
+3. Validation checks database column names, not JSON field names
+
+### Related Documentation
+
+- [FIELD_COMPLETENESS_REPORT.md](FIELD_COMPLETENESS_REPORT.md) - Detailed validation report
+- [BUSINESS_PRODUCT_DOCUMENT.md](../BUSINESS_PRODUCT_DOCUMENT.md) - Product-to-data mappings
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Complete view catalog
 
 ---
 

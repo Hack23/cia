@@ -1,0 +1,77 @@
+name: Validate JSON Export Field Completeness
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - 'copilot/**'
+    paths:
+      - 'json-export-specs/schemas/**'
+      - 'service.data.impl/sample-data/**'
+      - 'json-export-specs/validate-field-completeness.py'
+      - '.github/workflows/validate-field-completeness.yml'
+  pull_request:
+    paths:
+      - 'json-export-specs/schemas/**'
+      - 'service.data.impl/sample-data/**'
+      - 'json-export-specs/validate-field-completeness.py'
+      - '.github/workflows/validate-field-completeness.yml'
+
+jobs:
+  validate-field-completeness:
+    name: Validate Sample Data Field Completeness
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Run field completeness validation
+        id: validation
+        run: |
+          cd json-export-specs
+          python validate-field-completeness.py --verbose
+        continue-on-error: true
+      
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: field-completeness-report
+          path: json-export-specs/FIELD_COMPLETENESS_REPORT.md
+          retention-days: 30
+      
+      - name: Check validation result
+        if: steps.validation.outcome == 'failure'
+        run: |
+          echo "❌ Field completeness validation failed!"
+          echo ""
+          echo "Some JSON export schemas have missing required fields."
+          echo "Review the validation report for details."
+          echo ""
+          echo "Common causes:"
+          echo "1. New required fields added to schemas but not present in CSV files"
+          echo "2. CSV column names changed in database views"
+          echo "3. Sample CSV files not re-extracted after schema changes"
+          echo ""
+          echo "To fix:"
+          echo "1. Review FIELD_COMPLETENESS_REPORT.md in the artifacts"
+          echo "2. Update database views or extraction queries"
+          echo "3. Re-extract sample CSV files"
+          echo "4. Re-run validation: python json-export-specs/validate-field-completeness.py"
+          exit 1
+      
+      - name: Validation passed
+        if: steps.validation.outcome == 'success'
+        run: |
+          echo "✅ Field completeness validation passed!"
+          echo ""
+          echo "All JSON export schemas have complete field coverage."
+          echo "Sample CSV files contain all required fields."
