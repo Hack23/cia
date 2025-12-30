@@ -1,51 +1,302 @@
 id,title,sub_title,status,org,hangar_id,label,made_public_date,number_value,document_status_url_xml
-H303135,Ett övergripande ramverk för aktiva åtgärder i syfte att främja lika rättigheter och möjligheter,"",Klar,Kulturdepartementet,4455239,135,2016-03-21,135,https://data.riksdagen.se/dokument/H303135/text
-GO03149,Avgifter inom äldre- och handikappomsorg,"",digitaliserad,S,2283947,149,2001-07-11,149,https://data.riksdagen.se/dokument/GO03149/text
-GU0366,Angrepp mot informationssystem,"",hämtad_2,JU,2224483,66,2007-03-13,66,https://data.riksdagen.se/dokument/GU0366/text
-GZ0396,Överklagande av vitesföreläggande i fastighetstaxeringen och genomförande av direktiv på skatteområdet,"",hämtad_2,FI,2779017,96,2012-03-19,96,https://data.riksdagen.se/dokument/GZ0396/text
-H103219,Nya regler för erkännande och verkställighet av utländska domar på civilrättens område,"",felkonverterat,"",2950351,219,2014-04-15,219,https://data.riksdagen.se/dokument/H103219/text
-GQ031d24,Budgetpropositionen för  2003 Utgiftsområde 22 Kommunikationer,"",hämtad,"",2451210,1,2012-07-06,1,https://data.riksdagen.se/dokument/GQ031d24/text
-GR0395d2,Utökade planeringsramar för väg- och järnvägsinvesteringar 2004-2015,"",hämtad_2,N,2451040,95,2004-04-02,95,https://data.riksdagen.se/dokument/GR0395d2/text
-GR03128,Medel från Fonden för den mindre skeppsfarten,"",hämtad_2,N,2290929,128,2004-03-17,128,https://data.riksdagen.se/dokument/GR03128/text
-GX03157,Bidragsvillkor för fristående verksamheter,"",hämtad_2,U,2338320,157,2010-03-23,157,https://data.riksdagen.se/dokument/GX03157/text
-H50310,Vissa socialförsäkringsfrågor,"",Klar,Socialdepartementet,4765067,10,2017-09-18,10,https://data.riksdagen.se/dokument/H50310/text
-GS0385d2,Ny aktiebolagslag,"",hämtad_2,JU,2450968,85,2005-03-16,85,https://data.riksdagen.se/dokument/GS0385d2/text
-HD0321,Uppskjutet krav på att hållbarhetsrapportera för vissa företag,"",Klar,Justitiedepartementet,5253562,21,2025-09-30,21,https://data.riksdagen.se/dokument/HD0321/text
-H4037,Ändrade regler om beskattningsinträde vid fusion och fission,"",Klar,Finansdepartementet,4544751,7,2016-09-27,7,https://data.riksdagen.se/dokument/H4037/text
-GX03160,Modern personalförsörjning för ett användbart försvar - vissa frågor om Försvarsmaktens personal,"",hämtad_2,Fö,2338179,160,2010-03-23,160,https://data.riksdagen.se/dokument/GX03160/text
-H1031d8,Budgetproposition 2014 Utgiftsområde 6 Försvar och samhällets krisberedskap,"",DokTextExtraktor,"",2877194,1,2013-09-18,1,https://data.riksdagen.se/dokument/H1031d8/text
-GP0315,Den öppna högskolan,"",hämtad_2,U t.o.m. -04,2225562,15,2001-09-12,15,https://data.riksdagen.se/dokument/GP0315/text
+GP031d22,Budgetpropositionen för  2002 Utgiftsområde 21 Energi,"",hämtad_2,FI,2451329,1,2012-07-09,1,https://data.riksdagen.se/dokument/GP031d22/text
+GV0350,Nya skolmyndigheter,"",hämtad_2,U,2285864,50,2008-02-12,50,https://data.riksdagen.se/dokument/GV0350/text
+H30385,Ett effektivare förbud vid bristande kreditprövning,"",Klar,Justitiedepartementet,4450080,85,2016-03-08,85,https://data.riksdagen.se/dokument/H30385/text
+H3031d12,Budgetproposition 2016 Utgiftsområde 11: Ekonomisk trygghet vid ålderdom,"",Klar,Finansdepartementet,4380724,1,2015-09-21,1,https://data.riksdagen.se/dokument/H3031d12/text
+GR0327,Rättigheter i luftfartyg,"",hämtad_2,JU,2284702,27,2003-10-22,27,https://data.riksdagen.se/dokument/GR0327/text
+GP031d2,Budgetpropositionen för  2002 Utgiftsområde 1 Rikets styrelse,"",hämtad_2,FI,2451326,1,2012-07-09,1,https://data.riksdagen.se/dokument/GP031d2/text
+GX03133,Höjda mål och vidareutveckling av elcertifikatsystemet,"",hämtad_2,N,2336484,133,2010-03-10,133,https://data.riksdagen.se/dokument/GX03133/text
+GQ03107,Säkerställda obligationer,"",hämtad_2,FI,2285898,107,2003-05-21,107,https://data.riksdagen.se/dokument/GQ03107/text
+GW03154,Frihet och inflytande - kårobligatoriets avskaffande,"",hämtad_2,U,2224958,154,2009-03-17,154,https://data.riksdagen.se/dokument/GW03154/text
+GT031d9,Budgetpropositionen för  2006 Utgiftsområde 7 Internationellt bistånd,"",hämtad,"",2451311,1,2012-07-04,1,https://data.riksdagen.se/dokument/GT031d9/text
+GX03114,+Strategisk exportkontroll 2009 - krigsmateriel och produkter med dubbla användningsområden,"",hämtad_2,UD,2337755,114,2010-03-19,114,https://data.riksdagen.se/dokument/GX03114/text
+H20356,Redovisning av elnätsverksamhet,"",Klar,Miljö- och energidepartementet,3385864,56,2015-02-03,56,https://data.riksdagen.se/dokument/H20356/text
+GV0385,Berättelse om verksamheten i Europeiska unionen under 2007,"",hämtad_2,SB,2284207,85,2008-03-11,85,https://data.riksdagen.se/dokument/GV0385/text
+H803141,Tidsbegränsad lösning för att säkerställa tillgång till skolinformation,"",Klar,Utbildningsdepartementet,5090916,141,2021-03-18,141,https://data.riksdagen.se/dokument/H803141/text
+H10391,Åtgärder för att stärka barnets rättigheter och uppväxtvillkor i Sverige,"",hämtad_2,S,2921444,91,2014-02-25,91,https://data.riksdagen.se/dokument/H10391/text
+H20360,Genomförande av Seveso III-direktivet,"",Klar,Justitiedepartementet,3525640,60,2015-03-04,60,https://data.riksdagen.se/dokument/H20360/text
+GS0320,Skatteavtal mellan Sverige och Chile m.m.,"",hämtad_2,FI,2300040,20,2004-10-12,20,https://data.riksdagen.se/dokument/GS0320/text
+GN0342,"Utlänningar i en massflyktsituation, sociala förmåner m.m.","",digitaliserad,Utrikesdepartementet,2305897,42,2000-01-01,42,https://data.riksdagen.se/dokument/GN0342/text
+GT03185,Förstärkning och förenkling - ändringar i anställningsskyddslagen och föräldraledighetslagen,"",hämtad_2,N,2225113,185,2006-03-22,185,https://data.riksdagen.se/dokument/GT03185/text
+GZ03119,Utlåning till Irland,"",hämtad_2,FI,2780893,119,2012-03-27,119,https://data.riksdagen.se/dokument/GZ03119/text
+GX03145,Redovisning av fördelning av medel från Allmänna arvsfonden under budgetåret 2009,"",hämtad_2,S,2350641,145,2010-06-15,145,https://data.riksdagen.se/dokument/GX03145/text
+GS0341,"Förbättrad kontroll av rättsliga biträdens ersättningsanspråk, m.m.","",hämtad_2,JU,2284232,41,2004-11-03,41,https://data.riksdagen.se/dokument/GS0341/text
+GT03176,Kommunernas roll i avfallshanteringen,"",hämtad_2,M  t.o.m. 1 jan-07,2304493,176,2006-03-21,176,https://data.riksdagen.se/dokument/GT03176/text
+H50314,"Nationella prov - rättvisa, likvärdiga, digitala","",Klar,Utbildningsdepartementet,4763651,14,2017-09-14,14,https://data.riksdagen.se/dokument/H50314/text
+H40325,Ändrade regler för uppskov med kapitalvinst vid avyttring av privatbostad,"",Klar,Finansdepartementet,4568516,25,2016-10-18,25,https://data.riksdagen.se/dokument/H40325/text
+H403102,Utvecklingen inom den kommunala sektorn,"",Hänvisad,Finansdepartementet,4707348,102,2017-05-04,102,https://data.riksdagen.se/dokument/H403102/text
+H103246,Lagen om kvotplikt för biodrivmedel och relaterade skattebestämmelser utgår,"",Klar,Näringsdepartementet,3055994,246,2014-06-26,246,https://data.riksdagen.se/dokument/H103246/text
+H10317,Marknadsföring om modersmjölksersättning och tillskottsnäring,"",hämtad_2,L,2880340,17,2013-10-01,17,https://data.riksdagen.se/dokument/H10317/text
+HC03142,Nämdöskärgårdens nationalpark,"",Klar,Klimat- och näringslivsdepartementet,5239833,142,2025-03-18,142,https://data.riksdagen.se/dokument/HC03142/text
+GR03161,Alkoholpolitiska frågor,"",hämtad_2,S,2284027,161,2004-06-02,161,https://data.riksdagen.se/dokument/GR03161/text
+H103220,Ändrade regler om introduktionsperiod och legitimation för lärare och förskollärare,"",hämtad_2,U,2950352,220,2014-04-10,220,https://data.riksdagen.se/dokument/H103220/text
+H103213,Cirkulär migration och utveckling,"",hämtad_2,Ju,2945163,213,2014-04-01,213,https://data.riksdagen.se/dokument/H103213/text
+GP03130,"Fordonslag, m.m.","",hämtad_2,N,2229518,130,2002-03-19,130,https://data.riksdagen.se/dokument/GP03130/text
+GQ03100d9,Ekonomiska vårpropositionen,"",hämtad_2,FI,2451185,100,2003-04-15,100,https://data.riksdagen.se/dokument/GQ03100d9/text
+H10343,Moderna auktionsmetoder för utmätt lös egendom,"",hämtad_2,Ju,2897269,43,2013-11-12,43,https://data.riksdagen.se/dokument/H10343/text
+H30327,Riksrevisionens rapport om återfall i brott,"",Hänvisad,Justitiedepartementet,4383767,27,2015-09-30,27,https://data.riksdagen.se/dokument/H30327/text
+GY0399,Vårändringsbudget för 2011,"",hämtad_2,FI,2357672,99,2011-04-13,99,https://data.riksdagen.se/dokument/GY0399/text
+H303103,Kommittéberättelse 2016,"",Hänvisad,Statsrådsberedningen,4452814,103,2016-03-15,103,https://data.riksdagen.se/dokument/H303103/text
+H00363,Utvidgad målgrupp för samhällsorientering samt ett kunskapsunderlag och en analys om integrationens tillstånd och utveckling,"",hämtad_2,A,2830727,63,2012-12-27,63,https://data.riksdagen.se/dokument/H00363/text
+GT0340,Reformerade beskattningsregler för ägare i fåmansföretag,"",hämtad_2,FI,2284242,40,2005-10-27,40,https://data.riksdagen.se/dokument/GT0340/text
+H1031d5,"Budgetproposition 2014 Utgiftsområde 3 Skatt, tull och exekution","",DokTextExtraktor,"",2877191,1,2013-09-18,1,https://data.riksdagen.se/dokument/H1031d5/text
 GY03115,Bättre regler för elektroniska kommunikationer,"",hämtad_2,N,2683586,115,2011-03-22,115,https://data.riksdagen.se/dokument/GY03115/text
-H3031d26,Budgetproposition 2016 Utgiftsområde 24: Näringsliv,"","",Finansdepartementet,4380709,1,2015-09-21,1,https://data.riksdagen.se/dokument/H3031d26/text
-H10329,Ny inriktning för EU:s strategi för Östersjöregionen,"",hämtad_2,SB,2895995,29,2013-10-24,29,https://data.riksdagen.se/dokument/H10329/text
-GS03142,Marknadsmissbruk,"",hämtad_2,FI,2288585,142,2005-03-22,142,https://data.riksdagen.se/dokument/GS03142/text
-GP03150,"Lag om elektronisk handel och andra informationssamhällets tjänster, m.m.","",hämtad_2,N,2222440,150,2002-03-18,150,https://data.riksdagen.se/dokument/GP03150/text
-GV03134,Det nya statliga lantmäteriet,"",hämtad_2,M,2287969,134,2008-04-07,134,https://data.riksdagen.se/dokument/GV03134/text
-GQ03131,Svår akut respiratorisk sjukdom (SARS),"",hämtad_2,S,2290553,131,2003-05-28,131,https://data.riksdagen.se/dokument/GQ03131/text
-H20310,Förbättringar av husavdragets fakturamodell,"",Klar,Finansdepartementet,3081940,10,2014-10-21,10,https://data.riksdagen.se/dokument/H20310/text
-HB03140,2024 års redogörelse för företag med statligt ägande,"",Klar,Finansdepartementet,5216632,140,2024-09-03,140,https://data.riksdagen.se/dokument/HB03140/text
-H10336,Mobilitetsstöd som komplement till färdtjänst,"",hämtad_2,S,2901732,36,2013-12-17,36,https://data.riksdagen.se/dokument/H10336/text
-HC03185,Extra ändringsbudget för 2025 – Kapitaltillskott till Apotek Produktion & Laboratorier AB,"",Klar,Finansdepartementet,5248269,185,2025-06-05,185,https://data.riksdagen.se/dokument/HC03185/text
-H4032,Höständringsbudget för 2016,"",Klar,Finansdepartementet,4538871,2,2016-09-20,2,https://data.riksdagen.se/dokument/H4032/text
-H30388,Riksrevisionens rapport om länsstyrelsernas krisberedskapsarbete,"",Hänvisad,Justitiedepartementet,4442197,88,2016-02-16,88,https://data.riksdagen.se/dokument/H30388/text
-H40376,Ny lag om Pensionsmyndighetens försäkringsverksamhet i premiepensionssystemet,"",Klar,Finansdepartementet,4644573,76,2017-01-25,76,https://data.riksdagen.se/dokument/H40376/text
-GO033,Forskning och förnyelse,"",digitaliserad,Utbildningsdepartementet,2223491,3,2001-01-01,3,https://data.riksdagen.se/dokument/GO033/text
-H50354,Riksrevisionens rapport om regeringens insatser för att uppfylla det bredbandspolitiska målet,"",Hänvisad,Näringsdepartementet,4782568,54,2017-11-27,54,https://data.riksdagen.se/dokument/H50354/text
-GN03138,"Anpassning i ålderspensionssystemet inför år 2001, m.m.","",digitaliserad,Socialdepartementet,2229801,138,2000-01-01,138,https://data.riksdagen.se/dokument/GN03138/text
-GR03154,Lag om luftfartsskydd,"",hämtad_2,N,2308191,154,2004-06-02,154,https://data.riksdagen.se/dokument/GR03154/text
+H40321,Infrastruktur för framtiden - innovativa lösningar för stärkt konkurrenskraft och hållbar utveckling,"",Klar,Näringsdepartementet,4564936,21,2016-10-11,21,https://data.riksdagen.se/dokument/H40321/text
+H10351,Förstärkt skydd mot främmande makts underrättelseverksamhet,"",hämtad_2,Ju,2898518,51,2013-11-25,51,https://data.riksdagen.se/dokument/H10351/text
+GY03155,En ny lag om elcertifikat - enklare regler och en gemensam elcertifikatsmarknad,"",hämtad_2,N,2705494,155,2011-07-06,155,https://data.riksdagen.se/dokument/GY03155/text
+H403113,Viktiga meddelanden till allmänheten via telefon,"",Klar,Justitiedepartementet,4675411,113,2017-03-16,113,https://data.riksdagen.se/dokument/H403113/text
+GW03226,Brott mot Internationella brottmålsdomstolens rättskipning,"",hämtad_2,JU,2222752,226,2009-07-01,226,https://data.riksdagen.se/dokument/GW03226/text
+H50332,Fortsatt svenskt deltagande i Natos utbildnings- och rådgivningsinsats Resolute Support Mission i Afghanistan,"",Klar,Utrikesdepartementet,4780333,32,2017-10-26,32,https://data.riksdagen.se/dokument/H50332/text
+GS03170,Ny instans- och processordning i utlännings- och medborgarskapsärenden,"",hämtad_2,UD,2223156,170,2005-05-31,170,https://data.riksdagen.se/dokument/GS03170/text
+H3031d20,"Budgetproposition 2016 Utgiftsområde 18: Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik","","",Finansdepartementet,4380715,1,2015-09-21,1,https://data.riksdagen.se/dokument/H3031d20/text
+H103187,Reglerat tillträde till fjärrvärmenäten,"",hämtad_2,N,2933915,187,2014-03-18,187,https://data.riksdagen.se/dokument/H103187/text
+GZ03125,Geologisk lagring av koldioxid,"",hämtad_2,M,2779499,125,2012-03-20,125,https://data.riksdagen.se/dokument/GZ03125/text
+H60342,Genomförande av rättshjälpsdirektivet,"",Klar,Justitiedepartementet,5020905,42,2019-01-31,42,https://data.riksdagen.se/dokument/H60342/text
+HC0386,Bättre förutsättningar för besöksnäringen i fråga om småskalig produktion av alkoholdrycker,"",Klar,Socialdepartementet,5234626,86,2025-01-21,86,https://data.riksdagen.se/dokument/HC0386/text
+GT03109,Åtgärder mot svarttaxi m.m.,"",hämtad_2,N,2229785,109,2006-03-01,109,https://data.riksdagen.se/dokument/GT03109/text
+GT03167,Skattelättnad för bilar i vissa miljöklasser,"",hämtad_2,FI,2222568,167,2006-03-21,167,https://data.riksdagen.se/dokument/GT03167/text
+GN0358,Mervärdesskattefrågor med anledning av Öresundsförbindelsen,"",digitaliserad,Finansdepartementet,2287173,58,2000-01-01,58,https://data.riksdagen.se/dokument/GN0358/text
+GU03118,En jobbgaranti för ungdomar,"",hämtad_2,A,2229277,118,2007-06-01,118,https://data.riksdagen.se/dokument/GU03118/text
+GR0328,Skatteregler om värdering av lager av finansiella instrument Prop. 2003/04:28,"","",Finansdepartementet,2253646,28,2003-10-16,28,https://data.riksdagen.se/dokument/GR0328/text
+GY0366,"Hemlig teleavlyssning, hemlig teleövervakning och hemlig kameraövervakning vid förundersökning i brottmål under år 2009","",hämtad_2,Ju,2354181,66,2010-12-21,66,https://data.riksdagen.se/dokument/GY0366/text
+GT03212d2,Hamnskydd,"",hämtad_2,N,2451312,212,2006-06-07,212,https://data.riksdagen.se/dokument/GT03212d2/text
+H503288,Förbud mot erkännande av utländska barnäktenskap,"",Klar,Justitiedepartementet,4993770,288,2018-08-28,288,https://data.riksdagen.se/dokument/H503288/text
+GV0373,Funktionell separation för bättre bredbandskonkurrens,"",hämtad_2,N,2286130,73,2008-03-18,73,https://data.riksdagen.se/dokument/GV0373/text
+H403166,Privata sjukvårdsförsäkringar inom offentligt finansierad hälso- och sjukvård,"",Klar,Socialdepartementet,4689432,166,2017-04-06,166,https://data.riksdagen.se/dokument/H403166/text
+H403136,Vissa frågor om kommersiell radio,"",Klar,Kulturdepartementet,4678266,136,2017-03-21,136,https://data.riksdagen.se/dokument/H403136/text
+GP03137,Handel med  skogsfrö och skogsplantor,"",hämtad_2,N,2284010,137,2002-03-18,137,https://data.riksdagen.se/dokument/GP03137/text
+GS031d8,Budgetpropositionen för 2005 UTGIFTSOMRÅDE 7,Internationellt bistånd ,hämtad,"",2450897,1,2012-04-13,1,https://data.riksdagen.se/dokument/GS031d8/text
+GT03169,Effektivare skattekontroll m.m.,"",hämtad_2,FI,2222480,169,2006-03-20,169,https://data.riksdagen.se/dokument/GT03169/text
+H203129,Utvidgning av reglerna om fiktiv avräkning vid ombildningar av företag,"",Klar,Finansdepartementet,3972003,129,2015-06-16,129,https://data.riksdagen.se/dokument/H203129/text
+H40346,En försöksverksamhet med betyg från och med årskurs 4,"",Klar,Utbildningsdepartementet,4596533,46,2016-11-10,46,https://data.riksdagen.se/dokument/H40346/text
+GV033,Vissa frågor avseende beskattning av sjöinkomst,"",fel,FI,2266307,3,2007-09-19,3,https://data.riksdagen.se/dokument/GV033/text
+HC03115,Verksamheten i Europeiska unionen under 2024,"",Klar,Statsrådsberedningen,5238817,115,2025-03-06,115,https://data.riksdagen.se/dokument/HC03115/text
+H103135,Förbättrad konkurrenstillsyn,"",hämtad_2,N,2926048,135,2014-03-03,135,https://data.riksdagen.se/dokument/H103135/text
+HB0320,"Bättre anpassad undervisningstid i grundskolan, specialskolan och sameskolan","",Klar,Utbildningsdepartementet,5185712,20,2023-10-03,20,https://data.riksdagen.se/dokument/HB0320/text
+GR0342,Torv och elcertifikat,"",hämtad_2,N,2284992,42,2003-11-18,42,https://data.riksdagen.se/dokument/GR0342/text
+H303117,Effektreserv 2020-2025,"",Klar,Miljö- och energidepartementet,4446908,117,2016-01-01,117,https://data.riksdagen.se/dokument/H303117/text
+GY0368,Tillämpning i fråga om Demokratiska folkrepubliken Korea av lagen (1996:95) om vissa internationella sanktioner,"",hämtad_2,UD,2442140,68,2011-02-03,68,https://data.riksdagen.se/dokument/GY0368/text
+H2032,Höständringsbudget för 2014,"",Klar,Finansdepartementet,3059643,2,2014-10-23,2,https://data.riksdagen.se/dokument/H2032/text
+GV0362,Ny instansordning för arbetsmiljöärenden,"",hämtad_2,A,2284037,62,2008-03-06,62,https://data.riksdagen.se/dokument/GV0362/text
+HC03171,Effektiva sanktioner inom luftfarten,"",Klar,Landsbygds- och infrastrukturdepartementet,5247714,171,2025-05-28,171,https://data.riksdagen.se/dokument/HC03171/text
+GZ031d8,Budgetpropositionen för 2012 Bilaga 6,Bil 06 Justering av procentsats för förskott av egenavgifter - Bilaga till avsnitt 6.6,hämtad_2,FI,2728531,1,2011-09-20,1,https://data.riksdagen.se/dokument/GZ031d8/text
+GR031d8,Budgetpropositionen för 2004 Utgiftsområde 7 Internationellt bistånd,"",hämtad,"",2451032,1,2012-07-05,1,https://data.riksdagen.se/dokument/GR031d8/text
+GW03186,Ändring av täckningsbeloppet för insättningsgaranti,"",hämtad_2,FI,2222384,186,2009-04-29,186,https://data.riksdagen.se/dokument/GW03186/text
+HD0351,Riksrevisionens rapport om generella statsbidrag som stabiliseringspolitiskt instrument,"","",Finansdepartementet,5273554,51,2025-11-25,51,https://data.riksdagen.se/dokument/HD0351/text
+GW03101d4,Årsredovisning för staten 2008,"",hämtad_2,FI,2451458,101,2009-04-16,101,https://data.riksdagen.se/dokument/GW03101d4/text
+GR03151,Beskattning av lokalanställd personal vid utländska beskickningar och konsulat i Sverige,"",hämtad_2,FI,2226436,151,2004-05-12,151,https://data.riksdagen.se/dokument/GR03151/text
+GP0346,"Ändringar i de särskilda skattereglerna för vissa andelsägare i fåmansföretag, m.m.","",hämtad_2,FI,2229509,46,2001-10-24,46,https://data.riksdagen.se/dokument/GP0346/text
+GV03118,En effektivare arbetslöshetsförsäkring,"",hämtad_2,A,2262738,118,2008-03-18,118,https://data.riksdagen.se/dokument/GV03118/text
+H303108,Skatteavtal med Saudiarabien,"",Klar,Finansdepartementet,4450068,108,2016-03-08,108,https://data.riksdagen.se/dokument/H303108/text
+GZ03139,Riksrevisionens rapport om medfinansiering av statlig infrastruktur,"",hämtad_2,N,2784123,139,2012-12-18,139,https://data.riksdagen.se/dokument/GZ03139/text
+H403164,Riksrevisionens rapport om statliga investeringar i allmänna farleder,"",Hänvisad,Näringsdepartementet,4689411,164,2017-04-06,164,https://data.riksdagen.se/dokument/H403164/text
+H403160,Riksrevisionens rapport om exportkontrollen av krigsmateriel,"",Hänvisad,Utrikesdepartementet,4710947,160,2017-05-10,160,https://data.riksdagen.se/dokument/H403160/text
+GS0322,Diskriminering inom det sociala området på grund av sexuell läggning,"",hämtad_2,JU,2284933,22,2004-10-05,22,https://data.riksdagen.se/dokument/GS0322/text
+H30364,Lag om fritidsbåtar och vattenskotrar,"",Klar,Näringsdepartementet,4419145,64,2015-12-07,64,https://data.riksdagen.se/dokument/H30364/text
+GU0339,"Lagändring med anledning av nya EG-direktiv om avgaskrav för motorer i tunga fordon, m.m.","",hämtad_2,M,2304800,39,2007-01-22,39,https://data.riksdagen.se/dokument/GU0339/text
+H30382,Åtgärder för ökad folkhälsa på tobaksområdet - genomförandet av EU:s tobaksproduktdirektiv,"",Klar,Socialdepartementet,4436790,82,2016-02-02,82,https://data.riksdagen.se/dokument/H30382/text
 H40327,Utökade möjligheter för migrationsdomstolar att överlämna mål,"",Klar,Justitiedepartementet,4568523,27,2016-10-18,27,https://data.riksdagen.se/dokument/H40327/text
-GR032,Förvaltning av kvaliteten på vattenmiljön,"",hämtad_2,M t.o.m. -04,2229321,2,2003-09-30,2,https://data.riksdagen.se/dokument/GR032/text
-HC03164,En långsiktigt hållbar kommersiell radioverksamhet,"",Klar,Kulturdepartementet,5244578,164,2025-04-30,164,https://data.riksdagen.se/dokument/HC03164/text
-GT0390,Nordiskt samarbete 2005,"",hämtad_2,UD,2333276,90,2006-03-22,90,https://data.riksdagen.se/dokument/GT0390/text
-H003101d6,Årsredovisning för staten 2012,"",hämtad_2,FI,2851217,101,2013-04-15,101,https://data.riksdagen.se/dokument/H003101d6/text
-GU0387,Elektronisk underrättelse i vissa ärenden om utgivningsbevis,"",hämtad_2,JU,2283987,87,2007-03-19,87,https://data.riksdagen.se/dokument/GU0387/text
-GX0350,Avskaffande av preskription för vissa allvarliga brott,"",hämtad_2,JU,2299839,50,2009-11-10,50,https://data.riksdagen.se/dokument/GX0350/text
-HC03118,Säkerställande av lika villkor för hållbar lufttransport,"",Klar,Landsbygds- och infrastrukturdepartementet,5238929,118,2025-03-11,118,https://data.riksdagen.se/dokument/HC03118/text
-GN0373,Jaktens villkor,"",digitaliserad,Jordbruksdepartementet,2225109,73,2000-01-01,73,https://data.riksdagen.se/dokument/GN0373/text
-GR03102,Utvecklingen inom den kommunala sektorn,"",hämtad_2,FI,2344533,102,2004-05-06,102,https://data.riksdagen.se/dokument/GR03102/text
-GU031d20,"Budgetpropositionen för 2007 Utgiftsområde 17 Kultur medier, och trossamfund och fritid","",hämtad,"",2451129,1,2012-07-04,1,https://data.riksdagen.se/dokument/GU031d20/text
-H303147,Ändring av en avvisningsbestämmelse i utlänningslagen,"",Klar,Justitiedepartementet,4455488,147,2016-03-22,147,https://data.riksdagen.se/dokument/H303147/text
-H40332,Fortsatt svenskt deltagande i den militära utbildningsinsatsen i Irak,"",Klar,Utrikesdepartementet,4578993,32,2016-10-27,32,https://data.riksdagen.se/dokument/H40332/text
-GW0318,Sveriges antagande av rambeslut om utbyte av uppgifter ur kriminalregister,"",hämtad_2,JU,2283971,18,2008-09-22,18,https://data.riksdagen.se/dokument/GW0318/text
+GW03113,Ökade möjligheter till skatteanstånd,"",hämtad_2,FI,2222977,113,2009-01-29,113,https://data.riksdagen.se/dokument/GW03113/text
+GR0350,"Åtgärder för att klarlägga asylsökandes identitet, m.m.","",hämtad_2,UD,2286750,50,2004-01-22,50,https://data.riksdagen.se/dokument/GR0350/text
+HC031d10,"Budgetpropositionen för 2025 - Utgiftsområde 9 Hälsovård, sjukvård och social  omsorg","","","",0,1,2024-09-19,1,https://data.riksdagen.se/dokument/HC031d10/text
+GY03165,Skatteförfarandet,"",hämtad_2,FI,2728727,165,2011-09-20,165,https://data.riksdagen.se/dokument/GY03165/text
+H403116,Kulturarvspolitik,"",Klar,Kulturdepartementet,4665786,116,2017-02-28,116,https://data.riksdagen.se/dokument/H403116/text
+GW0371,"Ändringar i EG:s redovisningsdirektiv, m.m.","",hämtad_2,JU,2222702,71,2008-11-18,71,https://data.riksdagen.se/dokument/GW0371/text
+H203109,Försvarspolitisk inriktning - Sveriges försvar 2016-2020,"",Klar,Försvarsdepartementet,3739177,109,2015-04-23,109,https://data.riksdagen.se/dokument/H203109/text
+GR03100d2,2004 års ekonomiska vårproposition,"",hämtad_2,FI,2450978,100,2004-04-15,100,https://data.riksdagen.se/dokument/GR03100d2/text
+GT031d22,Budgetpropositionen för  2006 Utgiftsområde 19 Regional utveckling,"",hämtad,"",2451290,1,2012-07-04,1,https://data.riksdagen.se/dokument/GT031d22/text
+GO0310,Finansiering av marknadskontroll av radio- och teleterminalutrustning ,"",digitaliserad,Näringsdepartementet,2283995,10,2001-01-01,10,https://data.riksdagen.se/dokument/GO0310/text
+H403170,Riksrevisionens rapport om sjukskrivning,"",Hänvisad,Socialdepartementet,4692398,170,2017-04-11,170,https://data.riksdagen.se/dokument/H403170/text
+H603161,Skatteregler för tjänstepensionsföretag,"",Klar,Finansdepartementet,5038357,161,2019-09-09,161,https://data.riksdagen.se/dokument/H603161/text
+GO0314,Vissa frågor om AP-fonderna,"",digitaliserad,Finansdepartementet,2297341,14,2001-01-01,14,https://data.riksdagen.se/dokument/GO0314/text
+GP03136,Redovisningen av Svenska kyrkans fastigheter i fastighetsregistrets inskrivningsdel,"",hämtad_2,JU,2285683,136,2002-03-13,136,https://data.riksdagen.se/dokument/GP03136/text
+GY0323,Ändring av täckningsbeloppet för insättningsgarantin,"",hämtad_2,FI,2370683,23,2010-10-26,23,https://data.riksdagen.se/dokument/GY0323/text
+H103231,Informationsutbytesavtal med Grenada,"",Klar,Finansdepartementet,2993792,231,2014-05-27,231,https://data.riksdagen.se/dokument/H103231/text
+H203145,Ökad reglering av barns underhåll utanför underhållsstödet,"",Klar,Socialdepartementet,4376297,145,2015-09-14,145,https://data.riksdagen.se/dokument/H203145/text
+GQ03100d3,Ekonomiska vårpropositionen,"",hämtad_2,FI,2451179,100,2003-04-15,100,https://data.riksdagen.se/dokument/GQ03100d3/text
+GO0336,Sjukhus med vinstsyfte Prop. 2000/01:36,"",digitaliserad,Socialdepartementet,2305596,36,2001-01-01,36,https://data.riksdagen.se/dokument/GO0336/text
+HC0394,Extra ändringsbudget för 2025 – Stöd till Ukraina,"",Klar,Finansdepartementet,5235667,94,2025-01-30,94,https://data.riksdagen.se/dokument/HC0394/text
+H00364,Utökad undervisningstid i matematik,"",hämtad_2,U,2833500,64,2013-01-24,64,https://data.riksdagen.se/dokument/H00364/text
+GS03137,Assisterad befruktning och föräldraskap,"",hämtad_2,JU,2228985,137,2005-03-31,137,https://data.riksdagen.se/dokument/GS03137/text
+GT03198,Justering i lagen om trängselskatt,"",hämtad_2,FI,2283946,198,2006-03-27,198,https://data.riksdagen.se/dokument/GT03198/text
+H30386,"En samlad strategi för alkohol-, narkotika-, dopnings- och tobakspolitiken 2016-2020","",Hänvisad,Socialdepartementet,4439491,86,2016-02-09,86,https://data.riksdagen.se/dokument/H30386/text
+HD0315,Skarpare verktyg till Inspektionen för vård och omsorg,"",Klar,Socialdepartementet,5252562,15,2025-09-18,15,https://data.riksdagen.se/dokument/HD0315/text
+H103114,Strategisk exportkontroll 2013 - krigsmateriel och produkter med dubbla användningsområden,"",hämtad_2,UD,2933767,114,2014-03-18,114,https://data.riksdagen.se/dokument/H103114/text
+GN039,"Vissa punktskatte- och tullfrågor, m.m.","",digitaliserad,Finansdepartementet,2287192,9,2000-01-01,9,https://data.riksdagen.se/dokument/GN039/text
+GR03137,Genomförande av EU:s jordbrukspolitik i Sverige,"",hämtad_2,JO,2291531,137,2004-04-20,137,https://data.riksdagen.se/dokument/GR03137/text
+GZ031d7,Budgetpropositionen för 2012 Bilaga 5,Bil 05 Höjd beloppsgräns för avdrag för resor Höjt schablonavdrag vid andrahandsuthyrning av bostäder,hämtad_2,FI,2728528,1,2011-09-20,1,https://data.riksdagen.se/dokument/GZ031d7/text
+H50320,Ändring i skatteavtalet mellan Sverige och Kina,"",Klar,Finansdepartementet,4774943,20,2017-10-10,20,https://data.riksdagen.se/dokument/H50320/text
+HB03112,Åtgärder för tryggare bostadsområden,"",Klar,Justitiedepartementet,5203203,112,2024-03-21,112,https://data.riksdagen.se/dokument/HB03112/text
 GT03128d2,"Anpassning till nya EG-bestämmelser om livsmedel, foder, djurhälsa, djurskydd och växtskydd m.m.","",hämtad_2,JO,2451154,128,2006-03-20,128,https://data.riksdagen.se/dokument/GT03128d2/text
-H303111,Synnerligen grova narkotikabrott,"",Klar,Justitiedepartementet,4442237,111,2016-02-16,111,https://data.riksdagen.se/dokument/H303111/text
+GX03120,Trygghetssystemen för företagare,"",hämtad_2,N,2339852,120,2010-04-01,120,https://data.riksdagen.se/dokument/GX03120/text
+GX03241,Ett förstärkt integritetsskydd i försäkringssammanhang,"",hämtad_2,JU,2352358,241,2010-06-28,241,https://data.riksdagen.se/dokument/GX03241/text
+HC0311,Ökad kontroll vid utbetalning från den statliga lönegarantin,"",Klar,Arbetsmarknadsdepartementet,5217314,11,2024-09-17,11,https://data.riksdagen.se/dokument/HC0311/text
+HA03106,Skärpt syn på brott mot journalister och vissa andra samhällsnyttiga funktioner,"",Klar,Justitiedepartementet,5175403,106,2023-04-25,106,https://data.riksdagen.se/dokument/HA03106/text
+GW0358,Befogenhet att beslagta fisk och annan egendom enligt fiskelagen,"",hämtad_2,JO,2286736,58,2008-10-28,58,https://data.riksdagen.se/dokument/GW0358/text
+GO0384,Kommunal uppdragsverksamhet Prop. 2000/01:84,"",digitaliserad,Justitiedepartementet,2333303,84,2001-01-01,84,https://data.riksdagen.se/dokument/GO0384/text
+H803187,Ändrade regler för kontroll av ekologisk produktion,"",Klar,Näringsdepartementet,5096214,187,2021-05-04,187,https://data.riksdagen.se/dokument/H803187/text
+HA0311,Stämpelskatt vid förvärv av fast egendom och tomträtter som görs vid delning av aktiebolag genom separation,"",Klar,Finansdepartementet,5153439,11,2022-11-08,11,https://data.riksdagen.se/dokument/HA0311/text
+GO0322,"Anpassningar på företagsskatteområdet till EG- fördraget, m.m. Prop. 2000/01:22","",digitaliserad,Finansdepartementet,2245878,22,2001-01-01,22,https://data.riksdagen.se/dokument/GO0322/text
+GP031d26,Budgetpropositionen för  2002 Utgiftsområde 25 Allmänna bidrag till kommuner,"",hämtad_2,FI,2451333,1,2012-07-09,1,https://data.riksdagen.se/dokument/GP031d26/text
+H003177,Tekniska föreskrifter för fartyg på inre vattenvägar,"",hämtad_2,N,2864231,177,2013-06-17,177,https://data.riksdagen.se/dokument/H003177/text
+GQ03105,"Ändringar i lagen om flyttning av fordon i vissa fall, m.m.","",hämtad_2,N,2283982,105,2003-05-07,105,https://data.riksdagen.se/dokument/GQ03105/text
+GW031d32,Budgetpropositionen för 2009,Bilaga 4: Fördelningspolitisk redogörelse,hämtad_2,FI,2451271,1,2008-09-22,1,https://data.riksdagen.se/dokument/GW031d32/text
+H403168,Riksrevisionens rapport om svenska myndigheters beredskap inför brexit-omröstningen,"",Hänvisad,Finansdepartementet,4688507,168,2017-04-05,168,https://data.riksdagen.se/dokument/H403168/text
+GZ031d6,Budgetpropositionen för 2012 Bilaga 4,Bil 04 Vissa skattefrågor inför budgetpropositionen 2012,DokTextExtraktor,"",2728398,1,2011-09-20,1,https://data.riksdagen.se/dokument/GZ031d6/text
+H103106,Patientlag,"",hämtad_2,S,2930238,106,2014-03-11,106,https://data.riksdagen.se/dokument/H103106/text
+GT0335,Lag om omvandling av fängelse på livstid,"",hämtad_2,JU,2286575,35,2005-10-25,35,https://data.riksdagen.se/dokument/GT0335/text
+H403147,Bemyndigande om avfallsförebyggande åtgärder och sanktioner avseende otillåten insamling av elavfall,"",Klar,Miljö- och energidepartementet,4673955,147,2017-03-14,147,https://data.riksdagen.se/dokument/H403147/text
+GT0326,Europeisk brottsskadeersättning,"",hämtad_2,JU,2228193,26,2005-10-17,26,https://data.riksdagen.se/dokument/GT0326/text
+GT03196,"Inlösen av minoritetsaktier i försäkringsaktiebolag, m.m.","",hämtad_2,FI,2228872,196,2006-03-28,196,https://data.riksdagen.se/dokument/GT03196/text
+HC03158,Upphävande av lagen om strukturfondspartnerskap,"",Klar,Landsbygds- och infrastrukturdepartementet,5243149,158,2025-04-15,158,https://data.riksdagen.se/dokument/HC03158/text
+H2031d21,Budgetproposition 2015 Utgiftsområde 19: Regional tillväxt,"",DokTextExtraktor,"",3082523,1,2014-10-23,1,https://data.riksdagen.se/dokument/H2031d21/text
+GS03110,"Upphovsrätten i informationssamhället - genomförande av direktiv 2001/29/EG, m.m.","",hämtad_2,JU,2226943,110,2005-03-17,110,https://data.riksdagen.se/dokument/GS03110/text
+H303151,Ny påföljd efter tidigare dom,"",Klar,Justitiedepartementet,4455528,151,2016-03-22,151,https://data.riksdagen.se/dokument/H303151/text
+GY03129,Genomförande av Prümrådsbeslutet - automatiserat uppgiftsutbyte,"",hämtad_2,Ju,2687102,129,2011-04-14,129,https://data.riksdagen.se/dokument/GY03129/text
+GY03130,Redovisning av AP-fondernas verksamhet t.o.m. 2010,"",hämtad_2,FI,2700417,130,2011-06-01,130,https://data.riksdagen.se/dokument/GY03130/text
+GX03148,Företagsutveckling - statliga insatser för finansiering och rådgivning,"",hämtad_2,N,2338175,148,2010-03-22,148,https://data.riksdagen.se/dokument/GX03148/text
+H4031d9,Budgetproposition 2017 Utgiftsområde 8: Migration,"","","",0,1,2016-09-20,1,https://data.riksdagen.se/dokument/H4031d9/text
+H403107,Nya utstationeringsregler,"",Klar,Arbetsmarknadsdepartementet,4661390,107,2017-02-21,107,https://data.riksdagen.se/dokument/H403107/text
+HD0354,En ny lag om tillhandahållande på marknaden av EU-gödselprodukter,"","",Landsbygds- och infrastrukturdepartementet,5273020,54,2025-11-18,54,https://data.riksdagen.se/dokument/HD0354/text
+GN0328,Studentinflytande och kvalitetsutveckling i högskolan,"",digitaliserad,Utbildningsdepartementet,2224038,28,2000-01-01,28,https://data.riksdagen.se/dokument/GN0328/text
+H303166,Avfallshierarkin,"",Klar,Miljö- och energidepartementet,4467421,166,2016-04-21,166,https://data.riksdagen.se/dokument/H303166/text
+GX03100,2010 års ekonomiska vårproposition,"",hämtad_2,FI,2293802,100,2010-04-15,100,https://data.riksdagen.se/dokument/GX03100/text
+H2039,Tilläggsavtal om lån till Irland,"",Klar,Finansdepartementet,3080589,9,2014-10-15,9,https://data.riksdagen.se/dokument/H2039/text
+GX03202,Auktorisation och tystnadsplikt för patentombud,"",hämtad_2,N,2341473,202,2010-04-13,202,https://data.riksdagen.se/dokument/GX03202/text
+GQ0360,Berättelse om verksamheten i Europeiska unionen under år 2002,"",hämtad_2,UD,2337908,60,2003-03-13,60,https://data.riksdagen.se/dokument/GQ0360/text
+H103117,Verksamhetsstödet för idrottens bildningsverksamhet,"",hämtad_2,U,2918578,117,2014-02-19,117,https://data.riksdagen.se/dokument/H103117/text
+GZ03111,Ansvarsförsäkring vid sjötransporter,"",hämtad_2,Ju,2779026,111,2012-03-19,111,https://data.riksdagen.se/dokument/GZ03111/text
+GN031D14,Budgetpropositionen för 2000,"Utgiftsområde 18,19","",Finansdepartementet,2457591,1D14,2000-01-01,1,https://data.riksdagen.se/dokument/GN031D14/text
+GX03141,Rättvist och effektivt - förändringar i studiestödssystemet,"",hämtad_2,U,2337466,141,2010-03-17,141,https://data.riksdagen.se/dokument/GX03141/text
+H003101d9,Årsredovisning för staten 2012,"",hämtad_2,FI,2851220,101,2013-04-15,101,https://data.riksdagen.se/dokument/H003101d9/text
+GQ0355,"Vissa ändrade regler för körkort och alkolås, m.m.","",hämtad_2,N,2222472,55,2003-03-12,55,https://data.riksdagen.se/dokument/GQ0355/text
+GO0380,Ny socialtjänstlag m.m. Prop. 2000/01:80,"",digitaliserad,Socialdepartementet,2226942,80,2001-01-01,80,https://data.riksdagen.se/dokument/GO0380/text
+H3031d17,Budgetproposition 2016 Utgiftsområde 15: Studiestöd,"","",Finansdepartementet,4380719,1,2015-09-21,1,https://data.riksdagen.se/dokument/H3031d17/text
+H403220,Utvidgat skydd mot diskriminering i form av bristande tillgänglighet,"",Klar,Kulturdepartementet,4759412,220,2017-08-29,220,https://data.riksdagen.se/dokument/H403220/text
+GR0313,Europeiska konventet om EU:s framtid,"",hämtad_2,UD,2287248,13,2003-10-02,13,https://data.riksdagen.se/dokument/GR0313/text
+GR03172,Jämkning av avgift för färdiglagad mat och andra sociala tjänster,"",hämtad_2,S,2344542,172,2004-06-09,172,https://data.riksdagen.se/dokument/GR03172/text
+GP03102,Utvecklingen inom den kommunala sektorn,"",digitaliserad,FI,2294582,102,2002-04-17,102,https://data.riksdagen.se/dokument/GP03102/text
+H30374,2015 års redogörelse för tillämpningen av lagen om särskild utlänningskontroll,"",Hänvisad,Justitiedepartementet,4426150,74,2015-12-22,74,https://data.riksdagen.se/dokument/H30374/text
+GV0338,Sekretess för uppgifter på de s.k. tsunamibanden,"",hämtad_2,JU,2291865,38,2007-11-14,38,https://data.riksdagen.se/dokument/GV0338/text
+H403162,Nya regler om marknader för finansiella instrument (MiFID II och MiFIR),"",Klar,Finansdepartementet,4688508,162,2017-04-05,162,https://data.riksdagen.se/dokument/H403162/text
+H003181,Ändringar i inkomstskattelagen med anledning av Kroatiens anslutning till EU,"",hämtad_2,FI,2866046,181,2013-06-26,181,https://data.riksdagen.se/dokument/H003181/text
+H3031d2,Budgetproposition 2016 Utgiftsområde 1: Rikets styrelse,"","",Finansdepartementet,4380716,1,2015-09-21,1,https://data.riksdagen.se/dokument/H3031d2/text
+GW0380,Äktenskapsfrågor,"",hämtad_2,JU,2223473,80,2008-12-17,80,https://data.riksdagen.se/dokument/GW0380/text
+HB03127,Riksrevisionens rapport om styrningen av Business Sweden,"",Klar,Utrikesdepartementet,5205408,127,2024-04-16,127,https://data.riksdagen.se/dokument/HB03127/text
+H20390,Nordiskt samarbete 2014,"",Hänvisad,Utrikesdepartementet,3579097,90,2015-03-17,90,https://data.riksdagen.se/dokument/H20390/text
+GU0398,Ny instansordning för PBL-ärenden,"",hämtad_2,M,2223886,98,2007-03-27,98,https://data.riksdagen.se/dokument/GU0398/text
+GV031d33,Budgetpropositionen för 2008 Utgiftsområde 26 Statsskuldsräntor m m ,"",hämtad,"",2450929,1,2012-07-04,1,https://data.riksdagen.se/dokument/GV031d33/text
+GZ0395,Genomförandet av EU-direktivet om mänskliga organ avsedda för transplantation,"",hämtad_2,S,2777815,95,2012-03-14,95,https://data.riksdagen.se/dokument/GZ0395/text
+GP0338,Bildande av ett familjemedicinskt institut,"",hämtad_2,S,2289277,38,2001-11-06,38,https://data.riksdagen.se/dokument/GP0338/text
+H103191,"Med fokus på unga - en politik för goda levnadsvillkor, makt och inflytande","",hämtad_2,U,2931965,191,2014-04-02,191,https://data.riksdagen.se/dokument/H103191/text
+GQ031,"Budgetpropositionen för  2003 Förslag till statsbudget får 2003, finansplan, skattefrågor, ändrade anslag för 2003 ","",hämtad_2,FI,2227250,1,2012-07-06,1,https://data.riksdagen.se/dokument/GQ031/text
+H403180,En modern och rättssäker förvaltning - ny förvaltningslag,"",Klar,Justitiedepartementet,4692458,180,2017-04-11,180,https://data.riksdagen.se/dokument/H403180/text
+GY03162,Riksrevisionens rapport 2011:10 Biodrivmedel för bättre klimat - Hur används skattebefrielsen?,"",hämtad_2,FI,2718194,162,2011-08-30,162,https://data.riksdagen.se/dokument/GY03162/text
+GW03200d3,Socialförsäkringsbalk,"",hämtad_2,S,2451453,200,2009-06-09,200,https://data.riksdagen.se/dokument/GW03200d3/text
+GZ0346,Upphävande av lagen om tillfällig försäljning,"",hämtad_2,Ju,2758511,46,2011-12-14,46,https://data.riksdagen.se/dokument/GZ0346/text
+GS0318,Handel med utsläppsrätter II,"",hämtad_2,N,2285602,18,2004-09-28,18,https://data.riksdagen.se/dokument/GS0318/text
+GV0355,Nya skatteregler för pensionsförsäkring m.m.,"",hämtad_2,FI,2228221,55,2008-02-19,55,https://data.riksdagen.se/dokument/GV0355/text
+GV0383,Godkännande av Prümrådsbeslutet,"",hämtad_2,JU,2224100,83,2008-03-18,83,https://data.riksdagen.se/dokument/GV0383/text
+H10345,Riksrevisionens rapport om bostadstillägg och äldreförsörjningsstöd till pensionärer - når förmånerna fram?,"",hämtad_2,S,2898114,45,2013-11-20,45,https://data.riksdagen.se/dokument/H10345/text
+GN0322,Lägesrapport i fråga om den ekonomiska brottsligheten,"",digitaliserad,Justitiedepartementet,2333298,22,2000-01-01,22,https://data.riksdagen.se/dokument/GN0322/text
+GR0371,Fortsatt svenskt deltagande i en internationell säkerhetsstyrka i Afghanistan,"",hämtad_2,UD,2286108,71,2004-04-15,71,https://data.riksdagen.se/dokument/GR0371/text
+GN03145,Penningtvätt och betalningsöverföring,"",digitaliserad,Finansdepartementet,2288542,145,2000-01-01,145,https://data.riksdagen.se/dokument/GN03145/text
+GP03187,Sveriges genomförande av EU:s sysselsättningsstrategi,"",hämtad_2,N,2344513,187,2002-05-29,187,https://data.riksdagen.se/dokument/GP03187/text
+GN0346,AP-fonden i det reformerade pensionssystemet,"",digitaliserad,Finansdepartementet,2228065,46,2000-01-01,46,https://data.riksdagen.se/dokument/GN0346/text
+H20350,Förändrad nedsättning av socialavgifterna för unga,"",Klar,Finansdepartementet,3354043,50,2015-01-27,50,https://data.riksdagen.se/dokument/H20350/text
+GQ0375,"Redogörelse för behandlingen av riksdagens skrivelse till regeringen
+","","",Statsrådsberedningen,2290951,75,2003-03-06,75,https://data.riksdagen.se/dokument/GQ0375/text
+GY03100d2,2011 års ekonomiska vårproposition,Bilaga 1: Tabellsamling makroekonomisk utveckling och offentliga finanser,hämtad_2,FI,2686835,100,2011-04-13,100,https://data.riksdagen.se/dokument/GY03100d2/text
+GW03167,En strategi för att stärka utvecklingskraften i Sveriges landsbygder,"",hämtad_2,N,2230247,167,2009-03-17,167,https://data.riksdagen.se/dokument/GW03167/text
+H0031d20,Budgetpropositionen för 2013 Utgiftsområde 10 Ekonomisk trygghet vid sjukdom och funktionsnedsättning,"",hämtad_2,FI,2804964,1,2012-10-24,1,https://data.riksdagen.se/dokument/H0031d20/text
+GR031d22,Budgetpropositionen för 2004 Utgiftsområde 19 Regional utveckling,"",hämtad,"",2451013,1,2012-07-05,1,https://data.riksdagen.se/dokument/GR031d22/text
+H003142,Riksrevisionens rapport om administration i strukturfondsprojekt,"",hämtad_2,A,2848894,142,2013-04-03,142,https://data.riksdagen.se/dokument/H003142/text
+GT031d16,Budgetpropositionen för  2006 Utgiftsområde 13 Arbetsmarknad,"",hämtad_2,FI,2451283,1,2012-07-04,1,https://data.riksdagen.se/dokument/GT031d16/text
+H20383,Komplettering av lagen om åtgärder vid hindrande av fortsatt färd,"",Klar,Näringsdepartementet,3579165,83,2015-03-17,83,https://data.riksdagen.se/dokument/H20383/text
+GS0334,Ökad användning av intensivövervakning med elektronisk kontroll,"",hämtad_2,JU,2225409,34,2004-10-25,34,https://data.riksdagen.se/dokument/GS0334/text
+GR0398,Konvention mellan Sverige och Luxemburg om social trygghet,"",hämtad_2,S,2230140,98,2004-03-17,98,https://data.riksdagen.se/dokument/GR0398/text
+GV031d9,Budgetpropositionen för 2008 Utgiftsområde 9 bilaga 1 ,"",hämtad,"",2450941,1,2012-07-04,1,https://data.riksdagen.se/dokument/GV031d9/text
+GP031d27,Budgetpropositionen för  2002 Utgiftsområde 26 Statsskuldsräntor m m ,"",hämtad_2,FI,2451334,1,2012-07-09,1,https://data.riksdagen.se/dokument/GP031d27/text
+GT03166,Barn som bevittnat våld,"",hämtad_2,JU,2229677,166,2006-03-20,166,https://data.riksdagen.se/dokument/GT03166/text
+H003186,Ökade möjligheter att förebygga våld i nära relationer,"",hämtad_2,Ju,2867249,186,2013-07-03,186,https://data.riksdagen.se/dokument/H003186/text
+GS0372,Förbättrad djurskydds- och livsmedelstillsyn,"",hämtad_2,JO,2286147,72,2005-01-20,72,https://data.riksdagen.se/dokument/GS0372/text
+GW0346,Skiljemannakonventionen,"",hämtad_2,FI,2223838,46,2008-10-14,46,https://data.riksdagen.se/dokument/GW0346/text
+GY03151,Nytt unionsregister för utsläppsrätter,"",hämtad_2,M,2700662,151,2011-06-07,151,https://data.riksdagen.se/dokument/GY03151/text
+H403150,Ytterligare anpassning av svensk rätt till Dublinförordningen,"",Klar,Justitiedepartementet,4678251,150,2017-03-21,150,https://data.riksdagen.se/dokument/H403150/text
+H1035,Vital kommunal demokrati,"",hämtad_2,FI,2878840,5,2013-09-26,5,https://data.riksdagen.se/dokument/H1035/text
+H10313,Fler avdelningar i Lagrådet,"",hämtad_2,Ju,2879937,13,2013-09-30,13,https://data.riksdagen.se/dokument/H10313/text
+GZ0341,Vissa fastighetstaxeringsfrågor,"",hämtad_2,FI,2758114,41,2011-12-13,41,https://data.riksdagen.se/dokument/GZ0341/text
+GV031d35,Budgetpropositionen för 2008 Bilaga 1 Specifikation av statsbudgetens utgifter och inkomster,"",hämtad,"",2450931,1,2012-07-04,1,https://data.riksdagen.se/dokument/GV031d35/text
+GU031d30,Budgetpropositionen för 2007 Utgiftsområde 27 Avgiften till den Europeiska gemenskapen,"",hämtad,"",2451140,1,2012-07-04,1,https://data.riksdagen.se/dokument/GU031d30/text
+GQ0399d2,Det nya Skatteverket,"",hämtad_2,FI,2451229,99,2003-05-26,99,https://data.riksdagen.se/dokument/GQ0399d2/text
+GR03116,Miljöbedömningar av planer och program,"",hämtad_2,M t.o.m. -04,2284319,116,2004-03-16,116,https://data.riksdagen.se/dokument/GR03116/text
+H30395,Vissa begravningsfrågor,"",Klar,Kulturdepartementet,4450216,95,2016-03-08,95,https://data.riksdagen.se/dokument/H30395/text
+HC0375,Riksdagens skrivelser till regeringen – åtgärder under 2024,"",Klar,Statsrådsberedningen,5239830,75,2025-03-18,75,https://data.riksdagen.se/dokument/HC0375/text
+GN0370,Redogörelse för verksamheten inom Europarådets ministerkommitté under  år 1999,"",digitaliserad,UD,2344358,70,2000-03-09,70,https://data.riksdagen.se/dokument/GN0370/text
+GZ0357,Riksrevisionens rapport om statens styrning mot en likvärdig betygssättning i grundskolan,"",hämtad_2,U,2762412,57,2011-12-21,57,https://data.riksdagen.se/dokument/GZ0357/text
+GT031d2,Budgetpropositionen för  2006 Utgiftsområde 1 Rikets styrelse,"",hämtad,"",2451287,1,2012-07-04,1,https://data.riksdagen.se/dokument/GT031d2/text
+GO0361,Förfalskade fångeshandlingar vid ansökan om lagfart Prop. 2000/01:61 ,"",digitaliserad,Justitiedepartementet,2289968,61,2001-01-01,61,https://data.riksdagen.se/dokument/GO0361/text
+GS0324,Internationell redovisning i svenska företag,"",hämtad_2,JU,2228266,24,2004-10-13,24,https://data.riksdagen.se/dokument/GS0324/text
+HD031d9,Budgetpropositionen för 2026 - Utgiftsområde 7 Internationellt bistånd,"","","",5252791,1,,1,https://data.riksdagen.se/dokument/HD031d9/text
+GP03125d2,Redovisning av fördelningen av medel från Allmänna arvsfonden under budgetåret 2001,"",hämtad_2,S,2451351,125,2002-03-06,125,https://data.riksdagen.se/dokument/GP03125d2/text
+GN03150D3,Årsredovisning för staten 1999,Bilaga 3,"",Finansdepartementet,2457425,150D3,2000-01-01,150,https://data.riksdagen.se/dokument/GN03150D3/text
+GZ03160,Ersättning av staten till personer som utsatts för övergrepp eller försummelser i samhällsvården,"",hämtad_2,S,2793983,160,2012-06-15,160,https://data.riksdagen.se/dokument/GZ03160/text
+H20391,En ny läkemedelslag,"",Klar,Socialdepartementet,3592058,91,2015-03-20,91,https://data.riksdagen.se/dokument/H20391/text
+GZ0350,En gymnasiesärskola med hög kvalitet,"",hämtad_2,U,2756103,50,2011-12-06,50,https://data.riksdagen.se/dokument/GZ0350/text
+GT03183,Finansieringen av kärnavfallets slutförvaring,"",hämtad_2,M  t.o.m. 1 jan-07,2230453,183,2006-03-21,183,https://data.riksdagen.se/dokument/GT03183/text
+GU0350,Vissa frågor om trafikförsäkring och rättsskyddsförsäkring,"",hämtad_2,JU,2242361,50,2007-03-14,50,https://data.riksdagen.se/dokument/GU0350/text
+H103154,Genomförandet av samstämningshetspolitiken för utveckling - fokus: den globala utmanigen migrationströmmar,"",hämtad_2,UD,2933763,154,2014-03-18,154,https://data.riksdagen.se/dokument/H103154/text
+H4031d2,Budgetproposition 2017 Utgiftsområde 1: Rikets styrelse,"","","",0,1,2016-09-20,1,https://data.riksdagen.se/dokument/H4031d2/text
+HA031d28,Budgetpropositionen för 2023 - Utgiftsområde 27 Avgiften till Europeiska unionen,"","","",0,1,2022-11-08,1,https://data.riksdagen.se/dokument/HA031d28/text
+H30335,Utvidgad miljöbrottsbestämmelse,"",Klar,Miljö- och energidepartementet,4401457,35,2015-11-10,35,https://data.riksdagen.se/dokument/H30335/text
+H20321,SGI-skydd för deltagare i arbetsmarknadspolitiska program,"",Klar,Socialdepartementet,3193044,21,2014-12-09,21,https://data.riksdagen.se/dokument/H20321/text
+GW03106,Kredit till Island,"",hämtad_2,FI,2224965,106,2009-01-15,106,https://data.riksdagen.se/dokument/GW03106/text
+H30362,Skärpta åtgärder mot missbruk av tidsbegränsade anställningar,"",Klar,Arbetsmarknadsdepartementet,4419423,62,2015-12-08,62,https://data.riksdagen.se/dokument/H30362/text
+GR0380,Moderniserad konkurrensövervakning,"",hämtad_2,N,2286966,80,2004-03-09,80,https://data.riksdagen.se/dokument/GR0380/text
+GQ0314,Senareläggning av premiepensionens efterlevandeskydd före pensionstid,"",hämtad_2,FI,2290143,14,2002-10-30,14,https://data.riksdagen.se/dokument/GQ0314/text
+GV0358,Samordningsnummer och anmälan av dödfödd m.m.,"",hämtad_2,FI,2286718,58,2008-02-19,58,https://data.riksdagen.se/dokument/GV0358/text
+GV03109,Mänskliga rättigheter i svensk utrikespolitik,"",hämtad_2,UD,2242144,109,2008-03-18,109,https://data.riksdagen.se/dokument/GV03109/text
+H203137,Obligatoriska bedömningsstöd i årskurs 1,"",Klar,Utbildningsdepartementet,4011668,137,2015-06-25,137,https://data.riksdagen.se/dokument/H203137/text
+HB03153,Riksrevisionens rapport om Allmänna arvsfonden,"",Klar,Socialdepartementet,5216631,153,2024-09-03,153,https://data.riksdagen.se/dokument/HB03153/text
+GZ0384,Den nordiska stridsgruppen 2015,"",hämtad_2,Fö,2781216,84,2012-03-20,84,https://data.riksdagen.se/dokument/GZ0384/text
+H2031d22,Budgetproposition 2015 Utgiftsområde 20: Allmän miljö- och naturvård,"",DokTextExtraktor,"",3082524,1,2014-10-23,1,https://data.riksdagen.se/dokument/H2031d22/text
+GO038,Ny socialavgiftslag,"",digitaliserad,Finansdepartementet,2284610,8,2001-01-01,8,https://data.riksdagen.se/dokument/GO038/text
+GN0331,"Hemlig teleavlyssning, hemlig teleövervakning och hemlig kameraövervakning vid förundersökning i brottmål under år 1998","",digitaliserad,Justitiedepartementet,2344353,31,2000-01-01,31,https://data.riksdagen.se/dokument/GN0331/text
+GR0391,Vissa premiepensionsfrågor,"",hämtad_2,FI,2230466,91,2004-03-17,91,https://data.riksdagen.se/dokument/GR0391/text
+GX03176,Personlig assistans och andra insatser - åtgärder för ökad kvalitet och trygghet,"",hämtad_2,S,2338170,176,2010-03-23,176,https://data.riksdagen.se/dokument/GX03176/text
+GS03118,Tobakskontroll - genomförande av WHO:s ramkonvention om tobakskontroll m.m.,"",hämtad_2,S,2230218,118,2005-03-22,118,https://data.riksdagen.se/dokument/GS03118/text
+GU0334,Förenklat utmätningsförfarande,"",hämtad_2,JU,2291856,34,2006-12-20,34,https://data.riksdagen.se/dokument/GU0334/text
+H30330,Avskaffande av systemet med etableringslotsar,"",Klar,Arbetsmarknadsdepartementet,4390968,30,2015-10-13,30,https://data.riksdagen.se/dokument/H30330/text
+H403204,Fortsatt giltighet av lagen om vissa register för forskning om vad arv och miljö betyder för människors hälsa,"",Klar,Utbildningsdepartementet,4732060,204,2017-06-14,204,https://data.riksdagen.se/dokument/H403204/text
+GQ0388,"Åtagande att tillämpa avtal om rättslig ställning för  Västeuropeiska unionen, dess nationella representanter och internationella tjänstemän","",hämtad_2,Fö,2280158,88,2003-03-12,88,https://data.riksdagen.se/dokument/GQ0388/text
+GY03154,Kompletterande förfaranderegler för vissa biobränslen,"",hämtad_2,FI,2703435,154,2011-06-21,154,https://data.riksdagen.se/dokument/GY03154/text
+GO031D20,Budgetpropositionen för 2001,"Bilaga 20, Utgiftsområde 14","",Finansdepartementet,2447920,1D20,2001-01-01,1,https://data.riksdagen.se/dokument/GO031D20/text
+GP0380,Demokrati för det nya seklet Prop. 2001/02:80,"","",Justitiedepartementet,2284330,80,2002-01-17,80,https://data.riksdagen.se/dokument/GP0380/text
+HC03197,Kompletterande bestämmelser till EU:s mediefrihetsförordning,"",Klar,Kulturdepartementet,5250119,197,2025-07-01,197,https://data.riksdagen.se/dokument/HC03197/text
+GW03130d4,Redovisning av AP-fondernas verksamhet t.o.m. 2008,"",hämtad_2,FI,2451464,130,2009-05-28,130,https://data.riksdagen.se/dokument/GW03130d4/text
+GU0349,Vissa regler om ränta i samband med återkrav,"",hämtad_2,S,2283189,49,2007-02-14,49,https://data.riksdagen.se/dokument/GU0349/text
+GW0370d2,Genomförande av tredje penningtvättsdirektivet,"",hämtad_2,FI,2451360,70,2008-11-19,70,https://data.riksdagen.se/dokument/GW0370d2/text
+GO031D6,Budgetpropositionen för 2001,Utdrag ur protokoll vid regeringssammanträden den 7 september 2000 ,"",Finansdepartementet,2447895,1D6,2001-01-01,1,https://data.riksdagen.se/dokument/GO031D6/text
+H10362,Informationsutbytesavtal med Montserrat,"",hämtad_2,FI,2903766,62,2014-01-21,62,https://data.riksdagen.se/dokument/H10362/text
+H40329,Regeringens strategi för det nationella arbetet med mänskliga rättigheter,"",Hänvisad,Kulturdepartementet,4568400,29,2016-10-18,29,https://data.riksdagen.se/dokument/H40329/text
+H40372,2016 års redogörelse för tillämpningen av lagen om särskild utlänningskontroll,"",Hänvisad,Justitiedepartementet,4622988,72,2016-12-19,72,https://data.riksdagen.se/dokument/H40372/text
+H103133,Direktupphandling,"",hämtad_2,S,2934374,133,2014-03-18,133,https://data.riksdagen.se/dokument/H103133/text
+GV03130,Redovisning av AP-fondernas verksamhet t.o.m. 2007,"",hämtad_2,FI,2287152,130,2008-05-29,130,https://data.riksdagen.se/dokument/GV03130/text
+GR031d32,Budgetpropositionen för 2004 Bilaga 2 Svensk ekonomi,"",hämtad,"",2451024,1,2012-07-05,1,https://data.riksdagen.se/dokument/GR031d32/text
+H403109,Förstärkt skydd av kulturegendom vid väpnad konflikt och under ockupation,"",Klar,Kulturdepartementet,4661391,109,2017-02-21,109,https://data.riksdagen.se/dokument/H403109/text
+GR03163,Skattereduktion för utgifter för byggnadsarbete på bostadshus,"",hämtad_2,FI,2228847,163,2004-05-28,163,https://data.riksdagen.se/dokument/GR03163/text
+GY03100d6,2011 års ekonomiska vårproposition,"",hämtad_2,FI,2784983,100,2011-04-13,100,https://data.riksdagen.se/dokument/GY03100d6/text
+GS0356,En politik för en långsiktigt konkurrenskraftig svensk turistnäring,"",hämtad_2,N,2226416,56,2004-12-22,56,https://data.riksdagen.se/dokument/GS0356/text
+GY03142,Vissa socialförsäkringsfrågor m.m.,"",hämtad_2,S,2700362,142,2011-05-30,142,https://data.riksdagen.se/dokument/GY03142/text
+GV0389,Sveriges politik för global utveckling,"",hämtad_2,UD,2286571,89,2008-03-18,89,https://data.riksdagen.se/dokument/GV0389/text
+H603165,Etikprövning av forskning - tydligare regler och skärpta straff,"",Klar,Utbildningsdepartementet,5038361,165,2019-09-09,165,https://data.riksdagen.se/dokument/H603165/text
+H003121,Riksrevisionens rapport om Skolinspektionens prövningar av ansökningar från enskilda som vill bli skolhuvudmän,"",hämtad_2,U,2846938,121,2013-04-05,121,https://data.riksdagen.se/dokument/H003121/text
+GS0344,2004 års redogörelse för tillämpningen av lagen (1991:572) om särskild utlänningskontroll,"",hämtad_2,JU,2287415,44,2004-12-13,44,https://data.riksdagen.se/dokument/GS0344/text
+H3031d8,Budgetproposition 2016 Utgiftsområde 7: Internationellt bistånd,"","",Finansdepartementet,4380700,1,2015-09-21,1,https://data.riksdagen.se/dokument/H3031d8/text
+H003109,Hälso- och sjukvård till personer som vistas i Sverige utan tillstånd,"",hämtad_2,S,2845556,109,2013-03-20,109,https://data.riksdagen.se/dokument/H003109/text
+GW03151,Sekretess inom yrkeshögskolan,"",hämtad_2,U,2288405,151,2009-03-16,151,https://data.riksdagen.se/dokument/GW03151/text
+GU0365,"Informationskrav i noterade företag, m.m.","",hämtad_2,FI,2222521,65,2007-03-22,65,https://data.riksdagen.se/dokument/GU0365/text
+GW0396,Behandling av personuppgifter inom studiestödsområdet,"",hämtad_2,U,2222434,96,2008-12-18,96,https://data.riksdagen.se/dokument/GW0396/text
+GX0366,"Hemlig teleavlyssning, hemlig teleövervakning och hemlig kameraövervakning vid förundersökning i brottmål under år 2008","",hämtad_2,JU,2300385,66,2009-12-10,66,https://data.riksdagen.se/dokument/GX0366/text
+H803170,Barn som bevittnar brott,"",Klar,Justitiedepartementet,5092713,170,2021-04-06,170,https://data.riksdagen.se/dokument/H803170/text
+HC03111,Indragna eller minskade socialförsäkringsförmåner för den som undanhåller sig verkställighet av häktning eller frihetsberövande påföljd,"",Klar,Socialdepartementet,5238694,111,2025-03-04,111,https://data.riksdagen.se/dokument/HC03111/text

@@ -1,51 +1,301 @@
 hjid,header,number_value,parties,proposal_issue_number,proposal_type,against_proposal_list_agains_0
-73034,Studiestöd för elever i gymnasieskolan ,1,"""kd""",2,reservation,73033
-73035,Studiestöd för elever i gymnasiesärskolan ,2,"""kd""",3,reservation,73033
-73036,Indraget studiebidrag för elever som mobbar eller skolkar ,3,"""fp""",4,reservation,73033
-73037,Grunddragen i studiemedelssystemet ,4,"""fp""",5,reservation,73033
-73038,Grunddragen i studiemedelssystemet ,5,"""kd""",5,reservation,73033
-73039,Grunddragen i studiemedelssystemet ,6,"""c""",5,reservation,73033
-73040,Avskaffande av inkomstprövningen vid beviljande av studiemedel ,7,"""m"",""fp"",""kd""",6,reservation,73033
-73041,Dispens från tolvterminersregeln vid beviljande av studiemedel ,8,"""m"",""c"",""fp"",""kd""",7,reservation,73033
-73042,Översyn av övre åldersgräns för studiemedel ,9,"""kd""",8,reservation,73033
-73043,Avskrivning av studielån som regionalpolitiskt medel ,10,"""kd"",""mp""",9,reservation,73033
-73044,Studiemedel vid utlandsförlagd svensk högskoleutbildning ,11,"""m""",11,reservation,73033
-73045,Studiemedel vid studier utomlands ,12,"""m""",12,reservation,73033
-73046,Införande av ett treterminerssystem med studiemedel ,13,"""fp""",13,reservation,73033
-73047,Studiestöd vid vuxenutbildning ,14,"""kd""",15,reservation,73033
-73048,Studiestöd vid vuxenutbildning ,15,"""fp""",15,reservation,73033
-73049,"Utökad teckenspråksutbildning för vissa föräldrar, s.k. TUFF ",16,"""m"",""kd""",18,reservation,73033
-73050,Utredning om Centrala studiestödsnämndens upplåning i Riksgäldskontoret ,17,"""kd""",20,reservation,73033
-73143,Utbildning m.m. i avvaktan på avvisning eller utvisning ,1,"""fp""",2,reservation,73142
-73144,Skolgång m.m. för gömda barn ,2,"""fp""",3,reservation,73142
-222744,Varningstext på mobiltelefoner,1,"""v"",""mp""",1,reservation,222743
-222745,Sänkning av gränsvärden,2,"""mp""",4,reservation,222743
-222746,Forskning m.m.,3,"""v""",6,reservation,222743
-73185,Lagreglering av universitets och högskolors ansvar för rekrytering ,1,"""m""",1,reservation,73184
-73186,Basår och collegeutbildning ,2,"""m""",2,reservation,73184
-73187,Basår och collegeutbildning ,3,"""c""",2,reservation,73184
-73188,Basår och collegeutbildning ,4,"""fp""",2,reservation,73184
-73189,Åtgärder i övrigt för att förbättra rekryteringen ,5,"""m""",3,reservation,73184
-73190,Utredning om framtidens utbildningssystem ,6,"""kd""",4,reservation,73184
-73191,Riktlinjer för behörighet och urval ,7,"""m""",5,reservation,73184
-73192,Riktlinjer för behörighet och urval ,8,"""kd""",5,reservation,73184
-73193,Riktlinjer för behörighet och urval ,9,"""c""",5,reservation,73184
-73194,Riktlinjer för behörighet och urval ,10,"""fp""",5,reservation,73184
-73195,Gymnasieexamen ,11,"""m"",""fp""",6,reservation,73184
-73196,Betygssättningen i gymnasieskolan ,12,"""m""",7,reservation,73184
-73197,Åtgärder för att främja livslångt lärande ,13,"""c""",8,reservation,73184
-73198,Forskarutbildningen ,14,"""m"",""fp""",9,reservation,73184
-73199,Forskarutbildningen ,15,"""c""",9,reservation,73184
-73200,Högskolans samverkansuppgift ,16,"""kd""",10,reservation,73184
-73201,Mål för grundläggande högskoleutbildning ,17,"""m""",11,reservation,73184
-73202,Högskolepedagogisk utbildning och forskning ,18,"""m"",""fp""",13,reservation,73184
-73203,Högskolepedagogisk utbildning och forskning ,19,"""kd""",13,reservation,73184
-222759,Djurskyddsmyndigheten,1,"""m"",""c""",2,reservation,222758
-222760,Djurskyddstillsyn m.m.,2,"""m"",""fp""",5,reservation,222758
-222761,Djurskyddstillsyn m.m.,3,"""kd""",5,reservation,222758
-221198,Internationella djurskyddsfrågor,1,"""m"",""c""",1,reservation,221197
-221199,Internationella djurskyddsfrågor,2,"""mp""",1,reservation,221197
-221200,Importförbud av hund- och kattskinn,3,"""v"",""mp""",2,reservation,221197
-221201,Tillsynsfrågor m.m.,4,"""fp""",3,reservation,221197
-221202,Kvalitetssäkring av hästbranschen m.m.,5,"""fp""",4,reservation,221197
-221203,Sexuellt utnyttjande av djur,6,"""kd""",5,reservation,221197
+2792819,"",4,"""C""",4,reservation,2792815
+2278875,"",7,"""S"",""V""",3,reservation,2278868
+2784098,Kommunalt inflytande,1,"""c"",""v""",1,reservation,2784097
+1800539,Immateriella kulturarvet,10,"""mp""",27,reservation,1800529
+2135240,"",23,"""S""",13,reservation,2135217
+2777469,Internationella insatser för bistånd och millenniemålen,10,"""MP"",""V""",7,reservation,2777459
+2773427,Höjd åldersgräns för studiemedel,2,"""kd""",3,reservation,2773425
+2074795,"",3,"""SD""",8,reservation,2074792
+1309480,Närståendepenning,25,"""fp""",17,reservation,1309455
+2082541,"",17,"""SD""",13,reservation,2082524
+2776595,Subsidiaritetsprövning av kommissionens förslag om ett fördjupat samarbete på området för skatt på finansiella transaktioner (FTT),1,"""MP"",""V""",1,reservation,2776594
+608212,Domstolarnas ställning ,7,"""m""",7,reservation,608205
+2791173,"",12,"""SD""",6,reservation,2791161
+1320799,Miljökonsekvensbeskrivning i vissa fall,1,"""mp""",2,reservation,1320798
+2791833,Biobränsle och alternativa drivmedel,2,"""mp""",1,reservation,2791831
+1653057,"Bemyndigande för anslaget 28:7 Bidrag till vissa teater-, dans- och musikändamål",1,"""v""",8,reservation,1653056
+1304697,Etik- och miljöhänsyn i AP-fondernas placeringsverksamhet,3,"""mp""",6,reservation,1304694
+602863,Informationsplikt,2,"""mp""",4,reservation,602861
+608619,Utredning om influensavaccinering,17,"""v""",22,reservation,608602
+614133,En plan för vård av museisamlingar,12,"""c"",""fp"",""kd""",23,reservation,614121
+235124,Förenklad fastighetstaxering i stället för omräkning ,3,"""kd""",1,reservation,235121
+230677,Persontransportstödet,8,"""c"",""fp"",""kd""",8,reservation,230669
+1320216,Utvidgad översyn av kontakttolkutbildningen,9,"""MP"",""V""",8,reservation,1320207
+2778599,"",1,"""KD""",1,reservation,2778598
+2787597,"",17,"""KD""",7,reservation,2787580
+620454,Föreningslivets andel av spelmarknaden,18,"""fp""",32,reservation,620436
+2779135,Komplementär medicin m.m.,20,"""v""",24,reservation,2779115
+2774764,"",1,"""SD""",1,reservation,2774763
+2782983,"",11,"""L""",6,reservation,2782972
+1653651,"Bestämmelser om finansiering, avgiftsskyldighet och innehav av TV i lagen om TV-avgift",33,"""m""",35,reservation,1653618
+2136193,"",23,"""S""",16,reservation,2136170
+1797204,"",4,"""V""",4,reservation,1797200
+1328810,Hyressättningen - den allmänna lagregleringen,1,"""m"",""c"",""fp"",""kd""",1,reservation,1328809
+1313218,Folkomröstning rörande kärnkraften,7,"""m"",""fp""",5,reservation,1313211
+1800227,Tidsgräns vid 1850,4,"""SD""",5,reservation,1800223
+1803783,"",21,"""C""",7,reservation,1803762
+1302772,Subventionerade anställningar för nyanlända,2,"""SD""",1,reservation,1302770
+618531,"",12,"""MP""",18,reservation,618519
+1307497,Redskapsbegränsningar,2,"""V""",2,reservation,1307495
+1669016,Översyn av socialpolitiken m.m.,2,"""SD""",1,reservation,1669014
+2783341,Pensionssystemets utformning m.m.,2,"""v""",3,reservation,2783339
+602789,Avslag på regeringens förslag om införande av ett elcertifikatssystem,1,"""m"",""fp"",""kd""",1,reservation,602788
+1657565,Sänkt bolagsskatt och vissa andra skatteåtgärder för företag,1,"""v""",1,reservation,1657564
+2790916,"",12,"""C""",4,reservation,2790904
+2278246,"",1,"""S"",""MP"",""V""",1,reservation,2278245
+601131,Reklam riktad till barn ,7,"""v""",7,reservation,601124
+2278782,"",37,"""V"",""MP""",12,reservation,2278745
+2792818,"",3,"""SD""",3,reservation,2792815
+222906,"",7,"""C""",4,reservation,222899
+2776011,Offentlig förevisning av djur,16,"""SD""",16,reservation,2775995
+2771908,"",102,"""SD""",54,reservation,2771806
+2777305,Basresurs till forskning,9,"""S""",7,reservation,2777296
+2782985,"",13,"""C""",8,reservation,2782972
+2133955,"",47,"""S""",23,reservation,2133908
+2775974,"Breddad rekrytering, tillträde och studentfrågor",13,"""SD""",7,reservation,2775961
+2786656,Förbränning av fossilt material,61,"""mp""",53,reservation,2786595
+1650576,"",51,"""M"",""SD""",23,reservation,1650525
+1321229,Offentligt belöningssystem ,3,"""m"",""kd""",4,reservation,1321226
+2779709,"",48,"""S""",29,reservation,2779661
+2792488,Skolbibliotek,39,"""V""",29,reservation,2792449
+1909227,Ekobrottsmyndighetens organisation och verksamhet,12,"""m""",15,reservation,1909215
+2774872,"",3,"""C""",2,reservation,2774869
+619506,Förutsättningar för vräkning av hyresgäst,6,"""fp""",5,reservation,619500
+1663474,"Arbetsmarknadspolitiska program, allmänna frågor",8,"""fp""",7,reservation,1663466
+1325433,God bebyggd miljö,4,"""fp""",4,reservation,1325429
+2776002,Utevistelse m.m.,7,"""MP"",""V""",7,reservation,2775995
+1655211,Sveriges säkerhetspolitiska vägval i en globaliserad värld,2,"""v"",""mp""",2,reservation,1655209
+602651,IT inom vård och omsorg,19,"""kd""",11,reservation,602632
+1318104,Ekonomisk stress m.m.,11,"""m""",11,reservation,1318086
+1653642,Programverksamhet för språkliga och etniska minoriteter,24,"""fp""",18,reservation,1653618
+2773579,Nedläggning av Myndigheten för Sveriges nätuniversitet,24,"""kd""",31,reservation,2773555
+2798762,"",11,"""SD""",9,reservation,2798751
+2796822,"",1,"""SD"",""L""",3,reservation,2796821
+2789074,Miljözoner,5,"""MP"",""V""",3,reservation,2789069
+1328383,Kostnadsberäkning av kvinnovåldet,15,"""v""",19,reservation,1328368
+1807379,"",5,"""S"",""V"",""MP""",5,reservation,1807369
+1810141,Andra insatser i storstadsområdena,26,"""v""",9,reservation,1810115
+611265,Utbyggnad av forskningen ,9,"""c""",15,reservation,611256
+2771330,"",3,"""SD""",4,reservation,2771327
+1322880,Krav på cykelhjälm,11,"""m"",""fp""",22,reservation,1322869
+2081565,"",41,"""SD""",21,reservation,2081524
+2793718,"",19,"""S""",8,reservation,2793699
+1318172,Personkretsen,1,"""c"",""fp"",""kd"",""v"",""mp""",1,reservation,1318171
+1316916,Tidigare behandlade frågor,2,"""fp""",1,reservation,1316914
+1672199,Diskriminering och invandrade kvinnor,3,"""V""",4,reservation,1672196
+1813511,"",6,"""S"",""MP"",""V""",8,reservation,1813505
+1651324,Anmälningsskyldighet vid utstationering,7,"""V""",6,reservation,1651317
+2081969,"",1,"""S"",""MP"",""V""",1,reservation,2081968
+1672664,Lag om mark- och miljödomstolar,1,"""mp""",1,reservation,1672663
+1798482,"",10,"""S"",""C"",""V"",""MP""",10,reservation,1798472
+1810417,Principer för socialförsäkringarna,2,"""v""",1,reservation,1810415
+1912770,Hemlöshet,12,"""s""",39,reservation,1912758
+2771984,Ändring i produktsäkerhetslagen,1,"""mp""",1,reservation,2771983
+1676132,Utökad vidaresändningsplikt,4,"""s"",""v"",""mp""",7,reservation,1676128
+616118,Utredning m.m. om alternativa behandlingsmetoder ,62,"""mp""",48,reservation,616056
+1322695,Förenta nationerna,3,"""m"",""c"",""fp"",""kd""",3,reservation,1322692
+1663261,Försörjningskrav,25,"""V""",16,reservation,1663236
+2779068,"",49,"""SD""",30,reservation,2779019
+233025,Barn i ekonomiskt utsatta familjer,6,"""v""",3,reservation,233019
+619779,Ny teknik hörselhjälpmedel m.m. ,12,"""c""",12,reservation,619767
+1810279,"",8,"""S""",7,reservation,1810271
+1807801,"",28,"""V""",14,reservation,1807773
+2279855,"",19,"""MP"",""V""",14,reservation,2279836
+1311313,Styrningen av skolan,5,"""m""",2,reservation,1311308
+1325276,Spärrtid vid temporär återkallelse av körkort ,4,"""m""",25,reservation,1325272
+2787906,Breddad rekrytering,25,"""m"",""c"",""fp"",""kd""",30,reservation,2787881
+614387,Utbildning ,29,"""kd""",36,reservation,614358
+1801265,"",1,"""M"",""SD"",""KD""",1,reservation,1801264
+226109,Finansiering av ekologisk forskning och utbildning vid Stiftelsen Biodynamiska Forskningsinstitutet ,7,"""fp"",""kd"",""v"",""mp""",13,reservation,226102
+2783581,Förändringar i utjämningssystemet för kommunerna,9,"""s"",""v"",""mp""",6,reservation,2783572
+1811333,Klotter och annan skadegörelse,49,"""m"",""fp""",53,reservation,1811269
+1322497,Statistik för offentlig verksamhet,5,"""mp""",7,reservation,1322489
+2077705,"",23,"""M"",""L"",""KD""",25,reservation,2077682
+1307413,Allemansrätten,33,"""SD""",29,reservation,1307380
+621511,Hänvisningar till andra bestämmelser,2,"""fp""",3,reservation,621509
+2782459,"",37,"""MP""",26,reservation,2782422
+2281667,"",3,"""M""",3,reservation,2281664
+1657127,Vittnesskydd,48,"""S"",""V""",70,reservation,1657079
+2798756,"",5,"""S"",""MP"",""V""",3,reservation,2798751
+2079008,"",5,"""S"",""MP"",""V""",4,reservation,2079003
+1656295,Genuspedagoger,49,"""s"",""v"",""mp""",43,reservation,1656246
+1675099,Vindkraft,10,"""fp""",5,reservation,1675089
+1803649,Resning,34,"""fp""",29,reservation,1803615
+1645853,"",7,"""V"",""MP""",3,reservation,1645846
+1810429,Sjukpenning m.m. vid skönhetsoperationer,14,"""m""",15,reservation,1810415
+1803241,Fotboja vid vistelse i halvvägshus,5,"""c""",5,reservation,1803236
+602226,Kapitalomstruktureringar,16,"""kd""",11,reservation,602210
+2780531,"",4,"""M""",6,reservation,2780527
+2136181,"",11,"""C""",6,reservation,2136170
+620898,Behandling av personuppgifter inom socialförsäkringens administration,2,"""c""",1,reservation,620896
+234289,Miljömål för djur ,16,"""c"",""fp""",23,reservation,234273
+2778270,"",50,"""M""",38,reservation,2778220
+237111,Mål för den svenska klimatpolitiken m.m. ,1,"""m""",1,reservation,237110
+2135069,"",9,"""SD""",4,reservation,2135060
+1320777,Utbildning och kompetensutveckling med inriktning på entreprenörskap,20,"""kd""",17,reservation,1320757
+2281248,"",6,"""S""",3,reservation,2281242
+2278952,"",6,"""M""",6,reservation,2278946
+611739,Personella tvångsmedel ,27,"""fp""",35,reservation,611712
+2796589,Miljöskydd i Arktis,8,"""S""",7,reservation,2796581
+1675615,Sms-lån,1,"""s""",1,reservation,1675613
+2074913,"",33,"""SD""",15,reservation,2074880
+2135234,"",17,"""MP""",10,reservation,2135217
+1328476,DNA-registret,13,"""c"",""fp""",11,reservation,1328463
+2081204,"",18,"""S""",10,reservation,2081162
+619922,Frigivningsförberedelser ,5,"""v"",""mp""",3,reservation,619917
+1329707,Regelförenkling m.m. ,2,"""m"",""c"",""fp"",""kd""",3,reservation,1329705
+1327604,Social ekonomi,11,"""mp""",7,reservation,1327585
+620695,Ökande privata försäkringar,5,"""v""",2,reservation,620690
+2794302,Jämställdhetsbonus,46,"""s""",41,reservation,2794253
+2081997,"",2,"""V""",2,reservation,2081995
+231461,Ekonomisk säkerhet för återväxtåtgärder m.m.,20,"""c"",""fp"",""kd""",14,reservation,231441
+2788655,Avtal om abonnemang på mobiltelefoni m.m.,1,"""s"",""mp""",2,reservation,2788654
+1673578,"",1,"""S""",1,reservation,1673577
+2792638,"",7,"""C""",7,reservation,2792631
+602987,Arbetskraftsinvandring ,10,"""v""",5,reservation,602976
+1309538,Ideella fonder,82,"""v"",""mp""",60,reservation,1309455
+1913929,Nya regler för arbetskraftsinvandring,1,"""s"",""v""",1,reservation,1913928
+2782328,Skärpta krav på trossamfund för att få statsbidrag,15,"""SD""",20,reservation,2782313
+235029,Genomförande av de två EG-direktiven,2,"""m""",2,reservation,235027
+1655085,Ärendehandläggning och utbildningsfrågor,9,"""S""",7,reservation,1655076
+1802056,Begränsningar i rätten till familjeåterförening,12,"""fp"",""kd""",9,reservation,1802044
+1315220,Övrigt om ensamkommande barn,23,"""kd""",21,reservation,1315197
+1669975,Multilateralt bistånd,9,"""m"",""c"",""fp"",""kd""",22,reservation,1669966
+1913185,Internationella fiskeavtal,16,"""v""",10,reservation,1913169
+619629,Domkretsindelningen ,26,"""c"",""kd""",28,reservation,619603
+622167,Talerätt ,23,"""v""",26,reservation,622144
+1810673,Sms-lån,1,"""s"",""v"",""mp""",1,reservation,1810672
+2786774,Särskilt om den romska minoriteten,22,"""v"",""mp""",14,reservation,2786752
+2779767,Avgifter,14,"""S"",""MP""",13,reservation,2779753
+2787185,Kompetensförsörjning inom kärnkraftsområdet m.m.,2,"""m"",""fp""",3,reservation,2787183
+2798281,Samordnad teknikupphandling,11,"""mp""",18,reservation,2798270
+2786413,Rasistiska uttryck,10,"""mp""",12,reservation,2786403
+1663254,Arbetskraftsinvandring,18,"""V""",11,reservation,1663236
+2787709,Inledande bestämmelser,2,"""MP"",""V""",3,reservation,2787707
+607786,Det kyrkliga kulturarvet ,28,"""m"",""c"",""kd""",35,reservation,607758
+2078017,"",1,"""V""",2,reservation,2078016
+2774593,Lokalt och regionalt klimatarbete,39,"""s"",""v"",""mp""",55,reservation,2774554
+622253,Deltidsarbetslöshet m.m. ,40,"""kd""",43,reservation,622213
+607480,Framtida fördelning av sändningstillstånd,3,"""m"",""fp""",8,reservation,607477
+2778210,"",13,"""KD""",6,reservation,2778197
+2798315,Regionala utvecklingsfonder,2,"""v"",""mp""",6,reservation,2798313
+620720,Rehabiliteringsfrågor i övrigt,30,"""m""",28,reservation,620690
+620022,Perspektiven i politiken,3,"""fp""",4,reservation,620019
+1313407,Centrum för enklare handel,10,"""m""",7,reservation,1313397
+1798280,"",1,"""S""",2,reservation,1798279
+2790431,Krav på kollektivtrafiken,5,"""MP"",""V""",4,reservation,2790426
+2772212,Öppna bibliotek för alla,2,"""MP"",""V""",2,reservation,2772210
+2780827,"",1,"""C""",2,reservation,2780826
+2771706,Torv,15,"""v"",""mp""",12,reservation,2771685
+1672736,Kommunala energibolag,7,"""S"",""MP"",""V""",6,reservation,1672729
+608578,Definitioner av alkoholdrycker,13,"""v""",16,reservation,608565
+2794479,"",3,"""KD""",1,reservation,2794473
+2772014,"",7,"""S""",3,reservation,2772007
+622562,Allmänna frågor om arbetsrätten ,10,"""v""",7,reservation,622552
+2780949,Utbildning för specialskolans målgrupp,3,"""MP"",""V""",2,reservation,2780946
+1797237,"Global skatt på valutamarknaderna, s.k. Tobinskatt",5,"""v""",12,reservation,1797232
+2780135,"",42,"""MP""",22,reservation,2780093
+242857,Trafikbestämmelser m.m.,19,"""m""",18,reservation,242838
+2778913,Färdtjänst och riksfärdtjänst,5,"""v""",5,reservation,2778908
+2074998,"",118,"""KD""",65,reservation,2074880
+2794696,Ledighet med vårdnadsbidrag,1,"""s"",""v"",""mp""",1,reservation,2794695
+1811282,Ungdomsvårdens innehåll,7,"""fp"",""kd""",6,reservation,1811269
+2780981,Inflytande i skolan,35,"""S""",27,reservation,2780946
+234580,Jämställdhetslagen m.m.,7,"""kd""",8,reservation,234573
+1311329,Anmälningsplikt,21,"""kd""",15,reservation,1311308
+1659555,Resurser till vuxenutbildningen m.m.,3,"""s""",3,reservation,1659552
+240408,Kommuns skadeståndsansvar vid mobbning eller annan kränkande behandling,36,"""c"",""fp"",""mp""",32,reservation,240372
+2797330,"",54,"""M"",""C"",""L"",""KD""",41,reservation,2797276
+2780790,"",15,"""V""",7,reservation,2780775
+1328783,Kommunala servicezoner,8,"""m""",7,reservation,1328775
+1908909,Generellt maskeringsförbud,3,"""m""",3,reservation,1908906
+2798605,"",1,"""SD""",2,reservation,2798604
+2133717,"",20,"""C""",8,reservation,2133697
+1308823,Yttrande från Lagrådet,9,"""v"",""mp""",6,reservation,1308814
+2080678,Behov av ny statistik,7,"""MP""",12,reservation,2080671
+2079501,Äldrepolitikens inriktning,3,"""SD""",1,reservation,2079498
+1306158,Regler för ventilationssystem,7,"""c""",8,reservation,1306151
+1318895,Språktest,1,"""v""",1,reservation,1318894
+1328474,DNA-registret,11,"""m""",11,reservation,1328463
+1811149,"",3,"""SD""",3,reservation,1811144
+1311605,Försäljning av utbildning till enskilda,10,"""kd""",8,reservation,1311595
+2787033,Småföretagarnas situation vid avfallsavlämning,15,"""mp""",19,reservation,2787018
+1808275,Solfångare på tak,6,"""mp""",3,reservation,1808269
+1656250,Skolans värdegrund,4,"""s""",4,reservation,1656246
+2796909,"",34,"""L""",13,reservation,2796875
+1672289,"",3,"""V""",3,reservation,1672286
+1804307,"",2,"""V""",1,reservation,1804305
+2796045,Reseavdrag,13,"""MP""",12,reservation,2796032
+2074695,"",21,"""SD""",9,reservation,2074674
+2784541,"",2,"""S"",""MP""",1,reservation,2784539
+1308891,Yttre åtgärder,77,"""fp""",67,reservation,1308814
+1810625,Avslag på propositionen,1,"""v""",1,reservation,1810624
+603285,Diskriminering,12,"""kd""",6,reservation,603273
+1311328,Anmälningsplikt,20,"""c"",""fp""",15,reservation,1311308
+1813469,"Regionala tillväxtprogram, strukturfondsprogram m.m.",1,"""m"",""c"",""fp"",""kd""",1,reservation,1813468
+1913209,"Mindre företag, närproducerat",7,"""SD""",3,reservation,1913202
+2792150,"",25,"""SD""",63,reservation,2792125
+1326138,Utvecklingen i storstadsregionerna ,26,"""v""",15,reservation,1326112
+234161,Naturvårdsarbete inom arbetsmarknadspolitikens ram,7,"""c""",5,reservation,234154
+1803268,Fångombudsman m.m.,32,"""v""",35,reservation,1803236
+2780271,"",19,"""V""",10,reservation,2780252
+2798713,"",17,"""L""",10,reservation,2798696
+611995,Statsbidrag till de politiska ungdomsförbunden,8,"""fp""",8,reservation,611987
+622566,Chefslöner m.m. ,14,"""v""",9,reservation,622552
+2134385,"",24,"""S""",17,reservation,2134361
+1807247,"",35,"""C""",16,reservation,1807212
+2082680,"",14,"""M""",17,reservation,2082666
+2282651,"",19,"""SD""",9,reservation,2282632
+2771776,Överfallsskyddet i hemförsäkringar,3,"""v""",2,reservation,2771773
+2798870,"",37,"""MP""",23,reservation,2798833
+1664358,Krav avseende vindkraftsutbyggnad,4,"""m""",4,reservation,1664354
+1318792,Översyn av insiderstrafflagen,5,"""m""",5,reservation,1318787
+2078708,"",30,"""SD"",""KD""",41,reservation,2078678
+2792499,Villkor för undervisning i teckenspråk i grundskolan,50,"""V""",38,reservation,2792449
+608548,Nya syntetiska droger,8,"""c""",8,reservation,608540
+2786818,Övriga motionsförslag behandlade i förenklad ordning,14,"""mp""",10,reservation,2786804
+2134774,"",5,"""SD""",6,reservation,2134769
+237641,Strategi för miljöexport ,40,"""c""",57,reservation,237585
+1909923,Alternativa driftsformer för kommunala verksamheter,5,"""m"",""c"",""fp""",7,reservation,1909918
+613904,Insatser för utsatta barn ,36,"""v""",50,reservation,613868
+1912122,Mål för handikappolitiken,9,"""v""",23,reservation,1912113
+221555,Allmän jakt på skarv m.m.,1,"""m"",""c"",""kd""",1,reservation,221554
+2077576,"",23,"""SD""",12,reservation,2077553
+2783362,Sjukpenninggrundande inkomst,5,"""mp""",7,reservation,2783357
+1316510,Särskilda tidsfrister,5,"""s"",""v""",5,reservation,1316505
+2787392,Stöd till ideella föreningar,2,"""m"",""fp""",3,reservation,2787390
+1668051,"",21,"""C""",10,reservation,1668030
+2781423,"",18,"""SD"",""FP""",7,reservation,2781405
+2788345,"",2,"""V""",1,reservation,2788343
+1660545,Slopad spärregel m.m.,24,"""S"",""MP"",""V""",14,reservation,1660521
+2773332,Utveckling av särskolan,3,"""m"",""c"",""fp"",""kd""",3,reservation,2773329
+2077557,"",4,"""V""",2,reservation,2077553
+2780049,"",42,"""MP""",24,reservation,2780007
+1653129,Grundorganisatoriska frågor m.m.,1,"""SD""",1,reservation,1653128
+238488,Allmänt om tillträde till högskolan,14,"""v"",""mp""",7,reservation,238474
+2787159,"",21,"""L""",9,reservation,2787138
+1325786,Lag om ändring i lagen (2002:297) om biobanker i hälso- och sjukvården,28,"""m""",18,reservation,1325758
+1305942,Arbetsrätten för äldre m.m.,16,"""m""",21,reservation,1305917
+1318113,Preventivt psykiatriskt arbete,16,"""v""",19,reservation,1318086
+1674268,Försäljningsprocessen och kontroll av försäljningen,10,"""s""",8,reservation,1674258
+2778861,Mål för den nationella ungdomspolitiken,4,"""s"",""v""",17,reservation,2778857
+1662206,Associeringsavtal med Colombia,5,"""v"",""mp""",5,reservation,1662201
+1648588,Omhändertagande av avfall i marina miljöer,4,"""s"",""v"",""mp""",5,reservation,1648584
+2075402,"",5,"""V""",18,reservation,2075397
+2785103,"",2,"""V""",1,reservation,2785101
+1304833,Uppehållstillstånd före referentens hemresa,21,"""v""",15,reservation,1304812
+2798443,"",10,"""KD""",10,reservation,2798433
+2782143,"",22,"""SD""",14,reservation,2782121
+1652110,Samverkan mellan åklagarna och polisen,22,"""S""",36,reservation,1652088
+1669967,Vissa frågor om biståndets inriktning och innehåll m.m.,1,"""m""",7,reservation,1669966
+605804,Ekobrottsmyndighetens organisation,19,"""kd""",23,reservation,605785
+1796852,"",7,"""M"",""SD""",8,reservation,1796845
+2076126,"",4,"""V""",6,reservation,2076122
+2790473,Vistelsebegreppet,1,"""s"",""v"",""mp""",1,reservation,2790472
+618863,Grundläggande rättigheter ,10,"""v"",""mp""",6,reservation,618853
+2781362,Verkställighetsplanering,1,"""S"",""MP"",""V""",1,reservation,2781361
+2076561,Fördelning av resurser för forskning,9,"""S""",7,reservation,2076552
+237482,Internationella riktlinjer ,1,"""v"",""mp""",1,reservation,237481
+1309529,Bidrag till kostnader för internationella adoptioner,73,"""fp""",51,reservation,1309455
+1668101,"",7,"""KD""",5,reservation,1668094

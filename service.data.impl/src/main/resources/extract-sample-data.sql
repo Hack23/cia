@@ -28,8 +28,25 @@
 \echo 'Started:' `date`
 \echo '=================================================='
 
--- Configuration
-\set SAMPLE_SIZE 50
+-- ============================================================================
+-- CONFIGURATION - Sample Size Settings
+-- ============================================================================
+-- Default sample size for most tables/views (increased from 50 for better coverage)
+\set SAMPLE_SIZE 200
+
+-- Threshold for complete extraction (tables/views under this size extracted fully)
+\set COMPLETE_EXTRACTION_THRESHOLD 3000
+
+-- Extended sample sizes for important entity types
+\set PARTY_SAMPLE_SIZE 500
+\set COMMITTEE_SAMPLE_SIZE 500  
+\set PERSON_SAMPLE_SIZE 500
+
+-- Extended sample sizes for document and voting analysis  
+\set DOCUMENT_SAMPLE_SIZE 300
+\set VOTING_SAMPLE_SIZE 300
+\set WORLDBANK_SAMPLE_SIZE 300
+
 \set TABLE_CMD_FILE '/tmp/cia_table_extract_commands.sql'
 \set VIEW_CMD_FILE '/tmp/cia_view_extract_commands.sql'
 \set DISTINCT_CMD_FILE '/tmp/cia_distinct_extract_commands.sql'
@@ -38,6 +55,15 @@
 \echo '=================================================='
 \echo '=== INITIALIZATION                            ==='
 \echo '=================================================='
+
+\echo ''
+\echo 'Configuration:'
+\echo '  Default sample size: 200 rows'
+\echo '  Party/Committee/Person sample size: 500 rows'
+\echo '  Document/Voting/Worldbank sample size: 300 rows'
+\echo '  Complete extraction threshold: 3000 rows (smaller datasets extracted fully)'
+\echo '  Output format: CSV with headers'
+\echo ''
 
 DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
 CREATE OR REPLACE FUNCTION cia_tmp_rowcount(schema_name text, rel_name text)
@@ -56,10 +82,6 @@ END;
 $$;
 
 \echo 'Created helper function: cia_tmp_rowcount'
-\echo ''
-\echo 'Configuration:'
-\echo '  Sample size: 50 rows per table/view'
-\echo '  Output format: CSV with headers'
 \echo ''
 
 -- ===========================================================================
@@ -566,14 +588,15 @@ SELECT E'\n\\echo ''''\n' ||
 \echo ''
 
 -- ===========================================================================
--- SECTION 2: Analyze All Views for Statistics
+-- SECTION 2: Analyze Materialized Views for Statistics
 -- ===========================================================================
 \echo ''
 \echo '=================================================='
-\echo '=== PHASE 2: ANALYZING ALL VIEWS              ==='
+\echo '=== PHASE 2: ANALYZING MATERIALIZED VIEWS     ==='
 \echo '=================================================='
 \echo ''
-\echo 'Running ANALYZE on all views (regular and materialized)...'
+\echo 'Running ANALYZE on materialized views only...'
+\echo '(Regular views cannot be ANALYZEd - they are virtual tables)'
 \echo ''
 
 DO $$
@@ -582,72 +605,42 @@ DECLARE
     view_count INTEGER := 0;
     success_count INTEGER := 0;
     error_count INTEGER := 0;
-    mat_view_count INTEGER := 0;
-    reg_view_count INTEGER := 0;
     start_time TIMESTAMP;
     end_time TIMESTAMP;
     duration INTERVAL;
-    total_views INTEGER;
+    total_mat_views INTEGER;
+    total_reg_views INTEGER;
 BEGIN
     start_time := clock_timestamp();
     
-    -- Get total count for progress reporting
-    SELECT 
-        (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public') +
-        (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public')
-    INTO total_views;
+    -- Get counts for reporting
+    SELECT COUNT(*) INTO total_mat_views FROM pg_matviews WHERE schemaname = 'public';
+    SELECT COUNT(*) INTO total_reg_views FROM pg_views WHERE schemaname = 'public';
     
     RAISE NOTICE '================================================';
-    RAISE NOTICE 'Starting ANALYZE of % total views', total_views;
-    RAISE NOTICE '  - Materialized views: %', (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public');
-    RAISE NOTICE '  - Regular views: %', (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public');
+    RAISE NOTICE 'ANALYZE Phase: Only analyzing MATERIALIZED views';
+    RAISE NOTICE '  - Materialized views to analyze: %', total_mat_views;
+    RAISE NOTICE '  - Regular views (skipped - cannot be analyzed): %', total_reg_views;
     RAISE NOTICE '================================================';
     RAISE NOTICE '';
+    RAISE NOTICE 'Note: Regular views cannot be ANALYZEd in PostgreSQL.';
+    RAISE NOTICE '      They are virtual tables computed from their underlying query.';
+    RAISE NOTICE '';
     
-    -- Analyze materialized views first
+    -- Only analyze materialized views (regular views cannot be analyzed)
     RAISE NOTICE '--- Analyzing Materialized Views ---';
     RAISE NOTICE '';
     
     FOR view_record IN 
-        SELECT schemaname, matviewname AS viewname, 'MATERIALIZED VIEW' AS view_type
+        SELECT schemaname, matviewname AS viewname
         FROM pg_matviews
         WHERE schemaname = 'public'
         ORDER BY matviewname
     LOOP
         BEGIN
             view_count := view_count + 1;
-            mat_view_count := mat_view_count + 1;
-            RAISE NOTICE 'ANALYZE [%/%]: %.% (%)', view_count, total_views,
-                view_record.schemaname, view_record.viewname, view_record.view_type;
-            
-            EXECUTE format('ANALYZE %I.%I', view_record.schemaname, view_record.viewname);
-            success_count := success_count + 1;
-            RAISE NOTICE '  ✓ Analyzed successfully';
-            RAISE NOTICE '';
-            
-        EXCEPTION WHEN OTHERS THEN
-            error_count := error_count + 1;
-            RAISE NOTICE '  ✗ ERROR: %', SQLERRM;
-            RAISE NOTICE '';
-        END;
-    END LOOP;
-    
-    -- Now analyze regular views
-    RAISE NOTICE '';
-    RAISE NOTICE '--- Analyzing Regular Views ---';
-    RAISE NOTICE '';
-    
-    FOR view_record IN 
-        SELECT schemaname, viewname, 'VIEW' AS view_type
-        FROM pg_views
-        WHERE schemaname = 'public'
-        ORDER BY viewname
-    LOOP
-        BEGIN
-            view_count := view_count + 1;
-            reg_view_count := reg_view_count + 1;
-            RAISE NOTICE 'ANALYZE [%/%]: %.% (%)', view_count, total_views,
-                view_record.schemaname, view_record.viewname, view_record.view_type;
+            RAISE NOTICE 'ANALYZE [%/%]: %.%', view_count, total_mat_views,
+                view_record.schemaname, view_record.viewname;
             
             EXECUTE format('ANALYZE %I.%I', view_record.schemaname, view_record.viewname);
             success_count := success_count + 1;
@@ -667,12 +660,11 @@ BEGIN
     RAISE NOTICE '';
     RAISE NOTICE '================================================';
     RAISE NOTICE 'View analysis summary:';
-    RAISE NOTICE '  Total views analyzed: %', view_count;
-    RAISE NOTICE '    - Materialized views: %', mat_view_count;
-    RAISE NOTICE '    - Regular views: %', reg_view_count;
+    RAISE NOTICE '  Materialized views analyzed: %', view_count;
     RAISE NOTICE '  Successfully analyzed: %', success_count;
     RAISE NOTICE '  Errors: %', error_count;
     RAISE NOTICE '  Duration: %', duration;
+    RAISE NOTICE '  Regular views skipped: % (cannot be analyzed)', total_reg_views;
     RAISE NOTICE '================================================';
     RAISE NOTICE '';
 END $$;
@@ -828,15 +820,59 @@ table_extract AS (
     SELECT schemaname,
            tablename,
            row_count,
-           LEAST(:SAMPLE_SIZE::int, row_count) AS sample_rows,
+           -- Smart sample size calculation:
+           -- 1. Complete extraction for small tables (< threshold)
+           -- 2. Extended samples for party/committee/person data
+           -- 3. Extended samples for document/voting/worldbank data
+           -- 4. Default sample size for others
+           CASE 
+               -- Complete extraction for small tables
+               WHEN row_count <= :COMPLETE_EXTRACTION_THRESHOLD::int THEN row_count
+               -- Extended samples for party-related tables
+               WHEN tablename ILIKE '%party%' OR tablename ILIKE '%parti%' THEN 
+                   LEAST(:PARTY_SAMPLE_SIZE::int, row_count)
+               -- Extended samples for committee-related tables
+               WHEN tablename ILIKE '%committee%' OR tablename ILIKE '%utskott%' THEN 
+                   LEAST(:COMMITTEE_SAMPLE_SIZE::int, row_count)
+               -- Extended samples for person/politician data
+               WHEN tablename ILIKE '%person%' OR tablename ILIKE '%politician%' 
+                   OR tablename ILIKE '%member%' THEN 
+                   LEAST(:PERSON_SAMPLE_SIZE::int, row_count)
+               -- Extended samples for document-related tables
+               WHEN tablename ILIKE '%document%' OR tablename ILIKE '%proposal%' THEN 
+                   LEAST(:DOCUMENT_SAMPLE_SIZE::int, row_count)
+               -- Extended samples for voting-related tables
+               WHEN tablename ILIKE '%vote%' OR tablename ILIKE '%ballot%' THEN 
+                   LEAST(:VOTING_SAMPLE_SIZE::int, row_count)
+               -- Extended samples for worldbank data
+               WHEN tablename ILIKE '%worldbank%' OR tablename ILIKE '%indicator%' 
+                   OR tablename ILIKE '%country%' THEN 
+                   LEAST(:WORLDBANK_SAMPLE_SIZE::int, row_count)
+               -- Default sample size
+               ELSE LEAST(:SAMPLE_SIZE::int, row_count)
+           END AS sample_rows,
+           -- Extraction type for logging
+           CASE 
+               WHEN row_count <= :COMPLETE_EXTRACTION_THRESHOLD::int THEN 'COMPLETE'
+               WHEN tablename ILIKE '%party%' OR tablename ILIKE '%parti%' THEN 'PARTY-EXTENDED'
+               WHEN tablename ILIKE '%committee%' OR tablename ILIKE '%utskott%' THEN 'COMMITTEE-EXTENDED'
+               WHEN tablename ILIKE '%person%' OR tablename ILIKE '%politician%' 
+                   OR tablename ILIKE '%member%' THEN 'PERSON-EXTENDED'
+               WHEN tablename ILIKE '%document%' OR tablename ILIKE '%proposal%' THEN 'DOCUMENT-EXTENDED'
+               WHEN tablename ILIKE '%vote%' OR tablename ILIKE '%ballot%' THEN 'VOTING-EXTENDED'
+               WHEN tablename ILIKE '%worldbank%' OR tablename ILIKE '%indicator%' 
+                   OR tablename ILIKE '%country%' THEN 'WORLDBANK-EXTENDED'
+               ELSE 'SAMPLE'
+           END AS extraction_type,
            CASE WHEN tablename LIKE 'table_%' THEN tablename ELSE 'table_' || tablename END AS file_prefix
     FROM table_counts
     WHERE row_count > 0
 )
 SELECT format(
-    '\echo ''[TABLE] Extracting: %I.%I (%s rows sampled of %s total)''' || E'\n' ||
-    '\copy (SELECT * FROM %I.%I LIMIT %s) TO ''%s_sample.csv'' CSV HEADER' || E'\n' ||
+    '\echo ''[TABLE-%s] Extracting: %I.%I (%s rows of %s total)''' || E'\n' ||
+    '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' CSV HEADER' || E'\n' ||
     '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n',
+    extraction_type,
     schemaname,
     tablename,
     sample_rows,
@@ -1022,7 +1058,50 @@ view_extract AS (
         vtc.temporal_granularity,
         vtc.samples_per_bucket,
         vptc.temporal_column,
-        LEAST(:SAMPLE_SIZE::int, vtc.row_count) AS sample_rows,
+        -- Smart sample size calculation:
+        -- 1. Complete extraction for small views (< threshold)
+        -- 2. Extended samples for party/committee/person views
+        -- 3. Extended samples for document/voting/worldbank views
+        -- 4. Default sample size for others
+        CASE 
+            -- Complete extraction for small views
+            WHEN vtc.row_count <= :COMPLETE_EXTRACTION_THRESHOLD::int THEN vtc.row_count
+            -- Extended samples for party-related views
+            WHEN vtc.viewname ILIKE '%party%' OR vtc.viewname ILIKE '%parti%' THEN 
+                LEAST(:PARTY_SAMPLE_SIZE::int, vtc.row_count)
+            -- Extended samples for committee-related views
+            WHEN vtc.viewname ILIKE '%committee%' OR vtc.viewname ILIKE '%utskott%' THEN 
+                LEAST(:COMMITTEE_SAMPLE_SIZE::int, vtc.row_count)
+            -- Extended samples for person/politician views
+            WHEN vtc.viewname ILIKE '%person%' OR vtc.viewname ILIKE '%politician%' 
+                OR vtc.viewname ILIKE '%member%' THEN 
+                LEAST(:PERSON_SAMPLE_SIZE::int, vtc.row_count)
+            -- Extended samples for document-related views
+            WHEN vtc.viewname ILIKE '%document%' OR vtc.viewname ILIKE '%proposal%' THEN 
+                LEAST(:DOCUMENT_SAMPLE_SIZE::int, vtc.row_count)
+            -- Extended samples for voting-related views
+            WHEN vtc.viewname ILIKE '%vote%' OR vtc.viewname ILIKE '%ballot%' THEN 
+                LEAST(:VOTING_SAMPLE_SIZE::int, vtc.row_count)
+            -- Extended samples for worldbank data
+            WHEN vtc.viewname ILIKE '%worldbank%' OR vtc.viewname ILIKE '%indicator%' 
+                OR vtc.viewname ILIKE '%country%' THEN 
+                LEAST(:WORLDBANK_SAMPLE_SIZE::int, vtc.row_count)
+            -- Default sample size
+            ELSE LEAST(:SAMPLE_SIZE::int, vtc.row_count)
+        END AS sample_rows,
+        -- Extraction type for logging
+        CASE 
+            WHEN vtc.row_count <= :COMPLETE_EXTRACTION_THRESHOLD::int THEN 'COMPLETE'
+            WHEN vtc.viewname ILIKE '%party%' OR vtc.viewname ILIKE '%parti%' THEN 'PARTY-EXTENDED'
+            WHEN vtc.viewname ILIKE '%committee%' OR vtc.viewname ILIKE '%utskott%' THEN 'COMMITTEE-EXTENDED'
+            WHEN vtc.viewname ILIKE '%person%' OR vtc.viewname ILIKE '%politician%' 
+                OR vtc.viewname ILIKE '%member%' THEN 'PERSON-EXTENDED'
+            WHEN vtc.viewname ILIKE '%document%' OR vtc.viewname ILIKE '%proposal%' THEN 'DOCUMENT-EXTENDED'
+            WHEN vtc.viewname ILIKE '%vote%' OR vtc.viewname ILIKE '%ballot%' THEN 'VOTING-EXTENDED'
+            WHEN vtc.viewname ILIKE '%worldbank%' OR vtc.viewname ILIKE '%indicator%' 
+                OR vtc.viewname ILIKE '%country%' THEN 'WORLDBANK-EXTENDED'
+            ELSE 'SAMPLE'
+        END AS extraction_type,
         CASE WHEN vtc.viewname LIKE 'view_%' THEN vtc.viewname ELSE 'view_' || vtc.viewname END AS file_prefix
     FROM view_temporal_classification vtc
     LEFT JOIN view_primary_temporal_column vptc 
@@ -1148,13 +1227,14 @@ SELECT
             )
         
         -- =====================================================================
-        -- NON-TEMPORAL VIEWS: Use random sampling (existing behavior)
+        -- NON-TEMPORAL VIEWS: Use random sampling with smart sample sizes
         -- =====================================================================
         ELSE
             format(
-                '\echo ''[VIEW] Extracting: %s (%s rows sampled of %s total)''' || E'\n' ||
+                '\echo ''[VIEW-%s] Extracting: %s (%s rows of %s total)''' || E'\n' ||
                 '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
                 '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n',
+                extraction_type,
                 viewname,
                 sample_rows,
                 row_count,
@@ -1202,7 +1282,8 @@ ORDER BY
 \echo ''
 
 -- Generate comprehensive statistics including temporal stratification info
-\copy (
+-- Note: \copy doesn't support CTEs, so we create a temp table first
+CREATE TEMP TABLE tmp_extraction_stats AS
 WITH view_temporal_classification AS (
     SELECT 
         CASE 
@@ -1239,30 +1320,75 @@ overall_stats AS (
         (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') AS total_views,
         (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public') AS total_materialized_views,
         (SELECT COUNT(*) FROM pg_views WHERE schemaname = 'public') + (SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public') AS total_views_all,
-        50 AS sample_size_per_object
+        :SAMPLE_SIZE::int AS default_sample_size,
+        :PARTY_SAMPLE_SIZE::int AS party_sample_size,
+        :COMMITTEE_SAMPLE_SIZE::int AS committee_sample_size,
+        :PERSON_SAMPLE_SIZE::int AS person_sample_size,
+        :DOCUMENT_SAMPLE_SIZE::int AS document_sample_size,
+        :VOTING_SAMPLE_SIZE::int AS voting_sample_size,
+        :WORLDBANK_SAMPLE_SIZE::int AS worldbank_sample_size,
+        :COMPLETE_EXTRACTION_THRESHOLD::int AS complete_threshold
 )
 SELECT 
     'Temporal Stratification Summary' AS metric,
     temporal_granularity AS granularity,
-    view_count AS count,
+    view_count::bigint AS count,
     sampling_strategy AS strategy
 FROM temporal_summary
 UNION ALL
 SELECT 
     'Overall Statistics' AS metric,
     'Total Objects' AS granularity,
-    total_tables + total_views_all AS count,
+    (total_tables + total_views_all)::bigint AS count,
     'Tables: ' || total_tables || ', Views: ' || total_views || ', Mat Views: ' || total_materialized_views AS strategy
 FROM overall_stats
 UNION ALL
 SELECT 
     'Sample Configuration' AS metric,
-    'Rows per Object' AS granularity,
-    sample_size_per_object AS count,
-    'Stratified sampling for temporal views, random for others' AS strategy
+    'Default Sample Size' AS granularity,
+    default_sample_size::bigint AS count,
+    'Standard rows per table/view (unless entity-specific or complete extraction)' AS strategy
 FROM overall_stats
-ORDER BY metric, granularity
-) TO 'extraction_statistics.csv' WITH CSV HEADER;
+UNION ALL
+SELECT 
+    'Sample Configuration' AS metric,
+    'Party/Committee/Person Sample' AS granularity,
+    party_sample_size::bigint AS count,
+    'Extended sample size for political entity tables/views (parties, committees, politicians)' AS strategy
+FROM overall_stats
+UNION ALL
+SELECT 
+    'Sample Configuration' AS metric,
+    'Document Sample Size' AS granularity,
+    document_sample_size::bigint AS count,
+    'Extended sample for document, motion, proposition, and bill tables/views' AS strategy
+FROM overall_stats
+UNION ALL
+SELECT 
+    'Sample Configuration' AS metric,
+    'Voting/Ballot Sample Size' AS granularity,
+    voting_sample_size::bigint AS count,
+    'Extended sample for vote, ballot, and decision summary tables/views' AS strategy
+FROM overall_stats
+UNION ALL
+SELECT 
+    'Sample Configuration' AS metric,
+    'Worldbank Sample Size' AS granularity,
+    worldbank_sample_size::bigint AS count,
+    'Extended sample for worldbank indicators, countries, and economic data' AS strategy
+FROM overall_stats
+UNION ALL
+SELECT 
+    'Sample Configuration' AS metric,
+    'Complete Extraction Threshold' AS granularity,
+    complete_threshold::bigint AS count,
+    'Tables/views under this row count are extracted completely' AS strategy
+FROM overall_stats
+ORDER BY metric, granularity;
+
+\copy (SELECT * FROM tmp_extraction_stats) TO 'extraction_statistics.csv' WITH CSV HEADER
+
+DROP TABLE IF EXISTS tmp_extraction_stats;
 
 \echo '✓ Generated: extraction_statistics.csv'
 \echo ''
@@ -1313,6 +1439,131 @@ ORDER BY
 \echo ''
 
 -- ===========================================================================
+-- PHASE 6: DISTRIBUTION & TREND STATISTICS
+-- ===========================================================================
+\echo ''
+\echo '=================================================='
+\echo '=== PHASE 6: Distribution & Trend Statistics  ==='
+\echo '=================================================='
+\echo ''
+
+-- 6.1: Party Distribution Analysis
+\echo 'Generating party distribution statistics...'
+
+\copy (SELECT party, COUNT(*) AS member_count, ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS percentage FROM person_data WHERE party IS NOT NULL GROUP BY party ORDER BY member_count DESC) TO 'distribution_party_members.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_party_members.csv'
+
+-- 6.2: Document Type Distribution
+\echo 'Generating document type distribution...'
+
+\copy (SELECT doc_type, COUNT(*) AS doc_count, ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS percentage FROM document_data WHERE doc_type IS NOT NULL GROUP BY doc_type ORDER BY doc_count DESC LIMIT 50) TO 'distribution_document_types.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_document_types.csv'
+
+-- 6.3: Committee Activity Distribution
+\echo 'Generating committee activity distribution...'
+
+\copy (SELECT org, COUNT(*) AS document_count FROM document_data WHERE org IS NOT NULL AND org != '' GROUP BY org ORDER BY document_count DESC LIMIT 50) TO 'distribution_committee_activity.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_committee_activity.csv'
+
+-- 6.4: Annual Document Volume Trends
+\echo 'Generating annual document trends...'
+
+\copy (SELECT EXTRACT(YEAR FROM made_public_date)::int AS year, COUNT(*) AS document_count FROM document_data WHERE made_public_date IS NOT NULL AND made_public_date >= '1990-01-01' GROUP BY EXTRACT(YEAR FROM made_public_date)::int ORDER BY year) TO 'trend_annual_documents.csv' WITH CSV HEADER
+\echo '✓ Generated: trend_annual_documents.csv'
+
+-- 6.5: Monthly Document Volume (Last 5 Years)
+\echo 'Generating monthly document trends...'
+
+\copy (SELECT DATE_TRUNC('month', made_public_date)::date AS month, COUNT(*) AS document_count FROM document_data WHERE made_public_date >= CURRENT_DATE - INTERVAL '5 years' AND made_public_date IS NOT NULL GROUP BY DATE_TRUNC('month', made_public_date)::date ORDER BY month) TO 'trend_monthly_documents.csv' WITH CSV HEADER
+\echo '✓ Generated: trend_monthly_documents.csv'
+
+-- 6.6: Person Status Distribution
+\echo 'Generating person status distribution...'
+
+\copy (SELECT status, COUNT(*) AS person_count, ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS percentage FROM person_data WHERE status IS NOT NULL GROUP BY status ORDER BY person_count DESC) TO 'distribution_person_status.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_person_status.csv'
+
+-- 6.7: Gender Distribution by Party
+\echo 'Generating gender distribution by party...'
+
+\copy (SELECT party, gender, COUNT(*) AS count FROM person_data WHERE party IS NOT NULL AND gender IS NOT NULL GROUP BY party, gender ORDER BY party, gender) TO 'distribution_gender_by_party.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_gender_by_party.csv'
+
+-- 6.8: Table Size Distribution (Row Counts)
+\echo 'Generating table size distribution...'
+
+\copy (SELECT table_name, approx_row_count, CASE WHEN approx_row_count < 100 THEN 'tiny (<100)' WHEN approx_row_count < 1000 THEN 'small (100-1K)' WHEN approx_row_count < 10000 THEN 'medium (1K-10K)' WHEN approx_row_count < 100000 THEN 'large (10K-100K)' WHEN approx_row_count < 1000000 THEN 'very_large (100K-1M)' ELSE 'massive (>1M)' END AS size_category FROM (SELECT relname AS table_name, reltuples::bigint AS approx_row_count FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace WHERE n.nspname = 'public' AND c.relkind = 'r' AND relname NOT LIKE 'qrtz_%' AND relname NOT LIKE 'databasechange%') t ORDER BY approx_row_count DESC) TO 'distribution_table_sizes.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_table_sizes.csv'
+
+-- 6.9: View Size Distribution (Row Counts)
+\echo 'Generating view size distribution...'
+
+CREATE TEMP TABLE tmp_view_sizes AS
+SELECT view_name, row_count,
+    CASE 
+        WHEN row_count < 100 THEN 'tiny (<100)'
+        WHEN row_count < 1000 THEN 'small (100-1K)'
+        WHEN row_count < 10000 THEN 'medium (1K-10K)'
+        WHEN row_count < 100000 THEN 'large (10K-100K)'
+        WHEN row_count < 1000000 THEN 'very_large (100K-1M)'
+        ELSE 'massive (>1M)'
+    END AS size_category
+FROM (
+    SELECT viewname AS view_name, cia_tmp_rowcount('public', viewname) AS row_count
+    FROM pg_views WHERE schemaname = 'public'
+    UNION ALL
+    SELECT matviewname AS view_name, cia_tmp_rowcount('public', matviewname) AS row_count
+    FROM pg_matviews WHERE schemaname = 'public'
+) v
+ORDER BY row_count DESC;
+
+\copy (SELECT * FROM tmp_view_sizes) TO 'distribution_view_sizes.csv' WITH CSV HEADER
+DROP TABLE tmp_view_sizes;
+\echo '✓ Generated: distribution_view_sizes.csv'
+
+-- 6.10: Size Category Summary
+\echo 'Generating size category summary...'
+
+\copy (SELECT size_category, COUNT(*) AS table_count FROM (SELECT CASE WHEN reltuples::bigint < 100 THEN '1_tiny (<100)' WHEN reltuples::bigint < 1000 THEN '2_small (100-1K)' WHEN reltuples::bigint < 10000 THEN '3_medium (1K-10K)' WHEN reltuples::bigint < 100000 THEN '4_large (10K-100K)' WHEN reltuples::bigint < 1000000 THEN '5_very_large (100K-1M)' ELSE '6_massive (>1M)' END AS size_category FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace WHERE n.nspname = 'public' AND c.relkind = 'r' AND relname NOT LIKE 'qrtz_%' AND relname NOT LIKE 'databasechange%') t GROUP BY size_category ORDER BY size_category) TO 'summary_table_size_categories.csv' WITH CSV HEADER
+\echo '✓ Generated: summary_table_size_categories.csv'
+
+-- 6.11: Entity Coverage Summary (if person_data has election_region)
+\echo 'Generating geographic distribution...'
+
+\copy (SELECT election_region, COUNT(*) AS person_count FROM person_data WHERE election_region IS NOT NULL AND election_region != '' GROUP BY election_region ORDER BY person_count DESC) TO 'distribution_election_regions.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_election_regions.csv'
+
+-- 6.12: Document Status Distribution
+\echo 'Generating document status distribution...'
+
+\copy (SELECT status, COUNT(*) AS doc_count, ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS percentage FROM document_data WHERE status IS NOT NULL GROUP BY status ORDER BY doc_count DESC) TO 'distribution_document_status.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_document_status.csv'
+
+-- 6.13: Assignment Distribution by Type (if assignment_data exists)
+\echo 'Generating assignment type distribution...'
+
+\copy (SELECT role_code, COUNT(*) AS assignment_count FROM assignment_data WHERE role_code IS NOT NULL GROUP BY role_code ORDER BY assignment_count DESC LIMIT 30) TO 'distribution_assignment_roles.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_assignment_roles.csv'
+
+-- 6.14: Temporal Coverage Analysis
+\echo 'Generating temporal coverage analysis...'
+
+\copy (SELECT 'documents' AS data_type, MIN(made_public_date) AS earliest, MAX(made_public_date) AS latest, COUNT(*) AS total_records FROM document_data WHERE made_public_date IS NOT NULL UNION ALL SELECT 'assignments' AS data_type, MIN(from_date) AS earliest, MAX(to_date) AS latest, COUNT(*) AS total_records FROM assignment_data WHERE from_date IS NOT NULL) TO 'summary_temporal_coverage.csv' WITH CSV HEADER
+\echo '✓ Generated: summary_temporal_coverage.csv'
+
+-- 6.15: Extraction Type Summary from Manifest
+\echo 'Generating extraction type summary...'
+
+\copy (SELECT extraction_type, COUNT(*) AS file_count, SUM(row_count) AS total_rows FROM extraction_manifest GROUP BY extraction_type ORDER BY total_rows DESC) TO 'summary_extraction_types.csv' WITH CSV HEADER
+\echo '✓ Generated: summary_extraction_types.csv'
+
+\echo ''
+\echo '=================================================='
+\echo '=== PHASE 6 COMPLETE: Distribution Stats Done ==='
+\echo '=================================================='
+\echo ''
+
+-- ===========================================================================
 -- CLEANUP
 -- ===========================================================================
 \echo ''
@@ -1337,6 +1588,33 @@ DROP FUNCTION IF EXISTS cia_classify_temporal_view(text);
 \echo '  - table_*.csv                : Sample data from tables (random sampling)'
 \echo '  - view_*.csv                 : Sample data from views (temporal stratification applied)'
 \echo '  - extraction_statistics.csv  : Temporal distribution and coverage metrics'
+\echo ''
+\echo 'Distribution & Trend Analysis:'
+\echo '  - distribution_party_members.csv       : Party membership counts'
+\echo '  - distribution_document_types.csv      : Document type breakdown'
+\echo '  - distribution_committee_activity.csv  : Committee document activity'
+\echo '  - distribution_person_status.csv       : Person status breakdown'
+\echo '  - distribution_gender_by_party.csv     : Gender by party analysis'
+\echo '  - distribution_election_regions.csv    : Geographic distribution'
+\echo '  - distribution_document_status.csv     : Document status breakdown'
+\echo '  - distribution_assignment_roles.csv    : Assignment role types'
+\echo '  - distribution_table_sizes.csv         : Table row count distribution'
+\echo '  - distribution_view_sizes.csv          : View row count distribution'
+\echo ''
+\echo 'Trend Analysis:'
+\echo '  - trend_annual_documents.csv   : Yearly document volume since 1990'
+\echo '  - trend_monthly_documents.csv  : Monthly document volume (last 5 years)'
+\echo ''
+\echo 'Summary Statistics:'
+\echo '  - summary_table_size_categories.csv  : Tables by size category'
+\echo '  - summary_temporal_coverage.csv      : Data time range coverage'
+\echo '  - summary_extraction_types.csv       : Extraction type breakdown'
+\echo ''
+\echo 'Sample Size Configuration:'
+\echo '  - Default: 200 rows (most tables/views)'
+\echo '  - Political entities (party/committee/person): 500 rows'
+\echo '  - Document/Voting/Worldbank data: 300 rows'
+\echo '  - Complete extraction for tables/views under 3000 rows'
 \echo ''
 \echo 'Temporal Stratification Applied:'
 \echo '  - Daily views: 2 samples per day over last 30 days'
