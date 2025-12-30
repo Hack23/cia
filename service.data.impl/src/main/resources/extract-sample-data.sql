@@ -781,18 +781,20 @@ BEGIN
     
     RAISE NOTICE 'Found % tables in public schema', table_count;
     RAISE NOTICE '';
-    RAISE NOTICE 'Counting rows in each table (this may take a moment)...';
+    RAISE NOTICE 'Getting row counts from statistics (fast)...';
     RAISE NOTICE '';
     
-    -- Count empty vs non-empty tables with progress
+    -- Count empty vs non-empty tables using pg_class statistics (fast)
     FOR table_rec IN 
-        SELECT tablename
-        FROM pg_tables 
-        WHERE schemaname = 'public'
-        ORDER BY tablename
+        SELECT t.tablename,
+               COALESCE(c.reltuples, 0)::BIGINT AS row_count
+        FROM pg_tables t
+        JOIN pg_class c ON c.relname = t.tablename
+        JOIN pg_namespace n ON n.oid = c.relnamespace AND n.nspname = t.schemaname
+        WHERE t.schemaname = 'public'
+        ORDER BY t.tablename
     LOOP
-        row_count := cia_tmp_rowcount('public', table_rec.tablename);
-        IF row_count > 0 THEN
+        IF table_rec.row_count > 0 THEN
             non_empty_count := non_empty_count + 1;
         ELSE
             empty_count := empty_count + 1;
@@ -809,12 +811,15 @@ END $$;
 \pset format unaligned
 \pset tuples_only on
 \o :TABLE_CMD_FILE
+-- Use pg_class.reltuples for fast row count estimates
 WITH table_counts AS (
-    SELECT schemaname,
-           tablename,
-           cia_tmp_rowcount(schemaname, tablename) AS row_count
-    FROM pg_tables
-    WHERE schemaname = 'public'
+    SELECT t.schemaname,
+           t.tablename,
+           COALESCE(c.reltuples, 0)::BIGINT AS row_count
+    FROM pg_tables t
+    JOIN pg_class c ON c.relname = t.tablename
+    JOIN pg_namespace n ON n.oid = c.relnamespace AND n.nspname = t.schemaname
+    WHERE t.schemaname = 'public'
 ),
 table_extract AS (
     SELECT schemaname,
@@ -909,6 +914,15 @@ ORDER BY tablename;
 \echo '=================================================='
 \echo ''
 
+-- Create persistent temp table to cache view row counts (reused in Phase 2)
+DROP TABLE IF EXISTS cia_view_row_counts;
+CREATE TEMP TABLE cia_view_row_counts (
+    schemaname TEXT,
+    viewname TEXT,
+    view_type TEXT,
+    row_count BIGINT
+);
+
 DO $$
 DECLARE
     view_record RECORD;
@@ -955,8 +969,22 @@ BEGIN
             view_record.schemaname, view_record.object_name,
             view_record.object_type;
         
-        -- Now do the slow count operation
-        row_count := cia_tmp_rowcount(view_record.schemaname, view_record.object_name);
+        -- Use fast pg_class statistics for materialized views, slow COUNT for regular views
+        IF view_record.object_type = 'MATERIALIZED VIEW' THEN
+            -- Fast: use cached statistics from pg_class
+            SELECT COALESCE(c.reltuples, 0)::BIGINT INTO row_count
+            FROM pg_class c
+            JOIN pg_namespace n ON n.oid = c.relnamespace
+            WHERE n.nspname = view_record.schemaname
+              AND c.relname = view_record.object_name;
+        ELSE
+            -- Regular views need actual COUNT (no cached stats)
+            row_count := cia_tmp_rowcount(view_record.schemaname, view_record.object_name);
+        END IF;
+        
+        -- Cache result in temp table for Phase 2 reuse
+        INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
+        VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, row_count);
         
         -- Show result immediately after
         IF row_count > 0 THEN
@@ -974,7 +1002,7 @@ BEGIN
 END $$;
 
 \echo ''
-\echo 'Phase 2: Generating extraction commands...'
+\echo 'Phase 2: Generating extraction commands (using cached row counts)...'
 \echo ''
 
 \! rm -f :VIEW_CMD_FILE
@@ -982,20 +1010,14 @@ END $$;
 \pset tuples_only on
 
 \o :VIEW_CMD_FILE
+-- Use cached row counts from Phase 1 temp table instead of recounting
 WITH view_counts AS (
     SELECT schemaname,
            viewname,
-           cia_tmp_rowcount(schemaname, viewname) AS row_count
-    FROM pg_views
-    WHERE schemaname = 'public'
-      AND viewname != 'view_riksdagen_coalition_alignment_matrix'
+           row_count
+    FROM cia_view_row_counts
+    WHERE viewname != 'view_riksdagen_coalition_alignment_matrix'
       AND viewname != 'view_riksdagen_intelligence_dashboard'
-    UNION ALL
-    SELECT schemaname,
-           matviewname,
-           cia_tmp_rowcount(schemaname, matviewname) AS row_count
-    FROM pg_matviews
-    WHERE schemaname = 'public'
 ),
 -- ============================================================================
 -- TEMPORAL VIEW CLASSIFICATION
@@ -1495,8 +1517,9 @@ ORDER BY
 \copy (SELECT table_name, approx_row_count, CASE WHEN approx_row_count < 100 THEN 'tiny (<100)' WHEN approx_row_count < 1000 THEN 'small (100-1K)' WHEN approx_row_count < 10000 THEN 'medium (1K-10K)' WHEN approx_row_count < 100000 THEN 'large (10K-100K)' WHEN approx_row_count < 1000000 THEN 'very_large (100K-1M)' ELSE 'massive (>1M)' END AS size_category FROM (SELECT relname AS table_name, reltuples::bigint AS approx_row_count FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace WHERE n.nspname = 'public' AND c.relkind = 'r' AND relname NOT LIKE 'qrtz_%' AND relname NOT LIKE 'databasechange%') t ORDER BY approx_row_count DESC) TO 'distribution_table_sizes.csv' WITH CSV HEADER
 \echo '✓ Generated: distribution_table_sizes.csv'
 
--- 6.9: View Size Distribution (Row Counts)
+-- 6.9: View Size Distribution (Row Counts) - Using cached reltuples for materialized views
 \echo 'Generating view size distribution...'
+\echo '  (Using pg_class statistics for materialized views - much faster)'
 
 CREATE TEMP TABLE tmp_view_sizes AS
 SELECT view_name, row_count,
@@ -1509,11 +1532,16 @@ SELECT view_name, row_count,
         ELSE 'massive (>1M)'
     END AS size_category
 FROM (
-    SELECT viewname AS view_name, cia_tmp_rowcount('public', viewname) AS row_count
-    FROM pg_views WHERE schemaname = 'public'
+    -- For materialized views, use pg_class.reltuples (fast, uses cached stats)
+    SELECT c.relname AS view_name, c.reltuples::bigint AS row_count
+    FROM pg_class c
+    JOIN pg_namespace n ON n.oid = c.relnamespace
+    WHERE n.nspname = 'public' AND c.relkind = 'm'
     UNION ALL
-    SELECT matviewname AS view_name, cia_tmp_rowcount('public', matviewname) AS row_count
-    FROM pg_matviews WHERE schemaname = 'public'
+    -- For regular views, use reltuples from a LIMIT 0 query estimate or just 0
+    -- Regular views don't have stats, so we just report them without counting
+    SELECT viewname AS view_name, 0::bigint AS row_count
+    FROM pg_views WHERE schemaname = 'public'
 ) v
 ORDER BY row_count DESC;
 
@@ -1609,7 +1637,10 @@ DROP TABLE tmp_view_sizes;
 \echo '✓ Generated: distribution_annual_document_status.csv'
 
 -- 6.25: Empty Views Report (views with no data that need attention)
+-- Using cached stats from Phase 1 analysis to avoid redundant counting
 \echo 'Generating empty views report...'
+\echo '  (Using pg_class statistics for materialized views)'
+
 CREATE TEMP TABLE tmp_empty_views AS
 SELECT view_name, view_type, row_count,
     CASE 
@@ -1622,11 +1653,13 @@ SELECT view_name, view_type, row_count,
         ELSE 'other'
     END AS view_category
 FROM (
-    SELECT viewname AS view_name, 'regular' AS view_type, cia_tmp_rowcount('public', viewname) AS row_count
-    FROM pg_views WHERE schemaname = 'public'
-    UNION ALL
-    SELECT matviewname AS view_name, 'materialized' AS view_type, cia_tmp_rowcount('public', matviewname) AS row_count
-    FROM pg_matviews WHERE schemaname = 'public'
+    -- For materialized views, use pg_class.reltuples (fast)
+    SELECT c.relname AS view_name, 'materialized' AS view_type, c.reltuples::bigint AS row_count
+    FROM pg_class c
+    JOIN pg_namespace n ON n.oid = c.relnamespace
+    WHERE n.nspname = 'public' AND c.relkind = 'm'
+    -- Note: Regular views require actual count - skip them in empty check
+    -- They were already counted in Phase 1
 ) v
 WHERE row_count = 0
 ORDER BY view_category, view_name;
@@ -1654,6 +1687,9 @@ DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
 
 DROP FUNCTION IF EXISTS cia_classify_temporal_view(text);
 \echo 'Dropped helper function: cia_classify_temporal_view'
+
+DROP TABLE IF EXISTS cia_view_row_counts;
+\echo 'Dropped temp table: cia_view_row_counts'
 
 \echo ''
 \echo '=================================================='

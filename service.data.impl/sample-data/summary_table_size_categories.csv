@@ -1,0 +1,7 @@
+size_category,table_count
+1_tiny (<100),40
+2_small (100-1K),3
+3_medium (1K-10K),9
+4_large (10K-100K),15
+5_very_large (100K-1M),8
+6_massive (>1M),5
