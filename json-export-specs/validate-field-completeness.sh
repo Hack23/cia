@@ -19,7 +19,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 VERBOSE=false
-if [[ "$1" == "--verbose" ]]; then
+if [[ "${1:-}" == "--verbose" ]]; then
     VERBOSE=true
 fi
 
@@ -186,7 +186,7 @@ for i in "${!SCHEMA_NAMES[@]}"; do
         echo "   Status: ❌ CSV file not found!"
     fi
     
-    if [[ $VERBOSE == true ]] && [[ -n ${MISSING_FIELDS_LIST[$i]} ]]; then
+    if [[ $VERBOSE == true ]] && [[ -n "${MISSING_FIELDS_LIST[$i]:-}" ]]; then
         echo ""
         echo "   Missing required fields:"
         IFS=',' read -ra missing <<< "${MISSING_FIELDS_LIST[$i]}"
@@ -209,7 +209,11 @@ for i in "${!MISSING_COUNTS[@]}"; do
     total_completeness=$((total_completeness + ${COMPLETENESS[$i]}))
 done
 
-avg_completeness=$((total_completeness / total_schemas))
+if [[ $total_schemas -gt 0 ]]; then
+    avg_completeness=$((total_completeness / total_schemas))
+else
+    avg_completeness=0
+fi
 
 echo "================================================================================"
 echo " Summary"
@@ -230,11 +234,14 @@ else
 fi
 
 # Generate markdown report
-cat > "$OUTPUT_FILE" << 'REPORT_START'
+{
+cat << 'REPORT_START'
 # Field Completeness Validation Report
 
-**Generated:** $(date +%Y-%m-%d)
-
+REPORT_START
+echo "**Generated:** $(date +%Y-%m-%d)"
+echo ""
+cat << 'REPORT_OVERVIEW'
 **Purpose:** Validate sample CSV data completeness for JSON export schemas
 
 ## Overview
@@ -245,7 +252,8 @@ This report validates that sample CSV files contain the required fields to suppo
 
 | Schema | Primary CSV | Rows | Required Fields | Missing | Completeness |
 |--------|-------------|------|----------------|---------|-------------|
-REPORT_START
+REPORT_OVERVIEW
+} > "$OUTPUT_FILE"
 
 # Add table rows
 for i in "${!SCHEMA_NAMES[@]}"; do
@@ -287,7 +295,7 @@ DETAIL_CSV
 DETAIL_NOCSV
     fi
     
-    if [[ -n ${MISSING_FIELDS_LIST[$i]} ]]; then
+    if [[ -n "${MISSING_FIELDS_LIST[$i]:-}" ]]; then
         echo "**Missing Required Fields (${MISSING_COUNTS[$i]}):**" >> "$OUTPUT_FILE"
         echo "" >> "$OUTPUT_FILE"
         IFS=',' read -ra missing <<< "${MISSING_FIELDS_LIST[$i]}"

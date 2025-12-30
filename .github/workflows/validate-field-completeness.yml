@@ -19,15 +19,13 @@ on:
       - '.github/workflows/validate-field-completeness.yml'
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
 
 jobs:
   validate-field-completeness:
     name: Validate Sample Data Field Completeness
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
     
     steps:
       - name: Harden the runner (Audit all outbound calls)
