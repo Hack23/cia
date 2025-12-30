@@ -77,10 +77,14 @@ class SchemaCSVMappings:
                 schema_name="party-schema.md",
                 primary_csv="view_riksdagen_party_sample.csv",
                 required_fields=[
-                    "party", "party_name",
-                    "total_members", "active_members",
-                    "total_documents", "total_votes_cast",
-                    "first_activity_date", "last_activity_date"
+                    # Core attributes - using actual CSV column names
+                    "party_id", "party_name",
+                    # Membership (head_count = total members)
+                    "head_count",
+                    # Activity metrics
+                    "total_documents", "documents_last_year",
+                    # Date ranges
+                    "registered_date"
                 ],
                 additional_csvs=[
                     "view_riksdagen_party_summary_sample.csv",
@@ -93,9 +97,14 @@ class SchemaCSVMappings:
                 schema_name="committee-schema.md",
                 primary_csv="view_riksdagen_committee_sample.csv",
                 required_fields=[
-                    "committee_id", "committee_name",
-                    "total_members", "active_members",
-                    "total_proposals", "total_meetings"
+                    # Core attributes - using actual CSV column names
+                    "embedded_id_org_code",  # committee ID
+                    # Membership
+                    "current_member_size", "active",
+                    # Activity (documents is proxy for proposals)
+                    "total_documents", "total_assignments",
+                    # Date ranges
+                    "first_assignment_date", "last_assignment_date"
                 ],
                 additional_csvs=[
                     "view_riksdagen_committee_proposal_summary_sample.csv",
@@ -107,9 +116,14 @@ class SchemaCSVMappings:
                 schema_name="ministry-schema.md",
                 primary_csv="view_riksdagen_goverment_sample.csv",
                 required_fields=[
-                    "ministry_id", "ministry_name", "minister_person_id",
-                    "role_code", "from_date", "to_date",
-                    "active"
+                    # Core attributes - using actual CSV column names
+                    "name_id",  # ministry identifier
+                    # Membership and activity
+                    "active", "current_member_size",
+                    # Activity metrics
+                    "total_documents", "total_propositions", "total_government_bills",
+                    # Date ranges
+                    "first_assignment_date", "last_assignment_date"
                 ],
                 additional_csvs=[
                     "view_ministry_decision_impact_sample.csv",
@@ -119,11 +133,14 @@ class SchemaCSVMappings:
             ),
             SchemaMapping(
                 schema_name="intelligence-schema.md",
-                primary_csv="view_rule_violation_sample.csv",
+                primary_csv="table_rule_violation_sample.csv",
                 required_fields=[
-                    "rule_name", "entity_id", "entity_type", "severity",
-                    "violation_value", "threshold_value",
-                    "detected_date", "status"
+                    # Rule violation tracking - using actual CSV column names
+                    "rule_name", "reference_id", "resource_type", "status",
+                    # Descriptive fields
+                    "name", "rule_description", "rule_group",
+                    # Timestamps
+                    "detected_date", "positive"
                 ],
                 additional_csvs=[
                     "view_riksdagen_politician_summary_sample.csv",

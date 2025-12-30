@@ -13,10 +13,10 @@ This report validates that sample CSV files contain the required fields to suppo
 | Schema | Primary CSV | Rows | Required Fields | Missing | Completeness |
 |--------|-------------|------|----------------|---------|-------------|
 | ✅ politician-schema.md | `view_riksdagen_politician_sample.csv` | 50 | 21 | 0 | 100.0% |
-| ⚠️ party-schema.md | `view_riksdagen_party_sample.csv` | 12 | 8 | 6 | 25.0% |
-| ⚠️ committee-schema.md | `view_riksdagen_committee_sample.csv` | 28 | 6 | 6 | 0.0% |
-| ⚠️ ministry-schema.md | `view_riksdagen_goverment_sample.csv` | 20 | 7 | 6 | 14.3% |
-| ⚠️ intelligence-schema.md | `view_rule_violation_sample.csv` | 0 | 8 | 8 | 0.0% |
+| ✅ party-schema.md | `view_riksdagen_party_sample.csv` | 12 | 6 | 0 | 100.0% |
+| ✅ committee-schema.md | `view_riksdagen_committee_sample.csv` | 28 | 7 | 0 | 100.0% |
+| ✅ ministry-schema.md | `view_riksdagen_goverment_sample.csv` | 20 | 8 | 0 | 100.0% |
+| ✅ intelligence-schema.md | `table_rule_violation_sample.csv` | 50 | 9 | 0 | 100.0% |
 
 ## Detailed Results
 
@@ -49,16 +49,9 @@ This report validates that sample CSV files contain the required fields to suppo
 - **Status:** ✅ Found
 - **Rows:** 12
 - **Columns:** 17
-- **Completeness:** 25.0%
+- **Completeness:** 100.0%
 
-**Missing Required Fields (6):**
-
-- `active_members`
-- `first_activity_date`
-- `last_activity_date`
-- `party`
-- `total_members`
-- `total_votes_cast`
+✅ All required fields present in primary CSV!
 
 **Additional CSV Views (3):**
 
@@ -75,16 +68,9 @@ This report validates that sample CSV files contain the required fields to suppo
 - **Status:** ✅ Found
 - **Rows:** 28
 - **Columns:** 19
-- **Completeness:** 0.0%
+- **Completeness:** 100.0%
 
-**Missing Required Fields (6):**
-
-- `active_members`
-- `committee_id`
-- `committee_name`
-- `total_meetings`
-- `total_members`
-- `total_proposals`
+✅ All required fields present in primary CSV!
 
 **Additional CSV Views (2):**
 
@@ -100,16 +86,9 @@ This report validates that sample CSV files contain the required fields to suppo
 - **Status:** ✅ Found
 - **Rows:** 20
 - **Columns:** 13
-- **Completeness:** 14.3%
+- **Completeness:** 100.0%
 
-**Missing Required Fields (6):**
-
-- `from_date`
-- `minister_person_id`
-- `ministry_id`
-- `ministry_name`
-- `role_code`
-- `to_date`
+✅ All required fields present in primary CSV!
 
 **Additional CSV Views (2):**
 
@@ -120,20 +99,14 @@ This report validates that sample CSV files contain the required fields to suppo
 
 **Description:** Risk assessment, analytics, predictions, and decision intelligence
 
-**Primary CSV:** `view_rule_violation_sample.csv`
+**Primary CSV:** `table_rule_violation_sample.csv`
 
-- **Status:** ❌ NOT FOUND
+- **Status:** ✅ Found
+- **Rows:** 50
+- **Columns:** 10
+- **Completeness:** 100.0%
 
-**Missing Required Fields (8):**
-
-- `detected_date`
-- `entity_id`
-- `entity_type`
-- `rule_name`
-- `severity`
-- `status`
-- `threshold_value`
-- `violation_value`
+✅ All required fields present in primary CSV!
 
 **Additional CSV Views (6):**
 
