@@ -1,0 +1,187 @@
+year,ministry,assignment_count,unique_members
+1990,Socialdepartementet,1,1
+1991,Utrikesdepartementet,3,3
+1991,Finansdepartementet,2,2
+1991,Justitiedepartementet,2,2
+1991,Socialdepartementet,2,2
+1991,Försvarsdepartementet,1,1
+1991,Statsrådsberedningen,1,1
+1991,Näringsdepartementet,1,1
+1994,Socialdepartementet,3,2
+1994,Utrikesdepartementet,3,3
+1994,Statsrådsberedningen,3,3
+1994,Utbildningsdepartementet,2,2
+1994,Näringsdepartementet,2,2
+1994,Arbetsmarknadsdepartementet,2,2
+1994,Finansdepartementet,1,1
+1994,Försvarsdepartementet,1,1
+1994,Justitiedepartementet,1,1
+1996,Näringsdepartementet,2,2
+1996,Statsrådsberedningen,1,1
+1996,Utbildningsdepartementet,1,1
+1997,Försvarsdepartementet,1,1
+1997,Statsrådsberedningen,1,1
+1998,Justitiedepartementet,1,1
+1998,Statsrådsberedningen,1,1
+1999,Finansdepartementet,1,1
+1999,Socialdepartementet,1,1
+2000,Justitiedepartementet,1,1
+2002,Utrikesdepartementet,3,3
+2002,Justitiedepartementet,3,3
+2002,Näringsdepartementet,3,3
+2002,Statsrådsberedningen,3,3
+2002,Miljö- och samhällsbyggnadsdepartementet,2,2
+2002,Utbildnings- och kulturdepartementet,2,2
+2002,Socialdepartementet,2,2
+2002,Försvarsdepartementet,1,1
+2002,Jordbruksdepartementet,1,1
+2002,Finansdepartementet,1,1
+2003,Utrikesdepartementet,1,1
+2004,Statsrådsberedningen,2,1
+2004,Socialdepartementet,2,2
+2004,Finansdepartementet,1,1
+2004,Miljö- och samhällsbyggnadsdepartementet,1,1
+2004,Utbildnings- och kulturdepartementet,1,1
+2006,Utrikesdepartementet,9,8
+2006,Utbildnings- och kulturdepartementet,7,7
+2006,Näringsdepartementet,6,6
+2006,Socialdepartementet,5,5
+2006,Finansdepartementet,4,4
+2006,Justitiedepartementet,4,4
+2006,Miljö- och samhällsbyggnadsdepartementet,3,3
+2006,Statsrådsberedningen,3,3
+2006,Jordbruksdepartementet,2,2
+2006,Försvarsdepartementet,2,2
+2007,Utbildningsdepartementet,4,2
+2007,Arbetsmarknadsdepartementet,1,1
+2007,Försvarsdepartementet,1,1
+2007,Integrations- och jämställdhetsdepartementet,1,1
+2007,Kulturdepartementet,1,1
+2007,Miljödepartementet,1,1
+2007,Utrikesdepartementet,1,1
+2009,Utbildningsdepartementet,1,1
+2010,Arbetsmarknadsdepartementet,3,3
+2010,Näringsdepartementet,3,3
+2010,Justitiedepartementet,2,1
+2010,Socialdepartementet,2,2
+2010,Integrations- och jämställdhetsdepartementet,1,1
+2010,Kulturdepartementet,1,1
+2010,Finansdepartementet,1,1
+2010,Statsrådsberedningen,1,1
+2010,Jordbruksdepartementet,1,1
+2011,Miljödepartementet,1,1
+2011,Näringsdepartementet,1,1
+2011,Utbildningsdepartementet,1,1
+2011,Landsbygdsdepartementet,1,1
+2012,Försvarsdepartementet,2,2
+2012,Näringsdepartementet,2,1
+2013,Arbetsmarknadsdepartementet,1,1
+2013,Utbildningsdepartementet,1,1
+2013,Utrikesdepartementet,1,1
+2014,Näringsdepartementet,4,4
+2014,Socialdepartementet,3,3
+2014,Finansdepartementet,3,3
+2014,Utbildningsdepartementet,3,3
+2014,Miljödepartementet,2,2
+2014,Statsrådsberedningen,2,2
+2014,Justitiedepartementet,2,2
+2014,Utrikesdepartementet,2,2
+2014,Kulturdepartementet,1,1
+2014,Landsbygdsdepartementet,1,1
+2014,Försvarsdepartementet,1,1
+2014,Arbetsmarknadsdepartementet,1,1
+2015,Miljö- och energidepartementet,2,2
+2015,Näringsdepartementet,1,1
+2016,Näringsdepartementet,5,4
+2016,Utbildningsdepartementet,4,4
+2016,Utrikesdepartementet,3,2
+2016,Finansdepartementet,3,3
+2016,Socialdepartementet,3,3
+2016,Miljö- och energidepartementet,2,1
+2016,Justitiedepartementet,1,1
+2016,Arbetsmarknadsdepartementet,1,1
+2016,Statsrådsberedningen,1,1
+2016,Försvarsdepartementet,1,1
+2016,Kulturdepartementet,1,1
+2017,Näringsdepartementet,3,3
+2017,Finansdepartementet,2,2
+2017,Utbildningsdepartementet,2,2
+2017,Justitiedepartementet,2,2
+2017,Miljö- och energidepartementet,1,1
+2017,Socialdepartementet,1,1
+2017,Kulturdepartementet,1,1
+2017,Utrikesdepartementet,1,1
+2018,Försvarsdepartementet,1,1
+2018,Socialdepartementet,1,1
+2018,Näringsdepartementet,1,1
+2019,Utrikesdepartementet,9,4
+2019,Näringsdepartementet,7,4
+2019,Finansdepartementet,7,4
+2019,Infrastrukturdepartementet,6,2
+2019,Arbetsmarknadsdepartementet,6,3
+2019,Utbildningsdepartementet,6,2
+2019,Socialdepartementet,5,3
+2019,Justitiedepartementet,4,2
+2019,Statsrådsberedningen,4,2
+2019,Kulturdepartementet,3,1
+2019,Försvarsdepartementet,2,1
+2019,Miljö- och energidepartementet,1,1
+2019,Miljödepartementet,1,1
+2020,Utrikesdepartementet,2,2
+2020,Arbetsmarknadsdepartementet,2,2
+2020,Utbildningsdepartementet,2,2
+2020,Kulturdepartementet,1,1
+2020,Näringsdepartementet,1,1
+2020,Statsrådsberedningen,1,1
+2020,Finansdepartementet,1,1
+2020,Infrastrukturdepartementet,1,1
+2021,Utrikesdepartementet,11,4
+2021,Finansdepartementet,10,6
+2021,Arbetsmarknadsdepartementet,8,3
+2021,Utbildningsdepartementet,7,3
+2021,Infrastrukturdepartementet,6,3
+2021,Justitiedepartementet,5,3
+2021,Statsrådsberedningen,5,3
+2021,Socialdepartementet,5,2
+2021,Näringsdepartementet,4,4
+2021,Kulturdepartementet,4,2
+2021,Miljödepartementet,3,2
+2021,Försvarsdepartementet,2,1
+2022,Infrastrukturdepartementet,6,4
+2022,Finansdepartementet,6,6
+2022,Socialdepartementet,5,5
+2022,Utrikesdepartementet,5,5
+2022,Arbetsmarknadsdepartementet,4,4
+2022,Utbildningsdepartementet,4,4
+2022,Justitiedepartementet,3,3
+2022,Försvarsdepartementet,3,3
+2022,Statsrådsberedningen,3,3
+2022,Näringsdepartementet,3,3
+2022,Landsbygds- och infrastrukturdepartementet,2,2
+2022,Klimat- och näringslivsdepartementet,2,2
+2022,Kulturdepartementet,2,2
+2022,Miljödepartementet,2,2
+2023,Klimat- och näringslivsdepartementet,2,2
+2023,Landsbygds- och infrastrukturdepartementet,2,2
+2024,Socialdepartementet,4,4
+2024,Finansdepartementet,3,3
+2024,Landsbygds- och infrastrukturdepartementet,2,2
+2024,Utrikesdepartementet,2,2
+2024,Arbetsmarknadsdepartementet,2,2
+2024,Försvarsdepartementet,2,2
+2024,Justitiedepartementet,2,2
+2024,Utbildningsdepartementet,2,2
+2024,Statsrådsberedningen,1,1
+2024,Klimat- och näringslivsdepartementet,1,1
+2024,Kulturdepartementet,1,1
+2025,Socialdepartementet,10,5
+2025,Finansdepartementet,6,2
+2025,Försvarsdepartementet,6,2
+2025,Arbetsmarknadsdepartementet,6,2
+2025,Landsbygds- och infrastrukturdepartementet,6,2
+2025,Utrikesdepartementet,6,2
+2025,Justitiedepartementet,5,2
+2025,Utbildningsdepartementet,4,2
+2025,Statsrådsberedningen,4,1
+2025,Klimat- och näringslivsdepartementet,4,1
+2025,Kulturdepartementet,2,1

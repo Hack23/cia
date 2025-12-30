@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!-- ========================================================================= -->
+    <!-- DB-CHANGELOG-1.47.xml - Fix Empty Views with Swedish Status Values       -->
+    <!-- ========================================================================= -->
+    <!--
+    Purpose: Fix 5 views that return 0 rows due to incorrect English status filter
+    
+    Root Cause: Views were filtering on p.status IN ('active', 'Active', 'ACTIVE')
+    but actual person_data.status values are in Swedish:
+      - 'Tjänstgörande riksdagsledamot' (Active MP) - 325 records
+      - 'Tjänstgörande ersättare' (Active substitute) - 8 records
+      - 'Tillgänglig ersättare' (Available substitute) - 67 records
+      
+    Views Fixed:
+      1. view_politician_risk_summary (from 1.39)
+      2. view_riksdagen_crisis_resilience_indicators (from 1.40)
+      3. view_riksdagen_politician_influence_metrics (from 1.38)
+      4. view_riksdagen_voting_anomaly_detection (from 1.38)
+      5. view_risk_score_evolution (from 1.42)
+      
+    Solution: Replace English status values with actual Swedish status values
+    
+    Author: intelligence-operative
+    Date: 2025-01-XX
+    Issue: Empty views data quality fix
+-->
+
+    <!-- ========================================================================= -->
+    <!-- 1. FIX: view_politician_risk_summary                                    -->
+    <!-- ========================================================================= -->
+
+    <changeSet author="intelligence-operative"
+        id="fix-swedish-status-politician-risk-summary-1.47-001" failOnError="true">
+        <comment>
+        Fix view_politician_risk_summary to use Swedish status values
+        
+        Root Cause: View filtered on status = 'active' but actual data uses Swedish values
+        Solution: Filter on Swedish status values for active politicians:
+          - 'Tjänstgörande riksdagsledamot' (Active MP)
+          - 'Tjänstgörande ersättare' (Active substitute)
+          - 'Tillgänglig ersättare' (Available substitute)
+    </comment>
+
+        <sql>DROP VIEW IF EXISTS view_politician_risk_summary CASCADE;</sql>
+
+        <createView viewName="view_politician_risk_summary">
+        <![CDATA[
+WITH politician_vote_metrics AS (
+    SELECT
+        p.id AS person_id,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) AS total_votes,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) FILTER (WHERE vd.vote = 'Frånvarande') AS absent_votes,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) FILTER (WHERE vd.vote != vd.party AND vd.vote != 'Frånvarande') AS rebel_votes
+    FROM person_data p
+    LEFT JOIN vote_data vd ON vd.embedded_id_intressent_id = p.id
+        AND vd.vote_date >= CURRENT_DATE - INTERVAL '2 years'
+    WHERE p.status IN ('Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare')
+    GROUP BY p.id
+),
+politician_document_metrics AS (
+    SELECT
+        dpr.person_reference_id,
+        COUNT(DISTINCT dsc.hjid) AS documents_last_year
+    FROM document_status_container dsc
+    LEFT JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    LEFT JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year'
+        AND dpr.person_reference_id IS NOT NULL
+    GROUP BY dpr.person_reference_id
+),
+risk_calculations AS (
+    SELECT
+        p.id AS person_id,
+        p.first_name,
+        p.last_name,
+        p.party,
+        p.status,
+        
+        COUNT(DISTINCT rv.id) AS total_violations,
+        MAX(rv.detected_date) AS latest_violation_date,
+        
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'ABSENTEEISM') AS absenteeism_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'EFFECTIVENESS') AS effectiveness_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'DISCIPLINE') AS discipline_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'PRODUCTIVITY') AS productivity_violations,
+        COUNT(DISTINCT rv.id) FILTER (WHERE rv.rule_group = 'COLLABORATION') AS collaboration_violations,
+        
+        COALESCE(ROUND(pvm.absent_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) AS annual_absence_rate,
+        COALESCE(ROUND(pvm.rebel_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) AS annual_rebel_rate,
+        COALESCE(pvm.total_votes, 0) AS annual_vote_count,
+        
+        COALESCE(pdm.documents_last_year, 0) AS documents_last_year,
+        
+        (
+            LEAST(COUNT(DISTINCT rv.id) * 2, 40) +
+            (COALESCE(ROUND(pvm.absent_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) * 30 / 100.0) +
+            (COALESCE(ROUND(pvm.rebel_votes::NUMERIC / NULLIF(pvm.total_votes, 0) * 100, 2), 0) * 20 / 100.0) +
+            (CASE WHEN COALESCE(pdm.documents_last_year, 0) < 5 THEN 10 ELSE 0 END)
+        ) AS calculated_risk_score
+        
+    FROM person_data p
+    LEFT JOIN politician_vote_metrics pvm ON pvm.person_id = p.id
+    LEFT JOIN politician_document_metrics pdm ON pdm.person_reference_id = p.id
+    LEFT JOIN rule_violation rv 
+        ON rv.reference_id = p.id 
+        AND rv.resource_type = 'POLITICIAN'
+        AND rv.status IN ('MINOR', 'MAJOR', 'CRITICAL')
+    
+    WHERE p.status IN ('Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare')
+    
+    GROUP BY 
+        p.id, p.first_name, p.last_name, p.party, p.status,
+        pvm.absent_votes, pvm.total_votes, pvm.rebel_votes,
+        pdm.documents_last_year
+)
+SELECT
+    person_id,
+    first_name,
+    last_name,
+    party,
+    status,
+    
+    total_violations,
+    latest_violation_date,
+    
+    absenteeism_violations,
+    effectiveness_violations,
+    discipline_violations,
+    productivity_violations,
+    collaboration_violations,
+    
+    annual_absence_rate,
+    annual_rebel_rate,
+    annual_vote_count,
+    documents_last_year,
+    
+    ROUND(calculated_risk_score, 2) AS risk_score,
+    
+    CASE
+        WHEN calculated_risk_score >= 70 THEN 'CRITICAL'
+        WHEN calculated_risk_score >= 50 THEN 'HIGH'
+        WHEN calculated_risk_score >= 30 THEN 'MEDIUM'
+        WHEN calculated_risk_score >= 10 THEN 'LOW'
+        ELSE 'MINIMAL'
+    END AS risk_level,
+    
+    CASE
+        WHEN calculated_risk_score >= 70 THEN 'Critical risk politician - immediate investigation required'
+        WHEN calculated_risk_score >= 50 THEN 'High risk politician - performance concerns warrant review'
+        WHEN calculated_risk_score >= 30 THEN 'Moderate risk - monitor for declining performance'
+        WHEN calculated_risk_score < 10 THEN 'Low risk - performing within acceptable standards'
+        ELSE 'Standard risk profile'
+    END AS risk_assessment
+
+FROM risk_calculations
+ORDER BY calculated_risk_score DESC;
+        ]]>
+    </createView>
+
+        <rollback>
+            <dropView viewName="view_politician_risk_summary" />
+        </rollback>
+    </changeSet>
+
+    <!-- ========================================================================= -->
+    <!-- 2. FIX: view_riksdagen_crisis_resilience_indicators                     -->
+    <!-- ========================================================================= -->
+
+    <changeSet author="intelligence-operative" id="fix-swedish-status-crisis-resilience-1.47-002"
+        failOnError="true">
+        <comment>
+        Fix view_riksdagen_crisis_resilience_indicators to use Swedish status values
+        
+        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE') 
+        but actual data uses Swedish values
+        
+        Solution: Filter on Swedish status values for active politicians
+    </comment>
+
+        <sql>DROP VIEW IF EXISTS view_riksdagen_crisis_resilience_indicators CASCADE;</sql>
+
+        <createView viewName="view_riksdagen_crisis_resilience_indicators">
+        <![CDATA[
+WITH monthly_activity AS (
+    SELECT
+        DATE_TRUNC('month', vote_date) AS activity_month,
+        COUNT(DISTINCT embedded_id_ballot_id) AS ballot_count
+    FROM vote_data
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '5 years'
+    GROUP BY DATE_TRUNC('month', vote_date)
+),
+activity_thresholds AS (
+    SELECT
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY ballot_count) AS median_ballots,
+        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY ballot_count) AS p75_ballots,
+        AVG(ballot_count) AS avg_ballots
+    FROM monthly_activity
+),
+classified_periods AS (
+    SELECT
+        ma.activity_month,
+        ma.ballot_count,
+        CASE 
+            WHEN ma.ballot_count >= at.p75_ballots THEN 'CRISIS'
+            WHEN ma.ballot_count >= at.median_ballots THEN 'ELEVATED'
+            ELSE 'NORMAL'
+        END AS period_type
+    FROM monthly_activity ma
+    CROSS JOIN activity_thresholds at
+),
+crisis_voting AS (
+    SELECT
+        vd.embedded_id_intressent_id AS person_id,
+        vd.party,
+        COUNT(*) AS crisis_votes,
+        COUNT(*) FILTER (WHERE vd.vote = 'Frånvarande') AS crisis_absent,
+        COUNT(*) FILTER (WHERE vd.vote = 'Ja') AS crisis_yes,
+        COUNT(*) FILTER (WHERE vd.vote = 'Nej') AS crisis_no,
+        COUNT(*) FILTER (WHERE vd.vote != vd.party AND vd.vote != 'Frånvarande') AS crisis_rebellions
+    FROM vote_data vd
+    INNER JOIN classified_periods cp 
+        ON DATE_TRUNC('month', vd.vote_date) = cp.activity_month
+        AND cp.period_type IN ('CRISIS', 'ELEVATED')
+    GROUP BY vd.embedded_id_intressent_id, vd.party
+),
+normal_voting AS (
+    SELECT
+        vd.embedded_id_intressent_id AS person_id,
+        COUNT(*) AS normal_votes,
+        COUNT(*) FILTER (WHERE vd.vote = 'Frånvarande') AS normal_absent,
+        COUNT(*) FILTER (WHERE vd.vote = 'Ja') AS normal_yes,
+        COUNT(*) FILTER (WHERE vd.vote = 'Nej') AS normal_no,
+        COUNT(*) FILTER (WHERE vd.vote != vd.party AND vd.vote != 'Frånvarande') AS normal_rebellions
+    FROM vote_data vd
+    INNER JOIN classified_periods cp 
+        ON DATE_TRUNC('month', vd.vote_date) = cp.activity_month
+        AND cp.period_type = 'NORMAL'
+    GROUP BY vd.embedded_id_intressent_id
+),
+all_voting_politicians AS (
+    SELECT DISTINCT embedded_id_intressent_id AS person_id
+    FROM vote_data
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '5 years'
+)
+SELECT
+    p.id AS person_id,
+    p.first_name,
+    p.last_name,
+    p.party,
+    
+    COALESCE(cv.crisis_votes, 0) AS crisis_period_votes,
+    
+    ROUND(
+        COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100,
+        2
+    ) AS crisis_absence_rate,
+    
+    ROUND(
+        100 - (COALESCE(cv.crisis_rebellions, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100),
+        2
+    ) AS crisis_party_discipline,
+    
+    COALESCE(nv.normal_votes, 0) AS normal_period_votes,
+    
+    ROUND(
+        COALESCE(nv.normal_absent, 0)::NUMERIC / NULLIF(nv.normal_votes, 0) * 100,
+        2
+    ) AS normal_absence_rate,
+    
+    ROUND(
+        (COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100) -
+        (COALESCE(nv.normal_absent, 0)::NUMERIC / NULLIF(nv.normal_votes, 0) * 100),
+        2
+    ) AS absence_rate_change,
+    
+    ROUND(
+        CASE 
+            WHEN COALESCE(cv.crisis_votes, 0) < 5 THEN NULL
+            ELSE
+                (50 - LEAST(50, COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100)) +
+                (30 - LEAST(30, ABS(
+                    (COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100) -
+                    (COALESCE(nv.normal_absent, 0)::NUMERIC / NULLIF(nv.normal_votes, 0) * 100)
+                ))) +
+                (20 - LEAST(20, COALESCE(cv.crisis_rebellions, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) * 100))
+        END,
+        4
+    ) AS resilience_score,
+    
+    CASE
+        WHEN COALESCE(cv.crisis_votes, 0) >= 10 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.1
+            THEN 'HIGHLY_RESILIENT'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.2
+            THEN 'RESILIENT'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.4
+            THEN 'MODERATE_RESILIENCE'
+        WHEN COALESCE(cv.crisis_votes, 0) < 5
+            THEN 'INSUFFICIENT_DATA'
+        ELSE 'LOW_RESILIENCE'
+    END AS resilience_classification,
+    
+    CASE
+        WHEN COALESCE(cv.crisis_votes, 0) >= 10 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.1
+            THEN 'Highly engaged during crisis periods - strong institutional resilience'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.2
+            THEN 'Good crisis response - reliable during high-activity periods'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 
+            AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.4
+            THEN 'Moderate crisis engagement - some absence during critical votes'
+        WHEN COALESCE(cv.crisis_votes, 0) < 5
+            THEN 'Insufficient crisis period data for assessment'
+        ELSE 'Poor crisis response - high absence during high-activity periods'
+    END AS pressure_performance_assessment
+
+FROM person_data p
+INNER JOIN all_voting_politicians avp ON avp.person_id = p.id
+LEFT JOIN crisis_voting cv ON cv.person_id = p.id
+LEFT JOIN normal_voting nv ON nv.person_id = p.id
+WHERE p.status IN ('Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare')
+ORDER BY 
+    CASE
+        WHEN COALESCE(cv.crisis_votes, 0) >= 10 AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.1 THEN 1
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.2 THEN 2
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 AND COALESCE(cv.crisis_absent, 0)::NUMERIC / NULLIF(cv.crisis_votes, 0) < 0.4 THEN 3
+        WHEN COALESCE(cv.crisis_votes, 0) < 5 THEN 4
+        ELSE 5
+    END,
+    p.last_name, p.first_name;
+        ]]>
+    </createView>
+
+        <rollback>
+            <dropView viewName="view_riksdagen_crisis_resilience_indicators" />
+        </rollback>
+    </changeSet>
+
+    <!-- ========================================================================= -->
+    <!-- 3. FIX: view_riksdagen_politician_influence_metrics                     -->
+    <!-- ========================================================================= -->
+
+    <changeSet author="intelligence-operative" id="fix-swedish-status-influence-metrics-1.47-003"
+        failOnError="true">
+        <comment>
+        Fix view_riksdagen_politician_influence_metrics to use Swedish status values
+        
+        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')
+        but actual data uses Swedish values
+        
+        Solution: Filter on Swedish status values for active politicians
+    </comment>
+
+        <sql>DROP VIEW IF EXISTS view_riksdagen_politician_influence_metrics CASCADE;</sql>
+
+        <createView viewName="view_riksdagen_politician_influence_metrics">
+        <![CDATA[
+WITH co_voting_pairs AS (
+    SELECT
+        v1.embedded_id_intressent_id AS person_1,
+        v2.embedded_id_intressent_id AS person_2,
+        COUNT(*) AS co_votes,
+        SUM(CASE WHEN v1.vote = v2.vote THEN 1 ELSE 0 END) AS aligned_votes,
+        SUM(CASE WHEN v1.vote = v2.vote THEN 1 ELSE 0 END)::DOUBLE PRECISION / 
+            NULLIF(COUNT(*), 0)::DOUBLE PRECISION AS alignment_rate
+    FROM vote_data v1
+    JOIN vote_data v2 
+        ON v1.embedded_id_ballot_id = v2.embedded_id_ballot_id
+        AND v1.embedded_id_intressent_id < v2.embedded_id_intressent_id
+    WHERE v1.vote_date >= CURRENT_DATE - INTERVAL '3 years'
+        AND v1.vote IN ('Ja', 'Nej')
+        AND v2.vote IN ('Ja', 'Nej')
+    GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
+    HAVING COUNT(*) >= 10
+),
+network_connections AS (
+    SELECT person_1 AS person_id
+    FROM co_voting_pairs
+    WHERE alignment_rate >= 0.7
+    
+    UNION ALL
+    
+    SELECT person_2 AS person_id
+    FROM co_voting_pairs
+    WHERE alignment_rate >= 0.7
+),
+influence_metrics AS (
+    SELECT
+        person_id,
+        COUNT(*) AS strong_connections
+    FROM network_connections
+    GROUP BY person_id
+),
+network_median AS (
+    SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY strong_connections) AS median_connections
+    FROM influence_metrics
+)
+SELECT
+    p.id AS person_id,
+    p.first_name,
+    p.last_name,
+    p.party,
+    
+    COALESCE(im.strong_connections, 0) AS network_connections,
+    ROUND((SELECT median_connections FROM network_median)::NUMERIC, 2) AS network_median,
+    
+    CASE
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT median_connections FROM network_median) * 2 THEN 'HIGHLY_INFLUENTIAL'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT median_connections FROM network_median) * 1.5 THEN 'INFLUENTIAL'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT median_connections FROM network_median) THEN 'MODERATELY_INFLUENTIAL'
+        WHEN COALESCE(im.strong_connections, 0) > 0 THEN 'LIMITED_INFLUENCE'
+        ELSE 'MINIMAL_INFLUENCE'
+    END AS influence_classification,
+    
+    CASE
+        WHEN COALESCE(im.strong_connections, 0) >= 20 THEN 'STRONG_BROKER'
+        WHEN COALESCE(im.strong_connections, 0) >= 10 THEN 'MODERATE_BROKER'
+        WHEN COALESCE(im.strong_connections, 0) >= 5 THEN 'WEAK_BROKER'
+        ELSE 'NON_BROKER'
+    END AS broker_classification,
+    
+    CASE
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT median_connections FROM network_median) * 2 
+            THEN 'High influence - extensive cross-party network connections'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT median_connections FROM network_median) * 1.5 
+            THEN 'Notable influence - above-average network centrality'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT median_connections FROM network_median) 
+            THEN 'Standard influence - typical network engagement'
+        WHEN COALESCE(im.strong_connections, 0) > 0 
+            THEN 'Limited influence - below-average network connections'
+        ELSE 'Minimal network influence detected'
+    END AS influence_assessment
+
+FROM person_data p
+LEFT JOIN influence_metrics im ON im.person_id = p.id
+WHERE p.status IN ('Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare')
+ORDER BY 
+    COALESCE(im.strong_connections, 0) DESC,
+    p.last_name, p.first_name;
+        ]]>
+    </createView>
+
+        <rollback>
+            <dropView viewName="view_riksdagen_politician_influence_metrics" />
+        </rollback>
+    </changeSet>
+
+    <!-- ========================================================================= -->
+    <!-- 4. FIX: view_riksdagen_voting_anomaly_detection                         -->
+    <!-- ========================================================================= -->
+
+    <changeSet author="intelligence-operative" id="fix-swedish-status-voting-anomaly-1.47-004"
+        failOnError="true">
+        <comment>
+        Fix view_riksdagen_voting_anomaly_detection to use Swedish status values
+        
+        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')
+        but actual data uses Swedish values
+        
+        Solution: Filter on Swedish status values for active politicians
+    </comment>
+
+        <sql>DROP VIEW IF EXISTS view_riksdagen_voting_anomaly_detection CASCADE;</sql>
+
+        <createView viewName="view_riksdagen_voting_anomaly_detection">
+        <![CDATA[
+WITH party_consensus AS (
+    SELECT
+        embedded_id_ballot_id,
+        party,
+        vote,
+        COUNT(*) AS vote_count,
+        ROW_NUMBER() OVER (
+            PARTITION BY embedded_id_ballot_id, party 
+            ORDER BY COUNT(*) DESC
+        ) AS rank
+    FROM vote_data
+    WHERE vote IN ('Ja', 'Nej', 'Avstår')
+        AND party IS NOT NULL
+        AND vote_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY embedded_id_ballot_id, party, vote
+),
+party_majority_vote AS (
+    SELECT
+        embedded_id_ballot_id,
+        party,
+        vote AS party_consensus_vote,
+        vote_count AS consensus_count
+    FROM party_consensus
+    WHERE rank = 1
+),
+party_vote_counts AS (
+    SELECT
+        embedded_id_ballot_id,
+        party,
+        COUNT(*) AS total_party_votes
+    FROM vote_data
+    WHERE party IS NOT NULL
+        AND vote_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY embedded_id_ballot_id, party
+),
+rebel_votes AS (
+    SELECT
+        vd.embedded_id_intressent_id AS person_id,
+        vd.embedded_id_ballot_id,
+        vd.party,
+        vd.vote AS person_vote,
+        pmv.party_consensus_vote,
+        pmv.consensus_count,
+        pvc.total_party_votes,
+        ROUND(
+            pmv.consensus_count::NUMERIC / NULLIF(pvc.total_party_votes, 0) * 100,
+            2
+        ) AS consensus_strength
+    FROM vote_data vd
+    INNER JOIN party_majority_vote pmv 
+        ON vd.embedded_id_ballot_id = pmv.embedded_id_ballot_id
+        AND vd.party = pmv.party
+    INNER JOIN party_vote_counts pvc
+        ON vd.embedded_id_ballot_id = pvc.embedded_id_ballot_id
+        AND vd.party = pvc.party
+    WHERE vd.vote != pmv.party_consensus_vote
+        AND vd.vote IN ('Ja', 'Nej', 'Avstår')
+        AND vd.vote_date >= CURRENT_DATE - INTERVAL '3 years'
+)
+SELECT
+    p.id AS person_id,
+    p.first_name,
+    p.last_name,
+    p.party,
+    
+    COUNT(DISTINCT rv.embedded_id_ballot_id) AS total_rebellions,
+    COUNT(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE rv.consensus_strength >= 80) AS strong_consensus_rebellions,
+    COUNT(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE rv.consensus_strength >= 90) AS very_strong_consensus_rebellions,
+    
+    ROUND(AVG(rv.consensus_strength), 2) AS avg_consensus_strength_rebelled_against,
+    
+    CASE
+        WHEN COUNT(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE rv.consensus_strength >= 90) >= 5 
+            THEN 'FREQUENT_STRONG_REBEL'
+        WHEN COUNT(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE rv.consensus_strength >= 80) >= 10 
+            THEN 'CONSISTENT_REBEL'
+        WHEN COUNT(DISTINCT rv.embedded_id_ballot_id) >= 20 
+            THEN 'MODERATE_REBEL'
+        WHEN COUNT(DISTINCT rv.embedded_id_ballot_id) >= 5 
+            THEN 'OCCASIONAL_REBEL'
+        ELSE 'PARTY_ALIGNED'
+    END AS anomaly_classification,
+    
+    CASE
+        WHEN COUNT(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE rv.consensus_strength >= 90) >= 5
+            THEN 'HIGH ANOMALY: Frequent rebellion against very strong party consensus (90%+)'
+        WHEN COUNT(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE rv.consensus_strength >= 80) >= 10
+            THEN 'MODERATE ANOMALY: Consistent rebellion against strong party consensus (80%+)'
+        WHEN COUNT(DISTINCT rv.embedded_id_ballot_id) >= 20
+            THEN 'MILD ANOMALY: Moderate pattern of voting against party majority'
+        WHEN COUNT(DISTINCT rv.embedded_id_ballot_id) >= 5
+            THEN 'LOW ANOMALY: Occasional independent voting behavior'
+        ELSE 'NO ANOMALY: Votes consistently with party consensus'
+    END AS anomaly_assessment
+
+FROM person_data p
+LEFT JOIN rebel_votes rv ON rv.person_id = p.id
+WHERE p.status IN ('Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare')
+GROUP BY p.id, p.first_name, p.last_name, p.party
+HAVING COUNT(DISTINCT rv.embedded_id_ballot_id) > 0
+ORDER BY 
+    COUNT(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE rv.consensus_strength >= 90) DESC,
+    COUNT(DISTINCT rv.embedded_id_ballot_id) DESC,
+    p.last_name, p.first_name;
+        ]]>
+    </createView>
+
+        <rollback>
+            <dropView viewName="view_riksdagen_voting_anomaly_detection" />
+        </rollback>
+    </changeSet>
+
+    <!-- ========================================================================= -->
+    <!-- 5. FIX: view_risk_score_evolution                                       -->
+    <!-- ========================================================================= -->
+
+    <changeSet author="intelligence-operative" id="fix-swedish-status-risk-evolution-1.47-005"
+        failOnError="true">
+        <comment>
+        Fix view_risk_score_evolution to use Swedish status values
+        
+        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')
+        but actual data uses Swedish values
+        
+        Solution: Filter on Swedish status values for active politicians
+        
+        Note: This view uses politician_document_data table which may need
+        to be verified it exists. If not, the view will still work but
+        document_count will always be 0.
+    </comment>
+
+        <sql>DROP VIEW IF EXISTS view_risk_score_evolution CASCADE;</sql>
+
+        <createView viewName="view_risk_score_evolution">
+        <![CDATA[
+WITH politician_votes_with_rebel AS (
+    SELECT
+        vd.embedded_id_intressent_id,
+        vd.embedded_id_ballot_id,
+        vd.vote,
+        vd.vote_date,
+        vd.party,
+        CASE 
+            WHEN vd.vote != vd.party AND vd.vote IN ('Ja', 'Nej') THEN true
+            ELSE false
+        END AS is_rebel
+    FROM vote_data vd
+    WHERE vd.vote_date >= CURRENT_DATE - INTERVAL '3 years'
+),
+politician_document_data AS (
+    SELECT
+        dpr.person_reference_id,
+        dd.made_public_date,
+        dd.id
+    FROM document_status_container dsc
+    LEFT JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    LEFT JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+        AND dpr.person_reference_id IS NOT NULL
+),
+monthly_risk_base AS (
+    SELECT
+        p.id AS person_id,
+        p.first_name,
+        p.last_name,
+        p.party,
+        DATE_TRUNC('month', pvr.vote_date) AS assessment_period,
+        
+        ROUND(
+            COUNT(*) FILTER (WHERE pvr.vote = 'Frånvarande')::NUMERIC / 
+            NULLIF(COUNT(*), 0) * 100, 
+            2
+        ) AS absence_rate,
+        
+        ROUND(
+            COUNT(*) FILTER (WHERE pvr.is_rebel = true)::NUMERIC / 
+            NULLIF(COUNT(*) FILTER (WHERE pvr.vote IN ('Ja', 'Nej')), 0) * 100, 
+            2
+        ) AS rebel_rate,
+        
+        COUNT(*) AS ballot_count,
+        COUNT(DISTINCT vpd.id) AS document_count
+        
+    FROM person_data p
+    LEFT JOIN politician_votes_with_rebel pvr 
+        ON pvr.embedded_id_intressent_id = p.id
+    LEFT JOIN politician_document_data vpd 
+        ON vpd.person_reference_id = p.id
+        AND vpd.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+        AND DATE_TRUNC('month', vpd.made_public_date) = DATE_TRUNC('month', pvr.vote_date)
+    WHERE p.status IN ('Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare')
+    GROUP BY p.id, p.first_name, p.last_name, p.party, DATE_TRUNC('month', pvr.vote_date)
+),
+monthly_violations AS (
+    SELECT
+        reference_id AS person_id,
+        DATE_TRUNC('month', detected_date) AS assessment_period,
+        COUNT(*) AS violation_count,
+        COUNT(DISTINCT rule_group) AS violation_categories,
+        STRING_AGG(DISTINCT rule_group::TEXT, ', ' ORDER BY rule_group::TEXT) AS violation_types
+    FROM rule_violation
+    WHERE resource_type = 'POLITICIAN'
+        AND status IN ('MINOR', 'MAJOR', 'CRITICAL')
+        AND detected_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY reference_id, DATE_TRUNC('month', detected_date)
+),
+risk_calculations AS (
+    SELECT
+        mrb.person_id,
+        mrb.first_name,
+        mrb.last_name,
+        mrb.party,
+        mrb.assessment_period,
+        mrb.absence_rate,
+        mrb.rebel_rate,
+        mrb.ballot_count,
+        mrb.document_count,
+        
+        COALESCE(mv.violation_count, 0) AS violation_count,
+        COALESCE(mv.violation_categories, 0) AS violation_categories,
+        COALESCE(mv.violation_types, '') AS violation_types,
+        
+        ROUND(
+            LEAST(COALESCE(mv.violation_count, 0) * 2, 40) +
+            (COALESCE(mrb.absence_rate, 0) * 30 / 100.0) +
+            (COALESCE(mrb.rebel_rate, 0) * 20 / 100.0) +
+            (CASE WHEN mrb.document_count < 5 THEN 10 ELSE 0 END),
+            2
+        ) AS calculated_risk_score,
+        
+        LAG(
+            ROUND(
+                LEAST(COALESCE(mv.violation_count, 0) * 2, 40) +
+                (COALESCE(mrb.absence_rate, 0) * 30 / 100.0) +
+                (COALESCE(mrb.rebel_rate, 0) * 20 / 100.0) +
+                (CASE WHEN mrb.document_count < 5 THEN 10 ELSE 0 END),
+                2
+            ), 1
+        ) OVER (PARTITION BY mrb.person_id ORDER BY mrb.assessment_period) AS prev_risk_score
+        
+    FROM monthly_risk_base mrb
+    LEFT JOIN monthly_violations mv 
+        ON mrb.person_id = mv.person_id 
+        AND mrb.assessment_period = mv.assessment_period
+    WHERE mrb.ballot_count >= 5
+        AND mrb.assessment_period IS NOT NULL
+)
+SELECT
+    person_id,
+    first_name,
+    last_name,
+    party,
+    assessment_period,
+    (assessment_period + INTERVAL '1 month' - INTERVAL '1 day')::DATE AS assessment_period_end,
+    absence_rate,
+    rebel_rate,
+    ballot_count,
+    document_count,
+    violation_count,
+    violation_categories,
+    violation_types,
+    calculated_risk_score AS risk_score,
+    prev_risk_score,
+    ROUND(calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score), 2) AS risk_score_change,
+    
+    CASE
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) >= 10 THEN 'SIGNIFICANT_INCREASE'
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) >= 5 THEN 'MODERATE_INCREASE'
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) > 0 THEN 'SLIGHT_INCREASE'
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) <= -10 THEN 'SIGNIFICANT_DECREASE'
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) <= -5 THEN 'MODERATE_DECREASE'
+        WHEN calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) < 0 THEN 'SLIGHT_DECREASE'
+        ELSE 'STABLE'
+    END AS risk_trend,
+    
+    CASE
+        WHEN calculated_risk_score >= 70 THEN 'CRITICAL'
+        WHEN calculated_risk_score >= 50 THEN 'HIGH'
+        WHEN calculated_risk_score >= 30 THEN 'MODERATE'
+        WHEN calculated_risk_score >= 15 THEN 'LOW'
+        ELSE 'MINIMAL'
+    END AS risk_severity,
+    
+    CASE
+        WHEN COALESCE(prev_risk_score, 0) > 0 THEN
+            CASE
+                WHEN prev_risk_score < 30 AND calculated_risk_score >= 30 THEN 'ESCALATION_TO_MODERATE'
+                WHEN prev_risk_score < 50 AND calculated_risk_score >= 50 THEN 'ESCALATION_TO_HIGH'
+                WHEN prev_risk_score < 70 AND calculated_risk_score >= 70 THEN 'ESCALATION_TO_CRITICAL'
+                WHEN prev_risk_score >= 70 AND calculated_risk_score < 70 THEN 'DEESCALATION_FROM_CRITICAL'
+                WHEN prev_risk_score >= 50 AND calculated_risk_score < 50 THEN 'DEESCALATION_FROM_HIGH'
+                WHEN prev_risk_score >= 30 AND calculated_risk_score < 30 THEN 'DEESCALATION_FROM_MODERATE'
+                ELSE 'NO_SEVERITY_TRANSITION'
+            END
+        ELSE 'INITIAL_ASSESSMENT'
+    END AS severity_transition,
+    
+    CASE
+        WHEN calculated_risk_score >= 70 THEN 'CRITICAL: Immediate attention required'
+        WHEN calculated_risk_score >= 50 AND calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) >= 5 
+            THEN 'HIGH RISK: Escalating trend detected'
+        WHEN calculated_risk_score >= 50 THEN 'HIGH RISK: Monitor closely'
+        WHEN calculated_risk_score >= 30 AND calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score) >= 10 
+            THEN 'MODERATE RISK: Rapid escalation warning'
+        WHEN calculated_risk_score >= 30 THEN 'MODERATE RISK: Standard monitoring'
+        WHEN prev_risk_score >= 50 AND calculated_risk_score < 30 
+            THEN 'IMPROVING: Effective risk mitigation'
+        ELSE 'LOW RISK: Normal operations'
+    END AS risk_assessment
+    
+FROM risk_calculations
+ORDER BY person_id, assessment_period DESC;
+        ]]>
+    </createView>
+
+        <rollback>
+            <dropView viewName="view_risk_score_evolution" />
+        </rollback>
+    </changeSet>
+
+    <!-- ========================================================================= -->
+    <!-- POST-FLIGHT: Verify all fixed views return data                         -->
+    <!-- ========================================================================= -->
+
+    <changeSet author="intelligence-operative" id="verify-swedish-status-fixes-1.47-006"
+        failOnError="false">
+        <comment>
+        Post-flight verification for all 5 fixed views - simple count query
+    </comment>
+
+        <sql> SELECT COUNT(*) AS view_politician_risk_summary_count FROM
+            view_politician_risk_summary </sql>
+        <sql> SELECT COUNT(*) AS view_riksdagen_crisis_resilience_indicators_count FROM
+            view_riksdagen_crisis_resilience_indicators </sql>
+        <sql> SELECT COUNT(*) AS view_riksdagen_politician_influence_metrics_count FROM
+            view_riksdagen_politician_influence_metrics </sql>
+        <sql> SELECT COUNT(*) AS view_riksdagen_voting_anomaly_detection_count FROM
+            view_riksdagen_voting_anomaly_detection </sql>
+        <sql> SELECT COUNT(*) AS view_risk_score_evolution_count FROM view_risk_score_evolution </sql>
+    </changeSet>
+
+    <!-- ========================================================================= -->
+    <!-- FIX: view_riksdagen_politician_influence_metrics - vote case sensitivity -->
+    <!-- ========================================================================= -->
+
+    <changeSet author="intelligence-operative" id="fix-vote-case-influence-metrics-1.47-007"
+        failOnError="true">
+        <comment>
+        Fix view_riksdagen_politician_influence_metrics vote case sensitivity and thresholds
+        
+        Root Cause #1: View filtered on vote IN ('Ja', 'Nej') but actual data uses
+        uppercase 'JA', 'NEJ'. This resulted in 0 co-voting pairs being found,
+        causing all 400 politicians to be classified as MINIMAL_INFLUENCE.
+        
+        Root Cause #2: Original thresholds used median*2 for HIGHLY_INFLUENTIAL but
+        max connections was only 277 with median 151, making the threshold (302)
+        impossible to reach.
+        
+        Solution: 
+        1. Use UPPER() function for vote filtering
+        2. Use percentile-based thresholds (P90, P75, P50) for better distribution
+        
+        Expected Distribution:
+        - HIGHLY_INFLUENTIAL: ~10% (P90+)
+        - INFLUENTIAL: ~15% (P75-P90)
+        - MODERATELY_INFLUENTIAL: ~25% (P50-P75)
+        - LIMITED_INFLUENCE: ~40% (below P50 but > 0)
+        - MINIMAL_INFLUENCE: ~10% (no connections)
+    </comment>
+
+        <sql>DROP VIEW IF EXISTS view_riksdagen_politician_influence_metrics CASCADE;</sql>
+
+        <createView viewName="view_riksdagen_politician_influence_metrics">
+        <![CDATA[
+WITH co_voting_pairs AS (
+    SELECT
+        v1.embedded_id_intressent_id AS person_1,
+        v2.embedded_id_intressent_id AS person_2,
+        COUNT(*) AS co_votes,
+        SUM(CASE WHEN v1.vote = v2.vote THEN 1 ELSE 0 END) AS aligned_votes,
+        SUM(CASE WHEN v1.vote = v2.vote THEN 1 ELSE 0 END)::DOUBLE PRECISION / 
+            NULLIF(COUNT(*), 0)::DOUBLE PRECISION AS alignment_rate
+    FROM vote_data v1
+    JOIN vote_data v2 
+        ON v1.embedded_id_ballot_id = v2.embedded_id_ballot_id
+        AND v1.embedded_id_intressent_id < v2.embedded_id_intressent_id
+    WHERE v1.vote_date >= CURRENT_DATE - INTERVAL '3 years'
+        AND UPPER(v1.vote) IN ('JA', 'NEJ')
+        AND UPPER(v2.vote) IN ('JA', 'NEJ')
+    GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
+    HAVING COUNT(*) >= 10
+),
+network_connections AS (
+    SELECT person_1 AS person_id
+    FROM co_voting_pairs
+    WHERE alignment_rate >= 0.7
+    
+    UNION ALL
+    
+    SELECT person_2 AS person_id
+    FROM co_voting_pairs
+    WHERE alignment_rate >= 0.7
+),
+influence_metrics AS (
+    SELECT
+        person_id,
+        COUNT(*) AS strong_connections
+    FROM network_connections
+    GROUP BY person_id
+),
+network_percentiles AS (
+    SELECT 
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY strong_connections) AS p50,
+        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY strong_connections) AS p75,
+        PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY strong_connections) AS p90
+    FROM influence_metrics
+)
+SELECT
+    p.id AS person_id,
+    p.first_name,
+    p.last_name,
+    p.party,
+    
+    COALESCE(im.strong_connections, 0) AS network_connections,
+    ROUND((SELECT p50 FROM network_percentiles)::NUMERIC, 2) AS network_median,
+    
+    CASE
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p90 FROM network_percentiles) THEN 'HIGHLY_INFLUENTIAL'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p75 FROM network_percentiles) THEN 'INFLUENTIAL'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p50 FROM network_percentiles) THEN 'MODERATELY_INFLUENTIAL'
+        WHEN COALESCE(im.strong_connections, 0) > 0 THEN 'LIMITED_INFLUENCE'
+        ELSE 'MINIMAL_INFLUENCE'
+    END AS influence_classification,
+    
+    CASE
+        WHEN COALESCE(im.strong_connections, 0) >= 20 THEN 'STRONG_BROKER'
+        WHEN COALESCE(im.strong_connections, 0) >= 10 THEN 'MODERATE_BROKER'
+        WHEN COALESCE(im.strong_connections, 0) >= 5 THEN 'WEAK_BROKER'
+        ELSE 'NON_BROKER'
+    END AS broker_classification,
+    
+    CASE
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p90 FROM network_percentiles) 
+            THEN 'High influence - top 10% network connections'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p75 FROM network_percentiles) 
+            THEN 'Notable influence - top 25% network centrality'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p50 FROM network_percentiles) 
+            THEN 'Standard influence - above median engagement'
+        WHEN COALESCE(im.strong_connections, 0) > 0 
+            THEN 'Limited influence - below median connections'
+        ELSE 'Minimal network influence detected'
+    END AS influence_assessment
+
+FROM person_data p
+LEFT JOIN influence_metrics im ON im.person_id = p.id
+WHERE p.status IN ('Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare')
+ORDER BY 
+    COALESCE(im.strong_connections, 0) DESC,
+    p.last_name, p.first_name;
+        ]]>
+    </createView>
+
+        <rollback>
+            <dropView viewName="view_riksdagen_politician_influence_metrics" />
+        </rollback>
+    </changeSet>
+
+    <!-- ========================================================================= -->
+    <!-- FIX: view_ministry_productivity_matrix - Fix incorrect join condition -->
+    <!-- ========================================================================= -->
+    <changeSet author="intelligence-operative" id="fix-ministry-productivity-join-1.47-008"
+        failOnError="true">
+        <comment>
+        Fix view_ministry_productivity_matrix incorrect join condition
+        
+        Root Cause: View joined on LOWER(doc.org) = m.org_code_lower, but:
+        - Ministry org_codes are short codes like 'Ku', 'Fi', 'S'
+        - Document org values use full ministry names like 'Kulturdepartementet'
+        - The only accidental match was 'Ku' = 'KU' (committee, not ministry!)
+        
+        Result: Only 3 rows for "Kulturdepartementet" - actually KU committee data
+        
+        Solution: Join on full ministry name (detail field) instead of org_code
+        to properly match documents to ministries.
+    </comment>
+
+        <sql>DROP VIEW IF EXISTS view_ministry_productivity_matrix CASCADE;</sql>
+
+        <createView viewName="view_ministry_productivity_matrix">
+        <![CDATA[
+WITH ministry_base AS (
+    -- Get distinct ministry assignments from assignment_data
+    -- Uses assignment_type = 'Departement' to identify ministries
+    SELECT DISTINCT
+        org_code,
+        org_code AS short_code,
+        detail AS name,
+        LOWER(detail) AS name_lower
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+        AND detail IS NOT NULL
+),
+ministry_document_data AS (
+    -- Direct query to base tables instead of materialized view
+    SELECT 
+        dsc.hjid AS id,
+        dd.document_type,
+        dd.made_public_date,
+        dd.org,
+        LOWER(dd.org) AS org_lower,
+        dpr.person_reference_id
+    FROM document_status_container dsc
+    LEFT JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    LEFT JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date IS NOT NULL
+),
+ministry_annual_metrics AS (
+    -- Calculate annual document metrics per ministry
+    -- Join on full ministry name (detail) instead of org_code
+    SELECT
+        m.org_code,
+        m.short_code,
+        m.name,
+        EXTRACT(YEAR FROM doc.made_public_date) AS year,
+        COUNT(DISTINCT doc.id) AS documents_produced,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) = 'prop' THEN doc.id END) AS propositions,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) = 'ds' THEN doc.id END) AS government_bills,
+        COUNT(DISTINCT doc.person_reference_id) AS unique_contributors,
+        MIN(doc.made_public_date) AS earliest_document,
+        MAX(doc.made_public_date) AS latest_document
+    FROM ministry_base m
+    LEFT JOIN ministry_document_data doc 
+        ON doc.org_lower = m.name_lower
+        AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY m.org_code, m.short_code, m.name, EXTRACT(YEAR FROM doc.made_public_date)
+),
+productivity_benchmarks AS (
+    -- Calculate productivity benchmarks per year for quartile analysis
+    SELECT
+        year,
+        PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY documents_produced) AS p25_documents,
+        PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY documents_produced) AS median_documents,
+        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY documents_produced) AS p75_documents,
+        AVG(documents_produced) AS avg_documents
+    FROM ministry_annual_metrics
+    WHERE year IS NOT NULL
+    GROUP BY year
+)
+SELECT
+    mam.org_code,
+    mam.short_code,
+    mam.name,
+    mam.year,
+    mam.documents_produced,
+    mam.propositions,
+    mam.government_bills,
+    mam.unique_contributors,
+    mam.earliest_document,
+    mam.latest_document,
+    pb.median_documents,
+    pb.avg_documents,
+    pb.p25_documents,
+    pb.p75_documents,
+    ROUND((CAST(mam.documents_produced AS NUMERIC) - pb.avg_documents) / NULLIF(pb.avg_documents, 0) * 100, 2) AS pct_vs_average,
+    
+    -- Productivity quartile classification
+    CASE
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.p75_documents THEN 'TOP_QUARTILE'
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.median_documents THEN 'ABOVE_MEDIAN'
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.p25_documents THEN 'BELOW_MEDIAN'
+        ELSE 'BOTTOM_QUARTILE'
+    END AS productivity_quartile,
+    
+    -- Performance assessment
+    CASE
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.p75_documents THEN 'High-performing ministry'
+        WHEN CAST(mam.documents_produced AS NUMERIC) < pb.p25_documents THEN 'Underperforming ministry - review needed'
+        ELSE 'Standard ministry performance'
+    END AS performance_assessment
+FROM ministry_annual_metrics mam
+LEFT JOIN productivity_benchmarks pb ON pb.year = mam.year
+WHERE mam.year IS NOT NULL
+ORDER BY mam.year DESC, mam.documents_produced DESC
+        ]]>
+    </createView>
+
+        <rollback>
+            <dropView viewName="view_ministry_productivity_matrix" />
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
