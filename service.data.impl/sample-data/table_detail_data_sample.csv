@@ -1,192 +1,455 @@
 hjid,code,detail,detail_type,intressent_id,detail_list_person_detail_da_0
-20230,en,"",titlar,0902086611116,20227
-12661,sv,Utredare,titlar,0933424396309,12659
-34330,sv,Tandhygienist,titlar,0990688247511,34328
-32200,Litteratur,"Om politiska frågor, bl a Hög tid för ny familjepolitik. Tre
-debattinlägg
-(1962, tillsammans med G Hillerdal och N G Hansson),
-Aktiv vårdpolitik (1966),
-Mina fantastiska anmödrar (1996),
-Från Mats i Nor fram till i dag (1998).",biografi,0925516323103,32192
-20054,Utbildning,"1:e järnvägsexpeditör vid statens järnvägar i Strömstad 51-.
-Internutbildning hos statens järnvägar 52 och 67.
-Fackliga och politiska kurser 55-75.",biografi,0353689520405,20050
-41422,sv,Fil.stud.,titlar,0742883909221,41410
-15840,Kommunala uppdrag,"Led av Stockholms kommunfullmäktige 76-88.
-Led av barnavårdsnämnden 70-74,
-sociala sammanläggningsnämnden 74,
-sociala centralnämnden 75-81, 2:e vice ordf 77-81,
-socialnämnden 82-88, 2:e vice ordf 82-88,
-och valnämnden 83-88, vice ordf 83-86, ordf 87-88.
-Led av styrelsen för AB Stockholmshem 77-79,
-AB Svenska Bostäder 79-86, vice ordf 79-86,
-och AB Familjebostäder 86-89.
-Led av bostadsförmedlingsnämnden
-i kommunalförbundet för Stor-Stockholms bostadsförmedling 77-88,
-vice ordf 77-79, ordf 80-88.
-- Led av kyrkofullmäktige i Johannes församling 76-, ordf 81-.
-Led av kyrkorådet 76-91.
-Ordf i Stockholms stifts stiftsting 79-88 och Stockholms stifts
-stiftsfullmäktige 89-94.
-Ledamot av kyrkomötet 83-, ordförande 83-95,
--
-Led av Stockholms läns landsting 74-76. Led av arbetsvårdsnämnden 74-76.
-",biografi,0653617472000,15833
-6383,HarBild,true,bilder,0264838147315,6382
-48499,Utbildning,"Gymnasieexamen 71.
-Juris kandidat vid Lunds universitet 75.
-Sekreterare i Skånes handelskammare 76-82,
-direktörsassistent 82-83.
-Kommunalråd i Malmö 83-94.
-Generaldirektör för Lantmäteriverket 97-.",biografi,8efcd4fd-99a4-4f49-b266-0b652f239378,48495
-17621,sv,skolkurator,titlar,0710863816703,17619
-26218,Kommunala uppdrag,"Ledamot av Brämhults skolstyrelse 68-69.
--
-Ledamot av Borås kommunfullmäktige 71-76 och 79-85.
-Ledamot av kulturnämnden, ordförande 77-82, vice ordförande 82-85.",biografi,085018966209,26211
-5500,Utbildning,"Lantarbetare 37-49.
-Metallarbetare i Motala 49-88.",biografi,0522244736098,5496
-38334,Uppdrag inom förenings- och näringsliv,"Led av styrelsen för
-Frikyrkliga studieförbundet, ordf 47-57.
-Ordf i Kyrkornas världsråds kommitté för internationella frågor.
-Ordf i internationella förberedande kommittén och sv organisationskommittén
-för kristna världskonferensen Life and Peace 83.
-Ordf i styrelsen för Life and Peace Institute 85-88.
-- Led av styrelsen för Hemvärnets centrala förtroendenämnd 54-60.
+47928,Kommunala uppdrag,"Kommunfullmäktig, Höör 98–02. Kommunfullmäktig, Helsingborg 06–10. Kommunfullmäktig, Kristianstad 14–. Ombud, SKL 07–. Regionfullmäktig, Region Skåne 06–14, gruppledare 06–10, regionstyrelsen 06–10, Klimatberedningen 07–09. Ledamot, Kommittén för Sydsam 06–10. Ombud, Svenska Kommunförbundet 03–06. Ledamot, flygplatsstyrelsen Kristianstad Österlen Airport 19–.",biografi,"",47922
+49129,Kommunala uppdrag,"Kommunfullmäktig, Eskilstuna. Gruppledare, Miljöpartiet Eskilstuna.",biografi,"",49123
+43410,HarBild,true,bilder,0457722435319,43409
+25685,en,Economics Graduate,titlar,0287864972117,25682
+23121,sv,"chefsåklagare, JK",titlar,0408672730600,23112
+36739,Uppdrag inom statliga myndigheter m.m.,"Ledamot av styrelsen för
+länsstyrelsen i Kalmar län 77-94,
+småföretagscenter vid högskolan i Växjö 84-90 och
+AMU-myndigheten i Kalmar län 86-92, ordförande 86-92.
+Ledamot av nämnden för fortbildning av journalister 83-91.
+- Ledamot av försäkringsverksamhetskommittén 82-88,
+konsumentpolitiska kommittén 92-94,
+kommittén om reformering av EU:s gemensamma jordbrukspolitik 95-97,
+kommittén om forskningsetik 97-99.",biografi,0110842257006,36733
+26579,Uppdrag inom riksdag och regering,"Riksdagsledamot 10-. Ledamot miljö- och jordbruksutskottet 10-18 och EU-nämnden 14-18. Ledamot EU-nämnden 14-18. Ordförande trafikutskottet 18-. Suppleant justitieutskottet 10-18, näringsutskottet 10-14, EU-nämnden 10-14 och 18- samt miljö- och jordbruksutskottet 18-. Ledamot Globe, internationellt miljöpolitikernätverk. EU-parlamentariker 06-09.  ",biografi,"",26577
+30746,HarBild,true,bilder,0972391843904,30745
+11857,sv,Mediepedagog.,titlar,012576033427,11849
+5640,Bostadsort,Ronneby,biografi,0177634579699,5637
+15989,Uppdrag inom riksdag och regering,"Suppleant i
+Lagutskottet 76/77--78/79, Skatteutskottet 78/79 och 82/83-84/85 samt
+Trafikutskottet 79/80-80/81.
+Ledamot av Skatteutskottet 76/77-78/79, Civilutskottet 78/79-80/81,
+Konstitutionsutskottet 82/83-84/85
+och Justititeutskottet 85/86-88/89, ordf 85/86-88/89.
+Suppleant i Riksgäldskontorets fullmäktige 77/78-80/81 och
+Valberedningen 82/83-88/89.
+Ledamot av
+Riksgäldskontorets fullmäktige 80/81 och 85/86-87/88
+samt Talmanskonferensen 85/86-88/89.
+Ledamot av 1983 års JO-utredning 83-85.
+- Ledamot av fp-gruppens förtroenderåd 82/83 och 86/87-88/89.",biografi,0501397157002,15987
+48279,Utbildning,"Realexamen per korrespondens 49.
+Barbiträde.
+Kontorist.",biografi,a4b6084a-d6f1-437e-bb2d-61d0912e20bb,48275
+42895,Uppdrag inom statliga myndigheter m.m.,"Ledamot, kommittén Luftförsvaret efter 2040, 12-14.",biografi,"",42889
+38636,HarBild,true,bilder,0184968091618,38635
+31206,HarBild,true,bilder,0227205756208,31205
+54869,Utbildning,"Gymnasieskola, Samhällsprogrammet, Vadsbogymnasiet, Mariestad, slutår 10. Pol. kand. Karlstads universitet 14. Fil. mag., statsvetenskap, Örebro universitet 21.",biografi,"",54865
+8672,Bostadsort,Åmål,biografi,0370147780007,8669
+24287,Utbildning,"Folkskollärarexamen 56.
+Folkskollärare 56-69.
+Filosofie magister 67.
+Ämneslärare i Ängelholm 70-93.",biografi,0744066990009,24283
+2582,HarBild,true,bilder,0447461551212,2581
+13165,en,"",titlar,0575313291605,13162
+54554,Bostadsort,Örkelljunga,biografi,b13bbf19-e175-4f32-bcca-24a445bf6961,54551
+53460,Utbildning,"Fil lic vid Lunds universitet 50,
+fil dr i statistik och docent 52.
+Byråchef vid socialstyrelsen 53--56 och
+vid statistiska centralbyrån 56--58.
+Byråchef vid ecklesiatikdepartementet 58,
+kansliråd 58,
+avdelningschef 60,
+statssekreterare 63.
+Konsultativt statsråd 29.9.1967--2.11.1973.
+Generaldirektör och chef för statskontoret 73--82.
+Sakkunnig i civildepartementet 83 och
+industridepartementet 87.
+Sekreterare i 1955 års universitetsutredning 55--58.",biografi,f3dc238e-036c-4bcd-9dcc-e61956af75a7,53456
+15950,HarBild,true,bilder,0980316377627,15949
+49911,sv,Hamnarbetare.,titlar,0170585430421,49907
+2010,Uppdrag inom förenings- och näringsliv,"Led av kårfullmäktige vid handelshögskolan i Stockholm 75-77.
+Led av styrelsen för Estniska skolan i Stockholm 92-.
+Led av direktionen för handelshögskolan i Stockholm 93-.
+- Led av styrelsen för Estniska nationalrådet 79-,
+Esternas representation i Sverige 82-86 och 90-, ordf 90-,
+Estniska kommittén i Sverige 87-
+och Vänskapsförbundet Sverige-Estland 89-.
+Led av Estlands kongress 90-92.
 - Led av styrelsen för
-Folkpartiets ungdomsförbund 48-50,
-Folkpartiets stockholmsavd 53-55
-och av partistyrelsen 60-72, sekreterare 60-66, 2:e vice ordf 69-72.
-",biografi,94111879-2c79-42c7-9c43-fd3d08381855,38329
-13815,Kommunala uppdrag,"Kommunfullmäktig, Sollefteå 02-14. Ersättare, kommunstyrelsen och kommunstyrelsens skolutskott 04-06. Ledamot, länsjukvårdsutskottet 02. Ledamot, barn- och skolnämnden och dess arbetsutskott 03-04. Landstingsfullmäktig 02-06. Ersättare, landstingsstyrelsen 03-06.  ",biografi,"",13809
-28603,Utbildning,"Sånga-Säby föreningsskola 58-59.
-Innehavare av eget skogsbruk i Flerohopp, Nybro, 67-.
-Förbundsordf i Centerns ungdomsförbund (CUF) 66-69.",biografi,0611699417309,28599
-2033,HarBild,true,bilder,0499497337518,2032
-38864,Kommunala uppdrag,"Ledamot av Laxarby kommunalfullmäktige 47-50. -
-Ledamot av Steneby kommunalfullmäktige 52-70.
-Ledamot av byggnadsnämnden 65-70. -
-Ledamot av Bengtsfors kommunfullmäktige 71-78.",biografi,9e9af5e4-3908-4356-8e46-f872b916363e,38858
-1716,Föräldrar,"Syokonsulenten och kommunalrådet Bengt Ohlsson och specialläraren Eva Ohlsson, f. Eriksson.",biografi,"",1713
-24456,sv,Adjunkt.,titlar,0483837558914,24445
-10274,HarBild,true,bilder,0870805820217,10273
-12717,en,Former Party Secretary,titlar,0104804820009,12707
-5933,en,"",titlar,0802373156815,5923
-50370,sv,Fil.kand.,titlar,0977592683711,50359
-48882,Föräldrar,Åkeriarbetaren Ragnar Peterson och Ruth Kristina Olsson,biografi,b9e2a2b5-8126-4d10-a3fd-5f8227bb5c8c,48875
-42232,Uppdrag inom riksdag och regering,"Riksdagsledamot 18–. Ledamot socialförsäkringsutskottet 22 och vice ordförande 22–. Suppleant socialförsäkringsutskottet 19–22, skatteutskottet 18–22, EU-nämnden 19– och finansutskottet 18–. Suppleant riksdagens råd för Riksrevisionen 19–. Ledamot krigsdelegationen 22–. Suppleant valberedningen 22–.",biografi,"",42230
-5754,HarBild,true,bilder,0441733186214,5753
-46139,HarBild,false,bilder,9a19b5e8-dd86-4d85-b069-c8e95d72e862,46138
-18778,Övriga webbsidor,http://www.twitter.com/oloflavesson,eadress,0448155122323,18765
-9996,Föräldrar,Elektrikern Axel Helmer Lundgren och affärsbiträdet Alice Frideborg Kristina Andersson,biografi,0188510214005,9989
-46620,Utbildning,"Hembiträde 28.
-Handelsanställd i Kvarnsveden, Borlänge, till 39.",biografi,0de785f3-e6f3-4708-bf92-b3a03d4e1279,46616
-40897,Utbildning,"Handelsskola 49-50.
-Folkhögskola 51-53.
-Folkskollärarexamen 57.
-Skolkantor i Adelöv 58-64.
-Organist- och kantorsexamen 60.
-Skolkantor, adjunkt och yrkesvalslärare i Bodafors periodvis 64-80.
-Högskolestudier 67-68 och 70-71.
-Fortbildningsledare och biträdande förbundsrektor för Studieförbundet
-Vuxenskolan 74-76 och 78-81.
-Driver familjeföretaget Bröderna Karlsson Eftr KB (informationsbyrå
-och bokförlag) 80-.",biografi,019228697303,40893
-43284,Anställningar,"Lärare, Långholmens folkhögskola, Stockholm 93. Biträdande finansborgarråd, Stockholm 94-97. Kommunsekreterare, Stockholms arbetarekommun 97-02 Landstingsråd, Stockholms län 02-18 ",biografi,"",43279
-834,sv,Restauratör/fil.kand,titlar,0381918573217,825
-8046,Föräldrar,"Överstelöjtnant Anders Jilmstad och Toni Jilmstad, f. Olsson.",biografi,"",8043
-49047,Uppdrag inom förenings- och näringsliv,"Ledamot av styrelsen för Moderata kvinnoförbundet i Göteborg, 1:e
-vice
-ordförande 76-81.
+Farsta moderata förening 73-89, ordf 86-89,
+Moderat skolungdom, riksordf 73-74,
+Stockholms läns distrikt av Moderata ungdomsförbundet (MUF) 74-75 och 80-83,
+1:e vice ordf 80-82, ordf 82-83, MUF 80-84
+samt Stockholms förbund av Moderata samlingspartiet 80-83 och 92-,
+1:e vice ordf 92-.
+Led av styrelsen för
+Förbundet unga européer, ordf 75-81.
+Led av comité fédéral i Jeunesse européenne fédéraliste 75-81.",biografi,0351867771418,2005
+17453,Bostadsort,Kristinehamn,biografi,0887553712102,17450
+38547,Anställningar,"Ekonomiassistent, privat sektor, 13–14. Valorganisatör, Sverigedemokratisk ungdom 14.",biografi,"",38542
+53492,Uppdrag inom förenings- och näringsliv,"Led av styrelsen för Västmanlands läns länsförbund av Moderata
+samlingspartiet,
+ordf 75--.",biografi,105c35b4-4b84-49fb-9fd7-1ed45864ed63,53487
+38498,HarBild,true,bilder,0867950366726,38497
+30082,Bostadsort,Köping,biografi,0502770250503,30079
+38465,Anställningar,"Forskarutbildning, Karolinska Institutet 99–04. Postdocstipendiat, Karolinska Institutet, 04–09. Apotekare, Giftinformationscentralen 09–14. Miljö- och klimatborgarråd, Stockholms stad 14–22. ",biografi,"",38459
+21839,Anställningar,"Eon, diverse positioner.",biografi,"",21834
+935,HarBild,true,bilder,0222234581210,934
+33564,Föräldrar,Professorn Sven Fritiof Abraham Brohult och med dr Astrid Helena Lindblad,biografi,049679140507,33557
+20836,Uppdrag inom riksdag och regering,"Riksdagsledamot 02-. Ledamot bostadsutskottet 02-06, civilutskottet 06-10,  trafikutskottet 10-15 och miljö- och jordbruksutskottet 15-. Suppleant lagutskottet 02-06, näringsutskottet 04-05 och 12-14, trafikutskottet 06-07 och 15-, miljö- och jordbruksutskottet 06-15, EU-nämnden 06-10 och 14-, skatteutskottet 07-14, civilutskottet 10-, försvarsutskottet 14- och socialutskottet 14-15. Suppleant riksdagens valberedning 10.",biografi,"",20834
+46974,Kommunala uppdrag,"Ledamot av Ulricehamns kommunfullmäktige 79-85.
+Ledamot av socialnämnden 86-92, ordförande 86-91, och
+äldreomsorgsnämnden 93-94.",biografi,37402af9-5b2a-4c83-962c-75239c6d7b3f,46967
+18456,en,"",titlar,0755978501008,18446
+10774,HarBild,true,bilder,043961676409,10773
+30734,Utbildning,"Studentexamen 60.
+Filosofie magister vid Lunds universitet 65.
+Bibliotekarie vid Ängelholms stadsbibliotek 65-75.
+Bibliotekarieexamen i Stockholm 66.
+Biblioteks- och kulturchef i Båstads kommun 75-89.
+Kulturchef i Växjö kommun 89-92.
+Länsbibliotekarie i Kronobergs län 93-.",biografi,0908991442204,30730
+24789,Anställningar,Butiksbiträde 81-84. Sjukvårdsbiträde och lärarvikarie 85-89. Lärarvikarie 89-92. Informationsassistent 92-94. Svenska 2-lärare 94-97. Gymnasielärare i svenska 97-04.,biografi,"",24784
+48556,Bostadsort,Lund,biografi,56e37da3-4a86-45e0-8ea6-6be96c6d76a9,48550
+52776,sv,Direktör,titlar,19424e18-57c8-4600-aac7-87b434ecb267,52767
+17836,Uppdrag inom förenings- och näringsliv,"Led av styrelsen för Sv Handelsbankens avdelningskontor i
+Sollefteå, ordf, och
+Konsumtionsföreningen Sollefteå med omnejd, ordf.
+Led av styrelsen för Sollefteå arbetarekommun, ordf 78--89,
+Ångermanlands SAP-distrikt 65--90, och dess VU 79--90, samt
+Västernorrlands läns SAP-distrikt 90--.",biografi,0699478732904,17831
+48856,sv,"Sparbankskonsulent, senare kommunalråd",titlar,47d8eaf2-a9c8-4b30-a448-298c9fbad226,48847
+46877,Kommunala uppdrag,"Ledamot av Göteborgs stadsfullmäktige 67-70.
+Ledamot av stadskollegiet 68-70.
 -
-Ledamot av styrelsen för Göteborgs och Bohus läns länsförbund av Moderata
-samlingspartiet
-73-92, 1:e vice ordförande 78-83, ordförande 89-92.",biografi,0872218435908,49042
-9193,Uppdrag inom riksdag och regering,"Rdl 1976-
-Suppleant i Lagutskottet 76/77-87/88,
-Civilutskottet 76/77-81/82,
-Kulturutskottet 88/89- och
-EES-utskottet 91/92-92/93.
-Ledamot av Civilutskottet 82/83 och
-Bostadsutskottet 83/84-, vice ordförande 94/95-.
-Suppleant i Talmanskonferensen 94/95- och
-EU-nämnden 94/95.
-Ledamot av Krigsdelegationen 94/95-.
+Ledamot av Göteborgs kommunfullmäktige 71-76.
+Ledamot av kommunstyrelsen 71-76.",biografi,a103b396-edf5-48af-afba-9e3a936856fb,46870
+21970,sv,Civilekonom.,titlar,0866055333028,21959
+4479,Föräldrar,Bror Eskil Jansson och Ingeborg Elisabet Karlsson,biografi,0412860732608,4471
+11033,Uppdrag inom riksdag och regering,"Riksdagsledamot 10-. Ledamot utrikesutskottet 14-16. Suppleant konstitutionsutskottet 10-14, utrikesutskottet 10-14, försvarsutskottet 12-14, sammansatta utrikes- och försvarsutskottet 13 och EU-nämnden 14-16.",biografi,"",11030
+52656,HarBild,false,bilder,2b3001e9-0932-4280-bb6e-452edb81c12a,52655
+22849,Litteratur,"Ett stort antal debattböcker, bland annat
+Barn i Sverige (1968), Egyptens arabiska socialism (1969),
+Folkpartist - är du inte riktigt klok? (1970), Det behövs ett
+framtidsparti (1980) och Handbok för EU-tvivlare (1994).
+Partikongressen. Politisk roman (1978, under pseudonymen Hertha
+Knutsdotter), Valkampanjen. Politisk roman (1980).
+Riksdagen inifrån. En studie av parlamentarisk handfallenhet inför ett
+samhälle i kris (1983, doktorsavahndling).",biografi,0650522511709,22841
+14953,en,"",titlar,0478371872009,14950
+27759,HarBild,true,bilder,0611811040102,27757
+52407,HarBild,true,bilder,083953568015,52406
+23852,Kommunala uppdrag,"Ledamot av Röstånga kommunalfullmäktige 63-68.
+Ledamot av kommunalnämnden 64-67.
+Ledamot av byggnadsnämnden 60-64.
+- Ledamot av Röstånga municipalfullmäktige 63-66.
+- Ledamot av Svalövs kommunalfullmäktige 69-70.
+Ledamot av valberedningsnämnden 69-70.
+- Ledamot av Malmöhus läns landsting 67-70.
+Ledamot av undervisnings- och socialnämnden 68-70.",biografi,0783865315601,23845
+10549,HarBild,true,bilder,0288805051019,10548
+21309,Kommunala uppdrag,"Kommunfullmäktig, Vetlanda 10–14. Ersättare, kommunfullmäktige, Vetlanda 02–10. Ledamot, barn- och utbildningsnämnden, Vetlanda 05–10 och ordförande 11–14. Ersättare, socialnämnden, Vetlanda 99–01. Ersättare, barn- och utbildningsnämnden, Vetlanda 03–05. Ersättare, gymnasienämnden, Höglandets kommunalförbund 11–14.   ",biografi,"",21302
+48742,Bostadsort,Visby,biografi,e22fc5d1-46ab-4e45-bee0-fd48b133b96b,48739
+17013,Bostadsort,Kristianstad,biografi,0764840691205,17010
+5409,Bostadsort,Lesjöfors,biografi,0490704966896,5406
+19340,Uppdrag inom statliga myndigheter m.m.,"Nämndeman i länsrätten i Malmöhus län 86-88.
+Ledamot av
+Nämnden för personalvård för totalförsvarspliktiga 94-, ordförande 95-.
+Ledamot av styrelsen för Statens försvarshistorska museer 97-.
+- Ledamot av
+1988 års försvarskommitté
+88-90,
+ungdomsbrottskommittén 90-93,
+pliktutredningen 91-92,
+hot- och riskutredningen 93-95,
+sjöverksamhetskommittén 94-96,
+1998 års Pliktutredning 98-00,",biografi,0944338157703,19334
+14629,Officiell e-postadress,leila.ali.elmi[på]riksdagen.se,eadress,0309480686522,14626
+36368,Uppdrag inom statliga myndigheter m.m.,"Ledamot av Socialstyrelsens råd för allmänmedicinska och
+rättsmedicinska
+ärenden 93-,
+Handikappombudsmannens råd 94-97.
+Ledamot av styrelsen för
+Hälso- och sjukvårdens utvecklingsinstitut 96-,
+Folkhälsoinstitutet 97-00,
+Socialstyrelsen 99-.
+Ledamot av delegationen för social forskning 83-89,
+kommittén om prioriteringar inom hälso- och sjukvården 92-,
+kommittén om hälso och sjukvårdens finansiering och organisation, HSU 2000,
+95-99,
+1996 års smittskyddskommitté 96-99,
+nationella folkhälsokommittén 97-00,
+prioriteringsdelegationen 98-,",biografi,027112189005,36362
+36126,Uppdrag inom riksdag och regering,"Rdl 1991-
+Suppleant i Skatteutskottet 91/92-,
+Bostadsutskottet 91/92-93/94 och
+Försvarsutskottet 95/96-97/98.
+Ledamot av Bostadsutskottet 94/95-.",biografi,0393332254704,36124
+39558,Uppdrag inom riksdag och regering,"Suppleant i Andra kammarens 1:a Tillfälliga utskott 45-48,
+Andra kamamrens 2:a Tillfälliga utskott 45-47,
+Särskilda utskott 45, 48 och 50-51,
+1:a Särskilda utskott 46,
+2:a Särskilda utskott 46,
+3:e Särskilda utskott 46,
+Bevvillningsutskottet 48, 55-56 och 58B-60,
+Konstitutionsutskottet 49-54,
+Andra kammarens Allmänna beredningsutskott 50-52 och
+1:a Lagutskottet 53-56.
+Ledamot av Konstitutionsutskottet 61-73, vice ordförande 69-73.
+Suppleant i Krigsdelegationen 65-69.
+Ledamot av JO-delegationen 69-73,
+Riksdagens revisorer 71-73, vice ordförande 71, och
+Krigsdelegationen 71-73.
+Statsrevisorssuppleant 67-70.
+Valman vid fullmäktigevalen 61-70.
+Ledamot av riksdagens JO-utredning 72-75.
 -
-Ledamot av s-gruppens styrelse 91-.",biografi,0446973363306,9190
-8616,sv,överstelöjtnant,titlar,0205667679007,8614
-2660,Uppdrag inom riksdag och regering,"Riksdagsledamot 14– (ersättare 100216–100331). Ledamot justitieutskottet 14– och vice ordförande 22. Extra suppleant konstitutionsutskottet 10 och finansutskottet 10. Suppleant konstitutionsutskottet 14–18 och kulturutskottet 18–. Ledamot Delegationen till den gemensamma parlamentariska kontrollgruppen för Europol 19, ordförande 19–22 och vice ordförande 22–.",biografi,"",2658
-24032,Uppdrag inom statliga myndigheter m.m.,"Nämndeman i Svea hovrätt 77-79.
-Led av utlänningsnämnden 92-94.
-- Led av
-kommittén om hemspråksträning för förskolebarn 79-82
-och kommittén om svenskundervisningen för invandrare 79-81.",biografi,0888276520804,24026
-2562,HarBild,true,bilder,0346261747912,2561
-45760,sv,Ombudsman,titlar,a1afe325-e205-4bea-9ea1-f5329a6973bb,45751
-45866,Bostadsort,Malmberget,biografi,c7981c49-a929-4fb8-9a84-2811db2a205b,45863
-8107,Uppdrag inom statliga myndigheter m.m.,Ledamot insynsrådet Swedac 20–.,biografi,"",8102
-46511,Bostadsort,"Spånga, senare Kista",biografi,2800f2c9-d475-4498-ae6c-cb251ce35516,46508
-38505,Utbildning,"Filosofie kandidat vid Göteborgs universitet 74.
-Konsult 74-76.
-Controller vid Stena Metall AB 76-78,
-ekonomichef 78-79 och
-trading administrator 7--80.
-Metal trader och administrative manager vid Stena Metal Ltd i London 80-82.
-",biografi,1cf14633-4d26-4a5d-83c4-3ed616b10c43,38501
-49245,HarBild,true,bilder,069436402021,49244
-30932,Bostadsort,Danderyd,biografi,0383675638504,30929
-42180,HarBild,true,bilder,0285527517421,42179
-4009,Uppdrag inom statliga myndigheter m.m.,"Ledamot, Konsumentverkets insynsråd.",biografi,"",4004
-22938,sv,byggnadsarbetare,titlar,0892012091809,22930
-32015,Uppdrag inom förenings- och näringsliv,"Ledamot av
-styrelsen för Västerås folkpartiavdelning, ordförande 65-69, och
-Västmanlands läns länsförbund av Folkpartiet 62-, ordförande 79-81,
-samt ledamot dess arbetsutskott, ordförande 79-81.",biografi,0493166969401,32010
-39536,Litteratur,"Om politiska och religiösa frågor, bl a
-Radioserien Skall kyrkan skiljas från staten? (1959, redaktör),
-Politik och kristen tro (1964),
-Med frisinnat förtecken. Inlägg i riksdagsdebatten 1970 (1970),
-Möten med Mästaren (1975),
-Frihet, mångfald, kvalitet (1978) samt
-Liberalism med frisinnat förtecken (1981).",biografi,0172078270306,39528
-738,Uppdrag inom statliga myndigheter m.m.,"Led av miljödatanämnden 78--81 och
-styrelsen för länsstyrelsen i Västernorrlands län 83--85. --
-Led av personval- och valkretsutredningen 76--78,
-värnpliktsinflytandekommittén 78--81 och
-energisparkommittén 78--83.",biografi,3b32f125-30f4-4ad6-b912-89a39c11b717,732
-10812,HarBild,true,bilder,0692993567203,10811
-21315,KandiderarINastaVal,true,val,0652497579621,21302
-27293,Föräldrar,Stig Lennart Rohdin och Eva Margaretha Hasselroth,biografi,0789744347006,27288
-18572,Föräldrar,"Fil.dr, chefredaktören Jörgen Ullenhag och professorn Kersti Ullenhag, f. Sågvall.",biografi,"",18569
-2923,HarBild,true,bilder,0466882162014,2922
-5188,Utbildning,"Tegelbruksarbetare 36-44.
-Livsmedelsarbetare 45-49.
-LO-skolan Brunnsvik 47.
-Riksombudsman i Sveriges socialdemokratiska ungdomsförbund (SSU) 50-51,
-facklig sekretersare 51-52,
-förbundssekreterare 52-55.
-Ombudsman i SAP-distriktet Dalarna 56-57.
-Ombudsman och organisationschef vid
-Hyresgästernas Sparkasse- och Byggnadsföreningars Riksförrbund 57-86.
-",biografi,043283522692,5184
-45929,HarBild,false,bilder,ea07d4bb-e7cd-46c1-b3cb-ffcedac08955,45928
-53697,Uppdrag inom förenings- och näringsliv,"Ledamot av styrelsen för
-Örebro läns distrikt av föreningen Norden, ordförande 91-.
+Ledamot av c-gruppens förtroenderåd 61-73, kassaförvaltare 61-70.",biografi,3ad89c02-9479-4dbc-bb65-c230c617a41a,39556
+43554,Officiell e-postadress,lena.backelin[på]riksdagen.se,eadress,0599661454115,43546
+41209,Uppdrag inom riksdag och regering,"Riksdagsledamot 14–. Ledamot justitieutskottet 15–16 och vice ordförande 14–15 och 16–18. Ledamot utbildningsutskottet 18–22, socialförsäkringsutskottet 22–23 och skatteutskottet 24–. Suppleant EU-nämnden 14–15 och 19–, arbetsmarknadsutskottet 15–24, socialförsäkringsutskottet 18–19, justitieutskottet 18–19 och 22– och finansutskottet 24–. Ledamot Utrikesnämnden 21, krigsdelegationen 21–22 och Nordiska rådets svenska delegation 21–22. Ledamot riksdagsstyrelsen 20–22 och 22–23. Ersättare riksdagsstyrelsen 22 och 23–. Gruppledare Miljöpartiet de gröna 20–22 och 22–23 och 1:e vice gruppledare 22 och 23–.",biografi,"",41207
+21787,sv,lärare,titlar,0311009915309,21778
+51805,Kommunala uppdrag,"Kommunfullmäktig Tidaholm 06–. Ordförande, kommunfullmäktige 14–22 och 2:e vice ordförande 22–. Gruppledare, kommunfullmäktige 13–14. Ledamot, kommunstyrelsen 06–14. Ledamot, kommunstyrelsens arbetsutskott 13–14. Ledamot, budgetberedningen 13–14. Ersättare, tekniska nämnden 04–06. Ersättare, social- och omvårdnadsnämnden 04–06. Nämndeman, Skaraborgs tingsrätt 06–14. ",biografi,"",51798
+19552,Kommunala uppdrag,"Led av Anderstorps kommunal/kommunfullmäktige 70-73.
+Led av sociala centralnämnden 70-73.
+- Led av Gislaveds kommunfullmäktige 77-84.
+- Led av Jönköpings läns landsting 79-86.
+Led av informationsnämnden 79-82.",biografi,0751528529603,19538
+17720,Uppdrag inom statliga myndigheter m.m.,"Ledamot av regionalpolitiska rådet 77-80 och
+utvecklingsfondernas samarbetsråd 78-82.
+Ledamot av styrelsen för Norrbottens läns utvecklingsfond 78-82,
+Statens industriverk 86-91,
+Stiftelsen Industrifonden 01-.
+-
+Ledamot av
+delegationen för glesbygdsfrågor/glesbygdsdelegationen, ordförande 80-83,
+kommittén om det regionalpolitiska stödet till näringslivet 82-84,
+ägarutredningen 85-86 och
+beredningen för en ny ordning för sjuk- och arbetsskadeförsäkringarna 93-94.
+Sakkunnig i malmfältsutredningen 81-82.",biografi,0405574090504,17714
+51734,Bostadsort,Alingsås,biografi,088849148003,51731
+15464,Uppdrag inom förenings- och näringsliv,"Ledamot av styrelsen för
+Sveaskog AB 98-.
+Ledamot av styrelsen för
+Miljöpartiet i Uppsala 83-86.
+Ledamot av Miljöpartiets politiska utskott 83-87.
+Ledamot av partistyrelsen 93-94 och 98-.",biografi,0708340640717,15459
+18660,Kommunala uppdrag,"Led av Stensele kommunalfullmäktige 64--70.
+Led av byggnadsnämnden 64--70 och
+skolstyrelsen 67--70.
+--
+Led av Vilhelmina kommunfullmäktige 73--90, ordf 74--90.
+Led av centrala byggnadskommittén, ordf 73--76,
+tekniska nämnden, ordf 80--90, och
+skolstyrelsen, ordf 83--85.
+--
+Led av styrelsen för Vilhelmina kommuns bostadsstiftelse, ordf 86--90, och
+Vilhelmina Värmevärk 83--88.",biografi,0614478918709,18654
+22539,sv,Lantbrukare,titlar,551a7a8b-24fa-48d8-8404-7ed404874570,22531
+22553,en,"",titlar,0526129317828,22544
+31589,Utbildning,"Realexamen 44.
+Telefonist vid televerket 44-62.
+Sekreterare vid Arbetsmarknadens kvinnonämnd 62-73.
+Ombudsman vid LO 73-87.",biografi,0503986647505,31585
+39080,en,"",titlar,0114869877121,39071
+17903,Uppdrag inom statliga myndigheter m.m.,"Ledamot av styrelsen för Birgittaskolan 71-,
+gymnastik- och idrottshögskolan i Stockholm-Örebro 74-77,
+Runnagårdens alkoholistanstalt 76-82 och
+Ekeskolan 88-.
+Ledamot av länsskolnämnden i Örebro län 86- och
+offentliga sektorns särkskilda nämnd 86-91.
+-
+Ledamot av militäransvarskommittén 77-83,
+studiemedelskommittén 85-87,
+kommittén för beredning av ansvarsfördelning och styrning på skolområdet 87-88,
+kommittén angående översyn av folkhögskolan 88-90,
+partistödsutredningen 91,
+datalagsutredningen 92-93,
+kommittén avseende det kyrkliga kulturarvet 96-97.",biografi,059858389704,17897
+47343,Uppdrag inom riksdag och regering,Led av TU 71--75/76.,biografi,157e96ec-2f2a-481d-806b-5ee7aa648465,47341
+53982,Uppdrag inom riksdag och regering,"Riksdagsledamot 14– (statsrådsersättare 141003–180924, 180924–190121 och 190121–220628). Ledamot kulturutskottet 14–18, 21–. Suppleant utrikesutskottet 14–18, EU-nämnden 14–22, kulturutskottet 18– och utbildningsutskottet 22–. Suppleant Europarådets svenska delegation 15–22 och ledamot 22–.",biografi,"",53980
+16780,HarBild,true,bilder,0214849275619,16779
+37733,Anställningar,"Egenföretagare, KIT Camping Östersund 92–94. Konsult, JKL 96–97 och McKinsey & Co 97–05. Kanslichef, Centerpartiet, 05–06. Politisk sakkunnig, Näringsdepartementet, 06-10. VD, Företagarna 11–15. Grundare och VD, Marsnen AB 15–. Partner, NFT Ventures 16–19. Grundare och partner, E14 Invest 17–. Grundare och ordförande, Vaccine Forward 20–23.",biografi,"",37729
+40212,Anställningar,"Ombudsman, SSU Karlstad, 74-77. Banktjänsteman, Sparbanken Alfa 77-79. Kamrer, Sparbanken Alfa 86-87. Verkställande direktör, TV Värmland 93-94.",biografi,"",40207
+16269,Utbildning,"Studentexamen 64.
+Studier vid Stockholms universitet.
+Kommunalråd i Flen 91-.",biografi,0686532742102,16265
+9669,Föräldrar,Byrådirektören Nils Daniel Fredrik Bildt och förbundssekreteraren Rut Kerstin Maria Andersson-Alwå,biografi,0622185335615,9660
+34177,KandiderarINastaVal,false,val,0731442709013,34167
+4592,HarBild,true,bilder,0483420372909,4591
+4157,HarBild,true,bilder,0677210453318,4156
+749,HarBild,true,bilder,0783117374519,748
+339,sv,Studerande,titlar,0266627143525,337
+26734,sv,Jur.kand.,titlar,0135054091316,26732
+31859,HarBild,true,bilder,0610162335824,31858
+45976,Uppdrag inom riksdag och regering,"Suppl i 1:a Lagutskottet 62, 3:e Lagutskottet 62--66 och
+2:a Lagustkottet 63-66.
+Suppl i Europarådet 64-66 och Krigsdelegationen 69.
+Led av Opinionsnämnden 65 och Europarådet 66, ordf 66.
+Valman vid valet till Justitieombudsman 64 och 65.
+Led av styrelsen för Riksbankens jubileumsfond 65-67.",biografi,8030cd01-43b0-4e04-ab9e-f924f30898cc,45974
+36734,HarBild,false,bilder,0110842257006,36733
+53464,sv,"Statsråd, senare generaldirektör",titlar,f3dc238e-036c-4bcd-9dcc-e61956af75a7,53456
+10502,Kommunala uppdrag,"Kommunfullmäktig, Uddevalla 06–09. Suppleant, kommunstyrelsen 06–09. Ledamot, socialnämnden 06–09 och beredningen för demokrati och integration 08–09.",biografi,"",10496
+46943,sv,Rektor,titlar,a7b37ede-7d40-4b3f-a6af-4f9ef2693be0,46934
+43480,KandiderarINastaVal,true,val,0144048894712,43468
+1033,sv,ekonomistuderande,titlar,0643844865712,1031
+8563,Uppdrag inom riksdag och regering,"Riksdagsledamot 16 (ersättare 160512-160727). Extra suppleant konstitutionsutskottet 16, utrikesutskottet 16 och arbetsmarknadsutskottet 16.",biografi,"",8561
+5305,en,"",titlar,075784887694,5294
+27204,Bostadsort,Helsingborg,biografi,0310304705606,27201
+42863,Utbildning,"Gymnasieskola, samhällsvetenskaplig linje, Malmö latinskola 92. Fil.kand., Lunds universitet 00. Master of Philosophy, University of Cambridge 02. Fil.mag., Lunds universitet 02. ",biografi,"",42859
+20022,en,"",titlar,0841779272604,20012
+32724,Bostadsort,Ludvika,biografi,0500463008008,32721
+5137,Uppdrag inom förenings- och näringsliv,"Ledamot av styrelsen för
+Skånska lantmännens tidnings- och tryckeriförening, ordförande 69-76,
+Skånska banken 71-91,
+Investment AB Öresund 73-82
+och Skånska Dagbladet AB, ordförande 76-88.
+- Ledamot av styrelsen för avdelning av Riksförbundet Landsbygdens Folk,
+sekreterare 53.
+- Ledamot av styrelsen för Malmöhus läns
+distrikt av Svenska landsbygdens ungdomsförbund (SLU) 49-58, ordförande 55-58,
+Malmöhus läns distrikt av Bondeförbundet/Centerpartiet 49-89,
+Månstorps krets av Bondeförbundet/Centerpartiet 52-73, ordförande 66-73,
+SLU 54-61, ledamot av verkställande utskottet 54-61,
+Arrie centerpartiavdelning, ordförande 67-91,
+och Vellinge centerorganisation, ordförande 74-83.",biografi,0177163145690,5132
+50526,Uppdrag inom riksdag och regering,"Riksdagsledamot 19 (ersättare 190313-190516). Extra suppleant arbetsmarknadsutskottet 19, trafikutskottet 19, utrikesutskottet 19, civilutskottet 19, justitieutskottet 19 och utbildningsutskottet 19.",biografi,"",50524
+10498,Uppdrag inom riksdag och regering,"Riksdagsledamot 10–. Ledamot civilutskottet 13–14, socialförsäkringsutskottet 14–15, 22 och kulturutskottet 15–. Suppleant försvarsutskottet 10–14, socialutskottet 10–18, kulturutskottet 10–15, miljö- och jordbruksutskottet 10–14 och 18–22, EU-nämnden 14 och trafikutskottet 16–18. Suppleant Nordiska rådets svenska delegation 14–18.",biografi,"",10496
+54670,Föräldrar,Professor Åke Petzäll och Astrid Ekman,biografi,6a699b57-fc64-4f63-b7f6-0379622d56be,54661
+9883,HarBild,true,bilder,039655712615,9882
+20918,sv,arbetskonsulent,titlar,0922081543501,20915
+32408,HarBild,false,bilder,0107123682905,32407
+28103,Uppdrag inom förenings- och näringsliv,"Ledamot av styrelsen för
+Sparbankernas u-landsstiftelse 83-,
+Försäkrings AB Victoria 89-,
+Systembolaget 96-.
+Ledamot av Svenska Kommittén för Vietnam, Laos och Kampuchea,
+vice ordförande 83-87.
 - Ledamot av styrelsen för
-Centerns kvinnoförbund, vice ordförande 66-78
-Ledamot av Centerpartiets partistyrelse 65-80.",biografi,b75a56dd-3180-4e1d-81f6-327c1beb8c3a,53692
-53525,Utbildning,"Handelsskola 50--51.
-Brunnsviks folkhögskola 52--53 och 55--56.
-Chefsutbildning inom HSB 65--67.
-Ombudsman för HSB i Fagersta.",biografi,4abaa690-d3f8-43f8-9f1d-2f923201f557,53521
-27203,Uppdrag inom riksdag och regering,"Rdl 1988-
-Suppleant i Justitieutskottet 88/89-94/95 och
-Socialutskottet 88/89.
-Ledamot av Socialutskottet 88/89-94/95.
-- Ledamot av Europa-parlamentet 95 (10.1.1995)-.",biografi,0310304705606,27201
-46321,Uppdrag inom förenings- och näringsliv,"Ledamot av styrelsen för
-TV4 87-91
-och AMU-gruppen 93-, ordförande 93-.",biografi,fe611d26-89f6-4b63-9b55-02f30630da91,46315
+Skånes SAP-distrikt 72-
+och Höganäs arbetarekommun, ordförande 82-87, vice ordförande 87-.",biografi,0241621108903,28098
+25741,Uppdrag inom riksdag och regering,Riksdagsledamot 22–. Suppleant socialförsäkringsutskottet 22–.,biografi,"",25739
+34888,Uppdrag inom riksdag och regering,"Riksdagsledamot 02-. Ledamot försvarsutskottet 02-14 och 18-, ordförande 14-18. Ledamot sammansatta utrikes- och försvarsutskottet 02, 04-11 och 13-18, vice ordförande 14, 15, 16 och 17, ordförande 15. Ledamot EU-nämnden 12, ordförande 12-14. Suppleant bostadsutskottet 02-04, utrikesutskottet 04-06, konstitutionsutskottet 05-06 och 10-. Ledamot krigsdelegationen 06-14 och 19-, rådet för ledamotsnära frågor 10-12, Riksbanksfullmäktige 10-14, riksdagens delegation till Natos parlamentariska församling 10-12, riksdagsgruppens förtroenderåd 05- och riksdagens valberedning 14-. Suppleant Utrikesnämnden 06-12, OSSE-delegationen 02-06, riksdagsstyrelsen 06-12.  2:e vice gruppledare Folkpartiet 06 och 10, 1:e vice gruppledare 06-12.",biografi,"",34886
+54911,Utbildning,"Samvetenskapliga programmet, Oscarsgymnasiet, Oskarshamn. Fil.kand., statsvetenskap med inriktning mot krishantering och internationell samverkan, Försvarshögskolan.",biografi,"",54906
+29121,Utbildning,Metallarbetare vid AB Vretstorps-verken 51-74.,biografi,0212469298402,29117
+31840,Uppdrag inom förenings- och näringsliv,"Ledamot av styrelsen för Sveriges körförbund, vice ordförande,
+ordförande, och
+ledamot av Nordiska körkommittén.
+-
+Ledamot av styrelsen för Undersåkers avdelning av Centerns kvinnoförbund (CKF),
+ordf 55-63,
+Stuguns CKF-avdelning, ordförande 65-88, och
+Jämtlands läns CKF-distrikt, ordförande 75-93, samt
+CKF:s förtroenderåd 75-93.
+-
+Ledamot av Centerpartiets förtroenderåd.",biografi,0853366412307,31835
+7188,sv,ombudsman,titlar,0639286102314,7186
+8658,Uppdrag inom förenings- och näringsliv,"Ordförande Bra Barnomsorg, Partille 94–97. Ledamot styrelsen Folkpartiet, Lerum 11–14. Ledamot partistyrelsen, Liberalerna, 19–. Ordförande Liberalerna, Lerum 23–.",biografi,"",8651
+29455,Uppdrag inom riksdag och regering,"Rdl 1991-
+Ledamot av Utrikesutskottet 91/92-93/94, vice ordförande 91/92-93/94.
+Suppleant i Utrikesnämnden 91/92-93/94 och Talmanskonferensen 91/92-93/94.
+Ledamot av Krigsdelegationen 91/92-93/94.
+Ledamot
+av Europeiska säkerhetskonferensen 92/93-93/94, vice ordförande 93/94, och
+EG-Sverige-kommittén 92/93-93/94.
+- Ledamot av s-gruppens styrelse 91/92-93/94.
+Ledamot av Europaparlamentet 99-00.",biografi,0928800583601,29452
+47958,Föräldrar,Målaren Johan Theodor Gustavsson och Anna Josefina Eriksson,biografi,18183c9f-8725-47aa-a28b-a157d4663556,47949
+33085,Utbildning,"Realexamen i Hoting 50.
+Kontorist vid statens vattenfallsverk 50-65.
+Gymnasieexamen i Sundsvall 74.
+Kontorist vid
+Sundsvalls kommun 74-79 och
+Datacentralen 80-85.",biografi,0401289742306,33081
+48232,Bostadsort,Gunnarskog,biografi,be9b9209-4093-4413-abf2-f229ae1ba4f3,48229
+42897,Uppdrag inom förenings- och näringsliv,"Kretsordförande, Moderaterna i Helsingborg 11-15, ledamot 09-11. Ledamot, förbundsstyrelsen för Skånemoderaterna 09-11. Distriktsordförande, Moderata Ungdomsförbundet i Skåne 00-01. Distriktsordförande, Moderata Ungdomsförbundet Malmöhus 99-00. Ledamot, förbundsstyrelsen för Moderaterna i Malmöhus 99-01 Ledamot, Moderata Ungdomsförbundets förbundsstyrelse 00-02. Vice ordförande, Moderata Ungdomsförbundet Malmöhus 98-99, ledamot 95-98. Ordförande, Moderata Ungdomsförbundet i Helsingborg 94-96, vice ordförande 93-94, ledamot 92-93.  ",biografi,"",42889
+27783,Föräldrar,Tommy Jönsson och Birte Mölleer.,biografi,"",27780
+1632,HarBild,true,bilder,0352254228107,1631
+23525,en,"",titlar,0455312624903,23515
+48541,Uppdrag inom statliga myndigheter m.m.,"Ledamot av
+offentliga arbetsgivares samarbetsnämnd 80-89.
+Nämndeman i tingsrätten 94- och länsrätten 94-.
+- Ledamot av
+utredningen angående skorstensfejarmästarnas ställning 73-76.",biografi,ac8f21bb-0307-4e5b-893c-820d76a8cb0f,48528
+41563,Föräldrar,"Stuveriarbetaren Edvin Johansson och Ruth Lindström. Bror till ombudsmannen Kurt Ove J
+-- RL för Fyrstadskretsen 1974--1975/76
+1979/80--.",biografi,9e9a8a1e-3d33-4341-8543-5abf63c2084e,41555
+48667,Kommunala uppdrag,"Ledamot av Burlövs kommunfullmäktige 71-86, 2:e vice ordförande 77-82,
+ordföradne 83-86.
+Ledamot av kommunstyrelsen 74-82, ordförande 77,
+1:e vice ordförande 78-82.
+Ledamot av kulturnämnden 66-67,
+skolstyrelsen 68-76, ordförande 71-76,
+centrala byggnadskommittén 71-73
+och valberedningsnämnden 80-85, 1:e vice ordförande 80-85.",biografi,ebd90ea0-ed6b-4209-952a-1105c34ab9ef,48660
+21559,Officiell e-postadress,lars.engsund[på]riksdagen.se,eadress,0764422217512,21551
+45950,sv,"Rektor, senare skoldirektör",titlar,46ae4730-87c2-4ceb-bd32-f7c0bfe39bc2,45940
+28359,sv,Ombudsman,titlar,0835507837915,28355
+51746,HarBild,true,bilder,0426843954410,51745
+42699,Officiell e-postadress,marie-louise.hanel.sandstrom[på]riksdagen.se,eadress,0810852280213,42691
+32555,HarBild,true,bilder,017523200206,32554
+7237,en,Party Chairman,titlar,0584659199514,7226
+7149,Anställningar,"ASEA 68. Typograf, Falun 72. Stålverksarbetare, Domnarvets järnverk, Borlänge 73-77. Egenföretagare. Förskollärare, Falu kommun 80-16. Assistent, Centrum för solenergiforskning (SERC) vid Högskolan Dalarna, Borlänge 91-16.",biografi,"",7144
+34929,en,"",titlar,0136801772915,34922
+33410,en,"",titlar,0502609471907,33400
+22598,Utbildning,"Byggnadsarbetare 53-62.
+LO:s tremånaderskurs 61.
+Ombudsman i Svenska Byggnadsarbetareförbundet 62-94.
+Nordiska folkhögskolan i Genève 67.
+Politiskt sakkunnig i arbetsmarknadsdepartementet 83-85.",biografi,0413418300203,22594
+9691,Bostadsort,Ängelholm,biografi,0697895317615,9688
+43375,HarBild,true,bilder,0345062474310,43374
+13074,Föräldrar,Komministern Nils Staffan Edquist och diakonissan Britta Gunhild Margareta Mann,biografi,0512424416400,13067
+8110,sv,Statsvetare.,titlar,0575283695521,8102
+53587,Uppdrag inom riksdag och regering,"Suppl i Försvarsutskottet 74-75/76,
+Civilutskottet 74-75/76 och 78/79 samt Trafikutskottet 78/79.
+Led av
+Civilutskottet 76/77 och 79/80.
+- Led av m-gruppens förtroenderåd 76/77-77/78.",biografi,7b1c94c6-6eee-4534-83ac-77649c5cc16f,53585
+5085,HarBild,true,bilder,050953706196,5084
+36053,Utbildning,"Juris kandidat vid Stockholms universitet 68.
+Ombudsman vid Fastighets AB Stockholms City 68-70.
+Direktörsassistent i SACO 70-73.
+Borgarråd i Stockholm 73-79.
+Statsråd och chef för kommunikationsdepartementet 12.10.1979-5.5.1981.
+Partiordförande i Moderata samlingspartiet 81-86.
+Konsult 87-92.
+Landshövding i Stockholms län 92-01.",biografi,040421445103,36049
+29151,sv,"Förbundsordförande, senare statsråd",titlar,0457849683602,29142
+53938,Uppdrag inom förenings- och näringsliv,"Ledamot, Riksbyggens lokalförening i Stockholm. ",biografi,"",53931
+27440,Utbildning,"Metallarbetare 55-64.
+Verkstadsutbildning 57.
+Gruvarbetare 64-83.
+Fackliga kurser på Brunnsvik 69-70.
+Kurser i sprängningsteknik i Nora 84.
+Byggnadsarbetare (betongborrare) 84-85.",biografi,0972721265901,27436
+51639,Uppdrag inom förenings- och näringsliv,"Ordförande, Jordens Vänner 16–18 och styrelseledamot 18–20.",biografi,"",51631
+740,Föräldrar,Lantbrukaren Eliasson och sjuksköterskan Astrid Karolina Eriksson,biografi,3b32f125-30f4-4ad6-b912-89a39c11b717,732
+8730,Uppdrag inom riksdag och regering,"Riksdagsledamot 88-99 och 06-. Ledamot socialutskottet 94-98, 09-12 och 14-18, utbildningsutskottet 98-99 och socialförsäkringsutskottet 19-. Suppleant socialutskottet 88-94, 06-09, 12-14 och 18, socialförsäkringsutskottet 94-95, 98-99, 06-10 och 14-18, utbildningsutskottet 88-91, 98 och 14-16, konstitutionsutskottet 98-99, sammansatta justitie- och socialutskottet 08 och EU-nämnden 14-. Suppleant riksdagens valberedning 06-10 och 14-18.",biografi,"",8728
+53937,Kommunala uppdrag,"Styrelseledamot, Huge AB, Huddinge. ",biografi,"",53931
+42790,Officiell e-postadress,richard.jomshof[på]riksdagen.se,eadress,0803753212716,42780
+53730,Utbildning,"Hotellägare i Jormlien, Frostviken, Jämtlands län, 49-63.
+Skönlitterär författare, en av de 18 i Svenska Akademien 75-92.",biografi,1aa0b995-6623-49ea-9c21-40df28c37656,53726
+6739,sv,Vårdbiträde.,titlar,0339894357417,6729
+31980,Uppdrag inom förenings- och näringsliv,"Led av styrelsen för Västerbottens skogsägareförening 60--75,
+AB Tumba bruk 65--83 och
+Norrländska skogsfonden 66--76.
+--
+Led av styrelsen för Byske RLF-avdelning, ordf 56--65.
+Distriktsstudieledare i Sv Landsbygdens Studieförbund på 50-talet.
+--
+Led av styrelsen för Byske Blåbandskrets, ordf 51--65.
+--
+Led av styrelsen för Byske SLU-avdelning 48, ordf 48, och
+Västerbottens läns SLU-distrikt 50, ordf 53--56.
+--
+Led av styrelsen för Byske bondeförbunds/centerpartiavdelning, ordf 55,
+Byske bondeförbunds/centerpartikrets, vice ordf 56--66,
+Skellefteåbygdens centerpartikrets, ordf 67--70, och
+Västerbottens läns bondeförbunds/centerpartidistrikt, vice ordf 56--75.
+",biografi,c8e84231-01bc-4440-a18f-66a28ee5ca28,31975
+9240,en,"",titlar,0204494765606,9229
+28105,Kommunala uppdrag,"Ledamot av Höganäs kommunfullmäktige 74-, 1:e vice ordförande 89-91,
+2:e vice ordförande 92-94.
+Ledamot av biblioteksstyrelsen 74-79, vice ordförande 74-79,
+besvärsnämnden 74-85,
+kulturnämnden 80-88, vice ordförande 80-88,
+och revisionen, vice ordförande 92-94, ordförande 94-.
+Ledamot av styrelsen för
+AB Höganäshem 92-93.",biografi,0241621108903,28098
 4821,Kommunala uppdrag,"Ledamot av Dorotea kommunalfullmäktige 66-70.
 -
 Ledamot av Dorotea kommunfullmäktige 71-73 och 79-00.
@@ -201,392 +464,90 @@ Ledamot av styrelsen för AB Dorotea industribyggnader 88-91 och
 Borgafjälls turistbolag 88-.
 -
 Ledamot av Västerbottens läns landsting 85-88.",biografi,0817420987900,4814
-1985,sv,lärare,titlar,0694077681517,1983
-13536,Officiell e-postadress,fredrik.lindstal[på]riksdagen.se,eadress,0427836082425,13534
-5550,Kommunala uppdrag,"Ledamot av Rönneberga kommunalfullmäktige 56-68.
-Ledamot av hemhjälpsnämnden 56-68, skolstyrelsen 56-68
-och hälsovårdsnämnden 56-68, ordförande 63-68.
-- Ledamot av Landskrona kommunfullmäktige 71-91.
-Ledamot av kommunstyrelsen 77-79.
-Ledamot av byggnadsnämnden 71-76
-och hälsoskyddsnämnden 71-79, vice ordförande 71-79.
-Ledamot av styrelsen för
-Landskrona-Svalövs renhållnings AB 77-82.",biografi,0531874147598,5543
-31304,en,"",titlar,0913695315308,31293
-20916,HarBild,true,bilder,0922081543501,20915
-37946,Utbildning,"Gymnasieskola Vänersborg, slutår 82. ",biografi,"",37942
-18404,Uppdrag inom riksdag och regering,"Rdl 1982-
-Suppleant i Konstitutionsutskottet 82/83-90/91 samt
-Utbildningsutskottet 82/83-83/84 och 85/86-86/87.
-Ledamot av Utbildningsutskottet 84/85 och 86/87-90/91,
-Konstitutionsutskottet 91/92-97/98 och
-EES-utskottet 91/92-92/93.
-Suppleant i Valprövningsnämnden 82/83-91/92,
-Valberedningen 95/96-97/98.
-Ledamot av Krigsdelegationen 91/92-97/98 och
-Valprövningsnämnden 91/92-97/98.
-Ledamot av Europarådets svenska delegation 91/92-97/98 och
-EG-Sverige-kommittén 92/93-94/95.
-- Ledamot av m-gruppens förtroenderåd 91/92-97/98.",biografi,0213468747208,18402
-31498,Uppdrag inom statliga myndigheter m.m.,"Ledamot, Presstödsnämnden 05-16, Gentekniknämnden 06-07 och 16-.",biografi,"",31493
-27019,Bostadsort,Ramsele,biografi,0457213878205,27016
-48877,Uppdrag inom riksdag och regering,"Suppl i Försvarsutskottet 71.
-Led av Opinionsnämnden 71.",biografi,b9e2a2b5-8126-4d10-a3fd-5f8227bb5c8c,48875
-26041,Bostadsort,Skinnskatteberg,biografi,0199809132302,26038
-30268,Bostadsort,Råå,biografi,0919710128803,30265
-5432,en,"",titlar,0513164929896,5422
-52598,sv,"Skeppningsföreståndare, senare transportplaneringschef",titlar,87312a93-17e1-4034-bfcf-7f0742a9ba84,52589
-48180,HarBild,true,bilder,0254695027922,48179
-30487,sv,vägmästare,titlar,0531431759204,30478
-44240,Officiell e-postadress,jimmie.akesson[på]riksdagen.se,eadress,051207517226,44233
-29457,Utbildning,"Filosofie magister vid Lunds universitet 62.
-Tjänstemannasekreterare vid SAP:s partistyrelse 65-67.
-Internationell sekreterare i SAP 67-71 och 76-82,
-red för tidskriften Tiden 71-73.
-Departementssekreterare vid utrikesdepartementet 71-73.
-Kansliråd i statsrådsberedningen 73-76.
-Kabinettssekreterare i utrikesdepartementet 82-91.
-Statsråd vid utrikesdepartementet (biståndsfrågor) 7.10.1994-99.
-Ambassadör vid Sveriges ständiga representation vid Förenta nationerna 00-.
-",biografi,0928800583601,29452
-3509,HarBild,true,bilder,0662749063210,3508
-26458,Anställningar,"Praktik, Länsstyrelsen i Västmanland 98. Arbete (feriearbete) på ambassader i Stockholm 98-02. Studentinformatör (deltid), Mitthögskolan 00-02. Politisk sekreterare, Västerås stadshus samt Landstinget Västmanland 02-06. Kommunalråd, Västerås 06-10.",biografi,"",26453
-5333,Uppdrag inom statliga myndigheter m.m.,"Led av styrelsen
-för
-centrum för småföretagsutveckling vid högskolan i Växjö, ordf 82-89.
-- Led av
-utredningen om regionalpolitiska styrmedel 72-74.",biografi,0207814508895,5327
-17715,HarBild,true,bilder,0405574090504,17714
-32494,HarBild,true,bilder,0610573125306,32493
-33475,Utbildning,"Realexamen 53.
-Banktjänsteman 53-60.
-Ombudsman i Södermanlands läns distrikt av Centerns kvinnoförbund (CKF) 72-76.
-Organisatör i Centerns kommunorganisation i Flen 76-81
-och i Södermanlands distrikt av Sveriges Pensionärsförbund 86-91.",biografi,0655109700507,33471
-5593,Bostadsort,Visby,biografi,0997984696398,5590
-36637,Uppdrag inom förenings- och näringsliv,"Ledamot av styrelsen för Älvsborgs läns hemslöjdsförbund,
-ordförande 91-, och
-Svenska Hemslöjdsföreningarnas riksförbund 93-.
+15392,Bostadsort,Torestorp,biografi,0673622610409,15389
+37809,HarBild,true,bilder,0723453743904,37808
+7776,Uppdrag inom riksdag och regering,"Ers 1988-89.
+Suppleant i Skattteutskottet 88/89 och 95/96-96/97,
+Försvarsutskottet 88/89, Socialutskottet 88/89, Trafikutskottet 88/89,
+Jordbruksutskottet 88/89, Finansutskottet 94/95-96/97,
+Socialförsäkringsutskottet 94/95- och
+Arbetsmarknadsutskottet 94/95-.
+Suppleant i Nordiska rådets svenska delegation 88/89 och
+EU-nämnden 97/98-.
+Ledamot av Krigsdelegationen 94/95- och EU-nämnden 94/95-97/98.
+- Ledamot av mp-gruppens samordningsgrupp 88/89,
+vice gruppföreträdare 88/89.",biografi,0987224899103,7774
+47621,Kommunala uppdrag,"Kommunfullmäktig, Stockholms stad 02-10. Gruppledare, Miljöpartiet, Stockholms stad, 05-06. Vice ordförande, Miljö- och hälsoskyddsnämnden, Stockholms stad 06-10. ",biografi,"",47615
+46120,Utbildning,"Studentexamen 43.
+Reservofficersexamen 46.
+Postassistentexamen 47.
+Postassistent, kontrollör och överkontrollör vid Posten i Göteborg 47-66.
+Personalchef vid Göteborgs stads renhållningsverk 66-74,
+utredningssekreterare där 75-88.",biografi,14247e83-baf3-4ebd-b550-13d050c3d6c9,46116
+6943,HarBild,true,bilder,0472335069513,6942
+53941,KandiderarINastaVal,true,val,0376353897112,53931
+25751,HarBild,true,bilder,0251174631818,25750
+52351,Uppdrag inom riksdag och regering,Riksdagsledamot 18–. Ledamot kulturutskottet 18–. Suppleant socialförsäkringsutskottet 18–. Suppleant Nordiska rådets svenska delegation 18–.,biografi,"",52349
+19513,Uppdrag inom riksdag och regering,"Riksdagsledamot 14–. Vice ordförande kulturutskottet 22–. Ledamot civilutskottet 14–22 och sammansatta civil- och kulturutskottet 18. Suppleant skatteutskottet  14–22, trafikutskottet 18–22 , arbetsmarknadsutskottet 14–22, justitieutskottet 14–, civilutskottet 22–, EU-nämnden 22–, socialförsäkringsutskottet 22– och konstitutionsutskottet 23–.",biografi,"",19509
+18325,Uppdrag inom statliga myndigheter m.m.,"Nämndeman vid Köpings tingsrätt 84--94 och
+vid länsrätten i Västmanlands län 95--.
+--
+Led av domstolsutredningen 91--92,
+hot- och riskutredningen 93--95 och
+tjänstehundsutredningen 94.",biografi,0913138972707,18319
+4066,sv,informatör,titlar,0208480761018,4057
+22574,sv,Tekn. dr. ,titlar,0538404901718,22572
+43367,KandiderarINastaVal,true,val,0397073482210,43360
+22266,sv,ombudsman,titlar,0924192709909,22257
+42937,Uppdrag inom statliga myndigheter m.m.,Ledamot i den parlamentariska kommittén En kommunallag för framtiden 14-15.   Ledamot i den parlamentariska referensgruppen Kostnadsutjämningsutredningen 17-18. Ledamot i den parlamentariska kommittén Kommunutredningen 17-20.,biografi,"",42931
+12777,Uppdrag inom förenings- och näringsliv,"Ordförande, S-kvinnor Västernorrland 96-11.  ",biografi,"",12769
+24910,sv,lågstadielärare,titlar,0933523418809,24901
+19226,sv,skogsarbetare,titlar,0119158487501,19217
+31586,HarBild,true,bilder,0503986647505,31585
+1324,sv,föreståndare,titlar,0549025722425,1322
+1636,Anställningar,"Ekonomiinstitutionen, Sveriges lantbruksuniversitet 75. Informationsansvarig, Kalmar Lantmän 75-78. Informationssekreterare, Jordbruksdepartementet 79-82. Lantbrukare, Erikstad gård 82-. Avdelningsdirektör, Lantbruksstyrelsen 88-90.",biografi,"",1631
+14795,Uppdrag inom förenings- och näringsliv,"Ledamot av styrelsen för Upplysningscentralen 77-85 och
+Samhall Västgöta AB 92-.
 -
-Ledamot av styrelsen för Studieförbundet Vuxenskolans Vårgårdaavdelning,
-ordförande 81-85.
--
-Ledamot av
-styrelsen för Vårgårda avdelning av Centerns kvinnoförbund, ordförande 78-81.
--
-Ledamot av Centerpartiets valberedning 92-.",biografi,0754692641206,36632
-30275,en,MA,titlar,0919710128803,30265
-8592,Uppdrag inom statliga myndigheter m.m.,"Nämndeman i Partille 66-69 och
-vattenrättsnämndeman 69-75.
-Ledamot av
-försvarets personalvårdsnämnd, vice ordförande 80-83, ordförande 83-93,
-vapenfrinämnden 79-88,
-beredningen för u-landsinformation 86-89,
-beredningsgruppen för information om freds- och
-nedrustningssträvanden, ordförande 87-,
-stiftelsen Svenska UNICEF-kommittén 87-91 och
-stiftelsen Gerlesborgsskolan, ordförande 89-.
-FN-delegat 81, 82, 83, 84, 85, 86, 87, 88, 89 och 91.
--
-Ledamot av byggnadsvårdsutredningen 76-79,
-värnpliktsinflytandekommittén 77-81,
-räddningstjänstkommittén 79-84,
-1982 års värnpliktsförmånskommitté 82 och
-skatteförenklingskommittén 83-85.
-Expert i bibelkommissionen 92-96.
-Ledamot stat-kyrkadelegationen 96-98.",biografi,0123927542506,8586
-17555,HarBild,true,bilder,0928223863802,17554
-48785,Uppdrag inom statliga myndigheter m.m.,"Led av styrelsen för
-länsstyrelsen i Blekinge län 74-76.
-Nämndeman.",biografi,b1a78a41-45a8-405c-af5a-d9c37e1c0976,48779
-13153,en,"",titlar,0664384557700,13143
-30193,en,Managing Director,titlar,0834800011503,30175
-40818,Kommunala uppdrag,"Kommunfullmäktig, Lilla Edet 88-02. Revisor, Lilla Edet 06-. Ersättare, regionfullmäktige och kulturnämnden, Västra Götalandsregionen 02-06. Styrelseordförande, Natur- och kulturarvsstyrelsen i Västra Götaland 02-06. Ordförande, Vänersborgsbostäder 16-.",biografi,"",40811
-46654,Föräldrar,Maskiningenjören Nils Magnusson och Anna Sofia Dahlin,biografi,227a8429-347d-42bb-9252-e4deb04fbd9c,46647
-17964,Uppdrag inom förenings- och näringsliv,"Led av styrelsen för
-Kostförsörjnings AB i Gällivare, ordf 64-66,
-Svenska Handelsbankens lokalkontor i Hallstavik 67-70,
-Apoteksbolaget AB 73-77,
-AB Roslagsgjuterierna, ordf 78-88,
-Sveriges sportfiske- och fiskevårdsförbund, ordf 81-86,
-Östra Sörmlands sparbank 83-85
-och Konstfrämjandet 86-88.
-- Distriktsungdomsledare i Nationaltemplarorden 50-51.
-- Kassör i Stockholms läns ABF-distrikt 83--88.
-- Led av styrelsen för
-Folkets hus-föreningarnas riksorganisation, ordf 76-92.
-- Ordf i Gällivare-Jokkmokks kommunaltjänstemannaförening 59-62.
-- Led av styrelsen för
-Vretstorps Sicaldemokratiska ungdomsklubb, ordf 48-50,
-Socialdemokratiska studentföreningen i Göteborg, vice ordf 57,
-Gällivare SAP-krets, ordf 63-65,
-Häverö arbetarekommun, ordf 68-70,
-Stockholms läns SAP-distrikt 68-83
-och Norrtälje arbetarekommun, ordf 70-75.",biografi,0304188758405,17954
-17235,KandiderarINastaVal,false,val,0889860537413,17231
-8044,HarBild,true,bilder,0722683622001,8043
-45163,KandiderarINastaVal,true,val,0999976269027,45153
-17282,sv,Ombudsman,titlar,0200943027702,17273
-29050,Kommunala uppdrag,"Ledamot av Marks kommunfullmäktige 71-82.
-Ledamot av fritidsnämnden, ordförande 71-79.
--
-Ledamot av Älvsborgs läns landsting 74-79.
-Ledamot av utbildningsnämnden 74-79.
-Ledamot av styrelsen för Älvsborgs läns folkhögskola.",biografi,0982209946601,29043
-32496,Bostadsort,Skene,biografi,0610573125306,32493
-14775,KandiderarINastaVal,true,val,0716036604716,14769
-6224,en,"",titlar,010343930918,6213
-30523,Uppdrag inom riksdag och regering,"Rdl 1991-
-Suppleant i Bostadsutskottet 91/92-93/94.
-Ledamot av Skatteutskottet 91/92-93/94.",biografi,0667211637804,30521
-24388,Utbildning,"Yrkesskola 45-48.
-Filare i Växjö 49-71.",biografi,0725936371809,24384
-2007,Uppdrag inom riksdag och regering,"Ers 1991-
-Suppl i Lagutskottet 91/92-93/94 och
-Utrikesutskottet 91/92-93/94.
-Led av Europeiska säkerhetskonferensen 92/93-93/94.",biografi,0351867771418,2005
-2149,en,"",titlar,0105797223918,2139
-53806,HarBild,false,bilder,0c5a22d3-85ea-4143-a229-847141f25ce5,53805
-5553,en,"",titlar,0531874147598,5543
-42186,Officiell e-postadress,caroline.nordengrip[på]riksdagen.se,eadress,0285527517421,42179
-31080,Bostadsort,Helsingborg,biografi,0319345085107,31077
-17246,Officiell e-postadress,monica.tedestam.berglow[på]riksdagen.se,eadress,0394430340317,17244
-4179,Utbildning,"Kontoristutbildning vid Hermods 55.
-Kontorist 65--88.",biografi,0528100184906,4175
-37422,KandiderarINastaVal,true,val,0982795248728,37413
-18052,en,Teacher,titlar,0997123540801,18049
-2015,en,"",titlar,0351867771418,2005
-44562,Officiell e-postadress,fredrik.stenberg[på]riksdagen.se,eadress,0665360289423,44559
-1634,Föräldrar,"Lantbrukaren och majoren Dag Danielsson och sjuksköterskan Margareta Danielsson, f. Lagerstedt.",biografi,"",1631
-13391,Anställningar,"Barnskötare, Uppsala kommun 74-78 och 79-95. Sjukvårdsbiträde, Akademiska sjukhuset, Uppsala 78-79. Ombudsman, Socialdemokraterna 95-99. Biträdande partisekreterare, Socialdemokraterna 99-02.",biografi,"",13386
-15438,HarBild,true,bilder,0823142696709,15437
-52853,Uppdrag inom statliga myndigheter m.m.,"Ledamot av statens person- och adressregisternämnd 86-88.
-Ledamot
-av styrelsen för kronofogdemyndigheten i Göteborgs och Bohus län 88-92.
--
-Ledamot av jämställdhetskommittén 79-82 och
-datadelegationen 80-85.",biografi,bd0227a8-c51f-4cf6-b362-6a780630a615,52847
-47980,Utbildning,"Gymnasieskola, teknisk utbildning, Varberg, slutår 99. Maskiningenjör, Högskolan i Halmstad 99–02. Företagsekonomi, Göteborgs universitet, examen 16.",biografi,"",47976
-41466,sv,Terminalarbetare/Ekonomistudent.,titlar,0671881934227,41458
-14925,Uppdrag inom riksdag och regering,"Rdl 1982-
-Suppleant i Försvarsutskottet 82/83-87/88,
-Utrikesutskottet 82/83-84/85,
-Bostadsutskottet 91/92-93/94,
-EES-utskottet 91/92-92/93 och Finansutskottet 94/95-.
-Ledamot av Utrikesutskottet 85/86-,
-Utrikes/Försvarsutskottet 95/96 och 96/97.
-Suppleant i Nordiska rådets svenska delegation 88/89-93/94,
-Valberedningen 88/89-93/94,
-EFTA-delegationen 89/90-90/91 och 94/95-,
-EG-Sverige-kommittén 92/93-93/94,
-EES/EFTA-delegationen 93/94-94/95 och
-Utrikesnämnden 96/97-.
-Ledamot av ESK-delegationen 92/93-93/94, Nordiska rådets svenska delegation
-94/95-,
-EG-Sverige-kommittén 94/95
-och EU-nämnden 94/95-.
-- Kvittningsman 89/90-.",biografi,0112791482908,14923
-15771,HarBild,true,bilder,0963587133807,15770
-48701,Litteratur,"Arbeten om lokalhistoria och folkliv, bl a
-Socknen i mitt hjärta. Lofta socken (1974), Torparna (1:a upplagan 1975),
-Byborna (1980) och Sockenborna (1:a upplagan 1982).",biografi,a3153b0d-0d46-43a2-b76f-d092f9f11bc9,48693
-41999,sv,Landstingsrådssekreterare.,titlar,0832311880029,41989
-41624,Uppdrag inom förenings- och näringsliv,"Led av styrelsen för Värmlands läns hembygdsförening 60-- och
-Värmlands läns jaktvårdsförbund och dess AU.
-Led av Värmlands läns näringsråd 71--73.
-Led av styrelsen för Wermlands hypoteksförening, vice ordf 73--76.
-Revisor i Värmlands läns brandstodsbolag.
---
-Led av styrelsen för Värmlands RLF/LRF-förbund 52--70,
-och SFR:s Värmlandsavdelning, ordf.
---
-Led av styrelsen för Värmlands läns länsförbund av Moderata samlingspartiet
-och dess AU.",biografi,753e3268-1d54-4c9b-9523-50e9936fce43,41619
-39534,Uppdrag inom statliga myndigheter m.m.,"Ledamot av skolnämnden för Stockholms stad och län 64-65,
-radionämnden 67-76,
-länsskolnämnden i Stockholms län 67-75, vice ordförande 67-70,
-tidskriftsnämnden 73,
-statens kulturråds nämnd för litterär verksamhet och folkbibliotek 74-75,
-forskningsberedningen 76-82, ordförande 76-81,
-krigsmaterielexportnämnden 85-88
-och nämnden för stiftelsen Drottningholms teatermuseum 89-.
-Ledamot av styrelsen för Styrelsen för internationell utveckling 83-91,
-Sveriges Riksradio AB/Sveriges Radio AB, ordförande 85-96,
-Kungl Teatern AB 86-97, ordförande 91-97, och
-Kungl Dramatiska teatern 97-, ordförande 97-.
-Ledamot av Karolinska institutets konsistorium 88-.
-FN-delegat 71, 72, 74, 85 och 88.
-Ordförande i Uppsala läns länsbostadsnämnd 92-93, skogsvårdsstyrelse 92-97
-och länsarbetsnämnd 92-97.
-- Ledamot av 1972 års pressutredning 72-75,
-utredningen om skolan, staten och kommunerna 72-76,
-1974 års skolhälsovårdsutredning 74-76, ordförande 74-76, arbetsgruppen för
-samefrågor 77-82, ordförande 77-82,
-statsrådslöneutredningen 92-93
-och kommittén om förberedelser för jubiléet ""Utvandrare och invandrare i
-Sveriges historia 1846-1996"" 93-, ordförande 93-.
-Särskild utredare av statens bidrag till ideella organisationer 92-93.
-",biografi,0172078270306,39528
-44202,Uppdrag inom riksdag och regering,Riksdagsledamot 22– (statsrådsersättare 221018–). Suppleant finansutskottet 22– och skatteutskottet 22–.,biografi,"",44200
-38008,Föräldrar,Fernando Carvalho och Ulla Petterson Carvalho.,biografi,"",38005
-26707,Uppdrag inom statliga myndigheter m.m.,"Ledamot, Statens medicinsk-etiska råd 19-.",biografi,"",26701
-53529,Föräldrar,Skogvaktaren Gustaf Valdemar Mathsson och Gerda Sofia Englund,biografi,4abaa690-d3f8-43f8-9f1d-2f923201f557,53521
-11566,KandiderarINastaVal,true,val,0495018514310,11564
-37747,Uppdrag inom statliga myndigheter m.m.,"Led av styrelsen för länsstyrelsen i Västerbottens län 86.
---
-Led av en referensgrupp till 1968 års utbildningsutredning 70--74.",biografi,20f719e7-e8e1-4101-8a93-908c06e245ac,37741
-39157,Uppdrag inom riksdag och regering,"Riksdagsledamot 10– (statsrådsersättare 101006–140929). Ledamot kulturutskottet 10–12, arbetsmarknadsutskottet 12–14 och justitieutskottet 14–18. Vice ordförande justitieutskottet 18–22. Suppleant miljö- och jordbruksutskottet 10–14, näringsutskottet 10–14, trafikutskottet 11–14, kulturutskottet 12–14, skatteutskottet 14–18, arbetsmarknadsutskottet 14–16, finansutskottet 16–22, EU-nämnden 16–18, konstitutionsutskottet 18–22 och utbildningsutskottet 22. Ledamot Krigsdelegationen 15–22. Suppleant Utrikesnämnden 15–18. Ledamot riksdagens valberedning 15–. Suppleant ledamotsrådet 14–18. Gruppledare, Kristdemokraterna 15–22. Statsråd (infrastruktur- och bostadsminister), Landsbygds- och infrastrukturdepartementet 221018–. ",biografi,"",39155
-26965,Bostadsort,Orsa,biografi,0653132951201,26962
-33771,en,"",titlar,0282360034405,33761
-47359,Uppdrag inom statliga myndigheter m.m.,"Led av Värmlands läns länsnykterhetsnämnd 56--60.
---
-Led av JK-utredningen 74--78 och
-1978 års vallagskommitté 78--82.",biografi,f68f0713-037d-4ed1-8085-8b165fe8fcf3,47353
-21227,Uppdrag inom statliga myndigheter m.m.,"Ledamot, kommittén för insyn i finansiering av partier 15-.  ",biografi,"",21221
-40474,Utbildning,"Gymnasieskola, Norrtälje, slutår 09. Studier i politik och förvaltning, idéhistoria och praktisk retorik, Stockholms universitet.",biografi,"",40471
-5573,Uppdrag inom förenings- och näringsliv,"Led av styrelsen för Nordbankens lokalstyrelse 67--92,
-Lycksele Trävaru AB, ordf 62--70,
-Lycksele arbetsvagnar AB 78--85, ordf 83--85,
-Tärnaby Fjällhotell AB 83--87, ordf 83--87,
-Nordbanken, region Norrland, 84--90,
-Classic Fönster AB i Lycksele, ordf 93--94, och
-Hemavans Högfjällshotell AB 91--, ordf 91--.
---
-Led av styrelsen för norrlandsregionen av De handikappades riksförbund, ordf
-72--78,
-centralförbundet för befälsutbildning i Västerbottens län, ordf 75--,
-Sv:es Aktiesparares riksförbund 88--92, vice ordf 88--92, och
-Världsfederationen för aktiesparare (WFIC).
-Led av Aktiespararnas internationella kommitte 92, ordf 92--.
---
-Led av Västerbottens hushållningssällskaps FU 68--71.
---
-Lagledare för Lyckesele IF:s fotbollslag 58--60 och
-led av styrelsen för Sv Simförbundet, ordf 82--86.
---
-Led av styrelsen för Helsingfors Blåbandsförening, ordf.
---
-Led av styrelsen för Västerbottens läns länsförbund av Folkpartiet 64--89,
-ordf 74--89.",biografi,0747484716698,5568
-47506,Föräldrar,"Lokföraren Göran Töyrä och undersköterskan Hildur Töyrä, f. Monlund. ",biografi,"",47503
-23255,HarBild,true,bilder,0916272051100,23254
-47351,sv,Konduktör,titlar,157e96ec-2f2a-481d-806b-5ee7aa648465,47341
-16780,HarBild,true,bilder,0214849275619,16779
-985,Litteratur,Egenmakt (96).,biografi,"",976
-20288,Uppdrag inom statliga myndigheter m.m.,"Styrelseledamot, Skattemyndigheten i Örebro 03-04, Kronofogdemyndigheten i Karlstad 03-05 och Socialstyrelsen. Ordförande, viltvårdsnämnden och rovdjursgruppen i Örebro län. Ledamot, Ändamålsfastighetskommittén 02-03, viltförvaltningsdelegationen i Örebro län 10- och Hälso- och sjukvårdens ansvarsnämnd 10-. Alkoholsortimentsnämnden 14-. Revisor, Systembolaget 16-.",biografi,"",20283
-13387,HarBild,true,bilder,0376867803913,13386
-50649,Officiell e-postadress,jessica.wetterling[på]riksdagen.se,eadress,0481460392727,50646
-16429,en,"",titlar,090502404202,16419
-3666,HarBild,true,bilder,0791649913415,3665
-5297,Bostadsort,Göteborg,biografi,075784887694,5294
-5166,HarBild,true,bilder,0373453467292,5165
-26583,Uppdrag inom statliga myndigheter m.m.,"Ersättare, Gentekniknämnden. Ledamot, Miljömålsberedningen 15-. Medlem, parlamentariska kommittén för EU-frågor.",biografi,"",26577
-14943,Kommunala uppdrag,"Led av Nyköpings kommunfullmäktige 83-92.
-Led av tekniska nämnden.
-- Led av Stockholms läns landstings
-regionplanenämnd 74-75.
-Led av styrelsen för
-AB Storstockholms lokaltrafik 74-76, vice ordf 74-76.",biografi,0253781616009,14936
-44440,Officiell e-postadress,janine.alm.ericson[på]riksdagen.se,eadress,0316505710324,44437
-32274,sv,"arkitekt (SAR), tekn.dr.",titlar,0666473608905,32266
-13408,Uppdrag inom riksdag och regering,Riksdagsledamot 14 och 15- (statsrådsersättare 140929-141003). Suppleant försvarsutskottet 15- och EU-nämnden 15-.,biografi,"",13406
-4011,Uppdrag inom förenings- och näringsliv,"Gruppledare SD Mullsjö 14–19. Vice ordförande SD Habo/Mullsjö 14–19. Ledamot, distriktsstyrelsen SD Jönköpings län 16–18. Ordförande för distriktets valberedning 20–21. Ordförande, Brf Läkeörten 20–23. Vice gruppledare SD Jönköping 23–. Ledamot, Jönköping Airport AB 23–.",biografi,"",4004
-4420,KandiderarINastaVal,true,val,0903081277919,4411
-18448,Uppdrag inom riksdag och regering,"Suppl i
-Lagutskottet 76/77-77/78,
-Justitieutskottet 76/77-81/82,
-Socialförsäkringsutskottet 78/79-79/80, Utrikesutskottet 88/89 och
-Kulturutskottet 88/89.
-Led av Socialförsäkringsutskottet 79/80-81/82 och 85/86-87/88.
-Suppl i
-Nordiska rådets svenska delegation 85/86-87/88.
-- Suppl i styrelsen för Riksdagens interparlamentariska grupp 86/87-88/89.
-",biografi,0755978501008,18446
-5931,Föräldrar,Ekonomen Maurice Sabuni och skötaren Mgeni Amri.,biografi,"",5923
-28807,Föräldrar,Ingenjören/läraren Tor Sjöstedt och läkaren Ingrid Dahlström.,biografi,"",28804
-20101,KandiderarINastaVal,true,val,0787584650516,20092
-20098,Uppdrag inom förenings- och näringsliv,"Styrelseledamot, Stiftelsen hela Sveriges artister mot nazister 01-07. Styrelseledamot, Rädda Barnen 02-07. Styrelseledamot, Ickevåldsfonden, Svenska kyrkan 02-11 och ledamot, kyrkomötet (POSK) 06-10. Styrelseledamot, Kungliga Dramatiska teatern 06-12. Styrelseledamot, KF gymnasieskola 08-10. Vice ordförande, KFUK-KFUM Sverige 09-11. Ledamot, stol 6, Smålandsakademin 12-14. Förtroenderådsledamot, Stiftelsen Världsnaturfonden WWF 14.",biografi,"",20092
-28886,HarBild,true,bilder,0765747165821,28885
-41460,Uppdrag inom riksdag och regering,"Riksdagsledamot 14-. Suppleant finansutskottet 14-16, utrikesutskottet 14-, näringsutskottet 14- och EU- nämnden 14-. Ledamot Europarådets svenska delegation 16-. Suppleant Europarådets svenska delegation 14-16. ",biografi,"",41458
-48708,Bostadsort,Staffanstorp,biografi,421a66fa-fd07-41b6-ba42-be6c1e478d0b,48705
-2085,Uppdrag inom riksdag och regering,"Suppl i LU 88/89--90/91 och
-AU 88/89--90/91.",biografi,0969147846718,2083
-29852,sv,Jurist,titlar,0637028706011,29848
-41702,KandiderarINastaVal,true,val,0220064764318,41693
-24788,Utbildning,"Gymnasieskola, samhällsvetenskaplig linje, Sala, slutår 81. Fil.kand., informationslinjen, Örebro högskola 89-92. Litteraturvetenskap, Mälardalens högskola 97-98 och 04-05.",biografi,"",24784
-7072,en,Economics Graduate,titlar,031005479013,7063
-45154,HarBild,true,bilder,0999976269027,45153
-46136,sv,Lantbrukare,titlar,7a8563ee-104e-4518-a921-ec17c3a442e0,46128
-17300,Utbildning,"Skogs- och lantmannaskola 63.
-Skogsarbetare 60-64.
-Folkhögskola 64-66.
-Statens polisskola 67.
-Polis 67-.
-Kommunalråd i Årjäng 85-88.",biografi,0379333062002,17296
-43012,Anställningar,"Brandmanspecial, Helsingborgs brandförsvar 75-77. Polis 77-06. Kommunalråd 05-.",biografi,"",43007
-17085,sv,"med.dr., bitr.överläkare",titlar,0336920874106,17075
-14313,Uppdrag inom statliga myndigheter m.m.,"Ledamot av styrelsen för
-Försvarets forskningsanstalt 78-,
-Datamaskincentralen för administrativ databehandling 80-86,
-Lunds universitet 88-94,
-Latinamerikainstitutet vid Stockholms universitet 94-,
-Skattemyndigheten i Malmö 99-.
-Ledamot av Delegationen för vetenskaplig och teknisk informationsförsörjning
-82-88, Länsskolnämnden i Malmöhus län 83-85,
-Statens person- och adressregisternämnd 86-
-samt Referensgruppen för datafrågor 88-91.
+Ledamot av styrelsen för Häggums hembygds- och fornminnesförening 77-.
 - Ledamot av
-kommittén för de svenska förberedelserna inför FN:s konferens om vetenskap
-och teknik för utveckling 77-79,
-lärartjänstutredningen 77-80,
-företagshälsovårdsutredningen 77-83,
-organisationskommittén för datamaskincentralen för administrativ
-databehandling 85-86,
-framtidsstudiekommittén 85-86,
-kommittén för en ny högskola i Malmö 96,
-kommittén om forskningsetik 97-99.",biografi,0559791876105,14307
-29918,HarBild,false,bilder,63ca497f-df13-46f2-b038-95a79e8f54f5,29917
-14317,sv,fil.lic.,titlar,0559791876105,14307
-32497,Utbildning,"Studentexamen i Alingsås 64.
-Universitetsstudier i Stockholm 65-66 och
-Göteborg 74.
-Arkitektexamen (samhällsplanerarlinjen) vid Chalmers Tekniska Högskola 70.
-Instruktör hos Kristna studentrörelsen i Göteborg 70.
-Organisationssekreterare i Göteborgs kristna ungdomsråd 70-71 och
-Kristna riksmötet G 72 i Göteborg 71-72.
-Arkitekt hos Semréns arkitektkontor i Göteborg 72-74.
-Projektledare vid Sveriges frikyrkoråd och
-Frikyrkan hjälper 75-76.
-Avdelningschef och planeringssekreterare i Marks kommun 76-.
-Politiskt sakkunnig i miljöfrågor vid statsrådsberedningen 86 samt i
-miljö- och energidepartementet 86-91.",biografi,0610573125306,32493
-3668,Föräldrar,Carl-Erik Nilsson och Vanja Regnander.,biografi,"",3665
-48231,Uppdrag inom riksdag och regering,"Suppl i JuU 71--73,
-KrU 71--73 och
-CU 76/77--78/79.
-Led av KrU 74--82/83, vice ordf 79/80--81/82.
-Suppl i TK 79/80--81/82.
-Led av KD 79/80--82/83.",biografi,be9b9209-4093-4413-abf2-f229ae1ba4f3,48229
-32340,Litteratur,"Oövervinneliga tankar i urval. Konservativ citatsamling (1968,
-tillsammans
-med A Arfwedson), Moderat samhällssyn. Analys och perspektiv (1969,
-tillsammans med A Arfwedson och H Sandebring) samt
-Ett balanserat försvar (1974).",biografi,037063714405,32333
-17299,Bostadsort,Töcksfors,biografi,0379333062002,17296
-22305,en,Ombudsman,titlar,0780836041816,22302
-8015,Kommunala uppdrag,"Kommunfullmäktig, Täby 94-.",biografi,"",8009
-4801,Uppdrag inom förenings- och näringsliv,"Ledamot av styrelsen för Sveriges kristna socialdemokraters
-centrumgrupp i
-Göteborg, vice ordförande 68-77 och 81-85,
-Sveriges kristna socialdemokraters Göteborgsdistrikt 85-90 och 95-, samt
-Sveriges kristna socialdemokraters förbund, ordförande 90-92.",biografi,0552300917200,4796
-10599,Anställningar,"Montör, Volvo Personvagnar AB 85–88. Varierande drift- och borrningsarbeten, TGB-koncernen 88–00. Bergarbetare, Renfors åkeri 00–03. Driftstekniker, Extena 03–.",biografi,"",10597
-15628,Föräldrar,Ambassadören Hans Joachim von der E och Marianne Sandstedt,biografi,0544137999406,15619
-1731,en,"",titlar,0955635879822,1728
-45838,sv,Officer.,titlar,0628005785225,45828
-52708,Kommunala uppdrag,"Led av Uppsala stadsfullmäktige 55-65.
-Led av drätselkammaren 56-62.
-Led av arbetslöshetsnämnden 53-59,
-byggnadsnämnden 55-63, vice ordf 55, ordf 56-63,
-bostadsnämnden 55, vice ordf 55,
-samt generalplanekommittén 55-61 och 63-76.",biografi,34960203-1b3b-4d3d-80ee-9f38d0c5d762,52701
+styrelsen för Häggums avdelning av Svenska Gruvindustriarbetareförbundet,
+sekreterare 62-64.
+- Ledamot av
+styrelsen för Skaraborgs läns centerpartidistrikt 76-, vice ordförande 84-88.
+",biografi,089241104007,14790
+9789,Kommunala uppdrag,"Led av Söderhamns stadsfullmäktige 67--70.
+Led av drätselkammaren 67--70.
+Led av byggnadsnämnden 64--70 och
+trafiknämnden 65--67.
+--
+Led av Söderhamns kommunfullmäktige 71--94, ordf 77--94.
+Led av centrala byggnadskommittén, ordf 71--75,
+byggnadsnämnden, ordf 89--.
+Led av styrelsen för Söderhamns stads hyresbostäder/Söderhamnsbostäder
+56--94, ordf 73--94, och
+Söderhamns Utvecklings AB 91--92.",biografi,0439547246805,9782
+10561,Bostadsort,Falun,biografi,0465435843419,10558
+12277,HarBild,true,bilder,0509830681123,12276
+1417,HarBild,true,bilder,0542215898226,1416
+7463,sv,studiesekreterare,titlar,0144891150008,7454
+28314,Föräldrar,Byggnadssnickaren Ove Ekström och hemmansägaren Gun Eriksson,biografi,0478345475910,28298
+31652,Utbildning,"Ingenjörsexamen 55.
+Textilteknisk utbildning 56-58.
+Ingenjör 56.
+Reservofficer 57.
+Ingenjör vid Färgeri AB Levanten 56-62,
+fabrikschef 63-68 och verkställande direktör 68-79.
+Högskolestudier i ekonomi 62.
+Företagsekonom 65.
+Landstingsråd i Bohusläns landsting 80-91.
+Regionråd i Västra Götalands län 99-01.",biografi,0373939465804,31648
+30432,en,"",titlar,0213691891904,30422
+53877,Föräldrar,Kärnmakaren Henning Karlsson och Hildur Finman,biografi,e369ccf9-d726-49e5-a4f7-7aeac00b29fe,53869
+1996,HarBild,true,bilder,0316177736318,1995
+44642,sv,Rörmontör,titlar,0851966755011,44633
+33043,Uppdrag inom statliga myndigheter m.m.,"Ledamot av rättshjälpsnämnden 91-.
+Nämndeman i Södra Roslags tingsrätt 83-84 och 86-93.
+- Ledamot av nedrustnings- och folkrättsdelegationen 92-.",biografi,0327449447106,33037
+6224,en,"",titlar,010343930918,6213
+42653,Anställningar,"Ingenjör/sektionschef/projektledare, Statens Provningsanstalt/Sveriges Provnings- och Forskningsinstitut AB/Sveriges Tekniska Forskningsinstitut 88–98 och 07. Regionråd, Västra Götalandsregionen 98–06. Sektionschef/projektledare, RISE, Research Institutes of Sweden, 14–22.",biografi,"",42648

@@ -1,8 +1,8 @@
 embedded_id_page,embedded_id_created_date,hits,rank_percentage,rank,rn
-main,2025-11-30 00:00:00,3,0,1,1
-userhome,2025-11-30 00:00:00,1,0.3333333333333333,2,2
+userhome,2025-11-30 00:00:00,1,0.3333333333333333,2,1
+adminagentoperation,2025-11-30 00:00:00,1,0.3333333333333333,2,2
 main,2025-12-02 00:00:00,1,0,1,1
-main,2025-12-03 00:00:00,2,0,1,1
-adminagentoperation,2025-12-03 00:00:00,1,0.25,2,2
-politicianranking,2025-12-30 00:00:00,1,0.6,4,1
-main,2025-12-30 00:00:00,6,0,1,2
+adminagentoperation,2025-12-03 00:00:00,1,0.25,2,1
+userhome,2025-12-03 00:00:00,1,0.25,2,2
+main,2025-12-30 00:00:00,6,0,1,1
+politicianranking,2025-12-30 00:00:00,1,0.6,4,2

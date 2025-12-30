@@ -1,5 +1,5 @@
 view_name,row_count,size_category
-view_riksdagen_vote_data_ballot_politician_summary,3523813,massive (>1M)
+view_riksdagen_vote_data_ballot_politician_summary,3523155,massive (>1M)
 view_riksdagen_committee_ballot_decision_politician_summary,1578178,massive (>1M)
 view_riksdagen_vote_data_ballot_politician_summary_daily,458976,very_large (100K-1M)
 view_riksdagen_vote_data_ballot_politician_summary_weekly,234252,very_large (100K-1M)

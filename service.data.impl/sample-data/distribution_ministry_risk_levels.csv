@@ -1,0 +1,3 @@
+risk_level,period_count,percentage,avg_documents
+CRITICAL,161,95.83,0.00
+HIGH,7,4.17,67.57

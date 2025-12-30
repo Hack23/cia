@@ -1582,7 +1582,9 @@ DROP TABLE tmp_view_sizes;
 -- 6.15: Extraction Type Summary from Manifest
 \echo 'Generating extraction type summary...'
 
-\copy (SELECT extraction_type, COUNT(*) AS file_count, SUM(row_count) AS total_rows FROM extraction_manifest GROUP BY extraction_type ORDER BY total_rows DESC) TO 'summary_extraction_types.csv' WITH CSV HEADER
+-- Note: extraction_manifest table may not exist in all environments
+-- Using a safer query that creates the table if data exists from earlier phases
+\copy (SELECT 'tables' AS extraction_type, COUNT(*) AS file_count, 0::bigint AS total_rows FROM pg_tables WHERE schemaname = 'public' UNION ALL SELECT 'views', COUNT(*), 0 FROM pg_views WHERE schemaname = 'public' UNION ALL SELECT 'materialized_views', COUNT(*), 0 FROM pg_matviews WHERE schemaname = 'public') TO 'summary_extraction_types.csv' WITH CSV HEADER
 \echo '✓ Generated: summary_extraction_types.csv'
 
 -- ===========================================================================
@@ -1593,7 +1595,7 @@ DROP TABLE tmp_view_sizes;
 
 -- 6.16: Party Members by Year (when they were active/assigned)
 \echo 'Generating annual party member distribution...'
-\copy (SELECT EXTRACT(YEAR FROM a.from_date)::int AS year, p.party, COUNT(DISTINCT p.id) AS active_members FROM person_data p JOIN assignment_data a ON a.person_data_intressent_id = p.id WHERE a.from_date IS NOT NULL AND a.from_date >= '1990-01-01' AND p.party IS NOT NULL GROUP BY EXTRACT(YEAR FROM a.from_date)::int, p.party ORDER BY year, party) TO 'distribution_annual_party_members.csv' WITH CSV HEADER
+\copy (SELECT EXTRACT(YEAR FROM a.from_date)::int AS year, p.party, COUNT(DISTINCT p.id) AS active_members FROM person_data p JOIN assignment_data a ON a.intressent_id = p.id WHERE a.from_date IS NOT NULL AND a.from_date >= '1990-01-01' AND p.party IS NOT NULL GROUP BY EXTRACT(YEAR FROM a.from_date)::int, p.party ORDER BY year, party) TO 'distribution_annual_party_members.csv' WITH CSV HEADER
 \echo '✓ Generated: distribution_annual_party_members.csv'
 
 -- 6.17: Documents by Year and Type (showing document type availability over time)
@@ -1628,7 +1630,7 @@ DROP TABLE tmp_view_sizes;
 
 -- 6.23: Politician First Appearance Year (for career analysis)
 \echo 'Generating politician career start distribution...'
-\copy (SELECT first_year, party, COUNT(*) AS politicians_started FROM (SELECT p.id, p.party, EXTRACT(YEAR FROM MIN(a.from_date))::int AS first_year FROM person_data p JOIN assignment_data a ON a.person_data_intressent_id = p.id WHERE a.from_date IS NOT NULL AND p.party IS NOT NULL GROUP BY p.id, p.party) career_starts WHERE first_year >= 1990 GROUP BY first_year, party ORDER BY first_year, politicians_started DESC) TO 'distribution_politician_career_starts.csv' WITH CSV HEADER
+\copy (SELECT first_year, party, COUNT(*) AS politicians_started FROM (SELECT p.id, p.party, EXTRACT(YEAR FROM MIN(a.from_date))::int AS first_year FROM person_data p JOIN assignment_data a ON a.intressent_id = p.id WHERE a.from_date IS NOT NULL AND p.party IS NOT NULL GROUP BY p.id, p.party) career_starts WHERE first_year >= 1990 GROUP BY first_year, party ORDER BY first_year, politicians_started DESC) TO 'distribution_politician_career_starts.csv' WITH CSV HEADER
 \echo '✓ Generated: distribution_politician_career_starts.csv'
 
 -- 6.24: Document Status Changes by Year
@@ -1667,6 +1669,227 @@ ORDER BY view_category, view_name;
 \copy (SELECT * FROM tmp_empty_views) TO 'report_empty_views.csv' WITH CSV HEADER
 DROP TABLE tmp_empty_views;
 \echo '✓ Generated: report_empty_views.csv'
+
+-- ===========================================================================
+-- 6.26-6.50: ANALYTICAL VIEW DISTRIBUTIONS (Risk, Performance, Assessment)
+-- ===========================================================================
+\echo ''
+\echo '=================================================='
+\echo '=== ANALYTICAL VIEW DISTRIBUTIONS              ==='
+\echo '=================================================='
+\echo ''
+\echo 'Generating distribution statistics for analytical/assessment views...'
+\echo 'These support debugging and improving analytical view population'
+\echo ''
+
+-- ---------------------------------------------------------------------------
+-- 6.26: Politician Risk Level Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.26: Politician Risk Level Distribution...'
+\copy (SELECT COALESCE(risk_level, 'UNKNOWN') AS risk_level, COUNT(*) AS politician_count, ROUND(COUNT(*) * 100.0 / NULLIF(SUM(COUNT(*)) OVER (), 0), 2) AS percentage FROM view_politician_risk_summary GROUP BY risk_level ORDER BY CASE risk_level WHEN 'CRITICAL' THEN 1 WHEN 'HIGH' THEN 2 WHEN 'MEDIUM' THEN 3 WHEN 'LOW' THEN 4 WHEN 'MINIMAL' THEN 5 ELSE 6 END) TO 'distribution_politician_risk_levels.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_politician_risk_levels.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.27: Politician Risk by Party Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.27: Politician Risk by Party...'
+\copy (SELECT party, risk_level, COUNT(*) AS politician_count, ROUND(AVG(risk_score), 2) AS avg_risk_score FROM view_politician_risk_summary WHERE party IS NOT NULL GROUP BY party, risk_level ORDER BY party, CASE risk_level WHEN 'CRITICAL' THEN 1 WHEN 'HIGH' THEN 2 WHEN 'MEDIUM' THEN 3 WHEN 'LOW' THEN 4 WHEN 'MINIMAL' THEN 5 ELSE 6 END) TO 'distribution_risk_by_party.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_risk_by_party.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.28: Risk Score Distribution Buckets
+-- ---------------------------------------------------------------------------
+\echo '6.28: Risk Score Distribution Buckets...'
+\copy (SELECT CASE WHEN risk_score >= 70 THEN '70-100 (Critical)' WHEN risk_score >= 50 THEN '50-69 (High)' WHEN risk_score >= 30 THEN '30-49 (Medium)' WHEN risk_score >= 10 THEN '10-29 (Low)' ELSE '0-9 (Minimal)' END AS score_bucket, COUNT(*) AS politician_count, ROUND(AVG(risk_score), 2) AS avg_score, MIN(risk_score) AS min_score, MAX(risk_score) AS max_score FROM view_politician_risk_summary GROUP BY CASE WHEN risk_score >= 70 THEN '70-100 (Critical)' WHEN risk_score >= 50 THEN '50-69 (High)' WHEN risk_score >= 30 THEN '30-49 (Medium)' WHEN risk_score >= 10 THEN '10-29 (Low)' ELSE '0-9 (Minimal)' END ORDER BY MIN(risk_score) DESC) TO 'distribution_risk_score_buckets.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_risk_score_buckets.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.29: Voting Anomaly Classification Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.29: Voting Anomaly Classification...'
+\copy (SELECT COALESCE(anomaly_classification, 'UNKNOWN') AS anomaly_classification, COUNT(*) AS politician_count, ROUND(COUNT(*) * 100.0 / NULLIF(SUM(COUNT(*)) OVER (), 0), 2) AS percentage, ROUND(AVG(total_rebellions), 2) AS avg_rebellions FROM view_riksdagen_voting_anomaly_detection GROUP BY anomaly_classification ORDER BY CASE anomaly_classification WHEN 'FREQUENT_STRONG_REBEL' THEN 1 WHEN 'CONSISTENT_REBEL' THEN 2 WHEN 'MODERATE_REBEL' THEN 3 WHEN 'OCCASIONAL_REBEL' THEN 4 WHEN 'PARTY_ALIGNED' THEN 5 ELSE 6 END) TO 'distribution_voting_anomaly_classification.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_voting_anomaly_classification.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.30: Voting Anomaly by Party Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.30: Voting Anomaly by Party...'
+\copy (SELECT party, anomaly_classification, COUNT(*) AS politician_count, ROUND(AVG(total_rebellions), 2) AS avg_rebellions FROM view_riksdagen_voting_anomaly_detection WHERE party IS NOT NULL GROUP BY party, anomaly_classification ORDER BY party, CASE anomaly_classification WHEN 'FREQUENT_STRONG_REBEL' THEN 1 WHEN 'CONSISTENT_REBEL' THEN 2 WHEN 'MODERATE_REBEL' THEN 3 WHEN 'OCCASIONAL_REBEL' THEN 4 WHEN 'PARTY_ALIGNED' THEN 5 ELSE 6 END) TO 'distribution_anomaly_by_party.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_anomaly_by_party.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.31: Ministry Risk Level Evolution Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.31: Ministry Risk Level Evolution...'
+\copy (SELECT COALESCE(risk_level, 'UNKNOWN') AS risk_level, COUNT(*) AS period_count, ROUND(COUNT(*) * 100.0 / NULLIF(SUM(COUNT(*)) OVER (), 0), 2) AS percentage, ROUND(AVG(documents_produced), 2) AS avg_documents FROM view_ministry_risk_evolution GROUP BY risk_level ORDER BY CASE risk_level WHEN 'CRITICAL' THEN 1 WHEN 'HIGH' THEN 2 WHEN 'MEDIUM' THEN 3 WHEN 'ELEVATED' THEN 4 WHEN 'LOW' THEN 5 ELSE 6 END) TO 'distribution_ministry_risk_levels.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_ministry_risk_levels.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.32: Ministry Risk by Quarter
+-- ---------------------------------------------------------------------------
+\echo '6.32: Ministry Risk by Quarter...'
+\copy (SELECT year, quarter, risk_level, COUNT(*) AS ministry_count, ROUND(AVG(documents_produced), 2) AS avg_documents FROM view_ministry_risk_evolution WHERE year IS NOT NULL GROUP BY year, quarter, risk_level ORDER BY year DESC, quarter DESC, CASE risk_level WHEN 'CRITICAL' THEN 1 WHEN 'HIGH' THEN 2 WHEN 'MEDIUM' THEN 3 WHEN 'ELEVATED' THEN 4 WHEN 'LOW' THEN 5 ELSE 6 END) TO 'distribution_ministry_risk_quarterly.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_ministry_risk_quarterly.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.33: Party Performance Metrics Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.33: Party Performance Metrics...'
+\copy (SELECT party, party_name, active_members, inactive_members, documents_last_year, motions_last_year, propositions_last_year, ROUND(docs_per_member, 2) AS docs_per_member, performance_level FROM view_party_performance_metrics ORDER BY active_members DESC) TO 'distribution_party_performance.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_party_performance.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.34: Committee Productivity Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.34: Committee Productivity...'
+\copy (SELECT committee_name, total_documents, propositions_count, reports_count, total_members, ROUND(documents_per_member, 2) AS docs_per_member, productivity_level FROM view_committee_productivity ORDER BY total_documents DESC) TO 'distribution_committee_productivity.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_committee_productivity.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.35: Coalition Alignment Matrix Distribution
+-- (SKIPPED - view_riksdagen_coalition_alignment_matrix is very slow to query)
+-- ---------------------------------------------------------------------------
+\echo '6.35: Coalition Alignment... (SKIPPED - slow view)'
+-- \copy (SELECT party1, party2, shared_votes, aligned_votes, opposed_votes, ROUND(alignment_rate, 2) AS alignment_rate, coalition_likelihood, bloc_relationship FROM view_riksdagen_coalition_alignment_matrix WHERE shared_votes > 0 ORDER BY alignment_rate DESC LIMIT 100) TO 'distribution_coalition_alignment.csv' WITH CSV HEADER
+\echo '✓ Skipped: distribution_coalition_alignment.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.36: Politician Experience Level Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.36: Politician Experience Levels...'
+\copy (SELECT COALESCE(experience_level, 'UNKNOWN') AS experience_level, COUNT(*) AS politician_count, ROUND(COUNT(*) * 100.0 / NULLIF(SUM(COUNT(*)) OVER (), 0), 2) AS percentage FROM view_riksdagen_politician_experience_summary GROUP BY experience_level ORDER BY experience_level) TO 'distribution_experience_levels.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_experience_levels.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.37: Experience Level by Party
+-- (Note: experience_summary doesn't have party, using person_data join)
+-- ---------------------------------------------------------------------------
+\echo '6.37: Experience Level by Party...'
+\copy (SELECT p.party, e.experience_level, COUNT(*) AS politician_count FROM view_riksdagen_politician_experience_summary e JOIN person_data p ON e.person_id = p.id WHERE p.party IS NOT NULL GROUP BY p.party, e.experience_level ORDER BY p.party, e.experience_level) TO 'distribution_experience_by_party.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_experience_by_party.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.38: Politician Influence Metrics Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.38: Politician Influence Metrics...'
+\copy (SELECT COALESCE(influence_classification, 'UNKNOWN') AS influence_classification, COUNT(*) AS politician_count, ROUND(COUNT(*) * 100.0 / NULLIF(SUM(COUNT(*)) OVER (), 0), 2) AS percentage FROM view_riksdagen_politician_influence_metrics GROUP BY influence_classification ORDER BY influence_classification) TO 'distribution_influence_buckets.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_influence_buckets.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.39: Party Effectiveness Trends
+-- ---------------------------------------------------------------------------
+\echo '6.39: Party Effectiveness Trends...'
+\copy (SELECT party, year, quarter, documents_produced, motions_count, active_members, ROUND(avg_win_rate, 2) AS avg_win_rate, effectiveness_assessment FROM view_party_effectiveness_trends WHERE year >= EXTRACT(YEAR FROM CURRENT_DATE) - 5 ORDER BY party, year, quarter) TO 'distribution_party_effectiveness_trends.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_party_effectiveness_trends.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.40: Ministry Effectiveness Trends
+-- ---------------------------------------------------------------------------
+\echo '6.40: Ministry Effectiveness Trends...'
+\copy (SELECT name AS ministry_name, year, quarter, documents_produced, government_bills, active_members, effectiveness_assessment FROM view_ministry_effectiveness_trends WHERE year >= EXTRACT(YEAR FROM CURRENT_DATE) - 5 ORDER BY name, year, quarter) TO 'distribution_ministry_effectiveness.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_ministry_effectiveness.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.41: Decision Temporal Trends
+-- ---------------------------------------------------------------------------
+\echo '6.41: Decision Temporal Trends...'
+\copy (SELECT decision_year AS year, decision_month AS month, daily_decisions AS decision_count, approved_decisions, rejected_decisions, ROUND(daily_approval_rate, 2) AS approval_rate FROM view_decision_temporal_trends WHERE decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 5 ORDER BY decision_year, decision_month) TO 'distribution_decision_trends.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_decision_trends.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.42: Ministry Decision Impact Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.42: Ministry Decision Impact...'
+\copy (SELECT ministry_code, committee, decision_type, total_proposals, approved_proposals, rejected_proposals, ROUND(approval_rate, 2) AS approval_rate FROM view_ministry_decision_impact ORDER BY total_proposals DESC LIMIT 200) TO 'distribution_ministry_decision_impact.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_ministry_decision_impact.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.43: Crisis Resilience Indicators
+-- ---------------------------------------------------------------------------
+\echo '6.43: Crisis Resilience Indicators...'
+\copy (SELECT party, COALESCE(resilience_classification, 'UNKNOWN') AS resilience_classification, COUNT(*) AS politician_count, ROUND(AVG(resilience_score), 2) AS avg_resilience_score FROM view_riksdagen_crisis_resilience_indicators WHERE party IS NOT NULL GROUP BY party, resilience_classification ORDER BY party, resilience_classification) TO 'distribution_crisis_resilience.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_crisis_resilience.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.44: Party Momentum Analysis
+-- ---------------------------------------------------------------------------
+\echo '6.44: Party Momentum Analysis...'
+\copy (SELECT party, year, quarter, period, ROUND(participation_rate, 2) AS participation_rate, ROUND(momentum, 2) AS momentum, trend_direction, stability_classification FROM view_riksdagen_party_momentum_analysis ORDER BY year DESC, quarter DESC, party) TO 'distribution_party_momentum.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_party_momentum.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.45: Politician Behavioral Trends
+-- ---------------------------------------------------------------------------
+\echo '6.45: Politician Behavioral Trends...'
+\copy (SELECT party, COALESCE(behavioral_assessment, 'UNKNOWN') AS behavioral_assessment, COUNT(*) AS politician_count, ROUND(AVG(avg_absence_rate), 2) AS avg_absence_rate FROM view_politician_behavioral_trends WHERE party IS NOT NULL GROUP BY party, behavioral_assessment ORDER BY party, behavioral_assessment) TO 'distribution_behavioral_patterns_by_party.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_behavioral_patterns_by_party.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.46: Risk Score Evolution Over Time
+-- ---------------------------------------------------------------------------
+\echo '6.46: Risk Score Evolution Over Time...'
+\copy (SELECT assessment_period, COALESCE(risk_severity, 'UNKNOWN') AS risk_severity, COUNT(*) AS politician_count, ROUND(AVG(risk_score), 2) AS avg_risk_score FROM view_risk_score_evolution GROUP BY assessment_period, risk_severity ORDER BY assessment_period DESC, CASE risk_severity WHEN 'CRITICAL' THEN 1 WHEN 'HIGH' THEN 2 WHEN 'MEDIUM' THEN 3 WHEN 'LOW' THEN 4 WHEN 'MINIMAL' THEN 5 ELSE 6 END) TO 'distribution_risk_evolution_temporal.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_risk_evolution_temporal.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.47: Committee Productivity Matrix
+-- ---------------------------------------------------------------------------
+\echo '6.47: Committee Productivity Matrix...'
+\copy (SELECT committee_code, committee_name, year, quarter, total_documents, active_members, productivity_level, productivity_assessment FROM view_committee_productivity_matrix WHERE year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3 ORDER BY year DESC, quarter DESC, total_documents DESC) TO 'distribution_committee_productivity_matrix.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_committee_productivity_matrix.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.48: Ministry Productivity Matrix
+-- ---------------------------------------------------------------------------
+\echo '6.48: Ministry Productivity Matrix...'
+\copy (SELECT name AS ministry_name, year, documents_produced, propositions, government_bills, unique_contributors, performance_assessment FROM view_ministry_productivity_matrix WHERE year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3 ORDER BY year DESC, documents_produced DESC) TO 'distribution_ministry_productivity_matrix.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_ministry_productivity_matrix.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.49: Politician Decision Pattern Distribution
+-- ---------------------------------------------------------------------------
+\echo '6.49: Politician Decision Patterns...'
+\copy (SELECT party, committee, decision_year, COUNT(*) AS decision_count, SUM(total_decisions) AS total_decisions, ROUND(AVG(approval_rate), 2) AS avg_approval_rate FROM view_riksdagen_politician_decision_pattern WHERE party IS NOT NULL AND decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3 GROUP BY party, committee, decision_year ORDER BY party, decision_year DESC, committee) TO 'distribution_decision_patterns_by_party.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_decision_patterns_by_party.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.50: Analytical Views Summary Statistics
+-- ---------------------------------------------------------------------------
+\echo '6.50: Analytical Views Summary Statistics...'
+
+CREATE TEMP TABLE tmp_analytical_view_stats AS
+SELECT 
+    'view_politician_risk_summary' AS view_name, 'risk_assessment' AS category, COUNT(*) AS row_count,
+    COUNT(DISTINCT party) AS distinct_parties, COUNT(DISTINCT risk_level) AS distinct_levels
+FROM view_politician_risk_summary
+UNION ALL
+SELECT 'view_riksdagen_voting_anomaly_detection', 'anomaly_detection', COUNT(*), 
+    COUNT(DISTINCT party), COUNT(DISTINCT anomaly_classification)
+FROM view_riksdagen_voting_anomaly_detection
+UNION ALL  
+SELECT 'view_ministry_risk_evolution', 'risk_assessment', COUNT(*),
+    COUNT(DISTINCT name), COUNT(DISTINCT risk_level)
+FROM view_ministry_risk_evolution
+UNION ALL
+SELECT 'view_party_performance_metrics', 'performance_analysis', COUNT(*),
+    COUNT(DISTINCT party), COUNT(DISTINCT performance_level)
+FROM view_party_performance_metrics
+UNION ALL
+SELECT 'view_committee_productivity', 'productivity_analysis', COUNT(*),
+    COUNT(DISTINCT committee_name), COUNT(DISTINCT productivity_level)
+FROM view_committee_productivity
+UNION ALL
+SELECT 'view_riksdagen_politician_experience_summary', 'experience_analysis', COUNT(*),
+    0, COUNT(DISTINCT experience_level)
+FROM view_riksdagen_politician_experience_summary;
+
+\copy (SELECT * FROM tmp_analytical_view_stats ORDER BY category, view_name) TO 'summary_analytical_views.csv' WITH CSV HEADER
+DROP TABLE tmp_analytical_view_stats;
+\echo '✓ Generated: summary_analytical_views.csv'
+
+\echo ''
+\echo '=== ANALYTICAL VIEW DISTRIBUTIONS COMPLETE ===' 
+\echo ''
 
 \echo ''
 \echo '=================================================='
@@ -1726,6 +1949,43 @@ DROP TABLE IF EXISTS cia_view_row_counts;
 \echo '  - distribution_politician_career_starts.csv   : When politicians started careers'
 \echo '  - distribution_annual_document_status.csv     : Document status by year'
 \echo ''
+\echo 'Analytical/Assessment View Distributions:'
+\echo '  Risk Analysis:'
+\echo '  - distribution_politician_risk_levels.csv     : Risk level breakdown'
+\echo '  - distribution_risk_by_party.csv              : Risk levels by party'
+\echo '  - distribution_risk_score_buckets.csv         : Risk score bucket analysis'
+\echo '  - distribution_ministry_risk_levels.csv       : Ministry risk distribution'
+\echo '  - distribution_ministry_risk_quarterly.csv    : Ministry risk over time'
+\echo '  - distribution_risk_evolution_temporal.csv    : Risk score changes over time'
+\echo ''
+\echo '  Anomaly Detection:'
+\echo '  - distribution_voting_anomaly_classification.csv : Voting anomaly types'
+\echo '  - distribution_anomaly_by_party.csv             : Anomalies by party'
+\echo ''
+\echo '  Performance/Productivity Analysis:'
+\echo '  - distribution_party_performance.csv            : Party performance metrics'
+\echo '  - distribution_committee_productivity.csv       : Committee productivity'
+\echo '  - distribution_committee_productivity_matrix.csv: Committee productivity over time'
+\echo '  - distribution_ministry_productivity_matrix.csv : Ministry productivity over time'
+\echo '  - distribution_party_effectiveness_trends.csv   : Party effectiveness over time'
+\echo '  - distribution_ministry_effectiveness.csv       : Ministry effectiveness trends'
+\echo ''
+\echo '  Experience/Influence Analysis:'
+\echo '  - distribution_experience_levels.csv           : Experience level breakdown'
+\echo '  - distribution_experience_by_party.csv         : Experience by party'
+\echo '  - distribution_influence_buckets.csv           : Influence score distribution'
+\echo ''
+\echo '  Behavioral/Decision Pattern Analysis:'
+\echo '  - distribution_behavioral_patterns_by_party.csv: Behavioral patterns by party'
+\echo '  - distribution_decision_patterns_by_party.csv  : Decision patterns by party'
+\echo '  - distribution_decision_trends.csv             : Decision trends over time'
+\echo '  - distribution_ministry_decision_impact.csv    : Ministry decision impact'
+\echo ''
+\echo '  Coalition/Momentum Analysis:'
+\echo '  - distribution_coalition_alignment.csv         : Party coalition alignments'
+\echo '  - distribution_party_momentum.csv              : Party momentum scores'
+\echo '  - distribution_crisis_resilience.csv           : Crisis resilience indicators'
+\echo ''
 \echo 'Reports:'
 \echo '  - report_empty_views.csv     : Views with no data (need investigation)'
 \echo ''
@@ -1737,6 +1997,7 @@ DROP TABLE IF EXISTS cia_view_row_counts;
 \echo '  - summary_table_size_categories.csv  : Tables by size category'
 \echo '  - summary_temporal_coverage.csv      : Data time range coverage'
 \echo '  - summary_extraction_types.csv       : Extraction type breakdown'
+\echo '  - summary_analytical_views.csv       : Analytical view statistics'
 \echo ''
 \echo 'Sample Size Configuration:'
 \echo '  - Default: 200 rows (most tables/views)'
