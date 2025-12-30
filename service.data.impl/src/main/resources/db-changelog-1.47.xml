@@ -821,4 +821,259 @@ ORDER BY person_id, assessment_period DESC;
         <sql> SELECT COUNT(*) AS view_risk_score_evolution_count FROM view_risk_score_evolution </sql>
     </changeSet>
 
+    <!-- ========================================================================= -->
+    <!-- FIX: view_riksdagen_politician_influence_metrics - vote case sensitivity -->
+    <!-- ========================================================================= -->
+
+    <changeSet author="intelligence-operative" id="fix-vote-case-influence-metrics-1.47-007"
+        failOnError="true">
+        <comment>
+        Fix view_riksdagen_politician_influence_metrics vote case sensitivity and thresholds
+        
+        Root Cause #1: View filtered on vote IN ('Ja', 'Nej') but actual data uses
+        uppercase 'JA', 'NEJ'. This resulted in 0 co-voting pairs being found,
+        causing all 400 politicians to be classified as MINIMAL_INFLUENCE.
+        
+        Root Cause #2: Original thresholds used median*2 for HIGHLY_INFLUENTIAL but
+        max connections was only 277 with median 151, making the threshold (302)
+        impossible to reach.
+        
+        Solution: 
+        1. Use UPPER() function for vote filtering
+        2. Use percentile-based thresholds (P90, P75, P50) for better distribution
+        
+        Expected Distribution:
+        - HIGHLY_INFLUENTIAL: ~10% (P90+)
+        - INFLUENTIAL: ~15% (P75-P90)
+        - MODERATELY_INFLUENTIAL: ~25% (P50-P75)
+        - LIMITED_INFLUENCE: ~40% (below P50 but > 0)
+        - MINIMAL_INFLUENCE: ~10% (no connections)
+    </comment>
+
+        <sql>DROP VIEW IF EXISTS view_riksdagen_politician_influence_metrics CASCADE;</sql>
+
+        <createView viewName="view_riksdagen_politician_influence_metrics">
+        <![CDATA[
+WITH co_voting_pairs AS (
+    SELECT
+        v1.embedded_id_intressent_id AS person_1,
+        v2.embedded_id_intressent_id AS person_2,
+        COUNT(*) AS co_votes,
+        SUM(CASE WHEN v1.vote = v2.vote THEN 1 ELSE 0 END) AS aligned_votes,
+        SUM(CASE WHEN v1.vote = v2.vote THEN 1 ELSE 0 END)::DOUBLE PRECISION / 
+            NULLIF(COUNT(*), 0)::DOUBLE PRECISION AS alignment_rate
+    FROM vote_data v1
+    JOIN vote_data v2 
+        ON v1.embedded_id_ballot_id = v2.embedded_id_ballot_id
+        AND v1.embedded_id_intressent_id < v2.embedded_id_intressent_id
+    WHERE v1.vote_date >= CURRENT_DATE - INTERVAL '3 years'
+        AND UPPER(v1.vote) IN ('JA', 'NEJ')
+        AND UPPER(v2.vote) IN ('JA', 'NEJ')
+    GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
+    HAVING COUNT(*) >= 10
+),
+network_connections AS (
+    SELECT person_1 AS person_id
+    FROM co_voting_pairs
+    WHERE alignment_rate >= 0.7
+    
+    UNION ALL
+    
+    SELECT person_2 AS person_id
+    FROM co_voting_pairs
+    WHERE alignment_rate >= 0.7
+),
+influence_metrics AS (
+    SELECT
+        person_id,
+        COUNT(*) AS strong_connections
+    FROM network_connections
+    GROUP BY person_id
+),
+network_percentiles AS (
+    SELECT 
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY strong_connections) AS p50,
+        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY strong_connections) AS p75,
+        PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY strong_connections) AS p90
+    FROM influence_metrics
+)
+SELECT
+    p.id AS person_id,
+    p.first_name,
+    p.last_name,
+    p.party,
+    
+    COALESCE(im.strong_connections, 0) AS network_connections,
+    ROUND((SELECT p50 FROM network_percentiles)::NUMERIC, 2) AS network_median,
+    
+    CASE
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p90 FROM network_percentiles) THEN 'HIGHLY_INFLUENTIAL'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p75 FROM network_percentiles) THEN 'INFLUENTIAL'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p50 FROM network_percentiles) THEN 'MODERATELY_INFLUENTIAL'
+        WHEN COALESCE(im.strong_connections, 0) > 0 THEN 'LIMITED_INFLUENCE'
+        ELSE 'MINIMAL_INFLUENCE'
+    END AS influence_classification,
+    
+    CASE
+        WHEN COALESCE(im.strong_connections, 0) >= 20 THEN 'STRONG_BROKER'
+        WHEN COALESCE(im.strong_connections, 0) >= 10 THEN 'MODERATE_BROKER'
+        WHEN COALESCE(im.strong_connections, 0) >= 5 THEN 'WEAK_BROKER'
+        ELSE 'NON_BROKER'
+    END AS broker_classification,
+    
+    CASE
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p90 FROM network_percentiles) 
+            THEN 'High influence - top 10% network connections'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p75 FROM network_percentiles) 
+            THEN 'Notable influence - top 25% network centrality'
+        WHEN COALESCE(im.strong_connections, 0) >= (SELECT p50 FROM network_percentiles) 
+            THEN 'Standard influence - above median engagement'
+        WHEN COALESCE(im.strong_connections, 0) > 0 
+            THEN 'Limited influence - below median connections'
+        ELSE 'Minimal network influence detected'
+    END AS influence_assessment
+
+FROM person_data p
+LEFT JOIN influence_metrics im ON im.person_id = p.id
+WHERE p.status IN ('Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare')
+ORDER BY 
+    COALESCE(im.strong_connections, 0) DESC,
+    p.last_name, p.first_name;
+        ]]>
+    </createView>
+
+        <rollback>
+            <dropView viewName="view_riksdagen_politician_influence_metrics" />
+        </rollback>
+    </changeSet>
+
+    <!-- ========================================================================= -->
+    <!-- FIX: view_ministry_productivity_matrix - Fix incorrect join condition -->
+    <!-- ========================================================================= -->
+    <changeSet author="intelligence-operative" id="fix-ministry-productivity-join-1.47-008"
+        failOnError="true">
+        <comment>
+        Fix view_ministry_productivity_matrix incorrect join condition
+        
+        Root Cause: View joined on LOWER(doc.org) = m.org_code_lower, but:
+        - Ministry org_codes are short codes like 'Ku', 'Fi', 'S'
+        - Document org values use full ministry names like 'Kulturdepartementet'
+        - The only accidental match was 'Ku' = 'KU' (committee, not ministry!)
+        
+        Result: Only 3 rows for "Kulturdepartementet" - actually KU committee data
+        
+        Solution: Join on full ministry name (detail field) instead of org_code
+        to properly match documents to ministries.
+    </comment>
+
+        <sql>DROP VIEW IF EXISTS view_ministry_productivity_matrix CASCADE;</sql>
+
+        <createView viewName="view_ministry_productivity_matrix">
+        <![CDATA[
+WITH ministry_base AS (
+    -- Get distinct ministry assignments from assignment_data
+    -- Uses assignment_type = 'Departement' to identify ministries
+    SELECT DISTINCT
+        org_code,
+        org_code AS short_code,
+        detail AS name,
+        LOWER(detail) AS name_lower
+    FROM assignment_data
+    WHERE assignment_type = 'Departement'
+        AND org_code IS NOT NULL
+        AND detail IS NOT NULL
+),
+ministry_document_data AS (
+    -- Direct query to base tables instead of materialized view
+    SELECT 
+        dsc.hjid AS id,
+        dd.document_type,
+        dd.made_public_date,
+        dd.org,
+        LOWER(dd.org) AS org_lower,
+        dpr.person_reference_id
+    FROM document_status_container dsc
+    LEFT JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    LEFT JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date IS NOT NULL
+),
+ministry_annual_metrics AS (
+    -- Calculate annual document metrics per ministry
+    -- Join on full ministry name (detail) instead of org_code
+    SELECT
+        m.org_code,
+        m.short_code,
+        m.name,
+        EXTRACT(YEAR FROM doc.made_public_date) AS year,
+        COUNT(DISTINCT doc.id) AS documents_produced,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) = 'prop' THEN doc.id END) AS propositions,
+        COUNT(DISTINCT CASE WHEN LOWER(doc.document_type) = 'ds' THEN doc.id END) AS government_bills,
+        COUNT(DISTINCT doc.person_reference_id) AS unique_contributors,
+        MIN(doc.made_public_date) AS earliest_document,
+        MAX(doc.made_public_date) AS latest_document
+    FROM ministry_base m
+    LEFT JOIN ministry_document_data doc 
+        ON doc.org_lower = m.name_lower
+        AND doc.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY m.org_code, m.short_code, m.name, EXTRACT(YEAR FROM doc.made_public_date)
+),
+productivity_benchmarks AS (
+    -- Calculate productivity benchmarks per year for quartile analysis
+    SELECT
+        year,
+        PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY documents_produced) AS p25_documents,
+        PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY documents_produced) AS median_documents,
+        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY documents_produced) AS p75_documents,
+        AVG(documents_produced) AS avg_documents
+    FROM ministry_annual_metrics
+    WHERE year IS NOT NULL
+    GROUP BY year
+)
+SELECT
+    mam.org_code,
+    mam.short_code,
+    mam.name,
+    mam.year,
+    mam.documents_produced,
+    mam.propositions,
+    mam.government_bills,
+    mam.unique_contributors,
+    mam.earliest_document,
+    mam.latest_document,
+    pb.median_documents,
+    pb.avg_documents,
+    pb.p25_documents,
+    pb.p75_documents,
+    ROUND((CAST(mam.documents_produced AS NUMERIC) - pb.avg_documents) / NULLIF(pb.avg_documents, 0) * 100, 2) AS pct_vs_average,
+    
+    -- Productivity quartile classification
+    CASE
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.p75_documents THEN 'TOP_QUARTILE'
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.median_documents THEN 'ABOVE_MEDIAN'
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.p25_documents THEN 'BELOW_MEDIAN'
+        ELSE 'BOTTOM_QUARTILE'
+    END AS productivity_quartile,
+    
+    -- Performance assessment
+    CASE
+        WHEN CAST(mam.documents_produced AS NUMERIC) >= pb.p75_documents THEN 'High-performing ministry'
+        WHEN CAST(mam.documents_produced AS NUMERIC) < pb.p25_documents THEN 'Underperforming ministry - review needed'
+        ELSE 'Standard ministry performance'
+    END AS performance_assessment
+FROM ministry_annual_metrics mam
+LEFT JOIN productivity_benchmarks pb ON pb.year = mam.year
+WHERE mam.year IS NOT NULL
+ORDER BY mam.year DESC, mam.documents_produced DESC
+        ]]>
+    </createView>
+
+        <rollback>
+            <dropView viewName="view_ministry_productivity_matrix" />
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>
