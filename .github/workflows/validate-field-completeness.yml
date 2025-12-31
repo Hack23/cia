@@ -1,0 +1,79 @@
+name: Validate JSON Export Field Completeness
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - 'copilot/**'
+    paths:
+      - 'json-export-specs/schemas/**'
+      - 'service.data.impl/sample-data/**'
+      - 'json-export-specs/validate-field-completeness.sh'
+      - '.github/workflows/validate-field-completeness.yml'
+  pull_request:
+    paths:
+      - 'json-export-specs/schemas/**'
+      - 'service.data.impl/sample-data/**'
+      - 'json-export-specs/validate-field-completeness.sh'
+      - '.github/workflows/validate-field-completeness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-field-completeness:
+    name: Validate Sample Data Field Completeness
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      
+      - name: Run field completeness validation
+        id: validation
+        continue-on-error: true
+        run: |
+          chmod +x json-export-specs/validate-field-completeness.sh
+          bash json-export-specs/validate-field-completeness.sh --verbose
+      
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: field-completeness-report
+          path: json-export-specs/FIELD_COMPLETENESS_REPORT.md
+          retention-days: 14
+      
+      - name: Check validation result
+        if: steps.validation.outcome == 'failure'
+        run: |
+          echo "❌ Field completeness validation failed!"
+          echo ""
+          echo "Some JSON export schemas have missing required fields."
+          echo "Review the validation report for details."
+          echo ""
+          echo "Common causes:"
+          echo "1. New required fields added to schemas but not present in CSV files"
+          echo "2. CSV column names changed in database views"
+          echo "3. Sample CSV files not re-extracted after schema changes"
+          echo ""
+          echo "To fix:"
+          echo "1. Download FIELD_COMPLETENESS_REPORT.md from workflow artifacts (see Actions tab → this workflow run → Artifacts section)"
+          echo "2. Update database views or extraction queries based on report"
+          echo "3. Re-extract sample CSV files"
+          echo "4. Re-run validation: bash json-export-specs/validate-field-completeness.sh"
+          exit 1
+      
+      - name: Validation passed
+        if: steps.validation.outcome == 'success'
+        run: |
+          echo "✅ Field completeness validation passed!"
+          echo ""
+          echo "All JSON export schemas have complete field coverage."
+          echo "Sample CSV files contain all required fields."

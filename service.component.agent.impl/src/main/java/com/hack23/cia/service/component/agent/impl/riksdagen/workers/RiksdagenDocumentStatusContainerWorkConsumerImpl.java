@@ -75,8 +75,11 @@ MessageListener {
 			configureAuthentication();
 			updateService.updateDocumentData(riksdagenApi
 					.getDocumentStatus((String) ((ObjectMessage) message).getObject()));
-		} catch (final DataFailureException | JMSException e) {
-			LOGGER.warn("Error loading riksdagen documentstatus:", e);
+		} catch (final DataFailureException e) {
+			// Expected for non-existent documents - will retry on next scheduled run
+			LOGGER.debug("Document status not available (expected for some documents): {}", e.getMessage());
+		} catch (final JMSException e) {
+			LOGGER.warn("JMS error processing DocumentStatus", e);
 		} finally {
 			clearAuthentication();
 		}

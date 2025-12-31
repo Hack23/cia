@@ -1,0 +1,96 @@
+test_id,rule_id,rule_category,scenario_type,expected_salience,expected_severity,confidence_level,accuracy_target,rationale,related_claim
+P01-TC001,P01,Politician,BOUNDARY_CONDITION,10,MINOR,HIGH,100%,Tests exact MINOR threshold boundary (100% daily absence). Must trigger precisely at threshold to validate rule accuracy.,N/A
+P01-TC002,P01,Politician,BOUNDARY_CONDITION,50,MAJOR,HIGH,100%,Tests exact MAJOR threshold boundary (20% monthly absence). Must trigger precisely at threshold.,N/A
+P01-TC003,P01,Politician,BOUNDARY_CONDITION,100,CRITICAL,HIGH,100%,Tests lower CRITICAL threshold boundary (20% annual). Must trigger at documented threshold.,N/A
+P01-TC004,P01,Politician,BOUNDARY_CONDITION,150,CRITICAL,HIGH,100%,Tests extreme absenteeism threshold (30% annual). Must trigger at highest severity.,N/A
+P01-TC005,P01,Politician,TRUE_POSITIVE,150,CRITICAL,HIGH,100%,High absence (80%) must trigger CRITICAL. Validates severe absenteeism detection.,N/A
+P01-TC006,P01,Politician,TRUE_NEGATIVE,0,NONE,HIGH,100%,Normal attendance (5%) must NOT trigger. Validates rule specificity.,N/A
+P01-TC007,P01,Politician,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Summer recess absence should be excluded. Likely false positive requiring threshold tuning.,False Positive Rate ≤10%
+P01-TC008,P01,Politician,FALSE_NEGATIVE,50,MAJOR,MEDIUM,85%,Strategic absence (15%) may mask as acceptable. Potential false negative requiring enhanced detection.,False Negative Rate ≤15%
+P01-TC009,P01,Politician,BOUNDARY_CONDITION,0,NONE,HIGH,100%,Just below threshold (99% daily) should NOT trigger. Validates precision.,N/A
+P01-TC010,P01,Politician,BOUNDARY_CONDITION,0,NONE,HIGH,100%,Just below MAJOR threshold (19% monthly) should NOT trigger MAJOR.,N/A
+P01-TC011,P01,Politician,BOUNDARY_CONDITION,50,MAJOR,HIGH,100%,Upper MAJOR boundary (49% annual) should remain MAJOR not escalate to CRITICAL.,N/A
+P01-TC012,P01,Politician,EDGE_CASE,0,NONE,HIGH,100%,Zero votes (data quality issue) should handle gracefully without errors.,N/A
+P01-TC013,P01,Politician,EDGE_CASE,0,NONE,HIGH,100%,NULL data should handle gracefully without errors.,N/A
+P01-TC014,P01,Politician,TRUE_POSITIVE,100,CRITICAL,HIGH,87%,Pre-resignation pattern (5% → 30% over 3 months) must trigger CRITICAL. Validates 87% pre-resignation detection accuracy claim.,Pre-resignation Detection: 87% Accuracy
+P01-TC015,P01,Politician,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Election campaign absence should potentially be excluded like recess. Potential false positive.,False Positive Rate ≤10%
+P01-TC016,P01,Politician,TRUE_POSITIVE,100,CRITICAL,HIGH,100%,Extended illness absence (40% over 2 months) should trigger. Distinguishes sustained vs temporary absence.,N/A
+P01-TC017,P01,Politician,TRUE_NEGATIVE,0,NONE,MEDIUM,95%,Minister with 12% absence (dual role) should be acceptable. Validates role context handling.,N/A
+P01-TC018,P01,Politician,MULTI_TEMPORAL,100,CRITICAL,HIGH,100%,Consistent 25% absence across all temporal views should trigger CRITICAL at all levels. Validates cross-temporal consistency.,N/A
+P01-TC019,P01,Politician,TREND_ANALYSIS,50,MAJOR,HIGH,100%,Escalating trend (10% → 25% over 4 months) should trigger increasingly severe alerts. Validates trend detection framework.,N/A
+P01-TC020,P01,Politician,COMPARISON,50,MAJOR,HIGH,100%,Significant deviation from party peers (25% vs 8% avg) should trigger. Validates comparative analysis framework.,N/A
+P02-TC001,P02,Politician,BOUNDARY_CONDITION,10,MINOR,HIGH,100%,Exact 5% rebel threshold should trigger MINOR (salience 10).,N/A
+P02-TC002,P02,Politician,BOUNDARY_CONDITION,50,MAJOR,HIGH,100%,Exact 10% rebel threshold should trigger MAJOR (salience 50).,N/A
+P02-TC003,P02,Politician,BOUNDARY_CONDITION,100,CRITICAL,HIGH,100%,Exact 20% rebel threshold should trigger CRITICAL (salience 100).,N/A
+P02-TC004,P02,Politician,TRUE_POSITIVE,100,CRITICAL,HIGH,100%,High rebel rate (25%) indicates party crisis. Must trigger CRITICAL.,N/A
+P02-TC005,P02,Politician,TRUE_NEGATIVE,0,NONE,HIGH,100%,Loyal party member (2% rebel) should NOT trigger. Validates high discipline detection.,N/A
+P02-TC006,P02,Politician,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Coalition formation rebel votes may be strategic. Potential false positive during negotiation periods.,False Positive Rate ≤10%
+P02-TC007,P02,Politician,FALSE_NEGATIVE,50,MAJOR,MEDIUM,85%,Principled dissent (12% issue-specific) may mask as disloyalty. Potential false negative requiring context analysis.,False Negative Rate ≤15%
+P03-TC001,P03,Politician,BOUNDARY_CONDITION,10,MINOR,HIGH,100%,Exactly 5 documents (MINOR threshold) should trigger salience 10.,N/A
+P03-TC002,P03,Politician,BOUNDARY_CONDITION,50,MAJOR,HIGH,100%,Zero documents (MAJOR threshold) should trigger salience 50.,N/A
+P03-TC003,P03,Politician,BOUNDARY_CONDITION,100,CRITICAL,HIGH,100%,Average 3 docs/year over 2+ years (CRITICAL threshold) should trigger salience 100.,N/A
+P03-TC004,P03,Politician,TRUE_POSITIVE,50,MAJOR,HIGH,100%,New politician with zero documents should trigger MAJOR.,N/A
+P03-TC005,P03,Politician,TRUE_NEGATIVE,0,NONE,HIGH,100%,Active legislator (20 docs/year) should NOT trigger.,N/A
+P03-TC006,P03,Politician,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Minister with 3 documents (government work focus) may false positive. Requires role context.,False Positive Rate ≤10%
+P03-TC007,P03,Politician,FALSE_NEGATIVE,100,CRITICAL,MEDIUM,85%,Committee chair with 4 documents (leadership work) may false negative. Leadership quality not measured in document counts.,False Negative Rate ≤15%
+P09-TC001,P09,Politician,TRUE_POSITIVE,100,CRITICAL,HIGH,87%,Combined decline (attendance drop 15% + productivity decline 20%) signals pre-resignation. Validates 87% pre-resignation accuracy claim.,Pre-resignation Detection: 87% Accuracy
+P09-TC002,P09,Politician,TRUE_POSITIVE,50,MAJOR,HIGH,100%,Monthly absence >10% worse than annual baseline indicates worsening performance. Should trigger MAJOR.,N/A
+P09-TC003,P09,Politician,TRUE_NEGATIVE,0,NONE,HIGH,100%,Stable performance across metrics should NOT trigger. Validates consistency detection.,N/A
+P09-TC004,P09,Politician,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Temporary illness absence (recovers next month) should NOT trigger long-term decline. Potential false positive.,False Positive Rate ≤10%
+P09-TC005,P09,Politician,FALSE_NEGATIVE,50,MAJOR,MEDIUM,85%,Gradual decline over 6 months may stay below monthly threshold. Potential false negative for slow deterioration.,False Negative Rate ≤15%
+PA01-TC001,PA01,Party,BOUNDARY_CONDITION,50,MAJOR,HIGH,100%,Party with exactly 20% absence rate should trigger MAJOR threshold.,N/A
+PA01-TC002,PA01,Party,TRUE_POSITIVE,100,CRITICAL,HIGH,100%,Opposition boycott (35% absence) indicates strategic absence. Should trigger CRITICAL.,N/A
+PA01-TC003,PA01,Party,TRUE_NEGATIVE,0,NONE,HIGH,100%,Government party with normal attendance (8%) should NOT trigger.,N/A
+PA01-TC004,PA01,Party,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Summer recess absence should be excluded. Potential false positive requiring seasonal handling.,False Positive Rate ≤10%
+PA01-TC005,PA01,Party,FALSE_NEGATIVE,50,MAJOR,MEDIUM,85%,Selective absence (18% targeted) may mask as acceptable. Potential false negative.,False Negative Rate ≤15%
+PA02-TC001,PA02,Party,TRUE_POSITIVE,75,MAJOR,HIGH,78%,Rapid decline (45% → 25% win rate over 3 months) signals coalition stress. Validates 78% coalition stress detection accuracy claim.,Coalition Stress Detection: 78% Accuracy
+PA02-TC002,PA02,Party,TRUE_NEGATIVE,0,NONE,HIGH,100%,Stable party performance should NOT trigger. Validates consistency.,N/A
+PA02-TC003,PA02,Party,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Opposition party win rate drop is structural not behavioral. Potential false positive requiring context.,False Positive Rate ≤10%
+PA02-TC004,PA02,Party,FALSE_NEGATIVE,75,MAJOR,MEDIUM,85%,Gradual decline over 12 months may stay below quarterly threshold. Potential false negative for slow deterioration.,False Negative Rate ≤15%
+C01-TC001,C01,Committee,BOUNDARY_CONDITION,10,MINOR,HIGH,100%,Exactly 5 documents/year (MINOR threshold) should trigger salience 10.,N/A
+C01-TC002,C01,Committee,TRUE_POSITIVE,100,CRITICAL,HIGH,100%,Zero documents in 6 months indicates gridlock. Should trigger CRITICAL.,N/A
+C01-TC003,C01,Committee,TRUE_NEGATIVE,0,NONE,HIGH,100%,Active committee (50 docs/year) should NOT trigger.,N/A
+C01-TC004,C01,Committee,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Specialized committee (8 docs, quality over quantity) may false positive. Requires specialization context.,False Positive Rate ≤10%
+C01-TC005,C01,Committee,FALSE_NEGATIVE,10,MINOR,MEDIUM,85%,Committee with 6 documents (just above threshold) masks declining productivity. Potential false negative.,False Negative Rate ≤15%
+M01-TC001,M01,Ministry,BOUNDARY_CONDITION,50,MAJOR,HIGH,100%,Exactly 10 documents/year (MAJOR threshold) should trigger salience 50.,N/A
+M01-TC002,M01,Ministry,TRUE_POSITIVE,100,CRITICAL,HIGH,82%,Zero legislative initiatives in 6 months signals implementation failure. Validates 82% ministry decline prediction accuracy claim.,Ministry Decline Prediction: 82% Accuracy
+M01-TC003,M01,Ministry,TRUE_NEGATIVE,0,NONE,HIGH,100%,Productive ministry (100 docs/year) should NOT trigger.,N/A
+M01-TC004,M01,Ministry,FALSE_POSITIVE,0,NONE,MEDIUM,90%,New ministry in first quarter (ramp-up period) may false positive. Requires transition context.,False Positive Rate ≤10%
+M01-TC005,M01,Ministry,FALSE_NEGATIVE,50,MAJOR,MEDIUM,85%,Ministry with 11 documents (just above threshold) masks declining effectiveness. Potential false negative.,False Negative Rate ≤15%
+D01-TC001,D01,Decision,BOUNDARY_CONDITION,60,MAJOR,HIGH,100%,Exactly 30% approval for 3 months should trigger MAJOR (salience 60).,N/A
+D01-TC002,D01,Decision,BOUNDARY_CONDITION,0,NONE,HIGH,100%,Intermittent low approval (2 months then recovery) should NOT trigger. Requires 3 consecutive months.,N/A
+D01-TC003,D01,Decision,TRUE_POSITIVE,60,MAJOR,HIGH,100%,Sustained low approval (18% for 6 months) indicates marginalization. Should trigger MAJOR.,N/A
+D01-TC004,D01,Decision,TRUE_NEGATIVE,0,NONE,HIGH,100%,High approval (65%) should NOT trigger. Validates normal government performance.,N/A
+D01-TC005,D01,Decision,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Low approval during coalition negotiation may be strategic. Potential false positive requiring context.,False Positive Rate ≤10%
+D01-TC006,D01,Decision,FALSE_NEGATIVE,60,MAJOR,MEDIUM,85%,31% approval (just above 30% threshold) for 3 months masks ineffectiveness. Consider lowering threshold to 35%?,False Negative Rate ≤15%
+D01-TC007,D01,Decision,BOUNDARY_CONDITION,60,MAJOR,HIGH,100%,Declining trend reaching threshold in month 3 (45% → 28%) should trigger.,N/A
+D01-TC008,D01,Decision,EDGE_CASE,0,NONE,MEDIUM,95%,New party with no historical data (first 3 months). Should first 6 months be excluded?,N/A
+D01-TC009,D01,Decision,COMPARISON,60,MAJOR,HIGH,100%,Significant deviation from average (28% vs 55%) for 4 months should trigger. Validates comparative framework.,N/A
+D01-TC010,D01,Decision,MULTI_FACTOR,80,MAJOR,HIGH,100%,Low approval (25%) + high rejection (70%) indicates active but marginalized. More severe than low approval alone?,N/A
+D01-TC011,D01,Decision,SEASONAL,60,MAJOR,MEDIUM,95%,Should summer recess months be excluded from consecutive month calculation? Tests seasonal handling.,N/A
+D01-TC012,D01,Decision,COALITION_CONTEXT,80,MAJOR,HIGH,100%,Coalition government party with 27% approval signals severe friction. Consider severity boost for government parties?,N/A
+D02-TC001,D02,Decision,BOUNDARY_CONDITION,40,MINOR,HIGH,100%,Exactly 20% approval on 10 proposals should trigger MINOR (salience 40).,N/A
+D02-TC002,D02,Decision,BOUNDARY_CONDITION,40,MINOR,HIGH,100%,19% approval on 15 proposals (just below 20%) should still trigger MINOR.,N/A
+D02-TC003,D02,Decision,TRUE_POSITIVE,40,MINOR,HIGH,100%,Very low approval (8% on 20 proposals) indicates legislative failure. Should trigger MINOR.,N/A
+D02-TC004,D02,Decision,TRUE_NEGATIVE,0,NONE,HIGH,100%,Effective politician (75% approval on 25 proposals) should NOT trigger.,N/A
+D02-TC005,D02,Decision,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Opposition politician (18% approval) has structurally lower rates. Potential false positive requiring context.,False Positive Rate ≤10%
+D02-TC006,D02,Decision,FALSE_NEGATIVE,0,NONE,MEDIUM,85%,Insufficient sample (21% on 9 proposals) should NOT trigger. Requires minimum 10 proposals for significance.,False Negative Rate ≤15%
+D03-TC001,D03,Decision,BOUNDARY_CONDITION,75,MAJOR,HIGH,100%,Exactly 20 percentage point decline QoQ should trigger MAJOR (salience 75).,N/A
+D03-TC002,D03,Decision,BOUNDARY_CONDITION,75,MAJOR,HIGH,100%,30 percentage point decline QoQ (extreme) should trigger MAJOR (or higher?).,N/A
+D03-TC003,D03,Decision,TRUE_POSITIVE,75,MAJOR,HIGH,82%,Rapid decline (70% → 35%) indicates coalition friction. Validates 82% ministry decline prediction accuracy claim.,Ministry Decline Prediction: 82% Accuracy
+D03-TC004,D03,Decision,TRUE_NEGATIVE,0,NONE,HIGH,100%,Stable ministry (80% approval) should NOT trigger.,N/A
+D03-TC005,D03,Decision,FALSE_POSITIVE,0,NONE,MEDIUM,90%,New minister first quarter adjustment may false positive. Requires transition period exclusion.,False Positive Rate ≤10%
+D03-TC006,D03,Decision,FALSE_NEGATIVE,75,MAJOR,MEDIUM,85%,18 percentage point decline (just below 20% threshold) masks significant decline. Consider lowering threshold?,False Negative Rate ≤15%
+D04-TC001,D04,Decision,BOUNDARY_CONDITION,50,MAJOR,HIGH,100%,Z-score exactly +2 (2 std dev above mean) should trigger MAJOR anomaly.,N/A
+D04-TC002,D04,Decision,BOUNDARY_CONDITION,50,MAJOR,HIGH,100%,Z-score exactly -2 (2 std dev below mean) should trigger MAJOR anomaly.,N/A
+D04-TC003,D04,Decision,TRUE_POSITIVE,50,MAJOR,HIGH,100%,Crisis surge (z-score +3.5) indicates emergency legislation. Should trigger MAJOR.,N/A
+D04-TC004,D04,Decision,TRUE_POSITIVE,50,MAJOR,HIGH,100%,Paralysis (z-score -3) indicates gridlock. Should trigger MAJOR.,N/A
+D04-TC005,D04,Decision,TRUE_NEGATIVE,0,NONE,HIGH,100%,Normal volume (within 1 std dev) should NOT trigger.,N/A
+D04-TC006,D04,Decision,FALSE_POSITIVE,0,NONE,MEDIUM,90%,Pre-recess surge (z-score +2.5) is expected pattern. Should be excluded. Potential false positive.,False Positive Rate ≤10%
+D04-TC007,D04,Decision,FALSE_NEGATIVE,50,MAJOR,MEDIUM,85%,Gradual decline over 3 months (each day normal) may miss slow deterioration. Potential false negative.,False Negative Rate ≤15%
+D05-TC001,D05,Decision,BOUNDARY_CONDITION,80,MAJOR,HIGH,100%,Exactly 60% alignment over 30 days should trigger MAJOR (salience 80).,N/A
+D05-TC002,D05,Decision,BOUNDARY_CONDITION,80,MAJOR,HIGH,100%,58% alignment (just below 60%) should trigger MAJOR.,N/A
+D05-TC003,D05,Decision,TRUE_POSITIVE,80,MAJOR,HIGH,78%,Severe misalignment (35%) signals coalition breakdown. Validates 78% coalition stress detection accuracy claim.,Coalition Stress Detection: 78% Accuracy
+D05-TC004,D05,Decision,TRUE_NEGATIVE,0,NONE,HIGH,100%,Strong coalition (85% alignment) should NOT trigger.,N/A
+D05-TC005,D05,Decision,FALSE_POSITIVE,0,NONE,MEDIUM,90%,55% alignment during budget negotiation may be temporary. Potential false positive requiring negotiation context.,False Positive Rate ≤10%
+D05-TC006,D05,Decision,FALSE_NEGATIVE,80,MAJOR,MEDIUM,85%,Declining from 75% to 62% over 6 months (slow deterioration) stays just above threshold. Potential false negative.,False Negative Rate ≤15%
