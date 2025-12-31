@@ -117,7 +117,7 @@ validate_schema() {
         
         # Check each required field
         for field in "${fields[@]}"; do
-            if ! echo "$csv_columns" | grep -q "^${field}$"; then
+            if ! grep -qFx -- "$field" <<< "$csv_columns"; then
                 missing_fields+=("$field")
                 ((missing_count++))
             fi
@@ -314,7 +314,10 @@ DETAIL_NOCSV
     if [[ -n "${MISSING_FIELDS_LIST[$i]:-}" ]]; then
         echo "**Missing Required Fields (${MISSING_COUNTS[$i]}):**" >> "$OUTPUT_FILE"
         echo "" >> "$OUTPUT_FILE"
-        IFS=',' read -ra missing <<< "${MISSING_FIELDS_LIST[$i]}"
+        old_ifs="$IFS"
+        IFS=','
+        read -ra missing <<< "${MISSING_FIELDS_LIST[$i]}"
+        IFS="$old_ifs"
         for field in "${missing[@]}"; do
             echo "- \`$field\`" >> "$OUTPUT_FILE"
         done

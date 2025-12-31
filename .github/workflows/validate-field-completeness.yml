@@ -64,8 +64,8 @@ jobs:
           echo "3. Sample CSV files not re-extracted after schema changes"
           echo ""
           echo "To fix:"
-          echo "1. Review FIELD_COMPLETENESS_REPORT.md in the artifacts"
-          echo "2. Update database views or extraction queries"
+          echo "1. Download FIELD_COMPLETENESS_REPORT.md from workflow artifacts (see Actions tab → this workflow run → Artifacts section)"
+          echo "2. Update database views or extraction queries based on report"
           echo "3. Re-extract sample CSV files"
           echo "4. Re-run validation: bash json-export-specs/validate-field-completeness.sh"
           exit 1
