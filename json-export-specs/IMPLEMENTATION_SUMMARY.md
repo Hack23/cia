@@ -86,7 +86,7 @@ Successfully implemented automated validation of 5 JSON export schemas against 1
 | **Politician** | 45 | 7 | 34 | Add 20 database columns |
 | **Party** | 42 | 11 | 39 | Add 20 database columns |
 | **Committee** | 26 | 10 | 24 | Add 20 database columns |
-| **Ministry** | 29 | 6 | 28 | Add 20 database columns |
+| **Ministry** | 29 | 2 | 28 | Add 20 database columns |
 | **Intelligence** | 0 | 4 | 0 | Define fields |
 
 ### Key Findings

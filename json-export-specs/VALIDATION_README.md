@@ -124,7 +124,7 @@ The tool infers column data types from sample data:
 | Politician | 45 | 7 | 34 | ⚠️ REVIEW |
 | Party | 42 | 11 | 39 | ⚠️ REVIEW |
 | Committee | 26 | 10 | 24 | ⚠️ REVIEW |
-| Ministry | 29 | 6 | 27 | ⚠️ REVIEW |
+| Ministry | 29 | 2 | 28 | ⚠️ REVIEW |
 | Intelligence | 0 | 4 | 0 | ✅ PASS |
 
 ### Common Issues Found
