@@ -218,7 +218,7 @@ total_completeness=0
 
 for i in "${!MISSING_COUNTS[@]}"; do
     if [[ ${MISSING_COUNTS[$i]} -eq 0 ]]; then
-        ((complete_schemas++))
+        complete_schemas=$((complete_schemas + 1))
     fi
     total_completeness=$((total_completeness + ${COMPLETENESS[$i]}))
 done
