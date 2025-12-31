@@ -304,12 +304,12 @@ class SchemaValidator:
         
         for field in schema_fields:
             # Try various naming conventions (using set to avoid duplicates)
-            possible_names = list(set([
+            possible_names = list({
                 field,
                 self._camel_to_snake(field),
                 field.lower(),
                 field.upper()
-            ]))
+            })
             
             matched = False
             for possible_name in possible_names:
