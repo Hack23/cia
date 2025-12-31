@@ -70,9 +70,9 @@ get_csv_columns() {
     fi
     local header
     header="$(head -n 1 "$csv_file")"
-    # Basic validation: warn if header contains quoted fields, which may include commas.
-    if [[ "$header" == *\"* ]]; then
-        >&2 echo -e "${YELLOW}Warning:${NC} CSV header in '$csv_file' contains quoted fields; simple CSV parsing may mis-handle commas inside quotes."
+    # Basic validation: warn if header contains quoted fields that include commas.
+    if [[ "$header" =~ \"[^\"]*,[^\"]*\" ]]; then
+        >&2 echo -e "${YELLOW}Warning:${NC} CSV header in '$csv_file' contains quoted fields with commas; simple CSV parsing may mis-handle these fields."
     fi
     printf '%s\n' "$header" | tr ',' '\n' | sort
 }
@@ -314,10 +314,10 @@ DETAIL_NOCSV
     if [[ -n "${MISSING_FIELDS_LIST[$i]:-}" ]]; then
         echo "**Missing Required Fields (${MISSING_COUNTS[$i]}):**" >> "$OUTPUT_FILE"
         echo "" >> "$OUTPUT_FILE"
-        old_ifs="$IFS"
+        local saved_ifs="$IFS"
         IFS=','
         read -ra missing <<< "${MISSING_FIELDS_LIST[$i]}"
-        IFS="$old_ifs"
+        IFS="$saved_ifs"
         for field in "${missing[@]}"; do
             echo "- \`$field\`" >> "$OUTPUT_FILE"
         done
