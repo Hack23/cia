@@ -121,8 +121,8 @@ The tool infers column data types from sample data:
 
 | Schema | Fields Defined | Views Matched | Field Mismatches | Status |
 |--------|----------------|---------------|------------------|--------|
-| Politician | 45 | 7 | 35 | ⚠️ REVIEW |
-| Party | 42 | 11 | 40 | ⚠️ REVIEW |
+| Politician | 45 | 7 | 34 | ⚠️ REVIEW |
+| Party | 42 | 11 | 39 | ⚠️ REVIEW |
 | Committee | 26 | 10 | 24 | ⚠️ REVIEW |
 | Ministry | 29 | 6 | 27 | ⚠️ REVIEW |
 | Intelligence | 0 | 4 | 0 | ✅ PASS |

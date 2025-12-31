@@ -46,7 +46,7 @@ Successfully implemented automated validation of 5 JSON export schemas against 1
 
 ### 2. GitHub Actions Workflow
 **File:** `.github/workflows/validate-json-schemas.yml`
-- **Lines:** 209
+- **Lines:** 207
 - **Triggers:**
   - Push to schema files
   - Pull requests
@@ -60,10 +60,10 @@ Successfully implemented automated validation of 5 JSON export schemas against 1
 
 ### 3. Documentation
 **Files Created:**
-- `VALIDATION_README.md` (214 lines) - Tool documentation
+- `VALIDATION_README.md` (232 lines) - Tool documentation
 - `FIELD_MAPPING.md` (284 lines) - Field mappings
-- `SCHEMA_VALIDATION_REPORT.md` (362 lines) - Validation findings
-- `validation-results.json` (1,209 lines) - Machine-readable results
+- `SCHEMA_VALIDATION_REPORT.md` (364 lines) - Validation findings
+- `validation-results.json` (1,194 lines) - Machine-readable results
 
 **Files Updated:**
 - `json-export-specs/README.md` - Added validation status section
@@ -83,8 +83,8 @@ Successfully implemented automated validation of 5 JSON export schemas against 1
 
 | Schema | Fields Defined | Views Matched | Mismatches | Recommendations |
 |--------|----------------|---------------|------------|-----------------|
-| **Politician** | 45 | 7 | 35 | Add 20 database columns |
-| **Party** | 42 | 11 | 40 | Add 20 database columns |
+| **Politician** | 45 | 7 | 34 | Add 20 database columns |
+| **Party** | 42 | 11 | 39 | Add 20 database columns |
 | **Committee** | 26 | 10 | 24 | Add 20 database columns |
 | **Ministry** | 29 | 6 | 28 | Add 20 database columns |
 | **Intelligence** | 0 | 4 | 0 | Define fields |
@@ -223,7 +223,7 @@ python3 validate_schemas.py
 ## Future Recommendations
 
 ### Short-term (Next Sprint)
-1. Review and address 127 field mismatches
+1. Review and address 125 field mismatches
 2. Add missing database columns to schemas
 3. Update view references in documentation
 4. Define fields for Intelligence schema
