@@ -34,3 +34,12 @@ json-export-specs/__pycache__/
 
 # Backup files
 *.bak
+*~
+
+# Temporary report files (prefer living documentation)
+*_SUMMARY.md
+*_FIXES_*.md
+
+# Generated validation reports
+json-export-specs/FIELD_COMPLETENESS_REPORT.md
+*.bak
