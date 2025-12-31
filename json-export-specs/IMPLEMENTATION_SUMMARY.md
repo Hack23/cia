@@ -9,7 +9,7 @@
 ## Executive Summary
 
 Successfully implemented automated validation of 5 JSON export schemas against 142 real CSV sample data files. The solution includes:
-- Automated validation script (Python, 506 lines)
+- Automated validation script (Python, 568 lines)
 - Continuous integration via GitHub Actions
 - Comprehensive documentation and field mappings
 - Quality gates for schema changes
@@ -75,7 +75,7 @@ Successfully implemented automated validation of 5 JSON export schemas against 1
 ### Summary Statistics
 - **Schemas Validated:** 5 of 5 (100%)
 - **Sample Files Analyzed:** 132 of 142 (93%)
-- **Total Field Mismatches:** 127
+- **Total Field Mismatches:** 125
 - **Missing Views:** 8
 - **New Columns Identified:** ~100
 
@@ -83,8 +83,8 @@ Successfully implemented automated validation of 5 JSON export schemas against 1
 
 | Schema | Fields Defined | Views Matched | Mismatches | Recommendations |
 |--------|----------------|---------------|------------|-----------------|
-| **Politician** | 46 | 7 | 35 | Add 20 database columns |
-| **Party** | 43 | 11 | 40 | Add 20 database columns |
+| **Politician** | 45 | 7 | 35 | Add 20 database columns |
+| **Party** | 42 | 11 | 40 | Add 20 database columns |
 | **Committee** | 26 | 10 | 24 | Add 20 database columns |
 | **Ministry** | 29 | 6 | 28 | Add 20 database columns |
 | **Intelligence** | 0 | 4 | 0 | Define fields |

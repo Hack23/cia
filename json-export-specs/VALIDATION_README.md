@@ -117,12 +117,12 @@ The tool infers column data types from sample data:
 
 **Schemas Validated:** 5
 **Sample Files Analyzed:** 132 of 142
-**Total Field Mismatches:** 126
+**Total Field Mismatches:** 125
 
 | Schema | Fields Defined | Views Matched | Field Mismatches | Status |
 |--------|----------------|---------------|------------------|--------|
-| Politician | 46 | 7 | 35 | ⚠️ REVIEW |
-| Party | 43 | 11 | 40 | ⚠️ REVIEW |
+| Politician | 45 | 7 | 35 | ⚠️ REVIEW |
+| Party | 42 | 11 | 40 | ⚠️ REVIEW |
 | Committee | 26 | 10 | 24 | ⚠️ REVIEW |
 | Ministry | 29 | 6 | 27 | ⚠️ REVIEW |
 | Intelligence | 0 | 4 | 0 | ✅ PASS |
