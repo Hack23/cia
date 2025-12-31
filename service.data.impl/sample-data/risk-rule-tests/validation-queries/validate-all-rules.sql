@@ -474,10 +474,9 @@ FROM temp_validation_results;
 \echo ''
 \echo 'Test Results by Rule Category:'
 SELECT 
-    LEFT(rule_id, 1) AS rule_category,
     CASE 
-        WHEN LEFT(rule_id, 1) = 'P' THEN 'Politician Rules'
         WHEN LEFT(rule_id, 2) = 'PA' THEN 'Party Rules'
+        WHEN LEFT(rule_id, 1) = 'P' THEN 'Politician Rules'
         WHEN LEFT(rule_id, 1) = 'C' THEN 'Committee Rules'
         WHEN LEFT(rule_id, 1) = 'M' THEN 'Ministry Rules'
         WHEN LEFT(rule_id, 1) = 'D' THEN 'Decision Pattern Rules'
@@ -488,8 +487,16 @@ SELECT
     SUM(CASE WHEN NOT test_passed THEN 1 ELSE 0 END) AS failed,
     ROUND(100.0 * SUM(CASE WHEN test_passed THEN 1 ELSE 0 END) / COUNT(*), 2) AS pass_rate
 FROM temp_validation_results
-GROUP BY LEFT(rule_id, 1), LEFT(rule_id, 2)
-ORDER BY rule_category;
+GROUP BY 
+    CASE 
+        WHEN LEFT(rule_id, 2) = 'PA' THEN 'Party Rules'
+        WHEN LEFT(rule_id, 1) = 'P' THEN 'Politician Rules'
+        WHEN LEFT(rule_id, 1) = 'C' THEN 'Committee Rules'
+        WHEN LEFT(rule_id, 1) = 'M' THEN 'Ministry Rules'
+        WHEN LEFT(rule_id, 1) = 'D' THEN 'Decision Pattern Rules'
+        ELSE 'Other Rules'
+    END
+ORDER BY category_name;
 
 \echo ''
 \echo 'Test Results by Scenario Type:'
