@@ -327,27 +327,27 @@ bash validate-field-completeness.sh --verbose
 Each JSON schema maps to specific database views and tables:
 
 #### Politician Schema
-- **Primary CSV**: `view_riksdagen_politician_sample.csv` (50 rows, 53 columns)
+- **Primary CSV**: `view_riksdagen_politician_sample.csv` (sample extract; row counts may vary, column structure validated by CI)
 - **Required Fields**: person_id, first_name, last_name, party, born_year, gender, total_days_served, active, and 13 more
 - **Additional CSVs**: view_riksdagen_vote_data_ballot_politician_summary_sample.csv, view_riksdagen_politician_document_summary_sample.csv
 
 #### Party Schema
-- **Primary CSV**: `view_riksdagen_party_sample.csv` (12 rows, 17 columns)
+- **Primary CSV**: `view_riksdagen_party_sample.csv` (sample extract; row counts may vary, column structure validated by CI)
 - **Required Fields**: party_id, party_name, head_count, total_documents, documents_last_year, registered_date
 - **Additional CSVs**: view_riksdagen_party_summary_sample.csv, view_riksdagen_party_ballot_support_annual_summary_sample.csv
 
 #### Committee Schema
-- **Primary CSV**: `view_riksdagen_committee_sample.csv` (28 rows, 19 columns)
+- **Primary CSV**: `view_riksdagen_committee_sample.csv` (sample extract; row counts may vary, column structure validated by CI)
 - **Required Fields**: embedded_id_org_code, current_member_size, active, total_documents, total_assignments, first/last_assignment_date
 - **Additional CSVs**: view_committee_productivity_sample.csv
 
 #### Ministry Schema
-- **Primary CSV**: `view_riksdagen_goverment_sample.csv` (20 rows, 13 columns)
+- **Primary CSV**: `view_riksdagen_goverment_sample.csv` (sample extract; row counts may vary, column structure validated by CI)
 - **Required Fields**: name_id, active, current_member_size, total_documents, total_propositions, total_government_bills, first/last_assignment_date
 - **Additional CSVs**: view_ministry_decision_impact_sample.csv
 
 #### Intelligence Schema
-- **Primary CSV**: `table_rule_violation_sample.csv` (50 rows, 10 columns)
+- **Primary CSV**: `table_rule_violation_sample.csv` (sample extract; row counts may vary, column structure validated by CI)
 - **Required Fields**: rule_name, reference_id, resource_type, status, name, rule_description, rule_group, detected_date, positive
 - **Additional CSVs**: view_riksdagen_politician_summary_sample.csv, view_riksdagen_party_summary_sample.csv, and decision flow views
 

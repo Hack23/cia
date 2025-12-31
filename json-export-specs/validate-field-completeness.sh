@@ -59,6 +59,9 @@ PRIMARY_CSVS[intelligence]="table_rule_violation_sample.csv"
 REQUIRED_FIELDS[intelligence]="rule_name,reference_id,resource_type,status,name,rule_description,rule_group,detected_date,positive"
 
 # Function to get CSV columns
+# Note: Uses simple comma delimiter split, which works for snake_case column names
+# without quotes. Does not handle CSV headers with quoted fields containing commas.
+# Current sample CSVs use simple column naming and don't require complex CSV parsing.
 get_csv_columns() {
     local csv_file="$1"
     if [[ ! -f "$csv_file" ]]; then
@@ -103,7 +106,8 @@ validate_schema() {
         # Get CSV columns
         csv_columns=$(get_csv_columns "$csv_path")
         row_count=$(count_csv_rows "$csv_path")
-        col_count=$(echo "$csv_columns" | wc -l)
+        # Count non-empty lines only to avoid off-by-one errors
+        col_count=$(echo "$csv_columns" | grep -c -v '^$' || true)
         
         # Check each required field
         for field in "${fields[@]}"; do
