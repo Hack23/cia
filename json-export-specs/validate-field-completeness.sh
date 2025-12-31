@@ -234,14 +234,17 @@ else
 fi
 
 # Generate markdown report
-{
-cat << 'REPORT_START'
+cat > "$OUTPUT_FILE" << 'REPORT_HEADER'
 # Field Completeness Validation Report
 
-REPORT_START
-echo "**Generated:** $(date +%Y-%m-%d)"
-echo ""
-cat << 'REPORT_OVERVIEW'
+REPORT_HEADER
+
+# Add dynamic date
+echo "**Generated:** $(date +%Y-%m-%d)" >> "$OUTPUT_FILE"
+echo "" >> "$OUTPUT_FILE"
+
+# Add rest of header
+cat >> "$OUTPUT_FILE" << 'REPORT_OVERVIEW'
 **Purpose:** Validate sample CSV data completeness for JSON export schemas
 
 ## Overview
@@ -253,7 +256,6 @@ This report validates that sample CSV files contain the required fields to suppo
 | Schema | Primary CSV | Rows | Required Fields | Missing | Completeness |
 |--------|-------------|------|----------------|---------|-------------|
 REPORT_OVERVIEW
-} > "$OUTPUT_FILE"
 
 # Add table rows
 for i in "${!SCHEMA_NAMES[@]}"; do
