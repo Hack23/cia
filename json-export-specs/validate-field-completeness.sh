@@ -68,7 +68,13 @@ get_csv_columns() {
         echo ""
         return
     fi
-    head -n 1 "$csv_file" | tr ',' '\n' | sort
+    local header
+    header="$(head -n 1 "$csv_file")"
+    # Basic validation: warn if header contains quoted fields, which may include commas.
+    if [[ "$header" == *\"* ]]; then
+        >&2 echo -e "${YELLOW}Warning:${NC} CSV header in '$csv_file' contains quoted fields; simple CSV parsing may mis-handle commas inside quotes."
+    fi
+    printf '%s\n' "$header" | tr ',' '\n' | sort
 }
 
 # Function to count rows in CSV
@@ -136,7 +142,11 @@ validate_schema() {
     COMPLETENESS+=("$completeness")
     
     # Store missing fields as string
-    local missing_str=$(IFS=','; echo "${missing_fields[*]}")
+    local missing_str
+    local old_ifs="$IFS"
+    IFS=','
+    missing_str="${missing_fields[*]}"
+    IFS="$old_ifs"
     MISSING_FIELDS_LIST+=("$missing_str")
     
     # Store CSV existence

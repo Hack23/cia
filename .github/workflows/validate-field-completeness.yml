@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - develop
-      - 'copilot/validate-sample-data-completeness'
+      - 'copilot/**'
     paths:
       - 'json-export-specs/schemas/**'
       - 'service.data.impl/sample-data/**'
