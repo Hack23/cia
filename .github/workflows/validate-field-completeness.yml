@@ -5,7 +5,7 @@ on:
     branches:
       - master
       - develop
-      - 'copilot/**'
+      - 'copilot/validate-sample-data-completeness'
     paths:
       - 'json-export-specs/schemas/**'
       - 'service.data.impl/sample-data/**'
@@ -48,7 +48,7 @@ jobs:
         with:
           name: field-completeness-report
           path: json-export-specs/FIELD_COMPLETENESS_REPORT.md
-          retention-days: 30
+          retention-days: 14
       
       - name: Check validation result
         if: steps.validation.outcome == 'failure'

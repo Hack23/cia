@@ -106,8 +106,8 @@ validate_schema() {
         # Get CSV columns
         csv_columns=$(get_csv_columns "$csv_path")
         row_count=$(count_csv_rows "$csv_path")
-        # Count non-empty lines only to avoid off-by-one errors
-        col_count=$(echo "$csv_columns" | grep -c -v '^$' || true)
+        # Count non-empty, trimmed lines only to avoid off-by-one errors
+        col_count=$(printf '%s\n' "$csv_columns" | awk 'NF > 0 {c++} END {print c+0}')
         
         # Check each required field
         for field in "${fields[@]}"; do

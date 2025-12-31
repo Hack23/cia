@@ -320,7 +320,7 @@ bash validate-field-completeness.sh --verbose
 | ministry-schema.md | view_riksdagen_goverment_sample.csv | 8 fields | ✅ 100% |
 | intelligence-schema.md | table_rule_violation_sample.csv | 9 fields | ✅ 100% |
 
-**Overall Completeness**: 100% (51/51 required fields present)
+**Overall Completeness**: 100% (all required fields present across all schemas)
 
 ### Schema-to-CSV Mappings
 
