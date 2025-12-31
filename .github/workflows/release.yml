@@ -36,7 +36,7 @@ jobs:
 
     steps:
     - name: Harden Runner
-      uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+      uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
       with:
         egress-policy: block
         allowed-endpoints: >
@@ -79,12 +79,12 @@ jobs:
           release-assets.githubusercontent.com:443
 
     - name: Checkout repository
-      uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+      uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       with:
         fetch-depth: 2
 
     - name: Set up JDK 25
-      uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
+      uses: actions/setup-java@f2beeb24e141e01a676f977032f5a29d81c9e27e # v5.1.0
       with:
         distribution: 'temurin'
         java-version: '25'
@@ -94,6 +94,24 @@ jobs:
         server-id: 'github' # Optional: For GitHub Packages authentication
         architecture: 'x64'  # Explicitly specify architecture
 
+    - name: Cache Maven and Sonar artifacts
+      uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+      with:
+        path: |
+          ~/.m2/repository
+          ~/.sonar/cache
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+
+    - name: Cache APT packages
+      uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+      with:
+        path: /var/cache/apt/archives
+        key: ${{ runner.os }}-apt-${{ hashFiles('.github/workflows/release.yml') }}
+        restore-keys: |
+          ${{ runner.os }}-apt-
+
     - name: APT update
       run: sudo apt-get update
 
@@ -101,7 +119,7 @@ jobs:
       run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget
 
     - name: Install PostgreSQL
-      run: sudo apt-get install -y postgresql-16 postgresql-contrib-16 postgresql-16-pgaudit
+      run: sudo apt-get install -y postgresql-16 postgresql-contrib-16 postgresql-16-pgaudit postgresql-16-pgvector
 
     - name: Configure PostgreSQL
       run: |
@@ -111,7 +129,27 @@ jobs:
         echo "pgaudit.log = ddl" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
         echo "pg_stat_statements.track = all" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
         echo "pg_stat_statements.max = 10000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-        
+
+        # Performance optimization settings per README-SCHEMA-MAINTENANCE.md
+        # Memory settings (adjusted for GitHub Actions ~7GB RAM, lower than production recommendations)
+        echo "shared_buffers = '1GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "effective_cache_size = '4GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "work_mem = '32MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "maintenance_work_mem = '256MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
+        # Checkpoint settings for write performance
+        echo "checkpoint_completion_target = 0.9" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "wal_buffers = '16MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "max_wal_size = '2GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "min_wal_size = '512MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
+        # Query planning optimizations (SSD storage on GitHub Actions)
+        echo "random_page_cost = 1.1" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+        echo "effective_io_concurrency = 200" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
+        # Connection settings (reduced for CI environment)
+        echo "max_connections = 100" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
         # Add IPv6 loopback access
         echo "host all all ::1/128 md5" | sudo tee -a /etc/postgresql/16/main/pg_hba.conf
 
@@ -197,7 +235,7 @@ jobs:
     - name: Set Version for release
       run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit
 
-    - uses: stefanzweifel/git-auto-commit-action@28e16e81777b558cc906c8750092100bbb34c5e3 # v7.0.0
+    - uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7.1.0
       with:
         commit_message: Automated Release ${{ github.event.inputs.release }}
         branch: release-${{ github.event.inputs.release }}
@@ -209,7 +247,7 @@ jobs:
 
     # Generate artifact attestation for DEB package
     - name: Generate artifact attestation for deb package
-      uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
+      uses: actions/attest-build-provenance@00014ed6ed5efc5b1ab7f7f34a39eb55d41aa4f8 # v3.1.0
       id: attest_deb
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
@@ -230,7 +268,7 @@ jobs:
 
     # Generate artifact attestation for WAR
     - name: Generate artifact attestation for WAR
-      uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
+      uses: actions/attest-build-provenance@00014ed6ed5efc5b1ab7f7f34a39eb55d41aa4f8 # v3.1.0
       id: attest_war
       with:
         subject-path: 'citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war'

@@ -103,7 +103,8 @@ final class RiksdagenPersonApiImpl implements RiksdagenPersonApi {
 					.unmarshallXml(personUnmarshaller, url, HTTP_PERSON_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,
 							null, null)).getValue().getPerson();
 		} catch (final XmlAgentException e) {
-			LOGGER.warn(PROBLEM_GETTING_PERSON_DATA_ID_S_FROM_DATA_RIKSDAGEN_SE, id);
+			// Expected for non-existent person IDs - logged at DEBUG level
+			LOGGER.debug(PROBLEM_GETTING_PERSON_DATA_ID_S_FROM_DATA_RIKSDAGEN_SE, id);
 			throw new DataFailureException(e);
 		}
 	}

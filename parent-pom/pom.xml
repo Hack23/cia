@@ -83,21 +83,21 @@
     <cia.project.versions.spring>5.3.39.hack23java25</cia.project.versions.spring>
     <cia.project.versions.spring.security>5.8.16</cia.project.versions.spring.security>
     <cia.project.versions.spring.data>2.7.18</cia.project.versions.spring.data>
-    <cia.project.versions.aws>1.12.794</cia.project.versions.aws>
-    <cia.project.versions.aspectj>1.9.25</cia.project.versions.aspectj>
+    <cia.project.versions.aws>1.12.797</cia.project.versions.aws>
+    <cia.project.versions.aspectj>1.9.25.1</cia.project.versions.aspectj>
     <cia.project.versions.javassist>3.30.2-GA</cia.project.versions.javassist>
-    <cia.project.versions.javers>7.9.0</cia.project.versions.javers>
+    <cia.project.versions.javers>7.10.0</cia.project.versions.javers>
     <cia.project.versions.narayana>5.13.1.Final</cia.project.versions.narayana>
-    <cia.project.versions.asm>9.9</cia.project.versions.asm>
+    <cia.project.versions.asm>9.9.1</cia.project.versions.asm>
     <cia.project.versions.cglib>3.3.0</cia.project.versions.cglib>
     <cia.project.versions.commons.collections>3.2.2</cia.project.versions.commons.collections>
     <cia.project.versions.commonslang3>3.20.0</cia.project.versions.commonslang3>
     <cia.project.versions.commons.lang>2.6</cia.project.versions.commons.lang>
-    <cia.project.versions.commons.text>1.14.0</cia.project.versions.commons.text>
+    <cia.project.versions.commons.text>1.15.0</cia.project.versions.commons.text>
     <cia.project.versions.commons.codec>1.20.0</cia.project.versions.commons.codec>
     <cia.project.versions.bouncycastle>1.83</cia.project.versions.bouncycastle>
     <cia.project.versions.slf4j>2.0.17</cia.project.versions.slf4j>
-    <cia.project.versions.logback>1.5.21</cia.project.versions.logback>
+    <cia.project.versions.logback>1.5.23</cia.project.versions.logback>
     <cia.project.versions.ehcache.spring.annotations>1.2.0</cia.project.versions.ehcache.spring.annotations>
     <cia.project.versions.drools>10.1.0</cia.project.versions.drools>
     <cia.project.versions.hibernate.search>6.2.4.Final</cia.project.versions.hibernate.search>
@@ -108,11 +108,11 @@
     <cia.project.versions.hibernate.jpa2>1.0.2.Final</cia.project.versions.hibernate.jpa2>
     <cia.project.versions.hibernate.validator>6.2.1.Final</cia.project.versions.hibernate.validator>
     <cia.project.versions.hibernate.validator>6.2.5.Final</cia.project.versions.hibernate.validator>
-    <cia.project.versions.bytebuddy>1.18.2</cia.project.versions.bytebuddy>
+    <cia.project.versions.bytebuddy>1.18.3</cia.project.versions.bytebuddy>
     <cia.project.versions.h2>2.4.240</cia.project.versions.h2>
     <cia.project.versions.postgresql>42.7.8</cia.project.versions.postgresql>
     <cia.project.versions.ehcache>2.10.5</cia.project.versions.ehcache>
-    <cia.project.versions.poi>5.5.0</cia.project.versions.poi>
+    <cia.project.versions.poi>5.5.1</cia.project.versions.poi>
     <cia.project.versions.pdfbox>3.0.6</cia.project.versions.pdfbox>
     <cia.project.versions.quartz>2.1.5</cia.project.versions.quartz>
     <cia.project.versions.ant>1.10.15</cia.project.versions.ant>
@@ -143,13 +143,13 @@
     <cia.project.versions.httpclient>4.5.14</cia.project.versions.httpclient>
     <cia.project.versions.guava>33.5.0-jre</cia.project.versions.guava>
     <cia.project.versions.jackson>2.20.1</cia.project.versions.jackson>
-    <cia.project.versions.netty>4.2.7.Final</cia.project.versions.netty>
+    <cia.project.versions.netty>4.2.9.Final</cia.project.versions.netty>
     <cia.project.versions.xerces>2.12.2</cia.project.versions.xerces>
     <cia.project.versions.commons.compress>1.28.0</cia.project.versions.commons.compress>
     <cia.project.versions.xmlapis>1.4.01</cia.project.versions.xmlapis>
     <cia.project.versions.jetty>10.0.26</cia.project.versions.jetty>
     <cia.project.versions.servlet.api>4.0.1</cia.project.versions.servlet.api>
-    <cia.project.versions.javamelody>1.99.3</cia.project.versions.javamelody>
+    <cia.project.versions.javamelody>1.99.4</cia.project.versions.javamelody>
     <cia.project.versions.vaadin>8.14.4</cia.project.versions.vaadin>
     <cia.project.versions.vaadin.gwt.user>2.9.0</cia.project.versions.vaadin.gwt.user>
     <cia.project.versions.vaadin.gwt.user.run>2.10.0</cia.project.versions.vaadin.gwt.user.run>
@@ -157,7 +157,7 @@
     <cia.project.versions.ehcache.web>2.0.4</cia.project.versions.ehcache.web>
     <jacoco.version>0.8.14</jacoco.version>
     <compiler.plugin.version>3.14.1</compiler.plugin.version>
-    <cia.project.versions.compiler.plexus.java>1.5.1</cia.project.versions.compiler.plexus.java>
+    <cia.project.versions.compiler.plexus.java>1.5.2</cia.project.versions.compiler.plexus.java>
     <surefire.version>3.5.4</surefire.version>
     <jdk.src.version>21</jdk.src.version>
     <jdk.target.version>21</jdk.target.version>
@@ -199,7 +199,7 @@
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-bom</artifactId>
-        <version>2.25.2</version>
+        <version>2.25.3</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -216,7 +216,7 @@
       <dependency>
         <groupId>io.projectreactor</groupId>
         <artifactId>reactor-core</artifactId>
-        <version>3.8.0</version>
+        <version>3.8.1</version>
       </dependency>
       <dependency>
         <groupId>com.sun.istack</groupId>
@@ -266,7 +266,7 @@
       <dependency>
         <groupId>org.json</groupId>
         <artifactId>json</artifactId>
-        <version>20250517</version>
+        <version>20251224</version>
       </dependency>
       <dependency>
         <groupId>com.thoughtworks.xstream</groupId>
@@ -452,7 +452,7 @@
       <dependency>
         <groupId>io.smallrye</groupId>
         <artifactId>jandex</artifactId>
-        <version>3.5.2</version>
+        <version>3.5.3</version>
       </dependency>
       <dependency>
         <groupId>org.hibernate.validator</groupId>
@@ -918,7 +918,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.7.1</version>
+          <version>3.8.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -945,7 +945,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -965,17 +965,17 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.3.1</version>
+          <version>3.4.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
-          <version>3.3.1</version>
+          <version>3.4.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.5.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1022,7 +1022,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
-              <version>1.5.1</version>
+              <version>1.5.2</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>
@@ -1044,7 +1044,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-java</artifactId>
-              <version>1.5.1</version>
+              <version>1.5.2</version>
             </dependency>
             <dependency>
               <groupId>org.ow2.asm</groupId>

@@ -42,11 +42,11 @@ public final class ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId implements Se
 	private static final long serialVersionUID = 1L;
 
 	/** The party 1. */
-	@Column(name = "party_1")
+	@Column(name = "party1")
 	private String party1;
 
 	/** The party 2. */
-	@Column(name = "party_2")
+	@Column(name = "party2")
 	private String party2;
 
 	/**

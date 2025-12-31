@@ -1,51 +1,501 @@
 id,doc_id,document_type,label,made_public_date,org,number_value,rm,status,sub_title,sub_type,temp_label,title,role_description,person_reference_id,reference_name,party_short_code,order_number
-946983,GS02Bo11,mot,Bo11,2005-04-19,BoU,11,2004/05,Trycklov,av Ragnwi Marcelind m.fl. (kd),Kommittémotion,kd157,med anledning av prop. 2004/05:112 Ändrade regler för bostadsbidrag,UNDERTECKNARE,0987147242812,Johnny Gylling,KD,4
-169096,GR02Sf246,mot,Sf246,2003-10-07,SfU,246,2003/04,"",av Kalle Larsson m.fl. (v),Kommittémotion,v446,Skilsmässobarns efterlevandepension,UNDERTECKNARE,0972254695405,Elina Linna,V,4
-1903201,GV02MJ449,mot,MJ449,2007-10-05,MJU,449,2007/08,Ank T,av Lars Ohly m.fl. (v),Partimotion,v303,Klimatpolitik,UNDERTECKNARE,0995355603410,Wiwi-Anne Johansson,V,6
-1899941,H002A333,mot,A333,2012-10-05,AU,333,2012/13,Ank T,av Kurt Kvarnström och Roza Güclü Hedin (S),Enskild motion,S35027,Bättre anställningstrygghet vid upphandlingar,UNDERTECKNARE,0262124593702,Kurt Kvarnström,S,1
-2501121,H002K362,mot,K362,2013-01-11,KU,362,2012/13,Ank T,av Björn von Sydow m.fl. (S),Kommittémotion,S36002,Myndighetsutövning,UNDERTECKNARE,0617957067613,Helene Petersson i Stockaryd,S,6
-186334,GR02Ub448,mot,Ub448,2003-10-07,UbU,448,2003/04,"",av Göran Norlander och Kerstin Kristiansson Karlstedt (s),Enskild motion,s18438,Sjöbefälsutbildning vid Mitthögskolan,UNDERTECKNARE,0698463786600,Göran Norlander,S,1
-322286,GS02Sk358,mot,Sk358,2004-10-03,SkU,358,2004/05,Trycklov,av Runar Patriksson (fp),Enskild motion,fp1059,Beskattning av bilar med bensin och dieseldrift,UNDERTECKNARE,0996373560505,Runar Patriksson,L,1
-2448985,GW02So484,mot,So484,2008-10-06,SoU,484,2008/09,Ank T,av Elina Linna m.fl. (v),Kommittémotion,v504,Handikappfrågor,UNDERTECKNARE,0395416536118,Siv Holma,V,5
-367646,GR02MJ303,mot,MJ303,2003-10-07,MJU,303,2003/04,"",av Lennart Fremling (fp),Enskild motion,fp455,Fäbodar,UNDERTECKNARE,0599003208801,Lennart Fremling,L,1
-1476106,H002Fi202,mot,Fi202,2012-09-18,FiU,202,2012/13,Ank T,av Ulla Andersson m.fl. (V),Kommittémotion,V263,Tillsättning av en personalförsörjningskommission,UNDERTECKNARE,0321885416125,Rossana Dinamarca,V,3
-1778107,H002A391,mot,A391,2012-10-05,AU,391,2012/13,Ank T,av Ulrika Karlsson i Uppsala (M),Enskild motion,M1280,Arbetsmarknadslagstiftningen,UNDERTECKNARE,0397924710612,Ulrika Karlsson i Uppsala,M,1
-2174257,HD02164,mot,164,2025-09-18,SoU,164,2025/26,Hänvisad,av Eric Palmqvist (SD),Enskild motion,"",En ersättningsmodell som stimulerar privattandläkare att etablera sig där behoven är som störst,UNDERTECKNARE,091303475611,Eric Palmqvist,SD,1
-452088,GS02T207,mot,T207,2004-09-16,TU,207,2004/05,Original,av Lars-Ivar Ericson (c),Enskild motion,c386,Trafikmedicin,UNDERTECKNARE,0745594497101,Lars-Ivar Ericson,C,1
-2200182,H402974,mot,974,2016-10-03,FiU,974,2016/17,Klar,av Jan R Andersson (M),Enskild motion,M1528,Tillsynsavgifter för kommersiell service,UNDERTECKNARE,0529103571012,Jan R Andersson,M,1
-1869800,HC022958,mot,2958,2024-10-04,KrU,2958,2024/25,Klar,av Catarina Deremar m.fl. (C),Enskild motion,"","Kultur, civilsamhälle och medier",UNDERTECKNARE,0132818093422,Rickard Nordin,C,3
-2427292,GU02A28,mot,A28,2007-04-12,AU,28,2006/07,Ank T,av Josefin Brink m.fl. (v),Kommittémotion,v36,"Ytterligare reformer inom arbetsmarknadspolitiken, m.m. ",UNDERTECKNARE,0449003924218,Kalle Larsson,V,3
-2321592,GY02A266,mot,A266,2010-10-26,AU,266,2010/11,Ank T,av Staffan Danielsson och Fredrick Federley (C),Enskild motion,C339,Förändring av LAS,UNDERTECKNARE,0352254228107,Staffan Danielsson,C,1
-2003681,H3022249,mot,2249,2015-10-06,NU,2249,2015/16,Klar,av Jan Björklund m.fl. (FP),Partimotion,FP,På väg mot ett fossilfritt Sverige,UNDERTECKNARE,0446541913415,Allan Widman,L,18
-285654,GS02Sk257,mot,Sk257,2004-09-28,SkU,257,2004/05,Trycklov,av Lennart Hedquist m.fl. (m),Kommittémotion,m138,Sockenbegreppet,UNDERTECKNARE,089057453314,Ulf Sjösten,M,2
-2569910,H102Fi320,mot,Fi320,2013-10-07,FiU,320,2013/14,Ank T,av Pia Nilsson m.fl. (S),Enskild motion,S2031,Mindre skolklasser i Västmanland,UNDERTECKNARE,0988383147219,Lars Eriksson,S,2
-2216896,H402939,mot,939,2016-10-03,UbU,939,2016/17,Klar,av Lars Eriksson (S),Enskild motion,S4005,Utbildad arbetskraft för ökat bostadsbyggande,UNDERTECKNARE,0988383147219,Lars Eriksson,S,1
-1788750,H8024045,mot,4045,2021-05-05,MJU,4045,2020/21,Klar,av Elin Segerlind m.fl. (V),Kommittémotion,061,med anledning av prop. 2020/21:183 Utfodring av vilt,UNDERTECKNARE,0547805254924,Jessica Thunander,V,7
-2663021,H5023700,mot,3700,2017-10-05,NU,3700,2017/18,Klar,av Peter Helander m.fl. (C),Kommittémotion,C,Utgiftsområde 19 Regional tillväxt,UNDERTECKNARE,084624777218,Helena Lindahl,C,2
-2660972,H5023741,mot,3741,2017-10-05,NU,3741,2017/18,Klar,av Penilla Gunther m.fl. (KD),Enskild motion,KD,Utgiftsområde 19 Regional tillväxt,UNDERTECKNARE,0860429409414,Désirée Pethrus,KD,5
-920089,GO02U627,mot,U627,2000-10-05,UU,627,2000/01,"","av Eva Zetterberg m.fl. (v, s, m, kd, c, fp, mp)",Flerpartimotion,v1005,Folkomröstningen i Västsahara,UNDERTECKNARE,0910241260018,Kent Härstedt,S,2
-1860462,GX02Kr242,mot,Kr242,2009-10-02,KrU,242,2009/10,Ank T,av Chatrine Pålsson Ahlgren (kd),Enskild motion,kd693,Komvux och folkhögskolan,UNDERTECKNARE,0377384542907,Chatrine Pålsson Ahlgren,KD,1
-2344243,H5022333,mot,2333,2017-10-04,SfU,2333,2017/18,Klar,av Wiwi-Anne Johansson m.fl. (V),Kommittémotion,V211,En fungerande sjukpenning,UNDERTECKNARE,0254695027922,Momodou Malcolm Jallow,V,5
-2596938,H102Ju340,mot,Ju340,2013-10-07,JuU,340,2013/14,Ank T,av Kent Ekeroth och Richard Jomshof (SD),Enskild motion,SD213,Tolkkostnad i brottmål,UNDERTECKNARE,0369028728526,Kent Ekeroth,SD,1
-807883,GQ02So400,mot,So400,2002-10-23,SoU,400,2002/03,"",av Elina Linna m.fl. (v),Kommittémotion,v431,Förlossnings- och mödravård,UNDERTECKNARE,0449003924218,Kalle Larsson,V,4
-1633999,GV02Sk9,mot,Sk9,2007-11-01,SkU,9,2007/08,Ank T,av Helena Leander m.fl. (mp),Kommittémotion,mp7,med anledning av prop. 2007/08:13 Skattelättnader för förmån av hushållstjänster,UNDERTECKNARE,0880452278816,Mikaela Valtersson,MP,2
-162874,GQ02MJ319,mot,MJ319,2002-10-23,MJU,319,2002/03,"",av Sven-Erik Sjöstrand m.fl. (v),Kommittémotion,v354,Giftfri miljö- och marksanering,UNDERTECKNARE,0457308547314,Karin Svensson Smith,V,5
-2258923,H402167,mot,167,2016-09-28,CU,167,2016/17,Klar,av Jonas Sjöstedt m.fl. (V),Partimotion,V593,Konsumentvägledning ,UNDERTECKNARE,0383111552218,Jonas Sjöstedt,V,1
-2028251,H3022229,mot,2229,2015-10-06,JuU,2229,2015/16,Klar,av Kent Ekeroth och Adam Marttinen (båda SD),Kommittémotion,SD302,Utgiftsområde 4 Rättsväsendet,UNDERTECKNARE,0369028728526,Kent Ekeroth,SD,1
-2534655,GW02Sk312,mot,Sk312,2008-10-03,SkU,312,2008/09,Ank T,av Solveig Hellquist (fp),Enskild motion,fp1286,Familjehem,UNDERTECKNARE,0963654118003,Solveig Hellquist,L,1
-511302,GR02Kr230,mot,Kr230,2003-10-07,KrU,230,2003/04,"",av Kent Olsson m.fl. (m),Kommittémotion,m123,Form och design,UNDERTECKNARE,0869873635602,Anna Lindgren,M,3
-1356108,GX02A363,mot,A363,2009-10-06,AU,363,2009/10,Ank T,av Lars Mejern Larsson m.fl. (s),Enskild motion,s14080,Motverkande av butiksrån,UNDERTECKNARE,0747667590310,Marina Pettersson,S,3
-2684047,H302611,mot,611,2015-10-02,AU,611,2015/16,Klar,av Patrik Engström m.fl. (S),Enskild motion,S9025,Erforderliga handlingar vid en konkurs,UNDERTECKNARE,0467253407311,Hans Unander,S,2
-1678128,H202344,mot,344,2014-11-05,JuU,344,2014/15,Klar,av Finn Bengtsson och Mikael Cederbratt (M),Enskild motion,M1125,Större säkerhet med utbildade poliser inom beteendevetenskap och psykiatri ,UNDERTECKNARE,0105797223918,Mikael Cederbratt,M,2
-1958512,H4021065,mot,1065,2016-10-03,SfU,1065,2016/17,Klar,av Jan Björklund m.fl. (L),Partimotion,L1122,En liberal och human migrationspolitik ,UNDERTECKNARE,0266517781926,Christina Örnebjär,L,19
-671872,GS02U258,mot,U258,2004-10-06,UU,258,2004/05,Trycklov,av Britt-Marie Danestig m.fl. (v),Kommittémotion,v904,Ökad andel av bistånd till utbildning,UNDERTECKNARE,0841428824218,Camilla Sköld Jansson,V,3
-191099,GS02So489,mot,So489,2004-10-06,SoU,489,2004/05,Trycklov,av Gudrun Schyman (v),Enskild motion,v280,Mensskydd,UNDERTECKNARE,0236004923301,Gudrun Schyman,V,1
-2200519,H4021793,mot,1793,2016-10-04,CU,1793,2016/17,Klar,av Fredrik Schulte (M),Enskild motion,M2289,Avhysning av illegala boplatser,UNDERTECKNARE,0210198640127,Fredrik Schulte,M,1
-1366260,H502353,mot,353,2017-09-27,FöU,353,2017/18,Klar,av Roger Richtoff m.fl. (SD),Kommittémotion,SD601,med anledning av skr. 2016/17:213 Nationell strategi för samhällets informations- och cybersäkerhet,UNDERTECKNARE,0452755722723,Björn Söder,SD,2
-495289,GO02L453,mot,L453,2000-10-05,LU,453,2000/01,"",av Viviann Gerdin och Agne Hansson (c),Enskild motion,c568,Talerätt,UNDERTECKNARE,019623784404,Viviann Gerdin,C,1
-1612022,H902618,mot,618,2021-09-27,SoU,618,2021/22,Klar,av Jonas Andersson i Skellefteå (SD),Enskild motion,466,Integritetsaspekter rörande förstörande av patientjournal,UNDERTECKNARE,0538494048717,Jonas Andersson,SD,1
-1308120,GX02A411,mot,A411,2009-10-06,AU,411,2009/10,Ank T,av Siw Wittgren-Ahl (s),Enskild motion,s65066,Stärk skyddet mot godtyckliga uppsägningar,UNDERTECKNARE,0808145784313,Siw Wittgren-Ahl,S,1
-1495348,GX02Ju288,mot,Ju288,2009-10-01,JuU,288,2009/10,Ank T,av Eva-Lena Jansson och Luciano Astudillo (s),Enskild motion,s78044,Grov oaktsam våldtäkt,UNDERTECKNARE,048970816012,Eva-Lena Jansson,S,1
-2551786,H102C1,mot,C1,2014-01-20,CU,1,2013/14,Ank T,av Markus Wiechel (SD),Enskild motion,SD283,med anledning av prop. 2013/14:59 Fler bostäder åt unga och studenter,UNDERTECKNARE,0204240926023,Markus Wiechel,SD,1
-1476291,GZ02Fi18,mot,Fi18,2012-05-02,FiU,18,2011/12,Ank T,av Mikael Damberg m.fl. (S),Partimotion,S13002,med anledning av prop. 2011/12:100 2012 års ekonomiska vårproposition,UNDERTECKNARE,0473783431010,Morgan Johansson,S,10
-2738412,H40212,mot,12,2016-09-13,TU,12,2016/17,Klar,av Bengt Eliasson (L),Enskild motion,L1037,Järnvägsstråken och vägstråken i regionen Halland-Kronoberg-Jönköping,UNDERTECKNARE,0116759114313,Bengt Eliasson,L,1
+924789,GP02So529,mot,So529,2001-10-05,SoU,529,2001/02,"",av Rolf Olsson m.fl. (v),Enskild motion,v434,Sponsorer i vården,UNDERTECKNARE,0615338062910,Lena Olsson,V,3
+1899154,GT02MJ372,mot,MJ372,2005-10-03,MJU,372,2005/06,Trycklov,av Solveig Hellquist m.fl. (fp),Enskild motion,fp752,Kastrering och märkning av katter,UNDERTECKNARE,0542573140300,Ulf Nilsson,L,9
+641311,GT02Sf256,mot,Sf256,2005-09-29,SfU,256,2005/06,Trycklov,av Hans Hoff och Majléne Westerlund Panke (s),Enskild motion,s41519,Ersättningsnivåerna i sjukförsäkringssystemet,UNDERTECKNARE,0540190357911,Hans Hoff,S,1
+740687,GO02T316,mot,T316,2000-10-05,TU,316,2000/01,"",av Kenth Skårvik och Elver Jonsson (fp),Enskild motion,fp404,Västsveriges vägnät,UNDERTECKNARE,088849148003,Elver Jonsson,L,2
+1618801,GV02K397,mot,K397,2007-10-05,KU,397,2007/08,Ank T,av Ulrika Karlsson i Uppsala (m),Enskild motion,m1724,Negativa föreningsfriheten,UNDERTECKNARE,0397924710612,Ulrika Karlsson i Uppsala,M,1
+2535974,HC021570,mot,1570,2024-10-02,MJU,1570,2024/25,Klar,av Helena Lindahl (C),Enskild motion,"",Likvärdig stödområdesindelning för det nationella stödet och kompensationsstödet för norra Sverige,UNDERTECKNARE,084624777218,Helena Lindahl,C,1
+1569630,H9022569,mot,2569,2021-10-01,UU,2569,2021/22,Klar,av Björn Söder m.fl. (SD),Kommittémotion,402,Fredsprocessen Israel–Palestina ,UNDERTECKNARE,0204240926023,Markus Wiechel,SD,2
+2531162,GY02K386,mot,K386,2010-10-27,KU,386,2010/11,Ank T,av Gunnar Sandberg och Marie Nordén (S),Enskild motion,S97005,Förändring i föräldraledighetslagen,UNDERTECKNARE,0291542732518,Marie Nordén,S,2
+686999,GO02Kr13,mot,Kr13,2001-04-06,KrU,13,2000/01,"",av Gunnel Wallin och Åke Sandström (c),Enskild motion,c590,med anledning av prop.2000/01:94 Radio och TV i allmänhetens tjänst 2002-2005,UNDERTECKNARE,0590881101608,Åke Sandström,C,2
+2003437,HA01JuU21,bet,JuU21,2023-01-27,JuU,21,2022/23,Webbpublicering,"",bet,"",Förbättrade åtgärder när barn misstänks för brott,,,,,
+2329076,H4023398,mot,3398,2016-10-05,SfU,3398,2016/17,Klar,av Désirée Pethrus (KD),Enskild motion,KD639,Kristna på asylboenden,UNDERTECKNARE,0860429409414,Désirée Pethrus,KD,1
+1670607,H902728,mot,728,2021-09-28,JuU,728,2021/22,Klar,av Paula Örn (S),Enskild motion,1265,Rimliga villkor för nämndemän,UNDERTECKNARE,0987246082523,Paula Örn,S,1
+1591238,GX02MJ347,mot,MJ347,2009-10-06,MJU,347,2009/10,Ank T,av Marietta de Pourbaix-Lundin (m),Enskild motion,m1401,Animal Welfare Center,UNDERTECKNARE,0125165702713,Marietta de Pourbaix-Lundin,M,1
+2289302,HC022439,mot,2439,2024-10-03,NU,2439,2024/25,Klar,av Kalle Olsson m.fl. (S),Enskild motion,466,Uppdaterad strategi för norra Sverige,UNDERTECKNARE,0407081382317,Anna-Caren Sätherberg,S,5
+363732,GR02Sk378,mot,Sk378,2003-10-07,SkU,378,2003/04,"",av Ulla Hoffmann m.fl. (v),Partimotion,v503,Inkomstskattesystemet,UNDERTECKNARE,0548089226618,Mats Einarsson,V,4
+1522306,GV02Sk257,mot,Sk257,2007-10-05,SkU,257,2007/08,Ank T,av Lars Elinderson (m),Enskild motion,m1372,Förändrad aktiebeskattning,UNDERTECKNARE,0905755961314,Lars Elinderson,M,1
+750443,GT02Ub385,mot,Ub385,2005-10-03,UbU,385,2005/06,Trycklov,av Birgitta Carlsson m.fl. (c),Enskild motion,c685,Vättern ,UNDERTECKNARE,0673622610409,Birgitta Carlsson,C,1
+1547522,GT02Bo316,mot,Bo316,2005-10-05,BoU,316,2005/06,Trycklov,av Ragnwi Marcelind m.fl. (kd),Kommittémotion,kd448,Forskning för bostäder och samhällsbyggnad,UNDERTECKNARE,0161597857912,Tuve Skånberg,KD,7
+1453473,GX02So349,mot,So349,2009-10-01,SoU,349,2009/10,Ank T,av Peter Jeppsson m.fl. (s),Enskild motion,s65006,Hälsorisker med sötningsmedel och socker,UNDERTECKNARE,0583257327619,Kerstin Haglö,S,3
+1380260,HD022685,mot,2685,2025-10-06,NU,2685,2025/26,Hänvisad,av Anna-Belle Strömberg m.fl. (S),Enskild motion,600,Jämställd representation som villkor för regionalt företagsstöd,UNDERTECKNARE,07921826010,Anna-Belle Strömberg,S,1
+322759,GS02Kr287,mot,Kr287,2004-10-02,KrU,287,2004/05,Trycklov,av Håkan Larsson och Sven Bergström (c),Enskild motion,c607,Folkbildning på 2000-talet,UNDERTECKNARE,0899795917517,Håkan Larsson,C,1
+722406,GY0325,prop,25,2010-10-25,N,25,2010/11,hämtad_2,"",prop,"",Åtgärder för att höja kvaliteten i järnvägssystemet,,,,,
+2187268,HC023413,mot,3413,2025-04-29,FiU,3413,2024/25,Klar,av Nooshi Dadgostar m.fl. (V),Partimotion,058,med anledning av prop. 2024/25:100 2025 års ekonomiska vårproposition,UNDERTECKNARE,0802091197024,Andrea Andersson Tay,V,2
+1512297,H002T457,mot,T457,2013-01-18,TU,457,2012/13,Ank T,av Peter Persson m.fl. (S),Enskild motion,S5051,Götalandsbanan,UNDERTECKNARE,0617957067613,Helene Petersson i Stockaryd,S,3
+1892809,GX02Kr330,mot,Kr330,2009-10-06,KrU,330,2009/10,Ank T,av Ronny Olander och Torbjörn Lövendahl (s),Enskild motion,s40045,Uppåkra Arkeologiska Center,UNDERTECKNARE,0875425244515,Ronny Olander,S,1
+1329755,H002Ub217,mot,Ub217,2012-09-28,UbU,217,2012/13,Ank T,av Ann-Kristine Johansson (S),Enskild motion,S3023,It i grundskolan,UNDERTECKNARE,0960030082916,Ann-Kristine Johansson,S,1
+284543,GS02Sk267,mot,Sk267,2004-09-28,SkU,267,2004/05,Trycklov,av Anita Sidén och Cecilia Magnusson (m),Enskild motion,m1366,Byte av fonder och beskattning,UNDERTECKNARE,0522460069116,Cecilia Magnusson,M,2
+277857,GP02Ub499,mot,Ub499,2001-10-05,UbU,499,2001/02,"",av Kristina Zakrisson och Monica Öhman (s),Enskild motion,s37051,Rekrytering till universitetsstudier,UNDERTECKNARE,0798417016112,Kristina Zakrisson,S,1
+419164,GR02U247,mot,U247,2003-10-07,UU,247,2003/04,"",av Göran Lennmarker m.fl. (m),Kommittémotion,m178,"Internationell samverkan, utgiftsområde 5",UNDERTECKNARE,0319703582208,Björn Hamilton,M,4
+1465565,GY02Sk327,mot,Sk327,2010-10-28,SkU,327,2010/11,Ank T,av Marie Nordén (S),Enskild motion,S14015,Ersättning för skador som uppstår vid utvinning av naturresurser,UNDERTECKNARE,0291542732518,Marie Nordén,S,1
+2458518,H301KU12,bet,KU12,2016-01-26,KU,12,2015/16,Webbpublicering,"",bet,"",Trossamfund,,,,,
+470931,GR02N413,mot,N413,2003-10-07,NU,413,2003/04,"",av Maria Larsson m.fl. (kd),Kommittémotion,kd321,"Energi, Utgiftsområde 21",UNDERTECKNARE,0393583311409,Lars Lindén,KD,2
+789369,H602382,mot,382,2018-11-14,TU,382,2018/19,Klar,av Ingemar Kihlström (KD),Enskild motion,KD,Åtgärda farliga korsningar mellan väg och järnväg på Västra stambanan,UNDERTECKNARE,0828001951212,Ingemar Kihlström,KD,1
+2643590,GW02Ub276,mot,Ub276,2008-10-01,UbU,276,2008/09,Ank T,av Christina Oskarsson (s),Enskild motion,s97028,Jämställdhet i högre utbildning,UNDERTECKNARE,0468775142013,Christina Oskarsson,S,1
+2445075,HD021961,mot,1961,2025-10-03,SoU,1961,2025/26,Hänvisad,av Mattias Vepsä m.fl. (S),Enskild motion,555,Funktionsnedsattas rätt till utbildning på lika villkor,UNDERTECKNARE,0245113256029,Daniel Vencu Velasquez Castro,S,4
+252972,GP02Ub248,mot,Ub248,2001-10-05,UbU,248,2001/02,"",av Gunnar Axén och Stefan Hagfeldt (m),Enskild motion,m1350,Forskningsanslaget till Linköpings universitet,UNDERTECKNARE,0782242286018,Gunnar Axén,M,1
+1555127,H102Fö239,mot,Fö239,2014-01-16,FöU,239,2013/14,Ank T,av Camilla Waltersson Grönvall och Sten Bergheden (M),Enskild motion,M1868,Behoven av finansiering av skredsäkerhet i Götaälvdalen ,UNDERTECKNARE,0781623040415,Camilla Waltersson Grönvall,M,1
+1393030,GY02U277,mot,U277,2010-10-27,UU,277,2010/11,Ank T,av Thomas Strand m.fl. (S),Enskild motion,S16020,Ursprungsmärkning av israeliska bosättarprodukter,UNDERTECKNARE,0964730940415,Johan Andersson,S,6
+2398090,GX02T260,mot,T260,2009-10-06,TU,260,2009/10,Ank T,av Staffan Danielsson och Erik A Eriksson (c),Enskild motion,c413,Mobil handsfree,UNDERTECKNARE,0391973624515,Erik A Eriksson,C,2
+1580165,GT02T238,mot,T238,2005-09-22,TU,238,2005/06,Trycklov,av Sten Tolgfors (m),Enskild motion,m1257,Trafiksäkerheten på E 18/E 20 mellan Örebro och Arboga,UNDERTECKNARE,0864542495614,Sten Tolgfors,M,1
+1603992,H102K368,mot,K368,2014-01-09,KU,368,2013/14,Ank T,av Christer Engelhardt m.fl. (S),Enskild motion,S6085,SOS sekretessbestämmelser,UNDERTECKNARE,0936723349517,Christer Engelhardt,S,1
+2595935,H102U7,mot,U7,2013-12-20,UU,7,2013/14,Ank T,av Urban Ahlin m.fl. (S),Kommittémotion,S31005,med anledning av skr. 2013/14:50 Riksrevisionens rapport om Sverige i Arktiska rådet,UNDERTECKNARE,0699506181311,Karin Åström,S,8
+1457628,H002So315,mot,So315,2012-10-03,SoU,315,2012/13,Ank T,av Anita Brodén (FP),Enskild motion,FP802,Suicidförebyggande insatser,UNDERTECKNARE,0977824845202,Anita Brodén,L,1
+2329172,H4023392,mot,3392,2016-10-05,NU,3392,2016/17,Hänvisad,av Penilla Gunther m.fl. (KD),Kommittémotion,KD158,Utgiftsområde 24 Näringsliv,UNDERTECKNARE,0925451929216,Penilla Gunther,KD,1
+2420441,HB022332,mot,2332,2023-10-05,MJU,2332,2023/24,Klar,av Nooshi Dadgostar m.fl. (V),Partimotion,V583,"Utgiftsområde 20 Klimat, miljö och natur",UNDERTECKNARE,025158809026,Ida Gabrielsson,V,3
+766442,GP02U224,mot,U224,2001-10-05,UU,224,2001/02,"",av Göran Lennmarker m.fl. (m),Kommittémotion,m190,Balkan,UNDERTECKNARE,0607691439013,Karin Enström,M,5
+2631933,GZ02K307,mot,K307,2011-10-05,KU,307,2011/12,Ank T,av Anna-Lena Sörenson m.fl. (S),Enskild motion,S21119,Regionbildningsreformen,UNDERTECKNARE,0853395328224,Lena Hallengren,S,2
+835623,GS02Sk314,mot,Sk314,2004-10-06,SkU,314,2004/05,Trycklov,av Krister Hammarbergh och Jan-Evert Rådhström (m),Enskild motion,m1459,Skatt på naturgrus,UNDERTECKNARE,0889860537413,Krister Hammarbergh,M,1
+1596903,GX0362,prop,62,2009-11-25,JU,62,2009/10,hämtad_2,"",skr,"",2009 års redogörelse för tillämpningen av lagen (1991:572) om särskild utlänningskontroll,,,,,
+1753866,GW02MJ320,mot,MJ320,2008-10-03,MJU,320,2008/09,Ank T,av Ronny Olander m.fl. (s),Enskild motion,s28087,Sälfiske,UNDERTECKNARE,0103812031214,Gunnar Sandberg,S,2
+1903781,HC022512,mot,2512,2024-10-03,AU,2512,2024/25,Klar,av Mirja Räihä m.fl. (S),Enskild motion,594,Skyddsombudens tillträde till alla arbetsplatser,UNDERTECKNARE,0911067396229,Mattias Vepsä,S,4
+2389995,H4022529,mot,2529,2016-10-05,TU,2529,2016/17,Klar,av Jessica Rosencrantz m.fl. (M),Kommittémotion,M179,Utgiftsområde 22 Kommunikationer,UNDERTECKNARE,0828721176319,Sten Bergheden,M,3
+2417694,GU02C350,mot,C350,2006-10-31,CU,350,2006/07,Trycklov,av Sylvia Lindgren och Agneta Gille (s),Enskild motion,s23001,Andelen kvinnor i privata bolagsstyrelser,UNDERTECKNARE,0376867803913,Agneta Gille,S,2
+1386756,GX02N202,mot,N202,2009-09-29,NU,202,2009/10,Ank T,av Patrik Björck m.fl. (s),Enskild motion,s65001,Livsmedelsindustrin i Skaraborg och behovet av ett branschprogram,UNDERTECKNARE,0975579292417,Monica Green,S,2
+2598993,H5023566,mot,3566,2017-10-05,UU,3566,2017/18,Klar,av Ulf Kristersson m.fl. (M),Partimotion,M001,Säkerhetspolitik för Sverige,UNDERTECKNARE,0956595590924,Tobias Billström,M,2
+765000,GO02T354,mot,T354,2000-10-05,TU,354,2000/01,"",av Kerstin Kristiansson Karlstedt m.fl. (s),Enskild motion,s45210,Vägarna i Höga Kusten-området,UNDERTECKNARE,0957794828205,Agneta Lundberg,S,3
+2292285,H103242,prop,242,2014-06-26,Justitiedepartementet,242,2013/14,Klar,"",prop,"",Ett stärkt konsumentskydd vid automatisk avtalsförlängning,,,,,
+545571,GP02MJ299,mot,MJ299,2001-10-05,MJU,299,2001/02,"",av Jonas Ringqvist m.fl. (v),Kommittémotion,v302,Kretsloppsanpassning av näringsämnen,UNDERTECKNARE,0792716417210,Lars Bäckström,V,2
+1390202,HD022734,mot,2734,2025-10-06,CU,2734,2025/26,Hänvisad,av Markus Wiechel och Alexander Christiansson (båda SD),Enskild motion,"",Förlorad vårdnad vid mord,UNDERTECKNARE,0204240926023,Markus Wiechel,SD,1
+2731154,H9021112,mot,1112,2021-09-29,UbU,1112,2021/22,Klar,av Ulrika Jörgensen (M),Enskild motion,1398,Verka för mer rörelse i skolan och dess utemiljö,UNDERTECKNARE,0598792324417,Ulrika Jörgensen,M,1
+405973,GP02N289,mot,N289,2001-10-05,NU,289,2001/02,"",av Anna Åkerhielm och Ingvar Eriksson (m),Enskild motion,m1601,Trävaruförsörjningen till skivindustrin,UNDERTECKNARE,0695579897102,Ingvar Eriksson,M,2
+2680106,HB021178,mot,1178,2023-10-03,UU,1178,2023/24,Klar,av Jim Svensk Larm och Kristoffer Lindberg (båda S),Enskild motion,S1459,Mänskliga rättigheter i arbetslivet inom det internationella utvecklingssamarbetet,UNDERTECKNARE,0822010116020,Jim Svensk Larm,S,1
+1799357,H2021094,mot,1094,2014-11-07,NU,1094,2014/15,Klar,av Josef Fransson m.fl. (SD),Kommittémotion,SD327,Regional tillväxtpolitik,UNDERTECKNARE,0130789484021,Mattias Bäckström Johansson,SD,2
+407864,GS02Fö230,mot,Fö230,2004-10-06,FöU,230,2004/05,Trycklov,av Christer Skoog m.fl. (s),Enskild motion,s11127,Sjöräddningen,UNDERTECKNARE,0573136138218,Krister Örnfjäder,S,6
+1455098,GW02MJ22,mot,MJ22,2009-06-18,MJU,22,2008/09,Ank T,av Anders Ygeman m.fl. (s),Kommittémotion,s68104,med anledning av prop. 2008/09:210 En ny rovdjursförvaltning,UNDERTECKNARE,0103624617217,Helén Pettersson i Umeå,S,6
+661918,GS02U238,mot,U238,2004-09-30,UU,238,2004/05,Trycklov,av Maria Wetterstrand m.fl. (mp),Partimotion,mp901,Världens vatten,UNDERTECKNARE,0238588409223,Gustav Fridolin,MP,7
+2241228,H3022771,mot,2771,2015-10-06,UbU,2771,2015/16,Klar,av Camilla Waltersson Grönvall m.fl. (M),Kommittémotion,M131,Fristående lärarutbildning,UNDERTECKNARE,0547818628111,Betty Malmberg,M,2
+367784,GS02Kr340,mot,Kr340,2004-10-04,KrU,340,2004/05,Trycklov,av Sven Bergström och Birgitta Sellén (c),Enskild motion,c369,Främjandet av folklig traditionsbaserad kultur,UNDERTECKNARE,0185503778507,Birgitta Sellén,C,2
+1434087,GT02MJ15,mot,MJ15,2006-03-01,MJU,15,2005/06,Trycklov,av Marie Wahlgren m.fl. (fp),Kommittémotion,fp1291,med anledning av skr. 2005/06:87 Den övergripande strategiska inriktningen av kommande landsbygdsprogrammet,UNDERTECKNARE,0115607185214,Gunnar Nordmark,L,6
+2343192,H402230,mot,230,2016-09-29,UbU,230,2016/17,Klar,av Lotta Finstorp m.fl. (M),Enskild motion,M1182,Hantverkskunnande,UNDERTECKNARE,0828721176319,Sten Bergheden,M,3
+1781133,H002A339,mot,A339,2012-10-05,AU,339,2012/13,Ank T,av Caroline Helmersson Olsson m.fl. (S),Enskild motion,S35056,En god arbetsmiljö för ett längre arbetsliv,UNDERTECKNARE,0612916684825,Johan Löfstrand,S,20
+2380752,H4022658,mot,2658,2016-10-05,MJU,2658,2016/17,Klar,av Lars-Axel Nordell m.fl. (KD),Kommittémotion,KD130,Klimatpolitiken,UNDERTECKNARE,0237055280513,Roland Utbult,KD,6
+2381261,H4022989,mot,2989,2016-10-05,FiU,2989,2016/17,Klar,av Peter Helander och Fredrik Christensson (båda C),Enskild motion,C,Rättvisare folkräkning,UNDERTECKNARE,0681030112815,Peter Helander,C,1
+2462872,HB022510,mot,2510,2023-10-05,AU,2510,2023/24,Klar,av Mirja Räihä m.fl. (S),Enskild motion,S1510,Företagshälsovård,UNDERTECKNARE,0236597884217,Rose-Marie Carlsson,S,9
+1491161,H002So574,mot,So574,2013-01-10,SoU,574,2012/13,Ank T,av Julia Kronlid m.fl. (SD),Enskild motion,SD250,Sänkning av gränsen för fri abort,UNDERTECKNARE,0638497389621,Julia Kronlid,SD,1
+417196,GR02Sk310,mot,Sk310,2003-10-07,SkU,310,2003/04,"",av Lennart Hedquist m.fl. (m),Kommittémotion,m129,Alkoholbeskattningen - hur skattebasen skall behållas inom landet,UNDERTECKNARE,0319703582208,Björn Hamilton,M,4
+2431647,HB022686,mot,2686,2023-10-05,KrU,2686,2023/24,Klar,av Lawen Redar m.fl. (S),Kommittémotion,S,"Utgiftsområde 17 Kultur, medier, trossamfund och fritid",UNDERTECKNARE,0474290584024,Azadeh Rojhan,S,3
+1448806,GY02Sk371,mot,Sk371,2010-10-27,SkU,371,2010/11,Ank T,av Ulrika Karlsson i Uppsala (M),Enskild motion,M1908,Avdragsrätt för gåvor till ideella organisationer,UNDERTECKNARE,0397924710612,Ulrika Karlsson i Uppsala,M,1
+1570868,H9022543,mot,2543,2021-10-01,UbU,2543,2021/22,Klar,av Patrick Reslow m.fl. (SD),Kommittémotion,380,Ett studiestöd i världsklass,UNDERTECKNARE,0545733815610,Patrick Reslow,SD,1
+927943,GP02So591,mot,So591,2001-10-05,SoU,591,2001/02,"",av Agneta Brendt m.fl. (s),Enskild motion,s26037,Kvinnlig könsstympning,UNDERTECKNARE,0468206532916,Inger Segelström,S,6
+2457233,GX02T284,mot,T284,2009-10-01,TU,284,2009/10,Ank T,av Phia Andersson m.fl. (s),Enskild motion,s16068,Körkortstillståndsavgift då körkort återkallats på grund av medicinska skäl,UNDERTECKNARE,0456305921813,Hans Olsson,S,3
+1950252,H2022737,mot,2737,2014-11-10,CU,2737,2014/15,Klar,av Solveig Zander och Ola Johansson (C),Enskild motion,C365,Byggande av fler bostäder i Uppsala län,UNDERTECKNARE,0934639939611,Ola Johansson,C,2
+941695,GR02Sf323,mot,Sf323,2003-10-07,SfU,323,2003/04,"",av Anne Ludvigsson m.fl. (s),Enskild motion,s3092,Barn i asylprocessen,UNDERTECKNARE,0291542732518,Marie Nordén,S,5
+2631316,GV02C365,mot,C365,2007-10-05,CU,365,2007/08,Ank T,av Birgitta Eriksson m.fl. (s),Enskild motion,s2033,Kooperativ hyresrätt,UNDERTECKNARE,0936723349517,Christer Engelhardt,S,20
+1530493,H9022156,mot,2156,2021-10-01,UbU,2156,2021/22,Klar,av Niklas Karlsson och Elin Gustafsson (båda S),Enskild motion,1625,Tillträde till universitet och högskolor,UNDERTECKNARE,065105536026,Niklas Karlsson,S,1
+2740299,H40230,mot,30,2016-09-19,FiU,30,2016/17,Klar,av Oscar Sjöstedt och Dennis Dioukarev (båda SD),Kommittémotion,SD,med anledning av prop. 2015/16:195 Nytt regelverk om upphandling,UNDERTECKNARE,0344222203323,Dennis Dioukarev,SD,2
+1994433,H5024064,mot,4064,2018-04-04,SkU,4064,2017/18,Klar,av Martin Kinnunen och David Lång (båda SD),Kommittémotion,SD,med anledning av prop. 2017/18:187 Beskattning av elektroniska cigaretter och vissa andra nikotinhaltiga produkter,UNDERTECKNARE,0494054455310,David Lång,SD,2
+466642,GS02N238,mot,N238,2004-09-24,NU,238,2004/05,Trycklov,av Chatrine Pålsson (kd),Enskild motion,kd584,Regional utveckling för Kalmar län,UNDERTECKNARE,0377384542907,Chatrine Pålsson,KD,1
+1960822,H2022574,mot,2574,2014-11-10,AU,2574,2014/15,Klar,"av Ulf Kristersson m.fl. (M, C, FP, KD)",Flerpartimotion,M925,Utgiftsområde 13 Integration och jämställdhet,UNDERTECKNARE,0860429409414,Désirée Pethrus,KD,4
+823190,GT02Ub519,mot,Ub519,2005-10-05,UbU,519,2005/06,Trycklov,av Anne Ludvigsson och Hillevi Larsson (s),Enskild motion,s3269,Genuspedagoger i förskolan och skolan,UNDERTECKNARE,0878075468027,Hillevi Larsson,S,2
+521183,GS02Ub470,mot,Ub470,2004-10-06,UbU,470,2004/05,Trycklov,av Inger Davidson m.fl. (kd),Kommittémotion,kd400,Arbetet mot mobbning och sexuella trakasserier i skolan,UNDERTECKNARE,0499497337518,Ulrik Lindgren,KD,5
+2328376,GZ02So519,mot,So519,2011-10-05,SoU,519,2011/12,Ank T,av Emma Henriksson (KD),Enskild motion,KD637,Föräldrautbildning,UNDERTECKNARE,0788526088220,Emma Henriksson,KD,1
+139416,GP02Sf391,mot,Sf391,2001-10-05,SfU,391,2001/02,"",av Désirée Pethrus Engström m.fl. (kd),Kommittémotion,kd409,Rehabilitering ,UNDERTECKNARE,0699354970600,Rose-Marie Frebran,KD,3
+2694906,GY02Ju241,mot,Ju241,2010-10-25,JuU,241,2010/11,Ank T,av Christer Winbäck (FP),Enskild motion,FP1258,Handlingsplan mot lätta vapen med ett genusperspektiv,UNDERTECKNARE,0455256796113,Christer Winbäck,L,1
+95445,GY02A342,mot,A342,2010-10-27,AU,342,2010/11,Ank T,av Håkan Bergman m.fl. (S),Enskild motion,S3042,Jämlikhetskommission,UNDERTECKNARE,0983984918111,Matilda Ernkrans,S,2
+1761954,GV02A397,mot,A397,2007-10-05,AU,397,2007/08,Ank T,av Leif Jakobsson m.fl. (s),Enskild motion,s13082,Arbetsmarknaden,UNDERTECKNARE,0640774576009,Inger Jarl Beck,S,10
+1965713,H3021729,mot,1729,2015-10-05,SkU,1729,2015/16,Klar,av Edward Riedl (M),Enskild motion,M1777,Kilometerskatt ,UNDERTECKNARE,0273506284025,Edward Riedl,M,1
+319798,GQ02Ju13,mot,Ju13,2003-06-12,JuU,13,2002/03,"",av Peter Althin m.fl. (kd),Kommittémotion,kd164,med anledning av prop. 2002/03:74 Hemliga tvångsmedel - offentliga ombud och en mer ändamålsenlig reglering.,UNDERTECKNARE,0390912778804,Peter Althin,KD,1
+1563054,H002Sf309,mot,Sf309,2012-10-05,SfU,309,2012/13,Ank T,av Jonas Sjöstedt m.fl. (V),Partimotion,V285,Utgiftsområde 8 Migration,UNDERTECKNARE,0216534495014,Jens Holm,V,3
+540818,GO02K276,mot,K276,2000-10-05,KU,276,2000/01,"",av Per Unckel m.fl. (m),Kommittémotion,m1000,Nationaldag som helgdag,UNDERTECKNARE,0104804820009,Per Unckel,M,1
+1781069,HB02649,mot,649,2023-10-02,SfU,649,2023/24,Klar,av Tony Haddou m.fl. (V),Kommittémotion,V006,med anledning av prop. 2023/24:12 Effektivare verktyg vid inre utlänningskontroll,UNDERTECKNARE,0920901966627,Tony Haddou,V,1
+2267077,GW02C322,mot,C322,2008-10-03,CU,322,2008/09,Ank T,av Annie Johansson (c),Enskild motion,c326,Barns och ungas integritet,UNDERTECKNARE,0862868280923,Annie Johansson,C,1
+685561,GQ02Sf239,mot,Sf239,2002-10-23,SfU,239,2002/03,"",av Gudrun Schyman m.fl. (v),Partimotion,v462,Flykting- och immigrationspolitiken,UNDERTECKNARE,0928223863802,Berit Jóhannesson,V,6
+2202095,H102T479,mot,T479,2013-10-08,TU,479,2013/14,Ank T,av Anders Sellström (KD),Enskild motion,KD585,Norrbotniabanan,UNDERTECKNARE,0494431859015,Anders Sellström,KD,1
+271887,GO02N297,mot,N297,2000-10-05,NU,297,2000/01,"",av Kenneth Johansson m.fl. (c),Enskild motion,c377,Återförande av vattenkraftsvinster,UNDERTECKNARE,058426570914,Sven Bergström,C,2
+939707,GP02Fi279,mot,Fi279,2001-10-05,FiU,279,2001/02,"",av Gunnar Hökmark m.fl. (m),Kommittémotion,m207,Folk- och bostadsräkning,UNDERTECKNARE,0155044813008,Carl-Axel Johansson,M,5
+2548031,H10343,prop,43,2013-11-12,Ju,43,2013/14,hämtad_2,"",prop,"",Moderna auktionsmetoder för utmätt lös egendom,,,,,
+2231134,H4021720,mot,1720,2016-10-04,JuU,1720,2016/17,Klar,av Said Abdu (L),Enskild motion,L1179,Utökad användning av elektronisk fotboja vid kontaktförbud,UNDERTECKNARE,0173210620224,Said Abdu,L,1
+2559254,H002T5,mot,T5,2012-10-19,TU,5,2012/13,Ank T,av Anders Ygeman m.fl. (S),Partimotion,S11003,med anledning av skr. 2012/13:19 Utförande av drift och underhåll av järnväg,UNDERTECKNARE,0288805051019,Lars Johansson,S,3
+1963182,H3021557,mot,1557,2015-10-05,KU,1557,2015/16,Klar,av Hans Rothenberg (M),Enskild motion,M1382,Skilda valdagar,UNDERTECKNARE,0409540163215,Hans Rothenberg,M,1
+729006,GS02Ju286,mot,Ju286,2004-09-28,JuU,286,2004/05,Trycklov,av Inger René m.fl. (m),Enskild motion,m1310,Utvärdering av lagstiftningen om våld mot kvinnor,UNDERTECKNARE,0393171737407,Anita Sidén,M,3
+2353866,H3023033,mot,3033,2015-10-06,AU,3033,2015/16,Klar,av Staffan Danielsson (C),Enskild motion,C8,Översyn av lönebidraget,UNDERTECKNARE,0352254228107,Staffan Danielsson,C,1
+727900,GP02Fi11,mot,Fi11,2002-03-01,FiU,11,2001/02,"",av Gunnar Hökmark m.fl. (m),Kommittémotion,m300,med anledning av prop. 2001/02:95 Ett tillfälligt sysselsättningsstöd till kommuner och landsting,UNDERTECKNARE,0584386800218,Gunnar Hökmark,M,1
+1307710,H502576,mot,576,2017-09-29,UU,576,2017/18,Klar,av Jan Björklund m.fl. (L),Partimotion,L,Skärpta aktioner mot Ryssland,UNDERTECKNARE,0223069839622,Robert Hannah,L,8
+1715055,H102A388,mot,A388,2014-01-10,AU,388,2013/14,Ank T,av Hannah Bergstedt m.fl. (S),Enskild motion,S18113,Unga och arbete ,UNDERTECKNARE,0442629549320,Adnan Dibrani,S,4
+381500,GQ02A356,mot,A356,2002-10-23,AU,356,2002/03,"",av Anders Ygeman (s),Enskild motion,s31053,Utökat medbestämmande,UNDERTECKNARE,0744993950910,Anders Ygeman,S,1
+1970330,H2022824,mot,2824,2014-11-10,KrU,2824,2014/15,Klar,av Thomas Strand m.fl. (S),Enskild motion,S25021,Kulturens viktiga roll,UNDERTECKNARE,037561614928,Lawen Redar,S,7
+2533010,HC02148,mot,148,2024-09-19,UbU,148,2024/25,Klar,av Eva Lindh (S),Enskild motion,768,Arbetsmarknadskunskap i gymnasieskolan,UNDERTECKNARE,0780214960516,Eva Lindh,S,1
+905707,GS02Ub334,mot,Ub334,2004-10-06,UbU,334,2004/05,Trycklov,av Britt-Marie Danestig m.fl. (v),Kommittémotion,v905,Anslag till grundutbildning,UNDERTECKNARE,0841428824218,Camilla Sköld Jansson,V,3
+1430074,GX02N302,mot,N302,2009-10-06,NU,302,2009/10,Ank T,av Kent Persson m.fl. (v),Kommittémotion,v272,Forska och väx och biomedicin,UNDERTECKNARE,0814945477312,Gunilla Wahlén,V,5
+914958,GR02Sf11,mot,Sf11,2003-12-11,SfU,11,2003/04,"",av Per Westerberg m.fl. (m),Kommittémotion,m222,med anledning av prop. 2003/04:35 Människosmuggling och tidsbegränsat uppehållstillstånd för målsägande och vittnen m.m.,UNDERTECKNARE,0906365922712,Anne-Marie Pålsson,M,4
+1842290,GV02So20,mot,So20,2008-04-02,SoU,20,2007/08,Ank T,av Ylva Johansson m.fl. (s),Kommittémotion,s42026,med anledning av prop. 2007/08:110 En förnyad folkhälsopolitik,UNDERTECKNARE,0957631371811,Lars U Granberg,S,3
+1320676,GY02U222,mot,U222,2010-10-26,UU,222,2010/11,Ank T,av Peter Rådberg m.fl. (MP),Kommittémotion,MP3205,Biståndspengar och vapen,UNDERTECKNARE,0584183916016,Ulf Holm,MP,7
+1482169,GZ02T390,mot,T390,2011-10-05,TU,390,2011/12,Ank T,av Helene Petersson i Stockaryd m.fl. (S),Enskild motion,S10123,Infrastruktur i södra Sverige,UNDERTECKNARE,0600928907216,Carina Hägg,S,2
+644233,GT02Ju384,mot,Ju384,2005-10-03,JuU,384,2005/06,Trycklov,"av Maria Wetterstrand m.fl. (mp, -)",Partimotion,mp601,Ett grönt rättsväsende för framtiden,UNDERTECKNARE,0553513261108,Barbro Feltzing,MP,5
+1810393,H102Kr309,mot,Kr309,2014-02-10,KrU,309,2013/14,Ank T,av Jonas Sjöstedt m.fl. (V),Partimotion,V596,Kulturfrågor,UNDERTECKNARE,0371688419616,Lars Ohly,V,7
+493551,GP02MJ245,mot,MJ245,2001-10-05,MJU,245,2001/02,"",av Jonas Ringqvist m.fl. (v),Kommittémotion,v335,Fågeljakt,UNDERTECKNARE,0111536149811,Owe Hellberg,V,4
+2594891,HD021196,mot,1196,2025-10-02,UbU,1196,2025/26,Hänvisad,av Magnus Resare (M),Enskild motion,1724,Stärkt kompetensförsörjning inom taxibranschen,UNDERTECKNARE,074310796828,Magnus Resare,M,1
+1860294,GY02N218,mot,N218,2010-10-21,NU,218,2010/11,Ank T,av Hans Backman m.fl. (FP),Enskild motion,FP1013,Förändrat och förbättrat regelverk för elmarknaden,UNDERTECKNARE,0970400972210,Hans Backman,L,1
+1568641,GX02Sf254,mot,Sf254,2009-10-01,SfU,254,2009/10,Ank T,av Bodil Ceballos m.fl. (mp),Kommittémotion,mp907,Fri rörlighet i EU för turkiska medborgare,UNDERTECKNARE,0262455192724,Max Andersson,MP,2
+2177260,HC023364,mot,3364,2025-04-01,MJU,3364,2024/25,Klar,av Kajsa Fredholm m.fl. (V),Kommittémotion,051,med anledning av prop. 2024/25:131 Nya regler för datacenter och hållbara bränslen samt en ny reduktionsplikt,UNDERTECKNARE,0411459873625,Hanna Gunnarsson,V,3
+2045589,H4021832,mot,1832,2016-10-04,TU,1832,2016/17,Klar,av Elisabeth Svantesson och Lotta Finstorp (båda M),Enskild motion,M1530,Däckbyte,UNDERTECKNARE,0750518623913,Lotta Finstorp,M,2
+1964511,H2022950,mot,2950,2014-11-10,UbU,2950,2014/15,Klar,av Robert Stenkvist m.fl. (SD),Enskild motion,SD613,Förbud mot finansiering av friskolor för aktörer utanför Norden ,UNDERTECKNARE,0145294944502,Roger Richtoff,SD,3
+648767,GT02Ju406,mot,Ju406,2005-09-28,JuU,406,2005/06,Trycklov,av Hans Stenberg och Agneta Lundberg (s),Enskild motion,s18442,DNA-registret,UNDERTECKNARE,0957794828205,Agneta Lundberg,S,2
+2527326,GW02So243,mot,So243,2008-09-29,SoU,243,2008/09,Ank T,av Thomas Nihlén m.fl. (mp),Kommittémotion,mp820,Djur och natur i vård och omsorg,UNDERTECKNARE,0584183916016,Ulf Holm,MP,8
+1617807,GV02K379,mot,K379,2007-10-05,KU,379,2007/08,Ank T,av Jan Björkman m.fl. (s),Enskild motion,s3042,Brukarinflytande för äldre,UNDERTECKNARE,067992138910,Peter Jeppsson,S,3
+450589,GO02Sk29,mot,Sk29,2001-03-29,SkU,29,2000/01,"",av Tom Heyman m.fl. (m),Kommittémotion,m873,med anledning av prop. 2000/01:89 Beskattningen av anställda ombord på färjor mellan Sverige och Danmark,UNDERTECKNARE,0946889218011,Jan-Evert Rådhström,M,3
+1779846,H102Kr210,mot,Kr210,2013-10-01,KrU,210,2013/14,Ank T,av Christina Oskarsson m.fl. (S),Enskild motion,S19004,Musik- och kulturskolan,UNDERTECKNARE,0781520322912,Jörgen Hellman,S,2
+2373147,H60263,mot,63,2018-10-10,SkU,63,2018/19,Klar,av David Lång m.fl. (SD),Kommittémotion,SD2,Skatteverkets inriktning 2019,UNDERTECKNARE,0333193598116,Bo Broman,SD,2
+893759,GR02Sf326,mot,Sf326,2003-10-07,SfU,326,2003/04,"",av Lars Leijonborg m.fl. (fp),Partimotion,fp6,Jobb istället för bidrag  - den liberala vägen till integration,UNDERTECKNARE,0333961113904,Marita Aronson,L,3
+1440481,GV02U5,mot,U5,2007-11-01,UU,5,2007/08,Ank T,av Karla López m.fl. (mp),Kommittémotion,mp8,med anledning av prop. 2007/08:14 Svenskt deltagande i Europeiska unionens militära insats i Tchad och Centralafrikanska republiken,UNDERTECKNARE,0705556766027,Karla López,MP,1
+133756,GO02Kr251,mot,Kr251,2000-10-05,KrU,251,2000/01,"","av Sven Brus m.fl. (kd, m, fp)",Flerpartimotion,kd565,Statligt stöd till landets symfoniorkestrar,UNDERTECKNARE,0225823431305,Stefan Hagfeldt,M,2
+2713591,GZ02U23,mot,U23,2012-04-11,UU,23,2011/12,Ank T,av Urban Ahlin m.fl. (S),Kommittémotion,S92041,med anledning av skr. 2011/12:114 Strategisk exportkontroll 2011 – krigsmateriel och produkter med dubbla användningsområden ,UNDERTECKNARE,0891971250317,Urban Ahlin,S,1
+2035569,H2022133,mot,2133,2014-11-10,NU,2133,2014/15,Klar,av Per Klarberg m.fl. (SD),Kommittémotion,SD319,Slopa SJ AB:s avkastningskrav,UNDERTECKNARE,0871764071911,Nina Kain,SD,3
+2297420,HA0387,prop,87,2023-03-14,Försvarsdepartementet,87,2022/23,Klar,"",prop,"",Säkerhetsprövning av totalförsvarspliktiga m.m.,,0642224351118,Pål Jonson,M,2
+944831,GO02U202,mot,U202,2000-10-05,UU,202,2000/01,"","av Rose-Marie Frebran m.fl. (kd, c, fp, mp)",Flerpartimotion,kd579,Humanitär minröjning,UNDERTECKNARE,0990007083418,Lars Ångström,MP,4
+1831334,GV02A379,mot,A379,2007-10-05,AU,379,2007/08,Ank T,av Lars Ohly m.fl. (v),Partimotion,v706,Arbetstider,UNDERTECKNARE,0116603319117,Josefin Brink,V,8
+932872,GT02L251,mot,L251,2005-09-28,LU,251,2005/06,Trycklov,av Tasso Stafilidis m.fl. (v),Kommittémotion,v867,Ändringar i bodelningsreglerna,UNDERTECKNARE,0548089226618,Mats Einarsson,V,3
+2651147,H5023603,mot,3603,2017-10-05,KrU,3603,2017/18,Klar,av Rossana Dinamarca m.fl. (V),Kommittémotion,V593,Kultur för alla,UNDERTECKNARE,0721509806321,Nooshi Dadgostar,V,2
+165197,GP02Sf402,mot,Sf402,2001-10-05,SfU,402,2001/02,"",av Matz Hammarström m.fl. (mp),Partimotion,mp825,Jämställdhet och socialförsäkringar,UNDERTECKNARE,0332753845811,Yvonne Ruwaida,MP,10
+2650768,H9021377,mot,1377,2021-09-30,SoU,1377,2021/22,Klar,av Marléne Lund Kopparklint och Betty Malmberg (båda M),Enskild motion,1920,Bedömningssystemet för personer med funktionsvariation måste förenklas,UNDERTECKNARE,0358514648113,Marléne Lund Kopparklint,M,1
+1707587,HB02783,mot,783,2023-10-03,SoU,783,2023/24,Klar,av Johanna Haraldsson (S),Enskild motion,S1545,Lagstadgat stöd för nära anhörig vid kris,UNDERTECKNARE,0652497579621,Johanna Haraldsson,S,1
+786670,GS02Sf266,mot,Sf266,2004-10-06,SfU,266,2004/05,Trycklov,av Lars Ohly m.fl. (v),Partimotion,v450,Flykting- och immigrationspolitiken,UNDERTECKNARE,042839539117,Alice Åström,V,9
+929792,GP02So633,mot,So633,2001-10-05,SoU,633,2001/02,"",av Ulf Nilsson (fp),Enskild motion,fp544,Stamcellsforskning,UNDERTECKNARE,0542573140300,Ulf Nilsson,L,1
+1708584,HD023163,mot,3163,2025-10-06,SfU,3163,2025/26,Klar,av Nooshi Dadgostar m.fl. (V),Partimotion,544,Utgiftsområde 8 Migration,UNDERTECKNARE,0228027853620,Vasiliki Tsouplaki,V,8
+1547588,GT02Bo314,mot,Bo314,2005-10-05,BoU,314,2005/06,Trycklov,"av Ragnwi Marcelind m.fl. (kd, m, fp, c)",Flerpartimotion,kd1003,Ägarlägenheter,UNDERTECKNARE,0541320528015,Nina Lundström,L,3
+2566066,GW02Sf350,mot,Sf350,2008-10-09,SfU,350,2008/09,Ank T,av Ulf Holm m.fl. (mp),Kommittémotion,mp607,Polisens ingripande mot flyktingar som lever gömda,UNDERTECKNARE,0880452278816,Mikaela Valtersson,MP,2
+2548242,H102So670,mot,So670,2014-06-16,SoU,670,2013/14,Ank T,av Gunvor G Ericson m.fl. (MP),Kommittémotion,MP1805,Modernisera folkhälsopolitiken och tydliggöra ansvar,UNDERTECKNARE,0266627143525,Magnus Ehrencrona,MP,8
+929296,GP02So615,mot,So615,2001-10-05,SoU,615,2001/02,"","av Eva Zetterberg m.fl. (v, kd, fp, mp, c)",Flerpartimotion,v409,Tobakslagen,UNDERTECKNARE,088849148003,Elver Jonsson,L,3
+405426,GR02MJ339,mot,MJ339,2003-10-07,MJU,339,2003/04,"",av Kjell-Erik Karlsson m.fl. (v),Kommittémotion,v353,Naturvårdsverkets ansvar för havsmiljön,UNDERTECKNARE,0891897903314,Sven-Erik Sjöstrand,V,4
+779497,GO02Sk730,mot,Sk730,2000-10-05,SkU,730,2000/01,"","av Marianne Andersson m.fl. (c, m, kd, fp)",Flerpartimotion,m901,Lönebaserad reserveringsmöjlighet,UNDERTECKNARE,0754692641206,Marianne Andersson,C,1
+375536,GP02N312,mot,N312,2001-10-05,NU,312,2001/02,"",av Per Westerberg m.fl. (m),Kommittémotion,m175,Näringsverksamhet,UNDERTECKNARE,0199809132302,Karin Falkmer,M,2
+2454393,GT02MJ595,mot,MJ595,2005-10-05,MJU,595,2005/06,Trycklov,av Björn von der Esch m.fl. (kd),Kommittémotion,kd372,Hållbart skogsbruk,UNDERTECKNARE,0338278373318,Dan Kihlström,KD,3
+2628319,GX02Sk464,mot,Sk464,2009-10-05,SkU,464,2009/10,Ank T,av Finn Bengtsson och Ulf Grape (m),Enskild motion,m1427,Reformerat skattesystem,UNDERTECKNARE,0721657655513,Finn Bengtsson,M,1
+2339905,H4023421,mot,3421,2016-10-05,SoU,3421,2016/17,Klar,av Barbro Westerholm m.fl. (L),Kommittémotion,L,"Utgiftsområde 9 Hälsovård, sjukvård och social omsorg",UNDERTECKNARE,0737073162411,Emma Carlsson Löfdahl,L,4
+917609,GS02MJ19,mot,MJ19,2005-02-04,MJU,19,2004/05,Trycklov,av Sven Gunnar Persson m.fl. (kd),Kommittémotion,kd133,med anledning av prop. 2004/05:72 Förbättrad djurskydds- och livsmedelstillsyn,UNDERTECKNARE,0500946976511,Ragnwi Marcelind,KD,4
+2521932,H002T9,mot,T9,2012-11-07,TU,9,2012/13,Ank T,av Christer Engelhardt m.fl. (S),Enskild motion,S7501,med anledning av prop. 2012/13:25 Investeringar för ett starkt och hållbart transportsystem,UNDERTECKNARE,0583257327619,Kerstin Haglö,S,4
+1724302,HD023265,mot,3265,2025-10-06,MJU,3265,2025/26,Hänvisad,av Alexandra Anstrell m.fl. (M),Enskild motion,1804,Sverige behöver en utökad jakt på säl,UNDERTECKNARE,0932000030511,Maria Stockhaus,M,3
+125864,GP02Ju394,mot,Ju394,2001-10-05,JuU,394,2001/02,"",av Ragnwi Marcelind m.fl. (kd),Kommittémotion,kd397,Brottsoffer och kvinnofrid,UNDERTECKNARE,0575413157004,Ingvar Svensson,KD,2
+2228530,H3022423,mot,2423,2015-10-06,UbU,2423,2015/16,Klar,av Krister Örnfjäder och Håkan Juholt (båda S),Enskild motion,S8063,Utveckling och vidareutveckling av Fojos uppdrag,UNDERTECKNARE,0573136138218,Krister Örnfjäder,S,1
+1612263,GV02K201,mot,K201,2007-09-21,KU,201,2007/08,Ank T,av Hillevi Larsson (s),Enskild motion,s3010,Elektroniska signaturer,UNDERTECKNARE,0878075468027,Hillevi Larsson,S,1
+1761160,HB02928,mot,928,2023-10-03,TU,928,2023/24,Klar,av Elin Söderberg m.fl. (MP),Enskild motion,MP2509,Snabb internetuppkoppling på alla tåg,UNDERTECKNARE,0514669448526,Elin Söderberg,MP,1
+197664,GP02MJ40,mot,MJ40,2002-04-09,MJU,40,2001/02,"",av Matz Hammarström m.fl. (mp),Partimotion,mp41,med anledning av skr. 2001/02:172 Nationell strategi för hållbar utveckling,UNDERTECKNARE,0900533740700,Marianne Samuelsson,MP,14
+2395801,GX02T232,mot,T232,2009-10-01,TU,232,2009/10,Ank T,av Per Svedberg m.fl. (s),Enskild motion,s45067,Tågtrafik ,UNDERTECKNARE,0897304708905,Sinikka Bohlin,S,4
+1865228,H102A301,mot,A301,2013-11-04,AU,301,2013/14,Ank T,av Christina Höj Larsen m.fl. (V),Kommittémotion,V286,Inkludering och antidiskriminering,UNDERTECKNARE,0628190530410,Ulla Andersson,V,2
+356372,GN02L19,mot,L19,2000-04-06,LU,19,1999/2000,"",av Kent Olsson och Elizabeth Nyström (m),-,m0,med anledning av prop. 1999/2000:89 Lag om konsumentskydd vid distansavtal och hemförsäljningsavtal,UNDERTECKNARE,013162757105,Elizabeth Nyström ,M,2
+2383913,GZ02So202,mot,So202,2011-09-23,SoU,202,2011/12,Ank T,av Hans Hoff (S),Enskild motion,S1035,Statistik över rättspsykiatriska patienter som återfaller i våldshandlingar,UNDERTECKNARE,0540190357911,Hans Hoff,S,1
+889471,GO02A224,mot,A224,2000-10-05,AU,224,2000/01,"",av Matz Hammarström m.fl. (mp),Partimotion,mp605,Förändringar i föräldraledighetslagen,UNDERTECKNARE,0962854674801,Gudrun Lindvall,MP,10
+1883425,HC022058,mot,2058,2024-10-03,JuU,2058,2024/25,Klar,av Mats Wiking och Jonathan Svensson (båda S),Enskild motion,427,Indexering av nämndemäns arvoden,UNDERTECKNARE,0512645510895,Jonathan Svensson,S,2
+1718512,HD023143,mot,3143,2025-10-06,KU,3143,2025/26,Hänvisad,av Malin Danielsson (L),Enskild motion,"",Inrättande av en stark författningsdomstol och ett oberoende domstolsråd,UNDERTECKNARE,0603366539729,Malin Danielsson,L,1
+2484915,GZ02Kr264,mot,Kr264,2011-10-04,KrU,264,2011/12,Ank T,av Ulf Nilsson och Allan Widman (FP),Enskild motion,FP1254,Arkeologiska fynd från Uppåkra,UNDERTECKNARE,0542573140300,Ulf Nilsson,L,1
+2471875,HD0257,mot,57,2025-09-15,KU,57,2025/26,Granskad,av Jessica Wetterling m.fl. (V),Kommittémotion,"",med anledning av prop. 2024/25:155 Stärkt konstitutionell beredskap,UNDERTECKNARE,0198917587520,Maj Karlsson,V,5
+924905,GS02Kr7,mot,Kr7,2005-04-06,KrU,7,2004/05,Trycklov,av Kent Olsson m.fl. (m),Kommittémotion,m222,med anledning av prop. 2004/05:124 Arkivfrågor,UNDERTECKNARE,0393171737407,Anita Sidén,M,4
+2535667,H002Kr216,mot,Kr216,2012-10-02,KrU,216,2012/13,Ank T,av Pia Nilsson (S),Enskild motion,S3112,Sala silvergruva,UNDERTECKNARE,0460690753617,Pia Nilsson,S,1
+805498,GS02MJ392,mot,MJ392,2004-10-06,MJU,392,2004/05,Trycklov,av Sven-Erik Sjöstrand m.fl. (v),Kommittémotion,v209,Genteknik och GMO,UNDERTECKNARE,0814945477312,Gunilla Wahlén,V,7
+2746877,GY02Sf320,mot,Sf320,2010-10-27,SfU,320,2010/11,Ank T,av Ann-Christin Ahlberg m.fl. (S),Enskild motion,S3001,Arbetsoförmåga vid graviditet,UNDERTECKNARE,0975579292417,Monica Green,S,5
+650172,GT02Sf409,mot,Sf409,2005-10-05,SfU,409,2005/06,Trycklov,av Inger Lundberg (s),Enskild motion,s3334,Information vid indragen sjukpenning,UNDERTECKNARE,0512424416400,Inger Lundberg,S,1
+363455,GR02N344,mot,N344,2003-10-07,NU,344,2003/04,"",av Catharina Elmsäter-Svärd m.fl. (m),Kommittémotion,m195,Landsbygdsutveckling,UNDERTECKNARE,0463955388312,Bengt-Anders Johansson,M,7
+2475973,GW02Sf332,mot,Sf332,2008-10-06,SfU,332,2008/09,Ank T,av Kalle Larsson m.fl. (v),Kommittémotion,v251,Papperslösa,UNDERTECKNARE,0835507837915,LiseLotte Olsson,V,4
+773252,GP02N39,mot,N39,2001-10-31,NU,39,2001/02,"",av Ewa Thalén Finné m.fl. (m),Enskild motion,m1897,med anledning av skr. 2001/02:22 En förnyad prövning av stängningen av Barsebäck 2,UNDERTECKNARE,0697895317615,Maud Ekendahl,M,4
+1421867,GX02N282,mot,N282,2009-10-02,NU,282,2009/10,Ank T,av Kerstin Lundgren och Per Lodenius (c),Enskild motion,c396,"Social ekonomi för tillväxt, entreprenörskap och arbete",UNDERTECKNARE,0155487380917,Kerstin Lundgren,C,1
+1665222,HB02555,mot,555,2023-10-02,NU,555,2023/24,Klar,av Sten Bergheden (M),Enskild motion,M1279,Tydligare uppdrag till myndigheter och verk om att hjälpa företagen att göra rätt,UNDERTECKNARE,0828721176319,Sten Bergheden,M,1
+125805,GP02Ju395,mot,Ju395,2001-10-05,JuU,395,2001/02,"",av Anders Ygeman m.fl. (s),Enskild motion,s7052,Ekonomisk brottslighet,UNDERTECKNARE,0272604986201,Claes-Göran Brandin,S,4
+2054780,H5021634,mot,1634,2017-10-03,SoU,1634,2017/18,Klar,av Johan Nissinen (SD),Enskild motion,SD165,Förstatliga sjukvården,UNDERTECKNARE,0671881934227,Johan Nissinen,SD,1
+871628,GT02Fi232,mot,Fi232,2005-10-03,FiU,232,2005/06,Trycklov,av Cecilia Widegren m.fl. (m),Enskild motion,m1144,Minskat antal myndigheter,UNDERTECKNARE,0782242286018,Gunnar Axén,M,2
+168289,GR02Ju292,mot,Ju292,2003-10-07,JuU,292,2003/04,"",av Bo Lundgren m.fl. (m),Partimotion,m1,En förnyad syn på rättsväsendet,UNDERTECKNARE,0125165702713,Marietta de Pourbaix-Lundin,M,12
+2514039,H102Fi308,mot,Fi308,2013-10-18,FiU,308,2013/14,Ank T,av Mikael Damberg m.fl. (S),Partimotion,S3001,Lägst arbetslöshet i EU 2020,UNDERTECKNARE,0284192765516,Tomas Eneroth,S,13
+118835,GS02T475,mot,T475,2004-10-06,TU,475,2004/05,Trycklov,av Marie Wahlgren och Ulf Nilsson (fp),Enskild motion,fp286,Järnvägstunnel i Åkarp,UNDERTECKNARE,0542573140300,Ulf Nilsson,L,2
+1370553,GZ02C322,mot,C322,2011-10-05,CU,322,2011/12,Ank T,av Christer Adelsbo m.fl. (S),Enskild motion,S21125,Friköp av historiska arrenden,UNDERTECKNARE,0199751900210,Annelie Karlsson,S,2
+2425491,GT02Bo16,mot,Bo16,2006-04-05,BoU,16,2005/06,Trycklov,av Rigmor Stenmark m.fl. (c),Kommittémotion,c183,med anledning av prop. 2005/06:145 Nationellt program för energieffektivisering och energismart byggande,UNDERTECKNARE,0183788551910,Åsa Torstensson,C,3
+922385,GO02U656,mot,U656,2000-10-05,UU,656,2000/01,"",av Karl-Göran Biörsmark m.fl. (fp),Kommittémotion,fp132,Balkan efter Milosevic och Tudjman,UNDERTECKNARE,0806172169007,Siw Persson,L,3
+916278,GP02So345,mot,So345,2001-10-05,SoU,345,2001/02,"",av Gudrun Schyman m.fl. (v),Partimotion,v425,Privatisering och konkurrensutsättning i vården,UNDERTECKNARE,0792716417210,Lars Bäckström,V,4
+939806,GP02T470,mot,T470,2001-10-05,TU,470,2001/02,"",av Johnny Gylling m.fl. (kd),Kommittémotion,kd436,Åkerinäringen,UNDERTECKNARE,0191823608408,Ulla-Britt Hagström,KD,9
+537287,GP02Sk241,mot,Sk241,2001-10-05,SkU,241,2001/02,"",av Elisabeth Fleetwood m.fl. (m),Kommittémotion,m146,Sponsring,UNDERTECKNARE,0834800011503,Birgitta Wistrand,M,9
+820940,GS02A11,mot,A11,2005-06-02,AU,11,2004/05,Trycklov,av Anders Wiklund och Camilla Sköld Jansson (v),Kommittémotion,v028,med anledning av framst. 2004/05:RRS22 Riksrevisionens styrelses framställning angående arbetslöshetsförsäkringen - kontroll och effektivitet,UNDERTECKNARE,0926555793514,Anders Wiklund,V,1
+767360,GP02U251,mot,U251,2001-10-05,UU,251,2001/02,"",av Bengt Silfverstrand och Karin Wegestål (s),Enskild motion,s18018,Miljön i Jugoslavien,UNDERTECKNARE,0944338157703,Karin Wegestål,S,2
+1866237,GU02So486,mot,So486,2006-10-31,SoU,486,2006/07,Trycklov,av Eva-Lena Jansson m.fl. (s),Enskild motion,s29316,Statsbidrag till tolktjänster för döva,UNDERTECKNARE,0874331493311,Helena Frisk,S,3
+215497,GY02So573,mot,So573,2010-10-27,SoU,573,2010/11,Ank T,av Eva Olofsson m.fl. (V),Kommittémotion,V505,En jämlik hälso- och sjukvård,UNDERTECKNARE,0188653245302,Bengt Berg,V,2
+256684,GS02K274,mot,K274,2004-09-28,KU,274,2004/05,Trycklov,av Mats Einarsson m.fl. (v),Kommittémotion,v673,Transpersoners behov av skydd mot hets mot folkgrupp,UNDERTECKNARE,0480384439015,Tasso Stafilidis,V,7
+2657102,H5023364,mot,3364,2017-10-05,NU,3364,2017/18,Klar,av Sten Bergheden (M),Enskild motion,M1213,Turistnäringen i Sverige,UNDERTECKNARE,0828721176319,Sten Bergheden,M,1
+1366179,GY02So456,mot,So456,2010-10-27,SoU,456,2010/11,Ank T,av Karin Åström m.fl. (S),Enskild motion,S46012,Stödinsatser för personer med osynliga funktionshinder,UNDERTECKNARE,0252067342313,Åsa Lindestam,S,5
+1682467,GT02T562,mot,T562,2005-10-05,TU,562,2005/06,Trycklov,"av Karin Svensson Smith m.fl. (-, mp)",Kommittémotion,mp860,Hastigheten på vägarna,UNDERTECKNARE,0235494367806,Ingegerd Saarinen,MP,3
+2305704,H3023334,mot,3334,2016-03-16,JuU,3334,2015/16,Klar,av Roger Haddad m.fl. (L),Kommittémotion,L0003,med anledning av prop. 2015/16:113 Bättre straffrättsliga verktyg mot organiserad brottslighet,UNDERTECKNARE,0731442709013,Christer Nylander,L,6
+1392094,HD022767,mot,2767,2025-10-06,KU,2767,2025/26,Hänvisad,av Catarina Deremar (C),Enskild motion,"",Införande av en tidsbegränsning vid regeringsförklaringen vid riksmötets öppnande,UNDERTECKNARE,0986091320811,Catarina Deremar,C,1
+2581843,H5023774,mot,3774,2017-10-05,SkU,3774,2017/18,Klar,av Per Åsling m.fl. (C),Kommittémotion,C,Skatter,UNDERTECKNARE,084624777218,Helena Lindahl,C,3
+1738694,GT02Fi265,mot,Fi265,2005-10-03,FiU,265,2005/06,Trycklov,av Eva Arvidsson m.fl. (s),Enskild motion,s14014,Behov av kvalitetssäkring av offentligt finansierad verksamhet i sociala företag och hos andra privata utförare,UNDERTECKNARE,0470861746302,Mariann Ytterberg,S,2
+2538082,GX02Ub451,mot,Ub451,2009-10-05,UbU,451,2009/10,Ank T,av Ameer Sachet m.fl. (s),Enskild motion,s3074,Vuxenutbildning,UNDERTECKNARE,0581480697617,Thomas Bodström,S,5
+694029,GT02So664,mot,So664,2005-10-05,SoU,664,2005/06,Trycklov,av Mariann Ytterberg och Inger Lundberg (s),Enskild motion,s3006,Ombud för funktionshindrade,UNDERTECKNARE,0470861746302,Mariann Ytterberg,S,1
+2466900,H102MJ400,mot,MJ400,2014-01-14,MJU,400,2013/14,Ank T,av Annelie Karlsson m.fl. (S),Enskild motion,S25111,Buller från vindkraftverk,UNDERTECKNARE,0165360915617,Christer Adelsbo,S,2
+2371895,H5022632,mot,2632,2017-10-04,AU,2632,2017/18,Klar,av Gunilla Carlsson och Johan Büser (båda S),Enskild motion,S1506,Osäkra anställningsavtal,UNDERTECKNARE,0875221317013,Gunilla Carlsson,S,1
+378636,GS02U226,mot,U226,2004-09-24,UU,226,2004/05,Trycklov,av Lars Leijonborg m.fl. (fp),Partimotion,fp004,Politik för global utveckling,UNDERTECKNARE,0404025497421,Birgitta Ohlsson,L,3
+2659558,GU02Ub253,mot,Ub253,2006-11-01,UbU,253,2006/07,Trycklov,av Mats Pertoft m.fl. (mp),Kommittémotion,mp659,En fri grundskola,UNDERTECKNARE,0705556766027,Karla López,MP,4
+808651,GQ02So493,mot,So493,2002-10-23,SoU,493,2002/03,"",av Siw Wittgren-Ahl m.fl. (s),Enskild motion,s9102,Piercing och tatuering,UNDERTECKNARE,0556854176401,Eva Arvidsson,S,5
+2462760,GW02K360,mot,K360,2008-10-08,KU,360,2008/09,Ank T,av Anne Ludvigsson m.fl. (s),Enskild motion,s68035,Internationella kvinnodagen som helgdag,UNDERTECKNARE,0600928907216,Carina Hägg,S,3
+1793971,GT02T9,mot,T9,2006-03-20,TU,9,2005/06,Trycklov,av Elizabeth Nyström m.fl. (m),Kommittémotion,m213,med anledning av prop. 2005/06:109 Åtgärder mot svarttaxi m.m.,UNDERTECKNARE,0502353466300,Anders G Högmark,M,7
+132383,GP02Ju384,mot,Ju384,2001-10-05,JuU,384,2001/02,"",av Chatrine Pålsson och Ragnwi Marcelind (kd),Enskild motion,kd843,Omhändertagandet av personer enligt LOB,UNDERTECKNARE,0500946976511,Ragnwi Marcelind,KD,2
+165451,GP02Sf400,mot,Sf400,2001-10-05,SfU,400,2001/02,"",av Lars Leijonborg m.fl. (fp),Partimotion,fp20,Integrationspolitiken,UNDERTECKNARE,088849148003,Elver Jonsson,L,4
+139621,GP02Sf393,mot,Sf393,2001-10-05,SfU,393,2001/02,"",av Kerstin-Maria Stalin m.fl. (mp),Kommittémotion,mp810,Grundtrygghet i socialförsäkringssystemen,UNDERTECKNARE,0186490041606,Kerstin-Maria Stalin,MP,1
+777828,GS02Ju438,mot,Ju438,2004-10-06,JuU,438,2004/05,Trycklov,av Rosita Runegrund och Ingemar Vänerlöv (kd),Enskild motion,kd856,Barnpornografi,UNDERTECKNARE,0574724112206,Rosita Runegrund,KD,1
+1503138,GW02Kr358,mot,Kr358,2008-10-08,KrU,358,2008/09,Ank T,av Mona Sahlin m.fl. (s),Partimotion,s12018,En kulturpolitik för framtiden,UNDERTECKNARE,0891971250317,Urban Ahlin,S,11
+1521127,GZ02T476,mot,T476,2011-10-06,TU,476,2011/12,Trycklov,av Siv Holma och Jonas Sjöstedt (V),Enskild motion,V247,Hållbara malmtransporter,UNDERTECKNARE,0395416536118,Siv Holma,V,1
+427819,GR02Fi40,mot,Fi40,2004-06-23,FiU,40,2003/04,"",av Karin Pilsäter m.fl. (fp),Kommittémotion,fp1212,med anledning av prop. 2003/04:105 God ekonomisk hushållning i kommuner och landsting,UNDERTECKNARE,0980725315516,Lars Leijonborg,L,6
+118086,GO02MJ6,mot,MJ6,2001-01-19,MJU,6,2000/01,"",av Harald Nordlund och Lennart Kollmats (fp),Enskild motion,fp1129,med anledning av prop. 2000/01:47 Ändringar i bilskortningslagen,UNDERTECKNARE,0627722735100,Lennart Kollmats,L,2
+2497705,GW02So457,mot,So457,2008-10-06,SoU,457,2008/09,Ank T,av Per Bill m.fl. (m),Enskild motion,m1962,Gårdsförsäljning av egenproducerad starksprit,UNDERTECKNARE,0292756653724,Henrik von Sydow,M,2
+2560064,GX02K365,mot,K365,2009-10-05,KU,365,2009/10,Ank T,av Anita Brodén och Lars Tysklind (fp),Enskild motion,fp1155,Solceller på riksdagens tak ,UNDERTECKNARE,0535526562910,Lars Tysklind,L,2
+1413197,GT02Ju435,mot,Ju435,2005-10-04,JuU,435,2005/06,Trycklov,av Peter Althin m.fl. (kd),Kommittémotion,kd398,Illegala skjutvapen ,UNDERTECKNARE,0900815713419,Olle Sandahl,KD,2
+1849905,GV02U289,mot,U289,2007-10-04,UU,289,2007/08,Ank T,av Christina Axelsson m.fl. (s),Enskild motion,s67021,Effektivt bistånd för att uppnå millenniemålen,UNDERTECKNARE,0577400273410,Ameer Sachet,S,5
+483524,GR02N384,mot,N384,2003-10-07,NU,384,2003/04,"",av Hans Stenberg och Agneta Lundberg (s),Enskild motion,s18451,Energiförsörjning för arbete och tillväxt,UNDERTECKNARE,0957794828205,Agneta Lundberg,S,2
+392428,GP02Kr426,mot,Kr426,2001-10-05,KrU,426,2001/02,"",av Dan Kihlström m.fl. (kd),Kommittémotion,kd367,Ungdomspolitik,UNDERTECKNARE,0887345842319,Gunilla Tjernberg,KD,17
+498736,GO02L501,mot,L501,2000-10-05,LU,501,2000/01,"",av Kenth Högström (s),Enskild motion,s26069,Arrenden,UNDERTECKNARE,0927576375115,Kenth Högström,S,1
+2386709,HB022648,mot,2648,2023-10-05,FiU,2648,2023/24,Klar,av Mikael Damberg m.fl. (S),Kommittémotion,S,Utgiftsområde 2 Samhällsekonomi och finansförvaltning,UNDERTECKNARE,0482689573825,Björn Wiechel,S,3
+2418537,GU02C365,mot,C365,2006-10-31,CU,365,2006/07,Trycklov,av Magdalena Streijffert m.fl. (s),Enskild motion,s24700,Bostadspolitik för välfärd,UNDERTECKNARE,0909948830718,Ann-Christin Ahlberg,S,5
+393942,GR02U339,mot,U339,2003-10-07,UU,339,2003/04,"",av Holger Gustafsson m.fl. (kd),Kommittémotion,kd394,EU:s nya medlemsländer och grannar,UNDERTECKNARE,0161597857912,Tuve Skånberg,KD,8
+1841317,GV02U209,mot,U209,2007-10-02,UU,209,2007/08,Ank T,av Christer Winbäck (fp),Enskild motion,fp1457,Taiwans medlemskap i FN,UNDERTECKNARE,0455256796113,Christer Winbäck,L,1
+767176,H602367,mot,367,2018-11-13,SoU,367,2018/19,Klar,av Henrik Vinge (SD),Enskild motion,SD198,Sex timmars arbetsdag för personal inom hemtjänst och omsorg,UNDERTECKNARE,0406831930624,Henrik Vinge,SD,1
+592537,GR02So502,mot,So502,2003-10-07,SoU,502,2003/04,"",av Lars Leijonborg m.fl. (fp),Partimotion,fp2,Reformerad psykiatrisk vård,UNDERTECKNARE,0541320528015,Nina Lundström,L,16
+2355831,H4022969,mot,2969,2016-10-05,UU,2969,2016/17,Klar,"av Cecilia Magnusson m.fl. (M, V, L, KD, MP, C)",Enskild motion,M2256,Frigivning av Dawit Isaak,UNDERTECKNARE,0901257862125,Hans Linde,V,12
+1887582,GX02U244,mot,U244,2009-10-01,UU,244,2009/10,Ank T,av Lennart Sacrédeus (kd),Enskild motion,kd735,"Troende i Sverige, Norden och världen",UNDERTECKNARE,0925968558417,Lennart Sacrédeus,KD,1
+1866828,H102A322,mot,A322,2013-10-07,AU,322,2013/14,Ank T,av Peter Persson och Anders Karlsson (S),Enskild motion,S18192,Ändra lex Laval för att värna kollektivavtalsmodellen ,UNDERTECKNARE,087735695612,Anders Karlsson,S,2
+1567153,GV02Sk229,mot,Sk229,2007-10-01,SkU,229,2007/08,Ank T,av Rosita Runegrund (kd),Enskild motion,kd528,Enskilda företagares friskvård,UNDERTECKNARE,0574724112206,Rosita Runegrund,KD,1
+311669,GP02Ub494,mot,Ub494,2001-10-05,UbU,494,2001/02,"",av Cinnika Beiming och Carina Moberg (s),Enskild motion,s7099,Kompletterande utbildningar för utländska akademiker,UNDERTECKNARE,0348584595917,Cinnika Beiming,S,1
+436659,GR02Ju31,mot,Ju31,2004-06-23,JuU,31,2003/04,"",av Rolf Olsson m.fl. (v),Kommittémotion,v24,med anledning av prop. 2003/04:164 Sveriges antagande av rambeslut om angrepp mot informationssystem,UNDERTECKNARE,0114065053815,Rolf Olsson,V,1
+2575933,H5023853,mot,3853,2017-10-05,UbU,3853,2017/18,Klar,"av Pernilla Stålhammar och Maria Andersson Willner (MP, S)",Enskild motion,MP3201,Forskningsprogram för patientsäkerhet,UNDERTECKNARE,0704744533715,Pernilla Stålhammar,MP,1
+1626369,GT02K13,mot,K13,2006-03-03,KU,13,2005/06,Trycklov,av Gustav Fridolin m.fl. (mp),Enskild motion,mp017,med anledning av prop. 2005/06:86 Ett ökat samiskt inflytande,UNDERTECKNARE,0708340640717,Åsa Domeij,MP,3
+2727353,H9021171,mot,1171,2021-09-30,SkU,1171,2021/22,Klar,av Magnus Ek (C),Enskild motion,"",Underlätta kollektivt boende,UNDERTECKNARE,057993099726,Magnus Ek,C,1
+1393577,GV02K7,mot,K7,2007-10-17,KU,7,2007/08,Ank T,av Berit Andnor m.fl. (s),Enskild motion,s16203,med anledning av prop. 2007/08:8 Tv – tillgänglig för alla. Tillstånd för digital marksänd tv,UNDERTECKNARE,0897304708905,Sinikka Bohlin,S,6
+159910,GR02T201,mot,T201,2003-10-07,TU,201,2003/04,"",av Rolf Gunnarsson (m),Enskild motion,m1035,Utländska körkorts giltighet i Sverige,UNDERTECKNARE,0785143384002,Rolf Gunnarsson,M,1
+2605116,GU02Ub336,mot,Ub336,2006-11-02,UbU,336,2006/07,Trycklov,av Göran Persson i Simrishamn m.fl. (s),Enskild motion,s17042,Kooperativt företagande i skolundervisningen,UNDERTECKNARE,0957631371811,Lars U Granberg,S,8
+1866401,H102A328,mot,A328,2013-10-07,AU,328,2013/14,Ank T,av Annika Qarlsson och Solveig Zander (C),Enskild motion,C435,Prislappen på ojämställdhet ,UNDERTECKNARE,0962841101917,Annika Qarlsson,C,1
+1365811,H002U273,mot,U273,2012-12-14,UU,273,2012/13,Ank T,av Jabar Amin m.fl. (MP),Enskild motion,MP1120,Verka för FN-ledd folkomröstning i olika delar av Kurdistan,UNDERTECKNARE,0699787174310,Lotta Hedström,MP,4
+2408684,H4022782,mot,2782,2016-10-05,UU,2782,2016/17,Klar,av Annika Lillemets m.fl. (MP),Enskild motion,"",Sanktioner mot Turkiet,UNDERTECKNARE,0849219210615,Jabar Amin,MP,2
+143003,GS02So605,mot,So605,2004-10-06,SoU,605,2004/05,Trycklov,av Göran Hägglund m.fl. (kd),Partimotion,kd309,"Utgiftsområde 9 Hälsovård, sjukvård och social omsorg",UNDERTECKNARE,0377384542907,Chatrine Pålsson,KD,4
+2012440,H2022155,mot,2155,2014-11-10,TU,2155,2014/15,Klar,av Annicka Engblom m.fl. (M),Enskild motion,M2071,Utbyggnad av E22,UNDERTECKNARE,0590042760718,Annicka Engblom,M,1
+1846583,H002N383,mot,N383,2012-10-05,NU,383,2012/13,Ank T,av Jennie Nilsson m.fl. (S),Kommittémotion,S12005,Utgiftsområde 21 Energi,UNDERTECKNARE,0339894357417,Jennie Nilsson,S,1
+2607520,HB021314,mot,1314,2023-10-04,FiU,1314,2023/24,Klar,av Hanna Westerén och Peder Björk (båda S),Enskild motion,S1478,Oseriösa aktörer i offentlig upphandling,UNDERTECKNARE,0140985614421,Peder Björk,S,2
+2249320,H4023088,mot,3088,2016-10-05,MJU,3088,2016/17,Klar,av Eskil Erlandsson och Per-Ingvar Johnsson (båda C),Enskild motion,C,Trafikskadat vilt,UNDERTECKNARE,0465398691116,Eskil Erlandsson,C,1
+764029,GO02Ub473,mot,Ub473,2000-10-05,UbU,473,2000/01,"","av Elver Jonsson m.fl. (fp, v, mp, kd, c, m)",-,fp410,Villkoren för frikyrkliga högskolor,UNDERTECKNARE,0905755961314,Lars Elinderson ,M,4
+790194,GP02Sf5,mot,Sf5,2001-10-10,SfU,5,2001/02,"",av Magda Ayoub m.fl. (kd),Kommittémotion,kd114,med anledning av skr. 2001/02:5 Migration och asylpolitik,UNDERTECKNARE,0205071690103,Erling Wälivaara,KD,15
+1780599,HB02656,mot,656,2023-10-02,SoU,656,2023/24,Klar,av Kadir Kasirga (S),Enskild motion,S1424,Tänderna en del av kroppen,UNDERTECKNARE,0425115010020,Kadir Kasirga,S,1
+1997175,H2022298,mot,2298,2014-11-10,KU,2298,2014/15,Klar,av Hans Unander m.fl. (S),Enskild motion,S19095,Representation i myndigheternas styrelser ,UNDERTECKNARE,0136801772915,Maria Strömkvist,S,2
+2248280,H402462,mot,462,2016-09-30,UU,462,2016/17,Klar,av Johan Nissinen m.fl. (SD),Kommittémotion,SD49,Stöd till jordbrukare som ingår i UNDOC:s skördeutbytesprogram i Shanstaten,UNDERTECKNARE,0455086201022,Johnny Skalin,SD,6
+1490347,H102Ub278,mot,Ub278,2013-11-29,UbU,278,2013/14,Ank T,av Cecilia Brinck (M),Enskild motion,M1323,Studiemedlets sammansättning och villkor,UNDERTECKNARE,0590020362617,Cecilia Brinck,M,1
+364571,GQ02Ub303,mot,Ub303,2002-10-23,UbU,303,2002/03,"",av Britt-Marie Danestig m.fl. (v),Kommittémotion,v256,HBT-undervisningen vid högskolan,UNDERTECKNARE,0694077681517,Lennart Gustavsson,V,2
+547919,GR02Kr366,mot,Kr366,2003-10-07,KrU,366,2003/04,"",av Louise Malmström (s),Enskild motion,s3118,Folkbibliotekens roll i det livslånga lärandet,UNDERTECKNARE,0203334943718,Louise Malmström,S,1
+1337780,GW02A391,mot,A391,2008-10-08,AU,391,2008/09,Ank T,av Börje Vestlund m.fl. (s),Enskild motion,s12012,HBT på arbetsmarknaden,UNDERTECKNARE,0883392691612,Anneli Särnblad,S,2
+1971821,H3021894,mot,1894,2015-10-06,NU,1894,2015/16,Klar,av Saila Quicklund (M),Enskild motion,M1541,Stöd till besöksnäringen,UNDERTECKNARE,0519740099915,Saila Quicklund,M,1
+371667,GO02Ju714,mot,Ju714,2000-10-05,JuU,714,2000/01,"",av Carl G Nilsson (m),Enskild motion,m376,Vapenlagstiftningen,UNDERTECKNARE,0929270135300,Carl G Nilsson,M,1
+1896301,HC022652,mot,2652,2024-10-04,SoU,2652,2024/25,Klar,av Sten Bergheden (M),Enskild motion,1822,Vaccinationsprogram för äldre,UNDERTECKNARE,0828721176319,Sten Bergheden,M,1
+693041,GP02T66,mot,T66,2001-12-03,TU,66,2001/02,"",av Mikael Johansson och Maria Wetterstrand (mp),Enskild motion,mp14,med anledning av prop. 2001/02:66 Ytterligare förlängd tid för statliga garantier för att återställa försäkringsskyddet för flygbranschen,UNDERTECKNARE,0517869568019,Mikael Johansson,MP,1
+905520,GP02MJ520,mot,MJ520,2001-10-05,MJU,520,2001/02,"",av Alf Svensson m.fl. (kd),Partimotion,kd323,"Jord- och skogsbruk, fiske och anslutande näringar, utgiftsområde 23",UNDERTECKNARE,0855851906414,Caroline Hagström,KD,10
+296900,GR02Sk30,mot,Sk30,2004-02-18,SkU,30,2003/04,"",av Per Landgren m.fl. (kd),Kommittémotion,kd144,"med anledning av prop. 2003/04:64 En begränsningsregel för förmögenhetsskatten, m.m.",UNDERTECKNARE,0393583311409,Lars Lindén,KD,7
+524697,GN031D17,prop,1D17,2000-01-01,Finansdepartementet,1,1999/2000,"",Utgiftsområde 6,prop,1.17,Budgetpropositionen för 2000,,,,,
+2167335,HD02526,mot,526,2025-09-30,SoU,526,2025/26,Hänvisad,av Ewa Pihl Krabbe m.fl. (S),Enskild motion,225,Tandvårdsreform,UNDERTECKNARE,0405594274208,Ewa Pihl Krabbe,S,1
+2733633,HB021132,mot,1132,2023-10-03,FöU,1132,2023/24,Klar,av David Josefsson och Marie-Louise Hänel Sandström (båda M),Enskild motion,M1607,Stärkt försvar av Göteborg och västkusten,UNDERTECKNARE,0810852280213,Marie-Louise Hänel Sandström,M,2
+1418748,GT02So450,mot,So450,2005-10-03,SoU,450,2005/06,Trycklov,av Tasso Stafilidis (v),Enskild motion,v875,Funktionshindrades sexualitet,UNDERTECKNARE,0480384439015,Tasso Stafilidis,V,1
+2407127,GZ02Ju222,mot,Ju222,2011-09-30,JuU,222,2011/12,Ank T,av Maria Ferm m.fl. (MP),Enskild motion,MP2102,Datalagringsdirektivet,UNDERTECKNARE,0641486384014,Jan Lindholm,MP,4
+1338740,GW02T8,mot,T8,2008-10-21,TU,8,2008/09,Ank T,av Ibrahim Baylan m.fl. (s),Kommittémotion,s96019,med anledning av prop. 2008/09:35 Framtidens resor och transporter – infrastruktur för hållbar tillväxt,UNDERTECKNARE,0851966755011,Hans Stenberg,S,6
+158595,GR02N3,mot,N3,2003-09-19,NU,3,2003/04,"",av Eva Flyborg m.fl. (fp),Kommittémotion,fp1109,med anledning av förs. 2002/03:RR16 Riksdagens revisorers förslag angående staten som bolagsägare ,UNDERTECKNARE,0203071331400,Yvonne Ångström,L,2
+939627,GR02Fi8,mot,Fi8,2003-10-01,FiU,8,2003/04,"",av Karin Pilsäter m.fl. (fp),Kommittémotion,fp1103,med anledning av prop. 2002/03:151 Utjämning av vissa kostnader för stöd och service till funktionshindrade,UNDERTECKNARE,0395613047500,Linnéa Darell,L,3
+1486214,GW02Ub539,mot,Ub539,2008-10-07,UbU,539,2008/09,Ank T,av Matilda Ernkrans m.fl. (s),Enskild motion,s6075,Genuspedagoger inom förskola och skola,UNDERTECKNARE,0975579292417,Monica Green,S,9
+301617,GQ02K298,mot,K298,2002-10-23,KU,298,2002/03,"",av Carina Hägg (s),Enskild motion,s11128,Användning av personnummer vid hyra av videofilm,UNDERTECKNARE,0600928907216,Carina Hägg,S,1
+1825959,GV02A259,mot,A259,2007-10-02,AU,259,2007/08,Ank T,av Gunilla Carlsson i Hisings Backa och Caroline  Helmersson-Olsson (s),Enskild motion,s27075,Begränsning av visstidsanställningar,UNDERTECKNARE,0537400268911,Caroline Helmersson-Olsson,S,2
+792135,GP02T26,mot,T26,2001-10-18,TU,26,2001/02,"",av Ulf Björklund m.fl. (kd),Enskild motion,kd126,med anledning av prop. 2001/02:20 Infrastruktur för ett långsiktigt hållbart transportsystem,UNDERTECKNARE,0653132951201,Ulf Björklund,KD,1
+671793,GS02U257,mot,U257,2004-10-06,UU,257,2004/05,Trycklov,av Lars Ohly m.fl. (v),Partimotion,v674,Rätten till likabehandling oavsett sexuell läggning eller könsidentitet,UNDERTECKNARE,0548089226618,Mats Einarsson,V,4
+555701,GP02A271,mot,A271,2001-10-05,AU,271,2001/02,"",av Gudrun Schyman m.fl. (v),Partimotion,v484,Från jämställdhet till feminism,UNDERTECKNARE,0500463008008,Hans Andersson,V,2
+754897,GO02T230,mot,T230,2000-10-05,TU,230,2000/01,"",av Britt Bohlin m.fl. (s),Enskild motion,s32301,Tillväxt och välfärd i Västsverige,UNDERTECKNARE,0667054859301,Alf Eriksson,S,6
+1529520,GV02K408,mot,K408,2007-10-08,KU,408,2007/08,Ank T,av Eliza Roszkowska Öberg och Sten Nordin (m),Enskild motion,m1238,Lånecyklar i riksdagen,UNDERTECKNARE,0844246115721,Eliza Roszkowska Öberg,M,1
+704682,GO02T334,mot,T334,2000-10-05,TU,334,2000/01,"",av Margareta Andersson (c),Enskild motion,c455,Riksväg 27,UNDERTECKNARE,0928964569700,Margareta Andersson,C,1
+2230703,H402824,mot,824,2016-10-03,MJU,824,2016/17,Klar,av Annie Lööf m.fl. (C),Partimotion,C,Giftfri vardag,UNDERTECKNARE,0681030112815,Peter Helander,C,10
+1448708,H002So459,mot,So459,2012-10-04,SoU,459,2012/13,Ank T,av Annelie Karlsson m.fl. (S),Enskild motion,S32149,Assistansersättning,UNDERTECKNARE,0136310791918,Marie Granlund,S,11
+333092,GO02Bo533,mot,Bo533,2000-10-05,BoU,533,2000/01,"",av Knut Billing m.fl. (m),Kommittémotion,m1135,Boende i husbåt,UNDERTECKNARE,08644719105,Anna Lilliehöök,M,7
+2271320,GU02Ju204,mot,Ju204,2006-11-01,JuU,204,2006/07,ANKT,av Lena Olsson m.fl. (v),Kommittémotion,v914,Jurisdiktionsregler i tvistemål,UNDERTECKNARE,042839539117,Alice Åström,V,7
+213639,GR02U256,mot,U256,2003-10-07,UU,256,2003/04,"",av Bo Lundgren m.fl. (m),Partimotion,m2,Svensk säkerhetspolitik,UNDERTECKNARE,0977860675311,Gunilla Carlsson i Tyresö,M,5
+2072591,H2021720,mot,1720,2014-11-10,UbU,1720,2014/15,Klar,av Christer Nylander m.fl. (FP),Kommittémotion,FP7008,Skolbibliotek,UNDERTECKNARE,0308306375022,Roger Haddad,L,2
+1460909,GW02Ub482,mot,Ub482,2008-10-06,UbU,482,2008/09,Ank T,av Marianne Watz och Eva Bengtson Skogsberg (m),Enskild motion,m1969,Svenska som undervisningsspråk,UNDERTECKNARE,0472335069513,Eva Bengtson Skogsberg,M,2
+504456,GO02L4,mot,L4,2000-11-21,LU,4,2000/01,"",av Rolf Åbjörnsson m.fl. (kd),Kommittémotion,kd113,med anledning av förs. 2000/01:RR4 Riksdagens revisorers förslag angående tillämpning av skuldsaneringslagen,UNDERTECKNARE,0575413157004,Ingvar Svensson,KD,9
+2351777,HC022008,mot,2008,2024-10-03,TU,2008,2024/25,Klar,av Petter Löberg m.fl. (S),Enskild motion,645,Infrastruktur i Västsverige,UNDERTECKNARE,0516528386117,Patrik Björck,S,7
+904028,GT02N428,mot,N428,2005-10-05,NU,428,2005/06,Trycklov,av Alf Eriksson m.fl. (s),Enskild motion,s12702,En hållbar energipolitik,UNDERTECKNARE,0479638936816,Rolf Lindén,S,6
+2055834,H402909,mot,909,2016-10-03,UU,909,2016/17,Klar,av Hillevi Larsson m.fl. (S),Enskild motion,S18004,Öresundsintegrationen,UNDERTECKNARE,0655028250417,Lena Emilsson,S,7
+1641712,H902632,mot,632,2021-09-27,MJU,632,2021/22,Klar,av Markus Wiechel m.fl. (SD),Enskild motion,542,Videoövervakning vid slakt och straffansvar för slakteriägare,UNDERTECKNARE,091303475611,Eric Palmqvist,SD,2
+356849,GQ02Ub432,mot,Ub432,2002-10-23,UbU,432,2002/03,"",av Sonja Fransson och Gunilla Carlsson i Hisings Backa (s),Enskild motion,s32406,Korttidsstudiebidrag,UNDERTECKNARE,0875221317013,Gunilla Carlsson i Hisings Backa,S,2
+563808,GO02Ub331,mot,Ub331,2000-10-05,UbU,331,2000/01,"",av Ulla-Britt Hagström m.fl. (kd),Kommittémotion,kd756,En gymnasieskola med kvalitet för alla,UNDERTECKNARE,0223175563813,Yvonne Andersson,KD,3
+1608589,GV02K301,mot,K301,2007-10-03,KU,301,2007/08,Ank T,av Karin Svensson Smith m.fl. (mp),Kommittémotion,mp855,Kommunernas möjligheter att komma till rätta med trafikproblemen,UNDERTECKNARE,0880452278816,Mikaela Valtersson,MP,4
+2495185,HC021981,mot,1981,2024-10-03,TU,1981,2024/25,Klar,av Ann-Sofie Alm (M),Enskild motion,1313,Dubbelspår genom Fyrbodal,UNDERTECKNARE,028954589415,Ann-Sofie Alm,M,1
+417112,GN02T19,mot,T19,2000-04-06,TU,19,1999/2000,"",av Eskil Erlandsson m.fl. (c),-,c0,med anledning av prop. 1999/2000:66 Villkoren för järnvägstrafiken på den fasta förbindelsen över Öresund m.m.,UNDERTECKNARE,0590881101608,Åke Sandström ,C,3
+1817047,H102T423,mot,T423,2014-07-28,TU,423,2013/14,Ank T,av Isak From m.fl. (S),Enskild motion,S25037,Ökad omställning till en ny bilpark,UNDERTECKNARE,0797281536419,Tomas Nilsson,S,7
+810250,GY01AU6,kammakt,AU6,2012-06-15,kamm,0,2010/11,inträffat,"",vo,"",Beslut,,,,,
+1553633,GV02So399,mot,So399,2007-10-05,SoU,399,2007/08,Ank T,av Solveig Hellquist (fp),Enskild motion,fp1542,Service- och signalhundar,UNDERTECKNARE,0963654118003,Solveig Hellquist,L,1
+932967,GT02A262,mot,A262,2005-10-03,AU,262,2005/06,Trycklov,av Hillevi Larsson och Britt-Marie Lindkvist (s),Enskild motion,s21018,Första hjälpen,UNDERTECKNARE,0252641216303,Britt-Marie Lindkvist,S,2
+1689191,HD023403,mot,3403,2025-10-06,CU,3403,2025/26,Hänvisad,av Lars Püss (M),Enskild motion,1152,Reformering av miljöbalken för Sveriges säkerhets skull,UNDERTECKNARE,0227531635413,Lars Püss,M,1
+430713,GS02Kr210,mot,Kr210,2004-09-23,KrU,210,2004/05,Original,av Anita Sidén och Jeppe Johnsson (m),Enskild motion,m1219,Språkutredningen,UNDERTECKNARE,0393171737407,Anita Sidén,M,1
+2230863,H3022541,mot,2541,2015-10-06,AU,2541,2015/16,Klar,av Johan Andersson m.fl. (S),Enskild motion,S3075,En transparent bemanning inom äldreomsorgen – ett steg för att komma till rätta med ohälsan inom vård och omsorg,UNDERTECKNARE,0573136138218,Krister Örnfjäder,S,9
+924065,GP02So498,mot,So498,2001-10-05,SoU,498,2001/02,"",av Gudrun Schyman m.fl. (v),Partimotion,v424,Folkhälsa,UNDERTECKNARE,0489462966700,Tanja Linderborg,V,8
+1957375,H2022646,mot,2646,2014-11-10,SoU,2646,2014/15,Klar,av Serkan Köse m.fl. (S),Enskild motion,S29098,En ny strategi mot hemlöshet,UNDERTECKNARE,0474290584024,Azadeh Rojhan Gustafsson,S,2
+1682047,GV02Ju313,mot,Ju313,2007-10-03,JuU,313,2007/08,Ank T,av Mikael Cederbratt (m),Enskild motion,m1598,Förändring av reglerna kring överklagande i brottmål,UNDERTECKNARE,0105797223918,Mikael Cederbratt,M,1
+245728,GQ02So21,mot,So21,2003-01-24,SoU,21,2002/03,"",av Lars Leijonborg m.fl. (fp),Partimotion,fp1001,med anledning av skr. 2002/03:25 Uppföljning av den Nationella handlingsplanen för handikappolitiken,UNDERTECKNARE,0395613047500,Linnéa Darell,L,4
+640516,GY02U297,mot,U297,2010-10-27,UU,297,2010/11,Ank T,av Jonas Sjöstedt m.fl. (V),Kommittémotion,V282,Arica,UNDERTECKNARE,0383111552218,Jonas Sjöstedt,V,1
+942182,GR02Sf384,mot,Sf384,2003-10-07,SfU,384,2003/04,"","av Jeppe Johnsson m.fl. (m, fp, kd)",Flerpartimotion,fp584,En privatiserad arbetsskadeförsäkring,UNDERTECKNARE,0879055385113,Jeppe Johnsson,M,1
+651321,GY02So457,mot,So457,2010-10-27,SoU,457,2010/11,Ank T,av Carina Adolfsson Elgestam m.fl. (S),Enskild motion,S68023,Kvinnors behov inom äldreomsorgen,UNDERTECKNARE,0600928907216,Carina Hägg,S,2
+936743,GP02Fi258,mot,Fi258,2001-10-05,FiU,258,2001/02,"",av Martin Nilsson m.fl. (s),Enskild motion,s33055,"Statliga fastighetsbolag, studentbostäder m.m.",UNDERTECKNARE,0883183598315,Lena Sandlin-Hedman,S,3
+1899241,GY02MJ5,mot,MJ5,2011-02-16,MJU,5,2010/11,Ank T,"av Matilda Ernkrans m.fl. (S, V, MP)",Flerpartimotion,-S12005,med anledning av prop. 2010/11:64 Två strandskyddsfrågor,UNDERTECKNARE,0951854268017,Åsa Romson,MP,3
+2654081,H5023685,mot,3685,2017-10-05,JuU,3685,2017/18,Klar,av Annie Lööf m.fl. (C),Partimotion,C,Trygghet i hela landet,UNDERTECKNARE,0665485817222,Daniel Bäckström,C,4
+156824,GO02Fö9,mot,Fö9,2001-01-19,FöU,9,2000/01,"",av Åke Carnerö m.fl. (kd),Partimotion,kd122,med anledning av skr. 2000/01:52 Beredskapen mot svåra påfrestningar i fred,UNDERTECKNARE,0931369291903,Fanny Rizell,KD,7
+1857104,GZ02So614,mot,So614,2011-10-05,SoU,614,2011/12,Ank T,av Edward Riedl (M),Enskild motion,M817,Sänkt åldersgräns på Systembolaget,UNDERTECKNARE,0273506284025,Edward Riedl,M,1
+2620415,GX02Sk282,mot,Sk282,2009-10-06,SkU,282,2009/10,Ank T,av Carina Hägg (s),Enskild motion,s30067,Orättvis skatt för personer med sjukersättning,UNDERTECKNARE,0600928907216,Carina Hägg,S,1
+2682856,GV02C321,mot,C321,2007-10-04,CU,321,2007/08,Ank T,av Kerstin Engle m.fl. (s),Enskild motion,s2035,Revidering av lagen om ekonomisk förening,UNDERTECKNARE,0251564185908,Kerstin Engle,S,1
+2509786,H102So530,mot,So530,2014-01-09,SoU,530,2013/14,Ank T,av Julia Kronlid och Mattias Karlsson (SD),Enskild motion,SD370,Könsselektiva aborter,UNDERTECKNARE,0831636664429,Mattias Karlsson,SD,2
+94786,GO02Fö207,mot,Fö207,2000-10-05,FöU,207,2000/01,"",av Henrik Landerholm m.fl. (m),Kommittémotion,m1038,Utformningen av det svenska försvaret,UNDERTECKNARE,0838210948212,Henrik Landerholm,M,1
+1453507,H9022022,mot,2022,2021-10-01,FöU,2022,2021/22,Klar,av Sten Bergheden (M),Enskild motion,1508,Öka vår försvarsförmåga,UNDERTECKNARE,0828721176319,Sten Bergheden,M,1
+2098628,HD022245,mot,2245,2025-10-03,MJU,2245,2025/26,Hänvisad,av Ann-Sofie Lifvenhage (M),Enskild motion,2023,Licensjakt på varg,UNDERTECKNARE,0838085832923,Ann-Sofie Lifvenhage,M,1
+1708380,GT02L12,mot,L12,2006-03-23,LU,12,2005/06,Trycklov,av Inger René m.fl. (m),Kommittémotion,m214,med anledning av prop. 2005/06:96 Elektroniskt kungörande i Post- och Inrikes tidningar,UNDERTECKNARE,0292756653724,Henrik von Sydow,M,3
+934500,GR02So466,mot,So466,2003-10-07,SoU,466,2003/04,"",av Ulrik Lindgren (kd),Enskild motion,kd806,Läkemedelsförmånsnämndens uppdrag,UNDERTECKNARE,0499497337518,Ulrik Lindgren,KD,1
+1611188,GX02T8,mot,T8,2010-04-21,TU,8,2009/10,Ank T,"av Lena Hallengren m.fl. (s, v, mp)",Flerpartimotion,-s20006,med anledning av skr. 2009/10:197 Åtgärdsplanering för transportsystemet 2010–2021,UNDERTECKNARE,0995355603410,Wiwi-Anne Johansson,V,4
+479583,GO02K275,mot,K275,2000-10-05,KU,275,2000/01,"",av Sten Andersson och Ewa Thalén Finné (m),Enskild motion,m619,Presstödet,UNDERTECKNARE,0714579775816,Ewa Thalén Finné,M,2
+1377491,GW02N336,mot,N336,2008-10-06,NU,336,2008/09,Ank T,av Nikos Papadopoulos och Yilmaz Kerimo (s),Enskild motion,s25011,Förutsättningarna för invandrare som småföretagare,UNDERTECKNARE,0515990253512,Yilmaz Kerimo,S,2
+2412280,H5022153,mot,2153,2017-10-04,UbU,2153,2017/18,Klar,av Johan Löfstrand m.fl. (S),Enskild motion,S1389,Kompetensförsörjning i samband med byggandet av Ostlänken,UNDERTECKNARE,0612916684825,Johan Löfstrand,S,1
+285024,GR02MJ350,mot,MJ350,2003-10-07,MJU,350,2003/04,"",av Hans Unander m.fl. (s),Enskild motion,s26075,Skyddsjakt på varg,UNDERTECKNARE,0467253407311,Hans Unander,S,1
+2445634,HD021950,mot,1950,2025-10-03,KU,1950,2025/26,Hänvisad,av Mattias Vepsä m.fl. (S),Enskild motion,760,Reglering av hemlig politisk påverkan,UNDERTECKNARE,0783069490115,Mirja Räihä,S,5
+2532260,GX02Sk485,mot,Sk485,2009-10-06,SkU,485,2009/10,Ank T,av Gunilla Carlsson i Hisings Backa m.fl. (s),Enskild motion,s30022,Ekonomisk brottslighet,UNDERTECKNARE,0883392691612,Anneli Särnblad,S,2
+728425,GS02A265,mot,A265,2004-09-28,AU,265,2004/05,Trycklov,av Matilda Ernkrans m.fl. (s),Enskild motion,s3005,Arbetsmarknadspolitik och arbetslösa föräldrar,UNDERTECKNARE,0950203660913,Annika Nilsson,S,9
+763548,GO02MJ814,mot,MJ814,2000-10-05,MJU,814,2000/01,"",av Birgitta Carlsson och Eskil Erlandsson (c),Enskild motion,c579,Kalkningens betydelse för skog och vatten,UNDERTECKNARE,0673622610409,Birgitta Carlsson,C,1
+1693976,GV02Sf346,mot,Sf346,2007-10-17,SfU,346,2007/08,Ank T,av Tomas Eneroth m.fl. (s),Kommittémotion,s68027,Utgiftsområde 11 Ekonomisk trygghet vid ålderdom,UNDERTECKNARE,0875425244515,Ronny Olander,S,2
+719206,GP02K84,mot,K84,2002-03-19,KU,84,2001/02,"",av Ingvar Svensson m.fl. (kd),Kommittémotion,kd188,med anledning av förs. 2001/02:RR15 Riksdagens revisorers förslag angående myndigheten Regeringskansliet,UNDERTECKNARE,0331967573912,Maria Larsson,KD,8
+1578147,H202540,mot,540,2014-11-06,TU,540,2014/15,Klar,av Kerstin Lundgren (C),Enskild motion,C441,Bro mellan Oaxen och Mörkö,UNDERTECKNARE,0155487380917,Kerstin Lundgren,C,1
+2050866,H3022590,mot,2590,2015-10-06,AU,2590,2015/16,Klar,av Thomas Finnborg och Sotiris Delis (båda M),Enskild motion,M1331,"Förebyggande arbete mot förtryck, diskriminering och våld i hederns namn",UNDERTECKNARE,0861447317415,Thomas Finnborg,M,1
+252155,GP02Ub216,mot,Ub216,2001-10-05,UbU,216,2001/02,"",av Magnus Jacobsson och Amanda Agestav (kd),Enskild motion,kd503, Skolhälsovården,UNDERTECKNARE,0977592683711,Magnus Jacobsson,KD,1
+2553063,GU02Kr241,mot,Kr241,2006-11-01,KrU,241,2006/07,ANKT,av Siv Holma m.fl. (v),Kommittémotion,v769,Konstnärernas försörjning,UNDERTECKNARE,0395416536118,Siv Holma,V,1
+363572,GR02N349,mot,N349,2003-10-07,NU,349,2003/04,"",av Monica Green m.fl. (s),Enskild motion,s4705,Tillväxt i Västsverige,UNDERTECKNARE,0479638936816,Rolf Lindén,S,4
+2310263,GU02Ju316,mot,Ju316,2007-02-27,JuU,316,2006/07,Trycklov,av Peter Eriksson m.fl. (mp),Partimotion,mp303,Mäns våld mot kvinnor,UNDERTECKNARE,0872978640827,Helena Leander,MP,12
+2670963,H9021101,mot,1101,2021-09-29,JuU,1101,2021/22,Klar,av Mats Green m.fl. (M),Enskild motion,2650,Stärkt rättssamhälle och äganderätt genom rättighet till ersättning för enskilds rättegångskostnader vid rätt mot myndighet,UNDERTECKNARE,0538387395826,Mats Green,M,1
+1417803,GW02A233,mot,A233,2008-10-01,AU,233,2008/09,Ank T,av Lennart Axelsson och Eva-Lena Jansson (s),Enskild motion,s27083,Åldersdiskriminering,UNDERTECKNARE,048970816012,Eva-Lena Jansson,S,2
+318888,GO02So5,mot,So5,2000-09-22,SoU,5,2000/01,"",av Chris Heister m.fl. (m),Kommittémotion,m1019,med anledning av prop. 1999/2000:149 Nationell handlingsplan för utveckling av hälso- och sjukvården,UNDERTECKNARE,0697895317615,Maud Ekendahl,M,8
+430156,GR02MJ464,mot,MJ464,2003-10-07,MJU,464,2003/04,"",av Sonia Karlsson m.fl. (s),Enskild motion,s3117,Omberg som nationalpark,UNDERTECKNARE,0612916684825,Johan Löfstrand,S,7
+889173,GP02K314,mot,K314,2001-10-05,KU,314,2001/02,"",av Per Unckel m.fl. (m),Kommittémotion,m159,Äganderätten,UNDERTECKNARE,0299768872013,Per-Samuel Nisser,M,4
+1457476,GT02So661,mot,So661,2005-10-05,SoU,661,2005/06,Trycklov,av Ulrik Lindgren m.fl. (kd),Kommittémotion,kd456,Socialtjänstpolitik,UNDERTECKNARE,0499497337518,Ulrik Lindgren,KD,1
+2379369,H4022710,mot,2710,2016-10-05,CU,2710,2016/17,Klar,av Peter Jeppsson m.fl. (S),Enskild motion,S11060,Historiska arrenden,UNDERTECKNARE,067992138910,Peter Jeppsson,S,1
+2335218,H002Sf7,mot,Sf7,2013-05-02,SfU,7,2012/13,Ank T,av Tomas Eneroth m.fl. (S),Kommittémotion,S34003,med anledning av prop. 2012/13:148 Genomförande av blåkortsdirektivet,UNDERTECKNARE,048970816012,Eva-Lena Jansson,S,3
+1794210,GW02So13,mot,So13,2009-02-12,SoU,13,2008/09,Ank T,"av Ylva Johansson m.fl. (s, mp, v)",Flerpartimotion,-s68100,med anledning av framst. 2008/09:RRS13 Riksrevisionens styrelses framställning angående statens styrning av kvalitet i privat äldreomsorg,UNDERTECKNARE,011731125914,Ylva Johansson,S,1
+2083397,HD01FiU21,bet,FiU21,2025-09-09,FiU,21,2025/26,planerat,"",bet,"",Vårändringsbudget för 2026,,,,,
+2724879,H002Ub486,mot,Ub486,2012-10-05,UbU,486,2012/13,Ank T,av Maria Stenberg m.fl. (S),Enskild motion,S3069,En nollvision inom skolan när det gäller icke godkända elever,UNDERTECKNARE,0781357446917,Sven-Erik Bucht,S,6
+581006,GP02MJ488,mot,MJ488,2001-10-05,MJU,488,2001/02,"",av Tomas Eneroth m.fl. (s),Enskild motion,s33061,Dispenser i strandskyddet,UNDERTECKNARE,0284192765516,Tomas Eneroth,S,1
+2247427,H401FiU31,bet,FiU31,2017-01-10,FiU,31,2016/17,Webbpublicering,"",bet,"",Arbetsrättsliga villkor vid upphandling,,,,,
+2320784,H4023013,mot,3013,2016-10-05,CU,3013,2016/17,Klar,av Anders Hansson m.fl. (M),Enskild motion,M2196,Stranderosion,UNDERTECKNARE,0956595590924,Tobias Billström,M,5
+2073991,H3022804,mot,2804,2015-10-06,AU,2804,2015/16,Klar,av Valter Mutt m.fl. (MP),Enskild motion,MP2502,Friår,UNDERTECKNARE,0401968752713,Stina Bergström,MP,2
+450713,GP02MJ464,mot,MJ464,2001-10-05,MJU,464,2001/02,"",av Gudrun Lindvall m.fl. (mp),Kommittémotion,mp529,Bekämpningsmedel,UNDERTECKNARE,0745615729714,Kia Andreasson,MP,7
+921404,GS02Bo257,mot,Bo257,2004-10-06,BoU,257,2004/05,Trycklov,av Owe Hellberg m.fl. (v),Kommittémotion,v322,Allmännyttan,UNDERTECKNARE,0891897903314,Sven-Erik Sjöstrand,V,4
+1506427,H002So498,mot,So498,2012-10-05,SoU,498,2012/13,Ank T,av Mats Gerdau (M),Enskild motion,M1303,Enklare att adoptera,UNDERTECKNARE,0891731772016,Mats Gerdau,M,1
+335006,GN01LU19,bet,LU19,2000-04-11,LU,19,1999/2000,saknas,"","","",Finansiell leasing,,,,,
+820124,GS02So373,mot,So373,2004-09-30,SoU,373,2004/05,Trycklov,av Ragnwi Marcelind (kd),Enskild motion,kd703,Vården av män och kvinnor,UNDERTECKNARE,0500946976511,Ragnwi Marcelind,KD,1
+2625925,H501CU1,bet,CU1,2017-08-29,CU,1,2017/18,Webbpublicering,"",bet,"","Utgiftsområde 18 Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik",,,,,
+1632587,GV02U14,mot,U14,2008-03-31,UU,14,2007/08,Ank T,av Hans Linde m.fl. (v),Kommittémotion,v48,med anledning av skr. 2007/08:67 Sverige och Afrika – en politik för gemensamma utmaningar och möjligheter,UNDERTECKNARE,0814945477312,Gunilla Wahlén,V,5
+813039,GN02So22,mot,So22,2000-02-09,SoU,22,1999/2000,"",av Chris Heister m.fl. (m),-,m0,med anledning av prop. 1999/2000:56 Vissa hälso- och sjukvårdsfrågor,UNDERTECKNARE,0937521536309,Henrik Westman ,M,2
+120239,GS02T463,mot,T463,2004-10-06,TU,463,2004/05,Trycklov,av Elizabeth Nyström m.fl. (m),Kommittémotion,m147,Fordonsfrågor,UNDERTECKNARE,0916454726102,Anders Sjölund,M,7
+430268,GP02Sk294,mot,Sk294,2001-10-05,SkU,294,2001/02,"",av Carl Fredrik Graf m.fl. (m),Kommittémotion,m103,Skattebaser,UNDERTECKNARE,0354810740804,Carl Erik Hedlund,M,2
+2338355,H4022848,mot,2848,2016-10-05,KU,2848,2016/17,Klar,av Tuve Skånberg m.fl. (KD),Kommittémotion,KD,Utgiftsområde 1 Rikets styrelse,UNDERTECKNARE,0973782197017,Mikael Oscarsson,KD,4
+1423938,GZ02Fi20,mot,Fi20,2012-05-02,FiU,20,2011/12,Ank T,av Jens Holm m.fl. (V),Kommittémotion,V29,med anledning av prop. 2011/12:143 Auktionering av utsläppsrätter,UNDERTECKNARE,0628190530410,Ulla Andersson,V,2
+1514051,GX02Fi324,mot,Fi324,2009-10-06,FiU,324,2009/10,Ank T,av Thomas Östros m.fl. (s),Kommittémotion,s43008,Utgiftsområde 2 Samhällsekonomi och finansförvaltning,UNDERTECKNARE,0964379974219,Christina Zedell,S,8
+273861,GP02N208,mot,N208,2001-10-05,NU,208,2001/02,"",av Bo Lundgren m.fl. (m),Partimotion,m3,Stat och kommun som konkurrent,UNDERTECKNARE,0505599928316,Carl Fredrik Graf,M,5
+2766497,GW02T202,mot,T202,2008-09-17,TU,202,2008/09,Ank T,av Rolf Gunnarsson (m),Enskild motion,m1015,Järnvägar och vägar i Dalarna,UNDERTECKNARE,0785143384002,Rolf Gunnarsson,M,1
+209167,GS02So594,mot,So594,2004-10-06,SoU,594,2004/05,Trycklov,av Cristina Husmark Pehrsson m.fl. (m),Kommittémotion,m140,Äldres omsorg och anhörigas insatser,UNDERTECKNARE,0225823431305,Stefan Hagfeldt,M,6
+2310646,H3023397,mot,3397,2016-04-27,FiU,3397,2015/16,Klar,av Jimmie Åkesson m.fl. (SD),Partimotion,SD,med anledning av prop. 2015/16:100 2016 års ekonomiska vårproposition,UNDERTECKNARE,0955748436811,Robert Stenkvist,SD,37
+689649,GS02A387,mot,A387,2004-10-06,AU,387,2004/05,Trycklov,av Kurt Kvarnström och Anneli Särnblad (s),Enskild motion,s15038,A-kassa och sjukersättning,UNDERTECKNARE,0262124593702,Kurt Kvarnström,S,1
+2511203,GW02So473,mot,So473,2008-10-06,SoU,473,2008/09,Ank T,av Fredrik  Lundh m.fl. (s),Enskild motion,s80033,Statliga myndigheters arbete med barnkonventionen,UNDERTECKNARE,0975579292417,Monica Green,S,4
+2345026,GY02N413,mot,N413,2010-10-27,NU,413,2010/11,Ank T,av Marie Granlund m.fl. (S),Enskild motion,S27123,Skåne i Sveriges framtida besöksnäring,UNDERTECKNARE,0251564185908,Kerstin Engle,S,9
+561457,GR01LU13,bet,LU13,2006-03-15,LU,13,2003/04,"","","","",Åtgärder mot s.k. fakturaskojeri och modemkapning,,,,,
+1835130,GZ02So361,mot,So361,2011-10-04,SoU,361,2011/12,Ank T,av Penilla Gunther (KD),Enskild motion,KD772,Rutiner inom bröstcancervården,UNDERTECKNARE,0925451929216,Penilla Gunther,KD,1
+829847,GS02T417,mot,T417,2004-09-30,TU,417,2004/05,Trycklov,av Ulrik Lindgren m.fl. (kd),Enskild motion,kd769,Inlandsbanan,UNDERTECKNARE,0338278373318,Dan Kihlström,KD,2
+72630,GO02T649,mot,T649,2000-10-05,TU,649,2000/01,"",av Sylvia Lindgren m.fl. (s),Enskild motion,s35032,Bromma flygplats,UNDERTECKNARE,0489591175704,Ingemar Josefsson,S,2
+888992,GP02K362,mot,K362,2001-10-05,KU,362,2001/02,"",av Sylvia Lindgren (s),Enskild motion,s7006,Motorburen reklam för porrklubbar,UNDERTECKNARE,0977023188809,Sylvia Lindgren,S,1
+2515609,GY02K292,mot,K292,2010-10-26,KU,292,2010/11,Ank T,av Bodil Ceballos m.fl. (MP),Kommittémotion,MP1406,Romer,UNDERTECKNARE,0154189076919,Tina Ehn,MP,14
+1557423,GW02Kr205,mot,Kr205,2008-10-02,KrU,205,2008/09,Ank T,av Gunnar Andrén och Tobias Krantz (fp),Enskild motion,fp1014,Forskningen kring kirunasvenskarna,UNDERTECKNARE,099373212513,Tobias Krantz,L,2
+549264,GS02N397,mot,N397,2004-10-06,NU,397,2004/05,Trycklov,av Anne-Marie Pålsson m.fl. (m),Kommittémotion,m179,Villkor för regional utveckling,UNDERTECKNARE,0244345953026,Peter Danielsson,M,4
+887243,GR02So406,mot,So406,2003-10-07,SoU,406,2003/04,"",av Ulla Hoffmann m.fl. (v),Partimotion,v416,Folkhälsa,UNDERTECKNARE,0906336297511,Marie Engström,V,5
+1336478,GT02Ju263,mot,Ju263,2005-09-22,JuU,263,2005/06,Trycklov,av Bertil Kjellberg och Ulf Sjösten (m),Enskild motion,m1268,Villkorlig frigivning,UNDERTECKNARE,089057453314,Ulf Sjösten,M,2
+1425977,H002C351,mot,C351,2012-10-04,CU,351,2012/13,Ank T,av Fredrik Schulte m.fl. (M),Enskild motion,M1787,Nya vårdnadsregler,UNDERTECKNARE,0590042760718,Annicka Engblom,M,2
+813039,GN02So22,mot,So22,2000-02-09,SoU,22,1999/2000,"",av Chris Heister m.fl. (m),-,m0,med anledning av prop. 1999/2000:56 Vissa hälso- och sjukvårdsfrågor,UNDERTECKNARE,0336920874106,Bertil Persson ,M,8
+1754644,GV02A253,mot,A253,2007-10-02,AU,253,2007/08,Ank T,av Kristina Zakrisson m.fl. (s),Enskild motion,s12007,Vidareutveckling av kollektivavtalen,UNDERTECKNARE,0957631371811,Lars U Granberg,S,4
+2734811,H401JuU14,bet,JuU14,2016-11-11,JuU,14,2016/17,Webbpublicering,"",bet,"",Straffskalorna för vissa allvarliga våldsbrott,,,,,
+2248280,H402462,mot,462,2016-09-30,UU,462,2016/17,Klar,av Johan Nissinen m.fl. (SD),Kommittémotion,SD49,Stöd till jordbrukare som ingår i UNDOC:s skördeutbytesprogram i Shanstaten,UNDERTECKNARE,0504711999229,Pavel Gamov,-,5
+1479290,GZ02T301,mot,T301,2011-10-04,TU,301,2011/12,Ank T,av Helene Petersson i Stockaryd m.fl. (S),Enskild motion,S10110,Finansiering av infrastruktur,UNDERTECKNARE,0600928907216,Carina Hägg,S,2
+2652666,GZ02Ub470,mot,Ub470,2011-10-05,UbU,470,2011/12,Ank T,av Désirée Liljevall m.fl. (S),Enskild motion,S19086,Kunskap om mat,UNDERTECKNARE,0252067342313,Åsa Lindestam,S,14
+941414,GO02Fi26,mot,Fi26,2001-05-02,FiU,26,2000/01,"",av Carl Fredrik Graf m.fl. (m),Kommittémotion,m1197,med anledning av prop. 2000/01:100 2001 års ekonomiska vårproposition,UNDERTECKNARE,0505599928316,Carl Fredrik Graf,M,1
+1442843,H502791,mot,791,2017-09-29,SfU,791,2017/18,Klar,av Anna Wallén m.fl. (S),Enskild motion,S1170,En human flyktingpolitik,UNDERTECKNARE,0975579292417,Monica Green,S,2
+1708480,HD023176,mot,3176,2025-10-06,MJU,3176,2025/26,Klar,av Nooshi Dadgostar m.fl. (V),Partimotion,584,"Utgiftsområde 23 Areella näringar, landsbygd och livsmedel",UNDERTECKNARE,0122987223112,Lotta Johnsson Fornarve,V,5
+1826633,H002A206,mot,A206,2012-09-27,AU,206,2012/13,Ank T,av Eva Flyborg m.fl. (FP),Enskild motion,FP508,Inrättande av ett nationellt jämställdhetsindex,UNDERTECKNARE,0363228965800,Barbro Westerholm,L,3
+812080,GQ02So508,mot,So508,2002-10-23,SoU,508,2002/03,"",av Rosita Runegrund m.fl. (kd),Kommittémotion,kd368,Anhörigvård,UNDERTECKNARE,0574724112206,Rosita Runegrund,KD,1
+2267022,H4023121,mot,3121,2016-10-05,FöU,3121,2016/17,Klar,av Daniel Bäckström m.fl. (C),Kommittémotion,C19,Försvar,UNDERTECKNARE,0352254228107,Staffan Danielsson,C,6
+2657835,H5023598,mot,3598,2017-10-05,CU,3598,2017/18,Klar,av Lotta Johnsson Fornarve m.fl. (V),Kommittémotion,V510,Konsumenträtt,UNDERTECKNARE,0198917587520,Maj Karlsson,V,4
+2401284,H4022795,mot,2795,2016-10-05,SoU,2795,2016/17,Klar,av Carina Ohlsson m.fl. (S),Enskild motion,S5054,Gratis gynekologisk cellprovtagning,UNDERTECKNARE,0975579292417,Monica Green,S,3
+1725945,H202926,mot,926,2014-11-06,KrU,926,2014/15,Klar,av Teresa Carvalho m.fl. (S),Enskild motion,S19037,Vidareförsäljning av biljetter ,UNDERTECKNARE,0860364634014,Mattias Ottosson,S,4
+1388734,H002Fi219,mot,Fi219,2012-11-20,FiU,219,2012/13,Ank T,av Jimmie Åkesson m.fl. (SD),Partimotion,SD100,"Sysselsättning, tillväxt, trygghet och välfärd",UNDERTECKNARE,0693341580004,Tony Wiklander,SD,19
+1600239,H202225,mot,225,2014-11-04,JuU,225,2014/15,Klar,av Edward Riedl (M),Enskild motion,M1287,Utökad vapengarderob för jägare,UNDERTECKNARE,0273506284025,Edward Riedl,M,1
+214931,GY02So582,mot,So582,2010-10-27,SoU,582,2010/11,Ank T,av Eva Olofsson m.fl. (V),Kommittémotion,V589,Rättvis vård för transsexuella,UNDERTECKNARE,0902086611116,Eva Olofsson,V,1
+1744589,H102Fi1,mot,Fi1,2014-03-24,FiU,1,2013/14,Ank T,av Fredrik Olovsson m.fl. (S),Kommittémotion,S26003,med anledning av prop. 2013/14:107 Viss kreditgivning till konsumenter,UNDERTECKNARE,0460690753617,Pia Nilsson,S,2
+1711573,GT02Kr216,mot,Kr216,2005-09-22,KrU,216,2005/06,Trycklov,av Eskil Erlandsson och Staffan Danielsson (c),Enskild motion,c373,Lokalradions driftsäkerhet,UNDERTECKNARE,0352254228107,Staffan Danielsson,C,2
+2270025,GZ02So604,mot,So604,2011-10-05,SoU,604,2011/12,Ank T,av Adnan Dibrani m.fl. (S),Enskild motion,S1032,Livet efter livet i skyddat boende,UNDERTECKNARE,0442629549320,Adnan Dibrani,S,1
+2621973,GZ02K261,mot,K261,2011-10-03,KU,261,2011/12,Ank T,av Peter Eriksson m.fl. (MP),Kommittémotion,MP2002,En öppen partifinansiering,UNDERTECKNARE,0266627143525,Magnus Ehrencrona,MP,5
+186490,GS02MJ223,mot,MJ223,2004-09-24,MJU,223,2004/05,Trycklov,av Sven-Erik Sjöstrand m.fl. (v),Kommittémotion,v201,Djurskyddslagen och pälsdjursnäringen,UNDERTECKNARE,0326064715100,Karin Thorborg,V,6
+593399,GR02So501,mot,So501,2003-10-07,SoU,501,2003/04,"",av Gunilla Tjernberg m.fl. (kd),Kommittémotion,kd374,Spel och spelberoende,UNDERTECKNARE,0338278373318,Dan Kihlström,KD,5
+362241,GO02Sf11,mot,Sf11,2001-01-31,SfU,11,2000/01,"",av Birgitta Carlsson m.fl. (c),Kommittémotion,c156,med anledning av prop. 2000/01:44 Föräldraförsäkring och föräldraledighet,UNDERTECKNARE,0274710563201,Agne Hansson,C,3
+95092,GP02Ju273,mot,Ju273,2001-10-05,JuU,273,2001/02,"",av Maud Ekendahl (m),Enskild motion,m1077,Rekrytering av poliser,UNDERTECKNARE,0697895317615,Maud Ekendahl,M,1
+1882044,H803169,prop,169,2021-04-13,Arbetsmarknadsdepartementet,169,2020/21,Klar,"",skr,"",Riksrevisionens rapport om statens insatser mot exploatering av arbetskraft,,0349986646724,Märta Stenevi,MP,1
+1699613,GT02K33,mot,K33,2006-05-17,KU,33,2005/06,Trycklov,av Kerstin Lundgren m.fl. (c),Kommittémotion,c199,med anledning av prop. 2005/06:201 Morgondagens nyheter – nya villkor för driftsstödet till dagstidningar,UNDERTECKNARE,0274710563201,Agne Hansson,C,2
+538421,GO02K291,mot,K291,2000-10-05,KU,291,2000/01,"",av Britt-Marie Danestig m.fl. (v),Kommittémotion,v208,Forskningsprogrammet om militär underrättelse- och säkerhetstjänst,UNDERTECKNARE,0694077681517,Lennart Gustavsson,V,11
+916231,GP02So343,mot,So343,2001-10-05,SoU,343,2001/02,"",av Rolf Olsson m.fl. (v),Kommittémotion,v402,Influensavaccinering,UNDERTECKNARE,0114065053815,Rolf Olsson,V,1
+1627346,H102Sk3,mot,Sk3,2013-11-08,SkU,3,2013/14,Ank T,av Jacob Johnson m.fl. (V),Kommittémotion,V11,med anledning av prop. 2013/14:28 Ändrad deklarationstidpunkt för mervärdesskatt,UNDERTECKNARE,0628190530410,Ulla Andersson,V,2
+2180403,HD02174,mot,174,2025-09-22,FiU,174,2025/26,Hänvisad,av Hanna Gunnarsson m.fl. (V),Kommittémotion,324,Fortifikationsverkets styrning och uppdrag,UNDERTECKNARE,0246927519019,Karin Rågsjö,V,6
+2637144,HB021433,mot,1433,2023-10-04,KrU,1433,2023/24,Klar,av Sten Bergheden (M),Enskild motion,M1084,Samhällets stöd till och uppmuntran av landets samlare,UNDERTECKNARE,0828721176319,Sten Bergheden,M,1
+199506,GU02Fi9,mot,Fi9,2007-05-02,FiU,9,2006/07,Ank T,av Maria Wetterstrand m.fl. (mp),Partimotion,mp45,med anledning av prop. 2006/07:100 2007 års ekonomiska vårproposition,UNDERTECKNARE,0116084827614,Mehmet Kaplan,MP,11
+725301,GQ02N264,mot,N264,2002-10-23,NU,264,2002/03,"",av Eva Flyborg m.fl. (fp),Kommittémotion,fp113,Energipolitik,UNDERTECKNARE,0970400972210,Hans Backman,L,5
+685340,GQ02Ju285,mot,Ju285,2002-10-23,JuU,285,2002/03,"",av Birgitta Carlsson och Jan Andersson (c),Enskild motion,c475,Skärpt straff för återkommande brottslighet,UNDERTECKNARE,0673622610409,Birgitta Carlsson,C,1
+781274,GO02T548,mot,T548,2000-10-05,TU,548,2000/01,"",av Willy Söderdahl och Sture Arnesson (v),Enskild motion,v1203,Kust-till-kust-banan,UNDERTECKNARE,0731092390302,Sture Arnesson,V,2
+2249808,H402313,mot,313,2016-09-29,KrU,313,2016/17,Klar,av Ewa Thalén Finné m.fl. (M),Enskild motion,M1908,Uppåkra Arkeologiska Center,UNDERTECKNARE,0198031297912,Anette Åkesson,M,12
+2246723,H102T518,mot,T518,2014-01-13,TU,518,2013/14,Ank T,av Ibrahim Baylan m.fl. (S),Enskild motion,S4127,Norrbotniabanan,UNDERTECKNARE,0747852417614,Maria Stenberg,S,8
+671396,GS02U267,mot,U267,2004-10-04,UU,267,2004/05,Trycklov,av Agne Hansson m.fl. (c),Kommittémotion,c114,Fredsfrämjande verksamhet,UNDERTECKNARE,019623784404,Viviann Gerdin,C,3
+1301004,GV02Ub273,mot,Ub273,2007-10-03,UbU,273,2007/08,Ank T,av Sinikka Bohlin (s),Enskild motion,s80158,Nationella prov på modersmålet,UNDERTECKNARE,0897304708905,Sinikka Bohlin,S,1
+2750696,GV02Sk32,mot,Sk32,2008-05-07,SkU,32,2007/08,Ank T,av Lars Johansson m.fl. (s),Kommittémotion,s33201,med anledning av skr. 2007/08:123 Redovisning av skatteutgifter 2008,UNDERTECKNARE,0456305921813,Hans Olsson,S,7
+1356488,GX02A362,mot,A362,2009-10-06,AU,362,2009/10,Ank T,av Carina Adolfsson Elgestam m.fl. (s),Enskild motion,s14071,Fackligt förtroendeuppdrag,UNDERTECKNARE,0731809135516,Carina Adolfsson Elgestam,S,1
+2265262,H102N223,mot,N223,2014-03-27,NU,223,2013/14,Ank T,av Kent Persson m.fl. (V),Kommittémotion,V261,Bättre villkor för småföretag,UNDERTECKNARE,0901257862125,Hans Linde,V,5
+2694789,H302499,mot,499,2015-10-01,UbU,499,2015/16,Klar,av Arhe Hamednaca (S),Enskild motion,S8019,Skolans ansvar för demokrati och mänskliga rättigheter,UNDERTECKNARE,0186426023519,Arhe Hamednaca,S,1
+1555543,GV02K242,mot,K242,2007-10-02,KU,242,2007/08,Ank T,av Kenneth Johansson (c),Enskild motion,c345,EU-byar och det svenska ordförandeskapet,UNDERTECKNARE,0327857385513,Kenneth Johansson,C,1
+1423211,H002C387,mot,C387,2012-10-05,CU,387,2012/13,Ank T,av Carina Herrstedt m.fl. (SD),Kommittémotion,SD68,Lagstiftning angående barn och tvångsgifte,UNDERTECKNARE,0603753860213,Carina Herrstedt,SD,1
+1310226,GZ02MJ351,mot,MJ351,2011-10-05,MJU,351,2011/12,Ank T,av Betty Malmberg och Eva Bengtson Skogsberg (M),Enskild motion,M85,Tillsyn på livsmedelsområdet och följder för företagen,UNDERTECKNARE,0547818628111,Betty Malmberg,M,1
+1697974,GT02T537,mot,T537,2005-10-05,TU,537,2005/06,Trycklov,av Anita Jönsson m.fl. (s),Enskild motion,s5038,Yttre godsspår i västra Skåne,UNDERTECKNARE,0875425244515,Ronny Olander,S,2
+1731586,GV02Ju410,mot,Ju410,2007-10-05,JuU,410,2007/08,Ank T,av Lena Olsson m.fl. (v),Kommittémotion,v254,Sexualbrott,UNDERTECKNARE,0835507837915,LiseLotte Olsson,V,6
+921369,GO02U617,mot,U617,2000-10-05,UU,617,2000/01,"",av Lena Sandlin-Hedman och Anders Ygeman (s),Enskild motion,s41140,Världsfattigdomen,UNDERTECKNARE,0744993950910,Anders Ygeman,S,2
+2761616,GY02Sf355,mot,Sf355,2010-10-27,SfU,355,2010/11,Ank T,av Krister Hammarbergh (M),Enskild motion,M1743,Barnspecifika asylskäl,UNDERTECKNARE,0889860537413,Krister Hammarbergh,M,1
+1621505,GU02A293,mot,A293,2006-11-02,AU,293,2006/07,Trycklov,av Gunnar Sandberg m.fl. (s),Enskild motion,s45302,Arbetslivsforskning i Östersund,UNDERTECKNARE,0332067570917,Berit Andnor,S,2
+930369,GR02So353,mot,So353,2003-10-07,SoU,353,2003/04,"",av Ulla Hoffmann m.fl. (v),Partimotion,v412,Äldreomsorg,UNDERTECKNARE,0548089226618,Mats Einarsson,V,4
+2373837,GZ02Ju368,mot,Ju368,2011-10-05,JuU,368,2011/12,Ank T,av Tuve Skånberg (KD),Enskild motion,KD621,Förbud mot sexuellt umgänge med underåriga elever,UNDERTECKNARE,0161597857912,Tuve Skånberg,KD,1
+2615983,GX03183,prop,183,2010-03-22,Ku,183,2009/10,hämtad_2,"",prop,"",Avveckling av inkomstgarantier för konstnärer,,,,,
+393963,GO02Ju823,mot,Ju823,2000-10-05,JuU,823,2000/01,"",av Carina Hägg och Margareta Israelsson (s),Enskild motion,s33069,Jäv,UNDERTECKNARE,0634917636517,Margareta Israelsson,S,2
+705140,GS01LU5,bet,LU5,2006-03-15,LU,5,2004/05,"","","","",Distans- och hemförsäljningslag m.m.,,,,,
+2345587,HB022094,mot,2094,2023-10-05,UbU,2094,2023/24,Klar,av Mattias Eriksson Falk och Roger Hedlund (båda SD),Enskild motion,SD,Obligatorisk utbildning i VMA-systemet för elever i grund‑ och gymnasieskola,UNDERTECKNARE,0773497241728,Roger Hedlund,SD,2
+754836,GO02T231,mot,T231,2000-10-05,TU,231,2000/01,"",av Sven Bergström m.fl. (c),Kommittémotion,c139,Kommunikationspolitik,UNDERTECKNARE,058426570914,Sven Bergström,C,1
+2639210,H5023760,mot,3760,2017-10-05,UbU,3760,2017/18,Klar,av Fredrik Christensson m.fl. (C),Kommittémotion,C,Högre utbildning till jobb,UNDERTECKNARE,0519542449425,Fredrik Christensson,C,1
+1792616,GV02N327,mot,N327,2007-10-09,NU,327,2007/08,Ank T,av Lennart Axelsson m.fl. (s),Enskild motion,s45242,Gruvnäringen i Bergslagen,UNDERTECKNARE,0252067342313,Åsa Lindestam,S,4
+1520284,H102Ub359,mot,Ub359,2014-01-03,UbU,359,2013/14,Ank T,av Jenny Petersson m.fl. (M),Enskild motion,M1426,Avskaffa fribeloppet,UNDERTECKNARE,0176437434123,Jenny Petersson,M,1
+444394,GR02So23,mot,So23,2004-05-06,SoU,23,2003/04,"",av Chatrine Pålsson m.fl. (kd),Kommittémotion,kd173,med anledning av prop. 2003/04:131 Internationella adoptionsfrågor,UNDERTECKNARE,0377384542907,Chatrine Pålsson,KD,1
+782917,GO02Bo5,mot,Bo5,2000-11-02,BoU,5,2000/01,"",av Owe Hellberg m.fl. (v),Kommittémotion,v9,med anledning av prop. 2000/01:26 Bostadsförsörjningsfrågor m.m.,UNDERTECKNARE,0489096664719,Sten Lundström,V,6
+2232688,H3022508,mot,2508,2015-10-06,AU,2508,2015/16,Klar,"av Elisabeth Svantesson m.fl. (M, C, FP, KD)",Kommittémotion,M185,Fler vägar in på arbetsmarknaden,UNDERTECKNARE,0899112324519,Elisabeth Svantesson,M,1
+1392945,HD022792,mot,2792,2025-10-06,FiU,2792,2025/26,Klar,av Nooshi Dadgostar m.fl. (V),Partimotion,700,En ny regering – För ett starkare och tryggare Sverige,UNDERTECKNARE,0122987223112,Lotta Johnsson Fornarve,V,5
+2623113,H9021811,mot,1811,2021-10-01,AU,1811,2021/22,Klar,av Olle Thorell m.fl. (S),Enskild motion,1615,En nollvision för mäns våld mot kvinnor,UNDERTECKNARE,0376395541120,Joakim Sandell,S,39
+1831721,H002A392,mot,A392,2012-10-05,AU,392,2012/13,Ank T,av Ylva Johansson m.fl. (S),Kommittémotion,S15004,Utgiftsområde 14 Arbetsmarknad och arbetsliv,UNDERTECKNARE,0964730940415,Johan Andersson,S,3
+2737463,GZ02Ub224,mot,Ub224,2011-09-30,UbU,224,2011/12,Ank T,av Anders Andersson (KD),Enskild motion,KD533,Utbildning för att bättre bemöta våldsutsatta,UNDERTECKNARE,0777657837318,Anders Andersson,KD,1
+851464,H701SoU26,bet,SoU26,2020-06-17,SoU,26,2019/20,Webbpublicering,"",bet,"",Särskild beräkning av tandvårdsersättning med anledning av sjukdomen covid-19,,,,,
+846850,GT02K347,mot,K347,2005-10-18,KU,347,2005/06,Trycklov,av Lars Ohly m.fl. (v),Partimotion,v254,Avskaffande av monarkin och utarbetande av en republikansk författning i Sverige,UNDERTECKNARE,0229825314217,Sermin Özürküt,V,5
+2034014,H3022172,mot,2172,2015-10-06,FöU,2172,2015/16,Klar,av Hans Wallmark m.fl. (M),Kommittémotion,M157,Försvar och samhällets krisberedskap,UNDERTECKNARE,066769783310,Lotta Olsson,M,4
+109548,GR02T433,mot,T433,2003-10-07,TU,433,2003/04,"",av Yilmaz Kerimo och Tommy Waidelich (s),Enskild motion,s7073,Förbud mot registrering av underåriga som ägare av bil,UNDERTECKNARE,0515990253512,Yilmaz Kerimo,S,1
+1414479,GZ02MJ449,mot,MJ449,2011-10-05,MJU,449,2011/12,Ank T,av Edward Riedl (M),Enskild motion,M612,Likvärdiga miljövillkor för Arlanda flygplats,UNDERTECKNARE,0273506284025,Edward Riedl,M,1
+1668791,GU02T247,mot,T247,2006-11-17,TU,247,2006/07,Trycklov,av Agneta Lundberg och Susanne Eberstein (s),Enskild motion,s22452,E 4 genom Sundsvall,UNDERTECKNARE,0235974887200,Susanne Eberstein,S,2
+1829787,GV02A356,mot,A356,2007-10-05,AU,356,2007/08,Ank T,av Phia Andersson och Hans Olsson (s),Enskild motion,s27078,Lagen om anställningsskydd,UNDERTECKNARE,0133767709317,Phia Andersson,S,1
+1427486,H102Ub484,mot,Ub484,2014-01-22,UbU,484,2013/14,Ank T,av Lena Sommestad m.fl. (S),Enskild motion,S2125,Vända trenden mot större barngrupper i förskolor och fritidshem,UNDERTECKNARE,0600928907216,Carina Hägg,S,3
+1582251,H9022426,mot,2426,2021-10-01,FiU,2426,2021/22,Klar,av Ida Drougge (M),Enskild motion,2112,Redovisning av avgiftsberäkningar,UNDERTECKNARE,0604811710522,Ida Drougge,M,1
+1735981,GT02L1,mot,L1,2005-09-23,LU,1,2005/06,Trycklov,"av Jan Ertsborn m.fl. (fp, m, kd, c)",Flerpartimotion,fp1250,med anledning av prop. 2004/05:178 Aktiebolag med särskild vinstutdelningsbegränsning,UNDERTECKNARE,019623784404,Viviann Gerdin,C,8
+2173609,HD02663,mot,663,2025-10-01,UU,663,2025/26,Klar,av Kristoffer Lindberg m.fl. (S),Enskild motion,378,Återupprättande av enprocentsmålet för svenskt bistånd,UNDERTECKNARE,0433422973328,Kristoffer Lindberg,S,1
+2654509,GZ02Sk2,mot,Sk2,2011-10-12,SkU,2,2011/12,Ank T,av Jennie Nilsson m.fl. (S),Kommittémotion,S88004,med anledning av prop. 2010/11:165 Skatteförfarandet,UNDERTECKNARE,0468775142013,Christina Oskarsson,S,4
+1449888,GW02Ub438,mot,Ub438,2008-10-07,UbU,438,2008/09,Ank T,av Christina Oskarsson m.fl. (s),Enskild motion,s80065,Jämställdhet,UNDERTECKNARE,0468775142013,Christina Oskarsson,S,1
+2364677,GX02C374,mot,C374,2009-10-05,CU,374,2009/10,Ank T,av Lars Ohly m.fl. (v),Partimotion,v421,"Utgiftsområde 18 Samhällsplanering, bostadsförsörjning, byggande samt konsumentpolitik",UNDERTECKNARE,0979278953316,Egon Frid,V,8
+723977,GY02Ub481,mot,Ub481,2010-10-27,UbU,481,2010/11,Ank T,av Mikael Damberg m.fl. (S),Kommittémotion,S37114,Politik för förskolan,UNDERTECKNARE,0299937536814,Håkan Bergman,S,4
+804448,GN02Fi17,mot,Fi17,2000-04-28,FiU,17,1999/2000,"",av Elizabeth Nyström och Maud Ekendahl (m),-,m0,med anledning av prop. 1999/2000:100 2000 års ekonomiska vårproposition,UNDERTECKNARE,0000000000000,Maud Ekendahl ,M,2
+117019,GR02K13,mot,K13,2003-10-17,KU,13,2003/04,"",av Gustav Fridolin m.fl. (mp),Kommittémotion,mp3,med anledning av skr. 2003/04:13 Europeiska konventet om EU:s framtid,UNDERTECKNARE,0332753845811,Yvonne Ruwaida,MP,5
+682068,GP02Fö6,mot,Fö6,2001-10-12,FöU,6,2001/02,"",av Åke Carnerö m.fl. (kd),Kommittémotion,kd113,med anledning av prop. 2001/02:10 Fortsatt förnyelse av totalförsvaret,UNDERTECKNARE,0782713019602,Holger Gustafsson,KD,4
+1926252,H502136,mot,136,2017-09-21,SoU,136,2017/18,Klar,av Said Abdu (L),Enskild motion,L,Förverkligande av förslagen i SOU-utredning 2016:2 Effektiv vård ,UNDERTECKNARE,0173210620224,Said Abdu,L,1
+2511720,H102So301,mot,So301,2013-11-22,SoU,301,2013/14,Ank T,av Maria Ferm m.fl. (MP),Enskild motion,MP2110,Grön politik för alla familjer,UNDERTECKNARE,0872978640827,Helena Leander,MP,3
+2715992,H9021294,mot,1294,2021-09-30,TU,1294,2021/22,Klar,av Johanna Haraldsson m.fl. (S),Enskild motion,1113,Jämlik färdtjänst,UNDERTECKNARE,0341628241813,Marianne Fundahn,S,4
+1339364,GX02A410,mot,A410,2009-10-06,AU,410,2009/10,Ank T,av Berit Högman m.fl. (s),Kommittémotion,s79011,Utgiftsområde 14 Arbetsmarknad och arbetsliv,UNDERTECKNARE,0909948830718,Ann-Christin Ahlberg,S,6
+1677297,H202376,mot,376,2014-11-05,NU,376,2014/15,Klar,av Mats Persson och Christer Nylander (FP),Enskild motion,FP4004,Utjämning av elpriser mellan elområden,UNDERTECKNARE,023767922422,Mats Persson,L,1
+1520348,GX02Fi273,mot,Fi273,2009-10-05,FiU,273,2009/10,Ank T,av Sven-Erik Österberg m.fl. (s),Enskild motion,s35022,Vinstutdelning i offentligt finansierade välfärdsverksamheter,UNDERTECKNARE,0460690753617,Pia Nilsson,S,4
+307027,GR03126,prop,126,2004-03-31,FI,126,2003/04,hämtad_2,"",prop,"",Undantag från skattskyldighet för vissa ersättningar i form av royalty och avgift,,,,,

@@ -180,14 +180,13 @@ public class CoalitionPredictionServiceImpl implements CoalitionPredictionServic
 			
 			final String party1 = embeddedId.getParty1();
 			final String party2 = embeddedId.getParty2();
-			// Use agreementPercentage from the main entity, not the embedded ID
-			final Double agreementPercentage = data.getAgreementPercentage();
+			// Use alignmentRate from the main entity, not the embedded ID
+			final Double alignmentRate = data.getAlignmentRate();
 
-			if (party1 != null && party2 != null && agreementPercentage != null) {
-				// Convert percentage (0-100) to rate (0-1)
-				final double rate = agreementPercentage / 100.0;
-				matrix.computeIfAbsent(party1, k -> new HashMap<>()).put(party2, rate);
-				matrix.computeIfAbsent(party2, k -> new HashMap<>()).put(party1, rate);
+			if (party1 != null && party2 != null && alignmentRate != null) {
+				// alignment_rate is already a rate (0-1), no conversion needed
+				matrix.computeIfAbsent(party1, k -> new HashMap<>()).put(party2, alignmentRate);
+				matrix.computeIfAbsent(party2, k -> new HashMap<>()).put(party1, alignmentRate);
 			}
 		}
 

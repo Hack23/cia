@@ -272,9 +272,53 @@ public final class DataViewerITest extends
 			.findListByProperty(ViewRiksdagenPolitician.class,
 					ViewRiksdagenPolitician_.activeParliament,
 					true).size() >= NUMBER_PARLIMENT_MEMBERS);
+			
+			// Verify new role tracking columns can be accessed (added in v1.46)
+			assertNotNull("Committee chair assignments field should be accessible", 
+					viewRiksdagenPoliticianLoaded.getTotalCommitteeChairAssignments());
+			assertNotNull("Current committee chair assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getCurrentCommitteeChairAssignments());
+			assertNotNull("Committee vice chair assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getTotalCommitteeViceChairAllAssignments());
+			assertNotNull("Current committee vice chair assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getCurrentCommitteeViceChairAllAssignments());
+			assertNotNull("Suppleant assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getTotalSuppleantAssignments());
+			assertNotNull("Current suppleant assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getCurrentSuppleantAssignments());
+			assertNotNull("Statsminister assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getTotalStatsministerAssignments());
+			assertNotNull("Current statsminister assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getCurrentStatsministerAssignments());
+			assertNotNull("Party leader assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getTotalPartyLeaderAssignments());
+			assertNotNull("Current party leader assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getCurrentPartyLeaderAssignments());
+			assertNotNull("Party secretary assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getTotalPartySecretaryAssignments());
+			assertNotNull("Current party secretary assignments field should be accessible",
+					viewRiksdagenPoliticianLoaded.getCurrentPartySecretaryAssignments());
+			
+			// Verify values are non-negative (business rule: counts cannot be negative)
+			assertTrue("Total committee chair assignments should be non-negative",
+					viewRiksdagenPoliticianLoaded.getTotalCommitteeChairAssignments() >= 0);
+			assertTrue("Current committee chair assignments should be non-negative",
+					viewRiksdagenPoliticianLoaded.getCurrentCommitteeChairAssignments() >= 0);
+			assertTrue("Total suppleant assignments should be non-negative",
+					viewRiksdagenPoliticianLoaded.getTotalSuppleantAssignments() >= 0);
+			
+			// Verify logical relationship: current assignments <= total assignments
+			assertTrue("Current committee chair assignments should not exceed total",
+					viewRiksdagenPoliticianLoaded.getCurrentCommitteeChairAssignments() 
+					<= viewRiksdagenPoliticianLoaded.getTotalCommitteeChairAssignments());
+			assertTrue("Current committee vice chair assignments should not exceed total",
+					viewRiksdagenPoliticianLoaded.getCurrentCommitteeViceChairAllAssignments() 
+					<= viewRiksdagenPoliticianLoaded.getTotalCommitteeViceChairAllAssignments());
+			assertTrue("Current suppleant assignments should not exceed total",
+					viewRiksdagenPoliticianLoaded.getCurrentSuppleantAssignments() 
+					<= viewRiksdagenPoliticianLoaded.getTotalSuppleantAssignments());
 		}
 	}
-
 
 
 	/**

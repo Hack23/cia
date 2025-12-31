@@ -1,26 +1,28 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:cache="http://www.springframework.org/schema/cache"
 	xmlns:elasticsearch="http://www.springframework.org/schema/data/elasticsearch"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
-       http://www.springframework.org/schema/data/elasticsearch http://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch-1.0.xsd">
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+						http://www.springframework.org/schema/data/elasticsearch http://www.springframework.org/schema/data/elasticsearch/spring-elasticsearch-1.0.xsd">
 
 	<context:mbean-export />
 
 	<cache:annotation-driven cache-manager="cacheManager" />
 
 	<bean id="cacheManager" class="org.springframework.cache.jcache.JCacheCacheManager">
-	      <property name="cacheManager" ref="jCacheManager" />
-	      <property name="transactionAware" value="true" />
+		<property name="cacheManager" ref="jCacheManager" />
+		<property name="transactionAware" value="true" />
 	</bean>
 
 	<bean id="jCacheManager" class="org.springframework.cache.jcache.JCacheManagerFactoryBean">
-	     <property name="cacheManagerUri"   value="classpath:ehcache.xml" />
+		<property name="cacheManagerUri" value="classpath:ehcache.xml" />
 	</bean>
 
 	<bean id="databasePropertyConfigurer"
@@ -41,30 +43,33 @@
 
 
 	<bean id="CoreEnvironmentBean" class="com.arjuna.ats.arjuna.common.CoreEnvironmentBean">
-		<property name="nodeIdentifier" value="nodeIdentifier"/>
+		<property name="nodeIdentifier" value="nodeIdentifier" />
 	</bean>
 
-	<bean id="CoordinatorEnvironmentBean" class="com.arjuna.ats.arjuna.common.CoordinatorEnvironmentBean"/>
+	<bean id="CoordinatorEnvironmentBean"
+		class="com.arjuna.ats.arjuna.common.CoordinatorEnvironmentBean" />
 	<bean id="JTAEnvironmentBean" class="com.arjuna.ats.jta.common.JTAEnvironmentBean">
-		<property name="supportSubtransactions" value="true"/>
+		<property name="supportSubtransactions" value="true" />
 	</bean>
-	<bean id="RecoveryEnvironmentBean" class="com.arjuna.ats.arjuna.common.RecoveryEnvironmentBean"/>
+	<bean id="RecoveryEnvironmentBean" class="com.arjuna.ats.arjuna.common.RecoveryEnvironmentBean" />
 
 	<bean id="transactionManager"
 		class="org.springframework.transaction.jta.JtaTransactionManager">
-		<property name="transactionManager" value="#{ JTAEnvironmentBean.transactionManager }"/>
-		<property name="userTransaction" value="#{ JTAEnvironmentBean.userTransaction }"/>
+		<property name="transactionManager" value="#{ JTAEnvironmentBean.transactionManager }" />
+		<property name="userTransaction" value="#{ JTAEnvironmentBean.userTransaction }" />
 	</bean>
 
-	<bean id="secretCredentialsManager" class="com.hack23.cia.service.data.impl.util.SecretCredentialsManagerImpl">
-		<constructor-arg name="secretName" value="${database.aws.secret.arn}"/>
-		<constructor-arg name="secretEnabled" value="${database.aws.secret}"/>
-		<constructor-arg name="username" value="${database.username}"/>
-		<constructor-arg name="password" value="${database.password}"/>
+	<bean id="secretCredentialsManager"
+		class="com.hack23.cia.service.data.impl.util.SecretCredentialsManagerImpl">
+		<constructor-arg name="secretName" value="${database.aws.secret.arn}" />
+		<constructor-arg name="secretEnabled" value="${database.aws.secret}" />
+		<constructor-arg name="username" value="${database.username}" />
+		<constructor-arg name="password" value="${database.password}" />
 	</bean>
 
-	<bean id="xADataSource" class="com.hack23.cia.service.data.impl.util.SecretPGXADataSource" depends-on="secretCredentialsManager">
-		<constructor-arg index="0" ref="secretCredentialsManager"/>
+	<bean id="xADataSource" class="com.hack23.cia.service.data.impl.util.SecretPGXADataSource"
+		depends-on="secretCredentialsManager">
+		<constructor-arg index="0" ref="secretCredentialsManager" />
 		<property name="user" value="#{ secretCredentialsManager.username }" />
 		<property name="password" value="#{ secretCredentialsManager.password }" />
 		<property name="serverName" value="${database.hostname}" />
@@ -74,13 +79,14 @@
 		<property name="sslMode" value="verify-full" />
 	</bean>
 
-	<bean id="dataSource" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp2.managed.BasicManagedDataSource"
+		destroy-method="close">
 		<property name="XaDataSourceInstance" ref="xADataSource" />
-		<property name="transactionManager" value="#{ JTAEnvironmentBean.transactionManager }"/>
+		<property name="transactionManager" value="#{ JTAEnvironmentBean.transactionManager }" />
 		<property name="validationQuery" value="select 1" />
-		<property name="testOnBorrow" value="true"/>
-		<property name="testOnReturn" value="true"/>
-		<property name="testOnCreate" value="true"/>
+		<property name="testOnBorrow" value="true" />
+		<property name="testOnReturn" value="true" />
+		<property name="testOnCreate" value="true" />
 		<property name="initialSize" value="20" />
 		<property name="maxTotal" value="200" />
 	</bean>
@@ -113,6 +119,7 @@
 				<prop key="hibernate.use_sql_comments">false</prop>
 				<prop key="hibernate.format_sql">false</prop>
 				<prop key="hibernate.id.new_generator_mappings">true</prop>
+				<prop key="hibernate.id.optimizer.pooled.preferred">pooled-lo</prop>
 				<prop key="hibernate.order_inserts">true</prop>
 				<prop key="hibernate.order_updates">true</prop>
 				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
@@ -128,7 +135,7 @@
 
 				<prop key="hibernate.max_fetch_depth">4</prop>
 				<prop key="hibernate.batch_fetch_style">dynamic</prop>
-				<prop key="hibernate.default_batch_fetch_size">100</prop>				
+				<prop key="hibernate.default_batch_fetch_size">100</prop>
 				<prop key="hibernate.jdbc.fetch_size">100</prop>
 				<prop key="hibernate.jdbc.batch_size">30</prop>
 				<prop key="hibernate.jdbc.batch_versioned_data">true</prop>
@@ -138,11 +145,14 @@
 
 				<prop key="hibernate.current_session_context_class">jta</prop>
 
-				<prop key="hibernate.transaction.manager_lookup_class">com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple
+				<prop key="hibernate.transaction.manager_lookup_class">
+					com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionManagerImple
 				</prop>
-				<prop key="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform</prop>
+				<prop key="hibernate.transaction.jta.platform">
+					org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform</prop>
 
-				<prop key="hibernate.physical_naming_strategy">com.hack23.cia.service.data.impl.LegacyNamingStrategy
+				<prop key="hibernate.physical_naming_strategy">
+					com.hack23.cia.service.data.impl.LegacyNamingStrategy
 				</prop>
 
 				<prop key="hibernate.transaction.auto_close_session">false</prop>
@@ -153,21 +163,24 @@
 				<prop key="hibernate.cache.use_structured_entries">true</prop>
 
 				<prop key="hibernate.cache.default_cache_concurrency_strategy">READ_WRITE</prop>
-				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</prop>
- 				<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>
+				<prop key="hibernate.cache.region.factory_class">
+					org.hibernate.cache.jcache.JCacheRegionFactory</prop>
+				<prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</prop>
 				<prop key="hibernate.javax.cache.uri">classpath://ehcache.xml</prop>
 
 				<prop key="hibernate.search.automatic_indexing.strategy">none</prop>
-	 			<prop key="hibernate.search.mapping.configurer">com.hack23.cia.service.data.impl.DataSearchMapping</prop>
-	 			<prop key="hibernate.search.backend.analysis.configurer">com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer</prop>
- 				<prop key="hibernate.search.backend.lucene_version">8.8.0</prop>
+				<prop key="hibernate.search.mapping.configurer">
+					com.hack23.cia.service.data.impl.DataSearchMapping</prop>
+				<prop key="hibernate.search.backend.analysis.configurer">
+					com.hack23.cia.service.data.impl.DataSearchAnalysisConfigurer</prop>
+				<prop key="hibernate.search.backend.lucene_version">8.8.0</prop>
 
 				<prop key="hibernate.search.backend.directory.type">local-filesystem</prop>
-				<prop key="hibernate.search.backend.directory.root">${database.search.index.location}</prop>
- 			</props>
+				<prop key="hibernate.search.backend.directory.root">
+					${database.search.index.location}</prop>
+			</props>
 		</property>
 	</bean>
-
 
 
 	<bean class="org.springframework.jmx.export.MBeanExporter">

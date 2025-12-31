@@ -88,9 +88,11 @@ import com.hack23.cia.model.common.api.ModelObject;
     "approvedProposals",
     "rejectedProposals",
     "referredBackProposals",
+    "committeeReferralProposals",
     "otherDecisions",
     "approvalRate",
     "rejectionRate",
+    "committeeReferralRate",
     "earliestProposalDate",
     "latestProposalDate"
 })
@@ -122,6 +124,9 @@ public class ViewMinistryDecisionImpact implements ModelObject {
 	@XmlElement(name = "referred_back_proposals")
 	protected long referredBackProposals;
 
+	@XmlElement(name = "committee_referral_proposals")
+	protected long committeeReferralProposals;
+
 	@XmlElement(name = "other_decisions")
 	protected long otherDecisions;
 
@@ -130,6 +135,9 @@ public class ViewMinistryDecisionImpact implements ModelObject {
 
 	@XmlElement(name = "rejection_rate")
 	protected BigDecimal rejectionRate;
+
+	@XmlElement(name = "committee_referral_rate")
+	protected BigDecimal committeeReferralRate;
 
 	@XmlElement(name = "earliest_proposal_date")
 	protected Date earliestProposalDate;
@@ -283,6 +291,26 @@ public class ViewMinistryDecisionImpact implements ModelObject {
 	}
 
 	/**
+	 * Gets the committee referral proposals.
+	 *
+	 * @return the committee referral proposals
+	 */
+	@Basic
+	@Column(name = "COMMITTEE_REFERRAL_PROPOSALS", precision = 20)
+	public long getCommitteeReferralProposals() {
+		return committeeReferralProposals;
+	}
+
+	/**
+	 * Sets the committee referral proposals.
+	 *
+	 * @param value the new committee referral proposals
+	 */
+	public void setCommitteeReferralProposals(final long value) {
+		this.committeeReferralProposals = value;
+	}
+
+	/**
 	 * Gets the other decisions.
 	 *
 	 * @return the other decisions
@@ -340,6 +368,26 @@ public class ViewMinistryDecisionImpact implements ModelObject {
 	 */
 	public void setRejectionRate(final BigDecimal value) {
 		this.rejectionRate = value;
+	}
+
+	/**
+	 * Gets the committee referral rate.
+	 *
+	 * @return the committee referral rate
+	 */
+	@Basic
+	@Column(name = "COMMITTEE_REFERRAL_RATE", precision = 5, scale = 2)
+	public BigDecimal getCommitteeReferralRate() {
+		return committeeReferralRate;
+	}
+
+	/**
+	 * Sets the committee referral rate.
+	 *
+	 * @param value the new committee referral rate
+	 */
+	public void setCommitteeReferralRate(final BigDecimal value) {
+		this.committeeReferralRate = value;
 	}
 
 	/**
@@ -462,6 +510,17 @@ public class ViewMinistryDecisionImpact implements ModelObject {
 	}
 
 	/**
+	 * With committee referral proposals.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withCommitteeReferralProposals(final long value) {
+		setCommitteeReferralProposals(value);
+		return this;
+	}
+
+	/**
 	 * With other decisions.
 	 *
 	 * @param value the value
@@ -491,6 +550,17 @@ public class ViewMinistryDecisionImpact implements ModelObject {
 	 */
 	public ViewMinistryDecisionImpact withRejectionRate(final BigDecimal value) {
 		setRejectionRate(value);
+		return this;
+	}
+
+	/**
+	 * With committee referral rate.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withCommitteeReferralRate(final BigDecimal value) {
+		setCommitteeReferralRate(value);
 		return this;
 	}
 
