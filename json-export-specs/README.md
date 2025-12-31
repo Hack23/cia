@@ -14,7 +14,8 @@
 
 The 5 JSON export schemas are continuously validated against 142 real CSV sample data files to ensure correctness. See [VALIDATION_README.md](VALIDATION_README.md) for details.
 
-**Latest Validation:** 5 schemas validated, 132 files analyzed ([View Report](schemas/SCHEMA_VALIDATION_REPORT.md))
+**Latest Validation:** 5 schemas validated, 132 files analyzed ([View Report](schemas/SCHEMA_VALIDATION_REPORT.md))  
+**Test Coverage:** 18 unit tests covering field parsing, type inference, and validation logic ([Run Tests](VALIDATION_README.md#running-tests))
 
 ---
 

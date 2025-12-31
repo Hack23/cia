@@ -32,6 +32,24 @@ The script will:
 3. Compare schema field definitions with actual data columns
 4. Generate validation reports
 
+### Running Tests
+
+Unit tests are provided to ensure validation script correctness:
+
+```bash
+cd json-export-specs
+python3 -m unittest test_validate_schemas.py -v
+```
+
+**Test Coverage:**
+- SchemaValidator initialization and configuration
+- Field name parsing and validation
+- Type inference for all data types (boolean, integer, float, date, string)
+- camelCase ↔ snake_case conversion
+- CSV data loading and error handling
+- Path extraction from nested structures
+- Report generation (Markdown and JSON)
+
 ### Output Files
 
 **Markdown Report:** `schemas/SCHEMA_VALIDATION_REPORT.md`

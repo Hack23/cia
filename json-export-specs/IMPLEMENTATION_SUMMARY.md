@@ -34,7 +34,7 @@ Successfully implemented automated validation of 5 JSON export schemas against 1
 
 ### 1. Core Validation Script
 **File:** `json-export-specs/validate_schemas.py`
-- **Lines:** 506
+- **Lines:** 568
 - **Language:** Python 3.11+
 - **Dependencies:** None (standard library only)
 - **Features:**
@@ -246,11 +246,26 @@ python3 validate_schemas.py
 
 ### Implementation Effort
 - **Development Time:** ~4 hours
-- **Lines of Code:** 506 (Python)
+- **Lines of Code:** 568 (Python validation script)
+- **Lines of Tests:** 400+ (18 unit tests)
 - **Lines of Documentation:** 1,074 (Markdown)
-- **Total Lines Added:** 2,854
-- **Files Created:** 6
+- **Total Lines Added:** 2,854+
+- **Files Created:** 7 (including tests)
 - **Files Modified:** 1
+
+### Test Coverage
+- **Test File:** `json-export-specs/test_validate_schemas.py`
+- **Test Cases:** 18 unit tests
+- **Coverage Areas:**
+  - SchemaValidator initialization
+  - Field name parsing and validation
+  - Type inference (boolean, integer, float, date, string, empty)
+  - camelCase ↔ snake_case conversion
+  - CSV data loading and error handling
+  - Path extraction from nested structures
+  - Flexible field matching
+  - Report generation (Markdown and JSON)
+- **Test Results:** All tests passing ✓
 
 ### Coverage
 - **Schemas:** 5 of 5 (100%)
