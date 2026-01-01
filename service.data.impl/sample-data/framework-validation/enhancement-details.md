@@ -222,7 +222,6 @@ CASE WHEN effectiveness_violations > 0 THEN 1 ELSE 0 END +
 4. Comparative: peer group comparison (nested CTE pattern)
 5. Pattern Recognition: behavioral clustering (nested CTE pattern)
 6. Decision: coalition misalignment detection (nested CTE pattern)
-8. Decision: coalition misalignment detection
 
 ### Documentation Updates
 
