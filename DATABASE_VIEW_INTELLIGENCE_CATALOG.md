@@ -632,6 +632,7 @@ LIMIT 15;
 - **Data Volume:** ~2,000 rows (all politicians, active + historical)
 - **Refresh Frequency:** Real-time (standard view)
 - **Common Filters:** `status`, `party`, `person_id`
+- **Sample Data:** [view_riksdagen_politician_sample.csv](service.data.impl/sample-data/view_riksdagen_politician_sample.csv) (2,079 rows, verified 2026-01-01)
 
 #### Data Sources
 
@@ -858,6 +859,7 @@ ORDER BY party;
 - **Indexes Used:** `idx_assignment_data_person`, `idx_assignment_data_role_code`
 - **Data Volume:** ~2,000 rows (all politicians with assignments)
 - **Refresh Frequency:** Real-time (standard view with complex calculations)
+- **Sample Data:** [view_riksdagen_politician_experience_summary_sample.csv](service.data.impl/sample-data/view_riksdagen_politician_experience_summary_sample.csv) (2,093 rows with JSON columns for detailed experience breakdown)
 
 #### Data Sources
 
@@ -2633,7 +2635,8 @@ Together, these views provide comprehensive government performance intelligence 
 **Purpose**: Comprehensive party performance indicators including win rates, document productivity, member activity, and comparative rankings.  
 **Key Metrics**: Party win percentage, avg documents per member, active member count, performance tier (TIER_1-TIER_4)  
 **Sample Query**: `SELECT party, win_percentage, docs_per_member, performance_tier FROM view_party_performance_metrics ORDER BY performance_tier;`  
-**Applications**: Party benchmarking, performance scorecards, electoral analysis
+**Applications**: Party benchmarking, performance scorecards, electoral analysis  
+**Sample Data**: [view_party_performance_metrics_sample.csv](service.data.impl/sample-data/view_party_performance_metrics_sample.csv) (41 rows - all Swedish political parties)
 
 ---
 
@@ -6603,6 +6606,73 @@ See [Validation History](#-validation-history) section for complete validation m
 - Update product mappings as new features launch
 - Maintain alignment between view documentation and business strategy
 - Quarterly review of TAM estimates and revenue projections
+
+---
+
+## 📁 Working with Sample Data
+
+All views documented in this catalog have corresponding sample data files for testing, development, and documentation validation. 
+
+### Sample Data Location
+
+Sample CSV files are located in: [`service.data.impl/sample-data/`](service.data.impl/sample-data/)
+
+| File Pattern | Count | Description |
+|--------------|-------|-------------|
+| `view_*_sample.csv` | 84 | View sample data (verified 2026-01-01) |
+| `table_*_sample.csv` | 54 | Table sample data |
+| `distribution_*.csv` | 43 | Statistical distributions |
+| `distinct_*_values.csv` | 9 | Distinct value sets |
+| **Total** | **200** | Complete sample data coverage |
+
+### Important Data Value Notes
+
+When working with sample data, be aware of these Swedish language values:
+
+**Gender Values:**
+- `'KVINNA'` - Woman
+- `'MAN'` - Man
+
+**Status Values:**
+- `'Tjänstgörande riksdagsledamot'` - Active member of parliament
+- `'Tjänstgörande ersättare'` - Active substitute
+- `'Tidigare riksdagsledamot'` - Former member of parliament
+- `'Tillgänglig ersättare'` - Available substitute
+- `'Inga uppdrag'` - No assignments
+
+### Views Without Sample Data
+
+Some documented views do not have sample CSV files:
+
+| View Name | Reason | Status |
+|-----------|--------|--------|
+| `view_riksdagen_coalition_alignment_matrix` | Empty or very large | Schema exists |
+| `view_riksdagen_voting_anomaly_detection` | Empty due to status value mismatch | Schema exists, needs fix |
+| `view_riksdagen_intelligence_dashboard` | Consolidated into other views | Removed from schema |
+
+See [sample-data/README.md](service.data.impl/sample-data/README.md) for data quality issues and extraction details.
+
+### Sample Data Documentation
+
+- **Extraction Process**: [SAMPLE_DATA_EXTRACTION.md](service.data.impl/SAMPLE_DATA_EXTRACTION.md)
+- **Usage Guide**: [sample-data/README.md](service.data.impl/sample-data/README.md)
+- **Extraction Statistics**: [extraction_statistics.csv](service.data.impl/sample-data/extraction_statistics.csv)
+- **Data Manifest**: [sample_data_manifest.csv](service.data.impl/sample-data/sample_data_manifest.csv)
+
+### Example: Using Sample Data
+
+```bash
+# View sample data for politiker view
+head -5 service.data.impl/sample-data/view_riksdagen_politician_sample.csv
+
+# Count rows in sample
+wc -l service.data.impl/sample-data/view_riksdagen_politician_sample.csv
+
+# Check distinct values
+cut -d',' -f6 service.data.impl/sample-data/view_riksdagen_politician_sample.csv | sort | uniq -c
+```
+
+All example queries in this catalog have been verified against current sample data as of 2026-01-01.
 
 ---
 
