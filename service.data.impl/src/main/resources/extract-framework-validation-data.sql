@@ -18,7 +18,7 @@
 --
 -- Output Directory: service.data.impl/sample-data/framework-validation/
 
-\set ON_ERROR_STOP off
+\set ON_ERROR_STOP on
 \timing on
 
 \echo '===================================================================='
@@ -49,7 +49,7 @@
 \echo '>>> Expected Outcome: Detect attendance rate increase ≥10% over 6 months'
 
 \copy (
-    WITH politician_trends AS (
+    WITH politician_trends_base AS (
         SELECT 
             person_id,
             first_name,
@@ -58,15 +58,27 @@
             year_month,
             avg_absence_rate,
             LAG(avg_absence_rate, 6) OVER (PARTITION BY person_id ORDER BY year_month) AS absence_6mo_ago,
-            avg_absence_rate - LAG(avg_absence_rate, 6) OVER (PARTITION BY person_id ORDER BY year_month) AS absence_change,
-            CASE 
-                WHEN (avg_absence_rate - LAG(avg_absence_rate, 6) OVER (PARTITION BY person_id ORDER BY year_month)) < -10 THEN 'SIGNIFICANT_IMPROVEMENT'
-                WHEN (avg_absence_rate - LAG(avg_absence_rate, 6) OVER (PARTITION BY person_id ORDER BY year_month)) < -5 THEN 'MODERATE_IMPROVEMENT'
-                ELSE 'STABLE'
-            END AS trend_classification
+            avg_absence_rate - LAG(avg_absence_rate, 6) OVER (PARTITION BY person_id ORDER BY year_month) AS absence_change
         FROM view_politician_behavioral_trends
         WHERE ballot_count >= 10
           AND year_month >= CURRENT_DATE - INTERVAL '24 months'
+    ),
+    politician_trends AS (
+        SELECT 
+            person_id,
+            first_name,
+            last_name,
+            party,
+            year_month,
+            avg_absence_rate,
+            absence_6mo_ago,
+            absence_change,
+            CASE 
+                WHEN absence_change < -10 THEN 'SIGNIFICANT_IMPROVEMENT'
+                WHEN absence_change < -5 THEN 'MODERATE_IMPROVEMENT'
+                ELSE 'STABLE'
+            END AS trend_classification
+        FROM politician_trends_base
     )
     SELECT 
         person_id,
@@ -97,7 +109,7 @@
 \echo '>>> Expected Outcome: Detect ministry approval rate decline ≥15% over 4 quarters'
 
 \copy (
-    WITH ministry_trends AS (
+    WITH ministry_trends_base AS (
         SELECT 
             ministry_code,
             ministry_name,
@@ -106,15 +118,27 @@
             TO_DATE(decision_year::TEXT || '-' || ((decision_quarter-1)*3+1)::TEXT || '-01', 'YYYY-MM-DD') AS quarter_date,
             approval_rate,
             LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter) AS approval_4q_ago,
-            approval_rate - LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter) AS approval_change,
-            CASE 
-                WHEN (approval_rate - LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter)) < -15 THEN 'SIGNIFICANT_DECLINE'
-                WHEN (approval_rate - LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter)) < -10 THEN 'MODERATE_DECLINE'
-                ELSE 'STABLE'
-            END AS trend_classification
+            approval_rate - LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter) AS approval_change
         FROM view_ministry_decision_impact
         WHERE total_proposals >= 5
           AND decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3
+    ),
+    ministry_trends AS (
+        SELECT 
+            ministry_code,
+            ministry_name,
+            decision_year,
+            decision_quarter,
+            quarter_date,
+            approval_rate,
+            approval_4q_ago,
+            approval_change,
+            CASE 
+                WHEN approval_change < -15 THEN 'SIGNIFICANT_DECLINE'
+                WHEN approval_change < -10 THEN 'MODERATE_DECLINE'
+                ELSE 'STABLE'
+            END AS trend_classification
+        FROM ministry_trends_base
     )
     SELECT 
         ministry_code,
@@ -145,7 +169,7 @@
 \echo '>>> Expected Outcome: Detect CRITICAL risk escalation patterns'
 
 \copy (
-    WITH risk_evolution AS (
+    WITH risk_evolution_base AS (
         SELECT 
             org_code,
             name AS ministry_name,
@@ -158,16 +182,32 @@
             risk_level,
             risk_assessment,
             LAG(risk_level, 1) OVER (PARTITION BY org_code ORDER BY year, quarter) AS prev_risk_level,
-            LAG(risk_level, 2) OVER (PARTITION BY org_code ORDER BY year, quarter) AS prev_2q_risk_level,
-            CASE 
-                WHEN risk_level = 'CRITICAL' AND LAG(risk_level, 1) OVER (PARTITION BY org_code ORDER BY year, quarter) IN ('HIGH', 'MEDIUM', 'LOW') THEN 'RAPID_ESCALATION'
-                WHEN risk_level = 'CRITICAL' AND LAG(risk_level, 1) OVER (PARTITION BY org_code ORDER BY year, quarter) = 'HIGH' THEN 'GRADUAL_ESCALATION'
-                WHEN risk_level = 'HIGH' AND LAG(risk_level, 2) OVER (PARTITION BY org_code ORDER BY year, quarter) = 'MEDIUM' THEN 'SUSTAINED_DETERIORATION'
-                ELSE 'OTHER'
-            END AS risk_escalation_pattern
+            LAG(risk_level, 2) OVER (PARTITION BY org_code ORDER BY year, quarter) AS prev_2q_risk_level
         FROM view_ministry_risk_evolution
         WHERE year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3
           AND documents_produced IS NOT NULL
+    ),
+    risk_evolution AS (
+        SELECT 
+            org_code,
+            ministry_name,
+            year,
+            quarter,
+            documents_produced,
+            legislative_count,
+            document_trend,
+            legislative_trend,
+            risk_level,
+            risk_assessment,
+            prev_risk_level,
+            prev_2q_risk_level,
+            CASE 
+                WHEN risk_level = 'CRITICAL' AND prev_risk_level IN ('HIGH', 'MEDIUM', 'LOW') THEN 'RAPID_ESCALATION'
+                WHEN risk_level = 'CRITICAL' AND prev_risk_level = 'HIGH' THEN 'GRADUAL_ESCALATION'
+                WHEN risk_level = 'HIGH' AND prev_2q_risk_level = 'MEDIUM' THEN 'SUSTAINED_DETERIORATION'
+                ELSE 'OTHER'
+            END AS risk_escalation_pattern
+        FROM risk_evolution_base
     )
     SELECT 
         org_code,
@@ -402,7 +442,7 @@
           AND ballot_count >= 10
         GROUP BY party
     ),
-    politician_comparison AS (
+    politician_comparison_base AS (
         SELECT 
             pbt.person_id,
             pbt.first_name,
@@ -415,18 +455,34 @@
             pa.party_avg_win,
             pa.party_avg_rebel,
             AVG(pbt.avg_absence_rate) - pa.party_avg_absence AS absence_vs_party,
-            AVG(pbt.avg_win_rate) - pa.party_avg_win AS win_vs_party,
-            CASE 
-                WHEN AVG(pbt.avg_win_rate) > pa.party_avg_win + 5 AND AVG(pbt.avg_absence_rate) < pa.party_avg_absence - 3 THEN 'ABOVE_AVERAGE'
-                WHEN AVG(pbt.avg_win_rate) < pa.party_avg_win - 5 OR AVG(pbt.avg_absence_rate) > pa.party_avg_absence + 5 THEN 'BELOW_AVERAGE'
-                ELSE 'AVERAGE'
-            END AS expected_classification
+            AVG(pbt.avg_win_rate) - pa.party_avg_win AS win_vs_party
         FROM view_politician_behavioral_trends pbt
         JOIN party_averages pa ON pa.party = pbt.party
         WHERE pbt.year_month >= CURRENT_DATE - INTERVAL '12 months'
           AND pbt.ballot_count >= 10
         GROUP BY pbt.person_id, pbt.first_name, pbt.last_name, pbt.party, 
                  pa.party_avg_absence, pa.party_avg_win, pa.party_avg_rebel
+    ),
+    politician_comparison AS (
+        SELECT 
+            person_id,
+            first_name,
+            last_name,
+            party,
+            individual_absence,
+            individual_win,
+            individual_rebel,
+            party_avg_absence,
+            party_avg_win,
+            party_avg_rebel,
+            absence_vs_party,
+            win_vs_party,
+            CASE 
+                WHEN individual_win > party_avg_win + 5 AND individual_absence < party_avg_absence - 3 THEN 'ABOVE_AVERAGE'
+                WHEN individual_win < party_avg_win - 5 OR individual_absence > party_avg_absence + 5 THEN 'BELOW_AVERAGE'
+                ELSE 'AVERAGE'
+            END AS expected_classification
+        FROM politician_comparison_base
     )
     SELECT 
         person_id,
@@ -545,7 +601,7 @@
 \echo '>>> Expected Outcome: Classify behavioral patterns into 3 clusters'
 
 \copy (
-    WITH politician_patterns AS (
+    WITH politician_patterns_base AS (
         SELECT 
             person_id,
             first_name,
@@ -555,18 +611,31 @@
             AVG(avg_win_rate) AS avg_win,
             AVG(avg_rebel_rate) AS avg_rebel,
             COUNT(*) AS months_tracked,
-            STDDEV(avg_absence_rate) AS absence_volatility,
-            CASE 
-                WHEN AVG(avg_absence_rate) < 10 AND AVG(avg_win_rate) > 60 AND AVG(avg_rebel_rate) < 10 THEN 'NORMAL_BEHAVIOR'
-                WHEN AVG(avg_absence_rate) BETWEEN 10 AND 20 OR AVG(avg_rebel_rate) BETWEEN 10 AND 15 THEN 'ANOMALOUS_BEHAVIOR'
-                WHEN AVG(avg_absence_rate) > 20 OR AVG(avg_win_rate) < 45 OR AVG(avg_rebel_rate) > 15 THEN 'CONCERNING_BEHAVIOR'
-                ELSE 'UNCLASSIFIED'
-            END AS expected_cluster
+            STDDEV(avg_absence_rate) AS absence_volatility
         FROM view_politician_behavioral_trends
         WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
           AND ballot_count >= 10
         GROUP BY person_id, first_name, last_name, party
         HAVING COUNT(*) >= 6
+    ),
+    politician_patterns AS (
+        SELECT 
+            person_id,
+            first_name,
+            last_name,
+            party,
+            avg_absence,
+            avg_win,
+            avg_rebel,
+            months_tracked,
+            absence_volatility,
+            CASE 
+                WHEN avg_absence < 10 AND avg_win > 60 AND avg_rebel < 10 THEN 'NORMAL_BEHAVIOR'
+                WHEN avg_absence BETWEEN 10 AND 20 OR avg_rebel BETWEEN 10 AND 15 THEN 'ANOMALOUS_BEHAVIOR'
+                WHEN avg_absence > 20 OR avg_win < 45 OR avg_rebel > 15 THEN 'CONCERNING_BEHAVIOR'
+                ELSE 'UNCLASSIFIED'
+            END AS expected_cluster
+        FROM politician_patterns_base
     )
     SELECT 
         person_id,
@@ -604,7 +673,7 @@
 \echo '>>> Expected Outcome: Identify HIGH_INDEPENDENCE and PARTY_LINE patterns'
 
 \copy (
-    WITH rebellion_patterns AS (
+    WITH rebellion_patterns_base AS (
         SELECT 
             person_id,
             first_name,
@@ -613,19 +682,31 @@
             AVG(avg_rebel_rate) AS avg_rebel_rate,
             MAX(avg_rebel_rate) AS peak_rebel_rate,
             STDDEV(avg_rebel_rate) AS rebel_volatility,
-            COUNT(*) AS months_tracked,
-            CASE 
-                WHEN AVG(avg_rebel_rate) > 15 THEN 'HIGH_INDEPENDENCE'
-                WHEN AVG(avg_rebel_rate) BETWEEN 10 AND 15 THEN 'MODERATE_INDEPENDENCE'
-                WHEN AVG(avg_rebel_rate) BETWEEN 5 AND 10 THEN 'LOW_INDEPENDENCE'
-                WHEN AVG(avg_rebel_rate) < 5 THEN 'PARTY_LINE'
-                ELSE 'UNCLASSIFIED'
-            END AS expected_pattern
+            COUNT(*) AS months_tracked
         FROM view_politician_behavioral_trends
         WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
           AND ballot_count >= 10
         GROUP BY person_id, first_name, last_name, party
         HAVING COUNT(*) >= 6
+    ),
+    rebellion_patterns AS (
+        SELECT 
+            person_id,
+            first_name,
+            last_name,
+            party,
+            avg_rebel_rate,
+            peak_rebel_rate,
+            rebel_volatility,
+            months_tracked,
+            CASE 
+                WHEN avg_rebel_rate > 15 THEN 'HIGH_INDEPENDENCE'
+                WHEN avg_rebel_rate BETWEEN 10 AND 15 THEN 'MODERATE_INDEPENDENCE'
+                WHEN avg_rebel_rate BETWEEN 5 AND 10 THEN 'LOW_INDEPENDENCE'
+                WHEN avg_rebel_rate < 5 THEN 'PARTY_LINE'
+                ELSE 'UNCLASSIFIED'
+            END AS expected_pattern
+        FROM rebellion_patterns_base
     )
     SELECT 
         person_id,
@@ -672,7 +753,7 @@
 \echo '>>> Expected Outcome: Identify HIGH_RISK, MODERATE_RISK patterns'
 
 \copy (
-    WITH resignation_signals AS (
+    WITH resignation_signals_base AS (
         SELECT 
             person_id,
             first_name,
@@ -682,17 +763,30 @@
             AVG(absence_trend) AS avg_absence_trend,
             AVG(effectiveness_trend) AS avg_effectiveness_trend,
             AVG(ma_3month_absence) AS smoothed_absence,
-            COUNT(*) AS months_tracked,
-            CASE 
-                WHEN AVG(avg_absence_rate) > 20 AND AVG(absence_trend) > 2 AND AVG(effectiveness_trend) < -3 THEN 'HIGH_RESIGNATION_RISK'
-                WHEN AVG(avg_absence_rate) > 15 AND AVG(absence_trend) > 1 THEN 'MODERATE_RESIGNATION_RISK'
-                ELSE 'LOW_RISK'
-            END AS expected_risk_level
+            COUNT(*) AS months_tracked
         FROM view_politician_behavioral_trends
         WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
           AND ballot_count >= 10
         GROUP BY person_id, first_name, last_name, party
         HAVING COUNT(*) >= 6
+    ),
+    resignation_signals AS (
+        SELECT 
+            person_id,
+            first_name,
+            last_name,
+            party,
+            avg_absence,
+            avg_absence_trend,
+            avg_effectiveness_trend,
+            smoothed_absence,
+            months_tracked,
+            CASE 
+                WHEN avg_absence > 20 AND avg_absence_trend > 2 AND avg_effectiveness_trend < -3 THEN 'HIGH_RESIGNATION_RISK'
+                WHEN avg_absence > 15 AND avg_absence_trend > 1 THEN 'MODERATE_RESIGNATION_RISK'
+                ELSE 'LOW_RISK'
+            END AS expected_risk_level
+        FROM resignation_signals_base
     )
     SELECT 
         person_id,
