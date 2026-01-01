@@ -219,12 +219,13 @@ For each framework, run analytical algorithms on the validation datasets and rec
 
 ```python
 # Example: Test Temporal Analysis Framework
+# NOTE: This is pseudocode/example code. Actual implementation depends on your framework's analytics engine.
 import pandas as pd
 
 # Load validation dataset
 test_data = pd.read_csv('temporal/test_1_1_upward_trend_attendance.csv')
 
-# Run framework analytics (your implementation)
+# Run framework analytics (replace with your actual implementation)
 predictions = temporal_analysis_framework.predict(test_data)
 
 # Compare predictions to expected outcomes
@@ -240,22 +241,23 @@ print(f"Temporal Upward Trend Detection Accuracy: {accuracy:.2%}")
 
 ```bash
 # Create validation results CSV
+# NOTE: The values below are example/placeholder results. Replace with actual validation outcomes.
 cat > validation-results.csv << 'EOF'
 framework,test_id,test_name,sample_size,correct_predictions,accuracy,expected_accuracy,status
-Temporal Analysis,Test 1.1,Upward Trend Detection,50,48,96%,95%,PASS
-Temporal Analysis,Test 1.2,Downward Trend Detection,30,25,83%,82%,PASS
-Temporal Analysis,Test 1.3,Cyclical Pattern Detection,100,96,96%,95%,PASS
-Temporal Analysis,Test 1.4,Anomaly Detection,40,37,93%,90%,PASS
-Comparative Analysis,Test 2.1,Party Performance Rankings,8,8,100%,90%+,PASS
-Comparative Analysis,Test 2.2,Peer Group Comparison,60,56,93%,90%+,PASS
-Pattern Recognition,Test 3.1,Behavioral Clustering,100,93,93%,91%,PASS
-Pattern Recognition,Test 3.2,Rebellion Pattern Identification,80,69,86%,85%,PASS
-Predictive Intelligence,Test 4.1,Resignation Risk Prediction,40,35,88%,87%,PASS
-Predictive Intelligence,Test 4.2,Coalition Stress Prediction,50,40,80%,78%,PASS
-Network Analysis,Test 5.1,Power Broker Identification,60,55,92%,90%,PASS
-Network Analysis,Test 5.2,Coalition Facilitator Detection,50,43,86%,85%,PASS
-Decision Intelligence,Test 6.1,Decision Effectiveness Patterns,80,69,86%,85%,PASS
-Decision Intelligence,Test 6.2,Coalition Misalignment Detection,60,49,82%,80%,PASS
+Temporal Analysis,Test 1.1,Upward Trend Detection,50,TBD,TBD,95%,PENDING
+Temporal Analysis,Test 1.2,Downward Trend Detection,30,TBD,TBD,82%,PENDING
+Temporal Analysis,Test 1.3,Cyclical Pattern Detection,100,TBD,TBD,95%,PENDING
+Temporal Analysis,Test 1.4,Anomaly Detection,40,TBD,TBD,90%,PENDING
+Comparative Analysis,Test 2.1,Party Performance Rankings,8,TBD,TBD,90%+,PENDING
+Comparative Analysis,Test 2.2,Peer Group Comparison,60,TBD,TBD,90%+,PENDING
+Pattern Recognition,Test 3.1,Behavioral Clustering,100,TBD,TBD,91%,PENDING
+Pattern Recognition,Test 3.2,Rebellion Pattern Identification,80,TBD,TBD,85%,PENDING
+Predictive Intelligence,Test 4.1,Resignation Risk Prediction,40,TBD,TBD,87%,PENDING
+Predictive Intelligence,Test 4.2,Coalition Stress Prediction,50,TBD,TBD,78%,PENDING
+Network Analysis,Test 5.1,Power Broker Identification,60,TBD,TBD,90%,PENDING
+Network Analysis,Test 5.2,Coalition Facilitator Detection,50,TBD,TBD,85%,PENDING
+Decision Intelligence,Test 6.1,Decision Effectiveness Patterns,80,TBD,TBD,85%,PENDING
+Decision Intelligence,Test 6.2,Coalition Misalignment Detection,60,TBD,TBD,80%,PENDING
 EOF
 ```
 
