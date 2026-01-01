@@ -6619,10 +6619,11 @@ Sample CSV files are located in: [`service.data.impl/sample-data/`](service.data
 
 | File Pattern | Count | Description |
 |--------------|-------|-------------|
-| `view_*_sample.csv` | 84 | View sample data (verified 2026-01-01) |
+| `view_*_sample.csv` | 83 | View sample data - 83 of 84 documented views (1 view removed from schema) |
 | `table_*_sample.csv` | 54 | Table sample data |
 | `distribution_*.csv` | 43 | Statistical distributions |
 | `distinct_*_values.csv` | 9 | Distinct value sets |
+| Metadata files (*.csv) | 11 | Manifests, statistics, mappings |
 | **Total** | **200** | Complete sample data coverage |
 
 ### Important Data Value Notes
@@ -6646,9 +6647,11 @@ Some documented views do not have sample CSV files:
 
 | View Name | Reason | Status |
 |-----------|--------|--------|
-| `view_riksdagen_coalition_alignment_matrix` | Empty or very large | Schema exists |
-| `view_riksdagen_voting_anomaly_detection` | Empty due to status value mismatch | Schema exists, needs fix |
-| `view_riksdagen_intelligence_dashboard` | Consolidated into other views | Removed from schema |
+| `view_riksdagen_coalition_alignment_matrix` | Empty or very large - no rows returned | Schema exists, no sample CSV |
+| `view_riksdagen_voting_anomaly_detection` | Empty due to status value mismatch | Schema exists, no sample CSV |
+| `view_riksdagen_intelligence_dashboard` | Consolidated into other views | Removed from schema, no sample CSV |
+
+Note: 83 of 84 documented views have sample CSV files. Only `view_riksdagen_intelligence_dashboard` has been removed from the schema; the other 2 views exist but return 0 rows with current filter criteria.
 
 See [sample-data/README.md](service.data.impl/sample-data/README.md) for data quality issues and extraction details.
 

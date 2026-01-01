@@ -25,7 +25,9 @@ The sample data extraction script provides comprehensive coverage of all databas
 | **Materialized Views** | 28 | 28 | 100% | ✅ Complete |
 | **Distinct Value Sets** | N/A | 9 | N/A | ✅ Custom extractions |
 | **Metadata Files** | N/A | 11 | N/A | ✅ Manifest + mapping + statistics |
-| **TOTAL** | 177 | 175 | 98.87% | ✅ Near-complete |
+| **TOTAL (Schema Objects)** | 177 | 164 | 92.7% | ✅ Near-complete |
+
+_Note:_ The TOTAL row summarizes coverage for schema objects only (base tables and views). Distinct value sets and metadata files are derived artifacts reported separately.
 
 ### Intentionally Skipped Objects
 
@@ -37,16 +39,18 @@ The sample data extraction script provides comprehensive coverage of all databas
 **Explanation**: These are internal framework tables not relevant for application data analysis.
 
 **Views Without Sample Data (Empty or Removed):**
-- `view_riksdagen_coalition_alignment_matrix` - Exists in schema, but no sample data extracted (likely empty or very large)
-- `view_riksdagen_voting_anomaly_detection` - Empty due to status value mismatch (see Data Quality Issues below)
-- `view_riksdagen_intelligence_dashboard` - Documented but removed from schema (consolidated into other views)
+- `view_riksdagen_coalition_alignment_matrix` - Exists in schema, but no sample CSV extracted (likely empty or very large)
+- `view_riksdagen_voting_anomaly_detection` - Exists in schema, but no sample CSV extracted (empty due to status value mismatch - see Data Quality Issues below)
+- `view_riksdagen_intelligence_dashboard` - Removed from schema (consolidated into other views); no sample CSV exists
+
+Note: Only `view_riksdagen_intelligence_dashboard` is completely removed. The other 2 views exist in the schema but have no sample data files because they return 0 rows with current filter criteria.
 
 ### Expected Output Files
 
-**Total CSV Files**: ~200 (verified 2026-01-01)
+**Total CSV Files**: 200 (verified 2026-01-01)
 - **Table CSVs**: 54 files (table_*_sample.csv) - per-table extracts for the 54 highest-value base tables
   - Note: 80 base tables are extracted from the schema, but only 54 have dedicated `table_*_sample.csv` files. The remaining 26 extracted tables are represented in `distribution_*.csv` and `distinct_*_values.csv` aggregates.
-- **View CSVs**: 84 files (view_*_sample.csv) - includes regular and materialized views
+- **View CSVs**: 83 files (view_*_sample.csv) - from 84 documented views; 1 view has no sample CSV (removed from schema)
 - **Distinct Value CSVs**: 9 files (distinct_*_values.csv)
 - **Distribution CSVs**: 43 files (distribution_*.csv) - Statistical distributions for data patterns
 - **Metadata CSVs**: 11 files (sample_data_manifest.csv, view_column_mapping.csv, extraction_statistics.csv, materialized_view_statistics.csv, report_empty_views.csv, summary_*.csv, trend_*.csv)
