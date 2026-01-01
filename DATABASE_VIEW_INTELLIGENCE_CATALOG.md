@@ -98,6 +98,13 @@ Views are classified by intelligence value for analytical operations:
 | **JSON Export Specifications** | [json-export-specs/](json-export-specs/) | API schemas and data format specifications |
 | **Intelligence Data Flow Map** | [INTELLIGENCE_DATA_FLOW.md](INTELLIGENCE_DATA_FLOW.md) | Central cross-reference hub showing data pipeline |
 | **Intelligence Evolution Changelog** | [CHANGELOG_INTELLIGENCE.md](CHANGELOG_INTELLIGENCE.md) | Unified intelligence capability tracking |
+| **Sample Data Extraction** | [service.data.impl/SAMPLE_DATA_EXTRACTION.md](service.data.impl/SAMPLE_DATA_EXTRACTION.md) | Sample data extraction process and coverage (200 CSV files) |
+| **Sample Data Directory** | [service.data.impl/sample-data/](service.data.impl/sample-data/) | Actual sample CSV files for all 84 views and 54 tables |
+
+**Sample Data Note:** All example queries in this catalog have been verified against current sample data (verified 2026-01-01). View samples are located in `service.data.impl/sample-data/view_*_sample.csv`. Important data notes:
+- Gender values are in Swedish: `'KVINNA'` (woman) and `'MAN'` (man)
+- Status values are in Swedish: `'Tjänstgörande riksdagsledamot'` (active MP), `'Tidigare riksdagsledamot'` (former MP)
+- Some views may be empty due to data quality issues (see [sample-data/README.md](service.data.impl/sample-data/README.md))
 | **Intelligence Frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) | Analysis methodologies and OSINT techniques |
 | **Risk Rules** | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) | 45 behavioral detection rules |
 | **Changelog Analysis** | [LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) | Schema evolution analysis |
@@ -535,8 +542,8 @@ Central politician profile view aggregating basic biographical data, current par
 SELECT
     party,
     COUNT(*) AS member_count,
-    COUNT(*) FILTER (WHERE gender = 'woman') AS women_count,
-    COUNT(*) FILTER (WHERE gender = 'man') AS men_count,
+    COUNT(*) FILTER (WHERE gender = 'KVINNA') AS women_count,
+    COUNT(*) FILTER (WHERE gender = 'MAN') AS men_count,
     ROUND(AVG(2024 - born_year), 1) AS avg_age,
     ROUND(AVG(total_days_served), 0) AS avg_days_experience
 FROM view_riksdagen_politician
@@ -544,6 +551,8 @@ WHERE status = 'Tjänstgörande riksdagsledamot'
 GROUP BY party
 ORDER BY member_count DESC;
 ```
+
+**Note:** Gender values in the data are Swedish: `'KVINNA'` (woman) and `'MAN'` (man). See [view_riksdagen_politician_sample.csv](service.data.impl/sample-data/view_riksdagen_politician_sample.csv) for current sample data.
 
 **Output:**
 ```
@@ -577,9 +586,9 @@ LIMIT 20;
 SELECT
     party,
     COUNT(*) AS total,
-    COUNT(*) FILTER (WHERE gender = 'woman') AS women,
-    COUNT(*) FILTER (WHERE gender = 'man') AS men,
-    ROUND(100.0 * COUNT(*) FILTER (WHERE gender = 'woman') / COUNT(*), 1) AS women_pct
+    COUNT(*) FILTER (WHERE gender = 'KVINNA') AS women,
+    COUNT(*) FILTER (WHERE gender = 'MAN') AS men,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE gender = 'KVINNA') / COUNT(*), 1) AS women_pct
 FROM view_riksdagen_politician
 WHERE status = 'Tjänstgörande riksdagsledamot'
 GROUP BY party

@@ -4,11 +4,17 @@
 
 The sample data extraction script provides comprehensive coverage of all database tables and views with increased sample size for better testing and debugging capabilities.
 
+**Documentation Cross-References:**
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Complete view inventory with 84 documented views, includes example queries using this sample data
+- [DATA_MODEL.md](../../DATA_MODEL.md) - Data model overview and entity relationships
+- [README.md](README.md) - Sample data usage guide and data quality notes
+
 ## Verified Coverage Statistics (v2.1)
 
-**Last Validated**: 2025-11-24  
+**Last Validated**: 2026-01-01  
 **Database Schema**: cia_dev  
-**PostgreSQL Version**: 16.x+
+**PostgreSQL Version**: 16.x+  
+**Sample Data Verified**: All 200 CSV files present, examples in documentation updated to match current data structure
 
 ### Extraction Coverage
 
@@ -30,13 +36,20 @@ The sample data extraction script provides comprehensive coverage of all databas
 
 **Explanation**: These are internal framework tables not relevant for application data analysis.
 
+**Views Without Sample Data (Empty or Removed):**
+- `view_riksdagen_coalition_alignment_matrix` - Exists in schema, but no sample data extracted (likely empty or very large)
+- `view_riksdagen_voting_anomaly_detection` - Empty due to status value mismatch (see Data Quality Issues below)
+- `view_riksdagen_intelligence_dashboard` - Documented but removed from schema (consolidated into other views)
+
 ### Expected Output Files
 
-**Total CSV Files**: ~175
-- **Table CSVs**: 80 files (table_*_sample.csv)
+**Total CSV Files**: ~200 (verified 2026-01-01)
+- **Table CSVs**: 54 files (table_*_sample.csv)
 - **View CSVs**: 84 files (view_*_sample.csv) - includes regular and materialized views
-- **Distinct Value CSVs**: 8 files (distinct_*_values.csv)
-- **Metadata CSVs**: 3 files (sample_data_manifest.csv, view_column_mapping.csv, extraction_statistics.csv)
+- **Distinct Value CSVs**: 9 files (distinct_*_values.csv)
+- **Distribution CSVs**: 43 files (distribution_*.csv) - Statistical distributions for data patterns
+- **Metadata CSVs**: 8 files (sample_data_manifest.csv, view_column_mapping.csv, extraction_statistics.csv, etc.)
+- **Other**: 2 files (trend_*.csv, report_*.csv)
 
 ## What's New
 
