@@ -98,11 +98,18 @@ Views are classified by intelligence value for analytical operations:
 | **JSON Export Specifications** | [json-export-specs/](json-export-specs/) | API schemas and data format specifications |
 | **Intelligence Data Flow Map** | [INTELLIGENCE_DATA_FLOW.md](INTELLIGENCE_DATA_FLOW.md) | Central cross-reference hub showing data pipeline |
 | **Intelligence Evolution Changelog** | [CHANGELOG_INTELLIGENCE.md](CHANGELOG_INTELLIGENCE.md) | Unified intelligence capability tracking |
+| **Sample Data Extraction** | [service.data.impl/SAMPLE_DATA_EXTRACTION.md](service.data.impl/SAMPLE_DATA_EXTRACTION.md) | Sample data extraction process and coverage (200 CSV files) |
+| **Sample Data Directory** | [service.data.impl/sample-data/](service.data.impl/sample-data/) | Actual sample CSV files for all 84 views and 54 tables |
 | **Intelligence Frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) | Analysis methodologies and OSINT techniques |
 | **Risk Rules** | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) | 45 behavioral detection rules |
 | **Changelog Analysis** | [LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) | Schema evolution analysis |
 | **Data Model** | [DATA_MODEL.md](DATA_MODEL.md) | Database schema and relationships |
 | **Schema Maintenance** | [service.data.impl/README-SCHEMA-MAINTENANCE.md](service.data.impl/README-SCHEMA-MAINTENANCE.md) | Database maintenance guide |
+
+**Sample Data Note:** All example queries in this catalog have been verified against current sample data (verified 2026-01-01). View samples are located in `service.data.impl/sample-data/view_*_sample.csv`. Important data notes:
+- Gender values are in Swedish: `'KVINNA'` (woman) and `'MAN'` (man)
+- Status values are in Swedish: `'Tjänstgörande riksdagsledamot'` (active MP), `'Tidigare riksdagsledamot'` (former MP)
+- Some views may be empty due to data quality issues (see [sample-data/README.md](service.data.impl/sample-data/README.md))
 
 ---
 
@@ -535,8 +542,8 @@ Central politician profile view aggregating basic biographical data, current par
 SELECT
     party,
     COUNT(*) AS member_count,
-    COUNT(*) FILTER (WHERE gender = 'woman') AS women_count,
-    COUNT(*) FILTER (WHERE gender = 'man') AS men_count,
+    COUNT(*) FILTER (WHERE gender = 'KVINNA') AS women_count,
+    COUNT(*) FILTER (WHERE gender = 'MAN') AS men_count,
     ROUND(AVG(2024 - born_year), 1) AS avg_age,
     ROUND(AVG(total_days_served), 0) AS avg_days_experience
 FROM view_riksdagen_politician
@@ -544,6 +551,8 @@ WHERE status = 'Tjänstgörande riksdagsledamot'
 GROUP BY party
 ORDER BY member_count DESC;
 ```
+
+**Note:** Gender values in the data are Swedish: `'KVINNA'` (woman) and `'MAN'` (man). See [view_riksdagen_politician_sample.csv](service.data.impl/sample-data/view_riksdagen_politician_sample.csv) for current sample data.
 
 **Output:**
 ```
@@ -577,9 +586,9 @@ LIMIT 20;
 SELECT
     party,
     COUNT(*) AS total,
-    COUNT(*) FILTER (WHERE gender = 'woman') AS women,
-    COUNT(*) FILTER (WHERE gender = 'man') AS men,
-    ROUND(100.0 * COUNT(*) FILTER (WHERE gender = 'woman') / COUNT(*), 1) AS women_pct
+    COUNT(*) FILTER (WHERE gender = 'KVINNA') AS women,
+    COUNT(*) FILTER (WHERE gender = 'MAN') AS men,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE gender = 'KVINNA') / COUNT(*), 1) AS women_pct
 FROM view_riksdagen_politician
 WHERE status = 'Tjänstgörande riksdagsledamot'
 GROUP BY party
@@ -623,6 +632,7 @@ LIMIT 15;
 - **Data Volume:** ~2,000 rows (all politicians, active + historical)
 - **Refresh Frequency:** Real-time (standard view)
 - **Common Filters:** `status`, `party`, `person_id`
+- **Sample Data:** [view_riksdagen_politician_sample.csv](service.data.impl/sample-data/view_riksdagen_politician_sample.csv) (2,079 rows, verified 2026-01-01)
 
 #### Data Sources
 
@@ -849,6 +859,7 @@ ORDER BY party;
 - **Indexes Used:** `idx_assignment_data_person`, `idx_assignment_data_role_code`
 - **Data Volume:** ~2,000 rows (all politicians with assignments)
 - **Refresh Frequency:** Real-time (standard view with complex calculations)
+- **Sample Data:** [view_riksdagen_politician_experience_summary_sample.csv](service.data.impl/sample-data/view_riksdagen_politician_experience_summary_sample.csv) (2,093 rows with JSON columns for detailed experience breakdown)
 
 #### Data Sources
 
@@ -2624,7 +2635,8 @@ Together, these views provide comprehensive government performance intelligence 
 **Purpose**: Comprehensive party performance indicators including win rates, document productivity, member activity, and comparative rankings.  
 **Key Metrics**: Party win percentage, avg documents per member, active member count, performance tier (TIER_1-TIER_4)  
 **Sample Query**: `SELECT party, win_percentage, docs_per_member, performance_tier FROM view_party_performance_metrics ORDER BY performance_tier;`  
-**Applications**: Party benchmarking, performance scorecards, electoral analysis
+**Applications**: Party benchmarking, performance scorecards, electoral analysis  
+**Sample Data**: [view_party_performance_metrics_sample.csv](service.data.impl/sample-data/view_party_performance_metrics_sample.csv) (41 rows - all Swedish political parties)
 
 ---
 
@@ -6594,6 +6606,76 @@ See [Validation History](#-validation-history) section for complete validation m
 - Update product mappings as new features launch
 - Maintain alignment between view documentation and business strategy
 - Quarterly review of TAM estimates and revenue projections
+
+---
+
+## 📁 Working with Sample Data
+
+All views documented in this catalog have corresponding sample data files for testing, development, and documentation validation. 
+
+### Sample Data Location
+
+Sample CSV files are located in: [`service.data.impl/sample-data/`](service.data.impl/sample-data/)
+
+| File Pattern | Count | Description |
+|--------------|-------|-------------|
+| `view_*_sample.csv` | 83 | View sample data - 83 of 84 documented views (1 view removed from schema) |
+| `table_*_sample.csv` | 54 | Table sample data |
+| `distribution_*.csv` | 43 | Statistical distributions |
+| `distinct_*_values.csv` | 9 | Distinct value sets |
+| Metadata files (*.csv) | 11 | Manifests, statistics, mappings |
+| **Total** | **200** | Complete sample data coverage |
+
+### Important Data Value Notes
+
+When working with sample data, be aware of these Swedish language values:
+
+**Gender Values:**
+- `'KVINNA'` - Woman
+- `'MAN'` - Man
+
+**Status Values:**
+- `'Tjänstgörande riksdagsledamot'` - Active member of parliament
+- `'Tjänstgörande ersättare'` - Active substitute
+- `'Tidigare riksdagsledamot'` - Former member of parliament
+- `'Tillgänglig ersättare'` - Available substitute
+- `'Inga uppdrag'` - No assignments
+
+### Views Without Sample Data
+
+Some documented views do not have sample CSV files:
+
+| View Name | Reason | Status |
+|-----------|--------|--------|
+| `view_riksdagen_coalition_alignment_matrix` | Empty or very large - no rows returned | Schema exists, no sample CSV |
+| `view_riksdagen_voting_anomaly_detection` | Empty due to status value mismatch | Schema exists, no sample CSV |
+| `view_riksdagen_intelligence_dashboard` | Consolidated into other views | Removed from schema, no sample CSV |
+
+Note: 83 of 84 documented views have sample CSV files. Only `view_riksdagen_intelligence_dashboard` has been removed from the schema; the other 2 views exist but return 0 rows with current filter criteria.
+
+See [sample-data/README.md](service.data.impl/sample-data/README.md) for data quality issues and extraction details.
+
+### Sample Data Documentation
+
+- **Extraction Process**: [SAMPLE_DATA_EXTRACTION.md](service.data.impl/SAMPLE_DATA_EXTRACTION.md)
+- **Usage Guide**: [sample-data/README.md](service.data.impl/sample-data/README.md)
+- **Extraction Statistics**: [extraction_statistics.csv](service.data.impl/sample-data/extraction_statistics.csv)
+- **Data Manifest**: [sample_data_manifest.csv](service.data.impl/sample-data/sample_data_manifest.csv)
+
+### Example: Using Sample Data
+
+```bash
+# View sample data for politician view
+head -5 service.data.impl/sample-data/view_riksdagen_politician_sample.csv
+
+# Count rows in sample
+wc -l service.data.impl/sample-data/view_riksdagen_politician_sample.csv
+
+# Check distinct values
+cut -d',' -f6 service.data.impl/sample-data/view_riksdagen_politician_sample.csv | sort | uniq -c
+```
+
+All example queries in this catalog have been verified against current sample data as of 2026-01-01.
 
 ---
 
