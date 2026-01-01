@@ -6665,7 +6665,7 @@ See [sample-data/README.md](service.data.impl/sample-data/README.md) for data qu
 ### Example: Using Sample Data
 
 ```bash
-# View sample data for politiker view
+# View sample data for politician view
 head -5 service.data.impl/sample-data/view_riksdagen_politician_sample.csv
 
 # Count rows in sample
