@@ -1127,7 +1127,7 @@
 \echo '>>> Expected Outcome: Detect MISALIGNED vs. ALIGNED coalition decision patterns'
 
 \copy (
-    WITH coalition_decisions AS (
+    WITH coalition_decisions_base AS (
         SELECT 
             pdf1.party AS party_1,
             pdf2.party AS party_2,
@@ -1136,12 +1136,7 @@
             pdf1.decision_quarter,
             AVG(pdf1.approval_rate) AS party1_approval,
             AVG(pdf2.approval_rate) AS party2_approval,
-            ABS(AVG(pdf1.approval_rate) - AVG(pdf2.approval_rate)) AS approval_gap,
-            CASE 
-                WHEN ABS(AVG(pdf1.approval_rate) - AVG(pdf2.approval_rate)) > 30 THEN 'COALITION_MISALIGNMENT'
-                WHEN ABS(AVG(pdf1.approval_rate) - AVG(pdf2.approval_rate)) < 15 THEN 'COALITION_ALIGNMENT'
-                ELSE 'MODERATE_DIVERGENCE'
-            END AS expected_alignment
+            ABS(AVG(pdf1.approval_rate) - AVG(pdf2.approval_rate)) AS approval_gap
         FROM view_riksdagen_party_decision_flow pdf1
         INNER JOIN view_riksdagen_party_decision_flow pdf2 
             ON pdf2.committee = pdf1.committee 
@@ -1152,6 +1147,23 @@
           AND pdf2.total_proposals >= 3
           AND pdf1.decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 2
         GROUP BY pdf1.party, pdf2.party, pdf1.committee, pdf1.decision_year, pdf1.decision_quarter
+    ),
+    coalition_decisions AS (
+        SELECT 
+            party_1,
+            party_2,
+            committee,
+            decision_year,
+            decision_quarter,
+            party1_approval,
+            party2_approval,
+            approval_gap,
+            CASE 
+                WHEN approval_gap > 30 THEN 'COALITION_MISALIGNMENT'
+                WHEN approval_gap < 15 THEN 'COALITION_ALIGNMENT'
+                ELSE 'MODERATE_DIVERGENCE'
+            END AS expected_alignment
+        FROM coalition_decisions_base
     )
     SELECT 
         party_1,
