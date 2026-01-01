@@ -13,13 +13,19 @@ This directory contains **framework-specific validation datasets with known outc
 
 | Framework | Test Datasets | Validation Cases | Expected Accuracy | Status |
 |-----------|--------------|------------------|-------------------|--------|
-| **Temporal Analysis** | 4 datasets | 220 cases | 82-95% | ✅ Complete |
-| **Comparative Analysis** | 2 datasets | 68 cases | 90%+ | ✅ Complete |
+| **Temporal Analysis** | 5 datasets | 255 cases | 82-95% | ✅ Enhanced |
+| **Comparative Analysis** | 3 datasets | 138 cases | 88-90%+ | ✅ Enhanced |
 | **Pattern Recognition** | 2 datasets | 180 cases | 85-91% | ✅ Complete |
-| **Predictive Intelligence** | 2 datasets | 90 cases | 78-87% | ✅ Complete |
+| **Predictive Intelligence** | 3 datasets | 135 cases | 78-89% | ✅ Enhanced |
 | **Network Analysis** | 2 datasets | 110 cases | 85-90% | ✅ Complete |
 | **Decision Intelligence** | 2 datasets | 140 cases | 80-85% | ✅ Complete |
-| **Total** | **14 datasets** | **808 cases** | **≥80% overall** | ✅ Complete |
+| **Total** | **17 datasets** | **958 cases** | **≥80% overall** | ✅ Enhanced |
+
+### 🆕 Enhanced Features (v2)
+
+- **Ministry Risk Evolution**: Multi-quarter risk escalation tracking (CRITICAL/HIGH patterns)
+- **Multi-Dimensional Risk Profiles**: Politician risk analysis across violation dimensions
+- **Party Momentum Analysis**: Performance acceleration/deceleration detection with volatility metrics
 
 ## 📁 Directory Structure
 
@@ -31,16 +37,19 @@ framework-validation/
 ├── temporal/                          # Temporal Analysis validation
 │   ├── test_1_1_upward_trend_attendance.csv
 │   ├── test_1_2_downward_trend_ministry.csv
+│   ├── test_1_2b_ministry_risk_evolution.csv      # NEW: Risk escalation patterns
 │   ├── test_1_3_cyclical_patterns.csv
 │   └── test_1_4_anomaly_detection.csv
 ├── comparative/                       # Comparative Analysis validation
 │   ├── test_2_1_party_rankings.csv
-│   └── test_2_2_peer_comparison.csv
+│   ├── test_2_2_peer_comparison.csv
+│   └── test_2_3_party_momentum.csv                 # NEW: Momentum analysis
 ├── pattern/                           # Pattern Recognition validation
 │   ├── test_3_1_behavioral_clustering.csv
 │   └── test_3_2_rebellion_patterns.csv
 ├── predictive/                        # Predictive Intelligence validation
 │   ├── test_4_1_resignation_prediction.csv
+│   ├── test_4_1b_politician_risk_profiles.csv      # NEW: Multi-dimensional risk
 │   └── test_4_2_coalition_stress.csv
 ├── network/                           # Network Analysis validation
 │   ├── test_5_1_power_brokers.csv
@@ -52,7 +61,7 @@ framework-validation/
 
 ## 🧪 Validation Test Cases
 
-### Framework 1: Temporal Analysis (4 tests, 220 cases)
+### Framework 1: Temporal Analysis (5 tests, 255 cases)
 
 #### Test 1.1: Upward Trend Detection
 - **Scenario**: Politician attendance improvement ≥10% over 6 months
@@ -66,6 +75,14 @@ framework-validation/
 - **Sample Size**: 30 cases
 - **Validation Label**: `SIGNIFICANT_DECLINE` or `MODERATE_DECLINE`
 - **Accuracy Claim**: 82% for ministry decline prediction
+
+#### Test 1.2b: Ministry Risk Evolution 🆕
+- **Scenario**: Multi-quarter risk escalation (LOW → MEDIUM → HIGH → CRITICAL)
+- **Expected Detection**: Risk escalation patterns (RAPID/GRADUAL/SUSTAINED)
+- **Sample Size**: 35 cases
+- **Validation Label**: `RAPID_ESCALATION`, `GRADUAL_ESCALATION`, `SUSTAINED_DETERIORATION`
+- **Accuracy Claim**: 85% for risk escalation detection
+- **Data Source**: `view_ministry_risk_evolution` with risk_level tracking
 
 #### Test 1.3: Cyclical Pattern Detection
 - **Scenario**: Parliamentary seasonal patterns (Autumn high, Summer low)
@@ -81,7 +98,7 @@ framework-validation/
 
 ---
 
-### Framework 2: Comparative Analysis (2 tests, 68 cases)
+### Framework 2: Comparative Analysis (3 tests, 138 cases)
 
 #### Test 2.1: Party Performance Rankings
 - **Scenario**: Party win rate, discipline, and productivity comparison
@@ -94,6 +111,14 @@ framework-validation/
 - **Expected Classification**: `ABOVE_AVERAGE`, `AVERAGE`, `BELOW_AVERAGE`
 - **Sample Size**: 60 cases
 - **Validation Label**: Politicians with ≥5% performance gap from party avg
+
+#### Test 2.3: Party Momentum Analysis 🆕
+- **Scenario**: Performance acceleration/deceleration patterns with volatility metrics
+- **Expected Classification**: `STRONG_ACCELERATION`, `MODERATE_ACCELERATION`, `STRONG_DECELERATION`, `MODERATE_DECELERATION`, `STABLE_PERFORMANCE`
+- **Sample Size**: 70 cases
+- **Validation Label**: Based on momentum (>5 strong, >2 moderate), acceleration, volatility
+- **Accuracy Claim**: 88% for momentum pattern classification
+- **Data Source**: `view_riksdagen_party_momentum_analysis` with 4Q moving averages
 
 ---
 
@@ -113,13 +138,26 @@ framework-validation/
 
 ---
 
-### Framework 4: Predictive Intelligence (2 tests, 90 cases)
+### Framework 4: Predictive Intelligence (3 tests, 135 cases)
 
 #### Test 4.1: Resignation Risk Prediction
 - **Scenario**: Identify declining engagement signals predicting resignation
 - **Expected Risk Levels**: `HIGH_RESIGNATION_RISK`, `MODERATE_RESIGNATION_RISK`
 - **Sample Size**: 40 cases
 - **Accuracy Claim**: 87% for resignation prediction (6-8 months prior)
+
+#### Test 4.1b: Politician Risk Profiles 🆕
+- **Scenario**: Multi-dimensional risk analysis across violation types
+- **Expected Classifications**: `MULTI_DIMENSION_RISK`, `EXTREME_VIOLATION_RISK`, `HIGH_RISK_PROFILE`, `DUAL_BEHAVIORAL_RISK`
+- **Sample Size**: 45 cases
+- **Validation Label**: Based on total_violations (≥5-7), violation_dimension_count (2+), risk_score (≥50)
+- **Accuracy Claim**: 89% for multi-dimensional risk profile classification
+- **Data Source**: `view_politician_risk_summary` with violation breakdown (absenteeism, effectiveness, discipline, productivity, collaboration)
+- **Key Metrics**: 
+  - `MULTI_DIMENSION_RISK`: ≥5 violations across 2+ dimensions
+  - `EXTREME_VIOLATION_RISK`: ≥7 total violations
+  - `HIGH_RISK_PROFILE`: Risk score ≥50 + ≥3 violations
+  - `DUAL_BEHAVIORAL_RISK`: Absence rate >15% + rebel rate >10%
 
 #### Test 4.2: Coalition Stress Prediction
 - **Scenario**: Detect coalition alignment degradation

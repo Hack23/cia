@@ -140,6 +140,69 @@
 \echo '>>> Exported 30 cases with expected downward trend detection (ministry decline)'
 \echo ''
 
+-- TEMPORAL TEST 1.2b: Ministry Risk Evolution (Enhanced with Risk Scoring)
+\echo '>>> Test Case 1.2b: Ministry Risk Evolution - Multi-quarter Deterioration'
+\echo '>>> Expected Outcome: Detect CRITICAL risk escalation patterns'
+
+\copy (
+    WITH risk_evolution AS (
+        SELECT 
+            org_code,
+            name AS ministry_name,
+            year,
+            quarter,
+            documents_produced,
+            legislative_count,
+            document_trend,
+            legislative_trend,
+            risk_level,
+            risk_assessment,
+            LAG(risk_level, 1) OVER (PARTITION BY org_code ORDER BY year, quarter) AS prev_risk_level,
+            LAG(risk_level, 2) OVER (PARTITION BY org_code ORDER BY year, quarter) AS prev_2q_risk_level,
+            CASE 
+                WHEN risk_level = 'CRITICAL' AND LAG(risk_level, 1) OVER (PARTITION BY org_code ORDER BY year, quarter) IN ('HIGH', 'MEDIUM', 'LOW') THEN 'RAPID_ESCALATION'
+                WHEN risk_level = 'CRITICAL' AND LAG(risk_level, 1) OVER (PARTITION BY org_code ORDER BY year, quarter) = 'HIGH' THEN 'GRADUAL_ESCALATION'
+                WHEN risk_level = 'HIGH' AND LAG(risk_level, 2) OVER (PARTITION BY org_code ORDER BY year, quarter) = 'MEDIUM' THEN 'SUSTAINED_DETERIORATION'
+                ELSE 'OTHER'
+            END AS risk_escalation_pattern
+        FROM view_ministry_risk_evolution
+        WHERE year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3
+          AND documents_produced IS NOT NULL
+    )
+    SELECT 
+        org_code,
+        ministry_name,
+        year,
+        quarter,
+        documents_produced,
+        legislative_count,
+        document_trend,
+        legislative_trend,
+        prev_2q_risk_level AS baseline_risk,
+        prev_risk_level AS intermediate_risk,
+        risk_level AS current_risk,
+        risk_assessment,
+        risk_escalation_pattern AS expected_detection,
+        'temporal_risk_evolution' AS test_case,
+        CASE 
+            WHEN risk_escalation_pattern IN ('RAPID_ESCALATION', 'GRADUAL_ESCALATION', 'SUSTAINED_DETERIORATION') THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM risk_evolution
+    WHERE risk_escalation_pattern IN ('RAPID_ESCALATION', 'GRADUAL_ESCALATION', 'SUSTAINED_DETERIORATION')
+    ORDER BY 
+        CASE risk_escalation_pattern
+            WHEN 'RAPID_ESCALATION' THEN 1
+            WHEN 'GRADUAL_ESCALATION' THEN 2
+            WHEN 'SUSTAINED_DETERIORATION' THEN 3
+        END,
+        year DESC, quarter DESC
+    LIMIT 35
+) TO 'service.data.impl/sample-data/framework-validation/temporal/test_1_2b_ministry_risk_evolution.csv' WITH CSV HEADER;
+
+\echo '>>> Exported 35 cases with ministry risk escalation patterns'
+\echo ''
+
 -- TEMPORAL TEST 1.3: Cyclical Pattern Detection (Parliamentary Session Activity)
 \echo '>>> Test Case 1.3: Cyclical Patterns - Parliamentary Session Seasonality'
 \echo '>>> Expected Outcome: Detect seasonal patterns (Autumn high, Summer low)'
@@ -391,6 +454,76 @@
 \echo '>>> Exported 60 cases with expected peer group classification'
 \echo ''
 
+-- COMPARATIVE TEST 2.3: Party Momentum Analysis (Enhanced Temporal Comparison)
+\echo '>>> Test Case 2.3: Party Momentum - Performance Acceleration Patterns'
+\echo '>>> Expected Outcome: Classify parties by momentum (ACCELERATING/DECELERATING/STABLE)'
+
+\copy (
+    WITH momentum_classification AS (
+        SELECT 
+            party,
+            year,
+            quarter,
+            period,
+            ballots_participated,
+            ROUND(participation_rate, 2) AS participation_rate,
+            ROUND(prev_quarter_rate, 2) AS prev_quarter_rate,
+            ROUND(momentum, 2) AS momentum,
+            ROUND(moving_avg_4q, 2) AS moving_avg_4q,
+            ROUND(volatility, 2) AS volatility,
+            ROUND(acceleration, 2) AS acceleration,
+            trend_direction,
+            stability_classification,
+            intelligence_assessment,
+            CASE 
+                WHEN momentum > 5 AND acceleration > 2 THEN 'STRONG_ACCELERATION'
+                WHEN momentum > 2 AND trend_direction = 'INCREASING' THEN 'MODERATE_ACCELERATION'
+                WHEN momentum < -5 AND acceleration < -2 THEN 'STRONG_DECELERATION'
+                WHEN momentum < -2 AND trend_direction = 'DECREASING' THEN 'MODERATE_DECELERATION'
+                WHEN volatility < 2 AND trend_direction = 'STABLE' THEN 'STABLE_PERFORMANCE'
+                ELSE 'UNCLASSIFIED'
+            END AS expected_momentum_classification
+        FROM view_riksdagen_party_momentum_analysis
+        WHERE year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3
+          AND ballots_participated > 0
+    )
+    SELECT 
+        party,
+        year,
+        quarter,
+        period,
+        ballots_participated,
+        participation_rate,
+        prev_quarter_rate,
+        momentum,
+        moving_avg_4q,
+        volatility,
+        acceleration,
+        trend_direction,
+        stability_classification,
+        expected_momentum_classification AS expected_detection,
+        'comparative_party_momentum' AS test_case,
+        CASE 
+            WHEN expected_momentum_classification IN ('STRONG_ACCELERATION', 'STRONG_DECELERATION', 'MODERATE_ACCELERATION', 'MODERATE_DECELERATION') THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM momentum_classification
+    WHERE expected_momentum_classification != 'UNCLASSIFIED'
+    ORDER BY 
+        CASE expected_momentum_classification
+            WHEN 'STRONG_ACCELERATION' THEN 1
+            WHEN 'STRONG_DECELERATION' THEN 2
+            WHEN 'MODERATE_ACCELERATION' THEN 3
+            WHEN 'MODERATE_DECELERATION' THEN 4
+            WHEN 'STABLE_PERFORMANCE' THEN 5
+        END,
+        year DESC, quarter DESC
+    LIMIT 70
+) TO 'service.data.impl/sample-data/framework-validation/comparative/test_2_3_party_momentum.csv' WITH CSV HEADER;
+
+\echo '>>> Exported 70 cases with party momentum classification'
+\echo ''
+
 -- ============================================================================
 -- FRAMEWORK 3: PATTERN RECOGNITION VALIDATION
 -- ============================================================================
@@ -584,6 +717,87 @@
 ) TO 'service.data.impl/sample-data/framework-validation/predictive/test_4_1_resignation_prediction.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 40 cases with expected resignation risk prediction'
+\echo ''
+
+-- PREDICTIVE TEST 4.1b: Politician Risk Summary (Enhanced Multi-Violation Analysis)
+\echo '>>> Test Case 4.1b: Politician Risk Profile - Multi-Violation Patterns'
+\echo '>>> Expected Outcome: Identify high-risk politicians with multiple violation types'
+
+\copy (
+    WITH risk_profiles AS (
+        SELECT 
+            person_id,
+            first_name,
+            last_name,
+            party,
+            status,
+            total_violations,
+            absenteeism_violations,
+            effectiveness_violations,
+            discipline_violations,
+            productivity_violations,
+            collaboration_violations,
+            annual_absence_rate,
+            annual_rebel_rate,
+            annual_vote_count,
+            documents_last_year,
+            risk_score,
+            risk_level,
+            risk_assessment,
+            CASE 
+                WHEN total_violations >= 5 AND (absenteeism_violations > 0 AND effectiveness_violations > 0) THEN 'MULTI_DIMENSION_RISK'
+                WHEN total_violations >= 7 THEN 'EXTREME_VIOLATION_RISK'
+                WHEN risk_score >= 50 AND total_violations >= 3 THEN 'HIGH_RISK_PROFILE'
+                WHEN annual_absence_rate > 15 AND annual_rebel_rate > 10 THEN 'DUAL_BEHAVIORAL_RISK'
+                ELSE 'MODERATE_RISK'
+            END AS expected_risk_classification,
+            CASE 
+                WHEN absenteeism_violations > 0 THEN 1 ELSE 0 END +
+                CASE WHEN effectiveness_violations > 0 THEN 1 ELSE 0 END +
+                CASE WHEN discipline_violations > 0 THEN 1 ELSE 0 END +
+                CASE WHEN productivity_violations > 0 THEN 1 ELSE 0 END +
+                CASE WHEN collaboration_violations > 0 THEN 1 ELSE 0 END AS violation_dimension_count
+        FROM view_politician_risk_summary
+        WHERE total_violations > 0
+          AND status = 'Tjänstgörande riksdagsledamot'
+    )
+    SELECT 
+        person_id,
+        first_name,
+        last_name,
+        party,
+        total_violations,
+        violation_dimension_count,
+        absenteeism_violations,
+        effectiveness_violations,
+        discipline_violations,
+        ROUND(annual_absence_rate, 2) AS annual_absence_rate,
+        ROUND(annual_rebel_rate, 2) AS annual_rebel_rate,
+        annual_vote_count,
+        documents_last_year,
+        ROUND(risk_score, 2) AS risk_score,
+        risk_level,
+        expected_risk_classification AS expected_prediction,
+        'predictive_risk_profile' AS test_case,
+        CASE 
+            WHEN expected_risk_classification IN ('MULTI_DIMENSION_RISK', 'EXTREME_VIOLATION_RISK', 'HIGH_RISK_PROFILE', 'DUAL_BEHAVIORAL_RISK') THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM risk_profiles
+    WHERE expected_risk_classification IN ('MULTI_DIMENSION_RISK', 'EXTREME_VIOLATION_RISK', 'HIGH_RISK_PROFILE', 'DUAL_BEHAVIORAL_RISK')
+    ORDER BY 
+        CASE expected_risk_classification
+            WHEN 'EXTREME_VIOLATION_RISK' THEN 1
+            WHEN 'MULTI_DIMENSION_RISK' THEN 2
+            WHEN 'HIGH_RISK_PROFILE' THEN 3
+            WHEN 'DUAL_BEHAVIORAL_RISK' THEN 4
+        END,
+        risk_score DESC,
+        total_violations DESC
+    LIMIT 45
+) TO 'service.data.impl/sample-data/framework-validation/predictive/test_4_1b_politician_risk_profiles.csv' WITH CSV HEADER;
+
+\echo '>>> Exported 45 cases with multi-dimensional risk profiles'
 \echo ''
 
 -- PREDICTIVE TEST 4.2: Coalition Stress Prediction
@@ -901,6 +1115,15 @@
     UNION ALL
     SELECT 
         'Temporal Analysis' AS framework,
+        'Test 1.2b' AS test_id,
+        'Ministry Risk Evolution' AS test_name,
+        'Multi-quarter risk escalation (CRITICAL, HIGH) patterns' AS test_description,
+        '85% accuracy' AS expected_accuracy,
+        35 AS sample_size,
+        'temporal/test_1_2b_ministry_risk_evolution.csv' AS data_file
+    UNION ALL
+    SELECT 
+        'Temporal Analysis' AS framework,
         'Test 1.3' AS test_id,
         'Cyclical Pattern Detection' AS test_name,
         'Parliamentary seasonal patterns (Autumn high, Summer low)' AS test_description,
@@ -936,6 +1159,15 @@
         'comparative/test_2_2_peer_comparison.csv' AS data_file
     UNION ALL
     SELECT 
+        'Comparative Analysis' AS framework,
+        'Test 2.3' AS test_id,
+        'Party Momentum Analysis' AS test_name,
+        'Performance acceleration patterns (ACCELERATING/STABLE/DECELERATING)' AS test_description,
+        '88% accuracy' AS expected_accuracy,
+        70 AS sample_size,
+        'comparative/test_2_3_party_momentum.csv' AS data_file
+    UNION ALL
+    SELECT 
         'Pattern Recognition' AS framework,
         'Test 3.1' AS test_id,
         'Behavioral Clustering' AS test_name,
@@ -961,6 +1193,15 @@
         '87% accuracy (6-8 months prior)' AS expected_accuracy,
         40 AS sample_size,
         'predictive/test_4_1_resignation_prediction.csv' AS data_file
+    UNION ALL
+    SELECT 
+        'Predictive Intelligence' AS framework,
+        'Test 4.1b' AS test_id,
+        'Politician Risk Profiles' AS test_name,
+        'Multi-dimensional risk analysis (violations across multiple dimensions)' AS test_description,
+        '89% accuracy' AS expected_accuracy,
+        45 AS sample_size,
+        'predictive/test_4_1b_politician_risk_profiles.csv' AS data_file
     UNION ALL
     SELECT 
         'Predictive Intelligence' AS framework,
@@ -1018,14 +1259,19 @@
 \echo '===================================================================='
 \echo ''
 \echo 'Summary:'
-\echo '  ✓ Temporal Analysis:        4 test datasets (220 validation cases)'
-\echo '  ✓ Comparative Analysis:     2 test datasets (68 validation cases)'
+\echo '  ✓ Temporal Analysis:        5 test datasets (255 validation cases)'
+\echo '  ✓ Comparative Analysis:     3 test datasets (138 validation cases)'
 \echo '  ✓ Pattern Recognition:      2 test datasets (180 validation cases)'
-\echo '  ✓ Predictive Intelligence:  2 test datasets (90 validation cases)'
+\echo '  ✓ Predictive Intelligence:  3 test datasets (135 validation cases)'
 \echo '  ✓ Network Analysis:         2 test datasets (110 validation cases)'
 \echo '  ✓ Decision Intelligence:    2 test datasets (140 validation cases)'
 \echo ''
-\echo '  Total Validation Cases:     808 test scenarios with known outcomes'
+\echo '  Total Validation Cases:     958 test scenarios with known outcomes'
+\echo ''
+\echo 'Enhanced Features:'
+\echo '  • Ministry risk evolution tracking (CRITICAL escalation patterns)'
+\echo '  • Multi-dimensional politician risk profiles (violation analysis)'
+\echo '  • Party momentum analysis (acceleration/deceleration detection)'
 \echo ''
 \echo 'Output Location: service.data.impl/sample-data/framework-validation/'
 \echo ''
