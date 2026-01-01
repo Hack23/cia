@@ -58,7 +58,7 @@
             year_month,
             avg_absence_rate,
             LAG(avg_absence_rate, 6) OVER (PARTITION BY person_id ORDER BY year_month) AS absence_6mo_ago,
-            avg_absence_rate - LAG(avg_absence_rate, 6) OVER (PARTITION BY person_id ORDER BY year_month) AS absence_change
+            avg_absence_rate - absence_6mo_ago AS absence_change
         FROM view_politician_behavioral_trends
         WHERE ballot_count >= 10
           AND year_month >= CURRENT_DATE - INTERVAL '24 months'
@@ -118,7 +118,7 @@
             TO_DATE(decision_year::TEXT || '-' || ((decision_quarter-1)*3+1)::TEXT || '-01', 'YYYY-MM-DD') AS quarter_date,
             approval_rate,
             LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter) AS approval_4q_ago,
-            approval_rate - LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter) AS approval_change
+            approval_rate - approval_4q_ago AS approval_change
         FROM view_ministry_decision_impact
         WHERE total_proposals >= 5
           AND decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3
@@ -413,7 +413,7 @@
         win_rate_rank,
         discipline_rank,
         attendance_rank,
-        expected_classification AS expected_tier,
+        expected_classification AS expected_detection,
         'comparative_party_ranking' AS test_case,
         CASE 
             WHEN expected_classification IN ('HIGH_PERFORMANCE', 'MEDIUM_PERFORMANCE', 'LOW_PERFORMANCE') THEN 'PASS'
@@ -495,7 +495,7 @@
         ROUND(party_avg_win, 2) AS party_avg_win,
         ROUND(absence_vs_party, 2) AS absence_gap,
         ROUND(win_vs_party, 2) AS win_gap,
-        expected_classification AS expected_tier,
+        expected_classification AS expected_detection,
         'comparative_peer_group' AS test_case,
         CASE 
             WHEN expected_classification IN ('ABOVE_AVERAGE', 'BELOW_AVERAGE') THEN 'PASS'
@@ -647,7 +647,7 @@
         ROUND(avg_rebel, 2) AS avg_rebel_rate,
         ROUND(absence_volatility, 2) AS absence_volatility,
         months_tracked,
-        expected_cluster,
+        expected_cluster AS expected_detection,
         'pattern_behavioral_clustering' AS test_case,
         CASE 
             WHEN expected_cluster IN ('NORMAL_BEHAVIOR', 'ANOMALOUS_BEHAVIOR', 'CONCERNING_BEHAVIOR') THEN 'PASS'
@@ -717,7 +717,7 @@
         ROUND(peak_rebel_rate, 2) AS peak_rebel_rate,
         ROUND(rebel_volatility, 2) AS rebel_volatility,
         months_tracked,
-        expected_pattern AS expected_rebellion_pattern,
+        expected_pattern AS expected_detection,
         'pattern_rebellion_identification' AS test_case,
         CASE 
             WHEN expected_pattern IN ('HIGH_INDEPENDENCE', 'PARTY_LINE') THEN 'PASS'
@@ -798,7 +798,7 @@
         ROUND(avg_effectiveness_trend, 2) AS effectiveness_trend,
         ROUND(smoothed_absence, 2) AS smoothed_3month_absence,
         months_tracked,
-        expected_risk_level AS expected_prediction,
+        expected_risk_level AS expected_detection,
         'predictive_resignation_risk' AS test_case,
         CASE 
             WHEN expected_risk_level IN ('HIGH_RESIGNATION_RISK', 'MODERATE_RESIGNATION_RISK') THEN 'PASS'
@@ -871,7 +871,7 @@
         documents_last_year,
         ROUND(risk_score, 2) AS risk_score,
         risk_level,
-        expected_risk_classification AS expected_prediction,
+        expected_risk_classification AS expected_detection,
         'predictive_risk_profile' AS test_case,
         CASE 
             WHEN expected_risk_classification IN ('MULTI_DIMENSION_RISK', 'EXTREME_VIOLATION_RISK', 'HIGH_RISK_PROFILE', 'DUAL_BEHAVIORAL_RISK') THEN 'PASS'
@@ -923,7 +923,7 @@
         shared_votes,
         coalition_likelihood,
         bloc_relationship,
-        expected_stress_level AS expected_prediction,
+        expected_stress_level AS expected_detection,
         'predictive_coalition_stress' AS test_case,
         CASE 
             WHEN expected_stress_level IN ('HIGH_COALITION_STRESS', 'MODERATE_COALITION_STRESS') THEN 'PASS'

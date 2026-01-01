@@ -18,8 +18,9 @@ Output:
 """
 
 import csv
+import re
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, Tuple
 
 try:
     import pandas as pd
@@ -125,6 +126,10 @@ def process_validation_results(base_dir: Path, output_file: Path):
         reader = csv.DictReader(f)
         results = list(reader)
     
+    if not results:
+        print(f"Error: Template file is empty: {template_file}")
+        return
+    
     # Get test file mapping
     file_mapping = get_test_file_mapping()
     
@@ -154,11 +159,16 @@ def process_validation_results(base_dir: Path, output_file: Path):
                 row['accuracy'] = f"{accuracy:.1f}%"
                 
                 # Determine status based on accuracy vs expected
-                expected_str = row['expected_accuracy'].rstrip('%+')
+                expected_str = row['expected_accuracy']
                 try:
-                    expected_val = float(expected_str)
-                    status = 'PASS' if accuracy >= expected_val else 'FAIL'
-                except ValueError:
+                    # Extract first numeric value from expected_accuracy (e.g., "87%" or "87% (6-8 months)" -> 87)
+                    match = re.search(r'(\d+(?:\.\d+)?)', expected_str)
+                    if match:
+                        expected_val = float(match.group(1))
+                        status = 'PASS' if accuracy >= expected_val else 'FAIL'
+                    else:
+                        status = 'COMPUTED'
+                except (ValueError, AttributeError):
                     status = 'COMPUTED'
                 
                 row['status'] = status

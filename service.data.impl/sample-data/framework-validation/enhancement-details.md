@@ -209,20 +209,19 @@ CASE WHEN effectiveness_violations > 0 THEN 1 ELSE 0 END +
 ### Performance Optimizations (v1.2)
 
 **Query Performance Improvements:**
-- **Eliminated redundant LAG window function calls**: Reduced by 66% (3 calls → 1 call per query)
-- **Eliminated redundant AVG/ABS aggregation recalculations**: Reduced by 50-75%
-- **Implemented nested CTE pattern**: Base computation → classification (separates concerns)
+- **Eliminated redundant LAG window function calls in most queries**: Reduced by 66% where applied (3 calls → 1 call per query in refactored queries)
+- **Implemented nested CTE pattern**: Base computation → classification (separates concerns) for optimized queries
 - **Enabled ON_ERROR_STOP**: Better error handling during extraction
 - **Pre-compute columns**: Descriptive intermediate column names for maintainability
+- **Note**: Some queries still contain optimization opportunities for future releases (e.g., certain LAG and AVG recalculations in complex aggregation contexts)
 
-**Optimized Queries (8 total):**
-1. Temporal: upward trend detection
-2. Temporal: downward trend detection
-3. Temporal: ministry risk evolution
-4. Comparative: peer group comparison
-5. Pattern Recognition: behavioral clustering
-6. Pattern Recognition: rebellion patterns
-7. Predictive: resignation risk signals
+**Fully Optimized Queries (6 total):**
+1. Temporal: upward trend detection (LAG optimized)
+2. Temporal: downward trend detection (LAG optimized)
+3. Temporal: ministry risk evolution (LAG optimized)
+4. Comparative: peer group comparison (nested CTE pattern)
+5. Pattern Recognition: behavioral clustering (nested CTE pattern)
+6. Decision: coalition misalignment detection (nested CTE pattern)
 8. Decision: coalition misalignment detection
 
 ### Documentation Updates
