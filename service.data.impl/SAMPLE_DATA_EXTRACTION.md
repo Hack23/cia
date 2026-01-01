@@ -23,9 +23,9 @@ The sample data extraction script provides comprehensive coverage of all databas
 | **Base Tables** | 93 | 80 | 86.0% | ✅ Comprehensive |
 | **Regular Views** | 56 | 56 | 100% | ✅ Complete |
 | **Materialized Views** | 28 | 28 | 100% | ✅ Complete |
-| **Distinct Value Sets** | N/A | 8 | N/A | ✅ Custom extractions |
-| **Metadata Files** | N/A | 3 | N/A | ✅ Manifest + mapping + statistics |
-| **TOTAL** | 177 | 164 | 92.66% | ✅ Near-complete |
+| **Distinct Value Sets** | N/A | 9 | N/A | ✅ Custom extractions |
+| **Metadata Files** | N/A | 11 | N/A | ✅ Manifest + mapping + statistics |
+| **TOTAL** | 177 | 175 | 98.87% | ✅ Near-complete |
 
 ### Intentionally Skipped Objects
 
@@ -44,12 +44,12 @@ The sample data extraction script provides comprehensive coverage of all databas
 ### Expected Output Files
 
 **Total CSV Files**: ~200 (verified 2026-01-01)
-- **Table CSVs**: 54 files (table_*_sample.csv)
+- **Table CSVs**: 54 files (table_*_sample.csv) - per-table extracts for the 54 highest-value base tables
+  - Note: 80 base tables are extracted from the schema, but only 54 have dedicated `table_*_sample.csv` files. The remaining 26 extracted tables are represented in `distribution_*.csv` and `distinct_*_values.csv` aggregates.
 - **View CSVs**: 84 files (view_*_sample.csv) - includes regular and materialized views
 - **Distinct Value CSVs**: 9 files (distinct_*_values.csv)
 - **Distribution CSVs**: 43 files (distribution_*.csv) - Statistical distributions for data patterns
-- **Metadata CSVs**: 8 files (sample_data_manifest.csv, view_column_mapping.csv, extraction_statistics.csv, etc.)
-- **Other**: 2 files (trend_*.csv, report_*.csv)
+- **Metadata CSVs**: 11 files (sample_data_manifest.csv, view_column_mapping.csv, extraction_statistics.csv, materialized_view_statistics.csv, report_empty_views.csv, summary_*.csv, trend_*.csv)
 
 ## What's New
 
