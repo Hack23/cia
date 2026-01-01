@@ -1,0 +1,15 @@
+framework,test_id,test_name,sample_size,correct_predictions,accuracy,expected_accuracy,status,notes
+Temporal Analysis,Test 1.1,Upward Trend Detection,50,,,95% confidence,PENDING,Run temporal analytics on test_1_1_upward_trend_attendance.csv
+Temporal Analysis,Test 1.2,Downward Trend Detection,30,,,82%,PENDING,Run temporal analytics on test_1_2_downward_trend_ministry.csv
+Temporal Analysis,Test 1.3,Cyclical Pattern Detection,100,,,95% confidence,PENDING,Run temporal analytics on test_1_3_cyclical_patterns.csv
+Temporal Analysis,Test 1.4,Anomaly Detection,40,,,90% true positive,PENDING,Run temporal analytics on test_1_4_anomaly_detection.csv
+Comparative Analysis,Test 2.1,Party Performance Rankings,8,,,90%+,PENDING,Run comparative analytics on test_2_1_party_rankings.csv
+Comparative Analysis,Test 2.2,Peer Group Comparison,60,,,90%+,PENDING,Run comparative analytics on test_2_2_peer_comparison.csv
+Pattern Recognition,Test 3.1,Behavioral Clustering,100,,,91% true positive,PENDING,Run pattern recognition on test_3_1_behavioral_clustering.csv
+Pattern Recognition,Test 3.2,Rebellion Pattern Identification,80,,,85%,PENDING,Run pattern recognition on test_3_2_rebellion_patterns.csv
+Predictive Intelligence,Test 4.1,Resignation Risk Prediction,40,,,87% (6-8 months prior),PENDING,Run predictive analytics on test_4_1_resignation_prediction.csv
+Predictive Intelligence,Test 4.2,Coalition Stress Prediction,50,,,78%,PENDING,Run predictive analytics on test_4_2_coalition_stress.csv
+Network Analysis,Test 5.1,Power Broker Identification,60,,,90%,PENDING,Run network analytics on test_5_1_power_brokers.csv
+Network Analysis,Test 5.2,Coalition Facilitator Detection,50,,,85%,PENDING,Run network analytics on test_5_2_coalition_facilitators.csv
+Decision Intelligence,Test 6.1,Decision Effectiveness Patterns,80,,,85%,PENDING,Run decision analytics on test_6_1_effectiveness_patterns.csv
+Decision Intelligence,Test 6.2,Coalition Misalignment Detection,60,,,80%,PENDING,Run decision analytics on test_6_2_coalition_misalignment.csv
