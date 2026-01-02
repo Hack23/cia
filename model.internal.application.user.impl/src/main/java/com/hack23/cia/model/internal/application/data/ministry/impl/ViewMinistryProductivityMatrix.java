@@ -23,8 +23,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,15 +55,99 @@ public class ViewMinistryProductivityMatrix implements Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The org code. */
-	@Id
-	@Column(name = "org_code", nullable = false, length = 255)
-	private String orgCode;
+	/**
+	 * The Class CompositePrimaryKey.
+	 * 
+	 * <p>Composite primary key combining organization code and year.</p>
+	 */
+	@Embeddable
+	public static class CompositePrimaryKey implements Serializable {
 
-	/** The year. */
-	@Id
-	@Column(name = "year", nullable = false)
-	private Integer year;
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		/** The org code. */
+		@Column(name = "org_code", nullable = false, length = 255)
+		private String orgCode;
+
+		/** The year. */
+		@Column(name = "year", nullable = false)
+		private Integer year;
+
+		/**
+		 * Instantiates a new composite primary key.
+		 */
+		public CompositePrimaryKey() {
+			super();
+		}
+
+		/**
+		 * Instantiates a new composite primary key.
+		 *
+		 * @param orgCode the org code
+		 * @param year the year
+		 */
+		public CompositePrimaryKey(final String orgCode, final Integer year) {
+			super();
+			this.orgCode = orgCode;
+			this.year = year;
+		}
+
+		/**
+		 * Gets the org code.
+		 *
+		 * @return the org code
+		 */
+		public String getOrgCode() {
+			return orgCode;
+		}
+
+		/**
+		 * Sets the org code.
+		 *
+		 * @param orgCode the new org code
+		 */
+		public void setOrgCode(final String orgCode) {
+			this.orgCode = orgCode;
+		}
+
+		/**
+		 * Gets the year.
+		 *
+		 * @return the year
+		 */
+		public Integer getYear() {
+			return year;
+		}
+
+		/**
+		 * Sets the year.
+		 *
+		 * @param year the new year
+		 */
+		public void setYear(final Integer year) {
+			this.year = year;
+		}
+
+		@Override
+		public boolean equals(final Object obj) {
+			return EqualsBuilder.reflectionEquals(this, obj);
+		}
+
+		@Override
+		public int hashCode() {
+			return HashCodeBuilder.reflectionHashCode(this);
+		}
+
+		@Override
+		public String toString() {
+			return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		}
+	}
+
+	/** The embedded id. */
+	@EmbeddedId
+	private CompositePrimaryKey embeddedId;
 
 	/** The short code. */
 	@Column(name = "short_code", length = 255)
@@ -134,39 +219,21 @@ public class ViewMinistryProductivityMatrix implements Serializable {
 	}
 
 	/**
-	 * Gets the org code.
+	 * Gets the embedded id.
 	 *
-	 * @return the org code
+	 * @return the embedded id
 	 */
-	public String getOrgCode() {
-		return orgCode;
+	public CompositePrimaryKey getEmbeddedId() {
+		return embeddedId;
 	}
 
 	/**
-	 * Sets the org code.
+	 * Sets the embedded id.
 	 *
-	 * @param orgCode the new org code
+	 * @param embeddedId the new embedded id
 	 */
-	public void setOrgCode(final String orgCode) {
-		this.orgCode = orgCode;
-	}
-
-	/**
-	 * Gets the year.
-	 *
-	 * @return the year
-	 */
-	public Integer getYear() {
-		return year;
-	}
-
-	/**
-	 * Sets the year.
-	 *
-	 * @param year the new year
-	 */
-	public void setYear(final Integer year) {
-		this.year = year;
+	public void setEmbeddedId(final CompositePrimaryKey embeddedId) {
+		this.embeddedId = embeddedId;
 	}
 
 	/**

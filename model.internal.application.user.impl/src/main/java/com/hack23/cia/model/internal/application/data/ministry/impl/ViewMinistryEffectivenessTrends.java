@@ -23,8 +23,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,16 +55,100 @@ public class ViewMinistryEffectivenessTrends implements Serializable {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
-	/** The org code. */
-	@Id
-	@Column(name = "org_code", nullable = false, length = 255)
-	private String orgCode;
+	/**
+	 * The Class CompositePrimaryKey.
+	 * 
+	 * <p>Composite primary key combining organization code and period start date.</p>
+	 */
+	@Embeddable
+	public static class CompositePrimaryKey implements Serializable {
 
-	/** The period start. */
-	@Id
-	@Column(name = "period_start", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date periodStart;
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		/** The org code. */
+		@Column(name = "org_code", nullable = false, length = 255)
+		private String orgCode;
+
+		/** The period start. */
+		@Column(name = "period_start", nullable = false)
+		@Temporal(TemporalType.TIMESTAMP)
+		private Date periodStart;
+
+		/**
+		 * Instantiates a new composite primary key.
+		 */
+		public CompositePrimaryKey() {
+			super();
+		}
+
+		/**
+		 * Instantiates a new composite primary key.
+		 *
+		 * @param orgCode the org code
+		 * @param periodStart the period start
+		 */
+		public CompositePrimaryKey(final String orgCode, final Date periodStart) {
+			super();
+			this.orgCode = orgCode;
+			this.periodStart = periodStart;
+		}
+
+		/**
+		 * Gets the org code.
+		 *
+		 * @return the org code
+		 */
+		public String getOrgCode() {
+			return orgCode;
+		}
+
+		/**
+		 * Sets the org code.
+		 *
+		 * @param orgCode the new org code
+		 */
+		public void setOrgCode(final String orgCode) {
+			this.orgCode = orgCode;
+		}
+
+		/**
+		 * Gets the period start.
+		 *
+		 * @return the period start
+		 */
+		public Date getPeriodStart() {
+			return periodStart;
+		}
+
+		/**
+		 * Sets the period start.
+		 *
+		 * @param periodStart the new period start
+		 */
+		public void setPeriodStart(final Date periodStart) {
+			this.periodStart = periodStart;
+		}
+
+		@Override
+		public boolean equals(final Object obj) {
+			return EqualsBuilder.reflectionEquals(this, obj);
+		}
+
+		@Override
+		public int hashCode() {
+			return HashCodeBuilder.reflectionHashCode(this);
+		}
+
+		@Override
+		public String toString() {
+			return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		}
+	}
+
+	/** The embedded id. */
+	@EmbeddedId
+	private CompositePrimaryKey embeddedId;
 
 	/** The short code. */
 	@Column(name = "short_code", length = 255)
@@ -166,39 +251,21 @@ public class ViewMinistryEffectivenessTrends implements Serializable {
 	}
 
 	/**
-	 * Gets the org code.
+	 * Gets the embedded id.
 	 *
-	 * @return the org code
+	 * @return the embedded id
 	 */
-	public String getOrgCode() {
-		return orgCode;
+	public CompositePrimaryKey getEmbeddedId() {
+		return embeddedId;
 	}
 
 	/**
-	 * Sets the org code.
+	 * Sets the embedded id.
 	 *
-	 * @param orgCode the new org code
+	 * @param embeddedId the new embedded id
 	 */
-	public void setOrgCode(final String orgCode) {
-		this.orgCode = orgCode;
-	}
-
-	/**
-	 * Gets the period start.
-	 *
-	 * @return the period start
-	 */
-	public Date getPeriodStart() {
-		return periodStart;
-	}
-
-	/**
-	 * Sets the period start.
-	 *
-	 * @param periodStart the new period start
-	 */
-	public void setPeriodStart(final Date periodStart) {
-		this.periodStart = periodStart;
+	public void setEmbeddedId(final CompositePrimaryKey embeddedId) {
+		this.embeddedId = embeddedId;
 	}
 
 	/**
