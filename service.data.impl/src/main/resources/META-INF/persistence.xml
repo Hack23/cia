@@ -194,6 +194,7 @@
 		<!-- V2.0 Missing OSINT Framework Views - Phase 4 MEDIUM PRIORITY -->
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenMemberProposals</class>
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeParliamentMemberProposal</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDocumentDailySummary</class>
 
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation</class>
