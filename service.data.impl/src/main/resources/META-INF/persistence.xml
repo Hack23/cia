@@ -124,6 +124,9 @@
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrix</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId</class>
 
+		<!-- V2.0 Missing OSINT Framework Views - Phase 1 CRITICAL -->
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewPartyPerformanceMetrics</class>
+
 
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary</class>
@@ -136,6 +139,9 @@
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenVotingAnomalyDetection</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianInfluenceMetrics</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenCrisisResilienceIndicators</class>
+
+		<!-- V2.0 Missing OSINT Framework Views - Phase 1 CRITICAL -->
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewPoliticianRiskSummary</class>
 
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary</class>
