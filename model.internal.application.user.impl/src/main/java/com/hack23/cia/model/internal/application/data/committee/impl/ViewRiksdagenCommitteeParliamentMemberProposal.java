@@ -171,7 +171,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param embeddedIdDetail the new embedded id detail
 	 */
-	public void setEmbeddedIdDetail(String embeddedIdDetail) {
+	public void setEmbeddedIdDetail(final String embeddedIdDetail) {
 		this.embeddedIdDetail = embeddedIdDetail;
 	}
 
@@ -189,7 +189,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param embeddedIdOrgCode the new embedded id org code
 	 */
-	public void setEmbeddedIdOrgCode(String embeddedIdOrgCode) {
+	public void setEmbeddedIdOrgCode(final String embeddedIdOrgCode) {
 		this.embeddedIdOrgCode = embeddedIdOrgCode;
 	}
 
@@ -207,7 +207,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param totalAssignments the new total assignments
 	 */
-	public void setTotalAssignments(Long totalAssignments) {
+	public void setTotalAssignments(final Long totalAssignments) {
 		this.totalAssignments = totalAssignments;
 	}
 
@@ -225,7 +225,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param id the new id
 	 */
-	public void setId(String id) {
+	public void setId(final String id) {
 		this.id = id;
 	}
 
@@ -243,7 +243,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param committeeReportUrlXml the new committee report url xml
 	 */
-	public void setCommitteeReportUrlXml(String committeeReportUrlXml) {
+	public void setCommitteeReportUrlXml(final String committeeReportUrlXml) {
 		this.committeeReportUrlXml = committeeReportUrlXml;
 	}
 
@@ -261,7 +261,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param documentStatusUrlWww the new document status url www
 	 */
-	public void setDocumentStatusUrlWww(String documentStatusUrlWww) {
+	public void setDocumentStatusUrlWww(final String documentStatusUrlWww) {
 		this.documentStatusUrlWww = documentStatusUrlWww;
 	}
 
@@ -279,7 +279,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param documentStatusUrlXml the new document status url xml
 	 */
-	public void setDocumentStatusUrlXml(String documentStatusUrlXml) {
+	public void setDocumentStatusUrlXml(final String documentStatusUrlXml) {
 		this.documentStatusUrlXml = documentStatusUrlXml;
 	}
 
@@ -297,7 +297,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param documentType the new document type
 	 */
-	public void setDocumentType(String documentType) {
+	public void setDocumentType(final String documentType) {
 		this.documentType = documentType;
 	}
 
@@ -315,7 +315,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param documentUrlHtml the new document url html
 	 */
-	public void setDocumentUrlHtml(String documentUrlHtml) {
+	public void setDocumentUrlHtml(final String documentUrlHtml) {
 		this.documentUrlHtml = documentUrlHtml;
 	}
 
@@ -333,7 +333,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param documentUrlText the new document url text
 	 */
-	public void setDocumentUrlText(String documentUrlText) {
+	public void setDocumentUrlText(final String documentUrlText) {
 		this.documentUrlText = documentUrlText;
 	}
 
@@ -351,7 +351,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param finalNumber the new final number
 	 */
-	public void setFinalNumber(Integer finalNumber) {
+	public void setFinalNumber(final Integer finalNumber) {
 		this.finalNumber = finalNumber;
 	}
 
@@ -369,7 +369,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param hangarId the new hangar id
 	 */
-	public void setHangarId(Integer hangarId) {
+	public void setHangarId(final Integer hangarId) {
 		this.hangarId = hangarId;
 	}
 
@@ -387,7 +387,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param label the new label
 	 */
-	public void setLabel(String label) {
+	public void setLabel(final String label) {
 		this.label = label;
 	}
 
@@ -405,7 +405,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param madePublicDate the new made public date
 	 */
-	public void setMadePublicDate(Date madePublicDate) {
+	public void setMadePublicDate(final Date madePublicDate) {
 		this.madePublicDate = madePublicDate;
 	}
 
@@ -423,7 +423,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param numberValue the new number value
 	 */
-	public void setNumberValue(Integer numberValue) {
+	public void setNumberValue(final Integer numberValue) {
 		this.numberValue = numberValue;
 	}
 
@@ -441,7 +441,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param org the new org
 	 */
-	public void setOrg(String org) {
+	public void setOrg(final String org) {
 		this.org = org;
 	}
 
@@ -459,7 +459,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param rm the new rm
 	 */
-	public void setRm(String rm) {
+	public void setRm(final String rm) {
 		this.rm = rm;
 	}
 
@@ -477,7 +477,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param status the new status
 	 */
-	public void setStatus(String status) {
+	public void setStatus(final String status) {
 		this.status = status;
 	}
 
@@ -495,7 +495,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param subTitle the new sub title
 	 */
-	public void setSubTitle(String subTitle) {
+	public void setSubTitle(final String subTitle) {
 		this.subTitle = subTitle;
 	}
 
@@ -513,7 +513,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param subType the new sub type
 	 */
-	public void setSubType(String subType) {
+	public void setSubType(final String subType) {
 		this.subType = subType;
 	}
 
@@ -531,7 +531,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param tempLabel the new temp label
 	 */
-	public void setTempLabel(String tempLabel) {
+	public void setTempLabel(final String tempLabel) {
 		this.tempLabel = tempLabel;
 	}
 
@@ -549,7 +549,7 @@ public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializa
 	 *
 	 * @param title the new title
 	 */
-	public void setTitle(String title) {
+	public void setTitle(final String title) {
 		this.title = title;
 	}
 
