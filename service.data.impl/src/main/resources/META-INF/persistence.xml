@@ -181,6 +181,9 @@
 
 		<!-- V1.30 OSINT Performance Tracking Views -->
 		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewCommitteeProductivityMatrix</class>
+
+		<!-- V2.0 Missing OSINT Framework Views - Phase 3 HIGH PRIORITY -->
+		<class>com.hack23.cia.model.internal.application.data.committee.impl.ViewCommitteeProductivity</class>
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewDecisionTemporalTrends</class>
 		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewMinistryDecisionImpact</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyDecisionFlow</class>
