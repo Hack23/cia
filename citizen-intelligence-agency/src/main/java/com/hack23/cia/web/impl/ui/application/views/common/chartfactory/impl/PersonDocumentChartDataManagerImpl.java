@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId;
-import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDocumentDailySummary;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PersonDocumentChartDataManager;
 import com.vaadin.ui.AbstractOrderedLayout;

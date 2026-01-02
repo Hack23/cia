@@ -32,8 +32,8 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee_;
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId;
 import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId_;
-import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary;
-import com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocumentDailySummary_;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDocumentDailySummary;
+import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDocumentDailySummary_;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry_;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty;
