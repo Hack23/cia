@@ -31,6 +31,7 @@ This document provides a strategic analysis of the Citizen Intelligence Agency's
 ## 📊 Strategic SWOT Overview
 
 ```mermaid
+%%{init: {"quadrantChart": {"quadrant1Fill": "#2ecc71", "quadrant2Fill": "#e74c3c", "quadrant3Fill": "#3498db", "quadrant4Fill": "#f39c12"}}}%%
 quadrantChart
     title Future Citizen Intelligence Agency Strategic Positioning
     x-axis Negative Impact --> Positive Impact
@@ -236,6 +237,7 @@ mindmap
 ## 📊 Strategic Position Matrix
 
 ```mermaid
+%%{init: {"quadrantChart": {"quadrant1Fill": "#2ecc71", "quadrant2Fill":  "#9b59b6", "quadrant3Fill": "#95a5a6", "quadrant4Fill": "#3498db"}}}%%
 quadrantChart
     title Strategic Positioning in Political Intelligence Market
     x-axis Traditional Analysis --> AI-Enhanced Analysis
@@ -382,7 +384,7 @@ gantt
     Business Intelligence Features         :d4, 2026-04-01, 270d
 ```
 
-This execution strategy balances technical development with market expansion, allowing for the phased introduction of advanced capabilities while building a sustainable platform for political transparency and intelligence.
+This execution strategy balances technical development with market expansion, allowing for the phased introduction of advanced capabilities while building a sustainable platform for political transparency and intelligence. 
 
 ## Evolution Path
 
@@ -408,7 +410,7 @@ journey
       Developer ecosystem: 3: CIA, Community
       Advanced search capabilities: 4: CIA, Search team
     section Future Vision
-      Predictive political analytics: 5: CIA, ML team
+      Predictive political analytics:  5: CIA, ML team
       Cross-border political intelligence: 4: CIA, Int'l team
       Natural language processing: 5: CIA, NLP team
       Personalized political insights: 4: CIA, UX team
