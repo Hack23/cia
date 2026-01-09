@@ -23,9 +23,8 @@ Current politician risk score thresholds produced heavily skewed distribution:
 ### Score Component Contributions
 Politicians typically score:
 - **Violations**: 0-16 points (0-8 violations most common)
-- **Absence Rate**: 0-3 points (0-15% absence typical)
-- **Ineffectiveness**: 6-14 points (30-70% win rates)
-- **Rebel Rate**: 0-0.5 points (0-5% rebel rates)
+- **Absence Rate**: 0-4.5 points (0-15% absence × 0.30 weight)
+- **Rebel Rate**: 0-1.0 points (0-5% rebel × 0.20 weight)
 - **Productivity**: 0 or 10 points (binary at 5 docs threshold)
 
 Most politicians cluster in 30-48 range, making original 30-50 MEDIUM threshold too broad.

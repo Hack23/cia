@@ -189,7 +189,7 @@ SELECT
         WHEN calculated_risk_score >= 65 THEN 'Critical risk politician - immediate investigation required'
         WHEN calculated_risk_score >= 45 THEN 'High risk politician - performance concerns warrant review'
         WHEN calculated_risk_score >= 25 THEN 'Moderate risk - monitor for declining performance'
-        WHEN calculated_risk_score < 10 THEN 'Low risk - performing within acceptable standards'
+        WHEN calculated_risk_score >= 10 THEN 'Low risk - performing within acceptable standards'
         ELSE 'Standard risk profile'
     END AS risk_assessment
 
