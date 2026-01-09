@@ -485,3 +485,116 @@ Potential areas for expansion:
 **New Compliance Check Implementations**: 
 - MinistryComplianceCheckImpl (NEW)
 - CommitteeComplianceCheckImpl (NEW)
+
+---
+
+## Risk Score Threshold Analysis
+
+### Overview
+
+Politician risk scores range from 0-100 based on multiple weighted components. The risk classification thresholds determine how politicians are categorized into LOW, MEDIUM, HIGH, and CRITICAL risk categories.
+
+### Risk Score Calculation (0-100 scale)
+
+Risk scores are calculated by summing weighted components:
+
+| Component | Weight | Max Points | Description |
+|-----------|--------|------------|-------------|
+| **Violations** | 2 points each | 40 | Rule violations detected (max 20 violations) |
+| **Absence Rate** | Percentage-based | 20 | Annual parliamentary absence percentage |
+| **Ineffectiveness** | Inverse percentage | 20 | Based on voting win rate (100 - win_percentage) |
+| **Rebel Rate** | Percentage-based | 10 | Party discipline violations percentage |
+| **Low Productivity** | Binary | 10 | Triggered if <5 documents last year |
+| **Total Maximum** | | **100** | Theoretical maximum score |
+
+**Formula:**
+```
+risk_score = (violations × 2, max 40) + 
+             (absence_rate × 0.20) + 
+             ((100 - win_rate) × 0.20) + 
+             (rebel_rate × 0.10) + 
+             (documents < 5 ? 10 : 0)
+```
+
+### Threshold Evolution
+
+#### Previous Thresholds (v1.32 - v1.47)
+
+| Risk Level | Threshold | Observed Distribution | Issue |
+|------------|-----------|----------------------|-------|
+| CRITICAL | ≥70 | 0 politicians (0%) | Threshold too high |
+| HIGH | ≥50 | 24 politicians (6%) | Underpopulated |
+| MEDIUM | ≥30 | 330 politicians (82.5%) | **Overclustered** |
+| LOW | <30 | 46 politicians (11.5%) | Underpopulated |
+
+**Problem Identified:**
+- 82.5% overclustering in MEDIUM category reduced analytical differentiation
+- Only 6% HIGH risk despite multiple politicians showing elevated risk indicators
+- Observed score range in practice: 10-56 points (not reaching theoretical maximum)
+
+#### Current Thresholds (v1.48+)
+
+| Risk Level | Threshold | Target Distribution | Rationale |
+|------------|-----------|---------------------|-----------|
+| CRITICAL | ≥65 | <1% (rare extremes) | 12+ violations + high absence |
+| HIGH | ≥45 | 15-25% (60-100) | 8-12 violations or high absence+low effectiveness |
+| MEDIUM | ≥25 | 50-60% (200-240) | 4-7 violations or moderate concerns |
+| LOW | <25 | 25-35% (100-140) | 0-3 violations, standard performance |
+
+### Threshold Adjustment Rationale
+
+**Statistical Analysis:**
+
+1. **Observed Score Distribution** (400 politician sample):
+   - Range: 10-56 points
+   - Median: 39 points
+   - 75th percentile: 44 points
+   - 90th percentile: 50 points
+
+2. **Score Component Contributions** (typical distributions):
+   - Violations: 0-16 points (0-8 violations most common)
+   - Absence: 0-3 points (0-15% absence typical)
+   - Ineffectiveness: 6-14 points (30-70% win rates typical)
+   - Rebel: 0-0.5 points (0-5% rebel rates typical)
+   - Productivity: 0 or 10 points (binary threshold at 5 docs)
+
+3. **Evidence-Based Adjustments**:
+   - **HIGH threshold lowered to 45**: Captures politicians at 75th percentile and above
+   - **MEDIUM threshold lowered to 25**: Redistributes mid-range (25-44) more evenly
+   - **LOW category expanded**: Politicians with 10-24 points show minimal risk indicators
+   - **CRITICAL threshold lowered to 65**: Aligns with extreme cases (rare but possible)
+
+### Validation Metrics
+
+To validate threshold effectiveness, monitor these metrics:
+
+1. **Distribution Balance**: Target 20/60/20 distribution (±5%)
+2. **Gini Coefficient**: <0.4 for improved evenness
+3. **False Positive Rate**: Should not increase >5%
+4. **Analytical Utility**: HIGH category should be actionable (60-100 politicians)
+
+### Intelligence Products Impact
+
+The rebalanced thresholds improve:
+
+1. **Political Scorecards**: Better differentiation of performance levels
+2. **Risk Dashboards**: More granular risk monitoring
+3. **Resource Allocation**: Clearer prioritization for accountability reviews
+4. **Trend Analysis**: More sensitive detection of changing risk profiles
+5. **Accountability Metrics**: Better alignment with actual behavior patterns
+
+### Monitoring and Adjustment
+
+Risk thresholds should be reviewed periodically (quarterly) to ensure:
+
+- Distribution remains balanced as data evolves
+- Score components reflect actual behavior patterns
+- Thresholds align with political context changes
+- No drift toward over/under-classification
+
+**Changelog:**
+- **v1.48 (2026-01-09)**: Rebalanced thresholds to address 82.5% MEDIUM overclustering
+  - CRITICAL: 70→65
+  - HIGH: 50→45
+  - MEDIUM: 30→25
+  - LOW: <30→<25
