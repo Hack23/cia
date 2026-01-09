@@ -12,7 +12,7 @@ rule "Committee with low document productivity last year"
     when
         // Threshold: < 80 docs/year represents bottom quartile (P25 ~108 annualized from quarterly data)
         // Adjusted to 80 to capture approximately bottom 20% of committees
-        $p : CommitteeComplianceCheckImpl(committee.active && committee.documentsLastYear > 40 && committee.documentsLastYear < 80)
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.documentsLastYear >= 40 && committee.documentsLastYear < 80)
     then
     	$p.addViolation( Status.MINOR, "CommitteeLowProductivity","Behavior", kcontext.getRule().getName(),"LowDocumentOutput");
 end

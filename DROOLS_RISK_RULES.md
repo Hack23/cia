@@ -387,6 +387,8 @@ Committee risk thresholds have been validated against actual committee performan
 - P75 (75th percentile): 1,188 docs/year
 - Mean: 714.9 docs/year
 
+**Operational Threshold Note:** The committee low-document-activity rule currently uses an 80 docs/year threshold on `documentsLastYear`. The empirical P25 is 108 docs/year (as shown above), and the code comment `P25 ~108 annualized` refers to this percentile. The operational 80-docs/year threshold is intentionally set below P25 to avoid over-flagging borderline committees while still capturing clearly low-activity cases.
+
 **Documents Per Member (Quarterly):**
 - P25: 1.34 docs/member/quarter
 - Median: 1.79 docs/member/quarter
@@ -409,13 +411,13 @@ Committee risk thresholds have been validated against actual committee performan
 
 **Rules** (Thresholds validated 2026-01-09):
 - **Low document productivity last year - below 80** (MINOR, salience 10)
-  - Condition: `documentsLastYear < 80 && > 40`
+  - Condition: `documentsLastYear >= 40 && documentsLastYear < 80`
   - Category: Behavior
   - Resource Tag: LowDocumentOutput
   - **Statistical Basis**: Captures approximately bottom 20% of committees (P25 ~108, adjusted to 80)
 
 - **Very low document productivity last year - below 40** (MAJOR, salience 50)
-  - Condition: `documentsLastYear < 40 && > 0`
+  - Condition: `documentsLastYear > 0 && documentsLastYear < 40`
   - Category: Behavior
   - Resource Tag: VeryLowDocumentOutput
   - **Statistical Basis**: Critically low, approximately 5th percentile
@@ -466,13 +468,13 @@ Committee risk thresholds have been validated against actual committee performan
 
 **Rules** (Thresholds validated 2026-01-09):
 - **Few committee motions - below 100** (MINOR, salience 10)
-  - Condition: `totalCommitteeMotions < 100 && > 10`
+  - Condition: `totalCommitteeMotions >= 10 && totalCommitteeMotions < 100`
   - Category: Behavior
   - Resource Tag: FewCommitteeMotions
   - **Statistical Basis**: P25 = 81 total motions, threshold set at 100 for clarity
 
 - **Very few committee motions - below 10** (MAJOR, salience 50)
-  - Condition: `totalCommitteeMotions < 10 && > 0`
+  - Condition: `totalCommitteeMotions > 0 && totalCommitteeMotions < 10`
   - Category: Behavior
   - Resource Tag: VeryFewCommitteeMotions
   - **Statistical Basis**: Severe lack of legislative initiative
@@ -510,10 +512,10 @@ Committee risk thresholds have been validated against actual committee performan
   - **Statistical Basis**: Current year < 20% of historical average
 
 - **Minimal recent activity despite size** (MAJOR, salience 50)
-  - Condition: `active && currentMemberSize >= 10 && documentsLastYear > 0 && documentsLastYear < 40`
+  - Condition: `active && currentMemberSize >= 10 && documentsLastYear > 0 && documentsLastYear < 30`
   - Category: Behavior
   - Resource Tag: MinimalActivityDespiteSize
-  - **Statistical Basis**: Large committees producing below 5th percentile output
+  - **Statistical Basis**: Large committees producing well below 5th percentile output (differentiated from general low productivity threshold to avoid overlap)
 
 - **Combined risk - low output and low per-member productivity** (CRITICAL, salience 125)
   - Condition: `active && currentMemberSize > 0 && documentsLastYear < 60 && documentsLastYear > 0 && avgDocumentsPerMember < 1.5`
@@ -522,8 +524,11 @@ Committee risk thresholds have been validated against actual committee performan
   - **Statistical Basis**: Multiple indicators of chronic underperformance
 
 **Changes from Original:**
-- avgDocumentsPerMember thresholds adjusted from < 1.5 to < 1.0 for CRITICAL (cumulative metric context)
-- documentsLastYear threshold increased from < 15 to < 40 for large committees
+- avgDocumentsPerMember thresholds tightened across rules:
+  - Chronic stagnation (CRITICAL): `< 1.5` → `< 1.0`
+  - Declining output (MAJOR): `< 3.0` → `< 2.0`
+  - Combined risk (CRITICAL): `< 1.8` → `< 1.5`
+- documentsLastYear threshold adjusted from < 15 to < 30 for large committees (differentiated from general low productivity threshold)
 - Combined risk threshold increased from < 18 to < 60 docs/year
 - Thresholds now account for difference between quarterly and cumulative metrics
 

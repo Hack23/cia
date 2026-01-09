@@ -10,9 +10,11 @@ rule "Committee with chronic stagnation - very low average documents per member"
 	dialect "java"
 	salience 100
     when
-        // Note: avgDocumentsPerMember is cumulative (total_docs / total_members_ever)
-        // This differs from quarterly per-member rates
-        // Threshold: < 1.0 cumulative avg indicates chronic underperformance
+        // Note: avgDocumentsPerMember is cumulative (total_docs / total_members_ever),
+        // not a quarterly rate. Internal documentation reports P25 ≈ 1.34 docs/member/quarter.
+        // Using < 1.0 as a cumulative threshold therefore corresponds to a level of output
+        // that is well below the lower quartile on a per-quarter basis over a mandate,
+        // and is intentionally treated as "chronic underperformance".
         $p : CommitteeComplianceCheckImpl(
             committee.active && 
             committee.currentMemberSize > 0 && 
@@ -43,12 +45,13 @@ rule "Committee with minimal recent activity - few documents despite active stat
 	dialect "java"
 	salience 50
     when
-        // Threshold adjusted: Large committee (10+ members) producing < 40 docs/year
+        // Threshold adjusted: Large committee (10+ members) producing < 30 docs/year
+        // Differentiated from CommitteeLowProductivity MAJOR threshold (< 40) to avoid overlap
         $p : CommitteeComplianceCheckImpl(
             committee.active && 
             committee.currentMemberSize >= 10 &&
             committee.documentsLastYear > 0 &&
-            committee.documentsLastYear < 40
+            committee.documentsLastYear < 30
         )
     then
     	$p.addViolation( Status.MAJOR, "CommitteeStagnation","Behavior", kcontext.getRule().getName(),"MinimalActivityDespiteSize");
