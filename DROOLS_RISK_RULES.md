@@ -511,11 +511,11 @@ Committee risk thresholds have been validated against actual committee performan
   - Resource Tag: SignificantOutputDecline
   - **Statistical Basis**: Current year < 20% of historical average
 
-- **Minimal recent activity despite size** (MAJOR, salience 50)
-  - Condition: `active && currentMemberSize >= 10 && documentsLastYear > 0 && documentsLastYear < 30`
+- **Minimal recent activity despite size** (MAJOR, salience 60)
+  - Condition: `active && currentMemberSize >= 10 && documentsLastYear > 0 && documentsLastYear < 40`
   - Category: Behavior
   - Resource Tag: MinimalActivityDespiteSize
-  - **Statistical Basis**: Large committees producing well below 5th percentile output (differentiated from general low productivity threshold to avoid overlap)
+  - **Statistical Basis**: Large committees producing below 5th percentile output. Higher salience (60 vs 50) ensures this size-specific rule takes precedence over the general low productivity MAJOR rule for committees with 10+ members, avoiding duplicate violations while properly flagging underperformance in context of committee size.
 
 - **Combined risk - low output and low per-member productivity** (CRITICAL, salience 125)
   - Condition: `active && currentMemberSize > 0 && documentsLastYear < 60 && documentsLastYear > 0 && avgDocumentsPerMember < 1.5`
@@ -528,7 +528,7 @@ Committee risk thresholds have been validated against actual committee performan
   - Chronic stagnation (CRITICAL): `< 1.5` → `< 1.0`
   - Declining output (MAJOR): `< 3.0` → `< 2.0`
   - Combined risk (CRITICAL): `< 1.8` → `< 1.5`
-- documentsLastYear threshold adjusted from < 15 to < 30 for large committees (differentiated from general low productivity threshold)
+- documentsLastYear threshold adjusted from < 15 to < 40 for large committees (matches general MAJOR threshold but with higher salience 60 vs 50 for precedence)
 - Combined risk threshold increased from < 18 to < 60 docs/year
 - Thresholds now account for difference between quarterly and cumulative metrics
 

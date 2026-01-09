@@ -43,15 +43,15 @@ end
 
 rule "Committee with minimal recent activity - few documents despite active status"
 	dialect "java"
-	salience 50
+	salience 60
     when
-        // Threshold adjusted: Large committee (10+ members) producing < 30 docs/year
-        // Differentiated from CommitteeLowProductivity MAJOR threshold (< 40) to avoid overlap
+        // Threshold: Large committee (10+ members) producing < 40 docs/year
+        // Higher salience (60 vs 50) ensures this size-specific rule takes precedence over general low productivity rule
         $p : CommitteeComplianceCheckImpl(
             committee.active && 
             committee.currentMemberSize >= 10 &&
             committee.documentsLastYear > 0 &&
-            committee.documentsLastYear < 30
+            committee.documentsLastYear < 40
         )
     then
     	$p.addViolation( Status.MAJOR, "CommitteeStagnation","Behavior", kcontext.getRule().getName(),"MinimalActivityDespiteSize");
