@@ -417,10 +417,10 @@ Committee risk thresholds have been validated against actual committee performan
   - **Statistical Basis**: Captures approximately bottom 20% of committees (P25 ~108, adjusted to 80)
 
 - **Very low document productivity last year - below 40** (MAJOR, salience 50)
-  - Condition: `documentsLastYear > 0 && documentsLastYear < 40`
+  - Condition: `documentsLastYear > 0 && documentsLastYear < 40 && currentMemberSize < 10`
   - Category: Behavior
   - Resource Tag: VeryLowDocumentOutput
-  - **Statistical Basis**: Critically low, approximately 5th percentile
+  - **Statistical Basis**: Critically low; operational threshold chosen well below P25 (~108 docs/year) to flag extreme underperformance. Excludes large committees (≥ 10 members) which are handled by the size-specific rule in CommitteeStagnation.drl with higher salience.
 
 - **No documents last year** (CRITICAL, salience 100)
   - Condition: `documentsLastYear == 0`

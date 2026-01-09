@@ -21,8 +21,9 @@ rule "Committee with very low document productivity last year"
 	dialect "java"
 	salience 50
     when
-        // Threshold: < 40 docs/year represents critically low productivity (~5th percentile)
-        $p : CommitteeComplianceCheckImpl(committee.active && committee.documentsLastYear > 0 && committee.documentsLastYear < 40)
+        // Operational threshold: < 40 docs/year treated as critically low productivity
+        // Excludes large committees (>= 10 members) which are handled by size-specific rule in CommitteeStagnation.drl
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.documentsLastYear > 0 && committee.documentsLastYear < 40 && committee.currentMemberSize < 10)
     then
     	$p.addViolation( Status.MAJOR, "CommitteeLowProductivity","Behavior", kcontext.getRule().getName(),"VeryLowDocumentOutput");
 end
