@@ -166,7 +166,7 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 			final ViewRiksdagenPartySummary party = createTestParty();
 			final ViewRiksdagenVoteDataBallotPartySummaryAnnual annualSummary = 
 				new ViewRiksdagenVoteDataBallotPartySummaryAnnual();
-			annualSummary.setPartyPercentageAbsent(new BigDecimal("20.0"));
+			annualSummary.setPartyPercentageAbsent(new BigDecimal("16.5"));
 			
 			final PartyComplianceCheckImpl check = new PartyComplianceCheckImpl(
 				party, annualSummary, null, null);
