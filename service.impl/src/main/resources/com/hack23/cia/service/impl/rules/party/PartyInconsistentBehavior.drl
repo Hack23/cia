@@ -52,9 +52,9 @@ rule "Party showing discipline problems - high absence variation"
             party.party != "-" && 
             dailySummary != null &&
             monthlySummary != null &&
-            dailySummary.partyPercentageAbsent >= 18 &&
-            monthlySummary.partyPercentageAbsent >= 12 &&
-            monthlySummary.partyPercentageAbsent < dailySummary.partyPercentageAbsent - 5
+            dailySummary.partyPercentageAbsent >= 17 &&
+            monthlySummary.partyPercentageAbsent < 16 &&
+            dailySummary.partyPercentageAbsent > monthlySummary.partyPercentageAbsent + 2
         )
     then
     	$p.addViolation( Status.MAJOR, "PartyInconsistentBehavior","Behavior", kcontext.getRule().getName(),"DisciplineProblems");
@@ -71,7 +71,7 @@ rule "Party with unstable coalition behavior - recent performance drop"
             annualSummary != null &&
             monthlySummary.partyWonPercentage < 25 &&
             annualSummary.partyWonPercentage >= 35 &&
-            monthlySummary.partyPercentageAbsent >= 14
+            monthlySummary.partyPercentageAbsent >= 16
         )
     then
     	$p.addViolation( Status.CRITICAL, "PartyInconsistentBehavior","Behavior", kcontext.getRule().getName(),"UnstableCoalitionBehavior");

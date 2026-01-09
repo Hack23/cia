@@ -10,38 +10,38 @@ import com.hack23.cia.model.internal.application.data.rules.impl.Status
 import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck
 
-rule "Party with low annual win rate - below 40%"
+rule "Party with low annual win rate - below 45%"
 	dialect "java"
 	salience 10
     when
-        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && annualSummary != null && annualSummary.partyWonPercentage < 40 && annualSummary.partyWonPercentage >= 30)
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && annualSummary != null && annualSummary.partyWonPercentage < 45 && annualSummary.partyWonPercentage >= 35)
     then
     	$p.addViolation( Status.MINOR, "PartyLowEffectiveness","Behavior", kcontext.getRule().getName(),"LowWinRate");
 end
 
-rule "Party with very low annual win rate - below 30%"
+rule "Party with very low annual win rate - below 35%"
 	dialect "java"
 	salience 50
     when
-        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && annualSummary != null && annualSummary.partyWonPercentage < 30 && annualSummary.partyWonPercentage >= 20)
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && annualSummary != null && annualSummary.partyWonPercentage < 35 && annualSummary.partyWonPercentage >= 25)
     then
     	$p.addViolation( Status.MAJOR, "PartyLowEffectiveness","Behavior", kcontext.getRule().getName(),"VeryLowWinRate");
 end
 
-rule "Party with critically low annual win rate - below 20%"
+rule "Party with critically low annual win rate - below 25%"
 	dialect "java"
 	salience 100
     when
-        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && annualSummary != null && annualSummary.partyWonPercentage < 20)
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && annualSummary != null && annualSummary.partyWonPercentage < 25)
     then
     	$p.addViolation( Status.CRITICAL, "PartyLowEffectiveness","Behavior", kcontext.getRule().getName(),"CriticallyLowWinRate");
 end
 
-rule "Party with low document productivity - below 5 docs per member last year"
+rule "Party with low document productivity - below 18 docs per member last year"
 	dialect "java"
 	salience 10
     when
-        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.currentlyActiveMembers > 0 && party.avgDocumentsLastYear < 5 && party.avgDocumentsLastYear > 0)
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.currentlyActiveMembers > 0 && party.avgDocumentsLastYear < 18 && party.avgDocumentsLastYear > 0)
     then
     	$p.addViolation( Status.MINOR, "PartyLowEffectiveness","Behavior", kcontext.getRule().getName(),"LowDocumentProductivity");
 end
