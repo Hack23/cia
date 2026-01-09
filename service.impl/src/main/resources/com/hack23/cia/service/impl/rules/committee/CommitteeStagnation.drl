@@ -10,10 +10,13 @@ rule "Committee with chronic stagnation - very low average documents per member"
 	dialect "java"
 	salience 100
     when
+        // Note: avgDocumentsPerMember is cumulative (total_docs / total_members_ever)
+        // This differs from quarterly per-member rates
+        // Threshold: < 1.0 cumulative avg indicates chronic underperformance
         $p : CommitteeComplianceCheckImpl(
             committee.active && 
             committee.currentMemberSize > 0 && 
-            committee.avgDocumentsPerMember < 1.5 &&
+            committee.avgDocumentsPerMember < 1.0 &&
             committee.documentsLastYear > 0
         )
     then
@@ -29,7 +32,7 @@ rule "Committee with declining output - current year significantly below histori
             committee.totalDocuments > 0 &&
             committee.documentsLastYear > 0 &&
             committee.avgDocumentsPerMember > 0 &&
-            committee.avgDocumentsPerMember < 3 &&
+            committee.avgDocumentsPerMember < 2.0 &&
             committee.documentsLastYear < (committee.totalDocuments / 5)
         )
     then
@@ -40,11 +43,12 @@ rule "Committee with minimal recent activity - few documents despite active stat
 	dialect "java"
 	salience 50
     when
+        // Threshold adjusted: Large committee (10+ members) producing < 40 docs/year
         $p : CommitteeComplianceCheckImpl(
             committee.active && 
             committee.currentMemberSize >= 10 &&
             committee.documentsLastYear > 0 &&
-            committee.documentsLastYear < 15
+            committee.documentsLastYear < 40
         )
     then
     	$p.addViolation( Status.MAJOR, "CommitteeStagnation","Behavior", kcontext.getRule().getName(),"MinimalActivityDespiteSize");
@@ -54,12 +58,13 @@ rule "Committee with combined risk - low total output and low per-member product
 	dialect "java"
 	salience 125
     when
+        // Threshold adjusted: < 60 docs/year AND < 1.5 cumulative avg docs/member
         $p : CommitteeComplianceCheckImpl(
             committee.active && 
             committee.currentMemberSize > 0 && 
-            committee.documentsLastYear < 18 &&
+            committee.documentsLastYear < 60 &&
             committee.documentsLastYear > 0 &&
-            committee.avgDocumentsPerMember < 1.8
+            committee.avgDocumentsPerMember < 1.5
         )
     then
     	$p.addViolation( Status.CRITICAL, "CommitteeStagnation","Behavior", kcontext.getRule().getName(),"CombinedLowProductivity");

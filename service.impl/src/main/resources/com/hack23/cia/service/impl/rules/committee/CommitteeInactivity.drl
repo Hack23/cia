@@ -10,27 +10,29 @@ rule "Committee with few committee motions"
 	dialect "java"
 	salience 10
     when
-        // Threshold: Fewer than 5 committee motions indicates low legislative initiative
-        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions < 5 && committee.totalCommitteeMotions > 0)
+        // Threshold: < 100 cumulative committee motions indicates low historical legislative initiative
+        // Analysis shows P25 = 81 total motions, adjusted to 100 for clarity
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions < 100 && committee.totalCommitteeMotions > 10)
     then
     	$p.addViolation( Status.MINOR, "CommitteeInactivity","Behavior", kcontext.getRule().getName(),"FewCommitteeMotions");
 end
 
-rule "Committee with no committee motions"
+rule "Committee with very few committee motions"
 	dialect "java"
 	salience 50
     when
-        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions == 0)
+        // Threshold: < 10 cumulative motions indicates severe lack of legislative initiative
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions < 10 && committee.totalCommitteeMotions > 0)
     then
-    	$p.addViolation( Status.MAJOR, "CommitteeInactivity","Behavior", kcontext.getRule().getName(),"NoCommitteeMotions");
+    	$p.addViolation( Status.MAJOR, "CommitteeInactivity","Behavior", kcontext.getRule().getName(),"VeryFewCommitteeMotions");
 end
 
-rule "Committee with no follow-up motions"
+rule "Committee with no committee motions"
 	dialect "java"
 	salience 100
     when
-        // Follow-up motions indicate ongoing policy engagement
-        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalFollowUpMotions == 0 && committee.totalCommitteeMotions > 10)
+        // Complete absence of committee motions indicates fundamental inactivity
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions == 0)
     then
-    	$p.addViolation( Status.CRITICAL, "CommitteeInactivity","Behavior", kcontext.getRule().getName(),"NoFollowUpEngagement");
+    	$p.addViolation( Status.CRITICAL, "CommitteeInactivity","Behavior", kcontext.getRule().getName(),"NoCommitteeMotions");
 end
