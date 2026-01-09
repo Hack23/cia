@@ -158,7 +158,7 @@ All rules follow a consistent pattern:
   - Condition: `monthlySummary.partyPercentageAbsent >= 16.5`
   - Category: Behavior
   - Resource Tag: HighMonthlyAbsenteeism
-  - **Threshold Justification**: Above P90/P75 (15.99%). Captures sustained high absence over a month.
+  - **Threshold Justification**: Above P75 (15.99%) and near maximum observed (16.01%). Captures sustained high absence over a month.
 
 - **Chronic absenteeism - 16%+ annually** (CRITICAL, salience 100)
   - Condition: `annualSummary.partyPercentageAbsent >= 16`
@@ -176,8 +176,8 @@ All rules follow a consistent pattern:
 **Purpose**: Tracks parties that avoid cross-party collaboration.
 
 **Rules** (Calibrated based on actual collaboration patterns):
-- **Low average collaboration - below 1.5%** (MINOR, salience 10)
-  - Condition: `avgCollaborationPercentage < 1.5 && >= 1.0`
+- **Low average collaboration - below 1.6%** (MINOR, salience 10)
+  - Condition: `avgCollaborationPercentage < 1.6 && >= 1.0`
   - Category: Behavior
   - Resource Tag: LowCrossPartyEngagement
   - **Threshold Justification**: P25 = 1.60%. Marks bottom quartile of cross-party engagement.
@@ -218,7 +218,7 @@ All rules follow a consistent pattern:
   - Condition: `partyWonPercentage < 45 && >= 35`
   - Category: Behavior
   - Resource Tag: LowWinRate
-  - **Threshold Justification**: P25 = 38.68%. Marks bottom quartile performance, distinguishing opposition parties from marginalized ones.
+  - **Threshold Justification**: Anchored at P25 = 38.68%, but threshold set at 45% as strategic boundary to distinguish normal opposition parties (45-55%) from low-performing ones (<45%).
 
 - **Very low annual win rate - below 35%** (MAJOR, salience 50)
   - Condition: `partyWonPercentage < 35 && >= 25`
@@ -230,7 +230,7 @@ All rules follow a consistent pattern:
   - Condition: `partyWonPercentage < 25`
   - Category: Behavior
   - Resource Tag: CriticallyLowWinRate
-  - **Threshold Justification**: P10 = 28.88%. Marks extreme marginalization, below even weak opposition parties.
+  - **Threshold Justification**: Observed P10 = 28.88%. The CRITICAL threshold is intentionally set below this (at 25%) to capture only extreme, sub-P10 marginalization cases performing far worse than even weak opposition parties.
 
 - **Low document productivity - below 18 docs per member** (MINOR, salience 10)
   - Condition: `currentlyActiveMembers > 0 && avgDocumentsLastYear < 18 && > 0`
@@ -243,6 +243,97 @@ All rules follow a consistent pattern:
 **Data Distribution**:
 - Win Rates: P25: 38.68%, Median: 59.42%, P75: 82.48%
 - Productivity: Min: 13.62, P25: 17.58, Median: 25.71, P75: 37.24, Max: 57.19 docs/member
+
+---
+
+### 10. PartyCombinedRisk.drl
+**Purpose**: Identifies parties with multiple concurrent risk factors (low effectiveness + high absence + low productivity).
+
+**Rules** (Calibrated to detect compound risk scenarios):
+- **Combined low effectiveness and high absence** (CRITICAL, salience 100)
+  - Condition: `partyWonPercentage >= 25 && < 30 && partyPercentageAbsent >= 16`
+  - Category: Behavior
+  - Resource Tag: LowEffectivenessHighAbsence
+  - **Threshold Justification**: Win rate 25-30% (just above CRITICAL standalone threshold) combined with annual absence at maximum observed (16%). Avoids overlap with standalone CRITICAL win rate rule (<25%).
+
+- **Low win rate and low document productivity** (MAJOR, salience 75)
+  - Condition: `partyWonPercentage < 35 && avgDocumentsLastYear < 18`
+  - Category: Behavior
+  - Resource Tag: LowWinRateLowProductivity
+  - **Threshold Justification**: MAJOR win rate threshold (35%) combined with P25 productivity (18 docs/member).
+
+- **Triple risk - low effectiveness, high absence, low productivity** (CRITICAL, salience 150)
+  - Condition: `partyWonPercentage < 30 && partyPercentageAbsent >= 16 && avgDocumentsLastYear < 18`
+  - Category: Behavior
+  - Resource Tag: TripleRiskProfile
+  - **Threshold Justification**: Combines MAJOR/CRITICAL thresholds across three dimensions. Uses P25 productivity (18) for consistency.
+
+- **High abstention indicating indecision** (MAJOR, salience 50)
+  - Condition: `partyPercentageAbstain >= 6 && partyWonPercentage < 45`
+  - Category: Behavior
+  - Resource Tag: HighAbstentionLowEffectiveness
+
+**Intelligence Value**: Detects systemic party dysfunction where multiple risk factors compound. Triple risk pattern indicates parties facing serious organizational or strategic challenges.
+
+---
+
+### 11. PartyDecliningPerformance.drl
+**Purpose**: Identifies parties with deteriorating performance trends over time.
+
+**Rules** (Calibrated to detect temporal decline patterns):
+- **Declining performance - monthly win rate significantly lower than annual** (MAJOR, salience 50)
+  - Condition: `monthlySummary.partyWonPercentage < annualSummary.partyWonPercentage - 12 && monthlySummary.partyWonPercentage < 45`
+  - Category: Behavior
+  - Resource Tag: DecreasingWinRate
+  - **Threshold Justification**: 12 percentage point drop indicates significant recent decline.
+
+- **Worsening absenteeism - monthly absence exceeds annual by 8%+** (MAJOR, salience 50)
+  - Condition: `monthlySummary.partyPercentageAbsent > annualSummary.partyPercentageAbsent + 8`
+  - Category: Behavior
+  - Resource Tag: WorseningAbsenteeism
+
+- **Disorganization - high daily absence with significant variation** (MAJOR, salience 75)
+  - Condition: `dailySummary.partyPercentageAbsent >= 17 && dailySummary.partyPercentageAbsent >= monthlySummary.partyPercentageAbsent + 3`
+  - Category: Behavior
+  - Resource Tag: InconsistentAttendance
+  - **Threshold Justification**: Daily absence spike (17%+) at least 3 points above monthly average indicates erratic attendance patterns.
+
+- **Critical combined decline - effectiveness and participation dropping** (CRITICAL, salience 100)
+  - Condition: `monthlySummary.partyWonPercentage < 30 && monthlySummary.partyPercentageAbsent >= 16 && annualSummary.partyWonPercentage >= 45`
+  - Category: Behavior
+  - Resource Tag: CriticalCombinedDecline
+  - **Threshold Justification**: Detects parties with historically normal performance (annual >= 45%) experiencing sudden decline (monthly < 30% win rate + 16% absence).
+
+**Intelligence Value**: Early warning system for parties experiencing performance deterioration. Distinguishes temporary fluctuations from systematic decline.
+
+---
+
+### 12. PartyInconsistentBehavior.drl
+**Purpose**: Identifies parties with erratic or unpredictable voting and attendance patterns.
+
+**Rules** (Calibrated to detect variance and inconsistency):
+- **Inconsistent voting - high daily abstention variance** (MAJOR, salience 50)
+  - Condition: `dailySummary.partyPercentageAbstain >= 8 && annualSummary.partyPercentageAbstain >= 4`
+  - Category: Behavior
+  - Resource Tag: HighAbstentionVariance
+
+- **Erratic performance - significant daily/monthly effectiveness gaps** (MAJOR, salience 75)
+  - Condition: `dailySummary.partyWonPercentage < monthlySummary.partyWonPercentage - 20 && monthlySummary.partyWonPercentage < annualSummary.partyWonPercentage - 12`
+  - Category: Behavior
+  - Resource Tag: ErraticEffectiveness
+
+- **Discipline problems - high absence variation** (MAJOR, salience 60)
+  - Condition: `dailySummary.partyPercentageAbsent >= 17 && monthlySummary.partyPercentageAbsent < 16 && dailySummary.partyPercentageAbsent > monthlySummary.partyPercentageAbsent + 2`
+  - Category: Behavior
+  - Resource Tag: DisciplineProblems
+  - **Threshold Justification**: High daily absence (17%) contrasted with lower monthly average (<16%) indicates inconsistent party discipline.
+
+- **Unstable coalition behavior - recent performance drop** (CRITICAL, salience 100)
+  - Condition: `monthlySummary.partyWonPercentage < 25 && annualSummary.partyWonPercentage >= 35 && monthlySummary.partyPercentageAbsent >= 16`
+  - Category: Behavior
+  - Resource Tag: UnstableCoalitionBehavior
+
+**Intelligence Value**: Detects parties experiencing internal turmoil, coalition stress, or strategic confusion. Inconsistent patterns may indicate leadership challenges or factional divisions.
 
 ---
 

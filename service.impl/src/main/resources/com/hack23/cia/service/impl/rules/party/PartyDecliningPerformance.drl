@@ -52,7 +52,7 @@ rule "Party showing disorganization - high daily and monthly absence variation"
             dailySummary != null && 
             monthlySummary != null &&
             dailySummary.partyPercentageAbsent >= 17 &&
-            monthlySummary.partyPercentageAbsent >= 16
+            dailySummary.partyPercentageAbsent >= monthlySummary.partyPercentageAbsent + 3
         )
     then
     	$p.addViolation( Status.MAJOR, "PartyDecliningPerformance","Behavior", kcontext.getRule().getName(),"InconsistentAttendance");
@@ -69,7 +69,7 @@ rule "Party with critical combined decline - effectiveness and participation dro
             monthlySummary != null &&
             monthlySummary.partyWonPercentage < 30 &&
             monthlySummary.partyPercentageAbsent >= 16 &&
-            annualSummary.partyWonPercentage < 45
+            annualSummary.partyWonPercentage >= 45
         )
     then
     	$p.addViolation( Status.CRITICAL, "PartyDecliningPerformance","Behavior", kcontext.getRule().getName(),"CriticalCombinedDecline");
