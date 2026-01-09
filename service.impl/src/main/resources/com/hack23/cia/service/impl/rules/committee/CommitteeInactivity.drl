@@ -12,7 +12,7 @@ rule "Committee with few committee motions"
     when
         // Threshold: < 100 cumulative committee motions indicates low historical legislative initiative
         // Analysis shows P25 = 81 total motions, adjusted to 100 for clarity
-        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions < 100 && committee.totalCommitteeMotions > 10)
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions > 10 && committee.totalCommitteeMotions < 100)
     then
     	$p.addViolation( Status.MINOR, "CommitteeInactivity","Behavior", kcontext.getRule().getName(),"FewCommitteeMotions");
 end
@@ -22,7 +22,7 @@ rule "Committee with very few committee motions"
 	salience 50
     when
         // Threshold: < 10 cumulative motions indicates severe lack of legislative initiative
-        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions < 10 && committee.totalCommitteeMotions > 0)
+        $p : CommitteeComplianceCheckImpl(committee.active && committee.totalCommitteeMotions > 0 && committee.totalCommitteeMotions < 10)
     then
     	$p.addViolation( Status.MAJOR, "CommitteeInactivity","Behavior", kcontext.getRule().getName(),"VeryFewCommitteeMotions");
 end
