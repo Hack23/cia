@@ -496,25 +496,25 @@ Politician risk scores range from 0-100 based on multiple weighted components. T
 
 ### Risk Score Calculation (0-100 scale)
 
-Risk scores are calculated by summing weighted components:
+Risk scores are calculated by summing weighted components (formula unchanged from v1.32-v1.47):
 
 | Component | Weight | Max Points | Description |
 |-----------|--------|------------|-------------|
 | **Violations** | 2 points each | 40 | Rule violations detected (max 20 violations) |
-| **Absence Rate** | Percentage-based | 20 | Annual parliamentary absence percentage |
-| **Ineffectiveness** | Inverse percentage | 20 | Based on voting win rate (100 - win_percentage) |
-| **Rebel Rate** | Percentage-based | 10 | Party discipline violations percentage |
+| **Absence Rate** | 0.30 multiplier | 30 | Annual parliamentary absence percentage × 0.30 |
+| **Rebel Rate** | 0.20 multiplier | 20 | Party discipline violations percentage × 0.20 |
 | **Low Productivity** | Binary | 10 | Triggered if <5 documents last year |
 | **Total Maximum** | | **100** | Theoretical maximum score |
 
-**Formula:**
+**Formula (unchanged from v1.32-v1.47):**
 ```
 risk_score = (violations × 2, max 40) + 
-             (absence_rate × 0.20) + 
-             ((100 - win_rate) × 0.20) + 
-             (rebel_rate × 0.10) + 
+             (absence_rate × 0.30) + 
+             (rebel_rate × 0.20) + 
              (documents < 5 ? 10 : 0)
 ```
+
+**Note:** Only the classification thresholds changed in v1.48, not the calculation formula.
 
 ### Threshold Evolution
 
@@ -551,11 +551,10 @@ risk_score = (violations × 2, max 40) +
    - 75th percentile: 44 points
    - 90th percentile: 50 points
 
-2. **Score Component Contributions** (typical distributions):
+2. **Score Component Contributions** (typical distributions using v1.47 formula):
    - Violations: 0-16 points (0-8 violations most common)
-   - Absence: 0-3 points (0-15% absence typical)
-   - Ineffectiveness: 6-14 points (30-70% win rates typical)
-   - Rebel: 0-0.5 points (0-5% rebel rates typical)
+   - Absence: 0-4.5 points (0-15% absence × 0.30 weight)
+   - Rebel: 0-1.0 points (0-5% rebel × 0.20 weight)
    - Productivity: 0 or 10 points (binary threshold at 5 docs)
 
 3. **Evidence-Based Adjustments**:
@@ -593,8 +592,7 @@ Risk thresholds should be reviewed periodically (quarterly) to ensure:
 - No drift toward over/under-classification
 
 **Changelog:**
-- **v1.48 (2026-01-09)**: Rebalanced thresholds to address 82.5% MEDIUM overclustering
-  - CRITICAL: 70→65
-  - HIGH: 50→45
-  - MEDIUM: 30→25
-  - LOW: <30→<25
+- **v1.48 (2026-01-09)**: Rebalanced thresholds ONLY to address 82.5% MEDIUM overclustering
+  - Risk calculation formula unchanged from v1.47
+  - CRITICAL: 70→65, HIGH: 50→45, MEDIUM: 30→25, LOW: <30→<25
+  - Data sources and filters unchanged from v1.47

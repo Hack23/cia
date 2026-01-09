@@ -111,7 +111,8 @@ Comprehensive SQL validation query providing:
 
 ### 4. Evidence-Based Approach
 - Thresholds derived from actual data analysis (400 politician sample)
-- Statistical validation against observed score range
+- Statistical validation against observed score range (10-56)
+- Formula unchanged - only classification boundaries adjusted
 - Transparent methodology with comprehensive documentation
 - Reproducible validation queries
 
@@ -143,24 +144,25 @@ psql -d cia_dev -f service.data.impl/src/main/resources/validate-risk-threshold-
 
 ## Technical Details
 
-### Risk Score Calculation (Unchanged)
+### Risk Score Calculation (Unchanged from v1.47)
 
 ```
 risk_score = (violations × 2, max 40) + 
-             (absence_rate × 0.20) + 
-             ((100 - win_rate) × 0.20) + 
-             (rebel_rate × 0.10) + 
+             (absence_rate × 0.30) + 
+             (rebel_rate × 0.20) + 
              (documents < 5 ? 10 : 0)
 ```
 
 **Maximum Theoretical Score**: 100 points
 **Observed Maximum Score**: 56 points (sample data)
 
+**Important**: The risk calculation formula is unchanged from v1.47. Only the classification thresholds have been adjusted.
+
 ### Database View Changes
 
 **View**: `view_politician_risk_summary`
 
-**Changed Section** (lines 198-203 in v1.48):
+**Changed Section** (lines 179-185 in v1.48):
 ```sql
 CASE
     WHEN calculated_risk_score >= 65 THEN 'CRITICAL'  -- was 70
@@ -170,10 +172,9 @@ CASE
 END AS risk_level
 ```
 
-**Updated Risk Assessments** (lines 206-228 in v1.48):
+**Updated Risk Assessments** (lines 188-194 in v1.48):
 - Aligned assessment messages with new threshold values
-- Added more granular assessment criteria
-- Maintained intelligence analysis quality
+- Maintained same structure and criteria as v1.47
 
 ## Acceptance Criteria Status
 
@@ -233,12 +234,12 @@ DROP VIEW IF EXISTS view_politician_risk_summary;
 
 ## Files Modified
 
-1. `service.data.impl/src/main/resources/db-changelog-1.48.xml` (NEW - 243 lines)
+1. `service.data.impl/src/main/resources/db-changelog-1.48.xml` (NEW - 206 lines)
 2. `service.data.impl/src/main/resources/db-changelog.xml` (MODIFIED - added include)
 3. `DROOLS_RISK_RULES.md` (MODIFIED - added 120+ line threshold analysis section)
 4. `service.data.impl/src/main/resources/validate-risk-threshold-rebalancing.sql` (NEW - 285 lines)
 
-**Total Lines Added**: ~648 lines (code + documentation)
+**Total Lines Added**: ~611 lines (code + documentation)
 
 ## References
 
