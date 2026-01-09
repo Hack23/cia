@@ -19,7 +19,7 @@ rule "Party with combined low effectiveness and high absence"
             party.party != "-" && 
             annualSummary != null &&
             annualSummary.partyWonPercentage < 25 &&
-            annualSummary.partyPercentageAbsent >= 18
+            annualSummary.partyPercentageAbsent >= 16
         )
     then
     	$p.addViolation( Status.CRITICAL, "PartyCombinedRisk","Behavior", kcontext.getRule().getName(),"LowEffectivenessHighAbsence");
@@ -34,8 +34,8 @@ rule "Party with low win rate and low document productivity"
             party.party != "-" && 
             annualSummary != null &&
             party.currentlyActiveMembers > 0 &&
-            annualSummary.partyWonPercentage < 32 &&
-            party.avgDocumentsLastYear < 6 &&
+            annualSummary.partyWonPercentage < 35 &&
+            party.avgDocumentsLastYear < 18 &&
             party.avgDocumentsLastYear > 0
         )
     then
@@ -51,9 +51,9 @@ rule "Party with triple risk - low effectiveness, high absence, low productivity
             party.party != "-" && 
             annualSummary != null &&
             party.currentlyActiveMembers > 0 &&
-            annualSummary.partyWonPercentage < 28 &&
+            annualSummary.partyWonPercentage < 30 &&
             annualSummary.partyPercentageAbsent >= 16 &&
-            party.avgDocumentsLastYear < 5
+            party.avgDocumentsLastYear < 15
         )
     then
     	$p.addViolation( Status.CRITICAL, "PartyCombinedRisk","Behavior", kcontext.getRule().getName(),"TripleRiskProfile");
@@ -68,7 +68,7 @@ rule "Party with high abstention indicating indecision"
             party.party != "-" && 
             annualSummary != null &&
             annualSummary.partyPercentageAbstain >= 6 &&
-            annualSummary.partyWonPercentage < 40
+            annualSummary.partyWonPercentage < 45
         )
     then
     	$p.addViolation( Status.MAJOR, "PartyCombinedRisk","Behavior", kcontext.getRule().getName(),"HighAbstentionLowEffectiveness");

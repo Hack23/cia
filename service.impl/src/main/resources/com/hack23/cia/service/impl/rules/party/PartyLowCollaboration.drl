@@ -10,22 +10,31 @@ import com.hack23.cia.model.internal.application.data.rules.impl.Status
 import com.hack23.cia.service.impl.rules.PartyComplianceCheckImpl
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck
 
-rule "Party with low average collaboration percentage - below 15%"
+rule "Party with low average collaboration percentage - below 1.5%"
 	dialect "java"
 	salience 10
     when
-        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 15 && party.avgCollaborationPercentage >= 10)
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 1.5 && party.avgCollaborationPercentage >= 1.0)
     then
     	$p.addViolation( Status.MINOR, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"LowCrossPartyEngagement");
 end
 
-rule "Party with very low average collaboration percentage - below 10%"
+rule "Party with very low average collaboration percentage - below 1.0%"
 	dialect "java"
 	salience 50
     when
-        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 10 && party.avgCollaborationPercentage > 0)
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 1.0 && party.avgCollaborationPercentage >= 0.5)
     then
     	$p.addViolation( Status.MAJOR, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"VeryLowCrossPartyEngagement");
+end
+
+rule "Party with minimal collaboration - below 0.5%"
+	dialect "java"
+	salience 100
+    when
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 0.5 && party.avgCollaborationPercentage > 0)
+    then
+    	$p.addViolation( Status.CRITICAL, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"MinimalCrossPartyEngagement");
 end
 
 rule "Party with no highly collaborative members"

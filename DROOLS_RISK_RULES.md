@@ -147,39 +147,52 @@ All rules follow a consistent pattern:
 ### 7. PartyHighAbsenteeism.drl
 **Purpose**: Enhanced party-level absence tracking across multiple timeframes.
 
-**Rules**:
-- **Concerning daily absenteeism - 25%+ daily** (MINOR, salience 10)
-  - Condition: `dailySummary.partyPercentageAbsent >= 25`
+**Rules** (Calibrated based on actual party performance data):
+- **Concerning daily absenteeism - 17%+ daily** (MINOR, salience 10)
+  - Condition: `dailySummary.partyPercentageAbsent >= 17`
   - Category: Behavior
   - Resource Tag: HighDailyAbsenteeism
+  - **Threshold Justification**: P90 = 15.99%, Mean = 14.87%. Set at 17% to capture outlier daily spikes above typical 14-16% range.
 
-- **High monthly absenteeism - 20%+ monthly** (MAJOR, salience 50)
-  - Condition: `monthlySummary.partyPercentageAbsent >= 20`
+- **High monthly absenteeism - 16%+ monthly** (MAJOR, salience 50)
+  - Condition: `monthlySummary.partyPercentageAbsent >= 16`
   - Category: Behavior
   - Resource Tag: HighMonthlyAbsenteeism
+  - **Threshold Justification**: Near maximum observed (16.01%). Captures sustained high absence.
 
-- **Chronic absenteeism - 20%+ annually** (CRITICAL, salience 100)
-  - Condition: `annualSummary.partyPercentageAbsent >= 20`
+- **Chronic absenteeism - 16%+ annually** (CRITICAL, salience 100)
+  - Condition: `annualSummary.partyPercentageAbsent >= 16`
   - Category: Behavior
   - Resource Tag: ChronicAbsenteeism
+  - **Threshold Justification**: P75 = 15.99%. Marks consistently worse attendance than typical 14-15%.
 
-**Intelligence Value**: Tracks party-wide attendance patterns that may indicate organizational problems, coalition stress, or strategic abstention campaigns.
+**Intelligence Value**: Tracks party-wide attendance patterns that may indicate organizational problems, coalition stress, or strategic abstention campaigns. Thresholds calibrated to Swedish parliamentary behavior where all parties show 12-16% absence rates.
+
+**Data Distribution**: Min: 12.32%, P25: 14.07%, Median: 14.46%, P75: 15.99%, Max: 16.01%
 
 ---
 
 ### 8. PartyLowCollaboration.drl
 **Purpose**: Tracks parties that avoid cross-party collaboration.
 
-**Rules**:
-- **Low average collaboration - below 15%** (MINOR, salience 10)
-  - Condition: `avgCollaborationPercentage < 15 && >= 10`
+**Rules** (Calibrated based on actual collaboration patterns):
+- **Low average collaboration - below 1.5%** (MINOR, salience 10)
+  - Condition: `avgCollaborationPercentage < 1.5 && >= 1.0`
   - Category: Behavior
   - Resource Tag: LowCrossPartyEngagement
+  - **Threshold Justification**: P25 = 1.60%. Marks bottom quartile of cross-party engagement.
 
-- **Very low average collaboration - below 10%** (MAJOR, salience 50)
-  - Condition: `avgCollaborationPercentage < 10 && > 0`
+- **Very low average collaboration - below 1.0%** (MAJOR, salience 50)
+  - Condition: `avgCollaborationPercentage < 1.0 && >= 0.5`
   - Category: Behavior
   - Resource Tag: VeryLowCrossPartyEngagement
+  - **Threshold Justification**: Near minimum observed (S at 0.80%). Indicates notable isolation.
+
+- **Minimal collaboration - below 0.5%** (CRITICAL, salience 100)
+  - Condition: `avgCollaborationPercentage < 0.5 && > 0`
+  - Category: Behavior
+  - Resource Tag: MinimalCrossPartyEngagement
+  - **Threshold Justification**: Extreme isolation, below all observed parties.
 
 - **No highly collaborative members** (CRITICAL, salience 100)
   - Condition: `currentlyActiveMembers > 5 && highlyCollaborativeMembers == 0`
@@ -191,35 +204,45 @@ All rules follow a consistent pattern:
   - Category: Behavior
   - Resource Tag: FewCollaborativeMotions
 
-**Intelligence Value**: Identifies parties that operate in isolation, which may indicate ideological extremism, coalition inflexibility, or opposition strategy.
+**Intelligence Value**: Identifies parties that operate in isolation. Thresholds reflect Swedish political reality where collaboration rates range 0.8-2.9%, far lower than international assumptions of 10-15%.
+
+**Data Distribution**: Min: 0.80%, P25: 1.60%, Median: 1.85%, P75: 2.40%, Max: 2.90%
 
 ---
 
 ### 9. PartyLowEffectiveness.drl
 **Purpose**: Party-level effectiveness tracking combining win rates and productivity.
 
-**Rules**:
-- **Low annual win rate - below 40%** (MINOR, salience 10)
-  - Condition: `partyWonPercentage < 40 && >= 30`
+**Rules** (Calibrated based on actual party performance data):
+- **Low annual win rate - below 45%** (MINOR, salience 10)
+  - Condition: `partyWonPercentage < 45 && >= 35`
   - Category: Behavior
   - Resource Tag: LowWinRate
+  - **Threshold Justification**: P25 = 38.68%. Marks bottom quartile performance, distinguishing opposition parties from marginalized ones.
 
-- **Very low annual win rate - below 30%** (MAJOR, salience 50)
-  - Condition: `partyWonPercentage < 30 && >= 20`
+- **Very low annual win rate - below 35%** (MAJOR, salience 50)
+  - Condition: `partyWonPercentage < 35 && >= 25`
   - Category: Behavior
   - Resource Tag: VeryLowWinRate
+  - **Threshold Justification**: Captures consistently low performers (V: 31.33%, MP: 31.29%). Below typical opposition range.
 
-- **Critically low annual win rate - below 20%** (CRITICAL, salience 100)
-  - Condition: `partyWonPercentage < 20`
+- **Critically low annual win rate - below 25%** (CRITICAL, salience 100)
+  - Condition: `partyWonPercentage < 25`
   - Category: Behavior
   - Resource Tag: CriticallyLowWinRate
+  - **Threshold Justification**: P10 = 28.88%. Marks extreme marginalization, below even weak opposition parties.
 
-- **Low document productivity** (MINOR, salience 10)
-  - Condition: `currentlyActiveMembers > 0 && avgDocumentsLastYear < 5 && > 0`
+- **Low document productivity - below 18 docs per member** (MINOR, salience 10)
+  - Condition: `currentlyActiveMembers > 0 && avgDocumentsLastYear < 18 && > 0`
   - Category: Behavior
   - Resource Tag: LowDocumentProductivity
+  - **Threshold Justification**: P25 = 17.58 docs/member. Captures L (13.62), SD (15.12), KD (17.58) who are notably less productive.
 
-**Intelligence Value**: Measures party-level political effectiveness and legislative productivity, indicating whether a party has meaningful influence or is marginalized.
+**Intelligence Value**: Measures party-level political effectiveness and legislative productivity. Thresholds distinguish government coalition parties (70-86% win rates) from opposition (45-55%) and marginalized parties (<35%).
+
+**Data Distribution**:
+- Win Rates: P25: 38.68%, Median: 59.42%, P75: 82.48%
+- Productivity: Min: 13.62, P25: 17.58, Median: 25.71, P75: 37.24, Max: 57.19 docs/member
 
 ---
 
