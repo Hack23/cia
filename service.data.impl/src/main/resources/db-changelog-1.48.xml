@@ -82,6 +82,7 @@
         to achieve target 20/60/20 distribution for better risk differentiation.
         
         Risk calculation logic remains unchanged - only classification thresholds adjusted.
+        Note: Using &lt; entity for XML compatibility in comments.
     </comment>
     
     <dropView viewName="view_politician_risk_summary" ifExists="true"/>

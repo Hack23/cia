@@ -10,20 +10,7 @@
 
 SELECT 
     'CURRENT_THRESHOLDS' AS analysis_type,
-    'OLD: CRITICAL>=70, HIGH>=50, MEDIUM>=30, LOW<30' AS threshold_config,
-    '' AS risk_level,
-    0 AS politician_count,
-    0.0 AS percentage,
-    0.0 AS min_score,
-    0.0 AS max_score,
-    0.0 AS avg_score
-WHERE FALSE
-
-UNION ALL
-
-SELECT 
-    'CURRENT_THRESHOLDS',
-    'Based on v1.32-v1.47 thresholds',
+    'Based on v1.32-v1.47 thresholds' AS threshold_config,
     CASE
         WHEN risk_score >= 70 THEN 'CRITICAL'
         WHEN risk_score >= 50 THEN 'HIGH'
@@ -37,24 +24,10 @@ SELECT
     ROUND(AVG(risk_score)::NUMERIC, 2) AS avg_score
 FROM view_politician_risk_summary
 GROUP BY risk_level
-ORDER BY MIN(risk_score) DESC
 
 -- ============================================================================
 -- 2. New Distribution (NEW THRESHOLDS: 65/45/25)
 -- ============================================================================
-
-UNION ALL
-
-SELECT 
-    'NEW_THRESHOLDS' AS analysis_type,
-    'NEW: CRITICAL>=65, HIGH>=45, MEDIUM>=25, LOW<25' AS threshold_config,
-    '' AS risk_level,
-    0 AS politician_count,
-    0.0 AS percentage,
-    0.0 AS min_score,
-    0.0 AS max_score,
-    0.0 AS avg_score
-WHERE FALSE
 
 UNION ALL
 
@@ -74,7 +47,16 @@ SELECT
     ROUND(AVG(risk_score)::NUMERIC, 2) AS avg_score
 FROM view_politician_risk_summary
 GROUP BY risk_level
-ORDER BY MIN(risk_score) DESC;
+
+ORDER BY 
+    analysis_type,
+    CASE risk_level
+        WHEN 'CRITICAL' THEN 1
+        WHEN 'HIGH' THEN 2
+        WHEN 'MEDIUM' THEN 3
+        WHEN 'LOW' THEN 4
+        ELSE 5
+    END;
 
 -- ============================================================================
 -- 3. Distribution Comparison Summary
