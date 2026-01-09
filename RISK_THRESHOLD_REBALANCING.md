@@ -53,7 +53,7 @@ Most politicians cluster in 30-48 range, making original 30-50 MEDIUM threshold 
 
 ### 1. Database Schema Changes
 
-**File**: `service.data.impl/src/main/resources/db-changelog-1.48.xml` (310 lines)
+**File**: `service.data.impl/src/main/resources/db-changelog-1.48.xml` (243 lines)
 
 - Recreated `view_politician_risk_summary` with new thresholds
 - Risk calculation formula **unchanged** (only classification thresholds adjusted)
@@ -81,7 +81,7 @@ Added comprehensive **Risk Score Threshold Analysis** section covering:
 
 ### 3. Validation Tools
 
-**File**: `service.data.impl/src/main/resources/validate-risk-threshold-rebalancing.sql` (303 lines)
+**File**: `service.data.impl/src/main/resources/validate-risk-threshold-rebalancing.sql` (285 lines)
 
 Comprehensive SQL validation query providing:
 1. Current distribution analysis (OLD thresholds)
@@ -160,7 +160,7 @@ risk_score = (violations × 2, max 40) +
 
 **View**: `view_politician_risk_summary`
 
-**Changed Section** (lines 170-176 in v1.48):
+**Changed Section** (lines 198-203 in v1.48):
 ```sql
 CASE
     WHEN calculated_risk_score >= 65 THEN 'CRITICAL'  -- was 70
@@ -170,7 +170,7 @@ CASE
 END AS risk_level
 ```
 
-**Updated Risk Assessments** (lines 178-206 in v1.48):
+**Updated Risk Assessments** (lines 206-228 in v1.48):
 - Aligned assessment messages with new threshold values
 - Added more granular assessment criteria
 - Maintained intelligence analysis quality
@@ -233,12 +233,12 @@ DROP VIEW IF EXISTS view_politician_risk_summary;
 
 ## Files Modified
 
-1. `service.data.impl/src/main/resources/db-changelog-1.48.xml` (NEW - 310 lines)
+1. `service.data.impl/src/main/resources/db-changelog-1.48.xml` (NEW - 243 lines)
 2. `service.data.impl/src/main/resources/db-changelog.xml` (MODIFIED - added include)
 3. `DROOLS_RISK_RULES.md` (MODIFIED - added 120+ line threshold analysis section)
-4. `service.data.impl/src/main/resources/validate-risk-threshold-rebalancing.sql` (NEW - 303 lines)
+4. `service.data.impl/src/main/resources/validate-risk-threshold-rebalancing.sql` (NEW - 285 lines)
 
-**Total Lines Added**: ~733 lines (code + documentation)
+**Total Lines Added**: ~648 lines (code + documentation)
 
 ## References
 
