@@ -152,19 +152,19 @@ All rules follow a consistent pattern:
   - Condition: `dailySummary.partyPercentageAbsent >= 17`
   - Category: Behavior
   - Resource Tag: HighDailyAbsenteeism
-  - **Threshold Justification**: P90 = 15.99%, Mean = 14.87%. Set at 17% to capture outlier daily spikes above typical 14-16% range.
+  - **Threshold Justification**: Above maximum observed (16.01%). Set at 17% to capture outlier daily spikes above typical 14-16% range.
 
-- **High monthly absenteeism - 16%+ monthly** (MAJOR, salience 50)
-  - Condition: `monthlySummary.partyPercentageAbsent >= 16`
+- **High monthly absenteeism - 16.5%+ monthly** (MAJOR, salience 50)
+  - Condition: `monthlySummary.partyPercentageAbsent >= 16.5`
   - Category: Behavior
   - Resource Tag: HighMonthlyAbsenteeism
-  - **Threshold Justification**: Near maximum observed (16.01%). Captures sustained high absence.
+  - **Threshold Justification**: Above P90/P75 (15.99%). Captures sustained high absence over a month.
 
 - **Chronic absenteeism - 16%+ annually** (CRITICAL, salience 100)
   - Condition: `annualSummary.partyPercentageAbsent >= 16`
   - Category: Behavior
   - Resource Tag: ChronicAbsenteeism
-  - **Threshold Justification**: P75 = 15.99%. Marks consistently worse attendance than typical 14-15%.
+  - **Threshold Justification**: Near maximum observed (16.01%). Marks consistently worse attendance than typical 14-15% across full year.
 
 **Intelligence Value**: Tracks party-wide attendance patterns that may indicate organizational problems, coalition stress, or strategic abstention campaigns. Thresholds calibrated to Swedish parliamentary behavior where all parties show 12-16% absence rates.
 

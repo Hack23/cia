@@ -18,7 +18,8 @@ rule "Party with combined low effectiveness and high absence"
             party.activeParliament && 
             party.party != "-" && 
             annualSummary != null &&
-            annualSummary.partyWonPercentage < 25 &&
+            annualSummary.partyWonPercentage >= 25 &&
+            annualSummary.partyWonPercentage < 30 &&
             annualSummary.partyPercentageAbsent >= 16
         )
     then
@@ -53,7 +54,7 @@ rule "Party with triple risk - low effectiveness, high absence, low productivity
             party.currentlyActiveMembers > 0 &&
             annualSummary.partyWonPercentage < 30 &&
             annualSummary.partyPercentageAbsent >= 16 &&
-            party.avgDocumentsLastYear < 15
+            party.avgDocumentsLastYear < 18
         )
     then
     	$p.addViolation( Status.CRITICAL, "PartyCombinedRisk","Behavior", kcontext.getRule().getName(),"TripleRiskProfile");

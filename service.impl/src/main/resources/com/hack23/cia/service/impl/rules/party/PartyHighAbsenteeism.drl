@@ -19,11 +19,11 @@ rule "Party with consistently high absenteeism - 16% or more annually"
     	$p.addViolation( Status.CRITICAL, "PartyHighAbsenteeism","Behavior", kcontext.getRule().getName(),"ChronicAbsenteeism");
 end
 
-rule "Party with high monthly absenteeism - 16% or more"
+rule "Party with high monthly absenteeism - 16.5% or more"
 	dialect "java"
 	salience 50
     when
-        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && monthlySummary != null && monthlySummary.partyPercentageAbsent >= 16)
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && monthlySummary != null && monthlySummary.partyPercentageAbsent >= 16.5)
     then
     	$p.addViolation( Status.MAJOR, "PartyHighAbsenteeism","Behavior", kcontext.getRule().getName(),"HighMonthlyAbsenteeism");
 end
