@@ -448,6 +448,91 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 		}
 	}
 
+	/**
+	 * Test no multi-party collaboration - CRITICAL level (multiPartyMotions == 0).
+	 * Validates threshold based on empirical data showing 83.2% have 0 multi-party motions.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testPoliticianNoMultiPartyMotions() throws Exception {
+		setAuthenticatedAnonymousUser();
+		
+		final KieSession kieSession = kieContainer.newKieSession();
+		
+		try {
+			final ViewRiksdagenPolitician politician = createTestPolitician();
+			politician.setActiveParliament(true);
+			politician.setTotalDocuments(25L);  // Above 20 threshold
+			politician.setMultiPartyMotions(0L);  // Zero multi-party motions
+			
+			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
+				politician, null, null, null);
+			
+			kieSession.insert(check);
+			final int firedRules = kieSession.fireAllRules();
+			
+			assertTrue("At least one rule should fire", firedRules > 0);
+			
+			final List<RuleViolation> violations = check.getRuleViolations();
+			assertFalse("Should have violations", violations.isEmpty());
+			
+			boolean foundNoMultiParty = false;
+			for (final RuleViolation violation : violations) {
+				if ("PoliticianIsolatedBehavior".equals(violation.getRuleName()) 
+					&& "NoMultiPartyCollaboration".equals(violation.getPositive())) {
+					assertEquals("Should be CRITICAL status for 0 multi-party motions", 
+						Status.CRITICAL, violation.getStatus());
+					foundNoMultiParty = true;
+				}
+			}
+			
+			assertTrue("Should find NoMultiPartyCollaboration violation", foundNoMultiParty);
+		} finally {
+			kieSession.dispose();
+		}
+	}
+
+	/**
+	 * Test multi-party motions edge case - should NOT trigger CRITICAL with less than 20 documents.
+	 * Documents threshold prevents false positives for new politicians.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testPoliticianNoMultiPartyMotionsBelowDocumentThreshold() throws Exception {
+		setAuthenticatedAnonymousUser();
+		
+		final KieSession kieSession = kieContainer.newKieSession();
+		
+		try {
+			final ViewRiksdagenPolitician politician = createTestPolitician();
+			politician.setActiveParliament(true);
+			politician.setTotalDocuments(15L);  // Below 20 threshold
+			politician.setMultiPartyMotions(0L);  // Zero multi-party motions
+			
+			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
+				politician, null, null, null);
+			
+			kieSession.insert(check);
+			kieSession.fireAllRules();
+			
+			final List<RuleViolation> violations = check.getRuleViolations();
+			
+			boolean foundNoMultiParty = false;
+			for (final RuleViolation violation : violations) {
+				if ("PoliticianIsolatedBehavior".equals(violation.getRuleName()) 
+					&& "NoMultiPartyCollaboration".equals(violation.getPositive())) {
+					foundNoMultiParty = true;
+				}
+			}
+			
+			assertFalse("Should NOT find NoMultiPartyCollaboration violation with <20 documents", foundNoMultiParty);
+		} finally {
+			kieSession.dispose();
+		}
+	}
+
 
 	// Helper methods
 

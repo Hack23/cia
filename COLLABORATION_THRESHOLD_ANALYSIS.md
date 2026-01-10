@@ -4,7 +4,7 @@
 
 This document presents the empirical analysis of collaboration thresholds used in Drools risk rules for politician and party behavior. The analysis validates current thresholds against actual Swedish Parliament (Riksdagen) collaboration data.
 
-**Key Finding**: Current thresholds are **TOO LENIENT** - they fail to identify truly isolated behavior because cross-party collaboration is extremely rare in the Swedish Parliament.
+**Key Finding**: Previous thresholds were **TOO LENIENT** - they failed to identify truly isolated behavior because cross-party collaboration is extremely rare in the Swedish Parliament.
 
 ## 📊 Data Source
 
