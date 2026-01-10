@@ -43,3 +43,4 @@ json-export-specs/__pycache__/
 # Generated validation reports
 json-export-specs/FIELD_COMPLETENESS_REPORT.md
 *.bak
+create_view.sql
