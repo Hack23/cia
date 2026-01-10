@@ -62,22 +62,28 @@ Politician document productivity thresholds have been validated against actual d
 **Purpose**: Identifies politicians who avoid cross-party collaboration.
 
 **Rules**:
-- **Low collaboration - below 20%** (MINOR, salience 10)
-  - Condition: `totalDocuments > 10 && collaborationPercentage < 20 && >= 10`
+- **Extremely low collaboration - below 1%** (MINOR, salience 10)
+  - Condition: `totalDocuments > 10 && collaborationPercentage < 1.0 && > 0`
   - Category: Behavior
-  - Resource Tag: LowCollaboration
+  - Resource Tag: ExtremelyLowCollaboration
+  - **Threshold Validation**: P90 = 1.3%, captures bottom 10% of truly isolated politicians
 
-- **Very low collaboration - below 10%** (MAJOR, salience 50)
-  - Condition: `totalDocuments > 10 && collaborationPercentage < 10 && > 0`
+- **Zero collaboration** (MAJOR, salience 50)
+  - Condition: `totalDocuments > 10 && collaborationPercentage == 0`
   - Category: Behavior
-  - Resource Tag: VeryLowCollaboration
+  - Resource Tag: ZeroCollaboration
+  - **Empirical Data**: 84.4% of active politicians have 0% collaboration
+  - **Threshold Rationale**: Lowered from >20 to >10 to eliminate coverage gap and align with extremely low collaboration rule
 
 - **No multi-party collaboration** (CRITICAL, salience 100)
   - Condition: `totalDocuments > 20 && multiPartyMotions == 0`
   - Category: Behavior
   - Resource Tag: NoMultiPartyCollaboration
+  - **Empirical Data**: 83.2% of politicians with >20 docs have 0 multi-party motions
 
-**Intelligence Value**: Tracks partisan behavior and identifies politicians who operate in isolation from other parties, which may indicate ideological rigidity or poor coalition-building skills.
+**Intelligence Value**: Tracks partisan behavior and identifies politicians who operate in isolation from other parties. Swedish Parliament is highly partisan (median collaboration = 0%), so thresholds calibrated to capture genuinely isolated behavior in this context.
+
+**Threshold Validation**: See [COLLABORATION_THRESHOLD_ANALYSIS.md](COLLABORATION_THRESHOLD_ANALYSIS.md) for full empirical analysis. Previous thresholds (<10%, <20%) flagged 99.2%+ of politicians and were meaningless.
 
 ---
 
@@ -287,38 +293,43 @@ Politician document productivity thresholds have been validated against actual d
 ### 8. PartyLowCollaboration.drl
 **Purpose**: Tracks parties that avoid cross-party collaboration.
 
-**Rules** (Calibrated based on actual collaboration patterns):
+**Rules** (Validated with empirical data):
 - **Low average collaboration - below 1.6%** (MINOR, salience 10)
   - Condition: `avgCollaborationPercentage < 1.6 && >= 1.0`
   - Category: Behavior
   - Resource Tag: LowCrossPartyEngagement
-  - **Threshold Justification**: P25 = 1.60%. Marks bottom quartile of cross-party engagement.
+  - **Threshold Validation**: Median = 1.65%, Mean = 1.68%. Captures lower quartile parties.
+  - **Empirical Data**: 0/8 active parties currently fall in this range
 
 - **Very low average collaboration - below 1.0%** (MAJOR, salience 50)
   - Condition: `avgCollaborationPercentage < 1.0 && >= 0.5`
   - Category: Behavior
   - Resource Tag: VeryLowCrossPartyEngagement
-  - **Threshold Justification**: Near minimum observed (S at 0.80%). Indicates notable isolation.
+  - **Threshold Validation**: 1/8 parties (S at 0.8%) flagged appropriately
+  - **Structural Context**: May reflect opposition status or ideological position
 
 - **Minimal collaboration - below 0.5%** (CRITICAL, salience 100)
-  - Condition: `avgCollaborationPercentage < 0.5 && > 0`
+  - Condition: `avgCollaborationPercentage < 0.5 && >= 0`
   - Category: Behavior
   - Resource Tag: MinimalCrossPartyEngagement
-  - **Threshold Justification**: Extreme isolation, below all observed parties.
-
-- **No highly collaborative members** (CRITICAL, salience 100)
-  - Condition: `currentlyActiveMembers > 5 && highlyCollaborativeMembers == 0`
-  - Category: Behavior
-  - Resource Tag: NoCollaborativeMembers
+  - **Threshold Validation**: 1/8 parties (SD at 0.0%) - extreme isolation indicator
+  - **Intelligence Value**: Identifies complete absence of cross-party engagement
 
 - **Low collaborative motions ratio** (MINOR, salience 10)
   - Condition: `totalDocuments > 50 && totalCollaborativeMotions < (totalDocuments * 0.05)`
   - Category: Behavior
   - Resource Tag: FewCollaborativeMotions
+  - **Threshold Validation**: 5% captures low-collaboration parties (S: 1.6%, V: 2.8%, SD: 0%)
+  - **Empirical Data**: Most parties 5-7% (C: 7.2%, L: 5.3%, KD: 5.4%)
 
-**Intelligence Value**: Identifies parties that operate in isolation. Thresholds reflect Swedish political reality where collaboration rates range 0.8-2.9%, far lower than international assumptions of 10-15%.
+**Removed Rule**: "No highly collaborative members" (highlyCollaborativeMembers == 0) removed because ALL parties have 0 in empirical data. In highly partisan environment (median politician collaboration = 0%), this metric cannot differentiate.
 
-**Data Distribution**: Min: 0.80%, P25: 1.60%, Median: 1.85%, P75: 2.40%, Max: 2.90%
+**Intelligence Value**: Identifies parties that operate in isolation. Thresholds reflect Swedish political reality where party collaboration averages 0-3%, far lower than international baselines (10-15%). Current thresholds (0.5%, 1.0%, 1.6%) are empirically validated and working correctly.
+
+**Threshold Validation**: See [COLLABORATION_THRESHOLD_ANALYSIS.md](COLLABORATION_THRESHOLD_ANALYSIS.md) for full analysis showing:
+- Party thresholds (0.5-1.6%) correctly identify 2/8 parties as low-collaboration
+- 6/8 parties (75%) exceed 1.6% threshold and pass normally
+- Thresholds distinguish structural differences (opposition vs government, ideological isolation)
 
 ---
 
