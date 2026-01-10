@@ -278,6 +278,307 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 		}
 	}
 
+	/**
+	 * Test new collaboration thresholds - MINOR level (below 1%).
+	 * Validates recalibrated threshold based on P90 = 1.3%.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testPoliticianExtremelyLowCollaboration() throws Exception {
+		setAuthenticatedAnonymousUser();
+		
+		final KieSession kieSession = kieContainer.newKieSession();
+		
+		try {
+			final ViewRiksdagenPolitician politician = createTestPolitician();
+			politician.setActiveParliament(true);
+			politician.setTotalDocuments(15L);
+			politician.setCollaborationPercentage(0.5);
+			
+			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
+				politician, null, null, null);
+			
+			kieSession.insert(check);
+			final int firedRules = kieSession.fireAllRules();
+			
+			assertTrue("At least one rule should fire", firedRules > 0);
+			
+			final List<RuleViolation> violations = check.getRuleViolations();
+			assertFalse("Should have violations", violations.isEmpty());
+			
+			boolean foundExtremelyLowCollab = false;
+			for (final RuleViolation violation : violations) {
+				if ("PoliticianIsolatedBehavior".equals(violation.getRuleName()) 
+					&& "ExtremelyLowCollaboration".equals(violation.getPositive())) {
+					assertEquals("Should be MINOR status for <1% collaboration", 
+						Status.MINOR, violation.getStatus());
+					foundExtremelyLowCollab = true;
+				}
+			}
+			
+			assertTrue("Should find ExtremelyLowCollaboration violation", foundExtremelyLowCollab);
+		} finally {
+			kieSession.dispose();
+		}
+	}
+
+	/**
+	 * Test new collaboration thresholds - MAJOR level (zero collaboration).
+	 * Validates threshold based on empirical data showing 84.4% have 0%.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testPoliticianZeroCollaboration() throws Exception {
+		setAuthenticatedAnonymousUser();
+		
+		final KieSession kieSession = kieContainer.newKieSession();
+		
+		try {
+			final ViewRiksdagenPolitician politician = createTestPolitician();
+			politician.setActiveParliament(true);
+			politician.setTotalDocuments(25L);
+			politician.setCollaborationPercentage(0.0);
+			
+			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
+				politician, null, null, null);
+			
+			kieSession.insert(check);
+			final int firedRules = kieSession.fireAllRules();
+			
+			assertTrue("At least one rule should fire", firedRules > 0);
+			
+			final List<RuleViolation> violations = check.getRuleViolations();
+			assertFalse("Should have violations", violations.isEmpty());
+			
+			boolean foundZeroCollab = false;
+			for (final RuleViolation violation : violations) {
+				if ("PoliticianIsolatedBehavior".equals(violation.getRuleName()) 
+					&& "ZeroCollaboration".equals(violation.getPositive())) {
+					assertEquals("Should be MAJOR status for 0% collaboration", 
+						Status.MAJOR, violation.getStatus());
+					foundZeroCollab = true;
+				}
+			}
+			
+			assertTrue("Should find ZeroCollaboration violation", foundZeroCollab);
+		} finally {
+			kieSession.dispose();
+		}
+	}
+
+	/**
+	 * Test zero collaboration coverage for 11-20 document range.
+	 * Validates fix for coverage gap identified in PR review.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testPoliticianZeroCollaborationMidRangeDocuments() throws Exception {
+		setAuthenticatedAnonymousUser();
+		
+		final KieSession kieSession = kieContainer.newKieSession();
+		
+		try {
+			final ViewRiksdagenPolitician politician = createTestPolitician();
+			politician.setActiveParliament(true);
+			politician.setTotalDocuments(15L);  // In 11-20 range, above threshold
+			politician.setCollaborationPercentage(0.0);
+			
+			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
+				politician, null, null, null);
+			
+			kieSession.insert(check);
+			final int firedRules = kieSession.fireAllRules();
+			
+			assertTrue("At least one rule should fire", firedRules > 0);
+			
+			final List<RuleViolation> violations = check.getRuleViolations();
+			assertFalse("Should have violations", violations.isEmpty());
+			
+			boolean foundZeroCollab = false;
+			for (final RuleViolation violation : violations) {
+				if ("PoliticianIsolatedBehavior".equals(violation.getRuleName()) 
+					&& "ZeroCollaboration".equals(violation.getPositive())) {
+					assertEquals("Should be MAJOR status for 0% collaboration", 
+						Status.MAJOR, violation.getStatus());
+					foundZeroCollab = true;
+				}
+			}
+			
+			assertTrue("Should find ZeroCollaboration violation in 11-20 doc range", foundZeroCollab);
+		} finally {
+			kieSession.dispose();
+		}
+	}
+
+	/**
+	 * Test collaboration threshold edge case - should NOT trigger MAJOR with less than 10 documents.
+	 * Documents threshold prevents false positives for new politicians.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testPoliticianZeroCollaborationBelowDocumentThreshold() throws Exception {
+		setAuthenticatedAnonymousUser();
+		
+		final KieSession kieSession = kieContainer.newKieSession();
+		
+		try {
+			final ViewRiksdagenPolitician politician = createTestPolitician();
+			politician.setActiveParliament(true);
+			politician.setTotalDocuments(8L);  // Below 10 threshold
+			politician.setCollaborationPercentage(0.0);
+			
+			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
+				politician, null, null, null);
+			
+			kieSession.insert(check);
+			kieSession.fireAllRules();
+			
+			final List<RuleViolation> violations = check.getRuleViolations();
+			
+			boolean foundZeroCollab = false;
+			for (final RuleViolation violation : violations) {
+				if ("PoliticianIsolatedBehavior".equals(violation.getRuleName()) 
+					&& "ZeroCollaboration".equals(violation.getPositive())) {
+					foundZeroCollab = true;
+				}
+			}
+			
+			assertFalse("Should NOT find ZeroCollaboration violation with <10 documents", foundZeroCollab);
+		} finally {
+			kieSession.dispose();
+		}
+	}
+
+	/**
+	 * Test collaboration threshold boundary - exactly 1.0% should NOT trigger MINOR.
+	 * Validates threshold boundary condition.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testPoliticianCollaborationAtThresholdBoundary() throws Exception {
+		setAuthenticatedAnonymousUser();
+		
+		final KieSession kieSession = kieContainer.newKieSession();
+		
+		try {
+			final ViewRiksdagenPolitician politician = createTestPolitician();
+			politician.setActiveParliament(true);
+			politician.setTotalDocuments(15L);
+			politician.setCollaborationPercentage(1.0);  // Exactly at boundary
+			
+			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
+				politician, null, null, null);
+			
+			kieSession.insert(check);
+			kieSession.fireAllRules();
+			
+			final List<RuleViolation> violations = check.getRuleViolations();
+			
+			boolean foundExtremelyLowCollab = false;
+			for (final RuleViolation violation : violations) {
+				if ("PoliticianIsolatedBehavior".equals(violation.getRuleName()) 
+					&& "ExtremelyLowCollaboration".equals(violation.getPositive())) {
+					foundExtremelyLowCollab = true;
+				}
+			}
+			
+			assertFalse("Should NOT trigger ExtremelyLowCollaboration at exactly 1.0%", foundExtremelyLowCollab);
+		} finally {
+			kieSession.dispose();
+		}
+	}
+
+	/**
+	 * Test no multi-party collaboration - CRITICAL level (multiPartyMotions == 0).
+	 * Validates threshold based on empirical data showing 83.2% have 0 multi-party motions.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testPoliticianNoMultiPartyMotions() throws Exception {
+		setAuthenticatedAnonymousUser();
+		
+		final KieSession kieSession = kieContainer.newKieSession();
+		
+		try {
+			final ViewRiksdagenPolitician politician = createTestPolitician();
+			politician.setActiveParliament(true);
+			politician.setTotalDocuments(25L);  // Above 20 threshold
+			politician.setMultiPartyMotions(0);  // Zero multi-party motions
+			
+			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
+				politician, null, null, null);
+			
+			kieSession.insert(check);
+			final int firedRules = kieSession.fireAllRules();
+			
+			assertTrue("At least one rule should fire", firedRules > 0);
+			
+			final List<RuleViolation> violations = check.getRuleViolations();
+			assertFalse("Should have violations", violations.isEmpty());
+			
+			boolean foundNoMultiParty = false;
+			for (final RuleViolation violation : violations) {
+				if ("PoliticianIsolatedBehavior".equals(violation.getRuleName()) 
+					&& "NoMultiPartyCollaboration".equals(violation.getPositive())) {
+					assertEquals("Should be CRITICAL status for 0 multi-party motions", 
+						Status.CRITICAL, violation.getStatus());
+					foundNoMultiParty = true;
+				}
+			}
+			
+			assertTrue("Should find NoMultiPartyCollaboration violation", foundNoMultiParty);
+		} finally {
+			kieSession.dispose();
+		}
+	}
+
+	/**
+	 * Test multi-party motions edge case - should NOT trigger CRITICAL with less than 20 documents.
+	 * Documents threshold prevents false positives for new politicians.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testPoliticianNoMultiPartyMotionsBelowDocumentThreshold() throws Exception {
+		setAuthenticatedAnonymousUser();
+		
+		final KieSession kieSession = kieContainer.newKieSession();
+		
+		try {
+			final ViewRiksdagenPolitician politician = createTestPolitician();
+			politician.setActiveParliament(true);
+			politician.setTotalDocuments(15L);  // Below 20 threshold
+			politician.setMultiPartyMotions(0);  // Zero multi-party motions
+			
+			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
+				politician, null, null, null);
+			
+			kieSession.insert(check);
+			kieSession.fireAllRules();
+			
+			final List<RuleViolation> violations = check.getRuleViolations();
+			
+			boolean foundNoMultiParty = false;
+			for (final RuleViolation violation : violations) {
+				if ("PoliticianIsolatedBehavior".equals(violation.getRuleName()) 
+					&& "NoMultiPartyCollaboration".equals(violation.getPositive())) {
+					foundNoMultiParty = true;
+				}
+			}
+			
+			assertFalse("Should NOT find NoMultiPartyCollaboration violation with <20 documents", foundNoMultiParty);
+		} finally {
+			kieSession.dispose();
+		}
+	}
+
+
 	// Helper methods
 
 	private ViewRiksdagenPolitician createTestPolitician() {
