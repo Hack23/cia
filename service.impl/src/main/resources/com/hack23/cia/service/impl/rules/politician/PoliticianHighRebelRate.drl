@@ -48,7 +48,7 @@ rule "Politician with high rebel rate - 1.0-2.0% annually"
     	$p.addViolation( Status.MAJOR, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"HighRebelVoting");
 end
 
-rule "Politician with very high rebel rate - 2.0%+ annually"
+rule "Politician with very high rebel rate - 2.0-5.0% annually"
 	dialect "java"
 	salience 100
     when
