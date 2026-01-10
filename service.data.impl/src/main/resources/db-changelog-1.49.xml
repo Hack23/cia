@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Rebalance Risk Score Thresholds in view_risk_score_evolution v1.49
+  Author: Political Analyst & Intelligence Operative
+  Date: 2026-01-10
+  GitHub Issue: Optimize Combined Risk Score Weighting - Salience-Based Aggregation Analysis
+  
+  This changelog updates view_risk_score_evolution to use consistent thresholds with
+  view_politician_risk_summary (updated in v1.48). The view tracks risk score evolution
+  over time and should use the same threshold classifications for consistency.
+  
+  Background:
+  - v1.48 updated view_politician_risk_summary thresholds: 70→65, 50→45, 30→25
+  - view_risk_score_evolution was not included in v1.48 scope
+  - Inconsistent thresholds across views can cause confusion in risk assessment
+  
+  Changes Made:
+  - Risk severity classification thresholds adjusted to match v1.48
+  - Severity transition thresholds adjusted to match v1.48
+  - Risk assessment messages updated to align with new thresholds
+  - NO changes to risk calculation formula (unchanged from v1.47)
+  - NO changes to data sources or filters
+  
+  New thresholds (aligned with v1.48):
+  - CRITICAL: ≥65 (down from ≥70)
+  - HIGH: ≥45 (down from ≥50)
+  - MEDIUM/MODERATE: ≥25 (down from ≥30)
+  - LOW: <25 (down from <30)
+  
+  Expected Outcome:
+  - Consistent risk categorization across all risk views
+  - Improved historical trend analysis with proper threshold alignment
+  - Better risk evolution tracking with updated transition thresholds
+-->
+
+<!-- ========================================================================= -->
+<!-- 1. UPDATE: view_risk_score_evolution - Adjust Thresholds Only            -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="rebalance-thresholds-risk-score-evolution-1.49-001" failOnError="true">
+    <comment>
+        Rebalance view_risk_score_evolution thresholds to match v1.48 changes
+        
+        Changes:
+        - CRITICAL: ≥65 (down from ≥70)
+        - HIGH: ≥45 (down from ≥50) 
+        - MODERATE: ≥25 (down from ≥30)
+        - LOW: &lt;25 (down from &lt;30)
+        
+        Risk calculation formula unchanged from v1.47.
+        Data sources and filters unchanged.
+        
+        This ensures consistent threshold classification between:
+        - view_politician_risk_summary (updated in v1.48)
+        - view_risk_score_evolution (updated in v1.49)
+    </comment>
+    
+    <sql>DROP VIEW IF EXISTS view_risk_score_evolution CASCADE;</sql>
+    
+    <createView viewName="view_risk_score_evolution">
+        <![CDATA[
+WITH politician_votes_with_rebel AS (
+    SELECT
+        vd.embedded_id_intressent_id,
+        vd.embedded_id_ballot_id,
+        vd.vote,
+        vd.vote_date,
+        vd.party,
+        CASE
+            WHEN vd.vote != vd.party AND vd.vote IN ('Ja', 'Nej') THEN true
+            ELSE false
+        END AS is_rebel
+    FROM vote_data vd
+    WHERE vd.vote_date >= CURRENT_DATE - INTERVAL '3 years'
+),
+politician_document_data AS (
+    SELECT
+        dpr.person_reference_id,
+        dd.made_public_date,
+        dd.id
+    FROM document_status_container dsc
+    LEFT JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    LEFT JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+        AND dpr.person_reference_id IS NOT NULL
+),
+monthly_risk_base AS (
+    SELECT
+        p.id AS person_id,
+        p.first_name,
+        p.last_name,
+        p.party,
+        DATE_TRUNC('month', pvr.vote_date) AS assessment_period,
+        
+        ROUND(COUNT(*) FILTER (WHERE pvr.vote = 'Frånvarande')::NUMERIC / 
+              NULLIF(COUNT(*), 0)::NUMERIC * 100, 2) AS absence_rate,
+        ROUND(COUNT(*) FILTER (WHERE pvr.is_rebel = true)::NUMERIC / 
+              NULLIF(COUNT(*) FILTER (WHERE pvr.vote IN ('Ja', 'Nej')), 0)::NUMERIC * 100, 2) AS rebel_rate,
+        COUNT(*) AS ballot_count,
+        COUNT(DISTINCT vpd.id) AS document_count
+        
+    FROM person_data p
+    LEFT JOIN politician_votes_with_rebel pvr 
+        ON pvr.embedded_id_intressent_id = p.id
+    LEFT JOIN politician_document_data vpd 
+        ON vpd.person_reference_id = p.id
+        AND vpd.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+        AND DATE_TRUNC('month', vpd.made_public_date) = DATE_TRUNC('month', pvr.vote_date)
+    
+    WHERE p.status IN ('Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare')
+    
+    GROUP BY p.id, p.first_name, p.last_name, p.party, DATE_TRUNC('month', pvr.vote_date)
+),
+monthly_violations AS (
+    SELECT
+        reference_id AS person_id,
+        DATE_TRUNC('month', detected_date) AS assessment_period,
+        COUNT(*) AS violation_count,
+        COUNT(DISTINCT rule_group) AS violation_categories,
+        STRING_AGG(DISTINCT rule_group, ', ' ORDER BY rule_group) AS violation_types
+    FROM rule_violation
+    WHERE resource_type = 'POLITICIAN'
+        AND status IN ('MINOR', 'MAJOR', 'CRITICAL')
+        AND detected_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY reference_id, DATE_TRUNC('month', detected_date)
+),
+risk_calculations AS (
+    SELECT
+        mrb.person_id,
+        mrb.first_name,
+        mrb.last_name,
+        mrb.party,
+        mrb.assessment_period,
+        mrb.absence_rate,
+        mrb.rebel_rate,
+        mrb.ballot_count,
+        mrb.document_count,
+        
+        COALESCE(mv.violation_count, 0) AS violation_count,
+        COALESCE(mv.violation_categories, 0) AS violation_categories,
+        COALESCE(mv.violation_types, '') AS violation_types,
+        
+        -- UNCHANGED v1.47 formula
+        ROUND(
+            LEAST(COALESCE(mv.violation_count, 0) * 2, 40) +
+            (COALESCE(mrb.absence_rate, 0) * 30 / 100.0) +
+            (COALESCE(mrb.rebel_rate, 0) * 20 / 100.0) +
+            (CASE WHEN mrb.document_count < 5 THEN 10 ELSE 0 END),
+        2) AS calculated_risk_score,
+        
+        LAG(ROUND(
+            LEAST(COALESCE(mv.violation_count, 0) * 2, 40) +
+            (COALESCE(mrb.absence_rate, 0) * 30 / 100.0) +
+            (COALESCE(mrb.rebel_rate, 0) * 20 / 100.0) +
+            (CASE WHEN mrb.document_count < 5 THEN 10 ELSE 0 END),
+        2), 1) OVER (PARTITION BY mrb.person_id ORDER BY mrb.assessment_period) AS prev_risk_score
+        
+    FROM monthly_risk_base mrb
+    LEFT JOIN monthly_violations mv 
+        ON mrb.person_id = mv.person_id 
+        AND mrb.assessment_period = mv.assessment_period
+    
+    WHERE mrb.ballot_count >= 5
+        AND mrb.assessment_period IS NOT NULL
+)
+SELECT
+    person_id,
+    first_name,
+    last_name,
+    party,
+    assessment_period,
+    (assessment_period + INTERVAL '1 month' - INTERVAL '1 day')::DATE AS assessment_period_end,
+    absence_rate,
+    rebel_rate,
+    ballot_count,
+    document_count,
+    violation_count,
+    violation_categories,
+    violation_types,
+    calculated_risk_score AS risk_score,
+    prev_risk_score,
+    ROUND(calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score), 2) AS risk_score_change,
+    
+    -- Risk trend classification (unchanged)
+    CASE
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 10 THEN 'SIGNIFICANT_INCREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 5 THEN 'MODERATE_INCREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) > 0 THEN 'SLIGHT_INCREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) <= -10 THEN 'SIGNIFICANT_DECREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) <= -5 THEN 'MODERATE_DECREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) < 0 THEN 'SLIGHT_DECREASE'
+        ELSE 'STABLE'
+    END AS risk_trend,
+    
+    -- NEW THRESHOLDS (updated from 70/50/30 to 65/45/25)
+    CASE
+        WHEN calculated_risk_score >= 65 THEN 'CRITICAL'
+        WHEN calculated_risk_score >= 45 THEN 'HIGH'
+        WHEN calculated_risk_score >= 25 THEN 'MODERATE'
+        WHEN calculated_risk_score >= 15 THEN 'LOW'
+        ELSE 'MINIMAL'
+    END AS risk_severity,
+    
+    -- NEW THRESHOLDS in severity transitions (updated from 70/50/30 to 65/45/25)
+    CASE
+        WHEN COALESCE(prev_risk_score, 0) > 0 THEN
+            CASE
+                WHEN prev_risk_score < 25 AND calculated_risk_score >= 25 THEN 'ESCALATION_TO_MODERATE'
+                WHEN prev_risk_score < 45 AND calculated_risk_score >= 45 THEN 'ESCALATION_TO_HIGH'
+                WHEN prev_risk_score < 65 AND calculated_risk_score >= 65 THEN 'ESCALATION_TO_CRITICAL'
+                WHEN prev_risk_score >= 65 AND calculated_risk_score < 65 THEN 'DEESCALATION_FROM_CRITICAL'
+                WHEN prev_risk_score >= 45 AND calculated_risk_score < 45 THEN 'DEESCALATION_FROM_HIGH'
+                WHEN prev_risk_score >= 25 AND calculated_risk_score < 25 THEN 'DEESCALATION_FROM_MODERATE'
+                ELSE 'NO_SEVERITY_TRANSITION'
+            END
+        ELSE 'INITIAL_ASSESSMENT'
+    END AS severity_transition,
+    
+    -- Updated assessment messages with new thresholds (65/45/25)
+    CASE
+        WHEN calculated_risk_score >= 65 THEN 'CRITICAL: Immediate attention required'
+        WHEN calculated_risk_score >= 45 AND (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 5 
+            THEN 'HIGH RISK: Escalating trend detected'
+        WHEN calculated_risk_score >= 45 THEN 'HIGH RISK: Monitor closely'
+        WHEN calculated_risk_score >= 25 AND (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 10 
+            THEN 'MODERATE RISK: Rapid escalation warning'
+        WHEN calculated_risk_score >= 25 THEN 'MODERATE RISK: Standard monitoring'
+        WHEN prev_risk_score >= 45 AND calculated_risk_score < 25 THEN 'IMPROVING: Effective risk mitigation'
+        ELSE 'LOW RISK: Normal operations'
+    END AS risk_assessment
+
+FROM risk_calculations
+ORDER BY person_id, assessment_period DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_risk_score_evolution"/>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
