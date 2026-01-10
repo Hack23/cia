@@ -21,7 +21,7 @@ end
 
 rule "We have a lazy politician, absent more than 18 % of ballots last month"
 	dialect "java"
-	salience 50
+	salience 45
     when
         $p : PoliticianComplianceCheckImpl( politician.activeParliament && monthlySummary != null && monthlySummary.politicianPercentageAbsent >= 18)
     then
@@ -30,7 +30,7 @@ end
 
 rule "We have a politician with above-median annual absence - 12-17%"
 	dialect "java"
-	salience 20
+	salience 15
     when
         $p : PoliticianComplianceCheckImpl( politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 12 && annualSummary.politicianPercentageAbsent < 17)
     then
@@ -39,7 +39,7 @@ end
 
 rule "We have a politician with concerning annual absence - 17-25%"
 	dialect "java"
-	salience 50
+	salience 55
     when
         $p : PoliticianComplianceCheckImpl( politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 17 && annualSummary.politicianPercentageAbsent < 25)
     then
