@@ -10,27 +10,42 @@ rule "Ministry with low document productivity last year"
 	dialect "java"
 	salience 10
     when
-        // Threshold: 10 docs/year represents minimal ministry output
-        $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear < 10 && ministry.documentsLastYear > 0)
+        // Threshold: < 20 docs/year represents P25-P50 range (P25=8, Median=20)
+        // Statistical basis: Captures ~45-55% of active ministries between bottom quartile and median
+        $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear >= 10 && ministry.documentsLastYear < 20)
     then
     	$p.addViolation( Status.MINOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"LowDocumentOutput");
 end
 
-rule "Ministry with no documents last year"
+rule "Ministry with very low document productivity last year"
 	dialect "java"
 	salience 50
     when
+        // Threshold: < 10 docs/year represents extreme low productivity (below P25=8)
+        // Statistical basis: Captures ~27% of active ministries in bottom quartile
+        $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear > 0 && ministry.documentsLastYear < 10)
+    then
+    	$p.addViolation( Status.MAJOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"VeryLowDocumentOutput");
+end
+
+rule "Ministry with no documents last year"
+	dialect "java"
+	salience 100
+    when
+        // Complete inactivity indicates structural dysfunction
         $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear == 0)
     then
-    	$p.addViolation( Status.MAJOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"NoDocumentOutput");
+    	$p.addViolation( Status.CRITICAL, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"NoDocumentOutput");
 end
 
 rule "Ministry with very low average documents per member"
 	dialect "java"
-	salience 100
+	salience 125
     when
-        // Threshold: Less than 3 docs per member indicates systematically low productivity
-        $p : MinistryComplianceCheckImpl(ministry.active && ministry.currentMemberSize > 0 && ministry.avgDocumentsPerMember < 3)
+        // Threshold: < 8 docs per member/year represents below P25 (P25=8.0, Median=10.0)
+        // Statistical basis: Captures ~45% of active ministries with systematically low per-member productivity
+        // Adjusted from < 3 (captured 0%) to < 8 (P25-based threshold)
+        $p : MinistryComplianceCheckImpl(ministry.active && ministry.currentMemberSize > 0 && ministry.avgDocumentsPerMember < 8)
     then
     	$p.addViolation( Status.CRITICAL, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"ChronicallyLowProductivity");
 end
