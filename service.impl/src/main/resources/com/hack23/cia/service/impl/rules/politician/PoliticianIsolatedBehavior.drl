@@ -25,7 +25,8 @@ rule "Politician with zero collaboration"
         // Threshold validated: 84.4% of active politicians have 0% collaboration
         // This reflects highly partisan Swedish Parliament, but still warrants flagging
         // Distinguishes complete isolation from minimal cross-party engagement
-        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDocuments > 20 && politician.collaborationPercentage == 0)
+        // Document threshold lowered to >10 to match extremely low collaboration rule
+        $p : PoliticianComplianceCheckImpl(politician.active && politician.totalDocuments > 10 && politician.collaborationPercentage == 0)
     then
     	$p.addViolation( Status.MAJOR, "PoliticianIsolatedBehavior","Behavior", kcontext.getRule().getName(),"ZeroCollaboration");
 end

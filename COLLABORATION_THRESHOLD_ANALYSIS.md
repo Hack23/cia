@@ -73,7 +73,7 @@ CRITICAL (salience 100): totalDocuments > 20 && multiPartyMotions == 0
 | **SD** | 65 | 0.00% | 100% | 0.0-0.0% |
 | **V** | 24 | 0.05% | 96% | 0.0-1.1% |
 
-### 🚨 Critical Issues with Current Thresholds
+### 🚨 Critical Issues with Previous Thresholds
 
 1. **20% threshold is meaningless**: No politician exceeds it - **100% flagged**
 2. **10% threshold is meaningless**: 99.2% of politicians are below it - **nearly universal**
@@ -89,7 +89,7 @@ CRITICAL (salience 100): totalDocuments > 20 && multiPartyMotions == 0
 ```drools
 MINOR (salience 10): avgCollaborationPercentage < 1.6 && >= 1.0
 MAJOR (salience 50): avgCollaborationPercentage < 1.0 && >= 0.5
-CRITICAL (salience 100): avgCollaborationPercentage < 0.5 && > 0
+CRITICAL (salience 100): avgCollaborationPercentage < 0.5 && >= 0
 CRITICAL (salience 100): currentlyActiveMembers > 5 && highlyCollaborativeMembers == 0  [REMOVED IN THIS PR]
 MINOR (salience 10): totalDocuments > 50 && totalCollaborativeMotions < (totalDocuments * 0.05)
 ```
@@ -126,7 +126,7 @@ MINOR (salience 10): totalDocuments > 50 && totalCollaborativeMotions < (totalDo
 | **C** | OK | 2.4% | 25 | 0 | 7.2% |
 | **L** | OK | 2.4% | 21 | 0 | 5.3% |
 
-### 🚨 Critical Issues with Current Party Rules
+### 🚨 Critical Issues with Previous Party Rules
 
 1. **highlyCollaborativeMembers == 0 for ALL parties**: Rule will flag every active party with >5 members
 2. **5% collaborative motion ratio**: Most parties fall in 2-7% range, threshold is borderline
@@ -136,7 +136,7 @@ MINOR (salience 10): totalDocuments > 50 && totalCollaborativeMotions < (totalDo
 
 ## 🔍 Root Cause Analysis
 
-### Why Are Current Thresholds Failing?
+### Why Were Previous Thresholds Failing?
 
 1. **Assumption Error**: Rules were designed assuming normal cross-party collaboration (10-20%)
 2. **Partisan Reality**: Swedish Parliament is highly partisan - median collaboration is **0.0%**
@@ -184,7 +184,7 @@ rule "Politician with zero collaboration"
     when
         $p : PoliticianComplianceCheckImpl(
             politician.active && 
-            politician.totalDocuments > 20 && 
+            politician.totalDocuments > 10 && 
             politician.collaborationPercentage == 0
         )
     then
@@ -318,8 +318,8 @@ end
 
 ### Before Changes
 
-| Level | Current Behavior | Issue |
-|-------|------------------|-------|
+| Level | Previous Behavior | Issue |
+|-------|-------------------|-------|
 | Politician | 99.2% flagged (<10%) | Too many false positives |
 | Politician | 100% flagged (<20%) | Threshold meaningless |
 | Party | 100% flagged (highlyCollaborativeMembers==0) | Broken rule |
@@ -353,7 +353,7 @@ end
 4. **multiPartyMotions == 0 is appropriate**: Keep as CRITICAL indicator
 5. **Context matters**: Future work should add government vs opposition awareness
 
-**Bottom Line**: Swedish Parliament is highly partisan. Current rules assume normal collaboration levels that don't exist. Thresholds must be recalibrated to Swedish political reality.
+**Bottom Line**: Swedish Parliament is highly partisan. Previous rules assumed normal collaboration levels that don't exist. Thresholds must be recalibrated to Swedish political reality.
 
 ---
 

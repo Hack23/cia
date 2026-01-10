@@ -369,8 +369,53 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 	}
 
 	/**
-	 * Test collaboration threshold edge case - should NOT trigger MAJOR with less than 20 documents.
-	 * Documents threshold prevents false positives.
+	 * Test zero collaboration coverage for 11-20 document range.
+	 * Validates fix for coverage gap identified in PR review.
+	 *
+	 * @throws Exception the exception
+	 */
+	@Test
+	public void testPoliticianZeroCollaborationMidRangeDocuments() throws Exception {
+		setAuthenticatedAnonymousUser();
+		
+		final KieSession kieSession = kieContainer.newKieSession();
+		
+		try {
+			final ViewRiksdagenPolitician politician = createTestPolitician();
+			politician.setActiveParliament(true);
+			politician.setTotalDocuments(15L);  // In 11-20 range, above threshold
+			politician.setCollaborationPercentage(0.0);
+			
+			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
+				politician, null, null, null);
+			
+			kieSession.insert(check);
+			final int firedRules = kieSession.fireAllRules();
+			
+			assertTrue("At least one rule should fire", firedRules > 0);
+			
+			final List<RuleViolation> violations = check.getRuleViolations();
+			assertFalse("Should have violations", violations.isEmpty());
+			
+			boolean foundZeroCollab = false;
+			for (final RuleViolation violation : violations) {
+				if ("PoliticianIsolatedBehavior".equals(violation.getRuleName()) 
+					&& "ZeroCollaboration".equals(violation.getPositive())) {
+					assertEquals("Should be MAJOR status for 0% collaboration", 
+						Status.MAJOR, violation.getStatus());
+					foundZeroCollab = true;
+				}
+			}
+			
+			assertTrue("Should find ZeroCollaboration violation in 11-20 doc range", foundZeroCollab);
+		} finally {
+			kieSession.dispose();
+		}
+	}
+
+	/**
+	 * Test collaboration threshold edge case - should NOT trigger MAJOR with less than 10 documents.
+	 * Documents threshold prevents false positives for new politicians.
 	 *
 	 * @throws Exception the exception
 	 */
@@ -383,7 +428,7 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 		try {
 			final ViewRiksdagenPolitician politician = createTestPolitician();
 			politician.setActiveParliament(true);
-			politician.setTotalDocuments(15L);  // Below 20 threshold
+			politician.setTotalDocuments(8L);  // Below 10 threshold
 			politician.setCollaborationPercentage(0.0);
 			
 			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
@@ -402,7 +447,7 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 				}
 			}
 			
-			assertFalse("Should NOT find ZeroCollaboration violation with <20 documents", foundZeroCollab);
+			assertFalse("Should NOT find ZeroCollaboration violation with <10 documents", foundZeroCollab);
 		} finally {
 			kieSession.dispose();
 		}

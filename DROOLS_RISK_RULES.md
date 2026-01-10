@@ -69,10 +69,11 @@ Politician document productivity thresholds have been validated against actual d
   - **Threshold Validation**: P90 = 1.3%, captures bottom 10% of truly isolated politicians
 
 - **Zero collaboration** (MAJOR, salience 50)
-  - Condition: `totalDocuments > 20 && collaborationPercentage == 0`
+  - Condition: `totalDocuments > 10 && collaborationPercentage == 0`
   - Category: Behavior
   - Resource Tag: ZeroCollaboration
   - **Empirical Data**: 84.4% of active politicians have 0% collaboration
+  - **Threshold Rationale**: Lowered from >20 to >10 to eliminate coverage gap and align with extremely low collaboration rule
 
 - **No multi-party collaboration** (CRITICAL, salience 100)
   - Condition: `totalDocuments > 20 && multiPartyMotions == 0`
