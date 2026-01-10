@@ -52,7 +52,7 @@
 
 **Low-Level Thresholds (Detect Reality):**
 - 0.5-1.0%: Captures ~P95-P99 range (top 1-5%, noteworthy internal debate)
-- 1.0-2.0%: Captures ~P99-Max range (top 1% outliers, significant discipline breakdown)
+- 1.0-2.0%: Captures ~P99 and slightly beyond (top 1% threshold, significant discipline breakdown)
 - 2.0-5.0%: Captures extreme outliers beyond P99 (serious party conflict)
 
 **High-Level Thresholds (Aspirational Safeguards):**
