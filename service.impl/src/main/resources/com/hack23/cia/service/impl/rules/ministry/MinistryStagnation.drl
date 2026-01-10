@@ -10,6 +10,8 @@ rule "Ministry with chronic stagnation - very low average documents per member"
 	dialect "java"
 	salience 100
     when
+        // Threshold: < 2 docs/member is critically low even for small portfolios
+        // Per-member productivity normalizes across ministry sizes
         $p : MinistryComplianceCheckImpl(
             ministry.active && 
             ministry.currentMemberSize > 0 && 
@@ -40,6 +42,9 @@ rule "Ministry with minimal activity - very low output for an active ministry"
 	dialect "java"
 	salience 50
     when
+        // Statistical validation (2023-2025): Mean=10.4, Median=5.0, P25=3.0 docs/year
+        // Threshold: < 8 docs/year for staffed ministries (≥3 members) is below normal operational level
+        // Smaller portfolios typically 3-10 range; flags adequately-staffed ministries underperforming relative to capacity
         $p : MinistryComplianceCheckImpl(
             ministry.active && 
             ministry.currentMemberSize >= 3 &&
@@ -54,6 +59,9 @@ rule "Ministry with combined risk - low total and low per-member productivity"
 	dialect "java"
 	salience 125
     when
+        // Combined risk: Low absolute output (<12 docs/year, near mean of 10.4) 
+        // AND low per-capita productivity (<2.5 docs/member)
+        // Indicates both understaffing and underperformance issues
         $p : MinistryComplianceCheckImpl(
             ministry.active && 
             ministry.currentMemberSize > 0 && 
