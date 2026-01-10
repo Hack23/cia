@@ -294,7 +294,7 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 			final ViewRiksdagenPolitician politician = createTestPolitician();
 			politician.setActiveParliament(true);
 			politician.setTotalDocuments(15L);
-			politician.setCollaborationPercentage(new BigDecimal("0.5"));
+			politician.setCollaborationPercentage(0.5);
 			
 			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
 				politician, null, null, null);
@@ -339,7 +339,7 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 			final ViewRiksdagenPolitician politician = createTestPolitician();
 			politician.setActiveParliament(true);
 			politician.setTotalDocuments(25L);
-			politician.setCollaborationPercentage(new BigDecimal("0.0"));
+			politician.setCollaborationPercentage(0.0);
 			
 			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
 				politician, null, null, null);
@@ -384,7 +384,7 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 			final ViewRiksdagenPolitician politician = createTestPolitician();
 			politician.setActiveParliament(true);
 			politician.setTotalDocuments(15L);  // Below 20 threshold
-			politician.setCollaborationPercentage(new BigDecimal("0.0"));
+			politician.setCollaborationPercentage(0.0);
 			
 			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
 				politician, null, null, null);
@@ -424,7 +424,7 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 			final ViewRiksdagenPolitician politician = createTestPolitician();
 			politician.setActiveParliament(true);
 			politician.setTotalDocuments(15L);
-			politician.setCollaborationPercentage(new BigDecimal("1.0"));  // Exactly at boundary
+			politician.setCollaborationPercentage(1.0);  // Exactly at boundary
 			
 			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
 				politician, null, null, null);
@@ -464,7 +464,7 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 			final ViewRiksdagenPolitician politician = createTestPolitician();
 			politician.setActiveParliament(true);
 			politician.setTotalDocuments(25L);  // Above 20 threshold
-			politician.setMultiPartyMotions(0L);  // Zero multi-party motions
+			politician.setMultiPartyMotions(0);  // Zero multi-party motions
 			
 			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
 				politician, null, null, null);
@@ -509,7 +509,7 @@ public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIn
 			final ViewRiksdagenPolitician politician = createTestPolitician();
 			politician.setActiveParliament(true);
 			politician.setTotalDocuments(15L);  // Below 20 threshold
-			politician.setMultiPartyMotions(0L);  // Zero multi-party motions
+			politician.setMultiPartyMotions(0);  // Zero multi-party motions
 			
 			final PoliticianComplianceCheckImpl check = new PoliticianComplianceCheckImpl(
 				politician, null, null, null);
