@@ -49,6 +49,7 @@ end
 rule "Politician with high abstention rate - over 9% annually"
 	dialect "java"
 	salience 10
+    // Uses > instead of >= to avoid overlap with PoliticianAbstentionPattern.drl which handles exactly 9% with higher salience
     when
         $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbstain > 9)
     then

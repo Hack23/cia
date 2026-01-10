@@ -28,7 +28,7 @@ rule "We have a lazy politician, absent more than 18 % of ballots last month"
     	$p.addViolation( Status.MAJOR, "PoliticianLazy","Behavior", kcontext.getRule().getName(),"NA");
 end
 
-rule "We have a politician with above-median annual absence - 12-17%"
+rule "We have a lazy politician, absent 12-17% of ballots last year"
 	dialect "java"
 	salience 15
     when
@@ -37,7 +37,7 @@ rule "We have a politician with above-median annual absence - 12-17%"
     	$p.addViolation( Status.MINOR, "PoliticianLazy","Behavior", kcontext.getRule().getName(),"ModerateAbsenteeism");
 end
 
-rule "We have a politician with concerning annual absence - 17-25%"
+rule "We have a lazy politician, absent 17-25% of ballots last year"
 	dialect "java"
 	salience 55
     when

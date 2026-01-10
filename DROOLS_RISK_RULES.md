@@ -157,7 +157,7 @@ All rules follow a consistent pattern:
   - Daily binary absence detection
   
 - **Absent ≥18% last month** (MAJOR, salience 45)
-  - Monthly threshold adjusted from 20% to 18%
+  - Monthly threshold adjusted from 20% to ≥18%
   
 - **Moderate annual absence: 12-17%** (MINOR, salience 15)
   - Condition: `politicianPercentageAbsent >= 12 && < 17`
