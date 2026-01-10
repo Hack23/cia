@@ -137,41 +137,132 @@ Politician document productivity thresholds have been validated against actual d
 **Purpose**: Comprehensive voting participation tracking combining multiple risk factors.
 
 **Rules**:
-- **High abstention rate - over 10% annually** (MINOR, salience 10)
-  - Condition: `politicianPercentageAbstain > 10`
+- **Moderate combined risk** (MINOR, salience 20)
+  - Condition: `politicianPercentageAbsent >= 12 && < 17 && wonPercentage < 35`
   - Category: Behavior
-  - Resource Tag: HighAbstentionRate
+  - Resource Tag: ModerateParticipationRisk
+  - Statistical Basis: ~P50 absence (actual P50=12.5%, rounded to 12%) + below-P25 effectiveness (35%)
 
 - **Combined low participation** (MAJOR, salience 50)
-  - Condition: `politicianPercentageAbsent >= 15 && wonPercentage < 30`
+  - Condition: `politicianPercentageAbsent >= 17 && < 25 && wonPercentage < 30`
   - Category: Behavior
   - Resource Tag: LowParticipationAndEffectiveness
+  - Statistical Basis: Above-average absence (17%) + low effectiveness
 
-- **Extreme combined risk** (CRITICAL, salience 100)
-  - Condition: `politicianPercentageAbsent >= 25 && wonPercentage < 20`
+- **High combined risk** (MAJOR, salience 75)
+  - Condition: `politicianPercentageAbsent >= 25 && < 55 && wonPercentage < 25`
+  - Category: Behavior
+  - Resource Tag: HighCombinedRisk
+  - Statistical Basis: ~P75 absence (actual P75=24.6%, rounded to 25%) + below-P10 effectiveness
+
+- **Extreme combined risk** (CRITICAL, salience 105)
+  - Condition: `politicianPercentageAbsent >= 55 && wonPercentage < 20`
   - Category: Behavior
   - Resource Tag: ExtremeLowParticipationAndEffectiveness
+  - Statistical Basis: ~P90 absence (actual P90=54.5%, rounded to 55%) + very low effectiveness
+
+- **High abstention rate** (MINOR, salience 10)
+  - Condition: `politicianPercentageAbstain > 9`
+  - Category: Behavior
+  - Resource Tag: HighAbstentionRate
+  - Statistical Basis: ~P75 abstention (actual P75=9.1%, operationalized as 9% threshold)
 
 **Intelligence Value**: Identifies compounded risks where politicians are both absent frequently and ineffective when present, indicating serious accountability concerns.
 
+**Statistical Justification** (Based on 500-politician sample analysis):
+- Absence Rate Distribution: Mean=19.8%, Median=12.5%, P75=24.6%, P90=54.5%
+- Won Percentage Distribution: Mean=55.9%, Median=52.4%, P25=35.5%, P10=21.5%
+- Thresholds align with behavioral clustering: STANDARD_BEHAVIOR (~14% absence), MODERATE_RISK (~16% absence)
+
 ---
 
-### 6. PoliticianLazy.drl (Enhanced)
-**Purpose**: Detects excessive absenteeism from parliamentary votes.
+### 6. PoliticianLazy.drl (Enhanced with Statistical Thresholds)
+**Purpose**: Detects excessive absenteeism from parliamentary votes with finer-grained risk levels.
 
 **Enhanced Rules**:
 - **Absent 100% last day** (MINOR, salience 10)
-- **Absent >20% last month** (MAJOR, salience 50)
-- **Absent 20-30% last year** (CRITICAL, salience 100)
-- **Absent >30% last year** (CRITICAL, salience 150, ExtremeAbsenteeism)
+  - Daily binary absence detection
+  
+- **Absent ≥18% last month** (MAJOR, salience 45)
+  - Monthly threshold adjusted from 20% to ≥18%
+  
+- **Moderate annual absence: 12-17%** (MINOR, salience 15)
+  - Condition: `politicianPercentageAbsent >= 12 && < 17`
+  - Resource Tag: ModerateAbsenteeism
+  - Statistical Basis: ~P50-P60 range (actual P50=12.5%, rounded to 12%), captures 14-16% behavioral clustering
 
-**Enhancement**: Added granular distinction for extreme absenteeism (>30%).
+- **Concerning annual absence: 17-25%** (MAJOR, salience 55)
+  - Condition: `politicianPercentageAbsent >= 17 && < 25`
+  - Resource Tag: ConcerningAbsenteeism
+  - Statistical Basis: P60-P75 range
+  
+- **High annual absence: 25-55%** (CRITICAL, salience 100)
+  - Condition: `politicianPercentageAbsent >= 25 && < 55`
+  - Resource Tag: HighAbsenteeism
+  - Statistical Basis: ~P75-P90 range (actual P75=24.6%, P90=54.5%, rounded to 25% and 55%)
+  
+- **Extreme annual absence: ≥55%** (CRITICAL, salience 150)
+  - Condition: `politicianPercentageAbsent >= 55`
+  - Resource Tag: ExtremeAbsenteeism
+  - Statistical Basis: P90+ (top 10% most absent)
+
+**Enhancement Rationale**: 
+- Previous thresholds (20%, 30%) were too coarse to capture the 14-16% absence clustering observed across risk categories
+- New thresholds align with statistical percentiles from 500-politician sample analysis, with intentional rounding for operational clarity (P50=12.5%→12%, P75=24.6%→25%, P90=54.5%→55%)
+- Captures nuanced differences between STANDARD_BEHAVIOR (14% absence) and MODERATE_RISK (16% absence) categories
+- Provides progressive risk escalation: 12% → 17% → 25% → 55%
+- Mutually exclusive threshold bands prevent duplicate violations at boundaries
+
+**Statistical Basis**:
+- Sample Size: 500 active politicians (>50 votes)
+- Absence Distribution: P25=5.6%, P50=12.5%, P75=24.6%, P90=54.5%
+- Behavioral Clustering: STANDARD=14.1%, MODERATE=16.0%
+- Monthly threshold (18%) derived from proportional scaling of annual P50
+
+---
+
+### 7. PoliticianAbstentionPattern.drl (Enhanced with Statistical Thresholds)
+**Purpose**: Detects strategic and excessive abstention patterns in parliamentary voting.
+
+**Enhanced Rules**:
+- **Concerning abstention pattern: 6-9%** (MAJOR, salience 50)
+  - Condition: `politicianPercentageAbstain >= 6 && < 9`
+  - Resource Tag: FrequentAbstention
+  - Statistical Basis: Above typical range, approaching P75 (actual P75=9.1%, operationalized as 9%)
+
+- **High abstention pattern: 9-13%** (MAJOR, salience 75)
+  - Condition: `politicianPercentageAbstain >= 9 && < 13`
+  - Resource Tag: HighAbstention
+  - Statistical Basis: ~P75-P90 range (actual P75=9.1%, P90=13.2%, operationalized as 9%-13%)
+
+- **Critical abstention pattern: ≥13%** (CRITICAL, salience 100)
+  - Condition: `politicianPercentageAbstain >= 13`
+  - Resource Tag: ExcessiveAbstention
+  - Statistical Basis: ~P90+ (actual P90=13.2%, operationalized as 13% threshold for top 10% most abstaining)
+
+- **Strategic abstention with high presence** (MAJOR, salience 60)
+  - Condition: `politicianPercentageAbstain >= 8 && politicianPercentageAbsent < 10 && totalVotes > 50`
+  - Resource Tag: StrategicAbstentionPresent
+  - Detects politicians who attend but deliberately abstain
+
+- **Indecisive behavior** (MAJOR, salience 55)
+  - Condition: `politicianPercentageAbstain >= 7 && wonPercentage >= 25 && < 40`
+  - Resource Tag: IndecisiveBehavior
+  - Identifies politicians with moderate effectiveness who frequently abstain
+
+**Intelligence Value**: Abstention can indicate strategic positioning, internal party conflicts, or uncertainty about policy positions. High abstention despite attendance suggests deliberate non-commitment rather than mere absence.
+
+**Statistical Basis**:
+- Sample Size: 500 active politicians (>50 votes)
+- Abstention Distribution: Mean=4.9%, Median=2.3%, P75=9.1%, P90=13.2%, P95=14.5%
+- Previous threshold (10%) was at P83, missing 75-83rd percentile range
+- New thresholds: 6% (above typical), 9% (P75), 13% (P90)
 
 ---
 
 ## Party Risk Rules
 
-### 7. PartyHighAbsenteeism.drl
+### 8. PartyHighAbsenteeism.drl
 **Purpose**: Enhanced party-level absence tracking across multiple timeframes.
 
 **Rules** (Calibrated based on actual party performance data):
