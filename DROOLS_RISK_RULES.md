@@ -451,26 +451,6 @@ Potential areas for expansion:
 
 ---
 
-## Ministry Risk Rules (Added 2025-11-07, Updated 2026-01-10)
-
-### Statistical Validation Summary (2026-01-10)
-Ministry risk thresholds have been validated against actual ministry performance distributions from sample data analysis:
-
-**Documents Per Year Distribution (Active ministries, n=11):**
-- P25 (25th percentile): 8 docs/year
-- P50 (Median): 20 docs/year  
-- P75 (75th percentile): 51 docs/year
-- Mean: 35.0 docs/year
-
-**Documents Per Member (Active ministries):**
-- P25: 8.0 docs/member/year
-- Median: 10.0 docs/member/year
-- Mean: 15.0 docs/member/year
-
-**Key Insight**: Database view `view_riksdagen_goverment` uses:
-- `documentsLastYear`: Annual metric (last 12 months)
-- `avgDocumentsPerMember`: Average documents per member over career
-- `currentMemberSize`: Current staffing level
 ## Ministry Risk Rules (Added 2025-11-07, Updated 2026-01-09)
 
 ### Statistical Validation Summary (2026-01-09)
@@ -518,12 +498,9 @@ Productivity varies significantly by portfolio type and policy mandate:
 ### 10. MinistryLowProductivity.drl
 **Purpose**: Tracks ministry-level legislative and document productivity.
 
-**Rules** (Thresholds validated 2026-01-10):
-- **Low document productivity last year - below 20** (MINOR, salience 10)
-  - Condition: `documentsLastYear >= 10 && documentsLastYear < 20`
-  - Category: Behavior
-  - Resource Tag: LowDocumentOutput
-  - **Statistical Basis**: P25-P50 range (P25=8, Median=20); captures ~45-55% between bottom quartile and median
+### 10. MinistryLowProductivity.drl
+**Purpose**: Tracks ministry-level legislative and document productivity.
+
 **Rules** (Thresholds validated 2026-01-09):
 - **Low document productivity last year - below 10** (MINOR, salience 10)
   - Condition: `documentsLastYear < 10 && > 0`
@@ -531,34 +508,19 @@ Productivity varies significantly by portfolio type and policy mandate:
   - Resource Tag: LowDocumentOutput
   - **Statistical Basis**: Threshold slightly below mean (10.4 docs/year) flags lower-performing ministries. Due to right-skewed distribution, captures roughly bottom 60-65% of ministries. Smaller portfolios typically 3-10 range (normal variation), major policy ministries 37-55 range.
 
-- **Very low document productivity last year - below 10** (MAJOR, salience 50)
-  - Condition: `documentsLastYear > 0 && documentsLastYear < 10`
-  - Category: Behavior
-  - Resource Tag: VeryLowDocumentOutput
-  - **Statistical Basis**: Extreme low productivity below P25 (8 docs/year); captures ~27% in bottom quartile
-
-- **No documents last year** (CRITICAL, salience 100)
+- **No documents last year** (MAJOR, salience 50)
   - Condition: `documentsLastYear == 0`
   - Category: Behavior
   - Resource Tag: NoDocumentOutput
-  - **Statistical Basis**: Complete inactivity indicates structural dysfunction
   - **Statistical Basis**: Complete inactivity regardless of portfolio type
 
-- **Very low average documents per member - below 8** (CRITICAL, salience 125)
-  - Condition: `currentMemberSize > 0 && avgDocumentsPerMember < 8`
+- **Very low average documents per member - below 3** (CRITICAL, salience 100)
+  - Condition: `currentMemberSize > 0 && avgDocumentsPerMember < 3`
   - Category: Behavior
   - Resource Tag: ChronicallyLowProductivity
-  - **Statistical Basis**: Below P25 (8.0 docs/member/year); captures ~45% with systematically low per-member productivity
-
-**Changes from Original:**
-- MINOR threshold increased from < 10 to < 20 (original captured 27.3%, too high)
-- Original MINOR moved to MAJOR (< 10 docs/year now MAJOR instead of MINOR)
-- CRITICAL avgDocumentsPerMember raised from < 3 to < 8 (original captured 0%, too low)
-- Adjusted salience to 125 for per-member rule to take precedence over absolute document count
-- Thresholds now aligned with P25-Median percentiles of actual ministry activity
   - **Statistical Basis**: Per-capita productivity threshold. Normalizes across ministry sizes. Note: Detailed docs/member distribution analysis pending; threshold based on organizational capacity assessment.
 
-**Intelligence Value**: Identifies ministries that are not actively producing legislative documents, indicating potential government ineffectiveness or lack of policy initiative. Updated thresholds properly differentiate low performers from average ministries while avoiding false positives.
+**Intelligence Value**: Identifies ministries that are not actively producing legislative documents, indicating potential government ineffectiveness or lack of policy initiative.
 
 ---
 

@@ -10,9 +10,6 @@ rule "Ministry with low document productivity last year"
 	dialect "java"
 	salience 10
     when
-        // Threshold: < 20 docs/year represents P25-P50 range (P25=8, Median=20)
-        // Statistical basis: Captures ~45-55% of active ministries between bottom quartile and median
-        $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear >= 10 && ministry.documentsLastYear < 20)
         // Statistical validation (2023-2025): Mean=10.4, Median=5.0, P25=3.0 docs/year
         // Threshold: 10 docs/year (slightly below mean=10.4) - flags lower-performing ministries
         // Note: Due to right-skewed distribution, ministries with 5-9 docs/year are above median but below mean
@@ -23,35 +20,20 @@ rule "Ministry with low document productivity last year"
     	$p.addViolation( Status.MINOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"LowDocumentOutput");
 end
 
-rule "Ministry with very low document productivity last year"
+rule "Ministry with no documents last year"
 	dialect "java"
 	salience 50
     when
-        // Threshold: < 10 docs/year represents extreme low productivity (below P25=8)
-        // Statistical basis: Captures ~27% of active ministries in bottom quartile
-        $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear > 0 && ministry.documentsLastYear < 10)
-    then
-    	$p.addViolation( Status.MAJOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"VeryLowDocumentOutput");
-end
-
-rule "Ministry with no documents last year"
-	dialect "java"
-	salience 100
-    when
-        // Complete inactivity indicates structural dysfunction
+        // Complete inactivity regardless of portfolio type
         $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear == 0)
     then
-    	$p.addViolation( Status.CRITICAL, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"NoDocumentOutput");
+    	$p.addViolation( Status.MAJOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"NoDocumentOutput");
 end
 
 rule "Ministry with very low average documents per member"
 	dialect "java"
-	salience 125
+	salience 100
     when
-        // Threshold: < 8 docs per member/year represents below P25 (P25=8.0, Median=10.0)
-        // Statistical basis: Captures ~45% of active ministries with systematically low per-member productivity
-        // Adjusted from < 3 (captured 0%) to < 8 (P25-based threshold)
-        $p : MinistryComplianceCheckImpl(ministry.active && ministry.currentMemberSize > 0 && ministry.avgDocumentsPerMember < 8)
         // Threshold: Less than 3 docs per member indicates systematically low per-capita productivity
         // Normalizes across differently sized ministries for comparable performance assessment
         // Note: currentMemberSize represents tracked political appointees, not full administrative staff
