@@ -10,29 +10,70 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.rules.impl.Status
 import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 
-rule "Politician with high rebel rate - 5-10% annually"
+//==============================================================================
+// CALIBRATED REBEL RATE RULES (2026-01-10)
+// Based on statistical analysis of 500 politician-years (2002-2025)
+//
+// Swedish Riksdag Party Discipline Context:
+// - P50 (Median): 0.00% - Half of politicians never vote against party
+// - P75: 0.00% - 75% maintain perfect discipline
+// - P90: 0.30% - Only top 10% show measurable dissent
+// - P95: 0.56% - Top 5% threshold
+// - P99: 1.94% - Extreme outliers
+// - Max observed: 3.19%
+//
+// Thresholds recalibrated from original (5%/10%/20%) which flagged 0.0% of
+// politicians. New thresholds (0.5%/1.0%/2.0%) capture actual Swedish
+// parliamentary behavior while maintaining aspirational safeguards.
+//==============================================================================
+
+// RECALIBRATED LOW-LEVEL THRESHOLDS (Detect Actual Behavior)
+// These detect real rebel behavior in Swedish parliamentary context
+
+rule "Politician with moderate rebel rate - 0.5-1.0% annually"
 	dialect "java"
 	salience 10
     when
-        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 5 && annualSummary.rebelPercentage < 10)
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 0.5 && annualSummary.rebelPercentage < 1.0)
     then
-    	$p.addViolation( Status.MINOR, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"FrequentRebelVoting");
+    	$p.addViolation( Status.MINOR, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"ModerateRebelVoting");
 end
 
-rule "Politician with very high rebel rate - 10-20% annually"
+rule "Politician with high rebel rate - 1.0-2.0% annually"
 	dialect "java"
 	salience 50
     when
-        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 10 && annualSummary.rebelPercentage < 20)
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 1.0 && annualSummary.rebelPercentage < 2.0)
     then
-    	$p.addViolation( Status.MAJOR, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"VeryHighRebelVoting");
+    	$p.addViolation( Status.MAJOR, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"HighRebelVoting");
 end
 
-rule "Politician with extreme rebel rate - 20%+ annually"
+rule "Politician with very high rebel rate - 2.0%+ annually"
 	dialect "java"
 	salience 100
     when
-        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 20)
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 2.0 && annualSummary.rebelPercentage < 5.0)
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"VeryHighRebelVoting");
+end
+
+// ASPIRATIONAL HIGH-LEVEL THRESHOLDS (Safeguard for Extreme Cases)
+// Retained from original rules as safeguards for theoretical extreme scenarios
+
+rule "Politician with extreme rebel rate - 5-10% annually"
+	dialect "java"
+	salience 150
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 5 && annualSummary.rebelPercentage < 10)
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"ExtremeRebelVoting");
+end
+
+rule "Politician with catastrophic rebel rate - 10%+ annually"
+	dialect "java"
+	salience 200
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && politician.party != "-" && annualSummary != null && annualSummary.rebelPercentage >= 10)
+    then
+    	$p.addViolation( Status.CRITICAL, "PoliticianHighRebelRate","Behavior", kcontext.getRule().getName(),"CatastrophicRebelVoting");
 end

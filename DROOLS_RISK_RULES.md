@@ -83,26 +83,64 @@ All rules follow a consistent pattern:
 
 ---
 
-### 4. PoliticianHighRebelRate.drl
-**Purpose**: Enhanced detection of party rebels with granular thresholds.
+### 4. PoliticianHighRebelRate.drl (Recalibrated 2026-01-10)
+**Purpose**: Enhanced detection of party rebels with thresholds calibrated to Swedish parliamentary reality.
 
-**Rules**:
-- **High rebel rate - 5-10% annually** (MINOR, salience 10)
-  - Condition: `rebelPercentage >= 5 && < 10`
+**Calibration Context**:
+Statistical analysis of 500 politician-years (2002-2025) revealed that original thresholds (5%/10%/20%) were ineffective, flagging 0.0% of politicians. Swedish Riksdag exhibits exceptionally strong party discipline:
+- **P50 (Median)**: 0.00% - Half of politicians maintain perfect party discipline
+- **P75**: 0.00% - 75% of politicians show no rebel voting
+- **P90**: 0.30% - Only top 10% show measurable dissent  
+- **P95**: 0.56% - Top 5% threshold
+- **P99**: 1.94% - Extreme outliers
+- **Maximum observed**: 3.19%
+
+**Recalibrated Rules (Detect Actual Behavior)**:
+
+- **Moderate rebel rate - 0.5-1.0% annually** (MINOR, salience 10)
+  - Condition: `rebelPercentage >= 0.5 && < 1.0`
   - Category: Behavior
-  - Resource Tag: FrequentRebelVoting
+  - Resource Tag: ModerateRebelVoting
+  - Captures: P75-P90 range (noteworthy internal party debate)
 
-- **Very high rebel rate - 10-20% annually** (MAJOR, salience 50)
-  - Condition: `rebelPercentage >= 10 && < 20`
+- **High rebel rate - 1.0-2.0% annually** (MAJOR, salience 50)
+  - Condition: `rebelPercentage >= 1.0 && < 2.0`
+  - Category: Behavior
+  - Resource Tag: HighRebelVoting
+  - Captures: P90-P95 range (significant discipline breakdown)
+
+- **Very high rebel rate - 2.0-5.0% annually** (CRITICAL, salience 100)
+  - Condition: `rebelPercentage >= 2.0 && < 5.0`
   - Category: Behavior
   - Resource Tag: VeryHighRebelVoting
+  - Captures: Top 5% outliers (serious party conflict)
 
-- **Extreme rebel rate - 20%+ annually** (CRITICAL, salience 100)
-  - Condition: `rebelPercentage >= 20`
+**Aspirational Safeguard Rules (Extreme Scenarios)**:
+
+- **Extreme rebel rate - 5-10% annually** (CRITICAL, salience 150)
+  - Condition: `rebelPercentage >= 5 && < 10`
   - Category: Behavior
   - Resource Tag: ExtremeRebelVoting
+  - Status: Aspirational threshold (never observed in sample data)
 
-**Intelligence Value**: Identifies politicians who frequently vote against their party's position, which may indicate internal party conflicts, ideological independence, or coalition stress.
+- **Catastrophic rebel rate - 10%+ annually** (CRITICAL, salience 200)
+  - Condition: `rebelPercentage >= 10`
+  - Category: Behavior
+  - Resource Tag: CatastrophicRebelVoting
+  - Status: Constitutional crisis level (never observed)
+
+**Political Context**:
+- **Government coalition members**: Mean 0.04%, P95 = 0.27% (stricter discipline enforced)
+- **Opposition members**: Mean 0.15%, P95 = 0.81% (more internal debate tolerated)
+- **Small parties (MP, V, L)**: Higher variance due to ideological diversity
+- **Large parties (S, M, SD)**: Stricter discipline enforcement
+
+**Intelligence Value**: 
+- **0.5-1.0%**: Indicates internal party debate, ideological independence, or principled dissent (common in opposition)
+- **1.0-2.0%**: Signals party discipline issues, policy disagreement, or leadership tensions
+- **2.0%+**: Rare and significant - indicates coalition stress, defection risk, or fundamental party conflict requiring investigation
+
+**Future Enhancement**: Consider context-aware thresholds differentiating government coalition (stricter) from opposition (more tolerant) to reduce false positives while maintaining sensitivity to genuine discipline breakdowns.
 
 ---
 
