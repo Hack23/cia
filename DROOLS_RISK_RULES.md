@@ -110,26 +110,66 @@ Politician document productivity thresholds have been validated against actual d
 
 ---
 
-### 4. PoliticianHighRebelRate.drl
-**Purpose**: Enhanced detection of party rebels with granular thresholds.
+### 4. PoliticianHighRebelRate.drl (Recalibrated 2026-01-10)
+**Purpose**: Enhanced detection of party rebels with thresholds calibrated to Swedish parliamentary reality.
 
-**Rules**:
-- **High rebel rate - 5-10% annually** (MINOR, salience 10)
-  - Condition: `rebelPercentage >= 5 && < 10`
+**Calibration Context**:
+Statistical analysis of 500 politician-years (2002-2025) revealed that original thresholds (5%/10%/20%) were ineffective, flagging 0.0% of politicians. Swedish Riksdag exhibits exceptionally strong party discipline:
+- **P50 (Median)**: 0.00% - Half of politicians maintain perfect party discipline
+- **P75**: 0.00% - 75% of politicians show no rebel voting
+- **P90**: 0.30% - Only top 10% show measurable dissent  
+- **P95**: 0.56% - Top 5% threshold
+- **P99**: 1.94% - Extreme outliers
+- **Maximum observed**: 3.19%
+
+**Recalibrated Rules (Detect Actual Behavior)**:
+
+- **Moderate rebel rate - 0.5-1.0% annually** (MINOR, salience 10)
+  - Condition: `rebelPercentage >= 0.5 && < 1.0`
   - Category: Behavior
-  - Resource Tag: FrequentRebelVoting
+  - Resource Tag: ModerateRebelVoting
+  - Captures: ~P95–P98 range (top ~3-5%, noteworthy internal party debate)
 
-- **Very high rebel rate - 10-20% annually** (MAJOR, salience 50)
-  - Condition: `rebelPercentage >= 10 && < 20`
+- **High rebel rate - 1.0-2.0% annually** (MAJOR, salience 50)
+  - Condition: `rebelPercentage >= 1.0 && < 2.0`
+  - Category: Behavior
+  - Resource Tag: HighRebelVoting
+  - Captures: ~P99 and slightly beyond (top 1% threshold, significant discipline breakdown)
+
+- **Very high rebel rate - 2.0-5.0% annually** (CRITICAL, salience 100)
+  - Condition: `rebelPercentage >= 2.0 && < 5.0`
   - Category: Behavior
   - Resource Tag: VeryHighRebelVoting
+  - Captures: Beyond P99 (top 1%, includes observed maximum of 3.19%)
 
-- **Extreme rebel rate - 20%+ annually** (CRITICAL, salience 100)
-  - Condition: `rebelPercentage >= 20`
+**Aspirational Safeguard Rules (Extreme Scenarios)**:
+
+- **Extreme rebel rate - 5-10% annually** (CRITICAL, salience 150)
+  - Condition: `rebelPercentage >= 5 && < 10`
   - Category: Behavior
   - Resource Tag: ExtremeRebelVoting
+  - Status: Aspirational threshold (never observed in sample data)
 
-**Intelligence Value**: Identifies politicians who frequently vote against their party's position, which may indicate internal party conflicts, ideological independence, or coalition stress.
+- **Catastrophic rebel rate - 10%+ annually** (CRITICAL, salience 200)
+  - Condition: `rebelPercentage >= 10`
+  - Category: Behavior
+  - Resource Tag: CatastrophicRebelVoting
+  - Status: Constitutional crisis level (never observed)
+
+**Political Context**:
+- **Government coalition members**: Mean 0.04%, P95 = 0.27% (stricter discipline enforced)
+- **Opposition members**: Mean 0.15%, P95 = 0.81% (more internal debate tolerated)
+- **Small parties (MP, V, L)**: Higher variance due to ideological diversity
+- **Large parties (S, M, SD)**: Stricter discipline enforcement
+
+**Intelligence Value**: 
+- **0.5-1.0%**: Indicates internal party debate, ideological independence, or principled dissent (common in opposition)
+- **1.0-2.0%**: Signals party discipline issues, policy disagreement, or leadership tensions
+- **2.0%+**: Rare and significant - indicates coalition stress, defection risk, or fundamental party conflict requiring investigation
+
+**Future Enhancement**: Consider context-aware thresholds differentiating government coalition (stricter) from opposition (more tolerant) to reduce false positives while maintaining sensitivity to genuine discipline breakdowns.
+
+**Note on Related Rules**: Other Drools rules referencing rebelPercentage (PoliticianCombinedRisk.drl with 12%/15% thresholds, PoliticianDecliningEngagement.drl with 8% threshold, PoliticianPartyRebel.drl with 1% threshold) should be reviewed and potentially recalibrated based on these statistical findings. The current thresholds in those rules (5-15%) would rarely trigger given Swedish parliamentary discipline patterns where P99=1.94%.
 
 ---
 
