@@ -944,6 +944,12 @@ risk_score = (violations × 2, max 40) +
 
 **Note:** Only the classification thresholds changed in v1.48, not the calculation formula.
 
+**Key Insight - 2026-01-10 Analysis:** All violations currently count equally (2 points each) regardless of severity (MINOR/MAJOR/CRITICAL). This means:
+- MINOR violation (salience 10) = 2 points
+- MAJOR violation (salience 50) = 2 points  
+- CRITICAL violation (salience 100) = 2 points
+- **Salience affects rule firing ORDER, not scoring weight**
+
 ### Threshold Evolution
 
 #### Previous Thresholds (v1.32 - v1.47)
@@ -969,7 +975,7 @@ risk_score = (violations × 2, max 40) +
 | MEDIUM | ≥25 | 50-60% (200-240) | 4-7 violations or moderate concerns |
 | LOW | <25 | 25-35% (100-140) | 0-3 violations, standard performance |
 
-### Threshold Adjustment Rationale
+### Threshold Adjustment Rationale (v1.48 - 2026-01-10 Update)
 
 **Statistical Analysis:**
 
@@ -990,6 +996,12 @@ risk_score = (violations × 2, max 40) +
    - **MEDIUM threshold lowered to 25**: Redistributes mid-range (25-44) more evenly
    - **LOW category expanded**: Politicians with 10-24 points show minimal risk indicators
    - **CRITICAL threshold lowered to 65**: Aligns with extreme cases (rare but possible)
+
+4. **Sample Data Quality Issues** (2026-01-10 Discovery):
+   - Analysis revealed 88.5% of sample data has 0% absence and 100% rebel rate
+   - This is test/sample data artifact, not production reality
+   - Production data expected: absence 5-25%, rebel 0-2%
+   - **Validation with production data required before final threshold confirmation**
 
 ### Validation Metrics
 
@@ -1019,8 +1031,30 @@ Risk thresholds should be reviewed periodically (quarterly) to ensure:
 - Thresholds align with political context changes
 - No drift toward over/under-classification
 
+### Future Enhancement Considerations (2026-01-10 Analysis)
+
+**Weighted Violation Scoring** - Potential future enhancement:
+
+Current system treats all violations equally (2 points each). Alternative weighted approach could differentiate by severity:
+
+| Severity | Current Weight | Proposed Weight | Rationale |
+|----------|---------------|-----------------|-----------|
+| MINOR | 2 points | 1 point | Reduces over-penalization of minor issues |
+| MAJOR | 2 points | 3 points | Maintains moderate penalty |
+| CRITICAL | 2 points | 5 points | Emphasizes serious violations |
+
+**Implementation Status**: DEFERRED pending production data validation. Current equal weighting may be sufficient when combined with realistic absence/rebel data.
+
+**Recommendation**: Monitor distribution for 1 quarter after threshold rebalancing, then reassess need for weighted scoring.
+
 **Changelog:**
 - **v1.48 (2026-01-09)**: Rebalanced thresholds ONLY to address 82.5% MEDIUM overclustering
   - Risk calculation formula unchanged from v1.47
   - CRITICAL: 70→65, HIGH: 50→45, MEDIUM: 30→25, LOW: <30→<25
   - Data sources and filters unchanged from v1.47
+- **v1.48.1 (2026-01-10)**: Applied threshold changes to full_schema.sql
+  - Updated view_politician_risk_summary thresholds
+  - Updated view_risk_score_evolution thresholds
+  - Comprehensive analysis documented in RISK_SCORE_OPTIMIZATION_ANALYSIS.md
+  - Identified sample data quality issues requiring production validation
+  - Clarified salience vs scoring weight distinction
