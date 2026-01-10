@@ -10,29 +10,47 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.rules.impl.Status
 import com.hack23.cia.service.impl.rules.PoliticianComplianceCheckImpl
 
+rule "Politician with moderate combined risk - above-median absence and below-median effectiveness"
+	dialect "java"
+	salience 20
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 12 && annualSummary.wonPercentage < 35)
+    then
+    	$p.addViolation( Status.MINOR, "PoliticianLowVotingParticipation","Behavior", kcontext.getRule().getName(),"ModerateParticipationRisk");
+end
+
 rule "Politician with combined low participation - high absence and low win rate"
 	dialect "java"
 	salience 50
     when
-        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 15 && annualSummary.wonPercentage < 30)
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 17 && annualSummary.wonPercentage < 30)
     then
     	$p.addViolation( Status.MAJOR, "PoliticianLowVotingParticipation","Behavior", kcontext.getRule().getName(),"LowParticipationAndEffectiveness");
+end
+
+rule "Politician with high combined risk - very high absence and low effectiveness"
+	dialect "java"
+	salience 75
+    when
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 25 && annualSummary.wonPercentage < 25)
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianLowVotingParticipation","Behavior", kcontext.getRule().getName(),"HighCombinedRisk");
 end
 
 rule "Politician with extreme combined risk - very high absence and very low win rate"
 	dialect "java"
 	salience 100
     when
-        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 25 && annualSummary.wonPercentage < 20)
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbsent >= 55 && annualSummary.wonPercentage < 20)
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianLowVotingParticipation","Behavior", kcontext.getRule().getName(),"ExtremeLowParticipationAndEffectiveness");
 end
 
-rule "Politician with high abstention rate - over 10% annually"
+rule "Politician with high abstention rate - over 9% annually"
 	dialect "java"
 	salience 10
     when
-        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbstain > 10)
+        $p : PoliticianComplianceCheckImpl(politician.activeParliament && annualSummary != null && annualSummary.politicianPercentageAbstain > 9)
     then
     	$p.addViolation( Status.MINOR, "PoliticianLowVotingParticipation","Behavior", kcontext.getRule().getName(),"HighAbstentionRate");
 end

@@ -18,20 +18,34 @@ rule "Politician with concerning abstention pattern - frequently abstaining"
             politician.activeParliament && 
             annualSummary != null && 
             annualSummary.politicianPercentageAbstain >= 6 &&
-            annualSummary.politicianPercentageAbstain < 10
+            annualSummary.politicianPercentageAbstain < 9
         )
     then
     	$p.addViolation( Status.MAJOR, "PoliticianAbstentionPattern","Behavior", kcontext.getRule().getName(),"FrequentAbstention");
 end
 
-rule "Politician with critical abstention pattern - very high abstention rate"
+rule "Politician with high abstention pattern - very high abstention rate"
+	dialect "java"
+	salience 75
+    when
+        $p : PoliticianComplianceCheckImpl(
+            politician.activeParliament && 
+            annualSummary != null && 
+            annualSummary.politicianPercentageAbstain >= 9 &&
+            annualSummary.politicianPercentageAbstain < 13
+        )
+    then
+    	$p.addViolation( Status.MAJOR, "PoliticianAbstentionPattern","Behavior", kcontext.getRule().getName(),"HighAbstention");
+end
+
+rule "Politician with critical abstention pattern - excessive abstention rate"
 	dialect "java"
 	salience 100
     when
         $p : PoliticianComplianceCheckImpl(
             politician.activeParliament && 
             annualSummary != null && 
-            annualSummary.politicianPercentageAbstain >= 10
+            annualSummary.politicianPercentageAbstain >= 13
         )
     then
     	$p.addViolation( Status.CRITICAL, "PoliticianAbstentionPattern","Behavior", kcontext.getRule().getName(),"ExcessiveAbstention");
@@ -39,7 +53,7 @@ end
 
 rule "Politician with strategic abstention - high abstention but high presence"
 	dialect "java"
-	salience 75
+	salience 60
     when
         $p : PoliticianComplianceCheckImpl(
             politician.activeParliament && 
@@ -54,7 +68,7 @@ end
 
 rule "Politician showing indecision - high abstention combined with moderate effectiveness"
 	dialect "java"
-	salience 60
+	salience 50
     when
         $p : PoliticianComplianceCheckImpl(
             politician.activeParliament && 
