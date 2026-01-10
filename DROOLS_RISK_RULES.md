@@ -140,7 +140,7 @@ Statistical analysis of 500 politician-years (2002-2025) revealed that original 
   - Condition: `rebelPercentage >= 2.0 && < 5.0`
   - Category: Behavior
   - Resource Tag: VeryHighRebelVoting
-  - Captures: Beyond P99 (top ~1% or less, includes observed maximum of 3.19%)
+  - Captures: Beyond P99 (top 1%, includes observed maximum of 3.19%)
 
 **Aspirational Safeguard Rules (Extreme Scenarios)**:
 
