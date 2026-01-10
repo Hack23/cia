@@ -11,9 +11,10 @@ rule "Ministry with low document productivity last year"
 	salience 10
     when
         // Statistical validation (2023-2025): Mean=10.4, Median=5.0, P25=3.0 docs/year
-        // Threshold: 10 docs/year at mean - flags below-average performance
-        // Note: Smaller portfolios (Culture, Education) typically 3-10 docs/year (normal variation)
-        // Major policy ministries (Finance, Justice) typically 20-55 docs/year
+        // Threshold: 10 docs/year (slightly below mean=10.4) - flags lower-performing ministries
+        // Note: Due to right-skewed distribution, ministries with 5-9 docs/year are above median but below mean
+        // Smaller portfolios (Culture, Education) typically 3-10 docs/year (normal variation)
+        // Major policy ministries (Finance, Justice) typically 37-55 docs/year
         $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear < 10 && ministry.documentsLastYear > 0)
     then
     	$p.addViolation( Status.MINOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"LowDocumentOutput");
@@ -33,8 +34,8 @@ rule "Ministry with very low average documents per member"
 	salience 100
     when
         // Threshold: Less than 3 docs per member indicates systematically low per-capita productivity
-        // This threshold remains consistent across ministry types as it normalizes by staffing
-        // Validated against ministry organizational structures and productivity patterns
+        // Normalizes across differently sized ministries for comparable performance assessment
+        // Note: currentMemberSize represents tracked political appointees, not full administrative staff
         $p : MinistryComplianceCheckImpl(ministry.active && ministry.currentMemberSize > 0 && ministry.avgDocumentsPerMember < 3)
     then
     	$p.addViolation( Status.CRITICAL, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"ChronicallyLowProductivity");

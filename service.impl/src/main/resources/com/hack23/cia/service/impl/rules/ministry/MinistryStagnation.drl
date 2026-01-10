@@ -42,9 +42,9 @@ rule "Ministry with minimal activity - very low output for an active ministry"
 	dialect "java"
 	salience 50
     when
-        // Statistical validation: P25=3.0 docs/year, smaller portfolios typically 3-10 range
+        // Statistical validation (2023-2025): Mean=10.4, Median=5.0, P25=3.0 docs/year
         // Threshold: < 8 docs/year for staffed ministries (≥3 members) is below normal operational level
-        // Flags adequately-staffed ministries underperforming relative to capacity
+        // Smaller portfolios typically 3-10 range; flags adequately-staffed ministries underperforming relative to capacity
         $p : MinistryComplianceCheckImpl(
             ministry.active && 
             ministry.currentMemberSize >= 3 &&

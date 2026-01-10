@@ -31,9 +31,10 @@ rule "Ministry with no propositions"
 	dialect "java"
 	salience 100
     when
-        // Statistical validation (2025): All active ministries submitted propositions
+        // Statistical validation (2025 sample): All active ministries submitted propositions (Mean=10.4)
         // Propositions track policy initiatives across all ministry types
-        // Zero propositions indicates complete legislative inactivity regardless of portfolio size
+        // Zero propositions indicates complete legislative inactivity for the measurement period
+        // Note: Validation based on 2025 data; historical years require separate confirmation
         $p : MinistryComplianceCheckImpl(ministry.active && ministry.totalPropositions == 0)
     then
     	$p.addViolation( Status.CRITICAL, "MinistryInactiveLegislation","Behavior", kcontext.getRule().getName(),"NoPropositions");

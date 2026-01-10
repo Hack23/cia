@@ -429,7 +429,7 @@ Ministry risk thresholds have been validated against actual ministry performance
 - Median (P50): 5.0 docs/year
 - P25 (25th percentile): 3.0 docs/year
 - P75 (75th percentile): 15.0 docs/year
-- P90 (90th percentile): 22.0 docs/year
+- P90 (90th percentile): 22.0 docs/year (using linear interpolation method)
 - Range: 1-55 docs/year
 
 **Propositions Per Ministry Per Year:**
@@ -441,9 +441,10 @@ Ministry risk thresholds have been validated against actual ministry performance
 **Ministry Type Segmentation (2025 Data):**
 Productivity varies significantly by portfolio type and policy mandate:
 
-- **Major Policy Ministries** (Finance, Justice, Foreign Affairs):
-  - Mean: 33.7 docs/year, Median: 37.0, Range: 9-55
-  - Higher legislative activity due to extensive policy portfolios
+- **Major Policy Ministries** (Finance, Justice):
+  - Mean: 46.0 docs/year, Median: 46.0, Range: 37-55
+  - Highest legislative activity due to extensive policy portfolios
+  - Note: Foreign Affairs (Utrikesdepartementet) traditionally a major ministry, but shows lower activity in sample period (9 docs in 2025, 5 in 2024), aligning more with smaller portfolios for this analysis period
 
 - **Service Ministries** (Infrastructure, Environment, Social):
   - Mean: 21.0 docs/year, Median: 21.0, Range: 16-26
@@ -454,9 +455,9 @@ Productivity varies significantly by portfolio type and policy mandate:
   - Lower document volume normal for focused portfolios
 
 **Threshold Validation:**
-- **< 10 docs/year threshold**: Set at mean (10.4), appropriately flags below-average ministries
-- **< 3 docs/member threshold**: Per-capita normalization accounts for staffing variations
-- **0 propositions threshold**: All active ministries produced propositions in 2025; zero indicates complete inactivity
+- **< 10 docs/year threshold**: Set slightly below mean (10.4), flags lower-performing ministries. Due to right-skewed distribution, ministries with 5-9 docs/year are above median (50th percentile) but below mean.
+- **< 3 docs/member threshold**: Per-capita normalization accounts for staffing variations across ministry types
+- **0 propositions threshold**: All active ministries in sample data (2025) produced propositions (Mean=10.4); zero propositions indicates complete legislative inactivity for measured period
 
 **Key Insight:** Unlike committees with more uniform mandates, ministry productivity appropriately varies by portfolio size and policy area. Thresholds target below-average performance while recognizing that smaller portfolios (Culture, Education) naturally operate at lower document volumes (3-10 range) than major policy ministries (20-55 range).
 
@@ -470,7 +471,7 @@ Productivity varies significantly by portfolio type and policy mandate:
   - Condition: `documentsLastYear < 10 && > 0`
   - Category: Behavior
   - Resource Tag: LowDocumentOutput
-  - **Statistical Basis**: Threshold at mean (10.4 docs/year) flags below-average performance. Smaller portfolios typically 3-10 range (normal variation), major policy ministries 20-55 range.
+  - **Statistical Basis**: Threshold slightly below mean (10.4 docs/year) flags lower-performing ministries. Due to right-skewed distribution, captures roughly bottom 60-65% of ministries. Smaller portfolios typically 3-10 range (normal variation), major policy ministries 37-55 range.
 
 - **No documents last year** (MAJOR, salience 50)
   - Condition: `documentsLastYear == 0`
@@ -482,7 +483,7 @@ Productivity varies significantly by portfolio type and policy mandate:
   - Condition: `currentMemberSize > 0 && avgDocumentsPerMember < 3`
   - Category: Behavior
   - Resource Tag: ChronicallyLowProductivity
-  - **Statistical Basis**: Per-member productivity normalizes across ministry sizes, < 3 docs/member indicates systematically low per-capita output
+  - **Statistical Basis**: Per-capita productivity threshold. Normalizes across ministry sizes. Note: Detailed docs/member distribution analysis pending; threshold based on organizational capacity assessment.
 
 **Intelligence Value**: Identifies ministries that are not actively producing legislative documents, indicating potential government ineffectiveness or lack of policy initiative.
 
@@ -508,7 +509,7 @@ Productivity varies significantly by portfolio type and policy mandate:
   - Condition: `totalPropositions == 0`
   - Category: Behavior
   - Resource Tag: NoPropositions
-  - **Statistical Basis**: All active ministries submitted propositions in 2025 (Mean=10.4); zero propositions indicates complete legislative inactivity
+  - **Statistical Basis**: All active ministries in 2025 sample data submitted propositions (Mean=10.4); zero propositions for that period indicates complete legislative inactivity. Note: Only validated for 2025; historical years (2023-2024) require separate validation.
 
 **Intelligence Value**: Tracks government legislative initiative, identifying ministries that are not fulfilling their legislative mandate to propose new laws and policies.
 
@@ -522,13 +523,13 @@ Productivity varies significantly by portfolio type and policy mandate:
   - Condition: `currentMemberSize > 0 && < 3`
   - Category: Structure
   - Resource Tag: SmallTeam
-  - **Statistical Basis**: Some smaller portfolios naturally have compact teams (Minister + 1-2 state secretaries); flags potential understaffing
+  - **Statistical Basis**: Some smaller portfolios naturally have compact teams (Minister + 1-2 state secretaries). Note: currentMemberSize in data model represents active political appointees tracked in the system, not full ministry staff.
 
 - **Single member - critically understaffed** (MAJOR, salience 50)
   - Condition: `currentMemberSize == 1`
   - Category: Structure
   - Resource Tag: SingleMember
-  - **Statistical Basis**: Single-member ministries lack adequate organizational capacity; normal structure includes Minister + state secretaries + staff
+  - **Statistical Basis**: Single-member ministries lack adequate organizational capacity; normal structure includes Minister + state secretaries. Note: currentMemberSize reflects tracked political appointees, not full administrative staff.
 
 - **No members - vacant ministry** (CRITICAL, salience 100)
   - Condition: `currentMemberSize == 0`

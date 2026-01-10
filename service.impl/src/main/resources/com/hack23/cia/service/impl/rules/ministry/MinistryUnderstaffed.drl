@@ -12,7 +12,7 @@ rule "Ministry with small member size - understaffed"
     when
         // Threshold: Fewer than 3 members may indicate understaffing
         // Note: Some smaller portfolios naturally have compact teams (Minister + 1-2 state secretaries)
-        // Validated against typical ministry organizational patterns
+        // currentMemberSize represents tracked political appointees, not full administrative staff
         $p : MinistryComplianceCheckImpl(ministry.active && ministry.currentMemberSize > 0 && ministry.currentMemberSize < 3)
     then
     	$p.addViolation( Status.MINOR, "MinistryUnderstaffed","Structure", kcontext.getRule().getName(),"SmallTeam");
@@ -23,7 +23,8 @@ rule "Ministry with single member - critically understaffed"
 	salience 50
     when
         // Single-member ministries lack adequate organizational capacity
-        // Normal ministry structure: Minister + state secretaries + staff
+        // Normal ministry structure: Minister + state secretaries
+        // Note: currentMemberSize represents tracked political appointees, not full administrative staff
         $p : MinistryComplianceCheckImpl(ministry.active && ministry.currentMemberSize == 1)
     then
     	$p.addViolation( Status.MAJOR, "MinistryUnderstaffed","Structure", kcontext.getRule().getName(),"SingleMember");
