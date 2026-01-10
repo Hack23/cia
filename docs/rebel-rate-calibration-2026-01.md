@@ -16,9 +16,9 @@
 **Changes:**
 - Added comprehensive calibration context documentation
 - Introduced NEW recalibrated thresholds detecting actual behavior:
-  - MINOR: 0.5-1.0% (captures P75-P90 range)
-  - MAJOR: 1.0-2.0% (captures P90-P95 range)  
-  - CRITICAL: 2.0-5.0% (captures top 5% outliers)
+  - MINOR: 0.5-1.0% (captures ~P95-P99 range, top 1-5% of politicians)
+  - MAJOR: 1.0-2.0% (captures ~P99-Max range, top 1% outliers)  
+  - CRITICAL: 2.0-5.0% (captures extreme outliers beyond P99)
 - Retained aspirational high-level thresholds as safeguards:
   - CRITICAL: 5-10% (extreme scenarios, never observed)
   - CRITICAL: 10%+ (catastrophic level, never observed)
@@ -51,9 +51,9 @@
 ### New Thresholds Validated
 
 **Low-Level Thresholds (Detect Reality):**
-- 0.5-1.0%: Captures P75-P90 (noteworthy internal debate)
-- 1.0-2.0%: Captures P90-P95 (significant discipline breakdown)
-- 2.0-5.0%: Captures top 5% (serious party conflict)
+- 0.5-1.0%: Captures ~P95-P99 range (top 1-5%, noteworthy internal debate)
+- 1.0-2.0%: Captures ~P99-Max range (top 1% outliers, significant discipline breakdown)
+- 2.0-5.0%: Captures extreme outliers beyond P99 (serious party conflict)
 
 **High-Level Thresholds (Aspirational Safeguards):**
 - 5-10%: Theoretical extreme scenario (never observed)

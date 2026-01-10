@@ -101,13 +101,13 @@ Statistical analysis of 500 politician-years (2002-2025) revealed that original 
   - Condition: `rebelPercentage >= 0.5 && < 1.0`
   - Category: Behavior
   - Resource Tag: ModerateRebelVoting
-  - Captures: P75-P90 range (noteworthy internal party debate)
+  - Captures: ~P95-P99 range (top 1-5%, noteworthy internal party debate)
 
 - **High rebel rate - 1.0-2.0% annually** (MAJOR, salience 50)
   - Condition: `rebelPercentage >= 1.0 && < 2.0`
   - Category: Behavior
   - Resource Tag: HighRebelVoting
-  - Captures: P90-P95 range (significant discipline breakdown)
+  - Captures: ~P99-Max range (top 1% outliers, significant discipline breakdown)
 
 - **Very high rebel rate - 2.0-5.0% annually** (CRITICAL, salience 100)
   - Condition: `rebelPercentage >= 2.0 && < 5.0`
