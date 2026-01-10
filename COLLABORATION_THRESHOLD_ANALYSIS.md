@@ -17,7 +17,7 @@ This document presents the empirical analysis of collaboration thresholds used i
 
 ## 🧑‍⚖️ Politician-Level Analysis
 
-### Current Rules (PoliticianIsolatedBehavior.drl)
+### Previous Rules (Before Recalibration)
 
 ```drools
 MINOR (salience 10): totalDocuments > 10 && collaborationPercentage < 20 && >= 10
@@ -84,13 +84,13 @@ CRITICAL (salience 100): totalDocuments > 20 && multiPartyMotions == 0
 
 ## 🏛️ Party-Level Analysis
 
-### Current Rules (PartyLowCollaboration.drl)
+### Previous Rules (Before Recalibration)
 
 ```drools
 MINOR (salience 10): avgCollaborationPercentage < 1.6 && >= 1.0
 MAJOR (salience 50): avgCollaborationPercentage < 1.0 && >= 0.5
 CRITICAL (salience 100): avgCollaborationPercentage < 0.5 && > 0
-CRITICAL (salience 100): currentlyActiveMembers > 5 && highlyCollaborativeMembers == 0
+CRITICAL (salience 100): currentlyActiveMembers > 5 && highlyCollaborativeMembers == 0  [REMOVED IN THIS PR]
 MINOR (salience 10): totalDocuments > 50 && totalCollaborativeMotions < (totalDocuments * 0.05)
 ```
 
@@ -339,7 +339,7 @@ end
 
 - **Rules**: `service.impl/src/main/resources/com/hack23/cia/service/impl/rules/politician/PoliticianIsolatedBehavior.drl`
 - **Rules**: `service.impl/src/main/resources/com/hack23/cia/service/impl/rules/party/PartyLowCollaboration.drl`
-- **Documentation**: `DROOLS_RISK_RULES.md` (requires updates)
+- **Documentation**: `DROOLS_RISK_RULES.md` (updated with new thresholds)
 - **Sample Data**: `service.data.impl/sample-data/view_riksdagen_politician_sample.csv`
 - **Database Views**: `DATABASE_VIEW_INTELLIGENCE_CATALOG.md`
 
