@@ -62,22 +62,28 @@ Politician document productivity thresholds have been validated against actual d
 **Purpose**: Identifies politicians who avoid cross-party collaboration.
 
 **Rules**:
-- **Low collaboration - below 20%** (MINOR, salience 10)
-  - Condition: `totalDocuments > 10 && collaborationPercentage < 20 && >= 10`
+- **Extremely low collaboration - below 1%** (MINOR, salience 10)
+  - Condition: `totalDocuments > 10 && collaborationPercentage < 1.0 && > 0`
   - Category: Behavior
-  - Resource Tag: LowCollaboration
+  - Resource Tag: ExtremelyLowCollaboration
+  - **Threshold Validation**: P90 = 1.3%, captures bottom 10% of truly isolated politicians
 
-- **Very low collaboration - below 10%** (MAJOR, salience 50)
-  - Condition: `totalDocuments > 10 && collaborationPercentage < 10 && > 0`
+- **Zero collaboration** (MAJOR, salience 50)
+  - Condition: `totalDocuments > 10 && collaborationPercentage == 0`
   - Category: Behavior
-  - Resource Tag: VeryLowCollaboration
+  - Resource Tag: ZeroCollaboration
+  - **Empirical Data**: 84.4% of active politicians have 0% collaboration
+  - **Threshold Rationale**: Lowered from >20 to >10 to eliminate coverage gap and align with extremely low collaboration rule
 
 - **No multi-party collaboration** (CRITICAL, salience 100)
   - Condition: `totalDocuments > 20 && multiPartyMotions == 0`
   - Category: Behavior
   - Resource Tag: NoMultiPartyCollaboration
+  - **Empirical Data**: 83.2% of politicians with >20 docs have 0 multi-party motions
 
-**Intelligence Value**: Tracks partisan behavior and identifies politicians who operate in isolation from other parties, which may indicate ideological rigidity or poor coalition-building skills.
+**Intelligence Value**: Tracks partisan behavior and identifies politicians who operate in isolation from other parties. Swedish Parliament is highly partisan (median collaboration = 0%), so thresholds calibrated to capture genuinely isolated behavior in this context.
+
+**Threshold Validation**: See [COLLABORATION_THRESHOLD_ANALYSIS.md](COLLABORATION_THRESHOLD_ANALYSIS.md) for full empirical analysis. Previous thresholds (<10%, <20%) flagged 99.2%+ of politicians and were meaningless.
 
 ---
 
@@ -171,41 +177,132 @@ Statistical analysis of 500 politician-years (2002-2025) revealed that original 
 **Purpose**: Comprehensive voting participation tracking combining multiple risk factors.
 
 **Rules**:
-- **High abstention rate - over 10% annually** (MINOR, salience 10)
-  - Condition: `politicianPercentageAbstain > 10`
+- **Moderate combined risk** (MINOR, salience 20)
+  - Condition: `politicianPercentageAbsent >= 12 && < 17 && wonPercentage < 35`
   - Category: Behavior
-  - Resource Tag: HighAbstentionRate
+  - Resource Tag: ModerateParticipationRisk
+  - Statistical Basis: ~P50 absence (actual P50=12.5%, rounded to 12%) + below-P25 effectiveness (35%)
 
 - **Combined low participation** (MAJOR, salience 50)
-  - Condition: `politicianPercentageAbsent >= 15 && wonPercentage < 30`
+  - Condition: `politicianPercentageAbsent >= 17 && < 25 && wonPercentage < 30`
   - Category: Behavior
   - Resource Tag: LowParticipationAndEffectiveness
+  - Statistical Basis: Above-average absence (17%) + low effectiveness
 
-- **Extreme combined risk** (CRITICAL, salience 100)
-  - Condition: `politicianPercentageAbsent >= 25 && wonPercentage < 20`
+- **High combined risk** (MAJOR, salience 75)
+  - Condition: `politicianPercentageAbsent >= 25 && < 55 && wonPercentage < 25`
+  - Category: Behavior
+  - Resource Tag: HighCombinedRisk
+  - Statistical Basis: ~P75 absence (actual P75=24.6%, rounded to 25%) + below-P10 effectiveness
+
+- **Extreme combined risk** (CRITICAL, salience 105)
+  - Condition: `politicianPercentageAbsent >= 55 && wonPercentage < 20`
   - Category: Behavior
   - Resource Tag: ExtremeLowParticipationAndEffectiveness
+  - Statistical Basis: ~P90 absence (actual P90=54.5%, rounded to 55%) + very low effectiveness
+
+- **High abstention rate** (MINOR, salience 10)
+  - Condition: `politicianPercentageAbstain > 9`
+  - Category: Behavior
+  - Resource Tag: HighAbstentionRate
+  - Statistical Basis: ~P75 abstention (actual P75=9.1%, operationalized as 9% threshold)
 
 **Intelligence Value**: Identifies compounded risks where politicians are both absent frequently and ineffective when present, indicating serious accountability concerns.
 
+**Statistical Justification** (Based on 500-politician sample analysis):
+- Absence Rate Distribution: Mean=19.8%, Median=12.5%, P75=24.6%, P90=54.5%
+- Won Percentage Distribution: Mean=55.9%, Median=52.4%, P25=35.5%, P10=21.5%
+- Thresholds align with behavioral clustering: STANDARD_BEHAVIOR (~14% absence), MODERATE_RISK (~16% absence)
+
 ---
 
-### 6. PoliticianLazy.drl (Enhanced)
-**Purpose**: Detects excessive absenteeism from parliamentary votes.
+### 6. PoliticianLazy.drl (Enhanced with Statistical Thresholds)
+**Purpose**: Detects excessive absenteeism from parliamentary votes with finer-grained risk levels.
 
 **Enhanced Rules**:
 - **Absent 100% last day** (MINOR, salience 10)
-- **Absent >20% last month** (MAJOR, salience 50)
-- **Absent 20-30% last year** (CRITICAL, salience 100)
-- **Absent >30% last year** (CRITICAL, salience 150, ExtremeAbsenteeism)
+  - Daily binary absence detection
+  
+- **Absent ≥18% last month** (MAJOR, salience 45)
+  - Monthly threshold adjusted from 20% to ≥18%
+  
+- **Moderate annual absence: 12-17%** (MINOR, salience 15)
+  - Condition: `politicianPercentageAbsent >= 12 && < 17`
+  - Resource Tag: ModerateAbsenteeism
+  - Statistical Basis: ~P50-P60 range (actual P50=12.5%, rounded to 12%), captures 14-16% behavioral clustering
 
-**Enhancement**: Added granular distinction for extreme absenteeism (>30%).
+- **Concerning annual absence: 17-25%** (MAJOR, salience 55)
+  - Condition: `politicianPercentageAbsent >= 17 && < 25`
+  - Resource Tag: ConcerningAbsenteeism
+  - Statistical Basis: P60-P75 range
+  
+- **High annual absence: 25-55%** (CRITICAL, salience 100)
+  - Condition: `politicianPercentageAbsent >= 25 && < 55`
+  - Resource Tag: HighAbsenteeism
+  - Statistical Basis: ~P75-P90 range (actual P75=24.6%, P90=54.5%, rounded to 25% and 55%)
+  
+- **Extreme annual absence: ≥55%** (CRITICAL, salience 150)
+  - Condition: `politicianPercentageAbsent >= 55`
+  - Resource Tag: ExtremeAbsenteeism
+  - Statistical Basis: P90+ (top 10% most absent)
+
+**Enhancement Rationale**: 
+- Previous thresholds (20%, 30%) were too coarse to capture the 14-16% absence clustering observed across risk categories
+- New thresholds align with statistical percentiles from 500-politician sample analysis, with intentional rounding for operational clarity (P50=12.5%→12%, P75=24.6%→25%, P90=54.5%→55%)
+- Captures nuanced differences between STANDARD_BEHAVIOR (14% absence) and MODERATE_RISK (16% absence) categories
+- Provides progressive risk escalation: 12% → 17% → 25% → 55%
+- Mutually exclusive threshold bands prevent duplicate violations at boundaries
+
+**Statistical Basis**:
+- Sample Size: 500 active politicians (>50 votes)
+- Absence Distribution: P25=5.6%, P50=12.5%, P75=24.6%, P90=54.5%
+- Behavioral Clustering: STANDARD=14.1%, MODERATE=16.0%
+- Monthly threshold (18%) derived from proportional scaling of annual P50
+
+---
+
+### 7. PoliticianAbstentionPattern.drl (Enhanced with Statistical Thresholds)
+**Purpose**: Detects strategic and excessive abstention patterns in parliamentary voting.
+
+**Enhanced Rules**:
+- **Concerning abstention pattern: 6-9%** (MAJOR, salience 50)
+  - Condition: `politicianPercentageAbstain >= 6 && < 9`
+  - Resource Tag: FrequentAbstention
+  - Statistical Basis: Above typical range, approaching P75 (actual P75=9.1%, operationalized as 9%)
+
+- **High abstention pattern: 9-13%** (MAJOR, salience 75)
+  - Condition: `politicianPercentageAbstain >= 9 && < 13`
+  - Resource Tag: HighAbstention
+  - Statistical Basis: ~P75-P90 range (actual P75=9.1%, P90=13.2%, operationalized as 9%-13%)
+
+- **Critical abstention pattern: ≥13%** (CRITICAL, salience 100)
+  - Condition: `politicianPercentageAbstain >= 13`
+  - Resource Tag: ExcessiveAbstention
+  - Statistical Basis: ~P90+ (actual P90=13.2%, operationalized as 13% threshold for top 10% most abstaining)
+
+- **Strategic abstention with high presence** (MAJOR, salience 60)
+  - Condition: `politicianPercentageAbstain >= 8 && politicianPercentageAbsent < 10 && totalVotes > 50`
+  - Resource Tag: StrategicAbstentionPresent
+  - Detects politicians who attend but deliberately abstain
+
+- **Indecisive behavior** (MAJOR, salience 55)
+  - Condition: `politicianPercentageAbstain >= 7 && wonPercentage >= 25 && < 40`
+  - Resource Tag: IndecisiveBehavior
+  - Identifies politicians with moderate effectiveness who frequently abstain
+
+**Intelligence Value**: Abstention can indicate strategic positioning, internal party conflicts, or uncertainty about policy positions. High abstention despite attendance suggests deliberate non-commitment rather than mere absence.
+
+**Statistical Basis**:
+- Sample Size: 500 active politicians (>50 votes)
+- Abstention Distribution: Mean=4.9%, Median=2.3%, P75=9.1%, P90=13.2%, P95=14.5%
+- Previous threshold (10%) was at P83, missing 75-83rd percentile range
+- New thresholds: 6% (above typical), 9% (P75), 13% (P90)
 
 ---
 
 ## Party Risk Rules
 
-### 7. PartyHighAbsenteeism.drl
+### 8. PartyHighAbsenteeism.drl
 **Purpose**: Enhanced party-level absence tracking across multiple timeframes.
 
 **Rules** (Calibrated based on actual party performance data):
@@ -236,38 +333,43 @@ Statistical analysis of 500 politician-years (2002-2025) revealed that original 
 ### 8. PartyLowCollaboration.drl
 **Purpose**: Tracks parties that avoid cross-party collaboration.
 
-**Rules** (Calibrated based on actual collaboration patterns):
+**Rules** (Validated with empirical data):
 - **Low average collaboration - below 1.6%** (MINOR, salience 10)
   - Condition: `avgCollaborationPercentage < 1.6 && >= 1.0`
   - Category: Behavior
   - Resource Tag: LowCrossPartyEngagement
-  - **Threshold Justification**: P25 = 1.60%. Marks bottom quartile of cross-party engagement.
+  - **Threshold Validation**: Median = 1.65%, Mean = 1.68%. Captures lower quartile parties.
+  - **Empirical Data**: 0/8 active parties currently fall in this range
 
 - **Very low average collaboration - below 1.0%** (MAJOR, salience 50)
   - Condition: `avgCollaborationPercentage < 1.0 && >= 0.5`
   - Category: Behavior
   - Resource Tag: VeryLowCrossPartyEngagement
-  - **Threshold Justification**: Near minimum observed (S at 0.80%). Indicates notable isolation.
+  - **Threshold Validation**: 1/8 parties (S at 0.8%) flagged appropriately
+  - **Structural Context**: May reflect opposition status or ideological position
 
 - **Minimal collaboration - below 0.5%** (CRITICAL, salience 100)
-  - Condition: `avgCollaborationPercentage < 0.5 && > 0`
+  - Condition: `avgCollaborationPercentage < 0.5 && >= 0`
   - Category: Behavior
   - Resource Tag: MinimalCrossPartyEngagement
-  - **Threshold Justification**: Extreme isolation, below all observed parties.
-
-- **No highly collaborative members** (CRITICAL, salience 100)
-  - Condition: `currentlyActiveMembers > 5 && highlyCollaborativeMembers == 0`
-  - Category: Behavior
-  - Resource Tag: NoCollaborativeMembers
+  - **Threshold Validation**: 1/8 parties (SD at 0.0%) - extreme isolation indicator
+  - **Intelligence Value**: Identifies complete absence of cross-party engagement
 
 - **Low collaborative motions ratio** (MINOR, salience 10)
   - Condition: `totalDocuments > 50 && totalCollaborativeMotions < (totalDocuments * 0.05)`
   - Category: Behavior
   - Resource Tag: FewCollaborativeMotions
+  - **Threshold Validation**: 5% captures low-collaboration parties (S: 1.6%, V: 2.8%, SD: 0%)
+  - **Empirical Data**: Most parties 5-7% (C: 7.2%, L: 5.3%, KD: 5.4%)
 
-**Intelligence Value**: Identifies parties that operate in isolation. Thresholds reflect Swedish political reality where collaboration rates range 0.8-2.9%, far lower than international assumptions of 10-15%.
+**Removed Rule**: "No highly collaborative members" (highlyCollaborativeMembers == 0) removed because ALL parties have 0 in empirical data. In highly partisan environment (median politician collaboration = 0%), this metric cannot differentiate.
 
-**Data Distribution**: Min: 0.80%, P25: 1.60%, Median: 1.85%, P75: 2.40%, Max: 2.90%
+**Intelligence Value**: Identifies parties that operate in isolation. Thresholds reflect Swedish political reality where party collaboration averages 0-3%, far lower than international baselines (10-15%). Current thresholds (0.5%, 1.0%, 1.6%) are empirically validated and working correctly.
+
+**Threshold Validation**: See [COLLABORATION_THRESHOLD_ANALYSIS.md](COLLABORATION_THRESHOLD_ANALYSIS.md) for full analysis showing:
+- Party thresholds (0.5-1.6%) correctly identify 2/8 parties as low-collaboration
+- 6/8 parties (75%) exceed 1.6% threshold and pass normally
+- Thresholds distinguish structural differences (opposition vs government, ideological isolation)
 
 ---
 

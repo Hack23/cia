@@ -14,6 +14,9 @@ rule "Party with low average collaboration percentage - below 1.6%"
 	dialect "java"
 	salience 10
     when
+        // Threshold validated: Median party collaboration = 1.65%, mean = 1.68%
+        // Captures parties in lower quartile of cross-party engagement
+        // Empirical distribution: 6/8 parties (75%) exceed this threshold
         $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 1.6 && party.avgCollaborationPercentage >= 1.0)
     then
     	$p.addViolation( Status.MINOR, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"LowCrossPartyEngagement");
@@ -23,6 +26,9 @@ rule "Party with very low average collaboration percentage - below 1.0%"
 	dialect "java"
 	salience 50
     when
+        // Threshold validated: 1/8 parties (S) falls in this range
+        // Indicates significantly below-median cross-party collaboration
+        // Structural indicator: may reflect opposition status or ideological isolation
         $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 1.0 && party.avgCollaborationPercentage >= 0.5)
     then
     	$p.addViolation( Status.MAJOR, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"VeryLowCrossPartyEngagement");
@@ -32,25 +38,27 @@ rule "Party with minimal collaboration - below 0.5%"
 	dialect "java"
 	salience 100
     when
-        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 0.5 && party.avgCollaborationPercentage > 0)
+        // Threshold validated: 1/8 parties (SD) has 0% collaboration
+        // Extreme isolation - complete absence of cross-party engagement
+        // Indicates ideological isolation or deliberate non-cooperation strategy
+        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.avgCollaborationPercentage < 0.5 && party.avgCollaborationPercentage >= 0)
     then
     	$p.addViolation( Status.CRITICAL, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"MinimalCrossPartyEngagement");
 end
 
-rule "Party with no highly collaborative members"
-	dialect "java"
-	salience 100
-    when
-        $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.currentlyActiveMembers > 5 && party.highlyCollaborativeMembers == 0)
-    then
-    	$p.addViolation( Status.CRITICAL, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"NoCollaborativeMembers");
-end
+// REMOVED: Party with no highly collaborative members rule
+// Rationale: highlyCollaborativeMembers == 0 for ALL parties in empirical data
+// In highly partisan Swedish Parliament (median politician collaboration = 0%), 
+// this metric is not useful for differentiation
+// See COLLABORATION_THRESHOLD_ANALYSIS.md for full validation
 
 rule "Party with low collaborative motions ratio"
 	dialect "java"
 	salience 10
     when
-        // Threshold: 50 total documents minimum sample, 5% collaborative is baseline expectation
+        // Threshold validated: 5% captures low-collaboration parties
+        // Empirical distribution: S (1.6%), V (2.8%), SD (0%) flagged appropriately
+        // Most parties: 5-7% collaborative motion ratio (C: 7.2%, L: 5.3%, KD: 5.4%)
         $p : PartyComplianceCheckImpl(party.activeParliament && party.party != "-" && party.totalDocuments > 50 && party.totalCollaborativeMotions < (party.totalDocuments * 0.05))
     then
     	$p.addViolation( Status.MINOR, "PartyLowCollaboration","Behavior", kcontext.getRule().getName(),"FewCollaborativeMotions");
