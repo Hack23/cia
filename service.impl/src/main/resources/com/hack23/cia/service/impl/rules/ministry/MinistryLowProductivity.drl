@@ -13,6 +13,12 @@ rule "Ministry with low document productivity last year"
         // Threshold: < 20 docs/year represents P25-P50 range (P25=8, Median=20)
         // Statistical basis: Captures ~45-55% of active ministries between bottom quartile and median
         $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear >= 10 && ministry.documentsLastYear < 20)
+        // Statistical validation (2023-2025): Mean=10.4, Median=5.0, P25=3.0 docs/year
+        // Threshold: 10 docs/year (slightly below mean=10.4) - flags lower-performing ministries
+        // Note: Due to right-skewed distribution, ministries with 5-9 docs/year are above median but below mean
+        // Smaller portfolios (Culture, Education) typically 3-10 docs/year (normal variation)
+        // Major policy ministries (Finance, Justice) typically 37-55 docs/year
+        $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear < 10 && ministry.documentsLastYear > 0)
     then
     	$p.addViolation( Status.MINOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"LowDocumentOutput");
 end
@@ -46,6 +52,10 @@ rule "Ministry with very low average documents per member"
         // Statistical basis: Captures ~45% of active ministries with systematically low per-member productivity
         // Adjusted from < 3 (captured 0%) to < 8 (P25-based threshold)
         $p : MinistryComplianceCheckImpl(ministry.active && ministry.currentMemberSize > 0 && ministry.avgDocumentsPerMember < 8)
+        // Threshold: Less than 3 docs per member indicates systematically low per-capita productivity
+        // Normalizes across differently sized ministries for comparable performance assessment
+        // Note: currentMemberSize represents tracked political appointees, not full administrative staff
+        $p : MinistryComplianceCheckImpl(ministry.active && ministry.currentMemberSize > 0 && ministry.avgDocumentsPerMember < 3)
     then
     	$p.addViolation( Status.CRITICAL, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"ChronicallyLowProductivity");
 end
