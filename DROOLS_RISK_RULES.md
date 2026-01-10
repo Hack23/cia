@@ -498,9 +498,6 @@ Productivity varies significantly by portfolio type and policy mandate:
 ### 10. MinistryLowProductivity.drl
 **Purpose**: Tracks ministry-level legislative and document productivity.
 
-### 10. MinistryLowProductivity.drl
-**Purpose**: Tracks ministry-level legislative and document productivity.
-
 **Rules** (Thresholds validated 2026-01-09):
 - **Low document productivity last year - below 10** (MINOR, salience 10)
   - Condition: `documentsLastYear < 10 && > 0`
