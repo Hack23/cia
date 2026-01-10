@@ -7507,16 +7507,16 @@ CREATE VIEW public.view_politician_risk_summary AS
     documents_last_year,
     round(calculated_risk_score, 2) AS risk_score,
         CASE
-            WHEN (calculated_risk_score >= (65)::numeric) THEN 'CRITICAL'::text
-            WHEN (calculated_risk_score >= (45)::numeric) THEN 'HIGH'::text
-            WHEN (calculated_risk_score >= (25)::numeric) THEN 'MEDIUM'::text
+            WHEN (calculated_risk_score >= (70)::numeric) THEN 'CRITICAL'::text
+            WHEN (calculated_risk_score >= (50)::numeric) THEN 'HIGH'::text
+            WHEN (calculated_risk_score >= (30)::numeric) THEN 'MEDIUM'::text
             WHEN (calculated_risk_score >= (10)::numeric) THEN 'LOW'::text
             ELSE 'MINIMAL'::text
         END AS risk_level,
         CASE
-            WHEN (calculated_risk_score >= (65)::numeric) THEN 'Critical risk politician - immediate investigation required'::text
-            WHEN (calculated_risk_score >= (45)::numeric) THEN 'High risk politician - performance concerns warrant review'::text
-            WHEN (calculated_risk_score >= (25)::numeric) THEN 'Moderate risk - monitor for declining performance'::text
+            WHEN (calculated_risk_score >= (70)::numeric) THEN 'Critical risk politician - immediate investigation required'::text
+            WHEN (calculated_risk_score >= (50)::numeric) THEN 'High risk politician - performance concerns warrant review'::text
+            WHEN (calculated_risk_score >= (30)::numeric) THEN 'Moderate risk - monitor for declining performance'::text
             WHEN (calculated_risk_score < (10)::numeric) THEN 'Low risk - performing within acceptable standards'::text
             ELSE 'Standard risk profile'::text
         END AS risk_assessment
@@ -10345,32 +10345,32 @@ CREATE VIEW public.view_risk_score_evolution AS
             ELSE 'STABLE'::text
         END AS risk_trend,
         CASE
-            WHEN (calculated_risk_score >= (65)::numeric) THEN 'CRITICAL'::text
-            WHEN (calculated_risk_score >= (45)::numeric) THEN 'HIGH'::text
-            WHEN (calculated_risk_score >= (25)::numeric) THEN 'MODERATE'::text
+            WHEN (calculated_risk_score >= (70)::numeric) THEN 'CRITICAL'::text
+            WHEN (calculated_risk_score >= (50)::numeric) THEN 'HIGH'::text
+            WHEN (calculated_risk_score >= (30)::numeric) THEN 'MODERATE'::text
             WHEN (calculated_risk_score >= (15)::numeric) THEN 'LOW'::text
             ELSE 'MINIMAL'::text
         END AS risk_severity,
         CASE
             WHEN (COALESCE(prev_risk_score, (0)::numeric) > (0)::numeric) THEN
             CASE
-                WHEN ((prev_risk_score < (25)::numeric) AND (calculated_risk_score >= (25)::numeric)) THEN 'ESCALATION_TO_MODERATE'::text
-                WHEN ((prev_risk_score < (45)::numeric) AND (calculated_risk_score >= (45)::numeric)) THEN 'ESCALATION_TO_HIGH'::text
-                WHEN ((prev_risk_score < (65)::numeric) AND (calculated_risk_score >= (65)::numeric)) THEN 'ESCALATION_TO_CRITICAL'::text
-                WHEN ((prev_risk_score >= (65)::numeric) AND (calculated_risk_score < (65)::numeric)) THEN 'DEESCALATION_FROM_CRITICAL'::text
-                WHEN ((prev_risk_score >= (45)::numeric) AND (calculated_risk_score < (45)::numeric)) THEN 'DEESCALATION_FROM_HIGH'::text
-                WHEN ((prev_risk_score >= (25)::numeric) AND (calculated_risk_score < (25)::numeric)) THEN 'DEESCALATION_FROM_MODERATE'::text
+                WHEN ((prev_risk_score < (30)::numeric) AND (calculated_risk_score >= (30)::numeric)) THEN 'ESCALATION_TO_MODERATE'::text
+                WHEN ((prev_risk_score < (50)::numeric) AND (calculated_risk_score >= (50)::numeric)) THEN 'ESCALATION_TO_HIGH'::text
+                WHEN ((prev_risk_score < (70)::numeric) AND (calculated_risk_score >= (70)::numeric)) THEN 'ESCALATION_TO_CRITICAL'::text
+                WHEN ((prev_risk_score >= (70)::numeric) AND (calculated_risk_score < (70)::numeric)) THEN 'DEESCALATION_FROM_CRITICAL'::text
+                WHEN ((prev_risk_score >= (50)::numeric) AND (calculated_risk_score < (50)::numeric)) THEN 'DEESCALATION_FROM_HIGH'::text
+                WHEN ((prev_risk_score >= (30)::numeric) AND (calculated_risk_score < (30)::numeric)) THEN 'DEESCALATION_FROM_MODERATE'::text
                 ELSE 'NO_SEVERITY_TRANSITION'::text
             END
             ELSE 'INITIAL_ASSESSMENT'::text
         END AS severity_transition,
         CASE
-            WHEN (calculated_risk_score >= (65)::numeric) THEN 'CRITICAL: Immediate attention required'::text
-            WHEN ((calculated_risk_score >= (45)::numeric) AND ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (5)::numeric)) THEN 'HIGH RISK: Escalating trend detected'::text
-            WHEN (calculated_risk_score >= (45)::numeric) THEN 'HIGH RISK: Monitor closely'::text
-            WHEN ((calculated_risk_score >= (25)::numeric) AND ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (10)::numeric)) THEN 'MODERATE RISK: Rapid escalation warning'::text
-            WHEN (calculated_risk_score >= (25)::numeric) THEN 'MODERATE RISK: Standard monitoring'::text
-            WHEN ((prev_risk_score >= (45)::numeric) AND (calculated_risk_score < (25)::numeric)) THEN 'IMPROVING: Effective risk mitigation'::text
+            WHEN (calculated_risk_score >= (70)::numeric) THEN 'CRITICAL: Immediate attention required'::text
+            WHEN ((calculated_risk_score >= (50)::numeric) AND ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (5)::numeric)) THEN 'HIGH RISK: Escalating trend detected'::text
+            WHEN (calculated_risk_score >= (50)::numeric) THEN 'HIGH RISK: Monitor closely'::text
+            WHEN ((calculated_risk_score >= (30)::numeric) AND ((calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= (10)::numeric)) THEN 'MODERATE RISK: Rapid escalation warning'::text
+            WHEN (calculated_risk_score >= (30)::numeric) THEN 'MODERATE RISK: Standard monitoring'::text
+            WHEN ((prev_risk_score >= (50)::numeric) AND (calculated_risk_score < (30)::numeric)) THEN 'IMPROVING: Effective risk mitigation'::text
             ELSE 'LOW RISK: Normal operations'::text
         END AS risk_assessment
    FROM risk_calculations
