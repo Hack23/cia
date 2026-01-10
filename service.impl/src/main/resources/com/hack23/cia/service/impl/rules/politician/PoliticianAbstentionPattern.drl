@@ -68,7 +68,7 @@ end
 
 rule "Politician showing indecision - high abstention combined with moderate effectiveness"
 	dialect "java"
-	salience 50
+	salience 55
     when
         $p : PoliticianComplianceCheckImpl(
             politician.activeParliament && 

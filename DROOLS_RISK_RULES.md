@@ -218,7 +218,7 @@ All rules follow a consistent pattern:
   - Resource Tag: StrategicAbstentionPresent
   - Detects politicians who attend but deliberately abstain
 
-- **Indecisive behavior** (MAJOR, salience 50)
+- **Indecisive behavior** (MAJOR, salience 55)
   - Condition: `politicianPercentageAbstain >= 7 && wonPercentage >= 25 && < 40`
   - Resource Tag: IndecisiveBehavior
   - Identifies politicians with moderate effectiveness who frequently abstain
