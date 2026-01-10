@@ -459,7 +459,7 @@ Productivity varies significantly by portfolio type and policy mandate:
 - **< 3 docs/member threshold**: Per-capita normalization accounts for staffing variations across ministry types
 - **0 propositions threshold**: All active ministries in sample data (2025) produced propositions (Mean=10.4); zero propositions indicates complete legislative inactivity for measured period
 
-**Key Insight:** Unlike committees with more uniform mandates, ministry productivity appropriately varies by portfolio size and policy area. Thresholds target below-average performance while recognizing that smaller portfolios (Culture, Education) naturally operate at lower document volumes (3-10 range) than major policy ministries (20-55 range).
+**Key Insight:** Unlike committees with more uniform mandates, ministry productivity appropriately varies by portfolio size and policy area. Thresholds target below-average performance while recognizing that smaller portfolios (Culture, Education) naturally operate at lower document volumes (3-10 range) than major policy ministries (37-55 range).
 
 ---
 
