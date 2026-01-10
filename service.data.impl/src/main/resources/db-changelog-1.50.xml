@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Fix Rebel Vote Calculation in view_risk_score_evolution v1.50
+  Author: Political Analyst & Intelligence Operative
+  Date: 2026-01-10
+  GitHub Issue: Optimize Combined Risk Score Weighting - Salience-Based Aggregation Analysis
+  Related PR Review: https://github.com/Hack23/cia/pull/8200#pullrequestreview-3647247441
+  
+  This changelog fixes incorrect rebel vote calculation introduced in v1.49.
+  
+  Problem Identified (Code Review):
+  The v1.49 changelog used incorrect logic comparing vote type to party name:
+  
+    `WHEN vd.vote != vd.party AND vd.vote IN ('Ja', 'Nej') THEN true`
+  
+  This compares vote choice ('Ja', 'Nej', 'Frånvarande') with party name
+  ('S', 'M', 'SD', etc.), which will ALWAYS be true (e.g., 'Ja' != 'S'), resulting
+  in an incorrect 100% rebel rate for all politicians.
+  
+  Correct Rebel Definition (from v1.41):
+  A vote is a "rebel vote" when:
+  - Politician votes 'Nej' when party majority voted 'Ja' (party_approved = true)
+  - OR Politician votes 'Ja' when party majority voted 'Nej' (party_approved = false)
+  
+  Solution:
+  Restore the correct party_ballot_majority CTE from v1.41 while maintaining
+  the updated thresholds (25/45/65) from v1.49:
+  1. Add party_ballot_majority CTE to calculate party consensus per ballot
+  2. Join individual votes with party majority to identify rebel votes correctly
+  3. Keep updated thresholds: CRITICAL≥65, HIGH≥45, MODERATE≥25, LOW<25
+  
+  Changes:
+  - Restore party_ballot_majority CTE from v1.41
+  - Fix rebel vote detection logic in politician_votes_with_rebel CTE
+  - Maintain updated thresholds from v1.49 (no regression)
+  - Keep all other risk score calculation logic unchanged
+-->
+
+<!-- ========================================================================= -->
+<!-- FIX: view_risk_score_evolution - Correct Rebel Vote Calculation v1.50    -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="fix-rebel-calculation-risk-score-evolution-1.50-001" failOnError="true">
+    <comment>
+        Fix view_risk_score_evolution rebel vote calculation from v1.49
+        
+        Root Cause: v1.49 used incorrect logic comparing vote type to party name:
+        `vd.vote != vd.party` (e.g., 'Ja' != 'S') which is always true.
+        
+        Correct Logic: A rebel vote occurs when a politician votes against their
+        party's majority on a specific ballot. Party majority is determined by
+        counting 'Ja' vs 'Nej' votes from all party members on each ballot.
+        
+        Solution:
+        1. Restore party_ballot_majority CTE from v1.41 (calculates party consensus)
+        2. Fix rebel detection: 'Nej' when party_approved OR 'Ja' when NOT party_approved
+        3. Maintain updated thresholds from v1.49: 65/45/25 (no regression)
+        
+        Changes:
+        - Add party_ballot_majority CTE
+        - Fix politician_votes_with_rebel CTE logic
+        - Keep threshold updates from v1.49 (CRITICAL≥65, HIGH≥45, MODERATE≥25)
+        - Keep all other risk score calculation unchanged
+    </comment>
+    
+    <sql>DROP VIEW IF EXISTS view_risk_score_evolution CASCADE;</sql>
+    
+    <createView viewName="view_risk_score_evolution">
+        <![CDATA[
+WITH party_ballot_majority AS (
+    -- Calculate party majority vote for each ballot (did party vote 'Ja' majority?)
+    -- This determines party_approved: true if party had more 'Ja' than 'Nej' votes
+    SELECT 
+        embedded_id_ballot_id,
+        party,
+        SUM(CASE WHEN vote = 'Ja' THEN 1 ELSE 0 END) AS party_yes_count,
+        SUM(CASE WHEN vote = 'Nej' THEN 1 ELSE 0 END) AS party_no_count,
+        SUM(CASE WHEN vote = 'Ja' THEN 1 ELSE 0 END) > 
+        SUM(CASE WHEN vote = 'Nej' THEN 1 ELSE 0 END) AS party_approved
+    FROM vote_data
+    WHERE vote_date >= CURRENT_DATE - INTERVAL '3 years'
+        AND party IS NOT NULL
+    GROUP BY embedded_id_ballot_id, party
+),
+politician_votes_with_rebel AS (
+    -- Join individual votes with party majority to determine rebel votes
+    SELECT 
+        vd.embedded_id_intressent_id,
+        vd.embedded_id_ballot_id,
+        vd.vote,
+        vd.vote_date,
+        vd.party,
+        pbm.party_approved,
+        -- Rebel: voted against party majority
+        CASE 
+            WHEN vd.vote = 'Nej' AND pbm.party_approved = true THEN true
+            WHEN vd.vote = 'Ja' AND pbm.party_approved = false THEN true
+            ELSE false
+        END AS is_rebel
+    FROM vote_data vd
+    INNER JOIN party_ballot_majority pbm 
+        ON vd.embedded_id_ballot_id = pbm.embedded_id_ballot_id
+        AND vd.party = pbm.party
+    WHERE vd.vote_date >= CURRENT_DATE - INTERVAL '3 years'
+),
+politician_document_data AS (
+    SELECT
+        dpr.person_reference_id,
+        dd.made_public_date,
+        dd.id
+    FROM document_status_container dsc
+    LEFT JOIN document_data dd 
+        ON dsc.document_document_status_con_0 = dd.id
+    LEFT JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+        AND dpr.person_reference_id IS NOT NULL
+),
+monthly_risk_base AS (
+    SELECT
+        p.id AS person_id,
+        p.first_name,
+        p.last_name,
+        p.party,
+        DATE_TRUNC('month', pvr.vote_date) AS assessment_period,
+        
+        -- Absence rate: percentage of votes where politician was absent
+        ROUND(
+            COUNT(*) FILTER (WHERE pvr.vote = 'Frånvarande')::NUMERIC / 
+            NULLIF(COUNT(*), 0) * 100, 
+            2
+        ) AS absence_rate,
+        
+        -- Rebel rate: percentage of votes where politician voted against party majority
+        -- Excludes absent votes from rebel calculation (can't rebel if not present)
+        ROUND(
+            COUNT(*) FILTER (WHERE pvr.is_rebel = true)::NUMERIC / 
+            NULLIF(COUNT(*) FILTER (WHERE pvr.vote IN ('Ja', 'Nej')), 0) * 100, 
+            2
+        ) AS rebel_rate,
+        
+        COUNT(*) AS ballot_count,
+        COUNT(DISTINCT vpd.id) AS document_count
+        
+    FROM person_data p
+    LEFT JOIN politician_votes_with_rebel pvr 
+        ON pvr.embedded_id_intressent_id = p.id
+    LEFT JOIN politician_document_data vpd 
+        ON vpd.person_reference_id = p.id
+        AND vpd.made_public_date >= CURRENT_DATE - INTERVAL '3 years'
+        AND DATE_TRUNC('month', vpd.made_public_date) = DATE_TRUNC('month', pvr.vote_date)
+    
+    WHERE p.status IN ('Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare')
+    
+    GROUP BY p.id, p.first_name, p.last_name, p.party, DATE_TRUNC('month', pvr.vote_date)
+),
+monthly_violations AS (
+    SELECT
+        reference_id AS person_id,
+        DATE_TRUNC('month', detected_date) AS assessment_period,
+        COUNT(*) AS violation_count,
+        COUNT(DISTINCT rule_group) AS violation_categories,
+        STRING_AGG(DISTINCT rule_group, ', ' ORDER BY rule_group) AS violation_types
+    FROM rule_violation
+    WHERE resource_type = 'POLITICIAN'
+        AND status IN ('MINOR', 'MAJOR', 'CRITICAL')
+        AND detected_date >= CURRENT_DATE - INTERVAL '3 years'
+    GROUP BY reference_id, DATE_TRUNC('month', detected_date)
+),
+risk_calculations AS (
+    SELECT
+        mrb.person_id,
+        mrb.first_name,
+        mrb.last_name,
+        mrb.party,
+        mrb.assessment_period,
+        mrb.absence_rate,
+        mrb.rebel_rate,
+        mrb.ballot_count,
+        mrb.document_count,
+        
+        COALESCE(mv.violation_count, 0) AS violation_count,
+        COALESCE(mv.violation_categories, 0) AS violation_categories,
+        COALESCE(mv.violation_types, '') AS violation_types,
+        
+        -- UNCHANGED v1.47 formula
+        ROUND(
+            LEAST(COALESCE(mv.violation_count, 0) * 2, 40) +
+            (COALESCE(mrb.absence_rate, 0) * 30 / 100.0) +
+            (COALESCE(mrb.rebel_rate, 0) * 20 / 100.0) +
+            (CASE WHEN mrb.document_count < 5 THEN 10 ELSE 0 END),
+        2) AS calculated_risk_score,
+        
+        LAG(ROUND(
+            LEAST(COALESCE(mv.violation_count, 0) * 2, 40) +
+            (COALESCE(mrb.absence_rate, 0) * 30 / 100.0) +
+            (COALESCE(mrb.rebel_rate, 0) * 20 / 100.0) +
+            (CASE WHEN mrb.document_count < 5 THEN 10 ELSE 0 END),
+        2), 1) OVER (PARTITION BY mrb.person_id ORDER BY mrb.assessment_period) AS prev_risk_score
+        
+    FROM monthly_risk_base mrb
+    LEFT JOIN monthly_violations mv 
+        ON mrb.person_id = mv.person_id 
+        AND mrb.assessment_period = mv.assessment_period
+    
+    WHERE mrb.ballot_count >= 5
+        AND mrb.assessment_period IS NOT NULL
+)
+SELECT
+    person_id,
+    first_name,
+    last_name,
+    party,
+    assessment_period,
+    (assessment_period + INTERVAL '1 month' - INTERVAL '1 day')::DATE AS assessment_period_end,
+    absence_rate,
+    rebel_rate,
+    ballot_count,
+    document_count,
+    violation_count,
+    violation_categories,
+    violation_types,
+    calculated_risk_score AS risk_score,
+    prev_risk_score,
+    ROUND(calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score), 2) AS risk_score_change,
+    
+    -- Risk trend classification (unchanged)
+    CASE
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 10 THEN 'SIGNIFICANT_INCREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 5 THEN 'MODERATE_INCREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) > 0 THEN 'SLIGHT_INCREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) <= -10 THEN 'SIGNIFICANT_DECREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) <= -5 THEN 'MODERATE_DECREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) < 0 THEN 'SLIGHT_DECREASE'
+        ELSE 'STABLE'
+    END AS risk_trend,
+    
+    -- UPDATED THRESHOLDS from v1.49 (maintained: 65/45/25)
+    CASE
+        WHEN calculated_risk_score >= 65 THEN 'CRITICAL'
+        WHEN calculated_risk_score >= 45 THEN 'HIGH'
+        WHEN calculated_risk_score >= 25 THEN 'MODERATE'
+        WHEN calculated_risk_score >= 15 THEN 'LOW'
+        ELSE 'MINIMAL'
+    END AS risk_severity,
+    
+    -- UPDATED THRESHOLDS in severity transitions (maintained: 65/45/25)
+    CASE
+        WHEN COALESCE(prev_risk_score, 0) > 0 THEN
+            CASE
+                WHEN prev_risk_score < 25 AND calculated_risk_score >= 25 THEN 'ESCALATION_TO_MODERATE'
+                WHEN prev_risk_score < 45 AND calculated_risk_score >= 45 THEN 'ESCALATION_TO_HIGH'
+                WHEN prev_risk_score < 65 AND calculated_risk_score >= 65 THEN 'ESCALATION_TO_CRITICAL'
+                WHEN prev_risk_score >= 65 AND calculated_risk_score < 65 THEN 'DEESCALATION_FROM_CRITICAL'
+                WHEN prev_risk_score >= 45 AND calculated_risk_score < 45 THEN 'DEESCALATION_FROM_HIGH'
+                WHEN prev_risk_score >= 25 AND calculated_risk_score < 25 THEN 'DEESCALATION_FROM_MODERATE'
+                ELSE 'NO_SEVERITY_TRANSITION'
+            END
+        ELSE 'INITIAL_ASSESSMENT'
+    END AS severity_transition,
+    
+    -- Updated assessment messages with thresholds from v1.49 (maintained: 65/45/25)
+    CASE
+        WHEN calculated_risk_score >= 65 THEN 'CRITICAL: Immediate attention required'
+        WHEN calculated_risk_score >= 45 AND (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 5 
+            THEN 'HIGH RISK: Escalating trend detected'
+        WHEN calculated_risk_score >= 45 THEN 'HIGH RISK: Monitor closely'
+        WHEN calculated_risk_score >= 25 AND (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 10 
+            THEN 'MODERATE RISK: Rapid escalation warning'
+        WHEN calculated_risk_score >= 25 THEN 'MODERATE RISK: Standard monitoring'
+        WHEN prev_risk_score >= 45 AND calculated_risk_score < 25 THEN 'IMPROVING: Effective risk mitigation'
+        ELSE 'LOW RISK: Normal operations'
+    END AS risk_assessment
+
+FROM risk_calculations
+ORDER BY person_id, assessment_period DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_risk_score_evolution"/>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
