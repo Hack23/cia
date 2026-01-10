@@ -19,7 +19,7 @@ rule "We have a lazy politician, absent 100 % last day of ballots in parliament"
     	$p.addViolation( Status.MINOR, "PoliticianLazy","Behavior", kcontext.getRule().getName(),"NA");
 end
 
-rule "We have a lazy politician, absent more than 18 % of ballots last month"
+rule "We have a lazy politician, absent at least 18 % of ballots last month"
 	dialect "java"
 	salience 45
     when
