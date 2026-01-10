@@ -134,7 +134,7 @@ Statistical analysis of 500 politician-years (2002-2025) revealed that original 
   - Condition: `rebelPercentage >= 2.0 && < 5.0`
   - Category: Behavior
   - Resource Tag: VeryHighRebelVoting
-  - Captures: Beyond P99 (top ~1% or less, serious party conflict)
+  - Captures: Beyond P99 (top ~1% or less, includes observed maximum of 3.19%)
 
 **Aspirational Safeguard Rules (Extreme Scenarios)**:
 
@@ -162,6 +162,8 @@ Statistical analysis of 500 politician-years (2002-2025) revealed that original 
 - **2.0%+**: Rare and significant - indicates coalition stress, defection risk, or fundamental party conflict requiring investigation
 
 **Future Enhancement**: Consider context-aware thresholds differentiating government coalition (stricter) from opposition (more tolerant) to reduce false positives while maintaining sensitivity to genuine discipline breakdowns.
+
+**Note on Related Rules**: Other Drools rules referencing rebelPercentage (PoliticianCombinedRisk.drl with 12%/15% thresholds, PoliticianDecliningEngagement.drl with 8% threshold, PoliticianPartyRebel.drl with 1% threshold) should be reviewed and potentially recalibrated based on these statistical findings. The current thresholds in those rules (5-15%) would rarely trigger given Swedish parliamentary discipline patterns where P99=1.94%.
 
 ---
 
