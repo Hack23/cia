@@ -34,12 +34,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryAnnual;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryDaily;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPartySummaryMonthly;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryAnnual;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryDaily;
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenVoteDataBallotPoliticianSummaryMonthly;
+import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
@@ -75,6 +77,8 @@ public final class RulesEngineImpl implements RulesEngine {
 
 		insertPoliticians(ksession, dataViewer.getAll(ViewRiksdagenPolitician.class));
 		insertParties(ksession, dataViewer.getAll(ViewRiksdagenPartySummary.class));
+		insertCommittees(ksession, dataViewer.getAll(ViewRiksdagenCommittee.class));
+		insertMinistries(ksession, dataViewer.getAll(ViewRiksdagenMinistry.class));
 
 		ksession.fireAllRules();
 		ksession.dispose();
@@ -216,6 +220,36 @@ public final class RulesEngineImpl implements RulesEngine {
 			final PartyComplianceCheckImpl politicianComplianceCheckImpl = new PartyComplianceCheckImpl(partyData, null,
 					null, null);
 			ksession.insert(politicianComplianceCheckImpl);
+		}
+	}
+
+	/**
+	 * Insert committees.
+	 *
+	 * @param ksession the ksession
+	 * @param list     the list
+	 */
+	private void insertCommittees(final KieSession ksession, final List<ViewRiksdagenCommittee> list) {
+		for (final ViewRiksdagenCommittee committee : list) {
+			if (committee != null) {
+				final CommitteeComplianceCheckImpl committeeComplianceCheck = new CommitteeComplianceCheckImpl(committee);
+				ksession.insert(committeeComplianceCheck);
+			}
+		}
+	}
+
+	/**
+	 * Insert ministries.
+	 *
+	 * @param ksession the ksession
+	 * @param list     the list
+	 */
+	private void insertMinistries(final KieSession ksession, final List<ViewRiksdagenMinistry> list) {
+		for (final ViewRiksdagenMinistry ministry : list) {
+			if (ministry != null) {
+				final MinistryComplianceCheckImpl ministryComplianceCheck = new MinistryComplianceCheckImpl(ministry);
+				ksession.insert(ministryComplianceCheck);
+			}
 		}
 	}
 }
