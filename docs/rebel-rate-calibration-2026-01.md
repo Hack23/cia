@@ -122,7 +122,7 @@
 ## Recommendation
 
 Deploy these recalibrated thresholds to production. They will:
-- Detect actual rebel behavior currently missed (top 10-25% of politicians)
+- Detect actual rebel behavior currently missed (top 1-5% of politicians)
 - Maintain aspirational safeguards for extreme scenarios
 - Provide accurate political intelligence on party discipline dynamics
 

@@ -113,7 +113,7 @@ Statistical analysis of 500 politician-years (2002-2025) revealed that original 
   - Condition: `rebelPercentage >= 2.0 && < 5.0`
   - Category: Behavior
   - Resource Tag: VeryHighRebelVoting
-  - Captures: Top 5% outliers (serious party conflict)
+  - Captures: Beyond P99 (top ~1% or less, serious party conflict)
 
 **Aspirational Safeguard Rules (Extreme Scenarios)**:
 
