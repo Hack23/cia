@@ -24,6 +24,7 @@ rule "Ministry with no documents last year"
 	dialect "java"
 	salience 50
     when
+        // Complete inactivity regardless of portfolio type
         $p : MinistryComplianceCheckImpl(ministry.active && ministry.documentsLastYear == 0)
     then
     	$p.addViolation( Status.MAJOR, "MinistryLowProductivity","Behavior", kcontext.getRule().getName(),"NoDocumentOutput");
