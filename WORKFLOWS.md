@@ -203,9 +203,14 @@ flowchart TB
     echo "shared_buffers = '1GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
     echo "effective_cache_size = '4GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
     echo "work_mem = '32MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-    
-    # Enable SSL in PostgreSQL
-    echo "ssl = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
+- name: Generate SSL certificates for PostgreSQL
+  # Self-signed certificate generation with 2048-bit key
+  # See release.yml lines 156-176 for complete implementation
+
+- name: Deploy SSL certificate and key for PostgreSQL
+  # Certificate deployment, permissions, SSL configuration (ssl_cert_file, ssl_key_file)
+  # See release.yml lines 178-204 for complete implementation
 
 - name: Build with Maven
   run: mvn -B --file pom.xml clean install -Prelease-site,all-modules
