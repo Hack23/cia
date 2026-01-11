@@ -204,7 +204,7 @@ flowchart TB
     echo "effective_cache_size = '4GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
     echo "work_mem = '32MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
     
-    # Enable SSL with TLS 1.3
+    # Enable SSL in PostgreSQL
     echo "ssl = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
 
 - name: Build with Maven
