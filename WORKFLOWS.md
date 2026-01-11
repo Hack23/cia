@@ -77,7 +77,7 @@ graph LR
 
 | Stage | Tool/Service | Trigger | Quality Gate | Duration |
 |-------|-------------|---------|--------------|----------|
-| **Build & Test** | Maven, JUnit | Manual workflow dispatch | Tests pass, Coverage ≥80% | ~15-20 min |
+| **Build & Test** | Maven, JUnit, PostgreSQL 16 | Manual workflow dispatch | Tests pass, Coverage ≥80% | ~15-20 min |
 | **SCA** | Dependabot, Dependency Review | Daily / PR | No critical vulnerabilities | ~2 min |
 | **CodeQL** | GitHub CodeQL | PR, Push to master, Weekly | No critical/high issues | ~20 min |
 | **Quality Gate** | Multiple tools | Every commit | Overall quality ≥A | Auto |
@@ -85,17 +85,30 @@ graph LR
 | **SBOM** | Maven CycloneDX | Release | Complete SBOM generated | ~5 min |
 | **Attestations** | GitHub Attestations | Release | SLSA provenance created | ~2 min |
 | **DAST** | OWASP ZAP | Manual/Scheduled | No high-risk vulnerabilities | ~30 min |
+| **Data Quality** | Schema Validation | Daily/PR | 100% field coverage | ~2-3 min |
+| **Intelligence** | Changelog Generation | Manual | Complete change tracking | ~2-5 min |
+| **Documentation** | View Validation | Monthly/PR | Coverage ≥95% | ~2-3 min |
 
 ## 🔄 Workflow Overview
 
 The CIA project uses GitHub Actions for automation with the following workflows:
 
-1. **🚀 Verify & Release**: Builds, tests, and releases new versions with comprehensive security checks and attestations
-2. **🔍 CodeQL Analysis**: Performs advanced code security scanning to detect vulnerabilities
-3. **📦 Dependency Review**: Analyzes dependency changes in PRs for security vulnerabilities
-4. **⭐ Scorecard Analysis**: Evaluates the project against OSSF security best practices
-5. **🔒 ZAP Scan**: Dynamic application security testing
-6. **🏷️ PR Labeler**: Applies automated labels to pull requests
+### Core CI/CD Workflows
+1. **🚀 Verify & Release** (`release.yml`): Builds, tests, and releases new versions with comprehensive security checks and attestations
+2. **🔍 CodeQL Analysis** (`codeql-analysis.yml`): Performs advanced code security scanning to detect vulnerabilities
+3. **📦 Dependency Review** (`dependency-review.yml`): Analyzes dependency changes in PRs for security vulnerabilities
+4. **⭐ Scorecard Analysis** (`scorecards.yml`): Evaluates the project against OSSF security best practices
+5. **🔒 ZAP Scan** (`zap-scan.yml`): Dynamic application security testing
+6. **🏷️ PR Labeler** (`labeler.yml`): Applies automated labels to pull requests
+
+### Data Quality & Validation Workflows
+7. **📊 Generate Intelligence Changelog** (`generate-intelligence-changelog.yml`): Generates intelligence-focused changelog reports
+8. **✅ Validate Field Completeness** (`validate-field-completeness.yml`): Validates JSON export field completeness against schemas
+9. **🔍 Validate JSON Schemas** (`validate-json-schemas.yml`): Validates JSON schemas against sample data
+10. **📚 Validate View Documentation** (`validate-view-documentation.yml`): Ensures database view documentation is complete and accurate
+
+### Infrastructure & Support Workflows
+11. **🤖 Copilot Setup** (`copilot-setup-steps.yml`): Configures GitHub Copilot workspace automation
 
 ## Workflow Relationships
 
@@ -106,7 +119,19 @@ flowchart TB
         PR[Pull Request] --> CodeQLScan[CodeQL Analysis]
         PR --> DependencyReview[Dependency Review]
         PR --> Labeler[PR Labeler]
+        PR --> FieldValidation[Field Completeness]
+        PR --> SchemaValidation[JSON Schema Validation]
+        PR --> ViewValidation[View Documentation]
         CodeQLScan --> SecurityEvents[Security Events]
+    end
+    
+    subgraph "Data Quality & Intelligence"
+        direction TB
+        Schedule1[Daily Schedule] --> SchemaCheck[Schema Validation]
+        Schedule2[Monthly Schedule] --> ViewCheck[View Documentation Check]
+        Manual1[Manual Trigger] --> ChangelogGen[Intelligence Changelog]
+        SchemaCheck --> DataQualityMetrics[Data Quality Metrics]
+        ViewCheck --> DocCoverage[Documentation Coverage]
     end
 
     subgraph "Continuous Deployment"
@@ -118,10 +143,17 @@ flowchart TB
         GenerateSBOM --> Attestations[Create Attestations]
         Attestations --> CreateRelease[Create GitHub Release]
     end
+    
+    subgraph "Security Scanning"
+        direction TB
+        Weekly[Weekly Schedule] --> WeeklyScan[CodeQL Weekly Scan]
+        BranchProtection[Branch Protection Changes] --> Scorecard[Scorecard Analysis]
+        ManualZAP[Manual Trigger] --> ZAPScan[ZAP DAST Scan]
+    end
 
     PR -.-> |"approved & merged"| main[Main Branch]
-    main --> Scorecard[Scorecard Analysis]
-    main --> WeeklyScan[Weekly CodeQL Scan]
+    main --> Scorecard
+    main --> WeeklyScan
     main -.-> |"tag created or manual trigger"| Release
 
     %% Color styling for visual clarity
@@ -130,22 +162,24 @@ flowchart TB
     classDef process fill:#c8e6c9,stroke:#333,stroke-width:1.5px,color:black
     classDef trigger fill:#bbdefb,stroke:#333,stroke-width:1.5px,color:black
     classDef security fill:#ffccbc,stroke:#333,stroke-width:1.5px,color:black
+    classDef dataquality fill:#d1c4e9,stroke:#333,stroke-width:1.5px,color:black
     classDef audit fill:#ffecb3,stroke:#333,stroke-width:1.5px,color:black
 
-    class PR,CodeQLScan,DependencyReview,Labeler integration
+    class PR,CodeQLScan,DependencyReview,Labeler,FieldValidation,SchemaValidation,ViewValidation integration
     class Release,BuildTest,SetVersion,BuildPackage,GenerateSBOM,Attestations,CreateRelease deployment
     class main process
-    class SecurityEvents,Scorecard,WeeklyScan security
+    class SecurityEvents,WeeklyScan,Scorecard,ZAPScan,ManualZAP security
+    class Schedule1,Schedule2,Manual1,SchemaCheck,ViewCheck,ChangelogGen,DataQualityMetrics,DocCoverage dataquality
 ```
 
 ## 📋 Detailed Pipeline Stages
 
 ### Stage 1: Build & Test (release.yml)
 
-**Workflow:** `Verify and Release`  
+**Workflow:** `Verify and Release` (`release.yml`)  
 **Trigger:** Manual workflow dispatch with version input  
 **Duration:** ~15-20 minutes  
-**Runtime:** Ubuntu 24.04, JDK 25 (Temurin), Maven 3.9.9
+**Runtime:** Ubuntu 24.04, JDK 25 (Temurin), Maven 3.9.9, PostgreSQL 16
 
 **Quality Gates:**
 - ✅ Maven build success (Java 25, source 21)
@@ -156,10 +190,25 @@ flowchart TB
 
 **Key Steps:**
 ```yaml
+- name: Install PostgreSQL
+  run: sudo apt-get install -y postgresql-16 postgresql-contrib-16 postgresql-16-pgaudit postgresql-16-pgvector
+
+- name: Configure PostgreSQL
+  run: |
+    # Enable prepared transactions and required extensions
+    sudo sed -i "s/#max_prepared_transactions = 0/max_prepared_transactions = 100/" /etc/postgresql/16/main/postgresql.conf
+    sudo sed -i "s/#shared_preload_libraries = ''/shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'/" /etc/postgresql/16/main/postgresql.conf
+    
+    # Performance optimization settings
+    echo "shared_buffers = '1GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+    echo "effective_cache_size = '4GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+    echo "work_mem = '32MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+    
+    # Enable SSL with TLS 1.3
+    echo "ssl = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
 - name: Build with Maven
   run: mvn -B --file pom.xml clean install -Prelease-site,all-modules
-- name: APT update and install build tools
-  run: sudo apt-get install -y graphviz build-essential fakeroot devscripts
 ```
 
 **Artifacts Generated:**
@@ -386,6 +435,182 @@ gh attestation verify cia-dist-deb-{version}.all.deb --owner Hack23
 - Results posted as GitHub issues
 - SARIF report generated
 - Automated triage and prioritization
+
+## 📊 Data Quality & Intelligence Workflows
+
+The CIA project implements comprehensive data quality validation workflows to ensure accuracy and completeness of political intelligence data.
+
+### Intelligence Changelog Generation
+
+**Workflow:** `Generate Intelligence Changelog` (`generate-intelligence-changelog.yml`)  
+**Trigger:** Manual workflow dispatch with commit range  
+**Duration:** ~2-5 minutes
+
+**Purpose:**
+Generates comprehensive changelog reports focused on intelligence data changes between commits, tracking modifications to political data, database views, and analysis rules.
+
+**Configuration:**
+```yaml
+on:
+  workflow_dispatch:
+    inputs:
+      previous_commit:
+        description: 'Previous commit SHA (default: HEAD~1)'
+        required: false
+        default: 'HEAD~1'
+      current_commit:
+        description: 'Current commit SHA (default: HEAD)'
+        required: false
+        default: 'HEAD'
+```
+
+**Artifacts Generated:**
+- `intelligence-changelog-report`: Detailed changelog with intelligence data changes
+- Retention: 30 days
+
+**Key Features:**
+- Tracks database view changes
+- Monitors risk rule modifications
+- Documents data model updates
+- Reports intelligence data quality changes
+
+### JSON Export Field Completeness Validation
+
+**Workflow:** `Validate Field Completeness` (`validate-field-completeness.yml`)  
+**Trigger:** Push to master/develop, PR, specific file changes  
+**Duration:** ~2-3 minutes
+
+**Purpose:**
+Validates that sample CSV data files contain all required fields defined in JSON export schemas, ensuring data completeness for political intelligence exports.
+
+**Validation Checks:**
+- ✅ All required fields present in sample data
+- ✅ Field names match schema definitions
+- ✅ No missing columns in CSV files
+- ✅ Data type compatibility
+
+**Monitored Paths:**
+```yaml
+paths:
+  - 'json-export-specs/schemas/**'
+  - 'service.data.impl/sample-data/**'
+  - 'json-export-specs/validate-field-completeness.sh'
+```
+
+**Artifacts Generated:**
+- `field-completeness-report` (FIELD_COMPLETENESS_REPORT.md)
+- Retention: 14 days
+
+**Quality Gates:**
+- ✅ 100% field coverage for all schemas
+- ✅ No missing required fields
+- ✅ CSV column names match schema definitions
+
+### JSON Schema Validation
+
+**Workflow:** `Validate JSON Schemas` (`validate-json-schemas.yml`)  
+**Trigger:** Push, PR, manual dispatch, daily schedule (02:00 UTC)  
+**Duration:** ~2-3 minutes
+
+**Purpose:**
+Validates JSON export schemas against actual sample data, ensuring schema definitions match the real data structure extracted from database views.
+
+**Validation Features:**
+- Compares original projected schemas with actual data
+- Generates data-validated schema versions
+- Documents field mismatches
+- Provides recommendations for schema updates
+- Tracks data structure evolution
+
+**Configuration:**
+```yaml
+on:
+  push:
+    paths:
+      - 'json-export-specs/schemas/*.md'
+      - 'json-export-specs/validate_schemas.py'
+      - 'service.data.impl/sample-data/*.csv'
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 02:00 UTC
+```
+
+**Artifacts Generated:**
+- `schema-validation-report` containing:
+  - SCHEMA_VALIDATION_REPORT.md
+  - validation-results.json
+  - validation_output.txt
+- Retention: 30 days
+
+**PR Integration:**
+- Automatic comment with validation summary
+- Schema status table showing field coverage
+- Mismatch documentation
+- Recommendations for fixes
+
+**Issue Creation:**
+- Creates GitHub issues on scheduled validation failures
+- Updates existing issues with new findings
+- Labels: `schema-validation`, `data-quality`, `automated`
+
+**Quality Metrics:**
+- Total schemas validated
+- Fields defined vs. actual
+- Matched views per schema
+- Field mismatches documented
+- Missing view detection
+
+### Database View Documentation Validation
+
+**Workflow:** `Validate View Documentation` (`validate-view-documentation.yml`)  
+**Trigger:** Monthly schedule (1st day, 02:00 UTC), manual dispatch, PR  
+**Duration:** ~2-3 minutes
+
+**Purpose:**
+Ensures all database views in the schema are properly documented in DATABASE_VIEW_INTELLIGENCE_CATALOG.md, maintaining comprehensive documentation coverage.
+
+**Validation Checks:**
+- ✅ All views from full_schema.sql are documented
+- ✅ Documentation includes view purpose and structure
+- ✅ No orphaned documentation entries
+- ✅ View naming conventions followed
+
+**Configuration:**
+```yaml
+on:
+  schedule:
+    - cron: '0 2 1 * *'  # Monthly on 1st day at 02:00 UTC
+  pull_request:
+    paths:
+      - 'DATABASE_VIEW_INTELLIGENCE_CATALOG.md'
+      - 'service.data.impl/src/main/resources/full_schema.sql'
+```
+
+**Artifacts Generated:**
+- `validation-report` (DATABASE_VIEW_VALIDATION_REPORT.md)
+- Retention: 90 days
+
+**Automated Actions:**
+- Commits updated validation report on scheduled runs
+- Creates GitHub issues on validation failures
+- Comments on PRs with validation results
+
+**Issue Creation:**
+- Title includes coverage percentage and missing view count
+- Summary with coverage metrics and validation date
+- Links to validation report and documentation
+- Labels: `documentation`, `database`, `automation`, `priority:medium`
+
+**Quality Metrics:**
+- Documentation coverage percentage
+- Number of missing views
+- Total views in schema
+- Orphaned documentation entries
+
+**Continuous Improvement:**
+- Monthly validation ensures documentation stays current
+- Automatic issue creation for maintainers
+- PR validation prevents documentation drift
+- Historical tracking via 90-day artifact retention
 
 ## 🔐 ISMS Policy Integration
 
