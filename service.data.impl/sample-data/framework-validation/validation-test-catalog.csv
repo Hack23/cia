@@ -1,0 +1,18 @@
+framework,test_id,test_name,test_description,expected_accuracy,sample_size,data_file
+Comparative Analysis,Test 2.1,Party Performance Rankings,Classify parties into HIGH/MEDIUM/LOW performance tiers,90%+ accuracy,8,comparative/test_2_1_party_rankings.csv
+Comparative Analysis,Test 2.2,Peer Group Comparison,Classify politicians vs. party average (ABOVE/AVERAGE/BELOW),90%+ accuracy,60,comparative/test_2_2_peer_comparison.csv
+Comparative Analysis,Test 2.3,Party Momentum Analysis,Performance acceleration patterns (ACCELERATING/STABLE/DECELERATING),88% accuracy,70,comparative/test_2_3_party_momentum.csv
+Decision Intelligence,Test 6.1,Decision Effectiveness Patterns,Classify HIGH/MODERATE/LOW effectiveness patterns,85% accuracy,80,decision/test_6_1_effectiveness_patterns.csv
+Decision Intelligence,Test 6.2,Coalition Misalignment Detection,Detect MISALIGNED vs. ALIGNED coalition decision patterns,80% accuracy,60,decision/test_6_2_coalition_misalignment.csv
+Network Analysis,Test 5.1,Power Broker Identification,Identify STRONG_BROKER and MODERATE_BROKER classifications,90% accuracy,60,network/test_5_1_power_brokers.csv
+Network Analysis,Test 5.2,Coalition Facilitator Detection,Identify cross-bloc bridge politicians,85% accuracy,50,network/test_5_2_coalition_facilitators.csv
+Pattern Recognition,Test 3.1,Behavioral Clustering,Classify patterns into NORMAL/ANOMALOUS/CONCERNING clusters,91% true positive rate,100,pattern/test_3_1_behavioral_clustering.csv
+Pattern Recognition,Test 3.2,Rebellion Pattern Identification,Identify HIGH_INDEPENDENCE and PARTY_LINE patterns,85% accuracy,80,pattern/test_3_2_rebellion_patterns.csv
+Predictive Intelligence,Test 4.1,Resignation Risk Prediction,Identify HIGH_RISK and MODERATE_RISK resignation signals,87% accuracy (6-8 months prior),40,predictive/test_4_1_resignation_prediction.csv
+Predictive Intelligence,Test 4.1b,Politician Risk Profiles,Multi-dimensional risk analysis (violations across multiple dimensions),89% accuracy,45,predictive/test_4_1b_politician_risk_profiles.csv
+Predictive Intelligence,Test 4.2,Coalition Stress Prediction,Detect coalition stress with alignment degradation,78% accuracy,50,predictive/test_4_2_coalition_stress.csv
+Temporal Analysis,Test 1.1,Upward Trend Detection,Attendance Improvement ≥10% over 6 months,95% confidence,50,temporal/test_1_1_upward_trend_attendance.csv
+Temporal Analysis,Test 1.2,Downward Trend Detection,Ministry approval rate decline ≥15% over 4 quarters,82% accuracy,30,temporal/test_1_2_downward_trend_ministry.csv
+Temporal Analysis,Test 1.2b,Ministry Risk Evolution,"Multi-quarter risk escalation (CRITICAL, HIGH) patterns",85% accuracy,35,temporal/test_1_2b_ministry_risk_evolution.csv
+Temporal Analysis,Test 1.3,Cyclical Pattern Detection,"Parliamentary seasonal patterns (Autumn high, Summer low)",95% confidence,100,temporal/test_1_3_cyclical_patterns.csv
+Temporal Analysis,Test 1.4,Anomaly Detection,Decision volume >2 standard deviations,90% true positive rate,40,temporal/test_1_4_anomaly_detection.csv

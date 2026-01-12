@@ -1,3 +1,5 @@
 embedded_id_page,embedded_id_created_date,hits,rank_percentage,rank,rn
-ministryranking,2025-01-01 00:00:00,7,0.2631578947368421,6,1
-adminapplicationsession,2025-01-01 00:00:00,1,0.7894736842105263,16,2
+ministry,2025-01-01 00:00:00,2,0.631578947368421,13,1
+dashboard,2025-01-01 00:00:00,1,0.7894736842105263,16,2
+adminmonitoring,2026-01-01 00:00:00,5,0,1,1
+documents,2026-01-01 00:00:00,1,0.8571428571428571,7,2

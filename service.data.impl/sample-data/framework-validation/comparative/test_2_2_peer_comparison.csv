@@ -1,0 +1,61 @@
+person_id,first_name,last_name,party,individual_absence,individual_win,party_avg_absence,party_avg_win,absence_gap,win_gap,expected_detection,test_case,validation_label
+0587736055221,Niels,Paarup-Petersen,C,14.78,39.21,14.78,44.24,0.00,-5.03,BELOW_AVERAGE,comparative_peer_group,PASS
+0612916684825,Johan,Löfstrand,S,14.78,41.03,14.78,46.06,0.00,-5.03,BELOW_AVERAGE,comparative_peer_group,PASS
+0853395328224,Lena,Hallengren,S,14.78,41.03,14.78,46.06,0.00,-5.03,BELOW_AVERAGE,comparative_peer_group,PASS
+0888807074321,Amanda,Lind,MP,14.78,25.28,14.77,30.35,0.00,-5.07,BELOW_AVERAGE,comparative_peer_group,PASS
+0667220767927,Erik,Ezelius,S,14.78,40.90,14.78,46.06,0.00,-5.16,BELOW_AVERAGE,comparative_peer_group,PASS
+0331791853028,Yasmine,Eriksson,SD,14.78,57.96,14.78,63.14,0.00,-5.18,BELOW_AVERAGE,comparative_peer_group,PASS
+0671571847522,Mattias,Eriksson Falk,SD,14.78,57.96,14.78,63.14,0.00,-5.18,BELOW_AVERAGE,comparative_peer_group,PASS
+0474290584024,Azadeh,Rojhan,S,14.78,40.72,14.78,46.06,0.00,-5.34,BELOW_AVERAGE,comparative_peer_group,PASS
+0682989845822,Håkan,Svenneling,V,14.78,29.38,14.79,34.88,-0.01,-5.50,BELOW_AVERAGE,comparative_peer_group,PASS
+0973350087929,Patrik,Karlson,L,14.78,74.01,14.81,79.58,-0.03,-5.57,BELOW_AVERAGE,comparative_peer_group,PASS
+0635943298419,Dan,Hovskär,KD,14.78,76.86,14.78,82.49,0.00,-5.63,BELOW_AVERAGE,comparative_peer_group,PASS
+0204240926023,Markus,Wiechel,SD,14.78,57.46,14.78,63.14,0.00,-5.68,BELOW_AVERAGE,comparative_peer_group,PASS
+0412502344925,Ida,Ekeroth Clausson,S,15.77,40.22,14.78,46.06,0.99,-5.84,BELOW_AVERAGE,comparative_peer_group,PASS
+0121015874810,Torsten,Elofsson,KD,14.78,76.63,14.78,82.49,0.00,-5.86,BELOW_AVERAGE,comparative_peer_group,PASS
+0251136832626,Muharrem,Demirok,C,14.78,38.35,14.78,44.24,0.00,-5.89,BELOW_AVERAGE,comparative_peer_group,PASS
+0866055333028,Alexandra,Anstrell,M,14.78,80.40,14.77,86.38,0.00,-5.98,BELOW_AVERAGE,comparative_peer_group,PASS
+0358278412329,Björn,Petersson,S,15.09,39.94,14.78,46.06,0.31,-6.12,BELOW_AVERAGE,comparative_peer_group,PASS
+037561614928,Lawen,Redar,S,14.78,39.83,14.78,46.06,0.00,-6.23,BELOW_AVERAGE,comparative_peer_group,PASS
+0616721755222,Louise,Meijer,M,15.09,80.08,14.77,86.38,0.32,-6.30,BELOW_AVERAGE,comparative_peer_group,PASS
+02910042914,Carina,Ödebrink,S,14.78,39.64,14.78,46.06,0.00,-6.42,BELOW_AVERAGE,comparative_peer_group,PASS
+028954589415,Ann-Sofie,Alm,M,14.78,79.90,14.77,86.38,0.00,-6.48,BELOW_AVERAGE,comparative_peer_group,PASS
+0970709885516,Inga-Lill,Sjöblom,S,14.78,39.46,14.78,46.06,0.00,-6.60,BELOW_AVERAGE,comparative_peer_group,PASS
+0119851690521,David,Perez,SD,14.78,56.52,14.78,63.14,0.00,-6.62,BELOW_AVERAGE,comparative_peer_group,PASS
+0663840649717,Anette,Rangdag,SD,14.26,56.50,14.78,63.14,-0.52,-6.64,BELOW_AVERAGE,comparative_peer_group,PASS
+0112333043027,Rasmus,Giertz,SD,14.78,56.26,14.78,63.14,0.00,-6.88,BELOW_AVERAGE,comparative_peer_group,PASS
+0983984918111,Matilda,Ernkrans,S,14.78,39.13,14.78,46.06,0.00,-6.93,BELOW_AVERAGE,comparative_peer_group,PASS
+0861521539920,Aron,Emilsson,SD,15.09,55.69,14.78,63.14,0.31,-7.46,BELOW_AVERAGE,comparative_peer_group,PASS
+0452755722723,Björn,Söder,SD,14.78,55.63,14.78,63.14,0.00,-7.51,BELOW_AVERAGE,comparative_peer_group,PASS
+0800956862429,Gulan,Avci,L,14.78,72.02,14.81,79.58,-0.03,-7.56,BELOW_AVERAGE,comparative_peer_group,PASS
+0793372891224,Noria,Manouchi,M,14.78,78.70,14.77,86.38,0.00,-7.68,BELOW_AVERAGE,comparative_peer_group,PASS
+0313390540217,Ingela,Nylund Watz,S,14.78,38.34,14.78,46.06,0.00,-7.72,BELOW_AVERAGE,comparative_peer_group,PASS
+0602744999917,Elisabeth,Thand Ringqvist,C,14.78,36.44,14.78,44.24,0.00,-7.80,BELOW_AVERAGE,comparative_peer_group,PASS
+0256404677510,Cecilia,Engström,KD,14.78,74.56,14.78,82.49,0.00,-7.93,BELOW_AVERAGE,comparative_peer_group,PASS
+0530425150220,Annika,Strandhäll,S,14.78,38.12,14.78,46.06,0.00,-7.94,BELOW_AVERAGE,comparative_peer_group,PASS
+0926214745119,Heléne,Björklund,S,14.78,37.98,14.78,46.06,0.00,-8.08,BELOW_AVERAGE,comparative_peer_group,PASS
+0148424181819,Ann-Christine,Frohm,SD,14.78,55.03,14.78,63.14,0.00,-8.12,BELOW_AVERAGE,comparative_peer_group,PASS
+0611350076611,Susanne,Nordström,M,14.78,78.09,14.77,86.38,0.00,-8.29,BELOW_AVERAGE,comparative_peer_group,PASS
+0877778793323,Johan,Büser,S,14.78,37.67,14.78,46.06,0.00,-8.39,BELOW_AVERAGE,comparative_peer_group,PASS
+019430605328,Josefin,Malmqvist,M,14.88,77.85,14.77,86.38,0.11,-8.53,BELOW_AVERAGE,comparative_peer_group,PASS
+0358514648113,Marléne,Lund Kopparklint,M,14.78,77.74,14.77,86.38,0.00,-8.64,BELOW_AVERAGE,comparative_peer_group,PASS
+0105632258713,Boriana,Åberg,M,14.78,77.66,14.77,86.38,0.00,-8.72,BELOW_AVERAGE,comparative_peer_group,PASS
+0628005785225,Jörgen,Berglund,M,14.78,77.66,14.77,86.38,0.00,-8.72,BELOW_AVERAGE,comparative_peer_group,PASS
+0273506284025,Edward,Riedl,M,14.78,77.51,14.77,86.38,0.00,-8.87,BELOW_AVERAGE,comparative_peer_group,PASS
+0638497389621,Julia,Kronlid,SD,14.78,54.21,14.78,63.14,0.00,-8.93,BELOW_AVERAGE,comparative_peer_group,PASS
+0406831930624,Henrik,Vinge,SD,14.78,54.16,14.78,63.14,0.00,-8.98,BELOW_AVERAGE,comparative_peer_group,PASS
+0996640018922,Yasmine,Bladelius,S,16.13,37.00,14.78,46.06,1.35,-9.06,BELOW_AVERAGE,comparative_peer_group,PASS
+0770363683317,Malin,Björk,C,14.88,35.07,14.78,44.24,0.11,-9.17,BELOW_AVERAGE,comparative_peer_group,PASS
+0796312429425,Viktor,Wärnick,M,14.78,76.84,14.77,86.38,0.00,-9.54,BELOW_AVERAGE,comparative_peer_group,PASS
+0717363246311,Jessica,Stegrud,SD,14.78,53.56,14.78,63.14,0.00,-9.58,BELOW_AVERAGE,comparative_peer_group,PASS
+0766496753128,Fredrik,Malm,L,14.78,69.74,14.81,79.58,-0.03,-9.84,BELOW_AVERAGE,comparative_peer_group,PASS
+0227531635413,Lars,Püss,M,14.78,76.51,14.77,86.38,0.00,-9.87,BELOW_AVERAGE,comparative_peer_group,PASS
+0523902030928,Aylin,Nouri,S,14.78,36.17,14.78,46.06,0.00,-9.89,BELOW_AVERAGE,comparative_peer_group,PASS
+0161616238120,Lina,Nordquist,L,14.78,69.62,14.81,79.58,-0.03,-9.96,BELOW_AVERAGE,comparative_peer_group,PASS
+0371882294919,Carita,Boulwén,SD,14.78,53.10,14.78,63.14,0.00,-10.04,BELOW_AVERAGE,comparative_peer_group,PASS
+0624040854527,Emma,Berginger,MP,15.09,20.30,14.77,30.35,0.32,-10.05,BELOW_AVERAGE,comparative_peer_group,PASS
+0880137451720,Emma,Nohrén,MP,14.78,19.82,14.77,30.35,0.00,-10.54,BELOW_AVERAGE,comparative_peer_group,PASS
+0721509806321,Nooshi,Dadgostar,V,14.78,24.30,14.79,34.88,-0.01,-10.58,BELOW_AVERAGE,comparative_peer_group,PASS
+0852475703226,Lorena,Delgado Varas,V,14.88,24.04,14.79,34.88,0.10,-10.84,BELOW_AVERAGE,comparative_peer_group,PASS
+0333193598116,Bo,Broman,SD,14.78,52.21,14.78,63.14,0.00,-10.93,BELOW_AVERAGE,comparative_peer_group,PASS
+0397073482210,Camilla,Mårtensen,L,15.09,68.09,14.81,79.58,0.28,-11.49,BELOW_AVERAGE,comparative_peer_group,PASS

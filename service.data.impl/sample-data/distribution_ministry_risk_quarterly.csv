@@ -1,6 +1,7 @@
 year,quarter,risk_level,ministry_count,avg_documents
+2026,1,CRITICAL,21,0.00
 2025,4,CRITICAL,20,0.00
-2025,4,HIGH,1,214.00
+2025,4,HIGH,1,216.00
 2025,3,CRITICAL,20,0.00
 2025,3,HIGH,1,76.00
 2025,2,CRITICAL,20,0.00
@@ -12,5 +13,3 @@ year,quarter,risk_level,ministry_count,avg_documents
 2024,3,CRITICAL,20,0.00
 2024,3,HIGH,1,20.00
 2024,2,CRITICAL,21,0.00
-2024,1,CRITICAL,20,0.00
-2024,1,HIGH,1,5.00

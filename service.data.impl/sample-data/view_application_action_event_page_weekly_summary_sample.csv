@@ -1,9 +1,11 @@
 embedded_id_page,embedded_id_created_date,hits,rank_percentage,rank,rn
-adminapplicationevents,2025-11-17 00:00:00,1,0.5,5,1
-politician,2025-11-17 00:00:00,1,0.5,5,2
-politicianranking,2025-11-24 00:00:00,1,0.8235294117647058,15,1
-userhome,2025-11-24 00:00:00,19,0.17647058823529413,4,2
-adminmonitoring,2025-12-01 00:00:00,1,0.25,2,1
-adminagentoperation,2025-12-01 00:00:00,1,0.25,2,2
+politician,2025-11-17 00:00:00,1,0.5,5,1
+adminapplicationevents,2025-11-17 00:00:00,1,0.5,5,2
+adminagency,2025-11-24 00:00:00,2,0.6470588235294118,12,1
+governmentbodyranking,2025-11-24 00:00:00,5,0.35294117647058826,7,2
+countryranking,2025-12-01 00:00:00,1,0.25,2,1
+adminmonitoring,2025-12-01 00:00:00,1,0.25,2,2
 documents,2025-12-29 00:00:00,1,0.6,4,1
 adminmonitoring,2025-12-29 00:00:00,1,0.6,4,2
+documents,2026-01-05 00:00:00,1,0.8571428571428571,7,1
+userhome,2026-01-05 00:00:00,1,0.8571428571428571,7,2

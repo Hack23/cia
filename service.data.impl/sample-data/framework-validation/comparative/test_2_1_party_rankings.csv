@@ -1,0 +1,9 @@
+party,active_members,avg_win_rate,avg_discipline,avg_absence_rate,total_documents,win_rate_rank,discipline_rank,attendance_rank,expected_detection,test_case,validation_label
+M,0,0.0,99.99,13.35,29376,1,1,2,HIGH_PERFORMANCE,comparative_party_ranking,PASS
+L,0,0.0,99.98,19.05,6912,1,2,8,HIGH_PERFORMANCE,comparative_party_ranking,PASS
+KD,0,0.0,99.97,17.13,8208,1,3,5,HIGH_PERFORMANCE,comparative_party_ranking,PASS
+SD,0,0.0,99.89,13.69,31104,1,4,3,HIGH_PERFORMANCE,comparative_party_ranking,PASS
+S,0,0.0,99.84,13.34,45792,1,5,1,HIGH_PERFORMANCE,comparative_party_ranking,PASS
+C,0,0.0,99.75,15.94,10368,1,6,4,HIGH_PERFORMANCE,comparative_party_ranking,PASS
+MP,0,0.0,99.64,17.95,7776,1,7,7,HIGH_PERFORMANCE,comparative_party_ranking,PASS
+V,0,0.0,99.57,17.62,10273,1,8,6,HIGH_PERFORMANCE,comparative_party_ranking,PASS

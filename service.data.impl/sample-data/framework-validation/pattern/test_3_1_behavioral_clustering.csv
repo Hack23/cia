@@ -1,0 +1,101 @@
+person_id,first_name,last_name,party,avg_absence_rate,avg_win_rate,avg_rebel_rate,absence_volatility,months_tracked,expected_detection,test_case,validation_label
+0211757295524,Josef,Fransson,SD,14.91,74.49,0.00,0.86,6,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0475643059428,Jonny,Cato,C,14.89,45.64,0.16,0.82,7,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0526772256714,Göran,Hargestam,SD,14.89,63.02,0.00,0.82,7,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0770363683317,Malin,Björk,C,14.88,35.07,0.00,0.90,6,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0138741628520,Angelika,Bengtsson,SD,14.88,40.83,0.00,0.90,6,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0852475703226,Lorena,Delgado Varas,V,14.88,24.04,0.00,0.90,6,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+019430605328,Josefin,Malmqvist,M,14.88,77.85,0.00,0.90,6,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0961483563503,Gudrun,Nordborg,V,14.87,20.94,0.00,0.82,7,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0105632258713,Boriana,Åberg,M,14.78,77.66,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0103624617217,Helén,Pettersson,S,14.78,44.08,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0362779191527,Erik,Hellsborn,SD,14.78,64.59,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0111697351426,Louise,Eklund,L,14.78,80.08,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0112333043027,Rasmus,Giertz,SD,14.78,56.26,0.13,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0132818093422,Rickard,Nordin,C,14.78,40.57,0.13,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0369212790927,Sofia,Skönnbrink,S,14.78,41.53,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0121939297619,Jamal,El-Haj,-,14.78,41.85,9.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0146133946627,Andreas,Lennkvist Manriquez,V,14.78,40.85,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0121015874810,Torsten,Elofsson,KD,14.78,76.63,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0111479807829,Anna,Wallentheim,S,14.78,47.70,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+014744660015,Mikael,Damberg,S,14.78,43.16,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0148424181819,Ann-Christine,Frohm,SD,14.78,55.03,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0155487380917,Kerstin,Lundgren,C,14.78,43.95,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0122987223112,Lotta,Johnsson Fornarve,V,14.78,32.53,0.13,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0161616238120,Lina,Nordquist,L,14.78,69.62,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0161972600410,Elsa,Widding,-,14.78,43.67,25.85,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0130640724922,Clara,Aranda,SD,14.78,63.19,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0130789484021,Mattias,Bäckström Johansson,SD,14.78,60.14,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0178323535715,Johnny,Svedin,SD,14.78,69.76,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0183544538819,Patrik,Jönsson,SD,14.78,69.44,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0184968091618,Jan,Riise,MP,14.78,27.51,0.10,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0144048894712,Ellen,Juntti,M,14.78,83.44,0.15,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0203877548421,Malin,Larsson,S,14.78,50.88,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0140985614421,Peder,Björk,S,14.78,48.17,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0119851690521,David,Perez,SD,14.78,56.52,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0202577142527,Matheus,Enholm,SD,14.78,60.28,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0204240926023,Markus,Wiechel,SD,14.78,57.46,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0210444373111,Katarina,Luhr,MP,14.78,34.83,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+02910042914,Carina,Ödebrink,S,14.78,39.64,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0220064764318,Camilla,Brunsberg,M,14.78,96.42,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0222102752213,Stefan,Olsson,M,14.78,91.94,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0226631365426,Mikael,Larsson,C,14.78,45.65,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0227531635413,Lars,Püss,M,14.78,76.51,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0228027853620,Vasiliki,Tsouplaki,V,14.78,30.02,0.78,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0229350341619,Ilona,Szatmári Waldau,V,14.78,42.26,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0229627943828,Jytte,Guteland,S,14.78,48.66,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0229760896014,Anders,W Jonsson,C,14.78,44.25,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0157618290428,Rashid,Farivar,SD,14.78,62.57,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0237055280513,Roland,Utbult,KD,14.78,81.21,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0240670797111,Björn,Tidland,SD,14.78,71.51,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0245113256029,Daniel,Vencu Velasquez Castro,S,14.78,49.34,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0245468368228,Yusuf,Aydin,KD,14.78,81.76,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0246927519019,Karin,Rågsjö,V,14.78,33.16,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0170585430421,Jimmy,Ståhl,SD,14.78,70.32,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0249730539015,Anders,Karlsson,C,14.78,41.97,0.13,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0250583732424,Jesper,Skalberg Karlsson,M,14.78,97.76,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0251136832626,Muharrem,Demirok,C,14.78,38.35,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+025158809026,Ida,Gabrielsson,V,14.78,31.90,0.83,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0254021157518,Lars,Andersson,SD,14.78,63.19,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0254695027922,Malcolm Momodou,Jallow,V,14.78,35.24,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0256404677510,Cecilia,Engström,KD,14.78,74.56,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0256716955026,Serkan,Köse,S,14.78,41.45,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0257313105220,Arber,Gashi,S,14.78,50.57,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0198917587520,Maj,Karlsson,V,14.78,36.85,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+011548866929,Elin,Nilsson,L,14.78,86.81,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+025967059622,Magnus,Manhammar,S,14.78,44.59,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+025931369428,Jonas,Andersson,SD,14.78,63.09,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+025877594729,John,Widegren,M,14.78,94.03,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+02658325625,Angelica,Lundberg,SD,14.78,49.72,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0271338654822,Ola,Möller,S,14.78,48.55,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0273506284025,Edward,Riedl,M,14.78,77.51,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0274462857213,Petter,Löberg,S,14.78,45.05,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0279488554424,Alexander,Christiansson,SD,14.78,73.27,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+027964311318,Karin,Sundin,S,14.78,47.42,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0281670919717,Jörgen,Grubb,SD,14.78,71.01,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0283284978818,Markus,Kallifatides,S,14.78,51.34,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+028954589415,Ann-Sofie,Alm,M,14.78,79.90,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0257612529618,Kenneth G,Forslund,S,14.78,46.07,0.05,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0294138886823,Martin,Kinnunen,SD,14.78,68.63,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0296384583518,Åsa,Eriksson,S,14.78,41.78,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0302393368216,Camilla,Rinaldo Miller,KD,14.78,84.49,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0304498908019,Gudrun,Brunegård,KD,14.78,85.83,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0309480686522,Leila,Ali Elmi,MP,14.78,30.56,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0313390540217,Ingela,Nylund Watz,S,14.78,38.34,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0315499690028,Teresa,Carvalho,S,14.78,47.96,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0316505710324,Janine,Alm Ericson,MP,14.78,29.98,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0327372175911,Fredrik,Ahlstedt,M,14.78,89.43,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0331791853028,Yasmine,Eriksson,SD,14.78,57.96,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0333193598116,Bo,Broman,SD,14.78,52.21,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0338088431726,Sara,Gille,SD,14.78,66.94,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+033935884729,Martina,Johansson,C,14.78,49.11,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0339894357417,Jennie,Nilsson,S,14.78,51.86,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0340418158820,Daniel,Persson,SD,14.78,70.70,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0341628241813,Marianne,Fundahn,S,14.78,45.37,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0344222203323,Dennis,Dioukarev,SD,14.78,70.48,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0345062474310,Mona,Olin,SD,14.78,66.79,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0236597884217,Rose-Marie,Carlsson,S,14.78,49.05,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0358514648113,Marléne,Lund Kopparklint,M,14.78,77.74,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0360160202728,Emma,Ahlström Köster,M,14.78,97.76,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0360187680814,Mats,Hellhoff,SD,14.78,73.32,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS
+0191189790215,Peter,Ollén,M,14.78,90.17,0.00,0.82,8,ANOMALOUS_BEHAVIOR,pattern_behavioral_clustering,PASS

@@ -1,0 +1,4 @@
+risk_level,old_count,old_percentage,new_count,new_percentage,count_change,percentage_change
+HIGH,24,5.97,66,16.42,42,10.45
+MEDIUM,332,82.59,290,72.14,-42,-10.45
+LOW,46,11.44,46,11.44,0,0.00

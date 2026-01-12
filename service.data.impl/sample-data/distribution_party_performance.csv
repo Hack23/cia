@@ -1,13 +1,13 @@
 party,party_name,active_members,inactive_members,documents_last_year,motions_last_year,propositions_last_year,docs_per_member,performance_level
-M,Moderaterna,0,0,1282,0,0,0.00,EXCELLENT
-KD,Kristdemokraterna,0,0,393,0,0,0.00,EXCELLENT
-L,Liberalerna,0,0,196,0,0,0.00,EXCELLENT
+M,Moderaterna,0,0,1306,0,0,0.00,EXCELLENT
+KD,Kristdemokraterna,0,0,394,0,0,0.00,EXCELLENT
+L,Liberalerna,0,0,199,0,0,0.00,EXCELLENT
 SD,Sverigedemokraterna,0,0,688,0,0,0.00,GOOD
-C,Centerpartiet,0,0,392,0,0,0.00,GOOD
-S,Arbetarepartiet-Socialdemokraterna,0,0,852,0,0,0.00,GOOD
-V,Vänsterpartiet,0,0,134,0,0,0.00,GOOD
+C,Centerpartiet,0,0,398,0,0,0.00,GOOD
+S,Arbetarepartiet-Socialdemokraterna,0,0,853,0,0,0.00,GOOD
+V,Vänsterpartiet,0,0,136,0,0,0.00,GOOD
 -,Politiskt Vilde,0,0,108,0,0,0.00,GOOD
-MP,Miljöpartiet de gröna,0,0,221,0,0,0.00,GOOD
+MP,Miljöpartiet de gröna,0,0,225,0,0,0.00,GOOD
 ---,Nordiska motståndsrörelsen,0,0,0,0,0,0.00,BELOW_AVERAGE
 ---,Mosebackedemokraterna,0,0,0,0,0,0.00,BELOW_AVERAGE
 ---,Direktdemokraterna,0,0,0,0,0,0.00,BELOW_AVERAGE

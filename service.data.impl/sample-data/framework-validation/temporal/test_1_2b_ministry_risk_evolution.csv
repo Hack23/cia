@@ -1,0 +1,2 @@
+org_code,ministry_name,year,quarter,documents_produced,legislative_count,document_trend,legislative_trend,baseline_risk,intermediate_risk,current_risk,risk_assessment,expected_detection,test_case,validation_label
+Ku,Kulturdepartementet,2026,1,0,0,-216,0,HIGH,HIGH,CRITICAL,Critical: No activity detected - immediate review required,RAPID_ESCALATION,temporal_risk_evolution,PASS
