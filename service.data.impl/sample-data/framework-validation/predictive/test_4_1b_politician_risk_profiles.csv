@@ -1,0 +1,46 @@
+person_id,first_name,last_name,party,total_violations,violation_dimension_count,absenteeism_violations,effectiveness_violations,discipline_violations,annual_absence_rate,annual_rebel_rate,annual_vote_count,documents_last_year,risk_score,risk_level,expected_detection,test_case,validation_label
+0122987223112,Lotta,Johnsson Fornarve,V,13,0,0,0,0,0.00,100.00,844,0,56.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0853395328224,Lena,Hallengren,S,12,0,0,0,0,0.00,100.00,773,0,54.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0939158389321,Samuel,Gonzalez Westling,V,12,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0304498908019,Gudrun,Brunegård,KD,12,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0607691439013,Karin,Enström,M,12,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0986091320811,Catarina,Deremar,C,12,0,0,0,0,0.00,100.00,844,0,54.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0602744999917,Elisabeth,Thand Ringqvist,C,11,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0229350341619,Ilona,Szatmári Waldau,V,11,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0903081277919,Helena,Vilhelmsson,C,11,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0236597884217,Rose-Marie,Carlsson,S,11,0,0,0,0,0.00,100.00,838,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0496341906327,Alexandra,Völker,S,11,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+098412828516,Magdalena,Andersson,S,11,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0388994689418,Malin,Östh,V,11,0,0,0,0,0.00,100.00,495,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0682989845822,Håkan,Svenneling,V,11,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0911916463828,Fredrik,Lundh Sammeli,S,11,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0184968091618,Jan,Riise,MP,11,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+083953568015,Malin,Höglund,M,11,0,0,0,0,0.00,100.00,844,0,52.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0504851635310,Daniel,Helldén,MP,10,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0256404677510,Cecilia,Engström,KD,10,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0254695027922,Malcolm Momodou,Jallow,V,10,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0198917587520,Maj,Karlsson,V,10,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0210444373111,Katarina,Luhr,MP,10,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0472349361027,Kalle,Olsson,S,10,0,0,0,0,0.00,100.00,509,0,50.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0613297818326,Mathias,Tegnér,S,10,0,0,0,0,0.00,100.00,844,0,50.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+033935884729,Martina,Johansson,C,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0228027853620,Vasiliki,Tsouplaki,V,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0161616238120,Lina,Nordquist,L,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0130789484021,Mattias,Bäckström Johansson,SD,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0119851690521,David,Perez,SD,9,0,0,0,0,0.00,100.00,599,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0378597308227,Camilla,Brodin,KD,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0992867772421,Nils,Seye Larsen,MP,9,0,0,0,0,0.00,100.00,458,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0819601620927,Annika,Hirvonen,MP,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0904448094023,Linus,Lakso,MP,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0899169869710,Helena,Gellerman,L,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0411459873625,Hanna,Gunnarsson,V,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0802091197024,Andrea,Andersson Tay,V,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0760500234712,Monica,Haider,S,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0721509806321,Nooshi,Dadgostar,V,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0627450126815,Kajsa,Fredholm,V,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0494242537816,Hans,Eklind,KD,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0474290584024,Azadeh,Rojhan,S,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0992473266516,Larry,Söder,KD,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0418929039326,Patrik,Lundqvist,S,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0111479807829,Anna,Wallentheim,S,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+0246927519019,Karin,Rågsjö,V,8,0,0,0,0,0.00,100.00,844,0,46.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS

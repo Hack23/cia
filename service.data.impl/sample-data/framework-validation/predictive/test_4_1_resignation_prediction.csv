@@ -1,0 +1,41 @@
+person_id,first_name,last_name,party,avg_absence_rate,absence_trend,effectiveness_trend,smoothed_3month_absence,months_tracked,expected_detection,test_case,validation_label
+051207517226,Jimmie,Åkesson,SD,95.77,14.10,0.0,100.00,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0721509806321,Nooshi,Dadgostar,V,59.81,-1.94,0.0,59.69,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0852475703226,Lorena,Delgado Varas,V,52.20,27.88,0.0,100.00,8,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0932000030511,Maria,Stockhaus,M,45.92,-7.34,0.0,53.68,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0482689573825,Björn,Wiechel,S,45.21,12.30,0.0,63.93,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0970259744617,Margareta,Cederfelt,M,44.90,20.79,0.0,49.46,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0961483563503,Gudrun,Nordborg,V,40.81,44.23,0.0,66.67,9,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0600069352021,Fredrik,Kärrholm,M,39.02,73.10,0.0,73.74,7,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+098412828516,Magdalena,Andersson,S,37.79,18.13,0.0,40.77,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0803753212716,Richard,Jomshof,SD,37.75,41.94,0.0,67.40,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+025158809026,Ida,Gabrielsson,V,37.54,11.14,0.0,49.43,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0430865615328,Linda,Lindberg,SD,35.51,15.96,0.0,51.09,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0607691439013,Karin,Enström,M,33.12,45.79,0.0,59.26,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+02658325625,Angelica,Lundberg,SD,31.34,49.74,0.0,52.94,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0977592683711,Magnus,Jacobsson,KD,30.89,25.71,0.0,41.74,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0888807074321,Amanda,Lind,MP,29.76,15.12,0.0,38.01,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0138741628520,Angelika,Bengtsson,SD,29.65,28.22,0.0,44.30,8,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0161972600410,Elsa,Widding,-,28.45,12.50,0.0,41.29,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0999976269027,Amanda,Palmstierna,MP,26.80,35.73,0.0,35.73,4,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0602744999917,Elisabeth,Thand Ringqvist,C,26.78,47.60,0.0,53.37,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0983984918111,Matilda,Ernkrans,S,26.32,22.25,0.0,43.87,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0717363246311,Jessica,Stegrud,SD,26.28,23.06,0.0,35.19,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0274462857213,Petter,Löberg,S,25.51,16.12,0.0,49.46,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0433422973328,Kristoffer,Lindberg,S,25.18,29.50,0.0,45.21,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0371882294919,Carita,Boulwén,SD,24.72,26.33,0.0,41.48,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0313390540217,Ingela,Nylund Watz,S,24.25,18.86,0.0,45.73,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0523902030928,Aylin,Nouri,S,23.99,15.57,0.0,43.14,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0161616238120,Lina,Nordquist,L,23.76,20.02,0.0,30.29,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0604604418610,Jacob,Risberg,MP,23.75,35.27,0.0,39.65,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0612916684825,Johan,Löfstrand,S,23.23,35.45,0.0,44.78,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0256716955026,Serkan,Köse,S,22.54,30.22,0.0,49.00,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0148424181819,Ann-Christine,Frohm,SD,22.26,35.08,0.0,43.87,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0122987223112,Lotta,Johnsson Fornarve,V,21.72,23.48,0.0,33.76,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0254695027922,Malcolm Momodou,Jallow,V,21.65,16.78,0.0,35.73,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0557180142229,Fredrik,Lindahl,SD,21.27,31.35,0.0,35.73,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0331791853028,Yasmine,Eriksson,SD,20.65,53.68,0.0,53.68,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0112333043027,Rasmus,Giertz,SD,19.97,55.46,0.0,55.46,10,HIGH_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0947134226212,Markus,Kauppinen,S,19.84,10.44,0.0,31.67,8,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0770363683317,Malin,Björk,C,19.83,35.59,0.0,44.23,8,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+0859909330720,Sanna,Backeskog,S,19.35,37.55,0.0,41.93,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
