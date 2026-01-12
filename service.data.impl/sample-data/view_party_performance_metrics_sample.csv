@@ -1,41 +1,41 @@
 party,party_name,registration_date,active_members,inactive_members,total_violations,members_with_violations,violation_rate_percentage,latest_member_violation,total_votes_last_year,avg_absence_rate,avg_win_rate,avg_rebel_rate,avg_participation_rate,documents_last_year,motions_last_year,propositions_last_year,docs_per_member,current_ministers,current_committee_chairs,performance_score,performance_level,strengths,weaknesses
-KLP,Klassiskt liberala partiet,2015-03-25,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-SPI,SPI Välfärden,2013-07-02,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-ENH,Enhet,2014-03-12,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-SD,Sverigedemokraterna,1991-02-08,0,0,0,0,0,,10352736,15.21,66.03,0.02,84.79,688,0,0,0,0,5,72.70,GOOD,Effective voting | Strong discipline | High productivity,High absenteeism
-KrVP,Kristna Värdepartiet,2014-02-24,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
----,Spritpartiet,2010-03-04,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-DjuP,Djurens parti,2014-02-19,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-FP,Folkpartiet liberalerna,1990-12-17,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-ALP,Allianspartiet/Medborgarens röst,2009-06-12,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-V,Vänsterpartiet,1990-06-15,0,0,0,0,0,,3450912,15.21,37.42,0.05,84.79,134,0,0,0,0,0,65.54,GOOD,Strong discipline | High productivity,High absenteeism
-PP,Piratpartiet,2006-02-15,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-K,Kommunistiska Partiet,2005-01-12,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-NYD,NyDemokrati,1991-02-15,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-KD,Kristdemokraterna,1996-08-29,0,0,0,0,0,,2731972,15.21,81.42,0.00,84.79,393,0,0,0,6,0,76.55,EXCELLENT,Effective voting | Strong discipline | High productivity | Government representation,High absenteeism
-VägV,Vägvalet,2014-02-21,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
----,Frihetspartiet,2010-02-15,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-SKÅ,Skånepartiet,1979-05-15,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
----,Direktdemokraterna,2014-07-01,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-NorrS,Norrländska Samlingspartiet,2010-02-26,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
 ---,LOTTOKRATIN,2015-11-13,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-MP,Miljöpartiet de gröna,1985-02-04,0,0,0,0,0,,2588184,15.17,28.63,0.07,84.83,221,0,0,0,0,0,63.35,GOOD,Strong discipline | High productivity,High absenteeism | Low effectiveness
-C,Centerpartiet,1995-05-18,0,0,0,0,0,,3450912,15.20,47.64,0.14,84.80,392,0,0,0,0,1,68.08,GOOD,Strong discipline | High productivity,High absenteeism
-SJP,Sjöbopartiet,1991-03-27,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
--,Politiskt Vilde,1971-01-01,0,0,0,0,0,,143788,15.21,49.76,20.39,84.79,108,0,0,0,0,0,64.56,GOOD,High productivity,High absenteeism | Discipline issues
----,Högerpartiet de konservativa,2004-03-11,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+---,Svenska Förnufts Partiet (SFP),2014-04-10,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+DjuP,Djurens parti,2014-02-19,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+S,Arbetarepartiet-Socialdemokraterna,1956-08-02,0,0,0,0,0,,15981408,14.73,43.30,0.06,85.27,853,0,0,0,0,0,67.13,GOOD,High participation | Strong discipline | High productivity,""
 ---,Mosebackedemokraterna,2010-01-22,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-L,Liberalerna,2015-11-30,0,0,0,0,0,,2300608,15.22,77.02,0.01,84.78,196,0,0,0,5,0,75.45,EXCELLENT,Effective voting | Strong discipline | High productivity | Government representation,High absenteeism
+KLP,Klassiskt liberala partiet,2015-03-25,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+---,Sociala Partiet (SP),2009-02-11,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+NYD,NyDemokrati,1991-02-15,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+NorrS,Norrländska Samlingspartiet,2010-02-26,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
 SOC.P,Socialistiska Partiet,1985-02-18,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-S,Arbetarepartiet-Socialdemokraterna,1956-08-02,0,0,0,0,0,,15385316,15.19,42.29,0.11,84.81,852,0,0,0,0,0,66.75,GOOD,Strong discipline | High productivity,High absenteeism
 FI,Feministiskt initiativ,2006-03-07,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
 ---,Permalogiskt Samhälle,,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
----,Svenska Förnufts Partiet (SFP),2014-04-10,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
----,Sociala Partiet (SP),2009-02-11,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-LBPO,Landsbygdspartiet Oberoende,2012-10-31,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
----,Nordiska motståndsrörelsen,2015-07-09,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-RS,Rättvisepartiet Socialisterna,1998-03-31,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+KD,Kristdemokraterna,1996-08-29,0,0,0,0,0,,2864592,14.72,81.93,0.01,85.28,394,0,0,0,6,0,76.80,EXCELLENT,High participation | Effective voting | Strong discipline | High productivity | Government representation,""
+---,Högerpartiet de konservativa,2004-03-11,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+C,Centerpartiet,1995-05-18,0,0,0,0,0,,3618432,14.67,44.53,0.05,85.33,398,0,0,0,0,1,67.45,GOOD,High participation | Strong discipline | High productivity,""
+VägV,Vägvalet,2014-02-21,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
 EAP,Europeiska Arbetarpartiet-EAP,1985-03-22,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
-M,Moderaterna,2013-09-06,0,0,0,0,0,,9777584,15.20,86.55,0.01,84.80,1282,0,0,0,13,5,77.83,EXCELLENT,Effective voting | Strong discipline | High productivity | Government representation,High absenteeism
+ALP,Allianspartiet/Medborgarens röst,2009-06-12,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+-,Politiskt Vilde,1971-01-01,0,0,0,0,0,,301536,14.72,43.06,14.24,85.28,108,0,0,0,0,0,64.24,GOOD,High participation | High productivity,""
+---,Nordiska motståndsrörelsen,2015-07-09,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
 JL,Junilistan,2004-02-27,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+SD,Sverigedemokraterna,1991-02-08,0,0,0,0,0,,10855296,14.71,63.89,0.01,85.29,688,0,0,0,0,5,72.29,GOOD,High participation | Effective voting | Strong discipline | High productivity,""
+---,Direktdemokraterna,2014-07-01,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+RS,Rättvisepartiet Socialisterna,1998-03-31,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+SKÅ,Skånepartiet,1979-05-15,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+V,Vänsterpartiet,1990-06-15,0,0,0,0,0,,3618432,14.71,34.86,0.06,85.29,136,0,0,0,0,0,65.03,GOOD,High participation | Strong discipline | High productivity,""
+---,Frihetspartiet,2010-02-15,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+SPI,SPI Välfärden,2013-07-02,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+MP,Miljöpartiet de gröna,1985-02-04,0,0,0,0,0,,2713824,14.63,29.69,0.04,85.37,225,0,0,0,0,0,63.76,GOOD,High participation | Strong discipline | High productivity,Low effectiveness
+LBPO,Landsbygdspartiet Oberoende,2012-10-31,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+FP,Folkpartiet liberalerna,1990-12-17,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+M,Moderaterna,2013-09-06,0,0,0,0,0,,10252224,14.71,86.49,0.00,85.29,1306,0,0,0,13,5,77.95,EXCELLENT,High participation | Effective voting | Strong discipline | High productivity | Government representation,""
+L,Liberalerna,2015-11-30,0,0,0,0,0,,2412288,14.76,78.06,0.00,85.24,199,0,0,0,5,0,75.82,EXCELLENT,High participation | Effective voting | Strong discipline | High productivity | Government representation,""
+PP,Piratpartiet,2006-02-15,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+---,Spritpartiet,2010-03-04,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+K,Kommunistiska Partiet,2005-01-12,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+SJP,Sjöbopartiet,1991-03-27,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
 ---,Borgerlig Framtid,,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+ENH,Enhet,2014-03-12,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+KrVP,Kristna Värdepartiet,2014-02-24,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity

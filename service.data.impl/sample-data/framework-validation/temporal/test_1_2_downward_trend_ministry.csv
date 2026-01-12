@@ -1,0 +1,31 @@
+ministry_code,decision_year,quarter_num,quarter_date,baseline_approval_rate,current_approval_rate,change_magnitude,expected_detection,test_case,validation_label
+M t.o.m. -04,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Kulturdepartementet,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+JO,2006,1,2006-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Justitiedepartementet,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+KUD t.o.m. -04,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+JU,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+FI,2014,1,2014-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Socialdepartementet,2017,2,2017-04-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+FI,2012,3,2012-07-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+N,2008,4,2008-10-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+FI,2002,2,2002-04-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Justitiedepartementet,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Fö,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+JU,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Justitiedepartementet,2023,4,2023-10-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Justitiedepartementet,2021,2,2021-04-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Finansdepartementet,2025,2,2025-04-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Justitiedepartementet,2018,3,2018-07-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+FI,2014,1,2014-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+L,2013,1,2013-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Ku,2012,2,2012-04-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+JU,2010,1,2010-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+UD,2004,1,2004-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+FI,2002,2,2002-04-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+FI,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+FI,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Finansdepartementet,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Finansdepartementet,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+JO,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS
+Miljödepartementet,2002,1,2002-01-01,0.0,0.00,0.0,SIGNIFICANT_DECLINE,temporal_downward_trend,PASS

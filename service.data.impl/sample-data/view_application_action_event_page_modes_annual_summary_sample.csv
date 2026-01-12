@@ -1,3 +1,5 @@
 embedded_id_page,embedded_id_page_mode,embedded_id_created_date,hits,rank_percentage,rank,rn
-ministry,GOVERNMENT_BODIES_EXPENDITURE,2025-01-01 00:00:00,1,0.6206896551724138,19,1
-parliamentranking,Overview,2025-01-01 00:00:00,1,0.6206896551724138,19,2
+adminagency,"",2025-01-01 00:00:00,2,0.4482758620689655,14,1
+governmentbodyranking,OVERVIEW,2025-01-01 00:00:00,2,0.4482758620689655,14,2
+parliamentranking,RULES,2026-01-01 00:00:00,3,0.1111111111111111,2,1
+main,Overview,2026-01-01 00:00:00,2,0.2222222222222222,3,2

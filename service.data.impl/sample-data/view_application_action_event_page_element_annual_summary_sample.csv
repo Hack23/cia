@@ -1,3 +1,5 @@
 embedded_id_page,embedded_id_element_id,embedded_id_created_date,hits,rank_percentage,rank,rn
-parliamentranking,RISK_SUMMARY,2025-01-01 00:00:00,1,0.25,2,1
-adminagency,52,2025-01-01 00:00:00,1,0,1,2
+adminagency,52,2025-01-01 00:00:00,1,0,1,1
+ministryranking,DATAGRID,2025-01-01 00:00:00,1,1,2,2
+politician,0108109641223,2026-01-01 00:00:00,1,0,1,1
+parliamentranking,RISK_SUMMARY,2026-01-01 00:00:00,3,0,1,2

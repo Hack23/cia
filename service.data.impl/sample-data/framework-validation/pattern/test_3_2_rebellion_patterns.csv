@@ -1,0 +1,81 @@
+person_id,first_name,last_name,party,avg_rebel_rate,peak_rebel_rate,rebel_volatility,months_tracked,expected_detection,test_case,validation_label
+0161972600410,Elsa,Widding,-,25.85,39.00,10.26,8,HIGH_INDEPENDENCE,pattern_rebellion_identification,PASS
+025158809026,Ida,Gabrielsson,V,0.83,6.67,2.36,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0228027853620,Vasiliki,Tsouplaki,V,0.78,6.25,2.21,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0554852839719,Mikael,Dahlqvist,S,0.78,4.67,1.62,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0430865615328,Linda,Lindberg,SD,0.31,1.50,0.59,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0364687971222,Alireza,Akhondi,C,0.29,2.33,0.82,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0530425150220,Annika,Strandhäll,S,0.29,2.33,0.82,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0407081382317,Anna-Caren,Sätherberg,S,0.28,2.20,0.78,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0475778011711,Hans,Ekström,S,0.28,2.20,0.78,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0630820052511,Per-Arne,Håkansson,S,0.20,1.57,0.56,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0855286184126,Jessica,Rodén,S,0.20,1.57,0.56,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0653904370212,Fredrik,Olovsson,S,0.19,1.50,0.53,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0692076685824,Camilla,Hansén,MP,0.19,0.83,0.36,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0376395541120,Joakim,Sandell,S,0.19,1.50,0.53,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0526748040023,Ludvig,Aspling,SD,0.19,1.50,0.53,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0474290584024,Azadeh,Rojhan,S,0.19,1.50,0.53,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0905254899611,Louise,Thunström,S,0.18,1.00,0.36,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0475643059428,Jonny,Cato,C,0.16,1.14,0.43,7,PARTY_LINE,pattern_rebellion_identification,PASS
+0144048894712,Ellen,Juntti,M,0.15,1.17,0.41,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0682989845822,Håkan,Svenneling,V,0.15,1.17,0.41,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0516528386117,Patrik,Björck,S,0.15,1.17,0.41,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0411459873625,Hanna,Gunnarsson,V,0.15,1.17,0.41,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0112333043027,Rasmus,Giertz,SD,0.13,1.00,0.35,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0249730539015,Anders,Karlsson,C,0.13,1.00,0.35,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0132818093422,Rickard,Nordin,C,0.13,1.00,0.35,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0973782197017,Mikael,Oscarsson,KD,0.13,1.00,0.35,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0122987223112,Lotta,Johnsson Fornarve,V,0.13,1.00,0.35,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0985943148917,Victoria,Tiblom,SD,0.13,1.00,0.35,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0494843794418,Martin,Ådahl,C,0.13,1.00,0.35,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0880137451720,Emma,Nohrén,MP,0.13,1.00,0.35,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0184968091618,Jan,Riise,MP,0.10,0.83,0.29,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0879782396219,Olle,Thorell,S,0.10,0.83,0.29,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0706528359123,Linus,Sköld,S,0.10,0.83,0.29,8,PARTY_LINE,pattern_rebellion_identification,PASS
+084624777218,Helena,Lindahl,C,0.10,0.83,0.29,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0922497728524,Ardalan,Shekarabi,S,0.05,0.43,0.15,8,PARTY_LINE,pattern_rebellion_identification,PASS
+037561614928,Lawen,Redar,S,0.05,0.43,0.15,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0257612529618,Kenneth G,Forslund,S,0.05,0.43,0.15,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0257313105220,Arber,Gashi,S,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0256404677510,Cecilia,Engström,KD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0191189790215,Peter,Ollén,M,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0183544538819,Patrik,Jönsson,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0251136832626,Muharrem,Demirok,C,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0178323535715,Johnny,Svedin,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0136268785826,Nima,Gholam Ali Pour,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0174490514929,Marcus,Andersson,S,0.00,0.00,0.00,6,PARTY_LINE,pattern_rebellion_identification,PASS
+0170585430421,Jimmy,Ståhl,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0130789484021,Mattias,Bäckström Johansson,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0245468368228,Yusuf,Aydin,KD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0245113256029,Daniel,Vencu Velasquez Castro,S,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0240670797111,Björn,Tidland,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0246927519019,Karin,Rågsjö,V,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0248492534018,Pia,Trollehjelm,SD,0.00,0.00,0.00,7,PARTY_LINE,pattern_rebellion_identification,PASS
+0237055280513,Roland,Utbult,KD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0250583732424,Jesper,Skalberg Karlsson,M,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0161616238120,Lina,Nordquist,L,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0130640724922,Clara,Aranda,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0254021157518,Lars,Andersson,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0254695027922,Malcolm Momodou,Jallow,V,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0111697351426,Louise,Eklund,L,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0256716955026,Serkan,Köse,S,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0105632258713,Boriana,Åberg,M,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0236597884217,Rose-Marie,Carlsson,S,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0229760896014,Anders,W Jonsson,C,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0157618290428,Rashid,Farivar,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0229627943828,Jytte,Guteland,S,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0229350341619,Ilona,Szatmári Waldau,V,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0155487380917,Kerstin,Lundgren,C,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0227531635413,Lars,Püss,M,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0148424181819,Ann-Christine,Frohm,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0226631365426,Mikael,Larsson,C,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0222102752213,Stefan,Olsson,M,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+014744660015,Mikael,Damberg,S,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0121015874810,Torsten,Elofsson,KD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0111479807829,Anna,Wallentheim,S,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0296384583518,Åsa,Eriksson,S,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0294138886823,Martin,Kinnunen,SD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0220064764318,Camilla,Brunsberg,M,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+02910042914,Carina,Ödebrink,S,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+0302393368216,Camilla,Rinaldo Miller,KD,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
+028954589415,Ann-Sofie,Alm,M,0.00,0.00,0.00,8,PARTY_LINE,pattern_rebellion_identification,PASS
