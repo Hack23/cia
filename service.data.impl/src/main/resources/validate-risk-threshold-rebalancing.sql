@@ -21,9 +21,27 @@ SELECT
     ROUND((COUNT(*) * 100.0 / (SELECT COUNT(*) FROM view_politician_risk_summary)), 2) AS percentage,
     MIN(risk_score) AS min_score,
     MAX(risk_score) AS max_score,
-    ROUND(AVG(risk_score)::NUMERIC, 2) AS avg_score
+    ROUND(AVG(risk_score)::NUMERIC, 2) AS avg_score,
+    CASE
+        WHEN risk_score >= 70 THEN 1
+        WHEN risk_score >= 50 THEN 2
+        WHEN risk_score >= 30 THEN 3
+        ELSE 4
+    END AS sort_order
 FROM view_politician_risk_summary
-GROUP BY risk_level
+GROUP BY 
+    CASE
+        WHEN risk_score >= 70 THEN 'CRITICAL'
+        WHEN risk_score >= 50 THEN 'HIGH'
+        WHEN risk_score >= 30 THEN 'MEDIUM'
+        ELSE 'LOW'
+    END,
+    CASE
+        WHEN risk_score >= 70 THEN 1
+        WHEN risk_score >= 50 THEN 2
+        WHEN risk_score >= 30 THEN 3
+        ELSE 4
+    END
 
 -- ============================================================================
 -- 2. New Distribution (NEW THRESHOLDS: 65/45/25)
@@ -44,19 +62,31 @@ SELECT
     ROUND((COUNT(*) * 100.0 / (SELECT COUNT(*) FROM view_politician_risk_summary)), 2) AS percentage,
     MIN(risk_score) AS min_score,
     MAX(risk_score) AS max_score,
-    ROUND(AVG(risk_score)::NUMERIC, 2) AS avg_score
+    ROUND(AVG(risk_score)::NUMERIC, 2) AS avg_score,
+    CASE
+        WHEN risk_score >= 65 THEN 1
+        WHEN risk_score >= 45 THEN 2
+        WHEN risk_score >= 25 THEN 3
+        ELSE 4
+    END AS sort_order
 FROM view_politician_risk_summary
-GROUP BY risk_level
+GROUP BY 
+    CASE
+        WHEN risk_score >= 65 THEN 'CRITICAL'
+        WHEN risk_score >= 45 THEN 'HIGH'
+        WHEN risk_score >= 25 THEN 'MEDIUM'
+        ELSE 'LOW'
+    END,
+    CASE
+        WHEN risk_score >= 65 THEN 1
+        WHEN risk_score >= 45 THEN 2
+        WHEN risk_score >= 25 THEN 3
+        ELSE 4
+    END
 
 ORDER BY 
     analysis_type,
-    CASE risk_level
-        WHEN 'CRITICAL' THEN 1
-        WHEN 'HIGH' THEN 2
-        WHEN 'MEDIUM' THEN 3
-        WHEN 'LOW' THEN 4
-        ELSE 5
-    END;
+    sort_order;
 
 -- ============================================================================
 -- 3. Distribution Comparison Summary
@@ -72,7 +102,13 @@ WITH current_dist AS (
         END AS risk_level,
         COUNT(*) AS count
     FROM view_politician_risk_summary
-    GROUP BY risk_level
+    GROUP BY 
+        CASE
+            WHEN risk_score >= 70 THEN 'CRITICAL'
+            WHEN risk_score >= 50 THEN 'HIGH'
+            WHEN risk_score >= 30 THEN 'MEDIUM'
+            ELSE 'LOW'
+        END
 ),
 new_dist AS (
     SELECT 
@@ -84,7 +120,13 @@ new_dist AS (
         END AS risk_level,
         COUNT(*) AS count
     FROM view_politician_risk_summary
-    GROUP BY risk_level
+    GROUP BY 
+        CASE
+            WHEN risk_score >= 65 THEN 'CRITICAL'
+            WHEN risk_score >= 45 THEN 'HIGH'
+            WHEN risk_score >= 25 THEN 'MEDIUM'
+            ELSE 'LOW'
+        END
 ),
 total AS (
     SELECT COUNT(*) AS total_count FROM view_politician_risk_summary
@@ -123,7 +165,13 @@ WITH new_dist AS (
         END AS risk_level,
         COUNT(*) AS count
     FROM view_politician_risk_summary
-    GROUP BY risk_level
+    GROUP BY 
+        CASE
+            WHEN risk_score >= 65 THEN 'CRITICAL'
+            WHEN risk_score >= 45 THEN 'HIGH'
+            WHEN risk_score >= 25 THEN 'MEDIUM'
+            ELSE 'LOW'
+        END
 ),
 total AS (
     SELECT COUNT(*) AS total_count FROM view_politician_risk_summary
@@ -248,7 +296,7 @@ SELECT
 FROM view_politician_risk_summary
 WHERE risk_score >= 70
 
-ORDER BY MIN(min_score);
+ORDER BY min_score;
 
 -- ============================================================================
 -- 6. Gini Coefficient Calculation (Distribution Evenness)
