@@ -48,20 +48,31 @@
 \echo '>>> Test Case 1.1: Upward Trend - Politician Attendance Improvement'
 \echo '>>> Expected Outcome: Detect attendance rate increase ≥10% over 6 months'
 
-\copy (
+COPY (
     WITH politician_trends_base AS (
         SELECT 
             person_id,
             first_name,
             last_name,
             party,
-            year_month,
+            period_start,
             avg_absence_rate,
-            LAG(avg_absence_rate, 6) OVER (PARTITION BY person_id ORDER BY year_month) AS absence_6mo_ago,
-            avg_absence_rate - absence_6mo_ago AS absence_change
+            LAG(avg_absence_rate, 6) OVER (PARTITION BY person_id ORDER BY period_start) AS absence_6mo_ago
         FROM view_politician_behavioral_trends
-        WHERE ballot_count >= 10
-          AND year_month >= CURRENT_DATE - INTERVAL '24 months'
+        WHERE total_ballots >= 10
+          AND period_start >= CURRENT_DATE - INTERVAL '24 months'
+    ),
+    politician_trends_with_change AS (
+        SELECT 
+            person_id,
+            first_name,
+            last_name,
+            party,
+            period_start,
+            avg_absence_rate,
+            absence_6mo_ago,
+            avg_absence_rate - absence_6mo_ago AS absence_change
+        FROM politician_trends_base
     ),
     politician_trends AS (
         SELECT 
@@ -69,7 +80,7 @@
             first_name,
             last_name,
             party,
-            year_month,
+            period_start,
             avg_absence_rate,
             absence_6mo_ago,
             absence_change,
@@ -78,14 +89,14 @@
                 WHEN absence_change < -5 THEN 'MODERATE_IMPROVEMENT'
                 ELSE 'STABLE'
             END AS trend_classification
-        FROM politician_trends_base
+        FROM politician_trends_with_change
     )
     SELECT 
         person_id,
         first_name,
         last_name,
         party,
-        year_month AS measurement_month,
+        period_start AS measurement_month,
         ROUND(absence_6mo_ago, 2) AS baseline_absence_rate,
         ROUND(avg_absence_rate, 2) AS current_absence_rate,
         ROUND(absence_change, 2) AS change_magnitude,
@@ -108,7 +119,7 @@
 \echo '>>> Test Case 1.2: Downward Trend - Ministry Effectiveness Decline'
 \echo '>>> Expected Outcome: Detect ministry approval rate decline ≥15% over 4 quarters'
 
-\copy (
+COPY (
     WITH ministry_trends_base AS (
         SELECT 
             ministry_code,
@@ -117,11 +128,22 @@
             decision_quarter,
             TO_DATE(decision_year::TEXT || '-' || ((decision_quarter-1)*3+1)::TEXT || '-01', 'YYYY-MM-DD') AS quarter_date,
             approval_rate,
-            LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter) AS approval_4q_ago,
-            approval_rate - approval_4q_ago AS approval_change
+            LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter) AS approval_4q_ago
         FROM view_ministry_decision_impact
         WHERE total_proposals >= 5
           AND decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3
+    ),
+    ministry_trends_with_change AS (
+        SELECT 
+            ministry_code,
+            ministry_name,
+            decision_year,
+            decision_quarter,
+            quarter_date,
+            approval_rate,
+            approval_4q_ago,
+            approval_rate - approval_4q_ago AS approval_change
+        FROM ministry_trends_base
     ),
     ministry_trends AS (
         SELECT 
@@ -138,7 +160,7 @@
                 WHEN approval_change < -10 THEN 'MODERATE_DECLINE'
                 ELSE 'STABLE'
             END AS trend_classification
-        FROM ministry_trends_base
+        FROM ministry_trends_with_change
     )
     SELECT 
         ministry_code,
@@ -168,7 +190,7 @@
 \echo '>>> Test Case 1.2b: Ministry Risk Evolution - Multi-quarter Deterioration'
 \echo '>>> Expected Outcome: Detect CRITICAL risk escalation patterns'
 
-\copy (
+COPY (
     WITH risk_evolution_base AS (
         SELECT 
             org_code,
@@ -247,7 +269,7 @@
 \echo '>>> Test Case 1.3: Cyclical Patterns - Parliamentary Session Seasonality'
 \echo '>>> Expected Outcome: Detect seasonal patterns (Autumn high, Summer low)'
 
-\copy (
+COPY (
     WITH seasonal_patterns AS (
         SELECT 
             decision_day,
@@ -298,7 +320,7 @@
 \echo '>>> Test Case 1.4: Anomalies - Sudden Decision Volume Spikes'
 \echo '>>> Expected Outcome: Detect days with decision volume >2 standard deviations'
 
-\copy (
+COPY (
     WITH decision_stats AS (
         SELECT 
             AVG(daily_decisions) AS mean_decisions,
@@ -370,7 +392,7 @@
 \echo '>>> Test Case 2.1: Party Performance Rankings - Win Rate & Discipline'
 \echo '>>> Expected Outcome: Classify parties into performance tiers (HIGH/MEDIUM/LOW)'
 
-\copy (
+COPY (
     WITH party_metrics AS (
         SELECT 
             party,
@@ -381,7 +403,7 @@
             SUM(total_documents) AS total_documents,
             COUNT(*) AS months_tracked
         FROM view_party_effectiveness_trends
-        WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
+        WHERE period_start >= CURRENT_DATE - INTERVAL '12 months'
         GROUP BY party, active_members
         HAVING COUNT(*) >= 6
     ),
@@ -430,7 +452,7 @@
 \echo '>>> Test Case 2.2: Politician vs. Party Average Performance'
 \echo '>>> Expected Outcome: Classify politicians as ABOVE_AVERAGE/AVERAGE/BELOW_AVERAGE'
 
-\copy (
+COPY (
     WITH party_averages AS (
         SELECT 
             party,
@@ -438,8 +460,8 @@
             AVG(avg_win_rate) AS party_avg_win,
             AVG(avg_rebel_rate) AS party_avg_rebel
         FROM view_politician_behavioral_trends
-        WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
-          AND ballot_count >= 10
+        WHERE period_start >= CURRENT_DATE - INTERVAL '12 months'
+          AND total_ballots >= 10
         GROUP BY party
     ),
     politician_comparison_base AS (
@@ -458,8 +480,8 @@
             AVG(pbt.avg_win_rate) - pa.party_avg_win AS win_vs_party
         FROM view_politician_behavioral_trends pbt
         JOIN party_averages pa ON pa.party = pbt.party
-        WHERE pbt.year_month >= CURRENT_DATE - INTERVAL '12 months'
-          AND pbt.ballot_count >= 10
+        WHERE pbt.period_start >= CURRENT_DATE - INTERVAL '12 months'
+          AND pbt.total_ballots >= 10
         GROUP BY pbt.person_id, pbt.first_name, pbt.last_name, pbt.party, 
                  pa.party_avg_absence, pa.party_avg_win, pa.party_avg_rebel
     ),
@@ -514,7 +536,7 @@
 \echo '>>> Test Case 2.3: Party Momentum - Performance Acceleration Patterns'
 \echo '>>> Expected Outcome: Classify parties by momentum (ACCELERATING/DECELERATING/STABLE)'
 
-\copy (
+COPY (
     WITH momentum_classification AS (
         SELECT 
             party,
@@ -600,7 +622,7 @@
 \echo '>>> Test Case 3.1: Behavioral Clustering - Performance Pattern Classification'
 \echo '>>> Expected Outcome: Classify behavioral patterns into 3 clusters'
 
-\copy (
+COPY (
     WITH politician_patterns_base AS (
         SELECT 
             person_id,
@@ -613,8 +635,8 @@
             COUNT(*) AS months_tracked,
             STDDEV(avg_absence_rate) AS absence_volatility
         FROM view_politician_behavioral_trends
-        WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
-          AND ballot_count >= 10
+        WHERE period_start >= CURRENT_DATE - INTERVAL '12 months'
+          AND total_ballots >= 10
         GROUP BY person_id, first_name, last_name, party
         HAVING COUNT(*) >= 6
     ),
@@ -672,7 +694,7 @@
 \echo '>>> Test Case 3.2: Rebellion Patterns - High Independence vs. Party Line'
 \echo '>>> Expected Outcome: Identify HIGH_INDEPENDENCE and PARTY_LINE patterns'
 
-\copy (
+COPY (
     WITH rebellion_patterns_base AS (
         SELECT 
             person_id,
@@ -684,8 +706,8 @@
             STDDEV(avg_rebel_rate) AS rebel_volatility,
             COUNT(*) AS months_tracked
         FROM view_politician_behavioral_trends
-        WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
-          AND ballot_count >= 10
+        WHERE period_start >= CURRENT_DATE - INTERVAL '12 months'
+          AND total_ballots >= 10
         GROUP BY person_id, first_name, last_name, party
         HAVING COUNT(*) >= 6
     ),
@@ -752,7 +774,7 @@
 \echo '>>> Test Case 4.1: Resignation Risk - Declining Engagement Signals'
 \echo '>>> Expected Outcome: Identify HIGH_RISK, MODERATE_RISK patterns'
 
-\copy (
+COPY (
     WITH resignation_signals_base AS (
         SELECT 
             person_id,
@@ -765,8 +787,8 @@
             AVG(ma_3month_absence) AS smoothed_absence,
             COUNT(*) AS months_tracked
         FROM view_politician_behavioral_trends
-        WHERE year_month >= CURRENT_DATE - INTERVAL '12 months'
-          AND ballot_count >= 10
+        WHERE period_start >= CURRENT_DATE - INTERVAL '12 months'
+          AND total_ballots >= 10
         GROUP BY person_id, first_name, last_name, party
         HAVING COUNT(*) >= 6
     ),
@@ -817,7 +839,7 @@
 \echo '>>> Test Case 4.1b: Politician Risk Profile - Multi-Violation Patterns'
 \echo '>>> Expected Outcome: Identify high-risk politicians with multiple violation types'
 
-\copy (
+COPY (
     WITH risk_profiles AS (
         SELECT 
             person_id,
@@ -898,7 +920,7 @@
 \echo '>>> Test Case 4.2: Coalition Stress - Alignment Degradation Signals'
 \echo '>>> Expected Outcome: Detect coalition stress with ≥78% accuracy'
 
-\copy (
+COPY (
     WITH coalition_pairs AS (
         SELECT 
             party_1,
@@ -958,7 +980,7 @@
 \echo '>>> Test Case 5.1: Power Brokers - High Influence & Cross-Party Connections'
 \echo '>>> Expected Outcome: Identify STRONG_BROKER and MODERATE_BROKER classifications'
 
-\copy (
+COPY (
     WITH power_metrics AS (
         SELECT 
             person_id,
@@ -1008,7 +1030,7 @@
 \echo '>>> Test Case 5.2: Coalition Facilitators - Cross-Bloc Connection Patterns'
 \echo '>>> Expected Outcome: Identify politicians bridging political blocs'
 
-\copy (
+COPY (
     WITH coalition_bridges AS (
         SELECT 
             party_1,
@@ -1071,7 +1093,7 @@
 \echo '>>> Test Case 6.1: Decision Effectiveness - Approval Rate Patterns'
 \echo '>>> Expected Outcome: Classify HIGH_EFFECTIVENESS, LOW_EFFECTIVENESS patterns'
 
-\copy (
+COPY (
     WITH decision_patterns AS (
         SELECT 
             party,
@@ -1126,7 +1148,7 @@
 \echo '>>> Test Case 6.2: Coalition Misalignment - Conflicting Decision Patterns'
 \echo '>>> Expected Outcome: Detect MISALIGNED vs. ALIGNED coalition decision patterns'
 
-\copy (
+COPY (
     WITH coalition_decisions_base AS (
         SELECT 
             pdf1.party AS party_1,
@@ -1200,7 +1222,7 @@
 \echo ''
 
 -- Generate validation summary CSV
-\copy (
+COPY (
     SELECT 
         'Temporal Analysis' AS framework,
         'Test 1.1' AS test_id,
