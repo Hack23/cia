@@ -42,8 +42,7 @@ public interface PoliticianRankingGridConstants {
         "documentsLastYear", "averageDocsPerYear", "docActivityLevel",
         "docActivityProfile", "collaborationPercentage",
         // Document Breakdown
-        "totalDocuments", "totalQuestions", "totalInterpellations", "totalPropositions", "weightedActivityScore",
-        "individualMotions", "partyMotions",
+        "totalDocuments", "individualMotions", "partyMotions",
         "committeeMotions", "multiPartyMotions",
         // Current Roles - Committee Leadership
         "currentAssignments", "currentMinistryAssignments",
