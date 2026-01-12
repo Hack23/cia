@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <!-- 
+  Add Question and Bill counters to ViewRiksdagenPolitician v1.51
+  Author: Intelligence Operative
+  Date: 2026-02-12
+  
+  Changes:
+  - Updates view_riksdagen_politician_document_summary (Materialized View) to count Questions ('fr')
+    and Interpellations ('ip').
+  - Updates view_riksdagen_politician to expose these new columns.
+  
+  Note: This involves cascading drops.
+-->
+
+    <changeSet author="intelligence-operative" id="update-politician-document-summary-v1.51"
+        failOnError="true">
+        <comment>Drop and recreate view_riksdagen_politician_document_summary with new counters. Cascades to view_riksdagen_politician.</comment>
+        <sqlFile path="view_riksdagen_politician_document_summary_v1.51.sql"
+            relativeToChangelogFile="true" splitStatements="false" stripComments="false" />
+    </changeSet>
+
+    <changeSet author="intelligence-operative" id="update-politician-view-v1.51" failOnError="true">
+        <comment>Recreate view_riksdagen_politician with new columns from summary.</comment>
+        <sqlFile path="view_riksdagen_politician_v1.51.sql" relativeToChangelogFile="true"
+            splitStatements="false" stripComments="false" />
+    </changeSet>
+
+</databaseChangeLog>

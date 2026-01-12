@@ -145,6 +145,12 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 
 		layout.addComponent(createInfoRow("Documents/Year:", String.format(Locale.ENGLISH,"%.1f", politician.getAverageDocsPerYear()),
 				VaadinIcons.FILE_TEXT, "Average documents per year"));
+		layout.addComponent(createInfoRow("Weighted Score:", String.format(Locale.ENGLISH,"%.1f", politician.getWeightedActivityScore()),
+				VaadinIcons.TROPHY, "Combined activity score"));
+		layout.addComponent(createInfoRow("Questions:", String.valueOf(politician.getTotalQuestions()),
+				VaadinIcons.QUESTION, "Parliamentary questions"));
+		layout.addComponent(createInfoRow("Interpellations:", String.valueOf(politician.getTotalInterpellations()),
+				VaadinIcons.COMMENT, "Interpellations debates"));
 		layout.addComponent(createInfoRow("Individual Motions:", String.valueOf(politician.getIndividualMotions()),
 				VaadinIcons.USER, "Personal motions submitted"));
 		layout.addComponent(createInfoRow("Party Motions:", String.valueOf(politician.getPartyMotions()),

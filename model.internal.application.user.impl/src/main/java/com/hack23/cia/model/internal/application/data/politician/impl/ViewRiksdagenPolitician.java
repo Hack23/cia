@@ -105,7 +105,7 @@ import com.hack23.cia.model.common.impl.xml.XmlDateTypeAdapter;
 		"totalPartyLeaderAssignments", "currentPartyLeaderAssignments",
 		"totalPartySecretaryAssignments", "currentPartySecretaryAssignments",
 		"totalDocuments", "partyMotions",
-		"individualMotions", "committeeMotions", "multiPartyMotions", "followUpMotions", "documentsLastYear",
+		"individualMotions", "committeeMotions", "multiPartyMotions", "followUpMotions", "totalQuestions", "totalInterpellations", "totalPropositions", "documentsLastYear",
 		"documentYearsActive", "averageDocsPerYear", "docActivityLevel", "docActivityProfile",
 		"collaborationPercentage", "documentTypes", "firstDocumentDate", "lastDocumentDate" })
 @Entity(name = "ViewRiksdagenPolitician")
@@ -294,6 +294,15 @@ public class ViewRiksdagenPolitician implements ModelObject {
 
     /** The follow up motions. */
     protected long followUpMotions;
+
+    /** The total questions. */
+    protected long totalQuestions;
+
+    /** The total interpellations. */
+    protected long totalInterpellations;
+
+    /** The total propositions. */
+    protected long totalPropositions;
 
     /** The documents last year. */
     protected long documentsLastYear;
@@ -1472,6 +1481,66 @@ public class ViewRiksdagenPolitician implements ModelObject {
     }
 
     /**
+     * Gets the total questions.
+     *
+     * @return the total questions
+     */
+    @Basic
+    @Column(name = "TOTAL_QUESTIONS", precision = 20)
+    public long getTotalQuestions() {
+        return totalQuestions;
+    }
+
+    /**
+     * Sets the total questions.
+     *
+     * @param value the new total questions
+     */
+    public void setTotalQuestions(final long value) {
+        this.totalQuestions = value;
+    }
+
+    /**
+     * Gets the total interpellations.
+     *
+     * @return the total interpellations
+     */
+    @Basic
+    @Column(name = "TOTAL_INTERPELLATIONS", precision = 20)
+    public long getTotalInterpellations() {
+        return totalInterpellations;
+    }
+
+    /**
+     * Sets the total interpellations.
+     *
+     * @param value the new total interpellations
+     */
+    public void setTotalInterpellations(final long value) {
+        this.totalInterpellations = value;
+    }
+
+    /**
+     * Gets the total propositions.
+     *
+     * @return the total propositions
+     */
+    @Basic
+    @Column(name = "TOTAL_PROPOSITIONS", precision = 20)
+    public long getTotalPropositions() {
+        return totalPropositions;
+    }
+
+    /**
+     * Sets the total propositions.
+     *
+     * @param value the new total propositions
+     */
+    public void setTotalPropositions(final long value) {
+        this.totalPropositions = value;
+    }
+
+    /**
      * Gets the documents last year.
      *
      * @return the documents last year
@@ -1520,6 +1589,16 @@ public class ViewRiksdagenPolitician implements ModelObject {
     @Column(name = "AVERAGE_DOCS_PER_YEAR", precision = 10, scale = 2)
     public double getAverageDocsPerYear() {
         return averageDocsPerYear;
+    }
+
+    /**
+     * Gets the weighted activity score.
+     *
+     * @return the weighted activity score
+     */
+    @Transient
+    public double getWeightedActivityScore() {
+        return totalDocuments + (totalQuestions * 0.5) + (totalInterpellations * 0.8) + (totalPropositions * 2.0);
     }
 
     /**
@@ -1728,6 +1807,39 @@ public class ViewRiksdagenPolitician implements ModelObject {
      */
     public ViewRiksdagenPolitician withFollowUpMotions(final long value) {
         setFollowUpMotions(value);
+        return this;
+    }
+
+    /**
+     * With total questions.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withTotalQuestions(final long value) {
+        setTotalQuestions(value);
+        return this;
+    }
+
+    /**
+     * With total interpellations.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withTotalInterpellations(final long value) {
+        setTotalInterpellations(value);
+        return this;
+    }
+
+    /**
+     * With total propositions.
+     *
+     * @param value the value
+     * @return the view riksdagen politician
+     */
+    public ViewRiksdagenPolitician withTotalPropositions(final long value) {
+        setTotalPropositions(value);
         return this;
     }
 
