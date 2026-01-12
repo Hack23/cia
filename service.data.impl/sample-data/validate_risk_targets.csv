@@ -1,0 +1,5 @@
+risk_level,actual_count,actual_percentage,target_range,validation_status
+CRITICAL,0,0.00,0-1%,✓ WITHIN TARGET
+HIGH,66,16.42,15-25%,✓ WITHIN TARGET
+MEDIUM,290,72.14,50-60%,✗ ABOVE TARGET
+LOW,46,11.44,25-35%,✗ BELOW TARGET

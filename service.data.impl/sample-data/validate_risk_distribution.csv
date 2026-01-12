@@ -1,0 +1,7 @@
+analysis_type,threshold_config,risk_level,politician_count,percentage,min_score,max_score,avg_score,sort_order
+CURRENT_THRESHOLDS,Based on v1.32-v1.47 thresholds,HIGH,24,5.97,50.00,56.00,52.00,2
+CURRENT_THRESHOLDS,Based on v1.32-v1.47 thresholds,MEDIUM,332,82.59,30.00,48.00,39.95,3
+CURRENT_THRESHOLDS,Based on v1.32-v1.47 thresholds,LOW,46,11.44,10.00,18.00,10.30,4
+NEW_THRESHOLDS,Based on v1.48 thresholds,HIGH,66,16.42,46.00,56.00,48.79,2
+NEW_THRESHOLDS,Based on v1.48 thresholds,MEDIUM,290,72.14,30.00,44.00,38.93,3
+NEW_THRESHOLDS,Based on v1.48 thresholds,LOW,46,11.44,10.00,18.00,10.30,4
