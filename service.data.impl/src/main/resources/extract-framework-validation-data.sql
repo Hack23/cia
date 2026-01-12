@@ -110,7 +110,7 @@ COPY (
     WHERE trend_classification IN ('SIGNIFICANT_IMPROVEMENT', 'MODERATE_IMPROVEMENT')
     ORDER BY absence_change ASC
     LIMIT 50
-) TO 'service.data.impl/sample-data/framework-validation/temporal/test_1_1_upward_trend_attendance.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/temporal/test_1_1_upward_trend_attendance.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 50 cases with expected upward trend detection (attendance improvement)'
 \echo ''
@@ -123,12 +123,11 @@ COPY (
     WITH ministry_trends_base AS (
         SELECT 
             ministry_code,
-            ministry_name,
             decision_year,
-            decision_quarter,
-            TO_DATE(decision_year::TEXT || '-' || ((decision_quarter-1)*3+1)::TEXT || '-01', 'YYYY-MM-DD') AS quarter_date,
+            quarter_num,
+            TO_DATE(decision_year::TEXT || '-' || ((quarter_num-1)*3+1)::TEXT || '-01', 'YYYY-MM-DD') AS quarter_date,
             approval_rate,
-            LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, decision_quarter) AS approval_4q_ago
+            LAG(approval_rate, 4) OVER (PARTITION BY ministry_code ORDER BY decision_year, quarter_num) AS approval_4q_ago
         FROM view_ministry_decision_impact
         WHERE total_proposals >= 5
           AND decision_year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3
@@ -136,9 +135,8 @@ COPY (
     ministry_trends_with_change AS (
         SELECT 
             ministry_code,
-            ministry_name,
             decision_year,
-            decision_quarter,
+            quarter_num,
             quarter_date,
             approval_rate,
             approval_4q_ago,
@@ -148,9 +146,8 @@ COPY (
     ministry_trends AS (
         SELECT 
             ministry_code,
-            ministry_name,
             decision_year,
-            decision_quarter,
+            quarter_num,
             quarter_date,
             approval_rate,
             approval_4q_ago,
@@ -164,9 +161,8 @@ COPY (
     )
     SELECT 
         ministry_code,
-        ministry_name,
         decision_year,
-        decision_quarter,
+        quarter_num,
         quarter_date,
         ROUND(approval_4q_ago, 2) AS baseline_approval_rate,
         ROUND(approval_rate, 2) AS current_approval_rate,
@@ -181,7 +177,7 @@ COPY (
     WHERE trend_classification IN ('SIGNIFICANT_DECLINE', 'MODERATE_DECLINE')
     ORDER BY approval_change ASC
     LIMIT 30
-) TO 'service.data.impl/sample-data/framework-validation/temporal/test_1_2_downward_trend_ministry.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/temporal/test_1_2_downward_trend_ministry.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 30 cases with expected downward trend detection (ministry decline)'
 \echo ''
@@ -260,7 +256,7 @@ COPY (
         END,
         year DESC, quarter DESC
     LIMIT 35
-) TO 'service.data.impl/sample-data/framework-validation/temporal/test_1_2b_ministry_risk_evolution.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/temporal/test_1_2b_ministry_risk_evolution.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 35 cases with ministry risk escalation patterns'
 \echo ''
@@ -311,7 +307,7 @@ COPY (
     WHERE validation_label = 'PASS'
     ORDER BY decision_day DESC
     LIMIT 100
-) TO 'service.data.impl/sample-data/framework-validation/temporal/test_1_3_cyclical_patterns.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/temporal/test_1_3_cyclical_patterns.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 100 cases with expected cyclical pattern detection'
 \echo ''
@@ -367,7 +363,7 @@ COPY (
     WHERE expected_classification IN ('EXTREME_ANOMALY', 'SIGNIFICANT_ANOMALY', 'MODERATE_ANOMALY')
     ORDER BY ABS(z_score) DESC
     LIMIT 40
-) TO 'service.data.impl/sample-data/framework-validation/temporal/test_1_4_anomaly_detection.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/temporal/test_1_4_anomaly_detection.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 40 cases with expected anomaly detection (z-score >1.5)'
 \echo ''
@@ -396,15 +392,15 @@ COPY (
     WITH party_metrics AS (
         SELECT 
             party,
-            active_members,
-            AVG(avg_party_win_rate) AS avg_win_rate,
-            AVG(avg_party_discipline) AS avg_discipline,
-            AVG(avg_party_absence_rate) AS avg_absence_rate,
-            SUM(total_documents) AS total_documents,
+            MAX(active_members) AS active_members,
+            SUM(documents_produced) AS total_documents,
+            AVG(avg_win_rate) AS avg_win_rate,
+            AVG(100 - avg_rebel_rate) AS avg_discipline,
+            AVG(avg_absence_rate) AS avg_absence_rate,
             COUNT(*) AS months_tracked
         FROM view_party_effectiveness_trends
         WHERE period_start >= CURRENT_DATE - INTERVAL '12 months'
-        GROUP BY party, active_members
+        GROUP BY party
         HAVING COUNT(*) >= 6
     ),
     party_rankings AS (
@@ -443,7 +439,7 @@ COPY (
         END AS validation_label
     FROM party_rankings
     ORDER BY avg_win_rate DESC
-) TO 'service.data.impl/sample-data/framework-validation/comparative/test_2_1_party_rankings.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/comparative/test_2_1_party_rankings.csv' WITH CSV HEADER;
 
 \echo '>>> Exported party performance rankings with expected tier classification'
 \echo ''
@@ -527,7 +523,7 @@ COPY (
     WHERE expected_classification IN ('ABOVE_AVERAGE', 'BELOW_AVERAGE')
     ORDER BY win_vs_party DESC
     LIMIT 60
-) TO 'service.data.impl/sample-data/framework-validation/comparative/test_2_2_peer_comparison.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/comparative/test_2_2_peer_comparison.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 60 cases with expected peer group classification'
 \echo ''
@@ -554,11 +550,11 @@ COPY (
             stability_classification,
             intelligence_assessment,
             CASE 
-                WHEN momentum > 5 AND acceleration > 2 THEN 'STRONG_ACCELERATION'
-                WHEN momentum > 2 AND trend_direction = 'INCREASING' THEN 'MODERATE_ACCELERATION'
-                WHEN momentum < -5 AND acceleration < -2 THEN 'STRONG_DECELERATION'
-                WHEN momentum < -2 AND trend_direction = 'DECREASING' THEN 'MODERATE_DECELERATION'
-                WHEN volatility < 2 AND trend_direction = 'STABLE' THEN 'STABLE_PERFORMANCE'
+                WHEN momentum > 0.05 AND acceleration > 0.02 THEN 'STRONG_ACCELERATION'
+                WHEN momentum > 0.02 AND trend_direction IN ('POSITIVE', 'STRONG_POSITIVE') THEN 'MODERATE_ACCELERATION'
+                WHEN momentum < -0.05 AND acceleration < -0.02 THEN 'STRONG_DECELERATION'
+                WHEN momentum < -0.02 AND trend_direction IN ('NEGATIVE', 'STRONG_NEGATIVE') THEN 'MODERATE_DECELERATION'
+                WHEN volatility < 0.02 AND trend_direction = 'STABLE' THEN 'STABLE_PERFORMANCE'
                 ELSE 'UNCLASSIFIED'
             END AS expected_momentum_classification
         FROM view_riksdagen_party_momentum_analysis
@@ -597,7 +593,7 @@ COPY (
         END,
         year DESC, quarter DESC
     LIMIT 70
-) TO 'service.data.impl/sample-data/framework-validation/comparative/test_2_3_party_momentum.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/comparative/test_2_3_party_momentum.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 70 cases with party momentum classification'
 \echo ''
@@ -685,7 +681,7 @@ COPY (
         END,
         avg_absence DESC
     LIMIT 100
-) TO 'service.data.impl/sample-data/framework-validation/pattern/test_3_1_behavioral_clustering.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/pattern/test_3_1_behavioral_clustering.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 100 cases with expected behavioral cluster classification'
 \echo ''
@@ -749,7 +745,7 @@ COPY (
     WHERE expected_pattern IN ('HIGH_INDEPENDENCE', 'PARTY_LINE', 'MODERATE_INDEPENDENCE')
     ORDER BY avg_rebel_rate DESC
     LIMIT 80
-) TO 'service.data.impl/sample-data/framework-validation/pattern/test_3_2_rebellion_patterns.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/pattern/test_3_2_rebellion_patterns.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 80 cases with expected rebellion pattern classification'
 \echo ''
@@ -830,7 +826,7 @@ COPY (
     WHERE expected_risk_level IN ('HIGH_RESIGNATION_RISK', 'MODERATE_RESIGNATION_RISK')
     ORDER BY avg_absence DESC, avg_absence_trend DESC
     LIMIT 40
-) TO 'service.data.impl/sample-data/framework-validation/predictive/test_4_1_resignation_prediction.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/predictive/test_4_1_resignation_prediction.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 40 cases with expected resignation risk prediction'
 \echo ''
@@ -911,7 +907,7 @@ COPY (
         risk_score DESC,
         total_violations DESC
     LIMIT 45
-) TO 'service.data.impl/sample-data/framework-validation/predictive/test_4_1b_politician_risk_profiles.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/predictive/test_4_1b_politician_risk_profiles.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 45 cases with multi-dimensional risk profiles'
 \echo ''
@@ -955,7 +951,7 @@ COPY (
     WHERE expected_stress_level IN ('HIGH_COALITION_STRESS', 'MODERATE_COALITION_STRESS', 'STABLE_COALITION')
     ORDER BY alignment_rate ASC
     LIMIT 50
-) TO 'service.data.impl/sample-data/framework-validation/predictive/test_4_2_coalition_stress.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/predictive/test_4_2_coalition_stress.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 50 cases with expected coalition stress prediction'
 \echo ''
@@ -1021,7 +1017,7 @@ COPY (
     WHERE expected_classification IN ('STRONG_POWER_BROKER', 'MODERATE_POWER_BROKER', 'CROSS_PARTY_CONNECTOR')
     ORDER BY broker_score DESC, cross_party_connections DESC
     LIMIT 60
-) TO 'service.data.impl/sample-data/framework-validation/network/test_5_1_power_brokers.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/network/test_5_1_power_brokers.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 60 cases with expected power broker classification'
 \echo ''
@@ -1068,7 +1064,7 @@ COPY (
         CASE WHEN expected_role = 'COALITION_FACILITATOR' THEN 1 ELSE 2 END,
         alignment_rate DESC
     LIMIT 50
-) TO 'service.data.impl/sample-data/framework-validation/network/test_5_2_coalition_facilitators.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/network/test_5_2_coalition_facilitators.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 50 cases with expected coalition facilitator identification'
 \echo ''
@@ -1139,7 +1135,7 @@ COPY (
         END,
         avg_approval_rate DESC
     LIMIT 80
-) TO 'service.data.impl/sample-data/framework-validation/decision/test_6_1_effectiveness_patterns.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/decision/test_6_1_effectiveness_patterns.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 80 cases with expected decision effectiveness classification'
 \echo ''
@@ -1206,7 +1202,7 @@ COPY (
     WHERE expected_alignment IN ('COALITION_MISALIGNMENT', 'COALITION_ALIGNMENT')
     ORDER BY approval_gap DESC
     LIMIT 60
-) TO 'service.data.impl/sample-data/framework-validation/decision/test_6_2_coalition_misalignment.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/decision/test_6_2_coalition_misalignment.csv' WITH CSV HEADER;
 
 \echo '>>> Exported 60 cases with expected coalition alignment detection'
 \echo ''
@@ -1376,7 +1372,7 @@ COPY (
         60 AS sample_size,
         'decision/test_6_2_coalition_misalignment.csv' AS data_file
     ORDER BY framework, test_id
-) TO 'service.data.impl/sample-data/framework-validation/validation-test-catalog.csv' WITH CSV HEADER;
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/validation-test-catalog.csv' WITH CSV HEADER;
 
 \echo '>>> Generated validation test catalog: validation-test-catalog.csv'
 \echo ''

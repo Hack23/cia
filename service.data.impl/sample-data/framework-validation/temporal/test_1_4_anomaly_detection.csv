@@ -1,0 +1,4 @@
+decision_day,daily_decisions,smoothed_7day,smoothed_30day,parliamentary_period,baseline_mean,baseline_stddev,z_score,expected_detection,test_case,validation_label
+2025-04-02,23,5.57,3.63,Late Spring Session,3.15,3.37,5.90,EXTREME_ANOMALY,temporal_anomaly_detection,PASS
+2025-03-18,18,4.29,3.37,Spring Session,3.15,3.37,4.41,EXTREME_ANOMALY,temporal_anomaly_detection,PASS
+2025-09-24,10,3.14,2.83,Autumn Session,3.15,3.37,2.03,SIGNIFICANT_ANOMALY,temporal_anomaly_detection,PASS
