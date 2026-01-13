@@ -496,7 +496,7 @@ ORDER BY parliamentary_session DESC, party_size DESC;
 <!-- View 7: Parliamentary Session Volatility Analysis - Coefficient of Variation          -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-parliamentary-session-volatility-analysis-1.51-007-advanced" failOnError="true">
+<changeSet author="intelligence-operative" id="create-parliamentary-session-volatility-analysis-1.51-007-advanced-v2" failOnError="true">
     <comment>
         Create view_riksdagen_parliamentary_session_volatility_analysis
         
@@ -580,8 +580,8 @@ SELECT
     END AS performance_pattern
 FROM politician_session_votes psv
 LEFT JOIN party_session_volatility pv 
-    ON psv.riksmote = pv.riksmote AND psv.party = pv.party
-ORDER BY psv.riksmote DESC, psv.stddev_yes_vote DESC;
+    ON psv.parliamentary_session = pv.parliamentary_session AND psv.party = pv.party
+ORDER BY psv.parliamentary_session DESC, psv.stddev_yes_vote DESC;
         ]]>
     </createView>
     
@@ -592,75 +592,8 @@ ORDER BY psv.riksmote DESC, psv.stddev_yes_vote DESC;
 
 <!-- ========================================================================= -->
 <!-- View 8: Committee Parliamentary Session Activity - DENSE_RANK & Productivity Tiers    -->
+<!-- NOTE: Skipped - vote_data table doesn't have beteckning (committee) column -->
+<!-- Committee data needs to come from a different source table (future enhancement) -->
 <!-- ========================================================================= -->
-
-<changeSet author="intelligence-operative" id="create-committee-parliamentary-session-activity-1.51-008-advanced" failOnError="true">
-    <comment>
-        Create view_riksdagen_committee_parliamentary_session_activity
-        
-        Committee productivity analysis using DENSE_RANK() and NTILE() for tier classification.
-        Tracks committee workload and activity levels across riksmöte sessions.
-        
-        Intelligence Value: ⭐⭐⭐⭐ HIGH
-        Essential for legislative productivity monitoring and committee effectiveness
-    </comment>
-    
-    <createView viewName="view_riksdagen_committee_parliamentary_session_activity">
-        <![CDATA[
-WITH committee_ballot_stats AS (
-    SELECT
-        rm AS parliamentary_session,
-        COALESCE(beteckning, 'UNKNOWN') AS committee_designation,
-        COUNT(DISTINCT embedded_id_ballot_id) AS committee_ballots,
-        COUNT(DISTINCT embedded_id_intressent_id) AS committee_members,
-        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Ja') / NULLIF(COUNT(*), 0), 2) AS yes_rate,
-        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0), 2) AS absent_rate,
-        STDDEV(CASE WHEN vote = 'Ja' THEN 1.0 ELSE 0.0 END) AS vote_volatility
-    FROM vote_data
-    WHERE rm IS NOT NULL
-    GROUP BY rm, beteckning
-)
-SELECT
-    parliamentary_session,
-    committee_designation,
-    committee_ballots,
-    committee_members,
-    yes_rate,
-    absent_rate,
-    ROUND(vote_volatility::numeric, 4) AS vote_volatility,
-    -- Dense ranking (no gaps for ties)
-    DENSE_RANK() OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC) AS productivity_dense_rank,
-    -- Quartile classification
-    NTILE(4) OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC) AS productivity_quartile,
-    -- Activity level tiers
-    CASE 
-        WHEN NTILE(4) OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC) = 1 THEN 'VERY_ACTIVE'
-        WHEN NTILE(4) OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC) = 2 THEN 'ACTIVE'
-        WHEN NTILE(4) OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC) = 3 THEN 'MODERATE'
-        ELSE 'LOW_ACTIVITY'
-    END AS activity_level,
-    -- Trend indicators (comparing to previous session)
-    LAG(committee_ballots, 1) OVER (PARTITION BY committee_designation ORDER BY parliamentary_session) AS prev_session_ballots,
-    CASE 
-        WHEN committee_ballots > LAG(committee_ballots, 1) OVER (PARTITION BY committee_designation ORDER BY parliamentary_session) * 1.1 
-            THEN 'INCREASING'
-        WHEN committee_ballots < LAG(committee_ballots, 1) OVER (PARTITION BY committee_designation ORDER BY parliamentary_session) * 0.9 
-            THEN 'DECREASING'
-        ELSE 'STABLE'
-    END AS activity_trend,
-    -- Percentile ranking
-    ROUND(PERCENT_RANK() OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC)::numeric, 4) AS productivity_percentile,
-    -- Members per ballot ratio (efficiency metric)
-    ROUND(committee_members::numeric / NULLIF(committee_ballots, 0), 2) AS members_per_ballot_ratio
-FROM committee_ballot_stats
-WHERE committee_designation != 'UNKNOWN'
-ORDER BY parliamentary_session DESC, committee_ballots DESC;
-        ]]>
-    </createView>
-    
-    <rollback>
-        <dropView viewName="view_riksdagen_committee_parliamentary_session_activity"/>
-    </rollback>
-</changeSet>
 
 </databaseChangeLog>
