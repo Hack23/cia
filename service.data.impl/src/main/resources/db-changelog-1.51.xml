@@ -1,0 +1,1102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Historical Election Cycle Trend Views (2002-Present) v1.51
+  Author: Political Analyst & Intelligence Operative
+  Date: 2026-01-13
+  GitHub Issue: Historical Election Cycle Trend Views for All Elections (2002-Present)
+  
+  This changelog creates comprehensive election cycle analysis views using advanced
+  PostgreSQL window functions, ranking, and statistical aggregation for 7 election
+  cycles spanning 24 years (2002-2026).
+  
+  Election Cycles:
+  - 2002-2005: Cycle 1
+  - 2006-2009: Cycle 2
+  - 2010-2013: Cycle 3
+  - 2014-2017: Cycle 4
+  - 2018-2021: Cycle 5
+  - 2022-2025: Cycle 6
+  - 2026+:     Cycle 7 (current/future)
+  
+  Advanced PostgreSQL Features:
+  - Window functions: RANK(), DENSE_RANK(), PERCENT_RANK(), NTILE()
+  - Statistical functions: STDDEV(), VARIANCE(), CORR(), PERCENTILE_CONT()
+  - Temporal analysis: LAG(), LEAD() for period-over-period comparisons
+  - Moving averages and cumulative calculations
+  
+  Views Created:
+  1. view_riksdagen_election_cycle_summary - Overall cycle metrics
+  2. view_riksdagen_politician_election_cycle_performance - Politician analysis
+  3. view_riksdagen_party_election_cycle_trends - Party evolution
+  4. view_riksdagen_committee_election_cycle_activity - Committee productivity
+  5. view_riksdagen_election_cycle_comparative_analysis - Cross-cycle comparisons
+  6. view_riksdagen_election_cycle_politician_rankings - Performance rankings
+  7. view_riksdagen_election_cycle_party_momentum - Party momentum tracking
+  8. view_riksdagen_election_cycle_volatility_analysis - Behavioral volatility
+-->
+
+<!-- ========================================================================= -->
+<!-- View 1: Election Cycle Summary - Overall Metrics Per Cycle               -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-election-cycle-summary-1.51-001" failOnError="true">
+    <comment>
+        Create view_riksdagen_election_cycle_summary
+        
+        Provides comprehensive metrics for each election cycle including:
+        - Total ballots, votes, and participation statistics
+        - Average voting behavior (yes/no/abstain/absent rates)
+        - Politician activity levels and demographic data
+        - Cycle-to-cycle comparison with LAG() for trend analysis
+        - Ranking of cycles by various metrics
+        
+        Intelligence Value: ⭐⭐⭐⭐ HIGH
+        Enables longitudinal analysis of Swedish democracy over 24 years
+    </comment>
+    
+    <createView viewName="view_riksdagen_election_cycle_summary">
+        <![CDATA[
+WITH election_cycle_mapping AS (
+    -- Map each vote to its election cycle (2002, 2006, 2010, 2014, 2018, 2022, 2026)
+    SELECT 
+        CASE 
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2002 AND 2005 THEN 2002
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2006 AND 2009 THEN 2006
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2010 AND 2013 THEN 2010
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2014 AND 2017 THEN 2014
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2018 AND 2021 THEN 2018
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2022 AND 2025 THEN 2022
+            ELSE 2026
+        END AS election_year,
+        DATE(CONCAT(
+            CASE 
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2002 AND 2005 THEN '2002'
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2006 AND 2009 THEN '2006'
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2010 AND 2013 THEN '2010'
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2014 AND 2017 THEN '2014'
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2018 AND 2021 THEN '2018'
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2022 AND 2025 THEN '2022'
+                ELSE '2026'
+            END, '-09-01')
+        ) AS cycle_start_date,
+        DATE(CONCAT(
+            CASE 
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2002 AND 2005 THEN '2006'
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2006 AND 2009 THEN '2010'
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2010 AND 2013 THEN '2014'
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2014 AND 2017 THEN '2018'
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2018 AND 2021 THEN '2022'
+                WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2022 AND 2025 THEN '2026'
+                ELSE '2030'
+            END, '-08-31')
+        ) AS cycle_end_date,
+        embedded_id_ballot_id,
+        embedded_id_intressent_id,
+        vote,
+        vote_date,
+        party,
+        born_year,
+        gender
+    FROM vote_data
+    WHERE vote_date IS NOT NULL
+),
+cycle_aggregates AS (
+    SELECT
+        election_year,
+        cycle_start_date,
+        cycle_end_date,
+        COUNT(DISTINCT embedded_id_ballot_id) AS total_ballots,
+        COUNT(DISTINCT embedded_id_intressent_id) AS active_politicians,
+        COUNT(*) AS total_votes,
+        COUNT(*) FILTER (WHERE vote = 'Ja') AS yes_votes,
+        COUNT(*) FILTER (WHERE vote = 'Nej') AS no_votes,
+        COUNT(*) FILTER (WHERE vote = 'Avstår') AS abstain_votes,
+        COUNT(*) FILTER (WHERE vote = 'Frånvarande') AS absent_votes,
+        ROUND(AVG(born_year), 0) AS avg_born_year,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE gender = 'MAN') / NULLIF(COUNT(*), 0), 2) AS percentage_male,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE gender = 'KVINNA') / NULLIF(COUNT(*), 0), 2) AS percentage_female,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Ja') / NULLIF(COUNT(*), 0), 2) AS avg_yes_rate,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Nej') / NULLIF(COUNT(*), 0), 2) AS avg_no_rate,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Avstår') / NULLIF(COUNT(*), 0), 2) AS avg_abstain_rate,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0), 2) AS avg_absent_rate,
+        -- Statistical measures
+        ROUND(STDDEV(born_year), 2) AS stddev_born_year,
+        COUNT(DISTINCT party) AS active_parties
+    FROM election_cycle_mapping
+    GROUP BY election_year, cycle_start_date, cycle_end_date
+)
+SELECT
+    election_year,
+    cycle_start_date,
+    cycle_end_date,
+    total_ballots,
+    active_politicians,
+    total_votes,
+    yes_votes,
+    no_votes,
+    abstain_votes,
+    absent_votes,
+    avg_born_year,
+    stddev_born_year,
+    percentage_male,
+    percentage_female,
+    avg_yes_rate,
+    avg_no_rate,
+    avg_abstain_rate,
+    avg_absent_rate,
+    active_parties,
+    
+    -- Ranking across cycles
+    RANK() OVER (ORDER BY total_ballots DESC) AS ballot_count_rank,
+    RANK() OVER (ORDER BY active_politicians DESC) AS politician_count_rank,
+    RANK() OVER (ORDER BY avg_absent_rate ASC) AS attendance_rank,
+    
+    -- Period-over-period comparison using LAG
+    LAG(total_ballots) OVER (ORDER BY election_year) AS prev_cycle_ballots,
+    LAG(active_politicians) OVER (ORDER BY election_year) AS prev_cycle_politicians,
+    LAG(avg_absent_rate) OVER (ORDER BY election_year) AS prev_cycle_absent_rate,
+    
+    -- Change calculations
+    ROUND(total_ballots - COALESCE(LAG(total_ballots) OVER (ORDER BY election_year), total_ballots), 0) AS ballot_change,
+    ROUND(100.0 * (total_ballots - COALESCE(LAG(total_ballots) OVER (ORDER BY election_year), total_ballots)) / 
+          NULLIF(LAG(total_ballots) OVER (ORDER BY election_year), 0), 2) AS ballot_change_pct,
+    ROUND(avg_absent_rate - COALESCE(LAG(avg_absent_rate) OVER (ORDER BY election_year), avg_absent_rate), 2) AS absent_rate_change,
+    
+    -- Cumulative metrics
+    SUM(total_ballots) OVER (ORDER BY election_year ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_ballots,
+    SUM(total_votes) OVER (ORDER BY election_year ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_votes
+    
+FROM cycle_aggregates
+ORDER BY election_year;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_election_cycle_summary"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- View 2: Politician Election Cycle Performance - Individual Analysis      -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-politician-election-cycle-performance-1.51-002" failOnError="true">
+    <comment>
+        Create view_riksdagen_politician_election_cycle_performance
+        
+        Tracks individual politician metrics across election cycles:
+        - Voting behavior (participation, yes/no/abstain rates)
+        - Performance rankings within party and overall
+        - Percentile ranks using PERCENT_RANK()
+        - Performance quartiles using NTILE()
+        - Cycle-to-cycle performance trends
+        - Cohort analysis (entry cycle tracking)
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Enables politician scorecards and career trajectory analysis
+    </comment>
+    
+    <createView viewName="view_riksdagen_politician_election_cycle_performance">
+        <![CDATA[
+WITH election_cycle_mapping AS (
+    SELECT 
+        CASE 
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2002 AND 2005 THEN 2002
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2006 AND 2009 THEN 2006
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2010 AND 2013 THEN 2010
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2014 AND 2017 THEN 2014
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2018 AND 2021 THEN 2018
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2022 AND 2025 THEN 2022
+            ELSE 2026
+        END AS election_year,
+        embedded_id_intressent_id,
+        embedded_id_ballot_id,
+        vote,
+        party,
+        first_name,
+        last_name,
+        gender,
+        born_year
+    FROM vote_data
+    WHERE vote_date IS NOT NULL 
+        AND embedded_id_intressent_id IS NOT NULL
+),
+politician_cycle_stats AS (
+    SELECT
+        election_year,
+        embedded_id_intressent_id,
+        MAX(first_name) AS first_name,
+        MAX(last_name) AS last_name,
+        MAX(party) AS party,
+        MAX(gender) AS gender,
+        MAX(born_year) AS born_year,
+        COUNT(DISTINCT embedded_id_ballot_id) AS ballot_participation,
+        COUNT(*) AS total_votes_cast,
+        COUNT(*) FILTER (WHERE vote = 'Ja') AS yes_votes,
+        COUNT(*) FILTER (WHERE vote = 'Nej') AS no_votes,
+        COUNT(*) FILTER (WHERE vote = 'Avstår') AS abstain_votes,
+        COUNT(*) FILTER (WHERE vote = 'Frånvarande') AS absent_votes,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Ja') / NULLIF(COUNT(*), 0), 2) AS yes_rate,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Nej') / NULLIF(COUNT(*), 0), 2) AS no_rate,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Avstår') / NULLIF(COUNT(*), 0), 2) AS abstain_rate,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0), 2) AS absent_rate,
+        -- Attendance score (inverse of absent rate)
+        ROUND(100.0 - (100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0)), 2) AS attendance_score
+    FROM election_cycle_mapping
+    GROUP BY election_year, embedded_id_intressent_id
+),
+politician_with_entry AS (
+    SELECT
+        *,
+        MIN(election_year) OVER (PARTITION BY embedded_id_intressent_id) AS entry_cycle,
+        election_year - MIN(election_year) OVER (PARTITION BY embedded_id_intressent_id) AS cycles_since_entry
+    FROM politician_cycle_stats
+)
+SELECT
+    election_year,
+    embedded_id_intressent_id AS person_id,
+    first_name,
+    last_name,
+    party,
+    gender,
+    born_year,
+    entry_cycle,
+    cycles_since_entry,
+    ballot_participation,
+    total_votes_cast,
+    yes_votes,
+    no_votes,
+    abstain_votes,
+    absent_votes,
+    yes_rate,
+    no_rate,
+    abstain_rate,
+    absent_rate,
+    attendance_score,
+    
+    -- Overall rankings across all politicians in cycle
+    RANK() OVER (PARTITION BY election_year ORDER BY ballot_participation DESC) AS participation_rank,
+    RANK() OVER (PARTITION BY election_year ORDER BY attendance_score DESC) AS attendance_rank,
+    
+    -- Party-specific rankings
+    RANK() OVER (PARTITION BY election_year, party ORDER BY attendance_score DESC) AS party_attendance_rank,
+    RANK() OVER (PARTITION BY election_year, party ORDER BY ballot_participation DESC) AS party_participation_rank,
+    
+    -- Percentile ranks (0.0 = worst, 1.0 = best)
+    ROUND(PERCENT_RANK() OVER (PARTITION BY election_year ORDER BY attendance_score)::NUMERIC, 4) AS attendance_percentile,
+    ROUND(PERCENT_RANK() OVER (PARTITION BY election_year ORDER BY ballot_participation)::NUMERIC, 4) AS participation_percentile,
+    
+    -- Performance quartiles (1=bottom 25%, 4=top 25%)
+    NTILE(4) OVER (PARTITION BY election_year ORDER BY attendance_score) AS attendance_quartile,
+    NTILE(4) OVER (PARTITION BY election_year ORDER BY ballot_participation) AS participation_quartile,
+    
+    -- Cycle-to-cycle comparison
+    LAG(ballot_participation) OVER (PARTITION BY embedded_id_intressent_id ORDER BY election_year) AS prev_cycle_participation,
+    LAG(attendance_score) OVER (PARTITION BY embedded_id_intressent_id ORDER BY election_year) AS prev_cycle_attendance,
+    
+    -- Performance changes
+    ballot_participation - COALESCE(LAG(ballot_participation) OVER (PARTITION BY embedded_id_intressent_id ORDER BY election_year), ballot_participation) AS participation_change,
+    ROUND(attendance_score - COALESCE(LAG(attendance_score) OVER (PARTITION BY embedded_id_intressent_id ORDER BY election_year), attendance_score), 2) AS attendance_change,
+    
+    -- Cohort classification
+    CASE
+        WHEN entry_cycle = election_year THEN 'NEW_MP'
+        WHEN cycles_since_entry <= 4 THEN 'JUNIOR_MP'
+        WHEN cycles_since_entry <= 8 THEN 'SENIOR_MP'
+        ELSE 'VETERAN_MP'
+    END AS experience_level
+
+FROM politician_with_entry
+ORDER BY election_year DESC, attendance_score DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_politician_election_cycle_performance"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- View 3: Party Election Cycle Trends - Party Evolution Analysis           -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-party-election-cycle-trends-1.51-003" failOnError="true">
+    <comment>
+        Create view_riksdagen_party_election_cycle_trends
+        
+        Analyzes party evolution across election cycles:
+        - Party size, voting behavior, and legislative activity
+        - Moving averages for trend smoothing
+        - Volatility measures using STDDEV
+        - Cycle-to-cycle momentum indicators
+        - Party rankings and market share
+        - Coalition pattern analysis
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Critical for coalition analysis and electoral forecasting
+    </comment>
+    
+    <createView viewName="view_riksdagen_party_election_cycle_trends">
+        <![CDATA[
+WITH election_cycle_mapping AS (
+    SELECT 
+        CASE 
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2002 AND 2005 THEN 2002
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2006 AND 2009 THEN 2006
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2010 AND 2013 THEN 2010
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2014 AND 2017 THEN 2014
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2018 AND 2021 THEN 2018
+            WHEN EXTRACT(YEAR FROM vote_date) BETWEEN 2022 AND 2025 THEN 2022
+            ELSE 2026
+        END AS election_year,
+        party,
+        embedded_id_intressent_id,
+        embedded_id_ballot_id,
+        vote
+    FROM vote_data
+    WHERE vote_date IS NOT NULL 
+        AND party IS NOT NULL
+),
+party_cycle_stats AS (
+    SELECT
+        election_year,
+        party,
+        COUNT(DISTINCT embedded_id_intressent_id) AS party_size,
+        COUNT(DISTINCT embedded_id_ballot_id) AS ballots_participated,
+        COUNT(*) AS total_party_votes,
+        COUNT(*) FILTER (WHERE vote = 'Ja') AS party_yes_votes,
+        COUNT(*) FILTER (WHERE vote = 'Nej') AS party_no_votes,
+        COUNT(*) FILTER (WHERE vote = 'Avstår') AS party_abstain_votes,
+        COUNT(*) FILTER (WHERE vote = 'Frånvarande') AS party_absent_votes,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Ja') / NULLIF(COUNT(*), 0), 2) AS party_yes_rate,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Nej') / NULLIF(COUNT(*), 0), 2) AS party_no_rate,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0), 2) AS party_absent_rate,
+        ROUND(100.0 - (100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0)), 2) AS party_attendance_rate
+    FROM election_cycle_mapping
+    GROUP BY election_year, party
+),
+party_with_context AS (
+    SELECT
+        pcs.*,
+        -- Total politicians across all parties in this cycle
+        SUM(party_size) OVER (PARTITION BY election_year) AS total_politicians_in_cycle,
+        -- Party market share
+        ROUND(100.0 * party_size / NULLIF(SUM(party_size) OVER (PARTITION BY election_year), 0), 2) AS party_market_share,
+        -- First appearance
+        MIN(election_year) OVER (PARTITION BY party) AS first_cycle,
+        -- Last appearance
+        MAX(election_year) OVER (PARTITION BY party) AS last_cycle
+    FROM party_cycle_stats pcs
+)
+SELECT
+    election_year,
+    party,
+    party_size,
+    ballots_participated,
+    total_party_votes,
+    party_yes_votes,
+    party_no_votes,
+    party_abstain_votes,
+    party_absent_votes,
+    party_yes_rate,
+    party_no_rate,
+    party_absent_rate,
+    party_attendance_rate,
+    party_market_share,
+    first_cycle,
+    last_cycle,
+    
+    -- Party size ranking within cycle
+    RANK() OVER (PARTITION BY election_year ORDER BY party_size DESC) AS size_rank,
+    RANK() OVER (PARTITION BY election_year ORDER BY party_attendance_rate DESC) AS attendance_rank,
+    
+    -- Cycle-to-cycle trends
+    LAG(party_size) OVER (PARTITION BY party ORDER BY election_year) AS prev_cycle_size,
+    LAG(party_attendance_rate) OVER (PARTITION BY party ORDER BY election_year) AS prev_cycle_attendance,
+    LAG(party_market_share) OVER (PARTITION BY party ORDER BY election_year) AS prev_cycle_market_share,
+    
+    -- Growth/decline indicators
+    party_size - COALESCE(LAG(party_size) OVER (PARTITION BY party ORDER BY election_year), party_size) AS size_change,
+    ROUND(100.0 * (party_size - COALESCE(LAG(party_size) OVER (PARTITION BY party ORDER BY election_year), party_size)) / 
+          NULLIF(LAG(party_size) OVER (PARTITION BY party ORDER BY election_year), 0), 2) AS size_change_pct,
+    ROUND(party_market_share - COALESCE(LAG(party_market_share) OVER (PARTITION BY party ORDER BY election_year), party_market_share), 2) AS market_share_change,
+    
+    -- Moving averages (3-cycle window for smoothing)
+    ROUND(AVG(party_size) OVER (PARTITION BY party ORDER BY election_year ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 1) AS size_moving_avg_3cycles,
+    ROUND(AVG(party_attendance_rate) OVER (PARTITION BY party ORDER BY election_year ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS attendance_moving_avg_3cycles,
+    
+    -- Volatility measures (standard deviation over last 3 cycles)
+    ROUND(STDDEV(party_size) OVER (PARTITION BY party ORDER BY election_year ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS size_volatility_3cycles,
+    ROUND(STDDEV(party_attendance_rate) OVER (PARTITION BY party ORDER BY election_year ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS attendance_volatility_3cycles,
+    
+    -- Party status
+    CASE
+        WHEN first_cycle = election_year THEN 'NEW_PARTY'
+        WHEN last_cycle = election_year AND election_year < 2026 THEN 'EXITED'
+        ELSE 'ESTABLISHED'
+    END AS party_status,
+    
+    -- Performance tier based on size quartile
+    NTILE(4) OVER (PARTITION BY election_year ORDER BY party_size) AS size_tier,
+    
+    -- Momentum indicator
+    CASE
+        WHEN (party_size - COALESCE(LAG(party_size) OVER (PARTITION BY party ORDER BY election_year), party_size)) > 5 THEN 'STRONG_GROWTH'
+        WHEN (party_size - COALESCE(LAG(party_size) OVER (PARTITION BY party ORDER BY election_year), party_size)) > 0 THEN 'GROWTH'
+        WHEN (party_size - COALESCE(LAG(party_size) OVER (PARTITION BY party ORDER BY election_year), party_size)) < -5 THEN 'STRONG_DECLINE'
+        WHEN (party_size - COALESCE(LAG(party_size) OVER (PARTITION BY party ORDER BY election_year), party_size)) < 0 THEN 'DECLINE'
+        ELSE 'STABLE'
+    END AS momentum
+
+FROM party_with_context
+ORDER BY election_year DESC, party_size DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_party_election_cycle_trends"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- View 4: Committee Election Cycle Activity - Legislative Productivity     -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-committee-election-cycle-activity-1.51-004" failOnError="true">
+    <comment>
+        Create view_riksdagen_committee_election_cycle_activity
+        
+        Measures committee legislative productivity across cycles:
+        - Document production and voting activity
+        - Committee size and composition
+        - Productivity rankings and percentiles
+        - Cycle-to-cycle activity trends
+        - Committee effectiveness scoring
+        
+        Intelligence Value: ⭐⭐⭐⭐ HIGH
+        Enables committee effectiveness analysis and institutional monitoring
+    </comment>
+    
+    <createView viewName="view_riksdagen_committee_election_cycle_activity">
+        <![CDATA[
+WITH election_cycle_mapping AS (
+    SELECT 
+        CASE 
+            WHEN EXTRACT(YEAR FROM made_public_date) BETWEEN 2002 AND 2005 THEN 2002
+            WHEN EXTRACT(YEAR FROM made_public_date) BETWEEN 2006 AND 2009 THEN 2006
+            WHEN EXTRACT(YEAR FROM made_public_date) BETWEEN 2010 AND 2013 THEN 2010
+            WHEN EXTRACT(YEAR FROM made_public_date) BETWEEN 2014 AND 2017 THEN 2014
+            WHEN EXTRACT(YEAR FROM made_public_date) BETWEEN 2018 AND 2021 THEN 2018
+            WHEN EXTRACT(YEAR FROM made_public_date) BETWEEN 2022 AND 2025 THEN 2022
+            ELSE 2026
+        END AS election_year,
+        organ,
+        id
+    FROM document_data
+    WHERE made_public_date IS NOT NULL 
+        AND organ IS NOT NULL
+),
+committee_cycle_stats AS (
+    SELECT
+        election_year,
+        organ AS committee,
+        COUNT(DISTINCT id) AS documents_produced,
+        -- Productivity score: documents per year in cycle
+        ROUND(COUNT(DISTINCT id)::NUMERIC / 4.0, 2) AS avg_documents_per_year
+    FROM election_cycle_mapping
+    GROUP BY election_year, organ
+)
+SELECT
+    election_year,
+    committee,
+    documents_produced,
+    avg_documents_per_year,
+    
+    -- Rankings
+    RANK() OVER (PARTITION BY election_year ORDER BY documents_produced DESC) AS productivity_rank,
+    RANK() OVER (PARTITION BY election_year ORDER BY avg_documents_per_year DESC) AS efficiency_rank,
+    
+    -- Percentile ranks
+    ROUND(PERCENT_RANK() OVER (PARTITION BY election_year ORDER BY documents_produced)::NUMERIC, 4) AS productivity_percentile,
+    
+    -- Performance tiers
+    NTILE(4) OVER (PARTITION BY election_year ORDER BY documents_produced) AS productivity_tier,
+    
+    -- Cycle-to-cycle comparison
+    LAG(documents_produced) OVER (PARTITION BY committee ORDER BY election_year) AS prev_cycle_documents,
+    LAG(avg_documents_per_year) OVER (PARTITION BY committee ORDER BY election_year) AS prev_cycle_avg,
+    
+    -- Change metrics
+    documents_produced - COALESCE(LAG(documents_produced) OVER (PARTITION BY committee ORDER BY election_year), documents_produced) AS document_change,
+    ROUND(100.0 * (documents_produced - COALESCE(LAG(documents_produced) OVER (PARTITION BY committee ORDER BY election_year), documents_produced)) / 
+          NULLIF(LAG(documents_produced) OVER (PARTITION BY committee ORDER BY election_year), 0), 2) AS document_change_pct,
+    
+    -- Moving average (3-cycle)
+    ROUND(AVG(documents_produced) OVER (PARTITION BY committee ORDER BY election_year ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 1) AS productivity_moving_avg_3cycles,
+    
+    -- Volatility
+    ROUND(STDDEV(documents_produced) OVER (PARTITION BY committee ORDER BY election_year ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS productivity_volatility,
+    
+    -- Activity level classification
+    CASE
+        WHEN NTILE(4) OVER (PARTITION BY election_year ORDER BY documents_produced) = 4 THEN 'VERY_ACTIVE'
+        WHEN NTILE(4) OVER (PARTITION BY election_year ORDER BY documents_produced) = 3 THEN 'ACTIVE'
+        WHEN NTILE(4) OVER (PARTITION BY election_year ORDER BY documents_produced) = 2 THEN 'MODERATE'
+        ELSE 'LOW_ACTIVITY'
+    END AS activity_level,
+    
+    -- Trend indicator
+    CASE
+        WHEN (documents_produced - COALESCE(LAG(documents_produced) OVER (PARTITION BY committee ORDER BY election_year), documents_produced)) > 
+             0.2 * COALESCE(LAG(documents_produced) OVER (PARTITION BY committee ORDER BY election_year), documents_produced) THEN 'INCREASING'
+        WHEN (documents_produced - COALESCE(LAG(documents_produced) OVER (PARTITION BY committee ORDER BY election_year), documents_produced)) < 
+             -0.2 * COALESCE(LAG(documents_produced) OVER (PARTITION BY committee ORDER BY election_year), documents_produced) THEN 'DECREASING'
+        ELSE 'STABLE'
+    END AS trend
+
+FROM committee_cycle_stats
+ORDER BY election_year DESC, documents_produced DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_committee_election_cycle_activity"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- View 5: Election Cycle Comparative Analysis - Cross-Cycle Comparisons    -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-election-cycle-comparative-analysis-1.51-005" failOnError="true">
+    <comment>
+        Create view_riksdagen_election_cycle_comparative_analysis
+        
+        Provides cross-cycle comparative analysis with:
+        - Baseline vs. current cycle comparisons
+        - Leading and lagging indicators using LEAD() and LAG()
+        - Statistical correlations between metrics
+        - Percentage of historical average
+        - Cycle-specific anomaly detection
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Enables historical context and trend forecasting
+    </comment>
+    
+    <createView viewName="view_riksdagen_election_cycle_comparative_analysis">
+        <![CDATA[
+WITH cycle_summary AS (
+    SELECT 
+        election_year,
+        total_ballots,
+        active_politicians,
+        avg_absent_rate,
+        active_parties,
+        total_votes
+    FROM view_riksdagen_election_cycle_summary
+),
+historical_context AS (
+    SELECT
+        cs.*,
+        -- Historical averages (all previous cycles)
+        AVG(total_ballots) OVER (ORDER BY election_year ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS historical_avg_ballots,
+        AVG(active_politicians) OVER (ORDER BY election_year ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS historical_avg_politicians,
+        AVG(avg_absent_rate) OVER (ORDER BY election_year ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS historical_avg_absent_rate,
+        
+        -- Standard deviations for anomaly detection
+        STDDEV(total_ballots) OVER (ORDER BY election_year ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS historical_stddev_ballots,
+        STDDEV(avg_absent_rate) OVER (ORDER BY election_year ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS historical_stddev_absent_rate,
+        
+        -- Baseline cycle (first cycle: 2002)
+        FIRST_VALUE(total_ballots) OVER (ORDER BY election_year ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS baseline_ballots,
+        FIRST_VALUE(active_politicians) OVER (ORDER BY election_year ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS baseline_politicians,
+        FIRST_VALUE(avg_absent_rate) OVER (ORDER BY election_year ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS baseline_absent_rate,
+        
+        -- Previous, current, and next cycles
+        LAG(total_ballots, 1) OVER (ORDER BY election_year) AS prev_cycle_ballots,
+        LAG(total_ballots, 2) OVER (ORDER BY election_year) AS prev_2_cycle_ballots,
+        LEAD(total_ballots, 1) OVER (ORDER BY election_year) AS next_cycle_ballots,
+        
+        -- Min and max across all cycles
+        MIN(total_ballots) OVER () AS min_ballots_all_cycles,
+        MAX(total_ballots) OVER () AS max_ballots_all_cycles,
+        MIN(avg_absent_rate) OVER () AS min_absent_rate_all_cycles,
+        MAX(avg_absent_rate) OVER () AS max_absent_rate_all_cycles
+    FROM cycle_summary cs
+)
+SELECT
+    election_year,
+    total_ballots,
+    active_politicians,
+    avg_absent_rate,
+    active_parties,
+    total_votes,
+    
+    -- Baseline comparisons (vs. 2002)
+    baseline_ballots,
+    baseline_politicians,
+    baseline_absent_rate,
+    ROUND(100.0 * (total_ballots - baseline_ballots) / NULLIF(baseline_ballots, 0), 2) AS ballots_vs_baseline_pct,
+    ROUND(100.0 * (active_politicians - baseline_politicians) / NULLIF(baseline_politicians, 0), 2) AS politicians_vs_baseline_pct,
+    ROUND(avg_absent_rate - baseline_absent_rate, 2) AS absent_rate_vs_baseline,
+    
+    -- Historical average comparisons
+    ROUND(historical_avg_ballots, 1) AS historical_avg_ballots,
+    ROUND(historical_avg_politicians, 1) AS historical_avg_politicians,
+    ROUND(historical_avg_absent_rate, 2) AS historical_avg_absent_rate,
+    ROUND(100.0 * total_ballots / NULLIF(historical_avg_ballots, 0), 2) AS pct_of_historical_avg_ballots,
+    ROUND(100.0 * active_politicians / NULLIF(historical_avg_politicians, 0), 2) AS pct_of_historical_avg_politicians,
+    
+    -- Anomaly detection (Z-scores)
+    ROUND((total_ballots - historical_avg_ballots) / NULLIF(historical_stddev_ballots, 0), 2) AS ballots_z_score,
+    ROUND((avg_absent_rate - historical_avg_absent_rate) / NULLIF(historical_stddev_absent_rate, 0), 2) AS absent_rate_z_score,
+    
+    -- Temporal context
+    prev_cycle_ballots,
+    prev_2_cycle_ballots,
+    next_cycle_ballots,
+    
+    -- Short-term trend (2-cycle change)
+    ROUND(100.0 * (total_ballots - prev_2_cycle_ballots) / NULLIF(prev_2_cycle_ballots, 0), 2) AS two_cycle_change_pct,
+    
+    -- Range position (where in min-max range)
+    min_ballots_all_cycles,
+    max_ballots_all_cycles,
+    ROUND(100.0 * (total_ballots - min_ballots_all_cycles) / NULLIF(max_ballots_all_cycles - min_ballots_all_cycles, 0), 2) AS ballots_range_position_pct,
+    
+    -- Cycle classification
+    CASE
+        WHEN ABS((total_ballots - historical_avg_ballots) / NULLIF(historical_stddev_ballots, 0)) > 2 THEN 'ANOMALOUS'
+        WHEN total_ballots > historical_avg_ballots * 1.1 THEN 'ABOVE_AVERAGE'
+        WHEN total_ballots < historical_avg_ballots * 0.9 THEN 'BELOW_AVERAGE'
+        ELSE 'TYPICAL'
+    END AS cycle_classification,
+    
+    -- Performance vs. baseline
+    CASE
+        WHEN avg_absent_rate < baseline_absent_rate * 0.9 THEN 'IMPROVED'
+        WHEN avg_absent_rate > baseline_absent_rate * 1.1 THEN 'DECLINED'
+        ELSE 'SIMILAR'
+    END AS attendance_vs_baseline
+
+FROM historical_context
+ORDER BY election_year;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_election_cycle_comparative_analysis"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- View 6: Election Cycle Politician Rankings - Performance Leaderboards    -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-election-cycle-politician-rankings-1.51-006" failOnError="true">
+    <comment>
+        Create view_riksdagen_election_cycle_politician_rankings
+        
+        Creates comprehensive politician rankings:
+        - Top/bottom performers per cycle
+        - Cross-cycle consistency rankings
+        - Career achievement scoring
+        - Hall of fame / hall of shame identification
+        - Party MVPs
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Critical for politician scorecards and public accountability
+    </comment>
+    
+    <createView viewName="view_riksdagen_election_cycle_politician_rankings">
+        <![CDATA[
+WITH politician_career_stats AS (
+    SELECT
+        person_id,
+        first_name,
+        last_name,
+        party,
+        COUNT(DISTINCT election_year) AS cycles_active,
+        MIN(election_year) AS first_cycle,
+        MAX(election_year) AS last_cycle,
+        AVG(attendance_score) AS avg_attendance_across_cycles,
+        STDDEV(attendance_score) AS attendance_consistency,
+        AVG(ballot_participation) AS avg_participation_across_cycles,
+        SUM(ballot_participation) AS total_career_participation
+    FROM view_riksdagen_politician_election_cycle_performance
+    GROUP BY person_id, first_name, last_name, party
+),
+cycle_rankings AS (
+    SELECT
+        pecp.election_year,
+        pecp.person_id,
+        pecp.first_name,
+        pecp.last_name,
+        pecp.party,
+        pecp.attendance_score,
+        pecp.ballot_participation,
+        pecp.attendance_rank,
+        pecp.participation_rank,
+        pecp.attendance_percentile,
+        pecp.participation_percentile,
+        pecp.experience_level,
+        pcs.cycles_active,
+        pcs.avg_attendance_across_cycles,
+        pcs.attendance_consistency,
+        
+        -- Overall performance score (weighted combination)
+        ROUND(
+            (pecp.attendance_score * 0.6) + 
+            (LEAST(pecp.ballot_participation, 1000) / 10.0 * 0.4),
+        2) AS performance_score,
+        
+        -- Consistency bonus (low stddev = high consistency)
+        CASE
+            WHEN pcs.attendance_consistency < 5 THEN 10
+            WHEN pcs.attendance_consistency < 10 THEN 5
+            ELSE 0
+        END AS consistency_bonus
+        
+    FROM view_riksdagen_politician_election_cycle_performance pecp
+    INNER JOIN politician_career_stats pcs 
+        ON pecp.person_id = pcs.person_id
+)
+SELECT
+    election_year,
+    person_id,
+    first_name,
+    last_name,
+    party,
+    attendance_score,
+    ballot_participation,
+    attendance_rank,
+    participation_rank,
+    attendance_percentile,
+    participation_percentile,
+    experience_level,
+    cycles_active,
+    performance_score,
+    
+    -- Overall ranking in cycle
+    RANK() OVER (PARTITION BY election_year ORDER BY performance_score DESC) AS overall_rank,
+    
+    -- Party-specific ranking
+    RANK() OVER (PARTITION BY election_year, party ORDER BY performance_score DESC) AS party_rank,
+    
+    -- Experience cohort ranking
+    RANK() OVER (PARTITION BY election_year, experience_level ORDER BY performance_score DESC) AS cohort_rank,
+    
+    -- Hall of Fame / Shame indicators (top/bottom 5%)
+    CASE
+        WHEN PERCENT_RANK() OVER (PARTITION BY election_year ORDER BY performance_score DESC) <= 0.05 THEN 'HALL_OF_FAME'
+        WHEN PERCENT_RANK() OVER (PARTITION BY election_year ORDER BY performance_score DESC) >= 0.95 THEN 'NEEDS_IMPROVEMENT'
+        WHEN PERCENT_RANK() OVER (PARTITION BY election_year ORDER BY performance_score DESC) <= 0.25 THEN 'EXCELLENT'
+        WHEN PERCENT_RANK() OVER (PARTITION BY election_year ORDER BY performance_score DESC) >= 0.75 THEN 'BELOW_AVERAGE'
+        ELSE 'AVERAGE'
+    END AS performance_tier,
+    
+    -- Party MVP indicator (best in party)
+    CASE
+        WHEN RANK() OVER (PARTITION BY election_year, party ORDER BY performance_score DESC) = 1 THEN 'PARTY_MVP'
+        ELSE NULL
+    END AS special_recognition,
+    
+    -- Consistency rating
+    ROUND(avg_attendance_across_cycles, 2) AS career_avg_attendance,
+    ROUND(attendance_consistency, 2) AS attendance_volatility,
+    CASE
+        WHEN attendance_consistency < 5 THEN 'VERY_CONSISTENT'
+        WHEN attendance_consistency < 10 THEN 'CONSISTENT'
+        WHEN attendance_consistency < 15 THEN 'VARIABLE'
+        ELSE 'INCONSISTENT'
+    END AS consistency_rating,
+    
+    -- Career longevity indicator
+    CASE
+        WHEN cycles_active >= 5 THEN 'VETERAN'
+        WHEN cycles_active >= 3 THEN 'EXPERIENCED'
+        WHEN cycles_active >= 2 THEN 'DEVELOPING'
+        ELSE 'NEWCOMER'
+    END AS longevity_tier
+
+FROM cycle_rankings
+ORDER BY election_year DESC, overall_rank ASC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_election_cycle_politician_rankings"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- View 7: Election Cycle Party Momentum - Momentum Tracking                -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-election-cycle-party-momentum-1.51-007" failOnError="true">
+    <comment>
+        Create view_riksdagen_election_cycle_party_momentum
+        
+        Advanced party momentum analysis:
+        - Velocity and acceleration metrics
+        - Momentum indicators using moving averages
+        - Coalition formation probability
+        - Party trajectory classification
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Essential for electoral forecasting and coalition analysis
+    </comment>
+    
+    <createView viewName="view_riksdagen_election_cycle_party_momentum">
+        <![CDATA[
+WITH party_metrics AS (
+    SELECT
+        election_year,
+        party,
+        party_size,
+        party_market_share,
+        party_attendance_rate,
+        size_moving_avg_3cycles,
+        size_volatility_3cycles,
+        momentum
+    FROM view_riksdagen_party_election_cycle_trends
+),
+velocity_calculations AS (
+    SELECT
+        pm.*,
+        -- Velocity (rate of change)
+        party_size - LAG(party_size, 1) OVER (PARTITION BY party ORDER BY election_year) AS velocity_1cycle,
+        party_size - LAG(party_size, 2) OVER (PARTITION BY party ORDER BY election_year) AS velocity_2cycle,
+        
+        -- Acceleration (change in velocity)
+        (party_size - LAG(party_size, 1) OVER (PARTITION BY party ORDER BY election_year)) - 
+        (LAG(party_size, 1) OVER (PARTITION BY party ORDER BY election_year) - LAG(party_size, 2) OVER (PARTITION BY party ORDER BY election_year)) AS acceleration,
+        
+        -- Future projection (linear extrapolation)
+        party_size + (party_size - LAG(party_size, 1) OVER (PARTITION BY party ORDER BY election_year)) AS projected_next_cycle_size,
+        
+        -- Momentum score (weighted: velocity 60%, acceleration 40%)
+        ROUND(
+            ((party_size - LAG(party_size, 1) OVER (PARTITION BY party ORDER BY election_year)) * 0.6) +
+            (((party_size - LAG(party_size, 1) OVER (PARTITION BY party ORDER BY election_year)) - 
+              (LAG(party_size, 1) OVER (PARTITION BY party ORDER BY election_year) - LAG(party_size, 2) OVER (PARTITION BY party ORDER BY election_year))) * 0.4),
+        2) AS momentum_score
+    FROM party_metrics pm
+)
+SELECT
+    election_year,
+    party,
+    party_size,
+    party_market_share,
+    party_attendance_rate,
+    size_moving_avg_3cycles,
+    size_volatility_3cycles,
+    velocity_1cycle,
+    velocity_2cycle,
+    acceleration,
+    momentum_score,
+    projected_next_cycle_size,
+    
+    -- Momentum classification
+    CASE
+        WHEN momentum_score > 10 THEN 'SURGING'
+        WHEN momentum_score > 5 THEN 'RISING'
+        WHEN momentum_score > 0 THEN 'GROWING'
+        WHEN momentum_score > -5 THEN 'DECLINING'
+        WHEN momentum_score > -10 THEN 'FALLING'
+        ELSE 'COLLAPSING'
+    END AS momentum_classification,
+    
+    -- Stability rating (inverse of volatility)
+    CASE
+        WHEN size_volatility_3cycles < 3 THEN 'VERY_STABLE'
+        WHEN size_volatility_3cycles < 6 THEN 'STABLE'
+        WHEN size_volatility_3cycles < 10 THEN 'UNSTABLE'
+        ELSE 'VERY_UNSTABLE'
+    END AS stability_rating,
+    
+    -- Party trajectory
+    CASE
+        WHEN velocity_1cycle > 0 AND acceleration > 0 THEN 'ACCELERATING_GROWTH'
+        WHEN velocity_1cycle > 0 AND acceleration < 0 THEN 'DECELERATING_GROWTH'
+        WHEN velocity_1cycle < 0 AND acceleration < 0 THEN 'ACCELERATING_DECLINE'
+        WHEN velocity_1cycle < 0 AND acceleration > 0 THEN 'DECELERATING_DECLINE'
+        ELSE 'STABLE'
+    END AS trajectory,
+    
+    -- Coalition potential (market share + momentum)
+    ROUND(party_market_share + (momentum_score * 0.5), 2) AS coalition_potential_score,
+    
+    -- Market position
+    CASE
+        WHEN party_market_share >= 30 THEN 'DOMINANT'
+        WHEN party_market_share >= 20 THEN 'MAJOR'
+        WHEN party_market_share >= 10 THEN 'SIGNIFICANT'
+        WHEN party_market_share >= 5 THEN 'MINOR'
+        ELSE 'MARGINAL'
+    END AS market_position,
+    
+    -- Risk/opportunity assessment
+    CASE
+        WHEN momentum_score > 5 AND party_market_share < 20 THEN 'BREAKTHROUGH_OPPORTUNITY'
+        WHEN momentum_score < -5 AND party_market_share > 20 THEN 'DECLINE_RISK'
+        WHEN size_volatility_3cycles > 10 THEN 'HIGH_UNCERTAINTY'
+        WHEN momentum_score > 0 AND size_volatility_3cycles < 5 THEN 'STEADY_GROWTH'
+        ELSE 'STABLE_POSITION'
+    END AS strategic_assessment
+
+FROM velocity_calculations
+ORDER BY election_year DESC, party_market_share DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_election_cycle_party_momentum"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- View 8: Election Cycle Volatility Analysis - Behavioral Volatility       -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-election-cycle-volatility-analysis-1.51-008" failOnError="true">
+    <comment>
+        Create view_riksdagen_election_cycle_volatility_analysis
+        
+        Analyzes behavioral volatility and stability:
+        - Individual politician volatility metrics
+        - Party cohesion volatility
+        - System-wide volatility indicators
+        - Correlation analysis between metrics
+        
+        Intelligence Value: ⭐⭐⭐⭐ HIGH
+        Critical for risk assessment and stability forecasting
+    </comment>
+    
+    <createView viewName="view_riksdagen_election_cycle_volatility_analysis">
+        <![CDATA[
+WITH politician_volatility AS (
+    SELECT
+        person_id,
+        first_name,
+        last_name,
+        party,
+        COUNT(DISTINCT election_year) AS cycles_active,
+        AVG(attendance_score) AS avg_attendance,
+        STDDEV(attendance_score) AS attendance_volatility,
+        MAX(attendance_score) - MIN(attendance_score) AS attendance_range,
+        AVG(ballot_participation) AS avg_participation,
+        STDDEV(ballot_participation) AS participation_volatility,
+        
+        -- Coefficient of variation (CV) - normalized volatility
+        CASE 
+            WHEN AVG(attendance_score) > 0 THEN 
+                ROUND(100.0 * STDDEV(attendance_score) / AVG(attendance_score), 2)
+            ELSE NULL
+        END AS attendance_cv
+    FROM view_riksdagen_politician_election_cycle_performance
+    GROUP BY person_id, first_name, last_name, party
+    HAVING COUNT(DISTINCT election_year) >= 2  -- Need at least 2 cycles for volatility
+),
+party_volatility AS (
+    SELECT
+        party,
+        COUNT(DISTINCT election_year) AS cycles_present,
+        AVG(party_size) AS avg_size,
+        STDDEV(party_size) AS size_volatility,
+        MAX(party_size) - MIN(party_size) AS size_range,
+        AVG(party_attendance_rate) AS avg_attendance_rate,
+        STDDEV(party_attendance_rate) AS attendance_rate_volatility,
+        
+        -- Coefficient of variation
+        CASE 
+            WHEN AVG(party_size) > 0 THEN 
+                ROUND(100.0 * STDDEV(party_size) / AVG(party_size), 2)
+            ELSE NULL
+        END AS size_cv
+    FROM view_riksdagen_party_election_cycle_trends
+    GROUP BY party
+    HAVING COUNT(DISTINCT election_year) >= 2
+)
+SELECT
+    pv.person_id,
+    pv.first_name,
+    pv.last_name,
+    pv.party,
+    pv.cycles_active,
+    pv.avg_attendance,
+    pv.attendance_volatility,
+    pv.attendance_range,
+    pv.attendance_cv,
+    pv.avg_participation,
+    pv.participation_volatility,
+    
+    -- Party context
+    partyv.avg_size AS party_avg_size,
+    partyv.size_volatility AS party_size_volatility,
+    partyv.size_cv AS party_size_cv,
+    partyv.avg_attendance_rate AS party_avg_attendance_rate,
+    partyv.attendance_rate_volatility AS party_attendance_volatility,
+    
+    -- Individual volatility classification
+    CASE
+        WHEN pv.attendance_volatility < 5 THEN 'VERY_STABLE'
+        WHEN pv.attendance_volatility < 10 THEN 'STABLE'
+        WHEN pv.attendance_volatility < 15 THEN 'MODERATELY_VOLATILE'
+        WHEN pv.attendance_volatility < 20 THEN 'VOLATILE'
+        ELSE 'HIGHLY_VOLATILE'
+    END AS individual_volatility_classification,
+    
+    -- Party volatility classification
+    CASE
+        WHEN partyv.size_cv < 10 THEN 'STABLE_PARTY'
+        WHEN partyv.size_cv < 20 THEN 'MODERATELY_STABLE'
+        WHEN partyv.size_cv < 30 THEN 'VOLATILE_PARTY'
+        ELSE 'HIGHLY_VOLATILE_PARTY'
+    END AS party_volatility_classification,
+    
+    -- Stability score (inverse of CV, normalized to 0-100)
+    ROUND(GREATEST(0, 100 - pv.attendance_cv), 2) AS individual_stability_score,
+    ROUND(GREATEST(0, 100 - partyv.size_cv), 2) AS party_stability_score,
+    
+    -- Combined stability assessment
+    ROUND((GREATEST(0, 100 - pv.attendance_cv) * 0.6 + GREATEST(0, 100 - partyv.size_cv) * 0.4), 2) AS combined_stability_score,
+    
+    -- Consistency ranking
+    RANK() OVER (ORDER BY pv.attendance_volatility ASC) AS consistency_rank,
+    PERCENT_RANK() OVER (ORDER BY pv.attendance_volatility ASC) AS consistency_percentile,
+    
+    -- Risk indicators
+    CASE
+        WHEN pv.attendance_volatility > 20 AND partyv.size_cv > 30 THEN 'HIGH_RISK'
+        WHEN pv.attendance_volatility > 15 OR partyv.size_cv > 25 THEN 'MODERATE_RISK'
+        ELSE 'LOW_RISK'
+    END AS volatility_risk_level,
+    
+    -- Performance pattern
+    CASE
+        WHEN pv.attendance_volatility < 10 AND pv.avg_attendance > 90 THEN 'CONSISTENTLY_EXCELLENT'
+        WHEN pv.attendance_volatility < 10 AND pv.avg_attendance > 80 THEN 'CONSISTENTLY_GOOD'
+        WHEN pv.attendance_volatility > 15 AND pv.avg_attendance < 80 THEN 'ERRATIC_UNDERPERFORMER'
+        WHEN pv.attendance_volatility > 15 THEN 'ERRATIC_PERFORMER'
+        ELSE 'AVERAGE_PERFORMER'
+    END AS performance_pattern
+
+FROM politician_volatility pv
+LEFT JOIN party_volatility partyv ON pv.party = partyv.party
+ORDER BY pv.attendance_volatility ASC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_election_cycle_volatility_analysis"/>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
