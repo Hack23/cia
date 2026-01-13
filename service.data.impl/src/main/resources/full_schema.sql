@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict odjicHkPSk0I8U56sUinHE0S5CogMFEQJ0eZx30ZUomnqhewVS4144zvTQGKNlv
+\restrict d58BC9GNmHdaxMwCxAOzRpnfufjyiZPoMywkfYbmbI3a9QNdbv7iRAgph81mRXB
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -8338,7 +8338,7 @@ CREATE VIEW public.view_riksdagen_parliamentary_session_summary AS
     min(vote_date) AS session_first_vote,
     max(vote_date) AS session_last_vote,
         CASE
-            WHEN ((rm)::text = ANY ((ARRAY['2025/26'::character varying, '2021/22'::character varying, '2017/18'::character varying, '2013/14'::character varying, '2009/10'::character varying, '2005/06'::character varying, '2001/02'::character varying])::text[])) THEN true
+            WHEN ((rm)::text = ANY (ARRAY[('2025/26'::character varying)::text, ('2021/22'::character varying)::text, ('2017/18'::character varying)::text, ('2013/14'::character varying)::text, ('2009/10'::character varying)::text, ('2005/06'::character varying)::text, ('2001/02'::character varying)::text])) THEN true
             ELSE false
         END AS is_election_year
    FROM public.vote_data
@@ -12955,13 +12955,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict odjicHkPSk0I8U56sUinHE0S5CogMFEQJ0eZx30ZUomnqhewVS4144zvTQGKNlv
+\unrestrict d58BC9GNmHdaxMwCxAOzRpnfufjyiZPoMywkfYbmbI3a9QNdbv7iRAgph81mRXB
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict 4UFBxBIudR5wKe6a0XyEcSG47UGtqfW9hnHAZmjs1mmZbM6vyjKVVa0ItwchP7u
+\restrict cKBFAHawVav0H0igsySOMJVwwS7MHerd2pSLYzVdh9xML0XHZKTeDZL059UPj35
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -13102,6 +13102,7 @@ intops-2025111107-politician-risk-idx	intelligence-operative	db-changelog-1.29.x
 fix-risk-score-evolution-1.38-001	intelligence-operative	db-changelog-1.38.xml	2025-11-28 10:36:16.303924	418	EXECUTED	9:157a899e1c10d9b4e540d8749a91b376	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution by removing materialized view dependency\n        \n        Root Cause: The view depends on view_riksdagen_vote_data_ballot_politician_summary_daily\n        (materialized) which is not populated in schema-only databases...	\N	5.0.1	\N	\N	4322569071
 fix-risk-score-evolution-matview-1.42-005	intelligence-operative	db-changelog-1.42.xml	2025-12-03 11:53:04.526396	438	EXECUTED	9:17f7c63ce28d9c98df086fd35afa7991	dropView viewName=view_risk_score_evolution; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution by removing materialized view dependency\n        \n        Root Cause: The view was re-introduced in db-changelog-1.41.xml (for rebel rate fix)\n        but still referenced view_riksdagen_politician_document (materiali...	\N	5.0.1	\N	\N	4759122669
 fix-swedish-status-risk-evolution-1.47-005	intelligence-operative	db-changelog-1.47.xml	2025-12-30 16:33:20.317226	451	EXECUTED	9:0f80c8ee6622ee192f99865e293d2da2	sql; createView viewName=view_risk_score_evolution	Fix view_risk_score_evolution to use Swedish status values\n        \n        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')\n        but actual data uses Swedish values\n        \n        Solution: Filter on Swedish status value...	\N	5.0.1	\N	\N	7108797880
+1414872417007-174	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.867683	174	EXECUTED	9:ad7250e1d861b489dd7ca50bb3f49df2	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_f4bptktby95bygv359chn7lbn, referencedTableName=performance_indicator_content		\N	5.0.1	\N	\N	3913381643
 create-parliamentary-session-volatility-analysis-1.51-007-advanced-v2	intelligence-operative	db-changelog-1.51.xml	2026-01-13 15:37:07.034586	467	EXECUTED	9:ea0fdc0de6e0f4e54d95c44cd60d6293	createView viewName=view_riksdagen_parliamentary_session_volatility_analysis	Create view_riksdagen_parliamentary_session_volatility_analysis\n        \n        Behavioral volatility analysis using coefficient of variation and stability scores.\n        Identifies erratic performers and behavioral consistency patterns.\n       ...	\N	5.0.1	\N	\N	8318623673
 1414872417007-11	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.862935	11	EXECUTED	9:e2a725018be9c645cc40cee1bf741de4	createTable tableName=assignment_element		\N	5.0.1	\N	\N	3913381643
 1414872417007-15	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:23.891485	15	EXECUTED	9:0cddcb46baaa15f458ceaa0022e10daf	createTable tableName=committee_proposal_data		\N	5.0.1	\N	\N	3913381643
@@ -13209,7 +13210,6 @@ fix-ministry-productivity-join-1.47-008	intelligence-operative	db-changelog-1.47
 1414872417007-169	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.851262	169	EXECUTED	9:8ddf896e49f7932380e5ef7471892039	addForeignKeyConstraint baseTableName=sweden_political_party, constraintName=fk_c2f4dhdce9p61sg50rnww73c1, referencedTableName=sweden_election_region		\N	5.0.1	\N	\N	3913381643
 1414872417007-171	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.857887	171	EXECUTED	9:4e6aea0b15d2a2ed7264ed313d9547be	addForeignKeyConstraint baseTableName=detail_data, constraintName=fk_diexjlb9hdrfv7g5y06cj6nu5, referencedTableName=person_detail_data		\N	5.0.1	\N	\N	3913381643
 1414872417007-225	pether	db-changelog-1.1.xml	2025-11-23 16:56:25.095559	225	EXECUTED	9:ea6a0f678b722d37e8d2862d86044b1e	dropView viewName=view_riksdagen_goverment; createView viewName=view_riksdagen_goverment		\N	5.0.1	\N	\N	3913381643
-1414872417007-174	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.867683	174	EXECUTED	9:ad7250e1d861b489dd7ca50bb3f49df2	addForeignKeyConstraint baseTableName=application_view, constraintName=fk_f4bptktby95bygv359chn7lbn, referencedTableName=performance_indicator_content		\N	5.0.1	\N	\N	3913381643
 1414872417007-175	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.871095	175	EXECUTED	9:818f5d9ba52f5b4b7c5e22b7880d5b31	addForeignKeyConstraint baseTableName=document_activity_data, constraintName=fk_gruc53dqu0smf6s1a0gkelvdm, referencedTableName=document_activity_container		\N	5.0.1	\N	\N	3913381643
 1414872417007-177	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.877895	177	EXECUTED	9:74506407fb2de37ce7110ed9e6e84899	addForeignKeyConstraint baseTableName=committee_proposal_data, constraintName=fk_hs04ji7kqvwd7313ryp20vo0x, referencedTableName=committee_proposal_container		\N	5.0.1	\N	\N	3913381643
 1414872417007-178	pether (generated)	db-changelog-1.0.xml	2025-11-23 16:56:24.881043	178	EXECUTED	9:ff2b41caa6a89d740f2df18f82af73e5	addForeignKeyConstraint baseTableName=aggregated_country_data, constraintName=fk_j7l4eldeihr8g7ax7rv2irgk1, referencedTableName=country_element		\N	5.0.1	\N	\N	3913381643
@@ -13465,5 +13465,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 4UFBxBIudR5wKe6a0XyEcSG47UGtqfW9hnHAZmjs1mmZbM6vyjKVVa0ItwchP7u
+\unrestrict cKBFAHawVav0H0igsySOMJVwwS7MHerd2pSLYzVdh9xML0XHZKTeDZL059UPj35
 
