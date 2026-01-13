@@ -6,11 +6,23 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
 <!-- 
-  Historical Election Cycle Trend Views - Database Changelog v1.51
+  Historical Election Cycle Trend Views - Database Changelog v1.51 (REVISED)
   Author: Intelligence Operative & Political Analyst
-  Date: 2026-01-13
+  Date: 2026-01-13 (Revised: 2026-01-13)
   GitHub Issue: #8205 - Historical Election Cycle Trend Views: Swedish Parliament Context
   Related PR: #8204 - Framework-validation sample data
+  
+  REVISION NOTES:
+  This is a comprehensive revision that properly integrates ALL advanced views
+  for true META/META-level analysis across all 6 analytical frameworks.
+  
+  Key Improvements:
+  1. Temporal Analysis: Added view_decision_temporal_trends, view_committee_productivity
+  2. Comparative Analysis: Added view_party_performance_metrics, view_committee_productivity_matrix
+  3. Pattern Recognition: Added view_riksdagen_voting_anomaly_detection, view_politician_risk_summary
+  4. Predictive Intelligence: Added view_ministry_risk_evolution, view_party_effectiveness_trends
+  5. Network Analysis: Added view_riksdagen_politician_influence_metrics
+  6. Decision Intelligence: Added view_decision_temporal_trends, view_ministry_decision_impact
   
   Purpose:
   Creates 6 comprehensive META/META-level database views for Swedish Parliament election 
@@ -49,10 +61,13 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 
 <changeSet id="1.51-intro" author="intelligence-operative">
     <comment>
-        Database Changelog v1.51 - Historical Election Cycle Trend Views
+        Database Changelog v1.51 - Historical Election Cycle Trend Views (REVISED)
         
         Creates 6 META/META-level views aggregating existing advanced analytics
         with Swedish parliamentary election cycle temporal dimensions.
+        
+        REVISION: Now properly integrates ALL relevant advanced views for each framework
+        to provide comprehensive, multi-source intelligence aggregation.
         
         Enables institutional-grade, election-season-aware intelligence across
         all 6 analytical frameworks (Temporal, Comparative, Pattern Recognition,
@@ -61,144 +76,65 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     
     <sql>
         SELECT 
-            'v1.51' AS version,
-            'Election cycle trend views for Swedish Parliament analysis - META/META level' AS description,
+            'v1.51-revised' AS version,
+            'Election cycle trend views - COMPREHENSIVE META/META level with all advanced views' AS description,
             'Covers 6 frameworks: Temporal, Comparative, Pattern, Predictive, Network, Decision' AS scope,
             CURRENT_TIMESTAMP AS applied_at;
     </sql>
 </changeSet>
 
+
 <!-- ========================================================================= -->
-<!-- 1. TEMPORAL ANALYSIS: view_election_cycle_temporal_trends               -->
+<!-- 1. TEMPORAL ANALYSIS (ENHANCED): view_election_cycle_temporal_trends    -->
 <!-- ========================================================================= -->
 
 <changeSet author="intelligence-operative" id="1.51-election-cycle-temporal-001" failOnError="true">
     <comment>
-        Create view_election_cycle_temporal_trends
+        REVISED: Enhanced with view_decision_temporal_trends and view_committee_productivity
         
         Framework: Temporal Analysis (35 supporting views, 20+ risk rules)
-        Purpose: Aggregate longitudinal trends for attendance, proposals, voting, 
-                 and committee activity across election cycles with semester granularity
         
-        Source Views (META level inputs):
-        - view_politician_behavioral_trends: Monthly behavioral metrics
+        Source Views (COMPREHENSIVE META level):
+        - view_politician_behavioral_trends: Behavioral metrics, moving averages
         - view_riksdagen_vote_data_ballot_politician_summary_monthly: Voting patterns
-        
-        Output Columns Mapped:
-        - election_cycle_id: Calculated from dates (e.g., "2018-2022", "2022-2026")
-        - cycle_year: Year within 4-year cycle (1-4)
-        - calendar_year: Actual calendar year
-        - semester: "autumn" (Sep-Jan) or "spring" (Feb-Aug)
-        - is_pre_election_semester: TRUE for final spring before election
-        - months_until_election: Countdown metric
-        - avg_attendance_rate: Aggregated from politician_behavioral_trends.avg_absence_rate
-        - total_ballots: Sum from monthly summaries
-        - total_votes: Sum from monthly summaries
-        - avg_win_rate: Aggregated win rates
-        - avg_rebel_rate: Aggregated rebel rates
-        - violation_count: Sum of violations from behavioral trends
-        
-        Swedish Election Years: 1994, 1998, 2002, 2006, 2010, 2014, 2018, 2022, 2026...
+        - view_decision_temporal_trends: Decision outcomes, approval rates (NEW)
+        - view_committee_productivity: Committee activity metrics (NEW)
     </comment>
     
     <createView viewName="view_election_cycle_temporal_trends">
         <![CDATA[
 WITH election_cycle_calendar AS (
-    -- Swedish election cycle calculator (elections every 4 years since 1994)
-    -- Elections held on second Sunday in September (typically Sept 9-15)
     SELECT 
         year_series AS calendar_year,
-        -- Determine election cycle start year (most recent election year <= current year)
-        -- Elections: 1994, 1998, 2002, 2006, 2010, 2014, 2018, 2022, 2026...
         (1994 + (FLOOR((year_series - 1994) / 4.0) * 4))::INTEGER AS cycle_start_year,
         (1994 + (FLOOR((year_series - 1994) / 4.0) * 4) + 4)::INTEGER AS cycle_end_year
     FROM generate_series(1994, EXTRACT(YEAR FROM CURRENT_DATE)::INTEGER + 4, 1) AS year_series
 ),
 election_cycle_periods AS (
-    -- Add election cycle context and semester calculations
     SELECT 
         calendar_year,
         cycle_start_year,
         cycle_end_year,
         (cycle_start_year || '-' || cycle_end_year) AS election_cycle_id,
         (calendar_year - cycle_start_year + 1) AS cycle_year,
-        
-        -- Month ranges for temporal aggregation
-        MAKE_DATE(calendar_year, 9, 1) AS autumn_start,  -- September 1
-        MAKE_DATE(calendar_year + 1, 1, 25) AS autumn_end,  -- January 25 next year
-        MAKE_DATE(calendar_year, 1, 26) AS spring_start,  -- January 26
-        MAKE_DATE(calendar_year, 8, 31) AS spring_end,  -- August 31
-        
-        -- Pre-election marker: TRUE if this is year 4 of cycle (election year)
+        MAKE_DATE(calendar_year, 9, 1) AS autumn_start,
+        MAKE_DATE(calendar_year + 1, 1, 25) AS autumn_end,
+        MAKE_DATE(calendar_year, 1, 26) AS spring_start,
+        MAKE_DATE(calendar_year, 8, 31) AS spring_end,
         CASE WHEN (calendar_year - cycle_start_year + 1) = 4 THEN TRUE ELSE FALSE END AS is_election_year
     FROM election_cycle_calendar
 ),
 temporal_data_autumn AS (
-    -- Aggregate autumn semester data (Sep-Jan)
     SELECT 
         ecp.election_cycle_id,
         ecp.cycle_year,
         ecp.calendar_year,
         'autumn' AS semester,
-        FALSE AS is_pre_election_semester,  -- Autumn is never pre-election
+        FALSE AS is_pre_election_semester,
+        EXTRACT(YEAR FROM AGE(MAKE_DATE(ecp.cycle_end_year, 9, 15), ecp.autumn_start))::INTEGER * 12 + 
+        EXTRACT(MONTH FROM AGE(MAKE_DATE(ecp.cycle_end_year, 9, 15), ecp.autumn_start))::INTEGER AS months_until_election,
         
-        -- Calculate months until next election (September of election year)
-        EXTRACT(YEAR FROM AGE(
-            MAKE_DATE(ecp.cycle_end_year, 9, 15),  -- Approx election date
-            ecp.autumn_start
-        ))::INTEGER * 12 + 
-        EXTRACT(MONTH FROM AGE(
-            MAKE_DATE(ecp.cycle_end_year, 9, 15),
-            ecp.autumn_start
-        ))::INTEGER AS months_until_election,
-        
-        -- Aggregated metrics from view_politician_behavioral_trends (META source)
-        COUNT(DISTINCT pbt.person_id) AS active_politicians,
-        ROUND(AVG(100 - pbt.avg_absence_rate), 2) AS avg_attendance_rate,  -- Convert absence to attendance
-        SUM(pbt.total_ballots) AS total_ballots,
-        SUM(pbt.total_votes) AS total_votes,
-        ROUND(AVG(pbt.avg_win_rate), 2) AS avg_win_rate,
-        ROUND(AVG(pbt.avg_rebel_rate), 2) AS avg_rebel_rate,
-        SUM(pbt.violation_count) AS violation_count,
-        
-        -- Aggregated metrics from view_riksdagen_vote_data_ballot_politician_summary_monthly (META source)
-        COUNT(DISTINCT vms.embedded_id_ballot_id) AS distinct_ballots
-        
-    FROM election_cycle_periods ecp
-    LEFT JOIN view_politician_behavioral_trends pbt
-        ON pbt.period_start >= ecp.autumn_start
-        AND pbt.period_start <= ecp.autumn_end
-    LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_monthly vms
-        ON vms.embedded_id_vote_date >= ecp.autumn_start
-        AND vms.embedded_id_vote_date <= ecp.autumn_end
-    GROUP BY 
-        ecp.election_cycle_id,
-        ecp.cycle_year,
-        ecp.calendar_year,
-        ecp.autumn_start,
-        ecp.cycle_end_year
-),
-temporal_data_spring AS (
-    -- Aggregate spring semester data (Feb-Aug)
-    SELECT 
-        ecp.election_cycle_id,
-        ecp.cycle_year,
-        ecp.calendar_year,
-        'spring' AS semester,
-        -- Spring of election year (cycle_year = 4) is pre-election
-        CASE WHEN ecp.is_election_year THEN TRUE ELSE FALSE END AS is_pre_election_semester,
-        
-        -- Calculate months until next election
-        EXTRACT(YEAR FROM AGE(
-            MAKE_DATE(ecp.cycle_end_year, 9, 15),
-            ecp.spring_start
-        ))::INTEGER * 12 + 
-        EXTRACT(MONTH FROM AGE(
-            MAKE_DATE(ecp.cycle_end_year, 9, 15),
-            ecp.spring_start
-        ))::INTEGER AS months_until_election,
-        
-        -- Aggregated metrics from view_politician_behavioral_trends (META source)
+        -- From view_politician_behavioral_trends
         COUNT(DISTINCT pbt.person_id) AS active_politicians,
         ROUND(AVG(100 - pbt.avg_absence_rate), 2) AS avg_attendance_rate,
         SUM(pbt.total_ballots) AS total_ballots,
@@ -206,26 +142,63 @@ temporal_data_spring AS (
         ROUND(AVG(pbt.avg_win_rate), 2) AS avg_win_rate,
         ROUND(AVG(pbt.avg_rebel_rate), 2) AS avg_rebel_rate,
         SUM(pbt.violation_count) AS violation_count,
+        ROUND(AVG(pbt.ma_3month_absence), 2) AS avg_ma_absence,
         
-        -- Aggregated metrics from monthly summaries
-        COUNT(DISTINCT vms.embedded_id_ballot_id) AS distinct_ballots
+        -- From view_riksdagen_vote_data_ballot_politician_summary_monthly
+        COUNT(DISTINCT vms.embedded_id_ballot_id) AS distinct_ballots,
+        
+        -- From view_decision_temporal_trends (NEW)
+        ROUND(AVG(dtt.daily_approval_rate), 2) AS avg_approval_rate,
+        SUM(dtt.daily_decisions) AS total_decisions,
+        
+        -- From view_committee_productivity (NEW)
+        ROUND(AVG(cp.productivity_score), 2) AS avg_committee_productivity
         
     FROM election_cycle_periods ecp
     LEFT JOIN view_politician_behavioral_trends pbt
-        ON pbt.period_start >= ecp.spring_start
-        AND pbt.period_start <= ecp.spring_end
+        ON pbt.period_start >= ecp.autumn_start AND pbt.period_start <= ecp.autumn_end
     LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_monthly vms
-        ON vms.embedded_id_vote_date >= ecp.spring_start
-        AND vms.embedded_id_vote_date <= ecp.spring_end
-    GROUP BY 
+        ON vms.embedded_id_vote_date >= ecp.autumn_start AND vms.embedded_id_vote_date <= ecp.autumn_end
+    LEFT JOIN view_decision_temporal_trends dtt
+        ON dtt.decision_day >= ecp.autumn_start AND dtt.decision_day <= ecp.autumn_end
+    LEFT JOIN view_committee_productivity cp
+        ON cp.data_year = ecp.calendar_year
+    GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ecp.autumn_start, ecp.cycle_end_year
+),
+temporal_data_spring AS (
+    SELECT 
         ecp.election_cycle_id,
         ecp.cycle_year,
         ecp.calendar_year,
-        ecp.spring_start,
-        ecp.cycle_end_year,
-        ecp.is_election_year
+        'spring' AS semester,
+        CASE WHEN ecp.is_election_year THEN TRUE ELSE FALSE END AS is_pre_election_semester,
+        EXTRACT(YEAR FROM AGE(MAKE_DATE(ecp.cycle_end_year, 9, 15), ecp.spring_start))::INTEGER * 12 + 
+        EXTRACT(MONTH FROM AGE(MAKE_DATE(ecp.cycle_end_year, 9, 15), ecp.spring_start))::INTEGER AS months_until_election,
+        
+        COUNT(DISTINCT pbt.person_id) AS active_politicians,
+        ROUND(AVG(100 - pbt.avg_absence_rate), 2) AS avg_attendance_rate,
+        SUM(pbt.total_ballots) AS total_ballots,
+        SUM(pbt.total_votes) AS total_votes,
+        ROUND(AVG(pbt.avg_win_rate), 2) AS avg_win_rate,
+        ROUND(AVG(pbt.avg_rebel_rate), 2) AS avg_rebel_rate,
+        SUM(pbt.violation_count) AS violation_count,
+        ROUND(AVG(pbt.ma_3month_absence), 2) AS avg_ma_absence,
+        COUNT(DISTINCT vms.embedded_id_ballot_id) AS distinct_ballots,
+        ROUND(AVG(dtt.daily_approval_rate), 2) AS avg_approval_rate,
+        SUM(dtt.daily_decisions) AS total_decisions,
+        ROUND(AVG(cp.productivity_score), 2) AS avg_committee_productivity
+        
+    FROM election_cycle_periods ecp
+    LEFT JOIN view_politician_behavioral_trends pbt
+        ON pbt.period_start >= ecp.spring_start AND pbt.period_start <= ecp.spring_end
+    LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_monthly vms
+        ON vms.embedded_id_vote_date >= ecp.spring_start AND vms.embedded_id_vote_date <= ecp.spring_end
+    LEFT JOIN view_decision_temporal_trends dtt
+        ON dtt.decision_day >= ecp.spring_start AND dtt.decision_day <= ecp.spring_end
+    LEFT JOIN view_committee_productivity cp
+        ON cp.data_year = ecp.calendar_year
+    GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ecp.spring_start, ecp.cycle_end_year, ecp.is_election_year
 )
--- Combine autumn and spring semester data
 SELECT * FROM temporal_data_autumn
 UNION ALL
 SELECT * FROM temporal_data_spring
@@ -239,21 +212,29 @@ ORDER BY election_cycle_id, cycle_year, semester;
 </changeSet>
 
 
-<!-- Note: Remaining views (2-6) follow similar patterns with election cycle aggregation -->
-<!-- For brevity and to stay within token limits, views 2-6 are defined below in compact form -->
+<!-- ========================================================================= -->
+<!-- 2. COMPARATIVE ANALYSIS (ENHANCED): view_election_cycle_comparative_analysis -->
+<!-- ========================================================================= -->
 
-<!-- View 2: Comparative Analysis -->
 <changeSet author="intelligence-operative" id="1.51-election-cycle-comparative-002" failOnError="true">
-    <comment>Framework: Comparative Analysis - Party/committee comparisons per election cycle/semester</comment>
+    <comment>
+        REVISED: Enhanced with view_party_performance_metrics and view_committee_productivity_matrix
+        
+        Framework: Comparative Analysis (26 supporting views, 15+ risk rules)
+        
+        Source Views (COMPREHENSIVE):
+        - view_riksdagen_vote_data_ballot_party_summary_monthly: Party voting patterns
+        - view_party_performance_metrics: Performance scores, discipline, effectiveness (NEW)
+        - view_committee_productivity_matrix: Multi-committee comparisons (NEW)
+    </comment>
+    
     <createView viewName="view_election_cycle_comparative_analysis">
         <![CDATA[
 WITH election_cycle_periods AS (
     SELECT 
-        (1994 + (FLOOR((year_series - 1994) / 4.0) * 4))::INTEGER AS cycle_start,
-        (1994 + (FLOOR((year_series - 1994) / 4.0) * 4) + 4)::INTEGER AS cycle_end,
-        year_series AS calendar_year,
         (1994 + (FLOOR((year_series - 1994) / 4.0) * 4)) || '-' || (1994 + (FLOOR((year_series - 1994) / 4.0) * 4) + 4) AS election_cycle_id,
-        (year_series - (1994 + (FLOOR((year_series - 1994) / 4.0) * 4)) + 1) AS cycle_year
+        (year_series - (1994 + (FLOOR((year_series - 1994) / 4.0) * 4)) + 1) AS cycle_year,
+        year_series AS calendar_year
     FROM generate_series(1994, EXTRACT(YEAR FROM CURRENT_DATE)::INTEGER + 4, 1) AS year_series
 )
 SELECT 
@@ -262,24 +243,58 @@ SELECT
     ecp.calendar_year,
     CASE WHEN EXTRACT(MONTH FROM vps.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vps.embedded_id_vote_date) <= 1 THEN 'autumn' ELSE 'spring' END AS semester,
     vps.party,
+    
+    -- From view_riksdagen_vote_data_ballot_party_summary_monthly
     SUM(vps.total_votes) AS total_votes_party,
     ROUND(AVG(vps.percentage_yes), 2) AS avg_yes_percentage,
     ROUND(AVG(vps.percentage_absent), 2) AS avg_absence_percentage,
-    ROUND(AVG(vps.rebel_percentage), 2) AS avg_rebel_percentage
+    ROUND(AVG(vps.rebel_percentage), 2) AS avg_rebel_percentage,
+    
+    -- From view_party_performance_metrics (NEW - provides comprehensive party analytics)
+    MAX(ppm.performance_score) AS performance_score,
+    MAX(ppm.active_members) AS active_members,
+    MAX(ppm.total_violations) AS party_violations,
+    ROUND(AVG(ppm.avg_win_rate), 2) AS party_win_rate,
+    ROUND(AVG(ppm.avg_participation_rate), 2) AS party_participation_rate,
+    MAX(ppm.documents_produced) AS documents_produced,
+    
+    -- From view_committee_productivity_matrix (NEW - multi-committee dimension)
+    COUNT(DISTINCT cpm.committee_org) AS committees_active
+    
 FROM election_cycle_periods ecp
 LEFT JOIN view_riksdagen_vote_data_ballot_party_summary_monthly vps
     ON EXTRACT(YEAR FROM vps.embedded_id_vote_date) = ecp.calendar_year
+LEFT JOIN view_party_performance_metrics ppm
+    ON ppm.party = vps.party
+LEFT JOIN view_committee_productivity_matrix cpm
+    ON EXTRACT(YEAR FROM cpm.data_date) = ecp.calendar_year
 WHERE vps.party IS NOT NULL
-GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, CASE WHEN EXTRACT(MONTH FROM vps.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vps.embedded_id_vote_date) <= 1 THEN 'autumn' ELSE 'spring' END, vps.party
+GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, 
+    CASE WHEN EXTRACT(MONTH FROM vps.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vps.embedded_id_vote_date) <= 1 THEN 'autumn' ELSE 'spring' END, 
+    vps.party
 ORDER BY election_cycle_id, cycle_year, semester, party;
         ]]>
     </createView>
     <rollback><dropView viewName="view_election_cycle_comparative_analysis"/></rollback>
 </changeSet>
 
-<!-- View 3: Pattern Recognition / Anomaly Detection -->
+
+<!-- ========================================================================= -->
+<!-- 3. PATTERN RECOGNITION (ENHANCED): view_election_cycle_anomaly_pattern  -->
+<!-- ========================================================================= -->
+
 <changeSet author="intelligence-operative" id="1.51-election-cycle-pattern-003" failOnError="true">
-    <comment>Framework: Pattern Recognition - Anomaly/pattern detection per election cycle/semester</comment>
+    <comment>
+        REVISED: Enhanced with view_riksdagen_voting_anomaly_detection and view_politician_risk_summary
+        
+        Framework: Pattern Recognition (23 supporting views, 12/13 risk rules)
+        
+        Source Views (COMPREHENSIVE):
+        - view_risk_score_evolution: Risk trajectories and escalations
+        - view_riksdagen_voting_anomaly_detection: Defection risk, discipline issues (NEW)
+        - view_politician_risk_summary: Aggregated risk profiles (NEW)
+    </comment>
+    
     <createView viewName="view_election_cycle_anomaly_pattern">
         <![CDATA[
 WITH election_cycle_periods AS (
@@ -294,23 +309,56 @@ SELECT
     ecp.cycle_year,
     ecp.calendar_year,
     CASE WHEN EXTRACT(MONTH FROM rse.assessment_period) >= 9 OR EXTRACT(MONTH FROM rse.assessment_period) <= 1 THEN 'autumn' ELSE 'spring' END AS semester,
-    'RISK_EVOLUTION' AS anomaly_type,
+    
+    -- Anomaly classification
+    'MULTI_SOURCE_PATTERN' AS anomaly_type,
+    
+    -- From view_risk_score_evolution
     COUNT(DISTINCT rse.person_id) FILTER (WHERE rse.risk_severity IN ('HIGH', 'CRITICAL')) AS politician_count_with_risk,
     ROUND(AVG(rse.risk_score), 2) AS avg_risk_score,
-    COUNT(*) FILTER (WHERE rse.severity_transition LIKE 'ESCALATION%') AS risk_escalations
+    COUNT(*) FILTER (WHERE rse.severity_transition LIKE 'ESCALATION%') AS risk_escalations,
+    
+    -- From view_riksdagen_voting_anomaly_detection (NEW - detects defections, discipline issues)
+    COUNT(DISTINCT vad.person_id) FILTER (WHERE vad.defection_risk = 'HIGH') AS high_defection_risk_count,
+    COUNT(DISTINCT vad.person_id) FILTER (WHERE vad.party_discipline = 'LOW') AS low_discipline_count,
+    ROUND(AVG(vad.rebellion_rate), 2) AS avg_rebellion_rate,
+    
+    -- From view_politician_risk_summary (NEW - aggregated risk profiles)
+    ROUND(AVG(prs.total_risk_score), 2) AS avg_total_risk_score,
+    COUNT(DISTINCT prs.person_id) FILTER (WHERE prs.risk_category IN ('HIGH_RISK', 'CRITICAL_RISK')) AS high_risk_politicians
+    
 FROM election_cycle_periods ecp
 LEFT JOIN view_risk_score_evolution rse
     ON EXTRACT(YEAR FROM rse.assessment_period) = ecp.calendar_year
-GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, CASE WHEN EXTRACT(MONTH FROM rse.assessment_period) >= 9 OR EXTRACT(MONTH FROM rse.assessment_period) <= 1 THEN 'autumn' ELSE 'spring' END
+LEFT JOIN view_riksdagen_voting_anomaly_detection vad
+    ON EXTRACT(YEAR FROM vad.vote_date) = ecp.calendar_year
+LEFT JOIN view_politician_risk_summary prs
+    ON 1=1  -- Current snapshot, not time-filtered
+GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, 
+    CASE WHEN EXTRACT(MONTH FROM rse.assessment_period) >= 9 OR EXTRACT(MONTH FROM rse.assessment_period) <= 1 THEN 'autumn' ELSE 'spring' END
 ORDER BY election_cycle_id, cycle_year, semester;
         ]]>
     </createView>
     <rollback><dropView viewName="view_election_cycle_anomaly_pattern"/></rollback>
 </changeSet>
 
-<!-- View 4: Predictive Intelligence -->
+
+<!-- ========================================================================= -->
+<!-- 4. PREDICTIVE INTELLIGENCE (ENHANCED): view_election_cycle_predictive_intelligence -->
+<!-- ========================================================================= -->
+
 <changeSet author="intelligence-operative" id="1.51-election-cycle-predictive-004" failOnError="true">
-    <comment>Framework: Predictive Intelligence - Risk forecasts per election cycle/semester</comment>
+    <comment>
+        REVISED: Enhanced with view_ministry_risk_evolution and view_party_effectiveness_trends
+        
+        Framework: Predictive Intelligence (14 supporting views, 8/8 risk rules)
+        
+        Source Views (COMPREHENSIVE):
+        - view_risk_score_evolution: Risk forecasting and trajectories
+        - view_ministry_risk_evolution: Ministry-level risk trends (NEW)
+        - view_party_effectiveness_trends: Party performance trajectories (NEW)
+    </comment>
+    
     <createView viewName="view_election_cycle_predictive_intelligence">
         <![CDATA[
 WITH election_cycle_periods AS (
@@ -325,26 +373,55 @@ SELECT
     ecp.cycle_year,
     ecp.calendar_year,
     CASE WHEN EXTRACT(MONTH FROM rse.assessment_period) >= 9 OR EXTRACT(MONTH FROM rse.assessment_period) <= 1 THEN 'autumn' ELSE 'spring' END AS semester,
+    
+    -- From view_risk_score_evolution (risk forecasting)
     CASE 
         WHEN AVG(rse.risk_score_change) >= 10 THEN 'RAPID_ESCALATION'
         WHEN AVG(rse.risk_score_change) >= 5 THEN 'MODERATE_ESCALATION'
+        WHEN AVG(rse.risk_score_change) <= -5 THEN 'IMPROVING'
         ELSE 'STABLE'
     END AS risk_forecast_category,
     COUNT(DISTINCT rse.person_id) FILTER (WHERE rse.risk_trend LIKE '%INCREASE%') AS politicians_at_risk,
-    ROUND(AVG(rse.risk_score_change), 2) AS avg_risk_score_change
+    ROUND(AVG(rse.risk_score_change), 2) AS avg_risk_score_change,
+    
+    -- From view_ministry_risk_evolution (NEW - government stability forecasting)
+    COUNT(DISTINCT mre.ministry_name) FILTER (WHERE mre.risk_trajectory = 'INCREASING') AS ministries_at_risk,
+    ROUND(AVG(mre.ministry_risk_score), 2) AS avg_ministry_risk,
+    
+    -- From view_party_effectiveness_trends (NEW - party performance forecasting)
+    ROUND(AVG(pet.effectiveness_trend_slope), 2) AS avg_party_effectiveness_trend,
+    COUNT(DISTINCT pet.party) FILTER (WHERE pet.trend_direction = 'DECLINING') AS parties_declining
+    
 FROM election_cycle_periods ecp
 LEFT JOIN view_risk_score_evolution rse
     ON EXTRACT(YEAR FROM rse.assessment_period) = ecp.calendar_year
-GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, CASE WHEN EXTRACT(MONTH FROM rse.assessment_period) >= 9 OR EXTRACT(MONTH FROM rse.assessment_period) <= 1 THEN 'autumn' ELSE 'spring' END
+LEFT JOIN view_ministry_risk_evolution mre
+    ON EXTRACT(YEAR FROM mre.assessment_date) = ecp.calendar_year
+LEFT JOIN view_party_effectiveness_trends pet
+    ON EXTRACT(YEAR FROM pet.trend_date) = ecp.calendar_year
+GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, 
+    CASE WHEN EXTRACT(MONTH FROM rse.assessment_period) >= 9 OR EXTRACT(MONTH FROM rse.assessment_period) <= 1 THEN 'autumn' ELSE 'spring' END
 ORDER BY election_cycle_id, cycle_year, semester;
         ]]>
     </createView>
     <rollback><dropView viewName="view_election_cycle_predictive_intelligence"/></rollback>
 </changeSet>
 
-<!-- View 5: Network Analysis -->
+<!-- ========================================================================= -->
+<!-- 5. NETWORK ANALYSIS (ENHANCED): view_election_cycle_network_analysis    -->
+<!-- ========================================================================= -->
+
 <changeSet author="intelligence-operative" id="1.51-election-cycle-network-005" failOnError="true">
-    <comment>Framework: Network Analysis - Coalition structure per election cycle</comment>
+    <comment>
+        REVISED: Enhanced with view_riksdagen_politician_influence_metrics
+        
+        Framework: Network Analysis (11 supporting views, 3/4 risk rules)
+        
+        Source Views (COMPREHENSIVE):
+        - view_riksdagen_coalition_alignment_matrix: Coalition structure
+        - view_riksdagen_politician_influence_metrics: Network centrality, power brokers (NEW)
+    </comment>
+    
     <createView viewName="view_election_cycle_network_analysis">
         <![CDATA[
 WITH election_cycle_periods AS (
@@ -359,6 +436,8 @@ SELECT
     ecp.cycle_year,
     ecp.calendar_year,
     'aggregate' AS semester,
+    
+    -- From view_riksdagen_coalition_alignment_matrix
     cam.party_a,
     cam.party_b,
     cam.alignment_score,
@@ -366,19 +445,42 @@ SELECT
         WHEN cam.alignment_score >= 80 THEN 'STRONG_COALITION'
         WHEN cam.alignment_score >= 60 THEN 'MODERATE_COALITION'
         ELSE 'WEAK_COALITION'
-    END AS coalition_strength
+    END AS coalition_strength,
+    
+    -- From view_riksdagen_politician_influence_metrics (NEW - network analysis)
+    COUNT(DISTINCT pim.person_id) FILTER (WHERE pim.influence_level IN ('HIGH', 'VERY_HIGH')) AS influential_politicians,
+    ROUND(AVG(pim.network_centrality_score), 2) AS avg_network_centrality,
+    COUNT(DISTINCT pim.person_id) FILTER (WHERE pim.broker_status = 'POWER_BROKER') AS power_broker_count
+    
 FROM election_cycle_periods ecp
 CROSS JOIN view_riksdagen_coalition_alignment_matrix cam
+LEFT JOIN view_riksdagen_politician_influence_metrics pim
+    ON 1=1  -- Current snapshot
 WHERE cam.party_a IS NOT NULL AND cam.party_b IS NOT NULL
+GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, cam.party_a, cam.party_b, cam.alignment_score
 ORDER BY election_cycle_id, cycle_year, alignment_score DESC;
         ]]>
     </createView>
     <rollback><dropView viewName="view_election_cycle_network_analysis"/></rollback>
 </changeSet>
 
-<!-- View 6: Decision Intelligence -->
+
+<!-- ========================================================================= -->
+<!-- 6. DECISION INTELLIGENCE (ENHANCED): view_election_cycle_decision_intelligence -->
+<!-- ========================================================================= -->
+
 <changeSet author="intelligence-operative" id="1.51-election-cycle-decision-006" failOnError="true">
-    <comment>Framework: Decision Intelligence - Policy success per election cycle/semester</comment>
+    <comment>
+        REVISED: Enhanced with view_decision_temporal_trends and view_ministry_decision_impact
+        
+        Framework: Decision Intelligence (5 supporting views, 5/5 risk rules)
+        
+        Source Views (COMPREHENSIVE):
+        - view_riksdagen_party_decision_flow: Party proposal outcomes
+        - view_decision_temporal_trends: Temporal decision patterns (NEW)
+        - view_ministry_decision_impact: Government decision effectiveness (NEW)
+    </comment>
+    
     <createView viewName="view_election_cycle_decision_intelligence">
         <![CDATA[
 WITH election_cycle_periods AS (
@@ -394,19 +496,39 @@ SELECT
     ecp.calendar_year,
     CASE WHEN pdf.decision_month_num >= 9 OR pdf.decision_month_num <= 1 THEN 'autumn' ELSE 'spring' END AS semester,
     pdf.party,
+    
+    -- From view_riksdagen_party_decision_flow (party-level outcomes)
     SUM(pdf.total_proposals) AS total_proposals,
     SUM(pdf.approved_proposals) AS approved_proposals,
+    SUM(pdf.rejected_proposals) AS rejected_proposals,
     ROUND(AVG(pdf.approval_rate), 2) AS avg_approval_rate,
+    
+    -- Decision effectiveness classification
     CASE 
         WHEN AVG(pdf.approval_rate) >= 75 THEN 'HIGHLY_EFFECTIVE'
         WHEN AVG(pdf.approval_rate) >= 50 THEN 'MODERATELY_EFFECTIVE'
         ELSE 'LOWLY_EFFECTIVE'
-    END AS decision_effectiveness
+    END AS decision_effectiveness,
+    
+    -- From view_decision_temporal_trends (NEW - temporal decision patterns)
+    ROUND(AVG(dtt.daily_approval_rate), 2) AS temporal_approval_rate,
+    SUM(dtt.daily_decisions) AS temporal_decision_count,
+    
+    -- From view_ministry_decision_impact (NEW - government decision effectiveness)
+    ROUND(AVG(mdi.decision_impact_score), 2) AS ministry_impact_score,
+    COUNT(DISTINCT mdi.ministry_name) AS ministries_with_decisions
+    
 FROM election_cycle_periods ecp
 LEFT JOIN view_riksdagen_party_decision_flow pdf
     ON pdf.decision_year = ecp.calendar_year
+LEFT JOIN view_decision_temporal_trends dtt
+    ON EXTRACT(YEAR FROM dtt.decision_day) = ecp.calendar_year
+LEFT JOIN view_ministry_decision_impact mdi
+    ON EXTRACT(YEAR FROM mdi.decision_date) = ecp.calendar_year
 WHERE pdf.party IS NOT NULL
-GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, CASE WHEN pdf.decision_month_num >= 9 OR pdf.decision_month_num <= 1 THEN 'autumn' ELSE 'spring' END, pdf.party
+GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, 
+    CASE WHEN pdf.decision_month_num >= 9 OR pdf.decision_month_num <= 1 THEN 'autumn' ELSE 'spring' END, 
+    pdf.party
 HAVING SUM(pdf.total_proposals) > 0
 ORDER BY election_cycle_id, cycle_year, semester, party;
         ]]>
@@ -414,22 +536,68 @@ ORDER BY election_cycle_id, cycle_year, semester, party;
     <rollback><dropView viewName="view_election_cycle_decision_intelligence"/></rollback>
 </changeSet>
 
-<!-- Validation -->
+<!-- ========================================================================= -->
+<!-- VALIDATION: Verify Election Cycle Views Created Successfully           -->
+<!-- ========================================================================= -->
+
 <changeSet id="1.51-validation" author="intelligence-operative">
-    <comment>Validate all 6 election cycle views created successfully</comment>
+    <comment>
+        Validate that all 6 election cycle views were created successfully
+        with enhanced comprehensive META/META-level integration.
+    </comment>
+    
     <sql splitStatements="false"><![CDATA[
         DO $$
         DECLARE
-            view_count INTEGER;
+            v_temporal_exists BOOLEAN;
+            v_comparative_exists BOOLEAN;
+            v_pattern_exists BOOLEAN;
+            v_predictive_exists BOOLEAN;
+            v_network_exists BOOLEAN;
+            v_decision_exists BOOLEAN;
         BEGIN
-            SELECT COUNT(*) INTO view_count
-            FROM information_schema.views 
-            WHERE table_name LIKE 'view_election_cycle%';
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_election_cycle_temporal_trends'
+            ) INTO v_temporal_exists;
             
-            IF view_count = 6 THEN
-                RAISE NOTICE '✓ All 6 election cycle views created successfully';
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_election_cycle_comparative_analysis'
+            ) INTO v_comparative_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_election_cycle_anomaly_pattern'
+            ) INTO v_pattern_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_election_cycle_predictive_intelligence'
+            ) INTO v_predictive_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_election_cycle_network_analysis'
+            ) INTO v_network_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_election_cycle_decision_intelligence'
+            ) INTO v_decision_exists;
+            
+            IF v_temporal_exists AND v_comparative_exists AND v_pattern_exists 
+               AND v_predictive_exists AND v_network_exists AND v_decision_exists THEN
+                RAISE NOTICE '✓ All 6 ENHANCED election cycle views created successfully';
+                RAISE NOTICE '  REVISION: Now using comprehensive advanced view integration';
+                RAISE NOTICE '  - Temporal: Added decision_temporal_trends, committee_productivity';
+                RAISE NOTICE '  - Comparative: Added party_performance_metrics, committee_productivity_matrix';
+                RAISE NOTICE '  - Pattern: Added voting_anomaly_detection, politician_risk_summary';
+                RAISE NOTICE '  - Predictive: Added ministry_risk_evolution, party_effectiveness_trends';
+                RAISE NOTICE '  - Network: Added politician_influence_metrics';
+                RAISE NOTICE '  - Decision: Added decision_temporal_trends, ministry_decision_impact';
             ELSE
-                RAISE WARNING 'Expected 6 election cycle views, found: %', view_count;
+                RAISE WARNING 'Some election cycle views failed to create';
             END IF;
         END $$;
     ]]></sql>
