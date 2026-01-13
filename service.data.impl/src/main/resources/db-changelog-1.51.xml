@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Riksmöte-Based Parliamentary Session Analysis Views v1.51
+  Author: Political Analyst & Intelligence Operative  
+  Date: 2026-01-13
+  GitHub Issue: Historical Election Cycle Trend Views for All Elections (2002-Present)
+  
+  This changelog creates riksmöte (parliamentary session) analysis views using the rm column.
+  Swedish Riksdag sessions run September to August (e.g., "2025/26" = Sept 2025 - Aug 2026).
+  
+  Views created:
+  1. view_riksdagen_riksmote_summary - Overall session metrics
+  2. view_riksdagen_politician_riksmote_performance - Politician tracking per session
+  3. view_riksdagen_party_riksmote_trends - Party evolution across sessions
+  
+  Key differences from original implementation:
+  - Uses rm (riksmöte) column instead of calendar year ranges
+  - Parliamentary sessions, not arbitrary 4-year election cycles
+  - Proper JPA entity models with JAXB annotations
+-->
+
+<!-- ========================================================================= -->
+<!-- View 1: Riksmöte Summary - Overall Session Metrics                       -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-riksmote-summary-1.51-001" failOnError="true">
+    <comment>
+        Create view_riksdagen_riksmote_summary
+        
+        Provides comprehensive metrics for each riksmöte (parliamentary session).
+        Uses the rm column which contains values like "2025/26", "2024/25", etc.
+        Sessions run from September to August, aligned with Swedish parliamentary calendar.
+        
+        Intelligence Value: ⭐⭐⭐⭐ HIGH
+        Enables session-based longitudinal analysis of Swedish democracy
+    </comment>
+    
+    <createView viewName="view_riksdagen_riksmote_summary">
+        <![CDATA[
+SELECT 
+    rm AS riksmote,
+    COUNT(DISTINCT embedded_id_ballot_id) AS total_ballots,
+    COUNT(DISTINCT embedded_id_intressent_id) AS active_politicians,
+    COUNT(*) AS total_votes,
+    COUNT(*) FILTER (WHERE vote = 'Ja') AS yes_votes,
+    COUNT(*) FILTER (WHERE vote = 'Nej') AS no_votes,
+    COUNT(*) FILTER (WHERE vote = 'Avstår') AS abstain_votes,
+    COUNT(*) FILTER (WHERE vote = 'Frånvarande') AS absent_votes,
+    ROUND(AVG(born_year), 0) AS avg_born_year,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE gender = 'MAN') / NULLIF(COUNT(*), 0), 2) AS percentage_male,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE gender = 'KVINNA') / NULLIF(COUNT(*), 0), 2) AS percentage_female,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Ja') / NULLIF(COUNT(*), 0), 2) AS avg_yes_rate,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Nej') / NULLIF(COUNT(*), 0), 2) AS avg_no_rate,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Avstår') / NULLIF(COUNT(*), 0), 2) AS avg_abstain_rate,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0), 2) AS avg_absent_rate,
+    COUNT(DISTINCT party) AS active_parties,
+    MIN(vote_date) AS session_first_vote,
+    MAX(vote_date) AS session_last_vote,
+    -- Election year indicator (elections typically held in September)
+    CASE 
+        WHEN rm IN ('2025/26', '2021/22', '2017/18', '2013/14', '2009/10', '2005/06', '2001/02') 
+        THEN true 
+        ELSE false 
+    END AS is_election_year
+FROM vote_data
+WHERE rm IS NOT NULL
+GROUP BY rm
+ORDER BY rm DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_riksmote_summary"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- View 2: Politician Riksmöte Performance - Individual Tracking            -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-politician-riksmote-performance-1.51-002" failOnError="true">
+    <comment>
+        Create view_riksdagen_politician_riksmote_performance
+        
+        Tracks individual politician performance metrics across riksmöte sessions.
+        Enables career trajectory analysis based on parliamentary sessions.
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Critical for politician scorecards and performance tracking
+    </comment>
+    
+    <createView viewName="view_riksdagen_politician_riksmote_performance">
+        <![CDATA[
+SELECT 
+    rm AS riksmote,
+    embedded_id_intressent_id AS person_id,
+    MAX(first_name) AS first_name,
+    MAX(last_name) AS last_name,
+    MAX(party) AS party,
+    MAX(gender) AS gender,
+    MAX(born_year) AS born_year,
+    COUNT(DISTINCT embedded_id_ballot_id) AS ballot_participation,
+    COUNT(*) AS total_votes_cast,
+    COUNT(*) FILTER (WHERE vote = 'Ja') AS yes_votes,
+    COUNT(*) FILTER (WHERE vote = 'Nej') AS no_votes,
+    COUNT(*) FILTER (WHERE vote = 'Avstår') AS abstain_votes,
+    COUNT(*) FILTER (WHERE vote = 'Frånvarande') AS absent_votes,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Ja') / NULLIF(COUNT(*), 0), 2) AS yes_rate,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Nej') / NULLIF(COUNT(*), 0), 2) AS no_rate,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Avstår') / NULLIF(COUNT(*), 0), 2) AS abstain_rate,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0), 2) AS absent_rate,
+    ROUND(100.0 - (100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0)), 2) AS attendance_score
+FROM vote_data
+WHERE rm IS NOT NULL 
+    AND embedded_id_intressent_id IS NOT NULL
+GROUP BY rm, embedded_id_intressent_id
+ORDER BY rm DESC, attendance_score DESC NULLS LAST;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_politician_riksmote_performance"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- View 3: Party Riksmöte Trends - Party Evolution Analysis                 -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-party-riksmote-trends-1.51-003" failOnError="true">
+    <comment>
+        Create view_riksdagen_party_riksmote_trends
+        
+        Analyzes party evolution across riksmöte sessions including size,
+        voting behavior, and market share trends.
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Essential for coalition analysis and electoral forecasting
+    </comment>
+    
+    <createView viewName="view_riksdagen_party_riksmote_trends">
+        <![CDATA[
+WITH party_session_stats AS (
+    SELECT
+        rm AS riksmote,
+        party,
+        COUNT(DISTINCT embedded_id_intressent_id) AS party_size,
+        COUNT(DISTINCT embedded_id_ballot_id) AS ballots_participated,
+        COUNT(*) AS total_party_votes,
+        COUNT(*) FILTER (WHERE vote = 'Ja') AS party_yes_votes,
+        COUNT(*) FILTER (WHERE vote = 'Nej') AS party_no_votes,
+        COUNT(*) FILTER (WHERE vote = 'Avstår') AS party_abstain_votes,
+        COUNT(*) FILTER (WHERE vote = 'Frånvarande') AS party_absent_votes,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Ja') / NULLIF(COUNT(*), 0), 2) AS party_yes_rate,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Nej') / NULLIF(COUNT(*), 0), 2) AS party_no_rate,
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0), 2) AS party_absent_rate,
+        ROUND(100.0 - (100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0)), 2) AS party_attendance_rate
+    FROM vote_data
+    WHERE rm IS NOT NULL 
+        AND party IS NOT NULL
+    GROUP BY rm, party
+),
+party_with_market_share AS (
+    SELECT
+        pss.*,
+        SUM(party_size) OVER (PARTITION BY riksmote) AS total_politicians_in_session,
+        ROUND(100.0 * party_size / NULLIF(SUM(party_size) OVER (PARTITION BY riksmote), 0), 2) AS party_market_share
+    FROM party_session_stats pss
+)
+SELECT
+    riksmote,
+    party,
+    party_size,
+    ballots_participated,
+    total_party_votes,
+    party_yes_votes,
+    party_no_votes,
+    party_abstain_votes,
+    party_absent_votes,
+    party_yes_rate,
+    party_no_rate,
+    party_absent_rate,
+    party_attendance_rate,
+    party_market_share,
+    -- Party size ranking within session
+    RANK() OVER (PARTITION BY riksmote ORDER BY party_size DESC) AS size_rank,
+    RANK() OVER (PARTITION BY riksmote ORDER BY party_attendance_rate DESC) AS attendance_rank
+FROM party_with_market_share
+ORDER BY riksmote DESC, party_size DESC;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_party_riksmote_trends"/>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
