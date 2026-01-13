@@ -93,6 +93,92 @@ Comprehensive tracking of intelligence capabilities, database views, risk rules,
 - [Appendix B: Risk Rule Specifications](#appendix-b-risk-rule-specifications)
 
 
+
+## [1.51.0] - 2026-01-13
+
+### 🗄️ Database Views (6 Added) - Election Cycle Trend Views
+
+**Type:** Database Views Enhancement - META/META Level  
+**Impact:** HIGH - New comprehensive election cycle analytical capability  
+**GitHub Issue:** #8205 - Historical Election Cycle Trend Views  
+**Related PR:** #8204 - Framework-validation sample data  
+**Changelog:** db-changelog-1.51.xml
+
+**Views Added:**
+
+1. **view_election_cycle_temporal_trends** ⭐⭐⭐⭐⭐
+   - Framework: Temporal Analysis (35 supporting views)
+   - Aggregates attendance, ballots, violations by election cycle/semester
+   - Source: view_politician_behavioral_trends, monthly vote summaries
+   - Columns: election_cycle_id, cycle_year, semester, avg_attendance_rate, avg_rebel_rate, etc.
+
+2. **view_election_cycle_comparative_analysis** ⭐⭐⭐⭐⭐
+   - Framework: Comparative Analysis (26 supporting views)
+   - Party-level metrics comparison by cycle/semester
+   - Source: view_riksdagen_vote_data_ballot_party_summary_monthly
+   - Columns: party, total_votes_party, avg_yes_percentage, avg_rebel_percentage, etc.
+
+3. **view_election_cycle_anomaly_pattern** ⭐⭐⭐⭐⭐
+   - Framework: Pattern Recognition (23 supporting views)
+   - Risk escalations and behavioral anomalies by cycle
+   - Source: view_risk_score_evolution, view_politician_behavioral_trends
+   - Columns: anomaly_type, politician_count_with_risk, avg_risk_score, risk_escalations
+
+4. **view_election_cycle_predictive_intelligence** ⭐⭐⭐⭐⭐
+   - Framework: Predictive Intelligence (14 supporting views)
+   - Risk forecasts and trajectory analysis by cycle
+   - Source: view_risk_score_evolution, view_politician_behavioral_trends
+   - Columns: risk_forecast_category, politicians_at_risk, predicted_high_absenteeism
+
+5. **view_election_cycle_network_analysis** ⭐⭐⭐⭐⭐
+   - Framework: Network Analysis (11 supporting views)
+   - Coalition alignment structure by election cycle
+   - Source: view_riksdagen_coalition_alignment_matrix
+   - Columns: party_a, party_b, alignment_score, coalition_strength
+
+6. **view_election_cycle_decision_intelligence** ⭐⭐⭐⭐⭐
+   - Framework: Decision Intelligence (5 supporting views)
+   - Proposal success rates and effectiveness by cycle
+   - Source: view_riksdagen_party_decision_flow
+   - Columns: party, total_proposals, approved_proposals, decision_effectiveness
+
+**Swedish Parliamentary Context:**
+- Elections every 4 years (1994, 1998, 2002, 2006, 2010, 2014, 2018, 2022, 2026...)
+- Autumn semester: mid-September to ~January 25
+- Spring semester: ~January 26 to next September
+- Pre-election significance: Final spring semester before election
+
+**Key Design Principles:**
+- **META/META Level**: Only aggregate existing advanced views, never query base tables
+- **Swedish Context**: 4-year election cycles, autumn/spring semesters, pre-election markers
+- **Framework Coverage**: All 6 analytical frameworks explicitly addressed
+- **Explicit Mapping**: Every column mapped to source view with SQL comments
+- **Temporal Dimensions**: election_cycle_id, cycle_year, semester, is_pre_election_semester, months_until_election
+
+**Intelligence Applications:**
+- Election forecasting with pre-election behavioral pattern detection
+- Cross-cycle comparative analysis and benchmarking
+- Coalition stability trends across election cycles
+- Legislative effectiveness by cycle phase
+- Temporal risk assessment with election context
+- Pre-election campaign impact analysis
+
+**Documentation:**
+- Full documentation in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Election Cycle Views section
+- SQL implementation in [db-changelog-1.51.xml](service.data.impl/src/main/resources/db-changelog-1.51.xml)
+- Column mappings documented in SQL comments
+
+**Statistics:**
+- Total Views: 84 → 90 (+6 election cycle views)
+- Regular Views: 56 → 62 (+6)
+- All 6 frameworks now have dedicated election cycle META views
+- Documentation Coverage: 100% (90/90 views)
+
+**Related Documentation:**
+- [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) - Framework specifications
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Complete view catalog
+- Swedish Parliament reference: https://www.riksdagen.se/en/how-the-riksdag-works/the-work-in-the-chamber/the-parliamentary-year/
+
 ## [1.45.0] - 2025-12-03
 
 ### 🗄️ Database Views (2 Fixed)
