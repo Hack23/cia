@@ -6,38 +6,32 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
 <!-- 
-  Parliamentary Session Analysis Views v1.51
+  Riksmöte-Based Parliamentary Session Analysis Views v1.51
   Author: Political Analyst & Intelligence Operative  
   Date: 2026-01-13
   GitHub Issue: Historical Election Cycle Trend Views for All Elections (2002-Present)
   
-  This changelog creates parliamentary session analysis views using the rm column.
-  Swedish Riksdag sessions (riksmöte) run September to August (e.g., "2025/26" = Sept 2025 - Aug 2026).
+  This changelog creates riksmöte (parliamentary session) analysis views using the rm column.
+  Swedish Riksdag sessions run September to August (e.g., "2025/26" = Sept 2025 - Aug 2026).
   
   Views created:
-  1. view_riksdagen_parliamentary_session_summary - Overall session metrics
-  2. view_riksdagen_politician_parliamentary_session_performance - Politician tracking per session
-  3. view_riksdagen_party_parliamentary_session_trends - Party evolution across sessions
-  4. view_riksdagen_parliamentary_session_comparative_analysis - Advanced LAG/LEAD analysis with z-scores
-  5. view_riksdagen_politician_parliamentary_session_rankings - PERCENT_RANK & NTILE quartiles
-  6. view_riksdagen_party_parliamentary_session_momentum - Moving averages & velocity/acceleration
-  7. view_riksdagen_parliamentary_session_volatility_analysis - Coefficient of variation & stability scores
-  8. view_riksdagen_committee_parliamentary_session_activity - DENSE_RANK & productivity tiers
+  1. view_riksdagen_riksmote_summary - Overall session metrics
+  2. view_riksdagen_politician_riksmote_performance - Politician tracking per session
+  3. view_riksdagen_party_riksmote_trends - Party evolution across sessions
   
-  Key features:
-  - Uses rm (riksmöte) column mapped to parliamentary_session for international understanding
-  - Parliamentary sessions align with Swedish Riksdag calendar, not arbitrary 4-year election cycles
+  Key differences from original implementation:
+  - Uses rm (riksmöte) column instead of calendar year ranges
+  - Parliamentary sessions, not arbitrary 4-year election cycles
   - Proper JPA entity models with JAXB annotations
-  - Advanced PostgreSQL statistics: RANK, PERCENT_RANK, NTILE, LAG, LEAD, STDDEV, moving averages, z-scores
 -->
 
 <!-- ========================================================================= -->
-<!-- View 1: Parliamentary Session Summary - Overall Session Metrics                       -->
+<!-- View 1: Riksmöte Summary - Overall Session Metrics                       -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-parliamentary-session-summary-1.51-001" failOnError="true">
+<changeSet author="intelligence-operative" id="create-riksmote-summary-1.51-001" failOnError="true">
     <comment>
-        Create view_riksdagen_parliamentary_session_summary
+        Create view_riksdagen_riksmote_summary
         
         Provides comprehensive metrics for each riksmöte (parliamentary session).
         Uses the rm column which contains values like "2025/26", "2024/25", etc.
@@ -47,10 +41,10 @@
         Enables session-based longitudinal analysis of Swedish democracy
     </comment>
     
-    <createView viewName="view_riksdagen_parliamentary_session_summary">
+    <createView viewName="view_riksdagen_riksmote_summary">
         <![CDATA[
 SELECT 
-    rm AS parliamentary_session,
+    rm AS riksmote,
     COUNT(DISTINCT embedded_id_ballot_id) AS total_ballots,
     COUNT(DISTINCT embedded_id_intressent_id) AS active_politicians,
     COUNT(*) AS total_votes,
@@ -82,17 +76,17 @@ ORDER BY rm DESC;
     </createView>
     
     <rollback>
-        <dropView viewName="view_riksdagen_parliamentary_session_summary"/>
+        <dropView viewName="view_riksdagen_riksmote_summary"/>
     </rollback>
 </changeSet>
 
 <!-- ========================================================================= -->
-<!-- View 2: Politician Parliamentary Session Performance - Individual Tracking            -->
+<!-- View 2: Politician Riksmöte Performance - Individual Tracking            -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-politician-parliamentary-session-performance-1.51-002" failOnError="true">
+<changeSet author="intelligence-operative" id="create-politician-riksmote-performance-1.51-002" failOnError="true">
     <comment>
-        Create view_riksdagen_politician_parliamentary_session_performance
+        Create view_riksdagen_politician_riksmote_performance
         
         Tracks individual politician performance metrics across riksmöte sessions.
         Enables career trajectory analysis based on parliamentary sessions.
@@ -101,10 +95,10 @@ ORDER BY rm DESC;
         Critical for politician scorecards and performance tracking
     </comment>
     
-    <createView viewName="view_riksdagen_politician_parliamentary_session_performance">
+    <createView viewName="view_riksdagen_politician_riksmote_performance">
         <![CDATA[
 SELECT 
-    rm AS parliamentary_session,
+    rm AS riksmote,
     embedded_id_intressent_id AS person_id,
     MAX(first_name) AS first_name,
     MAX(last_name) AS last_name,
@@ -131,17 +125,17 @@ ORDER BY rm DESC, attendance_score DESC NULLS LAST;
     </createView>
     
     <rollback>
-        <dropView viewName="view_riksdagen_politician_parliamentary_session_performance"/>
+        <dropView viewName="view_riksdagen_politician_riksmote_performance"/>
     </rollback>
 </changeSet>
 
 <!-- ========================================================================= -->
-<!-- View 3: Party Parliamentary Session Trends - Party Evolution Analysis                 -->
+<!-- View 3: Party Riksmöte Trends - Party Evolution Analysis                 -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-party-parliamentary-session-trends-1.51-003" failOnError="true">
+<changeSet author="intelligence-operative" id="create-party-riksmote-trends-1.51-003" failOnError="true">
     <comment>
-        Create view_riksdagen_party_parliamentary_session_trends
+        Create view_riksdagen_party_riksmote_trends
         
         Analyzes party evolution across riksmöte sessions including size,
         voting behavior, and market share trends.
@@ -150,11 +144,11 @@ ORDER BY rm DESC, attendance_score DESC NULLS LAST;
         Essential for coalition analysis and electoral forecasting
     </comment>
     
-    <createView viewName="view_riksdagen_party_parliamentary_session_trends">
+    <createView viewName="view_riksdagen_party_riksmote_trends">
         <![CDATA[
 WITH party_session_stats AS (
     SELECT
-        rm AS parliamentary_session,
+        rm AS riksmote,
         party,
         COUNT(DISTINCT embedded_id_intressent_id) AS party_size,
         COUNT(DISTINCT embedded_id_ballot_id) AS ballots_participated,
@@ -175,12 +169,12 @@ WITH party_session_stats AS (
 party_with_market_share AS (
     SELECT
         pss.*,
-        SUM(party_size) OVER (PARTITION BY parliamentary_session) AS total_politicians_in_session,
-        ROUND(100.0 * party_size / NULLIF(SUM(party_size) OVER (PARTITION BY parliamentary_session), 0), 2) AS party_market_share
+        SUM(party_size) OVER (PARTITION BY riksmote) AS total_politicians_in_session,
+        ROUND(100.0 * party_size / NULLIF(SUM(party_size) OVER (PARTITION BY riksmote), 0), 2) AS party_market_share
     FROM party_session_stats pss
 )
 SELECT
-    parliamentary_session,
+    riksmote,
     party,
     party_size,
     ballots_participated,
@@ -195,25 +189,25 @@ SELECT
     party_attendance_rate,
     party_market_share,
     -- Party size ranking within session
-    RANK() OVER (PARTITION BY parliamentary_session ORDER BY party_size DESC) AS size_rank,
-    RANK() OVER (PARTITION BY parliamentary_session ORDER BY party_attendance_rate DESC) AS attendance_rank
+    RANK() OVER (PARTITION BY riksmote ORDER BY party_size DESC) AS size_rank,
+    RANK() OVER (PARTITION BY riksmote ORDER BY party_attendance_rate DESC) AS attendance_rank
 FROM party_with_market_share
-ORDER BY parliamentary_session DESC, party_size DESC;
+ORDER BY riksmote DESC, party_size DESC;
         ]]>
     </createView>
     
     <rollback>
-        <dropView viewName="view_riksdagen_party_parliamentary_session_trends"/>
+        <dropView viewName="view_riksdagen_party_riksmote_trends"/>
     </rollback>
 </changeSet>
 
 <!-- ========================================================================= -->
-<!-- View 4: Parliamentary Session Comparative Analysis - Advanced Window Functions        -->
+<!-- View 4: Riksmöte Comparative Analysis - Advanced Window Functions        -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-parliamentary-session-comparative-analysis-1.51-004-advanced" failOnError="true">
+<changeSet author="intelligence-operative" id="create-riksmote-comparative-analysis-1.51-004-advanced" failOnError="true">
     <comment>
-        Create view_riksdagen_parliamentary_session_comparative_analysis
+        Create view_riksdagen_riksmote_comparative_analysis
         
         Advanced statistical analysis using LAG(), LEAD(), z-scores, and historical baselines.
         Compares each riksmöte against previous sessions and historical averages.
@@ -222,11 +216,11 @@ ORDER BY parliamentary_session DESC, party_size DESC;
         Critical for detecting anomalies and tracking parliamentary evolution
     </comment>
     
-    <createView viewName="view_riksdagen_parliamentary_session_comparative_analysis">
+    <createView viewName="view_riksdagen_riksmote_comparative_analysis">
         <![CDATA[
-WITH parliamentary_session_stats AS (
+WITH riksmote_stats AS (
     SELECT 
-        rm AS parliamentary_session,
+        rm AS riksmote,
         COUNT(DISTINCT embedded_id_ballot_id) AS total_ballots,
         COUNT(DISTINCT embedded_id_intressent_id) AS active_politicians,
         ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Ja') / NULLIF(COUNT(*), 0), 2) AS avg_yes_rate,
@@ -236,45 +230,45 @@ WITH parliamentary_session_stats AS (
     WHERE rm IS NOT NULL
     GROUP BY rm
 ),
-parliamentary_session_with_comparisons AS (
+riksmote_with_comparisons AS (
     SELECT
-        parliamentary_session,
+        riksmote,
         total_ballots,
         active_politicians,
         avg_yes_rate,
         avg_absent_rate,
         active_parties,
         -- Period-over-period comparisons using LAG()
-        LAG(total_ballots, 1) OVER (ORDER BY parliamentary_session) AS prev_parliamentary_session_ballots,
-        LAG(avg_yes_rate, 1) OVER (ORDER BY parliamentary_session) AS prev_parliamentary_session_yes_rate,
-        LEAD(total_ballots, 1) OVER (ORDER BY parliamentary_session DESC) AS next_parliamentary_session_ballots,
+        LAG(total_ballots, 1) OVER (ORDER BY riksmote) AS prev_riksmote_ballots,
+        LAG(avg_yes_rate, 1) OVER (ORDER BY riksmote) AS prev_riksmote_yes_rate,
+        LEAD(total_ballots, 1) OVER (ORDER BY riksmote DESC) AS next_riksmote_ballots,
         -- Historical context
-        FIRST_VALUE(total_ballots) OVER (ORDER BY parliamentary_session) AS baseline_ballots,
-        LAST_VALUE(total_ballots) OVER (ORDER BY parliamentary_session ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS latest_ballots,
+        FIRST_VALUE(total_ballots) OVER (ORDER BY riksmote) AS baseline_ballots,
+        LAST_VALUE(total_ballots) OVER (ORDER BY riksmote ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS latest_ballots,
         AVG(total_ballots) OVER () AS historical_avg_ballots,
         STDDEV(total_ballots) OVER () AS historical_stddev_ballots,
         -- Ranking
         RANK() OVER (ORDER BY total_ballots DESC) AS ballot_productivity_rank,
         RANK() OVER (ORDER BY avg_absent_rate ASC) AS attendance_quality_rank
-    FROM parliamentary_session_stats
+    FROM riksmote_stats
 )
 SELECT
-    parliamentary_session,
+    riksmote,
     total_ballots,
     active_politicians,
     avg_yes_rate,
     avg_absent_rate,
     active_parties,
-    prev_parliamentary_session_ballots,
-    prev_parliamentary_session_yes_rate,
-    next_parliamentary_session_ballots,
+    prev_riksmote_ballots,
+    prev_riksmote_yes_rate,
+    next_riksmote_ballots,
     baseline_ballots,
     latest_ballots,
     ROUND(historical_avg_ballots, 2) AS historical_avg_ballots,
     ROUND(historical_stddev_ballots, 2) AS historical_stddev_ballots,
     -- Change calculations
-    ROUND(100.0 * (total_ballots - prev_parliamentary_session_ballots) / NULLIF(prev_parliamentary_session_ballots, 0), 2) AS ballot_change_pct,
-    ROUND(avg_yes_rate - prev_parliamentary_session_yes_rate, 2) AS yes_rate_change,
+    ROUND(100.0 * (total_ballots - prev_riksmote_ballots) / NULLIF(prev_riksmote_ballots, 0), 2) AS ballot_change_pct,
+    ROUND(avg_yes_rate - prev_riksmote_yes_rate, 2) AS yes_rate_change,
     -- Z-score for anomaly detection
     ROUND((total_ballots - historical_avg_ballots) / NULLIF(historical_stddev_ballots, 0), 2) AS ballot_zscore,
     -- Rankings
@@ -287,23 +281,23 @@ SELECT
         WHEN (total_ballots - historical_avg_ballots) / NULLIF(historical_stddev_ballots, 0) < -1 THEN 'BELOW_AVERAGE'
         ELSE 'TYPICAL'
     END AS activity_classification
-FROM parliamentary_session_with_comparisons
-ORDER BY parliamentary_session DESC;
+FROM riksmote_with_comparisons
+ORDER BY riksmote DESC;
         ]]>
     </createView>
     
     <rollback>
-        <dropView viewName="view_riksdagen_parliamentary_session_comparative_analysis"/>
+        <dropView viewName="view_riksdagen_riksmote_comparative_analysis"/>
     </rollback>
 </changeSet>
 
 <!-- ========================================================================= -->
-<!-- View 5: Politician Parliamentary Session Rankings - PERCENT_RANK & NTILE              -->
+<!-- View 5: Politician Riksmöte Rankings - PERCENT_RANK & NTILE              -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-politician-parliamentary-session-rankings-1.51-005-advanced" failOnError="true">
+<changeSet author="intelligence-operative" id="create-politician-riksmote-rankings-1.51-005-advanced" failOnError="true">
     <comment>
-        Create view_riksdagen_politician_parliamentary_session_rankings
+        Create view_riksdagen_politician_riksmote_rankings
         
         Advanced politician performance rankings using PERCENT_RANK() and NTILE().
         Identifies top/bottom performers and classifies politicians into quartiles.
@@ -312,93 +306,82 @@ ORDER BY parliamentary_session DESC;
         Essential for politician scorecards and Hall of Fame/Shame identification
     </comment>
     
-    <createView viewName="view_riksdagen_politician_parliamentary_session_rankings">
+    <createView viewName="view_riksdagen_politician_riksmote_rankings">
         <![CDATA[
 WITH politician_stats AS (
     SELECT 
-        rm AS parliamentary_session,
+        rm AS riksmote,
         embedded_id_intressent_id AS person_id,
         MAX(first_name) AS first_name,
         MAX(last_name) AS last_name,
         MAX(party) AS party,
         COUNT(DISTINCT embedded_id_ballot_id) AS ballot_participation,
         ROUND(100.0 - (100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0)), 2) AS attendance_score,
-        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Ja') / NULLIF(COUNT(*), 0), 2) AS yes_rate
-    FROM vote_data
-    WHERE rm IS NOT NULL 
-        AND embedded_id_intressent_id IS NOT NULL
-    GROUP BY rm, embedded_id_intressent_id
-),
-politician_volatility AS (
-    SELECT
-        rm AS parliamentary_session,
-        embedded_id_intressent_id AS person_id,
-        STDDEV(CASE WHEN vote = 'Ja' THEN 1.0 ELSE 0.0 END) AS vote_volatility
+        ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Ja') / NULLIF(COUNT(*), 0), 2) AS yes_rate,
+        STDDEV(CASE WHEN vote = 'Ja' THEN 1.0 ELSE 0.0 END) OVER (PARTITION BY rm, embedded_id_intressent_id) AS vote_volatility
     FROM vote_data
     WHERE rm IS NOT NULL 
         AND embedded_id_intressent_id IS NOT NULL
     GROUP BY rm, embedded_id_intressent_id
 )
 SELECT
-    ps.parliamentary_session,
-    ps.person_id,
-    ps.first_name,
-    ps.last_name,
-    ps.party,
-    ps.ballot_participation,
-    ps.attendance_score,
-    ps.yes_rate,
+    riksmote,
+    person_id,
+    first_name,
+    last_name,
+    party,
+    ballot_participation,
+    attendance_score,
+    yes_rate,
     -- Percentile rankings (0.0 to 1.0 scale)
-    ROUND(PERCENT_RANK() OVER (PARTITION BY ps.parliamentary_session ORDER BY ps.attendance_score DESC)::numeric, 4) AS attendance_percentile,
-    ROUND(PERCENT_RANK() OVER (PARTITION BY ps.parliamentary_session ORDER BY ps.ballot_participation DESC)::numeric, 4) AS participation_percentile,
+    ROUND(PERCENT_RANK() OVER (PARTITION BY riksmote ORDER BY attendance_score DESC)::numeric, 4) AS attendance_percentile,
+    ROUND(PERCENT_RANK() OVER (PARTITION BY riksmote ORDER BY ballot_participation DESC)::numeric, 4) AS participation_percentile,
     -- Quartile groupings (1-4)
-    NTILE(4) OVER (PARTITION BY ps.parliamentary_session ORDER BY ps.attendance_score DESC) AS attendance_quartile,
-    NTILE(4) OVER (PARTITION BY ps.parliamentary_session ORDER BY ps.ballot_participation DESC) AS participation_quartile,
+    NTILE(4) OVER (PARTITION BY riksmote ORDER BY attendance_score DESC) AS attendance_quartile,
+    NTILE(4) OVER (PARTITION BY riksmote ORDER BY ballot_participation DESC) AS participation_quartile,
     -- Session-wide rankings
-    RANK() OVER (PARTITION BY ps.parliamentary_session ORDER BY ps.attendance_score DESC) AS session_attendance_rank,
-    RANK() OVER (PARTITION BY ps.parliamentary_session ORDER BY ps.ballot_participation DESC) AS session_participation_rank,
+    RANK() OVER (PARTITION BY riksmote ORDER BY attendance_score DESC) AS session_attendance_rank,
+    RANK() OVER (PARTITION BY riksmote ORDER BY ballot_participation DESC) AS session_participation_rank,
     -- Party-level rankings
-    RANK() OVER (PARTITION BY ps.parliamentary_session, ps.party ORDER BY ps.attendance_score DESC) AS party_attendance_rank,
-    RANK() OVER (PARTITION BY ps.parliamentary_session, ps.party ORDER BY ps.ballot_participation DESC) AS party_participation_rank,
+    RANK() OVER (PARTITION BY riksmote, party ORDER BY attendance_score DESC) AS party_attendance_rank,
+    RANK() OVER (PARTITION BY riksmote, party ORDER BY ballot_participation DESC) AS party_participation_rank,
     -- Performance tier classification
     CASE 
-        WHEN PERCENT_RANK() OVER (PARTITION BY ps.parliamentary_session ORDER BY ps.attendance_score DESC) < 0.05 THEN 'HALL_OF_FAME'
-        WHEN PERCENT_RANK() OVER (PARTITION BY ps.parliamentary_session ORDER BY ps.attendance_score DESC) < 0.25 THEN 'EXCELLENT'
-        WHEN PERCENT_RANK() OVER (PARTITION BY ps.parliamentary_session ORDER BY ps.attendance_score DESC) < 0.75 THEN 'GOOD'
-        WHEN PERCENT_RANK() OVER (PARTITION BY ps.parliamentary_session ORDER BY ps.attendance_score DESC) < 0.95 THEN 'NEEDS_IMPROVEMENT'
+        WHEN PERCENT_RANK() OVER (PARTITION BY riksmote ORDER BY attendance_score DESC) < 0.05 THEN 'HALL_OF_FAME'
+        WHEN PERCENT_RANK() OVER (PARTITION BY riksmote ORDER BY attendance_score DESC) < 0.25 THEN 'EXCELLENT'
+        WHEN PERCENT_RANK() OVER (PARTITION BY riksmote ORDER BY attendance_score DESC) < 0.75 THEN 'GOOD'
+        WHEN PERCENT_RANK() OVER (PARTITION BY riksmote ORDER BY attendance_score DESC) < 0.95 THEN 'NEEDS_IMPROVEMENT'
         ELSE 'HALL_OF_SHAME'
     END AS performance_tier,
     -- Party MVP designation
     CASE 
-        WHEN RANK() OVER (PARTITION BY ps.parliamentary_session, ps.party ORDER BY ps.attendance_score DESC) = 1 THEN true
+        WHEN RANK() OVER (PARTITION BY riksmote, party ORDER BY attendance_score DESC) = 1 THEN true
         ELSE false
     END AS is_party_mvp,
     -- Consistency rating (based on vote volatility)
     CASE 
-        WHEN pv.vote_volatility < 0.2 THEN 'VERY_CONSISTENT'
-        WHEN pv.vote_volatility < 0.3 THEN 'CONSISTENT'
-        WHEN pv.vote_volatility < 0.4 THEN 'MODERATE'
+        WHEN vote_volatility < 0.2 THEN 'VERY_CONSISTENT'
+        WHEN vote_volatility < 0.3 THEN 'CONSISTENT'
+        WHEN vote_volatility < 0.4 THEN 'MODERATE'
         ELSE 'INCONSISTENT'
     END AS consistency_rating
-FROM politician_stats ps
-LEFT JOIN politician_volatility pv 
-    ON ps.parliamentary_session = pv.parliamentary_session AND ps.person_id = pv.person_id
-ORDER BY ps.parliamentary_session DESC, ps.attendance_score DESC NULLS LAST;
+FROM politician_stats
+ORDER BY riksmote DESC, attendance_score DESC NULLS LAST;
         ]]>
     </createView>
     
     <rollback>
-        <dropView viewName="view_riksdagen_politician_parliamentary_session_rankings"/>
+        <dropView viewName="view_riksdagen_politician_riksmote_rankings"/>
     </rollback>
 </changeSet>
 
 <!-- ========================================================================= -->
-<!-- View 6: Party Parliamentary Session Momentum - Moving Averages & Velocity             -->
+<!-- View 6: Party Riksmöte Momentum - Moving Averages & Velocity             -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-party-parliamentary-session-momentum-1.51-006-advanced" failOnError="true">
+<changeSet author="intelligence-operative" id="create-party-riksmote-momentum-1.51-006-advanced" failOnError="true">
     <comment>
-        Create view_riksdagen_party_parliamentary_session_momentum
+        Create view_riksdagen_party_riksmote_momentum
         
         Party momentum analysis using moving averages, velocity, and acceleration metrics.
         Enables coalition forecasting and party trajectory analysis.
@@ -407,11 +390,11 @@ ORDER BY ps.parliamentary_session DESC, ps.attendance_score DESC NULLS LAST;
         Critical for electoral forecasting and coalition potential assessment
     </comment>
     
-    <createView viewName="view_riksdagen_party_parliamentary_session_momentum">
+    <createView viewName="view_riksdagen_party_riksmote_momentum">
         <![CDATA[
 WITH party_session_data AS (
     SELECT
-        rm AS parliamentary_session,
+        rm AS riksmote,
         party,
         COUNT(DISTINCT embedded_id_intressent_id) AS party_size,
         ROUND(100.0 * COUNT(*) FILTER (WHERE vote = 'Frånvarande') / NULLIF(COUNT(*), 0), 2) AS absent_rate
@@ -421,25 +404,23 @@ WITH party_session_data AS (
 ),
 party_with_trends AS (
     SELECT
-        parliamentary_session,
+        riksmote,
         party,
         party_size,
         absent_rate,
         -- Market share calculation
-        ROUND(100.0 * party_size / NULLIF(SUM(party_size) OVER (PARTITION BY parliamentary_session), 0), 2) AS market_share,
+        ROUND(100.0 * party_size / NULLIF(SUM(party_size) OVER (PARTITION BY riksmote), 0), 2) AS market_share,
         -- Previous session metrics using LAG()
-        LAG(party_size, 1) OVER (PARTITION BY party ORDER BY parliamentary_session) AS prev_session_size,
-        LAG(party_size, 2) OVER (PARTITION BY party ORDER BY parliamentary_session) AS prev_2_session_size,
+        LAG(party_size, 1) OVER (PARTITION BY party ORDER BY riksmote) AS prev_session_size,
+        LAG(party_size, 2) OVER (PARTITION BY party ORDER BY riksmote) AS prev_2_session_size,
         -- Moving averages (3-session window)
-        AVG(party_size) OVER (PARTITION BY party ORDER BY parliamentary_session ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg_size_3session,
+        AVG(party_size) OVER (PARTITION BY party ORDER BY riksmote ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg_size_3session,
         -- Standard deviation for volatility
-        STDDEV(party_size) OVER (PARTITION BY party ORDER BY parliamentary_session ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS size_volatility_3session,
-        -- Calculate size_change_pct in CTE
-        ROUND(100.0 * (party_size - LAG(party_size, 1) OVER (PARTITION BY party ORDER BY parliamentary_session)) / NULLIF(LAG(party_size, 1) OVER (PARTITION BY party ORDER BY parliamentary_session), 0), 2) AS size_change_pct
+        STDDEV(party_size) OVER (PARTITION BY party ORDER BY riksmote ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS size_volatility_3session
     FROM party_session_data
 )
 SELECT
-    parliamentary_session,
+    riksmote,
     party,
     party_size,
     absent_rate,
@@ -449,7 +430,7 @@ SELECT
     ROUND(size_volatility_3session, 2) AS size_volatility,
     -- Velocity (rate of change)
     ROUND(party_size - prev_session_size, 0) AS size_change_1session,
-    size_change_pct,
+    ROUND(100.0 * (party_size - prev_session_size) / NULLIF(prev_session_size, 0), 2) AS size_change_pct,
     -- Acceleration (change in velocity)
     ROUND((party_size - prev_session_size) - (prev_session_size - prev_2_session_size), 0) AS size_acceleration,
     -- Momentum classification
@@ -481,24 +462,24 @@ SELECT
     -- Coalition potential score (market share + momentum)
     ROUND(market_share + COALESCE(size_change_pct, 0) * 0.5, 2) AS coalition_potential_score,
     -- Size ranking within session
-    RANK() OVER (PARTITION BY parliamentary_session ORDER BY party_size DESC) AS size_rank
+    RANK() OVER (PARTITION BY riksmote ORDER BY party_size DESC) AS size_rank
 FROM party_with_trends
-ORDER BY parliamentary_session DESC, party_size DESC;
+ORDER BY riksmote DESC, party_size DESC;
         ]]>
     </createView>
     
     <rollback>
-        <dropView viewName="view_riksdagen_party_parliamentary_session_momentum"/>
+        <dropView viewName="view_riksdagen_party_riksmote_momentum"/>
     </rollback>
 </changeSet>
 
 <!-- ========================================================================= -->
-<!-- View 7: Parliamentary Session Volatility Analysis - Coefficient of Variation          -->
+<!-- View 7: Riksmöte Volatility Analysis - Coefficient of Variation          -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-parliamentary-session-volatility-analysis-1.51-007-advanced" failOnError="true">
+<changeSet author="intelligence-operative" id="create-riksmote-volatility-analysis-1.51-007-advanced" failOnError="true">
     <comment>
-        Create view_riksdagen_parliamentary_session_volatility_analysis
+        Create view_riksdagen_riksmote_volatility_analysis
         
         Behavioral volatility analysis using coefficient of variation and stability scores.
         Identifies erratic performers and behavioral consistency patterns.
@@ -507,11 +488,11 @@ ORDER BY parliamentary_session DESC, party_size DESC;
         Important for risk assessment and behavioral pattern recognition
     </comment>
     
-    <createView viewName="view_riksdagen_parliamentary_session_volatility_analysis">
+    <createView viewName="view_riksdagen_riksmote_volatility_analysis">
         <![CDATA[
 WITH politician_session_votes AS (
     SELECT
-        rm AS parliamentary_session,
+        rm AS riksmote,
         embedded_id_intressent_id AS person_id,
         MAX(first_name) AS first_name,
         MAX(last_name) AS last_name,
@@ -528,16 +509,16 @@ WITH politician_session_votes AS (
 ),
 party_session_volatility AS (
     SELECT
-        parliamentary_session,
+        riksmote,
         party,
         AVG(stddev_yes_vote) AS party_avg_vote_volatility,
         STDDEV(stddev_yes_vote) AS party_vote_volatility_stddev
     FROM politician_session_votes
     WHERE party IS NOT NULL
-    GROUP BY parliamentary_session, party
+    GROUP BY riksmote, party
 )
 SELECT
-    psv.parliamentary_session,
+    psv.riksmote,
     psv.person_id,
     psv.first_name,
     psv.last_name,
@@ -586,17 +567,17 @@ ORDER BY psv.riksmote DESC, psv.stddev_yes_vote DESC;
     </createView>
     
     <rollback>
-        <dropView viewName="view_riksdagen_parliamentary_session_volatility_analysis"/>
+        <dropView viewName="view_riksdagen_riksmote_volatility_analysis"/>
     </rollback>
 </changeSet>
 
 <!-- ========================================================================= -->
-<!-- View 8: Committee Parliamentary Session Activity - DENSE_RANK & Productivity Tiers    -->
+<!-- View 8: Committee Riksmöte Activity - DENSE_RANK & Productivity Tiers    -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-committee-parliamentary-session-activity-1.51-008-advanced" failOnError="true">
+<changeSet author="intelligence-operative" id="create-committee-riksmote-activity-1.51-008-advanced" failOnError="true">
     <comment>
-        Create view_riksdagen_committee_parliamentary_session_activity
+        Create view_riksdagen_committee_riksmote_activity
         
         Committee productivity analysis using DENSE_RANK() and NTILE() for tier classification.
         Tracks committee workload and activity levels across riksmöte sessions.
@@ -605,11 +586,11 @@ ORDER BY psv.riksmote DESC, psv.stddev_yes_vote DESC;
         Essential for legislative productivity monitoring and committee effectiveness
     </comment>
     
-    <createView viewName="view_riksdagen_committee_parliamentary_session_activity">
+    <createView viewName="view_riksdagen_committee_riksmote_activity">
         <![CDATA[
 WITH committee_ballot_stats AS (
     SELECT
-        rm AS parliamentary_session,
+        rm AS riksmote,
         COALESCE(beteckning, 'UNKNOWN') AS committee_designation,
         COUNT(DISTINCT embedded_id_ballot_id) AS committee_ballots,
         COUNT(DISTINCT embedded_id_intressent_id) AS committee_members,
@@ -621,7 +602,7 @@ WITH committee_ballot_stats AS (
     GROUP BY rm, beteckning
 )
 SELECT
-    parliamentary_session,
+    riksmote,
     committee_designation,
     committee_ballots,
     committee_members,
@@ -629,37 +610,37 @@ SELECT
     absent_rate,
     ROUND(vote_volatility::numeric, 4) AS vote_volatility,
     -- Dense ranking (no gaps for ties)
-    DENSE_RANK() OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC) AS productivity_dense_rank,
+    DENSE_RANK() OVER (PARTITION BY riksmote ORDER BY committee_ballots DESC) AS productivity_dense_rank,
     -- Quartile classification
-    NTILE(4) OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC) AS productivity_quartile,
+    NTILE(4) OVER (PARTITION BY riksmote ORDER BY committee_ballots DESC) AS productivity_quartile,
     -- Activity level tiers
     CASE 
-        WHEN NTILE(4) OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC) = 1 THEN 'VERY_ACTIVE'
-        WHEN NTILE(4) OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC) = 2 THEN 'ACTIVE'
-        WHEN NTILE(4) OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC) = 3 THEN 'MODERATE'
+        WHEN NTILE(4) OVER (PARTITION BY riksmote ORDER BY committee_ballots DESC) = 1 THEN 'VERY_ACTIVE'
+        WHEN NTILE(4) OVER (PARTITION BY riksmote ORDER BY committee_ballots DESC) = 2 THEN 'ACTIVE'
+        WHEN NTILE(4) OVER (PARTITION BY riksmote ORDER BY committee_ballots DESC) = 3 THEN 'MODERATE'
         ELSE 'LOW_ACTIVITY'
     END AS activity_level,
     -- Trend indicators (comparing to previous session)
-    LAG(committee_ballots, 1) OVER (PARTITION BY committee_designation ORDER BY parliamentary_session) AS prev_session_ballots,
+    LAG(committee_ballots, 1) OVER (PARTITION BY committee_designation ORDER BY riksmote) AS prev_session_ballots,
     CASE 
-        WHEN committee_ballots > LAG(committee_ballots, 1) OVER (PARTITION BY committee_designation ORDER BY parliamentary_session) * 1.1 
+        WHEN committee_ballots > LAG(committee_ballots, 1) OVER (PARTITION BY committee_designation ORDER BY riksmote) * 1.1 
             THEN 'INCREASING'
-        WHEN committee_ballots < LAG(committee_ballots, 1) OVER (PARTITION BY committee_designation ORDER BY parliamentary_session) * 0.9 
+        WHEN committee_ballots < LAG(committee_ballots, 1) OVER (PARTITION BY committee_designation ORDER BY riksmote) * 0.9 
             THEN 'DECREASING'
         ELSE 'STABLE'
     END AS activity_trend,
     -- Percentile ranking
-    ROUND(PERCENT_RANK() OVER (PARTITION BY parliamentary_session ORDER BY committee_ballots DESC)::numeric, 4) AS productivity_percentile,
+    ROUND(PERCENT_RANK() OVER (PARTITION BY riksmote ORDER BY committee_ballots DESC)::numeric, 4) AS productivity_percentile,
     -- Members per ballot ratio (efficiency metric)
     ROUND(committee_members::numeric / NULLIF(committee_ballots, 0), 2) AS members_per_ballot_ratio
 FROM committee_ballot_stats
 WHERE committee_designation != 'UNKNOWN'
-ORDER BY parliamentary_session DESC, committee_ballots DESC;
+ORDER BY riksmote DESC, committee_ballots DESC;
         ]]>
     </createView>
     
     <rollback>
-        <dropView viewName="view_riksdagen_committee_parliamentary_session_activity"/>
+        <dropView viewName="view_riksdagen_committee_riksmote_activity"/>
     </rollback>
 </changeSet>
 
