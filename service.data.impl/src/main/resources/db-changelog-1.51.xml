@@ -497,8 +497,8 @@ SELECT
     SUM(dtt.daily_decisions) AS temporal_decision_count,
     
     -- From view_ministry_decision_impact (NEW - government decision effectiveness)
-    ROUND(AVG(mdi.decision_impact_score), 2) AS ministry_impact_score,
-    COUNT(DISTINCT mdi.ministry_name) AS ministries_with_decisions
+    ROUND(AVG(mdi.approval_rate), 2) AS ministry_impact_score,
+    COUNT(DISTINCT mdi.ministry_code) AS ministries_with_decisions
     
 FROM election_cycle_periods ecp
 LEFT JOIN view_riksdagen_party_decision_flow pdf
@@ -506,7 +506,7 @@ LEFT JOIN view_riksdagen_party_decision_flow pdf
 LEFT JOIN view_decision_temporal_trends dtt
     ON EXTRACT(YEAR FROM dtt.decision_day) = ecp.calendar_year
 LEFT JOIN view_ministry_decision_impact mdi
-    ON EXTRACT(YEAR FROM mdi.decision_date) = ecp.calendar_year
+    ON mdi.decision_year = ecp.calendar_year
 WHERE pdf.party IS NOT NULL
 GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, 
     CASE WHEN pdf.decision_month_num >= 9 OR pdf.decision_month_num <= 1 THEN 'autumn' ELSE 'spring' END, 
